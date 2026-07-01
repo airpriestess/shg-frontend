@@ -1,37 +1,37 @@
 export const T = {
-  // Backgrounds
-  bgRoot: "#090407",
-  bgSoft: "#12070D",
-  surfaceBase: "#170912",
-  surfaceRaised: "#1F0C18",
-  surfaceHigh: "#2A1221",
+  // Backgrounds — pure black
+  bgRoot: "#000000",
+  bgSoft: "#060400",
+  surfaceBase: "#0a0800",
+  surfaceRaised: "#0f0b01",
+  surfaceHigh: "#140e02",
 
   // Borders
-  borderSoft: "#3A2630",
-  borderGlow: "#5A3345",
+  borderSoft: "#1e1608",
+  borderGlow: "#2a1e08",
 
   // Text
-  textPrimary: "#F6EFE6",
-  textSecondary: "#C8B5AD",
-  textMuted: "#9A8580",
-  textFaint: "#6F5B58",
+  textPrimary: "#e8e0d0",
+  textSecondary: "#c8a870",
+  textMuted: "#5a4a2a",
+  textFaint: "#2a1e08",
 
-  // Accents
-  rose: "#B9828E",
-  blood: "#7C263F",
-  champagne: "#D7B982",
-  champSoft: "#BFA06B",
-  success: "#8DAF7A",
+  // Accents — gold + rose only
+  gold: "#C8892A",
+  rose: "#C4365A",
+  champagne: "#C8892A",
+  champSoft: "#b07828",
+  success: "#3a8a4a",
   warning: "#C69A5B",
-  danger: "#B85C68",
+  danger: "#C4365A",
 
-  // Gradients (as strings for inline use)
-  bgGrad: "linear-gradient(135deg, #090407 0%, #170912 50%, #27101D 100%)",
-  cardBg: "rgba(31,12,24,0.86)",
-  premiumCard: "linear-gradient(135deg, rgba(42,18,33,0.95) 0%, rgba(23,9,18,0.95) 100%)",
-  border: "1px solid rgba(215,185,130,0.14)",
-  glow: "0 0 40px rgba(185,130,142,0.08)",
-  glowChamp: "0 0 30px rgba(215,185,130,0.12)",
+  // Gradients
+  bgGrad: "linear-gradient(135deg, #000000 0%, #060400 50%, #0a0500 100%)",
+  cardBg: "rgba(10,8,0,0.9)",
+  premiumCard: "linear-gradient(135deg, rgba(15,11,1,0.95) 0%, rgba(8,6,0,0.95) 100%)",
+  border: "1px solid #1e1608",
+  glow: "0 0 40px rgba(200,137,42,0.06)",
+  glowChamp: "0 0 30px rgba(200,137,42,0.1)",
 };
 
 export const CSS = `
@@ -41,9 +41,8 @@ export const CSS = `
 html { scroll-behavior: smooth; }
 
 body {
-  background: linear-gradient(135deg, #090407 0%, #170912 50%, #27101D 100%);
-  background-attachment: fixed;
-  color: #F6EFE6;
+  background: #000000;
+  color: #e8e0d0;
   font-family: 'Manrope', sans-serif;
   font-size: 15px;
   line-height: 1.6;
@@ -55,9 +54,9 @@ body {
 button, input, textarea, select { font-family: 'Manrope', sans-serif; }
 
 input, textarea {
-  background: rgba(31,12,24,0.6);
-  border: 1px solid rgba(215,185,130,0.14);
-  color: #F6EFE6;
+  background: #080600;
+  border: 1px solid #1e1608;
+  color: #e8e0d0;
   border-radius: 10px;
   padding: 13px 16px;
   font-size: 15px;
@@ -66,16 +65,16 @@ input, textarea {
   transition: border-color 0.2s, box-shadow 0.2s;
   font-family: 'Manrope', sans-serif;
 }
-input::placeholder, textarea::placeholder { color: #6F5B58; }
+input::placeholder, textarea::placeholder { color: #2a1e08; }
 input:focus, textarea:focus {
-  border-color: rgba(215,185,130,0.4);
-  box-shadow: 0 0 0 3px rgba(215,185,130,0.06);
+  border-color: #C8892A55;
+  box-shadow: 0 0 0 3px rgba(200,137,42,0.06);
 }
 
 select {
-  background: rgba(31,12,24,0.86);
-  border: 1px solid rgba(215,185,130,0.14);
-  color: #F6EFE6;
+  background: #080600;
+  border: 1px solid #1e1608;
+  color: #e8e0d0;
   border-radius: 10px;
   padding: 12px 16px;
   font-size: 14px;
@@ -86,7 +85,7 @@ select {
 
 ::-webkit-scrollbar { width: 3px; height: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(215,185,130,0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #1e1608; border-radius: 2px; }
 
 .wm { font-family: 'Cormorant Garamond', serif; }
 
@@ -97,7 +96,7 @@ select {
   display: inline-block;
   width: 3px;
   border-radius: 2px;
-  background: linear-gradient(180deg, #D7B982, #B9828E);
+  background: linear-gradient(180deg, #C8892A, #C4365A);
   animation: wave 1.4s ease-in-out infinite;
 }
 @keyframes wave {
@@ -119,9 +118,9 @@ select {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(185,130,142,0.4); }
-  70% { box-shadow: 0 0 0 20px rgba(185,130,142,0); }
-  100% { box-shadow: 0 0 0 0 rgba(185,130,142,0); }
+  0% { box-shadow: 0 0 0 0 rgba(200,137,42,0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(200,137,42,0); }
+  100% { box-shadow: 0 0 0 0 rgba(200,137,42,0); }
 }
 .pulse { animation: pulse 2s infinite; }
 
