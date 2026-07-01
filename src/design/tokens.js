@@ -1,49 +1,47 @@
 export const T = {
-  // Backgrounds — pure black
   bgRoot: "#000000",
-  bgSoft: "#060400",
+  bgSoft: "#060401",
   surfaceBase: "#0a0800",
-  surfaceRaised: "#0f0b01",
-  surfaceHigh: "#140e02",
-
-  // Borders
+  surfaceRaised: "#0f0a02",
+  surfaceHigh: "#140e03",
   borderSoft: "#1e1608",
   borderGlow: "#2a1e08",
 
-  // Text
-  textPrimary: "#e8e0d0",
-  textSecondary: "#c8a870",
-  textMuted: "#5a4a2a",
-  textFaint: "#2a1e08",
+  // Text — NO brown. Cream, rose gold, soft white.
+  textPrimary: "#f0e8d8",
+  textSecondary: "#d4a868",
+  textMuted: "#9a8060",
+  textFaint: "#5a4830",
 
-  // Accents — gold + rose only
+  // Accents
   gold: "#C8892A",
+  roseGold: "#B76E79",
   rose: "#C4365A",
   champagne: "#C8892A",
-  champSoft: "#b07828",
+  champSoft: "#B76E79",
   success: "#3a8a4a",
   warning: "#C69A5B",
   danger: "#C4365A",
+  blood: "#B76E79",
 
-  // Gradients
-  bgGrad: "linear-gradient(135deg, #000000 0%, #060400 50%, #0a0500 100%)",
-  cardBg: "rgba(10,8,0,0.9)",
+  bgGrad: "linear-gradient(135deg, #000000 0%, #060401 50%, #0a0500 100%)",
+  cardBg: "rgba(10,8,0,0.92)",
   premiumCard: "linear-gradient(135deg, rgba(15,11,1,0.95) 0%, rgba(8,6,0,0.95) 100%)",
   border: "1px solid #1e1608",
-  glow: "0 0 40px rgba(200,137,42,0.06)",
-  glowChamp: "0 0 30px rgba(200,137,42,0.1)",
+  glow: "0 0 40px rgba(183,110,121,0.08)",
+  glowChamp: "0 0 30px rgba(183,110,121,0.12)",
 };
 
 export const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
   background: #000000;
-  color: #e8e0d0;
-  font-family: 'Manrope', sans-serif;
+  color: #f0e8d8;
+  font-family: 'Inter', sans-serif;
   font-size: 15px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -51,30 +49,30 @@ body {
   min-height: 100vh;
 }
 
-button, input, textarea, select { font-family: 'Manrope', sans-serif; }
+button, input, textarea, select { font-family: 'Inter', sans-serif; }
 
 input, textarea {
-  background: #080600;
+  background: #080601;
   border: 1px solid #1e1608;
-  color: #e8e0d0;
+  color: #f0e8d8;
   border-radius: 10px;
   padding: 13px 16px;
   font-size: 15px;
   width: 100%;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
-input::placeholder, textarea::placeholder { color: #2a1e08; }
+input::placeholder, textarea::placeholder { color: #3a2e1a; }
 input:focus, textarea:focus {
-  border-color: #C8892A55;
-  box-shadow: 0 0 0 3px rgba(200,137,42,0.06);
+  border-color: #B76E7966;
+  box-shadow: 0 0 0 3px rgba(183,110,121,0.08);
 }
 
 select {
-  background: #080600;
+  background: #080601;
   border: 1px solid #1e1608;
-  color: #e8e0d0;
+  color: #f0e8d8;
   border-radius: 10px;
   padding: 12px 16px;
   font-size: 14px;
@@ -87,7 +85,7 @@ select {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #1e1608; border-radius: 2px; }
 
-.wm { font-family: 'Cormorant Garamond', serif; }
+.wm { font-family: 'Cormorant Garamond', serif; font-style: italic; }
 
 .fade { animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -96,7 +94,7 @@ select {
   display: inline-block;
   width: 3px;
   border-radius: 2px;
-  background: linear-gradient(180deg, #C8892A, #C4365A);
+  background: linear-gradient(180deg, #C8892A, #B76E79);
   animation: wave 1.4s ease-in-out infinite;
 }
 @keyframes wave {
@@ -118,9 +116,9 @@ select {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(200,137,42,0.4); }
-  70% { box-shadow: 0 0 0 20px rgba(200,137,42,0); }
-  100% { box-shadow: 0 0 0 0 rgba(200,137,42,0); }
+  0% { box-shadow: 0 0 0 0 rgba(183,110,121,0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(183,110,121,0); }
+  100% { box-shadow: 0 0 0 0 rgba(183,110,121,0); }
 }
 .pulse { animation: pulse 2s infinite; }
 
