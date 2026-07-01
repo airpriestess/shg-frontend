@@ -507,30 +507,64 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
-      {/* RESULTS SECTION */}
+      {/* LISTENING TIMELINE */}
       <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The results</div>
-          <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,70px)", color: T.textPrimary, lineHeight: 1.1 }}>
-            WHAT SHIFTS<br/>
-            <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>WHEN YOUR SELF-CONCEPT SHIFTS.</span>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 12 }}>
+            It is not one listen.<br/>
+            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>It is repetition that rewires.</span>
+          </h2>
+          <p style={{ fontSize: 16, color: T.textMuted, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}>Every time you listen, the subconscious accepts the new self-concept more deeply. The first listen opens the channel. Thirty days closes the old identity completely.</p>
+        </div>
+
+        {/* TIMELINE — Day 1 to Day 30+ */}
+        <div style={{ position: "relative", marginBottom: 64 }}>
+          {/* Connecting line */}
+          <div style={{ position: "absolute", top: 28, left: 28, right: 28, height: 1, background: "linear-gradient(90deg,#B76E7944,#C8892A88,#B76E7944)", zIndex: 0 }} className="hide-mob" />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12 }} className="grid-3">
+            {[
+              { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#B76E79" },
+              { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
+              { day: "Day 7", icon: "✦", label: "Evidence appears", body: "Signs arrive faster. Money from somewhere forgotten. He texts. Your skin looks different. You start logging proof.", color: "#C8892A" },
+              { day: "Day 14", icon: "◉", label: "Identity updates", body: "You stop needing it. Certainty replaces desire. The old self-concept has nowhere left to live.", color: "#C8892A" },
+              { day: "Day 30+", icon: "★", label: "Reality confirms", body: "What you assumed is now undeniable. The proof thread closes. Manifested.", color: "#d4a868" },
+            ].map((s, i) => (
+              <div key={i} style={{ position: "relative", zIndex: 1 }}>
+                <div style={{ width: 56, height: 56, borderRadius: "50%", background: `radial-gradient(circle,${s.color}22,transparent)`, border: `1.5px solid ${s.color}66`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, margin: "0 auto 14px" }}>{s.icon}</div>
+                <div style={{ textAlign: "center" }}>
+                  <div style={{ fontSize: 11, color: s.color, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 4 }}>{s.day}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>{s.label}</div>
+                  <div style={{ fontSize: 12, color: T.textMuted, lineHeight: 1.65 }}>{s.body}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* BEFORE / AFTER CARDS */}
+        <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>The results</div>
+          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, lineHeight: 1.2 }}>
+            What shifts when your<br/>
+            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>self-concept shifts.</span>
           </h2>
         </div>
         <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
           {[
-            { cat: "Lovemaxxing", color: T.rose, bgHdr: "#0d0508", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
-            { cat: "Moneymaxxing", color: T.champagne, bgHdr: "#090d08", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "€247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "€10,000", transfer: true } },
-            { cat: "Beautymaxxing", color: T.champSoft, bgHdr: "#0d0c08", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
+            { cat: "Lovemaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
+            { cat: "Moneymaxxing", color: "#C8892A", bgHdr: "#0a0800", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "€247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "€10,000", transfer: true } },
+            { cat: "Beautymaxxing", color: "#C8892A", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
           ].map((item, idx) => (
             <div key={idx} style={{ background: T.cardBg, border: T.border, borderRadius: 16, overflow: "hidden" }}>
-              <div style={{ padding: "12px 18px", borderBottom: "1px solid rgba(215,185,130,0.06)", background: item.bgHdr }}>
+              <div style={{ padding: "12px 18px", borderBottom: "1px solid #1e1608", background: "#0a0800" }}>
                 <div style={{ fontSize: 12, color: item.color, fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase" }}>{item.cat}</div>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
                 {[item.before, item.after].map((side, si) => (
                   <div key={si} style={{ padding: 14, borderRight: si === 0 ? "1px solid rgba(215,185,130,0.06)" : "none" }}>
-                    <div style={{ fontSize: 10, color: si === 0 ? T.danger : T.champagne, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>{side.label}</div>
-                    <div style={{ background: si === 0 ? "rgba(15,5,8,0.8)" : "rgba(8,14,8,0.8)", borderRadius: 10, padding: 10, marginBottom: 8, minHeight: 70, border: si === 1 ? "1px solid rgba(141,175,122,0.15)" : "none" }}>
+                    <div style={{ fontSize: 10, color: si === 0 ? T.textFaint : "#C8892A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10 }}>{side.label}</div>
+                    <div style={{ background: si === 0 ? "#0a0a0a" : "#080e08", borderRadius: 10, padding: 10, marginBottom: 8, minHeight: 70, border: si === 1 ? "1px solid rgba(141,175,122,0.15)" : "none" }}>
                       {side.mirror && <div style={{ textAlign: "center", fontSize: 24, filter: "grayscale(1) opacity(0.25)", margin: "6px 0" }}>🪞</div>}
                       {side.amount && !side.transfer && <div style={{ fontSize: si === 0 ? 20 : 28, fontWeight: 800, color: si === 0 ? "#4a3a3a" : "#6ab06a", marginBottom: 3 }}>{side.amount}</div>}
                       {side.transfer && <div style={{ background: "rgba(10,25,10,0.8)", borderRadius: 8, padding: "7px 9px" }}><div style={{ fontSize: 10, color: "#4a8a4a" }}>✓ Payment received</div><div style={{ fontSize: 22, fontWeight: 800, color: "#6ab06a" }}>{side.amount}</div></div>}
@@ -542,12 +576,121 @@ function Landing({ onJoin, onDemo }) {
                         </div>
                       ))}
                     </div>
-                    <div style={{ fontSize: 12, color: si === 0 ? "#6a4a4a" : T.textSecondary, fontStyle: "italic", lineHeight: 1.5 }}>{side.text}</div>
+                    <div style={{ fontSize: 12, color: si === 0 ? T.textFaint : "#C8892A", fontStyle: "italic", lineHeight: 1.5 }}>{side.text}</div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+
+      {/* DASHBOARD PREVIEWS */}
+      <div style={{ padding: "0 24px 70px", maxWidth: 1000, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>What you get access to</div>
+          <h2 className="wm" style={{ fontSize: "clamp(24px,4vw,44px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 10 }}>
+            Two dashboards.<br/>
+            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One practice.</span>
+          </h2>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.7, maxWidth: 540, margin: "0 auto" }}>An ever-expanding library of thousands of audios — and a proof system that shows you exactly what is working.</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="grid-2">
+
+          {/* AUDIO DASHBOARD PREVIEW */}
+          <div style={{ background: "#0a0800", border: "1.5px solid #C8892A44", borderRadius: 18, overflow: "hidden" }}>
+            <div style={{ padding: "14px 18px", borderBottom: "1px solid #1e1608", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div>
+                <div style={{ fontSize: 11, color: "#C8892A", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>Audio Library</div>
+                <div style={{ fontSize: 13, color: T.textPrimary, fontWeight: 600 }}>Thousands of tracks. Yours.</div>
+              </div>
+              <span style={{ padding: "3px 10px", background: "#C8892A22", border: "1px solid #C8892A44", borderRadius: 20, fontSize: 11, color: "#C8892A", fontWeight: 700 }}>Audio Tier</span>
+            </div>
+            {/* Mock stats */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 0 }}>
+              {[["14d", "Streak"], ["50+", "Tracks"], ["3", "Active goals"]].map(([v,l],i) => (
+                <div key={i} style={{ padding: "12px 14px", textAlign: "center", borderRight: i < 2 ? "1px solid #1e1608" : "none" }}>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: "#C8892A" }}>{v}</div>
+                  <div style={{ fontSize: 10, color: T.textMuted, marginTop: 1 }}>{l}</div>
+                </div>
+              ))}
+            </div>
+            {/* Track list preview */}
+            <div style={{ padding: "10px 14px" }}>
+              {[
+                { title: "Money finds me first", cat: "Money", freq: "528hz", playing: true },
+                { title: "Gorgeous is my default setting", cat: "Beauty", freq: "432hz" },
+                { title: "He is already on his way back", cat: "Love", freq: "432hz" },
+              ].map((t, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 0", borderBottom: i < 2 ? "1px solid #1e1608" : "none" }}>
+                  <div style={{ width: 32, height: 32, borderRadius: "50%", background: t.playing ? "#C8892A22" : "#0f0b02", border: `1px solid ${t.playing ? "#C8892A66" : "#1e1608"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, flexShrink: 0, color: t.playing ? "#C8892A" : T.textFaint }}>
+                    {t.playing ? "▶" : "○"}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: t.playing ? "#C8892A" : T.textPrimary, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</div>
+                    <div style={{ fontSize: 10, color: T.textFaint }}>{t.cat} · {t.freq}</div>
+                  </div>
+                  {t.playing && (
+                    <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
+                      {[6,14,20,11,16,9].map((h,j) => (
+                        <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "#C8892A", opacity: 0.7 }} />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div style={{ padding: "12px 18px", borderTop: "1px solid #1e1608", textAlign: "center" }}>
+              <button onClick={onDemo} style={{ background: "none", border: "1px solid #C8892A66", borderRadius: 10, padding: "8px 20px", color: "#C8892A", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Preview audio dashboard →</button>
+            </div>
+          </div>
+
+          {/* PROOFOS DASHBOARD PREVIEW */}
+          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
+            <div style={{ padding: "14px 18px", borderBottom: "1px solid #1e1608", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div>
+                <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>ProofOS ✦</div>
+                <div style={{ fontSize: 13, color: T.textPrimary, fontWeight: 600 }}>Your manifestation ledger.</div>
+              </div>
+              <span style={{ padding: "3px 10px", background: "#B76E7922", border: "1px solid #B76E7944", borderRadius: 20, fontSize: 11, color: "#B76E79", fontWeight: 700 }}>Goddess Tier</span>
+            </div>
+            {/* Mock stats */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 0 }}>
+              {[["7", "Intentions"], ["4", "Manifested"], ["11d", "Avg time"]].map(([v,l],i) => (
+                <div key={i} style={{ padding: "12px 14px", textAlign: "center", borderRight: i < 2 ? "1px solid #1e1608" : "none" }}>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: i === 1 ? "#B76E79" : "#C8892A" }}>{v}</div>
+                  <div style={{ fontSize: 10, color: T.textMuted, marginTop: 1 }}>{l}</div>
+                </div>
+              ))}
+            </div>
+            {/* Proof threads preview */}
+            <div style={{ padding: "10px 14px" }}>
+              {[
+                { title: "I receive €5,000 unexpectedly", days: 9, status: "manifested", audio: "Money finds me first", mood_before: "Anxious", mood_after: "Certain" },
+                { title: "He texts me first", days: 14, status: "manifested", audio: "He is already on his way back", mood_before: "Desperate", mood_after: "Detached" },
+                { title: "My skin is visibly shifting", days: 21, status: "active", audio: "Gorgeous is my default", mood_before: "Doubtful", mood_after: "Noticing" },
+              ].map((t, i) => (
+                <div key={i} style={{ padding: "9px 0", borderBottom: i < 2 ? "1px solid #1e1608" : "none" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 4 }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: T.textPrimary, flex: 1, lineHeight: 1.35 }}>{t.title}</div>
+                    <span style={{ fontSize: 10, padding: "2px 8px", background: t.status === "manifested" ? "#0a1a0a" : "#0a0800", color: t.status === "manifested" ? "#4a9a5a" : "#B76E79", borderRadius: 20, fontWeight: 700, flexShrink: 0, border: `1px solid ${t.status === "manifested" ? "#2a4a2a" : "#B76E7944"}` }}>
+                      {t.status === "manifested" ? `✦ ${t.days}d` : `${t.days}d`}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: 10, color: T.textFaint, marginBottom: 4 }}>🎧 {t.audio}</div>
+                  <div style={{ display: "flex", gap: 6 }}>
+                    <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1608", borderRadius: 20, color: T.textFaint }}>Before: {t.mood_before}</span>
+                    <span style={{ fontSize: 10 , color: T.textFaint }}>→</span>
+                    <span style={{ fontSize: 10, padding: "2px 7px", background: "#C8892A18", border: "1px solid #C8892A33", borderRadius: 20, color: "#C8892A" }}>After: {t.mood_after}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ padding: "12px 18px", borderTop: "1px solid #1e1608", textAlign: "center" }}>
+              <button onClick={onDemo} style={{ background: "none", border: "1px solid #B76E7966", borderRadius: 10, padding: "8px 20px", color: "#B76E79", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Preview ProofOS dashboard →</button>
+            </div>
+          </div>
         </div>
       </div>
 
