@@ -380,6 +380,32 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
+      {/* FREE PREVIEW — second mention */}
+      <div style={{ padding: "0 24px 60px", maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
+        <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 20, padding: "28px 32px" }}>
+          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 10 }}>Preview — no account needed</div>
+          <div style={{ fontSize: 18, fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>10 Years of Delay Into One Hour</div>
+          <div style={{ fontSize: 14, color: T.textMuted, marginBottom: 20, lineHeight: 1.6 }}>
+            Reshma's voice. EMDR. Binaural beats. Subconscious reprogramming.<br />
+            This is one audio from the vault. Press play.
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, maxWidth: 420, margin: "0 auto" }}>
+            <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 54, height: 54, borderRadius: "50%", background: "linear-gradient(135deg,#C8892A,#B76E79)", border: "none", color: "#000", fontSize: 22, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>{playing ? "⏸" : "▶"}</button>
+            <div style={{ flex: 1 }}>
+              <div style={{ height: 4, background: "#1e1608", borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
+                onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
+                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8892A,#B76E79)", borderRadius:2 }} />
+              </div>
+              <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — continues in background ✦" : "Tap to listen"}</div>
+            </div>
+            {playing && <WaveForm playing color="#B76E79" />}
+          </div>
+          <div style={{ marginTop: 20 }}>
+            <button onClick={() => onJoin("audio")} style={{ padding: "13px 32px", background: "linear-gradient(90deg,#C8892A,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 15, fontWeight: 700, cursor: "pointer" }}>Join to access the full vault</button>
+          </div>
+        </div>
+      </div>
+
       {/* SLIDING BANNER */}
       <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1608" }}>
         <div style={{ display: "flex", gap: 16, animation: "slide 32s linear infinite", width: "max-content", paddingTop: 36 }}>
@@ -609,7 +635,7 @@ function Landing({ onJoin, onDemo }) {
             </div>
             {/* Mock stats */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 0 }}>
-              {[["14d", "Streak"], ["50+", "Tracks"], ["3", "Active goals"]].map(([v,l],i) => (
+              {[["14d", "Streak"], ["", "Tracks"], ["3", "Active goals"]].map(([v,l],i) => (
                 <div key={i} style={{ padding: "12px 14px", textAlign: "center", borderRight: i < 2 ? "1px solid #1e1608" : "none" }}>
                   <div style={{ fontSize: 20, fontWeight: 800, color: "#C8892A" }}>{v}</div>
                   <div style={{ fontSize: 10, color: T.textMuted, marginTop: 1 }}>{l}</div>
@@ -717,7 +743,7 @@ function Landing({ onJoin, onDemo }) {
               period: billing === "monthly" ? "/month" : "/year",
               sub: billing === "annual" ? "€16/mo · 2 months free" : null,
               color: T.textSecondary,
-              features: ["50+ exclusive audio tracks", "All 6 desire categories", "4 new tracks every week", "Loop player + sleep timer", "Plays in background like Spotify", "No ads. Ever."],
+              features: ["An ever-expanding hypnosis library", "All 6 desire categories", "4 new tracks every week", "Loop player + sleep timer", "Plays in background like Spotify", "No ads. Ever."],
               cta: "Join Audio Tier",
             },
             {
