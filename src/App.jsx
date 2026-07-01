@@ -290,15 +290,38 @@ function Landing({ onJoin, onDemo }) {
           </h1>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(17px,2.2vw,22px)", color: T.champSoft, fontWeight: 600, marginBottom: 20, letterSpacing: "0.02em" }}>
+          <div style={{ fontSize: "clamp(18px,2.5vw,24px)", color: T.roseGold, fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
             Shift into your dream reality.
+          </div>
+
+          {/* WAKE UP KNOWING */}
+          <div style={{ fontSize: "clamp(15px,1.8vw,18px)", color: T.textMuted, marginBottom: 32, lineHeight: 1.7 }}>
+            Wake up knowing. Not hoping. <span style={{ color: T.textPrimary, fontWeight: 600 }}>Knowing.</span>
+          </div>
+
+          {/* FREE TRACK — right under heading */}
+          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
+            <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Free track — no sign up</div>
+            <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
+            <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Reshma's voice · 432hz</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#C8892A,#B76E79)", border: "none", color: "#000", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>{playing ? "⏸" : "▶"}</button>
+              <div style={{ flex: 1 }}>
+                <div style={{ height: 4, background: "#1e1608", borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
+                  onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
+                  <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8892A,#B76E79)", borderRadius:2 }} />
+                </div>
+                <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — continues in background ✦" : "Tap to listen now"}</div>
+              </div>
+              {playing && <WaveForm playing color="#B76E79" />}
+            </div>
           </div>
 
           {/* PAIN POINT */}
           <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
-            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because conscious effort cannot reprogram the subconscious mind. <strong style={{ color: T.textSecondary }}>Desire is not manifestation. Desire is the seed. Certainty is manifestation.</strong>
+            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because conscious effort cannot reprogram the subconscious mind. <strong style={{ color: T.textPrimary }}>Desire is not manifestation. Desire is the seed. Certainty is manifestation.</strong>
           </p>
-          <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#6a5a3a", lineHeight: 1.9, marginBottom: 12, maxWidth: "100%", fontStyle: "italic" }}>
+          <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%", fontStyle: "italic" }}>
             Visualisation without identity shift is just fantasy.
           </p>
           <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
@@ -344,7 +367,7 @@ function Landing({ onJoin, onDemo }) {
         <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14 }}>
           Reshma's calm, hypnotic voice puts you into a state of deep relaxation. The subconscious is most receptive when the body is calm and the mind trusts the guide. The more you return to the same voice, the deeper the trance goes.
         </p>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: "#6a5a3a", lineHeight: 1.9, marginBottom: 14, fontStyle: "italic" }}>
+        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14, fontStyle: "italic" }}>
           When you mix different voices, your subconscious fights it. It doesn't know who to trust. Consistency is part of the programming. One voice. One guide. One path.
         </p>
         <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 30 }}>
@@ -380,7 +403,7 @@ function Landing({ onJoin, onDemo }) {
           <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 700, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
-          <p style={{ fontSize: 19, color: "#7a6a5a", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
+          <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
             You can read every book. Study Neville Goddard. Understand every theory. But theory without installation changes nothing. These audios install it — passively, at depth, while your conscious mind rests.
           </p>
         </div>
@@ -528,185 +551,126 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
-      {/* PRICING */}
+            {/* PRICING */}
       <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,50px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
-          <div style={{ display: "inline-flex", background: "rgba(31,12,24,0.86)", border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
+          <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
+          <div style={{ display: "inline-flex", background: T.surfaceBase, border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
             {["monthly", "annual"].map(b => (
-              <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? `linear-gradient(90deg,${T.gold},${T.rose})` : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
+              <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? "linear-gradient(90deg,#C8892A,#B76E79)" : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
                 {b === "annual" ? "Annual — save 20%" : "Monthly"}
               </button>
             ))}
           </div>
         </div>
 
-        {/* 3-column table */}
-        <div style={{ display: "grid", gridTemplateColumns: "auto 1fr 1fr 1fr", background: T.cardBg, borderRadius: 18, overflow: "hidden", border: T.border }}>
-          <div style={{ padding: "20px 22px", borderBottom: "1px solid rgba(215,185,130,0.08)", borderRight: "1px solid rgba(215,185,130,0.06)" }} />
+        {/* 2 tier cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }} className="grid-2">
           {[
-            { name: "Audio Tier", price: billing === "monthly" ? "€19" : "€192", period: billing === "monthly" ? "/mo" : "/yr", color: T.textSecondary, cta: "Join Audio", id: "audio" },
-            { name: "Goddess Tier", price: billing === "monthly" ? "€33" : "€317", period: billing === "monthly" ? "/mo" : "/yr", color: T.champagne, popular: true, cta: "Become Goddess", id: "goddess" },
-            { name: "Founder Lifetime", price: "€500", period: "once", color: T.rose, cta: "Claim Founder", id: "founder", sub: "Original price · First 1,000 members only" },
-          ].map((col, ci) => (
-            <div key={ci} style={{ padding: "20px 18px 16px", borderBottom: "1px solid rgba(215,185,130,0.08)", borderRight: ci < 2 ? "1px solid rgba(215,185,130,0.06)" : "none", background: col.popular ? "rgba(42,18,33,0.4)" : "none", position: "relative", textAlign: "center" }}>
-              {col.popular && <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)", background: `linear-gradient(90deg,${T.gold},${T.rose})`, color: "#fff", fontSize: 10, fontWeight: 800, padding: "2px 12px", borderRadius: "0 0 8px 8px", whiteSpace: "nowrap", letterSpacing: "0.08em" }}>MOST POPULAR</div>}
-              <div style={{ fontSize: 15, fontWeight: 700, color: col.color, marginBottom: 5 }}>{col.name}</div>
-              {col.sub && <div style={{ fontSize: 11, color: T.textFaint, marginBottom: 6 }}>{col.sub}</div>}
-              <div style={{ display: "flex", alignItems: "baseline", gap: 2, justifyContent: "center", marginBottom: 14 }}>
-                <span style={{ fontSize: 32, fontWeight: 800, color: col.color }}>{col.price}</span>
-                <span style={{ fontSize: 12, color: T.textMuted }}>{col.period}</span>
+            {
+              id: "audio", name: "Audio Tier",
+              price: billing === "monthly" ? "€19.99" : "€192",
+              period: billing === "monthly" ? "/month" : "/year",
+              sub: billing === "annual" ? "€16/mo · 2 months free" : null,
+              color: T.textSecondary,
+              features: ["50+ exclusive audio tracks", "All 6 desire categories", "4 new tracks every week", "Loop player + sleep timer", "Plays in background like Spotify", "No ads. Ever."],
+              cta: "Join Audio Tier",
+            },
+            {
+              id: "goddess", name: "Goddess Tier", popular: true,
+              price: billing === "monthly" ? "€33" : "€317",
+              period: billing === "monthly" ? "/month" : "/year",
+              sub: billing === "annual" ? "€26.40/mo · 2 months free" : null,
+              color: T.roseGold,
+              features: ["Everything in Audio Tier", "ProofOS manifestation tracker ✦", "Log desires · link to audios · capture proof", "Early access — 48hrs before everyone", "Monthly ritual audio included", "Goddess community"],
+              cta: "Become Goddess",
+            }
+          ].map(p => (
+            <div key={p.id} style={{ background: T.cardBg, border: `${p.popular ? "2px" : "1px"} solid ${p.popular ? "#B76E7966" : T.borderSoft}`, borderRadius: 18, padding: 28, position: "relative" }}>
+              {p.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#C8892A,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "3px 16px", borderRadius: 20, whiteSpace: "nowrap", letterSpacing: "0.1em" }}>MOST POPULAR</div>}
+              <div style={{ fontSize: 15, fontWeight: 700, color: T.textPrimary, marginBottom: 4 }}>{p.name}</div>
+              {p.sub && <div style={{ fontSize: 12, color: T.textMuted, marginBottom: 8 }}>{p.sub}</div>}
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 20 }}>
+                <span style={{ fontSize: 42, fontWeight: 800, color: p.color, lineHeight: 1 }}>{p.price}</span>
+                <span style={{ fontSize: 14, color: T.textMuted }}>{p.period}</span>
               </div>
-              <Btn size="sm" full variant={col.popular ? "champagne" : "ghost"} onClick={() => onJoin(col.id)}>{col.cta}</Btn>
-            </div>
-          ))}
-          {[
-            { label: "Full audio library — 50+ tracks", a: true, g: true, f: true },
-            { label: "All 6 desire categories", a: true, g: true, f: true },
-            { label: "4 new tracks every week", a: true, g: true, f: true },
-            { label: "Loop player + sleep timer", a: true, g: true, f: true },
-            { label: "Plays in background like Spotify", a: true, g: true, f: true },
-            { label: "No ads · No interruptions · Ever", a: true, g: true, f: true },
-            { label: "ProofOS manifestation tracker ✦", a: false, g: true, f: true },
-            { label: "Early access — 48hrs before everyone", a: false, g: true, f: true },
-            { label: "Monthly ritual audio", a: false, g: true, f: true },
-            { label: "1 GB private evidence vault", a: false, g: true, f: true },
-            { label: "All future features forever", a: false, g: false, f: true },
-            { label: "25 GB evidence vault", a: false, g: false, f: true },
-            { label: "Founder's seal ✦", a: false, g: false, f: true },
-          ].map((row, ri) => (
-            <div key={ri} style={{ display: "contents" }}>
-              <div style={{ padding: "13px 22px", borderBottom: "1px solid rgba(215,185,130,0.04)", borderRight: "1px solid rgba(215,185,130,0.06)", fontSize: 14, color: T.textSecondary, lineHeight: 1.45, display: "flex", alignItems: "center" }}>{row.label}</div>
-              {[row.a, row.g, row.f].map((has, ci) => (
-                <div key={ci} style={{ padding: "13px 18px", borderBottom: "1px solid rgba(215,185,130,0.04)", borderRight: ci < 2 ? "1px solid rgba(215,185,130,0.06)" : "none", textAlign: "center", background: ci === 1 ? "#0d0a00" : "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  {has ? <span style={{ fontSize: 20, color: T.success }}>✓</span> : <span style={{ fontSize: 16, color: "rgba(215,185,130,0.1)" }}>—</span>}
-                </div>
-              ))}
+              <div style={{ marginBottom: 24 }}>
+                {p.features.map((f, i) => (
+                  <div key={i} style={{ fontSize: 14, color: f.includes("✦") ? "#C8892A" : T.textMuted, marginBottom: 8, paddingLeft: 16, position: "relative", lineHeight: 1.5 }}>
+                    <span style={{ position: "absolute", left: 0, color: "#B76E79" }}>·</span>{f}
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => onJoin(p.id)} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(90deg,#C8892A,#B76E79)" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E79", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 52 }}>{p.cta}</button>
             </div>
           ))}
         </div>
-        <div style={{ textAlign: "center", marginTop: 14, fontSize: 13, color: T.textFaint, lineHeight: 1.9 }}>No refunds after 14 days · Cancel before renewal · Web app · iPhone: Add to Home Screen</div>
-      </div>
 
-      {/* FAQ */}
-      <div style={{ padding: "0 24px 80px", maxWidth: 720, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,44px)", color: T.textPrimary }}>Common questions</h2>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          {faqs.map((f, i) => (
-            <div key={i} style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 14, overflow: "hidden" }}>
-              <button onClick={() => setFaqOpen(faqOpen === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 22px", background: "none", border: "none", cursor: "pointer", gap: 12, textAlign: "left" }}>
-                <span style={{ fontSize: 16, fontWeight: 600, color: T.textPrimary, lineHeight: 1.4 }}>{f.q}</span>
-                <span style={{ color: T.champSoft, fontSize: 18, flexShrink: 0 }}>{faqOpen === i ? "−" : "+"}</span>
-              </button>
-              {faqOpen === i && <div style={{ padding: "0 22px 18px", fontSize: 15, color: T.textMuted, lineHeight: 1.8 }}>{f.a}</div>}
+        {/* Founder card — full width */}
+        <div style={{ background: "linear-gradient(135deg,#0d0900,#1a0d02)", border: "2px solid #C8892A55", borderRadius: 18, padding: "28px 32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 32, alignItems: "center" }} className="grid-2">
+            <div>
+              <div style={{ fontSize: 11, color: "#C8892A", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>First 1,000 only · Lifetime access</div>
+              <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: T.textPrimary, marginBottom: 10 }}>Founder Lifetime</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 14 }}>
+                <span style={{ fontSize: 48, fontWeight: 800, color: "#C8892A", lineHeight: 1 }}>€500</span>
+                <span style={{ fontSize: 15, color: T.textMuted }}>once · never pay again</span>
+              </div>
+              <div style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, marginBottom: 20 }}>
+                Full vault + ProofOS + every future feature — forever. No subscription can be cancelled from under you. The €500 Founder price closes once the first 1,000 members join.
+              </div>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
+                {["Full vault for life", "ProofOS for life", "1 GB evidence vault", "All future features", "Founder's seal ✦"].map((f, i) => (
+                  <span key={i} style={{ padding: "5px 14px", background: "#C8892A18", border: "1px solid #C8892A44", borderRadius: 20, fontSize: 13, color: "#C8892A", fontWeight: 600 }}>{f}</span>
+                ))}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
+                <button onClick={() => onJoin("founder")} style={{ padding: "16px 36px", background: "linear-gradient(90deg,#C8892A,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52 }}>Claim Founder price</button>
+                <div style={{ fontSize: 12, color: T.textMuted }}>Original price · First 1,000 members only</div>
+              </div>
             </div>
-          ))}
+            <div className="hide-mob" style={{ minWidth: 220 }}>
+              <div style={{ background: T.surfaceBase, border: T.border, borderRadius: 14, padding: 20, textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: T.textFaint, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>What's included</div>
+                {[["Audio vault", "Lifetime"], ["ProofOS tracker", "Lifetime"], ["Evidence vault", "1 GB"], ["Future features", "All"], ["Price increase", "Never"], ["Subscription", "None"]].map(([k,v], i) => (
+                  <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: i < 5 ? "1px solid #1e1608" : "none" }}>
+                    <span style={{ fontSize: 13, color: T.textMuted }}>{k}</span>
+                    <span style={{ fontSize: 13, color: "#C8892A", fontWeight: 700 }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 16, textAlign: "center", fontSize: 13, color: T.textFaint, lineHeight: 1.9 }}>
+          No refunds after 14 days · Cancel before renewal · Web app — no download · iPhone: Add to Home Screen
         </div>
       </div>
 
       {/* FINAL CTA */}
-      <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: "1px solid #1e1608" }}>
-        <Rings count={4} />
+      <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: T.border }}>
+        <Rings count={3} />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <div className="wm" style={{ fontSize: "clamp(30px,5vw,60px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 24 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 24 }}>
             Wake up knowing.<br />
-            <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
-          </div>
-          <Btn variant="champagne" size="lg" onClick={() => onJoin("audio")}>Start your shift — €19/month</Btn>
+            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
+          </h2>
+          <p style={{ fontSize: 17, color: T.textMuted, marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
+            In that state, reality shows you the proof of what you already know.
+          </p>
+          <button onClick={() => onJoin("audio")} style={{ padding: "18px 48px", background: "linear-gradient(90deg,#C8892A,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56 }}>Start your shift</button>
+          <div style={{ marginTop: 12, fontSize: 13, color: T.textFaint }}>Cancel anytime · No download · Any device</div>
         </div>
       </div>
 
       {/* FOOTER */}
-      <div style={{ borderTop: "1px solid #1e1608", padding: "36px 24px", textAlign: "center" }}>
-        <div className="wm" style={{ fontSize: 22, display: "block", marginBottom: 16, background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</div>
-        <div style={{ display: "flex", gap: 28, justifyContent: "center", marginBottom: 16 }}>
-          {[["YouTube", "https://www.youtube.com/@Reshma.Oracle"], ["Instagram", "https://www.instagram.com/reshma.oracle/"]].map(([l, u]) => (
-            <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: T.textMuted, textDecoration: "none" }}>{l} →</a>
-          ))}
-        </div>
-        <div style={{ fontSize: 12, color: T.textFaint }}>© 2026 Reshma Oracle · All rights reserved</div>
+      <div style={{ borderTop: T.border, padding: "28px 24px", textAlign: "center" }}>
+        <span className="wm" style={{ fontSize: 22, display: "block", marginBottom: 8, background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
+        <div style={{ fontSize: 12, color: T.textFaint, marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com · Not on YouTube</div>
+        <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
       </div>
     </div>
   );
 }
-
-/* ── ONBOARD ───────────────────────────────────────────────────────────────── */
-function Onboard({ tier, onSuccess, onBack }) {
-  const [step, setStep] = useState(1);
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const [billing, setBilling] = useState("monthly");
-  const [loading, setLoading] = useState(false);
-  const tierName = tier === "goddess" ? "Goddess Tier" : tier === "founder" ? "Founder Lifetime" : "Audio Tier";
-  const price = tier === "founder" ? "€500" : tier === "goddess" ? (billing === "monthly" ? "€33" : "€317") : (billing === "monthly" ? "€19" : "€192");
-  const next = () => {
-    if (step === 3) { setLoading(true); setTimeout(() => { setLoading(false); onSuccess(tier); }, 1400); }
-    else setStep(s => s + 1);
-  };
-  return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "24px 20px", background: "#000000" }} className="fade">
-      {step < 4 && <button onClick={onBack} style={{ position: "fixed", top: 20, left: 20, background: "none", border: "none", color: T.textMuted, fontSize: 15, cursor: "pointer" }}>← Back</button>}
-      <div className="wm" style={{ fontSize: 22, marginBottom: 32, background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</div>
-      {step < 4 && (
-        <div style={{ display: "flex", gap: 0, marginBottom: 40 }}>
-          {[1, 2, 3].map(n => (
-            <div key={n} style={{ display: "flex", alignItems: "center" }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: n <= step ? `linear-gradient(135deg,${T.gold},${T.rose})` : "#0a0800", border: `1.5px solid ${n <= step ? T.gold : "#1e1608"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: n <= step ? "#fff" : T.textMuted }}>{n < step ? "✓" : n}</div>
-              {n < 3 && <div style={{ width: 48, height: 1, background: n < step ? T.rose : "rgba(215,185,130,0.1)" }} />}
-            </div>
-          ))}
-        </div>
-      )}
-      <div style={{ width: "100%", maxWidth: 460 }}>
-        {step === 1 && (
-          <div className="fade">
-            <div style={{ fontSize: 22, fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>Create your account</div>
-            <div style={{ fontSize: 15, color: T.textMuted, marginBottom: 28 }}>Joining: {tierName}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
-              <input placeholder="Your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-              <input placeholder="Email address" type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
-              <input placeholder="Password (min 8 characters)" type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
-            </div>
-            <Btn full variant="champagne" onClick={next} disabled={!form.email || form.password.length < 8}>Continue →</Btn>
-            <div style={{ textAlign: "center", marginTop: 14, fontSize: 14, color: T.textMuted }}>Already a member? <span style={{ color: T.champSoft, cursor: "pointer" }} onClick={onBack}>Sign in</span></div>
-          </div>
-        )}
-        {step === 2 && (
-          <div className="fade">
-            <div style={{ fontSize: 22, fontWeight: 700, color: T.textPrimary, marginBottom: 24 }}>Confirm your plan</div>
-            {tier !== "founder" && (
-              <div style={{ display: "flex", gap: 10, marginBottom: 18 }}>
-                {["monthly", "annual"].map(b => (
-                  <button key={b} onClick={() => setBilling(b)} style={{ flex: 1, padding: 16, background: billing === b ? "#0f0b01" : "#0a0800", border: `${billing === b ? "2px" : "1px"} solid ${billing === b ? T.gold + "88" : "#1e1608"}`, borderRadius: 12, cursor: "pointer", textAlign: "left" }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: billing === b ? T.champagne : T.textSecondary, marginBottom: 3 }}>{b === "monthly" ? "Monthly" : "Annual"}</div>
-                    <div style={{ fontSize: 22, fontWeight: 800, color: billing === b ? T.champagne : T.textSecondary }}>{tier === "goddess" ? (b === "monthly" ? "€33" : "€317") : (b === "monthly" ? "€19" : "€192")}<span style={{ fontSize: 13, color: T.textMuted }}>/{b === "monthly" ? "mo" : "yr"}</span></div>
-                    {b === "annual" && <div style={{ fontSize: 12, color: T.rose, marginTop: 4, fontWeight: 600 }}>Save 20% · 2 months free</div>}
-                  </button>
-                ))}
-              </div>
-            )}
-            <Btn full variant="champagne" onClick={next}>Continue to payment →</Btn>
-          </div>
-        )}
-        {step === 3 && (
-          <div className="fade">
-            <div style={{ fontSize: 22, fontWeight: 700, color: T.textPrimary, marginBottom: 24 }}>Secure checkout</div>
-            <div style={{ background: "#0a0800", border: `1px solid ${T.gold}55`, borderRadius: 12, padding: 20, marginBottom: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: T.textPrimary }}>{tierName}</div>
-                <div style={{ fontSize: 13, color: T.textMuted }}>{tier === "founder" ? "One-time" : `Billed ${billing}`}</div>
-              </div>
-              <div style={{ fontSize: 32, fontWeight: 800, color: T.champagne }}>{price}</div>
-            </div>
-            <div style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, padding: 16, marginBottom: 18, fontSize: 14, color: T.textFaint, lineHeight: 1.75 }}>Stripe secure checkout · SSL encrypted · No refunds after 14 days</div>
-            <Btn full variant="champagne" onClick={next} disabled={loading}>{loading ? "Processing..." : "Pay with Stripe →"}</Btn>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-
