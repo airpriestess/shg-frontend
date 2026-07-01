@@ -62,7 +62,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
       {/* TOP NAV */}
-      <header style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(9,4,7,0.95)", borderBottom: "1px solid rgba(215,185,130,0.08)", flexShrink: 0, zIndex: 50 }}>
+      <header style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1e1608", flexShrink: 0, zIndex: 50 }}>
         <button onClick={() => setTab("dashboard")} style={{ background: "none", border: "none", cursor: "pointer" }}>
           <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         </button>
@@ -75,11 +75,11 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* SIDEBAR */}
-        <aside className="hide-mob" style={{ width: 220, background: "rgba(9,4,7,0.8)", borderRight: "1px solid rgba(215,185,130,0.06)", padding: "20px 12px", display: "flex", flexDirection: "column", gap: 4, flexShrink: 0, overflowY: "auto" }}>
+        <aside className="hide-mob" style={{ width: 220, background: "#040200", borderRight: "1px solid #1e1608", padding: "20px 12px", display: "flex", flexDirection: "column", gap: 4, flexShrink: 0, overflowY: "auto" }}>
           {NAV.map(n => (
-            <button key={n.id} onClick={() => setTab(n.id)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", borderRadius: 10, border: "none", background: tab === n.id ? "rgba(215,185,130,0.09)" : "transparent", cursor: "pointer", textAlign: "left", width: "100%" }}>
+            <button key={n.id} onClick={() => setTab(n.id)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", borderRadius: 10, border: "none", background: tab === n.id ? T.gold + "18" : "transparent", cursor: "pointer", textAlign: "left", width: "100%" }}>
               <span style={{ fontSize: 16 }}>{n.icon}</span>
-              <span style={{ fontSize: 14, fontWeight: 600, color: tab === n.id ? T.champagne : T.textMuted }}>{n.label}</span>
+              <span style={{ fontSize: 14, fontWeight: 600, color: tab === n.id ? T.gold : T.textMuted }}>{n.label}</span>
             </button>
           ))}
           <div style={{ flex: 1 }} />
@@ -98,7 +98,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
 
           {/* NOW PLAYING BAR */}
           {currentAudio && (
-            <div style={{ height: 60, background: "rgba(9,4,7,0.97)", borderTop: "1px solid rgba(215,185,130,0.12)", display: "flex", alignItems: "center", padding: "0 20px", gap: 16, flexShrink: 0 }}>
+            <div style={{ height: 60, background: "rgba(0,0,0,0.97)", borderTop: "1px solid #C8892A33", display: "flex", alignItems: "center", padding: "0 20px", gap: 16, flexShrink: 0 }}>
               <WaveForm playing color={T.champagne} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: T.champagne, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
@@ -111,9 +111,9 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
       </div>
 
       {/* MOBILE BOTTOM NAV */}
-      <nav className="mob-nav" style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(9,4,7,0.97)", borderTop: "1px solid rgba(215,185,130,0.08)", zIndex: 200, paddingBottom: "env(safe-area-inset-bottom,8px)", display: "none" }}>
+      <nav className="mob-nav" style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(0,0,0,0.97)", borderTop: "1px solid #1e1608", zIndex: 200, paddingBottom: "env(safe-area-inset-bottom,8px)", display: "none" }}>
         {NAV.filter(n => n.id !== "archive" && n.id !== "vault-settings").concat({ id: "vault-settings", icon: "⚙", label: "Settings" }).map(n => (
-          <button key={n.id} onClick={() => setTab(n.id)} style={{ flex: 1, padding: "9px 4px", background: "none", border: "none", color: tab === n.id ? T.champagne : T.textFaint, fontSize: 10, fontWeight: 700, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, minHeight: 52, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+          <button key={n.id} onClick={() => setTab(n.id)} style={{ flex: 1, padding: "9px 4px", background: "none", border: "none", color: tab === n.id ? T.gold : T.textMuted, fontSize: 10, fontWeight: 700, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, minHeight: 52, letterSpacing: "0.06em", textTransform: "uppercase" }}>
             <span style={{ fontSize: 18 }}>{n.icon}</span>
             <span>{n.label.split(" ")[0]}</span>
           </button>
@@ -245,11 +245,11 @@ function Landing({ onJoin, onDemo }) {
   ];
 
   return (
-    <div style={{ background: T.bgGrad, minHeight: "100vh", backgroundAttachment: "fixed" }}>
+    <div style={{ background: "#000000", minHeight: "100vh" }}>
       <audio ref={audioRef} src={FREE_TRACK_URL} preload="none" />
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 300, height: 58, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", background: "rgba(9,4,7,0.96)", borderBottom: "1px solid rgba(215,185,130,0.08)", backdropFilter: "blur(20px)" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 300, height: 58, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1e1608", backdropFilter: "blur(20px)" }}>
         <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
@@ -259,10 +259,10 @@ function Landing({ onJoin, onDemo }) {
           </button>
         </div>
         {menuOpen && (
-          <div style={{ position: "absolute", top: 58, right: 24, background: T.surfaceRaised, border: T.border, borderRadius: 14, padding: 10, minWidth: 200, zIndex: 400, boxShadow: "0 24px 60px rgba(0,0,0,0.5)" }}>
+          <div style={{ position: "absolute", top: 58, right: 24, background: "#0a0800", border: "1px solid #1e1608", borderRadius: 14, padding: 10, minWidth: 200, zIndex: 400, boxShadow: "0 24px 60px rgba(0,0,0,0.8)" }}>
             {[["Preview Dashboard", onDemo], ["YouTube ↗", () => window.open("https://www.youtube.com/@Reshma.Oracle","_blank")], ["Instagram ↗", () => window.open("https://www.instagram.com/reshma.oracle/","_blank")]].map(([l,fn],i) => (
               <button key={i} onClick={() => { fn(); setMenuOpen(false); }} style={{ display:"block",width:"100%",textAlign:"left",padding:"11px 16px",background:"none",border:"none",color:T.textSecondary,fontSize:14,cursor:"pointer",borderRadius:8 }}
-                onMouseEnter={e=>e.currentTarget.style.background="rgba(215,185,130,0.06)"}
+                onMouseEnter={e=>e.currentTarget.style.background="#1a1208"}
                 onMouseLeave={e=>e.currentTarget.style.background="none"}>{l}</button>
             ))}
           </div>
@@ -306,7 +306,7 @@ function Landing({ onJoin, onDemo }) {
           </p>
 
           {/* FREE TRACK */}
-          <div style={{ background: "rgba(31,12,24,0.86)", border: T.border, borderRadius: 18, padding: "24px 26px", maxWidth: 480, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(185,130,142,0.08)" }}>
+          <div style={{ background: "#0a0800", border: "1px solid #C8892A55", borderRadius: 18, padding: "24px 26px", maxWidth: 480, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(185,130,142,0.08)" }}>
             <div style={{ fontSize: 11, color: T.champagne, letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>Free track — listen now 🎧</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textSecondary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Self hypnosis · Subconscious reprogramming</div>
@@ -332,10 +332,10 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* SLIDING BANNER */}
-      <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid rgba(215,185,130,0.06)" }}>
+      <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1608" }}>
         <div style={{ display: "flex", gap: 16, animation: "slide 32s linear infinite", width: "max-content", paddingTop: 36 }}>
           {[...cats, ...cats].map((c, i) => (
-            <div key={i} style={{ background: "rgba(31,12,24,0.86)", border: `1px solid ${c.color}33`, borderRadius: 18, padding: "22px 30px", minWidth: 280, flexShrink: 0 }}>
+            <div key={i} style={{ background: "#0a0800", border: `1px solid ${c.color}44`, borderRadius: 18, padding: "22px 30px", minWidth: 280, flexShrink: 0 }}>
               <div style={{ fontSize: 12, color: c.color, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
               <div style={{ fontSize: 18, color: T.textSecondary, lineHeight: 1.5, fontWeight: 500 }}>{c.tagline}</div>
             </div>
@@ -362,22 +362,22 @@ function Landing({ onJoin, onDemo }) {
         {/* COMPARISON TABLE */}
         <div style={{ marginBottom: 70 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
-            <div style={{ background: "rgba(31,5,10,0.8)", borderRadius: "14px 0 0 0", padding: "22px 30px", border: "1px solid rgba(184,92,104,0.2)", borderBottom: "none", borderRight: "none" }}>
+            <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "22px 30px", border: "1px solid #2a1010", borderBottom: "none", borderRight: "none" }}>
               <div style={{ fontSize: 12, color: T.danger, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>Old self-concept</div>
               <div className="wm" style={{ fontSize: 26, color: "#8a5560" }}>Running old programming</div>
             </div>
-            <div style={{ background: "rgba(20,14,8,0.8)", borderRadius: "0 14px 0 0", padding: "22px 30px", border: `1px solid rgba(215,185,130,0.2)`, borderBottom: "none", borderLeft: "none" }}>
+            <div style={{ background: "#080a08", borderRadius: "0 14px 0 0", padding: "22px 30px", border: `1px solid ${T.gold}33`, borderBottom: "none", borderLeft: "none" }}>
               <div style={{ fontSize: 12, color: T.champagne, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>New self-concept</div>
               <div className="wm" style={{ fontSize: 26, color: T.textSecondary }}>Reprogrammed subconscious</div>
             </div>
           </div>
           {compRows.map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
-              <div style={{ background: "rgba(20,5,8,0.7)", padding: "18px 30px", border: "1px solid rgba(184,92,104,0.15)", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
+              <div style={{ background: "#0a0505", padding: "18px 30px", border: "1px solid #2a1010", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
                 <span style={{ color: T.danger, fontSize: 20, flexShrink: 0, marginTop: 2 }}>✗</span>
                 <span style={{ fontSize: 17, color: "#8a6060", lineHeight: 1.7 }}>{row.old}</span>
               </div>
-              <div style={{ background: "rgba(14,10,4,0.7)", padding: "18px 30px", border: `1px solid rgba(215,185,130,0.12)`, borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
+              <div style={{ background: "#080a08", padding: "18px 30px", border: `1px solid ${T.gold}22`, borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
                 <span style={{ color: T.champagne, fontSize: 18, flexShrink: 0, marginTop: 2 }}>✦</span>
                 <span style={{ fontSize: 17, color: T.textSecondary, lineHeight: 1.7 }}>{row.neu}</span>
               </div>
@@ -411,7 +411,7 @@ function Landing({ onJoin, onDemo }) {
         </div>
 
         {/* WHY DESIRE DOESN'T MANIFEST */}
-        <div style={{ background: "linear-gradient(135deg,rgba(23,9,18,0.9),rgba(31,12,24,0.9))", border: T.border, borderRadius: 20, padding: "44px 40px", marginBottom: 70 }}>
+        <div style={{ background: "linear-gradient(135deg,#0a0700,#0d0800)", border: `1px solid ${T.gold}33`, borderRadius: 20, padding: "44px 40px", marginBottom: 70 }}>
           <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The real reason</div>
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, marginBottom: 28, lineHeight: 1.2 }}>
             Why desire doesn't manifest.<br/>
@@ -441,10 +441,10 @@ function Landing({ onJoin, onDemo }) {
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, marginBottom: 12 }}>What's inside every audio.</h2>
           <p style={{ fontSize: 17, color: T.textMuted, maxWidth: 600, margin: "0 auto" }}>Every track is layered with multiple technologies working simultaneously to activate your ideal brainwave state and install the new self-concept at depth.</p>
         </div>
-        <div style={{ background: T.cardBg, border: T.border, borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", background: T.surfaceRaised, borderBottom: "1px solid rgba(215,185,130,0.08)" }}>
+        <div style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", background: "#0f0b01", borderBottom: "1px solid #1e1608" }}>
             {["Technology", "What it is", "What it does", "When it activates"].map((h, i) => (
-              <div key={i} style={{ padding: "13px 18px", fontSize: 12, color: T.champagne, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid rgba(215,185,130,0.06)" : "none" }}>{h}</div>
+              <div key={i} style={{ padding: "13px 18px", fontSize: 12, color: T.champagne, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1e1608" : "none" }}>{h}</div>
             ))}
           </div>
           {TECH_ROWS.map((row, i) => (
@@ -469,9 +469,9 @@ function Landing({ onJoin, onDemo }) {
         </div>
         <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
           {[
-            { cat: "Lovemaxxing", color: T.rose, bgHdr: "rgba(31,5,12,0.9)", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
-            { cat: "Moneymaxxing", color: T.champagne, bgHdr: "rgba(20,15,5,0.9)", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "€247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "€10,000", transfer: true } },
-            { cat: "Beautymaxxing", color: T.champSoft, bgHdr: "rgba(20,14,5,0.9)", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
+            { cat: "Lovemaxxing", color: T.rose, bgHdr: "#0d0508", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
+            { cat: "Moneymaxxing", color: T.champagne, bgHdr: "#090d08", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "€247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "€10,000", transfer: true } },
+            { cat: "Beautymaxxing", color: T.champSoft, bgHdr: "#0d0c08", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
           ].map((item, idx) => (
             <div key={idx} style={{ background: T.cardBg, border: T.border, borderRadius: 16, overflow: "hidden" }}>
               <div style={{ padding: "12px 18px", borderBottom: "1px solid rgba(215,185,130,0.06)", background: item.bgHdr }}>
@@ -509,7 +509,7 @@ function Landing({ onJoin, onDemo }) {
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,50px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
           <div style={{ display: "inline-flex", background: "rgba(31,12,24,0.86)", border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
             {["monthly", "annual"].map(b => (
-              <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? `linear-gradient(90deg,${T.blood},${T.rose})` : "transparent", border: "none", color: billing === b ? "#fff" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
+              <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? `linear-gradient(90deg,${T.gold},${T.rose})` : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
                 {b === "annual" ? "Annual — save 20%" : "Monthly"}
               </button>
             ))}
@@ -525,7 +525,7 @@ function Landing({ onJoin, onDemo }) {
             { name: "Founder Lifetime", price: "€500", period: "once", color: T.rose, cta: "Claim Founder", id: "founder", sub: "Original price · First 1,000 members only" },
           ].map((col, ci) => (
             <div key={ci} style={{ padding: "20px 18px 16px", borderBottom: "1px solid rgba(215,185,130,0.08)", borderRight: ci < 2 ? "1px solid rgba(215,185,130,0.06)" : "none", background: col.popular ? "rgba(42,18,33,0.4)" : "none", position: "relative", textAlign: "center" }}>
-              {col.popular && <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)", background: `linear-gradient(90deg,${T.blood},${T.rose})`, color: "#fff", fontSize: 10, fontWeight: 800, padding: "2px 12px", borderRadius: "0 0 8px 8px", whiteSpace: "nowrap", letterSpacing: "0.08em" }}>MOST POPULAR</div>}
+              {col.popular && <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)", background: `linear-gradient(90deg,${T.gold},${T.rose})`, color: "#fff", fontSize: 10, fontWeight: 800, padding: "2px 12px", borderRadius: "0 0 8px 8px", whiteSpace: "nowrap", letterSpacing: "0.08em" }}>MOST POPULAR</div>}
               <div style={{ fontSize: 15, fontWeight: 700, color: col.color, marginBottom: 5 }}>{col.name}</div>
               {col.sub && <div style={{ fontSize: 11, color: T.textFaint, marginBottom: 6 }}>{col.sub}</div>}
               <div style={{ display: "flex", alignItems: "baseline", gap: 2, justifyContent: "center", marginBottom: 14 }}>
@@ -553,7 +553,7 @@ function Landing({ onJoin, onDemo }) {
             <div key={ri} style={{ display: "contents" }}>
               <div style={{ padding: "13px 22px", borderBottom: "1px solid rgba(215,185,130,0.04)", borderRight: "1px solid rgba(215,185,130,0.06)", fontSize: 14, color: T.textSecondary, lineHeight: 1.45, display: "flex", alignItems: "center" }}>{row.label}</div>
               {[row.a, row.g, row.f].map((has, ci) => (
-                <div key={ci} style={{ padding: "13px 18px", borderBottom: "1px solid rgba(215,185,130,0.04)", borderRight: ci < 2 ? "1px solid rgba(215,185,130,0.06)" : "none", textAlign: "center", background: ci === 1 ? "rgba(42,18,33,0.15)" : "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div key={ci} style={{ padding: "13px 18px", borderBottom: "1px solid rgba(215,185,130,0.04)", borderRight: ci < 2 ? "1px solid rgba(215,185,130,0.06)" : "none", textAlign: "center", background: ci === 1 ? "#0d0a00" : "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {has ? <span style={{ fontSize: 20, color: T.success }}>✓</span> : <span style={{ fontSize: 16, color: "rgba(215,185,130,0.1)" }}>—</span>}
                 </div>
               ))}
@@ -570,7 +570,7 @@ function Landing({ onJoin, onDemo }) {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {faqs.map((f, i) => (
-            <div key={i} style={{ background: T.cardBg, border: T.border, borderRadius: 14, overflow: "hidden" }}>
+            <div key={i} style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 14, overflow: "hidden" }}>
               <button onClick={() => setFaqOpen(faqOpen === i ? null : i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 22px", background: "none", border: "none", cursor: "pointer", gap: 12, textAlign: "left" }}>
                 <span style={{ fontSize: 16, fontWeight: 600, color: T.textPrimary, lineHeight: 1.4 }}>{f.q}</span>
                 <span style={{ color: T.champSoft, fontSize: 18, flexShrink: 0 }}>{faqOpen === i ? "−" : "+"}</span>
@@ -582,7 +582,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* FINAL CTA */}
-      <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: "1px solid rgba(215,185,130,0.06)" }}>
+      <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: "1px solid #1e1608" }}>
         <Rings count={4} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <div className="wm" style={{ fontSize: "clamp(30px,5vw,60px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 24 }}>
@@ -594,7 +594,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* FOOTER */}
-      <div style={{ borderTop: "1px solid rgba(215,185,130,0.06)", padding: "36px 24px", textAlign: "center" }}>
+      <div style={{ borderTop: "1px solid #1e1608", padding: "36px 24px", textAlign: "center" }}>
         <div className="wm" style={{ fontSize: 22, display: "block", marginBottom: 16, background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</div>
         <div style={{ display: "flex", gap: 28, justifyContent: "center", marginBottom: 16 }}>
           {[["YouTube", "https://www.youtube.com/@Reshma.Oracle"], ["Instagram", "https://www.instagram.com/reshma.oracle/"]].map(([l, u]) => (
@@ -620,14 +620,14 @@ function Onboard({ tier, onSuccess, onBack }) {
     else setStep(s => s + 1);
   };
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "24px 20px", background: T.bgGrad }} className="fade">
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "24px 20px", background: "#000000" }} className="fade">
       {step < 4 && <button onClick={onBack} style={{ position: "fixed", top: 20, left: 20, background: "none", border: "none", color: T.textMuted, fontSize: 15, cursor: "pointer" }}>← Back</button>}
       <div className="wm" style={{ fontSize: 22, marginBottom: 32, background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</div>
       {step < 4 && (
         <div style={{ display: "flex", gap: 0, marginBottom: 40 }}>
           {[1, 2, 3].map(n => (
             <div key={n} style={{ display: "flex", alignItems: "center" }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: n <= step ? `linear-gradient(135deg,${T.blood},${T.rose})` : "rgba(31,12,24,0.8)", border: `1.5px solid ${n <= step ? T.rose : "rgba(215,185,130,0.14)"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: n <= step ? "#fff" : T.textMuted }}>{n < step ? "✓" : n}</div>
+              <div style={{ width: 32, height: 32, borderRadius: "50%", background: n <= step ? `linear-gradient(135deg,${T.gold},${T.rose})` : "#0a0800", border: `1.5px solid ${n <= step ? T.gold : "#1e1608"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: n <= step ? "#fff" : T.textMuted }}>{n < step ? "✓" : n}</div>
               {n < 3 && <div style={{ width: 48, height: 1, background: n < step ? T.rose : "rgba(215,185,130,0.1)" }} />}
             </div>
           ))}
@@ -653,7 +653,7 @@ function Onboard({ tier, onSuccess, onBack }) {
             {tier !== "founder" && (
               <div style={{ display: "flex", gap: 10, marginBottom: 18 }}>
                 {["monthly", "annual"].map(b => (
-                  <button key={b} onClick={() => setBilling(b)} style={{ flex: 1, padding: 16, background: billing === b ? "rgba(42,18,33,0.9)" : "rgba(31,12,24,0.6)", border: `${billing === b ? "2px" : "1px"} solid ${billing === b ? "rgba(215,185,130,0.35)" : "rgba(215,185,130,0.12)"}`, borderRadius: 12, cursor: "pointer", textAlign: "left" }}>
+                  <button key={b} onClick={() => setBilling(b)} style={{ flex: 1, padding: 16, background: billing === b ? "#0f0b01" : "#0a0800", border: `${billing === b ? "2px" : "1px"} solid ${billing === b ? T.gold + "88" : "#1e1608"}`, borderRadius: 12, cursor: "pointer", textAlign: "left" }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: billing === b ? T.champagne : T.textSecondary, marginBottom: 3 }}>{b === "monthly" ? "Monthly" : "Annual"}</div>
                     <div style={{ fontSize: 22, fontWeight: 800, color: billing === b ? T.champagne : T.textSecondary }}>{tier === "goddess" ? (b === "monthly" ? "€33" : "€317") : (b === "monthly" ? "€19" : "€192")}<span style={{ fontSize: 13, color: T.textMuted }}>/{b === "monthly" ? "mo" : "yr"}</span></div>
                     {b === "annual" && <div style={{ fontSize: 12, color: T.rose, marginTop: 4, fontWeight: 600 }}>Save 20% · 2 months free</div>}
@@ -667,14 +667,14 @@ function Onboard({ tier, onSuccess, onBack }) {
         {step === 3 && (
           <div className="fade">
             <div style={{ fontSize: 22, fontWeight: 700, color: T.textPrimary, marginBottom: 24 }}>Secure checkout</div>
-            <div style={{ background: "rgba(42,18,33,0.6)", border: T.border, borderRadius: 12, padding: 20, marginBottom: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ background: "#0a0800", border: `1px solid ${T.gold}55`, borderRadius: 12, padding: 20, marginBottom: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: T.textPrimary }}>{tierName}</div>
                 <div style={{ fontSize: 13, color: T.textMuted }}>{tier === "founder" ? "One-time" : `Billed ${billing}`}</div>
               </div>
               <div style={{ fontSize: 32, fontWeight: 800, color: T.champagne }}>{price}</div>
             </div>
-            <div style={{ background: "rgba(23,9,18,0.6)", border: T.border, borderRadius: 12, padding: 16, marginBottom: 18, fontSize: 14, color: T.textFaint, lineHeight: 1.75 }}>Stripe secure checkout · SSL encrypted · No refunds after 14 days</div>
+            <div style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, padding: 16, marginBottom: 18, fontSize: 14, color: T.textFaint, lineHeight: 1.75 }}>Stripe secure checkout · SSL encrypted · No refunds after 14 days</div>
             <Btn full variant="champagne" onClick={next} disabled={loading}>{loading ? "Processing..." : "Pay with Stripe →"}</Btn>
           </div>
         )}
