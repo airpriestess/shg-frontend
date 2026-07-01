@@ -291,18 +291,21 @@ function Landing({ onJoin, onDemo }) {
 
           {/* TAGLINE */}
           <div style={{ fontSize: "clamp(17px,2.2vw,22px)", color: T.champSoft, fontWeight: 600, marginBottom: 20, letterSpacing: "0.02em" }}>
-            Reprogram your subconscious mind. Manifest your ideal reality.
+            Shift into your dream reality.
           </div>
 
           {/* PAIN POINT */}
           <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
             You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because conscious effort cannot reprogram the subconscious mind. <strong style={{ color: T.textSecondary }}>Desire is not manifestation. Desire is the seed. Certainty is manifestation.</strong>
           </p>
+          <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#6a5a3a", lineHeight: 1.9, marginBottom: 12, maxWidth: "100%", fontStyle: "italic" }}>
+            Visualisation without identity shift is just fantasy.
+          </p>
           <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
             Your reality mirrors what you assume to be true about yourself — at the deepest subconscious, DNA level. It's about your self-concept. Your self-image. What you believe you deserve. Down to your DNA.
           </p>
           <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 36, maxWidth: "100%" }}>
-            These audios install the new self-concept passively — while you sleep, while you rest. No active effort. No conscious force. Just your subconscious, finally reprogrammed. You wake up knowing. Not hoping. <strong style={{ color: T.textPrimary }}>Knowing.</strong>
+            These audios install the new self-concept passively — while you sleep, while you rest. No active effort. No conscious force. Just your subconscious, finally reprogrammed. Wake up knowing. Not hoping. Knowing. In that state, reality shows you the proof of what you already know.
           </p>
 
           {/* FREE TRACK */}
@@ -311,7 +314,7 @@ function Landing({ onJoin, onDemo }) {
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textSecondary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Self hypnosis · Subconscious reprogramming</div>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 50, height: 50, borderRadius: "50%", background: `linear-gradient(135deg,${T.blood},${T.rose})`, border: "none", color: "#fff", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{playing ? "⏸" : "▶"}</button>
+              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 50, height: 50, borderRadius: "50%", background: `linear-gradient(135deg,#C8892A,#B76E79)`, border: "none", color: "#fff", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{playing ? "⏸" : "▶"}</button>
               <div style={{ flex: 1 }}>
                 <div style={{ height: 4, background: "rgba(215,185,130,0.1)", borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
                   onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
@@ -331,12 +334,35 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
+      {/* VOICE TRUST */}
+      <div style={{ padding: "60px 24px 0", maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+        <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why one voice matters</div>
+        <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 20 }}>
+          The more you trust this voice,<br />
+          <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>the more your subconscious opens.</span>
+        </h2>
+        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14 }}>
+          Reshma's calm, hypnotic voice puts you into a state of deep relaxation. The subconscious is most receptive when the body is calm and the mind trusts the guide. The more you return to the same voice, the deeper the trance goes.
+        </p>
+        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: "#6a5a3a", lineHeight: 1.9, marginBottom: 14, fontStyle: "italic" }}>
+          When you mix different voices, your subconscious fights it. It doesn't know who to trust. Consistency is part of the programming. One voice. One guide. One path.
+        </p>
+        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 30 }}>
+          Every track is available in three versions: with melodic house music, with soft sleep music, or voice only — echoey, hypnotic, just the frequency of her voice in space.
+        </p>
+        <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+          {["Melodic house", "Sleep music", "Voice only — echoey + hypnotic"].map((v, i) => (
+            <span key={i} style={{ padding: "8px 18px", background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 20, fontSize: 13, color: "#B76E79", fontWeight: 600 }}>{v}</span>
+          ))}
+        </div>
+      </div>
+
       {/* SLIDING BANNER */}
       <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1608" }}>
         <div style={{ display: "flex", gap: 16, animation: "slide 32s linear infinite", width: "max-content", paddingTop: 36 }}>
           {[...cats, ...cats].map((c, i) => (
             <div key={i} style={{ background: "#0a0800", border: `1px solid ${c.color}44`, borderRadius: 18, padding: "22px 30px", minWidth: 280, flexShrink: 0 }}>
-              <div style={{ fontSize: 12, color: c.color, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
+              <div style={{ fontSize: 12, color: c.color || "#B76E79", fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
               <div style={{ fontSize: 18, color: T.textSecondary, lineHeight: 1.5, fontWeight: 500 }}>{c.tagline}</div>
             </div>
           ))}
