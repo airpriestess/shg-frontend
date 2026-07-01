@@ -44,8 +44,8 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
     <div style={{ padding: "28px 24px", maxWidth: 880, overflowY: "auto", height: "100%" }} className="mob-pb">
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
-        <h1 style={{ fontSize: "clamp(24px,3vw,32px)", fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>Proof Threads</h1>
-        <p style={{ fontSize: 15, color: T.textMuted, marginBottom: 20, lineHeight: 1.65 }}>Every desire gets its own thread, linked to the audio that started the shift.</p>
+        <h1 style={{ fontSize: "clamp(24px,3vw,32px)", fontWeight: 700, color: "#e8e0d0", marginBottom: 6 }}>Proof Threads</h1>
+        <p style={{ fontSize: 15, color: "#5a4a2a", marginBottom: 20, lineHeight: 1.65 }}>Every desire gets its own thread, linked to the audio that started the shift.</p>
         <Btn onClick={onCreateThread} variant="champagne" size="sm">+ Create Proof Thread</Btn>
       </div>
 
@@ -53,7 +53,7 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
       <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {statuses.map(s => (
-            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? T.champagne + "88" : "rgba(215,185,130,0.14)"}`, background: filter === s ? "rgba(215,185,130,0.1)" : "transparent", color: filter === s ? T.champagne : T.textMuted, fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
+            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? T.gold + "88" : "#1e1608"}`, background: filter === s ? "#1e1608" : "transparent", color: filter === s ? T.gold : "#5a4a2a", fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
           ))}
         </div>
         <select value={sort} onChange={e => setSort(e.target.value)} style={{ maxWidth: 180 }}>
@@ -71,8 +71,8 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
             {/* Top */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 16, fontWeight: 700, color: T.textPrimary, marginBottom: 5, lineHeight: 1.4 }}>{t.intentionTitle}</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: T.champSoft }}>
+                <div style={{ fontSize: 16, fontWeight: 700, color: "#e8e0d0", marginBottom: 5, lineHeight: 1.4 }}>{t.intentionTitle}</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#b07828" }}>
                   <span>🎧</span><span>{t.linkedAudioTitle}</span>
                 </div>
               </div>
@@ -104,32 +104,32 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
 }
 
 function Stat({ label }) {
-  return <span style={{ fontSize: 12, color: T.textMuted }}>{label}</span>;
+  return <span style={{ fontSize: 12, color: "#5a4a2a" }}>{label}</span>;
 }
 
 function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, addProofModal, onCloseModal, newSign, setNewSign, onAddSign, expandedEntry, setExpandedEntry }) {
   return (
     <div style={{ height: "100%", overflowY: "auto", padding: "24px 24px" }} className="mob-pb fade">
-      <button onClick={onBack} style={{ background: "none", border: "none", color: T.textMuted, fontSize: 14, cursor: "pointer", marginBottom: 20, display: "flex", alignItems: "center", gap: 6 }}>← Proof Threads</button>
+      <button onClick={onBack} style={{ background: "none", border: "none", color: "#5a4a2a", fontSize: 14, cursor: "pointer", marginBottom: 20, display: "flex", alignItems: "center", gap: 6 }}>← Proof Threads</button>
 
       {/* Summary card */}
       <Card premium style={{ padding: "24px 24px", marginBottom: 20 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 16 }}>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 20, fontWeight: 700, color: T.textPrimary, lineHeight: 1.35, marginBottom: 6 }}>{t.intentionTitle}</div>
-            <div style={{ fontSize: 13, color: T.champSoft, marginBottom: 12 }}>🎧 {t.linkedAudioTitle}</div>
+            <div style={{ fontSize: 20, fontWeight: 700, color: "#e8e0d0", lineHeight: 1.35, marginBottom: 6 }}>{t.intentionTitle}</div>
+            <div style={{ fontSize: 13, color: "#b07828", marginBottom: 12 }}>🎧 {t.linkedAudioTitle}</div>
           </div>
           <Pill color={STATUS_COLOR[t.status] || "muted"}>{t.status}</Pill>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12, marginBottom: 16 }}>
           {[{ v: t.daysActive, l: "Days active" }, { v: t.proofEntryCount, l: "Proof entries" }, { v: t.photoProofCount, l: "Photo proof" }, { v: t.voiceProofCount, l: "Voice proof" }].map((s, i) => (
-            <div key={i} style={{ textAlign: "center", padding: "12px 8px", background: "rgba(23,9,18,0.5)", borderRadius: 10, border: "1px solid rgba(215,185,130,0.08)" }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: T.champagne, lineHeight: 1, marginBottom: 3 }}>{s.v}</div>
-              <div style={{ fontSize: 11, color: T.textMuted }}>{s.l}</div>
+            <div key={i} style={{ textAlign: "center", padding: "12px 8px", background: "#060400", borderRadius: 10, border: "1px solid #1e1608" }}>
+              <div style={{ fontSize: 22, fontWeight: 800, color: T.gold, lineHeight: 1, marginBottom: 3 }}>{s.v}</div>
+              <div style={{ fontSize: 11, color: "#5a4a2a" }}>{s.l}</div>
             </div>
           ))}
         </div>
-        {t.manifestedAt && <div style={{ padding: "10px 14px", background: "rgba(141,175,122,0.1)", border: "1px solid rgba(141,175,122,0.2)", borderRadius: 10, fontSize: 14, color: T.success }}>✦ Manifested {t.manifestedAt} · {t.daysActive} days from first listen to final proof</div>}
+        {t.manifestedAt && <div style={{ padding: "10px 14px", background: "rgba(58,138,74,0.1)", border: "1px solid rgba(141,175,122,0.2)", borderRadius: 10, fontSize: 14, color: T.success }}>✦ Manifested {t.manifestedAt} · {t.daysActive} days from first listen to final proof</div>}
       </Card>
 
       {/* Quick capture actions */}
@@ -151,29 +151,29 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
             <div key={e.id} style={{ display: "flex", gap: 0 }}>
               {/* Timeline line */}
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 16, flexShrink: 0 }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: e.isFinal ? `linear-gradient(135deg, ${T.success}, ${T.champagne})` : "rgba(42,18,33,0.9)", border: `2px solid ${e.isFinal ? T.success : "rgba(215,185,130,0.2)"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0, zIndex: 1 }}>{TYPE_ICON[e.type] || "·"}</div>
-                {idx < (t.entries || []).length - 1 && <div style={{ width: 1, flex: 1, background: "rgba(215,185,130,0.08)", minHeight: 20, margin: "4px 0" }} />}
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: e.isFinal ? `linear-gradient(135deg, ${T.success}, ${T.gold})` : "#0f0b01", border: `2px solid ${e.isFinal ? T.success : "#2a1e08"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0, zIndex: 1 }}>{TYPE_ICON[e.type] || "·"}</div>
+                {idx < (t.entries || []).length - 1 && <div style={{ width: 1, flex: 1, background: "#1e1608", minHeight: 20, margin: "4px 0" }} />}
               </div>
               {/* Entry card */}
-              <Card onClick={() => setExpandedEntry(expandedEntry === e.id ? null : e.id)} style={{ flex: 1, padding: "14px 16px", marginBottom: 10, cursor: "pointer", background: e.isFinal ? "linear-gradient(135deg, rgba(141,175,122,0.1), rgba(215,185,130,0.06))" : T.cardBg, border: e.isFinal ? "1px solid rgba(141,175,122,0.25)" : T.border }}>
+              <Card onClick={() => setExpandedEntry(expandedEntry === e.id ? null : e.id)} style={{ flex: 1, padding: "14px 16px", marginBottom: 10, cursor: "pointer", background: e.isFinal ? "linear-gradient(135deg, rgba(141,175,122,0.1), #140f04)" : "#0a0800", border: e.isFinal ? "1px solid rgba(141,175,122,0.25)" : "1px solid #1e1608" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 6 }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 4 }}>
                       <Pill color={e.isFinal ? "success" : e.type === "Photo Proof" || e.type === "Voice Proof" ? "champagne" : "muted"}>{e.type}</Pill>
-                      <span style={{ fontSize: 11, color: T.textFaint }}>Day {e.dayNumber}</span>
+                      <span style={{ fontSize: 11, color: "#2a1e08" }}>Day {e.dayNumber}</span>
                     </div>
-                    <div style={{ fontSize: 15, fontWeight: 600, color: T.textPrimary, lineHeight: 1.35 }}>{e.title}</div>
+                    <div style={{ fontSize: 15, fontWeight: 600, color: "#e8e0d0", lineHeight: 1.35 }}>{e.title}</div>
                   </div>
-                  <span style={{ fontSize: 12, color: T.textFaint, flexShrink: 0 }}>{e.happenedAt}</span>
+                  <span style={{ fontSize: 12, color: "#2a1e08", flexShrink: 0 }}>{e.happenedAt}</span>
                 </div>
                 {expandedEntry === e.id && e.description && (
-                  <div style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.7, marginTop: 8, paddingTop: 10, borderTop: "1px solid rgba(215,185,130,0.08)" }}>{e.description}</div>
+                  <div style={{ fontSize: 14, color: "#5a4a2a", lineHeight: 1.7, marginTop: 8, paddingTop: 10, borderTop: "1px solid #1e1608" }}>{e.description}</div>
                 )}
                 {e.type === "Voice Proof" && (
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8 }}>
-                    <button style={{ width: 30, height: 30, borderRadius: "50%", background: `linear-gradient(135deg, ${T.blood}, ${T.rose})`, border: "none", color: "#fff", fontSize: 11, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>▶</button>
+                    <button style={{ width: 30, height: 30, borderRadius: "50%", background: `linear-gradient(135deg, ${T.rose}, ${T.rose})`, border: "none", color: "#fff", fontSize: 11, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>▶</button>
                     <WaveForm playing={false} />
-                    <span style={{ fontSize: 11, color: T.textFaint }}>{e.durationSec}s</span>
+                    <span style={{ fontSize: 11, color: "#2a1e08" }}>{e.durationSec}s</span>
                   </div>
                 )}
                 {e.isFinal && <div style={{ marginTop: 10, fontSize: 13, color: T.success, fontWeight: 600 }}>★ Final Manifestation Proof</div>}
@@ -190,7 +190,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
         </FormField>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
           {["Saw a number sequence", "Dreamed about it", "Someone mentioned it unexpectedly", "Felt calm certainty", "Overheard a relevant conversation", "Received a surprise message"].map((s, i) => (
-            <button key={i} onClick={() => setNewSign(s)} style={{ padding: "5px 12px", background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 20, color: T.textMuted, fontSize: 12, cursor: "pointer" }}>{s}</button>
+            <button key={i} onClick={() => setNewSign(s)} style={{ padding: "5px 12px", background: "none", border: "1px solid #1e1608", borderRadius: 20, color: "#5a4a2a", fontSize: 12, cursor: "pointer" }}>{s}</button>
           ))}
         </div>
         <Btn full variant="champagne" onClick={() => onAddSign(t.id, newSign)} disabled={!newSign.trim()}>Log Sign</Btn>
@@ -214,10 +214,10 @@ function PhotoProofForm({ threadId, onClose }) {
   const proofStages = ["Before Manifestation", "Evidence Appearing", "Final Proof", "After Manifestation"];
   return (
     <div>
-      <div style={{ border: "2px dashed rgba(215,185,130,0.2)", borderRadius: 12, padding: "28px 20px", textAlign: "center", marginBottom: 16, cursor: "pointer", background: "rgba(23,9,18,0.4)" }}
+      <div style={{ border: "2px dashed #2a1e08", borderRadius: 12, padding: "28px 20px", textAlign: "center", marginBottom: 16, cursor: "pointer", background: "#060400" }}
         onClick={() => document.getElementById("photo-upload").click()}>
         <input id="photo-upload" type="file" accept=".jpg,.jpeg,.png,.webp,.heic" style={{ display: "none" }} onChange={e => setFile(e.target.files[0])} />
-        {file ? <div style={{ color: T.success, fontSize: 14, fontWeight: 600 }}>📷 {file.name}</div> : <div><div style={{ fontSize: 28, marginBottom: 8 }}>📷</div><div style={{ fontSize: 14, color: T.textMuted }}>Tap to upload photo proof</div><div style={{ fontSize: 12, color: T.textFaint, marginTop: 4 }}>JPG · PNG · WEBP · HEIC</div></div>}
+        {file ? <div style={{ color: T.success, fontSize: 14, fontWeight: 600 }}>📷 {file.name}</div> : <div><div style={{ fontSize: 28, marginBottom: 8 }}>📷</div><div style={{ fontSize: 14, color: "#5a4a2a" }}>Tap to upload photo proof</div><div style={{ fontSize: 12, color: "#2a1e08", marginTop: 4 }}>JPG · PNG · WEBP · HEIC</div></div>}
       </div>
       <FormField label="Title"><input value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} placeholder="Bank notification arrived · He texted · Skin shifted..." /></FormField>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
@@ -245,9 +245,9 @@ function VoiceProofRecorder({ threadId, onClose }) {
 
   return (
     <div>
-      <div style={{ textAlign: "center", padding: "28px 20px", background: "rgba(23,9,18,0.6)", borderRadius: 14, marginBottom: 20, border: "1px solid rgba(215,185,130,0.1)" }}>
-        {state === "idle" && <div><div style={{ fontSize: 40, marginBottom: 12 }}>🎙</div><div style={{ fontSize: 15, color: T.textMuted, marginBottom: 16 }}>Press record and speak your proof. How does it feel? What shifted?</div><Btn variant="primary" onClick={startRec}>● Start Recording</Btn></div>}
-        {state === "recording" && <div><WaveForm playing /><div style={{ fontSize: 28, fontWeight: 700, color: T.rose, margin: "16px 0", fontFamily: "monospace" }}>{String(Math.floor(seconds / 60)).padStart(2, "0")}:{String(seconds % 60).padStart(2, "0")}</div><div style={{ fontSize: 13, color: T.textMuted, marginBottom: 16 }}>Recording...</div><Btn variant="danger" onClick={stopRec}>■ Stop</Btn></div>}
+      <div style={{ textAlign: "center", padding: "28px 20px", background: "#060400", borderRadius: 14, marginBottom: 20, border: "1px solid #1e1608" }}>
+        {state === "idle" && <div><div style={{ fontSize: 40, marginBottom: 12 }}>🎙</div><div style={{ fontSize: 15, color: "#5a4a2a", marginBottom: 16 }}>Press record and speak your proof. How does it feel? What shifted?</div><Btn variant="primary" onClick={startRec}>● Start Recording</Btn></div>}
+        {state === "recording" && <div><WaveForm playing /><div style={{ fontSize: 28, fontWeight: 700, color: T.rose, margin: "16px 0", fontFamily: "monospace" }}>{String(Math.floor(seconds / 60)).padStart(2, "0")}:{String(seconds % 60).padStart(2, "0")}</div><div style={{ fontSize: 13, color: "#5a4a2a", marginBottom: 16 }}>Recording...</div><Btn variant="danger" onClick={stopRec}>■ Stop</Btn></div>}
         {state === "recorded" && <div><div style={{ fontSize: 13, color: T.success, marginBottom: 12, fontWeight: 600 }}>✓ Recorded · {seconds}s</div><div style={{ display: "flex", gap: 10, justifyContent: "center" }}><Btn size="sm" variant="ghost" onClick={() => { setState("idle"); setSeconds(0); }}>Re-record</Btn><Btn size="sm" variant="ghost" onClick={startRec}>▶ Play back</Btn></div></div>}
       </div>
       {state === "recorded" && (
