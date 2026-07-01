@@ -12,7 +12,7 @@ const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#000;color:#e8e0d0;font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:#000;color:#e8e0d0;font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
 button,input{font-family:'Inter',sans-serif}
 input{background:#080600;border:1px solid #1e1608;color:#e8e0d0;border-radius:10px;padding:14px 18px;font-size:16px;width:100%;outline:none;transition:border-color 0.2s}
 input:focus{border-color:#C8892A88}
@@ -118,8 +118,8 @@ function DashboardMockup({ mini }) {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", borderBottom: `1px solid ${C.border}` }}>
         {[{ v: 4, l: "Intentions", c: C.text2 }, { v: 2, l: "Manifested", c: C.rose }, { v: 18, l: "Signs logged", c: C.gold }, { v: "11d", l: "Avg days", c: C.green }].map((s, i) => (
           <div key={i} style={{ padding: "12px 8px", textAlign: "center", borderRight: i < 3 ? `1px solid ${C.border}` : "none" }}>
-            <div style={{ fontSize: 20, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 3 }}>{s.v}</div>
-            <div style={{ fontSize: 10, color: C.muted, fontWeight: 600 }}>{s.l}</div>
+            <div style={{ fontSize: 26, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 3 }}>{s.v}</div>
+            <div style={{ fontSize: 13, color: C.muted, fontWeight: 600 }}>{s.l}</div>
           </div>
         ))}
       </div>
@@ -128,7 +128,7 @@ function DashboardMockup({ mini }) {
         <div key={i} style={{ padding: "12px 20px", borderBottom: i < desires.length - 1 ? `1px solid ${C.border2}` : "none" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: catColors[d.cat], flexShrink: 0 }} />
-            <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: d.status === "manifested" ? C.text2 : C.text2 }}>{d.text}</span>
+            <span style={{ flex: 1, fontSize: 17, fontWeight: 600, color: d.status === "manifested" ? C.text2 : C.text2 }}>{d.text}</span>
             <span style={{ fontSize: 11, padding: "3px 10px", background: d.status === "manifested" ? "#0a1a0a" : C.dim, color: d.status === "manifested" ? C.green : C.gold, borderRadius: 20, fontWeight: 700, flexShrink: 0 }}>
               {d.status === "manifested" ? `✓ ${d.days} days` : `${d.days} days`}
             </span>
@@ -137,7 +137,7 @@ function DashboardMockup({ mini }) {
             <div style={{ width: `${d.progress}%`, height: "100%", background: d.status === "manifested" ? `linear-gradient(90deg,${C.green},${C.gold})` : `linear-gradient(90deg,${catColors[d.cat]},${C.gold})`, borderRadius: 2 }} />
           </div>
           {d.status === "manifested" && (
-            <div style={{ fontSize: 11, color: C.green, marginTop: 4 }}>✦ Manifested in {d.days} days · linked to audio</div>
+            <div style={{ fontSize: 13, color: C.green, marginTop: 4 }}>✦ Manifested in {d.days} days · linked to audio</div>
           )}
         </div>
       ))}
@@ -897,15 +897,15 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
           : <button onClick={onUpgrade} style={{ padding: "4px 12px", background: "none", border: `1px solid ${C.rose}44`, borderRadius: 20, fontSize: 12, color: C.rose, fontWeight: 700, cursor: "pointer" }}>Upgrade ↑</button>}
       </div>
       <div className="desk-tabs" style={{ display: "flex", borderBottom: `1px solid ${C.border}`, background: "#050300", position: "sticky", top: 56, zIndex: 49 }}>
-        {tabs.map(t => <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: "13px 8px", background: "none", border: "none", borderBottom: `2px solid ${tab === t.id ? C.gold : "transparent"}`, color: tab === t.id ? C.gold : C.muted, fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>{t.label}</button>)}
+        {tabs.map(t => <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: "13px 8px", background: "none", border: "none", borderBottom: `2px solid ${tab === t.id ? C.gold : "transparent"}`, color: tab === t.id ? C.gold : C.muted, fontSize: 15, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>{t.label}</button>)}
       </div>
       {/* Stats */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", borderBottom: `1px solid ${C.border}`, background: "#060400" }}>
         {[{ v: tracks.filter(t => canPlay(t)).length, l: "Tracks", c: C.text2, sub: "in vault" }, { v: desires.length, l: "Intentions", c: C.gold, sub: "set" }, { v: manifested, l: "Manifested", c: C.rose, sub: `${inProgress} active` }, { v: "14d", l: "Streak", c: C.green, sub: "daily" }].map((s, i) => (
           <div key={i} style={{ padding: "12px 8px", textAlign: "center", borderRight: i < 3 ? `1px solid ${C.border}` : "none" }}>
-            <div style={{ fontSize: 22, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 2 }}>{s.v}</div>
-            <div style={{ fontSize: 11, color: C.text2, fontWeight: 600 }}>{s.l}</div>
-            <div style={{ fontSize: 10, color: C.muted }}>{s.sub}</div>
+            <div style={{ fontSize: 28, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 2 }}>{s.v}</div>
+            <div style={{ fontSize: 14, color: C.text2, fontWeight: 600 }}>{s.l}</div>
+            <div style={{ fontSize: 13, color: C.muted }}>{s.sub}</div>
           </div>
         ))}
       </div>
@@ -915,14 +915,14 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
           {cats.map(c => (
             <button key={c.id} onClick={() => { setActiveCat(c.id); setTab("audios"); }} style={{ width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", borderRadius: 10, border: "none", background: activeCat === c.id && tab === "audios" ? (catColors[c.id] || C.gold) + "18" : "none", cursor: "pointer", marginBottom: 3, textAlign: "left" }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: catColors[c.id] || C.gold, flexShrink: 0, opacity: activeCat === c.id && tab === "audios" ? 1 : 0.3 }} />
-              <span style={{ fontSize: 13, fontWeight: 600, color: activeCat === c.id && tab === "audios" ? catColors[c.id] || C.gold : C.muted }}>{c.label}</span>
+              <span style={{ fontSize: 16, fontWeight: 600, color: activeCat === c.id && tab === "audios" ? catColors[c.id] || C.gold : C.muted }}>{c.label}</span>
             </button>
           ))}
           <div style={{ height: 1, background: C.border, margin: "12px 0" }} />
           {tabs.filter(t => t.id !== "audios").map(t => (
             <button key={t.id} onClick={() => setTab(t.id)} style={{ width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", borderRadius: 10, border: "none", background: tab === t.id ? C.gold + "18" : "none", cursor: "pointer", marginBottom: 3 }}>
               <span style={{ fontSize: 15 }}>{t.icon}</span>
-              <span style={{ fontSize: 13, fontWeight: 600, color: tab === t.id ? C.gold : C.muted }}>{t.label}</span>
+              <span style={{ fontSize: 16, fontWeight: 600, color: tab === t.id ? C.gold : C.muted }}>{t.label}</span>
             </button>
           ))}
         </div>
@@ -930,7 +930,7 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
         <div className="portal-pb" style={{ flex: 1, padding: "18px 16px 32px", maxWidth: 720, overflowX: "hidden" }}>
           {tab === "audios" && (
             <div className="fade">
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search tracks..." style={{ marginBottom: 14 }} />
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search tracks..." style={{ fontSize: 16 }} style={{ marginBottom: 14 }} />
               <div style={{ display: "flex", gap: 6, overflowX: "auto", marginBottom: 16, paddingBottom: 4 }}>
                 {cats.map(c => <button key={c.id} onClick={() => setActiveCat(c.id)} style={{ padding: "6px 14px", borderRadius: 20, border: `1.5px solid ${activeCat === c.id ? catColors[c.id] || C.gold : C.border}`, background: activeCat === c.id ? (catColors[c.id] || C.gold) + "18" : "none", color: activeCat === c.id ? catColors[c.id] || C.gold : C.muted, fontSize: 13, cursor: "pointer", whiteSpace: "nowrap", minHeight: 36, fontWeight: 600 }}>{c.label}</button>)}
               </div>
@@ -945,10 +945,10 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: color, flexShrink: 0, opacity: 0.8 }} />
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
-                          <span style={{ fontSize: 14, fontWeight: 600, color: isP ? color : C.text2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</span>
+                          <span style={{ fontSize: 17, fontWeight: 600, color: isP ? color : C.text2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</span>
                           {t.isNew && <span style={{ fontSize: 10, padding: "1px 7px", background: C.rose + "22", color: C.rose, borderRadius: 10, fontWeight: 700, flexShrink: 0 }}>NEW</span>}
                         </div>
-                        <div style={{ fontSize: 12, color: C.dim }}>{t.freq} · {t.type}{!can ? " · Goddess only" : ""} · {t.dur}</div>
+                        <div style={{ fontSize: 14, color: C.dim }}>{t.freq} · {t.type}{!can ? " · Goddess only" : ""} · {t.dur}</div>
                       </div>
                       <div style={{ width: 36, height: 36, borderRadius: "50%", background: isP ? color + "22" : "#080600", border: `1.5px solid ${isP ? color : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                         {!can ? <span>🔒</span> : isP ? <div className="sw" style={{ display: "flex", alignItems: "center", gap: 2 }}><span style={{ height: 8 }} /><span style={{ height: 16 }} /><span style={{ height: 12 }} /><span style={{ height: 18 }} /><span style={{ height: 10 }} /></div> : <span style={{ fontSize: 13, color: C.muted }}>▶</span>}
@@ -973,24 +973,24 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 16 }}>
                     {[{ v: manifested, l: "Manifested", c: C.rose, sub: "desires completed" }, { v: inProgress, l: "In progress", c: C.gold, sub: "currently active" }, { v: desires.reduce((a, d) => a + d.signs.length, 0), l: "Signs logged", c: C.green, sub: "synchronicities" }].map((s, i) => (
                       <div key={i} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: "14px 16px", textAlign: "center" }}>
-                        <div style={{ fontSize: 28, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 4 }}>{s.v}</div>
-                        <div style={{ fontSize: 12, color: C.text2, fontWeight: 600, marginBottom: 2 }}>{s.l}</div>
-                        <div style={{ fontSize: 10, color: C.muted }}>{s.sub}</div>
+                        <div style={{ fontSize: 36, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 6 }}>{s.v}</div>
+                        <div style={{ fontSize: 15, color: C.text2, fontWeight: 600, marginBottom: 2 }}>{s.l}</div>
+                        <div style={{ fontSize: 13, color: C.muted }}>{s.sub}</div>
                       </div>
                     ))}
                   </div>
                   {/* Rate bar */}
                   <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 14, marginBottom: 14 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-                      <span style={{ fontSize: 13, fontWeight: 600, color: C.text }}>Manifestation rate</span>
-                      <span style={{ fontSize: 13, color: C.gold, fontWeight: 700 }}>{manifested}/{desires.length} · {Math.round((manifested / desires.length) * 100)}%</span>
+                      <span style={{ fontSize: 16, fontWeight: 700, color: C.text }}>Manifestation rate</span>
+                      <span style={{ fontSize: 16, color: C.gold, fontWeight: 700 }}>{manifested}/{desires.length} · {Math.round((manifested / desires.length) * 100)}%</span>
                     </div>
                     <div style={{ height: 6, background: C.border, borderRadius: 3 }}>
                       <div style={{ width: `${(manifested / desires.length) * 100}%`, height: "100%", background: `linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius: 3, transition: "width 0.6s" }} />
                     </div>
                   </div>
                   <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 16, marginBottom: 14 }}>
-                    <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>Log a new intention</div>
+                    <div style={{ fontSize: 14, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Log a new intention</div>
                     <input value={newDesire} onChange={e => setNewDesire(e.target.value)} placeholder="State it in present tense — I am, I have, I receive..." style={{ marginBottom: 10 }} onKeyDown={e => e.key === "Enter" && addDesire()} />
                     {ct && <div style={{ fontSize: 13, color: C.muted, marginBottom: 10 }}>Will link to: <span style={{ color: C.gold, fontWeight: 700 }}>{ct.title}</span></div>}
                     <Btn full small onClick={addDesire} disabled={!newDesire.trim()}>Add intention +</Btn>
@@ -1002,9 +1002,9 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
                         <div key={d.id} style={{ background: C.card, border: `1px solid ${d.status === "manifested" ? "#2a4a2a" : C.border}`, borderRadius: 12, overflow: "hidden" }}>
                           <div style={{ padding: "14px 16px", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10 }} onClick={() => setExpanded(expanded === d.id ? null : d.id)}>
                             <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ fontSize: 15, fontWeight: 600, color: C.text2, marginBottom: 5 }}>{d.desire}</div>
-                              {d.track && <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}><span>🎧</span><span style={{ fontSize: 13, color, fontWeight: 600 }}>{d.track}</span>{d.days > 0 && <span style={{ fontSize: 12, color: C.dim }}>· {d.days}d</span>}</div>}
-                              {d.signs.length > 0 && <div style={{ fontSize: 12, color: C.muted }}>✦ {d.signs.length} sign{d.signs.length !== 1 ? "s" : ""}</div>}
+                              <div style={{ fontSize: 19, fontWeight: 700, color: C.text2, marginBottom: 6 }}>{d.desire}</div>
+                              {d.track && <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}><span>🎧</span><span style={{ fontSize: 16, color, fontWeight: 600 }}>{d.track}</span>{d.days > 0 && <span style={{ fontSize: 12, color: C.dim }}>· {d.days}d</span>}</div>}
+                              {d.signs.length > 0 && <div style={{ fontSize: 14, color: C.muted }}>✦ {d.signs.length} sign{d.signs.length !== 1 ? "s" : ""}</div>}
                             </div>
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0 }}>
                               {d.status === "manifested" ? (
@@ -1020,7 +1020,7 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
                           </div>
                           {expanded === d.id && (
                             <div style={{ borderTop: `1px solid ${C.border2}`, padding: "14px 16px", background: "#060400" }}>
-                              {d.signs.map((s, i) => <div key={i} style={{ fontSize: 14, color: C.muted, paddingLeft: 14, position: "relative", marginBottom: 7 }}><span style={{ position: "absolute", left: 0, color: C.gold }}>·</span>{s}</div>)}
+                              {d.signs.map((s, i) => <div key={i} style={{ fontSize: 16, color: C.muted, paddingLeft: 18, position: "relative", marginBottom: 7 }}><span style={{ position: "absolute", left: 0, color: C.gold }}>·</span>{s}</div>)}
                               {d.status !== "manifested" && (
                                 <div style={{ marginTop: 10 }}>
                                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
@@ -1045,10 +1045,10 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
           {tab === "account" && (
             <div className="fade" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 20 }}>
-                <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Your account</div>
-                <div style={{ fontSize: 13, color: C.muted, marginBottom: 3 }}>Plan</div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: userTier === "goddess" ? C.gold : C.text2, marginBottom: 14 }}>{userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19/month"}</div>
-                <div style={{ fontSize: 14, color: "#7a6a4a", lineHeight: 1.9, marginBottom: 14 }}>No refunds after 14 days · Cancel before renewal</div>
+                <div style={{ fontSize: 14, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Your account</div>
+                <div style={{ fontSize: 16, color: C.muted, marginBottom: 3 }}>Plan</div>
+                <div style={{ fontSize: 20, fontWeight: 700, color: userTier === "goddess" ? C.gold : C.text2, marginBottom: 14 }}>{userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19/month"}</div>
+                <div style={{ fontSize: 16, color: "#7a6a4a", lineHeight: 1.9, marginBottom: 14 }}>No refunds after 14 days · Cancel before renewal</div>
                 <Btn small outline onClick={() => {}}>Manage billing ↗</Btn>
               </div>
               {userTier === "audio" && <div onClick={onUpgrade} style={{ background: "#0a0500", border: `1.5px solid ${C.gold}44`, borderRadius: 14, padding: 20, cursor: "pointer" }}>
@@ -1057,7 +1057,7 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
                 <div style={{ fontSize: 13, color: C.muted }}>Unlock ProofOS tracker →</div>
               </div>}
               <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 20 }}>
-                <div style={{ fontSize: 14, color: "#7a6a4a", lineHeight: 1.9 }}>iPhone: tap Share → "Add to Home Screen"<br />Plays in background like Spotify when screen is locked</div>
+                <div style={{ fontSize: 16, color: "#7a6a4a", lineHeight: 1.9 }}>iPhone: tap Share → "Add to Home Screen"<br />Plays in background like Spotify when screen is locked</div>
               </div>
               <div style={{ display: "flex", gap: 12 }}>
                 {[["YouTube", "https://www.youtube.com/@Reshma.Oracle"], ["Instagram", "https://www.instagram.com/reshma.oracle/"]].map(([l, u]) => <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ flex: 1, padding: 14, background: C.card, border: `1px solid ${C.border}`, borderRadius: 10, color: C.muted, fontSize: 14, textAlign: "center", textDecoration: "none" }}>{l} →</a>)}
@@ -1068,7 +1068,7 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
         </div>
       </div>
       <div className="mob-nav" style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "#050300", borderTop: `1px solid ${C.border}`, zIndex: 200, paddingBottom: "env(safe-area-inset-bottom,8px)", display: "none" }}>
-        {tabs.map(t => <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: "10px 8px", background: "none", border: "none", color: tab === t.id ? C.gold : C.muted, fontSize: 10, fontWeight: 700, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, minHeight: 56, letterSpacing: "0.08em", textTransform: "uppercase" }}><span style={{ fontSize: 20 }}>{t.icon}</span>{t.label}</button>)}
+        {tabs.map(t => <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: "10px 8px", background: "none", border: "none", color: tab === t.id ? C.gold : C.muted, fontSize: 12, fontWeight: 700, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, minHeight: 56, letterSpacing: "0.08em", textTransform: "uppercase" }}><span style={{ fontSize: 24 }}>{t.icon}</span>{t.label}</button>)}
       </div>
       {playing && ct && (
         <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(6,4,0,0.97)", borderTop: `1px solid ${C.gold}44`, padding: "10px 16px", zIndex: 100, backdropFilter: "blur(20px)" }}>
@@ -1076,8 +1076,8 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 8 }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: catColors[ct.cat] || C.gold, flexShrink: 0 }} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: C.gold, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ct.title}</div>
-                <div style={{ fontSize: 11, color: C.dim }}>{ct.type} · {loop ? "Loop on" : "Loop off"} · Sleep: {sleep ? `${sleep}m` : "off"}</div>
+                <div style={{ fontSize: 17, fontWeight: 700, color: C.gold, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ct.title}</div>
+                <div style={{ fontSize: 14, color: C.dim }}>{ct.type} · {loop ? "Loop on" : "Loop off"} · Sleep: {sleep ? `${sleep}m` : "off"}</div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
                 <button onClick={() => setLoop(!loop)} style={{ background: "none", border: "none", fontSize: 18, color: loop ? C.gold : C.dim, cursor: "pointer" }}>↻</button>
