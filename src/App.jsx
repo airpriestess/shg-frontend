@@ -12,9 +12,9 @@ const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#000;color:#e8e0d0;font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
+body{background:#000;color:#e8e0d0;font-family:'Inter',sans-serif;font-size:18px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 button,input{font-family:'Inter',sans-serif}
-input{background:#080600;border:1px solid #1e1608;color:#e8e0d0;border-radius:10px;padding:14px 18px;font-size:16px;width:100%;outline:none;transition:border-color 0.2s}
+input{background:#080600;border:1px solid #1e1608;color:#e8e0d0;border-radius:10px;padding:16px 20px;font-size:17px;width:100%;outline:none;transition:border-color 0.2s}
 input:focus{border-color:#C8892A88}
 ::-webkit-scrollbar{width:2px}
 ::-webkit-scrollbar-thumb{background:#1e1608}
@@ -23,19 +23,18 @@ input:focus{border-color:#C8892A88}
 @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .sw span{display:inline-block;width:3px;border-radius:2px;background:linear-gradient(180deg,#C8892A,#C4365A);animation:sw 1.2s ease-in-out infinite}
 .sw span:nth-child(1){height:8px;animation-delay:0s}
-.sw span:nth-child(2){height:20px;animation-delay:.1s}
-.sw span:nth-child(3){height:32px;animation-delay:.2s}
-.sw span:nth-child(4){height:24px;animation-delay:.15s}
-.sw span:nth-child(5){height:36px;animation-delay:.25s}
-.sw span:nth-child(6){height:16px;animation-delay:.05s}
-.sw span:nth-child(7){height:28px;animation-delay:.3s}
+.sw span:nth-child(2){height:22px;animation-delay:.1s}
+.sw span:nth-child(3){height:34px;animation-delay:.2s}
+.sw span:nth-child(4){height:26px;animation-delay:.15s}
+.sw span:nth-child(5){height:38px;animation-delay:.25s}
+.sw span:nth-child(6){height:18px;animation-delay:.05s}
+.sw span:nth-child(7){height:30px;animation-delay:.3s}
 @keyframes sw{0%,100%{transform:scaleY(0.3);opacity:0.4}50%{transform:scaleY(1);opacity:1}}
 .ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none;top:50%;left:50%;animation:breathe 5s ease-in-out infinite}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:var(--op)}50%{transform:translate(-50%,-50%) scale(1.06);opacity:calc(var(--op)*2.5)}}
 @keyframes pulse{0%{box-shadow:0 0 0 0 #C8892A55}70%{box-shadow:0 0 0 24px #C8892A00}100%{box-shadow:0 0 0 0 #C8892A00}}
 .pulse{animation:pulse 2s infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.float{animation:float 4s ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:768px){
   .hide-mob{display:none!important}
   .grid-2{grid-template-columns:1fr!important}
@@ -53,13 +52,13 @@ input:focus{border-color:#C8892A88}
 function Btn({ children, onClick, full, outline, small, disabled }) {
   return (
     <button onClick={onClick} disabled={disabled} style={{
-      width: full ? "100%" : "auto", padding: small ? "10px 20px" : "16px 32px",
+      width: full ? "100%" : "auto", padding: small ? "12px 22px" : "17px 34px",
       background: disabled ? "#1a1208" : outline ? "transparent" : `linear-gradient(90deg,${C.gold},${C.rose})`,
       border: outline ? `1.5px solid ${C.gold}88` : "none", borderRadius: 12,
       color: disabled ? C.dim : outline ? C.gold : "#000",
-      fontSize: small ? 14 : 16, fontWeight: 700, cursor: disabled ? "not-allowed" : "pointer",
+      fontSize: small ? 15 : 17, fontWeight: 700, cursor: disabled ? "not-allowed" : "pointer",
       display: "inline-flex", alignItems: "center", justifyContent: "center",
-      gap: 8, transition: "transform 0.15s", minHeight: 48, letterSpacing: "0.02em", flexShrink: 0,
+      gap: 8, transition: "transform 0.15s", minHeight: 52, letterSpacing: "0.02em", flexShrink: 0,
     }}
       onMouseEnter={e => !disabled && (e.currentTarget.style.transform = "translateY(-2px)")}
       onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)")}
@@ -80,107 +79,78 @@ function Rings({ count = 4, color = C.gold }) {
   );
 }
 
-// Animated dashboard mockup for ProofOS
-function DashboardMockup({ mini }) {
-  const desires = [
-    { text: "He texts me first", status: "manifested", days: 14, cat: "love", progress: 100 },
-    { text: "€10,000 arrives", status: "manifested", days: 9, cat: "money", progress: 100 },
-    { text: "Skin visibly glowing", status: "in_progress", days: 21, cat: "beauty", progress: 72 },
-    { text: "Dream job offer", status: "in_progress", days: 5, cat: "life", progress: 30 },
+function AudioLibraryMockup() {
+  const tracks = [
+    { title: "He's already on his way back", cat: "Lovemaxxing", color: C.rose, playing: true },
+    { title: "Money is obsessed with me", cat: "Moneymaxxing", color: "#b87a20" },
+    { title: "Gorgeous is my default setting", cat: "Beautymaxxing", color: C.gold },
+    { title: "I wake up as her", cat: "Sleep Shifting", color: "#5a7ab0" },
   ];
-  const catColors = { love: C.rose, money: "#b87a20", beauty: C.gold, life: "#8a6ad0" };
-  if (mini) return (
-    <div style={{ background: "#080600", border: `1px solid ${C.gold}44`, borderRadius: 14, overflow: "hidden", fontSize: 12 }}>
-      <div style={{ padding: "10px 14px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ color: C.gold, fontWeight: 700, fontSize: 11 }}>ProofOS · Your board</span>
-        <span style={{ color: C.green, fontSize: 10, fontWeight: 700 }}>2 manifested ✦</span>
-      </div>
-      {desires.slice(0, 3).map((d, i) => (
-        <div key={i} style={{ padding: "8px 14px", borderBottom: i < 2 ? `1px solid ${C.border2}` : "none", display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: catColors[d.cat], flexShrink: 0 }} />
-          <span style={{ flex: 1, color: d.status === "manifested" ? C.text2 : C.muted, fontSize: 11, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{d.text}</span>
-          <span style={{ fontSize: 10, padding: "2px 7px", background: d.status === "manifested" ? "#0a1a0a" : C.dim, color: d.status === "manifested" ? C.green : C.gold, borderRadius: 10, fontWeight: 700, flexShrink: 0 }}>{d.status === "manifested" ? `✓ ${d.days}d` : `${d.days}d`}</span>
-        </div>
-      ))}
-    </div>
-  );
   return (
     <div style={{ background: "#060400", border: `1px solid ${C.gold}44`, borderRadius: 20, overflow: "hidden" }}>
-      {/* Header */}
-      <div style={{ padding: "14px 20px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", background: "#080600" }}>
-        <div>
-          <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>ProofOS · Manifestation Ledger</div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: C.gold }}>Your proof board</div>
-        </div>
-        <div style={{ fontSize: 11, color: C.green, fontWeight: 700, padding: "4px 10px", background: "#0a1a0a", borderRadius: 20, border: `1px solid #2a4a2a` }}>14 day streak ✦</div>
+      <div style={{ padding: "16px 22px", borderBottom: `1px solid ${C.border}`, background: "#080600" }}>
+        <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 3 }}>Audio Library</div>
+        <div style={{ fontSize: 17, fontWeight: 700, color: C.gold }}>50+ tracks · 4 new every week</div>
       </div>
-      {/* Stats row */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", borderBottom: `1px solid ${C.border}` }}>
-        {[{ v: 4, l: "Intentions", c: C.text2 }, { v: 2, l: "Manifested", c: C.rose }, { v: 18, l: "Signs logged", c: C.gold }, { v: "11d", l: "Avg days", c: C.green }].map((s, i) => (
-          <div key={i} style={{ padding: "12px 8px", textAlign: "center", borderRight: i < 3 ? `1px solid ${C.border}` : "none" }}>
-            <div style={{ fontSize: 26, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 3 }}>{s.v}</div>
-            <div style={{ fontSize: 13, color: C.muted, fontWeight: 600 }}>{s.l}</div>
+      {tracks.map((t, i) => (
+        <div key={i} style={{ padding: "14px 20px", borderBottom: i < tracks.length - 1 ? `1px solid ${C.border2}` : "none", display: "flex", alignItems: "center", gap: 14, background: t.playing ? "#0d0a00" : "none" }}>
+          <div style={{ width: 40, height: 40, borderRadius: "50%", background: t.playing ? t.color + "22" : "#080600", border: `1.5px solid ${t.playing ? t.color : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 15 }}>
+            {t.playing ? <div className="sw" style={{ display: "flex", alignItems: "center", gap: 2 }}><span /><span /><span /><span /><span /></div> : "▶"}
           </div>
-        ))}
-      </div>
-      {/* Desires */}
-      {desires.map((d, i) => (
-        <div key={i} style={{ padding: "12px 20px", borderBottom: i < desires.length - 1 ? `1px solid ${C.border2}` : "none" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: catColors[d.cat], flexShrink: 0 }} />
-            <span style={{ flex: 1, fontSize: 17, fontWeight: 600, color: d.status === "manifested" ? C.text2 : C.text2 }}>{d.text}</span>
-            <span style={{ fontSize: 11, padding: "3px 10px", background: d.status === "manifested" ? "#0a1a0a" : C.dim, color: d.status === "manifested" ? C.green : C.gold, borderRadius: 20, fontWeight: 700, flexShrink: 0 }}>
-              {d.status === "manifested" ? `✓ ${d.days} days` : `${d.days} days`}
-            </span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 15, fontWeight: 600, color: t.playing ? t.color : C.text2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</div>
+            <div style={{ fontSize: 13, color: C.dim, marginTop: 2 }}>{t.cat} · 30 min</div>
           </div>
-          <div style={{ height: 4, background: C.border, borderRadius: 2, overflow: "hidden" }}>
-            <div style={{ width: `${d.progress}%`, height: "100%", background: d.status === "manifested" ? `linear-gradient(90deg,${C.green},${C.gold})` : `linear-gradient(90deg,${catColors[d.cat]},${C.gold})`, borderRadius: 2 }} />
-          </div>
-          {d.status === "manifested" && (
-            <div style={{ fontSize: 13, color: C.green, marginTop: 4 }}>✦ Manifested in {d.days} days · linked to audio</div>
-          )}
         </div>
       ))}
-      <div style={{ padding: "10px 20px", textAlign: "center", fontSize: 12, color: C.muted, borderTop: `1px solid ${C.border}` }}>
-        Manifestation rate: 50% · avg 11 days · Goddess Tier exclusive
+      <div style={{ padding: "14px 20px", background: "#0d0a00", borderTop: `1px solid ${C.gold}33` }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: C.gold, marginBottom: 6 }}>▶ He's already on his way back · Loop on · 60m timer</div>
+        <div style={{ height: 4, background: C.border, borderRadius: 2 }}>
+          <div style={{ width: "38%", height: "100%", background: `linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius: 2 }} />
+        </div>
       </div>
     </div>
   );
 }
 
-// Audio library mockup
-function AudioLibraryMockup() {
-  const tracks = [
-    { title: "He's already on his way back", cat: "Lovemaxxing", color: C.rose, playing: true },
-    { title: "Money is obsessed with me", cat: "Moneymaxxing", color: "#b87a20", playing: false },
-    { title: "Gorgeous is my default setting", cat: "Beautymaxxing", color: C.gold, playing: false },
-    { title: "I wake up as her", cat: "Sleep Shifting", color: "#5a7ab0", playing: false },
+function DashboardMockup() {
+  const desires = [
+    { text: "He texts me first", status: "manifested", days: 14, cat: "love", progress: 100 },
+    { text: "€10,000 arrives", status: "manifested", days: 9, cat: "money", progress: 100 },
+    { text: "Skin visibly glowing", status: "in_progress", days: 21, cat: "beauty", progress: 72 },
   ];
+  const catColors = { love: C.rose, money: "#b87a20", beauty: C.gold };
   return (
     <div style={{ background: "#060400", border: `1px solid ${C.gold}44`, borderRadius: 20, overflow: "hidden" }}>
-      <div style={{ padding: "14px 20px", borderBottom: `1px solid ${C.border}`, background: "#080600" }}>
-        <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>Self Hypnosis Goddess</div>
-        <div style={{ fontSize: 14, fontWeight: 700, color: C.gold }}>Audio Library · 50+ tracks</div>
+      <div style={{ padding: "16px 22px", borderBottom: `1px solid ${C.border}`, background: "#080600", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 3 }}>ProofOS · Goddess Tier</div>
+          <div style={{ fontSize: 17, fontWeight: 700, color: C.gold }}>Your proof board</div>
+        </div>
+        <div style={{ fontSize: 13, color: C.green, fontWeight: 700, padding: "5px 12px", background: "#0a1a0a", borderRadius: 20, border: `1px solid #2a4a2a` }}>14 day streak ✦</div>
       </div>
-      {tracks.map((t, i) => (
-        <div key={i} style={{ padding: "12px 18px", borderBottom: i < tracks.length - 1 ? `1px solid ${C.border2}` : "none", display: "flex", alignItems: "center", gap: 12, background: t.playing ? "#0d0a00" : "none" }}>
-          <div style={{ width: 36, height: 36, borderRadius: "50%", background: t.playing ? t.color + "22" : "#080600", border: `1.5px solid ${t.playing ? t.color : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14 }}>
-            {t.playing ? <div className="sw" style={{ display: "flex", alignItems: "center", gap: 2, height: 20 }}><span style={{ height: 8 }} /><span style={{ height: 16 }} /><span style={{ height: 12 }} /><span style={{ height: 18 }} /><span style={{ height: 10 }} /></div> : "▶"}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderBottom: `1px solid ${C.border}` }}>
+        {[{ v: 3, l: "Intentions", c: C.text2 }, { v: 2, l: "Manifested", c: C.rose }, { v: 11, l: "Avg days", c: C.green }].map((s, i) => (
+          <div key={i} style={{ padding: "14px 8px", textAlign: "center", borderRight: i < 2 ? `1px solid ${C.border}` : "none" }}>
+            <div style={{ fontSize: 26, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 3 }}>{s.v}</div>
+            <div style={{ fontSize: 13, color: C.muted, fontWeight: 600 }}>{s.l}</div>
           </div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: t.playing ? t.color : C.text2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</div>
-            <div style={{ fontSize: 11, color: C.dim, marginTop: 2 }}>{t.cat} · Self hypnosis · 30 min</div>
+        ))}
+      </div>
+      {desires.map((d, i) => (
+        <div key={i} style={{ padding: "14px 20px", borderBottom: i < desires.length - 1 ? `1px solid ${C.border2}` : "none" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+            <div style={{ width: 9, height: 9, borderRadius: "50%", background: catColors[d.cat], flexShrink: 0 }} />
+            <span style={{ flex: 1, fontSize: 15, fontWeight: 600, color: C.text2 }}>{d.text}</span>
+            <span style={{ fontSize: 12, padding: "3px 10px", background: d.status === "manifested" ? "#0a1a0a" : C.dim, color: d.status === "manifested" ? C.green : C.gold, borderRadius: 20, fontWeight: 700 }}>
+              {d.status === "manifested" ? `✓ ${d.days}d` : `${d.days}d`}
+            </span>
           </div>
-          <span style={{ fontSize: 10, padding: "2px 8px", background: t.color + "22", color: t.color, borderRadius: 10, fontWeight: 700, flexShrink: 0 }}>{t.cat.split(" ")[0]}</span>
+          <div style={{ height: 5, background: C.border, borderRadius: 3 }}>
+            <div style={{ width: `${d.progress}%`, height: "100%", background: d.status === "manifested" ? `linear-gradient(90deg,${C.green},${C.gold})` : `linear-gradient(90deg,${catColors[d.cat]},${C.gold})`, borderRadius: 3 }} />
+          </div>
         </div>
       ))}
-      {/* Player bar */}
-      <div style={{ padding: "12px 18px", background: "#0d0a00", borderTop: `1px solid ${C.gold}33` }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: C.gold, marginBottom: 6 }}>▶ He's already on his way back · Loop on · Sleep timer 60m</div>
-        <div style={{ height: 3, background: C.border, borderRadius: 2 }}>
-          <div style={{ width: "38%", height: "100%", background: `linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius: 2 }} />
-        </div>
-      </div>
     </div>
   );
 }
@@ -225,336 +195,271 @@ function Landing({ onJoin, onProofOS, onDemo }) {
   }, []);
 
   const cats = [
-    { id: "love", label: "Lovemaxxing", color: C.rose, tagline: "He's obsessed. Of course he is.",
-      tracks: ["He's already on his way back · 432hz · 30 min", "He's obsessed and he knows it · 432hz · 28 min", "No contact — he comes back first · 528hz · 26 min", "I never chase. He always catches up · 432hz · 32 min"] },
-    { id: "money", label: "Moneymaxxing", color: "#b87a20", tagline: "Money finds you first. Obviously.",
-      tracks: ["Money is obsessed with me · 528hz · 25 min", "Unexpected income · always · 528hz · 22 min", "I receive beyond what I ask · 963hz · 27 min", "Overflow is my baseline · 528hz · 35 min"] },
-    { id: "beauty", label: "Beautymaxxing", color: C.gold, tagline: "Gorgeous is your default. Obviously.",
-      tracks: ["Gorgeous is my default setting · 432hz · 35 min", "I get prettier every single day · 432hz · 25 min", "The face card is permanently active · 528hz · 24 min", "My face shifted to the highest timeline · 432hz · 40 min"] },
-    { id: "life", label: "Lifemaxxing", color: "#9a7a5a", tagline: "Highest timeline. Activated.",
-      tracks: ["I've always been the prize · LOA · 30 min", "Reality rearranges for me · 963hz · 33 min", "I said so therefore it is · 528hz · 32 min", "Shifting into my highest self · 432hz · 28 min"] },
-    { id: "dna", label: "DNA Shifting", color: "#8a6ad0", tagline: "Your bloodline remembers who you are.",
-      tracks: ["DNA activation ceremony · 963hz · 45 min", "I override what I inherited · 963hz · 40 min", "Cellular regeneration · 963hz · 38 min", "Ancient codes unlocked · 963hz · 44 min"] },
-    { id: "sleep", label: "Sleep Shifting", color: "#5a7ab0", tagline: "You shift while you sleep. Wake up as her.",
-      tracks: ["I manifest while I sleep · Delta · 60 min", "I wake up as her · Theta · 55 min", "Overnight identity shift · Delta · 8 hrs", "The 180 installs silently while you dream · 8 hrs"] },
+    { id: "love", label: "Lovemaxxing", color: C.rose, tagline: "He's obsessed. Of course he is.", tracks: ["He's already on his way back · 432hz · 30 min", "He's obsessed and he knows it · 432hz · 28 min", "No contact — he comes back first · 528hz · 26 min", "I never chase. He always catches up · 432hz · 32 min"] },
+    { id: "money", label: "Moneymaxxing", color: "#b87a20", tagline: "Money finds you first. Obviously.", tracks: ["Money is obsessed with me · 528hz · 25 min", "Unexpected income · always · 528hz · 22 min", "I receive beyond what I ask · 963hz · 27 min", "Overflow is my baseline · 528hz · 35 min"] },
+    { id: "beauty", label: "Beautymaxxing", color: C.gold, tagline: "Gorgeous is your default. Obviously.", tracks: ["Gorgeous is my default setting · 432hz · 35 min", "I get prettier every single day · 432hz · 25 min", "The face card is permanently active · 528hz · 24 min", "My face shifted to the highest timeline · 432hz · 40 min"] },
+    { id: "life", label: "Lifemaxxing", color: "#9a7a5a", tagline: "Highest timeline. Activated.", tracks: ["I've always been the prize · LOA · 30 min", "Reality rearranges for me · 963hz · 33 min", "I said so therefore it is · 528hz · 32 min", "Shifting into my highest self · 432hz · 28 min"] },
+    { id: "dna", label: "DNA Shifting", color: "#8a6ad0", tagline: "Your bloodline remembers who you are.", tracks: ["DNA activation ceremony · 963hz · 45 min", "I override what I inherited · 963hz · 40 min", "Cellular regeneration · 963hz · 38 min", "Ancient codes unlocked · 963hz · 44 min"] },
+    { id: "sleep", label: "Sleep Shifting", color: "#5a7ab0", tagline: "You shift while you sleep. Wake up as her.", tracks: ["I manifest while I sleep · Delta · 60 min", "I wake up as her · Theta · 55 min", "Overnight identity shift · Delta · 8 hrs", "The 180 installs silently while you dream · 8 hrs"] },
   ];
   const cat = cats.find(c => c.id === activeCat);
+
+  const comparisonRows = [
+    { old: "You check his profile 12 times a day", neu: "You assume he wants you. Of course he does." },
+    { old: "You beg, script and see nothing change", neu: "You know it's done. The subconscious has it." },
+    { old: "You pick apart your face every morning", neu: "Your self-image says: I am this. Already." },
+    { old: "You feel desperate. You push it away.", neu: "You're magnetic because you assume you are." },
+    { old: "You try to force with conscious effort", neu: "The subconscious creates it effortlessly." },
+    { old: "You doubt the moment it doesn't arrive", neu: "You trust the timing. It's already in motion." },
+  ];
 
   return (
     <div style={{ background: C.black, minHeight: "100vh" }}>
       <audio ref={audioRef} src={FREE_TRACK_URL} preload="none" />
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 300, height: 58, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.96)", borderBottom: `1px solid ${C.border}`, backdropFilter: "blur(20px)" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 300, height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", background: "rgba(0,0,0,0.96)", borderBottom: `1px solid ${C.border}`, backdropFilter: "blur(20px)" }}>
         <button onClick={() => window.scrollTo(0, 0)} style={{ background: "none", border: "none", cursor: "pointer" }}>
-          <span className="wm" style={{ fontSize: 19, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
+          <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         </button>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          <button onClick={onProofOS} className="hide-mob" style={{ background: "none", border: `1px solid ${C.border}`, borderRadius: 8, padding: "7px 14px", color: C.muted, fontSize: 13, cursor: "pointer" }}>ProofOS ✦</button>
+          <button onClick={onProofOS} className="hide-mob" style={{ background: "none", border: `1px solid ${C.border}`, borderRadius: 8, padding: "8px 16px", color: C.muted, fontSize: 14, cursor: "pointer" }}>ProofOS ✦</button>
           <Btn small onClick={() => onJoin("audio")}>Join now</Btn>
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: `1px solid ${C.border}`, borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 4 }}>
-            {[0, 1, 2].map(i => <div key={i} style={{ width: 18, height: 1.5, background: C.muted }} />)}
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: `1px solid ${C.border}`, borderRadius: 8, padding: "9px 11px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 4 }}>
+            {[0,1,2].map(i => <div key={i} style={{ width: 18, height: 1.5, background: C.muted }} />)}
           </button>
         </div>
         {menuOpen && (
-          <div style={{ position: "absolute", top: 58, right: 20, background: "#0a0800", border: `1px solid ${C.border}`, borderRadius: 14, padding: 12, minWidth: 200, zIndex: 400 }}>
-            {[["Audio Library", () => setMenuOpen(false)], ["ProofOS ✦", () => { setMenuOpen(false); onProofOS(); }], ["Preview Dashboard", () => { setMenuOpen(false); onDemo(); }], ["YouTube ↗", () => window.open("https://www.youtube.com/@Reshma.Oracle", "_blank")], ["Instagram ↗", () => window.open("https://www.instagram.com/reshma.oracle/", "_blank")]].map(([l, fn], i) => (
-              <button key={i} onClick={fn} style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 14px", background: "none", border: "none", color: C.text2, fontSize: 14, cursor: "pointer", borderRadius: 8 }}
-                onMouseEnter={e => e.currentTarget.style.background = C.dim}
-                onMouseLeave={e => e.currentTarget.style.background = "none"}>{l}</button>
+          <div style={{ position: "absolute", top: 60, right: 24, background: "#0a0800", border: `1px solid ${C.border}`, borderRadius: 14, padding: 12, minWidth: 220, zIndex: 400 }}>
+            {[["Audio Library", () => setMenuOpen(false)], ["ProofOS ✦", () => { setMenuOpen(false); onProofOS(); }], ["Preview Dashboard", () => { setMenuOpen(false); onDemo(); }], ["YouTube ↗", () => window.open("https://www.youtube.com/@Reshma.Oracle","_blank")], ["Instagram ↗", () => window.open("https://www.instagram.com/reshma.oracle/","_blank")]].map(([l,fn],i) => (
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"12px 16px",background:"none",border:"none",color:C.text2,fontSize:15,cursor:"pointer",borderRadius:8 }}
+                onMouseEnter={e=>e.currentTarget.style.background=C.dim}
+                onMouseLeave={e=>e.currentTarget.style.background="none"}>{l}</button>
             ))}
           </div>
         )}
       </nav>
 
       {/* HERO */}
-      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 58, overflow: "hidden" }}>
+      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 60, overflow: "hidden" }}>
         <Rings count={5} />
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "60px 20px 80px", maxWidth: 720, margin: "0 auto", width: "100%" }}>
-
-          {/* Soundwave visual */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
-            {Array.from({ length: 20 }).map((_, i) => {
-              const h = [8, 18, 30, 22, 38, 26, 42, 20, 34, 16, 40, 24, 36, 28, 18, 42, 22, 32, 14, 26][i];
-              return <div key={i} style={{ width: 3, borderRadius: 2, height: h, background: `linear-gradient(180deg,${C.gold},${C.rose})`, animation: `sw ${0.8 + (i % 5) * 0.15}s ease-in-out infinite`, animationDelay: `${i * 0.06}s`, opacity: 0.7 + (i % 3) * 0.1 }} />;
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "60px 24px 80px", maxWidth: 760, margin: "0 auto", width: "100%" }}>
+          {/* Soundwave */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 60, marginBottom: 28 }}>
+            {Array.from({ length: 22 }).map((_, i) => {
+              const h = [8,18,30,22,38,26,42,20,34,16,40,24,36,28,18,42,22,32,14,26,20,36][i];
+              return <div key={i} style={{ width: 3, borderRadius: 2, height: h, background: `linear-gradient(180deg,${C.gold},${C.rose})`, animation: `sw ${0.8+(i%5)*0.15}s ease-in-out infinite`, animationDelay: `${i*0.06}s`, opacity: 0.7+(i%3)*0.1 }} />;
             })}
           </div>
 
-          {/* TITLE FIRST */}
-          <h1 className="wm" style={{ fontSize: "clamp(32px,6vw,56px)", lineHeight: 1.1, marginBottom: 10, color: C.text }}>
+          {/* TITLE */}
+          <h1 className="wm" style={{ fontSize: "clamp(38px,7vw,72px)", lineHeight: 1.05, marginBottom: 10, color: C.text }}>
             Self Hypnosis Goddess<br />
             <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Audio Library</span>
           </h1>
-          <div style={{ fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: C.muted, marginBottom: 28, fontWeight: 600 }}>Reshma Oracle · Self Hypnosis + Subliminals · Not on YouTube</div>
+          <div style={{ fontSize: 14, letterSpacing: "0.2em", textTransform: "uppercase", color: C.muted, marginBottom: 32, fontWeight: 600 }}>Reshma Oracle · Self Hypnosis + Subliminals · Not on YouTube</div>
 
-          {/* PAIN POINT — smaller, full width */}
-          <p style={{ fontSize: "clamp(15px,2vw,17px)", color: "#7a6a4a", lineHeight: 1.9, marginBottom: 8, maxWidth: "100%" }}>
-            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked.
-            Because you were trying to change your reality without first reprogramming your subconscious mind.
-            Your subconscious is what decides what you attract, how you feel, what you believe you deserve.
-            Until it shifts — nothing outside of you shifts.
+          {/* PAIN POINT */}
+          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: "#7a6a4a", lineHeight: 1.9, marginBottom: 10, maxWidth: "100%" }}>
+            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because you were trying to change your reality without first reprogramming your subconscious mind.
           </p>
-          <p style={{ fontSize: "clamp(15px,2vw,17px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 10, maxWidth: "100%" }}>
-            These audios go directly to the subconscious. While you sleep. While you rest.
-            You wake up with certainty — not hope. With identity — not effort. With a subconscious that is already programmed for what you want.
+          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 10, maxWidth: "100%" }}>
+            Your reality mirrors what you assume to be true about yourself. It's not about what you want — it's about your self-concept. Your self-image. How you see yourself at the deepest level.
           </p>
-          <p style={{ fontSize: 14, color: C.muted, marginBottom: 36 }}>Self hypnosis · Subliminals · Frequency audio · Not on YouTube · No ads · Real voice</p>
+          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 36, maxWidth: "100%" }}>
+            These audios reprogram that — directly, at the subconscious level, while you sleep. You wake up knowing. Not hoping. <strong style={{ color: C.text2 }}>Knowing.</strong>
+          </p>
 
           {/* FREE TRACK */}
-          <div style={{ background: "#0a0800", border: `1px solid ${C.gold}55`, borderRadius: 18, padding: "22px 24px", maxWidth: 440, margin: "0 auto 36px", boxShadow: `0 0 40px ${C.gold}11` }}>
-            <div style={{ fontSize: 10, color: C.gold, letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>Free track — listen now 🎧</div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: C.text2, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
-            <div style={{ fontSize: 12, color: C.muted, marginBottom: 16 }}>EMDR · Self hypnosis · Subconscious reprogramming</div>
-            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 50, height: 50, borderRadius: "50%", background: `linear-gradient(135deg,${C.gold},${C.rose})`, border: "none", color: "#000", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <div style={{ background: "#0a0800", border: `1px solid ${C.gold}55`, borderRadius: 18, padding: "24px 26px", maxWidth: 460, margin: "0 auto 36px", boxShadow: `0 0 40px ${C.gold}11` }}>
+            <div style={{ fontSize: 11, color: C.gold, letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>Free track — listen now 🎧</div>
+            <div style={{ fontSize: 17, fontWeight: 700, color: C.text2, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
+            <div style={{ fontSize: 14, color: C.muted, marginBottom: 18 }}>EMDR · Self hypnosis · Subconscious reprogramming</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 54, height: 54, borderRadius: "50%", background: `linear-gradient(135deg,${C.gold},${C.rose})`, border: "none", color: "#000", fontSize: 22, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {playing ? "⏸" : "▶"}
               </button>
               <div style={{ flex: 1 }}>
-                <div style={{ height: 4, background: C.border, borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
-                  onClick={e => { const r = e.currentTarget.getBoundingClientRect(); if (audioRef.current?.duration) audioRef.current.currentTime = ((e.clientX - r.left) / r.width) * audioRef.current.duration; }}>
-                  <div style={{ width: `${progress}%`, height: "100%", background: `linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius: 2 }} />
+                <div style={{ height: 5, background: C.border, borderRadius: 3, marginBottom: 7, cursor: "pointer" }}
+                  onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
+                  <div style={{ width: `${progress}%`, height: "100%", background: `linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius: 3 }} />
                 </div>
-                <div style={{ fontSize: 11, color: C.dim }}>{playing ? "Playing — plays in background like Spotify ✦" : "Free — no sign up needed"}</div>
+                <div style={{ fontSize: 13, color: C.dim }}>{playing ? "Playing — plays in background like Spotify ✦" : "Free — no sign up needed"}</div>
               </div>
-              {playing && <div className="sw" style={{ display: "flex", alignItems: "center", gap: 2 }}><span /><span /><span /><span /><span /><span /><span /></div>}
+              {playing && <div className="sw" style={{ display:"flex",alignItems:"center",gap:2 }}><span/><span/><span/><span/><span/><span/><span/></div>}
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 18 }}>
             <Btn onClick={() => onJoin("audio")}>Start your shift — €19/month</Btn>
             <Btn outline onClick={onDemo}>See the dashboard</Btn>
           </div>
-          <div style={{ fontSize: 13, color: C.dim }}>Cancel anytime · Stripe · No download · Plays in background like Spotify</div>
+          <div style={{ fontSize: 14, color: C.dim }}>Cancel anytime · Stripe · No download · Plays in background like Spotify</div>
         </div>
       </div>
 
-      {/* SLIDING CATEGORY CARDS */}
-      <div style={{ overflow: "hidden", padding: "0 0 0 20px", marginBottom: 0 }}>
-        <div style={{ display: "flex", gap: 12, animation: "slide 30s linear infinite", width: "max-content" }}>
-          {[
-            { label: "Lovemaxxing", text: "He texts. He comes back. He's obsessed.", color: C.rose },
-            { label: "Moneymaxxing", text: "Unexpected income. Overflow. Always.", color: "#b87a20" },
-            { label: "Beautymaxxing", text: "Your face card is permanently active.", color: C.gold },
-            { label: "Lifemaxxing", text: "Highest timeline. Parallel reality. Now.", color: "#9a7a5a" },
-            { label: "DNA Shifting", text: "Your bloodline remembers who you are.", color: "#8a6ad0" },
-            { label: "Sleep Shifting", text: "You shift while you sleep. Wake up as her.", color: "#5a7ab0" },
-            { label: "Lovemaxxing", text: "He texts. He comes back. He's obsessed.", color: C.rose },
-            { label: "Moneymaxxing", text: "Unexpected income. Overflow. Always.", color: "#b87a20" },
-            { label: "Beautymaxxing", text: "Your face card is permanently active.", color: C.gold },
-            { label: "Lifemaxxing", text: "Highest timeline. Parallel reality. Now.", color: "#9a7a5a" },
-            { label: "DNA Shifting", text: "Your bloodline remembers who you are.", color: "#8a6ad0" },
-            { label: "Sleep Shifting", text: "You shift while you sleep. Wake up as her.", color: "#5a7ab0" },
-          ].map((c, i) => (
-            <div key={i} style={{ background: C.card, border: `1px solid ${c.color}44`, borderRadius: 14, padding: "18px 24px", minWidth: 220, flexShrink: 0 }}>
-              <div style={{ fontSize: 11, color: c.color, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8 }}>{c.label}</div>
-              <div style={{ fontSize: 14, color: C.text2, lineHeight: 1.5 }}>{c.text}</div>
+      {/* SLIDING CATEGORY BANNER */}
+      <div style={{ overflow: "hidden", padding: "0 0 60px", borderTop: `1px solid ${C.border}` }}>
+        <div style={{ display: "flex", gap: 14, animation: "slide 28s linear infinite", width: "max-content", paddingTop: 32 }}>
+          {[...cats, ...cats].map((c, i) => (
+            <div key={i} style={{ background: C.card, border: `1px solid ${c.color}44`, borderRadius: 14, padding: "18px 26px", minWidth: 240, flexShrink: 0 }}>
+              <div style={{ fontSize: 12, color: c.color, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8 }}>{c.label}</div>
+              <div style={{ fontSize: 15, color: C.text2, lineHeight: 1.5 }}>{c.tagline}</div>
             </div>
           ))}
         </div>
       </div>
-      <style>{`@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}`}</style>
 
-      {/* THE IDENTITY SHIFT — what this actually does */}
-      <div style={{ padding: "80px 20px", maxWidth: 900, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12 }}>How this actually works</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: C.text, lineHeight: 1.2, marginBottom: 16 }}>
-            Your subconscious creates<br />
-            <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>your entire reality.</span>
+      {/* HOW IT WORKS — SELF CONCEPT */}
+      <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>The science</div>
+          <h2 className="wm" style={{ fontSize: "clamp(30px,5vw,54px)", color: C.text, lineHeight: 1.2, marginBottom: 20 }}>
+            Your subconscious mind<br />
+            <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
-          <p style={{ fontSize: 17, color: "#8a7a5a", lineHeight: 1.85, maxWidth: 620, margin: "0 auto" }}>
-            Your subconscious mind controls 95% of your thoughts, beliefs, and behaviours. It decides what you attract. What you believe you deserve. How you feel about yourself. Affirmations do not reach it. Willpower does not reach it. These audios do — directly, during rest, at the deepest level of programming. When the subconscious shifts, everything shifts.
+          <p style={{ fontSize: 18, color: "#8a7a5a", lineHeight: 1.85, maxWidth: 660, margin: "0 auto" }}>
+            Neuroscience confirms that 95% of your thoughts, behaviours and beliefs are driven by your subconscious. Your self-concept — the assumptions you hold about yourself — determines everything you experience. Change the assumption. Change the reality.
           </p>
         </div>
 
-        {/* Identity shift diagram */}
-        <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3, marginBottom: 48 }}>
-          {/* Old identity */}
-          <div style={{ background: "#0a0505", border: `1px solid #2a1010`, borderRadius: "16px 0 0 16px", padding: 28 }}>
-            <div style={{ fontSize: 12, color: "#6a3535", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>The old identity</div>
-            <div className="wm" style={{ fontSize: 22, color: "#7a5050", marginBottom: 20 }}>The one that keeps attracting the same reality</div>
-            {[
-              "Your subconscious is wired for lack and waiting",
-              "Attracting from fear — your subconscious broadcasts scarcity",
-              "Your subconscious identity says: not enough",
-              "Conscious effort cannot override subconscious belief",
-              "Your nervous system is stuck in the old pattern",
-              "The subconscious reverts you back to what it knows",
-            ].map((t, i) => (
-              <div key={i} style={{ display: "flex", gap: 10, marginBottom: 12, alignItems: "flex-start" }}>
-                <span style={{ color: "#5a2525", fontSize: 14, flexShrink: 0 }}>✗</span>
-                <span style={{ fontSize: 15, color: "#6a4a4a", lineHeight: 1.55 }}>{t}</span>
-              </div>
-            ))}
+        {/* COMPARISON TABLE */}
+        <div style={{ marginBottom: 60 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
+            <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "16px 28px", border: `1px solid #2a1010`, borderBottom: "none", borderRight: "none" }}>
+              <div style={{ fontSize: 14, color: "#6a3535", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase" }}>Old self-concept</div>
+              <div className="wm" style={{ fontSize: 20, color: "#7a5050", marginTop: 4 }}>Running old programming</div>
+            </div>
+            <div style={{ background: "#080a08", borderRadius: "0 14px 0 0", padding: "16px 28px", border: `1px solid ${C.gold}33`, borderBottom: "none", borderLeft: "none" }}>
+              <div style={{ fontSize: 14, color: C.gold, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase" }}>New self-concept</div>
+              <div className="wm" style={{ fontSize: 20, color: C.text2, marginTop: 4 }}>Reprogrammed subconscious</div>
+            </div>
           </div>
-          {/* New identity */}
-          <div style={{ background: "#080a08", border: `1px solid ${C.gold}33`, borderRadius: "0 16px 16px 0", padding: 28 }}>
-            <div style={{ fontSize: 12, color: C.gold, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>The new identity</div>
-            <div className="wm" style={{ fontSize: 22, color: C.text2, marginBottom: 20 }}>The one that creates a completely different reality</div>
-            {[
-              "Your subconscious is reprogrammed for receiving",
-              "You wake up with certainty — it is already done",
-              "Your subconscious identity says: I am this",
-              "You attract from wholeness — not desperation",
-              "Your nervous system is calm. Signs arrive naturally",
-              "The subconscious that has it all — installed while you slept",
-            ].map((t, i) => (
-              <div key={i} style={{ display: "flex", gap: 10, marginBottom: 12, alignItems: "flex-start" }}>
-                <span style={{ color: C.gold, fontSize: 14, flexShrink: 0 }}>✦</span>
-                <span style={{ fontSize: 15, color: C.text2, lineHeight: 1.55 }}>{t}</span>
+          {comparisonRows.map((row, i) => (
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
+              <div style={{ background: "#0a0505", padding: "16px 28px", border: `1px solid #2a1010`, borderRight: "none", borderBottom: "none", borderRadius: i === comparisonRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 12, alignItems: "flex-start" }}>
+                <span style={{ color: "#5a2a2a", fontSize: 18, flexShrink: 0, marginTop: 2 }}>✗</span>
+                <span style={{ fontSize: 17, color: "#7a5a5a", lineHeight: 1.6 }}>{row.old}</span>
               </div>
-            ))}
-          </div>
+              <div style={{ background: "#080a08", padding: "16px 28px", border: `1px solid ${C.gold}33`, borderLeft: "none", borderBottom: "none", borderRadius: i === comparisonRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 12, alignItems: "flex-start" }}>
+                <span style={{ color: C.gold, fontSize: 16, flexShrink: 0, marginTop: 2 }}>✦</span>
+                <span style={{ fontSize: 17, color: C.text2, lineHeight: 1.6 }}>{row.neu}</span>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* 4-step flow */}
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <h3 className="wm" style={{ fontSize: "clamp(24px,4vw,40px)", color: C.text, marginBottom: 8 }}>Four steps. One reality shift.</h3>
-          <p style={{ fontSize: 16, color: C.muted }}>Your only job is to press play.</p>
+        {/* 4 STEPS */}
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>Four steps. One reality shift.</h2>
+          <p style={{ fontSize: 18, color: C.muted }}>Your only job is to press play.</p>
         </div>
         <div className="step-flow" style={{ display: "flex", gap: 0 }}>
           {[
-            { n: "01", icon: "🎧", title: "You listen", body: "Self hypnosis and subliminal audio. Headphones in. Press play. Works while you sleep, rest, exist." },
-            { n: "02", icon: "◈", title: "Identity installs", body: "The old programming dissolves. The new identity installs. Not through effort — through repetition at depth." },
-            { n: "03", icon: "✦", title: "Reality responds", body: "He texts. Money arrives. Strangers compliment your skin. You're taking different actions from a different identity." },
-            { n: "04", icon: "◉", title: "You document the proof", body: "Log every sign in ProofOS. Link it to your audio. Watch the pattern become undeniable. It is done." },
-          ].map((s, i) => (
-            <div key={i} style={{ display: "flex", flex: 1 }}>
-              <div style={{ background: C.card, border: `1px solid ${C.border}`, flex: 1, padding: 22, borderLeft: i > 0 ? "none" : undefined, borderTopLeftRadius: i === 0 ? 16 : 0, borderBottomLeftRadius: i === 0 ? 16 : 0, borderTopRightRadius: i === 3 ? 16 : 0, borderBottomRightRadius: i === 3 ? 16 : 0, position: "relative", overflow: "hidden" }}>
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg,${C.gold}${['88', '66', '44', '22'][i]},transparent)` }} />
-                <div style={{ fontSize: 11, color: C.muted, fontFamily: "monospace", fontWeight: 700, marginBottom: 10, letterSpacing: "0.1em" }}>{s.n}</div>
-                <div style={{ fontSize: 26, marginBottom: 10 }}>{s.icon}</div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: C.gold, marginBottom: 8 }}>{s.title}</div>
-                <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.7 }}>{s.body}</div>
+            { n:"01", icon:"🎧", title:"You listen", body:"Self hypnosis and subliminal audio. Headphones in. Press play. Works while you sleep, while you rest, while you exist." },
+            { n:"02", icon:"◈", title:"Subconscious shifts", body:"Your self-concept updates at depth. The old assumptions dissolve. The new identity installs — not through effort, through repetition." },
+            { n:"03", icon:"✦", title:"Reality mirrors it", body:"He texts. Money arrives. Skin shifts. People treat you differently. Your outer world mirrors your new inner assumption. Of course it does." },
+            { n:"04", icon:"◉", title:"You document proof", body:"Log every sign in ProofOS. Link it to the audio you listened to. Watch the pattern become undeniable. It is done." },
+          ].map((s,i) => (
+            <div key={i} style={{ display:"flex", flex:1 }}>
+              <div style={{ background:C.card, border:`1px solid ${C.border}`, flex:1, padding:28, borderLeft:i>0?"none":undefined, borderTopLeftRadius:i===0?16:0, borderBottomLeftRadius:i===0?16:0, borderTopRightRadius:i===3?16:0, borderBottomRightRadius:i===3?16:0, position:"relative", overflow:"hidden" }}>
+                <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,${C.gold}${['88','66','44','22'][i]},transparent)` }} />
+                <div style={{ fontSize:12, color:C.muted, fontFamily:"monospace", fontWeight:700, marginBottom:14, letterSpacing:"0.1em" }}>{s.n}</div>
+                <div style={{ fontSize:30, marginBottom:14 }}>{s.icon}</div>
+                <div style={{ fontSize:20, fontWeight:700, color:C.gold, marginBottom:12 }}>{s.title}</div>
+                <div style={{ fontSize:16, color:"#8a7a5a", lineHeight:1.75 }}>{s.body}</div>
               </div>
-              {i < 3 && <div style={{ display: "flex", alignItems: "center", color: C.gold + "55", fontSize: 18, padding: "0 4px", flexShrink: 0 }}>→</div>}
+              {i<3 && <div style={{ display:"flex", alignItems:"center", color:C.gold+"55", fontSize:20, padding:"0 4px", flexShrink:0 }}>→</div>}
             </div>
           ))}
         </div>
       </div>
 
-      {/* RESULTS — before/after CSS mockups */}
-      <div style={{ padding: "0 20px 80px", maxWidth: 1000, margin: "0 auto" }}>
+      {/* WHY SUBLIMINALS + HYPNOSIS */}
+      <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12 }}>The results</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: C.text, marginBottom: 10 }}>What shifts when your identity shifts.</h2>
-          <p style={{ fontSize: 16, color: C.muted }}>Not motivation. Not affirmations. Subconscious identity reprogramming.</p>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>Why it works</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>What is self hypnosis? What is a subliminal?</h2>
+          <p style={{ fontSize: 18, color: C.muted }}>Why do these audios reach where affirmations can't?</p>
         </div>
         <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
-          {/* SP */}
-          <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, overflow: "hidden" }}>
-            <div style={{ padding: "12px 16px", borderBottom: `1px solid ${C.border}`, background: "#0d0508" }}>
-              <div style={{ fontSize: 12, color: C.rose, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Lovemaxxing</div>
-              <div style={{ fontSize: 13, color: C.muted }}>He's obsessed. Of course.</div>
+          {[
+            { icon:"🎧", title:"Self Hypnosis", color:C.gold, body:"Hypnosis bypasses the critical conscious mind and speaks directly to the subconscious. In a deeply relaxed state, your subconscious accepts new beliefs as true — at the identity level. Reshma's voice guides you into that state. The reprogramming happens while you're in it.", freq:"Often results in the fastest shift — some notice a change after one session." },
+            { icon:"◈", title:"Subliminals", color:C.rose, body:"Subliminal audios layer affirmations beneath music or sound at a frequency your conscious mind cannot detect — but your subconscious hears clearly. No mental resistance. No filtering. The new belief goes straight in. Most effective when listened to repeatedly, especially during sleep.", freq:"Works overnight. Your subconscious stays active while you sleep." },
+            { icon:"✦", title:"Why Both?", color:"#8a7a5a", body:"Some self hypnosis tracks include subliminal layers beneath the voice — working on two levels simultaneously. The hypnosis creates the open channel. The subliminals reinforce the new identity beneath it. Together, they reprogram faster and more deeply than either alone.", freq:"Results vary per person and per desire. Some shift in days. Some in weeks. Each person is unique." },
+          ].map((c,i) => (
+            <div key={i} style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:16, padding:28, position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,${c.color},transparent)` }} />
+              <div style={{ fontSize:32, marginBottom:14 }}>{c.icon}</div>
+              <div style={{ fontSize:20, fontWeight:700, color:c.color, marginBottom:14 }}>{c.title}</div>
+              <div style={{ fontSize:16, color:"#8a7a5a", lineHeight:1.75, marginBottom:16 }}>{c.body}</div>
+              <div style={{ fontSize:14, color:C.muted, fontStyle:"italic", lineHeight:1.6, borderTop:`1px solid ${C.border}`, paddingTop:14 }}>{c.freq}</div>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-              <div style={{ padding: 14, borderRight: `1px solid ${C.border}` }}>
-                <div style={{ fontSize: 10, color: "#5a3535", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Before</div>
-                <div style={{ background: "#111", borderRadius: 10, padding: 10 }}>
-                  <div style={{ fontSize: 10, color: "#3a3a3a", marginBottom: 8 }}>iMessage · 8 days</div>
-                  {["Hey are you there?", "Can we talk?", "Please respond"].map((m, i) => (
-                    <div key={i} style={{ background: "#1a1a1a", borderRadius: 8, padding: "5px 8px", marginBottom: 4 }}>
-                      <div style={{ color: "#555", fontSize: 11 }}>{m}</div>
-                      <div style={{ color: "#2a2a2a", fontSize: 9, textAlign: "right", marginTop: 1 }}>✓</div>
-                    </div>
-                  ))}
-                  <div style={{ color: "#2a2a2a", fontSize: 10, textAlign: "center", marginTop: 6 }}>No reply</div>
-                </div>
-                <div style={{ fontSize: 12, color: "#5a4040", marginTop: 8, fontStyle: "italic", lineHeight: 1.5 }}>Desperate. Waiting. Checking.</div>
-              </div>
-              <div style={{ padding: 14 }}>
-                <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>After</div>
-                <div style={{ background: "#080f0a", borderRadius: 10, padding: 10, border: `1px solid #1a3a1a` }}>
-                  <div style={{ fontSize: 10, color: "#3a5a3a", marginBottom: 8 }}>iMessage · Today</div>
-                  <div style={{ background: "#0f2a0f", borderRadius: 8, padding: "7px 9px", marginBottom: 4, border: `1px solid #1a3a1a` }}>
-                    <div style={{ color: "#7ab07a", fontSize: 12 }}>I miss you. Been thinking about you constantly.</div>
-                    <div style={{ color: "#2a4a2a", fontSize: 9, marginTop: 3 }}>✓✓ Read</div>
-                  </div>
-                </div>
-                <div style={{ fontSize: 12, color: C.text2, marginTop: 8, fontStyle: "italic", lineHeight: 1.5 }}>You had already stopped waiting.</div>
-              </div>
-            </div>
-          </div>
-          {/* Money */}
-          <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, overflow: "hidden" }}>
-            <div style={{ padding: "12px 16px", borderBottom: `1px solid ${C.border}`, background: "#090d08" }}>
-              <div style={{ fontSize: 12, color: "#b87a20", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Moneymaxxing</div>
-              <div style={{ fontSize: 13, color: C.muted }}>Money finds you first.</div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-              <div style={{ padding: 14, borderRight: `1px solid ${C.border}` }}>
-                <div style={{ fontSize: 10, color: "#5a3535", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Before</div>
-                <div style={{ background: "#111", borderRadius: 10, padding: 10 }}>
-                  <div style={{ fontSize: 10, color: "#3a3a3a", marginBottom: 6 }}>Bank account</div>
-                  <div style={{ fontSize: 22, fontWeight: 800, color: "#4a4a4a", marginBottom: 8 }}>€247.83</div>
-                  {[["Rent", "−€900"], ["Bills", "−€180"]].map(([k, v]) => (
-                    <div key={k} style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "#3a3a3a", marginBottom: 3 }}>
-                      <span>{k}</span><span style={{ color: "#5a2a2a" }}>{v}</span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ fontSize: 12, color: "#5a4040", marginTop: 8, fontStyle: "italic" }}>Counting what's left.</div>
-              </div>
-              <div style={{ padding: 14 }}>
-                <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>After</div>
-                <div style={{ background: "#080f08", borderRadius: 10, padding: 10, border: `1px solid #1a3a1a` }}>
-                  <div style={{ fontSize: 10, color: "#4a8a4a", marginBottom: 6 }}>New transfer</div>
-                  <div style={{ background: "#0a1f0a", borderRadius: 8, padding: "8px 10px", border: `1px solid #2a4a2a` }}>
-                    <div style={{ fontSize: 10, color: "#4a8a4a" }}>✓ Payment received</div>
-                    <div style={{ fontSize: 26, fontWeight: 800, color: "#6ab06a" }}>€10,000</div>
-                    <div style={{ fontSize: 10, color: "#2a4a2a" }}>Unexpected. Exactly as asked.</div>
-                  </div>
-                </div>
-                <div style={{ fontSize: 12, color: C.text2, marginTop: 8, fontStyle: "italic" }}>Of course it did.</div>
-              </div>
-            </div>
-          </div>
-          {/* Beauty */}
-          <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, overflow: "hidden" }}>
-            <div style={{ padding: "12px 16px", borderBottom: `1px solid ${C.border}`, background: "#0d0c08" }}>
-              <div style={{ fontSize: 12, color: C.gold, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Beautymaxxing</div>
-              <div style={{ fontSize: 13, color: C.muted }}>Gorgeous is your default.</div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-              <div style={{ padding: 14, borderRight: `1px solid ${C.border}` }}>
-                <div style={{ fontSize: 10, color: "#5a3535", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Before</div>
-                <div style={{ background: "#111", borderRadius: 10, padding: 12, textAlign: "center" }}>
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#1a1a1a", margin: "0 auto 8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, filter: "grayscale(1) opacity(0.3)" }}>🪞</div>
-                  <div style={{ fontSize: 11, color: "#4a3535", lineHeight: 1.5 }}>Picking apart every detail. The same loop. Every morning.</div>
-                </div>
-                <div style={{ fontSize: 12, color: "#5a4040", marginTop: 8, fontStyle: "italic" }}>Never enough.</div>
-              </div>
-              <div style={{ padding: 14 }}>
-                <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>After</div>
-                <div style={{ background: "#0a0900", borderRadius: 10, padding: 10, border: `1px solid ${C.dim}` }}>
-                  {[{ from: "Sarah", msg: "What are you doing differently?? You're GLOWING" }, { from: "Mia", msg: "Your skin is actually shifting omg" }].map((m, i) => (
-                    <div key={i} style={{ background: "#140f02", borderRadius: 8, padding: "6px 8px", marginBottom: 4, border: `1px solid ${C.dim}` }}>
-                      <div style={{ fontSize: 9, color: C.muted, marginBottom: 2 }}>{m.from}</div>
-                      <div style={{ fontSize: 11, color: C.text2 }}>{m.msg}</div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ fontSize: 12, color: C.text2, marginTop: 8, fontStyle: "italic" }}>They notice before you do.</div>
-              </div>
-            </div>
+          ))}
+        </div>
+        <div style={{ marginTop:32, background:C.card, border:`1px solid ${C.gold}33`, borderRadius:14, padding:"20px 28px", textAlign:"center" }}>
+          <div style={{ fontSize:17, color:"#8a7a5a", lineHeight:1.85 }}>
+            <strong style={{ color:C.text2 }}>How often should you listen?</strong> Daily is ideal — especially at night before sleep or in the morning before you're fully awake. The subconscious is most receptive at the threshold between sleep and wakefulness. Results depend on your belief system, how deep the old programming runs, and how consistently you listen. Every person and every topic is different. Trust your own timeline.
           </div>
         </div>
       </div>
 
-      {/* APP DASHBOARD PREVIEW */}
-      <div style={{ padding: "0 20px 80px", maxWidth: 1000, margin: "0 auto" }}>
+      {/* RESULTS — before/after */}
+      <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12 }}>The app</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: C.text, marginBottom: 10 }}>Your portal. Your library. Your proof.</h2>
-          <p style={{ fontSize: 16, color: C.muted }}>Everything in one place. Plays in background like Spotify. No download needed.</p>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>The results</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>What shifts when your self-concept shifts.</h2>
         </div>
-        <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+          {[
+            { cat:"Lovemaxxing", color:C.rose, before:{ label:"Old assumption", text:"I am not enough. He leaves. I chase.", visual:[{msg:"Hey are you there?",sent:true},{msg:"Can we talk?",sent:true},{msg:"No reply · 8 days",center:true,dim:true}] }, after:{ label:"New assumption", text:"He comes back. Of course he does.", visual:[{msg:"I miss you. Been thinking about you constantly.",green:true},{msg:"✓✓ Read · 11:43pm",small:true,green:true}] } },
+            { cat:"Moneymaxxing", color:"#b87a20", before:{ label:"Old assumption", text:"There is never enough. I am always behind.", visual:[{amount:"€247.83",dim:true},{bill:"Rent −€900",dim:true},{bill:"Bills −€180",dim:true}] }, after:{ label:"New assumption", text:"I receive unexpectedly. Always.", visual:[{transfer:true,amount:"€10,000",label:"Unexpected transfer"}] } },
+            { cat:"Beautymaxxing", color:C.gold, before:{ label:"Old assumption", text:"I am not beautiful. I need to fix myself.", visual:[{mirror:true}] }, after:{ label:"New assumption", text:"They notice before you do.", visual:[{msg:"What are you doing differently?? You're GLOWING",fromName:"Sarah"},{msg:"Your skin is actually shifting omg",fromName:"Mia"}] } },
+          ].map((item,idx) => (
+            <div key={idx} style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:16, overflow:"hidden" }}>
+              <div style={{ padding:"12px 18px", borderBottom:`1px solid ${C.border}`, background:idx===0?"#0d0508":idx===1?"#090d08":"#0d0c08" }}>
+                <div style={{ fontSize:13, color:item.color, fontWeight:700, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:2 }}>{item.cat}</div>
+              </div>
+              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr" }}>
+                {[item.before, item.after].map((side,si) => (
+                  <div key={si} style={{ padding:16, borderRight:si===0?`1px solid ${C.border}`:"none" }}>
+                    <div style={{ fontSize:11, color:si===0?"#5a3535":C.gold, fontWeight:700, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:10 }}>{side.label}</div>
+                    <div style={{ background:si===0?"#111":"#080f08", borderRadius:10, padding:12, marginBottom:8, border:si===1?`1px solid #1a3a1a`:"none", minHeight:80 }}>
+                      {side.visual?.map((v,vi) => (
+                        <div key={vi}>
+                          {v.mirror && <div style={{ textAlign:"center", fontSize:28, filter:"grayscale(1) opacity(0.3)", marginBottom:4 }}>🪞</div>}
+                          {v.amount && !v.transfer && <div style={{ fontSize:v.dim?18:26, fontWeight:800, color:v.dim?"#4a4a4a":"#6ab06a", marginBottom:4 }}>{v.amount}</div>}
+                          {v.bill && <div style={{ fontSize:12, color:"#3a3a3a", marginBottom:2 }}>{v.bill}</div>}
+                          {v.transfer && <div style={{ background:"#0a1f0a", borderRadius:8, padding:"8px 10px", border:`1px solid #2a4a2a` }}><div style={{ fontSize:11, color:"#4a8a4a" }}>✓ Payment received</div><div style={{ fontSize:22, fontWeight:800, color:"#6ab06a" }}>{v.amount}</div><div style={{ fontSize:11, color:"#2a4a2a" }}>{v.label}</div></div>}
+                          {v.msg && !v.fromName && <div style={{ background:v.green?"#0f2a0f":"#1a1a1a", borderRadius:8, padding:"6px 8px", marginBottom:4, border:v.green?`1px solid #1a3a1a`:"none" }}><div style={{ color:v.green?"#7ab07a":v.dim?"#333":"#555", fontSize:v.small?11:12 }}>{v.msg}</div></div>}
+                          {v.fromName && <div style={{ background:"#140f02", borderRadius:8, padding:"6px 8px", marginBottom:4, border:`1px solid ${C.dim}` }}><div style={{ fontSize:10, color:C.muted, marginBottom:2 }}>{v.fromName}</div><div style={{ fontSize:12, color:C.text2 }}>{v.msg}</div></div>}
+                          {v.center && <div style={{ textAlign:"center", fontSize:11, color:"#2a2a2a" }}>{v.msg}</div>}
+                        </div>
+                      ))}
+                    </div>
+                    <div style={{ fontSize:14, color:si===0?"#6a4a4a":C.text2, fontStyle:"italic", lineHeight:1.5 }}>{side.text}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* APP PREVIEW */}
+      <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>Inside the app</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>Your portal. Your library. Your proof.</h2>
+          <p style={{ fontSize: 18, color: C.muted }}>Plays in background like Spotify. No download. Save to home screen.</p>
+        </div>
+        <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
           <div>
-            <div style={{ fontSize: 12, color: C.gold, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>Audio Library — Audio Tier</div>
+            <div style={{ fontSize: 14, color: C.gold, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 14 }}>Audio Tier — Full library</div>
             <AudioLibraryMockup />
           </div>
           <div>
-            <div style={{ fontSize: 12, color: C.rose, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 12 }}>ProofOS Tracker — Goddess Tier ✦</div>
+            <div style={{ fontSize: 14, color: C.rose, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 14 }}>Goddess Tier — ProofOS tracker ✦</div>
             <DashboardMockup />
           </div>
         </div>
@@ -564,119 +469,121 @@ function Landing({ onJoin, onProofOS, onDemo }) {
       </div>
 
       {/* AUDIO LIBRARY */}
-      <div style={{ padding: "0 20px 80px", maxWidth: 900, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12 }}>The vault</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: C.text, marginBottom: 10 }}>Every desire has its own track.</h2>
-          <p style={{ fontSize: 16, color: C.muted }}>50+ tracks. 4 new every week. Never on YouTube. Never interrupted.</p>
+      <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>The vault</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>Every desire has its own track.</h2>
+          <p style={{ fontSize: 18, color: C.muted }}>50+ tracks. 4 new every week. Never on YouTube. Never interrupted.</p>
         </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 20 }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 22 }}>
           {cats.map(c => (
-            <button key={c.id} onClick={() => setActiveCat(c.id)} style={{ padding: "8px 18px", borderRadius: 24, border: `1.5px solid ${activeCat === c.id ? c.color : C.border}`, background: activeCat === c.id ? c.color + "22" : "none", color: activeCat === c.id ? c.color : C.muted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40, transition: "all 0.2s" }}>{c.label}</button>
+            <button key={c.id} onClick={() => setActiveCat(c.id)} style={{ padding: "9px 20px", borderRadius: 24, border: `1.5px solid ${activeCat===c.id?c.color:C.border}`, background: activeCat===c.id?c.color+"22":"none", color: activeCat===c.id?c.color:C.muted, fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 44, transition: "all 0.2s" }}>{c.label}</button>
           ))}
         </div>
         <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, overflow: "hidden" }}>
-          <div style={{ padding: "16px 20px", borderBottom: `1px solid ${C.border}` }}>
-            <div style={{ fontSize: 12, color: cat.color, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 4 }}>{cat.label}</div>
-            <div className="wm" style={{ fontSize: 22, color: C.text }}>{cat.tagline}</div>
+          <div style={{ padding: "18px 24px", borderBottom: `1px solid ${C.border}` }}>
+            <div style={{ fontSize: 13, color: cat.color, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 5 }}>{cat.label}</div>
+            <div className="wm" style={{ fontSize: 24, color: C.text }}>{cat.tagline}</div>
           </div>
           {cat.tracks.map((t, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 20px", borderBottom: i < cat.tracks.length - 1 ? `1px solid ${C.border2}` : "none" }}>
-              <div style={{ width: 38, height: 38, borderRadius: "50%", background: i === 0 ? cat.color + "22" : "#080600", border: `1.5px solid ${i === 0 ? cat.color : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0 }}>
-                {i === 0 ? "▶" : "🔒"}
-              </div>
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 16, padding: "16px 24px", borderBottom: i < cat.tracks.length-1 ? `1px solid ${C.border2}` : "none" }}>
+              <div style={{ width: 42, height: 42, borderRadius: "50%", background: i===0?cat.color+"22":"#080600", border: `1.5px solid ${i===0?cat.color:C.border}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, flexShrink: 0 }}>{i===0?"▶":"🔒"}</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 15, fontWeight: 600, color: i === 0 ? cat.color : C.text2 }}>{t}</div>
+                <div style={{ fontSize: 17, fontWeight: 600, color: i===0?cat.color:C.text2 }}>{t}</div>
               </div>
-              {i === 0 && <span style={{ fontSize: 12, padding: "3px 10px", background: cat.color + "22", color: cat.color, borderRadius: 12, fontWeight: 700 }}>FREE</span>}
+              {i===0 && <span style={{ fontSize: 13, padding: "4px 12px", background: cat.color+"22", color: cat.color, borderRadius: 12, fontWeight: 700 }}>FREE</span>}
             </div>
           ))}
         </div>
-        <div style={{ textAlign: "center", marginTop: 14, fontSize: 14, color: C.muted }}>First track in every category is free · Full library from €19/month</div>
+        <div style={{ textAlign: "center", marginTop: 14, fontSize: 15, color: C.muted }}>First track in every category is free · Full library from €19/month</div>
       </div>
 
       {/* PROOFOS TEASER */}
-      <div style={{ padding: "0 20px 80px", maxWidth: 900, margin: "0 auto" }}>
-        <div style={{ position: "relative", background: "linear-gradient(135deg,#0a0700,#12080a)", border: `2px solid ${C.gold}44`, borderRadius: 20, padding: 36, overflow: "hidden", cursor: "pointer" }} onClick={onProofOS}>
+      <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
+        <div style={{ position: "relative", background: "linear-gradient(135deg,#0a0700,#12080a)", border: `2px solid ${C.gold}44`, borderRadius: 20, padding: 40, overflow: "hidden", cursor: "pointer" }} onClick={onProofOS}>
           <Rings count={3} color={C.rose} />
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }} className="grid-2">
-              <div>
-                <div style={{ fontSize: 11, color: C.rose, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 14 }}>Goddess Tier · Coming soon</div>
-                <div className="wm" style={{ fontSize: "clamp(36px,6vw,60px)", lineHeight: 0.95, marginBottom: 10, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS ✦</div>
-                <div style={{ fontSize: 14, color: C.muted, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>The manifestation ledger</div>
-                <p style={{ fontSize: 16, color: "#8a7a5a", lineHeight: 1.85, marginBottom: 20 }}>Log your desire. Link it to your audio. Capture every sign. Watch the evidence build into something undeniable. See exactly how many days it took.</p>
-                <span style={{ fontSize: 15, color: C.gold, fontWeight: 700 }}>Find out more →</span>
-              </div>
-              <div>
-                <DashboardMockup mini />
-              </div>
+          <div style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 36 }} className="grid-2">
+            <div>
+              <div style={{ fontSize: 12, color: C.rose, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16 }}>Goddess Tier · Coming soon</div>
+              <div className="wm" style={{ fontSize: "clamp(36px,5vw,60px)", lineHeight: 0.95, marginBottom: 12, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS ✦</div>
+              <div style={{ fontSize: 15, color: C.muted, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 20 }}>The manifestation ledger</div>
+              <p style={{ fontSize: 18, color: "#8a7a5a", lineHeight: 1.85, marginBottom: 24 }}>Log your desire. Link it to your audio. Capture every sign. Watch the evidence build into something undeniable. See exactly how many days it took from first listen to final proof.</p>
+              <span style={{ fontSize: 16, color: C.gold, fontWeight: 700 }}>Find out more →</span>
             </div>
+            <DashboardMockup />
           </div>
         </div>
       </div>
 
-      {/* PRICING */}
-      <div style={{ padding: "0 20px 80px", maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12 }}>Choose your tier</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: C.text, marginBottom: 10 }}>Full access. No ads. Ever.</h2>
-        </div>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 28 }}>
-          <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 4, display: "flex", gap: 4 }}>
-            {["monthly", "annual"].map(b => (
-              <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? `linear-gradient(90deg,${C.gold},${C.rose})` : "transparent", border: "none", color: billing === b ? "#000" : C.muted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
-                {b === "annual" ? "Annual — save 20%" : "Monthly"}
-              </button>
-            ))}
+      {/* PRICING — 3 COLUMN COMPARISON TABLE */}
+      <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>Pricing</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>Choose your tier</h2>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+            <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 4, display: "flex", gap: 4 }}>
+              {["monthly", "annual"].map(b => (
+                <button key={b} onClick={() => setBilling(b)} style={{ padding: "10px 22px", borderRadius: 9, background: billing===b?`linear-gradient(90deg,${C.gold},${C.rose})`:"transparent", border: "none", color: billing===b?"#000":C.muted, fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 44 }}>
+                  {b==="annual"?"Annual — save 20%":"Monthly"}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="price-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
+
+        {/* 3-column comparison */}
+        <div style={{ display: "grid", gridTemplateColumns: "auto 1fr 1fr 1fr", gap: 0, background: C.card, borderRadius: 18, overflow: "hidden", border: `1px solid ${C.border}` }}>
+          {/* Header row */}
+          <div style={{ padding: "20px 24px", borderBottom: `1px solid ${C.border}`, borderRight: `1px solid ${C.border}` }} />
           {[
-            { id: "audio", name: "Audio Tier", price: billing === "monthly" ? "€19" : "€192", period: billing === "monthly" ? "/month" : "/year", sub: billing === "annual" ? "€16/mo · 2 months free" : null, features: ["Full self hypnosis audio library — 50+ tracks", "Lovemaxxing · Moneymaxxing · Beautymaxxing · Lifemaxxing", "4 new tracks every week — never on YouTube", "Loop player + sleep timer built in", "Plays in background like Spotify", "No ads. Ever. No interruptions at 3am."], cta: "Join Audio Tier" },
-            { id: "goddess", name: "Goddess Tier", popular: true, price: billing === "monthly" ? "€33" : "€317", period: billing === "monthly" ? "/month" : "/year", sub: billing === "annual" ? "€26.40/mo · 2 months free" : null, features: ["Everything in Audio Tier", "ProofOS manifestation tracker ✦ coming soon", "Log desires · link to audio · capture proof", "Watch your wins build into undeniable evidence", "Early access — 48hrs before everyone else", "Monthly ritual audio included"], proofos: true, cta: "Become Goddess" },
-          ].map(p => (
-            <div key={p.id} style={{ background: C.card, border: `${p.popular ? "2px" : "1px"} solid ${p.popular ? C.gold + "66" : C.border}`, borderRadius: 18, padding: 26, position: "relative" }}>
-              {p.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: `linear-gradient(90deg,${C.gold},${C.rose})`, color: "#000", fontSize: 11, fontWeight: 800, padding: "3px 18px", borderRadius: 20, whiteSpace: "nowrap", letterSpacing: "0.1em" }}>MOST POPULAR</div>}
-              <div style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 4 }}>{p.name}</div>
-              {p.sub && <div style={{ fontSize: 13, color: C.muted, marginBottom: 8 }}>{p.sub}</div>}
-              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 20 }}>
-                <span style={{ fontSize: 44, fontWeight: 800, color: p.popular ? C.rose : C.gold, lineHeight: 1 }}>{p.price}</span>
-                <span style={{ fontSize: 14, color: C.muted }}>{p.period}</span>
+            { name: "Audio Tier", price: billing==="monthly"?"€19":"€192", period: billing==="monthly"?"/mo":"/yr", color: C.text2, cta: "Join Audio", id: "audio" },
+            { name: "Goddess Tier", price: billing==="monthly"?"€33":"€317", period: billing==="monthly"?"/mo":"/yr", color: C.gold, popular: true, cta: "Become Goddess", id: "goddess" },
+            { name: "Founder Lifetime", price: "€500", period: "once", color: C.rose, cta: "Claim Founder", id: "founder", sub: "Original price · First 1,000 only" },
+          ].map((col, ci) => (
+            <div key={ci} style={{ padding: "20px 20px 16px", borderBottom: `1px solid ${C.border}`, borderRight: ci < 2 ? `1px solid ${C.border}` : "none", background: col.popular ? "#0d0a00" : "none", position: "relative", textAlign: "center" }}>
+              {col.popular && <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)", background: `linear-gradient(90deg,${C.gold},${C.rose})`, color: "#000", fontSize: 11, fontWeight: 800, padding: "2px 14px", borderRadius: "0 0 10px 10px", whiteSpace: "nowrap" }}>MOST POPULAR</div>}
+              <div style={{ fontSize: 16, fontWeight: 700, color: col.color, marginBottom: 6 }}>{col.name}</div>
+              {col.sub && <div style={{ fontSize: 12, color: C.muted, marginBottom: 6 }}>{col.sub}</div>}
+              <div style={{ display: "flex", alignItems: "baseline", gap: 3, justifyContent: "center", marginBottom: 12 }}>
+                <span style={{ fontSize: 34, fontWeight: 800, color: col.color }}>{col.price}</span>
+                <span style={{ fontSize: 13, color: C.muted }}>{col.period}</span>
               </div>
-              {p.features.map((f, i) => (
-                <div key={i} style={{ fontSize: 14, color: f.includes("✦") ? C.gold : "#8a7050", marginBottom: 8, paddingLeft: 16, position: "relative", lineHeight: 1.55 }}>
-                  <span style={{ position: "absolute", left: 0, color: C.gold, fontWeight: 700 }}>·</span>{f}
+              <Btn small full onClick={() => onJoin(col.id)}>{col.cta}</Btn>
+            </div>
+          ))}
+          {/* Feature rows */}
+          {[
+            { label: "Full audio library — 50+ tracks", audio: true, goddess: true, founder: true },
+            { label: "Lovemaxxing · Moneymaxxing · Beautymaxxing · Lifemaxxing · DNA · Sleep", audio: true, goddess: true, founder: true },
+            { label: "4 new tracks every week", audio: true, goddess: true, founder: true },
+            { label: "Loop player + sleep timer", audio: true, goddess: true, founder: true },
+            { label: "Plays in background like Spotify", audio: true, goddess: true, founder: true },
+            { label: "No ads. Ever.", audio: true, goddess: true, founder: true },
+            { label: "ProofOS manifestation tracker ✦", audio: false, goddess: true, founder: true },
+            { label: "Early access — 48hrs before everyone", audio: false, goddess: true, founder: true },
+            { label: "Monthly ritual audio included", audio: false, goddess: true, founder: true },
+            { label: "1 GB private evidence vault", audio: false, goddess: false, founder: true },
+            { label: "All future features forever", audio: false, goddess: false, founder: true },
+            { label: "Founder's seal ✦", audio: false, goddess: false, founder: true },
+          ].map((row, ri) => (
+            <div key={ri} style={{ display: "contents" }}>
+              <div style={{ padding: "14px 24px", borderBottom: `1px solid ${C.border2}`, borderRight: `1px solid ${C.border}`, fontSize: 15, color: C.text2, lineHeight: 1.4, display: "flex", alignItems: "center" }}>{row.label}</div>
+              {[row.audio, row.goddess, row.founder].map((has, ci) => (
+                <div key={ci} style={{ padding: "14px 20px", borderBottom: `1px solid ${C.border2}`, borderRight: ci < 2 ? `1px solid ${C.border}` : "none", textAlign: "center", background: ci === 1 ? "#0d0a00" : "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {has ? <span style={{ fontSize: 22, color: C.green }}>✓</span> : <span style={{ fontSize: 18, color: C.dim }}>—</span>}
                 </div>
               ))}
-              {p.proofos && <button onClick={onProofOS} style={{ background: "none", border: "none", color: C.rose, fontSize: 13, cursor: "pointer", padding: "6px 0", textDecoration: "underline", display: "block", marginTop: 4 }}>Find out more about ProofOS →</button>}
-              <div style={{ marginTop: 20 }}><Btn full outline={!p.popular} onClick={() => onJoin(p.id)}>{p.cta}</Btn></div>
             </div>
           ))}
         </div>
-        <div style={{ background: "linear-gradient(135deg,#0d0900,#160b01)", border: `2px solid ${C.gold}44`, borderRadius: 18, padding: 30 }}>
-          <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Original price · First 1,000 members only</div>
-          <div className="wm" style={{ fontSize: "clamp(22px,4vw,34px)", color: C.text, marginBottom: 8 }}>Founder Lifetime</div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 14 }}>
-            <span style={{ fontSize: 48, fontWeight: 800, color: C.gold }}>€500</span>
-            <span style={{ fontSize: 15, color: C.muted }}>once · never pay again</span>
-          </div>
-          <p style={{ fontSize: 15, color: "#7a6a4a", lineHeight: 1.75, marginBottom: 20, maxWidth: 560 }}>Full vault + ProofOS + every future feature + 1 GB evidence vault — forever. No subscription. The €500 price closes once the first 1,000 Founders join.</p>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 22 }}>
-            {["Full vault for life", "ProofOS for life", "1 GB evidence vault", "All future features", "Founder's seal ✦"].map((f, i) => (
-              <span key={i} style={{ padding: "5px 14px", background: C.gold + "18", border: `1px solid ${C.gold}33`, borderRadius: 20, fontSize: 13, color: C.gold, fontWeight: 600 }}>{f}</span>
-            ))}
-          </div>
-          <Btn onClick={() => onJoin("founder")}>Claim lifetime access — €500</Btn>
-        </div>
-        <div style={{ textAlign: "center", marginTop: 16, fontSize: 13, color: C.dim, lineHeight: 1.9 }}>No refunds after 14 days · Cancel before renewal · Web app · iPhone: Add to Home Screen</div>
+        <div style={{ textAlign: "center", marginTop: 16, fontSize: 14, color: C.dim, lineHeight: 1.9 }}>No refunds after 14 days · Cancel before renewal · Web app · iPhone: Add to Home Screen</div>
       </div>
 
       {/* FINAL CTA */}
-      <div style={{ position: "relative", padding: "80px 20px", textAlign: "center", overflow: "hidden", borderTop: `1px solid ${C.border}` }}>
+      <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: `1px solid ${C.border}` }}>
         <Rings count={4} />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <div className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: C.text, lineHeight: 1.2, marginBottom: 20 }}>
+          <div className="wm" style={{ fontSize: "clamp(30px,5vw,56px)", color: C.text, lineHeight: 1.2, marginBottom: 24 }}>
             Wake up knowing.<br />
             <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
           </div>
@@ -685,71 +592,69 @@ function Landing({ onJoin, onProofOS, onDemo }) {
       </div>
 
       {/* FOOTER */}
-      <div style={{ borderTop: `1px solid ${C.border}`, padding: "32px 20px", textAlign: "center" }}>
-        <div className="wm" style={{ fontSize: 20, display: "block", marginBottom: 14, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</div>
-        <div style={{ display: "flex", gap: 24, justifyContent: "center", marginBottom: 16 }}>
-          {[["YouTube", "https://www.youtube.com/@Reshma.Oracle"], ["Instagram", "https://www.instagram.com/reshma.oracle/"]].map(([l, u]) => (
-            <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, color: C.muted, textDecoration: "none" }}>{l} →</a>
+      <div style={{ borderTop: `1px solid ${C.border}`, padding: "36px 24px", textAlign: "center" }}>
+        <div className="wm" style={{ fontSize: 22, display: "block", marginBottom: 16, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</div>
+        <div style={{ display: "flex", gap: 28, justifyContent: "center", marginBottom: 16 }}>
+          {[["YouTube","https://www.youtube.com/@Reshma.Oracle"],["Instagram","https://www.instagram.com/reshma.oracle/"]].map(([l,u]) => (
+            <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ fontSize: 15, color: C.muted, textDecoration: "none" }}>{l} →</a>
           ))}
         </div>
-        <div style={{ fontSize: 12, color: C.dim }}>© 2026 Reshma Oracle · All rights reserved</div>
+        <div style={{ fontSize: 13, color: C.dim }}>© 2026 Reshma Oracle · All rights reserved</div>
       </div>
     </div>
   );
 }
 
-// ProofOS, Onboard, Portal components unchanged from previous version
 function ProofOSPage({ onBack, onJoin }) {
-  const [email, setEmail] = useState("");
-  const [joined, setJoined] = useState(false);
+  const [email, setEmail] = useState(""); const [joined, setJoined] = useState(false);
   return (
-    <div style={{ minHeight: "100vh", background: C.black }} className="fade">
-      <nav style={{ position: "sticky", top: 0, zIndex: 100, padding: "0 20px", height: 58, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(0,0,0,0.96)", borderBottom: `1px solid ${C.border}` }}>
-        <button onClick={onBack} style={{ background: "none", border: "none", color: C.muted, fontSize: 15, cursor: "pointer" }}>← Back</button>
-        <span className="wm" style={{ fontSize: 17, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
-        <div style={{ width: 60 }} />
+    <div style={{ minHeight:"100vh", background:C.black }} className="fade">
+      <nav style={{ position:"sticky", top:0, zIndex:100, padding:"0 24px", height:60, display:"flex", alignItems:"center", justifyContent:"space-between", background:"rgba(0,0,0,0.96)", borderBottom:`1px solid ${C.border}` }}>
+        <button onClick={onBack} style={{ background:"none", border:"none", color:C.muted, fontSize:16, cursor:"pointer" }}>← Back</button>
+        <span className="wm" style={{ fontSize:19, background:`linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Self Hypnosis Goddess</span>
+        <div style={{ width:60 }} />
       </nav>
-      <div style={{ position: "relative", padding: "72px 20px 56px", textAlign: "center", overflow: "hidden" }}>
+      <div style={{ position:"relative", padding:"72px 24px 56px", textAlign:"center", overflow:"hidden" }}>
         <Rings count={4} color={C.rose} />
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 620, margin: "0 auto" }}>
-          <div style={{ fontSize: 11, color: C.rose, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16 }}>Goddess Tier Exclusive · Coming Soon</div>
-          <div className="wm" style={{ fontSize: "clamp(56px,12vw,96px)", lineHeight: 0.9, marginBottom: 14, background: `linear-gradient(135deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</div>
-          <div style={{ fontSize: 14, color: C.muted, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 24 }}>The manifestation ledger</div>
-          <div style={{ fontSize: "clamp(18px,3vw,24px)", fontWeight: 700, color: C.text, lineHeight: 1.5, marginBottom: 14 }}>You've been manifesting.<br />Now watch it prove itself.</div>
-          <p style={{ fontSize: 16, color: "#8a7a5a", lineHeight: 1.85, marginBottom: 36 }}>Log your desire. Link it to the exact audio. Capture every sign. Watch the evidence build into something undeniable. See exactly how many days it took.</p>
+        <div style={{ position:"relative", zIndex:1, maxWidth:640, margin:"0 auto" }}>
+          <div style={{ fontSize:12, color:C.rose, fontWeight:700, letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:18 }}>Goddess Tier Exclusive · Coming Soon</div>
+          <div className="wm" style={{ fontSize:"clamp(56px,12vw,100px)", lineHeight:0.9, marginBottom:16, background:`linear-gradient(135deg,${C.gold},${C.rose})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>ProofOS</div>
+          <div style={{ fontSize:15, color:C.muted, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:26 }}>The manifestation ledger</div>
+          <div style={{ fontSize:"clamp(19px,3vw,26px)", fontWeight:700, color:C.text, lineHeight:1.5, marginBottom:16 }}>You've been manifesting.<br />Now watch it prove itself.</div>
+          <p style={{ fontSize:18, color:"#8a7a5a", lineHeight:1.85, marginBottom:38 }}>Log your desire. Link it to the exact audio. Capture every sign. Watch the evidence build into something undeniable. See exactly how many days it took.</p>
           {!joined ? (
-            <div style={{ maxWidth: 380, margin: "0 auto" }}>
-              <div style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                <input value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" type="email" />
-                <Btn onClick={() => { if (email.includes("@")) setJoined(true); }}>Join waitlist</Btn>
+            <div style={{ maxWidth:400, margin:"0 auto" }}>
+              <div style={{ display:"flex", gap:10, marginBottom:10 }}>
+                <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="your@email.com" type="email" />
+                <Btn onClick={() => { if(email.includes("@")) setJoined(true); }}>Join waitlist</Btn>
               </div>
-              <div style={{ fontSize: 13, color: C.dim }}>Goddess Tier members get first access</div>
+              <div style={{ fontSize:14, color:C.dim }}>Goddess Tier members get first access · No spam</div>
             </div>
           ) : (
-            <div style={{ padding: "16px 24px", background: "#0a1a0a", border: `1px solid #2a4a2a`, borderRadius: 12, maxWidth: 380, margin: "0 auto", fontSize: 15, color: C.green, fontWeight: 600 }}>✓ You're on the list.</div>
+            <div style={{ padding:"18px 26px", background:"#0a1a0a", border:`1px solid #2a4a2a`, borderRadius:12, maxWidth:400, margin:"0 auto", fontSize:16, color:C.green, fontWeight:600 }}>✓ You're on the list. First access when ProofOS launches.</div>
           )}
         </div>
       </div>
-      <div style={{ padding: "0 20px 60px", maxWidth: 900, margin: "0 auto" }}>
-        <h2 style={{ textAlign: "center", fontSize: "clamp(22px,4vw,36px)", fontWeight: 700, color: C.text, marginBottom: 36 }}>How ProofOS works</h2>
-        <div className="step-flow" style={{ display: "flex", gap: 0 }}>
-          {[{ n: "01", icon: "✦", t: "Set your intention", b: "State exactly what you want. Present tense. This becomes your active proof thread." }, { n: "02", icon: "🎧", t: "Listen with purpose", b: "Every track links automatically to your active threads. Every session dated and recorded." }, { n: "03", icon: "◈", t: "Capture the proof", b: "Signs, synchronicities, results. Screenshot. Voice note. Log them as they arrive." }, { n: "04", icon: "✓", t: "Mark it manifested", b: "When it arrives — mark it. Days from first listen to final proof. It is done." }].map((s, i) => (
-            <div key={i} style={{ display: "flex", flex: 1 }}>
-              <div style={{ background: C.card, border: `1px solid ${C.border}`, flex: 1, padding: 22, borderLeft: i > 0 ? "none" : undefined, borderRadius: i === 0 ? "14px 0 0 14px" : i === 3 ? "0 14px 14px 0" : 0 }}>
-                <div style={{ fontSize: 11, color: C.muted, fontFamily: "monospace", fontWeight: 700, marginBottom: 10 }}>{s.n}</div>
-                <div style={{ fontSize: 24, color: C.gold, marginBottom: 10 }}>{s.icon}</div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: C.text, marginBottom: 8 }}>{s.t}</div>
-                <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.65 }}>{s.b}</div>
+      <div style={{ padding:"0 24px 60px", maxWidth:960, margin:"0 auto" }}>
+        <h2 style={{ textAlign:"center", fontSize:"clamp(24px,4vw,40px)", fontWeight:700, color:C.text, marginBottom:40 }}>How ProofOS works</h2>
+        <div className="step-flow" style={{ display:"flex", gap:0, marginBottom:40 }}>
+          {[{n:"01",icon:"✦",t:"Set your intention",b:"State exactly what you want. Present tense. This becomes your active proof thread."},{n:"02",icon:"🎧",t:"Listen with purpose",b:"Every track links automatically to your active threads. Every session dated and recorded."},{n:"03",icon:"◈",t:"Capture the proof",b:"Signs, synchronicities, results. Screenshot. Voice note. Log them as they arrive."},{n:"04",icon:"✓",t:"Mark it manifested",b:"When it arrives — mark it. See the exact days from first listen to final proof."}].map((s,i) => (
+            <div key={i} style={{ display:"flex", flex:1 }}>
+              <div style={{ background:C.card, border:`1px solid ${C.border}`, flex:1, padding:26, borderLeft:i>0?"none":undefined, borderRadius:i===0?"14px 0 0 14px":i===3?"0 14px 14px 0":0 }}>
+                <div style={{ fontSize:12, color:C.muted, fontFamily:"monospace", fontWeight:700, marginBottom:12 }}>{s.n}</div>
+                <div style={{ fontSize:28, color:C.gold, marginBottom:12 }}>{s.icon}</div>
+                <div style={{ fontSize:19, fontWeight:700, color:C.text, marginBottom:10 }}>{s.t}</div>
+                <div style={{ fontSize:16, color:C.muted, lineHeight:1.7 }}>{s.b}</div>
               </div>
-              {i < 3 && <div style={{ display: "flex", alignItems: "center", color: C.gold + "55", fontSize: 16, padding: "0 3px", flexShrink: 0 }}>→</div>}
+              {i<3 && <div style={{ display:"flex", alignItems:"center", color:C.gold+"55", fontSize:18, padding:"0 3px", flexShrink:0 }}>→</div>}
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 40 }}><DashboardMockup /></div>
+        <DashboardMockup />
       </div>
-      <div style={{ padding: "0 20px 80px", textAlign: "center", maxWidth: 500, margin: "0 auto" }}>
-        <div className="wm" style={{ fontSize: "clamp(22px,4vw,36px)", color: C.text, marginBottom: 14 }}>Ready to begin?</div>
-        <p style={{ fontSize: 16, color: C.muted, marginBottom: 28, lineHeight: 1.75 }}>ProofOS is included in the Goddess Tier. Start with the audio library now.</p>
+      <div style={{ padding:"0 24px 80px", textAlign:"center", maxWidth:540, margin:"0 auto" }}>
+        <div className="wm" style={{ fontSize:"clamp(24px,4vw,40px)", color:C.text, marginBottom:16 }}>Ready to begin?</div>
+        <p style={{ fontSize:18, color:C.muted, marginBottom:32, lineHeight:1.75 }}>ProofOS is included in the Goddess Tier.<br />Start with the audio library now. The tracker unlocks when it launches.</p>
         <Btn full onClick={() => onJoin("goddess")}>Join Goddess Tier — €33/month</Btn>
       </div>
     </div>
@@ -758,85 +663,21 @@ function ProofOSPage({ onBack, onJoin }) {
 
 function Onboard({ tier, onSuccess, onBack }) {
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({ name:"", email:"", password:"" });
   const [billing, setBilling] = useState("monthly");
   const [loading, setLoading] = useState(false);
-  const tierName = tier === "goddess" ? "Goddess Tier" : tier === "founder" ? "Founder Lifetime" : "Audio Tier";
-  const price = tier === "founder" ? "€500" : tier === "goddess" ? (billing === "monthly" ? "€33" : "€317") : (billing === "monthly" ? "€19" : "€192");
-  const next = () => {
-    if (step === 3) { setLoading(true); setTimeout(() => { setLoading(false); setStep(4); }, 1400); }
-    else if (step === 4) onSuccess();
-    else setStep(s => s + 1);
-  };
+  const tierName = tier==="goddess"?"Goddess Tier":tier==="founder"?"Founder Lifetime":"Audio Tier";
+  const price = tier==="founder"?"€500":tier==="goddess"?(billing==="monthly"?"€33":"€317"):(billing==="monthly"?"€19":"€192");
+  const next = () => { if(step===3){setLoading(true);setTimeout(()=>{setLoading(false);setStep(4);},1400);}else if(step===4)onSuccess();else setStep(s=>s+1); };
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "24px 20px", background: C.black }} className="fade">
-      {step < 4 && <button onClick={onBack} style={{ position: "fixed", top: 20, left: 20, background: "none", border: "none", color: C.muted, fontSize: 15, cursor: "pointer" }}>← Back</button>}
-      {step < 4 && (
-        <div style={{ display: "flex", gap: 0, marginBottom: 40 }}>
-          {[1, 2, 3].map(n => (
-            <div key={n} style={{ display: "flex", alignItems: "center" }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: n <= step ? `linear-gradient(135deg,${C.gold},${C.rose})` : C.card, border: `1.5px solid ${n <= step ? C.gold : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: n <= step ? "#000" : C.muted }}>{n < step ? "✓" : n}</div>
-              {n < 3 && <div style={{ width: 48, height: "1px", background: n < step ? C.gold : C.border }} />}
-            </div>
-          ))}
-        </div>
-      )}
-      <div style={{ width: "100%", maxWidth: 460 }}>
-        {step === 1 && (
-          <div className="fade">
-            <div className="wm" style={{ fontSize: 24, marginBottom: 6, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</div>
-            <div style={{ fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 4 }}>Create your account</div>
-            <div style={{ fontSize: 15, color: C.muted, marginBottom: 28 }}>Joining: {tierName}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
-              <input placeholder="Your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-              <input placeholder="Email address" type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
-              <input placeholder="Password (min 8 characters)" type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
-            </div>
-            <Btn full onClick={next} disabled={!form.email || form.password.length < 8}>Continue →</Btn>
-            <div style={{ textAlign: "center", marginTop: 14, fontSize: 14, color: C.muted }}>Already a member? <span style={{ color: C.gold, cursor: "pointer" }} onClick={onBack}>Sign in</span></div>
-          </div>
-        )}
-        {step === 2 && (
-          <div className="fade">
-            <div style={{ fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 24 }}>Confirm your plan</div>
-            {tier !== "founder" && (
-              <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
-                {["monthly", "annual"].map(b => (
-                  <button key={b} onClick={() => setBilling(b)} style={{ flex: 1, padding: 16, background: billing === b ? C.card2 : C.card, border: `${billing === b ? "2px" : "1px"} solid ${billing === b ? C.gold + "88" : C.border}`, borderRadius: 12, cursor: "pointer", textAlign: "left" }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: billing === b ? C.gold : C.text, marginBottom: 2 }}>{b === "monthly" ? "Monthly" : "Annual"}</div>
-                    <div style={{ fontSize: 22, fontWeight: 800, color: billing === b ? C.gold : C.text }}>{tier === "goddess" ? (b === "monthly" ? "€33" : "€317") : (b === "monthly" ? "€19" : "€192")}<span style={{ fontSize: 12, color: C.muted }}>/{b === "monthly" ? "mo" : "yr"}</span></div>
-                    {b === "annual" && <div style={{ fontSize: 12, color: C.rose, marginTop: 4, fontWeight: 600 }}>Save 20% · 2 months free</div>}
-                  </button>
-                ))}
-              </div>
-            )}
-            <Btn full onClick={next}>Continue to payment →</Btn>
-          </div>
-        )}
-        {step === 3 && (
-          <div className="fade">
-            <div style={{ fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 24 }}>Secure checkout</div>
-            <div style={{ background: C.card, border: `1.5px solid ${C.gold}55`, borderRadius: 12, padding: 18, marginBottom: 14, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>{tierName}</div>
-                <div style={{ fontSize: 13, color: C.muted }}>{tier === "founder" ? "One-time" : `Billed ${billing}`}</div>
-              </div>
-              <div style={{ fontSize: 32, fontWeight: 800, color: C.gold }}>{price}</div>
-            </div>
-            <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 16, marginBottom: 16, fontSize: 14, color: "#6a5a3a", lineHeight: 1.75 }}>
-              Stripe secure checkout · SSL encrypted · No card data stored<br />No refunds after 14 days
-            </div>
-            <Btn full onClick={next} disabled={loading}>{loading ? "Processing..." : "Pay with Stripe →"}</Btn>
-          </div>
-        )}
-        {step === 4 && (
-          <div style={{ textAlign: "center" }} className="fade">
-            <div style={{ fontSize: 60, marginBottom: 20 }}>✦</div>
-            <div className="wm" style={{ fontSize: 42, marginBottom: 10, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Welcome.</div>
-            <div style={{ fontSize: 16, color: C.muted, marginBottom: 36, lineHeight: 1.8 }}>Your portal is ready. Wake up knowing. Not hoping. Knowing.</div>
-            <Btn full onClick={next}>Enter the portal →</Btn>
-          </div>
-        )}
+    <div style={{ minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"24px 20px", background:C.black }} className="fade">
+      {step<4 && <button onClick={onBack} style={{ position:"fixed", top:20, left:20, background:"none", border:"none", color:C.muted, fontSize:16, cursor:"pointer" }}>← Back</button>}
+      {step<4 && <div style={{ display:"flex", gap:0, marginBottom:44 }}>{[1,2,3].map(n=><div key={n} style={{ display:"flex", alignItems:"center" }}><div style={{ width:34,height:34,borderRadius:"50%",background:n<=step?`linear-gradient(135deg,${C.gold},${C.rose})`:C.card,border:`1.5px solid ${n<=step?C.gold:C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:700,color:n<=step?"#000":C.muted }}>{n<step?"✓":n}</div>{n<3&&<div style={{ width:52,height:"1px",background:n<step?C.gold:C.border }} />}</div>)}</div>}
+      <div style={{ width:"100%", maxWidth:480 }}>
+        {step===1&&<div className="fade"><div className="wm" style={{ fontSize:26,marginBottom:8,background:`linear-gradient(90deg,${C.gold},${C.rose})`,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>Self Hypnosis Goddess</div><div style={{ fontSize:22,fontWeight:700,color:C.text,marginBottom:6 }}>Create your account</div><div style={{ fontSize:17,color:C.muted,marginBottom:30 }}>Joining: {tierName}</div><div style={{ display:"flex",flexDirection:"column",gap:14,marginBottom:22 }}><input placeholder="Your name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} /><input placeholder="Email address" type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} /><input placeholder="Password (min 8 characters)" type="password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})} /></div><Btn full onClick={next} disabled={!form.email||form.password.length<8}>Continue →</Btn><div style={{ textAlign:"center",marginTop:16,fontSize:16,color:C.muted }}>Already a member? <span style={{ color:C.gold,cursor:"pointer" }} onClick={onBack}>Sign in</span></div></div>}
+        {step===2&&<div className="fade"><div style={{ fontSize:22,fontWeight:700,color:C.text,marginBottom:26 }}>Confirm your plan</div>{tier!=="founder"&&<div style={{ display:"flex",gap:12,marginBottom:18 }}>{["monthly","annual"].map(b=><button key={b} onClick={()=>setBilling(b)} style={{ flex:1,padding:18,background:billing===b?C.card2:C.card,border:`${billing===b?"2px":"1px"} solid ${billing===b?C.gold+"88":C.border}`,borderRadius:12,cursor:"pointer",textAlign:"left" }}><div style={{ fontSize:16,fontWeight:700,color:billing===b?C.gold:C.text,marginBottom:3 }}>{b==="monthly"?"Monthly":"Annual"}</div><div style={{ fontSize:24,fontWeight:800,color:billing===b?C.gold:C.text }}>{tier==="goddess"?(b==="monthly"?"€33":"€317"):(b==="monthly"?"€19":"€192")}<span style={{ fontSize:13,color:C.muted }}>/{b==="monthly"?"mo":"yr"}</span></div>{b==="annual"&&<div style={{ fontSize:13,color:C.rose,marginTop:4,fontWeight:600 }}>Save 20% · 2 months free</div>}</button>)}</div>}<Btn full onClick={next}>Continue to payment →</Btn></div>}
+        {step===3&&<div className="fade"><div style={{ fontSize:22,fontWeight:700,color:C.text,marginBottom:26 }}>Secure checkout</div><div style={{ background:C.card,border:`1.5px solid ${C.gold}55`,borderRadius:12,padding:20,marginBottom:16,display:"flex",justifyContent:"space-between",alignItems:"center" }}><div><div style={{ fontSize:17,fontWeight:700,color:C.text }}>{tierName}</div><div style={{ fontSize:15,color:C.muted }}>{tier==="founder"?"One-time":`Billed ${billing}`}</div></div><div style={{ fontSize:34,fontWeight:800,color:C.gold }}>{price}</div></div><div style={{ background:C.card,border:`1px solid ${C.border}`,borderRadius:12,padding:18,marginBottom:18,fontSize:16,color:"#6a5a3a",lineHeight:1.75 }}>Stripe secure checkout · SSL encrypted<br/>No card data stored · No refunds after 14 days</div><Btn full onClick={next} disabled={loading}>{loading?"Processing...":"Pay with Stripe →"}</Btn></div>}
+        {step===4&&<div style={{ textAlign:"center" }} className="fade"><div style={{ fontSize:64,marginBottom:22 }}>✦</div><div className="wm" style={{ fontSize:46,marginBottom:12,background:`linear-gradient(90deg,${C.gold},${C.rose})`,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>Welcome.</div><div style={{ fontSize:18,color:C.muted,marginBottom:38,lineHeight:1.8 }}>Your portal is ready.<br/>Wake up knowing. Not hoping. Knowing.</div><Btn full onClick={next}>Enter the portal →</Btn></div>}
       </div>
     </div>
   );
@@ -851,107 +692,103 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
   const [progress, setProgress] = useState(38);
   const [search, setSearch] = useState("");
   const [desires, setDesires] = useState([
-    { id: 1, desire: "He texts me first", status: "manifested", track: "He's already on his way back", trackCat: "love", days: 14, signs: ["Got a like on Instagram", "Mutual friend mentioned me"] },
-    { id: 2, desire: "€5,000 arrives unexpectedly", status: "in_progress", track: "Money is obsessed with me", trackCat: "money", days: 6, signs: ["Found €20 in old jacket"] },
-    { id: 3, desire: "Skin visibly glowing to others", status: "in_progress", track: "Gorgeous is my default setting", trackCat: "beauty", days: 3, signs: [] },
+    { id:1, desire:"He texts me first", status:"manifested", track:"He's already on his way back", trackCat:"love", days:14, signs:["Got a like on Instagram","Mutual friend mentioned me"] },
+    { id:2, desire:"€5,000 arrives unexpectedly", status:"in_progress", track:"Money is obsessed with me", trackCat:"money", days:6, signs:["Found €20 in old jacket"] },
+    { id:3, desire:"Skin visibly glowing to others", status:"in_progress", track:"Gorgeous is my default setting", trackCat:"beauty", days:3, signs:[] },
   ]);
   const [newDesire, setNewDesire] = useState("");
   const [newSign, setNewSign] = useState({});
   const [expanded, setExpanded] = useState(null);
 
-  const catColors = { love: C.rose, money: "#b87a20", beauty: C.gold, sleep: "#5a7ab0", dna: "#8a6ad0", identity: "#b07060", life: "#9a7a5a", all: C.gold };
+  const catColors = { love:C.rose, money:"#b87a20", beauty:C.gold, sleep:"#5a7ab0", dna:"#8a6ad0", life:"#9a7a5a", all:C.gold };
   const tracks = [
-    { id: 1, title: "He's already on his way back", cat: "love", tag: "Lovemaxxing", freq: "432hz", type: "Self hypnosis", dur: "30:00", tier: "audio", isNew: true },
-    { id: 2, title: "Money is obsessed with me", cat: "money", tag: "Moneymaxxing", freq: "528hz", type: "Subliminal", dur: "25:00", tier: "audio", isNew: true },
-    { id: 3, title: "Gorgeous is my default setting", cat: "beauty", tag: "Beautymaxxing", freq: "432hz", type: "Self hypnosis", dur: "35:00", tier: "audio" },
-    { id: 4, title: "I've always been the prize", cat: "life", tag: "Lifemaxxing", freq: "LOA", type: "Subliminal", dur: "30:00", tier: "audio" },
-    { id: 5, title: "DNA activation ceremony", cat: "dna", tag: "DNA Shifting", freq: "963hz", type: "Frequency", dur: "45:00", tier: "goddess" },
-    { id: 6, title: "I manifest while I sleep", cat: "sleep", tag: "Sleep Shifting", freq: "Delta", type: "Sleep subliminal", dur: "60:00", tier: "audio" },
-    { id: 7, title: "He's obsessed and he knows it", cat: "love", tag: "Lovemaxxing", freq: "432hz", type: "Subliminal", dur: "28:00", tier: "audio" },
-    { id: 8, title: "Reality rearranges for me", cat: "life", tag: "Lifemaxxing", freq: "963hz", type: "Frequency", dur: "33:00", tier: "goddess" },
-    { id: 9, title: "I get prettier every single day", cat: "beauty", tag: "Beautymaxxing", freq: "432hz", type: "Self hypnosis", dur: "25:00", tier: "audio", isNew: true },
-    { id: 10, title: "Unexpected money · always", cat: "money", tag: "Moneymaxxing", freq: "528hz", type: "Subliminal", dur: "22:00", tier: "audio", isNew: true },
+    { id:1, title:"He's already on his way back", cat:"love", tag:"Lovemaxxing", freq:"432hz", type:"Self hypnosis", dur:"30:00", tier:"audio", isNew:true },
+    { id:2, title:"Money is obsessed with me", cat:"money", tag:"Moneymaxxing", freq:"528hz", type:"Subliminal", dur:"25:00", tier:"audio", isNew:true },
+    { id:3, title:"Gorgeous is my default setting", cat:"beauty", tag:"Beautymaxxing", freq:"432hz", type:"Self hypnosis", dur:"35:00", tier:"audio" },
+    { id:4, title:"I've always been the prize", cat:"life", tag:"Lifemaxxing", freq:"LOA", type:"Subliminal", dur:"30:00", tier:"audio" },
+    { id:5, title:"DNA activation ceremony", cat:"dna", tag:"DNA Shifting", freq:"963hz", type:"Frequency", dur:"45:00", tier:"goddess" },
+    { id:6, title:"I manifest while I sleep", cat:"sleep", tag:"Sleep Shifting", freq:"Delta", type:"Sleep subliminal", dur:"60:00", tier:"audio" },
+    { id:7, title:"He's obsessed and he knows it", cat:"love", tag:"Lovemaxxing", freq:"432hz", type:"Subliminal", dur:"28:00", tier:"audio" },
+    { id:8, title:"Reality rearranges for me", cat:"life", tag:"Lifemaxxing", freq:"963hz", type:"Frequency", dur:"33:00", tier:"goddess" },
+    { id:9, title:"I get prettier every single day", cat:"beauty", tag:"Beautymaxxing", freq:"432hz", type:"Self hypnosis", dur:"25:00", tier:"audio", isNew:true },
+    { id:10, title:"Unexpected money · always", cat:"money", tag:"Moneymaxxing", freq:"528hz", type:"Subliminal", dur:"22:00", tier:"audio", isNew:true },
   ];
+  const cats = [{id:"all",label:"All"},{id:"love",label:"Lovemaxxing"},{id:"money",label:"Moneymaxxing"},{id:"beauty",label:"Beautymaxxing"},{id:"sleep",label:"Sleep"},{id:"dna",label:"DNA"},{id:"life",label:"Lifemaxxing"}];
+  const canPlay = t => t.tier==="audio"||userTier==="goddess";
+  const ct = tracks.find(t=>t.id===playing);
+  const filtered = tracks.filter(t=>(activeCat==="all"||t.cat===activeCat)&&(!search||t.title.toLowerCase().includes(search.toLowerCase())));
+  const manifested = desires.filter(d=>d.status==="manifested").length;
+  const inProgress = desires.filter(d=>d.status==="in_progress").length;
 
-  const cats = [{ id: "all", label: "All" }, { id: "love", label: "Lovemaxxing" }, { id: "money", label: "Moneymaxxing" }, { id: "beauty", label: "Beautymaxxing" }, { id: "sleep", label: "Sleep" }, { id: "dna", label: "DNA" }, { id: "life", label: "Lifemaxxing" }];
-  const canPlay = t => t.tier === "audio" || userTier === "goddess";
-  const ct = tracks.find(t => t.id === playing);
-  const filtered = tracks.filter(t => (activeCat === "all" || t.cat === activeCat) && (!search || t.title.toLowerCase().includes(search.toLowerCase())));
-  const manifested = desires.filter(d => d.status === "manifested").length;
-  const inProgress = desires.filter(d => d.status === "in_progress").length;
-
-  const addDesire = () => { if (!newDesire.trim()) return; setDesires([{ id: Date.now(), desire: newDesire, status: "in_progress", track: ct?.title || null, trackCat: ct?.cat || null, days: 0, signs: [] }, ...desires]); setNewDesire(""); };
-  const addSign = (id, sign) => { if (!sign.trim()) return; setDesires(desires.map(d => d.id === id ? { ...d, signs: [...d.signs, sign] } : d)); setNewSign(p => ({ ...p, [id]: "" })); };
-  const markManifested = id => setDesires(desires.map(d => d.id === id ? { ...d, status: "manifested" } : d));
-  const undoManifested = id => setDesires(desires.map(d => d.id === id ? { ...d, status: "in_progress" } : d));
-  const signSuggestions = ["Saw a number sequence", "Dreamed about it", "Someone mentioned it", "Found money unexpectedly", "Received a surprise message", "Felt calm certainty", "Overheard a conversation"];
-  const tabs = [{ id: "audios", icon: "▶", label: "Audios" }, { id: "tracker", icon: "✦", label: "Tracker" }, { id: "account", icon: "◎", label: "Account" }];
+  const addDesire = () => { if(!newDesire.trim())return; setDesires([{id:Date.now(),desire:newDesire,status:"in_progress",track:ct?.title||null,trackCat:ct?.cat||null,days:0,signs:[]},...desires]); setNewDesire(""); };
+  const addSign = (id,sign) => { if(!sign.trim())return; setDesires(desires.map(d=>d.id===id?{...d,signs:[...d.signs,sign]}:d)); setNewSign(p=>({...p,[id]:""})); };
+  const markManifested = id => setDesires(desires.map(d=>d.id===id?{...d,status:"manifested"}:d));
+  const undoManifested = id => setDesires(desires.map(d=>d.id===id?{...d,status:"in_progress"}:d));
+  const signSuggestions = ["Saw a number sequence","Dreamed about it","Someone mentioned it","Found money unexpectedly","Received a surprise message","Felt calm certainty","Overheard a conversation"];
+  const tabs = [{id:"audios",icon:"▶",label:"Audios"},{id:"tracker",icon:"✦",label:"Tracker"},{id:"account",icon:"◎",label:"Account"}];
 
   return (
-    <div style={{ minHeight: "100vh", background: C.black }} className="fade">
-      <div style={{ borderBottom: `1px solid ${C.border}`, padding: "0 16px", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", background: "#030200", position: "sticky", top: 0, zIndex: 50 }}>
-        <button onClick={onSignOut} style={{ background: "none", border: "none", cursor: "pointer" }}>
-          <span className="wm" style={{ fontSize: 17, background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
+    <div style={{ minHeight:"100vh", background:C.black }} className="fade">
+      <div style={{ borderBottom:`1px solid ${C.border}`, padding:"0 18px", height:60, display:"flex", alignItems:"center", justifyContent:"space-between", background:"#030200", position:"sticky", top:0, zIndex:50 }}>
+        <button onClick={onSignOut} style={{ background:"none", border:"none", cursor:"pointer" }}>
+          <span className="wm" style={{ fontSize:19, background:`linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Self Hypnosis Goddess</span>
         </button>
-        {userTier === "goddess" ? <div style={{ padding: "4px 12px", background: "#1a0a04", border: `1px solid ${C.gold}44`, borderRadius: 20, fontSize: 12, color: C.gold, fontWeight: 700 }}>Goddess ✦</div>
-          : <button onClick={onUpgrade} style={{ padding: "4px 12px", background: "none", border: `1px solid ${C.rose}44`, borderRadius: 20, fontSize: 12, color: C.rose, fontWeight: 700, cursor: "pointer" }}>Upgrade ↑</button>}
+        {userTier==="goddess"?<div style={{ padding:"5px 14px", background:"#1a0a04", border:`1px solid ${C.gold}44`, borderRadius:20, fontSize:14, color:C.gold, fontWeight:700 }}>Goddess ✦</div>
+          :<button onClick={onUpgrade} style={{ padding:"5px 14px", background:"none", border:`1px solid ${C.rose}44`, borderRadius:20, fontSize:14, color:C.rose, fontWeight:700, cursor:"pointer" }}>Upgrade ↑</button>}
       </div>
-      <div className="desk-tabs" style={{ display: "flex", borderBottom: `1px solid ${C.border}`, background: "#050300", position: "sticky", top: 56, zIndex: 49 }}>
-        {tabs.map(t => <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: "13px 8px", background: "none", border: "none", borderBottom: `2px solid ${tab === t.id ? C.gold : "transparent"}`, color: tab === t.id ? C.gold : C.muted, fontSize: 15, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>{t.label}</button>)}
+      <div className="desk-tabs" style={{ display:"flex", borderBottom:`1px solid ${C.border}`, background:"#050300", position:"sticky", top:60, zIndex:49 }}>
+        {tabs.map(t=><button key={t.id} onClick={()=>setTab(t.id)} style={{ flex:1, padding:"15px 8px", background:"none", border:"none", borderBottom:`3px solid ${tab===t.id?C.gold:"transparent"}`, color:tab===t.id?C.gold:C.muted, fontSize:16, fontWeight:700, letterSpacing:"0.08em", textTransform:"uppercase", cursor:"pointer" }}>{t.label}</button>)}
       </div>
-      {/* Stats */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", borderBottom: `1px solid ${C.border}`, background: "#060400" }}>
-        {[{ v: tracks.filter(t => canPlay(t)).length, l: "Tracks", c: C.text2, sub: "in vault" }, { v: desires.length, l: "Intentions", c: C.gold, sub: "set" }, { v: manifested, l: "Manifested", c: C.rose, sub: `${inProgress} active` }, { v: "14d", l: "Streak", c: C.green, sub: "daily" }].map((s, i) => (
-          <div key={i} style={{ padding: "12px 8px", textAlign: "center", borderRight: i < 3 ? `1px solid ${C.border}` : "none" }}>
-            <div style={{ fontSize: 28, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 2 }}>{s.v}</div>
-            <div style={{ fontSize: 14, color: C.text2, fontWeight: 600 }}>{s.l}</div>
-            <div style={{ fontSize: 13, color: C.muted }}>{s.sub}</div>
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", borderBottom:`1px solid ${C.border}`, background:"#060400" }}>
+        {[{v:tracks.filter(t=>canPlay(t)).length,l:"Tracks",c:C.text2,sub:"in vault"},{v:desires.length,l:"Intentions",c:C.gold,sub:"set"},{v:manifested,l:"Manifested",c:C.rose,sub:`${inProgress} active`},{v:"14d",l:"Streak",c:C.green,sub:"daily"}].map((s,i)=>(
+          <div key={i} style={{ padding:"14px 8px", textAlign:"center", borderRight:i<3?`1px solid ${C.border}`:"none" }}>
+            <div style={{ fontSize:28, fontWeight:800, color:s.c, lineHeight:1, marginBottom:3 }}>{s.v}</div>
+            <div style={{ fontSize:13, color:C.text2, fontWeight:700 }}>{s.l}</div>
+            <div style={{ fontSize:12, color:C.muted }}>{s.sub}</div>
           </div>
         ))}
       </div>
-      <div style={{ display: "flex", minHeight: "calc(100vh - 140px)" }}>
-        {/* Sidebar */}
-        <div className="sidebar" style={{ width: 196, borderRight: `1px solid ${C.border}`, background: "#040200", flexShrink: 0, position: "sticky", top: 112, height: "calc(100vh - 112px)", overflowY: "auto", padding: "14px 8px" }}>
-          {cats.map(c => (
-            <button key={c.id} onClick={() => { setActiveCat(c.id); setTab("audios"); }} style={{ width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", borderRadius: 10, border: "none", background: activeCat === c.id && tab === "audios" ? (catColors[c.id] || C.gold) + "18" : "none", cursor: "pointer", marginBottom: 3, textAlign: "left" }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: catColors[c.id] || C.gold, flexShrink: 0, opacity: activeCat === c.id && tab === "audios" ? 1 : 0.3 }} />
-              <span style={{ fontSize: 16, fontWeight: 600, color: activeCat === c.id && tab === "audios" ? catColors[c.id] || C.gold : C.muted }}>{c.label}</span>
+      <div style={{ display:"flex", minHeight:"calc(100vh - 150px)" }}>
+        <div className="sidebar" style={{ width:210, borderRight:`1px solid ${C.border}`, background:"#040200", flexShrink:0, position:"sticky", top:140, height:"calc(100vh - 140px)", overflowY:"auto", padding:"16px 10px" }}>
+          {cats.map(c=>(
+            <button key={c.id} onClick={()=>{setActiveCat(c.id);setTab("audios");}} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:"11px 14px", borderRadius:10, border:"none", background:activeCat===c.id&&tab==="audios"?(catColors[c.id]||C.gold)+"18":"none", cursor:"pointer", marginBottom:4, textAlign:"left" }}>
+              <div style={{ width:10, height:10, borderRadius:"50%", background:catColors[c.id]||C.gold, flexShrink:0, opacity:activeCat===c.id&&tab==="audios"?1:0.3 }} />
+              <span style={{ fontSize:16, fontWeight:600, color:activeCat===c.id&&tab==="audios"?catColors[c.id]||C.gold:C.muted }}>{c.label}</span>
             </button>
           ))}
-          <div style={{ height: 1, background: C.border, margin: "12px 0" }} />
-          {tabs.filter(t => t.id !== "audios").map(t => (
-            <button key={t.id} onClick={() => setTab(t.id)} style={{ width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", borderRadius: 10, border: "none", background: tab === t.id ? C.gold + "18" : "none", cursor: "pointer", marginBottom: 3 }}>
-              <span style={{ fontSize: 15 }}>{t.icon}</span>
-              <span style={{ fontSize: 16, fontWeight: 600, color: tab === t.id ? C.gold : C.muted }}>{t.label}</span>
+          <div style={{ height:1, background:C.border, margin:"14px 0" }} />
+          {tabs.filter(t=>t.id!=="audios").map(t=>(
+            <button key={t.id} onClick={()=>setTab(t.id)} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:"11px 14px", borderRadius:10, border:"none", background:tab===t.id?C.gold+"18":"none", cursor:"pointer", marginBottom:4 }}>
+              <span style={{ fontSize:18 }}>{t.icon}</span>
+              <span style={{ fontSize:16, fontWeight:600, color:tab===t.id?C.gold:C.muted }}>{t.label}</span>
             </button>
           ))}
         </div>
-        {/* Main */}
-        <div className="portal-pb" style={{ flex: 1, padding: "18px 16px 32px", maxWidth: 720, overflowX: "hidden" }}>
-          {tab === "audios" && (
+        <div className="portal-pb" style={{ flex:1, padding:"20px 18px 36px", maxWidth:740, overflowX:"hidden" }}>
+          {tab==="audios"&&(
             <div className="fade">
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search tracks..." style={{ fontSize: 16 }} style={{ marginBottom: 14 }} />
-              <div style={{ display: "flex", gap: 6, overflowX: "auto", marginBottom: 16, paddingBottom: 4 }}>
-                {cats.map(c => <button key={c.id} onClick={() => setActiveCat(c.id)} style={{ padding: "6px 14px", borderRadius: 20, border: `1.5px solid ${activeCat === c.id ? catColors[c.id] || C.gold : C.border}`, background: activeCat === c.id ? (catColors[c.id] || C.gold) + "18" : "none", color: activeCat === c.id ? catColors[c.id] || C.gold : C.muted, fontSize: 13, cursor: "pointer", whiteSpace: "nowrap", minHeight: 36, fontWeight: 600 }}>{c.label}</button>)}
+              <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search tracks..." style={{ marginBottom:16 }} />
+              <div style={{ display:"flex", gap:8, overflowX:"auto", marginBottom:18, paddingBottom:4 }}>
+                {cats.map(c=><button key={c.id} onClick={()=>setActiveCat(c.id)} style={{ padding:"8px 16px", borderRadius:20, border:`1.5px solid ${activeCat===c.id?catColors[c.id]||C.gold:C.border}`, background:activeCat===c.id?(catColors[c.id]||C.gold)+"18":"none", color:activeCat===c.id?catColors[c.id]||C.gold:C.muted, fontSize:15, cursor:"pointer", whiteSpace:"nowrap", minHeight:40, fontWeight:600 }}>{c.label}</button>)}
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                {filtered.map(t => {
-                  const isP = playing === t.id, can = canPlay(t), color = catColors[t.cat] || C.gold;
+              <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
+                {filtered.map(t=>{
+                  const isP=playing===t.id, can=canPlay(t), color=catColors[t.cat]||C.gold;
                   return (
-                    <div key={t.id} onClick={() => can && setPlaying(isP ? null : t.id)}
-                      style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 14px", background: isP ? C.card2 : C.card, border: `1px solid ${isP ? color + "66" : C.border}`, borderRadius: 12, cursor: can ? "pointer" : "default", opacity: can ? 1 : 0.4, transition: "all 0.2s" }}
-                      onMouseEnter={e => can && !isP && (e.currentTarget.style.borderColor = color + "44")}
-                      onMouseLeave={e => can && !isP && (e.currentTarget.style.borderColor = C.border)}>
-                      <div style={{ width: 8, height: 8, borderRadius: "50%", background: color, flexShrink: 0, opacity: 0.8 }} />
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
-                          <span style={{ fontSize: 17, fontWeight: 600, color: isP ? color : C.text2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.title}</span>
-                          {t.isNew && <span style={{ fontSize: 10, padding: "1px 7px", background: C.rose + "22", color: C.rose, borderRadius: 10, fontWeight: 700, flexShrink: 0 }}>NEW</span>}
+                    <div key={t.id} onClick={()=>can&&setPlaying(isP?null:t.id)}
+                      style={{ display:"flex", alignItems:"center", gap:14, padding:"15px 16px", background:isP?C.card2:C.card, border:`1px solid ${isP?color+"66":C.border}`, borderRadius:12, cursor:can?"pointer":"default", opacity:can?1:0.4, transition:"all 0.2s" }}
+                      onMouseEnter={e=>can&&!isP&&(e.currentTarget.style.borderColor=color+"44")}
+                      onMouseLeave={e=>can&&!isP&&(e.currentTarget.style.borderColor=C.border)}>
+                      <div style={{ width:10, height:10, borderRadius:"50%", background:color, flexShrink:0, opacity:0.8 }} />
+                      <div style={{ flex:1, minWidth:0 }}>
+                        <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
+                          <span style={{ fontSize:17, fontWeight:600, color:isP?color:C.text2, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{t.title}</span>
+                          {t.isNew&&<span style={{ fontSize:11, padding:"2px 8px", background:C.rose+"22", color:C.rose, borderRadius:10, fontWeight:700, flexShrink:0 }}>NEW</span>}
                         </div>
-                        <div style={{ fontSize: 14, color: C.dim }}>{t.freq} · {t.type}{!can ? " · Goddess only" : ""} · {t.dur}</div>
+                        <div style={{ fontSize:14, color:C.dim }}>{t.freq} · {t.type}{!can?" · Goddess only":""} · {t.dur}</div>
                       </div>
-                      <div style={{ width: 36, height: 36, borderRadius: "50%", background: isP ? color + "22" : "#080600", border: `1.5px solid ${isP ? color : C.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        {!can ? <span>🔒</span> : isP ? <div className="sw" style={{ display: "flex", alignItems: "center", gap: 2 }}><span style={{ height: 8 }} /><span style={{ height: 16 }} /><span style={{ height: 12 }} /><span style={{ height: 18 }} /><span style={{ height: 10 }} /></div> : <span style={{ fontSize: 13, color: C.muted }}>▶</span>}
+                      <div style={{ width:40, height:40, borderRadius:"50%", background:isP?color+"22":"#080600", border:`1.5px solid ${isP?color:C.border}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                        {!can?<span style={{ fontSize:16 }}>🔒</span>:isP?<div className="sw" style={{ display:"flex",alignItems:"center",gap:2 }}><span/><span/><span/><span/><span/></div>:<span style={{ fontSize:16, color:C.muted }}>▶</span>}
                       </div>
                     </div>
                   );
@@ -959,76 +796,77 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
               </div>
             </div>
           )}
-          {tab === "tracker" && (
+          {tab==="tracker"&&(
             <div className="fade">
-              {userTier !== "goddess" ? (
-                <div style={{ textAlign: "center", padding: "60px 20px" }}>
-                  <div style={{ fontSize: 52, marginBottom: 16 }}>✦</div>
-                  <div className="wm" style={{ fontSize: 30, color: C.text, marginBottom: 10 }}>ProofOS</div>
-                  <p style={{ fontSize: 16, color: C.muted, marginBottom: 28, lineHeight: 1.75 }}>Log your desires. Link them to your audio. Watch the proof accumulate.</p>
+              {userTier!=="goddess"?(
+                <div style={{ textAlign:"center", padding:"70px 20px" }}>
+                  <div style={{ fontSize:56, marginBottom:18 }}>✦</div>
+                  <div className="wm" style={{ fontSize:34, color:C.text, marginBottom:12 }}>ProofOS</div>
+                  <p style={{ fontSize:18, color:C.muted, marginBottom:32, lineHeight:1.75 }}>Log your desires. Link them to your audio.<br/>Watch the proof accumulate in real time.</p>
                   <Btn onClick={onUpgrade}>Upgrade to Goddess — €33/month</Btn>
                 </div>
-              ) : (
+              ):(
                 <div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 16 }}>
-                    {[{ v: manifested, l: "Manifested", c: C.rose, sub: "desires completed" }, { v: inProgress, l: "In progress", c: C.gold, sub: "currently active" }, { v: desires.reduce((a, d) => a + d.signs.length, 0), l: "Signs logged", c: C.green, sub: "synchronicities" }].map((s, i) => (
-                      <div key={i} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: "14px 16px", textAlign: "center" }}>
-                        <div style={{ fontSize: 36, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 6 }}>{s.v}</div>
-                        <div style={{ fontSize: 15, color: C.text2, fontWeight: 600, marginBottom: 2 }}>{s.l}</div>
-                        <div style={{ fontSize: 13, color: C.muted }}>{s.sub}</div>
+                  <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:12, marginBottom:18 }}>
+                    {[{v:manifested,l:"Manifested",c:C.rose,sub:"desires complete"},{v:inProgress,l:"In progress",c:C.gold,sub:"currently active"},{v:desires.reduce((a,d)=>a+d.signs.length,0),l:"Signs logged",c:C.green,sub:"synchronicities"}].map((s,i)=>(
+                      <div key={i} style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:"18px 16px", textAlign:"center" }}>
+                        <div style={{ fontSize:36, fontWeight:800, color:s.c, lineHeight:1, marginBottom:6 }}>{s.v}</div>
+                        <div style={{ fontSize:16, color:C.text2, fontWeight:700, marginBottom:3 }}>{s.l}</div>
+                        <div style={{ fontSize:13, color:C.muted }}>{s.sub}</div>
                       </div>
                     ))}
                   </div>
-                  {/* Rate bar */}
-                  <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 14, marginBottom: 14 }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-                      <span style={{ fontSize: 16, fontWeight: 700, color: C.text }}>Manifestation rate</span>
-                      <span style={{ fontSize: 16, color: C.gold, fontWeight: 700 }}>{manifested}/{desires.length} · {Math.round((manifested / desires.length) * 100)}%</span>
+                  <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:18, marginBottom:16 }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", marginBottom:10 }}>
+                      <span style={{ fontSize:17, fontWeight:700, color:C.text }}>Manifestation rate</span>
+                      <span style={{ fontSize:17, color:C.gold, fontWeight:800 }}>{manifested}/{desires.length} · {Math.round((manifested/desires.length)*100)}%</span>
                     </div>
-                    <div style={{ height: 6, background: C.border, borderRadius: 3 }}>
-                      <div style={{ width: `${(manifested / desires.length) * 100}%`, height: "100%", background: `linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius: 3, transition: "width 0.6s" }} />
+                    <div style={{ height:8, background:C.border, borderRadius:4 }}>
+                      <div style={{ width:`${(manifested/desires.length)*100}%`, height:"100%", background:`linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius:4, transition:"width 0.6s" }} />
                     </div>
                   </div>
-                  <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 16, marginBottom: 14 }}>
-                    <div style={{ fontSize: 14, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Log a new intention</div>
-                    <input value={newDesire} onChange={e => setNewDesire(e.target.value)} placeholder="State it in present tense — I am, I have, I receive..." style={{ marginBottom: 10 }} onKeyDown={e => e.key === "Enter" && addDesire()} />
-                    {ct && <div style={{ fontSize: 13, color: C.muted, marginBottom: 10 }}>Will link to: <span style={{ color: C.gold, fontWeight: 700 }}>{ct.title}</span></div>}
+                  <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:18, marginBottom:16 }}>
+                    <div style={{ fontSize:14, color:C.muted, letterSpacing:"0.15em", textTransform:"uppercase", fontWeight:700, marginBottom:12 }}>Log a new intention</div>
+                    <input value={newDesire} onChange={e=>setNewDesire(e.target.value)} placeholder="State it in present tense — I am, I have, I receive..." style={{ marginBottom:12 }} onKeyDown={e=>e.key==="Enter"&&addDesire()} />
+                    {ct&&<div style={{ fontSize:15, color:C.muted, marginBottom:12 }}>Will link to: <span style={{ color:C.gold, fontWeight:700 }}>{ct.title}</span></div>}
                     <Btn full small onClick={addDesire} disabled={!newDesire.trim()}>Add intention +</Btn>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                    {desires.map(d => {
-                      const color = catColors[d.trackCat] || C.gold;
+                  <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+                    {desires.map(d=>{
+                      const color=catColors[d.trackCat]||C.gold;
                       return (
-                        <div key={d.id} style={{ background: C.card, border: `1px solid ${d.status === "manifested" ? "#2a4a2a" : C.border}`, borderRadius: 12, overflow: "hidden" }}>
-                          <div style={{ padding: "14px 16px", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10 }} onClick={() => setExpanded(expanded === d.id ? null : d.id)}>
-                            <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ fontSize: 19, fontWeight: 700, color: C.text2, marginBottom: 6 }}>{d.desire}</div>
-                              {d.track && <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}><span>🎧</span><span style={{ fontSize: 16, color, fontWeight: 600 }}>{d.track}</span>{d.days > 0 && <span style={{ fontSize: 12, color: C.dim }}>· {d.days}d</span>}</div>}
-                              {d.signs.length > 0 && <div style={{ fontSize: 14, color: C.muted }}>✦ {d.signs.length} sign{d.signs.length !== 1 ? "s" : ""}</div>}
+                        <div key={d.id} style={{ background:C.card, border:`1px solid ${d.status==="manifested"?"#2a4a2a":C.border}`, borderRadius:14, overflow:"hidden" }}>
+                          <div style={{ padding:"16px 18px", cursor:"pointer", display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12 }} onClick={()=>setExpanded(expanded===d.id?null:d.id)}>
+                            <div style={{ flex:1, minWidth:0 }}>
+                              <div style={{ fontSize:19, fontWeight:700, color:C.text2, marginBottom:6 }}>{d.desire}</div>
+                              {d.track&&<div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}><span style={{ fontSize:16 }}>🎧</span><span style={{ fontSize:15, color, fontWeight:600 }}>{d.track}</span>{d.days>0&&<span style={{ fontSize:14, color:C.dim }}>· {d.days}d</span>}</div>}
+                              {d.signs.length>0&&<div style={{ fontSize:14, color:C.muted }}>✦ {d.signs.length} sign{d.signs.length!==1?"s":""} logged</div>}
                             </div>
-                            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0 }}>
-                              {d.status === "manifested" ? (
-                                <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                                  <span style={{ padding: "4px 10px", background: "#1a3a1a", color: C.green, borderRadius: 20, fontSize: 12, fontWeight: 700 }}>✓ manifested</span>
-                                  <button onClick={e => { e.stopPropagation(); undoManifested(d.id); }} style={{ padding: "4px 8px", background: "none", border: `1px solid ${C.border}`, borderRadius: 8, color: C.dim, fontSize: 11, cursor: "pointer" }}>undo</button>
+                            <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:10, flexShrink:0 }}>
+                              {d.status==="manifested"?(
+                                <div style={{ display:"flex", gap:8, alignItems:"center" }}>
+                                  <span style={{ padding:"5px 12px", background:"#1a3a1a", color:C.green, borderRadius:20, fontSize:14, fontWeight:700 }}>✓ manifested</span>
+                                  <button onClick={e=>{e.stopPropagation();undoManifested(d.id);}} style={{ padding:"5px 10px", background:"none", border:`1px solid ${C.border}`, borderRadius:8, color:C.dim, fontSize:13, cursor:"pointer" }}>undo</button>
                                 </div>
-                              ) : (
-                                <button onClick={e => { e.stopPropagation(); markManifested(d.id); }} style={{ padding: "4px 12px", background: "none", border: `1px solid ${C.gold}55`, borderRadius: 20, color: C.gold, fontSize: 12, fontWeight: 700, cursor: "pointer" }}>mark done ✓</button>
+                              ):(
+                                <button onClick={e=>{e.stopPropagation();markManifested(d.id);}} style={{ padding:"5px 14px", background:"none", border:`1px solid ${C.gold}55`, borderRadius:20, color:C.gold, fontSize:14, fontWeight:700, cursor:"pointer" }}>mark done ✓</button>
                               )}
-                              <span style={{ fontSize: 11, color: C.dim }}>{expanded === d.id ? "▲" : "▼"}</span>
+                              <span style={{ fontSize:13, color:C.dim }}>{expanded===d.id?"▲":"▼ signs"}</span>
                             </div>
                           </div>
-                          {expanded === d.id && (
-                            <div style={{ borderTop: `1px solid ${C.border2}`, padding: "14px 16px", background: "#060400" }}>
-                              {d.signs.map((s, i) => <div key={i} style={{ fontSize: 16, color: C.muted, paddingLeft: 18, position: "relative", marginBottom: 7 }}><span style={{ position: "absolute", left: 0, color: C.gold }}>·</span>{s}</div>)}
-                              {d.status !== "manifested" && (
-                                <div style={{ marginTop: 10 }}>
-                                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
-                                    {signSuggestions.slice(0, 4).map((s, i) => <button key={i} onClick={() => addSign(d.id, s)} style={{ padding: "5px 12px", background: "none", border: `1px solid ${C.border}`, borderRadius: 20, color: C.muted, fontSize: 12, cursor: "pointer" }}>{s}</button>)}
+                          {expanded===d.id&&(
+                            <div style={{ borderTop:`1px solid ${C.border2}`, padding:"16px 18px", background:"#060400" }}>
+                              <div style={{ fontSize:13, color:C.muted, letterSpacing:"0.15em", textTransform:"uppercase", fontWeight:700, marginBottom:12 }}>Signs & synchronicities</div>
+                              {d.signs.length===0&&<div style={{ fontSize:16, color:C.dim, marginBottom:14 }}>No signs logged yet. The universe is already moving.</div>}
+                              {d.signs.map((s,i)=><div key={i} style={{ fontSize:16, color:C.muted, paddingLeft:18, position:"relative", marginBottom:8 }}><span style={{ position:"absolute", left:0, color:C.gold }}>·</span>{s}</div>)}
+                              {d.status!=="manifested"&&(
+                                <div style={{ marginTop:14 }}>
+                                  <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:12 }}>
+                                    {signSuggestions.slice(0,4).map((s,i)=><button key={i} onClick={()=>addSign(d.id,s)} style={{ padding:"6px 14px", background:"none", border:`1px solid ${C.border}`, borderRadius:20, color:C.muted, fontSize:14, cursor:"pointer" }}>{s}</button>)}
                                   </div>
-                                  <div style={{ display: "flex", gap: 8 }}>
-                                    <input value={newSign[d.id] || ""} onChange={e => setNewSign(p => ({ ...p, [d.id]: e.target.value }))} placeholder="Log a sign..." style={{ flex: 1 }} onKeyDown={e => e.key === "Enter" && addSign(d.id, newSign[d.id] || "")} />
-                                    <Btn small onClick={() => addSign(d.id, newSign[d.id] || "")} disabled={!newSign[d.id]?.trim()}>Add</Btn>
+                                  <div style={{ display:"flex", gap:10 }}>
+                                    <input value={newSign[d.id]||""} onChange={e=>setNewSign(p=>({...p,[d.id]:e.target.value}))} placeholder="Log a sign..." style={{ flex:1 }} onKeyDown={e=>e.key==="Enter"&&addSign(d.id,newSign[d.id]||"")} />
+                                    <Btn small onClick={()=>addSign(d.id,newSign[d.id]||"")} disabled={!newSign[d.id]?.trim()}>Add</Btn>
                                   </div>
                                 </div>
                               )}
@@ -1042,51 +880,51 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
               )}
             </div>
           )}
-          {tab === "account" && (
-            <div className="fade" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 20 }}>
-                <div style={{ fontSize: 14, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Your account</div>
-                <div style={{ fontSize: 16, color: C.muted, marginBottom: 3 }}>Plan</div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: userTier === "goddess" ? C.gold : C.text2, marginBottom: 14 }}>{userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19/month"}</div>
-                <div style={{ fontSize: 16, color: "#7a6a4a", lineHeight: 1.9, marginBottom: 14 }}>No refunds after 14 days · Cancel before renewal</div>
-                <Btn small outline onClick={() => {}}>Manage billing ↗</Btn>
+          {tab==="account"&&(
+            <div className="fade" style={{ display:"flex", flexDirection:"column", gap:14 }}>
+              <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:22 }}>
+                <div style={{ fontSize:13, color:C.muted, letterSpacing:"0.15em", textTransform:"uppercase", fontWeight:700, marginBottom:16 }}>Your account</div>
+                <div style={{ fontSize:15, color:C.muted, marginBottom:4 }}>Plan</div>
+                <div style={{ fontSize:20, fontWeight:700, color:userTier==="goddess"?C.gold:C.text2, marginBottom:16 }}>{userTier==="goddess"?"Goddess Tier · €33/month":"Audio Tier · €19/month"}</div>
+                <div style={{ fontSize:16, color:"#7a6a4a", lineHeight:1.9, marginBottom:16 }}>No refunds after 14 days · Cancel before renewal</div>
+                <Btn small outline onClick={()=>{}}>Manage billing ↗</Btn>
               </div>
-              {userTier === "audio" && <div onClick={onUpgrade} style={{ background: "#0a0500", border: `1.5px solid ${C.gold}44`, borderRadius: 14, padding: 20, cursor: "pointer" }}>
-                <div style={{ fontSize: 11, color: C.rose, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 6 }}>Upgrade</div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: C.text, marginBottom: 4 }}>Goddess Tier — €33/month</div>
-                <div style={{ fontSize: 13, color: C.muted }}>Unlock ProofOS tracker →</div>
+              {userTier==="audio"&&<div onClick={onUpgrade} style={{ background:"#0a0500", border:`1.5px solid ${C.gold}44`, borderRadius:14, padding:22, cursor:"pointer" }}>
+                <div style={{ fontSize:13, color:C.rose, letterSpacing:"0.15em", textTransform:"uppercase", fontWeight:700, marginBottom:8 }}>Upgrade</div>
+                <div style={{ fontSize:20, fontWeight:700, color:C.text, marginBottom:6 }}>Goddess Tier — €33/month</div>
+                <div style={{ fontSize:16, color:C.muted }}>Unlock ProofOS tracker + early access →</div>
               </div>}
-              <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 20 }}>
-                <div style={{ fontSize: 16, color: "#7a6a4a", lineHeight: 1.9 }}>iPhone: tap Share → "Add to Home Screen"<br />Plays in background like Spotify when screen is locked</div>
+              <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:22 }}>
+                <div style={{ fontSize:16, color:"#7a6a4a", lineHeight:1.9 }}>iPhone: tap Share → "Add to Home Screen"<br/>Plays in background like Spotify when locked<br/>No App Store download needed</div>
               </div>
-              <div style={{ display: "flex", gap: 12 }}>
-                {[["YouTube", "https://www.youtube.com/@Reshma.Oracle"], ["Instagram", "https://www.instagram.com/reshma.oracle/"]].map(([l, u]) => <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ flex: 1, padding: 14, background: C.card, border: `1px solid ${C.border}`, borderRadius: 10, color: C.muted, fontSize: 14, textAlign: "center", textDecoration: "none" }}>{l} →</a>)}
+              <div style={{ display:"flex", gap:14 }}>
+                {[["YouTube","https://www.youtube.com/@Reshma.Oracle"],["Instagram","https://www.instagram.com/reshma.oracle/"]].map(([l,u])=><a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ flex:1, padding:16, background:C.card, border:`1px solid ${C.border}`, borderRadius:10, color:C.muted, fontSize:16, textAlign:"center", textDecoration:"none" }}>{l} →</a>)}
               </div>
-              <button onClick={onSignOut} style={{ padding: 14, background: "none", border: `1px solid ${C.border}`, borderRadius: 10, color: C.muted, fontSize: 15, cursor: "pointer", minHeight: 48 }}>Sign out</button>
+              <button onClick={onSignOut} style={{ padding:16, background:"none", border:`1px solid ${C.border}`, borderRadius:10, color:C.muted, fontSize:17, cursor:"pointer", minHeight:52 }}>Sign out</button>
             </div>
           )}
         </div>
       </div>
-      <div className="mob-nav" style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "#050300", borderTop: `1px solid ${C.border}`, zIndex: 200, paddingBottom: "env(safe-area-inset-bottom,8px)", display: "none" }}>
-        {tabs.map(t => <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: "10px 8px", background: "none", border: "none", color: tab === t.id ? C.gold : C.muted, fontSize: 12, fontWeight: 700, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, minHeight: 56, letterSpacing: "0.08em", textTransform: "uppercase" }}><span style={{ fontSize: 24 }}>{t.icon}</span>{t.label}</button>)}
+      <div className="mob-nav" style={{ position:"fixed", bottom:0, left:0, right:0, background:"#050300", borderTop:`1px solid ${C.border}`, zIndex:200, paddingBottom:"env(safe-area-inset-bottom,8px)" }}>
+        {tabs.map(t=><button key={t.id} onClick={()=>setTab(t.id)} style={{ flex:1, padding:"11px 8px", background:"none", border:"none", color:tab===t.id?C.gold:C.muted, fontSize:12, fontWeight:700, cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:5, minHeight:58, letterSpacing:"0.08em", textTransform:"uppercase" }}><span style={{ fontSize:22 }}>{t.icon}</span>{t.label}</button>)}
       </div>
-      {playing && ct && (
-        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(6,4,0,0.97)", borderTop: `1px solid ${C.gold}44`, padding: "10px 16px", zIndex: 100, backdropFilter: "blur(20px)" }}>
-          <div style={{ maxWidth: 900, margin: "0 auto" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 8 }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: catColors[ct.cat] || C.gold, flexShrink: 0 }} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 17, fontWeight: 700, color: C.gold, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ct.title}</div>
-                <div style={{ fontSize: 14, color: C.dim }}>{ct.type} · {loop ? "Loop on" : "Loop off"} · Sleep: {sleep ? `${sleep}m` : "off"}</div>
+      {playing&&ct&&(
+        <div style={{ position:"fixed", bottom:0, left:0, right:0, background:"rgba(6,4,0,0.97)", borderTop:`1px solid ${C.gold}44`, padding:"12px 18px", zIndex:100, backdropFilter:"blur(20px)" }}>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:10 }}>
+              <div style={{ width:10, height:10, borderRadius:"50%", background:catColors[ct.cat]||C.gold, flexShrink:0 }} />
+              <div style={{ flex:1, minWidth:0 }}>
+                <div style={{ fontSize:17, fontWeight:700, color:C.gold, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{ct.title}</div>
+                <div style={{ fontSize:14, color:C.dim }}>{ct.type} · {loop?"Loop on":"Loop off"} · Sleep: {sleep?`${sleep}m`:"off"}</div>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
-                <button onClick={() => setLoop(!loop)} style={{ background: "none", border: "none", fontSize: 18, color: loop ? C.gold : C.dim, cursor: "pointer" }}>↻</button>
-                <button onClick={() => setPlaying(null)} style={{ width: 40, height: 40, borderRadius: "50%", background: `linear-gradient(135deg,${C.gold},${C.rose})`, border: "none", color: "#000", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>⏸</button>
-                <button onClick={() => setSleep(s => s === 60 ? 30 : s === 30 ? 0 : 60)} style={{ background: "none", border: `1px solid ${C.border}`, borderRadius: 8, padding: "5px 10px", color: sleep ? C.gold : C.dim, fontSize: 12, cursor: "pointer" }}>{sleep ? `${sleep}m` : "∞"}</button>
+              <div style={{ display:"flex", alignItems:"center", gap:14, flexShrink:0 }}>
+                <button onClick={()=>setLoop(!loop)} style={{ background:"none", border:"none", fontSize:22, color:loop?C.gold:C.dim, cursor:"pointer" }}>↻</button>
+                <button onClick={()=>setPlaying(null)} style={{ width:44, height:44, borderRadius:"50%", background:`linear-gradient(135deg,${C.gold},${C.rose})`, border:"none", color:"#000", fontSize:20, display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer" }}>⏸</button>
+                <button onClick={()=>setSleep(s=>s===60?30:s===30?0:60)} style={{ background:"none", border:`1px solid ${C.border}`, borderRadius:8, padding:"6px 12px", color:sleep?C.gold:C.dim, fontSize:14, cursor:"pointer" }}>{sleep?`${sleep}m`:"∞"}</button>
               </div>
             </div>
-            <div style={{ height: 3, background: C.border, borderRadius: 2, cursor: "pointer" }} onClick={e => { const r = e.currentTarget.getBoundingClientRect(); setProgress(Math.round(((e.clientX - r.left) / r.width) * 100)); }}>
-              <div style={{ width: `${progress}%`, height: "100%", background: `linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius: 2 }} />
+            <div style={{ height:4, background:C.border, borderRadius:2, cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();setProgress(Math.round(((e.clientX-r.left)/r.width)*100));}}>
+              <div style={{ width:`${progress}%`, height:"100%", background:`linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius:2 }} />
             </div>
           </div>
         </div>
