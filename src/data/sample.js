@@ -39,7 +39,7 @@ export const AUDIOS = [
     manifestedCount: 3,
     lastListenedAt: "2026-06-28",
     lastProofAt: "2026-06-30",
-    description: "SP return and reconnection. ASMR whisper induction, bilateral subliminal installation of the new self-concept as chosen and worthy. For releasing attachment and returning to certainty.",
+    description: "SP return and reconnection. Subliminal installation of the new self-concept as chosen and worthy. For releasing attachment and returning to certainty.",
   },
   {
     id: 4,
