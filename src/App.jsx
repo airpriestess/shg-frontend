@@ -290,7 +290,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
           </h1>
 
           <p style={{ fontSize: "clamp(16px,2.5vw,20px)", color: "#8a7a5a", lineHeight: 1.85, marginBottom: 10, maxWidth: 560, margin: "0 auto 10px" }}>
-            Press play. Wake up with the certainty, clarity and knowing that what you want is already done. Not wishful thinking — a new identity. A new set of actions. A new reality.
+            The woman who already has what you want thinks differently. Feels differently. Acts differently. Moves through the world from a completely different consciousness. These audios install that consciousness while you sleep. You wake up embodying her — not performing her.
           </p>
           <p style={{ fontSize: 15, color: C.muted, marginBottom: 36 }}>Self hypnosis and subliminal audio tracks. Not on YouTube. No ads. Real voice.</p>
 
@@ -315,7 +315,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
           </div>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <Btn onClick={() => onJoin("audio")}>Start your shift — €19.99/month</Btn>
+            <Btn onClick={() => onJoin("audio")}>Start your shift — €19/month</Btn>
             <Btn outline onClick={onDemo}>See the dashboard</Btn>
           </div>
           <div style={{ fontSize: 13, color: C.dim }}>Cancel anytime · Stripe · No download · Plays in background like Spotify</div>
@@ -560,7 +560,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
             </div>
           ))}
         </div>
-        <div style={{ textAlign: "center", marginTop: 14, fontSize: 14, color: C.muted }}>First track in every category is free · Full library from €19.99/month</div>
+        <div style={{ textAlign: "center", marginTop: 14, fontSize: 14, color: C.muted }}>First track in every category is free · Full library from €19/month</div>
       </div>
 
       {/* PROOFOS TEASER */}
@@ -601,7 +601,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
         </div>
         <div className="price-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 14 }}>
           {[
-            { id: "audio", name: "Audio Tier", price: billing === "monthly" ? "€19.99" : "€192", period: billing === "monthly" ? "/month" : "/year", sub: billing === "annual" ? "€16/mo · 2 months free" : null, features: ["Full self hypnosis audio library — 50+ tracks", "All 6 desire categories", "Lovemaxxing · Moneymaxxing · Beautymaxxing", "4 new tracks every week — never on YouTube", "Loop player + sleep timer", "Plays in background when screen is locked", "No ads. Ever."], cta: "Join Audio Tier" },
+            { id: "audio", name: "Audio Tier", price: billing === "monthly" ? "€19" : "€192", period: billing === "monthly" ? "/month" : "/year", sub: billing === "annual" ? "€16/mo · 2 months free" : null, features: ["Full self hypnosis audio library — 50+ tracks", "Lovemaxxing · Moneymaxxing · Beautymaxxing · Lifemaxxing", "4 new tracks every week — never on YouTube", "Loop player + sleep timer built in", "Plays in background like Spotify", "No ads. Ever. No interruptions at 3am."], cta: "Join Audio Tier" },
             { id: "goddess", name: "Goddess Tier", popular: true, price: billing === "monthly" ? "€33" : "€317", period: billing === "monthly" ? "/month" : "/year", sub: billing === "annual" ? "€26.40/mo · 2 months free" : null, features: ["Everything in Audio Tier", "ProofOS manifestation tracker ✦ coming soon", "Log desires · link to audio · capture proof", "Watch your wins build into undeniable evidence", "Early access — 48hrs before everyone else", "Monthly ritual audio included"], proofos: true, cta: "Become Goddess" },
           ].map(p => (
             <div key={p.id} style={{ background: C.card, border: `${p.popular ? "2px" : "1px"} solid ${p.popular ? C.gold + "66" : C.border}`, borderRadius: 18, padding: 26, position: "relative" }}>
@@ -623,7 +623,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
           ))}
         </div>
         <div style={{ background: "linear-gradient(135deg,#0d0900,#160b01)", border: `2px solid ${C.gold}44`, borderRadius: 18, padding: 30 }}>
-          <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>First 1,000 only · Lifetime access</div>
+          <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Original price · First 1,000 members only</div>
           <div className="wm" style={{ fontSize: "clamp(22px,4vw,34px)", color: C.text, marginBottom: 8 }}>Founder Lifetime</div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 14 }}>
             <span style={{ fontSize: 48, fontWeight: 800, color: C.gold }}>€500</span>
@@ -648,7 +648,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
             Wake up knowing.<br />
             <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
           </div>
-          <Btn onClick={() => onJoin("audio")}>Start your shift — €19.99/month</Btn>
+          <Btn onClick={() => onJoin("audio")}>Start your shift — €19/month</Btn>
         </div>
       </div>
 
@@ -730,7 +730,7 @@ function Onboard({ tier, onSuccess, onBack }) {
   const [billing, setBilling] = useState("monthly");
   const [loading, setLoading] = useState(false);
   const tierName = tier === "goddess" ? "Goddess Tier" : tier === "founder" ? "Founder Lifetime" : "Audio Tier";
-  const price = tier === "founder" ? "€500" : tier === "goddess" ? (billing === "monthly" ? "€33" : "€317") : (billing === "monthly" ? "€19.99" : "€192");
+  const price = tier === "founder" ? "€500" : tier === "goddess" ? (billing === "monthly" ? "€33" : "€317") : (billing === "monthly" ? "€19" : "€192");
   const next = () => {
     if (step === 3) { setLoading(true); setTimeout(() => { setLoading(false); setStep(4); }, 1400); }
     else if (step === 4) onSuccess();
@@ -772,7 +772,7 @@ function Onboard({ tier, onSuccess, onBack }) {
                 {["monthly", "annual"].map(b => (
                   <button key={b} onClick={() => setBilling(b)} style={{ flex: 1, padding: 16, background: billing === b ? C.card2 : C.card, border: `${billing === b ? "2px" : "1px"} solid ${billing === b ? C.gold + "88" : C.border}`, borderRadius: 12, cursor: "pointer", textAlign: "left" }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: billing === b ? C.gold : C.text, marginBottom: 2 }}>{b === "monthly" ? "Monthly" : "Annual"}</div>
-                    <div style={{ fontSize: 22, fontWeight: 800, color: billing === b ? C.gold : C.text }}>{tier === "goddess" ? (b === "monthly" ? "€33" : "€317") : (b === "monthly" ? "€19.99" : "€192")}<span style={{ fontSize: 12, color: C.muted }}>/{b === "monthly" ? "mo" : "yr"}</span></div>
+                    <div style={{ fontSize: 22, fontWeight: 800, color: billing === b ? C.gold : C.text }}>{tier === "goddess" ? (b === "monthly" ? "€33" : "€317") : (b === "monthly" ? "€19" : "€192")}<span style={{ fontSize: 12, color: C.muted }}>/{b === "monthly" ? "mo" : "yr"}</span></div>
                     {b === "annual" && <div style={{ fontSize: 12, color: C.rose, marginTop: 4, fontWeight: 600 }}>Save 20% · 2 months free</div>}
                   </button>
                 ))}
@@ -1015,7 +1015,7 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
               <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 20 }}>
                 <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Your account</div>
                 <div style={{ fontSize: 13, color: C.muted, marginBottom: 3 }}>Plan</div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: userTier === "goddess" ? C.gold : C.text2, marginBottom: 14 }}>{userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19.99/month"}</div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: userTier === "goddess" ? C.gold : C.text2, marginBottom: 14 }}>{userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19/month"}</div>
                 <div style={{ fontSize: 14, color: "#7a6a4a", lineHeight: 1.9, marginBottom: 14 }}>No refunds after 14 days · Cancel before renewal</div>
                 <Btn small outline onClick={() => {}}>Manage billing ↗</Btn>
               </div>
