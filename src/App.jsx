@@ -12,7 +12,7 @@ const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#000;color:#e8e0d0;font-family:'Inter',sans-serif;font-size:18px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:#000;color:#e8e0d0;font-family:'Inter',sans-serif;font-size:18px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 button,input{font-family:'Inter',sans-serif}
 input{background:#080600;border:1px solid #1e1608;color:#e8e0d0;border-radius:10px;padding:16px 20px;font-size:17px;width:100%;outline:none;transition:border-color 0.2s}
 input:focus{border-color:#C8892A88}
@@ -67,8 +67,8 @@ function Btn({ children, onClick, full, outline, small, disabled }) {
 }
 
 function Rings({ count = 4, color = C.gold }) {
-  const sizes = [180, 320, 480, 660, 860];
-  const ops = [0.15, 0.08, 0.05, 0.03, 0.02];
+  const sizes = [320, 520, 720, 960, 1200];
+  const ops = [0.18, 0.10, 0.06, 0.04, 0.02];
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
       <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 600, background: `radial-gradient(circle,${color}08 0%,transparent 70%)`, borderRadius: "50%" }} />
@@ -257,17 +257,23 @@ function Landing({ onJoin, onProofOS, onDemo }) {
             Self Hypnosis Goddess<br />
             <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Audio Library</span>
           </h1>
-          <div style={{ fontSize: 14, letterSpacing: "0.2em", textTransform: "uppercase", color: C.muted, marginBottom: 32, fontWeight: 600 }}>Reshma Oracle · Self Hypnosis + Subliminals · Not on YouTube</div>
+          <div style={{ fontSize: 14, letterSpacing: "0.2em", textTransform: "uppercase", color: C.muted, marginBottom: 28, fontWeight: 600 }}>Reshma Oracle · Self Hypnosis + Subliminals · Not on YouTube</div>
+
+          {/* TAGLINE */}
+          <div style={{ fontSize: "clamp(16px,2.2vw,22px)", color: C.gold, fontWeight: 700, letterSpacing: "0.04em", marginBottom: 32, lineHeight: 1.4 }}>
+            Reprogram your subconscious mind. Manifest your ideal reality.<br />
+            <span style={{ fontSize: "0.85em", color: C.muted, fontWeight: 400 }}>Passive. No effort. No force. Just your subconscious, finally reprogrammed.</span>
+          </div>
 
           {/* PAIN POINT */}
-          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: "#7a6a4a", lineHeight: 1.9, marginBottom: 10, maxWidth: "100%" }}>
-            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because you were trying to change your reality without first reprogramming your subconscious mind.
+          <p style={{ fontSize: "clamp(17px,2.2vw,20px)", color: "#7a6a4a", lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
+            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because conscious effort cannot reprogram the subconscious mind. Desire is not manifestation. Desire is the seed. <strong style={{ color: C.text2 }}>Certainty is manifestation.</strong>
           </p>
-          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 10, maxWidth: "100%" }}>
-            Your reality mirrors what you assume to be true about yourself. It's not about what you want — it's about your self-concept. Your self-image. How you see yourself at the deepest level.
+          <p style={{ fontSize: "clamp(17px,2.2vw,20px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
+            Your reality mirrors what you assume to be true about yourself — at the deepest subconscious, DNA level. It's not about what you want. It's about your self-concept. Your self-image. What you believe you deserve. Down to your DNA.
           </p>
-          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 36, maxWidth: "100%" }}>
-            These audios reprogram that — directly, at the subconscious level, while you sleep. You wake up knowing. Not hoping. <strong style={{ color: C.text2 }}>Knowing.</strong>
+          <p style={{ fontSize: "clamp(17px,2.2vw,20px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 36, maxWidth: "100%" }}>
+            These audios install the new self-concept passively — while you sleep, while you rest. No active effort. No conscious force. Just your subconscious, finally reprogrammed. You wake up knowing. Not hoping. <strong style={{ color: C.text2 }}>Knowing.</strong>
           </p>
 
           {/* FREE TRACK */}
@@ -302,9 +308,9 @@ function Landing({ onJoin, onProofOS, onDemo }) {
       <div style={{ overflow: "hidden", padding: "0 0 60px", borderTop: `1px solid ${C.border}` }}>
         <div style={{ display: "flex", gap: 14, animation: "slide 28s linear infinite", width: "max-content", paddingTop: 32 }}>
           {[...cats, ...cats].map((c, i) => (
-            <div key={i} style={{ background: C.card, border: `1px solid ${c.color}44`, borderRadius: 14, padding: "18px 26px", minWidth: 240, flexShrink: 0 }}>
-              <div style={{ fontSize: 12, color: c.color, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8 }}>{c.label}</div>
-              <div style={{ fontSize: 15, color: C.text2, lineHeight: 1.5 }}>{c.tagline}</div>
+            <div key={i} style={{ background: C.card, border: `1px solid ${c.color}44`, borderRadius: 18, padding: "26px 34px", minWidth: 300, flexShrink: 0 }}>
+              <div style={{ fontSize: 13, color: c.color, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
+              <div style={{ fontSize: 19, color: C.text2, lineHeight: 1.55, fontWeight: 500 }}>{c.tagline}</div>
             </div>
           ))}
         </div>
@@ -314,62 +320,65 @@ function Landing({ onJoin, onProofOS, onDemo }) {
       <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>The science</div>
-          <h2 className="wm" style={{ fontSize: "clamp(30px,5vw,54px)", color: C.text, lineHeight: 1.2, marginBottom: 20 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(38px,6vw,72px)", color: C.text, lineHeight: 1.1, marginBottom: 24 }}>
             Your subconscious mind<br />
             <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
-          <p style={{ fontSize: 18, color: "#8a7a5a", lineHeight: 1.85, maxWidth: 660, margin: "0 auto" }}>
-            Neuroscience confirms that 95% of your thoughts, behaviours and beliefs are driven by your subconscious. Your self-concept — the assumptions you hold about yourself — determines everything you experience. Change the assumption. Change the reality.
+          <p style={{ fontSize: 20, color: "#8a7a5a", lineHeight: 1.9, maxWidth: 720, margin: "0 auto 16px" }}>
+            Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
+          </p>
+          <p style={{ fontSize: 20, color: "#7a6a4a", lineHeight: 1.9, maxWidth: 720, margin: "0 auto" }}>
+            You can read every book. Study Neville Goddard. Understand every theory. But theory without installation changes nothing. These audios install it — passively, at depth, while your conscious mind rests. No force. No effort. The subconscious does the work.
           </p>
         </div>
 
         {/* COMPARISON TABLE */}
         <div style={{ marginBottom: 60 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
-            <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "16px 28px", border: `1px solid #2a1010`, borderBottom: "none", borderRight: "none" }}>
-              <div style={{ fontSize: 14, color: "#6a3535", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase" }}>Old self-concept</div>
-              <div className="wm" style={{ fontSize: 20, color: "#7a5050", marginTop: 4 }}>Running old programming</div>
+            <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "22px 32px", border: `1px solid #2a1010`, borderBottom: "none", borderRight: "none" }}>
+              <div style={{ fontSize: 13, color: "#6a3535", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>Old self-concept</div>
+              <div className="wm" style={{ fontSize: 28, color: "#7a5050" }}>Running old programming</div>
             </div>
-            <div style={{ background: "#080a08", borderRadius: "0 14px 0 0", padding: "16px 28px", border: `1px solid ${C.gold}33`, borderBottom: "none", borderLeft: "none" }}>
-              <div style={{ fontSize: 14, color: C.gold, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase" }}>New self-concept</div>
-              <div className="wm" style={{ fontSize: 20, color: C.text2, marginTop: 4 }}>Reprogrammed subconscious</div>
+            <div style={{ background: "#080a08", borderRadius: "0 14px 0 0", padding: "22px 32px", border: `1px solid ${C.gold}33`, borderBottom: "none", borderLeft: "none" }}>
+              <div style={{ fontSize: 13, color: C.gold, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>New self-concept</div>
+              <div className="wm" style={{ fontSize: 28, color: C.text2 }}>Reprogrammed subconscious</div>
             </div>
           </div>
           {comparisonRows.map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
               <div style={{ background: "#0a0505", padding: "16px 28px", border: `1px solid #2a1010`, borderRight: "none", borderBottom: "none", borderRadius: i === comparisonRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 12, alignItems: "flex-start" }}>
                 <span style={{ color: "#5a2a2a", fontSize: 18, flexShrink: 0, marginTop: 2 }}>✗</span>
-                <span style={{ fontSize: 17, color: "#7a5a5a", lineHeight: 1.6 }}>{row.old}</span>
+                <span style={{ fontSize: 19, color: "#7a5a5a", lineHeight: 1.7 }}>{row.old}</span>
               </div>
               <div style={{ background: "#080a08", padding: "16px 28px", border: `1px solid ${C.gold}33`, borderLeft: "none", borderBottom: "none", borderRadius: i === comparisonRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 12, alignItems: "flex-start" }}>
                 <span style={{ color: C.gold, fontSize: 16, flexShrink: 0, marginTop: 2 }}>✦</span>
-                <span style={{ fontSize: 17, color: C.text2, lineHeight: 1.6 }}>{row.neu}</span>
+                <span style={{ fontSize: 19, color: C.text2, lineHeight: 1.7 }}>{row.neu}</span>
               </div>
             </div>
           ))}
         </div>
 
         {/* 4 STEPS */}
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>Four steps. One reality shift.</h2>
-          <p style={{ fontSize: 18, color: C.muted }}>Your only job is to press play.</p>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(36px,5vw,60px)", color: C.text, marginBottom: 12 }}>Four steps. One reality shift.</h2>
+          <p style={{ fontSize: 20, color: C.muted }}>Your only job is to press play.</p>
         </div>
         <div className="step-flow" style={{ display: "flex", gap: 0 }}>
           {[
-            { n:"01", icon:"🎧", title:"You listen", body:"Self hypnosis and subliminal audio. Headphones in. Press play. Works while you sleep, while you rest, while you exist." },
-            { n:"02", icon:"◈", title:"Subconscious shifts", body:"Your self-concept updates at depth. The old assumptions dissolve. The new identity installs — not through effort, through repetition." },
+            { n:"01", icon:"🎧", title:"You listen", body:"Self hypnosis and subliminal audio. Headphones in. Press play. Works while you sleep, while you rest, while you exist. No active effort required." },
+            { n:"02", icon:"◈", title:"Subconscious shifts", body:"Your self-concept updates at depth. Old assumptions dissolve. The new identity installs — not through willpower, but through repetition during theta and delta brainwave states." },
             { n:"03", icon:"✦", title:"Reality mirrors it", body:"He texts. Money arrives. Skin shifts. People treat you differently. Your outer world mirrors your new inner assumption. Of course it does." },
-            { n:"04", icon:"◉", title:"You document proof", body:"Log every sign in ProofOS. Link it to the audio you listened to. Watch the pattern become undeniable. It is done." },
+            { n:"04", icon:"◉", title:"You document proof", body:"Log every sign in ProofOS. Link it to the exact audio. Watch the pattern become undeniable. It is done." },
           ].map((s,i) => (
             <div key={i} style={{ display:"flex", flex:1 }}>
-              <div style={{ background:C.card, border:`1px solid ${C.border}`, flex:1, padding:28, borderLeft:i>0?"none":undefined, borderTopLeftRadius:i===0?16:0, borderBottomLeftRadius:i===0?16:0, borderTopRightRadius:i===3?16:0, borderBottomRightRadius:i===3?16:0, position:"relative", overflow:"hidden" }}>
+              <div style={{ background:C.card, border:`1px solid ${C.border}`, flex:1, padding:32, borderLeft:i>0?"none":undefined, borderTopLeftRadius:i===0?16:0, borderBottomLeftRadius:i===0?16:0, borderTopRightRadius:i===3?16:0, borderBottomRightRadius:i===3?16:0, position:"relative", overflow:"hidden" }}>
                 <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,${C.gold}${['88','66','44','22'][i]},transparent)` }} />
-                <div style={{ fontSize:12, color:C.muted, fontFamily:"monospace", fontWeight:700, marginBottom:14, letterSpacing:"0.1em" }}>{s.n}</div>
-                <div style={{ fontSize:30, marginBottom:14 }}>{s.icon}</div>
-                <div style={{ fontSize:20, fontWeight:700, color:C.gold, marginBottom:12 }}>{s.title}</div>
-                <div style={{ fontSize:16, color:"#8a7a5a", lineHeight:1.75 }}>{s.body}</div>
+                <div style={{ fontSize:"clamp(48px,7vw,80px)", fontWeight:900, color:C.gold+"22", lineHeight:1, marginBottom:8, fontFamily:"monospace" }}>{s.n}</div>
+                <div style={{ fontSize:32, marginBottom:14 }}>{s.icon}</div>
+                <div style={{ fontSize:22, fontWeight:700, color:C.gold, marginBottom:14 }}>{s.title}</div>
+                <div style={{ fontSize:17, color:"#8a7a5a", lineHeight:1.8 }}>{s.body}</div>
               </div>
-              {i<3 && <div style={{ display:"flex", alignItems:"center", color:C.gold+"55", fontSize:20, padding:"0 4px", flexShrink:0 }}>→</div>}
+              {i<3 && <div style={{ display:"flex", alignItems:"center", color:C.gold+"44", fontSize:22, padding:"0 6px", flexShrink:0 }}>→</div>}
             </div>
           ))}
         </div>
@@ -404,11 +413,43 @@ function Landing({ onJoin, onProofOS, onDemo }) {
         </div>
       </div>
 
+      {/* TECHNOLOGY TABLE */}
+      <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 44 }}>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>The technology</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: C.text, marginBottom: 14 }}>What's inside every audio.</h2>
+          <p style={{ fontSize: 18, color: C.muted, maxWidth: 620, margin: "0 auto" }}>Every track is layered with multiple technologies working simultaneously to activate your ideal brainwave state and install the new self-concept at depth.</p>
+        </div>
+        <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 18, overflow: "hidden" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", background: "#0a0800", borderBottom: `1px solid ${C.border}` }}>
+            {["Technology", "What it is", "What it does", "When it activates"].map((h,i) => (
+              <div key={i} style={{ padding: "14px 18px", fontSize: 13, color: C.gold, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? `1px solid ${C.border}` : "none" }}>{h}</div>
+            ))}
+          </div>
+          {[
+            { tech: "Self Hypnosis", what: "Guided induction using Reshma's voice", does: "Bypasses the critical conscious mind and opens the subconscious to new beliefs", when: "During hypnotic trance — theta state (4–8 Hz)" },
+            { tech: "Subliminals", what: "Affirmations layered beneath audible sound", does: "Delivers the new self-concept directly to the subconscious without conscious resistance", when: "Any state — most powerful during sleep" },
+            { tech: "Binaural Beats", what: "Two tones at different frequencies in each ear", does: "Entrains the brain to theta or delta states — making the subconscious receptive", when: "Headphones required · begins within minutes" },
+            { tech: "EMDR (bilateral)", what: "Bilateral audio stimulation — left and right", does: "Processes and dissolves old beliefs, trauma patterns and identity blocks", when: "During the audio session · accelerates release" },
+            { tech: "Reiki / Energy", what: "Encoded energetic frequency in the track", does: "Raises the energetic vibration of the recording — activates alignment at a cellular level", when: "Present throughout the entire track" },
+            { tech: "Solfeggio Frequencies", what: "Sacred healing frequencies (432hz, 528hz, 963hz)", does: "432hz: harmony · 528hz: transformation / DNA repair · 963hz: higher consciousness activation", when: "432hz, 528hz, or 963hz — stated per track" },
+            { tech: "Brainwave States", what: "Alpha, theta, and delta state entrainment", does: "The subconscious is most receptive at the threshold of sleep. Best listened to first thing on waking or last thing at night.", when: "Alpha 8–12 Hz · Theta 4–8 Hz · Delta 0.5–4 Hz" },
+          ].map((row, i) => (
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", borderBottom: i < 6 ? `1px solid ${C.border2}` : "none" }}>
+              <div style={{ padding: "16px 18px", fontSize: 16, fontWeight: 700, color: C.gold, borderRight: `1px solid ${C.border}` }}>{row.tech}</div>
+              <div style={{ padding: "16px 18px", fontSize: 15, color: C.muted, borderRight: `1px solid ${C.border}`, lineHeight: 1.6 }}>{row.what}</div>
+              <div style={{ padding: "16px 18px", fontSize: 15, color: C.text2, borderRight: `1px solid ${C.border}`, lineHeight: 1.6 }}>{row.does}</div>
+              <div style={{ padding: "16px 18px", fontSize: 14, color: C.muted, fontStyle: "italic", lineHeight: 1.6 }}>{row.when}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* RESULTS — before/after */}
       <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>The results</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>What shifts when your self-concept shifts.</h2>
+          <h2 className="wm" style={{ fontSize: "clamp(40px,6vw,76px)", color: C.text, marginBottom: 10, lineHeight: 1.1 }}>What shifts when<br/>your self-concept shifts.</h2>
         </div>
         <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
           {[
@@ -446,11 +487,42 @@ function Landing({ onJoin, onProofOS, onDemo }) {
         </div>
       </div>
 
+      {/* WHY DESIRE DOESN'T MANIFEST */}
+      <div style={{ padding: "0 24px 80px", maxWidth: 900, margin: "0 auto" }}>
+        <div style={{ background: "linear-gradient(135deg,#0a0500,#0d0800)", border: `1px solid ${C.gold}33`, borderRadius: 20, padding: "44px 44px" }}>
+          <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16 }}>The real reason</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: C.text, marginBottom: 20, lineHeight: 1.2 }}>
+            Why desire doesn't manifest.<br/>
+            <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And what does.</span>
+          </h2>
+          <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+            <div>
+              <div style={{ fontSize: 14, color: C.rose, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 14 }}>Why it hasn't worked</div>
+              {["Desire lives in the conscious mind. The conscious mind doesn't create reality.", "Affirmations are rejected by a subconscious that holds the opposite belief.", "Visualisation without identity shift is just imagination. The subconscious knows the difference.", "Willpower requires constant effort. The subconscious always wins."].map((t,i) => (
+                <div key={i} style={{ display: "flex", gap: 12, marginBottom: 16 }}>
+                  <span style={{ color: "#5a2a2a", fontSize: 20, flexShrink: 0, marginTop: 2 }}>✗</span>
+                  <span style={{ fontSize: 17, color: "#7a5a5a", lineHeight: 1.7 }}>{t}</span>
+                </div>
+              ))}
+            </div>
+            <div>
+              <div style={{ fontSize: 14, color: C.gold, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 14 }}>What actually works</div>
+              {["The subconscious accepts new beliefs during theta and delta states — at the edge of sleep.", "Repetition installs the new self-concept below the threshold of conscious resistance.", "Once the subconscious holds the new identity as true, reality rearranges to match it.", "Passive. No effort. No force. The subconscious does the work while you rest."].map((t,i) => (
+                <div key={i} style={{ display: "flex", gap: 12, marginBottom: 16 }}>
+                  <span style={{ color: C.gold, fontSize: 18, flexShrink: 0, marginTop: 2 }}>✦</span>
+                  <span style={{ fontSize: 17, color: C.text2, lineHeight: 1.7 }}>{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* APP PREVIEW */}
       <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14 }}>Inside the app</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: C.text, marginBottom: 10 }}>Your portal. Your library. Your proof.</h2>
+          <h2 className="wm" style={{ fontSize: "clamp(34px,5vw,60px)", color: C.text, marginBottom: 10 }}>Your portal. Your library. Your proof.</h2>
           <p style={{ fontSize: 18, color: C.muted }}>Plays in background like Spotify. No download. Save to home screen.</p>
         </div>
         <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
@@ -538,7 +610,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
           {[
             { name: "Audio Tier", price: billing==="monthly"?"€19":"€192", period: billing==="monthly"?"/mo":"/yr", color: C.text2, cta: "Join Audio", id: "audio" },
             { name: "Goddess Tier", price: billing==="monthly"?"€33":"€317", period: billing==="monthly"?"/mo":"/yr", color: C.gold, popular: true, cta: "Become Goddess", id: "goddess" },
-            { name: "Founder Lifetime", price: "€500", period: "once", color: C.rose, cta: "Claim Founder", id: "founder", sub: "Original price · First 1,000 only" },
+            { name: "Founder Lifetime", price: "€500", period: "once", color: C.rose, cta: "Claim Founder", id: "founder", sub: "Original price · First 1,000 members only" },
           ].map((col, ci) => (
             <div key={ci} style={{ padding: "20px 20px 16px", borderBottom: `1px solid ${C.border}`, borderRight: ci < 2 ? `1px solid ${C.border}` : "none", background: col.popular ? "#0d0a00" : "none", position: "relative", textAlign: "center" }}>
               {col.popular && <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)", background: `linear-gradient(90deg,${C.gold},${C.rose})`, color: "#000", fontSize: 11, fontWeight: 800, padding: "2px 14px", borderRadius: "0 0 10px 10px", whiteSpace: "nowrap" }}>MOST POPULAR</div>}
@@ -562,7 +634,7 @@ function Landing({ onJoin, onProofOS, onDemo }) {
             { label: "ProofOS manifestation tracker ✦", audio: false, goddess: true, founder: true },
             { label: "Early access — 48hrs before everyone", audio: false, goddess: true, founder: true },
             { label: "Monthly ritual audio included", audio: false, goddess: true, founder: true },
-            { label: "1 GB private evidence vault", audio: false, goddess: false, founder: true },
+            { label: "1 GB private evidence vault", audio: false, goddess: true, founder: true },
             { label: "All future features forever", audio: false, goddess: false, founder: true },
             { label: "Founder's seal ✦", audio: false, goddess: false, founder: true },
           ].map((row, ri) => (
@@ -823,6 +895,17 @@ function Portal({ userTier, onSignOut, onUpgrade }) {
                     </div>
                     <div style={{ height:8, background:C.border, borderRadius:4 }}>
                       <div style={{ width:`${(manifested/desires.length)*100}%`, height:"100%", background:`linear-gradient(90deg,${C.gold},${C.rose})`, borderRadius:4, transition:"width 0.6s" }} />
+                    </div>
+                  </div>
+                  <div style={{ background:"linear-gradient(135deg,#0a0600,#0d0a00)", border:`1px solid ${C.gold}44`, borderRadius:14, padding:22, marginBottom:16 }}>
+                    <div style={{ fontSize:12, color:C.gold, letterSpacing:"0.2em", textTransform:"uppercase", fontWeight:800, marginBottom:14 }}>How to listen · Your guide</div>
+                    <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:14 }}>
+                      {[{t:"Best time to listen",b:"First thing on waking — before your feet touch the floor. Last thing at night — at the threshold of sleep. Your subconscious is most receptive in alpha and theta states."},{t:"How often",b:"Daily is ideal. Consistency creates the installation. Missing a day won't undo it. Think of it like watering a seed — the more consistent you are, the faster it grows."},{t:"SATs — State Akin to Sleep",b:"The most powerful state for reprogramming. On the edge of sleep, your critical mind is down. This is when the new self-concept installs deepest. Use the sleep tracks overnight."},{t:"Headphones or speakers?",b:"Headphones required for binaural beats and bilateral EMDR tracks. Speakers work for subliminals only. Check the track description for guidance."}].map((g,i)=>(
+                        <div key={i} style={{ background:"#060400", borderRadius:10, padding:14, border:`1px solid ${C.border}` }}>
+                          <div style={{ fontSize:15, fontWeight:700, color:C.gold, marginBottom:8 }}>{g.t}</div>
+                          <div style={{ fontSize:14, color:C.muted, lineHeight:1.75 }}>{g.b}</div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, padding:18, marginBottom:16 }}>
