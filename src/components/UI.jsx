@@ -3,10 +3,10 @@ import { T } from "../design/tokens.js";
 export function Btn({ children, onClick, variant = "primary", size = "md", full, disabled, style: extra }) {
   const sizes = { sm: { padding: "8px 16px", fontSize: 13 }, md: { padding: "11px 22px", fontSize: 14 }, lg: { padding: "14px 28px", fontSize: 15 } };
   const variants = {
-    primary: { background: `linear-gradient(135deg, ${T.rose}, #a02040)`, color: "#000", border: "none" },
-    champagne: { background: `linear-gradient(135deg, ${T.gold}, ${T.champSoft})`, color: "#000", border: "none" },
-    ghost: { background: "transparent", color: T.gold, border: `1px solid ${T.gold}55` },
-    soft: { background: "#0a0800", color: T.textSecondary, border: `1px solid #1e1608` },
+    primary: { background: "linear-gradient(135deg,#C8892A,#B76E79)", color: "#000", border: "none" },
+    champagne: { background: "linear-gradient(135deg,#C8892A,#B76E79)", color: "#000", border: "none" },
+    ghost: { background: "transparent", color: "#B76E79", border: "1px solid #B76E7966" },
+    soft: { background: "#0a0800", color: T.textMuted, border: `1px solid #1e1608` },
     danger: { background: "transparent", color: T.rose, border: `1px solid ${T.rose}44` },
   };
   return (
@@ -44,8 +44,8 @@ export function Card({ children, style, premium, onClick, hover }) {
 
 export function Pill({ children, color, style }) {
   const colors = {
-    rose: { bg: T.rose + "22", text: T.rose },
-    champagne: { bg: T.gold + "22", text: T.gold },
+    rose: { bg: "#B76E7922", text: "#B76E79" },
+    champagne: { bg: "#B76E7922", text: "#B76E79" },
     success: { bg: T.success + "22", text: T.success },
     danger: { bg: T.rose + "22", text: T.rose },
     muted: { bg: "#0a0800", text: T.textMuted },
