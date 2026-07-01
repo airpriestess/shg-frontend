@@ -8,18 +8,18 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
 
   return (
     <div style={{ padding: "28px 24px", overflowY: "auto", height: "100%", maxWidth: 680, margin: "0 auto" }} className="mob-pb fade">
-      <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>Vault Settings</h1>
-      <p style={{ fontSize: 15, color: T.textMuted, marginBottom: 28 }}>Your account, subscription, and storage.</p>
+      <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 700, color: "#e8e0d0", marginBottom: 6 }}>Vault Settings</h1>
+      <p style={{ fontSize: 15, color: "#5a4a2a", marginBottom: 28 }}>Your account, subscription, and storage.</p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         {/* Account */}
         <Card style={{ padding: "22px 22px" }}>
           <Label style={{ marginBottom: 14 }}>Account</Label>
-          <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 4 }}>{USER.name}</div>
-          <div style={{ fontSize: 14, color: T.textMuted, marginBottom: 16 }}>{USER.email}</div>
+          <div style={{ fontSize: 17, fontWeight: 700, color: "#e8e0d0", marginBottom: 4 }}>{USER.name}</div>
+          <div style={{ fontSize: 14, color: "#5a4a2a", marginBottom: 16 }}>{USER.email}</div>
           <div style={{ fontSize: 11, color: T.rose, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 4 }}>Plan</div>
-          <div style={{ fontSize: 16, fontWeight: 700, color: T.champagne, marginBottom: 14 }}>{planLabel}</div>
-          <div style={{ fontSize: 14, color: T.textFaint, lineHeight: 1.7, marginBottom: 18 }}>No refunds after 14 days · Cancel before renewal date</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: T.gold, marginBottom: 14 }}>{planLabel}</div>
+          <div style={{ fontSize: 14, color: "#2a1e08", lineHeight: 1.7, marginBottom: 18 }}>No refunds after 14 days · Cancel before renewal date</div>
           <Btn size="sm" variant="ghost" onClick={() => {}}>Manage billing ↗</Btn>
         </Card>
 
@@ -27,13 +27,13 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
         <Card style={{ padding: "22px 22px" }}>
           <Label style={{ marginBottom: 14 }}>Evidence Vault Storage</Label>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-            <span style={{ fontSize: 15, fontWeight: 600, color: T.textSecondary }}>Used</span>
-            <span style={{ fontSize: 14, color: T.textMuted }}>{USER.storageUsedMb} MB / {limit.toLocaleString()} MB</span>
+            <span style={{ fontSize: 15, fontWeight: 600, color: "#c8a870" }}>Used</span>
+            <span style={{ fontSize: 14, color: "#5a4a2a" }}>{USER.storageUsedMb} MB / {limit.toLocaleString()} MB</span>
           </div>
           <ProgressBar value={USER.storageUsedMb} max={limit} height={7} />
           <div style={{ display: "flex", gap: 18, marginTop: 14 }}>
-            <span style={{ fontSize: 13, color: T.textMuted }}>📷 {STORAGE.photoCount} photo proofs</span>
-            <span style={{ fontSize: 13, color: T.textMuted }}>🎙 {STORAGE.voiceCount} voice proofs</span>
+            <span style={{ fontSize: 13, color: "#5a4a2a" }}>📷 {STORAGE.photoCount} photo proofs</span>
+            <span style={{ fontSize: 13, color: "#5a4a2a" }}>🎙 {STORAGE.voiceCount} voice proofs</span>
           </div>
           {userTier !== "founder" && (
             <div style={{ marginTop: 16 }}><Btn size="sm" variant="ghost" onClick={onUpgrade}>Upgrade for more storage →</Btn></div>
@@ -50,9 +50,9 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
               { t: "SATs — State Akin to Sleep", b: "The most powerful state for reprogramming. At the edge of sleep, your critical conscious mind is offline. This is when the new self-concept installs deepest." },
               { t: "Headphones", b: "Required for binaural beats and bilateral EMDR tracks. Speakers work for subliminals only. Check the track description for guidance." },
             ].map((g, i) => (
-              <div key={i} style={{ background: "rgba(23,9,18,0.6)", borderRadius: 10, padding: 14, border: "1px solid rgba(215,185,130,0.08)" }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: T.champSoft, marginBottom: 6 }}>{g.t}</div>
-                <div style={{ fontSize: 13, color: T.textMuted, lineHeight: 1.7 }}>{g.b}</div>
+              <div key={i} style={{ background: "#060400", borderRadius: 10, padding: 14, border: "1px solid #1e1608" }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "#b07828", marginBottom: 6 }}>{g.t}</div>
+                <div style={{ fontSize: 13, color: "#5a4a2a", lineHeight: 1.7 }}>{g.b}</div>
               </div>
             ))}
           </div>
@@ -62,8 +62,8 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
         {userTier === "audio" && (
           <Card premium style={{ padding: "22px 22px" }} onClick={onUpgrade}>
             <div style={{ fontSize: 12, color: T.rose, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8 }}>Upgrade</div>
-            <div style={{ fontSize: 18, fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>Goddess Tier — €33/month</div>
-            <div style={{ fontSize: 14, color: T.textMuted, marginBottom: 16 }}>Deeper audios · 5 GB storage · ProofOS full access</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: "#e8e0d0", marginBottom: 6 }}>Goddess Tier — €33/month</div>
+            <div style={{ fontSize: 14, color: "#5a4a2a", marginBottom: 16 }}>Deeper audios · 5 GB storage · ProofOS full access</div>
             <Btn size="sm" variant="champagne">Unlock Goddess Vault</Btn>
           </Card>
         )}
@@ -71,7 +71,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
         {/* Install */}
         <Card style={{ padding: "22px 22px" }}>
           <Label style={{ marginBottom: 10 }}>Install the App</Label>
-          <div style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.85 }}>
+          <div style={{ fontSize: 14, color: "#5a4a2a", lineHeight: 1.85 }}>
             iPhone: tap Share → "Add to Home Screen"<br />
             Android: tap Menu → "Add to Home Screen"<br />
             Plays in background like Spotify when screen is locked<br />
@@ -82,12 +82,12 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
         {/* Social */}
         <div style={{ display: "flex", gap: 12 }}>
           {[["YouTube", "https://www.youtube.com/@Reshma.Oracle"], ["Instagram", "https://www.instagram.com/reshma.oracle/"]].map(([l, u]) => (
-            <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ flex: 1, padding: 16, background: T.cardBg, border: T.border, borderRadius: 12, color: T.textMuted, fontSize: 14, textAlign: "center", textDecoration: "none" }}>{l} ↗</a>
+            <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ flex: 1, padding: 16, background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, color: "#5a4a2a", fontSize: 14, textAlign: "center", textDecoration: "none" }}>{l} ↗</a>
           ))}
         </div>
 
         <Btn full variant="soft" onClick={onSignOut}>Sign out</Btn>
-        <div style={{ fontSize: 12, color: T.textFaint, textAlign: "center" }}>© 2026 Reshma Oracle · Self Hypnosis Goddess</div>
+        <div style={{ fontSize: 12, color: "#2a1e08", textAlign: "center" }}>© 2026 Reshma Oracle · Self Hypnosis Goddess</div>
       </div>
     </div>
   );
