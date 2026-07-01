@@ -280,19 +280,25 @@ function Landing({ onJoin, onProofOS, onDemo }) {
             })}
           </div>
 
-          <div style={{ fontSize: 11, letterSpacing: "0.35em", textTransform: "uppercase", color: C.muted, marginBottom: 20, fontWeight: 600 }}>Reshma Oracle · Self Hypnosis Goddess</div>
-
-          {/* PAIN POINT HERO */}
-          <h1 className="wm" style={{ fontSize: "clamp(36px,7vw,64px)", lineHeight: 1.1, marginBottom: 20, color: C.text }}>
-            You've tried everything.<br />
-            <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing worked.</span><br />
-            Because you were trying to change<br />your reality without changing<br />your identity first.
+          {/* TITLE FIRST */}
+          <h1 className="wm" style={{ fontSize: "clamp(32px,6vw,56px)", lineHeight: 1.1, marginBottom: 10, color: C.text }}>
+            Self Hypnosis Goddess<br />
+            <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Audio Library</span>
           </h1>
+          <div style={{ fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", color: C.muted, marginBottom: 28, fontWeight: 600 }}>Reshma Oracle · Self Hypnosis + Subliminals · Not on YouTube</div>
 
-          <p style={{ fontSize: "clamp(16px,2.5vw,20px)", color: "#8a7a5a", lineHeight: 1.85, marginBottom: 10, maxWidth: 560, margin: "0 auto 10px" }}>
-            The woman who already has what you want thinks differently. Feels differently. Acts differently. Moves through the world from a completely different consciousness. These audios install that consciousness while you sleep. You wake up embodying her — not performing her.
+          {/* PAIN POINT — smaller, full width */}
+          <p style={{ fontSize: "clamp(15px,2vw,17px)", color: "#7a6a4a", lineHeight: 1.9, marginBottom: 8, maxWidth: "100%" }}>
+            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked.
+            Because you were trying to change your reality without first reprogramming your subconscious mind.
+            Your subconscious is what decides what you attract, how you feel, what you believe you deserve.
+            Until it shifts — nothing outside of you shifts.
           </p>
-          <p style={{ fontSize: 15, color: C.muted, marginBottom: 36 }}>Self hypnosis and subliminal audio tracks. Not on YouTube. No ads. Real voice.</p>
+          <p style={{ fontSize: "clamp(15px,2vw,17px)", color: "#8a7a5a", lineHeight: 1.9, marginBottom: 10, maxWidth: "100%" }}>
+            These audios go directly to the subconscious. While you sleep. While you rest.
+            You wake up with certainty — not hope. With identity — not effort. With a subconscious that is already programmed for what you want.
+          </p>
+          <p style={{ fontSize: 14, color: C.muted, marginBottom: 36 }}>Self hypnosis · Subliminals · Frequency audio · Not on YouTube · No ads · Real voice</p>
 
           {/* FREE TRACK */}
           <div style={{ background: "#0a0800", border: `1px solid ${C.gold}55`, borderRadius: 18, padding: "22px 24px", maxWidth: 440, margin: "0 auto 36px", boxShadow: `0 0 40px ${C.gold}11` }}>
@@ -322,16 +328,42 @@ function Landing({ onJoin, onProofOS, onDemo }) {
         </div>
       </div>
 
+      {/* SLIDING CATEGORY CARDS */}
+      <div style={{ overflow: "hidden", padding: "0 0 0 20px", marginBottom: 0 }}>
+        <div style={{ display: "flex", gap: 12, animation: "slide 30s linear infinite", width: "max-content" }}>
+          {[
+            { label: "Lovemaxxing", text: "He texts. He comes back. He's obsessed.", color: C.rose },
+            { label: "Moneymaxxing", text: "Unexpected income. Overflow. Always.", color: "#b87a20" },
+            { label: "Beautymaxxing", text: "Your face card is permanently active.", color: C.gold },
+            { label: "Lifemaxxing", text: "Highest timeline. Parallel reality. Now.", color: "#9a7a5a" },
+            { label: "DNA Shifting", text: "Your bloodline remembers who you are.", color: "#8a6ad0" },
+            { label: "Sleep Shifting", text: "You shift while you sleep. Wake up as her.", color: "#5a7ab0" },
+            { label: "Lovemaxxing", text: "He texts. He comes back. He's obsessed.", color: C.rose },
+            { label: "Moneymaxxing", text: "Unexpected income. Overflow. Always.", color: "#b87a20" },
+            { label: "Beautymaxxing", text: "Your face card is permanently active.", color: C.gold },
+            { label: "Lifemaxxing", text: "Highest timeline. Parallel reality. Now.", color: "#9a7a5a" },
+            { label: "DNA Shifting", text: "Your bloodline remembers who you are.", color: "#8a6ad0" },
+            { label: "Sleep Shifting", text: "You shift while you sleep. Wake up as her.", color: "#5a7ab0" },
+          ].map((c, i) => (
+            <div key={i} style={{ background: C.card, border: `1px solid ${c.color}44`, borderRadius: 14, padding: "18px 24px", minWidth: 220, flexShrink: 0 }}>
+              <div style={{ fontSize: 11, color: c.color, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8 }}>{c.label}</div>
+              <div style={{ fontSize: 14, color: C.text2, lineHeight: 1.5 }}>{c.text}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}`}</style>
+
       {/* THE IDENTITY SHIFT — what this actually does */}
       <div style={{ padding: "80px 20px", maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 11, color: C.muted, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12 }}>How this actually works</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: C.text, lineHeight: 1.2, marginBottom: 16 }}>
-            Desire is not manifestation.<br />
-            <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Certainty is.</span>
+            Your subconscious creates<br />
+            <span style={{ background: `linear-gradient(90deg,${C.gold},${C.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>your entire reality.</span>
           </h2>
           <p style={{ fontSize: 17, color: "#8a7a5a", lineHeight: 1.85, maxWidth: 620, margin: "0 auto" }}>
-            The version of you that already has what she wants doesn't obsess, wait, or beg. She moves differently. Thinks differently. Acts from a completely different identity — and that identity creates a completely different reality. These audios install that identity while you sleep.
+            Your subconscious mind controls 95% of your thoughts, beliefs, and behaviours. It decides what you attract. What you believe you deserve. How you feel about yourself. Affirmations do not reach it. Willpower does not reach it. These audios do — directly, during rest, at the deepest level of programming. When the subconscious shifts, everything shifts.
           </p>
         </div>
 
@@ -342,12 +374,12 @@ function Landing({ onJoin, onProofOS, onDemo }) {
             <div style={{ fontSize: 12, color: "#6a3535", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>The old identity</div>
             <div className="wm" style={{ fontSize: 22, color: "#7a5050", marginBottom: 20 }}>The one that keeps attracting the same reality</div>
             {[
-              "Checking his profile 12 times a day",
-              "Manifesting from desperation and lack",
-              "Picking your face apart every morning",
-              "Scripting and seeing nothing change",
-              "Taking actions from fear and scarcity",
-              "Doubting everything the moment it doesn't arrive instantly",
+              "Your subconscious is wired for lack and waiting",
+              "Attracting from fear — your subconscious broadcasts scarcity",
+              "Your subconscious identity says: not enough",
+              "Conscious effort cannot override subconscious belief",
+              "Your nervous system is stuck in the old pattern",
+              "The subconscious reverts you back to what it knows",
             ].map((t, i) => (
               <div key={i} style={{ display: "flex", gap: 10, marginBottom: 12, alignItems: "flex-start" }}>
                 <span style={{ color: "#5a2525", fontSize: 14, flexShrink: 0 }}>✗</span>
@@ -360,12 +392,12 @@ function Landing({ onJoin, onProofOS, onDemo }) {
             <div style={{ fontSize: 12, color: C.gold, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>The new identity</div>
             <div className="wm" style={{ fontSize: 22, color: C.text2, marginBottom: 20 }}>The one that creates a completely different reality</div>
             {[
-              "Wake up with knowing. Not hope. Knowing.",
-              "Moving from certainty — it's already done",
-              "Seeing yourself the way others see you after",
-              "Taking actions your highest self naturally takes",
-              "Guided by intuition — not desperation",
-              "Every sign confirms what you already know is true",
+              "Your subconscious is reprogrammed for receiving",
+              "You wake up with certainty — it is already done",
+              "Your subconscious identity says: I am this",
+              "You attract from wholeness — not desperation",
+              "Your nervous system is calm. Signs arrive naturally",
+              "The subconscious that has it all — installed while you slept",
             ].map((t, i) => (
               <div key={i} style={{ display: "flex", gap: 10, marginBottom: 12, alignItems: "flex-start" }}>
                 <span style={{ color: C.gold, fontSize: 14, flexShrink: 0 }}>✦</span>
