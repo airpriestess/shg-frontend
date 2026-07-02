@@ -204,12 +204,11 @@ function Landing({ onJoin, onDemo }) {
 
   // Comparison section heading explanation is added in JSX below
   const compRows = [
-    { old: "You script and see nothing change", neu: "Your subconscious is already running the new program" },
-    { old: "You desire it and it stays out of reach", neu: "You assume it — and reality mirrors the assumption" },
-    { old: "You affirm what you don't believe", neu: "The subconscious installs what the conscious cannot reach" },
-    { old: "You feel desperate. You push it away.", neu: "You know it. Certainty replaces desire." },
-    { old: "You doubt the moment it doesn't appear", neu: "You trust the timing. It is already in motion." },
-    { old: "Your self-concept says: not enough", neu: "Your identity says: of course. Down to DNA level." },
+    { old: "I have to work hard to receive money.", neu: "Money found me without effort.", proof: "€2,000 refund arrived out of nowhere. Day 6.", cat: "Money" },
+    { old: "He has moved on. I need to accept it.", neu: "He is already on his way back.", proof: "He texted first after 3 weeks of silence. Day 9.", cat: "SP & Love" },
+    { old: "I don't feel beautiful unless someone tells me.", neu: "I feel gorgeous from the inside. The mirror confirmed it.", proof: "Woke up and felt it before I even looked. Day 4.", cat: "Beauty" },
+    { old: "I've tried everything — scripting, affirmations, vision boards. Nothing sticks.", neu: "I stopped trying. The subconscious installed it while I slept.", proof: "Stopped forcing it. It arrived anyway.", cat: "Identity" },
+    { old: "I've been visualising for months. Still waiting.", neu: "One listen changed how I felt about it. Then it moved.", proof: "Felt the shift after the first audio. Evidence followed.", cat: "Identity" },
   ];
 
   const faqs = [
@@ -348,13 +347,13 @@ function Landing({ onJoin, onDemo }) {
           <div style={{ background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 16, padding: "22px 24px", maxWidth: 520, margin: "0 auto 32px", textAlign: "left" }}>
             <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>What you get</div>
             <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, marginBottom: 16 }}>
-              Reshma's voice is the ritual. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
+              Guaranteed to feel a shift after one listen. Hypnosis. Subliminals. Three formats — melodic house, sleep, and vocals only — each designed for a different state of mind and time of day.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {[
-                "You listen.",
-                "You link the audio to a Proof Thread.",
-                "You capture the evidence life shows you next.",
+                "You listen. Your nervous system relaxes. Your subconscious opens.",
+                "You link the audio to a desire. You track what moves.",
+                "The evidence arrives. You log it in ProofOS. Your proof builds.",
               ].map((s, i) => (
                 <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#B76E79", fontWeight: 700, fontSize: 14, marginTop: 1, flexShrink: 0 }}>{i + 1}.</span>
@@ -560,13 +559,21 @@ function Landing({ onJoin, onDemo }) {
           </div>
           {compRows.map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 1 }}>
-              <div style={{ background: "#0a0900", padding: "20px 32px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
-                <span style={{ color: "#b09888", fontSize: 18, flexShrink: 0, marginTop: 3 }}>✗</span>
-                <span style={{ fontSize: 17, color: "#B76E79", lineHeight: 1.75 }}>{row.old}</span>
+              <div style={{ background: "#0a0900", padding: "18px 24px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
+                <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 6 }}>
+                  <span style={{ color: "#4a3030", fontSize: 16, flexShrink: 0, marginTop: 3 }}>✗</span>
+                  <span style={{ fontSize: 15, color: "#786860", lineHeight: 1.75 }}>{row.old}</span>
+                </div>
               </div>
-              <div style={{ background: "#0a0900", padding: "20px 32px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
-                <span style={{ color: T.champagne, fontSize: 18, flexShrink: 0, marginTop: 2 }}>✦</span>
-                <span style={{ fontSize: 17, color: T.textSecondary, lineHeight: 1.7 }}>{row.neu}</span>
+              <div style={{ background: "#0c0a06", padding: "18px 24px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0 }}>
+                <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
+                  <span style={{ color: T.champagne, fontSize: 16, flexShrink: 0, marginTop: 2 }}>✦</span>
+                  <span style={{ fontSize: 15, color: T.textPrimary, lineHeight: 1.7, fontWeight: 500 }}>{row.neu}</span>
+                </div>
+                <div style={{ fontSize: 12, color: T.roseGold, fontStyle: "italic", paddingLeft: 26, lineHeight: 1.6, marginBottom: 6 }}>"{row.proof}"</div>
+                <div style={{ paddingLeft: 26 }}>
+                  <span style={{ fontSize: 10, padding: "2px 8px", background: "#B76E7915", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.08em" }}>{row.cat}</span>
+                </div>
               </div>
             </div>
           ))}
@@ -886,6 +893,38 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
+
+      {/* TESTIMONIALS */}
+      <div style={{ padding: "0 24px 70px", maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>What people are saying</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15 }}>
+            They came for the audio.<br />
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>The proof arrived on its own.</span>
+          </h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 12 }}>
+          {[
+            { quote: "I listened on day 1 and cried because I felt something shift. By day 5 he texted. I didn't even look for it.", handle: "@manifestingwithme", cat: "SP & Love" },
+            { quote: "€1,800 came back to me as a refund I had forgotten about. Three days after starting Money Finds Me First.", handle: "@luckygirlenergy", cat: "Money" },
+            { quote: "I don't know how to explain it but I look the same and I feel completely different about my face. The glow is internal first.", handle: "@beautymaxxing_", cat: "Beauty" },
+            { quote: "I've tried every subliminal channel. This is the only one where I actually feel it working in real time. Reshma's voice does something.", handle: "@shiftingjournal", cat: "Identity" },
+            { quote: "Woke up knowing he was coming back. No logical reason. He called that afternoon.", handle: "@sp_manifest", cat: "SP & Love" },
+            { quote: "The sleep subliminal literally changed my dreams. I woke up feeling like money was already mine.", handle: "@goddessmindset__", cat: "Money" },
+          ].map((t, i) => (
+            <div key={i} style={{ background: "#0a0908", border: "1px solid #201e1c", borderRadius: 14, padding: "20px 18px", display: "flex", flexDirection: "column", gap: 12 }}>
+              <div style={{ fontSize: 22, color: "#B76E7944", lineHeight: 1 }}>"</div>
+              <p style={{ fontSize: 14, color: T.textSecondary, lineHeight: 1.8, fontStyle: "italic", flex: 1 }}>{t.quote}</p>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: 12, color: T.textFaint, fontWeight: 500 }}>{t.handle}</span>
+                <span style={{ fontSize: 10, padding: "2px 8px", background: "#B76E7915", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.08em" }}>{t.cat}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 16, fontSize: 12, color: T.textFaint }}>Screenshots from YouTube comments · Replace with real testimonials</div>
+      </div>
+
 {/* PRICING */}
       <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
@@ -894,7 +933,7 @@ function Landing({ onJoin, onDemo }) {
           <div style={{ display: "inline-flex", background: T.surfaceBase, border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
             {["monthly", "annual"].map(b => (
               <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? "linear-gradient(90deg,#d4a090,#B76E79)" : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
-                {b === "annual" ? "Annual — save 20%" : "Monthly"}
+                {b === "annual" ? "Annual — save €50" : "Monthly"}
               </button>
             ))}
           </div>
@@ -916,7 +955,7 @@ function Landing({ onJoin, onDemo }) {
               id: "goddess", name: "Goddess Tier", popular: true,
               price: billing === "monthly" ? "€33" : "€317",
               period: billing === "monthly" ? "/month" : "/year",
-              sub: billing === "annual" ? "€26.40/mo · 2 months free" : null,
+              sub: billing === "annual" ? "€33/mo · save €79 a year" : null,
               color: T.roseGold,
               features: ["Everything in Audio Tier", "ProofOS manifestation tracker ✦", "Log desires · link to audios · capture proof", "Early access — 48hrs before everyone", "Monthly ritual audio included", "Goddess community"],
               cta: "Become Goddess",
