@@ -358,7 +358,40 @@ function Landing({ onJoin, onDemo }) {
         </p>
       </div>
 
-      {/* SLIDING BANNER */}
+            {/* MELODIC HOUSE USP */}
+      <div style={{ padding: "0 24px 70px", maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ background: "#0a0900", border: "1px solid #C8A05033", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
+          {/* Background glow */}
+          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ fontSize: 11, color: "#C8A050", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Unique to Self Hypnosis Goddess</div>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", lineHeight: 1.15, marginBottom: 16, background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              Hypnosis layered beneath<br />melodic house music.
+            </h2>
+            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#8a7848", lineHeight: 1.85, marginBottom: 24, maxWidth: 580 }}>
+              Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
+            </p>
+            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#6a5830", lineHeight: 1.85, marginBottom: 28, maxWidth: 580 }}>
+              You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }} className="grid-3">
+              {[
+                { icon: "◈", title: "Music as frequency", body: "The melodic house tracks are selected to hold a specific energetic state throughout the session." },
+                { icon: "✦", title: "Deeper receptivity", body: "Music bypasses resistance. The body relaxes. The subconscious opens. Reshma's voice installs the new self-concept." },
+                { icon: "★", title: "Ritual, not content", body: "Listening is not consuming content. It is a daily practice. The music makes you want to return." },
+              ].map((c, i) => (
+                <div key={i} style={{ background: "#0d0c02", border: "1px solid #1e1a08", borderRadius: 14, padding: "18px 16px" }}>
+                  <div style={{ fontSize: 20, background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 10 }}>{c.icon}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: "#f4ead8", marginBottom: 8 }}>{c.title}</div>
+                  <div style={{ fontSize: 13, color: "#6a5830", lineHeight: 1.7 }}>{c.body}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+{/* SLIDING BANNER */}
       <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1608" }}>
         <div style={{ display: "flex", gap: 16, animation: "slide 32s linear infinite", width: "max-content", paddingTop: 36 }}>
           {[...cats, ...cats].map((c, i) => (
