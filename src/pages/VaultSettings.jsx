@@ -61,8 +61,8 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
           <Row label="Plan"  value={planLabel} />
           <Row label="Member since" value={USER.joinedAt} />
           <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
-            <Btn size="sm" variant="ghost" onClick={() => {}}>Manage billing ↗</Btn>
-            {userTier !== "founder" && <Btn size="sm" variant="ghost" onClick={() => {}}>Cancel subscription</Btn>}
+            <Btn size="sm" variant="ghost" onClick={() => window.open("https://billing.stripe.com/p/login/test_reshmaoracle", "_blank")}>Manage billing ↗</Btn>
+            {userTier !== "founder" && <Btn size="sm" variant="ghost" onClick={() => { if (window.confirm("To cancel your subscription, you will be taken to the billing portal. Your access continues until the end of your current billing period.")) window.open("https://billing.stripe.com/p/login/test_reshmaoracle", "_blank"); }}>Cancel subscription</Btn>}
           </div>
         </div>
 
@@ -91,14 +91,14 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
         <div style={{ background: "#0a0900", border: "1px solid #1e1a08", borderRadius: 14, padding: "22px 22px" }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>Listening Reminders</div>
           <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.75, marginBottom: 18 }}>
-            Reshma reminds you to listen at 8am and 9pm every day. Your subconscious is most receptive at the edges of sleep — morning and night.
+            Reshma reminds you to listen at 8am and 9pm every day. Works in Chrome and Edge on desktop and Android. On iPhone, add this app to your Home Screen first (tap Share → Add to Home Screen), then enable here.
           </p>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div>
               <div style={{ fontSize: 14, fontWeight: 600, color: T.textPrimary, marginBottom: 3 }}>
                 {remindersOn ? "Reminders on ✦" : "Daily reminders"}
               </div>
-              <div style={{ fontSize: 12, color: T.textMuted }}>8:00 am · 9:00 pm</div>
+              <div style={{ fontSize: 12, color: T.textMuted }}>8:00 am · 9:00 pm daily</div>
             </div>
             {notifStatus === "denied" ? (
               <div style={{ fontSize: 12, color: T.textMuted, maxWidth: 220, textAlign: "right", lineHeight: 1.6 }}>
