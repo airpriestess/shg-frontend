@@ -230,14 +230,14 @@ function Landing({ onJoin, onDemo }) {
   ];
 
   return (
-    <div style={{ background: "#000000", minHeight: "100vh" }}>
+    <div className="hypno-bg" style={{ background: "#000000", minHeight: "100vh" }}>
       <audio ref={audioRef} src={FREE_TRACK_URL} preload="none" />
 
       {/* ANNOUNCEMENT BANNER */}
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: "#000", letterSpacing: "0.04em" }}>
-            ✦ Founder Lifetime Access — €500 once. Price increases when the first 1,000 members join.
+            ✦ FOUNDER LIFETIME — €500 once · Price locks in forever · Only 1,000 spots
           </span>
           <button onClick={() => onJoin("founder")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
             Claim yours
@@ -250,7 +250,7 @@ function Landing({ onJoin, onDemo }) {
         <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
-          <button onClick={() => onJoin("audio")} style={{ padding: "10px 24px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.03em", boxShadow: "0 0 24px rgba(183,110,121,0.45)" }}>Join now ✦</button>
+          <button onClick={() => onJoin("audio")} style={{ padding: "11px 28px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.03em", boxShadow: "0 0 32px rgba(183,110,121,0.7), 0 0 64px rgba(183,110,121,0.3)" }}>Join now ✦</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 3 }}>
             {[0,1,2].map(i => <div key={i} style={{ width: 16, height: 1.5, background: T.textMuted }} />)}
           </button>
@@ -269,6 +269,13 @@ function Landing({ onJoin, onDemo }) {
       {/* HERO */}
       <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 110, overflow: "hidden" }}>
         <Rings count={5} />
+        {/* Dot grid overlay */}
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+          backgroundImage: "radial-gradient(circle, rgba(183,110,121,0.15) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
+        }} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "60px 24px 80px", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           {/* Soundwave */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
@@ -315,7 +322,18 @@ function Landing({ onJoin, onDemo }) {
           </div>
 
           {/* PAIN POINT */}
-                    {/* WHY THE AUDIO WORKS */}
+                    {/* HERO CTA BUTTONS */}
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.02em" }}>
+              Start listening ✦
+            </button>
+            <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 700, cursor: "pointer" }}>
+              Founder access →
+            </button>
+          </div>
+          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €14.99/mo · Goddess Tier €33/mo · Cancel anytime</div>
+
+          {/* WHY THE AUDIO WORKS */}
           <div style={{ background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 16, padding: "22px 24px", maxWidth: 520, margin: "0 auto 32px", textAlign: "left" }}>
             <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Why the audio works</div>
             <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, marginBottom: 16 }}>
