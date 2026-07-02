@@ -39,6 +39,29 @@ export const T = {
 };
 
 export const CSS = `
+/* ── MOBILE RESPONSIVE ─────────────────────────────────────── */
+html{-webkit-text-size-adjust:100%}
+*{-webkit-tap-highlight-color:transparent}
+.grid-2{grid-template-columns:1fr 1fr}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:600px){
+  .grid-2{grid-template-columns:1fr!important}
+  .grid-3{grid-template-columns:1fr 1fr!important}
+  .price-grid{grid-template-columns:1fr!important}
+  .hide-mobile{display:none!important}
+  .stack-mobile{flex-direction:column!important}
+  .full-mobile{width:100%!important;max-width:100%!important}
+  .pad-mobile{padding-left:16px!important;padding-right:16px!important}
+  .text-sm-mobile{font-size:13px!important}
+  .comp-row-mobile{grid-template-columns:1fr!important}
+  .comp-cell-mobile{border-right:none!important;border-bottom:1px solid #1e1a08!important}
+}
+
+/* ── ANIMATED MARQUEE ──────────────────────────────────────── */
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-track{display:flex;width:max-content;animation:marquee 18s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
