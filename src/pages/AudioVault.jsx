@@ -5,7 +5,7 @@ import { AUDIOS, PROOF_THREADS } from "../data/sample.js";
 
 const CAT_COLOR = {
   Money: "#C8A050", Beauty: "#C8956A", Love: "#C8956A",
-  Identity: "#c8a870", Sleep: "#6a8ad0", Body: "#C8A050",
+  Identity: "#d8c8a0", Sleep: "#6a8ad0", Body: "#C8A050",
 };
 
 const FORMAT_SHORT = {
@@ -20,7 +20,7 @@ const FORMAT_SHORT = {
 function AccessBadge({ audio, userTier }) {
   const canAccess = !audio.isLocked || userTier === "goddess" || userTier === "founder";
   if (userTier === "founder") return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8A05022", border: "1px solid #C8A05044", borderRadius: 20, color: "#C8A050", fontWeight: 700 }}>Founder</span>;
-  if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1e1c0a", border: "1px solid #504020", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
+  if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1e1c0a", border: "1px solid #a09070", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
   if (audio.isLocked && canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8956A22", border: "1px solid #C8956A44", borderRadius: 20, color: "#C8956A", fontWeight: 700 }}>Goddess</span>;
   return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8A05018", border: "1px solid #C8A05033", borderRadius: 20, color: "#C8A050", fontWeight: 700 }}>Audio Tier</span>;
 }
@@ -144,7 +144,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
 
 function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelect, onPlay, onCreateThread, onUpgrade }) {
   const linked = PROOF_THREADS.filter(t => t.linkedAudioId === a.id);
-  const catCol = CAT_COLOR[a.category] || "#c8a870";
+  const catCol = CAT_COLOR[a.category] || "#d8c8a0";
 
   return (
     <div onClick={onSelect} style={{
@@ -154,7 +154,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
       transition: "border-color 0.2s",
       opacity: a.isLocked && !canPlay ? 0.65 : 1,
     }}
-      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#504020")}
+      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#a09070")}
       onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1e1c0a")}
     >
       {/* Row 1 — title + access badge */}
@@ -224,7 +224,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
 function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, canPlay, onUpgrade }) {
   const linked = PROOF_THREADS.filter(t => t.linkedAudioId === a.id);
   const manifested = linked.filter(t => t.status === "Manifested");
-  const catCol = CAT_COLOR[a.category] || "#c8a870";
+  const catCol = CAT_COLOR[a.category] || "#d8c8a0";
 
   return (
     <div className="fade">
