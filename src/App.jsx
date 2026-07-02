@@ -337,8 +337,8 @@ function Landing({ onJoin, onDemo }) {
           </div>
 
           {/* HERO CTA BUTTONS */}
-          <div className="stack-mobile" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <button onClick={() => onJoin("audio")} className="full-mobile" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 700, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.06em" }}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 700, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.06em", width: "clamp(auto,100%,auto)" }}>
               START LISTENING ✦
             </button>
             <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
