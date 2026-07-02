@@ -43,8 +43,8 @@ export const CSS = `
 html{-webkit-text-size-adjust:100%}
 *{-webkit-tap-highlight-color:transparent}
 /* Desktop: full width, generous padding */
-.section-wrap{width:100%;padding-left:clamp(24px,5vw,80px);padding-right:clamp(24px,5vw,80px);box-sizing:border-box}
-.hero-wrap{width:100%;padding-left:clamp(24px,6vw,120px);padding-right:clamp(24px,6vw,120px);box-sizing:border-box;text-align:center}
+.section-wrap{width:100%;max-width:1320px;margin-left:auto;margin-right:auto;padding-left:clamp(24px,5vw,72px);padding-right:clamp(24px,5vw,72px);box-sizing:border-box}
+.hero-wrap{width:100%;max-width:1100px;margin-left:auto;margin-right:auto;padding-left:clamp(24px,6vw,80px);padding-right:clamp(24px,6vw,80px);box-sizing:border-box;text-align:center}
 .grid-2{grid-template-columns:1fr 1fr}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-4{grid-template-columns:1fr 40px 1fr 40px 1fr 40px 1fr}
