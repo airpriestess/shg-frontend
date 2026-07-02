@@ -351,24 +351,6 @@ function Landing({ onJoin, onDemo }) {
             These audios install the new self-concept passively — while you sleep, while you rest. No active effort. No conscious force. Just your subconscious, finally reprogrammed. Wake up knowing. Not hoping. Knowing. In that state, reality shows you the proof of what you already know.
           </p>
 
-          {/* FREE TRACK */}
-          <div style={{ background: "#0a0800", border: "1px solid #C8892A55", borderRadius: 18, padding: "24px 26px", maxWidth: 480, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(185,130,142,0.08)" }}>
-            <div style={{ fontSize: 11, color: T.champagne, letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>Audio Vault Preview</div>
-            <div style={{ fontSize: 17, fontWeight: 700, color: T.textSecondary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
-            <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Self hypnosis · Subconscious reprogramming</div>
-            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 50, height: 50, borderRadius: "50%", background: `linear-gradient(135deg,#C8892A,#B76E79)`, border: "none", color: "#fff", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{playing ? "⏸" : "▶"}</button>
-              <div style={{ flex: 1 }}>
-                <div style={{ height: 4, background: "rgba(215,185,130,0.1)", borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
-                  onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
-                  <div style={{ width:`${progress}%`, height:"100%", background:`linear-gradient(90deg,${T.champagne},${T.rose})`, borderRadius:2 }} />
-                </div>
-                <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — plays in background like Spotify ✦" : "Tap to preview"}</div>
-              </div>
-              {playing && <WaveForm playing color={T.champagne} />}
-            </div>
-          </div>
-
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
             <Btn variant="champagne" size="lg" onClick={() => onJoin("audio")}>Start your shift — €19/month</Btn>
             <Btn variant="ghost" size="lg" onClick={onDemo}>Preview the dashboard</Btn>
@@ -399,33 +381,6 @@ function Landing({ onJoin, onDemo }) {
           ))}
         </div>
       </div>
-
-      {/* FREE PREVIEW — second mention */}
-      <div style={{ padding: "0 24px 60px", maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 20, padding: "28px 32px" }}>
-          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 10 }}>Audio Vault Preview</div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>10 Years of Delay Into One Hour</div>
-          <div style={{ fontSize: 14, color: T.textMuted, marginBottom: 20, lineHeight: 1.6 }}>
-            Reshma's voice. EMDR. Binaural beats. Subconscious reprogramming.<br />
-            This is one audio from the vault. Press play.
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 16, maxWidth: 420, margin: "0 auto" }}>
-            <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 54, height: 54, borderRadius: "50%", background: "linear-gradient(135deg,#C8892A,#B76E79)", border: "none", color: "#000", fontSize: 22, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>{playing ? "⏸" : "▶"}</button>
-            <div style={{ flex: 1 }}>
-              <div style={{ height: 4, background: "#1e1608", borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
-                onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
-                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8892A,#B76E79)", borderRadius:2 }} />
-              </div>
-              <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — continues in background ✦" : "Tap to listen"}</div>
-            </div>
-            {playing && <WaveForm playing color="#B76E79" />}
-          </div>
-          <div style={{ marginTop: 20 }}>
-            <button onClick={() => onJoin("audio")} style={{ padding: "13px 32px", background: "linear-gradient(90deg,#C8892A,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 15, fontWeight: 700, cursor: "pointer" }}>Join to access the full vault</button>
-          </div>
-        </div>
-      </div>
-
 
       {/* SLIDING BANNER */}
       <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1608" }}>
