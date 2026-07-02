@@ -8,14 +8,14 @@ const sb = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MzIwMjAsImV4cCI6MjA5ODMwODAyMH0.FjfHRNOjnmbiYMjA9eKT1hexvwCN2ERtTyBOqY2cj-8"
 );
 
-const G = "linear-gradient(90deg,#C8A050,#C8956A)";
-const RG = "#C8956A";
+const G = "linear-gradient(90deg,#d4a090,#B76E79)";
+const RG = "#B76E79";
 
 const TYPE_LABEL = {
-  "Photo Proof":     { icon: "📷", color: "#C8956A" },
-  "Voice Proof":     { icon: "🎙", color: "#C8956A" },
-  "Sign":            { icon: "◈",  color: "#C8956A" },
-  "Synchronicity":   { icon: "✦",  color: "#C8956A" },
+  "Photo Proof":     { icon: "📷", color: "#B76E79" },
+  "Voice Proof":     { icon: "🎙", color: "#B76E79" },
+  "Sign":            { icon: "◈",  color: "#B76E79" },
+  "Synchronicity":   { icon: "✦",  color: "#B76E79" },
   "Final Manifestation": { icon: "★", color: "#4a9a5a" },
 };
 
@@ -138,7 +138,7 @@ export default function ProofWall({ onAddProof }) {
           {[
             { v: entries.length, l:"Total proof", c: RG },
             { v: photos.length,  l:"Photo proof", c: RG },
-            { v: voices.length,  l:"Voice notes", c:"#C8956A" },
+            { v: voices.length,  l:"Voice notes", c:"#B76E79" },
             { v: entries.filter(e=>e.type==="Final Manifestation").length, l:"Manifested", c:"#4a9a5a" },
           ].map((s,i) => (
             <div key={i} style={{ background:"#0c0b08", border:"1px solid #242014", borderRadius:12, padding:"14px 12px", textAlign:"center" }}>
@@ -156,7 +156,7 @@ export default function ProofWall({ onAddProof }) {
               {photos.map(entry => (
                 <div key={entry.id} onClick={() => setLightbox({ url:entry.photo_url, caption:entry.caption })}
                   style={{ background:"#0c0b08", border:"1px solid #242014", borderRadius:12, overflow:"hidden", cursor:"pointer", transition:"border-color 0.15s" }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = "#C8956A66"}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = "#B76E7966"}
                   onMouseLeave={e => e.currentTarget.style.borderColor = "#242014"}
                 >
                   <img src={entry.photo_url} alt={entry.caption || "Proof"} style={{ width:"100%", height:140, objectFit:"cover", display:"block" }}
@@ -175,10 +175,10 @@ export default function ProofWall({ onAddProof }) {
         {/* Voice notes */}
         {voices.length > 0 && (
           <div style={{ marginBottom:32 }}>
-            <div style={{ fontSize:11, color:"#C8956A", fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Voice Proof</div>
+            <div style={{ fontSize:11, color:"#B76E79", fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Voice Proof</div>
             <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
               {voices.map(entry => (
-                <div key={entry.id} style={{ background:"#0c0b08", border:"1px solid #C8956A33", borderRadius:14, padding:"14px 16px" }}>
+                <div key={entry.id} style={{ background:"#0c0b08", border:"1px solid #B76E7933", borderRadius:14, padding:"14px 16px" }}>
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:10 }}>
                     <div>
                       {entry.caption && <div style={{ fontSize:14, fontWeight:600, color:T.textPrimary, marginBottom:3 }}>{entry.caption}</div>}
@@ -200,8 +200,8 @@ export default function ProofWall({ onAddProof }) {
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:16 }}>
           {filters.map(f => (
             <button key={f} onClick={() => setFilter(f)} style={{
-              padding:"6px 14px", borderRadius:20, border:`1.5px solid ${filter===f ? "#C8956A88" : "#242014"}`,
-              background: filter===f ? "#C8956A18" : "transparent",
+              padding:"6px 14px", borderRadius:20, border:`1.5px solid ${filter===f ? "#B76E7988" : "#242014"}`,
+              background: filter===f ? "#B76E7918" : "transparent",
               color: filter===f ? RG : T.textMuted, fontSize:12, fontWeight:600, cursor:"pointer"
             }}>{f}</button>
           ))}
@@ -220,7 +220,7 @@ export default function ProofWall({ onAddProof }) {
 
         {error && (
           <div style={{ background:"#1a0a0a", border:"1px solid #C8906A44", borderRadius:12, padding:"16px 18px", marginBottom:16 }}>
-            <div style={{ fontSize:14, color:"#C8906A", marginBottom:6 }}>Could not load from vault</div>
+            <div style={{ fontSize:14, color:"#B76E79", marginBottom:6 }}>Could not load from vault</div>
             <div style={{ fontSize:13, color:T.textMuted, marginBottom:12 }}>{error}</div>
             <Btn size="sm" variant="ghost" onClick={loadEntries}>Retry</Btn>
           </div>
