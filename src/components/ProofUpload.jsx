@@ -177,11 +177,21 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
     setError(null);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mr = new MediaRecorder(stream, { mimeType: "audio/webm;codecs=opus" });
+      // Detect best supported MIME type across browsers
+      const mimeType = [
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/ogg;codecs=opus",
+        "audio/ogg",
+        "audio/mp4",
+        "",
+      ].find(m => m === "" || MediaRecorder.isTypeSupported(m));
+      const mr = new MediaRecorder(stream, mimeType ? { mimeType } : {});
       chunksRef.current = [];
       mr.ondataavailable = e => { if (e.data.size > 0) chunksRef.current.push(e.data); };
       mr.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: "audio/webm" });
+        const recordedMime = mr.mimeType || "audio/webm";
+        const blob = new Blob(chunksRef.current, { type: recordedMime });
         setAudioBlob(blob);
         setAudioUrl(URL.createObjectURL(blob));
         setState("recorded");
@@ -209,9 +219,10 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
     setState("uploading");
     setError(null);
     try {
-      const path = `proof/${threadId || "general"}/voice_${Date.now()}.webm`;
+      const ext = audioBlob.type.includes("ogg") ? "ogg" : audioBlob.type.includes("mp4") ? "mp4" : "webm";
+      const path = `proof/${threadId || "general"}/voice_${Date.now()}.${ext}`;
       const { error: upErr } = await sb.storage.from("proof-uploads").upload(path, audioBlob, {
-        contentType: "audio/webm",
+        contentType: audioBlob.type || "audio/webm",
         upsert: false,
       });
       if (upErr) throw upErr;
