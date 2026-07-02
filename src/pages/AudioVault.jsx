@@ -96,7 +96,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
             {cats.map(c => (
               <button key={c} onClick={() => setFilter(c)} style={{
                 padding: "7px 14px", borderRadius: 20, minHeight: 36,
-                border: `1.5px solid ${filter === c ? "#B76E7988" : "#1e1608"}`,
+                border: `1.5px solid ${filter === c ? "#C8956A88" : "#1e1608"}`,
                 background: filter === c ? "#C8956A18" : "transparent",
                 color: filter === c ? "#C8956A" : T.textMuted,
                 fontSize: 13, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
