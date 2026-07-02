@@ -63,7 +63,7 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
       <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {statuses.map(s => (
-            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? "#B76E7988" : "#1e1608"}`, background: filter === s ? "#C8956A18" : "transparent", color: filter === s ? "#C8956A" : T.textMuted, fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
+            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? "#C8956A88" : "#1e1608"}`, background: filter === s ? "#C8956A18" : "transparent", color: filter === s ? "#C8956A" : T.textMuted, fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
           ))}
         </div>
         <select value={sort} onChange={e => setSort(e.target.value)} style={{ maxWidth: 180 }}>
