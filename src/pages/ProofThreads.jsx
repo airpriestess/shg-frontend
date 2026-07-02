@@ -147,7 +147,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
 
       {/* MOOD BEFORE / AFTER CAPTURE */}
       <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 14, padding: "18px 20px", marginBottom: 16 }}>
-        <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>How are you feeling?</div>
+        <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>How are you feeling?</div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           <div>
             <div style={{ fontSize: 12, color: T.textFaint, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Before listening</div>
