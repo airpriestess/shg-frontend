@@ -212,7 +212,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                 <span style={{ fontSize: 12, color: RG, fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
               </div>
               <div style={{ height: 4, background: "#1a1a1a", borderRadius: 2, marginBottom: 10 }}>
-                <div style={{ width: `${storagePct}%`, height: "100%", background: `linear-gradient(90deg,${RG},#B76E79)`, borderRadius: 2 }} />
+                <div style={{ width: `${storagePct}%`, height: "100%", background: `linear-gradient(90deg,${RG},#C8956A)`, borderRadius: 2 }} />
               </div>
               <div style={{ display: "flex", gap: 16 }}>
                 <span style={{ fontSize: 11, color: "#444" }}>📷 {PROOF_THREADS.reduce((s,t) => s+(t.photoProofCount||0),0)} photos</span>
