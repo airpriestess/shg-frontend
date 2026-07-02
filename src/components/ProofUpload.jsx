@@ -141,7 +141,7 @@ export function PhotoProofModal({ open, onClose, threadId, audioTitle }) {
             />
           </FormField>
 
-          {error && <div style={{ fontSize: 13, color: "#C8956A", marginBottom: 12, padding: "8px 12px", background: "#C4365A11", borderRadius: 8 }}>{error}</div>}
+          {error && <div style={{ fontSize: 13, color: "#C8956A", marginBottom: 12, padding: "8px 12px", background: "#C8956A11", borderRadius: 8 }}>{error}</div>}
 
           <div style={{ display: "flex", gap: 10 }}>
             <Btn full variant="champagne" onClick={save} disabled={uploading || !file}>
@@ -293,7 +293,7 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
                   {[8,18,30,22,36,16,28,12,24,32,14,26,20,34,10].map((h, i) => (
                     <div key={i} style={{
                       width: 3, height: h, borderRadius: 2,
-                      background: "linear-gradient(180deg,#C8892A,#B76E79)",
+                      background: "linear-gradient(180deg,#C8A050,#C8956A)",
                       animation: `wave ${0.8 + (i % 5) * 0.15}s ease-in-out infinite alternate`,
                       opacity: 0.85,
                     }} />
@@ -324,7 +324,7 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
             </FormField>
           )}
 
-          {error && <div style={{ fontSize: 13, color: "#C8956A", marginBottom: 12, padding: "8px 12px", background: "#C4365A11", borderRadius: 8 }}>{error}</div>}
+          {error && <div style={{ fontSize: 13, color: "#C8956A", marginBottom: 12, padding: "8px 12px", background: "#C8956A11", borderRadius: 8 }}>{error}</div>}
 
           {(state === "recorded" || state === "uploading") && (
             <div style={{ display: "flex", gap: 10 }}>
