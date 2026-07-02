@@ -6,6 +6,7 @@ import ProofThreads from "./pages/ProofThreads.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import VaultSettings from "./pages/VaultSettings.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
+import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 
 const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3";
 
@@ -18,11 +19,12 @@ export default function App() {
   const [createThreadModal, setCreateThreadModal] = useState(false);
   const [preselectedAudioId, setPreselectedAudioId] = useState(null);
   const [addProofType, setAddProofType] = useState(null);
+  const [addProofThreadId, setAddProofThreadId] = useState(null);
   const [onboardTier, setOnboardTier] = useState("audio");
 
   const goPortal = (tier) => { if (tier) setUserTier(tier); setScreen("portal"); setPortalTab("dashboard"); };
   const openCreateThread = (audioId) => { setPreselectedAudioId(audioId || null); setCreateThreadModal(true); };
-  const openAddProof = (type) => setAddProofType(type);
+  const openAddProof = (type, threadId) => { setAddProofType(type); setAddProofThreadId(threadId || null); };
   const playAudio = (a) => { setCurrentAudio(a); setPlayingId(a.id); };
   const navigate = (tab) => setPortalTab(tab);
 
@@ -44,7 +46,24 @@ export default function App() {
         />
       )}
       <CreateThreadModal open={createThreadModal} onClose={() => setCreateThreadModal(false)} preselectedAudioId={preselectedAudioId} />
-      <AddProofModal type={addProofType} onClose={() => setAddProofType(null)} />
+      <PhotoProofModal
+        open={addProofType === "Photo Proof"}
+        onClose={() => { setAddProofType(null); setAddProofThreadId(null); }}
+        threadId={addProofThreadId}
+        audioTitle={currentAudio?.title}
+      />
+      <VoiceProofModal
+        open={addProofType === "Voice Proof"}
+        onClose={() => { setAddProofType(null); setAddProofThreadId(null); }}
+        threadId={addProofThreadId}
+        audioTitle={currentAudio?.title}
+      />
+      <SignModal
+        open={addProofType === "Sign" || addProofType === "Symptom" || addProofType === "Synchronicity"}
+        type={addProofType}
+        onClose={() => { setAddProofType(null); setAddProofThreadId(null); }}
+        threadId={addProofThreadId}
+      />
     </>
   );
 }
@@ -138,53 +157,6 @@ function ArchivePage() {
 }
 
 /* ── ADD PROOF MODAL (quick capture) ──────────────────────────────────────── */
-function AddProofModal({ type, onClose }) {
-  const [val, setVal] = useState("");
-  const suggestions = { Sign: ["Saw a number sequence", "Someone mentioned it unexpectedly", "Dreamed about it", "Felt calm certainty", "Received a surprise message", "Overheard a relevant conversation"], Synchronicity: ["His name appeared three times", "Same number sequence all day", "The exact thing I wanted appeared", "A stranger confirmed my intention"], Symptom: ["Body felt warm and calm", "Chest felt open and certain", "Sudden peace for no reason", "Tingling after the audio"] };
-
-  if (!type) return null;
-  if (type === "Photo Proof") return (
-    <Modal open title="Add Photo Proof" onClose={onClose} width={500}>
-      <div>
-        <div style={{ border: "2px dashed rgba(215,185,130,0.2)", borderRadius: 12, padding: "32px 20px", textAlign: "center", marginBottom: 16, cursor: "pointer", background: "rgba(23,9,18,0.4)" }} onClick={() => document.getElementById("qp-upload").click()}>
-          <input id="qp-upload" type="file" accept=".jpg,.jpeg,.png,.webp,.heic" style={{ display: "none" }} />
-          <div style={{ fontSize: 32, marginBottom: 8 }}>📷</div>
-          <div style={{ fontSize: 14, color: T.textMuted }}>Tap to upload photo proof</div>
-          <div style={{ fontSize: 12, color: T.textFaint, marginTop: 4 }}>JPG · PNG · WEBP · HEIC</div>
-        </div>
-        <FormField label="What does this prove?"><input placeholder="Bank notification arrived · He texted · Skin shifted..." /></FormField>
-        <div style={{ display: "flex", gap: 10 }}><Btn full variant="champagne" onClick={onClose}>Save Photo Proof</Btn><Btn variant="soft" onClick={onClose}>Cancel</Btn></div>
-      </div>
-    </Modal>
-  );
-  if (type === "Voice Proof") return (
-    <Modal open title="Record Voice Proof" onClose={onClose} width={480}>
-      <div style={{ textAlign: "center", padding: "28px 20px", background: "rgba(23,9,18,0.6)", borderRadius: 14, marginBottom: 20 }}>
-        <div style={{ fontSize: 40, marginBottom: 12 }}>🎙</div>
-        <div style={{ fontSize: 14, color: T.textMuted, marginBottom: 16 }}>How does it feel? What shifted? Speak it out.</div>
-        <Btn variant="primary" onClick={onClose}>● Start Recording</Btn>
-      </div>
-      <Btn full variant="soft" onClick={onClose}>Cancel</Btn>
-    </Modal>
-  );
-  return (
-    <Modal open title={`Log ${type}`} onClose={onClose} width={460}>
-      <FormField label="What did you notice?">
-        <input value={val} onChange={e => setVal(e.target.value)} placeholder="Describe it..." autoFocus onKeyDown={e => e.key === "Enter" && onClose()} />
-      </FormField>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
-        {(suggestions[type] || []).map((s, i) => (
-          <button key={i} onClick={() => setVal(s)} style={{ padding: "5px 12px", background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 20, color: T.textMuted, fontSize: 12, cursor: "pointer" }}>{s}</button>
-        ))}
-      </div>
-      <div style={{ display: "flex", gap: 10 }}>
-        <Btn full variant="champagne" onClick={onClose} disabled={!val.trim()}>Log {type}</Btn>
-        <Btn variant="soft" onClick={onClose}>Cancel</Btn>
-      </div>
-    </Modal>
-  );
-}
-
 /* ── LANDING PAGE ─────────────────────────────────────────────────────────── */
 function Landing({ onJoin, onDemo }) {
   const [playing, setPlaying] = useState(false);
