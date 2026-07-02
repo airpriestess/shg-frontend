@@ -43,10 +43,10 @@ export default function App() {
     <>
       <style>{CSS}</style>
       {screen === "landing" && <Landing onJoin={(t) => {
-          if (t === "audio") window.open("https://buy.stripe.com/AUDIO_PLAN_LINK", "_blank");
-          else if (t === "goddess") window.open("https://buy.stripe.com/GODDESS_PLAN_LINK", "_blank");
-          else if (t === "founder") window.open("https://buy.stripe.com/LIFETIME_PLAN_LINK", "_blank");
-          else window.open("https://buy.stripe.com/AUDIO_PLAN_LINK", "_blank");
+          if (t === "audio") window.open("https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00", "_blank");
+          else if (t === "goddess") window.open("https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01", "_blank");
+          else if (t === "founder") window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02", "_blank");
+          else window.open("https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00", "_blank");
         }} onDemo={() => goPortal("goddess")} />}
       {screen === "portal" && (
         <AppShell
@@ -243,7 +243,7 @@ function Landing({ onJoin, onDemo }) {
           <span style={{ fontSize: 12, fontWeight: 300, color: "#000", letterSpacing: "0.12em" }}>
             ✦ &nbsp; EARLY BIRD LIFETIME ACCESS &nbsp;·&nbsp; €500 once, forever &nbsp;·&nbsp; 1,000 spots only
           </span>
-          <button onClick={() => window.open("https://buy.stripe.com/LIFETIME_PLAN_LINK", "_blank")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
+          <button onClick={() => window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02", "_blank")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
             Claim yours
           </button>
         </div>
@@ -357,9 +357,9 @@ function Landing({ onJoin, onDemo }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16 }}>
           {[
-            { label: "Audio Tier", price: "€19", period: "/month", desc: "Full vault. All categories. New tracks weekly.", cta: "Start listening →", stripe: "https://buy.stripe.com/AUDIO_PLAN_LINK", popular: false },
-            { label: "Goddess Tier", price: "€33", period: "/month", desc: "Everything in Audio + ProofOS manifestation tracker.", cta: "Become Goddess →", stripe: "https://buy.stripe.com/GODDESS_PLAN_LINK", popular: true },
-            { label: "Early Bird Lifetime", price: "€500", period: "once · forever", desc: "Full vault + ProofOS + every future feature. 1,000 spots.", cta: "Claim Early Bird Access →", stripe: "https://buy.stripe.com/LIFETIME_PLAN_LINK", popular: false },
+            { label: "Audio Tier", price: "€19", period: "/month", desc: "Full vault. All categories. New tracks weekly.", cta: "Start listening →", stripe: "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00", popular: false },
+            { label: "Goddess Tier", price: "€33", period: "/month", desc: "Everything in Audio + ProofOS manifestation tracker.", cta: "Become Goddess →", stripe: "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01", popular: true },
+            { label: "Early Bird Lifetime", price: "€500", period: "once · forever", desc: "Full vault + ProofOS + every future feature. 1,000 spots.", cta: "Claim Early Bird Access →", stripe: "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02", popular: false },
           ].map((p, i) => (
             <div key={i} style={{ background: p.popular ? "#0f0c0a" : "#0a0908", border: p.popular ? "2px solid #B76E7966" : "1px solid #201e1c", borderRadius: 18, padding: "28px 24px", position: "relative" }}>
               {p.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#d4a090,#B76E79)", borderRadius: 20, padding: "3px 16px", fontSize: 11, fontWeight: 800, color: "#000", whiteSpace: "nowrap" }}>Most popular</div>}
