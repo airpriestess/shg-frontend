@@ -6,7 +6,7 @@ import { PROOF_THREADS, AUDIOS, USER } from "../data/sample.js";
 const RG = "#C8A050"; // rose gold — single accent
 
 const STATUS_LABEL = {
-  "Active": { label: "Active", color: "#c8a870" },
+  "Active": { label: "Active", color: "#d8c8a0" },
   "Evidence Appearing": { label: "Evidence", color: RG },
   "Manifested": { label: "Manifested", color: "#4a9a5a" },
   "Paused": { label: "Paused", color: "#555" },
