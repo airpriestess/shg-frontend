@@ -1,8 +1,7 @@
-/* ── PUSH NOTIFICATION SETUP ─────────────────────────────────────────────────
-   Browser push notifications for morning + evening listening reminders.
-   Uses the Web Notifications API — works on desktop Chrome/Firefox/Edge.
-   Safari/iOS requires PWA installation (Add to Home Screen).
-   Call setupNotifications() once after user logs in.
+/* ── PUSH NOTIFICATION REMINDERS ─────────────────────────────────────────────
+   Morning (8am) and evening (9pm) listening reminders.
+   Works on desktop Chrome/Firefox/Edge.
+   On iPhone: user must Add to Home Screen first (PWA requirement).
 ──────────────────────────────────────────────────────────────────────────────*/
 
 export async function requestNotificationPermission() {
@@ -13,71 +12,58 @@ export async function requestNotificationPermission() {
   return result;
 }
 
-export function scheduleListeningReminders() {
+function msUntilNext(hour, minute = 0) {
+  const now = new Date();
+  const target = new Date();
+  target.setHours(hour, minute, 0, 0);
+  if (target <= now) target.setDate(target.getDate() + 1);
+  return target.getTime() - now.getTime();
+}
+
+function fireNotification(title, body) {
+  try {
+    const n = new Notification(title, {
+      body,
+      icon: "/favicon.ico",
+      tag: "shg-reminder",
+      renotify: true,
+      requireInteraction: false,
+    });
+    n.onclick = () => { window.focus(); n.close(); };
+    setTimeout(() => n.close(), 9000);
+  } catch (e) { console.warn("Notification:", e); }
+}
+
+export function scheduleReminders() {
   if (!("Notification" in window)) return;
   if (Notification.permission !== "granted") return;
 
-  // Clear any existing scheduled reminders
-  const existingMorning = localStorage.getItem("shg_morning_timer");
-  const existingEvening = localStorage.getItem("shg_evening_timer");
-  if (existingMorning) clearTimeout(parseInt(existingMorning));
-  if (existingEvening) clearTimeout(parseInt(existingEvening));
+  // Clear any previous timers
+  const prev = JSON.parse(localStorage.getItem("shg_timers") || "[]");
+  prev.forEach(id => clearTimeout(id));
 
-  function msUntil(hour, minute = 0) {
-    const now = new Date();
-    const target = new Date();
-    target.setHours(hour, minute, 0, 0);
-    if (target <= now) target.setDate(target.getDate() + 1);
-    return target.getTime() - now.getTime();
-  }
-
-  function showReminder(title, body) {
-    try {
-      const n = new Notification(title, {
-        body,
-        icon: "/favicon.ico",
-        badge: "/favicon.ico",
-        tag: "shg-reminder",
-        renotify: true,
-        requireInteraction: false,
-      });
-      n.onclick = () => { window.focus(); n.close(); };
-      setTimeout(() => n.close(), 8000);
-    } catch (e) {
-      console.log("Notification error:", e);
-    }
-  }
-
-  // Morning — 8am
-  const morningMs = msUntil(8, 0);
-  const morningTimer = setTimeout(() => {
-    showReminder(
+  const morningId = setTimeout(function fire() {
+    fireNotification(
       "Good morning ✦ Your vault is waiting",
-      "Start your day with 20 minutes of Self Hypnosis. Your subconscious is most receptive in the morning."
+      "Start your day with Reshma's voice. Open your Audio Vault."
     );
-    // Reschedule for next day
-    scheduleListeningReminders();
-  }, morningMs);
-  localStorage.setItem("shg_morning_timer", morningTimer.toString());
+    setTimeout(fire, 24 * 60 * 60 * 1000); // repeat daily
+  }, msUntilNext(8, 0));
 
-  // Evening — 9pm
-  const eveningMs = msUntil(21, 0);
-  const eveningTimer = setTimeout(() => {
-    showReminder(
+  const eveningId = setTimeout(function fire() {
+    fireNotification(
       "Evening ritual ✦ Self Hypnosis Goddess",
-      "Listen before sleep. Your subconscious works through the night. Open your vault."
+      "Listen before sleep. Your subconscious works through the night."
     );
-  }, eveningMs);
-  localStorage.setItem("shg_evening_timer", eveningTimer.toString());
+    setTimeout(fire, 24 * 60 * 60 * 1000); // repeat daily
+  }, msUntilNext(21, 0));
 
-  console.log(`Reminders scheduled: morning in ${Math.round(morningMs/60000)}min, evening in ${Math.round(eveningMs/60000)}min`);
+  localStorage.setItem("shg_timers", JSON.stringify([morningId, eveningId]));
+  console.log("SHG reminders scheduled: 8am + 9pm daily");
 }
 
 export function cancelReminders() {
-  const m = localStorage.getItem("shg_morning_timer");
-  const e = localStorage.getItem("shg_evening_timer");
-  if (m) clearTimeout(parseInt(m));
-  if (e) clearTimeout(parseInt(e));
-  localStorage.removeItem("shg_morning_timer");
-  localStorage.removeItem("shg_evening_timer");
+  const prev = JSON.parse(localStorage.getItem("shg_timers") || "[]");
+  prev.forEach(id => clearTimeout(id));
+  localStorage.removeItem("shg_timers");
 }
