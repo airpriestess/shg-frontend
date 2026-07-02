@@ -1,348 +1,313 @@
+import { useState } from "react";
 import { T } from "../design/tokens.js";
-import { Btn, Card, Pill, ProgressBar, Label } from "../components/UI.jsx";
+import { Btn } from "../components/UI.jsx";
 import { PROOF_THREADS, AUDIOS, USER } from "../data/sample.js";
 
-const STATUS_COLOR = {
-  "Active": T.textMuted,
-  "Evidence Appearing": "#C8892A",
-  "Manifested": "#4a9a5a",
-  "Paused": T.textMuted,
+const RG = "#C8892A"; // rose gold — single accent
+
+const STATUS_LABEL = {
+  "Active": { label: "Active", color: "#9a8060" },
+  "Evidence Appearing": { label: "Evidence", color: RG },
+  "Manifested": { label: "Manifested", color: "#4a9a5a" },
+  "Paused": { label: "Paused", color: "#555" },
 };
 
-// Photo proof placeholder — gradient box with label
-function PhotoPlaceholder({ label, color = "#C8892A", size = 56, icon = "📷", radius = 8 }) {
+const TIMELINE = [
+  { day: "Day 1", event: "First listen",     detail: "Money Finds Me First — Proof Thread opened.",             icon: "🎧", photo: false },
+  { day: "Day 2", event: "Voice proof",      detail: "I felt calmer and more certain after listening.",          icon: "🎙", photo: false },
+  { day: "Day 3", event: "Sign noticed",     detail: "Saw 555 three times. A phrase from the audio appeared.",  icon: "◈",  photo: false },
+  { day: "Day 5", event: "Photo proof",      detail: "Bank notification screenshot captured.",                   icon: "📷", photo: true  },
+  { day: "Day 8", event: "Manifested ★",    detail: "€5,000 received. Thread closed.",                          icon: "★",  photo: true  },
+];
+
+const RECENT_PROOF = [
+  { icon: "💰", label: "Bank Notification",  thread: "I receive €5,000 unexpectedly",   date: "Jul 1"  },
+  { icon: "💬", label: "Message Screenshot", thread: "He sends me a loving message",     date: "Jun 30" },
+  { icon: "🪞", label: "Mirror Photo",       thread: "My skin looks clear and luminous", date: "Jun 29" },
+  { icon: "555",label: "Angel Number",       thread: "I receive €5,000 unexpectedly",   date: "Jun 27" },
+  { icon: "📧", label: "Email Confirmation", thread: "He sends me a loving message",     date: "Jun 26" },
+  { icon: "📅", label: "Calendar Invite",    thread: "I receive €5,000 unexpectedly",   date: "Jun 25" },
+];
+
+// ── Small stat number card ────────────────────────────────────────────────────
+function StatCard({ value, label }) {
   return (
-    <div style={{
-      width: size, height: size, borderRadius: radius, flexShrink: 0,
-      background: `linear-gradient(135deg, ${color}18, ${color}08)`,
-      border: `1px solid ${color}33`,
-      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-      fontSize: size > 48 ? 20 : 14,
-    }}>
-      {icon}
+    <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
+      <div style={{ fontSize: 32, fontWeight: 800, color: RG, lineHeight: 1, marginBottom: 6 }}>{value}</div>
+      <div style={{ fontSize: 11, color: "#555", letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
     </div>
   );
 }
 
-// Proof type to icon + color
-const PROOF_META = {
-  "Photo Proof":        { icon: "📷", color: "#C8892A", label: "Photo Proof" },
-  "Voice Proof":        { icon: "🎙", color: "#B76E79", label: "Voice Proof" },
-  "Sign":               { icon: "◈",  color: "#C8892A", label: "Sign" },
-  "Symptom":            { icon: "◉",  color: "#B76E79", label: "Symptom" },
-  "Synchronicity":      { icon: "✦",  color: "#C8892A", label: "Synchronicity" },
-  "Partial Proof":      { icon: "◐",  color: "#9a8060", label: "Partial Proof" },
-  "Final Manifestation":{ icon: "★",  color: "#4a9a5a", label: "Final Proof" },
-};
+// ── Section heading ───────────────────────────────────────────────────────────
+function SectionHead({ children, action, onAction }) {
+  return (
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+      <div style={{ fontSize: 11, color: RG, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>{children}</div>
+      {action && <button onClick={onAction} style={{ background: "none", border: "none", color: "#444", fontSize: 12, cursor: "pointer" }}>{action} →</button>}
+    </div>
+  );
+}
 
-// Static photo proof cards for the recent grid
-const PHOTO_PROOF_CARDS = [
-  { id: "p1", type: "Photo Proof", icon: "💰", color: "#C8892A", label: "Bank Notification",  audio: "Money Finds Me First",          thread: "I receive €5,000 unexpectedly",      date: "2026-07-01" },
-  { id: "p2", type: "Photo Proof", icon: "💬", color: "#B76E79", label: "Message Screenshot", audio: "He Is Already On His Way Back",   thread: "He sends me a loving message",       date: "2026-06-30" },
-  { id: "p3", type: "Photo Proof", icon: "🪞", color: "#B76E79", label: "Mirror Photo",        audio: "Gorgeous Is My Default Setting",  thread: "My skin looks clear and luminous",    date: "2026-06-29" },
-  { id: "p4", type: "Sign",        icon: "555", color: "#C8892A", label: "Angel Number",       audio: "Money Finds Me First",          thread: "I receive €5,000 unexpectedly",      date: "2026-06-27" },
-  { id: "p5", type: "Photo Proof", icon: "📧", color: "#9a8060", label: "Email Confirmation",  audio: "I Wake Up Chosen",               thread: "He sends me a loving message",       date: "2026-06-26" },
-  { id: "p6", type: "Photo Proof", icon: "📅", color: "#6a8ad0", label: "Calendar Invite",     audio: "I Have Always Been The Prize",   thread: "I receive €5,000 unexpectedly",      date: "2026-06-25" },
-];
-
-// Timeline of listening results
-const TIMELINE = [
-  { day: "Day 1", event: "First listen",        detail: "Audio linked to Proof Thread — Money Finds Me First",     type: "audio",  icon: "🎧", hasPhoto: false },
-  { day: "Day 2", event: "Voice proof added",   detail: "I felt calmer and more certain about money after listening.", type: "voice",  icon: "🎙", hasPhoto: false },
-  { day: "Day 3", event: "Sign noticed",         detail: "Saw 555 three times. A phrase from the audio appeared in real life.", type: "sign",   icon: "◈", hasPhoto: false },
-  { day: "Day 5", event: "Photo proof added",    detail: "Screenshot of bank notification captured and linked.",   type: "photo",  icon: "📷", hasPhoto: true },
-  { day: "Day 8", event: "Final proof",          detail: "€5,000 received. Manifestation marked complete.",        type: "final",  icon: "★",  hasPhoto: true },
-];
+// ── Tab switcher (Member / User Types / User Trends style) ───────────────────
+function Tabs({ tabs, active, onChange }) {
+  return (
+    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid #1a1a1a", marginBottom: 20 }}>
+      {tabs.map(t => (
+        <button key={t} onClick={() => onChange(t)} style={{
+          padding: "10px 18px", background: "none", border: "none",
+          color: active === t ? T.textPrimary : "#444",
+          fontSize: 13, fontWeight: active === t ? 700 : 400, cursor: "pointer",
+          borderBottom: active === t ? `2px solid ${RG}` : "2px solid transparent",
+          marginBottom: -1, transition: "color 0.15s",
+        }}>{t}</button>
+      ))}
+    </div>
+  );
+}
 
 export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateThread }) {
-  const activeThreads = PROOF_THREADS.filter(t => t.status !== "Manifested");
-  const manifested    = PROOF_THREADS.filter(t => t.status === "Manifested");
-  const currentAudio  = AUDIOS.find(a => a.lastListenedAt === "2026-07-01");
-  const currentThread = PROOF_THREADS.find(t => t.linkedAudioId === currentAudio?.id && t.status !== "Manifested");
+  const [activeTab, setActiveTab] = useState("Overview");
 
-  const totalIntentions  = PROOF_THREADS.length;
-  const manifestedCount  = manifested.length;
-  const avgDays = manifestedCount > 0
-    ? Math.round(manifested.reduce((s, t) => s + (t.daysActive || 0), 0) / manifestedCount)
-    : null;
-  const manifestedRate = totalIntentions > 0 ? Math.round((manifestedCount / totalIntentions) * 100) : 0;
-  const storageLimit   = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
-  const storagePct     = Math.round((USER.storageUsedMb / storageLimit) * 100);
+  const manifested   = PROOF_THREADS.filter(t => t.status === "Manifested");
+  const active       = PROOF_THREADS.filter(t => t.status !== "Manifested");
+  const currentAudio = AUDIOS.find(a => a.lastListenedAt === "2026-07-01");
+  const currentThread = PROOF_THREADS.find(t => t.linkedAudioId === currentAudio?.id && t.status !== "Manifested");
+  const avgDays      = manifested.length ? Math.round(manifested.reduce((s, t) => s + t.daysActive, 0) / manifested.length) : null;
+  const rate         = PROOF_THREADS.length ? Math.round((manifested.length / PROOF_THREADS.length) * 100) : 0;
+  const storageLimit = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
+  const storagePct   = Math.round((USER.storageUsedMb / storageLimit) * 100);
 
   return (
-    <div style={{ padding: "24px 20px", overflowY: "auto", height: "100%", maxWidth: 900, margin: "0 auto" }} className="mob-pb fade">
+    <div style={{ height: "100%", overflowY: "auto", background: "#000", color: T.textPrimary }} className="mob-pb">
+      <div style={{ maxWidth: 880, margin: "0 auto", padding: "28px 24px" }}>
 
-      {/* ① CURRENT RITUAL ─────────────────────────────────────────────────── */}
-      <div style={{ marginBottom: 10 }}>
-        <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10 }}>Welcome back, {USER.name}</div>
-        <h1 style={{ fontSize: "clamp(19px,3vw,26px)", fontWeight: 700, color: T.textPrimary, marginBottom: 16, lineHeight: 1.3 }}>Your proof is building.</h1>
-      </div>
+        {/* ── PAGE HEADER ── */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
+          <div>
+            <div style={{ fontSize: 11, color: RG, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 8 }}>ProofOS</div>
+            <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 800, color: T.textPrimary, margin: 0, lineHeight: 1.2 }}>
+              {USER.name}'s Vault
+            </h1>
+          </div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <Btn size="sm" variant="champagne" onClick={() => onAddProof("Photo Proof")}>📷 Add Proof</Btn>
+            <Btn size="sm" variant="ghost" onClick={onCreateThread}>+ Intention</Btn>
+          </div>
+        </div>
 
-      {currentAudio && (
-        <div style={{ background: "#0f0b02", border: "1.5px solid #C8892A44", borderRadius: 16, padding: "18px 20px", marginBottom: 20 }}>
-          <div style={{ fontSize: 11, color: "#C8892A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Current Ritual</div>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
-            {/* Audio artwork placeholder */}
-            <div style={{ width: 56, height: 56, borderRadius: 10, background: "linear-gradient(135deg,#C8892A22,#B76E7922)", border: "1px solid #C8892A44", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🎧</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: T.textPrimary, marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
-              {currentThread && (
-                <div style={{ fontSize: 13, color: "#C8892A", marginBottom: 8, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>🧵 {currentThread.intentionTitle}</div>
-              )}
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-                <span style={{ fontSize: 12, color: T.textMuted }}>🔥 {USER.listeningStreak} day streak</span>
-                <span style={{ fontSize: 12, color: T.textMuted }}>Last: {currentAudio.lastListenedAt}</span>
-                {currentThread && (
-                  <div style={{ display: "flex", gap: 4 }}>
-                    {[...Array(currentThread.photoProofCount)].map((_, i) => (
-                      <div key={i} style={{ width: 24, height: 24, borderRadius: 4, background: "#C8892A18", border: "1px solid #C8892A33", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10 }}>📷</div>
-                    ))}
-                  </div>
+        {/* ── TABS ── */}
+        <Tabs tabs={["Overview", "Proof Threads", "Timeline"]} active={activeTab} onChange={setActiveTab} />
+
+        {activeTab === "Overview" && (
+          <>
+            {/* ── STATS ROW ── */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10, marginBottom: 24 }} className="grid-4">
+              <StatCard value={PROOF_THREADS.length} label="Intentions" />
+              <StatCard value={manifested.length}    label="Manifested" />
+              <StatCard value={avgDays ? `${avgDays}d` : "—"} label="Avg Days" />
+              <StatCard value={`${rate}%`}           label="Rate" />
+            </div>
+
+            {/* ── CURRENT RITUAL + PHOTO PROOF side by side ── */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 24 }} className="grid-2">
+
+              {/* Current Ritual */}
+              <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 16, padding: "20px" }}>
+                <SectionHead>Current Ritual</SectionHead>
+                {currentAudio ? (
+                  <>
+                    <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 14 }}>
+                      <div style={{ width: 52, height: 52, borderRadius: 10, background: `${RG}18`, border: `1px solid ${RG}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🎧</div>
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: 14, fontWeight: 700, color: T.textPrimary, marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
+                        {currentThread && <div style={{ fontSize: 12, color: RG, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>🧵 {currentThread.intentionTitle}</div>}
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", gap: 10 }}>
+                        <span style={{ fontSize: 12, color: "#555" }}>🔥 {USER.listeningStreak}d streak</span>
+                        <span style={{ fontSize: 12, color: "#555" }}>{currentAudio.lastListenedAt}</span>
+                      </div>
+                      <Btn size="sm" variant="primary" onClick={() => onNavigate("audio-vault")}>▶ Resume</Btn>
+                    </div>
+                  </>
+                ) : (
+                  <div style={{ fontSize: 13, color: "#444", padding: "20px 0" }}>No active ritual. Start an audio to begin.</div>
                 )}
               </div>
+
+              {/* Quick Capture */}
+              <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 16, padding: "20px" }}>
+                <SectionHead>Quick Capture</SectionHead>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {[
+                    { label: "📷 Add Photo Proof",    type: "Photo Proof",   primary: true },
+                    { label: "🎙 Record Voice Proof",  type: "Voice Proof" },
+                    { label: "◈ Log Sign",             type: "Sign" },
+                  ].map((a, i) => (
+                    <button key={i} onClick={() => onAddProof(a.type)} style={{
+                      padding: "11px 14px", borderRadius: 10, textAlign: "left",
+                      background: a.primary ? `${RG}18` : "transparent",
+                      border: `1px solid ${a.primary ? RG + "44" : "#1a1a1a"}`,
+                      color: a.primary ? RG : "#666", fontSize: 13, fontWeight: 600,
+                      cursor: "pointer", transition: "all 0.15s",
+                    }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = RG + "66"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = a.primary ? RG + "44" : "#1a1a1a"}
+                    >{a.label}</button>
+                  ))}
+                </div>
+              </div>
             </div>
-            <Btn size="sm" variant="primary" onClick={() => onNavigate("audio-vault")}>▶ Resume</Btn>
-          </div>
-        </div>
-      )}
 
-      {/* Quick Capture */}
-      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 24 }}>
-        <Btn size="sm" variant="champagne" onClick={() => onAddProof("Photo Proof")}>📷 Add Photo Proof</Btn>
-        <Btn size="sm" variant="ghost"     onClick={() => onAddProof("Voice Proof")}>🎙 Record Voice Proof</Btn>
-        <Btn size="sm" variant="ghost"     onClick={() => onAddProof("Sign")}>◈ Log Sign</Btn>
-        <Btn size="sm" variant="ghost"     onClick={onCreateThread}>+ New Intention</Btn>
-      </div>
-
-      {/* ② RESULTS TIMELINE ────────────────────────────────────────────────── */}
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-          <div>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 4 }}>Results Timeline</div>
-            <div style={{ fontSize: 13, color: T.textMuted }}>First listen to final manifestation.</div>
-          </div>
-        </div>
-        <div style={{ position: "relative" }}>
-          {/* Vertical line */}
-          <div style={{ position: "absolute", top: 20, bottom: 20, left: 20, width: 1, background: "linear-gradient(180deg,#C8892A44,#B76E7944,#C8892A22)", zIndex: 0 }} />
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            {TIMELINE.map((item, i) => {
-              const col = item.type === "final" ? "#4a9a5a" : item.type === "photo" ? "#C8892A" : item.type === "voice" ? "#B76E79" : "#C8892A";
-              return (
-                <div key={i} style={{ display: "flex", gap: 14, padding: "12px 0", position: "relative", zIndex: 1 }}>
-                  {/* Node */}
-                  <div style={{ width: 40, flexShrink: 0, display: "flex", justifyContent: "center", paddingTop: 2 }}>
-                    <div style={{ width: 26, height: 26, borderRadius: "50%", background: col + "22", border: `1.5px solid ${col}66`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>{item.icon}</div>
+            {/* ── RECENT PHOTO PROOF GRID ── */}
+            <div style={{ marginBottom: 24 }}>
+              <SectionHead action="View all" onAction={() => onNavigate("proof-threads")}>Recent Photo Proof</SectionHead>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }} className="grid-3">
+                {RECENT_PROOF.map((p, i) => (
+                  <div key={i} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = "#1a1a1a"}
+                  >
+                    <div style={{ height: 68, background: `${RG}0e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, borderBottom: "1px solid #1a1a1a" }}>{p.icon}</div>
+                    <div style={{ padding: "10px 12px" }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: RG, marginBottom: 2 }}>{p.label}</div>
+                      <div style={{ fontSize: 11, color: "#444", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
+                      <div style={{ fontSize: 10, color: "#333" }}>{p.date}</div>
+                    </div>
                   </div>
-                  {/* Content */}
-                  <div style={{ flex: 1, background: "#0a0800", border: `1px solid ${col}33`, borderRadius: 12, padding: "12px 14px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 4 }}>
-                      <div>
-                        <span style={{ fontSize: 11, color: col, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{item.day}</span>
-                        <span style={{ fontSize: 11, color: T.textFaint, marginLeft: 8 }}>· {item.event}</span>
-                      </div>
-                      {item.hasPhoto && (
-                        <div style={{ width: 36, height: 36, borderRadius: 6, background: col + "18", border: `1px solid ${col}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, flexShrink: 0 }}>
-                          {item.type === "final" ? "★" : "📷"}
+                ))}
+              </div>
+            </div>
+
+            {/* ── MANIFESTED THIS MONTH ── */}
+            {manifested.length > 0 && (
+              <div style={{ marginBottom: 24 }}>
+                <SectionHead action="Archive" onAction={() => onNavigate("archive")}>Manifested</SectionHead>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {manifested.map(t => (
+                    <div key={t.id} style={{ background: "#0d0d0d", border: "1px solid #1a3a1a", borderRadius: 12, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: T.textPrimary, marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.intentionTitle}</div>
+                        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                          <span style={{ fontSize: 12, color: "#555" }}>🎧 {t.linkedAudioTitle}</span>
+                          <span style={{ fontSize: 12, color: "#555" }}>{t.daysActive}d</span>
+                          {[...Array(Math.min(t.photoProofCount, 3))].map((_, i) => (
+                            <div key={i} style={{ width: 22, height: 22, borderRadius: 4, background: "#4a9a5a18", border: "1px solid #4a9a5a33", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10 }}>📷</div>
+                          ))}
                         </div>
-                      )}
-                    </div>
-                    <div style={{ fontSize: 13, color: T.textMuted, lineHeight: 1.55 }}>{item.detail}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* ③ RECENT PHOTO PROOF ──────────────────────────────────────────────── */}
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Recent Photo Proof</div>
-          <button onClick={() => onNavigate("proof-threads")} style={{ background: "none", border: "none", color: "#C8892A", fontSize: 13, cursor: "pointer" }}>View all →</button>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }} className="grid-3">
-          {PHOTO_PROOF_CARDS.map(p => (
-            <div key={p.id} style={{ background: "#0a0800", border: `1px solid ${p.color}33`, borderRadius: 12, overflow: "hidden" }}>
-              {/* Photo placeholder */}
-              <div style={{ height: 72, background: `linear-gradient(135deg, ${p.color}18, ${p.color}08)`, display: "flex", alignItems: "center", justifyContent: "center", borderBottom: `1px solid ${p.color}22` }}>
-                <span style={{ fontSize: 28 }}>{p.icon}</span>
-              </div>
-              <div style={{ padding: "10px 12px" }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: p.color, marginBottom: 3 }}>{p.label}</div>
-                <div style={{ fontSize: 11, color: T.textFaint, marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
-                <div style={{ fontSize: 10, color: T.textFaint }}>{p.date}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ④ ACTIVE PROOF THREADS ────────────────────────────────────────────── */}
-      {activeThreads.length > 0 && (
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Active Proof Threads</div>
-            <button onClick={() => onNavigate("proof-threads")} style={{ background: "none", border: "none", color: "#C8892A", fontSize: 13, cursor: "pointer" }}>Open →</button>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {activeThreads.map(t => {
-              const sc = STATUS_COLOR[t.status] || T.textMuted;
-              const photos = t.photoProofCount || 0;
-              const voices = t.voiceProofCount || 0;
-              return (
-                <div key={t.id} style={{ background: "#0a0800", border: `1px solid ${sc}33`, borderRadius: 14, padding: "14px 16px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 700, color: T.textPrimary, marginBottom: 4, lineHeight: 1.3 }}>{t.intentionTitle}</div>
-                      <div style={{ fontSize: 12, color: "#C8892A" }}>🎧 {t.linkedAudioTitle}</div>
-                    </div>
-                    <div style={{ textAlign: "right", flexShrink: 0 }}>
-                      <div style={{ fontSize: 11, color: sc, fontWeight: 700 }}>{t.status}</div>
-                      <div style={{ fontSize: 11, color: T.textFaint }}>{t.daysActive}d</div>
-                    </div>
-                  </div>
-
-                  {/* Proof evidence row */}
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
-                    <div style={{ display: "flex", gap: 4 }}>
-                      {[...Array(Math.min(photos, 3))].map((_, i) => (
-                        <div key={i} style={{ width: 32, height: 32, borderRadius: 6, background: "#C8892A18", border: "1px solid #C8892A33", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14 }}>📷</div>
-                      ))}
-                      {photos > 3 && <div style={{ width: 32, height: 32, borderRadius: 6, background: "#1e1608", border: "1px solid #2a1e08", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: T.textMuted }}>+{photos - 3}</div>}
-                    </div>
-                    {voices > 0 && <span style={{ fontSize: 12, color: "#B76E79" }}>🎙 {voices}</span>}
-                    {t.signCount > 0 && <span style={{ fontSize: 12, color: "#C8892A" }}>◈ {t.signCount} signs</span>}
-                    {t.mood_before && t.mood_after && (
-                      <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
-                        <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1608", borderRadius: 20, color: T.textFaint }}>{t.mood_before}</span>
-                        <span style={{ fontSize: 10, color: T.textFaint }}>→</span>
-                        <span style={{ fontSize: 10, padding: "2px 7px", background: "#C8892A18", border: "1px solid #C8892A33", borderRadius: 20, color: "#C8892A" }}>{t.mood_after}</span>
                       </div>
-                    )}
-                  </div>
-
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <Btn size="sm" variant="ghost" onClick={() => onNavigate("proof-threads")}>Open Thread</Btn>
-                    <Btn size="sm" variant="champagne" onClick={() => onAddProof("Photo Proof")}>📷 Add Proof</Btn>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* ⑤ RECENT VOICE PROOF ──────────────────────────────────────────────── */}
-      {(() => {
-        const voiceEntries = PROOF_THREADS.flatMap(t =>
-          (t.entries || []).filter(e => e.type === "Voice Proof").map(e => ({ ...e, audioTitle: t.linkedAudioTitle, threadTitle: t.intentionTitle }))
-        ).slice(0, 3);
-        if (voiceEntries.length === 0) return null;
-        return (
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Recent Voice Proof</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {voiceEntries.map(e => (
-                <div key={e.id} style={{ background: "#0a0800", border: "1px solid #B76E7933", borderRadius: 12, padding: "12px 14px", display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 8, background: "#B76E7918", border: "1px solid #B76E7944", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>🎙</div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: T.textPrimary, marginBottom: 3 }}>{e.title}</div>
-                    <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.description}</div>
-                    <div style={{ fontSize: 11, color: T.textFaint }}>🎧 {e.audioTitle} · Day {e.dayNumber}</div>
-                  </div>
-                  {/* Waveform visual */}
-                  <div style={{ display: "flex", gap: 2, alignItems: "center", flexShrink: 0 }}>
-                    {[5, 12, 18, 8, 14, 10, 16, 7].map((h, j) => (
-                      <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "#B76E79", opacity: 0.6 }} />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      })()}
-
-      {/* ⑥ MANIFESTED THIS MONTH ─────────────────────────────────────────── */}
-      {manifested.length > 0 && (
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Manifested This Month</div>
-            <button onClick={() => onNavigate("archive")} style={{ background: "none", border: "none", color: "#C8892A", fontSize: 13, cursor: "pointer" }}>Archive →</button>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {manifested.map(t => (
-              <div key={t.id} style={{ background: "#0a1a0a", border: "1px solid #2a4a2a55", borderRadius: 12, padding: "14px 16px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: T.textPrimary, marginBottom: 3, lineHeight: 1.3 }}>{t.intentionTitle}</div>
-                    <div style={{ fontSize: 12, color: "#C8892A" }}>🎧 {t.linkedAudioTitle} · {t.daysActive} days</div>
-                  </div>
-                  <div style={{ fontSize: 20, color: "#4a9a5a", flexShrink: 0 }}>★</div>
-                </div>
-                {/* Final proof photo placeholder */}
-                <div style={{ display: "flex", gap: 6 }}>
-                  {[...Array(Math.min(t.photoProofCount, 4))].map((_, i) => (
-                    <div key={i} style={{ width: 40, height: 40, borderRadius: 6, background: "#4a9a5a18", border: "1px solid #4a9a5a44", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>
-                      {i === 0 ? "📷" : i === 1 ? "💰" : i === 2 ? "✉️" : "🪞"}
+                      <div style={{ fontSize: 20, color: "#4a9a5a" }}>★</div>
                     </div>
                   ))}
-                  {t.mood_before && t.mood_after && (
-                    <div style={{ display: "flex", gap: 4, alignItems: "center", marginLeft: 4 }}>
-                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1608", borderRadius: 20, color: T.textFaint }}>{t.mood_before}</span>
-                      <span style={{ fontSize: 10, color: T.textFaint }}>→</span>
-                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#4a9a5a18", border: "1px solid #4a9a5a44", borderRadius: 20, color: "#4a9a5a" }}>{t.mood_after}</span>
-                    </div>
-                  )}
                 </div>
               </div>
-            ))}
+            )}
+
+            {/* ── STORAGE ── */}
+            <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "16px 18px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+                <span style={{ fontSize: 12, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em" }}>Storage</span>
+                <span style={{ fontSize: 12, color: RG, fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
+              </div>
+              <div style={{ height: 4, background: "#1a1a1a", borderRadius: 2, marginBottom: 10 }}>
+                <div style={{ width: `${storagePct}%`, height: "100%", background: `linear-gradient(90deg,${RG},#B76E79)`, borderRadius: 2 }} />
+              </div>
+              <div style={{ display: "flex", gap: 16 }}>
+                <span style={{ fontSize: 11, color: "#444" }}>📷 {PROOF_THREADS.reduce((s,t) => s+(t.photoProofCount||0),0)} photos</span>
+                <span style={{ fontSize: 11, color: "#444" }}>🎙 {PROOF_THREADS.reduce((s,t) => s+(t.voiceProofCount||0),0)} voice notes</span>
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === "Proof Threads" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {PROOF_THREADS.map(t => {
+              const sc = STATUS_LABEL[t.status] || { label: t.status, color: "#555" };
+              return (
+                <div key={t.id} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "18px 20px",
+                  transition: "border-color 0.15s", cursor: "pointer" }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "#1a1a1a"}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 15, fontWeight: 700, color: T.textPrimary, marginBottom: 4, lineHeight: 1.3 }}>{t.intentionTitle}</div>
+                      <div style={{ fontSize: 12, color: RG }}>🎧 {t.linkedAudioTitle}</div>
+                    </div>
+                    <div style={{ textAlign: "right", flexShrink: 0 }}>
+                      <div style={{ fontSize: 11, color: sc.color, fontWeight: 700, marginBottom: 3 }}>{sc.label}</div>
+                      <div style={{ fontSize: 11, color: "#444" }}>{t.daysActive}d</div>
+                    </div>
+                  </div>
+                  {/* Photo thumbnails */}
+                  <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 12 }}>
+                    {[...Array(Math.min(t.photoProofCount||0, 4))].map((_, i) => (
+                      <div key={i} style={{ width: 30, height: 30, borderRadius: 6, background: `${RG}14`, border: `1px solid ${RG}2a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>📷</div>
+                    ))}
+                    {(t.photoProofCount||0) > 4 && <span style={{ fontSize: 11, color: "#444" }}>+{t.photoProofCount-4}</span>}
+                    {(t.voiceProofCount||0) > 0 && <span style={{ fontSize: 12, color: "#555", marginLeft: 4 }}>🎙 {t.voiceProofCount}</span>}
+                    {(t.signCount||0) > 0 && <span style={{ fontSize: 12, color: "#555" }}>◈ {t.signCount}</span>}
+                  </div>
+                  {t.mood_before && t.mood_after && (
+                    <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 12 }}>
+                      <span style={{ fontSize: 11, padding: "2px 8px", background: "#111", border: "1px solid #222", borderRadius: 20, color: "#555" }}>{t.mood_before}</span>
+                      <span style={{ fontSize: 11, color: "#333" }}>→</span>
+                      <span style={{ fontSize: 11, padding: "2px 8px", background: `${RG}14`, border: `1px solid ${RG}2a`, borderRadius: 20, color: RG }}>{t.mood_after}</span>
+                    </div>
+                  )}
+                  <div style={{ display: "flex", gap: 8 }}>
+                    <Btn size="sm" variant="ghost" onClick={() => onNavigate("proof-threads")}>Open Thread</Btn>
+                    <Btn size="sm" variant="champagne" onClick={() => onAddProof("Photo Proof", t.id)}>📷 Add Proof</Btn>
+                  </div>
+                </div>
+              );
+            })}
+            <Btn variant="ghost" full onClick={onCreateThread}>+ New Intention</Btn>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* ⑦ STATS + STORAGE ──────────────────────────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 20 }} className="grid-2">
-        {[
-          { v: totalIntentions, l: "Intentions logged", c: "#C8892A" },
-          { v: manifestedCount, l: "Manifested",        c: "#4a9a5a" },
-          { v: avgDays ? `${avgDays}d` : "—", l: "Avg days",     c: "#C8892A" },
-          { v: `${manifestedRate}%`, l: "Rate",          c: "#B76E79" },
-        ].map((s, i) => (
-          <div key={i} style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, padding: "14px", textAlign: "center" }}>
-            <div style={{ fontSize: 28, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 4 }}>{s.v}</div>
-            <div style={{ fontSize: 11, color: T.textMuted }}>{s.l}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Storage */}
-      <div style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, padding: "14px 18px", marginBottom: 20 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-          <span style={{ fontSize: 13, color: T.textMuted }}>Storage Usage</span>
-          <span style={{ fontSize: 13, fontWeight: 700, color: "#C8892A" }}>{USER.storageUsedMb} MB of {storageLimit} MB</span>
-        </div>
-        <div style={{ height: 5, background: "#1e1608", borderRadius: 3, marginBottom: 8 }}>
-          <div style={{ width: `${storagePct}%`, height: "100%", background: "linear-gradient(90deg,#C8892A,#B76E79)", borderRadius: 3 }} />
-        </div>
-        <div style={{ display: "flex", gap: 14 }}>
-          <span style={{ fontSize: 12, color: T.textFaint }}>📷 {PROOF_THREADS.reduce((s, t) => s + (t.photoProofCount || 0), 0)} photo proof</span>
-          <span style={{ fontSize: 12, color: T.textFaint }}>🎙 {PROOF_THREADS.reduce((s, t) => s + (t.voiceProofCount || 0), 0)} voice proof</span>
-        </div>
-      </div>
-
-      {/* Proof Intelligence — locked */}
-      <div style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, padding: "14px 18px", opacity: 0.6 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        {activeTab === "Timeline" && (
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>🔒 Proof Intelligence</div>
-            <div style={{ fontSize: 12, color: T.textMuted }}>Pattern analysis across all your threads and audios. Coming soon.</div>
+            <div style={{ fontSize: 13, color: "#555", marginBottom: 24, lineHeight: 1.7 }}>
+              First listen to final manifestation. Every step logged.
+            </div>
+            <div style={{ position: "relative" }}>
+              <div style={{ position: "absolute", top: 20, bottom: 20, left: 19, width: 1, background: `linear-gradient(180deg,${RG}66,${RG}22)` }} />
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                {TIMELINE.map((item, i) => {
+                  const isManifested = item.icon === "★";
+                  const col = isManifested ? "#4a9a5a" : RG;
+                  return (
+                    <div key={i} style={{ display: "flex", gap: 16 }}>
+                      <div style={{ width: 40, flexShrink: 0, display: "flex", justifyContent: "center", paddingTop: 14 }}>
+                        <div style={{ width: 22, height: 22, borderRadius: "50%", background: `${col}18`, border: `1.5px solid ${col}55`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, zIndex: 1, position: "relative" }}>{item.icon}</div>
+                      </div>
+                      <div style={{ flex: 1, background: "#0d0d0d", border: `1px solid ${col}22`, borderRadius: 12, padding: "14px 16px", marginBottom: 8 }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+                          <div>
+                            <span style={{ fontSize: 11, color: col, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{item.day}</span>
+                            <span style={{ fontSize: 11, color: "#444", marginLeft: 8 }}>{item.event}</span>
+                          </div>
+                          {item.photo && (
+                            <div style={{ width: 32, height: 32, borderRadius: 6, background: `${col}14`, border: `1px solid ${col}2a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0 }}>
+                              {isManifested ? "★" : "📷"}
+                            </div>
+                          )}
+                        </div>
+                        <div style={{ fontSize: 13, color: "#666", lineHeight: 1.55, marginTop: 6 }}>{item.detail}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
 
+      </div>
     </div>
   );
 }
