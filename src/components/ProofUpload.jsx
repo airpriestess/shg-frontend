@@ -99,7 +99,7 @@ export function PhotoProofModal({ open, onClose, threadId, audioTitle }) {
             onDragOver={e => e.preventDefault()}
             onClick={() => inputRef.current?.click()}
             style={{
-              border: `2px dashed ${preview ? "#C8A05066" : "#1e1c0a"}`,
+              border: `2px dashed ${preview ? "#C8956A66" : "#1e1c0a"}`,
               borderRadius: 14, padding: preview ? 8 : "36px 20px",
               textAlign: "center", cursor: "pointer", marginBottom: 16,
               background: preview ? "#0a0800" : "#060400",
@@ -299,7 +299,7 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
                     }} />
                   ))}
                 </div>
-                <div style={{ fontSize: 28, fontWeight: 800, color: "#C8A050", marginBottom: 4, letterSpacing: "0.05em" }}>{fmt(duration)}</div>
+                <div style={{ fontSize: 28, fontWeight: 800, color: "#C8956A", marginBottom: 4, letterSpacing: "0.05em" }}>{fmt(duration)}</div>
                 <div style={{ fontSize: 12, color: T.textMuted, marginBottom: 20 }}>Recording…</div>
                 <Btn variant="ghost" onClick={stopRecording}>⏹ Stop</Btn>
               </>
