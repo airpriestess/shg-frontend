@@ -10,8 +10,8 @@ export const T = {
   // Text
   textPrimary: "#f4ead8",
   textSecondary: "#d4a85a",
-  textMuted: "#8a7848",
-  textFaint: "#4a3e20",
+  textMuted: "#c8b890",
+  textFaint: "#887040",
 
   // Accents — warm gold ombre only. No red. No crimson. No hot pink.
   gold:      "#C8A050",   // warm antique gold
@@ -67,7 +67,7 @@ input, textarea {
   transition: border-color 0.2s, box-shadow 0.2s;
   font-family: 'Inter', sans-serif;
 }
-input::placeholder, textarea::placeholder { color: #3a3010; }
+input::placeholder, textarea::placeholder { color: #706030; }
 input:focus, textarea:focus {
   border-color: #C8A05066;
   box-shadow: 0 0 0 3px rgba(200,160,80,0.08);
