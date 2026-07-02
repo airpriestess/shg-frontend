@@ -1,6 +1,60 @@
+import { requestNotificationPermission, scheduleListeningReminders, cancelReminders } from "../utils/notifications.js";
 import { T } from "../design/tokens.js";
 import { Btn, Card, Label, ProgressBar, Divider } from "../components/UI.jsx";
 import { USER, STORAGE } from "../data/sample.js";
+
+function NotificationToggle() {
+  const [permission, setPermission] = React.useState(
+    typeof Notification !== "undefined" ? Notification.permission : "unsupported"
+  );
+  const [active, setActive] = React.useState(
+    !!localStorage.getItem("shg_morning_timer")
+  );
+
+  const enable = async () => {
+    const result = await requestNotificationPermission();
+    setPermission(result);
+    if (result === "granted") {
+      scheduleListeningReminders();
+      setActive(true);
+    }
+  };
+
+  const disable = () => {
+    cancelReminders();
+    setActive(false);
+  };
+
+  if (permission === "unsupported") {
+    return <div style={{ fontSize: 13, color: "#555" }}>Push notifications not supported in this browser. On iPhone, add to Home Screen first.</div>;
+  }
+
+  if (permission === "denied") {
+    return <div style={{ fontSize: 13, color: "#555" }}>Notifications blocked. Go to browser settings → site settings → allow notifications for this site.</div>;
+  }
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+      <button onClick={active ? disable : enable} style={{
+        width: 48, height: 26, borderRadius: 13, border: "none", cursor: "pointer",
+        background: active ? "linear-gradient(90deg,#C8892A,#B76E79)" : "#1e1608",
+        position: "relative", transition: "background 0.2s", flexShrink: 0,
+      }}>
+        <div style={{
+          width: 20, height: 20, borderRadius: "50%", background: "#fff",
+          position: "absolute", top: 3, left: active ? 25 : 3, transition: "left 0.2s",
+        }} />
+      </button>
+      <div>
+        <div style={{ fontSize: 14, fontWeight: 600, color: T.textPrimary }}>
+          {active ? "Reminders on ✦" : "Enable reminders"}
+        </div>
+        <div style={{ fontSize: 12, color: "#555" }}>8:00 am · 9:00 pm daily</div>
+      </div>
+    </div>
+  );
+}
+
 
 export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
   const limit = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
@@ -85,6 +139,16 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
             <a key={l} href={u} target="_blank" rel="noopener noreferrer" style={{ flex: 1, padding: 16, background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, color: "#5a4a2a", fontSize: 14, textAlign: "center", textDecoration: "none" }}>{l} ↗</a>
           ))}
         </div>
+
+
+      {/* ── LISTENING REMINDERS ── */}
+      <div style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 14, padding: "20px 20px", marginBottom: 16 }}>
+        <div style={{ fontSize: 11, color: "#C8892A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Listening Reminders</div>
+        <p style={{ fontSize: 13, color: T.textMuted, lineHeight: 1.7, marginBottom: 16 }}>
+          Get a reminder at 8am and 9pm to listen to your audio. Your subconscious is most receptive in the morning and just before sleep.
+        </p>
+        <NotificationToggle />
+      </div>
 
         <Btn full variant="soft" onClick={onSignOut}>Sign out</Btn>
         <div style={{ fontSize: 12, color: "#2a1e08", textAlign: "center" }}>© 2026 Reshma Oracle · Self Hypnosis Goddess</div>
