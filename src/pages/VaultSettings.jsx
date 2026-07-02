@@ -5,7 +5,7 @@ import { USER, STORAGE } from "../data/sample.js";
 import { requestNotificationPermission, scheduleReminders, cancelReminders } from "../utils/notifications.js";
 
 const G = "linear-gradient(90deg,#C8A050,#C8956A)";
-const RG = "#C8A050";
+const RG = "#C8956A";
 
 export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
   const limit     = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
@@ -144,7 +144,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
 
         {/* ── UPGRADE ── */}
         {userTier === "audio" && (
-          <div style={{ background: "linear-gradient(135deg,#0f0d02,#0a0900)", border: `1px solid #C8A05044`, borderRadius: 14, padding: "22px 22px", cursor: "pointer" }} onClick={onUpgrade}>
+          <div style={{ background: "linear-gradient(135deg,#0f0d02,#0a0900)", border: `1px solid #C8956A44`, borderRadius: 14, padding: "22px 22px", cursor: "pointer" }} onClick={onUpgrade}>
             <div style={{ fontSize: 11, background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 10 }}>Upgrade</div>
             <div className="wm" style={{ fontSize: 26, background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 6 }}>Goddess Tier</div>
             <div style={{ fontSize: 14, color: T.textMuted, marginBottom: 16, lineHeight: 1.7 }}>Deeper audios · 5 GB evidence vault · Full ProofOS access · Priority releases</div>
