@@ -43,8 +43,8 @@ function StatCard({ value, label }) {
 function SectionHead({ children, action, onAction }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-      <div style={{ fontSize: 11, color: RG, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>{children}</div>
-      {action && <button onClick={onAction} style={{ background: "none", border: "none", color: "#444", fontSize: 12, cursor: "pointer" }}>{action} →</button>}
+      <div style={{ fontSize: 12, color: RG, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>{children}</div>
+      {action && <button onClick={onAction} style={{ background: "none", border: "none", color: "#555", fontSize: 12, cursor: "pointer" }}>{action} →</button>}
     </div>
   );
 }
@@ -85,8 +85,8 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
         {/* ── PAGE HEADER ── */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
           <div>
-            <div style={{ fontSize: 11, color: RG, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 8 }}>ProofOS</div>
-            <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 800, color: T.textPrimary, margin: 0, lineHeight: 1.2 }}>
+            <div className="wm" style={{ fontSize: 16, color: RG, fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, fontStyle: "italic" }}>ProofOS</div>
+            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               {USER.name}'s Vault
             </h1>
           </div>
