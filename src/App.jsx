@@ -438,6 +438,53 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
+      {/* LANDING PROOF WALL */}
+      <div style={{ padding: "0 24px 70px", maxWidth: 900, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
+            Your receipts,<br />
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>captured and stored.</span>
+          </h2>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>
+            Screenshot the bank transfer. Record your voice the moment something shifts. Log the sign. Every piece of evidence lives inside your Proof Thread — linked to the audio that preceded it.
+          </p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 12 }} className="grid-3">
+          {[
+            { label: "Bank Transfer", sub: "€5,000 received · Day 8", bg: "linear-gradient(135deg,#0a1a0e,#051005)", color: "#4a9a5a", text: "€5,000", sz: 20 },
+            { label: "Message Screenshot", sub: "He texted first · Day 5", bg: "linear-gradient(135deg,#1a0e12,#0e0810)", color: "#f2ece4", text: "I miss you.", sz: 13 },
+            { label: "Mirror Photo", sub: "The glow showed · Day 14", bg: "linear-gradient(135deg,#1a0e18,#0e0812)", color: "#d4a090", text: "🪞", sz: 28 },
+            { label: "Angel Number", sub: "Saw 555 three times", bg: "linear-gradient(135deg,#1a1400,#0e0e00)", color: "#d4a090", text: "5:55", sz: 22 },
+            { label: "Email Proof", sub: "The opportunity arrived", bg: "linear-gradient(135deg,#0a0e14,#080810)", color: "#8a9ab0", text: "📧", sz: 26 },
+            { label: "Second Transfer", sub: "Money keeps arriving", bg: "linear-gradient(135deg,#0a1a0e,#051005)", color: "#4a9a5a", text: "€2,500", sz: 18 },
+          ].map((p, i) => (
+            <div key={i} style={{ background: "#0a0908", border: "1px solid #201e1c", borderRadius: 12, overflow: "hidden" }}>
+              <div style={{ height: 80, background: p.bg, display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid #201e1c" }}>
+                <div style={{ fontSize: p.sz, fontWeight: 700, color: p.color }}>{p.text}</div>
+              </div>
+              <div style={{ padding: "10px 12px" }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#B76E79", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 2 }}>{p.label}</div>
+                <div style={{ fontSize: 11, color: T.textMuted }}>{p.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ background: "#0a0908", border: "1px solid #B76E7933", borderRadius: 14, padding: "14px 18px", display: "flex", gap: 14, alignItems: "center" }}>
+          <div style={{ width: 40, height: 40, borderRadius: 10, background: "#B76E7918", border: "1px solid #B76E7933", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>🎙</div>
+          <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
+            {[6,14,20,10,18,8,16,22,12,18,6,14,10,20,16].map((h,j) => (
+              <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "linear-gradient(180deg,#d4a090,#B76E79)", opacity: 0.7 }} />
+            ))}
+          </div>
+          <div style={{ flex: 1, marginLeft: 8 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: T.textPrimary, marginBottom: 2 }}>Voice Proof · Day 3</div>
+            <div style={{ fontSize: 12, color: T.textMuted, fontStyle: "italic" }}>"I woke up knowing before anything happened."</div>
+          </div>
+        </div>
+      </div>
+
+
       {/* SCIENCE */}
       <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
