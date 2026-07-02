@@ -6,6 +6,7 @@ import ProofThreads from "./pages/ProofThreads.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import VaultSettings from "./pages/VaultSettings.jsx";
 import ProofWall from "./pages/ProofWall.jsx";
+import ListeningGuide from "./pages/ListeningGuide.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
@@ -85,6 +86,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
     { id: "audio-vault", icon: "🎧", label: "Audio Vault" },
     { id: "proof-threads", icon: "🧵", label: "Proof Threads" },
     { id: "proof-wall", icon: "📷", label: "Proof Wall" },
+    { id: "listening-guide", icon: "📖", label: "Listening Guide" },
     { id: "vault-settings", icon: "⚙", label: "Vault Settings" },
   ];
 
@@ -122,6 +124,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
             {tab === "audio-vault" && <AudioVault userTier={userTier} onCreateThread={onCreateThread} onPlayAudio={playAudio => { setTab("audio-vault"); onPlayAudio(playAudio); }} playingId={playingId} onUpgrade={onUpgrade} />}
             {tab === "proof-threads" && <ProofThreads onAddProof={onAddProof} onCreateThread={onCreateThread} />}
             {tab === "proof-wall" && <ProofWall onAddProof={onAddProof} />}
+            {tab === "listening-guide" && <ListeningGuide />}
             {tab === "vault-settings" && <VaultSettings userTier={userTier} onSignOut={onSignOut} onUpgrade={onUpgrade} />}
           </div>
 
