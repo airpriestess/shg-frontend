@@ -1,5 +1,7 @@
 import { requestNotificationPermission, scheduleListeningReminders, cancelReminders } from "../utils/notifications.js";
+import { useState } from "react";
 import { T } from "../design/tokens.js";
+import { requestNotificationPermission, scheduleReminders, cancelReminders } from "../utils/notifications.js";
 import { Btn, Card, Label, ProgressBar, Divider } from "../components/UI.jsx";
 import { USER, STORAGE } from "../data/sample.js";
 
@@ -59,6 +61,21 @@ function NotificationToggle() {
 export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
   const limit = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
   const planLabel = userTier === "founder" ? "Founder · Lifetime" : userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19/month";
+
+  const [notifStatus, setNotifStatus] = useState(
+    window.Notification?.permission || "default"
+  );
+
+  const toggleNotifications = async () => {
+    if (notifStatus === "granted") {
+      cancelReminders();
+      setNotifStatus("cancelled");
+    } else {
+      const perm = await requestNotificationPermission();
+      setNotifStatus(perm);
+      if (perm === "granted") scheduleReminders();
+    }
+  };
 
   return (
     <div style={{ padding: "28px 24px", overflowY: "auto", height: "100%", maxWidth: 680, margin: "0 auto" }} className="mob-pb fade">
