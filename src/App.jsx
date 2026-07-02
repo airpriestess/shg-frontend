@@ -271,7 +271,7 @@ function Landing({ onJoin, onDemo }) {
       </nav>
 
       {/* HERO */}
-      <div className="hero-section" style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 110, paddingBottom: 60, overflow: "hidden" }}>
+      <div className="hero-section" style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", paddingTop: 110, paddingBottom: 60 }}>
         <Rings count={5} />
         {/* Dot grid overlay */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
@@ -280,7 +280,7 @@ function Landing({ onJoin, onDemo }) {
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
         }} />
-        <div className="hero-wrap" style={{ position: "relative", zIndex: 1, textAlign: "center", paddingTop: "clamp(52px,8vw,80px)", paddingBottom: "clamp(52px,8vw,80px)" }}>
+        <div className="hero-wrap" style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
           {/* Soundwave */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
             {Array.from({ length: 24 }).map((_, i) => {
@@ -358,7 +358,7 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 0 }}>Pricing</div>
         </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }} className="price-grid">
+                <div className="price-grid">
           {[
             {
               label: "Audio Tier", price: "£19", period: "/month",
@@ -452,10 +452,10 @@ function Landing({ onJoin, onDemo }) {
             Your subconscious mind<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
-          <p style={{ fontSize: "clamp(15px,2vw,19px)", color: T.textMuted, lineHeight: 1.9, maxWidth: 1000, margin: "0 auto 16px" }}>
+          <p className="science-body" style={{ fontSize: "clamp(15px,2vw,19px)", color: T.textMuted, lineHeight: 1.9, maxWidth: 1000, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
-          <p style={{ fontSize: "clamp(15px,2vw,19px)", color: T.textMuted, lineHeight: 1.9 }}>
+          <p className="science-body" style={{ fontSize: "clamp(15px,2vw,19px)", color: T.textMuted, lineHeight: 1.9 }}>
             You can read every book. Study Neville Goddard. Understand every theory. But theory without installation changes nothing. These audios install it — passively, at depth, while your conscious mind rests.
           </p>
         </div>
@@ -532,7 +532,7 @@ function Landing({ onJoin, onDemo }) {
           <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,56px)", color: T.textPrimary, marginBottom: 10 }}>How one listen changes everything.</h2>
           <p style={{ fontSize: 18, color: T.textMuted }}>Press play. The rest happens without you.</p>
         </div>
-        <div className="steps-grid" style={{ marginBottom: 70, alignItems: "center" }}>
+        <div className="steps-grid" style={{ marginBottom: 48 }}>
           {[
             { icon:"🎧", title:"Press play", body:"Works while you sleep, drive, rest. No active effort. Reshma's voice opens your subconscious.", outcome: "Nervous system relaxes" },
             null,
@@ -570,7 +570,7 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ position: "relative", marginBottom: 64 }}>
           {/* Connecting line */}
           <div style={{ position: "absolute", top: 28, left: 28, right: 28, height: 1, background: "linear-gradient(90deg,#B76E7944,#B76E7988,#B76E7944)", zIndex: 0 }} className="hide-mob" />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12 }} className="g3">
+          <div className="g3" style={{ gap: 20 }}>
             {[
               { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#B76E79" },
               { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
@@ -598,7 +598,7 @@ function Landing({ onJoin, onDemo }) {
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>self-concept shifts.</span>
           </h2>
         </div>
-        <div className="g3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+        <div className="g3" style={{ gap: 16 }}>
           {[
             { cat: "Lovemaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
             { cat: "Moneymaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "€247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "€10,000", transfer: true } },
@@ -644,7 +644,7 @@ function Landing({ onJoin, onDemo }) {
           </h2>
           <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.7, maxWidth: 800, margin: "0 auto" }}>New audios added regularly — and a proof system that shows you exactly what is working.</p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="g2">
+        <div className="g2" style={{ gap: 16 }}>
 
           {/* AUDIO DASHBOARD PREVIEW */}
           <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
@@ -785,7 +785,7 @@ function Landing({ onJoin, onDemo }) {
             Photo proof, voice notes, signs, symptoms, synchronicities, and final manifestations — all stored inside the Proof Thread connected to the audio you listened to.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }} className="g3">
+        <div className="g3" style={{ gap: 12 }}>
           {[
             { icon: "💬", label: "Message Screenshot",   sub: "He sent this on Day 8",         color: "#B76E79" },
             { icon: "💰", label: "Money Receipt",         sub: "£5,000 received",               color: "#B76E79" },
@@ -842,7 +842,7 @@ function Landing({ onJoin, onDemo }) {
         </div>
 
         {/* 2 tier cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }} className="g2">
+        <div className="g2" style={{ gap: 16, marginBottom: 16 }}>
           {[
             {
               id: "audio", name: "Audio Tier",
@@ -885,7 +885,7 @@ function Landing({ onJoin, onDemo }) {
 
         {/* Founder card — full width */}
         <div style={{ background: "linear-gradient(135deg,#0d0900,#1a0d02)", border: "2px solid #B76E7955", borderRadius: 18, padding: "28px 32px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 32, alignItems: "center" }} className="g2">
+          <div className="g2" style={{ gap: 32, alignItems: "center" }}>
             <div>
               <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>First 1,000 only · Lifetime access</div>
               <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: T.textPrimary, marginBottom: 10 }}>Founder Lifetime Access</div>
