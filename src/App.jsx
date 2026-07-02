@@ -334,25 +334,20 @@ function Landing({ onJoin, onDemo }) {
 
       {/* VOICE TRUST */}
       <div style={{ padding: "60px 24px 0", maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why one voice matters</div>
+        <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why the audio works</div>
         <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 20 }}>
-          The more you trust this voice,<br />
-          <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>the more your subconscious opens.</span>
+          Reshma's voice<br />
+          <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>is the ritual.</span>
         </h2>
         <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14 }}>
-          Reshma's calm, hypnotic voice puts you into a state of deep relaxation. The subconscious is most receptive when the body is calm and the mind trusts the guide. The more you return to the same voice, the deeper the trance goes.
+          Reshma's unique voice guides you into a hypnotic state where your subconscious begins to accept the desire as already real. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
         </p>
         <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14, fontStyle: "italic" }}>
           When you mix different voices, your subconscious fights it. It doesn't know who to trust. Consistency is part of the programming. One voice. One guide. One path.
         </p>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 30 }}>
-          Every track is available in three versions: with melodic house music, with soft sleep music, or voice only — echoey, hypnotic, just the frequency of her voice in space.
+        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 20 }}>
+          Some audios are Spoken Hypnosis. Some are Sleep Subliminals. Some are EMDR. The format of each track is chosen by Reshma based on what the desire requires — not by the listener.
         </p>
-        <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-          {["Melodic house", "Sleep music", "Voice only — echoey + hypnotic"].map((v, i) => (
-            <span key={i} style={{ padding: "8px 18px", background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 20, fontSize: 13, color: "#B76E79", fontWeight: 600 }}>{v}</span>
-          ))}
-        </div>
       </div>
 
       {/* SLIDING BANNER */}
