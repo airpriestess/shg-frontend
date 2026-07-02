@@ -109,7 +109,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
           {NAV.map(n => (
             <button key={n.id} onClick={() => setTab(n.id)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", borderRadius: 10, border: "none", background: tab === n.id ? T.gold + "18" : "transparent", cursor: "pointer", textAlign: "left", width: "100%" }}>
               <span style={{ fontSize: 16 }}>{n.icon}</span>
-              <span style={{ fontSize: 14, fontWeight: 600, color: tab === n.id ? T.gold : T.textMuted }}>{n.label}</span>
+              <span style={{ fontSize: 14, fontWeight: 300, color: tab === n.id ? T.gold : T.textMuted }}>{n.label}</span>
             </button>
           ))}
           <div style={{ flex: 1 }} />
@@ -144,7 +144,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
       {/* MOBILE BOTTOM NAV */}
       <nav className="mob-nav" style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "rgba(0,0,0,0.97)", borderTop: "1px solid #1e1c0a", zIndex: 200, paddingBottom: "env(safe-area-inset-bottom,8px)", display: "none" }}>
         {NAV.filter(n => n.id !== "proof-wall" && n.id !== "vault-settings").concat({ id: "vault-settings", icon: "⚙", label: "Settings" }).map(n => (
-          <button key={n.id} onClick={() => setTab(n.id)} style={{ flex: 1, padding: "9px 4px", background: "none", border: "none", color: tab === n.id ? T.gold : T.textMuted, fontSize: 10, fontWeight: 700, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, minHeight: 52, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+          <button key={n.id} onClick={() => setTab(n.id)} style={{ flex: 1, padding: "9px 4px", background: "none", border: "none", color: tab === n.id ? T.gold : T.textMuted, fontSize: 10, fontWeight: 300, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, minHeight: 52, letterSpacing: "0.12em", textTransform: "uppercase" }}>
             <span style={{ fontSize: 18 }}>{n.icon}</span>
             <span>{n.label.split(" ")[0]}</span>
           </button>
@@ -249,7 +249,7 @@ function Landing({ onJoin, onDemo }) {
         <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
-          <button onClick={() => onJoin("audio")} style={{ padding: "11px 28px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.03em", boxShadow: "0 0 32px rgba(183,110,121,0.7), 0 0 64px rgba(183,110,121,0.3)" }}>Join now ✦</button>
+          <button onClick={() => onJoin("audio")} style={{ padding: "11px 28px", background: "#f2ece4", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.04em", boxShadow: "0 2px 20px rgba(242,236,228,0.35)" }}>Join now ✦</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 3 }}>
             {[0,1,2].map(i => <div key={i} style={{ width: 16, height: 1.5, background: T.textMuted }} />)}
           </button>
@@ -275,7 +275,7 @@ function Landing({ onJoin, onDemo }) {
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
         }} />
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(32px,6vw,60px) clamp(16px,4vw,24px) clamp(40px,6vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           {/* Soundwave */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
             {Array.from({ length: 24 }).map((_, i) => {
@@ -329,7 +329,7 @@ function Landing({ onJoin, onDemo }) {
           {/* PAIN POINT */}
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 700, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.06em" }}>
+            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "#f2ece4", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", boxShadow: "0 2px 24px rgba(242,236,228,0.5)", letterSpacing: "0.06em" }}>
               START LISTENING ✦
             </button>
             <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
@@ -338,44 +338,7 @@ function Landing({ onJoin, onDemo }) {
           </div>
           <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €14.99/mo · Goddess Tier €33/mo · Cancel anytime</div>
 
-          {/* WHY THE AUDIO WORKS */}
-          <div style={{ background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 16, padding: "22px 24px", maxWidth: 520, margin: "0 auto 32px", textAlign: "left" }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Why the audio works</div>
-            <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, marginBottom: 16 }}>
-              Guaranteed to feel a shift after one listen. Hypnosis and subliminals in three formats — melodic house, sleep, and vocals only — each designed for a different state of mind and time of day.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {[
-                "You listen. Your nervous system relaxes. Your subconscious opens.",
-                "You link the audio to a desire. You note what shifts.",
-                "Life shows you the evidence. You log it in ProofOS.",
-              ].map((s, i) => (
-                <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                  <span style={{ color: "#B76E79", fontWeight: 700, fontSize: 14, marginTop: 1, flexShrink: 0 }}>{i + 1}.</span>
-                  <span style={{ fontSize: 14, color: T.textPrimary }}>{s}</span>
-                </div>
-              ))}
-            </div>
-          </div>
 
-<p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
-            You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because conscious effort cannot reprogram the subconscious mind. <strong style={{ color: T.textPrimary }}>Desire is not manifestation. Desire is the seed. Certainty is manifestation.</strong>
-          </p>
-          <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%", fontStyle: "italic" }}>
-            Visualisation without identity shift is just fantasy.
-          </p>
-          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
-            Your reality mirrors what you assume to be true about yourself — at the deepest subconscious, DNA level. It's about your self-concept. Your self-image. What you believe you deserve. Down to your DNA.
-          </p>
-          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 36, maxWidth: "100%" }}>
-            These audios install the new self-concept passively — while you sleep, while you rest. No active effort. No conscious force. Just your subconscious, finally reprogrammed. Wake up knowing. Not hoping. Knowing. In that state, reality shows you the proof of what you already know.
-          </p>
-
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <Btn variant="champagne" size="lg" onClick={() => onJoin("audio")}>Start your shift — €14.99/month</Btn>
-            <Btn variant="ghost" size="lg" onClick={onDemo}>Preview the dashboard</Btn>
-          </div>
-          <div style={{ fontSize: 13, color: T.textFaint }}>Cancel anytime · Stripe · No download · Plays in background like Spotify</div>
         </div>
       </div>
 
