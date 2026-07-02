@@ -184,7 +184,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             {/* ── MANIFESTED THIS MONTH ── */}
             {manifested.length > 0 && (
               <div style={{ marginBottom: 24 }}>
-                <SectionHead action="Archive" onAction={() => onNavigate("archive")}>Manifested</SectionHead>
+                <SectionHead action="Proof Wall" onAction={() => onNavigate("proof-wall")}>Manifested</SectionHead>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {manifested.map(t => (
                     <div key={t.id} style={{ background: "#0d0d0d", border: "1px solid #1a3a1a", borderRadius: 12, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
