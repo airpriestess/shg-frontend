@@ -1,23 +1,144 @@
-// Design tokens — colours only. CSS is in src/index.css.
 export const T = {
-  black:        '#000000',
-  bg:           '#0a0908',
-  bg2:          '#0f0e0c',
-  bg3:          '#141210',
-  border:       '1px solid #201e1c',
-  borderC:      '#201e1c',
-  rose:         '#B76E79',
-  roseGold:     '#B76E79',
-  champagne:    '#d4a090',
-  gold:         '#C8892A',
-  cream:        '#f0e8d8',
-  textPrimary:  '#f2ece4',
-  textPri:      '#f2ece4',
-  textSecondary:'#d4c8bc',
-  textMuted:    '#b09888',
-  textFaint:    '#786860',
-  cardBg:       '#0a0908',
-  danger:       '#8a3030',
+  bgRoot: "#000000",
+  bgSoft: "#050404",
+  surfaceBase: "#0a0908",
+  surfaceRaised: "#0f0e0c",
+  surfaceHigh: "#141210",
+  borderSoft: "#201e1c",
+  borderGlow: "#2c2826",
+
+  // Text — warm cream white fading to soft peach
+  textPrimary:   "#f2ece4",   // warm cream white
+  textSecondary: "#dcc8b8",   // soft peach
+  textMuted:     "#b09888",   // muted peach — readable
+  textFaint:     "#786860",   // dim peach — still legible
+
+  // THE LOCKED ACCENT — soft dusty rose gold to light peach
+  // This is the colour Reshma approved. Light. Feminine. Not orange. Not red.
+  gold:      "#C8956A",   // warm peach (used as secondary)
+  roseGold:  "#B76E79",   // LOCKED — soft dusty rose gold   // THE accent — soft dusty rose gold ← LOCKED
+  rose:      "#B76E79",
+  champagne: "#B76E79",
+  champSoft: "#C8956A",
+  success:   "#4a9a5a",
+  warning:   "#C8956A",
+  danger:    "#B76E79",
+  blood:     "#B76E79",
+
+  // Gradient: light peach → soft rose gold
+  // Left = lighter peach cream, right = dusty rose gold
+  grad:  "linear-gradient(90deg,#d4a090,#B76E79)",
+  gradV: "linear-gradient(135deg,#d4a090,#B76E79)",
+
+  bgGrad:      "#000000",
+  cardBg:      "rgba(10,9,8,0.96)",
+  premiumCard: "linear-gradient(135deg,rgba(15,14,12,0.98),rgba(8,7,6,0.98))",
+  border:      "1px solid #201e1c",
+  glow:        "0 0 40px rgba(183,110,121,0.1)",
+  glowChamp:   "0 0 30px rgba(183,110,121,0.14)",
 };
 
-export default T;
+export const CSS = `
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700;800&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+*{-webkit-tap-highlight-color:transparent;}
+body{
+  background:#000;
+  color:#f2ece4;
+  font-family:'Jost',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+button,input,textarea,select{font-family:'Jost',sans-serif;}
+input,textarea{
+  background:#0a0908;border:1px solid #201e1c;color:#f2ece4;
+  border-radius:10px;padding:13px 16px;font-size:15px;width:100%;
+  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+}
+input::placeholder,textarea::placeholder{color:#3a3430;}
+input:focus,textarea:focus{border-color:#B76E7966;box-shadow:0 0 0 3px rgba(183,110,121,0.08);}
+select{background:#0a0908;border:1px solid #201e1c;color:#f2ece4;border-radius:10px;padding:12px 16px;font-size:15px;outline:none;cursor:pointer;width:100%;}
+::-webkit-scrollbar{width:3px;height:3px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:#201e1c;border-radius:2px;}
+
+/* ── TYPOGRAPHY ─────────────────────────────── */
+.wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
+.fade{animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── ANIMATIONS ─────────────────────────────── */
+@keyframes wave{0%,100%{transform:scaleY(0.3);opacity:0.5;}50%{transform:scaleY(1);opacity:1;}}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:var(--op);}50%{transform:translate(-50%,-50%) scale(1.06);opacity:calc(var(--op)*2);}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes slowPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.08);opacity:1}}
+.marquee-track{display:flex;width:max-content;animation:marquee 22s linear infinite;}
+.marquee-track:hover{animation-play-state:paused;}
+.ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none;top:50%;left:50%;animation:breathe 6s ease-in-out infinite;}
+.pulse{animation:slowPulse 1.5s ease-in-out infinite;}
+
+/* ── BACKGROUND GRID ────────────────────────── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(183,110,121,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(183,110,121,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+}
+body::after{
+  content:'';position:fixed;top:50%;left:50%;width:600px;height:600px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(183,110,121,0.03) 0%,rgba(212,160,144,0.02) 30%,transparent 70%);
+  pointer-events:none;z-index:0;animation:slowPulse 8s ease-in-out infinite;
+}
+#root{position:relative;z-index:1;}
+
+/* ── LAYOUT ─────────────────────────────────── */
+.section-wrap{
+  width:100%;
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:clamp(20px,5vw,72px);
+  padding-right:clamp(20px,5vw,72px);
+}
+.hero-wrap{
+  width:100%;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+/* ── GRIDS — desktop ────────────────────────── */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.steps-grid{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr;gap:0;align-items:start;}
+.comp-table{display:grid;grid-template-columns:1fr 1fr;}
+.mob-nav{display:none;}
+
+/* ── MOBILE ≤680px ──────────────────────────── */
+@media(max-width:680px){
+  .section-wrap{padding-left:18px!important;padding-right:18px!important;}
+  .hero-wrap{padding-left:18px!important;padding-right:18px!important;}
+
+  /* All main grids → single column */
+  .price-grid{grid-template-columns:1fr!important;}
+  .comp-table{grid-template-columns:1fr!important;}
+  .steps-grid{display:flex!important;flex-direction:column!important;gap:14px!important;}
+  .step-arrow{display:none!important;}
+
+  /* Proof grid → 2 col */
+  .proof-grid{grid-template-columns:1fr 1fr!important;gap:8px!important;}
+
+  /* Nav */
+  .hide-mob{display:none!important;}
+  .mob-nav{display:flex!important;}
+  .mob-pb{padding-bottom:72px!important;}
+}
+`;
