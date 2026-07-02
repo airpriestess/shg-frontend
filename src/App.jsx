@@ -278,22 +278,22 @@ function Landing({ onJoin, onDemo }) {
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Reshma's voice · 432hz</div>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#C8892A,#B76E79)", border: "none", color: "#000", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>{playing ? "⏸" : "▶"}</button>
+              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#C8A050,#C8956A)", border: "none", color: "#000", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>{playing ? "⏸" : "▶"}</button>
               <div style={{ flex: 1 }}>
                 <div style={{ height: 4, background: "#1e1608", borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
                   onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
-                  <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8892A,#B76E79)", borderRadius:2 }} />
+                  <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8A050,#C8956A)", borderRadius:2 }} />
                 </div>
                 <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — continues in background ✦" : "Tap to listen now"}</div>
               </div>
-              {playing && <WaveForm playing color="#B76E79" />}
+              {playing && <WaveForm playing color="#C8956A" />}
             </div>
           </div>
 
           {/* PAIN POINT */}
                     {/* WHY THE AUDIO WORKS */}
           <div style={{ background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 16, padding: "22px 24px", maxWidth: 520, margin: "0 auto 32px", textAlign: "left" }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Why the audio works</div>
+            <div style={{ fontSize: 11, color: "#C8956A", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Why the audio works</div>
             <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, marginBottom: 16 }}>
               Reshma's voice is the ritual. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
             </p>
@@ -334,10 +334,10 @@ function Landing({ onJoin, onDemo }) {
 
       {/* VOICE TRUST */}
       <div style={{ padding: "60px 24px 0", maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why the audio works</div>
+        <div style={{ fontSize: 11, color: "#C8956A", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why the audio works</div>
         <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 20 }}>
           Reshma's voice<br />
-          <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>is the ritual.</span>
+          <span style={{ background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>is the ritual.</span>
         </h2>
         <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14 }}>
           Reshma's unique voice guides you into a hypnotic state where your subconscious begins to accept the desire as already real. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
@@ -355,7 +355,7 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ display: "flex", gap: 16, animation: "slide 32s linear infinite", width: "max-content", paddingTop: 36 }}>
           {[...cats, ...cats].map((c, i) => (
             <div key={i} style={{ background: "#0a0800", border: `1px solid ${c.color}44`, borderRadius: 18, padding: "22px 30px", minWidth: 280, flexShrink: 0 }}>
-              <div style={{ fontSize: 12, color: c.color || "#B76E79", fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
+              <div style={{ fontSize: 12, color: c.color || "#C8956A", fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
               <div style={{ fontSize: 18, color: T.textSecondary, lineHeight: 1.5, fontWeight: 500 }}>{c.tagline}</div>
             </div>
           ))}
@@ -391,12 +391,12 @@ function Landing({ onJoin, onDemo }) {
             </div>
           </div>
           {compRows.map((row, i) => (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
-              <div style={{ background: "#0a0505", padding: "18px 30px", border: "1px solid #2a1010", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
-                <span style={{ color: T.danger, fontSize: 20, flexShrink: 0, marginTop: 2 }}>✗</span>
-                <span style={{ fontSize: 17, color: "#8a6060", lineHeight: 1.7 }}>{row.old}</span>
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 1 }}>
+              <div style={{ background: "#0a0900", padding: "20px 32px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
+                <span style={{ color: "#5a4a20", fontSize: 18, flexShrink: 0, marginTop: 3 }}>✗</span>
+                <span style={{ fontSize: 17, color: "#6a5a30", lineHeight: 1.75 }}>{row.old}</span>
               </div>
-              <div style={{ background: "#080a08", padding: "18px 30px", border: `1px solid ${T.gold}22`, borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
+              <div style={{ background: "#0a0900", padding: "20px 32px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
                 <span style={{ color: T.champagne, fontSize: 18, flexShrink: 0, marginTop: 2 }}>✦</span>
                 <span style={{ fontSize: 17, color: T.textSecondary, lineHeight: 1.7 }}>{row.neu}</span>
               </div>
@@ -480,10 +480,10 @@ function Landing({ onJoin, onDemo }) {
       {/* LISTENING TIMELINE */}
       <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
+          <div style={{ fontSize: 11, color: "#C8956A", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 12 }}>
             It is not one listen.<br/>
-            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>It is repetition that rewires.</span>
+            <span style={{ background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>It is repetition that rewires.</span>
           </h2>
           <p style={{ fontSize: 16, color: T.textMuted, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}>Every time you listen, the subconscious accepts the new self-concept more deeply. The first listen opens the channel. Thirty days closes the old identity completely.</p>
         </div>
@@ -494,7 +494,7 @@ function Landing({ onJoin, onDemo }) {
           <div style={{ position: "absolute", top: 28, left: 28, right: 28, height: 1, background: "linear-gradient(90deg,#B76E7944,#C8892A88,#B76E7944)", zIndex: 0 }} className="hide-mob" />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12 }} className="grid-3">
             {[
-              { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#B76E79" },
+              { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#C8956A" },
               { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
               { day: "Day 7", icon: "✦", label: "Evidence appears", body: "Signs arrive faster. Money from somewhere forgotten. He texts. Your skin looks different. You start logging proof.", color: "#C8892A" },
               { day: "Day 14", icon: "◉", label: "Identity updates", body: "You stop needing it. Certainty replaces desire. The old self-concept has nowhere left to live.", color: "#C8892A" },
@@ -514,15 +514,15 @@ function Landing({ onJoin, onDemo }) {
 
         {/* BEFORE / AFTER CARDS */}
         <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>The results</div>
+          <div style={{ fontSize: 11, color: "#C8956A", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>The results</div>
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, lineHeight: 1.2 }}>
             What shifts when your<br/>
-            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>self-concept shifts.</span>
+            <span style={{ background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>self-concept shifts.</span>
           </h2>
         </div>
         <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
           {[
-            { cat: "Lovemaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
+            { cat: "Lovemaxxing", color: "#C8956A", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
             { cat: "Moneymaxxing", color: "#C8892A", bgHdr: "#0a0800", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "€247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "€10,000", transfer: true } },
             { cat: "Beautymaxxing", color: "#C8892A", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
           ].map((item, idx) => (
@@ -559,10 +559,10 @@ function Landing({ onJoin, onDemo }) {
       {/* DASHBOARD PREVIEWS */}
       <div style={{ padding: "0 24px 70px", maxWidth: 1000, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>What you get access to</div>
-          <h2 className="wm" style={{ fontSize: "clamp(24px,4vw,44px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 10 }}>
+          <div style={{ fontSize: 11, color: "#C8956A", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>What you get access to</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 10 }}>
             Two dashboards.<br/>
-            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One practice.</span>
+            <span style={{ background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One practice.</span>
           </h2>
           <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.7, maxWidth: 540, margin: "0 auto" }}>New audios added regularly — and a proof system that shows you exactly what is working.</p>
         </div>
@@ -620,16 +620,16 @@ function Landing({ onJoin, onDemo }) {
           <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
             <div style={{ padding: "14px 18px", borderBottom: "1px solid #1e1608", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
-                <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>ProofOS ✦</div>
+                <div style={{ fontSize: 11, color: "#C8956A", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>ProofOS ✦</div>
                 <div style={{ fontSize: 13, color: T.textPrimary, fontWeight: 600 }}>Your manifestation ledger.</div>
               </div>
-              <span style={{ padding: "3px 10px", background: "#B76E7922", border: "1px solid #B76E7944", borderRadius: 20, fontSize: 11, color: "#B76E79", fontWeight: 700 }}>Goddess Tier</span>
+              <span style={{ padding: "3px 10px", background: "#B76E7922", border: "1px solid #B76E7944", borderRadius: 20, fontSize: 11, color: "#C8956A", fontWeight: 700 }}>Goddess Tier</span>
             </div>
             {/* Mock stats */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 0 }}>
               {[["7", "Intentions"], ["4", "Manifested"], ["11d", "Avg time"]].map(([v,l],i) => (
                 <div key={i} style={{ padding: "12px 14px", textAlign: "center", borderRight: i < 2 ? "1px solid #1e1608" : "none" }}>
-                  <div style={{ fontSize: 20, fontWeight: 800, color: i === 1 ? "#B76E79" : "#C8892A" }}>{v}</div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: i === 1 ? "#C8956A" : "#C8892A" }}>{v}</div>
                   <div style={{ fontSize: 10, color: T.textMuted, marginTop: 1 }}>{l}</div>
                 </div>
               ))}
@@ -644,7 +644,7 @@ function Landing({ onJoin, onDemo }) {
                 <div key={i} style={{ padding: "9px 0", borderBottom: i < 2 ? "1px solid #1e1608" : "none" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 4 }}>
                     <div style={{ fontSize: 12, fontWeight: 600, color: T.textPrimary, flex: 1, lineHeight: 1.35 }}>{t.title}</div>
-                    <span style={{ fontSize: 10, padding: "2px 8px", background: t.status === "manifested" ? "#0a1a0a" : "#0a0800", color: t.status === "manifested" ? "#4a9a5a" : "#B76E79", borderRadius: 20, fontWeight: 700, flexShrink: 0, border: `1px solid ${t.status === "manifested" ? "#2a4a2a" : "#B76E7944"}` }}>
+                    <span style={{ fontSize: 10, padding: "2px 8px", background: t.status === "manifested" ? "#0a1a0a" : "#0a0800", color: t.status === "manifested" ? "#4a9a5a" : "#C8956A", borderRadius: 20, fontWeight: 700, flexShrink: 0, border: `1px solid ${t.status === "manifested" ? "#2a4a2a" : "#B76E7944"}` }}>
                       {t.status === "manifested" ? `✦ ${t.days}d` : `${t.days}d`}
                     </span>
                   </div>
@@ -658,7 +658,7 @@ function Landing({ onJoin, onDemo }) {
               ))}
             </div>
             <div style={{ padding: "12px 18px", borderTop: "1px solid #1e1608", textAlign: "center" }}>
-              <button onClick={onDemo} style={{ background: "none", border: "1px solid #B76E7966", borderRadius: 10, padding: "8px 20px", color: "#B76E79", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Preview ProofOS dashboard →</button>
+              <button onClick={onDemo} style={{ background: "none", border: "1px solid #B76E7966", borderRadius: 10, padding: "8px 20px", color: "#C8956A", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Preview ProofOS dashboard →</button>
             </div>
           </div>
         </div>
@@ -667,10 +667,10 @@ function Landing({ onJoin, onDemo }) {
       {/* YOUR RECEIPTS GRID */}
       <div style={{ padding: "0 24px 70px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>ProofOS ✦</div>
-          <h2 className="wm" style={{ fontSize: "clamp(24px,4vw,44px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 12 }}>
+          <div style={{ fontSize: 11, color: "#C8956A", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>ProofOS ✦</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 12 }}>
             Your receipts,<br/>
-            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>finally organised.</span>
+            <span style={{ background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>finally organised.</span>
           </h2>
           <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
             Photo proof, voice notes, signs, symptoms, synchronicities, and final manifestations — all stored inside the Proof Thread connected to the audio you listened to.
@@ -678,9 +678,9 @@ function Landing({ onJoin, onDemo }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }} className="grid-3">
           {[
-            { icon: "💬", label: "Message Screenshot",   sub: "He sent this on Day 8",         color: "#B76E79" },
+            { icon: "💬", label: "Message Screenshot",   sub: "He sent this on Day 8",         color: "#C8956A" },
             { icon: "💰", label: "Money Receipt",         sub: "€5,000 received",               color: "#C8892A" },
-            { icon: "🪞", label: "Mirror Photo",          sub: "The glow. Day 14.",              color: "#B76E79" },
+            { icon: "🪞", label: "Mirror Photo",          sub: "The glow. Day 14.",              color: "#C8956A" },
             { icon: "555", label: "Angel Number",          sub: "Saw it 3 times in one hour",    color: "#C8892A" },
             { icon: "📧", label: "Email Confirmation",    sub: "Arrived unexpectedly",           color: "#9a8060" },
             { icon: "📅", label: "Calendar Invite",       sub: "The meeting that changed it",   color: "#6a8ad0" },
@@ -700,10 +700,10 @@ function Landing({ onJoin, onDemo }) {
       <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
+          <h2 className="wm" style={{ fontSize: "clamp(32px,4.5vw,56px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
           <div style={{ display: "inline-flex", background: T.surfaceBase, border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
             {["monthly", "annual"].map(b => (
-              <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? "linear-gradient(90deg,#C8892A,#B76E79)" : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
+              <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? "linear-gradient(90deg,#C8A050,#C8956A)" : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
                 {b === "annual" ? "Annual — save 20%" : "Monthly"}
               </button>
             ))}
@@ -733,7 +733,7 @@ function Landing({ onJoin, onDemo }) {
             }
           ].map(p => (
             <div key={p.id} style={{ background: T.cardBg, border: `${p.popular ? "2px" : "1px"} solid ${p.popular ? "#B76E7966" : T.borderSoft}`, borderRadius: 18, padding: 28, position: "relative" }}>
-              {p.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#C8892A,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "3px 16px", borderRadius: 20, whiteSpace: "nowrap", letterSpacing: "0.1em" }}>MOST POPULAR</div>}
+              {p.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#C8A050,#C8956A)", color: "#000", fontSize: 10, fontWeight: 800, padding: "3px 16px", borderRadius: 20, whiteSpace: "nowrap", letterSpacing: "0.1em" }}>MOST POPULAR</div>}
               <div style={{ fontSize: 15, fontWeight: 700, color: T.textPrimary, marginBottom: 4 }}>{p.name}</div>
               {p.sub && <div style={{ fontSize: 12, color: T.textMuted, marginBottom: 8 }}>{p.sub}</div>}
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 20 }}>
@@ -743,11 +743,11 @@ function Landing({ onJoin, onDemo }) {
               <div style={{ marginBottom: 24 }}>
                 {p.features.map((f, i) => (
                   <div key={i} style={{ fontSize: 14, color: f.includes("✦") ? "#C8892A" : T.textMuted, marginBottom: 8, paddingLeft: 16, position: "relative", lineHeight: 1.5 }}>
-                    <span style={{ position: "absolute", left: 0, color: "#B76E79" }}>·</span>{f}
+                    <span style={{ position: "absolute", left: 0, color: "#C8956A" }}>·</span>{f}
                   </div>
                 ))}
               </div>
-              <button onClick={() => onJoin(p.id)} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(90deg,#C8892A,#B76E79)" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E79", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 52 }}>{p.cta}</button>
+              <button onClick={() => onJoin(p.id)} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(90deg,#C8A050,#C8956A)" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E79", borderRadius: 12, color: p.popular ? "#000" : "#C8956A", fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 52 }}>{p.cta}</button>
             </div>
           ))}
         </div>
@@ -771,7 +771,7 @@ function Landing({ onJoin, onDemo }) {
                 ))}
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
-                <button onClick={() => onJoin("founder")} style={{ padding: "16px 36px", background: "linear-gradient(90deg,#C8892A,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52 }}>Claim Founder price</button>
+                <button onClick={() => onJoin("founder")} style={{ padding: "16px 36px", background: "linear-gradient(90deg,#C8A050,#C8956A)", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52 }}>Claim Founder price</button>
                 <div style={{ fontSize: 12, color: T.textMuted }}>Original price · First 1,000 members only</div>
               </div>
             </div>
@@ -800,19 +800,19 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ position: "relative", zIndex: 1 }}>
           <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 24 }}>
             Wake up knowing.<br />
-            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
+            <span style={{ background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
           </h2>
           <p style={{ fontSize: 17, color: T.textMuted, marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
             In that state, reality shows you the proof of what you already know.
           </p>
-          <button onClick={() => onJoin("audio")} style={{ padding: "18px 48px", background: "linear-gradient(90deg,#C8892A,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56 }}>Start your shift</button>
+          <button onClick={() => onJoin("audio")} style={{ padding: "18px 48px", background: "linear-gradient(90deg,#C8A050,#C8956A)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56 }}>Start your shift</button>
           <div style={{ marginTop: 12, fontSize: 13, color: T.textFaint }}>Cancel anytime · No download · Any device</div>
         </div>
       </div>
 
       {/* FOOTER */}
       <div style={{ borderTop: T.border, padding: "28px 24px", textAlign: "center" }}>
-        <span className="wm" style={{ fontSize: 22, display: "block", marginBottom: 8, background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
+        <span className="wm" style={{ fontSize: 22, display: "block", marginBottom: 8, background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ fontSize: 12, color: T.textFaint, marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com · Not on YouTube</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
       </div>
