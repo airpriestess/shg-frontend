@@ -756,7 +756,7 @@ function Landing({ onJoin, onDemo }) {
           {[
             {
               id: "audio", name: "Audio Tier",
-              price: billing === "monthly" ? "€19.99" : "€192",
+              price: billing === "monthly" ? "€19" : "€192",
               period: billing === "monthly" ? "/month" : "/year",
               sub: billing === "annual" ? "€16/mo · 2 months free" : null,
               color: T.textSecondary,
