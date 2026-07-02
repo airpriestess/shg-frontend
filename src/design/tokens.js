@@ -1,39 +1,39 @@
 export const T = {
   bgRoot: "#000000",
-  bgSoft: "#060401",
-  surfaceBase: "#0a0800",
-  surfaceRaised: "#0f0a02",
-  surfaceHigh: "#140e03",
-  borderSoft: "#1e1608",
-  borderGlow: "#2a1e08",
+  bgSoft: "#050400",
+  surfaceBase: "#0a0900",
+  surfaceRaised: "#0f0d02",
+  surfaceHigh: "#141003",
+  borderSoft: "#1e1a08",
+  borderGlow: "#2a2410",
 
   // Text
-  textPrimary: "#f0e8d8",
-  textSecondary: "#d4a868",
-  textMuted: "#9a8060",
-  textFaint: "#5a4830",
+  textPrimary: "#f4ead8",
+  textSecondary: "#d4a85a",
+  textMuted: "#8a7848",
+  textFaint: "#4a3e20",
 
-  // Accent — rich warm gold to soft peach rose gold. No red. No crimson.
-  gold: "#C8892A",          // rich warm gold
-  roseGold: "#D4A574",      // soft peach rose gold — the ombre end
-  rose: "#D4A574",          // same, no red
-  champagne: "#C8892A",
-  champSoft: "#D4A574",
-  blood: "#D4A574",
-  success: "#3a8a4a",
-  warning: "#C69A5B",
-  danger: "#D4A574",
+  // Accents — warm gold ombre only. No red. No crimson. No hot pink.
+  gold:      "#C8A050",   // warm antique gold
+  roseGold:  "#C8956A",   // peach rose gold — ombre midpoint
+  rose:      "#C8856A",   // soft terracotta rose — NOT red, NOT pink
+  champagne: "#C8A050",
+  champSoft: "#C8956A",
+  success:   "#4a9a5a",
+  warning:   "#C8A050",
+  danger:    "#C8856A",
+  blood:     "#C8956A",
 
-  // Gradient — gold to soft peach, ombre
-  accentGrad: "linear-gradient(90deg, #C8892A, #D4A574)",
-  accentGradDiag: "linear-gradient(135deg, #C8892A, #D4A574)",
+  // Gradient — gold to peach rose gold only
+  grad: "linear-gradient(90deg, #C8A050, #C8956A)",
+  gradV: "linear-gradient(135deg, #C8A050, #C8956A)",
 
-  bgGrad: "linear-gradient(135deg, #000000 0%, #060401 50%, #0a0500 100%)",
-  cardBg: "rgba(10,8,0,0.92)",
-  premiumCard: "linear-gradient(135deg, rgba(15,11,1,0.95) 0%, rgba(8,6,0,0.95) 100%)",
-  border: "1px solid #1e1608",
-  glow: "0 0 40px rgba(200,137,42,0.08)",
-  glowChamp: "0 0 30px rgba(200,137,42,0.12)",
+  bgGrad: "linear-gradient(135deg, #000000 0%, #050400 50%, #080600 100%)",
+  cardBg: "rgba(10,9,0,0.92)",
+  premiumCard: "linear-gradient(135deg, rgba(15,13,2,0.95) 0%, rgba(8,7,0,0.95) 100%)",
+  border: "1px solid #1e1a08",
+  glow: "0 0 40px rgba(200,160,80,0.08)",
+  glowChamp: "0 0 30px rgba(200,160,80,0.12)",
 };
 
 export const CSS = `
@@ -44,10 +44,10 @@ html { scroll-behavior: smooth; }
 
 body {
   background: #000000;
-  color: #f0e8d8;
+  color: #f4ead8;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
@@ -56,29 +56,29 @@ body {
 button, input, textarea, select { font-family: 'Inter', sans-serif; }
 
 input, textarea {
-  background: #080601;
-  border: 1px solid #1e1608;
-  color: #f0e8d8;
+  background: #080700;
+  border: 1px solid #1e1a08;
+  color: #f4ead8;
   border-radius: 10px;
-  padding: 14px 16px;
+  padding: 13px 16px;
   font-size: 15px;
   width: 100%;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
   font-family: 'Inter', sans-serif;
 }
-input::placeholder, textarea::placeholder { color: #3a2e1a; }
+input::placeholder, textarea::placeholder { color: #3a3010; }
 input:focus, textarea:focus {
-  border-color: #C8892A66;
-  box-shadow: 0 0 0 3px rgba(200,137,42,0.08);
+  border-color: #C8A05066;
+  box-shadow: 0 0 0 3px rgba(200,160,80,0.08);
 }
 
 select {
-  background: #080601;
-  border: 1px solid #1e1608;
-  color: #f0e8d8;
+  background: #080700;
+  border: 1px solid #1e1a08;
+  color: #f4ead8;
   border-radius: 10px;
-  padding: 13px 16px;
+  padding: 12px 16px;
   font-size: 15px;
   outline: none;
   cursor: pointer;
@@ -87,11 +87,13 @@ select {
 
 ::-webkit-scrollbar { width: 3px; height: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #1e1608; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #1e1a08; border-radius: 2px; }
 
-/* Cormorant for all brand headings */
-.wm { font-family: 'Cormorant Garamond', serif; font-style: italic; }
-.wm-upright { font-family: 'Cormorant Garamond', serif; font-style: normal; }
+/* Cormorant heading class */
+.wm {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
 
 .fade { animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -100,7 +102,7 @@ select {
   display: inline-block;
   width: 3px;
   border-radius: 2px;
-  background: linear-gradient(180deg, #C8892A, #D4A574);
+  background: linear-gradient(180deg, #C8A050, #C8956A);
   animation: wave 1.4s ease-in-out infinite;
 }
 @keyframes wave {
@@ -118,13 +120,13 @@ select {
 }
 @keyframes breathe {
   0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: var(--op); }
-  50% { transform: translate(-50%,-50%) scale(1.05); opacity: calc(var(--op) * 2); }
+  50% { transform: translate(-50%,-50%) scale(1.06); opacity: calc(var(--op) * 2); }
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(200,137,42,0.4); }
-  70% { box-shadow: 0 0 0 20px rgba(200,137,42,0); }
-  100% { box-shadow: 0 0 0 0 rgba(200,137,42,0); }
+  0% { box-shadow: 0 0 0 0 rgba(200,160,80,0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(200,160,80,0); }
+  100% { box-shadow: 0 0 0 0 rgba(200,160,80,0); }
 }
 .pulse { animation: pulse 2s infinite; }
 
