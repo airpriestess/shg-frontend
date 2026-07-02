@@ -254,7 +254,7 @@ function Landing({ onJoin, onDemo }) {
         <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
-          <button onClick={() => onJoin("audio")} style={{ padding: "11px 28px", background: "#f2ece4", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.04em", boxShadow: "0 2px 20px rgba(242,236,228,0.35)" }}>Join now ✦</button>
+          <button onClick={() => onJoin("audio")} style={{ padding: "11px 28px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.03em", boxShadow: "0 0 32px rgba(183,110,121,0.7), 0 0 64px rgba(183,110,121,0.3)" }}>Join now ✦</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 3 }}>
             {[0,1,2].map(i => <div key={i} style={{ width: 16, height: 1.5, background: T.textMuted }} />)}
           </button>
@@ -337,14 +337,14 @@ function Landing({ onJoin, onDemo }) {
           {/* PAIN POINT */}
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "#f2ece4", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", boxShadow: "0 2px 24px rgba(242,236,228,0.5)", letterSpacing: "0.06em" }}>
+            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 700, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.02em" }}>
               START LISTENING ✦
             </button>
             <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
-              FOUNDER ACCESS →
+              EARLY BIRD ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €14.99/mo · Goddess Tier €33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €19/mo · Goddess Tier €33/mo · Cancel anytime</div>
 
 
         </div>
@@ -357,7 +357,7 @@ function Landing({ onJoin, onDemo }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16 }}>
           {[
-            { label: "Audio Tier", price: "€14.99", period: "/month", desc: "Full vault. All categories. New tracks weekly.", cta: "Start listening →", stripe: "https://buy.stripe.com/AUDIO_PLAN_LINK", popular: false },
+            { label: "Audio Tier", price: "€19", period: "/month", desc: "Full vault. All categories. New tracks weekly.", cta: "Start listening →", stripe: "https://buy.stripe.com/AUDIO_PLAN_LINK", popular: false },
             { label: "Goddess Tier", price: "€33", period: "/month", desc: "Everything in Audio + ProofOS manifestation tracker.", cta: "Become Goddess →", stripe: "https://buy.stripe.com/GODDESS_PLAN_LINK", popular: true },
             { label: "Early Bird Lifetime", price: "€500", period: "once · forever", desc: "Full vault + ProofOS + every future feature. 1,000 spots.", cta: "Claim Early Bird Access →", stripe: "https://buy.stripe.com/LIFETIME_PLAN_LINK", popular: false },
           ].map((p, i) => (
@@ -369,7 +369,7 @@ function Landing({ onJoin, onDemo }) {
                 <span style={{ fontSize: 14, color: "#786860" }}>{p.period}</span>
               </div>
               <p style={{ fontSize: 14, color: "#b09888", lineHeight: 1.7, marginBottom: 24 }}>{p.desc}</p>
-              <button onClick={() => window.open(p.stripe, "_blank")} style={{ width: "100%", padding: "14px", background: p.popular ? "#f2ece4" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E7944", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em" }}>{p.cta}</button>
+              <button onClick={() => window.open(p.stripe, "_blank")} style={{ width: "100%", padding: "14px", background: p.popular ? "linear-gradient(135deg,#d4a090,#B76E79)" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E7944", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em" }}>{p.cta}</button>
             </div>
           ))}
         </div>
@@ -824,9 +824,9 @@ function Landing({ onJoin, onDemo }) {
           {[
             {
               id: "audio", name: "Audio Tier",
-              price: billing === "monthly" ? "€14.99" : "€144",
+              price: billing === "monthly" ? "€19" : "€144",
               period: billing === "monthly" ? "/month" : "/year",
-              sub: billing === "annual" ? "€14.99/mo · save €36/year" : null,
+              sub: billing === "annual" ? "€19/mo · save €36/year" : null,
               color: T.textSecondary,
               features: ["An ever-expanding hypnosis library", "All 6 desire categories", "4 new tracks every week", "Loop player + sleep timer", "Plays in background like Spotify", "No ads. Ever."],
               cta: "Join Audio Tier",
