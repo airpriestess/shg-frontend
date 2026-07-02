@@ -55,13 +55,11 @@ html{-webkit-text-size-adjust:100%}
   .grid-2{grid-template-columns:1fr!important}
   .grid-3{grid-template-columns:1fr 1fr!important}
   .grid-4{grid-template-columns:1fr!important;gap:16px!important}
-  .grid-4 .step-arrow{display:none!important}
   .price-grid{grid-template-columns:1fr!important}
-  .hide-mobile{display:none!important}
   .comp-grid{grid-template-columns:1fr!important}
-  .comp-old{border-right:1px solid #1e1a08!important;border-bottom:none!important;border-radius:14px 14px 0 0!important}
-  .steps-flow{grid-template-columns:1fr!important}
+  .hide-mobile{display:none!important}
   .steps-arrow{display:none!important}
+  nav h1,nav .wm{font-size:16px!important}
 }
 
 /* ── ANIMATED MARQUEE ──────────────────────────────────────── */
