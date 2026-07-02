@@ -202,6 +202,7 @@ function Landing({ onJoin, onDemo }) {
     { label: "Sleep Shifting", tagline: "You shift while you sleep.", color: "#7a9ab0" },
   ];
 
+  // Comparison section heading explanation is added in JSX below
   const compRows = [
     { old: "You script and see nothing change", neu: "Your subconscious is already running the new program" },
     { old: "You desire it and it stays out of reach", neu: "You assume it — and reality mirrors the assumption" },
@@ -236,8 +237,8 @@ function Landing({ onJoin, onDemo }) {
       {/* ANNOUNCEMENT BANNER */}
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: "#000", letterSpacing: "0.04em" }}>
-            ✦ FOUNDER LIFETIME — €500 once · Price locks in forever · Only 1,000 spots
+          <span style={{ fontSize: 12, fontWeight: 300, color: "#000", letterSpacing: "0.12em" }}>
+            ✦ &nbsp; FOUNDER LIFETIME ACCESS &nbsp;·&nbsp; €500 once, forever &nbsp;·&nbsp; 1,000 spots only
           </span>
           <button onClick={() => onJoin("founder")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
             Claim yours
@@ -324,11 +325,11 @@ function Landing({ onJoin, onDemo }) {
           {/* PAIN POINT */}
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.02em" }}>
-              Start listening ✦
+            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 700, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.06em" }}>
+              START LISTENING ✦
             </button>
-            <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 700, cursor: "pointer" }}>
-              Founder access →
+            <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
+              FOUNDER ACCESS →
             </button>
           </div>
           <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €14.99/mo · Goddess Tier €33/mo · Cancel anytime</div>
@@ -453,7 +454,42 @@ function Landing({ onJoin, onDemo }) {
           </p>
         </div>
 
-        {/* COMPARISON TABLE */}
+        {/* AUDIO SAMPLES */}
+      <div style={{ padding: "0 24px 70px", maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Inside the vault</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
+            Three formats.<br />
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One voice. Your subconscious.</span>
+          </h2>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 480, margin: "0 auto" }}>
+            Melodic house for deep receptivity. Sleep subliminals for overnight installation. Vocals only for pure hypnotic induction. Reshma decides the format for each desire.
+          </p>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {[
+            { title: "Money Finds Me First", format: "Melodic House · Spoken Hypnosis", freq: "528hz", badge: "Melodic House", badgeColor: "#d4a090", icon: "🎵", desc: "Subconscious reprogramming for receiving. Reshma's voice layered beneath melodic house music." },
+            { title: "Gorgeous Is My Default Setting", format: "Sleep Subliminal", freq: "432hz", badge: "Sleep Subliminal", badgeColor: "#B76E79", icon: "🌙", desc: "8-hour overnight subliminal. Plays while you sleep. Identity installation at the deepest level." },
+            { title: "He Is Already On His Way Back", format: "Vocals Only · Subliminal", freq: "432hz", badge: "Vocals Only", badgeColor: "#c8a08a", icon: "🎙", desc: "Pure voice. No music. Just Reshma's hypnotic induction and bilateral subliminal installation." },
+          ].map((a, i) => (
+            <div key={i} style={{ background: "#0a0908", border: "1px solid #201e1c", borderRadius: 14, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "#B76E7944"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "#201e1c"}
+            >
+              <div style={{ width: 44, height: 44, borderRadius: 10, background: "linear-gradient(135deg,#d4a09018,#B76E7918)", border: "1px solid #B76E7933", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>{a.icon}</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 15, fontWeight: 600, color: T.textPrimary, marginBottom: 3 }}>{a.title}</div>
+                <div style={{ fontSize: 12, color: T.textMuted }}>{a.format} · {a.freq}</div>
+              </div>
+              <span style={{ fontSize: 10, padding: "3px 10px", background: a.badgeColor + "18", border: `1px solid ${a.badgeColor}44`, borderRadius: 20, color: a.badgeColor, fontWeight: 600, letterSpacing: "0.08em", flexShrink: 0, whiteSpace: "nowrap" }}>{a.badge}</span>
+              <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#d4a090,#B76E79)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flexShrink: 0, opacity: 0.5 }}>▶</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 14, fontSize: 12, color: T.textFaint }}>Sample previews · Full tracks unlock in the vault</div>
+      </div>
+
+      {/* COMPARISON TABLE */}
         <div style={{ marginBottom: 70 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 2 }}>
             <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "22px 30px", border: "1px solid #2a1010", borderBottom: "none", borderRight: "none" }}>
