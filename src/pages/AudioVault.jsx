@@ -4,8 +4,8 @@ import { Btn, Card, Pill, WaveForm, LockCard, Label, EmptyState } from "../compo
 import { AUDIOS, PROOF_THREADS } from "../data/sample.js";
 
 const CAT_COLOR = {
-  Money: "#C8A050", Beauty: "#C8956A", Love: "#C8956A",
-  Identity: "#d8c8a0", Sleep: "#6a8ad0", Body: "#C8A050",
+  Money: "#C8956A", Beauty: "#C8956A", Love: "#C8956A",
+  Identity: "#d8c8a0", Sleep: "#6a8ad0", Body: "#C8956A",
 };
 
 const FORMAT_SHORT = {
@@ -19,10 +19,10 @@ const FORMAT_SHORT = {
 
 function AccessBadge({ audio, userTier }) {
   const canAccess = !audio.isLocked || userTier === "goddess" || userTier === "founder";
-  if (userTier === "founder") return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8A05022", border: "1px solid #C8A05044", borderRadius: 20, color: "#C8A050", fontWeight: 700 }}>Founder</span>;
+  if (userTier === "founder") return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8956A22", border: "1px solid #C8956A44", borderRadius: 20, color: "#C8956A", fontWeight: 700 }}>Founder</span>;
   if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1e1c0a", border: "1px solid #a09070", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
   if (audio.isLocked && canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8956A22", border: "1px solid #C8956A44", borderRadius: 20, color: "#C8956A", fontWeight: 700 }}>Goddess</span>;
-  return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8A05018", border: "1px solid #C8A05033", borderRadius: 20, color: "#C8A050", fontWeight: 700 }}>Audio Tier</span>;
+  return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8956A18", border: "1px solid #C8956A33", borderRadius: 20, color: "#C8956A", fontWeight: 700 }}>Audio Tier</span>;
 }
 
 export default function AudioVault({ userTier, onCreateThread, onPlayAudio, playingId, onUpgrade }) {
@@ -73,10 +73,10 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
         {/* Stats */}
         <div className="grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10, marginBottom: 20 }}>
           {[
-            { v: unlockedCount, l: "Audios Unlocked", c: "#C8A050" },
+            { v: unlockedCount, l: "Audios Unlocked", c: "#C8956A" },
             { v: totalThreads, l: "Active Intentions", c: "#C8956A" },
             { v: totalManifested, l: "Manifested", c: "#4a9a5a" },
-            { v: "14d", l: "Listening Streak", c: "#C8A050" },
+            { v: "14d", l: "Listening Streak", c: "#C8956A" },
           ].map((s, i) => (
             <div key={i} style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
               <div style={{ fontSize: 24, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 4 }}>{s.v}</div>
@@ -149,12 +149,12 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
   return (
     <div onClick={onSelect} style={{
       background: isSelected ? "#0f0b02" : "#0a0800",
-      border: `1px solid ${isSelected ? "#C8A05066" : "#1e1c0a"}`,
+      border: `1px solid ${isSelected ? "#C8956A66" : "#1e1c0a"}`,
       borderRadius: 14, padding: "16px 18px", cursor: "pointer",
       transition: "border-color 0.2s",
       opacity: a.isLocked && !canPlay ? 0.65 : 1,
     }}
-      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#a09070")}
+      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#c8a880")}
       onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1e1c0a")}
     >
       {/* Row 1 — title + access badge */}
@@ -194,10 +194,10 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
           <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
             {[6, 14, 20, 10, 16].map((h, j) => (
-              <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "#C8A050", opacity: 0.8 }} />
+              <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "#C8956A", opacity: 0.8 }} />
             ))}
           </div>
-          <span style={{ fontSize: 12, color: "#C8A050", fontWeight: 600 }}>Now playing</span>
+          <span style={{ fontSize: 12, color: "#C8956A", fontWeight: 600 }}>Now playing</span>
         </div>
       )}
 
@@ -286,7 +286,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {linked.map(t => {
-              const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#C8A050" : T.textMuted;
+              const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#C8956A" : T.textMuted;
               return (
                 <div key={t.id} style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 10, padding: "12px 14px" }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: T.textPrimary, marginBottom: 6, lineHeight: 1.35 }}>{t.intentionTitle}</div>
@@ -300,7 +300,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 4 }}>
                       <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textFaint }}>{t.mood_before}</span>
                       <span style={{ fontSize: 10, color: T.textFaint }}>→</span>
-                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#C8A05018", border: "1px solid #C8A05033", borderRadius: 20, color: "#C8A050" }}>{t.mood_after}</span>
+                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#C8956A18", border: "1px solid #C8956A33", borderRadius: 20, color: "#C8956A" }}>{t.mood_after}</span>
                     </div>
                   )}
                 </div>
