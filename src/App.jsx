@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import VaultSettings from "./pages/VaultSettings.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
+import { createClient as _sbClient } from "@supabase/supabase-js";
 
 const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3";
 
@@ -821,5 +822,67 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
       </div>
     </div>
+  );
+}
+
+/* ── SIGN MODAL ─────────────────────────────────────────────────────────────── */
+const _sb = _sbClient("https://qtwvslrwmreazmrdktsn.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MzIwMjAsImV4cCI6MjA5ODMwODAyMH0.FjfHRNOjnmbiYMjA9eKT1hexvwCN2ERtTyBOqY2cj-8");
+
+const SIGN_SUGGESTIONS = {
+  Sign: ["Saw 111 · 222 · 333 · 555", "Someone mentioned it unexpectedly", "Dreamed about it clearly", "Felt sudden calm certainty", "Received a surprise message"],
+  Synchronicity: ["His name appeared three times today", "The exact thing I wanted appeared", "A stranger confirmed my intention"],
+  Symptom: ["Body felt warm and certain after listening", "Chest felt open and relaxed", "Sudden peace for no reason", "Woke up knowing before anything happened"],
+};
+
+function SignModal({ open, type, onClose, threadId }) {
+  const [val, setVal] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const save = async () => {
+    if (!val.trim()) return;
+    setSaving(true);
+    try {
+      await _sb.from("proof_entries").insert({
+        thread_id: threadId || null,
+        type: type || "Sign",
+        caption: val,
+        happened_at: new Date().toISOString(),
+      });
+    } catch(e) { console.error(e); }
+    setDone(true);
+    setSaving(false);
+  };
+
+  if (!open) return null;
+
+  return (
+    <Modal open title={`Log ${type || "Sign"}`} onClose={() => { setVal(""); setDone(false); onClose(); }} width={460}>
+      {done ? (
+        <div style={{ textAlign: "center", padding: "28px 0" }}>
+          <div style={{ fontSize: 36, marginBottom: 10 }}>◈</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: T.textPrimary, marginBottom: 20 }}>Logged.</div>
+          <Btn variant="champagne" onClick={() => { setVal(""); setDone(false); onClose(); }}>Done</Btn>
+        </div>
+      ) : (
+        <>
+          <FormField label="What did you notice?">
+            <input value={val} onChange={e => setVal(e.target.value)}
+              placeholder="Describe what appeared, shifted, or showed up..."
+              autoFocus onKeyDown={e => e.key === "Enter" && save()}
+              style={{ width: "100%" }} />
+          </FormField>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
+            {(SIGN_SUGGESTIONS[type] || SIGN_SUGGESTIONS.Sign).map((s, i) => (
+              <button key={i} onClick={() => setVal(s)} style={{ padding: "5px 12px", background: "none", border: "1px solid #1e1608", borderRadius: 20, color: T.textMuted, fontSize: 12, cursor: "pointer" }}>{s}</button>
+            ))}
+          </div>
+          <div style={{ display: "flex", gap: 10 }}>
+            <Btn full variant="champagne" onClick={save} disabled={saving || !val.trim()}>{saving ? "Saving..." : `Save ${type || "Sign"}`}</Btn>
+            <Btn variant="soft" onClick={() => { setVal(""); onClose(); }}>Cancel</Btn>
+          </div>
+        </>
+      )}
+    </Modal>
   );
 }
