@@ -378,7 +378,7 @@ function Landing({ onJoin, onDemo }) {
           </p>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <Btn variant="champagne" size="lg" onClick={() => onJoin("audio")}>Start your shift — €14.99/month</Btn>
+            <Btn variant="champagne" size="lg" onClick={() => onJoin("audio")}>Start your shift — €19/month</Btn>
             <Btn variant="ghost" size="lg" onClick={onDemo}>Preview the dashboard</Btn>
           </div>
           <div style={{ fontSize: 13, color: T.textFaint }}>Cancel anytime · Stripe · No download · Plays in background like Spotify</div>
@@ -905,7 +905,7 @@ function Landing({ onJoin, onDemo }) {
           {[
             {
               id: "audio", name: "Audio Tier",
-              price: billing === "monthly" ? "€14.99" : "€192",
+              price: billing === "monthly" ? "€19" : "€192",
               period: billing === "monthly" ? "/month" : "/year",
               sub: billing === "annual" ? "€16/mo · 2 months free" : null,
               color: T.textSecondary,
