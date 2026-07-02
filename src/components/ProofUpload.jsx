@@ -99,7 +99,7 @@ export function PhotoProofModal({ open, onClose, threadId, audioTitle }) {
             onDragOver={e => e.preventDefault()}
             onClick={() => inputRef.current?.click()}
             style={{
-              border: `2px dashed ${preview ? "#C8A05066" : "#1e1608"}`,
+              border: `2px dashed ${preview ? "#C8A05066" : "#1e1c0a"}`,
               borderRadius: 14, padding: preview ? 8 : "36px 20px",
               textAlign: "center", cursor: "pointer", marginBottom: 16,
               background: preview ? "#0a0800" : "#060400",
@@ -275,7 +275,7 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
       ) : (
         <div>
           {/* Recorder */}
-          <div style={{ background: "#060400", border: "1px solid #1e1608", borderRadius: 14, padding: "28px 20px", textAlign: "center", marginBottom: 16 }}>
+          <div style={{ background: "#060400", border: "1px solid #1e1c0a", borderRadius: 14, padding: "28px 20px", textAlign: "center", marginBottom: 16 }}>
             {state === "idle" && (
               <>
                 <div style={{ fontSize: 48, marginBottom: 12 }}>🎙</div>
