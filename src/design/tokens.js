@@ -39,22 +39,29 @@ export const T = {
 };
 
 export const CSS = `
-/* ── MOBILE RESPONSIVE ─────────────────────────────────────── */
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
 html{-webkit-text-size-adjust:100%}
 *{-webkit-tap-highlight-color:transparent}
+/* Desktop: full width, generous padding */
+.section-wrap{width:100%;padding-left:clamp(24px,5vw,80px);padding-right:clamp(24px,5vw,80px);box-sizing:border-box}
+.hero-wrap{width:100%;padding-left:clamp(24px,6vw,120px);padding-right:clamp(24px,6vw,120px);box-sizing:border-box;text-align:center}
 .grid-2{grid-template-columns:1fr 1fr}
 .grid-3{grid-template-columns:repeat(3,1fr)}
-@media(max-width:600px){
+.grid-4{grid-template-columns:1fr 40px 1fr 40px 1fr 40px 1fr}
+/* Mobile: stack everything, big text, breathing room */
+@media(max-width:768px){
+  .section-wrap{padding-left:20px!important;padding-right:20px!important}
+  .hero-wrap{padding-left:20px!important;padding-right:20px!important}
   .grid-2{grid-template-columns:1fr!important}
   .grid-3{grid-template-columns:1fr 1fr!important}
+  .grid-4{grid-template-columns:1fr!important;gap:16px!important}
+  .grid-4 .step-arrow{display:none!important}
   .price-grid{grid-template-columns:1fr!important}
   .hide-mobile{display:none!important}
-  .stack-mobile{flex-direction:column!important}
-  .full-mobile{width:100%!important;max-width:100%!important}
-  .pad-mobile{padding-left:16px!important;padding-right:16px!important}
-  .text-sm-mobile{font-size:13px!important}
-  .comp-row-mobile{grid-template-columns:1fr!important}
-  .comp-cell-mobile{border-right:none!important;border-bottom:1px solid #1e1a08!important}
+  .comp-grid{grid-template-columns:1fr!important}
+  .comp-old{border-right:1px solid #1e1a08!important;border-bottom:none!important;border-radius:14px 14px 0 0!important}
+  .steps-flow{grid-template-columns:1fr!important}
+  .steps-arrow{display:none!important}
 }
 
 /* ── ANIMATED MARQUEE ──────────────────────────────────────── */
