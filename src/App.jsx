@@ -368,10 +368,10 @@ function Landing({ onJoin, onDemo }) {
             <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", lineHeight: 1.15, marginBottom: 16, background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               Hypnosis layered beneath<br />melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#c8b890", lineHeight: 1.85, marginBottom: 24, maxWidth: 580 }}>
+            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#d8c8a0", lineHeight: 1.85, marginBottom: 24, maxWidth: 580 }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#a89060", lineHeight: 1.85, marginBottom: 28, maxWidth: 580 }}>
+            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#a09070", lineHeight: 1.85, marginBottom: 28, maxWidth: 580 }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }} className="grid-3">
@@ -383,7 +383,7 @@ function Landing({ onJoin, onDemo }) {
                 <div key={i} style={{ background: "#0d0c02", border: "1px solid #1e1a08", borderRadius: 14, padding: "18px 16px" }}>
                   <div style={{ fontSize: 20, background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 10 }}>{c.icon}</div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: "#f4ead8", marginBottom: 8 }}>{c.title}</div>
-                  <div style={{ fontSize: 13, color: "#a89060", lineHeight: 1.7 }}>{c.body}</div>
+                  <div style={{ fontSize: 13, color: "#a09070", lineHeight: 1.7 }}>{c.body}</div>
                 </div>
               ))}
             </div>
@@ -434,8 +434,8 @@ function Landing({ onJoin, onDemo }) {
           {compRows.map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 1 }}>
               <div style={{ background: "#0a0900", padding: "20px 32px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
-                <span style={{ color: "#5a4a20", fontSize: 18, flexShrink: 0, marginTop: 3 }}>✗</span>
-                <span style={{ fontSize: 17, color: "#a89050", lineHeight: 1.75 }}>{row.old}</span>
+                <span style={{ color: "#a09070", fontSize: 18, flexShrink: 0, marginTop: 3 }}>✗</span>
+                <span style={{ fontSize: 17, color: "#C8A050", lineHeight: 1.75 }}>{row.old}</span>
               </div>
               <div style={{ background: "#0a0900", padding: "20px 32px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0, display: "flex", gap: 14, alignItems: "flex-start" }}>
                 <span style={{ color: T.champagne, fontSize: 18, flexShrink: 0, marginTop: 2 }}>✦</span>
@@ -487,7 +487,7 @@ function Landing({ onJoin, onDemo }) {
                 {col.items.map((t, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, marginBottom: 16 }}>
                     <span style={{ color: col.color, fontSize: ci === 0 ? 18 : 16, flexShrink: 0, marginTop: 2 }}>{col.icon}</span>
-                    <span style={{ fontSize: 16, color: ci === 0 ? "#c8a090" : T.textSecondary, lineHeight: 1.75 }}>{t}</span>
+                    <span style={{ fontSize: 16, color: ci === 0 ? "#d8c8a0" : T.textSecondary, lineHeight: 1.75 }}>{t}</span>
                   </div>
                 ))}
               </div>
@@ -539,7 +539,7 @@ function Landing({ onJoin, onDemo }) {
               { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
               { day: "Day 7", icon: "✦", label: "Evidence appears", body: "Signs arrive faster. Money from somewhere forgotten. He texts. Your skin looks different. You start logging proof.", color: "#C8A050" },
               { day: "Day 14", icon: "◉", label: "Identity updates", body: "You stop needing it. Certainty replaces desire. The old self-concept has nowhere left to live.", color: "#C8A050" },
-              { day: "Day 30+", icon: "★", label: "Reality confirms", body: "What you assumed is now undeniable. The proof thread closes. Manifested.", color: "#d4a868" },
+              { day: "Day 30+", icon: "★", label: "Reality confirms", body: "What you assumed is now undeniable. The proof thread closes. Manifested.", color: "#d8c8a0" },
             ].map((s, i) => (
               <div key={i} style={{ position: "relative", zIndex: 1 }}>
                 <div style={{ width: 56, height: 56, borderRadius: "50%", background: `radial-gradient(circle,${s.color}22,transparent)`, border: `1.5px solid ${s.color}66`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, margin: "0 auto 14px" }}>{s.icon}</div>
@@ -723,7 +723,7 @@ function Landing({ onJoin, onDemo }) {
             { icon: "💰", label: "Money Receipt",         sub: "€5,000 received",               color: "#C8A050" },
             { icon: "🪞", label: "Mirror Photo",          sub: "The glow. Day 14.",              color: "#C8956A" },
             { icon: "555", label: "Angel Number",          sub: "Saw it 3 times in one hour",    color: "#C8A050" },
-            { icon: "📧", label: "Email Confirmation",    sub: "Arrived unexpectedly",           color: "#c8a870" },
+            { icon: "📧", label: "Email Confirmation",    sub: "Arrived unexpectedly",           color: "#d8c8a0" },
             { icon: "📅", label: "Calendar Invite",       sub: "The meeting that changed it",   color: "#6a8ad0" },
           ].map((p, i) => (
             <div key={i} style={{ background: "#0a0800", border: `1px solid ${p.color}33`, borderRadius: 14, overflow: "hidden" }}>
