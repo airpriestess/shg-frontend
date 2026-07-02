@@ -241,7 +241,7 @@ function Landing({ onJoin, onDemo }) {
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
           <span style={{ fontSize: 12, fontWeight: 300, color: "#000", letterSpacing: "0.12em" }}>
-            ✦ &nbsp; EARLY BIRD LIFETIME ACCESS &nbsp;·&nbsp; €500 once, forever &nbsp;·&nbsp; 1,000 spots only
+            ✦ &nbsp; FOUNDER LIFETIME ACCESS &nbsp;·&nbsp; €500 once, forever &nbsp;·&nbsp; 1,000 spots only
           </span>
           <button onClick={() => window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02", "_blank")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
             Claim yours
@@ -290,15 +290,9 @@ function Landing({ onJoin, onDemo }) {
           </div>
 
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
-            <span style={{ fontSize: 11, padding: "5px 16px", background: "#B76E7918", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>✦ As seen on YouTube</span>
+            <span style={{ fontSize: 11, padding: "5px 16px", background: "#B76E7918", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>✦ &nbsp; As seen on YouTube &nbsp; ✦</span>
           </div>
-          <div style={{ overflow: "hidden", marginBottom: 24, maskImage: "linear-gradient(90deg,transparent,black 8%,black 92%,transparent)", WebkitMaskImage: "linear-gradient(90deg,transparent,black 8%,black 92%,transparent)" }}>
-            <div className="marquee-track" style={{ gap: "0 40px" }}>
-              {["MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦","MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦"].map((t,i) => (
-                <span key={i} style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: i%3===0?T.champagne:i%3===1?T.roseGold:T.textFaint, whiteSpace: "nowrap" }}>{t}</span>
-              ))}
-            </div>
-          </div>
+          
 
           {/* TITLE */}
           <h1 className="wm" style={{ fontSize: "clamp(30px,8vw,72px)", lineHeight: 1.0, marginBottom: 16, color: T.textPrimary }}>
@@ -341,35 +335,63 @@ function Landing({ onJoin, onDemo }) {
               START LISTENING ✦
             </button>
             <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
-              EARLY BIRD ACCESS →
+              FOUNDER LIFETIME ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €19/mo · Goddess Tier €33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
 
 
         </div>
       </div>
 
+
+      {/* MAXXING MARQUEE — between hero and pricing */}
+      <div style={{ overflow: "hidden", padding: "24px 0", borderTop: "1px solid #0f0e0c", borderBottom: "1px solid #0f0e0c", marginBottom: 0, maskImage: "linear-gradient(90deg,transparent,black 5%,black 95%,transparent)", WebkitMaskImage: "linear-gradient(90deg,transparent,black 5%,black 95%,transparent)" }}>
+        <div className="marquee-track" style={{ gap: "0 60px" }}>
+          {["MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦","MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦"].map((t,i) => (
+            <span key={i} style={{ fontSize: 13, fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: i%3===0?T.champagne:i%3===1?T.roseGold:T.textFaint, whiteSpace: "nowrap" }}>{t}</span>
+          ))}
+        </div>
+      </div>
       {/* EARLY PRICING */}
       <div style={{ padding: "0 0 80px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 0 }}>Simple pricing · Start today</div>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 0 }}>Pricing</div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }} className="price-grid">
           {[
-            { label: "Audio Tier", price: "€19", period: "/month", desc: "Full vault. All categories. New tracks weekly.", cta: "Start listening →", stripe: "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00", popular: false },
-            { label: "Goddess Tier", price: "€33", period: "/month", desc: "Everything in Audio + ProofOS manifestation tracker.", cta: "Become Goddess →", stripe: "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01", popular: true },
-            { label: "Early Bird Lifetime", price: "€500", period: "once · forever", desc: "Full vault + ProofOS + every future feature. 1,000 spots.", cta: "Claim Early Bird Access →", stripe: "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02", popular: false },
+            {
+              label: "Audio Tier", price: "£19", period: "/month",
+              features: ["Full hypnosis + subliminal vault", "All 6 desire categories", "Melodic house, sleep and vocals only formats", "New tracks every week", "Background play — works like Spotify", "Loop player and sleep timer", "Mobile app — add to home screen"],
+              cta: "Start listening", stripe: "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00",
+            },
+            {
+              label: "Goddess Tier", price: "£33", period: "/month", popular: true,
+              features: ["Everything in Audio Tier", "ProofOS manifestation tracker ✦", "Log desires and link to audios", "Photo proof uploads", "Voice note recordings", "Proof Wall — your evidence vault", "Early access 48hrs before everyone", "Monthly ritual audio included"],
+              cta: "Activate Goddess Tier", stripe: "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01",
+            },
+            {
+              label: "Founder Lifetime Access", price: "£500", period: "once · forever",
+              features: ["Everything in Goddess Tier — forever", "Never pay again", "Price locked before it rises", "Every future feature included", "Priority new releases", "Founder status in the vault", "1,000 spots only"],
+              cta: "Claim Founder Access", stripe: "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02",
+            },
           ].map((p, i) => (
-            <div key={i} style={{ background: p.popular ? "#0f0c0a" : "#0a0908", border: p.popular ? "2px solid #B76E7966" : "1px solid #201e1c", borderRadius: 18, padding: "28px 24px", position: "relative" }}>
-              {p.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#d4a090,#B76E79)", borderRadius: 20, padding: "3px 16px", fontSize: 11, fontWeight: 800, color: "#000", whiteSpace: "nowrap" }}>Most popular</div>}
-              <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 10 }}>{p.label}</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
-                <span style={{ fontSize: 48, fontWeight: 800, color: "#f2ece4", lineHeight: 1 }}>{p.price}</span>
+            <div key={i} style={{ background: p.popular ? "#0f0c0a" : "#0a0908", border: p.popular ? "2px solid #B76E7966" : "1px solid #201e1c", borderRadius: 18, padding: "32px 28px", position: "relative", display: "flex", flexDirection: "column" }}>
+              {p.popular && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#d4a090,#B76E79)", borderRadius: 20, padding: "4px 18px", fontSize: 11, fontWeight: 800, color: "#000", whiteSpace: "nowrap", letterSpacing: "0.08em" }}>Most popular</div>}
+              <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>{p.label}</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 24, paddingBottom: 24, borderBottom: "1px solid #201e1c" }}>
+                <span style={{ fontSize: 52, fontWeight: 800, color: "#f2ece4", lineHeight: 1, fontFamily: "'Cormorant Garamond', serif" }}>{p.price}</span>
                 <span style={{ fontSize: 14, color: "#786860" }}>{p.period}</span>
               </div>
-              <p style={{ fontSize: 14, color: "#b09888", lineHeight: 1.7, marginBottom: 24 }}>{p.desc}</p>
-              <button onClick={() => window.open(p.stripe, "_blank")} style={{ width: "100%", padding: "14px", background: p.popular ? "linear-gradient(135deg,#d4a090,#B76E79)" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E7944", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em" }}>{p.cta}</button>
+              <div style={{ flex: 1, marginBottom: 28 }}>
+                {p.features.map((f, fi) => (
+                  <div key={fi} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 12 }}>
+                    <span style={{ color: f.includes("✦") ? "#B76E79" : "#d4a090", fontSize: 14, flexShrink: 0, marginTop: 1 }}>◈</span>
+                    <span style={{ fontSize: 14, color: f.includes("✦") ? "#B76E79" : "#b09888", lineHeight: 1.6 }}>{f.replace(" ✦","")}{f.includes("✦") ? " ✦" : ""}</span>
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => window.open(p.stripe, "_blank")} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(135deg,#d4a090,#B76E79)" : i === 2 ? "#0d0a06" : "transparent", border: p.popular ? "none" : i === 2 ? "1.5px solid #d4a09066" : "1.5px solid #B76E7944", borderRadius: 12, color: p.popular ? "#000" : i === 2 ? "#d4a090" : "#B76E79", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em" }}>{p.cta} →</button>
             </div>
           ))}
         </div>
@@ -381,7 +403,7 @@ function Landing({ onJoin, onDemo }) {
       {/* LANDING PROOF WALL */}
       <div style={{ padding: "0 0 70px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
+          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Proof Wall — Member results</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
             Proof Wall.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>The evidence captured.</span>
@@ -486,7 +508,7 @@ function Landing({ onJoin, onDemo }) {
             </div>
           </div>
           {compRows.map((row, i) => (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 1 }}>
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: 1 }} className="comp-grid">
               <div style={{ background: "#0a0900", padding: "18px 24px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#4a3030", fontSize: 16, flexShrink: 0, marginTop: 3 }}>✗</span>
@@ -866,7 +888,7 @@ function Landing({ onJoin, onDemo }) {
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 32, alignItems: "center" }} className="grid-2">
             <div>
               <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>First 1,000 only · Lifetime access</div>
-              <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: T.textPrimary, marginBottom: 10 }}>Early Bird Lifetime</div>
+              <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: T.textPrimary, marginBottom: 10 }}>Founder Lifetime Access</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 14 }}>
                 <span style={{ fontSize: 48, fontWeight: 800, color: "#B76E79", lineHeight: 1 }}>€500</span>
                 <span style={{ fontSize: 15, color: T.textMuted }}>once · never pay again</span>
