@@ -16,7 +16,7 @@ export const T = {
   // THE LOCKED ACCENT — soft dusty rose gold to light peach
   // This is the colour Reshma approved. Light. Feminine. Not orange. Not red.
   gold:      "#C8956A",   // warm peach (used as secondary)
-  roseGold:  "#B76E79",   // THE accent — soft dusty rose gold ← LOCKED
+  roseGold:  "#B76E79",   // LOCKED — soft dusty rose gold   // THE accent — soft dusty rose gold ← LOCKED
   rose:      "#B76E79",
   champagne: "#B76E79",
   champSoft: "#C8956A",
