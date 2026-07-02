@@ -6,7 +6,7 @@ export function Btn({ children, onClick, variant = "primary", size = "md", full,
     primary: { background: "linear-gradient(135deg,#C8A050,#C8956A)", color: "#000", border: "none" },
     champagne: { background: "linear-gradient(135deg,#C8A050,#C8956A)", color: "#000", border: "none" },
     ghost: { background: "transparent", color: "#C8956A", border: "1px solid #C8956A66" },
-    soft: { background: "#0a0800", color: T.textMuted, border: `1px solid #1e1608` },
+    soft: { background: "#0a0800", color: T.textMuted, border: `1px solid #1e1c0a` },
     danger: { background: "transparent", color: T.rose, border: `1px solid ${T.rose}44` },
   };
   return (
@@ -37,7 +37,7 @@ export function Card({ children, style, premium, onClick, hover }) {
       ...style,
     }}
       onMouseEnter={e => (hover || onClick) && (e.currentTarget.style.borderColor = T.gold + "66", e.currentTarget.style.boxShadow = "0 0 30px rgba(200,137,42,0.1)")}
-      onMouseLeave={e => (hover || onClick) && (e.currentTarget.style.borderColor = "#1e1608", e.currentTarget.style.boxShadow = T.glow)}
+      onMouseLeave={e => (hover || onClick) && (e.currentTarget.style.borderColor = "#1e1c0a", e.currentTarget.style.boxShadow = T.glow)}
     >{children}</div>
   );
 }
