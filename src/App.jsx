@@ -275,7 +275,7 @@ function Landing({ onJoin, onDemo }) {
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
         }} />
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "60px 24px 80px", maxWidth: 800, margin: "0 auto", width: "100%" }}>
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(32px,6vw,60px) clamp(16px,4vw,24px) clamp(40px,6vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           {/* Soundwave */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
             {Array.from({ length: 24 }).map((_, i) => {
@@ -284,10 +284,16 @@ function Landing({ onJoin, onDemo }) {
             })}
           </div>
 
-          <div style={{ fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: T.textMuted, marginBottom: 24, fontWeight: 700 }}>Reshma Oracle · Self Hypnosis + Subliminals · Not on YouTube</div>
+          <div style={{ overflow: "hidden", marginBottom: 24, maskImage: "linear-gradient(90deg,transparent,black 10%,black 90%,transparent)", WebkitMaskImage: "linear-gradient(90deg,transparent,black 10%,black 90%,transparent)" }}>
+            <div className="marquee-track" style={{ gap: "0 32px" }}>
+              {["MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦","MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦"].map((t,i) => (
+                <span key={i} style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: i%3===0?T.champagne:i%3===1?T.roseGold:T.textFaint, whiteSpace: "nowrap" }}>{t}</span>
+              ))}
+            </div>
+          </div>
 
           {/* TITLE */}
-          <h1 className="wm" style={{ fontSize: "clamp(38px,7vw,72px)", lineHeight: 1.05, marginBottom: 12, color: T.textPrimary }}>
+          <h1 className="wm" style={{ fontSize: "clamp(32px,8vw,72px)", lineHeight: 1.05, marginBottom: 12, color: T.textPrimary }}>
             Self Hypnosis Goddess<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Audio Library</span>
           </h1>
@@ -330,10 +336,9 @@ function Landing({ onJoin, onDemo }) {
             </div>
           </div>
 
-          {/* PAIN POINT */}
-                    {/* HERO CTA BUTTONS */}
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <button onClick={() => onJoin("audio")} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 700, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.06em" }}>
+          {/* HERO CTA BUTTONS */}
+          <div className="stack-mobile" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
+            <button onClick={() => onJoin("audio")} className="full-mobile" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 700, cursor: "pointer", boxShadow: "0 0 36px rgba(183,110,121,0.55), 0 0 72px rgba(183,110,121,0.2)", letterSpacing: "0.06em" }}>
               START LISTENING ✦
             </button>
             <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
@@ -363,7 +368,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
             {/* MELODIC HOUSE USP */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 860, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "#0a0900", border: "1px solid #B76E7933", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
           {/* Background glow */}
           <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
@@ -397,7 +402,7 @@ function Landing({ onJoin, onDemo }) {
 
 
       {/* LANDING PROOF WALL */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 900, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -460,7 +465,7 @@ function Landing({ onJoin, onDemo }) {
         </div>
 
         {/* AUDIO SAMPLES */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 720, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Inside the vault</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -715,7 +720,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
                   {/* REFERRAL */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 720, margin: "0 auto" }}>
         <div style={{ background: "#0a0908", border: "1px solid #B76E7944", borderRadius: 20, padding: "36px 40px", textAlign: "center" }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Refer a friend</div>
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,40px)", background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 14, lineHeight: 1.2 }}>
@@ -738,7 +743,7 @@ function Landing({ onJoin, onDemo }) {
 
 
       {/* TESTIMONIALS */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 860, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>What people are saying</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15 }}>
@@ -746,7 +751,7 @@ function Landing({ onJoin, onDemo }) {
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>The proof arrived on its own.</span>
           </h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 12 }}>
+        <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
           {[
             { quote: "I listened on day 1 and cried because I felt something shift. By day 5 he texted. I didn't even look for it.", handle: "@manifestingwithme", cat: "SP & Love" },
             { quote: "€1,800 came back to me as a refund I had forgotten about. Three days after starting Money Finds Me First.", handle: "@luckygirlenergy", cat: "Money" },
@@ -783,7 +788,7 @@ function Landing({ onJoin, onDemo }) {
         </div>
 
         {/* 2 tier cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }} className="grid-2">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }} className="price-grid grid-2">
           {[
             {
               id: "audio", name: "Audio Tier",
