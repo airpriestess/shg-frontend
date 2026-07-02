@@ -250,7 +250,7 @@ function Landing({ onJoin, onDemo }) {
         <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
-          <Btn size="sm" variant="champagne" onClick={() => onJoin("audio")}>Join now</Btn>
+          <button onClick={() => onJoin("audio")} style={{ padding: "10px 24px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.03em", boxShadow: "0 0 24px rgba(183,110,121,0.45)" }}>Join now ✦</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 3 }}>
             {[0,1,2].map(i => <div key={i} style={{ width: 16, height: 1.5, background: T.textMuted }} />)}
           </button>
