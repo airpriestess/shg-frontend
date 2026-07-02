@@ -42,7 +42,12 @@ export default function App() {
   return (
     <>
       <style>{CSS}</style>
-      {screen === "landing" && <Landing onJoin={(t) => { goPortal(t); }} onDemo={() => goPortal("goddess")} />}
+      {screen === "landing" && <Landing onJoin={(t) => {
+          if (t === "audio") window.open("https://buy.stripe.com/AUDIO_PLAN_LINK", "_blank");
+          else if (t === "goddess") window.open("https://buy.stripe.com/GODDESS_PLAN_LINK", "_blank");
+          else if (t === "founder") window.open("https://buy.stripe.com/LIFETIME_PLAN_LINK", "_blank");
+          else window.open("https://buy.stripe.com/AUDIO_PLAN_LINK", "_blank");
+        }} onDemo={() => goPortal("goddess")} />}
       {screen === "portal" && (
         <AppShell
           userTier={userTier} tab={portalTab} setTab={setPortalTab}
@@ -236,9 +241,9 @@ function Landing({ onJoin, onDemo }) {
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
           <span style={{ fontSize: 12, fontWeight: 300, color: "#000", letterSpacing: "0.12em" }}>
-            ✦ &nbsp; FOUNDER LIFETIME ACCESS &nbsp;·&nbsp; €500 once, forever &nbsp;·&nbsp; 1,000 spots only
+            ✦ &nbsp; EARLY BIRD LIFETIME ACCESS &nbsp;·&nbsp; €500 once, forever &nbsp;·&nbsp; 1,000 spots only
           </span>
-          <button onClick={() => onJoin("founder")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
+          <button onClick={() => window.open("https://buy.stripe.com/LIFETIME_PLAN_LINK", "_blank")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
             Claim yours
           </button>
         </div>
@@ -275,7 +280,7 @@ function Landing({ onJoin, onDemo }) {
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
         }} />
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(24px,5vw,80px) clamp(52px,8vw,80px)", maxWidth: "100%", margin: "0 auto", width: "100%" }}>
           {/* Soundwave */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
             {Array.from({ length: 24 }).map((_, i) => {
@@ -284,6 +289,9 @@ function Landing({ onJoin, onDemo }) {
             })}
           </div>
 
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+            <span style={{ fontSize: 11, padding: "5px 16px", background: "#B76E7918", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>✦ As seen on YouTube</span>
+          </div>
           <div style={{ overflow: "hidden", marginBottom: 24, maskImage: "linear-gradient(90deg,transparent,black 8%,black 92%,transparent)", WebkitMaskImage: "linear-gradient(90deg,transparent,black 8%,black 92%,transparent)" }}>
             <div className="marquee-track" style={{ gap: "0 40px" }}>
               {["MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦","MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦"].map((t,i) => (
@@ -293,7 +301,7 @@ function Landing({ onJoin, onDemo }) {
           </div>
 
           {/* TITLE */}
-          <h1 className="wm" style={{ fontSize: "clamp(30px,8vw,72px)", lineHeight: 1.05, marginBottom: 12, color: T.textPrimary }}>
+          <h1 className="wm" style={{ fontSize: "clamp(30px,8vw,72px)", lineHeight: 1.0, marginBottom: 16, color: T.textPrimary }}>
             Self Hypnosis Goddess<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Audio Library</span>
           </h1>
@@ -309,7 +317,7 @@ function Landing({ onJoin, onDemo }) {
           </div>
 
           {/* FREE TRACK — right under heading */}
-          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
+          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 740, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
             <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Audio Vault Preview</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Reshma's voice · 432hz</div>
@@ -342,78 +350,43 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
-      {/* VOICE TRUST */}
-      <div style={{ padding: "60px 24px 0", maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why the audio works</div>
-        <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 20 }}>
-          Reshma's voice<br />
-          <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>is the ritual.</span>
-        </h2>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14 }}>
-          Reshma's unique voice guides you into a hypnotic state where your subconscious begins to accept the desire as already real. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
-        </p>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14, fontStyle: "italic" }}>
-          When you mix different voices, your subconscious fights it. It doesn't know who to trust. Consistency is part of the programming. One voice. One guide. One path.
-        </p>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 20 }}>
-          Some audios are Spoken Hypnosis. Some are Sleep Subliminals. Some are EMDR. The format of each track is chosen by Reshma based on what the desire requires — not by the listener.
-        </p>
-      </div>
-
-            {/* MELODIC HOUSE USP */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ background: "#0a0900", border: "1px solid #B76E7933", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
-          {/* Background glow */}
-          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Unique to Self Hypnosis Goddess</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", lineHeight: 1.15, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              Hypnosis layered beneath<br />melodic house music.
-            </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#d8c8a0", lineHeight: 1.85, marginBottom: 24, maxWidth: 580 }}>
-              Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
-            </p>
-            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#b09888", lineHeight: 1.85, marginBottom: 28, maxWidth: 580 }}>
-              You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }} className="grid-3">
-              {[
-                { icon: "◈", title: "Music as frequency", body: "The melodic house tracks are selected to hold a specific energetic state throughout the session." },
-                { icon: "✦", title: "Deeper receptivity", body: "Music bypasses resistance. The body relaxes. The subconscious opens. Reshma's voice installs the new self-concept." },
-                { icon: "★", title: "Ritual, not content", body: "Listening is not consuming content. It is a daily practice. The music makes you want to return." },
-              ].map((c, i) => (
-                <div key={i} style={{ background: "#0d0c02", border: "1px solid #1e1a08", borderRadius: 14, padding: "18px 16px" }}>
-                  <div style={{ fontSize: 20, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 10 }}>{c.icon}</div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: "#f4ead8", marginBottom: 8 }}>{c.title}</div>
-                  <div style={{ fontSize: 13, color: "#b09888", lineHeight: 1.7 }}>{c.body}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* EARLY PRICING */}
+      <div style={{ padding: "0 clamp(24px,5vw,80px) 80px", maxWidth: 1400, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 0 }}>Simple pricing · Start today</div>
         </div>
-      </div>
-
-{/* SLIDING BANNER */}
-      <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1c0a" }}>
-        <div style={{ display: "flex", gap: 16, animation: "slide 32s linear infinite", width: "max-content", paddingTop: 36 }}>
-          {[...cats, ...cats].map((c, i) => (
-            <div key={i} style={{ background: "#0a0800", border: `1px solid ${c.color}44`, borderRadius: 18, padding: "22px 30px", minWidth: 280, flexShrink: 0 }}>
-              <div style={{ fontSize: 12, color: c.color || "#B76E79", fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
-              <div style={{ fontSize: 18, color: T.textSecondary, lineHeight: 1.5, fontWeight: 500 }}>{c.tagline}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16 }}>
+          {[
+            { label: "Audio Tier", price: "€14.99", period: "/month", desc: "Full vault. All categories. New tracks weekly.", cta: "Start listening →", stripe: "https://buy.stripe.com/AUDIO_PLAN_LINK", popular: false },
+            { label: "Goddess Tier", price: "€33", period: "/month", desc: "Everything in Audio + ProofOS manifestation tracker.", cta: "Become Goddess →", stripe: "https://buy.stripe.com/GODDESS_PLAN_LINK", popular: true },
+            { label: "Early Bird Lifetime", price: "€500", period: "once · forever", desc: "Full vault + ProofOS + every future feature. 1,000 spots.", cta: "Claim Early Bird Access →", stripe: "https://buy.stripe.com/LIFETIME_PLAN_LINK", popular: false },
+          ].map((p, i) => (
+            <div key={i} style={{ background: p.popular ? "#0f0c0a" : "#0a0908", border: p.popular ? "2px solid #B76E7966" : "1px solid #201e1c", borderRadius: 18, padding: "28px 24px", position: "relative" }}>
+              {p.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#d4a090,#B76E79)", borderRadius: 20, padding: "3px 16px", fontSize: 11, fontWeight: 800, color: "#000", whiteSpace: "nowrap" }}>Most popular</div>}
+              <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 10 }}>{p.label}</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
+                <span style={{ fontSize: 48, fontWeight: 800, color: "#f2ece4", lineHeight: 1 }}>{p.price}</span>
+                <span style={{ fontSize: 14, color: "#786860" }}>{p.period}</span>
+              </div>
+              <p style={{ fontSize: 14, color: "#b09888", lineHeight: 1.7, marginBottom: 24 }}>{p.desc}</p>
+              <button onClick={() => window.open(p.stripe, "_blank")} style={{ width: "100%", padding: "14px", background: p.popular ? "#f2ece4" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E7944", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", letterSpacing: "0.04em" }}>{p.cta}</button>
             </div>
           ))}
         </div>
       </div>
 
+
+
+
       {/* LANDING PROOF WALL */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 900, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1300, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
             Proof Wall.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>The evidence captured.</span>
           </h2>
-          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>Screenshot the bank transfer. Record the moment something shifts. Log the sign. Every piece of evidence linked to the audio that preceded it.</p>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 780, margin: "0 auto" }}>Screenshot the bank transfer. Record the moment something shifts. Log the sign. Every piece of evidence linked to the audio that preceded it.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 12 }}>
           {[
@@ -450,30 +423,30 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* SCIENCE */}
-      <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto" }}>
+      <div style={{ padding: "70px 24px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The science</div>
           <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,68px)", color: T.textPrimary, lineHeight: 1.1, marginBottom: 22 }}>
             Your subconscious mind<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
-          <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 700, margin: "0 auto 16px" }}>
+          <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 1000, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
-          <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
+          <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 1000, margin: "0 auto" }}>
             You can read every book. Study Neville Goddard. Understand every theory. But theory without installation changes nothing. These audios install it — passively, at depth, while your conscious mind rests.
           </p>
         </div>
 
         {/* AUDIO SAMPLES */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Inside the vault</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
             Three formats.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One voice. Your subconscious.</span>
           </h2>
-          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 480, margin: "0 auto" }}>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 1000, margin: "0 auto" }}>
             Melodic house for deep receptivity. Sleep subliminals for overnight installation. Vocals only for pure hypnotic induction. Reshma decides the format for each desire.
           </p>
         </div>
@@ -534,86 +507,41 @@ function Landing({ onJoin, onDemo }) {
 
         {/* 4 STEPS */}
         <div style={{ textAlign: "center", marginBottom: 44 }}>
-          <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,56px)", color: T.textPrimary, marginBottom: 10 }}>Four steps. One reality shift.</h2>
-          <p style={{ fontSize: 18, color: T.textMuted }}>Your only job is to press play.</p>
+          <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,56px)", color: T.textPrimary, marginBottom: 10 }}>How one listen changes everything.</h2>
+          <p style={{ fontSize: 18, color: T.textMuted }}>Press play. The rest happens without you.</p>
         </div>
-        <div className="mob-col" style={{ display: "flex", gap: 0, marginBottom: 70 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 1fr 40px 1fr 40px 1fr", gap: 0, marginBottom: 70, alignItems: "center" }}>
           {[
-            { n:"01", icon:"🎧", title:"You listen", body:"Self hypnosis and subliminal audio. Press play. Works while you sleep, while you rest. No active effort required." },
-            { n:"02", icon:"◈", title:"Subconscious shifts", body:"Your self-concept updates at depth through repetition in theta and delta states. Old assumptions dissolve. New identity installs." },
-            { n:"03", icon:"✦", title:"Reality mirrors it", body:"He texts. Money arrives. Skin shifts. Your outer world mirrors your new inner assumption. Of course it does." },
-            { n:"04", icon:"◉", title:"You document proof", body:"Log every sign in ProofOS. Link it to the audio. Watch the pattern become undeniable. It is done." },
+            { icon:"🎧", title:"Press play", body:"Works while you sleep, drive, rest. No active effort. Reshma's voice opens your subconscious.", outcome: "Nervous system relaxes" },
+            null,
+            { icon:"◈", title:"Old belief dissolves", body:"Your assumption that money is hard. That he won't come back. That you're not enough. All of it loosens in theta state.", outcome: "Identity updates at depth" },
+            null,
+            { icon:"✦", title:"Reality shifts", body:"He texts. Money arrives. Skin changes. Your outer world rearranges to match your new inner assumption. Of course it does.", outcome: "Evidence shows up" },
+            null,
+            { icon:"◉", title:"You capture proof", body:"Screenshot the transfer. Record your voice note. Log the sign. ProofOS stores it all. The pattern becomes undeniable.", outcome: "Proof Wall fills up" },
           ].map((s,i) => (
-            <div key={i} style={{ display:"flex", flex:1 }}>
-              <div style={{ background:T.cardBg, border:T.border, flex:1, padding:"28px 26px", borderLeft:i>0?"none":undefined, borderTopLeftRadius:i===0?14:0, borderBottomLeftRadius:i===0?14:0, borderTopRightRadius:i===3?14:0, borderBottomRightRadius:i===3?14:0, position:"relative", overflow:"hidden" }}>
-                <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,${T.champagne}${['55','44','33','22'][i]},transparent)` }} />
-                <div style={{ fontSize:"clamp(52px,8vw,86px)", fontWeight:900, color:"rgba(215,185,130,0.07)", lineHeight:1, marginBottom:10, fontFamily:"monospace" }}>{s.n}</div>
-                <div style={{ fontSize:28, marginBottom:12 }}>{s.icon}</div>
-                <div style={{ fontSize:20, fontWeight:700, color:T.champagne, marginBottom:12 }}>{s.title}</div>
-                <div style={{ fontSize:16, color:T.textMuted, lineHeight:1.8 }}>{s.body}</div>
+            s === null
+              ? <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, color: "#B76E7955", textAlign: "center" }}>→</div>
+              : <div key={i} style={{ background: T.cardBg, border: T.border, borderRadius: 14, padding: "36px 32px", position: "relative", overflow: "hidden" }}>
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg,${T.champagne},${T.rose})` }} />
+                <div style={{ fontSize: 40, marginBottom: 20 }}>{s.icon}</div>
+                <div style={{ fontSize: 22, fontWeight: 700, color: T.champagne, marginBottom: 14, lineHeight: 1.2 }}>{s.title}</div>
+                <div style={{ fontSize: 16, color: T.textMuted, lineHeight: 1.85, marginBottom: 18 }}>{s.body}</div>
+                <div style={{ display: "inline-flex", padding: "5px 14px", background: "#B76E7915", border: "1px solid #B76E7933", borderRadius: 20, fontSize: 12, color: "#B76E79", fontWeight: 600 }}>{s.outcome}</div>
               </div>
-              {i<3 && <div style={{ display:"flex", alignItems:"center", color:"rgba(215,185,130,0.25)", fontSize:20, padding:"0 6px", flexShrink:0 }}>→</div>}
-            </div>
-          ))}
-        </div>
-
-        {/* WHY DESIRE DOESN'T MANIFEST */}
-        <div style={{ background: "linear-gradient(135deg,#0a0700,#0d0800)", border: `1px solid ${T.gold}33`, borderRadius: 20, padding: "44px 40px", marginBottom: 70 }}>
-          <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The real reason</div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, marginBottom: 28, lineHeight: 1.2 }}>
-            Why desire doesn't manifest.<br/>
-            <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And what does.</span>
-          </h2>
-          <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 36 }}>
-            {[
-              { title: "Why it hasn't worked", color: T.danger, items: ["Desire lives in the conscious mind. The conscious mind doesn't create reality.", "Affirmations are rejected by a subconscious that holds the opposite belief.", "Visualisation without identity shift is just imagination — the subconscious knows.", "Willpower requires constant effort. The subconscious always wins."], icon: "✗" },
-              { title: "What actually works", color: T.champagne, items: ["The subconscious accepts new beliefs in theta and delta states — at the edge of sleep.", "Repetition installs the new self-concept below the threshold of conscious resistance.", "Once the subconscious holds the new identity as true, reality rearranges to match it.", "Passive. No effort. No force. The subconscious does the work while you rest."], icon: "✦" },
-            ].map((col, ci) => (
-              <div key={ci}>
-                <div style={{ fontSize: 13, color: col.color, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 16 }}>{col.title}</div>
-                {col.items.map((t, i) => (
-                  <div key={i} style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-                    <span style={{ color: col.color, fontSize: ci === 0 ? 18 : 16, flexShrink: 0, marginTop: 2 }}>{col.icon}</span>
-                    <span style={{ fontSize: 16, color: ci === 0 ? "#d8c8a0" : T.textSecondary, lineHeight: 1.75 }}>{t}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* TECHNOLOGY TABLE */}
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>The technology</div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, marginBottom: 12 }}>What's inside every audio.</h2>
-          <p style={{ fontSize: 17, color: T.textMuted, maxWidth: 600, margin: "0 auto" }}>Every track is layered with multiple technologies working simultaneously to activate your ideal brainwave state and install the new self-concept at depth.</p>
-        </div>
-        <div style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", background: "#0f0b01", borderBottom: "1px solid #1e1c0a" }}>
-            {["Technology", "What it is", "What it does", "When it activates"].map((h, i) => (
-              <div key={i} style={{ padding: "13px 18px", fontSize: 12, color: T.champagne, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1e1c0a" : "none" }}>{h}</div>
-            ))}
-          </div>
-          {TECH_ROWS.map((row, i) => (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(215,185,130,0.05)" : "none" }}>
-              <div style={{ padding: "15px 18px", fontSize: 15, fontWeight: 700, color: T.champSoft, borderRight: "1px solid rgba(215,185,130,0.06)" }}>{row.t}</div>
-              <div style={{ padding: "15px 18px", fontSize: 13, color: T.textMuted, borderRight: "1px solid rgba(215,185,130,0.06)", lineHeight: 1.6 }}>{row.w}</div>
-              <div style={{ padding: "15px 18px", fontSize: 13, color: T.textSecondary, borderRight: "1px solid rgba(215,185,130,0.06)", lineHeight: 1.6 }}>{row.d}</div>
-              <div style={{ padding: "15px 18px", fontSize: 12, color: T.textFaint, fontStyle: "italic", lineHeight: 1.6 }}>{row.when}</div>
-            </div>
           ))}
         </div>
       </div>
 
       {/* LISTENING TIMELINE */}
-      <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
+      <div style={{ padding: "0 24px 80px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 12 }}>
             It is not one listen.<br/>
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>It is repetition that rewires.</span>
           </h2>
-          <p style={{ fontSize: 16, color: T.textMuted, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}>Every time you listen, the subconscious accepts the new self-concept more deeply. The first listen opens the channel. Thirty days closes the old identity completely.</p>
+          <p style={{ fontSize: 16, color: T.textMuted, lineHeight: 1.8, maxWidth: 900, margin: "0 auto" }}>Every time you listen, the subconscious accepts the new self-concept more deeply. The first listen opens the channel. Thirty days closes the old identity completely.</p>
         </div>
 
         {/* TIMELINE — Day 1 to Day 30+ */}
@@ -685,14 +613,14 @@ function Landing({ onJoin, onDemo }) {
 
 
       {/* DASHBOARD PREVIEWS */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 1000, margin: "0 auto" }}>
+      <div style={{ padding: "0 24px 70px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>What you get access to</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 10 }}>
             Two dashboards.<br/>
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One practice.</span>
           </h2>
-          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.7, maxWidth: 540, margin: "0 auto" }}>New audios added regularly — and a proof system that shows you exactly what is working.</p>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.7, maxWidth: 800, margin: "0 auto" }}>New audios added regularly — and a proof system that shows you exactly what is working.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="grid-2">
 
@@ -793,7 +721,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* TESTIMONIALS */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 860, margin: "0 auto" }}>
+      <div style={{ padding: "0 24px 70px", maxWidth: 1300, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>What people are saying</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15 }}>
@@ -824,14 +752,14 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* YOUR RECEIPTS GRID */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 960, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>ProofOS ✦</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 12 }}>
             Your receipts,<br/>
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>finally organised.</span>
           </h2>
-          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 840, margin: "0 auto" }}>
             Photo proof, voice notes, signs, symptoms, synchronicities, and final manifestations — all stored inside the Proof Thread connected to the audio you listened to.
           </p>
         </div>
@@ -856,13 +784,13 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
                   {/* REFERRAL */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ background: "#0a0908", border: "1px solid #B76E7944", borderRadius: 20, padding: "36px 40px", textAlign: "center" }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Refer a friend</div>
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,40px)", background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 14, lineHeight: 1.2 }}>
             Share the portal.<br />Both of you receive one month free.
           </h2>
-          <p style={{ fontSize: 16, color: "#b09888", lineHeight: 1.8, marginBottom: 28, maxWidth: 480, margin: "0 auto 28px" }}>
+          <p style={{ fontSize: 16, color: "#b09888", lineHeight: 1.8, marginBottom: 28, maxWidth: 1000, margin: "0 auto 28px" }}>
             Invite a friend to Self Hypnosis Goddess. When they subscribe to an annual plan, you both receive one month free. No codes. No limits.
           </p>
           <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
@@ -878,7 +806,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
 {/* PRICING */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 80px", maxWidth: 960, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 80px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
           <h2 className="wm" style={{ fontSize: "clamp(32px,4.5vw,56px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
@@ -938,7 +866,7 @@ function Landing({ onJoin, onDemo }) {
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 32, alignItems: "center" }} className="grid-2">
             <div>
               <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>First 1,000 only · Lifetime access</div>
-              <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: T.textPrimary, marginBottom: 10 }}>Founder Lifetime</div>
+              <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: T.textPrimary, marginBottom: 10 }}>Early Bird Lifetime</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 14 }}>
                 <span style={{ fontSize: 48, fontWeight: 800, color: "#B76E79", lineHeight: 1 }}>€500</span>
                 <span style={{ fontSize: 15, color: T.textMuted }}>once · never pay again</span>
@@ -983,7 +911,7 @@ function Landing({ onJoin, onDemo }) {
             Wake up knowing.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
           </h2>
-          <p style={{ fontSize: 17, color: T.textMuted, marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
+          <p style={{ fontSize: 17, color: T.textMuted, marginBottom: 32, lineHeight: 1.7, maxWidth: 740, margin: "0 auto 32px" }}>
             In that state, reality shows you the proof of what you already know.
           </p>
           <button onClick={() => onJoin("audio")} style={{ padding: "18px 52px", background: "linear-gradient(135deg,#d4a090,#B76E79)", boxShadow: "0 0 40px rgba(183,110,121,0.4)", transform: "none", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56 }}>Start your shift →</button>
