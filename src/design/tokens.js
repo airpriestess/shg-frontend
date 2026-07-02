@@ -39,22 +39,22 @@ export const T = {
 };
 
 export const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
   background:#000;
   color:#f2ece4;
-  font-family:'Inter',sans-serif;
+  font-family:'Jost',sans-serif;
   font-size:16px;
   line-height:1.65;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
 }
-button,input,textarea,select{font-family:'Inter',sans-serif;}
-input,textarea{
+button,input,textarea,select{font-family:'Jost',sans-serif;}
+input,textarea{letter-spacing:0.01em;
   background:#0a0908;
   border:1px solid #201e1c;
   color:#f2ece4;
