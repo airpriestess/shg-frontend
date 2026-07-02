@@ -3,7 +3,7 @@ import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
 import { PROOF_THREADS, AUDIOS, USER } from "../data/sample.js";
 
-const RG = "#C8956A"; // rose gold — single accent
+const RG = "#B76E79"; // rose gold — single accent
 
 const STATUS_LABEL = {
   "Active": { label: "Active", color: "#d8c8a0" },
@@ -33,7 +33,7 @@ const RECENT_PROOF = [
 function StatCard({ value, label }) {
   return (
     <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
-      <div style={{ fontSize: 32, fontWeight: 800, color: RG, lineHeight: 1, marginBottom: 6 }}>{value}</div>
+      <div style={{ fontSize: 32, fontWeight: 800, color: "#B76E79", lineHeight: 1, marginBottom: 6 }}>{value}</div>
       <div style={{ fontSize: 11, color: "#555", letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
     </div>
   );
@@ -43,7 +43,7 @@ function StatCard({ value, label }) {
 function SectionHead({ children, action, onAction }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-      <div style={{ fontSize: 12, color: RG, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>{children}</div>
+      <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>{children}</div>
       {action && <button onClick={onAction} style={{ background: "none", border: "none", color: "#555", fontSize: 12, cursor: "pointer" }}>{action} →</button>}
     </div>
   );
@@ -85,8 +85,8 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
         {/* ── PAGE HEADER ── */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
           <div>
-            <div className="wm" style={{ fontSize: 16, color: RG, fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, fontStyle: "italic" }}>ProofOS</div>
-            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <div className="wm" style={{ fontSize: 16, color: "#B76E79", fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, fontStyle: "italic" }}>ProofOS</div>
+            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               {USER.name}'s Vault
             </h1>
           </div>
@@ -121,7 +121,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                       <div style={{ width: 52, height: 52, borderRadius: 10, background: `${RG}18`, border: `1px solid ${RG}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🎧</div>
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontSize: 14, fontWeight: 700, color: T.textPrimary, marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
-                        {currentThread && <div style={{ fontSize: 12, color: RG, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>🧵 {currentThread.intentionTitle}</div>}
+                        {currentThread && <div style={{ fontSize: 12, color: "#B76E79", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>🧵 {currentThread.intentionTitle}</div>}
                       </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -172,7 +172,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                   >
                     <div style={{ height: 68, background: `${RG}0e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, borderBottom: "1px solid #1a1a1a" }}>{p.icon}</div>
                     <div style={{ padding: "10px 12px" }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: RG, marginBottom: 2 }}>{p.label}</div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: "#B76E79", marginBottom: 2 }}>{p.label}</div>
                       <div style={{ fontSize: 11, color: "#444", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
                       <div style={{ fontSize: 10, color: "#333" }}>{p.date}</div>
                     </div>
@@ -209,7 +209,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "16px 18px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
                 <span style={{ fontSize: 12, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em" }}>Storage</span>
-                <span style={{ fontSize: 12, color: RG, fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
+                <span style={{ fontSize: 12, color: "#B76E79", fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
               </div>
               <div style={{ height: 4, background: "#1a1a1a", borderRadius: 2, marginBottom: 10 }}>
                 <div style={{ width: `${storagePct}%`, height: "100%", background: `linear-gradient(90deg,${RG},#C8956A)`, borderRadius: 2 }} />
