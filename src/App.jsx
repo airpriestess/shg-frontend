@@ -63,7 +63,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
     <div style={{ display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
       {/* TOP NAV */}
       <header style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1e1608", flexShrink: 0, zIndex: 50 }}>
-        <button onClick={() => setTab("dashboard")} style={{ background: "none", border: "none", cursor: "pointer" }}>
+        <button onClick={onSignOut} style={{ background: "none", border: "none", cursor: "pointer" }} title="Back to homepage">
           <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         </button>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
@@ -301,7 +301,7 @@ function Landing({ onJoin, onDemo }) {
 
           {/* FREE TRACK — right under heading */}
           <div style={{ background: "#0a0800", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
-            <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Free track — no sign up</div>
+            <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Audio Vault Preview</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Reshma's voice · 432hz</div>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -318,7 +318,27 @@ function Landing({ onJoin, onDemo }) {
           </div>
 
           {/* PAIN POINT */}
-          <p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
+                    {/* WHY THE AUDIO WORKS */}
+          <div style={{ background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 16, padding: "22px 24px", maxWidth: 520, margin: "0 auto 32px", textAlign: "left" }}>
+            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Why the audio works</div>
+            <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, marginBottom: 16 }}>
+              Reshma's voice is the ritual. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {[
+                "You listen.",
+                "You link the audio to a Proof Thread.",
+                "You capture the evidence life shows you next.",
+              ].map((s, i) => (
+                <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                  <span style={{ color: "#C8892A", fontWeight: 700, fontSize: 14, marginTop: 1, flexShrink: 0 }}>{i + 1}.</span>
+                  <span style={{ fontSize: 14, color: T.textPrimary }}>{s}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+<p style={{ fontSize: "clamp(16px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%" }}>
             You've tried everything. Scripted. Visualised. Affirmed. Nothing worked. Because conscious effort cannot reprogram the subconscious mind. <strong style={{ color: T.textPrimary }}>Desire is not manifestation. Desire is the seed. Certainty is manifestation.</strong>
           </p>
           <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 12, maxWidth: "100%", fontStyle: "italic" }}>
@@ -333,7 +353,7 @@ function Landing({ onJoin, onDemo }) {
 
           {/* FREE TRACK */}
           <div style={{ background: "#0a0800", border: "1px solid #C8892A55", borderRadius: 18, padding: "24px 26px", maxWidth: 480, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(185,130,142,0.08)" }}>
-            <div style={{ fontSize: 11, color: T.champagne, letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>Free track — listen now 🎧</div>
+            <div style={{ fontSize: 11, color: T.champagne, letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>Audio Vault Preview</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textSecondary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Self hypnosis · Subconscious reprogramming</div>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -343,7 +363,7 @@ function Landing({ onJoin, onDemo }) {
                   onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
                   <div style={{ width:`${progress}%`, height:"100%", background:`linear-gradient(90deg,${T.champagne},${T.rose})`, borderRadius:2 }} />
                 </div>
-                <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — plays in background like Spotify ✦" : "Free — no sign up needed"}</div>
+                <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — plays in background like Spotify ✦" : "Tap to preview"}</div>
               </div>
               {playing && <WaveForm playing color={T.champagne} />}
             </div>
@@ -383,7 +403,7 @@ function Landing({ onJoin, onDemo }) {
       {/* FREE PREVIEW — second mention */}
       <div style={{ padding: "0 24px 60px", maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
         <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 20, padding: "28px 32px" }}>
-          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 10 }}>Preview — no account needed</div>
+          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 10 }}>Audio Vault Preview</div>
           <div style={{ fontSize: 18, fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>10 Years of Delay Into One Hour</div>
           <div style={{ fontSize: 14, color: T.textMuted, marginBottom: 20, lineHeight: 1.6 }}>
             Reshma's voice. EMDR. Binaural beats. Subconscious reprogramming.<br />
@@ -405,6 +425,7 @@ function Landing({ onJoin, onDemo }) {
           </div>
         </div>
       </div>
+
 
       {/* SLIDING BANNER */}
       <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1608" }}>
@@ -717,6 +738,38 @@ function Landing({ onJoin, onDemo }) {
               <button onClick={onDemo} style={{ background: "none", border: "1px solid #B76E7966", borderRadius: 10, padding: "8px 20px", color: "#B76E79", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Preview ProofOS dashboard →</button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* YOUR RECEIPTS GRID */}
+      <div style={{ padding: "0 24px 70px", maxWidth: 960, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>ProofOS ✦</div>
+          <h2 className="wm" style={{ fontSize: "clamp(24px,4vw,44px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 12 }}>
+            Your receipts,<br/>
+            <span style={{ background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>finally organised.</span>
+          </h2>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+            Photo proof, voice notes, signs, symptoms, synchronicities, and final manifestations — all stored inside the Proof Thread connected to the audio you listened to.
+          </p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }} className="grid-3">
+          {[
+            { icon: "💬", label: "Message Screenshot",   sub: "He sent this on Day 8",         color: "#B76E79" },
+            { icon: "💰", label: "Money Receipt",         sub: "€5,000 received",               color: "#C8892A" },
+            { icon: "🪞", label: "Mirror Photo",          sub: "The glow. Day 14.",              color: "#B76E79" },
+            { icon: "555", label: "Angel Number",          sub: "Saw it 3 times in one hour",    color: "#C8892A" },
+            { icon: "📧", label: "Email Confirmation",    sub: "Arrived unexpectedly",           color: "#9a8060" },
+            { icon: "📅", label: "Calendar Invite",       sub: "The meeting that changed it",   color: "#6a8ad0" },
+          ].map((p, i) => (
+            <div key={i} style={{ background: "#0a0800", border: `1px solid ${p.color}33`, borderRadius: 14, overflow: "hidden" }}>
+              <div style={{ height: 88, background: `linear-gradient(135deg, ${p.color}18, ${p.color}06)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 34 }}>{p.icon}</div>
+              <div style={{ padding: "10px 14px" }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: p.color, marginBottom: 3 }}>{p.label}</div>
+                <div style={{ fontSize: 12, color: T.textMuted }}>{p.sub}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
