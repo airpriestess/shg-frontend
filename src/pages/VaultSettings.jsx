@@ -9,7 +9,7 @@ const RG = "#C8A050";
 
 export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
   const limit     = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
-  const planLabel = userTier === "founder" ? "Founder · Lifetime" : userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19.99/month";
+  const planLabel = userTier === "founder" ? "Founder · Lifetime" : userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19/month";
 
   const [notifStatus, setNotifStatus] = useState(
     typeof Notification !== "undefined" ? Notification.permission : "unsupported"
