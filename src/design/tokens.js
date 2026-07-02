@@ -110,4 +110,49 @@ select{
   .desk-only{display:none !important;}.mob-pb{padding-bottom:72px !important;}
 }
 .mob-nav{display:none;}
+
+/* ── HYPNOTIC BACKGROUND GRID ──────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(183,110,121,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183,110,121,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+/* Concentric rings pulse — hypnosis visual */
+body::after {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(183,110,121,0.03) 0%,
+    rgba(212,160,144,0.02) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  animation: slowPulse 8s ease-in-out infinite;
+}
+
+@keyframes slowPulse {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%,-50%) scale(1.08); opacity: 1; }
+}
+
+/* All app content sits above the grid */
+#root { position: relative; z-index: 1; }
+
 `;
