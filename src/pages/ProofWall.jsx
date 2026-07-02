@@ -9,13 +9,13 @@ const sb = createClient(
 );
 
 const G = "linear-gradient(90deg,#C8A050,#C8956A)";
-const RG = "#C8A050";
+const RG = "#C8956A";
 
 const TYPE_LABEL = {
-  "Photo Proof":     { icon: "📷", color: "#C8A050" },
+  "Photo Proof":     { icon: "📷", color: "#C8956A" },
   "Voice Proof":     { icon: "🎙", color: "#C8956A" },
-  "Sign":            { icon: "◈",  color: "#C8A050" },
-  "Synchronicity":   { icon: "✦",  color: "#C8A050" },
+  "Sign":            { icon: "◈",  color: "#C8956A" },
+  "Synchronicity":   { icon: "✦",  color: "#C8956A" },
   "Final Manifestation": { icon: "★", color: "#4a9a5a" },
 };
 
@@ -156,7 +156,7 @@ export default function ProofWall({ onAddProof }) {
               {photos.map(entry => (
                 <div key={entry.id} onClick={() => setLightbox({ url:entry.photo_url, caption:entry.caption })}
                   style={{ background:"#0c0b08", border:"1px solid #242014", borderRadius:12, overflow:"hidden", cursor:"pointer", transition:"border-color 0.15s" }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = "#C8A05066"}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = "#C8956A66"}
                   onMouseLeave={e => e.currentTarget.style.borderColor = "#242014"}
                 >
                   <img src={entry.photo_url} alt={entry.caption || "Proof"} style={{ width:"100%", height:140, objectFit:"cover", display:"block" }}
@@ -200,8 +200,8 @@ export default function ProofWall({ onAddProof }) {
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:16 }}>
           {filters.map(f => (
             <button key={f} onClick={() => setFilter(f)} style={{
-              padding:"6px 14px", borderRadius:20, border:`1.5px solid ${filter===f ? "#C8A05088" : "#242014"}`,
-              background: filter===f ? "#C8A05018" : "transparent",
+              padding:"6px 14px", borderRadius:20, border:`1.5px solid ${filter===f ? "#C8956A88" : "#242014"}`,
+              background: filter===f ? "#C8956A18" : "transparent",
               color: filter===f ? RG : T.textMuted, fontSize:12, fontWeight:600, cursor:"pointer"
             }}>{f}</button>
           ))}
