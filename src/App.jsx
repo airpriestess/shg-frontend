@@ -273,7 +273,7 @@ function Landing({ onJoin, onDemo }) {
           </div>
 
           {/* FREE TRACK — right under heading */}
-          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
+          <div style={{ background: "#0a0800", border: "1.5px solid #C8956A55", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
             <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Audio Vault Preview</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>10 Years of Delay Into One Hour</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>EMDR · Binaural beats · Reshma's voice · 432hz</div>
@@ -747,7 +747,7 @@ function Landing({ onJoin, onDemo }) {
                   </div>
                 ))}
               </div>
-              <button onClick={() => onJoin(p.id)} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(90deg,#C8A050,#C8956A)" : "transparent", border: p.popular ? "none" : "1.5px solid #B76E79", borderRadius: 12, color: p.popular ? "#000" : "#C8956A", fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 52 }}>{p.cta}</button>
+              <button onClick={() => onJoin(p.id)} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(90deg,#C8A050,#C8956A)" : "transparent", border: p.popular ? "none" : "1.5px solid #C8956A", borderRadius: 12, color: p.popular ? "#000" : "#C8956A", fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 52 }}>{p.cta}</button>
             </div>
           ))}
         </div>
