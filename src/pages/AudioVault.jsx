@@ -5,7 +5,7 @@ import { AUDIOS, PROOF_THREADS } from "../data/sample.js";
 
 const CAT_COLOR = {
   Money: "#C8A050", Beauty: "#C8956A", Love: "#C8956A",
-  Identity: "#9a8060", Sleep: "#6a8ad0", Body: "#C8A050",
+  Identity: "#c8a870", Sleep: "#6a8ad0", Body: "#C8A050",
 };
 
 const FORMAT_SHORT = {
@@ -20,7 +20,7 @@ const FORMAT_SHORT = {
 function AccessBadge({ audio, userTier }) {
   const canAccess = !audio.isLocked || userTier === "goddess" || userTier === "founder";
   if (userTier === "founder") return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8A05022", border: "1px solid #C8A05044", borderRadius: 20, color: "#C8A050", fontWeight: 700 }}>Founder</span>;
-  if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1e1608", border: "1px solid #2a1e08", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
+  if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1e1c0a", border: "1px solid #504020", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
   if (audio.isLocked && canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8956A22", border: "1px solid #C8956A44", borderRadius: 20, color: "#C8956A", fontWeight: 700 }}>Goddess</span>;
   return <span style={{ fontSize: 10, padding: "2px 8px", background: "#C8A05018", border: "1px solid #C8A05033", borderRadius: 20, color: "#C8A050", fontWeight: 700 }}>Audio Tier</span>;
 }
@@ -78,7 +78,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
             { v: totalManifested, l: "Manifested", c: "#4a9a5a" },
             { v: "14d", l: "Listening Streak", c: "#C8A050" },
           ].map((s, i) => (
-            <div key={i} style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
               <div style={{ fontSize: 24, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 4 }}>{s.v}</div>
               <div style={{ fontSize: 11, color: T.textMuted }}>{s.l}</div>
             </div>
@@ -96,7 +96,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
             {cats.map(c => (
               <button key={c} onClick={() => setFilter(c)} style={{
                 padding: "7px 14px", borderRadius: 20, minHeight: 36,
-                border: `1.5px solid ${filter === c ? "#C8956A88" : "#1e1608"}`,
+                border: `1.5px solid ${filter === c ? "#C8956A88" : "#1e1c0a"}`,
                 background: filter === c ? "#C8956A18" : "transparent",
                 color: filter === c ? "#C8956A" : T.textMuted,
                 fontSize: 13, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
@@ -127,7 +127,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
       </div>
 
       {/* ── RIGHT PANEL ── */}
-      <div className="hide-mob" style={{ width: 320, borderLeft: "1px solid #1e1608", background: "#060400", overflowY: "auto", padding: "24px 18px", flexShrink: 0 }}>
+      <div className="hide-mob" style={{ width: 320, borderLeft: "1px solid #1e1c0a", background: "#060400", overflowY: "auto", padding: "24px 18px", flexShrink: 0 }}>
         {!sel ? (
           <div style={{ padding: "60px 0", textAlign: "center" }}>
             <div style={{ fontSize: 28, marginBottom: 12, opacity: 0.3 }}>◈</div>
@@ -144,18 +144,18 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
 
 function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelect, onPlay, onCreateThread, onUpgrade }) {
   const linked = PROOF_THREADS.filter(t => t.linkedAudioId === a.id);
-  const catCol = CAT_COLOR[a.category] || "#9a8060";
+  const catCol = CAT_COLOR[a.category] || "#c8a870";
 
   return (
     <div onClick={onSelect} style={{
       background: isSelected ? "#0f0b02" : "#0a0800",
-      border: `1px solid ${isSelected ? "#C8A05066" : "#1e1608"}`,
+      border: `1px solid ${isSelected ? "#C8A05066" : "#1e1c0a"}`,
       borderRadius: 14, padding: "16px 18px", cursor: "pointer",
       transition: "border-color 0.2s",
       opacity: a.isLocked && !canPlay ? 0.65 : 1,
     }}
-      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#2a1e08")}
-      onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1e1608")}
+      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#504020")}
+      onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1e1c0a")}
     >
       {/* Row 1 — title + access badge */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
@@ -224,7 +224,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
 function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, canPlay, onUpgrade }) {
   const linked = PROOF_THREADS.filter(t => t.linkedAudioId === a.id);
   const manifested = linked.filter(t => t.status === "Manifested");
-  const catCol = CAT_COLOR[a.category] || "#9a8060";
+  const catCol = CAT_COLOR[a.category] || "#c8a870";
 
   return (
     <div className="fade">
@@ -235,7 +235,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
           <span style={{ fontSize: 11, padding: "2px 8px", background: catCol + "22", border: `1px solid ${catCol}44`, borderRadius: 20, color: catCol, fontWeight: 700 }}>{a.category}</span>
           <AccessBadge audio={a} userTier={userTier} />
-          {a.frequency && <span style={{ fontSize: 11, padding: "2px 7px", background: "#1e1608", borderRadius: 20, color: T.textMuted }}>{a.frequency}</span>}
+          {a.frequency && <span style={{ fontSize: 11, padding: "2px 7px", background: "#1e1c0a", borderRadius: 20, color: T.textMuted }}>{a.frequency}</span>}
         </div>
 
         {/* Formats */}
@@ -244,7 +244,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
             <div style={{ fontSize: 11, color: T.textFaint, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6 }}>Ritual Type</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {a.audioFormats.map((f, i) => (
-                <span key={i} style={{ fontSize: 12, padding: "3px 10px", background: "#0f0b02", border: "1px solid #1e1608", borderRadius: 20, color: T.textMuted }}>{f}</span>
+                <span key={i} style={{ fontSize: 12, padding: "3px 10px", background: "#0f0b02", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textMuted }}>{f}</span>
               ))}
             </div>
           </div>
@@ -271,7 +271,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
       </div>
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#1e1608", margin: "0 0 18px" }} />
+      <div style={{ height: 1, background: "#1e1c0a", margin: "0 0 18px" }} />
 
       {/* Linked proof threads */}
       <div>
@@ -288,7 +288,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
             {linked.map(t => {
               const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#C8A050" : T.textMuted;
               return (
-                <div key={t.id} style={{ background: "#0a0800", border: "1px solid #1e1608", borderRadius: 10, padding: "12px 14px" }}>
+                <div key={t.id} style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 10, padding: "12px 14px" }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: T.textPrimary, marginBottom: 6, lineHeight: 1.35 }}>{t.intentionTitle}</div>
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: t.mood_before ? 8 : 0 }}>
                     <span style={{ fontSize: 11, color: statusColor, fontWeight: 700 }}>{t.status}</span>
@@ -298,7 +298,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
                   </div>
                   {t.mood_before && t.mood_after && (
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 4 }}>
-                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1608", borderRadius: 20, color: T.textFaint }}>{t.mood_before}</span>
+                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textFaint }}>{t.mood_before}</span>
                       <span style={{ fontSize: 10, color: T.textFaint }}>→</span>
                       <span style={{ fontSize: 10, padding: "2px 7px", background: "#C8A05018", border: "1px solid #C8A05033", borderRadius: 20, color: "#C8A050" }}>{t.mood_after}</span>
                     </div>
