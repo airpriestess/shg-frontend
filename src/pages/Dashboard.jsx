@@ -3,7 +3,7 @@ import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
 import { PROOF_THREADS, AUDIOS, USER } from "../data/sample.js";
 
-const RG = "#C8892A"; // rose gold — single accent
+const RG = "#C8A050"; // rose gold — single accent
 
 const STATUS_LABEL = {
   "Active": { label: "Active", color: "#9a8060" },
@@ -86,7 +86,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
           <div>
             <div className="wm" style={{ fontSize: 16, color: RG, fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, fontStyle: "italic" }}>ProofOS</div>
-            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#C8892A,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#C8A050,#C8956A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               {USER.name}'s Vault
             </h1>
           </div>
