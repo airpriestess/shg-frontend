@@ -295,8 +295,18 @@ function Landing({ onJoin, onDemo }) {
           </h1>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(18px,2.5vw,24px)", color: T.roseGold, fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
+          <div style={{ fontSize: "clamp(18px,2.5vw,24px)", color: T.roseGold, fontWeight: 600, marginBottom: 18, letterSpacing: "0.01em" }}>
             Shift into your dream reality.
+          </div>
+
+          {/* PRODUCT EXPLANATION — what they get */}
+          <div style={{ fontSize: "clamp(14px,1.6vw,17px)", color: T.textMuted, marginBottom: 10, lineHeight: 1.8, maxWidth: 600, margin: "0 auto 10px" }}>
+            A vault of hypnosis and subliminals — Reshma's voice, set to melodic house and silence — combined with{" "}
+            <span style={{ color: T.textPrimary, fontWeight: 500 }}>ProofOS</span>
+            {": a manifestation ledger where you capture every sign, shift, and synchronicity the audios produce."}
+          </div>
+          <div style={{ fontSize: "clamp(13px,1.4vw,15px)", color: T.textFaint, marginBottom: 32, lineHeight: 1.7, maxWidth: 520, margin: "0 auto 32px" }}>
+            You listen. Your subconscious shifts. Reality responds. You document the proof.
           </div>
 
           {/* WAKE UP KNOWING */}
@@ -332,11 +342,11 @@ function Landing({ onJoin, onDemo }) {
               FOUNDER ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €14.99/mo · Goddess Tier €33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier €19/mo · Goddess Tier €33/mo · Cancel anytime</div>
 
           {/* WHY THE AUDIO WORKS */}
           <div style={{ background: "#0a0800", border: "1px solid #B76E7944", borderRadius: 16, padding: "22px 24px", maxWidth: 520, margin: "0 auto 32px", textAlign: "left" }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>Why the audio works</div>
+            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 10 }}>What you get</div>
             <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, marginBottom: 16 }}>
               Reshma's voice is the ritual. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
             </p>
@@ -443,7 +453,7 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
-            Your receipts,<br />
+            Proof Wall.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>captured and stored.</span>
           </h2>
           <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>
@@ -827,7 +837,7 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>ProofOS ✦</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 12 }}>
-            Your receipts,<br/>
+            Proof Wall.<br/>
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>finally organised.</span>
           </h2>
           <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
