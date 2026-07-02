@@ -1,39 +1,41 @@
 export const T = {
   bgRoot: "#000000",
-  bgSoft: "#050403",
+  bgSoft: "#050404",
   surfaceBase: "#0a0908",
-  surfaceRaised: "#100f0d",
-  surfaceHigh: "#161512",
-  borderSoft: "#1e1c18",
-  borderGlow: "#2a2820",
+  surfaceRaised: "#0f0e0c",
+  surfaceHigh: "#141210",
+  borderSoft: "#201e1c",
+  borderGlow: "#2c2826",
 
-  // Text — cream white and peach. Zero brown. Zero stone.
-  textPrimary:   "#f2ece0",   // warm cream white
-  textSecondary: "#e8d0a8",   // soft peach champagne
-  textMuted:     "#c8a880",   // warm peach — readable
-  textFaint:     "#907860",   // dim peach — still visible, not brown
+  // Text — warm cream white fading to soft peach
+  textPrimary:   "#f2ece4",   // warm cream white
+  textSecondary: "#dcc8b8",   // soft peach
+  textMuted:     "#b09888",   // muted peach — readable
+  textFaint:     "#786860",   // dim peach — still legible
 
-  // Accents — rose gold to peach only
-  gold:      "#C8956A",   // rose gold — THE primary accent
-  roseGold:  "#C8956A",
-  rose:      "#C8956A",
-  champagne: "#C8956A",
-  champSoft: "#d4a87a",
+  // THE LOCKED ACCENT — soft dusty rose gold to light peach
+  // This is the colour Reshma approved. Light. Feminine. Not orange. Not red.
+  gold:      "#C8956A",   // warm peach (used as secondary)
+  roseGold:  "#B76E79",   // THE accent — soft dusty rose gold ← LOCKED
+  rose:      "#B76E79",
+  champagne: "#B76E79",
+  champSoft: "#C8956A",
   success:   "#4a9a5a",
   warning:   "#C8956A",
-  danger:    "#C8956A",
-  blood:     "#C8956A",
+  danger:    "#B76E79",
+  blood:     "#B76E79",
 
-  // Single gradient: deep gold → rose gold → peach
-  grad:  "linear-gradient(90deg,#C8A050,#C8956A)",
-  gradV: "linear-gradient(135deg,#C8A050,#C8956A)",
+  // Gradient: light peach → soft rose gold
+  // Left = lighter peach cream, right = dusty rose gold
+  grad:  "linear-gradient(90deg,#d4a090,#B76E79)",
+  gradV: "linear-gradient(135deg,#d4a090,#B76E79)",
 
   bgGrad:      "#000000",
   cardBg:      "rgba(10,9,8,0.96)",
-  premiumCard: "linear-gradient(135deg,rgba(16,15,13,0.98),rgba(8,7,6,0.98))",
-  border:      "1px solid #1e1c18",
-  glow:        "0 0 40px rgba(200,149,106,0.1)",
-  glowChamp:   "0 0 30px rgba(200,149,106,0.14)",
+  premiumCard: "linear-gradient(135deg,rgba(15,14,12,0.98),rgba(8,7,6,0.98))",
+  border:      "1px solid #201e1c",
+  glow:        "0 0 40px rgba(183,110,121,0.1)",
+  glowChamp:   "0 0 30px rgba(183,110,121,0.14)",
 };
 
 export const CSS = `
@@ -43,7 +45,7 @@ export const CSS = `
 html{scroll-behavior:smooth;}
 body{
   background:#000;
-  color:#f2ece0;
+  color:#f2ece4;
   font-family:'Inter',sans-serif;
   font-size:16px;
   line-height:1.65;
@@ -54,8 +56,8 @@ body{
 button,input,textarea,select{font-family:'Inter',sans-serif;}
 input,textarea{
   background:#0a0908;
-  border:1px solid #1e1c18;
-  color:#f2ece0;
+  border:1px solid #201e1c;
+  color:#f2ece4;
   border-radius:10px;
   padding:13px 16px;
   font-size:15px;
@@ -63,25 +65,25 @@ input,textarea{
   outline:none;
   transition:border-color 0.2s,box-shadow 0.2s;
 }
-input::placeholder,textarea::placeholder{color:#3a3028;}
+input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{
-  border-color:#C8956A66;
-  box-shadow:0 0 0 3px rgba(200,149,106,0.08);
+  border-color:#B76E7966;
+  box-shadow:0 0 0 3px rgba(183,110,121,0.08);
 }
 select{
-  background:#0a0908;border:1px solid #1e1c18;color:#f2ece0;
+  background:#0a0908;border:1px solid #201e1c;color:#f2ece4;
   border-radius:10px;padding:12px 16px;font-size:15px;
   outline:none;cursor:pointer;width:100%;
 }
 ::-webkit-scrollbar{width:3px;height:3px;}
 ::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:#1e1c18;border-radius:2px;}
+::-webkit-scrollbar-thumb{background:#201e1c;border-radius:2px;}
 .wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
 .fade{animation:fadeIn 0.3s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 .wave span{
   display:inline-block;width:3px;border-radius:2px;
-  background:linear-gradient(180deg,#C8A050,#C8956A);
+  background:linear-gradient(180deg,#d4a090,#B76E79);
   animation:wave 1.4s ease-in-out infinite;
 }
 @keyframes wave{0%,100%{transform:scaleY(0.3);opacity:0.5;}50%{transform:scaleY(1);opacity:1;}}
@@ -95,9 +97,9 @@ select{
   50%{transform:translate(-50%,-50%) scale(1.06);opacity:calc(var(--op)*2);}
 }
 @keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(200,149,106,0.4);}
-  70%{box-shadow:0 0 0 20px rgba(200,149,106,0);}
-  100%{box-shadow:0 0 0 0 rgba(200,149,106,0);}
+  0%{box-shadow:0 0 0 0 rgba(183,110,121,0.4);}
+  70%{box-shadow:0 0 0 20px rgba(183,110,121,0);}
+  100%{box-shadow:0 0 0 0 rgba(183,110,121,0);}
 }
 .pulse{animation:pulse 2s infinite;}
 @keyframes slide{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
