@@ -233,8 +233,20 @@ function Landing({ onJoin, onDemo }) {
     <div style={{ background: "#000000", minHeight: "100vh" }}>
       <audio ref={audioRef} src={FREE_TRACK_URL} preload="none" />
 
+      {/* ANNOUNCEMENT BANNER */}
+      {!menuOpen && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
+          <span style={{ fontSize: 13, fontWeight: 700, color: "#000", letterSpacing: "0.04em" }}>
+            ✦ Founder Lifetime Access — €500 once. Price increases when the first 1,000 members join.
+          </span>
+          <button onClick={() => onJoin("founder")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
+            Claim yours
+          </button>
+        </div>
+      )}
+
       {/* NAV */}
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 300, height: 58, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1e1c0a", backdropFilter: "blur(20px)" }}>
+      <nav style={{ position: "fixed", top: 40, left: 0, right: 0, zIndex: 300, height: 58, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1e1c0a", backdropFilter: "blur(20px)" }}>
         <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
@@ -255,7 +267,7 @@ function Landing({ onJoin, onDemo }) {
       </nav>
 
       {/* HERO */}
-      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 58, overflow: "hidden" }}>
+      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 110, overflow: "hidden" }}>
         <Rings count={5} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "60px 24px 80px", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           {/* Soundwave */}
@@ -872,7 +884,7 @@ function Landing({ onJoin, onDemo }) {
           <p style={{ fontSize: 17, color: T.textMuted, marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
             In that state, reality shows you the proof of what you already know.
           </p>
-          <button onClick={() => onJoin("audio")} style={{ padding: "18px 48px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56 }}>Start your shift</button>
+          <button onClick={() => onJoin("audio")} style={{ padding: "18px 52px", background: "linear-gradient(135deg,#d4a090,#B76E79)", boxShadow: "0 0 40px rgba(183,110,121,0.4)", transform: "none", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56 }}>Start your shift →</button>
           <div style={{ marginTop: 12, fontSize: 13, color: T.textFaint }}>Cancel anytime · No download · Any device</div>
         </div>
       </div>
