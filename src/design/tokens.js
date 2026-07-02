@@ -15,21 +15,21 @@ export const T = {
 
   // Accents
   gold: "#C8892A",
-  roseGold: "#B76E79",
-  rose: "#C4365A",
+  roseGold: "#D4956A",  // warm peach rose gold — the ombre middle
+  rose: "#C4857A",   // soft muted rose — no red, no crimson
   champagne: "#C8892A",
-  champSoft: "#B76E79",
+  champSoft: "#D4956A",
   success: "#3a8a4a",
   warning: "#C69A5B",
-  danger: "#C4365A",
-  blood: "#B76E79",
+  danger: "#C4857A",
+  blood: "#D4956A",
 
   bgGrad: "linear-gradient(135deg, #000000 0%, #060401 50%, #0a0500 100%)",
   cardBg: "rgba(10,8,0,0.92)",
   premiumCard: "linear-gradient(135deg, rgba(15,11,1,0.95) 0%, rgba(8,6,0,0.95) 100%)",
   border: "1px solid #1e1608",
-  glow: "0 0 40px rgba(183,110,121,0.08)",
-  glowChamp: "0 0 30px rgba(183,110,121,0.12)",
+  glow: "0 0 40px rgba(212,149,106,0.08)",
+  glowChamp: "0 0 30px rgba(212,149,106,0.12)",
 };
 
 export const CSS = `
@@ -65,8 +65,8 @@ input, textarea {
 }
 input::placeholder, textarea::placeholder { color: #3a2e1a; }
 input:focus, textarea:focus {
-  border-color: #B76E7966;
-  box-shadow: 0 0 0 3px rgba(183,110,121,0.08);
+  border-color: #D4956A66;
+  box-shadow: 0 0 0 3px rgba(212,149,106,0.08);
 }
 
 select {
@@ -94,7 +94,7 @@ select {
   display: inline-block;
   width: 3px;
   border-radius: 2px;
-  background: linear-gradient(180deg, #C8892A, #B76E79);
+  background: linear-gradient(180deg, #C8892A, #D4956A);
   animation: wave 1.4s ease-in-out infinite;
 }
 @keyframes wave {
@@ -116,9 +116,9 @@ select {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(183,110,121,0.4); }
-  70% { box-shadow: 0 0 0 20px rgba(183,110,121,0); }
-  100% { box-shadow: 0 0 0 0 rgba(183,110,121,0); }
+  0% { box-shadow: 0 0 0 0 rgba(212,149,106,0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(212,149,106,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,149,106,0); }
 }
 .pulse { animation: pulse 2s infinite; }
 
