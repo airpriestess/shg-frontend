@@ -905,9 +905,9 @@ function Landing({ onJoin, onDemo }) {
           {[
             {
               id: "audio", name: "Audio Tier",
-              price: billing === "monthly" ? "€19" : "€192",
+              price: billing === "monthly" ? "€19" : "€228",
               period: billing === "monthly" ? "/month" : "/year",
-              sub: billing === "annual" ? "€16/mo · 2 months free" : null,
+              sub: billing === "annual" ? "€19/mo · 2 months free" : null,
               color: T.textSecondary,
               features: ["An ever-expanding hypnosis library", "All 6 desire categories", "4 new tracks every week", "Loop player + sleep timer", "Plays in background like Spotify", "No ads. Ever."],
               cta: "Join Audio Tier",
