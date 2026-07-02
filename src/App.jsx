@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import VaultSettings from "./pages/VaultSettings.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
+import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
 import { createClient as _sbClient } from "@supabase/supabase-js";
 
 const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3";
@@ -23,7 +24,14 @@ export default function App() {
   const [addProofThreadId, setAddProofThreadId] = useState(null);
   const [onboardTier, setOnboardTier] = useState("audio");
 
-  const goPortal = (tier) => { if (tier) setUserTier(tier); setScreen("portal"); setPortalTab("dashboard"); };
+  const goPortal = async (tier) => {
+    if (tier) setUserTier(tier);
+    setScreen("portal");
+    setPortalTab("dashboard");
+    // Request notification permission and schedule reminders
+    const perm = await requestNotificationPermission();
+    if (perm === "granted") scheduleReminders();
+  };
   const openCreateThread = (audioId) => { setPreselectedAudioId(audioId || null); setCreateThreadModal(true); };
   const openAddProof = (type, threadId) => { setAddProofType(type); setAddProofThreadId(threadId || null); };
   const playAudio = (a) => { setCurrentAudio(a); setPlayingId(a.id); };
