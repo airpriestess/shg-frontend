@@ -738,7 +738,29 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
-            {/* PRICING */}
+                  {/* REFERRAL */}
+      <div style={{ padding: "0 24px 70px", maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ background: "#0a0908", border: "1px solid #B76E7944", borderRadius: 20, padding: "36px 40px", textAlign: "center" }}>
+          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Refer a friend</div>
+          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,40px)", background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 14, lineHeight: 1.2 }}>
+            Share the portal.<br />Both of you receive one month free.
+          </h2>
+          <p style={{ fontSize: 16, color: "#b09888", lineHeight: 1.8, marginBottom: 28, maxWidth: 480, margin: "0 auto 28px" }}>
+            Invite a friend to Self Hypnosis Goddess. When they subscribe to an annual plan, you both receive one month free. No codes. No limits.
+          </p>
+          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+            <button onClick={() => { const url = "https://reshmaoracle.com?ref=friend"; if (navigator.share) { navigator.share({ title: "Self Hypnosis Goddess", text: "I have been using this — thought of you.", url }); } else { navigator.clipboard?.writeText(url); alert("Link copied to clipboard"); } }} style={{ padding: "14px 28px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 15, fontWeight: 700, cursor: "pointer" }}>
+              Share your link
+            </button>
+            <button onClick={() => onJoin("audio")} style={{ padding: "14px 28px", background: "transparent", border: "1px solid #B76E7966", borderRadius: 12, color: "#B76E79", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>
+              Join now
+            </button>
+          </div>
+          <div style={{ fontSize: 12, color: "#786860", marginTop: 16 }}>Annual plan required for referral bonus · Applied automatically</div>
+        </div>
+      </div>
+
+{/* PRICING */}
       <div style={{ padding: "0 24px 80px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
