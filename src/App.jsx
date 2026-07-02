@@ -280,7 +280,7 @@ function Landing({ onJoin, onDemo }) {
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
         }} />
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(24px,5vw,80px) clamp(52px,8vw,80px)", maxWidth: "100%", margin: "0 auto", width: "100%" }}>
+        <div className="hero-wrap" style={{ position: "relative", zIndex: 1, textAlign: "center", paddingTop: "clamp(52px,8vw,80px)", paddingBottom: "clamp(52px,8vw,80px)" }}>
           {/* Soundwave */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
             {Array.from({ length: 24 }).map((_, i) => {
@@ -351,7 +351,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* EARLY PRICING */}
-      <div style={{ padding: "0 clamp(24px,5vw,80px) 80px", maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 80px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 0 }}>Simple pricing · Start today</div>
         </div>
@@ -379,7 +379,7 @@ function Landing({ onJoin, onDemo }) {
 
 
       {/* LANDING PROOF WALL */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1300, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 70px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -423,7 +423,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* SCIENCE */}
-      <div style={{ padding: "70px 24px", maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ padding: "70px 0" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The science</div>
           <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,68px)", color: T.textPrimary, lineHeight: 1.1, marginBottom: 22 }}>
@@ -433,20 +433,20 @@ function Landing({ onJoin, onDemo }) {
           <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 1000, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
-          <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9, maxWidth: 1000, margin: "0 auto" }}>
+          <p style={{ fontSize: 19, color: T.textMuted, lineHeight: 1.9 }}>
             You can read every book. Study Neville Goddard. Understand every theory. But theory without installation changes nothing. These audios install it — passively, at depth, while your conscious mind rests.
           </p>
         </div>
 
         {/* AUDIO SAMPLES */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1200, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 70px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Inside the vault</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
             Three formats.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One voice. Your subconscious.</span>
           </h2>
-          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 1000, margin: "0 auto" }}>
+          <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8 }}>
             Melodic house for deep receptivity. Sleep subliminals for overnight installation. Vocals only for pure hypnotic induction. Reshma decides the format for each desire.
           </p>
         </div>
@@ -534,7 +534,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* LISTENING TIMELINE */}
-      <div style={{ padding: "0 24px 80px", maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 80px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 12 }}>
@@ -613,7 +613,7 @@ function Landing({ onJoin, onDemo }) {
 
 
       {/* DASHBOARD PREVIEWS */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 70px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>What you get access to</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 10 }}>
@@ -721,7 +721,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* TESTIMONIALS */}
-      <div style={{ padding: "0 24px 70px", maxWidth: 1300, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 70px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 36 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>What people are saying</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15 }}>
@@ -752,7 +752,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* YOUR RECEIPTS GRID */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 70px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>ProofOS ✦</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 12 }}>
@@ -784,7 +784,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
                   {/* REFERRAL */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 1200, margin: "0 auto" }}>
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px" }}>
         <div style={{ background: "#0a0908", border: "1px solid #B76E7944", borderRadius: 20, padding: "36px 40px", textAlign: "center" }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Refer a friend</div>
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,40px)", background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 14, lineHeight: 1.2 }}>
@@ -806,7 +806,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
 {/* PRICING */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 80px", maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ padding: "0 0 80px" }} className="section-wrap">
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
           <h2 className="wm" style={{ fontSize: "clamp(32px,4.5vw,56px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
