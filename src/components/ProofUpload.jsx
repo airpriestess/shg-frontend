@@ -15,7 +15,7 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ── PHOTO UPLOAD MODAL ────────────────────────────────────────────────────────
-export function PhotoProofModal({ open, onClose, threadId, audioTitle }) {
+export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }) {
   const [file, setFile]         = useState(null);
   const [preview, setPreview]   = useState(null);
   const [caption, setCaption]   = useState("");
@@ -67,6 +67,8 @@ export function PhotoProofModal({ open, onClose, threadId, audioTitle }) {
       });
 
       setDone(true);
+      if (onSaved) onSaved({ type: "Photo Proof", photo_url: publicUrl, caption });
+      setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
       // Still show success if storage worked even if table insert failed
@@ -156,7 +158,7 @@ export function PhotoProofModal({ open, onClose, threadId, audioTitle }) {
 }
 
 // ── VOICE PROOF MODAL ─────────────────────────────────────────────────────────
-export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
+export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }) {
   const [state, setState]       = useState("idle"); // idle | recording | recorded | uploading | done
   const [duration, setDuration] = useState(0);
   const [caption, setCaption]   = useState("");
@@ -240,10 +242,16 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
       });
 
       setState("done");
+      // Notify parent so thread refreshes immediately
+      if (onSaved) onSaved({ type: "Voice Proof", voice_url: publicUrl, duration_sec: duration, caption });
+      // Auto-close after 2s so user sees the confirmation
+      setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
       if (e.message?.includes("proof_entries")) {
         setState("done");
+        if (onSaved) onSaved({ type: "Voice Proof" });
+        setTimeout(() => { reset(); onClose(); }, 2000);
       } else {
         setError("Upload failed — " + (e.message || "please try again."));
         setState("recorded");
@@ -253,6 +261,8 @@ export function VoiceProofModal({ open, onClose, threadId, audioTitle }) {
 
   const reset = () => {
     clearInterval(timerRef.current);
+    // Revoke blob URL to free memory (but only after we're done with it)
+    if (audioUrl) { try { URL.revokeObjectURL(audioUrl); } catch(_) {} }
     setAudioBlob(null);
     setAudioUrl(null);
     setCaption("");
