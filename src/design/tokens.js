@@ -7,33 +7,37 @@ export const T = {
   borderSoft: "#1e1608",
   borderGlow: "#2a1e08",
 
-  // Text — NO brown. Cream, rose gold, soft white.
+  // Text
   textPrimary: "#f0e8d8",
   textSecondary: "#d4a868",
   textMuted: "#9a8060",
   textFaint: "#5a4830",
 
-  // Accents
-  gold: "#C8892A",
-  roseGold: "#D4956A",  // warm peach rose gold — the ombre middle
-  rose: "#C4857A",   // soft muted rose — no red, no crimson
+  // Accent — rich warm gold to soft peach rose gold. No red. No crimson.
+  gold: "#C8892A",          // rich warm gold
+  roseGold: "#D4A574",      // soft peach rose gold — the ombre end
+  rose: "#D4A574",          // same, no red
   champagne: "#C8892A",
-  champSoft: "#D4956A",
+  champSoft: "#D4A574",
+  blood: "#D4A574",
   success: "#3a8a4a",
   warning: "#C69A5B",
-  danger: "#C4857A",
-  blood: "#D4956A",
+  danger: "#D4A574",
+
+  // Gradient — gold to soft peach, ombre
+  accentGrad: "linear-gradient(90deg, #C8892A, #D4A574)",
+  accentGradDiag: "linear-gradient(135deg, #C8892A, #D4A574)",
 
   bgGrad: "linear-gradient(135deg, #000000 0%, #060401 50%, #0a0500 100%)",
   cardBg: "rgba(10,8,0,0.92)",
   premiumCard: "linear-gradient(135deg, rgba(15,11,1,0.95) 0%, rgba(8,6,0,0.95) 100%)",
   border: "1px solid #1e1608",
-  glow: "0 0 40px rgba(212,149,106,0.08)",
-  glowChamp: "0 0 30px rgba(212,149,106,0.12)",
+  glow: "0 0 40px rgba(200,137,42,0.08)",
+  glowChamp: "0 0 30px rgba(200,137,42,0.12)",
 };
 
 export const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -42,8 +46,8 @@ body {
   background: #000000;
   color: #f0e8d8;
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
@@ -56,7 +60,7 @@ input, textarea {
   border: 1px solid #1e1608;
   color: #f0e8d8;
   border-radius: 10px;
-  padding: 13px 16px;
+  padding: 14px 16px;
   font-size: 15px;
   width: 100%;
   outline: none;
@@ -65,8 +69,8 @@ input, textarea {
 }
 input::placeholder, textarea::placeholder { color: #3a2e1a; }
 input:focus, textarea:focus {
-  border-color: #D4956A66;
-  box-shadow: 0 0 0 3px rgba(212,149,106,0.08);
+  border-color: #C8892A66;
+  box-shadow: 0 0 0 3px rgba(200,137,42,0.08);
 }
 
 select {
@@ -74,8 +78,8 @@ select {
   border: 1px solid #1e1608;
   color: #f0e8d8;
   border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 14px;
+  padding: 13px 16px;
+  font-size: 15px;
   outline: none;
   cursor: pointer;
   width: 100%;
@@ -85,7 +89,9 @@ select {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #1e1608; border-radius: 2px; }
 
+/* Cormorant for all brand headings */
 .wm { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+.wm-upright { font-family: 'Cormorant Garamond', serif; font-style: normal; }
 
 .fade { animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -94,7 +100,7 @@ select {
   display: inline-block;
   width: 3px;
   border-radius: 2px;
-  background: linear-gradient(180deg, #C8892A, #D4956A);
+  background: linear-gradient(180deg, #C8892A, #D4A574);
   animation: wave 1.4s ease-in-out infinite;
 }
 @keyframes wave {
@@ -116,9 +122,9 @@ select {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(212,149,106,0.4); }
-  70% { box-shadow: 0 0 0 20px rgba(212,149,106,0); }
-  100% { box-shadow: 0 0 0 0 rgba(212,149,106,0); }
+  0% { box-shadow: 0 0 0 0 rgba(200,137,42,0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(200,137,42,0); }
+  100% { box-shadow: 0 0 0 0 rgba(200,137,42,0); }
 }
 .pulse { animation: pulse 2s infinite; }
 
