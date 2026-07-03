@@ -176,93 +176,120 @@ const STRIPE = {
 };
 
 function CheckoutModal({ onClose, onDemo }) {
-  const goStripe = (tier) => { window.open(STRIPE[tier],"_blank"); onClose(); };
+  const [billing, setBilling] = React.useState("monthly");
+  const isAnnual = billing === "annual";
+  const goStripe = (tier) => {
+    const key = isAnnual && tier !== "lifetime" ? tier + "_annual" : tier;
+    window.open(STRIPE[key] || STRIPE[tier], "_blank");
+    onClose();
+  };
   return (
-    <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.7)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:"16px" }}
+    <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.75)",zIndex:2000,display:"flex",alignItems:"flex-end",justifyContent:"center" }}
       onClick={e => e.target===e.currentTarget && onClose()}>
-      <div style={{ background:"#fff",overflowY:"auto",maxHeight:"92vh",borderRadius:24,width:"100%",maxWidth:520,position:"relative",boxShadow:"0 40px 80px rgba(0,0,0,0.5)" }}>
-        <button onClick={onClose} style={{position:"sticky",top:0,float:"right",margin:"16px 16px 0 0",background:"rgba(0,0,0,0.08)",border:"none",borderRadius:"50%",width:32,height:32,fontSize:16,cursor:"pointer",lineHeight:"32px",zIndex:10}}>✕</button>
+      <div style={{ background:"#fff",overflowY:"auto",maxHeight:"94vh",borderRadius:"24px 24px 0 0",width:"100%",maxWidth:540,position:"relative",boxShadow:"0 -20px 80px rgba(0,0,0,0.5)" }}>
+        <button onClick={onClose} style={{position:"absolute",top:16,right:16,background:"rgba(0,0,0,0.08)",border:"none",borderRadius:"50%",width:32,height:32,fontSize:16,cursor:"pointer",lineHeight:"32px",zIndex:10}}>✕</button>
 
         {/* HEADER */}
-        <div style={{background:"linear-gradient(135deg,#fceedd,#f8e0f0)",padding:"32px 28px 24px",borderRadius:"24px 24px 0 0"}}>
-          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:700,marginBottom:10}}>Start your shift today</div>
-          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(26px,4vw,36px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:6}}>Choose your membership.</h3>
-          <p style={{fontSize:14,color:"#6a4858",lineHeight:1.6}}>Full access from day one. Cancel anytime. No downloads needed.</p>
+        <div style={{background:"linear-gradient(135deg,#fceedd,#f8e0f0)",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
+          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:700,marginBottom:8}}>Start your shift today</div>
+          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,5vw,34px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4}}>Choose your membership.</h3>
+          <p style={{fontSize:13,color:"#6a4858",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
+
+          {/* MONTHLY / ANNUAL TOGGLE */}
+          <div style={{display:"flex",background:"rgba(0,0,0,0.06)",borderRadius:50,padding:3,width:"fit-content"}}>
+            {["monthly","annual"].map(b => (
+              <button key={b} onClick={()=>setBilling(b)} style={{
+                padding:"8px 20px",borderRadius:50,border:"none",cursor:"pointer",
+                fontSize:12,fontWeight:700,letterSpacing:"0.06em",textTransform:"uppercase",
+                background:billing===b?"#fff":"transparent",
+                color:billing===b?"#8a2050":"#a09098",
+                boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
+                transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
+              }}>
+                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:800}}>SAVE 25%</span></>}
+              </button>
+            ))}
+          </div>
+          {isAnnual && <div style={{marginTop:10,fontSize:12,color:"#8a3060",background:"rgba(183,110,121,0.1)",borderRadius:8,padding:"6px 12px",lineHeight:1.5}}>⚠ Annual plans are paid upfront and <strong>cannot be cancelled</strong> once purchased.</div>}
         </div>
 
-        <div style={{padding:"24px 24px 32px",display:"flex",flexDirection:"column",gap:12}}>
+        <div style={{padding:"20px 24px 28px",display:"flex",flexDirection:"column",gap:12}}>
 
           {/* AUDIO TIER */}
-          <div style={{background:"linear-gradient(135deg,#f0eaff,#e8e0ff)",border:"1.5px solid #9060c066",borderRadius:16,padding:"20px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+          <div style={{background:"linear-gradient(135deg,#f0eaff,#e8e0ff)",border:"1.5px solid #9060c066",borderRadius:16,padding:"18px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:17,fontWeight:800,color:"#4020a0",marginBottom:2}}>Audio Tier</div>
-                <div style={{fontSize:12,color:"#7050b0",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#4020a0",marginBottom:2}}>Audio Tier</div>
+                <div style={{fontSize:11,color:"#7050b0",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:28,fontWeight:900,color:"#6040b0",lineHeight:1}}>£19</div>
-                <div style={{fontSize:11,color:"#9070c0"}}>/month</div>
+                <div style={{fontSize:26,fontWeight:900,color:"#6040b0",lineHeight:1}}>{isAnnual?"£143":"£19"}</div>
+                <div style={{fontSize:11,color:"#9070c0"}}>{isAnnual?"/year":"/month"}</div>
+                {isAnnual && <div style={{fontSize:10,color:"#8060c0"}}>£11.92/mo · billed once</div>}
               </div>
             </div>
-            <div style={{marginBottom:14}}>
-              {["An ever-expanding hypnosis library","All 6 desire categories: Love · Money · Appearance · Business · Sleep · DNA","4+ new tracks every week","Loop player · sleep timer · plays in background","No ads. Ever."].map((f,i)=>(
-                <div key={i} style={{fontSize:13,color:"#5040a0",marginBottom:6,paddingLeft:14,position:"relative",lineHeight:1.5}}>
+            <div style={{marginBottom:12}}>
+              {["Full audio vault — all desire categories","4+ new tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
+                <div key={i} style={{fontSize:12,color:"#5040a0",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#7050b0"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("audio")} style={{width:"100%",padding:"13px",background:"linear-gradient(90deg,#7040b0,#9060d0)",border:"none",borderRadius:10,color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif"}}>Join Audio Tier — £19/month →</button>
+            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#ede8ff,#d4c8ff)",border:"none",borderRadius:10,color:"#3a1a80",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em"}}>
+              {isAnnual?"Join Audio — £143/year →":"Join Audio Tier — £19/month →"}
+            </button>
           </div>
 
           {/* GODDESS TIER */}
-          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"20px",position:"relative"}}>
+          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"18px",position:"relative"}}>
             <div style={{position:"absolute",top:-12,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap"}}>✦ MOST POPULAR</div>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:17,fontWeight:800,color:"#8a2050",marginBottom:2}}>Goddess Tier</div>
-                <div style={{fontSize:12,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#8a2050",marginBottom:2}}>Goddess Tier</div>
+                <div style={{fontSize:11,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:28,fontWeight:900,color:"#B76E79",lineHeight:1}}>£33</div>
-                <div style={{fontSize:11,color:"#d4a090"}}>/month</div>
+                <div style={{fontSize:26,fontWeight:900,color:"#B76E79",lineHeight:1}}>{isAnnual?"£317":"£33"}</div>
+                <div style={{fontSize:11,color:"#d4a090"}}>{isAnnual?"/year":"/month"}</div>
+                {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>£26.42/mo · billed once</div>}
               </div>
             </div>
-            <div style={{marginBottom:14}}>
-              {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link to audios · capture every sign","Watch proof build in real time","Early access drops — 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
-                <div key={i} style={{fontSize:13,color:f.includes("✦")||f.includes("ProofOS")?"#B76E79":"#6a2848",marginBottom:6,paddingLeft:14,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?600:400}}>
+            <div style={{marginBottom:12}}>
+              {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link audios · capture every sign","Early access drops — 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
+                <div key={i} style={{fontSize:12,color:f.includes("✦")?"#B76E79":"#6a2848",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?700:400}}>
                   <span style={{position:"absolute",left:0,color:"#B76E79"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"15px",background:"linear-gradient(135deg,#f0cdb8,#e8b8a0,#d4a090,#c4789a,#B76E79)",backgroundSize:"200%",backgroundPosition:"left",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.5)"}}>Activate Goddess Tier — £33/month →</button>
+            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)"}}>
+              {isAnnual?"Activate Goddess — £317/year →":"Activate Goddess Tier — £33/month →"}
+            </button>
           </div>
 
           {/* LIFETIME */}
-          <div style={{background:"linear-gradient(135deg,#fffde8,#fff8cc)",border:"1.5px solid #c8a87066",borderRadius:16,padding:"20px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+          <div style={{background:"linear-gradient(135deg,#fffde8,#fff8cc)",border:"1.5px solid #c8a87066",borderRadius:16,padding:"18px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:17,fontWeight:800,color:"#7a6010",marginBottom:2}}>Lifetime Access</div>
-                <div style={{fontSize:12,color:"#a08020",fontWeight:600,letterSpacing:"0.06em"}}>Once. Forever.</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#7a6010",marginBottom:2}}>Lifetime Access</div>
+                <div style={{fontSize:11,color:"#a08020",fontWeight:600,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:28,fontWeight:900,color:"#b08000",lineHeight:1}}>£500</div>
+                <div style={{fontSize:26,fontWeight:900,color:"#b08000",lineHeight:1}}>£500</div>
                 <div style={{fontSize:11,color:"#c0a030"}}>one time</div>
               </div>
             </div>
-            <div style={{marginBottom:14}}>
-              {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only · Price never this low again"].map((f,i)=>(
-                <div key={i} style={{fontSize:13,color:"#7a6010",marginBottom:6,paddingLeft:14,position:"relative",lineHeight:1.5}}>
+            <div style={{marginBottom:12}}>
+              {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
+                <div key={i} style={{fontSize:12,color:"#7a6010",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#c8a830"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} style={{width:"100%",padding:"13px",background:"linear-gradient(90deg,#c8a830,#a08010)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif"}}>Claim Lifetime Access — £500 →</button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)",backgroundSize:"300%",backgroundPosition:"center",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,160,0,0.35)"}}>Claim Lifetime Access — £500 →</button>
           </div>
 
-          <div style={{textAlign:"center",paddingTop:8}}>
-            <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif"}}>👁 Preview the portal first — no signup needed</button>
-          </div>
-          <div style={{textAlign:"center",fontSize:12,color:"#a0909a",lineHeight:1.7}}>Cancel anytime · No refunds after 14 days · Stripe secure checkout · No download needed</div>
+          <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
+          <div style={{textAlign:"center",fontSize:11,color:"#a0909a",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
         </div>
       </div>
     </div>
@@ -645,7 +672,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#b8860b 0%,#d4a017 20%,#f0c030 40%,#d4a017 65%,#b8860b 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 25%,#d4a090 50%,#c4789a 75%,#B76E79 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
             {isMobile ? "✦ Lifetime · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  Only 1,000 spots"}
           </span>
@@ -862,6 +889,64 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
+      {/* HOW IT WORKS — JOURNEY TIMELINE */}
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#fce8f0 40%,#f0e8fc 70%,#e8f0fc 100%)", position:"relative", overflow:"hidden" }}>
+        {/* Ombre orb */}
+        <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
+
+        <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <div style={{ textAlign:"center", marginBottom:56 }}>
+            <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How it works</div>
+            <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,64px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
+              Set intention.<br/>
+              <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
+            </h2>
+            <p style={{ fontSize:isMobile?15:17, color:"#6a4858", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
+          </div>
+
+          {/* JOURNEY STEPS — ombre cards */}
+          <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative" }}>
+            {/* Vertical line */}
+            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79,#9060b0)", borderRadius:1, opacity:0.3 }}/>}
+
+            {[
+              { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#5a3810" },
+              { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#5a2818" },
+              { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#5a1030" },
+              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#f8f0fc,#f0e8f8)", border:"#9060b066", num:"#9060b0", text:"#3a1050" },
+            ].map((s,i)=>(
+              <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
+                {/* Step number circle */}
+                <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22` }}>
+                  <span style={{ fontSize:isMobile?14:16, fontWeight:900, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
+                </div>
+                {/* Card */}
+                <div style={{ flex:1, background:s.bg, border:`1px solid ${s.border}`, borderRadius:16, padding:"20px 22px", boxShadow:`0 4px 24px ${s.num}14` }}>
+                  <div style={{ fontSize:isMobile?16:20, fontWeight:800, color:s.text, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{s.label}</div>
+                  <div style={{ fontSize:isMobile?13:15, color:s.text, lineHeight:1.75, opacity:0.85 }}>{s.body}</div>
+                </div>
+              </div>
+            ))}
+
+            {/* MANIFESTED — final celebration */}
+            <div style={{ display:"flex", gap:isMobile?14:24, alignItems:"flex-start" }}>
+              <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#f5e0a0,#d4a090,#B76E79)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 8px 32px rgba(183,110,121,0.4)" }}>
+                <span style={{ fontSize:isMobile?18:22 }}>✓</span>
+              </div>
+              <div style={{ flex:1, background:"linear-gradient(135deg,#fceedd,#f8d8f0,#ede0fc)", border:"2px solid rgba(183,110,121,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(183,110,121,0.2)" }}>
+                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#e8b870,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif", fontStyle:"italic" }}>Manifested.</div>
+                <div style={{ fontSize:isMobile?13:15, color:"#6a3050", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {/* MAXXING CAROUSEL */}
+      <MaxxingCarousel cats={cats} />
+
+
       {/* THE PROBLEM SECTION */}
       <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", maxWidth: 1100, margin: "0 auto", background: "linear-gradient(160deg,#fce8dc 0%,#f8ddd0 50%,#fce8dc 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
@@ -1016,9 +1101,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
       </div>
-      {/* MAXXING CAROUSEL */}
-      <MaxxingCarousel cats={cats} />
-
       {/* LANDING PROOF WALL — BRIGHT light section */}
       <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "linear-gradient(160deg,#fff0f5 0%,#fde8f2 50%,#fff0f5 100%)", borderTop: "none", borderBottom: "none" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
@@ -1386,120 +1468,44 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
 
         {/* TECHNOLOGY TABLE */}
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 13, color: "#000000", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>The technology</div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: "#000000", marginBottom: 12 }}>What's inside every audio.</h2>
-          <p style={{ fontSize: 17, color: "#000000", maxWidth: 600, margin: "0 auto" }}>Every track is layered with multiple technologies working simultaneously to activate your ideal brainwave state and install the new self-concept at depth.</p>
+          <h2 className="wm" style={{ fontSize: "clamp(24px,4vw,48px)", color: "#000000", marginBottom: 12 }}>What's inside every audio.</h2>
+          <p style={{ fontSize: isMobile?15:17, color: "#000000", maxWidth: 600, margin: "0 auto", lineHeight: 1.7 }}>Every track is layered with multiple technologies working simultaneously to activate your brainwave state and install the new self-concept at depth.</p>
         </div>
-        <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", background: "#0f0b01", borderBottom: "1px solid #1c1828" }}>
-            {["Technology", "What it is", "What it does", "When it activates"].map((h, i) => (
-              <div key={i} style={{ padding: "13px 18px", fontSize: 13, color: "#B76E79", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1c1828" : "none" }}>{h}</div>
+        {isMobile ? (
+          /* MOBILE — stacked cards */
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 56 }}>
+            {TECH_ROWS.map((row, i) => (
+              <div key={i} style={{ background: "rgba(255,255,255,0.88)", border: "1px solid rgba(183,110,121,0.15)", borderRadius: 14, padding: "16px 18px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#6040b0" }}>{row.t}</div>
+                  <div style={{ fontSize: 11, color: "#B76E79", fontStyle: "italic", textAlign: "right", maxWidth: "45%", lineHeight: 1.4 }}>{row.when}</div>
+                </div>
+                <div style={{ fontSize: 13, color: "#333", lineHeight: 1.6, marginBottom: 4 }}><strong style={{color:"#000"}}>{row.w}</strong></div>
+                <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>{row.d}</div>
+              </div>
             ))}
           </div>
-          {TECH_ROWS.map((row, i) => (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(215,185,130,0.05)" : "none" }}>
-              <div style={{ padding: "15px 18px", fontSize: 15, fontWeight: 700, color: T.champSoft, borderRight: "1px solid rgba(215,185,130,0.06)" }}>{row.t}</div>
-              <div style={{ padding: "15px 18px", fontSize: 14, color: "#000000", borderRight: "1px solid rgba(215,185,130,0.06)", lineHeight: 1.6 }}>{row.w}</div>
-              <div style={{ padding: "15px 18px", fontSize: 14, color: "#e8e0d0", borderRight: "1px solid rgba(215,185,130,0.06)", lineHeight: 1.6 }}>{row.d}</div>
-              <div style={{ padding: "15px 18px", fontSize: 13, color: "#111111", fontStyle: "italic", lineHeight: 1.6 }}>{row.when}</div>
+        ) : (
+          /* DESKTOP — grid table */
+          <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1.8fr 2fr 1.6fr", background: "#0f0b01", borderBottom: "1px solid #1c1828" }}>
+              {["Technology", "What it is", "What it does", "When it activates"].map((h, i) => (
+                <div key={i} style={{ padding: "13px 18px", fontSize: 12, color: "#B76E79", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1c1828" : "none" }}>{h}</div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#fce8f0 40%,#f0e8fc 70%,#e8f0fc 100%)", position:"relative", overflow:"hidden" }}>
-        {/* Ombre orb */}
-        <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
-
-        <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <div style={{ textAlign:"center", marginBottom:56 }}>
-            <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How it works</div>
-            <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,64px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
-              Set intention.<br/>
-              <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
-            </h2>
-            <p style={{ fontSize:isMobile?15:17, color:"#6a4858", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
-          </div>
-
-          {/* JOURNEY STEPS — ombre cards */}
-          <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative" }}>
-            {/* Vertical line */}
-            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79,#9060b0)", borderRadius:1, opacity:0.3 }}/>}
-
-            {[
-              { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#5a3810" },
-              { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#5a2818" },
-              { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#5a1030" },
-              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#f8f0fc,#f0e8f8)", border:"#9060b066", num:"#9060b0", text:"#3a1050" },
-            ].map((s,i)=>(
-              <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
-                {/* Step number circle */}
-                <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22` }}>
-                  <span style={{ fontSize:isMobile?14:16, fontWeight:900, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
-                </div>
-                {/* Card */}
-                <div style={{ flex:1, background:s.bg, border:`1px solid ${s.border}`, borderRadius:16, padding:"20px 22px", boxShadow:`0 4px 24px ${s.num}14` }}>
-                  <div style={{ fontSize:isMobile?16:20, fontWeight:800, color:s.text, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{s.label}</div>
-                  <div style={{ fontSize:isMobile?13:15, color:s.text, lineHeight:1.75, opacity:0.85 }}>{s.body}</div>
-                </div>
+            {TECH_ROWS.map((row, i) => (
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "1.3fr 1.8fr 2fr 1.6fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(183,110,121,0.08)" : "none" }}>
+                <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#5040a0", borderRight: "1px solid rgba(183,110,121,0.08)" }}>{row.t}</div>
+                <div style={{ padding: "15px 18px", fontSize: 13, color: "#1a0a1a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.w}</div>
+                <div style={{ padding: "15px 18px", fontSize: 13, color: "#2a1a2a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.d}</div>
+                <div style={{ padding: "15px 18px", fontSize: 12, color: "#B76E79", fontStyle: "italic", lineHeight: 1.6 }}>{row.when}</div>
               </div>
             ))}
-
-            {/* MANIFESTED — final celebration */}
-            <div style={{ display:"flex", gap:isMobile?14:24, alignItems:"flex-start" }}>
-              <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#f5e0a0,#d4a090,#B76E79)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 8px 32px rgba(183,110,121,0.4)" }}>
-                <span style={{ fontSize:isMobile?18:22 }}>✓</span>
-              </div>
-              <div style={{ flex:1, background:"linear-gradient(135deg,#fceedd,#f8d8f0,#ede0fc)", border:"2px solid rgba(183,110,121,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(183,110,121,0.2)" }}>
-                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#e8b870,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif", fontStyle:"italic" }}>Manifested.</div>
-                <div style={{ fontSize:isMobile?13:15, color:"#6a3050", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
-              </div>
-            </div>
           </div>
-        </div>
+        )}
       </div>
-      {/* BEFORE / AFTER SECTION */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 36 }}>
-        </div>
-        <div style={{...G3(isMobile), gap: 16}}>
-          {[
-            { cat: "Lovemaxxing", color: "#B76E79", bgHdr: "#000000", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
-            { cat: "Moneymaxxing", color: "#B76E79", bgHdr: "#000000", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "£247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "£10,000", transfer: true } },
-            { cat: "Beautymaxxing", color: "#B76E79", bgHdr: "#000000", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
-          ].map((item, idx) => (
-            <div key={idx} style={{ background: T.cardBg, border: T.border, borderRadius: 16, overflow: "hidden" }}>
-              <div style={{ padding: "12px 18px", borderBottom: "1px solid #1c1828", background: "#000000" }}>
-                <div style={{ fontSize: 13, color: item.color, fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase" }}>{item.cat}</div>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-                {[item.before, item.after].map((side, si) => (
-                  <div key={si} style={{ padding: 14, borderRight: si === 0 ? "1px solid rgba(215,185,130,0.06)" : "none" }}>
-                    <div style={{ fontSize: 11, color: si === 0 ? T.textFaint : "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 10 }}>{side.label}</div>
-                    <div style={{ background: si === 0 ? "#0a0a0a" : "#080e08", borderRadius: 10, padding: 10, marginBottom: 8, minHeight: 70, border: si === 1 ? "1px solid rgba(141,175,122,0.15)" : "none" }}>
-                      {side.mirror && <div style={{ textAlign: "center", fontSize: 24, filter: "grayscale(1) opacity(0.25)", margin: "6px 0" }}>🪞</div>}
-                      {side.amount && !side.transfer && <div style={{ fontSize: si === 0 ? 20 : 28, fontWeight: 800, color: si === 0 ? "#f2ece4" : "#6ab06a", marginBottom: 3 }}>{side.amount}</div>}
-                      {side.transfer && <div style={{ background: "rgba(10,25,10,0.8)", borderRadius: 8, padding: "7px 9px" }}><div style={{ fontSize: 11, color: "#4a8a4a" }}>✓ Payment received</div><div style={{ fontSize: 22, fontWeight: 800, color: "#6ab06a" }}>{side.amount}</div></div>}
-                      {(side.msgs || []).map((m, mi) => (
-                        <div key={mi}>
-                          {m.center ? <div style={{ textAlign: "center", fontSize: 11, color: "#b3a8a0", marginBottom: 4 }}>{m.txt}</div>
-                            : m.from ? <div style={{ background: "rgba(25,15,3,0.8)", borderRadius: 7, padding: "6px 8px", marginBottom: 4, border: "1px solid rgba(215,185,130,0.1)" }}><div style={{ fontSize: 11, color: "#c8c0bc", marginBottom: 2 }}>{m.from}</div><div style={{ fontSize: 12, color: "#f2ece4" }}>{m.txt}</div></div>
-                            : <div style={{ background: m.green ? "rgba(10,25,10,0.8)" : "rgba(25,15,15,0.8)", borderRadius: 7, padding: "5px 8px", marginBottom: 4 }}><div style={{ fontSize: m.small ? 10 : 11, color: m.green ? "#7ab07a" : "#f2ece4" }}>{m.txt}</div></div>}
-                        </div>
-                      ))}
-                    </div>
-                    <div style={{ fontSize: 13, color: si === 0 ? T.textFaint : "#B76E79", fontStyle: "italic", lineHeight: 1.5 }}>{side.text}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-
 
       {/* WALL OF LOVE */}
       <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fff6f8 0%,#fef0f5 50%,#fff6f8 100%)" }}>
