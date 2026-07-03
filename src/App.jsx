@@ -266,7 +266,7 @@ function Landing({ onJoin, onDemo }) {
       </nav>
 
       {/* HERO */}
-      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 110, overflow: "hidden" }}>
+      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "clamp(90px,12vw,110px)", overflow: "hidden" }}>
         <Rings count={5} />
         {/* Dot grid overlay */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
@@ -328,11 +328,11 @@ function Landing({ onJoin, onDemo }) {
 
           {/* PAIN POINT */}
                     {/* HERO CTA BUTTONS */}
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-            <button onClick={() => onJoin("audio")} className="cta-pulse" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.06em" }}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: "row" }} className="hero-ctas">
+            <button onClick={() => onJoin("audio")} className="cta-pulse mob-full" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.06em" }}>
               START LISTENING ✦
             </button>
-            <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
+            <button onClick={() => onJoin("founder")} className="mob-full" style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
               LIFETIME ACCESS →
             </button>
           </div>
@@ -939,7 +939,7 @@ function Landing({ onJoin, onDemo }) {
         <div className="grid-2" style={{ gap: 16, marginBottom: 16 }}>
           {[
             {
-              id: "audio", name: "Audio Tier",
+              id: "audio", name: "Audio Tier", cls: "price-card-audio",
               price: billing === "monthly" ? "£19" : "£144",
               period: billing === "monthly" ? "/month" : "/year",
               sub: billing === "annual" ? "£19/mo · save £36/year" : null,
@@ -948,7 +948,7 @@ function Landing({ onJoin, onDemo }) {
               cta: "Join Audio Tier",
             },
             {
-              id: "goddess", name: "Goddess Tier", popular: true,
+              id: "goddess", name: "Goddess Tier", cls: "price-card-goddess", popular: true,
               price: billing === "monthly" ? "£33" : "£317",
               period: billing === "monthly" ? "/month" : "/year",
               sub: billing === "annual" ? "£33/mo · save £79/year" : null,
@@ -977,7 +977,7 @@ function Landing({ onJoin, onDemo }) {
           ))}
         </div>
 
-        {/* Founder card — full width */}
+        {/* Lifetime Access card — full width */}
         <div style={{ background: "linear-gradient(135deg,#0d0900,#1a0d02)", border: "2px solid #B76E7955", borderRadius: 18, padding: "28px 32px" }}>
           <div className="grid-2" style={{ gap: 32, alignItems: "center" }}>
             <div>
