@@ -739,32 +739,20 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
 
-          {/* HERO IMAGE PLACEHOLDER */}
-          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(160deg,#fde8f0,#f8dde8)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
-            <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 40%,#B76E7912,transparent 65%)",pointerEvents:"none" }}/>
-            <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 20% 80%,#d4a09008,transparent 60%)",pointerEvents:"none" }}/>
-            {/* Floating labels like ClickUp */}
-            <div style={{ position:"absolute",top:isMobile?16:28,left:isMobile?16:32,background:"#0a0806",border:"1px solid #B76E7944",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
-              <div style={{ width:6,height:6,borderRadius:"50%",background:"#B76E79" }}/>
-              <span style={{ fontSize:10,color:"#d4a090",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>EMDR bilateral activation</span>
+          {/* PORTAL SCREENSHOT — right after CTA buttons */}
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:14, marginBottom:8, marginTop:8 }}>
+            <div style={{ fontSize:11, color:"rgba(183,110,121,0.6)", letterSpacing:"0.22em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>
+              👇 This is what you get
             </div>
-            <div style={{ position:"absolute",top:isMobile?16:28,right:isMobile?16:32,background:"#0a0806",border:"1px solid #d4a09044",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
-              <div style={{ width:6,height:6,borderRadius:"50%",background:"#d4a090" }}/>
-              <span style={{ fontSize:10,color:"#d4a090",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>Theta state in 8 min</span>
+            <div style={{ display:"flex", justifyContent:"center", gap: isMobile ? 16 : 40, alignItems:"flex-start", flexWrap:"wrap" }}>
+              <PortalScreenshot width={isMobile ? 170 : 220}/>
+              {!isMobile && <PortalScreenshot width={220}/>}
             </div>
-            <div style={{ position:"absolute",bottom:isMobile?16:28,left:isMobile?16:32,background:"#0a0806",border:"1px solid #B76E7944",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
-              <div style={{ width:6,height:6,borderRadius:"50%",background:"#7a9ab0" }}/>
-              <span style={{ fontSize:10,color:"#b0c0d0",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>528hz · 432hz · Delta</span>
-            </div>
-            <div style={{ position:"absolute",bottom:isMobile?16:28,right:isMobile?16:32,background:"#0a0806",border:"1px solid #d4a09044",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
-              <div style={{ width:6,height:6,borderRadius:"50%",background:"#B76E79" }}/>
-              <span style={{ fontSize:10,color:"#d4a090",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>50+ exclusive tracks</span>
-            </div>
-            {/* Centre placeholder */}
-            <div style={{ textAlign:"center", zIndex:1 }}>
-              <div style={{ fontSize:11,color:"rgba(183,110,121,0.5)",letterSpacing:"0.2em",textTransform:"uppercase",fontFamily:"'Jost',sans-serif" }}>[ Add brand image here ]</div>
+            <div style={{ fontSize:11, color:"rgba(183,110,121,0.5)", letterSpacing:"0.14em", fontFamily:"'Jost',sans-serif" }}>
+              Home · Search · Library · ProofOS — works on any device
             </div>
           </div>
+
 
         </div>
       </div>
