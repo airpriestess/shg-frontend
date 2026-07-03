@@ -17,16 +17,16 @@ const TIMELINE = [
   { day: "Day 2", event: "Voice proof",      detail: "I felt calmer and more certain after listening.",          icon: "🎙", photo: false },
   { day: "Day 3", event: "Sign noticed",     detail: "Saw 555 three times. A phrase from the audio appeared.",  icon: "◈",  photo: false },
   { day: "Day 5", event: "Photo proof",      detail: "Bank notification screenshot captured.",                   icon: "📷", photo: true  },
-  { day: "Day 8", event: "Manifested ★",    detail: "€5,000 received. Thread closed.",                          icon: "★",  photo: true  },
+  { day: "Day 8", event: "Manifested ★",    detail: "£5,000 received. Thread closed.",                          icon: "★",  photo: true  },
 ];
 
 const RECENT_PROOF = [
-  { icon: "💰", label: "Bank Notification",  thread: "I receive €5,000 unexpectedly",   date: "Jul 1"  },
+  { icon: "💰", label: "Bank Notification",  thread: "I receive £5,000 unexpectedly",   date: "Jul 1"  },
   { icon: "💬", label: "Message Screenshot", thread: "He sends me a loving message",     date: "Jun 30" },
   { icon: "🪞", label: "Mirror Photo",       thread: "My skin looks clear and luminous", date: "Jun 29" },
-  { icon: "555",label: "Angel Number",       thread: "I receive €5,000 unexpectedly",   date: "Jun 27" },
+  { icon: "555",label: "Angel Number",       thread: "I receive £5,000 unexpectedly",   date: "Jun 27" },
   { icon: "📧", label: "Email Confirmation", thread: "He sends me a loving message",     date: "Jun 26" },
-  { icon: "📅", label: "Calendar Invite",    thread: "I receive €5,000 unexpectedly",   date: "Jun 25" },
+  { icon: "📅", label: "Calendar Invite",    thread: "I receive £5,000 unexpectedly",   date: "Jun 25" },
 ];
 
 // ── Small stat number card ────────────────────────────────────────────────────
@@ -172,7 +172,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                   >
                     <div style={{ height: 68, background: `${RG}0e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, borderBottom: "1px solid #1a1a1a" }}>{p.icon}</div>
                     <div style={{ padding: "10px 12px" }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: "#B76E79", marginBottom: 2 }}>{p.label}</div>
+                      <div style={{ fontSize: 12, fontWeight: 300, color: "#f2ece4", marginBottom: 2 }}>{p.label}</div>
                       <div style={{ fontSize: 11, color: "#444", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
                       <div style={{ fontSize: 10, color: "#333" }}>{p.date}</div>
                     </div>
