@@ -9,7 +9,7 @@ const STATUS_LABEL = {
   "Active": { label: "Active", color: "#d8c8a0" },
   "Evidence Appearing": { label: "Evidence", color: RG },
   "Manifested": { label: "Manifested", color: "#4a9a5a" },
-  "Paused": { label: "Paused", color: "#555" },
+  "Paused": { label: "Paused", color: "#786860" },
 };
 
 const TIMELINE = [
@@ -32,9 +32,9 @@ const RECENT_PROOF = [
 // ── Small stat number card ────────────────────────────────────────────────────
 function StatCard({ value, label }) {
   return (
-    <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
-      <div style={{ fontSize: 32, fontWeight: 800, color: "#B76E79", lineHeight: 1, marginBottom: 6 }}>{value}</div>
-      <div style={{ fontSize: 11, color: "#555", letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
+    <div style={{ background: "#0a0908", border: "1px solid #1a1a1a", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
+      <div style={{ fontSize: 28, fontWeight: 800, color: "#B76E79", lineHeight: 1, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>{value}</div>
+      <div style={{ fontSize: 11, color: "#786860", letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
     </div>
   );
 }
@@ -43,7 +43,7 @@ function StatCard({ value, label }) {
 function SectionHead({ children, action, onAction }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-      <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>{children}</div>
+      <div style={{ fontSize: 10, color: "#B76E79", fontWeight: 800, letterSpacing: "0.22em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>{children}</div>
       {action && (
         <button onClick={onAction} style={{ background: "none", border: "0.5px solid #B76E7944", borderRadius: 20, color: "#B76E79", fontSize: 11, fontWeight: 600, cursor: "pointer", padding: "4px 12px", letterSpacing: "0.06em" }}>
           {action} →
@@ -60,7 +60,7 @@ function Tabs({ tabs, active, onChange }) {
       {tabs.map(t => (
         <button key={t} onClick={() => onChange(t)} style={{
           padding: "10px 18px", background: "none", border: "none",
-          color: active === t ? T.textPrimary : "#444",
+          color: active === t ? T.textPrimary : "#786860",
           fontSize: 13, fontWeight: active === t ? 700 : 400, cursor: "pointer",
           borderBottom: active === t ? `2px solid ${RG}` : "2px solid transparent",
           marginBottom: -1, transition: "color 0.15s",
@@ -117,7 +117,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 24 }} className="grid-2">
 
               {/* Current Ritual */}
-              <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 16, padding: "20px" }}>
+              <div style={{ background: "#0a0908", border: "1px solid #1a1a1a", borderRadius: 16, padding: "20px" }}>
                 <SectionHead>Current Ritual</SectionHead>
                 {currentAudio ? (
                   <>
@@ -130,19 +130,19 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <div style={{ display: "flex", gap: 10 }}>
-                        <span style={{ fontSize: 12, color: "#555" }}>🔥 {USER.listeningStreak}d streak</span>
-                        <span style={{ fontSize: 12, color: "#555" }}>{currentAudio.lastListenedAt}</span>
+                        <span style={{ fontSize: 12, color: "#786860" }}>🔥 {USER.listeningStreak}d streak</span>
+                        <span style={{ fontSize: 12, color: "#786860" }}>{currentAudio.lastListenedAt}</span>
                       </div>
                       <Btn size="sm" variant="primary" onClick={() => onNavigate("audio-vault")}>▶ Resume</Btn>
                     </div>
                   </>
                 ) : (
-                  <div style={{ fontSize: 13, color: "#444", padding: "20px 0" }}>No active ritual. Start an audio to begin.</div>
+                  <div style={{ fontSize: 13, color: "#786860", padding: "20px 0" }}>No active ritual. Start an audio to begin.</div>
                 )}
               </div>
 
               {/* Quick Capture */}
-              <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 16, padding: "20px" }}>
+              <div style={{ background: "#0a0908", border: "1px solid #1a1a1a", borderRadius: 16, padding: "20px" }}>
                 <SectionHead>Quick Capture</SectionHead>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {[
@@ -153,12 +153,12 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                     <button key={i} onClick={() => onAddProof(a.type)} style={{
                       padding: "11px 14px", borderRadius: 10, textAlign: "left",
                       background: a.primary ? `${RG}18` : "transparent",
-                      border: `1px solid ${a.primary ? RG + "44" : "#1a1a1a"}`,
-                      color: a.primary ? RG : "#666", fontSize: 13, fontWeight: 600,
+                      border: `1px solid ${a.primary ? RG + "44" : "#201e1c"}`,
+                      color: a.primary ? RG : "#8a7860", fontSize: 13, fontWeight: 600,
                       cursor: "pointer", transition: "all 0.15s",
                     }}
                       onMouseEnter={e => e.currentTarget.style.borderColor = RG + "66"}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = a.primary ? RG + "44" : "#1a1a1a"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = a.primary ? RG + "44" : "#201e1c"}
                     >{a.label}</button>
                   ))}
                 </div>
@@ -170,15 +170,15 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
               <SectionHead action="View all" onAction={() => onNavigate("proof-threads")}>Recent Photo Proof</SectionHead>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }} className="grid-3">
                 {RECENT_PROOF.map((p, i) => (
-                  <div key={i} onClick={() => onNavigate("proof-threads")} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
+                  <div key={i} onClick={() => onNavigate("proof-threads")} style={{ background: "#0a0908", border: "1px solid #1a1a1a", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
                     onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = "#1a1a1a"}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = "#201e1c"}
                   >
                     <div style={{ height: 68, background: `${RG}0e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, borderBottom: "1px solid #1a1a1a" }}>{p.icon}</div>
                     <div style={{ padding: "10px 12px" }}>
                       <div style={{ fontSize: 12, fontWeight: 300, color: "#f2ece4", marginBottom: 2 }}>{p.label}</div>
-                      <div style={{ fontSize: 11, color: "#444", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
-                      <div style={{ fontSize: 10, color: "#333" }}>{p.date}</div>
+                      <div style={{ fontSize: 11, color: "#786860", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
+                      <div style={{ fontSize: 10, color: "#2a1e1c" }}>{p.date}</div>
                     </div>
                   </div>
                 ))}
@@ -191,12 +191,12 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                 <SectionHead action="Proof Wall" onAction={() => onNavigate("proof-wall")}>Manifested</SectionHead>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {manifested.map(t => (
-                    <div key={t.id} style={{ background: "#0d0d0d", border: "1px solid #1a3a1a", borderRadius: 12, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                    <div key={t.id} style={{ background: "#0a0908", border: "1px solid #1a3a1a", borderRadius: 12, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ fontSize: 14, fontWeight: 600, color: T.textPrimary, marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.intentionTitle}</div>
                         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                          <span style={{ fontSize: 12, color: "#555" }}>🎧 {t.linkedAudioTitle}</span>
-                          <span style={{ fontSize: 12, color: "#555" }}>{t.daysActive}d</span>
+                          <span style={{ fontSize: 12, color: "#786860" }}>🎧 {t.linkedAudioTitle}</span>
+                          <span style={{ fontSize: 12, color: "#786860" }}>{t.daysActive}d</span>
                           {[...Array(Math.min(t.photoProofCount, 3))].map((_, i) => (
                             <div key={i} style={{ width: 22, height: 22, borderRadius: 4, background: "#4a9a5a18", border: "1px solid #4a9a5a33", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10 }}>📷</div>
                           ))}
@@ -210,17 +210,17 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             )}
 
             {/* ── STORAGE ── */}
-            <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "16px 18px" }}>
+            <div style={{ background: "#0a0908", border: "1px solid #1a1a1a", borderRadius: 14, padding: "16px 18px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-                <span style={{ fontSize: 12, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em" }}>Storage</span>
+                <span style={{ fontSize: 12, color: "#786860", textTransform: "uppercase", letterSpacing: "0.1em" }}>Storage</span>
                 <span style={{ fontSize: 12, color: "#B76E79", fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
               </div>
-              <div style={{ height: 4, background: "#1a1a1a", borderRadius: 2, marginBottom: 10 }}>
+              <div style={{ height: 4, background: "#201e1c", borderRadius: 2, marginBottom: 10 }}>
                 <div style={{ width: `${storagePct}%`, height: "100%", background: `linear-gradient(90deg,${RG},#C8956A)`, borderRadius: 2 }} />
               </div>
               <div style={{ display: "flex", gap: 16 }}>
-                <span style={{ fontSize: 11, color: "#444" }}>📷 {PROOF_THREADS.reduce((s,t) => s+(t.photoProofCount||0),0)} photos</span>
-                <span style={{ fontSize: 11, color: "#444" }}>🎙 {PROOF_THREADS.reduce((s,t) => s+(t.voiceProofCount||0),0)} voice notes</span>
+                <span style={{ fontSize: 11, color: "#786860" }}>📷 {PROOF_THREADS.reduce((s,t) => s+(t.photoProofCount||0),0)} photos</span>
+                <span style={{ fontSize: 11, color: "#786860" }}>🎙 {PROOF_THREADS.reduce((s,t) => s+(t.voiceProofCount||0),0)} voice notes</span>
               </div>
             </div>
           </>
@@ -229,12 +229,12 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
         {activeTab === "Proof Threads" && (
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {PROOF_THREADS.map(t => {
-              const sc = STATUS_LABEL[t.status] || { label: t.status, color: "#555" };
+              const sc = STATUS_LABEL[t.status] || { label: t.status, color: "#786860" };
               return (
-                <div key={t.id} onClick={() => onNavigate("proof-threads")} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "18px 20px",
+                <div key={t.id} onClick={() => onNavigate("proof-threads")} style={{ background: "#0a0908", border: "1px solid #1a1a1a", borderRadius: 14, padding: "18px 20px",
                   transition: "border-color 0.15s", cursor: "pointer" }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = "#1a1a1a"}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "#201e1c"}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -243,7 +243,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                     </div>
                     <div style={{ textAlign: "right", flexShrink: 0 }}>
                       <div style={{ fontSize: 11, color: sc.color, fontWeight: 700, marginBottom: 3 }}>{sc.label}</div>
-                      <div style={{ fontSize: 11, color: "#444" }}>{t.daysActive}d</div>
+                      <div style={{ fontSize: 11, color: "#786860" }}>{t.daysActive}d</div>
                     </div>
                   </div>
                   {/* Photo thumbnails */}
@@ -251,14 +251,14 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                     {[...Array(Math.min(t.photoProofCount||0, 4))].map((_, i) => (
                       <div key={i} style={{ width: 30, height: 30, borderRadius: 6, background: `${RG}14`, border: `1px solid ${RG}2a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>📷</div>
                     ))}
-                    {(t.photoProofCount||0) > 4 && <span style={{ fontSize: 11, color: "#444" }}>+{t.photoProofCount-4}</span>}
-                    {(t.voiceProofCount||0) > 0 && <span style={{ fontSize: 12, color: "#555", marginLeft: 4 }}>🎙 {t.voiceProofCount}</span>}
-                    {(t.signCount||0) > 0 && <span style={{ fontSize: 12, color: "#555" }}>◈ {t.signCount}</span>}
+                    {(t.photoProofCount||0) > 4 && <span style={{ fontSize: 11, color: "#786860" }}>+{t.photoProofCount-4}</span>}
+                    {(t.voiceProofCount||0) > 0 && <span style={{ fontSize: 12, color: "#786860", marginLeft: 4 }}>🎙 {t.voiceProofCount}</span>}
+                    {(t.signCount||0) > 0 && <span style={{ fontSize: 12, color: "#786860" }}>◈ {t.signCount}</span>}
                   </div>
                   {t.mood_before && t.mood_after && (
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 12 }}>
-                      <span style={{ fontSize: 11, padding: "2px 8px", background: "#111", border: "1px solid #222", borderRadius: 20, color: "#555" }}>{t.mood_before}</span>
-                      <span style={{ fontSize: 11, color: "#333" }}>→</span>
+                      <span style={{ fontSize: 11, padding: "2px 8px", background: "#0a0908", border: "1px solid #222", borderRadius: 20, color: "#786860" }}>{t.mood_before}</span>
+                      <span style={{ fontSize: 11, color: "#2a1e1c" }}>→</span>
                       <span style={{ fontSize: 11, padding: "2px 8px", background: `${RG}14`, border: `1px solid ${RG}2a`, borderRadius: 20, color: RG }}>{t.mood_after}</span>
                     </div>
                   )}
@@ -275,7 +275,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
 
         {activeTab === "Timeline" && (
           <div>
-            <div style={{ fontSize: 13, color: "#555", marginBottom: 24, lineHeight: 1.7 }}>
+            <div style={{ fontSize: 13, color: "#786860", marginBottom: 24, lineHeight: 1.7 }}>
               First listen to final manifestation. Every step logged.
             </div>
             <div style={{ position: "relative" }}>
@@ -289,11 +289,11 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                       <div style={{ width: 40, flexShrink: 0, display: "flex", justifyContent: "center", paddingTop: 14 }}>
                         <div style={{ width: 22, height: 22, borderRadius: "50%", background: `${col}18`, border: `1.5px solid ${col}55`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, zIndex: 1, position: "relative" }}>{item.icon}</div>
                       </div>
-                      <div style={{ flex: 1, background: "#0d0d0d", border: `1px solid ${col}22`, borderRadius: 12, padding: "14px 16px", marginBottom: 8 }}>
+                      <div style={{ flex: 1, background: "#0a0908", border: `1px solid ${col}22`, borderRadius: 12, padding: "14px 16px", marginBottom: 8 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
                           <div>
                             <span style={{ fontSize: 11, color: col, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{item.day}</span>
-                            <span style={{ fontSize: 11, color: "#444", marginLeft: 8 }}>{item.event}</span>
+                            <span style={{ fontSize: 11, color: "#786860", marginLeft: 8 }}>{item.event}</span>
                           </div>
                           {item.photo && (
                             <div style={{ width: 32, height: 32, borderRadius: 6, background: `${col}14`, border: `1px solid ${col}2a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0 }}>
@@ -301,7 +301,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                             </div>
                           )}
                         </div>
-                        <div style={{ fontSize: 13, color: "#666", lineHeight: 1.55, marginTop: 6 }}>{item.detail}</div>
+                        <div style={{ fontSize: 13, color: "#8a7860", lineHeight: 1.55, marginTop: 6 }}>{item.detail}</div>
                       </div>
                     </div>
                   );
