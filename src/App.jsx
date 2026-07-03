@@ -45,14 +45,7 @@ export default function App() {
     <>
       <style>{CSS}</style>
       {screen === "landing" && <Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => goPortal("goddess")} />}
-    {checkoutModal && (
-      <CheckoutModal
-        step={checkoutStep}
-        setStep={setCheckoutStep}
-        onClose={() => { setCheckoutModal(false); setCheckoutStep("tiers"); }}
-        onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }}
-      />
-    )}
+    {checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}
       {screen === "portal" && (
         <AppShell
           userTier={userTier} tab={portalTab} setTab={setPortalTab}
@@ -104,7 +97,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
       {/* TOP NAV */}
       <header style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1e1c0a", flexShrink: 0, zIndex: 50 }}>
         <button onClick={onSignOut} style={{ background: "none", border: "none", cursor: "pointer" }} title="Back to homepage">
-          <span className="wm" style={{ fontSize: 22, fontWeight: 500, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", cursor: "pointer", letterSpacing: "0.02em" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+          <span className="wm wm-shimmer" style={{ fontSize: 22, fontWeight: 500, cursor: "pointer", letterSpacing: "0.02em" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
         </button>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           {userTier === "goddess" || userTier === "founder"
@@ -187,185 +180,97 @@ const STRIPE = {
   lifetime: "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02",
 };
 
-function CheckoutModal({ step, setStep, onClose, onDemo }) {
-  const overlay = { position:"fixed",inset:0,background:"rgba(0,0,0,0.92)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:"20px" };
-  const box = { background:"#0a0908",border:"1px solid #201e1c",borderRadius:20,padding:"36px 32px",maxWidth:520,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto" };
-
+function CheckoutModal({ onClose, onDemo }) {
   const goStripe = (tier) => { window.open(STRIPE[tier],"_blank"); onClose(); };
-
-  if (step === "upsell-goddess") return (
-    <div style={overlay} onClick={e => e.target===e.currentTarget && onClose()}>
-      <div style={box}>
-        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:20,cursor:"pointer"}}>✕</button>
-        <div style={{fontSize:11,color:"#B76E79",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:700,marginBottom:12}}>Before you go</div>
-        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(22px,4vw,32px)",color:"#f2ece4",fontWeight:400,lineHeight:1.2,marginBottom:12}}>
-          Goddess Tier is only <span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>£14/mo more.</span>
-        </h3>
-        <p style={{fontSize:15,color:"#b09888",lineHeight:1.75,marginBottom:20}}>
-          Audio Tier is £19/mo and includes the full vault. For £33/mo you also get <strong style={{color:"#f2ece4"}}>ProofOS</strong> — the system that tracks every sign, every shift, every piece of evidence linked to the audio that preceded it.
-        </p>
-        <div style={{display:"flex",flexDirection:"column",gap:10}}>
-          <button onClick={() => goStripe("goddess")} style={{padding:"15px 24px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:800,cursor:"pointer",letterSpacing:"0.08em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase"}}>Activate Goddess Tier · £33/mo →</button>
-          <button onClick={() => setStep("upsell-lifetime")} style={{padding:"15px 24px",background:"none",border:"1.5px solid #B76E7944",borderRadius:12,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer"}}>See Lifetime Access · £500 once, forever</button>
-          <button onClick={() => goStripe("audio")} style={{padding:"12px 24px",background:"none",border:"none",color:"#786860",fontSize:13,cursor:"pointer"}}>No thanks — Audio Tier only · £19/mo</button>
-        </div>
-      </div>
-    </div>
-  );
-
-  if (step === "upsell-lifetime") return (
-    <div style={overlay} onClick={e => e.target===e.currentTarget && onClose()}>
-      <div style={box}>
-        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:20,cursor:"pointer"}}>✕</button>
-        <div style={{fontSize:11,color:"#B76E79",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:700,marginBottom:12}}>One time · Forever</div>
-        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(22px,4vw,32px)",color:"#f2ece4",fontWeight:400,lineHeight:1.2,marginBottom:12}}>
-          Lifetime Access.<br/>
-          <span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Pay once. Own it forever.</span>
-        </h3>
-        <p style={{fontSize:15,color:"#b09888",lineHeight:1.75,marginBottom:8}}>Everything in Goddess Tier. Every future audio. Every future feature. No monthly. No renewal. £500 once.</p>
-        <p style={{fontSize:13,color:"#786860",marginBottom:20}}>1,000 spots only. Once they're gone, this is gone.</p>
-        <div style={{display:"flex",flexDirection:"column",gap:10}}>
-          <button onClick={() => goStripe("lifetime")} style={{padding:"15px 24px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:800,cursor:"pointer",letterSpacing:"0.08em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase"}}>Claim Lifetime Access · £500 →</button>
-          <button onClick={() => goStripe("goddess")} style={{padding:"12px 24px",background:"none",border:"1.5px solid #B76E7944",borderRadius:12,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer"}}>Goddess Tier · £33/mo</button>
-          <button onClick={() => goStripe("audio")} style={{padding:"12px 24px",background:"none",border:"none",color:"#786860",fontSize:13,cursor:"pointer"}}>Audio Tier · £19/mo</button>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Default: tier selection
   return (
-    <div style={overlay} onClick={e => e.target===e.currentTarget && onClose()}>
-      <div style={box}>
-        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:20,cursor:"pointer"}}>✕</button>
-        <div style={{fontSize:11,color:"#B76E79",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:700,marginBottom:12}}>Choose your tier</div>
-        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,4vw,34px)",color:"#f2ece4",fontWeight:300,lineHeight:1.2,marginBottom:24}}>Start your shift today.</h3>
-        <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:20}}>
-          <div style={{background:"#0d0c0a",border:"1px solid #B76E7966",borderRadius:14,padding:"20px 18px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
-              <div style={{fontSize:16,fontWeight:700,color:"#f2ece4",fontFamily:"'Jost',sans-serif"}}>Audio Tier</div>
-              <div style={{fontSize:18,fontWeight:800,color:"#f2ece4"}}>£19<span style={{fontSize:12,fontWeight:400,color:"#786860"}}>/mo</span></div>
+    <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.94)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:"20px" }}
+      onClick={e => e.target===e.currentTarget && onClose()}>
+      <div style={{ background:"#0a0908",border:"1px solid #2a1a14",borderRadius:20,padding:"36px 28px",maxWidth:480,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto" }}>
+        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:22,cursor:"pointer",lineHeight:1}}>✕</button>
+        <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:10}}>Choose your tier</div>
+        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,4vw,32px)",color:"#f2ece4",fontWeight:300,lineHeight:1.2,marginBottom:28}}>Start your shift today.</h3>
+        <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:20}}>
+          {/* AUDIO */}
+          <div style={{background:"#0d0c0a",border:"1px solid #2a1a14",borderRadius:14,padding:"18px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:4}}>
+              <span style={{fontSize:16,fontWeight:700,color:"#f2ece4",fontFamily:"'Jost',sans-serif"}}>Audio Tier</span>
+              <span style={{fontSize:20,fontWeight:800,color:"#c8a870"}}>£19<span style={{fontSize:12,color:"#786860",fontWeight:400}}>/mo</span></span>
             </div>
-            <div style={{fontSize:13,color:"#786860",marginBottom:14}}>Full exclusive audio vault · New tracks every month</div>
-            <button onClick={() => setStep("upsell-goddess")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #B76E7944",borderRadius:10,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer"}}>Start with Audio →</button>
+            <div style={{fontSize:13,color:"#786860",marginBottom:12,lineHeight:1.5}}>Full exclusive vault · All 6 categories · New tracks weekly · Loop player</div>
+            <button onClick={() => goStripe("audio")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #c8a87044",borderRadius:10,color:"#c8a870",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em"}}>Join Audio · £19/mo →</button>
           </div>
-          <div style={{background:"linear-gradient(135deg,#0f0a08,#120d0a)",border:"1.5px solid #B76E79",borderRadius:14,padding:"20px 18px",position:"relative"}}>
-            <div style={{position:"absolute",top:-10,left:20,background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"3px 12px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.1em"}}>MOST POPULAR</div>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
-              <div style={{fontSize:16,fontWeight:700,color:"#f2ece4",fontFamily:"'Jost',sans-serif"}}>Goddess Tier</div>
-              <div style={{fontSize:18,fontWeight:800,color:"#f2ece4"}}>£33<span style={{fontSize:12,fontWeight:400,color:"#786860"}}>/mo</span></div>
+          {/* GODDESS */}
+          <div style={{background:"linear-gradient(135deg,#0f0a08,#120d0a)",border:"2px solid #B76E79",borderRadius:14,padding:"18px",position:"relative"}}>
+            <div style={{position:"absolute",top:-10,left:16,background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"3px 12px",fontSize:9,fontWeight:800,color:"#000",letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif"}}>MOST POPULAR</div>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:4}}>
+              <span style={{fontSize:16,fontWeight:700,color:"#f2ece4",fontFamily:"'Jost',sans-serif"}}>Goddess Tier</span>
+              <span style={{fontSize:20,fontWeight:800,color:"#B76E79"}}>£33<span style={{fontSize:12,color:"#786860",fontWeight:400}}>/mo</span></span>
             </div>
-            <div style={{fontSize:13,color:"#b09888",marginBottom:14}}>Full vault + <strong style={{color:"#f2ece4"}}>ProofOS</strong> — track every sign, every shift, every piece of evidence</div>
-            <button onClick={() => setStep("upsell-lifetime")} style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.08em",textTransform:"uppercase"}}>Activate Goddess Tier →</button>
+            <div style={{fontSize:13,color:"#d4b898",marginBottom:12,lineHeight:1.5}}>Everything in Audio + <strong style={{color:"#f2ece4"}}>ProofOS</strong> · Track every sign · Early access drops</div>
+            <button onClick={() => goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.08em",textTransform:"uppercase"}}>Activate Goddess · £33/mo →</button>
           </div>
-          <div style={{background:"#080604",border:"1px solid #d4a09044",borderRadius:14,padding:"20px 18px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
-              <div style={{fontSize:16,fontWeight:700,color:"#d4a090",fontFamily:"'Jost',sans-serif"}}>Lifetime Access</div>
-              <div style={{fontSize:18,fontWeight:800,color:"#d4a090"}}>£500<span style={{fontSize:12,fontWeight:400,color:"#786860"}}> once</span></div>
+          {/* LIFETIME */}
+          <div style={{background:"#080604",border:"1px solid #d4a09033",borderRadius:14,padding:"18px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:4}}>
+              <span style={{fontSize:16,fontWeight:700,color:"#d4a090",fontFamily:"'Jost',sans-serif"}}>Lifetime Access</span>
+              <span style={{fontSize:20,fontWeight:800,color:"#d4a090"}}>£500<span style={{fontSize:12,color:"#786860",fontWeight:400}}> once</span></span>
             </div>
-            <div style={{fontSize:13,color:"#786860",marginBottom:14}}>Everything. Forever. 1,000 spots only.</div>
-            <button onClick={() => goStripe("lifetime")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #d4a09044",borderRadius:10,color:"#d4a090",fontSize:14,fontWeight:600,cursor:"pointer"}}>Claim Lifetime Access →</button>
+            <div style={{fontSize:13,color:"#786860",marginBottom:12,lineHeight:1.5}}>Everything. Forever. Every future audio. No monthly billing. 1,000 spots only.</div>
+            <button onClick={() => goStripe("lifetime")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #d4a09044",borderRadius:10,color:"#d4a090",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em"}}>Claim Lifetime · £500 →</button>
           </div>
         </div>
-        <div style={{textAlign:"center"}}>
-          <button onClick={onDemo} style={{background:"none",border:"none",color:"#786860",fontSize:12,cursor:"pointer",textDecoration:"underline"}}>Preview the portal first</button>
-        </div>
+        <div style={{textAlign:"center"}}><button onClick={onDemo} style={{background:"none",border:"none",color:"#786860",fontSize:12,cursor:"pointer",textDecoration:"underline"}}>Preview the portal first</button></div>
       </div>
     </div>
   );
 }
 
 
-
-/* ── HERO MARQUEE — rotating flash ticker ─────────────────────────────────── */
+/* ── HERO MARQUEE — 100 lines, random flash ────────────────────────────────── */
 const MARQUEE_ITEMS = [
-  { text: "He texts me first. Obviously.", color: "#B76E79" },
-  { text: "Money finds me first.", color: "#c8a870" },
-  { text: "Gorgeous is my default.", color: "#d4a090" },
-  { text: "My DNA is shifting. Right now.", color: "#9a8ad0" },
-  { text: "My highest timeline. Activated.", color: "#c8a870" },
-  { text: "He's obsessed. Of course he is.", color: "#B76E79" },
-  { text: "My skin is porcelain. Always.", color: "#d4a090" },
-  { text: "I shift while I sleep.", color: "#7a9ab0" },
-  { text: "Money arrives unexpectedly.", color: "#c8a870" },
-  { text: "My bloodline is being rewritten.", color: "#9a8ad0" },
-  { text: "He comes back. Every time.", color: "#B76E79" },
-  { text: "My waist is always snatched.", color: "#d4a090" },
-  { text: "£10,000 months are my baseline.", color: "#c8a870" },
-  { text: "I receive. Constantly. Effortlessly.", color: "#B76E79" },
-  { text: "My self-concept is permanent now.", color: "#9a8ad0" },
-  { text: "He can't stop thinking about me.", color: "#B76E79" },
-  { text: "I am radiant without trying.", color: "#d4a090" },
+  {t:"He texts me first. Obviously.",c:"#B76E79"},{t:"Money finds me first.",c:"#c8a870"},{t:"Gorgeous is my default.",c:"#d4a090"},
+  {t:"My DNA is shifting. Right now.",c:"#9a8ad0"},{t:"My highest timeline. Activated.",c:"#c8a870"},{t:"He's obsessed. Of course he is.",c:"#B76E79"},
+  {t:"My skin is porcelain. Always.",c:"#d4a090"},{t:"I shift while I sleep.",c:"#7a9ab0"},{t:"Money arrives unexpectedly.",c:"#c8a870"},
+  {t:"My bloodline is being rewritten.",c:"#9a8ad0"},{t:"He comes back. Every time.",c:"#B76E79"},{t:"My waist is always snatched.",c:"#d4a090"},
+  {t:"£10,000 months are my baseline.",c:"#c8a870"},{t:"I receive. Constantly. Effortlessly.",c:"#B76E79"},{t:"My self-concept is permanent now.",c:"#9a8ad0"},
+  {t:"He can't stop thinking about me.",c:"#B76E79"},{t:"I am radiant without trying.",c:"#d4a090"},{t:"My skin glows. Everyone sees it.",c:"#d4a090"},
+  {t:"He chose me. Again.",c:"#B76E79"},{t:"Abundance is my default state.",c:"#c8a870"},{t:"My beauty is effortless.",c:"#d4a090"},
+  {t:"He's already mine.",c:"#B76E79"},{t:"Money loves me. Of course it does.",c:"#c8a870"},{t:"I am the woman he keeps coming back to.",c:"#B76E79"},
+  {t:"My cells hold my new identity.",c:"#9a8ad0"},{t:"My glow is undeniable.",c:"#d4a090"},{t:"Six figures is just the start.",c:"#c8a870"},
+  {t:"He finds his way back. Every time.",c:"#B76E79"},{t:"My subconscious knows. It delivers.",c:"#9a8ad0"},{t:"I am paid just for existing.",c:"#c8a870"},
+  {t:"My face is symmetrical and clear.",c:"#d4a090"},{t:"Of course it worked out. It always does.",c:"#c8a870"},{t:"He's devoted. Obviously.",c:"#B76E79"},
+  {t:"My identity upgrades in my sleep.",c:"#9a8ad0"},{t:"I am magnetic. Naturally.",c:"#d4a090"},{t:"My wealth expands while I sleep.",c:"#c8a870"},
+  {t:"He reaches out first. Always.",c:"#B76E79"},{t:"I embody my dream self. Naturally.",c:"#9a8ad0"},{t:"My energy is intoxicating.",c:"#d4a090"},
+  {t:"My income is limitless.",c:"#c8a870"},{t:"I am the upgraded version. Now.",c:"#9a8ad0"},{t:"He misses me and he's saying it.",c:"#B76E79"},
+  {t:"My bank account grows daily.",c:"#c8a870"},{t:"My nervous system knows who I am.",c:"#9a8ad0"},{t:"I look better every single day.",c:"#d4a090"},
+  {t:"Love finds me. It always does.",c:"#B76E79"},{t:"I am always in the right place.",c:"#c8a870"},{t:"My body reflects my beliefs.",c:"#d4a090"},
+  {t:"My SP is devoted. Obviously.",c:"#B76E79"},{t:"The installation is complete.",c:"#9a8ad0"},{t:"I receive in my sleep. Obviously.",c:"#7a9ab0"},
+  {t:"I am stunning. It's obvious.",c:"#d4a090"},{t:"My financial reality is effortless.",c:"#c8a870"},{t:"He can't get me out of his head.",c:"#B76E79"},
+  {t:"My highest self is my only self.",c:"#9a8ad0"},{t:"People notice. They can't help it.",c:"#d4a090"},{t:"My lineage shifts with me.",c:"#9a8ad0"},
+  {t:"I am a money magnet. Obviously.",c:"#c8a870"},{t:"He's on his way back. Of course.",c:"#B76E79"},{t:"I wake up transformed.",c:"#7a9ab0"},
+  {t:"My life is effortless luxury.",c:"#c8a870"},{t:"My subconscious is now on my side.",c:"#9a8ad0"},{t:"My skin is flawless. Obviously.",c:"#d4a090"},
+  {t:"Everything works out for me. Always.",c:"#c8a870"},{t:"He's never leaving. I'm that girl.",c:"#B76E79"},{t:"My DNA reflects my desires.",c:"#9a8ad0"},
+  {t:"I am chosen. Every single time.",c:"#B76E79"},{t:"Thirty days changes everything.",c:"#7a9ab0"},{t:"My frequency is locked in.",c:"#9a8ad0"},
+  {t:"I am the most beautiful version of me.",c:"#d4a090"},{t:"The universe is obsessed with me.",c:"#c8a870"},{t:"My parallel reality is now.",c:"#9a8ad0"},
+  {t:"He's constantly thinking of me.",c:"#B76E79"},{t:"My love life is effortless.",c:"#B76E79"},{t:"I am on the frequency of receiving.",c:"#c8a870"},
+  {t:"Every listen deepens the install.",c:"#7a9ab0"},{t:"I am becoming her daily.",c:"#9a8ad0"},{t:"My reality bends to my self-concept.",c:"#9a8ad0"},
+  {t:"Unexpected income is normal for me.",c:"#c8a870"},{t:"My sleep is doing the work.",c:"#7a9ab0"},{t:"I am irresistible. Obviously.",c:"#d4a090"},
+  {t:"He comes back. Of course he does.",c:"#B76E79"},{t:"I exist on the frequency of abundance.",c:"#c8a870"},{t:"My cells shift with every listen.",c:"#9a8ad0"},
+  {t:"Beauty is who I am.",c:"#d4a090"},{t:"Life is happening for me. Always.",c:"#c8a870"},{t:"My manifestations arrive fast.",c:"#c8a870"},
+  {t:"My theta state holds my desires.",c:"#7a9ab0"},{t:"The new me is permanent now.",c:"#9a8ad0"},{t:"I attract what I want. Effortlessly.",c:"#c8a870"},
+  {t:"My aura is undeniable.",c:"#d4a090"},{t:"Money comes from everywhere.",c:"#c8a870"},{t:"The shift is already done.",c:"#9a8ad0"},
+  {t:"I am reprogramming daily.",c:"#7a9ab0"},{t:"He's obsessed with who I am.",c:"#B76E79"},{t:"Every night I become her more.",c:"#7a9ab0"},
 ];
-
 function HeroMarquee() {
   const [lit, setLit] = useState(-1);
-  const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
-  useEffect(() => {
-    // Flash a random item every 800ms
-    const t = setInterval(() => setLit(Math.floor(Math.random() * MARQUEE_ITEMS.length)), 800);
-    return () => clearInterval(t);
-  }, []);
+  const doubled = [...MARQUEE_ITEMS,...MARQUEE_ITEMS,...MARQUEE_ITEMS];
+  useEffect(() => { const t = setInterval(() => setLit(Math.floor(Math.random()*MARQUEE_ITEMS.length)), 1400); return () => clearInterval(t); }, []);
   return (
-    <div style={{ overflow:"hidden", marginBottom:24, maskImage:"linear-gradient(90deg,transparent,black 8%,black 92%,transparent)", WebkitMaskImage:"linear-gradient(90deg,transparent,black 8%,black 92%,transparent)" }}>
-      <div className="marquee-track" style={{ gap:"0 40px" }}>
-        {doubled.map((item,i) => {
-          const idx = i % MARQUEE_ITEMS.length;
-          const isLit = idx === lit;
-          return (
-            <span key={i} style={{
-              fontSize:11, fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase",
-              color: isLit ? "#fff" : item.color,
-              whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif",
-              transition:"color 0.15s, text-shadow 0.15s",
-              textShadow: isLit ? `0 0 20px ${item.color}, 0 0 40px ${item.color}88` : "none",
-            }}>{item.text}</span>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/* ── FAQ SECTION ───────────────────────────────────────────────────────────── */
-const FAQS = [
-  { q: "What exactly is Self Hypnosis Goddess?", a: "A private audio membership of original hypnosis tracks produced by Reshma Oracle. Each audio is layered with EMDR, binaural beats, and melodic house music to guide your brain into theta state — where the subconscious accepts new beliefs. There are no apps to download. You access everything through a web portal, and it plays like Spotify." },
-  { q: "How is this different from YouTube hypnosis audios?", a: "The YouTube audios are free and public. The vault contains originals that have never been published — longer, deeper, and produced specifically to rewire the subconscious around specific desires. No ads interrupting at 3am. No algorithm deciding what you hear next." },
-  { q: "Do I need headphones?", a: "Headphones maximise the binaural effect and are strongly recommended. The EMDR bilateral element works specifically through left-right audio stimulation. AirPods, earbuds, over-ear — any pair works." },
-  { q: "How long until I notice something shifting?", a: "Most members report something noticeable within the first 3 to 7 days — a small sign, a shift in how they feel about the desire, or a change in the obsessive loop. The install deepens with repetition. 30 days of consistent listening typically closes the old identity completely." },
-  { q: "Can I listen while I sleep?", a: "Yes. This is one of the most effective ways to use the audios. Your conscious resistance is off. The subconscious is in delta and receives the installation without filtering. Several tracks are designed specifically for sleep listening." },
-  { q: "What is ProofOS?", a: "ProofOS is the manifestation tracking system included in the Goddess Tier. You log your desires, link them to the audio you listened to, capture signs and synchronicities as they arrive, and mark when it manifests. It creates a personal record of evidence — so you can see the pattern building and know exactly which audio preceded each result." },
-  { q: "What's the difference between Audio Tier and Goddess Tier?", a: "Audio Tier (£19/mo) gives you full access to the exclusive vault — all tracks across all categories, loop player, sleep timer, and new tracks every week. Goddess Tier (£33/mo) includes everything in Audio plus ProofOS, early access to drops 48 hours before everyone else, and a monthly ritual audio." },
-  { q: "What is Lifetime Access?", a: "A one-time payment of £500 that gives you everything in Goddess Tier, every future audio ever released, every future feature, and no monthly billing. 1,000 spots only. Once they're gone, this offer is gone." },
-  { q: "Can I cancel anytime?", a: "Yes. Cancel before your next renewal date and you will not be charged again. There are no refunds after 14 days from the payment date." },
-  { q: "Does this work if I've tried other subliminals and they didn't work?", a: "Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives. The specificity of the scripts and the consistency of one voice also matters. Your subconscious needs to trust the guide." },
-  { q: "What categories of audios are in the vault?", a: "SP & Love · Money · Beauty · DNA Activation · Sleep Shifting · Identity · Lifemaxxing. New categories will be added based on member requests." },
-  { q: "Is there a mobile app?", a: "The portal is a web app that works on any device in any browser. On iPhone: tap Share → Add to Home Screen and it installs like a native app. No App Store required. A dedicated iOS and Android app is in development." },
-];
-
-function FAQSection() {
-  const [open, setOpen] = useState(null);
-  return (
-    <div style={{ padding:"0 clamp(16px,4vw,24px) 80px", maxWidth:760, margin:"0 auto" }}>
-      <div style={{ textAlign:"center", marginBottom:40 }}>
-        <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.25em", textTransform:"uppercase", fontWeight:700, marginBottom:14, fontFamily:"'Jost',sans-serif" }}>FAQs</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)", color:"#f2ece4", lineHeight:1.2 }}>Everything you need to know.</h2>
-      </div>
-      <div style={{ display:"flex", flexDirection:"column", gap:2 }}>
-        {FAQS.map((faq,i) => (
-          <div key={i} style={{ background: open===i ? "#0d0a08" : "#080604", border:"1px solid", borderColor: open===i ? "#B76E7966" : "#1e1c0a", borderRadius:12, overflow:"hidden", transition:"all 0.2s" }}>
-            <button onClick={() => setOpen(open===i ? null : i)} style={{ width:"100%", padding:"20px 22px", background:"none", border:"none", display:"flex", justifyContent:"space-between", alignItems:"center", cursor:"pointer", gap:16 }}>
-              <span style={{ fontSize:15, fontWeight:600, color: open===i ? "#f2ece4" : "#c8b898", textAlign:"left", lineHeight:1.4 }}>{faq.q}</span>
-              <span style={{ fontSize:18, color:"#B76E79", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform 0.2s" }}>+</span>
-            </button>
-            {open===i && (
-              <div style={{ padding:"0 22px 22px" }}>
-                <div style={{ height:1, background:"#1e1c0a", marginBottom:16 }}/>
-                <p style={{ fontSize:14, color:"#b09888", lineHeight:1.85, margin:0 }}>{faq.a}</p>
-              </div>
-            )}
-          </div>
-        ))}
+    <div style={{ overflow:"hidden", marginBottom:24, maskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)", WebkitMaskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)" }}>
+      <div className="marquee-track" style={{ gap:"0 36px" }}>
+        {doubled.map((item,i) => { const idx=i%MARQUEE_ITEMS.length; const isLit=idx===lit; return (
+          <span key={i} style={{ fontSize:11, fontWeight:700, letterSpacing:"0.15em", textTransform:"uppercase", color:isLit?"#fff":item.c, whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif", transition:"color 0.12s, text-shadow 0.12s", textShadow:isLit?`0 0 18px ${item.c},0 0 36px ${item.c}66`:"none" }}>{item.t}</span>
+        );})}
       </div>
     </div>
   );
@@ -375,70 +280,71 @@ function FAQSection() {
 function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
-  const [sub, setSub] = useState(0); // sub-index for mobile grid flicker
-
   useEffect(() => {
-    const timer = setInterval(() => {
-      setFlash(true);
-      setTimeout(() => {
-        setIdx(i => (i + 1) % cats.length);
-        setFlash(false);
-      }, 280);
-    }, 2400);
+    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 250); }, 1600);
     return () => clearInterval(timer);
   }, [cats.length]);
-
   const current = cats[idx];
-  const next1 = cats[(idx + 1) % cats.length];
-  const next2 = cats[(idx + 2) % cats.length];
-
+  const next1 = cats[(idx+1)%cats.length];
+  const next2 = cats[(idx+2)%cats.length];
+  const next3 = cats[(idx+3)%cats.length];
   return (
-    <div style={{ padding: "0 0 64px", borderTop: "1px solid #1e1c0a", borderBottom: "1px solid #1e1c0a", overflow: "hidden" }}>
-      {/* Large rotating hero card */}
-      <div style={{
-        transition: "opacity 0.28s ease, transform 0.28s ease",
-        opacity: flash ? 0 : 1,
-        transform: flash ? "scale(0.98)" : "scale(1)",
-        background: `linear-gradient(135deg, #080600, ${current.color}12)`,
-        borderBottom: `2px solid ${current.color}33`,
-        padding: "48px 24px 40px",
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {/* Background glow */}
-        <div style={{ position:"absolute",inset:0,background:`radial-gradient(ellipse at 50% 80%,${current.color}08,transparent 70%)`,pointerEvents:"none" }}/>
-        {/* Flash overlay */}
-        <div style={{ position:"absolute",inset:0,background:`${current.color}`,opacity: flash ? 0.04 : 0, transition:"opacity 0.1s", pointerEvents:"none" }}/>
-        
-        <div style={{ fontSize: 10, color: current.color, fontWeight: 800, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 20, fontFamily:"'Jost',sans-serif" }}>
-          {current.label} ✦
-        </div>
-        <div className="wm" style={{ fontSize: "clamp(28px,5vw,60px)", lineHeight: 1.1, color: "#f2ece4", marginBottom: 0 }}>
-          {current.tagline}
-        </div>
+    <div style={{ borderTop:"1px solid #1e1c0a", borderBottom:"1px solid #1e1c0a", marginBottom:0 }}>
+      <div style={{ transition:"opacity 0.28s, transform 0.28s", opacity:flash?0:1, transform:flash?"scale(0.99)":"scale(1)", background:`linear-gradient(135deg,#080600,${current.color}10)`, borderBottom:`2px solid ${current.color}22`, padding:"52px 24px 44px", textAlign:"center", position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute",inset:0,background:`radial-gradient(ellipse at 50% 80%,${current.color}06,transparent 70%)`,pointerEvents:"none" }}/>
+        <div style={{ position:"absolute",inset:0,background:current.color,opacity:flash?0.03:0,transition:"opacity 0.1s",pointerEvents:"none" }}/>
+        <div style={{ fontSize:10,color:current.color,fontWeight:800,letterSpacing:"0.3em",textTransform:"uppercase",marginBottom:20,fontFamily:"'Jost',sans-serif" }}>{current.label} ✦</div>
+        <div className="wm" style={{ fontSize:"clamp(28px,5vw,64px)",lineHeight:1.05,color:"#f2ece4" }}>{current.tagline}</div>
       </div>
-
-      {/* Preview strip — next 3 cards flickering */}
-      <div style={{ display: "flex", borderBottom: "none" }}>
-        {[next1, next2, cats[(idx+3) % cats.length]].map((cat, i) => (
-          <div key={i} onClick={() => { setFlash(true); setTimeout(() => { setIdx((idx + i + 1) % cats.length); setFlash(false); }, 200); }}
-            style={{ flex: 1, padding: "18px 20px", background: i === 0 ? `${cat.color}08` : "transparent", borderRight: i < 2 ? "1px solid #1a1816" : "none", cursor: "pointer", transition: "background 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.background = `${cat.color}12`}
-            onMouseLeave={e => e.currentTarget.style.background = i === 0 ? `${cat.color}08` : "transparent"}
-          >
-            <div style={{ fontSize: 9, color: cat.color, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
-            <div style={{ fontSize: 13, color: "#786860", lineHeight: 1.5 }}>{cat.tagline}</div>
+      <div style={{ display:"flex" }}>
+        {[next1,next2,next3].map((cat,i) => (
+          <div key={i} onClick={() => { setFlash(true); setTimeout(()=>{setIdx((idx+i+1)%cats.length);setFlash(false);},200); }}
+            style={{ flex:1,padding:"16px 18px",background:"transparent",borderRight:i<2?"1px solid #1a1816":"none",cursor:"pointer",transition:"background 0.2s" }}
+            onMouseEnter={e=>e.currentTarget.style.background=`${cat.color}10`} onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+            <div style={{ fontSize:9,color:cat.color,fontWeight:800,letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:5,fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
+            <div style={{ fontSize:12,color:"#786860",lineHeight:1.5 }}>{cat.tagline}</div>
           </div>
         ))}
       </div>
+      <div style={{ display:"flex",justifyContent:"center",gap:7,padding:"18px 0" }}>
+        {cats.map((_,i) => <div key={i} onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}} style={{ width:i===idx?18:6,height:6,borderRadius:3,background:i===idx?current.color:"#2a1e1c",transition:"all 0.3s",cursor:"pointer" }}/>)}
+      </div>
+    </div>
+  );
+}
 
-      {/* Dot indicators */}
-      <div style={{ display: "flex", justifyContent: "center", gap: 8, paddingTop: 20 }}>
-        {cats.map((_, i) => (
-          <div key={i} onClick={() => { setFlash(true); setTimeout(() => { setIdx(i); setFlash(false); }, 200); }}
-            style={{ width: i === idx ? 20 : 6, height: 6, borderRadius: 3, background: i === idx ? current.color : "#2a1e1c", transition: "all 0.3s", cursor: "pointer" }}
-          />
+/* ── FAQ SECTION ───────────────────────────────────────────────────────────── */
+const FAQS = [
+  {q:"What exactly is Self Hypnosis Goddess?",a:"A private audio membership of original hypnosis tracks produced by Reshma Oracle. Each audio is layered with EMDR, binaural beats, and melodic house music to guide your brain into theta state — where the subconscious accepts new beliefs. No app download needed. Access everything through a web portal that plays like Spotify."},
+  {q:"How is this different from YouTube hypnosis?",a:"The YouTube audios are free and public. The vault contains originals never published — longer, deeper, produced specifically to rewire the subconscious around specific desires. No ads at 3am. No algorithm deciding what you hear next."},
+  {q:"Do I need headphones?",a:"Headphones maximise the binaural effect and are strongly recommended. The EMDR bilateral element works through left-right audio stimulation. AirPods, earbuds, over-ear — any pair works."},
+  {q:"How long until I notice something shifting?",a:"Most members report something noticeable within 3 to 7 days — a small sign, a shift in how they feel about the desire, or a change in the obsessive loop. The install deepens with repetition. 30 days of consistent listening typically closes the old identity completely."},
+  {q:"Can I listen while I sleep?",a:"Yes. This is one of the most effective ways to use the audios. Your conscious resistance is off. The subconscious is in delta and receives the installation without filtering. Several tracks are designed specifically for sleep listening."},
+  {q:"What is ProofOS?",a:"ProofOS is the manifestation tracking system included in Goddess Tier. Log your desires, link them to the audio you listened to, capture signs as they arrive, and mark when it manifests. It creates a personal record of evidence so you can see the pattern building."},
+  {q:"What's the difference between Audio and Goddess Tier?",a:"Audio Tier (£19/mo): full vault, all categories, new tracks weekly, loop player, sleep timer. Goddess Tier (£33/mo): everything in Audio plus ProofOS tracking, early access drops 48hrs before everyone else, and monthly ritual audio."},
+  {q:"What is Lifetime Access?",a:"A one-time payment of £500 that gives you everything in Goddess Tier, every future audio ever released, every future feature, and no monthly billing. 1,000 spots only."},
+  {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
+  {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
+  {q:"What categories are in the vault?",a:"SP & Love · Money · Beauty · DNA Activation · Sleep Shifting · Identity · Lifemaxxing. New categories added based on member requests."},
+  {q:"Is there a mobile app?",a:"The portal is a web app that works on any device in any browser. On iPhone: tap Share → Add to Home Screen. A dedicated iOS and Android app is in development."},
+];
+function FAQSection() {
+  const [open, setOpen] = useState(null);
+  return (
+    <div style={{ padding:"0 clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
+      <div style={{ textAlign:"center",marginBottom:40 }}>
+        <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>FAQs</div>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#f2ece4",lineHeight:1.2 }}>Everything you need to know.</h2>
+      </div>
+      <div style={{ display:"flex",flexDirection:"column",gap:2 }}>
+        {FAQS.map((faq,i) => (
+          <div key={i} style={{ background:open===i?"#0d0a08":"#080604",border:"1px solid",borderColor:open===i?"#B76E7966":"#1e1c0a",borderRadius:12,overflow:"hidden",transition:"all 0.2s" }}>
+            <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
+              <span style={{ fontSize:15,fontWeight:600,color:open===i?"#f2ece4":"#c8b898",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
+            </button>
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"#1e1c0a",marginBottom:16 }}/><p style={{ fontSize:14,color:"#b09888",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+          </div>
         ))}
       </div>
     </div>
@@ -591,6 +497,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             })}
           </div>
 
+
+          {/* AS SEEN ON YOUTUBE */}
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, marginBottom:32, flexWrap:"wrap" }}>
+            <div style={{ fontSize:11, color:"#786860", letterSpacing:"0.15em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>As heard on</div>
+            <div style={{ display:"flex", alignItems:"center", gap:8, background:"#0d0a08", border:"1px solid #2a1a14", borderRadius:24, padding:"8px 16px", gap:10 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.8 7.2s-.2-1.7-1-2.4c-.9-1-1.9-1-2.4-1.1C17.2 3.5 12 3.5 12 3.5s-5.2 0-8.4.2c-.5.1-1.5.1-2.4 1.1-.8.7-1 2.4-1 2.4S0 9.1 0 11v1.8c0 1.9.2 3.8.2 3.8s.2 1.7 1 2.4c.9 1 2.1.9 2.6 1C5.6 20.2 12 20.2 12 20.2s5.2 0 8.4-.3c.5-.1 1.5-.1 2.4-1.1.8-.7 1-2.4 1-2.4s.2-1.9.2-3.8V11c0-1.9-.2-3.8-.2-3.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+              <span style={{ fontSize:12, color:"#c8b898", fontWeight:600 }}>@Reshma.Oracle · 5,700 subscribers</span>
+            </div>
+            <div style={{ fontSize:11, color:"#786860" }}>· Spotify · Podcasts</div>
+          </div>
           <HeroMarquee />
 
           {/* TITLE */}
@@ -967,28 +883,27 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <p style={{ fontSize: 16, color: T.textMuted, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}>Every time you listen, the subconscious accepts the new self-concept more deeply. The first listen opens the channel. Thirty days closes the old identity completely.</p>
         </div>
 
-        {/* TIMELINE — Day 1 to Day 30+ */}
-        <div style={{ position: "relative", marginBottom: 64 }}>
-          {/* Connecting line */}
-          <div style={{ position: "absolute", top: 28, left: 28, right: 28, height: 1, background: "linear-gradient(90deg,#B76E7944,#B76E7988,#B76E7944)", zIndex: 0 }} className="hide-mob" />
-          <div style={isMobile ? { display:"flex", flexDirection:"column", gap:0 } : { display:"grid", gridTemplateColumns:"1fr 36px 1fr 36px 1fr 36px 1fr", alignItems:"start" }}>
-            {[
-              { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#B76E79" },
-              { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
-              { day: "Day 7", icon: "✦", label: "Evidence appears", body: "Signs arrive faster. Money from somewhere forgotten. He texts. Your skin looks different. You start logging proof.", color: "#B76E79" },
-              { day: "Day 14", icon: "◉", label: "Identity updates", body: "You stop needing it. Certainty replaces desire. The old self-concept has nowhere left to live.", color: "#B76E79" },
-              { day: "Day 30+", icon: "★", label: "Reality confirms", body: "What you assumed is now undeniable. The proof thread closes. Manifested.", color: "#d8c8a0" },
-            ].map((s, i) => (
-              <div key={i} style={{ position: "relative", zIndex: 1 }}>
-                <div style={{ width: 56, height: 56, borderRadius: "50%", background: `radial-gradient(circle,${s.color}22,transparent)`, border: `1.5px solid ${s.color}66`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, margin: "0 auto 14px" }}>{s.icon}</div>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 11, color: s.color, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 4 }}>{s.day}</div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: T.textPrimary, marginBottom: 6 }}>{s.label}</div>
-                  <div style={{ fontSize: 12, color: T.textMuted, lineHeight: 1.65 }}>{s.body}</div>
-                </div>
+        {/* TIMELINE — vertical rows, no overflow */}
+        <div style={{ marginBottom: 64, display: "flex", flexDirection: "column", gap: 0 }}>
+          {[
+            { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#B76E79" },
+            { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
+            { day: "Day 7", icon: "✦", label: "Evidence appears", body: "Signs arrive faster. Money from somewhere forgotten. He texts. Your skin looks different.", color: "#d4a090" },
+            { day: "Day 14", icon: "◉", label: "Identity updates", body: "You stop needing it. Certainty replaces desire. The old self-concept has nowhere left to live.", color: "#B76E79" },
+            { day: "Day 30+", icon: "★", label: "Reality confirms", body: "What you assumed is now undeniable. The proof thread closes. Manifested.", color: "#c8a870" },
+          ].map((s, i, arr) => (
+            <div key={i} style={{ display: "flex", gap: 20, padding: "24px 0", borderBottom: i < arr.length-1 ? "1px solid #1a1614" : "none", alignItems: "flex-start" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, gap: 0 }}>
+                <div style={{ width: 52, height: 52, borderRadius: "50%", background: `${s.color}15`, border: `1.5px solid ${s.color}66`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{s.icon}</div>
+                {i < arr.length-1 && <div style={{ width: 1, height: 24, background: `${s.color}33`, marginTop: 8 }} />}
               </div>
-            ))}
-          </div>
+              <div style={{ flex: 1, paddingTop: 8 }}>
+                <div style={{ fontSize: 10, color: s.color, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{s.day}</div>
+                <div style={{ fontSize: 20, fontWeight: 700, color: "#f2ece4", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>{s.label}</div>
+                <div style={{ fontSize: 15, color: "#b09888", lineHeight: 1.7 }}>{s.body}</div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* BEFORE / AFTER CARDS */}
