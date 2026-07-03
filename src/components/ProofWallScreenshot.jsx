@@ -15,17 +15,19 @@ const EVIDENCE = {
 };
 
 const THREADS = [
-  { desire:"He texts me first", cat:"Love", catColor:"#c87890", catBg:"#2a0a14", days:14, done:true, signs:3, track:"He Finds His Way Back", evidence:["text","nature"] },
-  { desire:"£5,000 arrives this month", cat:"Money", catColor:"#50a070", catBg:"#0a1a0a", days:6, done:false, signs:2, track:"Money Finds Me First", evidence:["money"] },
-  { desire:"My skin visibly glows", cat:"Appearance", catColor:"#d4a060", catBg:"#1a1208", days:3, done:false, signs:1, track:"Gorgeous Is My Default", evidence:["skin"] },
+  { desire:"He texts me first", cat:"Love", catColor:"#c84880", catBg:"rgba(255,160,200,0.15)", days:14, done:true, signs:3, track:"He Finds His Way Back", evidence:["text"], evidenceBg:"linear-gradient(135deg,#ffc8e0,#f8a8c8)" },
+  { desire:"20k received. Paid by client.", cat:"Money", catColor:"#1a7030", catBg:"rgba(160,220,160,0.15)", days:6, done:false, signs:2, track:"Money Finds Me First", evidence:["money"], evidenceBg:"linear-gradient(135deg,#c8ecc8,#a0d8a0)" },
+  { desire:"My skin is glowing", cat:"Appearance", catColor:"#9a7800", catBg:"rgba(255,230,80,0.15)", days:3, done:false, signs:1, track:"Gorgeous Is My Default", evidence:["skin"], evidenceBg:"linear-gradient(135deg,#fff8a0,#f8e860)" },
+  { desire:"I am a lucky girl", cat:"Identity", catColor:"#1a7030", catBg:"rgba(160,220,160,0.12)", days:7, done:true, signs:4, track:"Lucky Girl Summer", evidence:["nature"], evidenceBg:"linear-gradient(135deg,#b8eeb8,#90d890)" },
+  { desire:"555 method · manifested", cat:"Identity", catColor:"#6030a0", catBg:"rgba(180,140,255,0.15)", days:5, done:true, signs:3, track:"Highest Timeline", evidence:[], evidenceBg:"linear-gradient(135deg,#d8c8ff,#c0a8f0)" },
 ];
 
-function EvidenceThumb({ type, size }) {
+function EvidenceThumb({ type, size, bg }) {
   const url = EVIDENCE[type];
   return (
     <div style={{ width:size, height:size, borderRadius:Math.round(size*0.15), overflow:"hidden",
-      background:"#333", flexShrink:0, position:"relative" }}>
-      {url && <img src={url} alt="evidence" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }} onError={e=>e.target.style.display="none"}/>}
+      background:bg||"#333", flexShrink:0, position:"relative" }}>
+      {url && <img src={url} alt="evidence" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",opacity:0.8 }} onError={e=>e.target.style.display="none"}/>}
     </div>
   );
 }
@@ -83,7 +85,7 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
           {d.evidence && d.evidence.length > 0 && (
             <div style={{ display:"flex", gap:Math.round(4*s), marginBottom:Math.round(5*s) }}>
               {d.evidence.map((type,ei)=>(
-                <EvidenceThumb key={ei} type={type} size={Math.round(28*s)}/>
+                <EvidenceThumb key={ei} type={type} size={Math.round(28*s)} bg={d.evidenceBg}/>
               ))}
               <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:Math.round(4*s), background:C.bg3, display:"flex", alignItems:"center", justifyContent:"center", fontSize:Math.max(7,Math.round(14*s)), color:C.dim }}>+</div>
             </div>
