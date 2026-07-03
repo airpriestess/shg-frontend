@@ -208,15 +208,16 @@ img{max-width:100%;}
   100%{background-position:0% center;}
 }
 .wm-shimmer{
-  background:linear-gradient(90deg,#B76E79 0%,#d4a090 20%,#f2ece4 38%,#d4a090 50%,#B76E79 65%,#9a4060 80%,#B76E79 100%)!important;
-  background-size:280% auto!important;
+  background:linear-gradient(90deg,#c85070 0%,#e09060 18%,#f8e0d0 36%,#e09060 50%,#B76E79 65%,#a03060 82%,#c85070 100%)!important;
+  background-size:260% auto!important;
   -webkit-background-clip:text!important;
   -webkit-text-fill-color:transparent!important;
   background-clip:text!important;
   color:transparent!important;
-  animation:wordmarkShimmer 3s ease-in-out infinite;
-  font-weight:500!important;
+  animation:wordmarkShimmer 2.8s ease-in-out infinite;
+  font-weight:600!important;
   letter-spacing:0.03em!important;
+  filter:saturate(1.3);
 }
 
 /* ── SECTION COLOUR BANDS ─────────────── */
