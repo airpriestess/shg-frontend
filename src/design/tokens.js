@@ -1,11 +1,11 @@
 export const T = {
   bgRoot: "#000000",
   bgSoft: "#050404",
-  surfaceBase: "#0a0908",
-  surfaceRaised: "#0f0e0c",
-  surfaceHigh: "#141210",
-  borderSoft: "#201e1c",
-  borderGlow: "#2c2826",
+  surfaceBase: "#070608",
+  surfaceRaised: "#0c0b10",
+  surfaceHigh: "#100e16",
+  borderSoft: "#1e1a28",
+  borderGlow: "#28203a",
 
   // Text — warm cream white fading to soft peach
   textPrimary:   "#f2ece4",   // warm cream white
@@ -31,9 +31,9 @@ export const T = {
   gradV: "linear-gradient(135deg,#d4a090,#B76E79)",
 
   bgGrad:      "#000000",
-  cardBg:      "rgba(10,9,8,0.96)",
+  cardBg:      "rgba(8,6,10,0.96)",
   premiumCard: "linear-gradient(135deg,rgba(15,14,12,0.98),rgba(8,7,6,0.98))",
-  border:      "1px solid #201e1c",
+  border:      "1px solid #1e1a28",
   glow:        "0 0 40px rgba(183,110,121,0.1)",
   glowChamp:   "0 0 30px rgba(183,110,121,0.14)",
 };
@@ -46,7 +46,7 @@ export const CSS = `
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
 body{background:#000;color:#f2ece4;font-family:'Jost',sans-serif;font-weight:300;font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
 button,input,textarea,select{font-family:'Jost',sans-serif;}
-input,textarea{background:#0a0908;border:1px solid #201e1c;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
+input,textarea{background:#070608;border:1px solid #1e1a28;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#B76E7966;}
 ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#201e1c;border-radius:2px;}
