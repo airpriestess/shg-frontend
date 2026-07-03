@@ -370,7 +370,7 @@ function FAQSection() {
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:2 }}>
         {FAQS.map((faq,i) => (
-          <div key={i} style={{ background:open===i?"#0d0a08":"#080604",border:"1px solid",borderColor:open===i?"#B76E7966":"#1c1828",borderRadius:12,overflow:"hidden",transition:"all 0.2s" }}>
+          <div key={i} style={{ background:open===i?"#0a0810":"#080604",border:"1px solid",borderColor:open===i?"#B76E7966":"#1c1828",borderRadius:12,overflow:"hidden",transition:"all 0.2s" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
               <span style={{ fontSize:15,fontWeight:600,color:open===i?"#1a0808":"#3a2020",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
@@ -1547,16 +1547,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
 
         {/* Lifetime Access card — full width */}
-        <div style={{ background: "linear-gradient(135deg,#000000,#1a0d02)", border: "2px solid #B76E7955", borderRadius: 18, padding: "28px 32px" }}>
+        <div style={{ background: "linear-gradient(135deg,#0a0612,#080410)", border: "2px solid #B76E7955", borderRadius: 18, padding: "28px 32px" }}>
           <div style={{...G2(isMobile), gap: 32, alignItems: "center"}}>
             <div>
               <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>First 1,000 only · Lifetime access</div>
-              <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: "#1a0808", marginBottom: 10 }}>Lifetime Access</div>
+              <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: "#f2ece4", marginBottom: 10 }}>Lifetime Access</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 14 }}>
                 <span style={{ fontSize: 48, fontWeight: 800, color: "#B76E79", lineHeight: 1 }}>£500</span>
-                <span style={{ fontSize: 15, color: "#1a0808" }}>once · never pay again</span>
+                <span style={{ fontSize: 15, color: "#c8c0bc" }}>once · never pay again</span>
               </div>
-              <div style={{ fontSize: 15, color: "#1a0808", lineHeight: 1.8, marginBottom: 20 }}>
+              <div style={{ fontSize: 15, color: "#c8c0bc", lineHeight: 1.8, marginBottom: 20 }}>
                 Full vault + ProofOS + every future feature — forever. No subscription can be cancelled from under you. The £500 price closes once the first 1,000 members join.
               </div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
@@ -1566,15 +1566,15 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
                 <button onClick={() => window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank")} style={{ padding: "16px 36px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>Claim Lifetime Access →</button>
-                <div style={{ fontSize: 13, color: "#1a0808" }}>Original price · First 1,000 members only</div>
+                <div style={{ fontSize: 13, color: "#a0989c" }}>Original price · First 1,000 members only</div>
               </div>
             </div>
             <div className="hide-mob" style={{ minWidth: 220 }}>
               <div style={{ background: T.surfaceBase, border: T.border, borderRadius: 14, padding: 20, textAlign: "center" }}>
-                <div style={{ fontSize: 12, color: "#5a3838", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>What's included</div>
+                <div style={{ fontSize: 12, color: "#a0989c", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 12 }}>What's included</div>
                 {[["Audio vault", "Lifetime"], ["ProofOS tracker", "Lifetime"], ["Evidence vault", "1 GB"], ["Future features", "All"], ["Price increase", "Never"], ["Subscription", "None"]].map(([k,v], i) => (
                   <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: i < 5 ? "1px solid #1c1828" : "none" }}>
-                    <span style={{ fontSize: 14, color: "#1a0808" }}>{k}</span>
+                    <span style={{ fontSize: 14, color: "#c8c0bc" }}>{k}</span>
                     <span style={{ fontSize: 14, color: "#B76E79", fontWeight: 700 }}>{v}</span>
                   </div>
                 ))}
@@ -1583,8 +1583,74 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
         </div>
 
-        <div style={{ marginTop: 16, textAlign: "center", fontSize: 14, color: "#5a3838", lineHeight: 1.9 }}>
+        <div style={{ marginTop: 16, textAlign: "center", fontSize: 14, color: "#a0989c", lineHeight: 1.9 }}>
           No refunds after 14 days · Cancel before renewal · Web app — no download · iPhone: Add to Home Screen
+        </div>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          LIVE DASHBOARD PREVIEW — what members see the moment they join
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div style={{ background: "#000", padding: isMobile ? "60px 0 80px" : "90px 0 100px", overflow: "hidden" }}>
+        {/* Header */}
+        <div style={{ textAlign: "center", padding: "0 24px", marginBottom: 48 }}>
+          <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
+            This is what you unlock
+          </div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 16 }}>
+            Inside the portal.<br/>
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Tap around. See for yourself.</span>
+          </h2>
+          <p style={{ fontSize: 16, color: "#c8c0bc", lineHeight: 1.8, maxWidth: 460, margin: "0 auto" }}>
+            The full Spotify-style vault. Every track. ProofOS. Your member dashboard. Tap anything below — it's the real thing.
+          </p>
+        </div>
+
+        {/* LIVE PORTAL EMBEDDED IN PHONE FRAME */}
+        <div style={{ display: "flex", justifyContent: "center", padding: "0 16px" }}>
+          <div style={{ position: "relative", width: isMobile ? "100%" : 390, maxWidth: 390 }}>
+            {/* Phone outer shell */}
+            <div style={{
+              background: "#1a1a1a",
+              borderRadius: 44,
+              padding: 10,
+              boxShadow: "0 48px 120px rgba(0,0,0,0.8), 0 0 0 1px #333, 0 0 60px rgba(183,110,121,0.15)",
+              position: "relative"
+            }}>
+              {/* Notch */}
+              <div style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 100, height: 28, background: "#0a0a0a", borderRadius: "0 0 18px 18px", zIndex: 10 }}/>
+              {/* Screen */}
+              <div style={{
+                borderRadius: 36,
+                overflow: "hidden",
+                height: isMobile ? 580 : 720,
+                position: "relative",
+                background: "#121212"
+              }}>
+                {/* Render the actual SpotifyPortal scaled to fit */}
+                <div style={{ transform: isMobile ? "scale(0.85)" : "scale(1)", transformOrigin: "top left", width: isMobile ? "118%" : "100%", height: isMobile ? "118%" : "100%" }}>
+                  <SpotifyPortal onSignOut={()=>{}} userTier="goddess" />
+                </div>
+              </div>
+            </div>
+
+            {/* Side buttons decorative */}
+            <div style={{ position: "absolute", right: -4, top: 100, width: 4, height: 60, background: "#333", borderRadius: "0 2px 2px 0" }}/>
+            <div style={{ position: "absolute", left: -4, top: 80, width: 4, height: 40, background: "#333", borderRadius: "2px 0 0 2px" }}/>
+            <div style={{ position: "absolute", left: -4, top: 132, width: 4, height: 40, background: "#333", borderRadius: "2px 0 0 2px" }}/>
+          </div>
+        </div>
+
+        {/* Caption below */}
+        <div style={{ textAlign: "center", padding: "40px 24px 0" }}>
+          <p style={{ fontSize: 15, color: "#a0989c", marginBottom: 28, lineHeight: 1.7 }}>
+            This is exactly what you open after you join.<br/>
+            Home · Library · ProofOS · Full player. Works on any device.
+          </p>
+          <button onClick={onJoin} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 30, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>
+            Join & get instant access ✦
+          </button>
+          <div style={{ marginTop: 12, fontSize: 13, color: "#636363" }}>Audio £19/mo · Goddess £33/mo · Lifetime £500</div>
         </div>
       </div>
 
