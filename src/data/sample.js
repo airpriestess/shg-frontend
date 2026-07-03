@@ -115,7 +115,7 @@ export const AUDIOS = [
 
 export const PROOF_THREADS = [
   {
-    id: 1, intentionTitle: "I receive €5,000 from an unexpected source", linkedAudioId: 1, linkedAudioTitle: "Money Finds Me First",
+    id: 1, intentionTitle: "I receive £5,000 from an unexpected source", linkedAudioId: 1, linkedAudioTitle: "Money Finds Me First",
     category: "Money", status: "Evidence Appearing", daysActive: 9, firstListenAt: "2026-06-23",
     manifestedAt: null, proofEntryCount: 4, photoProofCount: 1, voiceProofCount: 1, signCount: 2, lastProofAt: "2026-07-01",
     emotionalCertaintyScore: 8, listeningMode: "Night", mood_before: "Anxious about money", mood_after: "Relaxed and certain",
