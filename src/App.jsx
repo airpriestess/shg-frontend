@@ -276,38 +276,78 @@ function HeroMarquee() {
   );
 }
 
-/* ── MAXXING CAROUSEL ──────────────────────────────────────────────────────── */
+/* ── MAXXING CAROUSEL — peach/rose gold bg, BLACK text ────────────────────── */
 function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
   useEffect(() => {
-    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 220); }, 1100);
+    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 220); }, 1400);
     return () => clearInterval(timer);
   }, [cats.length]);
   const current = cats[idx];
   const next1 = cats[(idx+1)%cats.length];
   const next2 = cats[(idx+2)%cats.length];
   const next3 = cats[(idx+3)%cats.length];
+
+  // Each category gets its own peach/rose shade so it feels alive
+  const bgs = [
+    "linear-gradient(135deg,#e8b8a8,#d4909a)",  // Lovemaxxing — deep rose
+    "linear-gradient(135deg,#f0cdb4,#d4a090)",   // Moneymaxxing — warm peach
+    "linear-gradient(135deg,#f2d0c0,#e0b0a0)",   // Beautymaxxing — blush peach
+    "linear-gradient(135deg,#dca8b8,#c47898)",   // DNAMaxxing — rose
+    "linear-gradient(135deg,#edc0a8,#d49880)",   // Lifemaxxing — golden peach
+    "linear-gradient(135deg,#c8b8d8,#a898c0)",   // SleepMaxxing — soft lavender-rose
+  ];
+  const bg = bgs[idx % bgs.length];
+
   return (
-    <div style={{ borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828", marginBottom:0 }}>
-      <div style={{ transition:"opacity 0.28s, transform 0.28s", opacity:flash?0:1, transform:flash?"scale(0.99)":"scale(1)", background:`linear-gradient(135deg,#060410,${current.color}10)`, borderBottom:`2px solid ${current.color}22`, padding:"52px 24px 44px", textAlign:"center", position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute",inset:0,background:`radial-gradient(ellipse at 50% 80%,${current.color}06,transparent 70%)`,pointerEvents:"none" }}/>
-        <div style={{ position:"absolute",inset:0,background:current.color,opacity:flash?0.03:0,transition:"opacity 0.1s",pointerEvents:"none" }}/>
-        <div style={{ fontSize:10,color:current.color,fontWeight:800,letterSpacing:"0.3em",textTransform:"uppercase",marginBottom:20,fontFamily:"'Jost',sans-serif" }}>{current.label} ✦</div>
-        <div className="wm" style={{ fontSize:"clamp(28px,5vw,64px)",lineHeight:1.05,color:"#f2ece4" }}>{current.tagline}</div>
+    <div style={{ overflow:"hidden" }}>
+      {/* MAIN HERO CARD — full peach/rose background, black text */}
+      <div style={{
+        transition:"opacity 0.25s, transform 0.25s",
+        opacity: flash ? 0 : 1,
+        transform: flash ? "scale(0.98)" : "scale(1)",
+        background: bg,
+        padding:"clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
+        textAlign:"center",
+        position:"relative",
+        overflow:"hidden",
+      }}>
+        {/* Soft radial overlay for depth */}
+        <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.08),transparent 70%)",pointerEvents:"none" }}/>
+        {/* Category eyebrow */}
+        <div style={{
+          fontSize:10, fontWeight:800, letterSpacing:"0.35em", textTransform:"uppercase",
+          marginBottom:20, fontFamily:"'Jost',sans-serif", color:"rgba(0,0,0,0.5)"
+        }}>{current.label} ✦</div>
+        {/* BIG tagline — black text, Cormorant */}
+        <div className="wm" style={{
+          fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05, color:"#000",
+          fontWeight:400, letterSpacing:"-0.01em"
+        }}>{current.tagline}</div>
       </div>
-      <div style={{ display:"flex" }}>
+
+      {/* PREVIEW STRIP — 3 upcoming, dark bg, peach text */}
+      <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
         {[next1,next2,next3].map((cat,i) => (
-          <div key={i} onClick={() => { setFlash(true); setTimeout(()=>{setIdx((idx+i+1)%cats.length);setFlash(false);},200); }}
-            style={{ flex:1,padding:"16px 18px",background:"transparent",borderRight:i<2?"1px solid #1a1816":"none",cursor:"pointer",transition:"background 0.2s" }}
-            onMouseEnter={e=>e.currentTarget.style.background=`${cat.color}10`} onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-            <div style={{ fontSize:9,color:cat.color,fontWeight:800,letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:5,fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
-            <div style={{ fontSize:12,color:"#786860",lineHeight:1.5 }}>{cat.tagline}</div>
+          <div key={i}
+            onClick={() => { setFlash(true); setTimeout(()=>{setIdx((idx+i+1)%cats.length);setFlash(false);},200); }}
+            style={{ flex:1, padding:"16px 18px", cursor:"pointer", borderRight:i<2?"1px solid #1c1828":"none", transition:"background 0.2s" }}
+            onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
+            onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+            <div style={{ fontSize:9, color:"#d4a090", fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
+            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>{cat.tagline}</div>
           </div>
         ))}
       </div>
-      <div style={{ display:"flex",justifyContent:"center",gap:7,padding:"18px 0" }}>
-        {cats.map((_,i) => <div key={i} onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}} style={{ width:i===idx?18:6,height:6,borderRadius:3,background:i===idx?current.color:"#181428",transition:"all 0.3s",cursor:"pointer" }}/>)}
+
+      {/* DOTS */}
+      <div style={{ display:"flex", justifyContent:"center", gap:7, padding:"16px 0", background:"#000" }}>
+        {cats.map((_,i) => (
+          <div key={i}
+            onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
+            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#d4a090":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
+        ))}
       </div>
     </div>
   );
