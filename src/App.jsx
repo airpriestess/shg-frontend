@@ -471,7 +471,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </button>
         </div>
         {menuOpen && (
-          <div style={{ position: "absolute", top: 58, right: 24, background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 14, padding: 10, minWidth: 200, zIndex: 400, boxShadow: "0 24px 60px rgba(0,0,0,0.8)" }}>
+          <div style={{ position: "absolute", top: 58, right: 24, background: "#060408", border: "1px solid #1e1c0a", borderRadius: 14, padding: 10, minWidth: 200, zIndex: 400, boxShadow: "0 24px 60px rgba(0,0,0,0.8)" }}>
             {[["Preview Dashboard", onDemo], ["YouTube ↗", () => window.open("https://www.youtube.com/@Reshma.Oracle","_blank")], ["Instagram ↗", () => window.open("https://www.instagram.com/reshma.oracle/","_blank")]].map(([l,fn],i) => (
               <button key={i} onClick={() => { fn(); setMenuOpen(false); }} style={{ display:"block",width:"100%",textAlign:"left",padding:"11px 16px",background:"none",border:"none",color:T.textSecondary,fontSize:14,cursor:"pointer",borderRadius:8 }}
                 onMouseEnter={e=>e.currentTarget.style.background="#1a1208"}
@@ -530,7 +530,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* FREE TRACK — right under heading */}
-          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
+          <div style={{ background: "#060408", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
             <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Audio Vault Preview</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>Spoilt Goddess</div>
             <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>Melodic House · Self-Concept · EMDR · 528hz</div>
@@ -560,7 +560,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
 
           {/* HERO IMAGE PLACEHOLDER */}
-          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid #2a1a14", background: "linear-gradient(160deg,#0d0804,#140c08)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
+          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid #2a0a28", background: "linear-gradient(160deg,#04020a,#08030e)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
             <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 40%,#B76E7912,transparent 65%)",pointerEvents:"none" }}/>
             <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 20% 80%,#d4a09008,transparent 60%)",pointerEvents:"none" }}/>
             {/* Floating labels like ClickUp */}
@@ -637,7 +637,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* IMAGE PLACEHOLDER — brain state visual */}
       <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid #2a1a14", background: "linear-gradient(135deg,#0a0604,#120a08)", height: isMobile ? 220 : 320, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, position: "relative" }}>
+        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid #2a1a14", background: "linear-gradient(135deg,#060408,#0c0812)", height: isMobile ? 220 : 320, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, position: "relative" }}>
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#B76E7910,transparent 70%)", pointerEvents: "none" }}/>
           <div style={{ fontSize: isMobile ? 40 : 56 }}>🧠</div>
           <div style={{ fontSize: isMobile ? 14 : 16, color: "#B76E79", fontWeight: 600, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase" }}>Theta state · 4–8 Hz</div>
@@ -646,7 +646,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
       {/* PROOFOS INTRO — peach section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#100806 0%,#180d08 50%,#100806 100%)", borderTop: "1px solid #3a1a10", borderBottom: "1px solid #3a1a10" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#000 0%,#08030a 50%,#000 100%)", borderTop: "1px solid #2a0a2a", borderBottom: "1px solid #2a0a2a" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -681,7 +681,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
             {/* MELODIC HOUSE USP */}
       <div style={{ padding: isMobile ? "0 18px 48px" : "0 clamp(16px,4vw,24px) 70px", maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ background: "#0a0900", border: "1px solid #B76E7933", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
+        <div style={{ background: "#050308", border: "1px solid #B76E7933", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
           {/* Background glow */}
           <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -716,7 +716,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <MaxxingCarousel cats={cats} />
 
       {/* LANDING PROOF WALL — peach section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "linear-gradient(180deg,#0f0906 0%,#150c07 50%,#0f0906 100%)", borderTop: "1px solid #2a1a10", borderBottom: "1px solid #2a1a10" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "linear-gradient(180deg,#000 0%,#07030a 50%,#000 100%)", borderTop: "1px solid #280828", borderBottom: "1px solid #280828" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -730,8 +730,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {
               type: "bank", label: "Bank Transfer", sub: "10 days of listening · Money finds me first",
               render: () => (
-                <div style={{ background: "linear-gradient(160deg,#050e06,#081408)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
-                  <div style={{ background: "#0a1a0c", padding: "12px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #1a3a1a" }}>
+                <div style={{ background: "linear-gradient(160deg,#040a08,#060e0a)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
+                  <div style={{ background: "#060e0a", padding: "12px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #1a3a1a" }}>
                     <span style={{ fontSize: 9, color: "#4a8a4a", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.15em" }}>BANKING APP · NOTIFICATION</span>
                     <span style={{ fontSize: 9, color: "#3a6a3a" }}>✓ Received</span>
                   </div>
@@ -749,8 +749,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {
               type: "message", label: "Message Screenshot", sub: "3 hours after listening · He texted first",
               render: () => (
-                <div style={{ background: "#0e0810", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a2a" }}>
-                  <div style={{ background: "#120a14", padding: "10px 14px", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid #2a1a2a" }}>
+                <div style={{ background: "#08040e", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a2a" }}>
+                  <div style={{ background: "#0c0612", padding: "10px 14px", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid #2a1a2a" }}>
                     <div style={{ width: 28, height: 28, borderRadius: "50%", background: "linear-gradient(135deg,#d4a090,#B76E79)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>H</div>
                     <div>
                       <div style={{ fontSize: 11, fontWeight: 700, color: "#f2ece4" }}>Him</div>
@@ -771,7 +771,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {
               type: "skin", label: "Mirror Selfie", sub: "Day 14 · They all noticed",
               render: () => (
-                <div style={{ background: "linear-gradient(160deg,#100808,#1a0c0e)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a18" }}>
+                <div style={{ background: "linear-gradient(160deg,#080408,#0e0610)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a18" }}>
                   <div style={{ height: 100, background: "linear-gradient(160deg,#1a0e10,#250e14)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, borderBottom: "1px solid #2a1a18", position: "relative" }}>
                     <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#d4a09015,transparent 70%)" }}/>
                     <div style={{ fontSize: 11, color: "#d4a090", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.2em" }}>✦ SKIN GLOW · DAY 14</div>
@@ -790,13 +790,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {
               type: "angel", label: "Angel Numbers", sub: "555 · Three times in one day",
               render: () => (
-                <div style={{ background: "linear-gradient(160deg,#0e0c00,#160e00)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a2200" }}>
+                <div style={{ background: "linear-gradient(160deg,#08060a,#0c080e)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a2200" }}>
                   <div style={{ padding: "22px 16px", textAlign: "center" }}>
                     <div style={{ fontSize: 42, fontWeight: 900, color: "#c8a840", fontFamily: "'Jost',sans-serif", letterSpacing: 8, marginBottom: 8, textShadow: "0 0 30px #c8a84044" }}>555</div>
                     <div style={{ fontSize: 11, color: "#8a8040", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>Angel Number · Three times today</div>
                     <div style={{ fontSize: 12, color: "#c8b878", fontStyle: "italic", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.6 }}>Clock · Number plate · Total on receipt</div>
                   </div>
-                  <div style={{ padding: "10px 16px", background: "#0a0800", borderTop: "1px solid #2a2200" }}>
+                  <div style={{ padding: "10px 16px", background: "#060408", borderTop: "1px solid #2a2200" }}>
                     <div style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Highest Timeline Activated</div>
                   </div>
                 </div>
@@ -805,7 +805,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {
               type: "voice", label: "Voice Note", sub: "Day 3 · Recorded in the moment",
               render: () => (
-                <div style={{ background: "#080a0e", borderRadius: 12, overflow: "hidden", border: "1px solid #1a2030" }}>
+                <div style={{ background: "#060408", borderRadius: 12, overflow: "hidden", border: "1px solid #1a2030" }}>
                   <div style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 12 }}>
                     <div style={{ fontSize: 11, color: "#7a9ab0", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.15em" }}>VOICE PROOF · DAY 3</div>
                     <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
@@ -824,7 +824,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {
               type: "money2", label: "Transfer #2", sub: "Day 21 · Money keeps arriving",
               render: () => (
-                <div style={{ background: "linear-gradient(160deg,#050e06,#081408)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
+                <div style={{ background: "linear-gradient(160deg,#040a08,#060e0a)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
                   <div style={{ padding: "18px 16px" }}>
                     <div style={{ fontSize: 11, color: "#4a8a4a", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>Payment received</div>
                     <div style={{ fontSize: 28, fontWeight: 800, color: "#5ab06a", fontFamily: "'Jost',sans-serif", marginBottom: 6 }}>£2,500</div>
@@ -929,13 +929,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           {compRows.map((row, i) => (
             <div key={i} className="comp-table" style={{ marginBottom: 1 }}>
-              <div style={{ background: "#0a0900", padding: "18px 24px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
+              <div style={{ background: "#050308", padding: "18px 24px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#4a3030", fontSize: 16, flexShrink: 0, marginTop: 3 }}>✗</span>
                   <span style={{ fontSize: "clamp(16px,2.2vw,24px)", color: "#8a7060", lineHeight: 1.65, fontStyle: "italic", display: "block", background: "#0e0602", borderRadius: 16, padding: "20px 22px", border: "1px solid #3a1a10", fontFamily: "'Cormorant Garamond',serif" }}>{row.old}</span>
                 </div>
               </div>
-              <div style={{ background: "#0c0a06", padding: "18px 24px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0 }}>
+              <div style={{ background: "#060408", padding: "18px 24px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
                   <span style={{ color: T.champagne, fontSize: 16, flexShrink: 0, marginTop: 2 }}>✦</span>
                   <span style={{ fontSize: "clamp(16px,2.2vw,24px)", color: "#f2ece4", lineHeight: 1.65, fontWeight: 600, display: "block", background: "#060e04", borderRadius: 16, padding: "20px 22px", border: "1px solid #2a4a10", fontFamily: "'Cormorant Garamond',serif" }}>{row.neu}</span>
@@ -1003,7 +1003,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, marginBottom: 12 }}>What's inside every audio.</h2>
           <p style={{ fontSize: 17, color: T.textMuted, maxWidth: 600, margin: "0 auto" }}>Every track is layered with multiple technologies working simultaneously to activate your ideal brainwave state and install the new self-concept at depth.</p>
         </div>
-        <div style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
+        <div style={{ background: "#060408", border: "1px solid #1e1c0a", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", background: "#0f0b01", borderBottom: "1px solid #1e1c0a" }}>
             {["Technology", "What it is", "What it does", "When it activates"].map((h, i) => (
               <div key={i} style={{ padding: "13px 18px", fontSize: 12, color: T.champagne, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1e1c0a" : "none" }}>{h}</div>
@@ -1064,12 +1064,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
         <div style={{...G3(isMobile), gap: 16}}>
           {[
-            { cat: "Lovemaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
-            { cat: "Moneymaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "£247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "£10,000", transfer: true } },
-            { cat: "Beautymaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
+            { cat: "Lovemaxxing", color: "#B76E79", bgHdr: "#060408", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
+            { cat: "Moneymaxxing", color: "#B76E79", bgHdr: "#060408", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "£247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "£10,000", transfer: true } },
+            { cat: "Beautymaxxing", color: "#B76E79", bgHdr: "#060408", before: { label: "Old assumption", text: "I need to fix myself.", mirror: true }, after: { label: "New assumption", text: "They notice before you do.", msgs: [{txt:"What are you doing differently?? You're GLOWING",from:"Sarah"},{txt:"Your skin is actually shifting omg",from:"Mia"}] } },
           ].map((item, idx) => (
             <div key={idx} style={{ background: T.cardBg, border: T.border, borderRadius: 16, overflow: "hidden" }}>
-              <div style={{ padding: "12px 18px", borderBottom: "1px solid #1e1c0a", background: "#0a0800" }}>
+              <div style={{ padding: "12px 18px", borderBottom: "1px solid #1e1c0a", background: "#060408" }}>
                 <div style={{ fontSize: 12, color: item.color, fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase" }}>{item.cat}</div>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
@@ -1111,7 +1111,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{...G2(isMobile), gap: 16}}>
 
           {/* AUDIO DASHBOARD PREVIEW */}
-          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
+          <div style={{ background: "#060408", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
             <div style={{ padding: "14px 18px", borderBottom: "1px solid #1e1c0a", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
                 <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>Audio Library</div>
@@ -1159,7 +1159,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* PROOFOS DASHBOARD PREVIEW */}
-          <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
+          <div style={{ background: "#060408", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
             <div style={{ padding: "14px 18px", borderBottom: "1px solid #1e1c0a", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
                 <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 2 }}>ProofOS ✦</div>
@@ -1186,7 +1186,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <div key={i} style={{ padding: "9px 0", borderBottom: i < 2 ? "1px solid #1e1c0a" : "none" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 4 }}>
                     <div style={{ fontSize: 12, fontWeight: 600, color: T.textPrimary, flex: 1, lineHeight: 1.35 }}>{t.title}</div>
-                    <span style={{ fontSize: 10, padding: "2px 8px", background: t.status === "manifested" ? "#0a1a0a" : "#0a0800", color: t.status === "manifested" ? "#4a9a5a" : "#B76E79", borderRadius: 20, fontWeight: 700, flexShrink: 0, border: `1px solid ${t.status === "manifested" ? "#2a4a2a" : "#B76E7944"}` }}>
+                    <span style={{ fontSize: 10, padding: "2px 8px", background: t.status === "manifested" ? "#0a1a0a" : "#060408", color: t.status === "manifested" ? "#4a9a5a" : "#B76E79", borderRadius: 20, fontWeight: 700, flexShrink: 0, border: `1px solid ${t.status === "manifested" ? "#2a4a2a" : "#B76E7944"}` }}>
                       {t.status === "manifested" ? `✦ ${t.days}d` : `${t.days}d`}
                     </span>
                   </div>
@@ -1258,7 +1258,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             { icon: "📧", label: "Email Confirmation",    sub: "Arrived unexpectedly",           color: "#d8c8a0" },
             { icon: "📅", label: "Calendar Invite",       sub: "The meeting that changed it",   color: "#6a8ad0" },
           ].map((p, i) => (
-            <div key={i} style={{ background: "#0a0800", border: `1px solid ${p.color}33`, borderRadius: 14, overflow: "hidden" }}>
+            <div key={i} style={{ background: "#060408", border: `1px solid ${p.color}33`, borderRadius: 14, overflow: "hidden" }}>
               <div style={{ height: 88, background: `linear-gradient(135deg, ${p.color}18, ${p.color}06)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 34 }}>{p.icon}</div>
               <div style={{ padding: "10px 14px" }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: p.color, marginBottom: 3 }}>{p.label}</div>
