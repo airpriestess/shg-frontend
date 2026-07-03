@@ -342,6 +342,50 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
+      {/* THE PROBLEM SECTION */}
+      <div style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Why it hasn't worked yet</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 16 }}>
+            You've done everything.<br />
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing's changed.</span>
+          </h2>
+          <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: T.textMuted, lineHeight: 1.85, maxWidth: 580, margin: "0 auto" }}>
+            Scripting. Affirmations. Vision boards. Courses. You've tried everything and you're still waiting.<br />
+            The problem isn't your effort. It's the method.
+          </p>
+        </div>
+        <div className="grid-3" style={{ gap: 20 }}>
+          {[
+            {
+              num: "01",
+              title: "Your brain hasn't entered theta state",
+              body: "Conscious effort — journaling, affirming, visualising — operates at beta frequency. The subconscious mind is only accessible in theta (4–8 Hz). Without it, you're installing nothing. You're talking to a locked door.",
+              fix: "SHG audios use binaural beats and EMDR to drop you into theta within minutes."
+            },
+            {
+              num: "02",
+              title: "Generic affirmations don't resonate with your nervous system",
+              body: "A stranger's voice. Generic words. No EMDR. No frequency. Your subconscious mind is pattern-matching whether this input feels true and familiar. If the voice, energy, or specificity is off — it rejects it. Nothing installs.",
+              fix: "Reshma's voice is calibrated to guide your nervous system into receptivity. The specificity is what makes it land."
+            },
+            {
+              num: "03",
+              title: "You have no way to track what's shifting",
+              body: "Without a system to capture signs, synchronicities, and evidence — you give up before the rewire is complete. You can't see the progress, so you assume nothing's working. You stop at day 9. It would have landed on day 14.",
+              fix: "ProofOS links every audio session to real evidence. You see the pattern building in real time."
+            }
+          ].map((p, i) => (
+            <div key={i} style={{ background: "#0a0908", border: "1px solid #201e1c", borderRadius: 16, padding: 28, borderTop: "2px solid #B76E79" }}>
+              <div style={{ fontSize: 11, color: "#B76E7966", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 14 }}>{p.num}</div>
+              <div style={{ fontSize: "clamp(15px,1.6vw,18px)", fontWeight: 700, color: T.textPrimary, marginBottom: 14, lineHeight: 1.4 }}>{p.title}</div>
+              <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.85, marginBottom: 16 }}>{p.body}</p>
+              <div style={{ fontSize: 13, color: "#B76E79", fontWeight: 500, paddingTop: 14, borderTop: "1px solid #201e1c" }}>✦ {p.fix}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* VOICE TRUST */}
       <div style={{ padding: "60px 24px 0", maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
         <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why the audio works</div>
