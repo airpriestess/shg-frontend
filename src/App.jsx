@@ -17,6 +17,8 @@ const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/obje
 export default function App() {
   const [screen, setScreen] = useState("landing");
   const [userTier, setUserTier] = useState("goddess");
+  const [checkoutModal, setCheckoutModal] = useState(false);
+  const [checkoutStep, setCheckoutStep] = useState("tiers"); // tiers | upsell-goddess | upsell-lifetime
   const [playingId, setPlayingId] = useState(null);
   const [currentAudio, setCurrentAudio] = useState(null);
   const [portalTab, setPortalTab] = useState("dashboard");
@@ -42,7 +44,15 @@ export default function App() {
   return (
     <>
       <style>{CSS}</style>
-      {screen === "landing" && <Landing onJoin={(t) => { goPortal(t); }} onDemo={() => goPortal("goddess")} />}
+      {screen === "landing" && <Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => goPortal("goddess")} />}
+    {checkoutModal && (
+      <CheckoutModal
+        step={checkoutStep}
+        setStep={setCheckoutStep}
+        onClose={() => { setCheckoutModal(false); setCheckoutStep("tiers"); }}
+        onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }}
+      />
+    )}
       {screen === "portal" && (
         <AppShell
           userTier={userTier} tab={portalTab} setTab={setPortalTab}
@@ -169,6 +179,102 @@ function ArchivePage() {
 }
 
 /* ── ADD PROOF MODAL (quick capture) ──────────────────────────────────────── */
+
+/* ── CHECKOUT MODAL ────────────────────────────────────────────────────────── */
+const STRIPE = {
+  audio: "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00",
+  goddess: "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01",
+  lifetime: "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02",
+};
+
+function CheckoutModal({ step, setStep, onClose, onDemo }) {
+  const overlay = { position:"fixed",inset:0,background:"rgba(0,0,0,0.92)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:"20px" };
+  const box = { background:"#0a0908",border:"1px solid #201e1c",borderRadius:20,padding:"36px 32px",maxWidth:520,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto" };
+
+  const goStripe = (tier) => { window.open(STRIPE[tier],"_blank"); onClose(); };
+
+  if (step === "upsell-goddess") return (
+    <div style={overlay} onClick={e => e.target===e.currentTarget && onClose()}>
+      <div style={box}>
+        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:20,cursor:"pointer"}}>✕</button>
+        <div style={{fontSize:11,color:"#B76E79",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:700,marginBottom:12}}>Before you go</div>
+        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(22px,4vw,32px)",color:"#f2ece4",fontWeight:400,lineHeight:1.2,marginBottom:12}}>
+          Goddess Tier is only <span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>£14/mo more.</span>
+        </h3>
+        <p style={{fontSize:15,color:"#b09888",lineHeight:1.75,marginBottom:20}}>
+          Audio Tier is £19/mo and includes the full vault. For £33/mo you also get <strong style={{color:"#f2ece4"}}>ProofOS</strong> — the system that tracks every sign, every shift, every piece of evidence linked to the audio that preceded it.
+        </p>
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          <button onClick={() => goStripe("goddess")} style={{padding:"15px 24px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:800,cursor:"pointer",letterSpacing:"0.08em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase"}}>Activate Goddess Tier · £33/mo →</button>
+          <button onClick={() => setStep("upsell-lifetime")} style={{padding:"15px 24px",background:"none",border:"1.5px solid #B76E7944",borderRadius:12,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer"}}>See Lifetime Access · £500 once, forever</button>
+          <button onClick={() => goStripe("audio")} style={{padding:"12px 24px",background:"none",border:"none",color:"#786860",fontSize:13,cursor:"pointer"}}>No thanks — Audio Tier only · £19/mo</button>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (step === "upsell-lifetime") return (
+    <div style={overlay} onClick={e => e.target===e.currentTarget && onClose()}>
+      <div style={box}>
+        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:20,cursor:"pointer"}}>✕</button>
+        <div style={{fontSize:11,color:"#B76E79",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:700,marginBottom:12}}>One time · Forever</div>
+        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(22px,4vw,32px)",color:"#f2ece4",fontWeight:400,lineHeight:1.2,marginBottom:12}}>
+          Lifetime Access.<br/>
+          <span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Pay once. Own it forever.</span>
+        </h3>
+        <p style={{fontSize:15,color:"#b09888",lineHeight:1.75,marginBottom:8}}>Everything in Goddess Tier. Every future audio. Every future feature. No monthly. No renewal. £500 once.</p>
+        <p style={{fontSize:13,color:"#786860",marginBottom:20}}>1,000 spots only. Once they're gone, this is gone.</p>
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          <button onClick={() => goStripe("lifetime")} style={{padding:"15px 24px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:800,cursor:"pointer",letterSpacing:"0.08em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase"}}>Claim Lifetime Access · £500 →</button>
+          <button onClick={() => goStripe("goddess")} style={{padding:"12px 24px",background:"none",border:"1.5px solid #B76E7944",borderRadius:12,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer"}}>Goddess Tier · £33/mo</button>
+          <button onClick={() => goStripe("audio")} style={{padding:"12px 24px",background:"none",border:"none",color:"#786860",fontSize:13,cursor:"pointer"}}>Audio Tier · £19/mo</button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Default: tier selection
+  return (
+    <div style={overlay} onClick={e => e.target===e.currentTarget && onClose()}>
+      <div style={box}>
+        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:20,cursor:"pointer"}}>✕</button>
+        <div style={{fontSize:11,color:"#B76E79",letterSpacing:"0.22em",textTransform:"uppercase",fontWeight:700,marginBottom:12}}>Choose your tier</div>
+        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,4vw,34px)",color:"#f2ece4",fontWeight:300,lineHeight:1.2,marginBottom:24}}>Start your shift today.</h3>
+        <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:20}}>
+          <div style={{background:"#0d0c0a",border:"1px solid #B76E7966",borderRadius:14,padding:"20px 18px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
+              <div style={{fontSize:16,fontWeight:700,color:"#f2ece4",fontFamily:"'Jost',sans-serif"}}>Audio Tier</div>
+              <div style={{fontSize:18,fontWeight:800,color:"#f2ece4"}}>£19<span style={{fontSize:12,fontWeight:400,color:"#786860"}}>/mo</span></div>
+            </div>
+            <div style={{fontSize:13,color:"#786860",marginBottom:14}}>Full exclusive audio vault · New tracks every month</div>
+            <button onClick={() => setStep("upsell-goddess")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #B76E7944",borderRadius:10,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer"}}>Start with Audio →</button>
+          </div>
+          <div style={{background:"linear-gradient(135deg,#0f0a08,#120d0a)",border:"1.5px solid #B76E79",borderRadius:14,padding:"20px 18px",position:"relative"}}>
+            <div style={{position:"absolute",top:-10,left:20,background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"3px 12px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.1em"}}>MOST POPULAR</div>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
+              <div style={{fontSize:16,fontWeight:700,color:"#f2ece4",fontFamily:"'Jost',sans-serif"}}>Goddess Tier</div>
+              <div style={{fontSize:18,fontWeight:800,color:"#f2ece4"}}>£33<span style={{fontSize:12,fontWeight:400,color:"#786860"}}>/mo</span></div>
+            </div>
+            <div style={{fontSize:13,color:"#b09888",marginBottom:14}}>Full vault + <strong style={{color:"#f2ece4"}}>ProofOS</strong> — track every sign, every shift, every piece of evidence</div>
+            <button onClick={() => setStep("upsell-lifetime")} style={{width:"100%",padding:"13px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.08em",textTransform:"uppercase"}}>Activate Goddess Tier →</button>
+          </div>
+          <div style={{background:"#080604",border:"1px solid #d4a09044",borderRadius:14,padding:"20px 18px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
+              <div style={{fontSize:16,fontWeight:700,color:"#d4a090",fontFamily:"'Jost',sans-serif"}}>Lifetime Access</div>
+              <div style={{fontSize:18,fontWeight:800,color:"#d4a090"}}>£500<span style={{fontSize:12,fontWeight:400,color:"#786860"}}> once</span></div>
+            </div>
+            <div style={{fontSize:13,color:"#786860",marginBottom:14}}>Everything. Forever. 1,000 spots only.</div>
+            <button onClick={() => goStripe("lifetime")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #d4a09044",borderRadius:10,color:"#d4a090",fontSize:14,fontWeight:600,cursor:"pointer"}}>Claim Lifetime Access →</button>
+          </div>
+        </div>
+        <div style={{textAlign:"center"}}>
+          <button onClick={onDemo} style={{background:"none",border:"none",color:"#786860",fontSize:12,cursor:"pointer",textDecoration:"underline"}}>Preview the portal first</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── LANDING PAGE ─────────────────────────────────────────────────────────── */
 /* ── MOBILE HOOK — bypasses all CSS specificity issues ── */
 function useMobile() {
@@ -197,7 +303,7 @@ const GPROOF = (m) => m
   ? { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }
   : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 };
 
-function Landing({ onJoin, onDemo }) {
+function Landing({ onJoin, onDemo, onSignIn }) {
   const isMobile = useMobile();
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -277,7 +383,10 @@ function Landing({ onJoin, onDemo }) {
         <span className="wm" style={{ fontSize: 22, fontWeight: 500, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "0.02em" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
-          <button onClick={() => onJoin("audio")} className="join-pulse" style={{ padding: "11px 28px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 13, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", display: isMobile ? "none" : "block" }}>Join now ✦</button>
+          <div style={{ display: isMobile ? "none" : "flex", alignItems: "center", gap: 10 }}>
+          <button onClick={onSignIn || onDemo} style={{ padding: "10px 20px", background: "none", border: "1px solid #B76E7944", borderRadius: 22, color: "#B76E79", fontSize: 12, fontWeight: 600, cursor: "pointer", letterSpacing: "0.08em", fontFamily: "'Jost',sans-serif" }}>Sign in</button>
+          <button onClick={onJoin} className="join-pulse" style={{ padding: "11px 24px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 12, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Join now ✦</button>
+        </div>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 3 }}>
             {[0,1,2].map(i => <div key={i} style={{ width: 16, height: 1.5, background: T.textMuted }} />)}
           </button>
@@ -357,10 +466,10 @@ function Landing({ onJoin, onDemo }) {
           {/* PAIN POINT */}
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: isMobile ? "column" : "row", alignItems: "stretch", maxWidth: isMobile ? 340 : "none", margin: isMobile ? "0 auto 16px" : "0 0 16px" }}>
-            <button onClick={() => onJoin("audio")} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", width: isMobile ? "100%" : "auto" }}>
+            <button onClick={onJoin} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", width: isMobile ? "100%" : "auto" }}>
               START LISTENING ✦
             </button>
-            <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
+            <button onClick={() => { window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank"); }} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
               LIFETIME ACCESS →
             </button>
           </div>
@@ -379,8 +488,8 @@ function Landing({ onJoin, onDemo }) {
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing's changed.</span>
           </h2>
           <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: T.textMuted, lineHeight: 1.85, maxWidth: 580, margin: "0 auto" }}>
-            Scripting. Affirmations. Vision boards. Courses. You've tried everything and you're still waiting.<br />
-            The problem isn't your effort. It's the method.
+            Scripting. Affirmations. Vision boards. You've done everything right. You're still waiting.<br />
+            The problem isn't your effort. <strong style={{ color: "#f2ece4" }}>It's your brainwave state.</strong>
           </p>
         </div>
         <div style={{ ...G3(isMobile), gap: 20 }}>
@@ -957,8 +1066,8 @@ function Landing({ onJoin, onDemo }) {
             <button onClick={() => { const url = "https://reshmaoracle.com?ref=friend"; if (navigator.share) { navigator.share({ title: "Self Hypnosis Goddess", text: "I have been using this — thought of you.", url }); } else { navigator.clipboard?.writeText(url); alert("Link copied to clipboard"); } }} style={{ padding: "14px 28px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 15, fontWeight: 700, cursor: "pointer" }}>
               Share your link
             </button>
-            <button onClick={() => onJoin("audio")} style={{ padding: "14px 28px", background: "transparent", border: "1px solid #B76E7966", borderRadius: 12, color: "#B76E79", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>
-              Join now
+            <button onClick={onJoin} style={{ padding: "14px 28px", background: "transparent", border: "1px solid #B76E7966", borderRadius: 12, color: "#B76E79", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>
+              View all options
             </button>
           </div>
           <div style={{ fontSize: 12, color: "#786860", marginTop: 16 }}>Annual plan required for referral bonus · Applied automatically</div>
@@ -1016,7 +1125,7 @@ function Landing({ onJoin, onDemo }) {
                   </div>
                 ))}
               </div>
-              <button onClick={() => onJoin(p.id)} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(90deg,#d4a090,#B76E79)" : "transparent", border: p.popular ? "none" : "1.5px solid #C8956A", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 52 }}>{p.cta}</button>
+              <button onClick={onJoin} className={p.popular ? "cta-shake" : "join-pulse"} style={{ width: "100%", padding: "16px", background: p.popular ? "linear-gradient(90deg,#d4a090,#B76E79)" : "transparent", border: p.popular ? "none" : "1.5px solid #C8956A", borderRadius: 12, color: p.popular ? "#000" : "#B76E79", fontSize: 15, fontWeight: 700, cursor: "pointer", minHeight: 52, fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", textTransform: "uppercase" }}>{p.cta}</button>
             </div>
           ))}
         </div>
@@ -1040,7 +1149,7 @@ function Landing({ onJoin, onDemo }) {
                 ))}
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
-                <button onClick={() => onJoin("founder")} style={{ padding: "16px 36px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52 }}>Claim Lifetime Access →</button>
+                <button onClick={() => window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank")} style={{ padding: "16px 36px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>Claim Lifetime Access →</button>
                 <div style={{ fontSize: 12, color: T.textMuted }}>Original price · First 1,000 members only</div>
               </div>
             </div>
@@ -1074,7 +1183,7 @@ function Landing({ onJoin, onDemo }) {
           <p style={{ fontSize: 17, color: T.textMuted, marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
             In that state, reality shows you the proof of what you already know.
           </p>
-          <button onClick={() => onJoin("audio")} style={{ padding: "18px 52px", background: "linear-gradient(135deg,#d4a090,#B76E79)", boxShadow: "0 0 40px rgba(183,110,121,0.4)", transform: "none", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56 }}>Start your shift →</button>
+          <button onClick={onJoin} className="cta-shake" style={{ padding: "18px 52px", background: "linear-gradient(135deg,#d4a090,#B76E79)", boxShadow: "0 0 40px rgba(183,110,121,0.4)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56, fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>Start your shift →</button>
           <div style={{ marginTop: 12, fontSize: 13, color: T.textFaint }}>Cancel anytime · No download · Any device</div>
         </div>
       </div>
