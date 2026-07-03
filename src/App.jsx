@@ -371,19 +371,19 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ padding:"0 clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
+    <div style={{ padding:"48px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto",background:"linear-gradient(160deg,#fde8f0 0%,#f8dce8 50%,#fde8f0 100%)" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>FAQs</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#f2ece4",lineHeight:1.2 }}>Everything you need to know.</h2>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#1a0808",lineHeight:1.2 }}>Everything you need to know.</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:2 }}>
         {FAQS.map((faq,i) => (
           <div key={i} style={{ background:open===i?"#0d0a08":"#080604",border:"1px solid",borderColor:open===i?"#B76E7966":"#1c1828",borderRadius:12,overflow:"hidden",transition:"all 0.2s" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:600,color:open===i?"#f2ece4":"#c8b898",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:15,fontWeight:600,color:open===i?"#1a0808":"#3a2828",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
-            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"#1c1828",marginBottom:16 }}/><p style={{ fontSize:14,color:"#b09888",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"#1c1828",marginBottom:16 }}/><p style={{ fontSize:14,color:"#5a3838",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
         ))}
       </div>
@@ -680,10 +680,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* THE PROBLEM SECTION */}
-      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", maxWidth: 1100, margin: "0 auto", background: "linear-gradient(160deg,#fce8e0 0%,#f5d8cc 50%,#fce8e0 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Why it hasn't worked yet</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 16 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: "#1a0808", lineHeight: 1.15, marginBottom: 16 }}>
             You've done everything.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing's changed.</span>
           </h2>
@@ -734,7 +734,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
       {/* PROOFOS INTRO — peach section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#000 0%,#08030a 50%,#000 100%)", borderTop: "1px solid #2a0a2a", borderBottom: "1px solid #2a0a2a" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#f0e0f4 0%,#e8d4ee 50%,#f0e0f4 100%)", borderTop: "none", borderBottom: "none" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -743,7 +743,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
             </h2>
             <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: "#b09888", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
-              The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#f2ece4" }}>Proof.</strong>
+              The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#1a0808" }}>Proof.</strong>
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 14, flexWrap: "nowrap" }}>
@@ -803,8 +803,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 {/* MAXXING CAROUSEL */}
       <MaxxingCarousel cats={cats} />
 
-      {/* LANDING PROOF WALL — rose section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "linear-gradient(180deg,#000 0%,#120814 50%,#000 100%)", borderTop: "1px solid #280828", borderBottom: "1px solid #280828" }}>
+      {/* LANDING PROOF WALL — soft rose section */}
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "linear-gradient(160deg,#fae0e8 0%,#f2d0dc 50%,#fae0e8 100%)", borderTop: "1px solid #280828", borderBottom: "1px solid #280828" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -941,11 +941,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-      {/* SCIENCE */}
-      <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto" }}>
+      {/* SCIENCE — golden peach */}
+      <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto", background: "linear-gradient(160deg,#fcecd8 0%,#f5e0c8 50%,#fcecd8 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ fontSize: 12, color: T.textFaint, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The science</div>
-          <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,68px)", color: T.textPrimary, lineHeight: 1.1, marginBottom: 22 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,68px)", color: "#1a0808", lineHeight: 1.1, marginBottom: 22 }}>
             Your subconscious mind<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
@@ -1003,8 +1003,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ textAlign: "center", marginTop: 14, fontSize: 12, color: T.textFaint }}>Sample previews · Full tracks unlock in the vault</div>
       </div>
 
-      {/* COMPARISON TABLE */}
-        <div style={{ marginBottom: 70 }}>
+      {/* COMPARISON TABLE — blush pink */}
+        <div style={{ marginBottom: 70, background: "linear-gradient(160deg,#fce8ec 0%,#f5d8e0 50%,#fce8ec 100%)", padding: "48px 24px", borderRadius: 20 }}>
           <div className="comp-table" style={{ marginBottom: 2 }}>
             <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "22px 30px", border: "1px solid #2a1010", borderBottom: "none", borderRight: "none" }}>
               <div style={{ fontSize: 12, color: T.danger, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>Old self-concept</div>
@@ -1108,11 +1108,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-      {/* LISTENING TIMELINE */}
-      <div style={{ padding: "0 24px 80px", maxWidth: 1000, margin: "0 auto" }}>
+      {/* LISTENING TIMELINE — lavender */}
+      <div style={{ padding: "48px 24px 80px", maxWidth: 1000, margin: "0 auto", background: "linear-gradient(160deg,#ecdcf4 0%,#e4d0ee 50%,#ecdcf4 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 12 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: "#1a0808", lineHeight: 1.15, marginBottom: 12 }}>
             It is not one listen.<br/>
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>It is repetition that rewires.</span>
           </h2>
@@ -1359,11 +1359,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
 
-{/* PRICING */}
-      <div id="pricing" style={{ padding: "0 clamp(16px,4vw,24px) 80px", maxWidth: 960, margin: "0 auto" }}>
+{/* PRICING — warm cream peach */}
+      <div id="pricing" style={{ background: "linear-gradient(160deg,#fdf0e8 0%,#f8e4d8 50%,#fdf0e8 100%)", padding: "0 clamp(16px,4vw,24px) 80px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
-          <h2 className="wm" style={{ fontSize: "clamp(32px,4.5vw,56px)", color: T.textPrimary, marginBottom: 20 }}>Choose your tier</h2>
+          <h2 className="wm" style={{ fontSize: "clamp(32px,4.5vw,56px)", color: "#1a0808", marginBottom: 20 }}>Choose your tier</h2>
           <div style={{ display: "inline-flex", background: T.surfaceBase, border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
             {["monthly", "annual"].map(b => (
               <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? "linear-gradient(90deg,#d4a090,#B76E79)" : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
