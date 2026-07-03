@@ -1165,23 +1165,23 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ textAlign:"center", marginBottom:40 }}>
             <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Reshma Oracle · Why I built this</div>
             <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,60px)", color:"#f2ece4", lineHeight:1.1, marginBottom:24 }}>
-              The city was bingeing<br/>
+              The world is bingeing<br/>
               <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>on manifestation content.</span>
             </h2>
           </div>
           <div style={{ maxWidth:680, margin:"0 auto", display:"flex", flexDirection:"column", gap:20 }}>
             <p style={{ fontSize:isMobile?17:20, color:"#e8ddd0", lineHeight:1.9, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>
-              "And none of it was installing anything. The reels. The YouTube videos. The 369 method. The scripting. Everyone was consuming — and nothing was landing."
+              "Everyone is consuming. And no one is installing. That's why I built this."
             </p>
             <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
-              I'd been using self-hypnosis to shift my own identity for years before I ever talked about it publicly. It was the thing that actually worked — not as inspiration, not as a vibe check, but as a daily installation. You press play. Your subconscious receives it. The new version of you starts to feel inevitable.
+              I press play. My subconscious received it. And a new version of me was starting to be born.
             </p>
             <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
-              That's why I built this. Not another thing to consume. A practice you do every single day, passively — while you sleep, rest, commute. That compounds. That builds evidence. That gives you proof so undeniable you stop doubting whether it works.
+              That's why I built this. Not another thing to consume. A practice you repeat every single day, passively — while you sleep, rest, go to the gym, commute. You build evidence. The proof becomes impossible to ignore.
             </p>
             <div style={{ background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:14, padding:"20px 24px", marginTop:8 }}>
               <p style={{ fontSize:isMobile?16:18, color:"#e8ddd0", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:0 }}>
-                "I needed something I could do every single day — that wasn't another thing to check off a list. That happened while I lived my life. That installed me without needing me to be disciplined."
+                "I needed something I could do every single day — that happened while I lived my life. That installed me without needing me to try."
               </p>
               <div style={{ fontSize:13, fontWeight:700, color:"#B76E79", marginTop:12, fontFamily:"'Jost',sans-serif" }}>— Reshma Oracle</div>
             </div>
@@ -1190,21 +1190,21 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* DNA ACTIVATION SECTION */}
-      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#e0f4f8 0%,#d0e8f4 40%,#e4f0fc 80%,#d8ecf8 100%)", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "#000", position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
           {/* Eyebrow */}
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div style={{ fontSize: 11, color: "#0060a0", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
+            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
               963hz · DNA Activation
             </div>
-            <h2 className="wm" style={{ fontSize: "clamp(34px,5.5vw,64px)", color: "#0a2040", lineHeight: 1.1, marginBottom: 20 }}>
+            <h2 className="wm" style={{ fontSize: "clamp(34px,5.5vw,64px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20 }}>
               We don't stop at the surface.<br/>
-              <span style={{ background: "linear-gradient(90deg,#0080c0,#0040a0)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
+              <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
-            <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a2040", lineHeight: 1.85, maxWidth: 580, margin: "0 auto", fontWeight: 500 }}>
+            <p style={{ fontSize: isMobile ? 16 : 18, color: "#c8c0bc", lineHeight: 1.85, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
               Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
             </p>
           </div>
@@ -1230,16 +1230,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* Right — the three levels */}
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
-                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis and subliminals operate.", color: "#d4a090" },
-                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation dissolves the old self-concept at its root — the assumption that was formed before you had the words for it.", color: "#B76E79" },
-                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. This is where the deepest patterns live, and where they can be permanently rewritten.", color: "#c87890" },
+                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis, subliminals, and hemi-sync operate.", color: "#4a90d0", bg: "linear-gradient(135deg,#1a3a60,#0a2040)" },
+                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation and Reiki frequency encoding dissolve the old self-concept at its root — the assumption formed before you had the words for it.", color: "#5ab06a", bg: "linear-gradient(135deg,#1a3a1a,#0a2a0a)" },
+                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. Where the deepest patterns live, and where they can be permanently rewritten.", color: "#b090e0", bg: "linear-gradient(135deg,#2a1a40,#1a0a30)" },
               ].map((item, i) => (
-                <div key={i} style={{ background: "#06040c", border: `1px solid ${item.color}33`, borderLeft: `3px solid ${item.color}`, borderRadius: 12, padding: "20px 22px" }}>
+                <div key={i} style={{ background: item.bg, border: `1px solid ${item.color}44`, borderRadius: 12, padding: "20px 22px" }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
                     <span style={{ fontSize: 10, color: item.color, fontWeight: 800, letterSpacing: "0.2em", fontFamily: "'Jost',sans-serif" }}>{item.level}</span>
-                    <span style={{ fontSize: isMobile ? 18 : 20, fontWeight: 800, color: "#f2ece4", fontFamily: "'Jost',sans-serif" }}>{item.title}</span>
+                    <span style={{ fontSize: isMobile ? 18 : 20, fontWeight: 800, color: "#ffffff", fontFamily: "'Jost',sans-serif" }}>{item.title}</span>
                   </div>
-                  <div style={{ fontSize: 14, color: "#c0a898", lineHeight: 1.75 }}>{item.body}</div>
+                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", lineHeight: 1.75 }}>{item.body}</div>
                 </div>
               ))}
             </div>
@@ -1361,23 +1361,23 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
 
         {/* WHY DESIRE DOESN'T MANIFEST */}
-        <div style={{ background: "#000", border: "0.5px solid rgba(183,110,121,0.2)", borderRadius: 20, padding: isMobile?"28px 20px":"44px 40px", marginBottom: 70 }}>
-          <div style={{ fontSize: isMobile?14:16, color: "#B76E79", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontWeight: 900 }}>THE REAL REASON</div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: "#f2ece4", marginBottom: 28, lineHeight: 1.2 }}>
+        <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize: "300%", backgroundPosition: "left", border: "none", borderRadius: 20, padding: isMobile?"28px 20px":"44px 40px", marginBottom: 70 }}>
+          <div style={{ fontSize: isMobile?14:16, color: "#000", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontWeight: 900 }}>THE REAL REASON</div>
+          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: "#000", marginBottom: 28, lineHeight: 1.2 }}>
             Why your desire hasn't arrived yet.<br/>
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And what does.</span>
           </h2>
           <div style={{...G2(isMobile), gap: 36}}>
             {[
-              { title: "Why it hasn't worked", color: T.danger, items: ["Desire lives in the conscious mind. The conscious mind doesn't create reality.", "Affirmations are rejected by a subconscious that holds the opposite belief.", "Visualisation without identity shift is just imagination — the subconscious knows.", "Willpower requires constant effort. The subconscious always wins."], icon: "✗" },
-              { title: "What actually works", color: "#B76E79", items: ["The subconscious accepts new beliefs in theta and delta states — at the edge of sleep.", "Repetition installs the new self-concept below the threshold of conscious resistance.", "Once the subconscious holds the new identity as true, reality rearranges to match it.", "Passive. No effort. No force. The subconscious does the work while you rest."], icon: "✦" },
+              { title: "Why it hasn't worked", color: "#3a0a1a", items: ["Desire lives in the conscious mind. The conscious mind doesn't create reality.", "Affirmations are rejected by a subconscious that holds the opposite belief.", "Visualisation without identity shift is just imagination — the subconscious knows.", "Willpower requires constant effort. The subconscious always wins."], icon: "✗" },
+              { title: "What actually works", color: "#000", items: ["The subconscious accepts new beliefs in theta and delta states — at the edge of sleep.", "Repetition installs the new self-concept below the threshold of conscious resistance.", "Once the subconscious holds the new identity as true, reality rearranges to match it.", "Passive. No effort. No force. The subconscious does the work while you rest."], icon: "✦" },
             ].map((col, ci) => (
               <div key={ci}>
                 <div style={{ fontSize: 14, color: col.color, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 16 }}>{col.title}</div>
                 {col.items.map((t, i) => (
                   <div key={i} style={{ display: "flex", gap: 12, marginBottom: 16 }}>
                     <span style={{ color: col.color, fontSize: ci === 0 ? 18 : 16, flexShrink: 0, marginTop: 2 }}>{col.icon}</span>
-                    <span style={{ fontSize: 16, color: ci === 0 ? "#d8c8a0" : T.textSecondary, lineHeight: 1.75 }}>{t}</span>
+                    <span style={{ fontSize: 16, color: "#1a0a0a", lineHeight: 1.75 }}>{t}</span>
                   </div>
                 ))}
               </div>
@@ -1611,7 +1611,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 "No ads. Ever.",
               ],
               cta: "Join Audio Tier — £19/mo",
-              ctaBg: "linear-gradient(90deg,#7040b0,#9060d0)",
+              ctaBg: "linear-gradient(135deg,#ede8ff,#d4c8ff)", ctaClass: "cta-shake", ctaTextColor: "#3a1a80",
             },
             {
               id: "goddess", name: "Goddess Tier", popular: true,
@@ -1629,7 +1629,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 "Monthly ritual audio included",
               ],
               cta: "Activate Goddess Tier — £33/mo",
-              ctaBg: "linear-gradient(90deg,#d4a090,#B76E79)",
+              ctaBg: "linear-gradient(90deg,#d4a090,#B76E79)", ctaClass: "cta-shake", ctaTextColor: "#000",
             }
           ].map(p => (
             <div key={p.id} style={{ background: p.bg, border: `2px solid ${p.border}`, borderRadius: 18, padding: 28, position: "relative" }}>
@@ -1655,7 +1655,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   )
                 ))}
               </div>
-              <button onClick={onJoin} style={{ width: "100%", padding: "16px", background: p.ctaBg, border: "none", borderRadius: 12, color: "#000", fontSize: 15, fontWeight: 800, cursor: "pointer", minHeight: 54, fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em", textTransform: "uppercase", boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>{p.cta}</button>
+              <button onClick={onJoin} className={p.ctaClass||""} style={{ width: "100%", padding: "16px", background: p.ctaBg, border: "none", borderRadius: 12, color: p.ctaTextColor||"#000", fontSize: 15, fontWeight: 800, cursor: "pointer", minHeight: 54, fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em", textTransform: "uppercase", boxShadow: "0 4px 20px rgba(0,0,0,0.3)" }}>{p.cta}</button>
             </div>
           ))}
         </div>
@@ -1679,7 +1679,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 ))}
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
-                <button onClick={() => window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank")} style={{ padding: "16px 36px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>Claim Lifetime Access →</button>
+                <button onClick={() => window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank")} className="cta-shake" style={{ padding: "16px 36px", background: "linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)", backgroundSize: "300%", backgroundPosition: "center", border: "none", borderRadius: 12, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", minHeight: 52, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase", boxShadow: "0 4px 24px rgba(200,160,0,0.4)" }}>Claim Lifetime Access →</button>
                 <div style={{ fontSize: 13, color: "#a0989c" }}>Original price · First 1,000 members only</div>
               </div>
             </div>
