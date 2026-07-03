@@ -9,7 +9,7 @@ const RG = "#B76E79";
 
 export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
   const limit     = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
-  const planLabel = userTier === "founder" ? "Founder · Lifetime" : userTier === "goddess" ? "Goddess Tier · €33/month" : "Audio Tier · €19/month";
+  const planLabel = userTier === "founder" ? "Founder · Lifetime" : userTier === "goddess" ? "Goddess Tier · £33/month" : "Audio Tier · £19/month";
 
   const [notifStatus, setNotifStatus] = useState(
     typeof Notification !== "undefined" ? Notification.permission : "unsupported"
@@ -50,37 +50,6 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
         </h1>
         <p style={{ fontSize: 15, color: T.textMuted }}>Account, subscription, storage, and listening preferences.</p>
       </div>
-
-      {/* UPGRADE PATHS */}
-      {userTier !== "founder" && (
-        <div style={{ background: "#0a0908", border: "1px solid #B76E7933", borderRadius: 16, padding: "24px 28px", marginBottom: 24 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Upgrade your access</div>
-          {userTier === "audio" && (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-              <div style={{ background: "#0f0c0a", border: "1px solid #B76E7944", borderRadius: 12, padding: "20px" }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#f2ece4", marginBottom: 6 }}>Goddess Tier</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#B76E79", marginBottom: 4 }}>+€18.01<span style={{ fontSize: 12, color: "#786860" }}>/mo</span></div>
-                <div style={{ fontSize: 12, color: "#b09888", marginBottom: 16, lineHeight: 1.6 }}>Unlock ProofOS — log signs, capture proof, track every manifestation.</div>
-                <button onClick={() => window.open("https://buy.stripe.com/GODDESS_PLAN_LINK", "_blank")} style={{ width: "100%", padding: "11px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 10, color: "#000", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Upgrade to Goddess</button>
-              </div>
-              <div style={{ background: "#0f0c0a", border: "1px solid #B76E7944", borderRadius: 12, padding: "20px" }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#f2ece4", marginBottom: 6 }}>Early Bird Lifetime</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#d4a090", marginBottom: 4 }}>€500<span style={{ fontSize: 12, color: "#786860" }}> once</span></div>
-                <div style={{ fontSize: 12, color: "#b09888", marginBottom: 16, lineHeight: 1.6 }}>Full vault + ProofOS forever. Never pay again. 1,000 spots only.</div>
-                <button onClick={() => window.open("https://buy.stripe.com/LIFETIME_PLAN_LINK", "_blank")} style={{ width: "100%", padding: "11px", background: "transparent", border: "1.5px solid #B76E7944", borderRadius: 10, color: "#B76E79", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Claim Lifetime Access</button>
-              </div>
-            </div>
-          )}
-          {userTier === "goddess" && (
-            <div style={{ background: "#0f0c0a", border: "1px solid #B76E7944", borderRadius: 12, padding: "20px" }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#f2ece4", marginBottom: 6 }}>Early Bird Lifetime</div>
-              <div style={{ fontSize: 24, fontWeight: 800, color: "#d4a090", marginBottom: 4 }}>€500 <span style={{ fontSize: 13, color: "#786860" }}>once — you've paid €33/mo so far</span></div>
-              <div style={{ fontSize: 12, color: "#b09888", marginBottom: 16, lineHeight: 1.6 }}>Lock in everything forever. No more monthly charges. 1,000 spots only.</div>
-              <button onClick={() => window.open("https://buy.stripe.com/LIFETIME_PLAN_LINK", "_blank")} style={{ padding: "11px 28px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 10, color: "#000", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Claim Lifetime Access</button>
-            </div>
-          )}
-        </div>
-      )}
 
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
 
