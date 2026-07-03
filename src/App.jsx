@@ -264,7 +264,7 @@ const MARQUEE_ITEMS = [
 function HeroMarquee() {
   const [lit, setLit] = useState(-1);
   const doubled = [...MARQUEE_ITEMS,...MARQUEE_ITEMS,...MARQUEE_ITEMS];
-  useEffect(() => { const t = setInterval(() => setLit(Math.floor(Math.random()*MARQUEE_ITEMS.length)), 2800); return () => clearInterval(t); }, []);
+  useEffect(() => { const t = setInterval(() => setLit(Math.floor(Math.random()*MARQUEE_ITEMS.length)), 5500); return () => clearInterval(t); }, []);
   return (
     <div style={{ overflow:"hidden", marginBottom:24, maskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)", WebkitMaskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)" }}>
       <div className="marquee-track" style={{ gap:"0 36px" }}>
@@ -533,7 +533,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ background: "#0a0800", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
             <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Audio Vault Preview</div>
             <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>Spoilt Goddess</div>
-            <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>Melodic House · Self-Concept · 528hz</div>
+            <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>Melodic House · Self-Concept · EMDR · 528hz</div>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
               <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", color: "#000", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>{playing ? "⏸" : "▶"}</button>
               <div style={{ flex: 1 }}>
