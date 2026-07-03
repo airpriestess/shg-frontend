@@ -645,8 +645,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ fontSize: 10, color: "#3a2a1a", marginTop: 8, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em" }}>[ BRAND IMAGE — replace with brain scan visual ]</div>
         </div>
       </div>
-      {/* PROOFOS INTRO — directly after problem section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#0d0804 0%,#120a06 100%)", borderTop: "1px solid #2a1410", borderBottom: "1px solid #2a1410" }}>
+      {/* PROOFOS INTRO — peach section */}
+      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#100806 0%,#180d08 50%,#100806 100%)", borderTop: "1px solid #3a1a10", borderBottom: "1px solid #3a1a10" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -715,8 +715,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 {/* MAXXING CAROUSEL */}
       <MaxxingCarousel cats={cats} />
 
-      {/* LANDING PROOF WALL */}
-      <div style={{ padding: isMobile ? "0 18px 48px" : "0 clamp(16px,4vw,24px) 70px", maxWidth: 900, margin: "0 auto" }}>
+      {/* LANDING PROOF WALL — peach section */}
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "linear-gradient(180deg,#0f0906 0%,#150c07 50%,#0f0906 100%)", borderTop: "1px solid #2a1a10", borderBottom: "1px solid #2a1a10" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -727,23 +727,117 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
         <div style={{...GPROOF(isMobile), marginBottom: 12}}>
           {[
-            { label: "Bank Transfer", sub: "£5,000 received · Day 8", bg: "linear-gradient(135deg,#0a1a0e,#051005)", color: "#4a9a5a", text: "£5,000", sz: 20 },
-            { label: "Message Screenshot", sub: "He texted first · Day 5", bg: "linear-gradient(135deg,#1a0e12,#0e0810)", color: "#f2ece4", text: "I miss you.", sz: 13 },
-            { label: "Mirror Photo", sub: "The glow · Day 14", bg: "linear-gradient(135deg,#1a0e18,#0e0812)", color: "#d4a090", text: "🪞", sz: 28 },
-            { label: "Angel Number", sub: "Saw 555 three times", bg: "linear-gradient(135deg,#1a1400,#0e0e00)", color: "#d4a090", text: "5:55", sz: 22 },
-            { label: "Email Proof", sub: "The opportunity arrived", bg: "linear-gradient(135deg,#0a0e14,#080810)", color: "#8a9ab0", text: "📧", sz: 26 },
-            { label: "Second Transfer", sub: "Money keeps arriving", bg: "linear-gradient(135deg,#0a1a0e,#051005)", color: "#4a9a5a", text: "£2,500", sz: 18 },
-          ].map((p, i) => (
-            <div key={i} style={{ background: "#0a0908", border: "1px solid #201e1c", borderRadius: 12, overflow: "hidden" }}>
-              <div style={{ height: 80, background: p.bg, display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid #201e1c" }}>
-                <div style={{ fontSize: p.sz, fontWeight: 700, color: p.color }}>{p.text}</div>
-              </div>
-              <div style={{ padding: "10px 12px" }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#B76E79", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 2 }}>{p.label}</div>
-                <div style={{ fontSize: 11, color: T.textMuted }}>{p.sub}</div>
-              </div>
-            </div>
-          ))}
+            {
+              type: "bank", label: "Bank Transfer", sub: "10 days of listening · Money finds me first",
+              render: () => (
+                <div style={{ background: "linear-gradient(160deg,#050e06,#081408)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
+                  <div style={{ background: "#0a1a0c", padding: "12px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #1a3a1a" }}>
+                    <span style={{ fontSize: 9, color: "#4a8a4a", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.15em" }}>BANKING APP · NOTIFICATION</span>
+                    <span style={{ fontSize: 9, color: "#3a6a3a" }}>✓ Received</span>
+                  </div>
+                  <div style={{ padding: "18px 16px" }}>
+                    <div style={{ fontSize: 11, color: "#4a8a4a", marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>Payment received</div>
+                    <div style={{ fontSize: 32, fontWeight: 800, color: "#5ab06a", fontFamily: "'Jost',sans-serif", marginBottom: 6 }}>£5,000</div>
+                    <div style={{ fontSize: 10, color: "#3a6a3a" }}>Day 8 · 23:47 · Transferred in full</div>
+                  </div>
+                  <div style={{ padding: "10px 16px", background: "#060e08", borderTop: "1px solid #1a3a1a" }}>
+                    <div style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Money Finds Me First</div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              type: "message", label: "Message Screenshot", sub: "3 hours after listening · He texted first",
+              render: () => (
+                <div style={{ background: "#0e0810", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a2a" }}>
+                  <div style={{ background: "#120a14", padding: "10px 14px", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid #2a1a2a" }}>
+                    <div style={{ width: 28, height: 28, borderRadius: "50%", background: "linear-gradient(135deg,#d4a090,#B76E79)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>H</div>
+                    <div>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: "#f2ece4" }}>Him</div>
+                      <div style={{ fontSize: 9, color: "#786860" }}>Today 14:23</div>
+                    </div>
+                  </div>
+                  <div style={{ padding: "16px 14px" }}>
+                    <div style={{ background: "#1e1220", borderRadius: "14px 14px 14px 4px", padding: "12px 16px", display: "inline-block", maxWidth: "85%" }}>
+                      <div style={{ fontSize: 15, color: "#f2ece4", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", lineHeight: 1.5 }}>I miss you. Been thinking about you constantly. Can we talk?</div>
+                    </div>
+                  </div>
+                  <div style={{ padding: "10px 16px", background: "#0a0610", borderTop: "1px solid #2a1a2a" }}>
+                    <div style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: He Finds His Way Back</div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              type: "skin", label: "Mirror Selfie", sub: "Day 14 · They all noticed",
+              render: () => (
+                <div style={{ background: "linear-gradient(160deg,#100808,#1a0c0e)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a18" }}>
+                  <div style={{ height: 100, background: "linear-gradient(160deg,#1a0e10,#250e14)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, borderBottom: "1px solid #2a1a18", position: "relative" }}>
+                    <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#d4a09015,transparent 70%)" }}/>
+                    <div style={{ fontSize: 11, color: "#d4a090", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.2em" }}>✦ SKIN GLOW · DAY 14</div>
+                    <div style={{ fontSize: 22, color: "#d4a090", letterSpacing: 4 }}>◦ ◦ ◦</div>
+                    <div style={{ fontSize: 10, color: "#8a6858", fontStyle: "italic" }}>What are you doing differently?</div>
+                  </div>
+                  <div style={{ padding: "12px 16px" }}>
+                    <div style={{ fontSize: 13, color: "#d4c0a8", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", lineHeight: 1.65 }}>"Three people asked what I was doing differently. My skin has never looked like this."</div>
+                  </div>
+                  <div style={{ padding: "10px 16px", background: "#0c0608", borderTop: "1px solid #2a1a18" }}>
+                    <div style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Gorgeous Is My Default</div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              type: "angel", label: "Angel Numbers", sub: "555 · Three times in one day",
+              render: () => (
+                <div style={{ background: "linear-gradient(160deg,#0e0c00,#160e00)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a2200" }}>
+                  <div style={{ padding: "22px 16px", textAlign: "center" }}>
+                    <div style={{ fontSize: 42, fontWeight: 900, color: "#c8a840", fontFamily: "'Jost',sans-serif", letterSpacing: 8, marginBottom: 8, textShadow: "0 0 30px #c8a84044" }}>555</div>
+                    <div style={{ fontSize: 11, color: "#8a8040", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>Angel Number · Three times today</div>
+                    <div style={{ fontSize: 12, color: "#c8b878", fontStyle: "italic", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.6 }}>Clock · Number plate · Total on receipt</div>
+                  </div>
+                  <div style={{ padding: "10px 16px", background: "#0a0800", borderTop: "1px solid #2a2200" }}>
+                    <div style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Highest Timeline Activated</div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              type: "voice", label: "Voice Note", sub: "Day 3 · Recorded in the moment",
+              render: () => (
+                <div style={{ background: "#080a0e", borderRadius: 12, overflow: "hidden", border: "1px solid #1a2030" }}>
+                  <div style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 12 }}>
+                    <div style={{ fontSize: 11, color: "#7a9ab0", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.15em" }}>VOICE PROOF · DAY 3</div>
+                    <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
+                      {[6,14,20,10,18,8,22,12,18,6,16,10,20,8,14,18,10,16].map((h,j) => (
+                        <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: `linear-gradient(180deg,#d4a090,#B76E79)`, opacity: 0.8 }}/>
+                      ))}
+                    </div>
+                    <div style={{ fontSize: 13, color: "#c8b898", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", lineHeight: 1.65 }}>"I woke up knowing before anything happened."</div>
+                  </div>
+                  <div style={{ padding: "10px 16px", background: "#050608", borderTop: "1px solid #1a2030" }}>
+                    <div style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: I Am the Lucky Girl</div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              type: "money2", label: "Transfer #2", sub: "Day 21 · Money keeps arriving",
+              render: () => (
+                <div style={{ background: "linear-gradient(160deg,#050e06,#081408)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
+                  <div style={{ padding: "18px 16px" }}>
+                    <div style={{ fontSize: 11, color: "#4a8a4a", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>Payment received</div>
+                    <div style={{ fontSize: 28, fontWeight: 800, color: "#5ab06a", fontFamily: "'Jost',sans-serif", marginBottom: 6 }}>£2,500</div>
+                    <div style={{ fontSize: 10, color: "#3a6a3a" }}>Day 21 · Second unexpected payment</div>
+                    <div style={{ fontSize: 12, color: "#6ab07a", fontStyle: "italic", fontFamily: "'Cormorant Garamond',serif", marginTop: 10, lineHeight: 1.6 }}>"It just keeps coming. Of course it does."</div>
+                  </div>
+                  <div style={{ padding: "10px 16px", background: "#060e08", borderTop: "1px solid #1a3a1a" }}>
+                    <div style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Money Finds Me First</div>
+                  </div>
+                </div>
+              )
+            },
+          ].map((p, i) => p.render())}
         </div>
         <div style={{ background: "#0a0908", border: "1px solid #B76E7933", borderRadius: 14, padding: "14px 18px", display: "flex", gap: 14, alignItems: "center" }}>
           <div style={{ width: 40, height: 40, borderRadius: 10, background: "#B76E7918", border: "1px solid #B76E7933", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>🎙</div>
@@ -826,11 +920,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div className="comp-table" style={{ marginBottom: 2 }}>
             <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "22px 30px", border: "1px solid #2a1010", borderBottom: "none", borderRight: "none" }}>
               <div style={{ fontSize: 12, color: T.danger, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>Old self-concept</div>
-              <div className="wm" style={{ fontSize: 32, color: "#8a5560" }}>Running old programming</div>
+              <div className="wm" style={{ fontSize: "clamp(22px,3.5vw,40px)", color: "#8a5560", lineHeight: 1.1 }}>Running old<br/>programming</div>
             </div>
             <div style={{ background: "#080a08", borderRadius: "0 14px 0 0", padding: "22px 30px", border: `1px solid ${T.gold}33`, borderBottom: "none", borderLeft: "none" }}>
               <div style={{ fontSize: 12, color: T.champagne, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>New self-concept</div>
-              <div className="wm" style={{ fontSize: 32, color: T.textSecondary }}>Reprogrammed subconscious</div>
+              <div className="wm" style={{ fontSize: "clamp(22px,3.5vw,40px)", color: T.textSecondary, lineHeight: 1.1 }}>Reprogrammed<br/>subconscious</div>
             </div>
           </div>
           {compRows.map((row, i) => (
@@ -838,13 +932,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div style={{ background: "#0a0900", padding: "18px 24px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#4a3030", fontSize: 16, flexShrink: 0, marginTop: 3 }}>✗</span>
-                  <span style={{ fontSize: 18, color: "#8a7060", lineHeight: 1.7, fontStyle: "italic", display: "block", background: "#0f0804", borderRadius: 12, padding: "14px 16px", border: "1px solid #2a1a10" }}>{row.old}</span>
+                  <span style={{ fontSize: "clamp(16px,2.2vw,24px)", color: "#8a7060", lineHeight: 1.65, fontStyle: "italic", display: "block", background: "#0e0602", borderRadius: 16, padding: "20px 22px", border: "1px solid #3a1a10", fontFamily: "'Cormorant Garamond',serif" }}>{row.old}</span>
                 </div>
               </div>
               <div style={{ background: "#0c0a06", padding: "18px 24px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
                   <span style={{ color: T.champagne, fontSize: 16, flexShrink: 0, marginTop: 2 }}>✦</span>
-                  <span style={{ fontSize: 18, color: "#f2ece4", lineHeight: 1.7, fontWeight: 600, display: "block", background: "#0a0e08", borderRadius: 12, padding: "14px 16px", border: "1px solid #2a3a10" }}>{row.neu}</span>
+                  <span style={{ fontSize: "clamp(16px,2.2vw,24px)", color: "#f2ece4", lineHeight: 1.65, fontWeight: 600, display: "block", background: "#060e04", borderRadius: 16, padding: "20px 22px", border: "1px solid #2a4a10", fontFamily: "'Cormorant Garamond',serif" }}>{row.neu}</span>
                 </div>
                 {row.proof && <div style={{ fontSize: 12, color: T.roseGold, fontStyle: "italic", paddingLeft: 26, lineHeight: 1.6, marginBottom: 6 }}>"{row.proof}"</div>}
                 {row.cat && <div style={{ paddingLeft: 26 }}><span style={{ fontSize: 10, padding: "2px 8px", background: "#B76E7915", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.08em" }}>{row.cat}</span></div>}
