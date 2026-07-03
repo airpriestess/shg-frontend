@@ -63,7 +63,7 @@ img{max-width:100%;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(183,110,121,0.5);}50%{box-shadow:0 0 0 12px rgba(183,110,121,0);}}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:var(--op);}50%{transform:translate(-50%,-50%) scale(1.06);opacity:calc(var(--op)*2);}}
 .fade{animation:fadeIn 0.4s ease both;}
-.marquee-track{display:flex;width:max-content;animation:marquee 55s linear infinite;}
+.marquee-track{display:flex;width:max-content;animation:marquee 100s linear infinite;}
 .cta-pulse{animation:pulse 2.2s ease-in-out infinite;}
 .ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none;top:50%;left:50%;animation:breathe 6s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){.marquee-track,.cta-pulse,.ring{animation:none;}}
