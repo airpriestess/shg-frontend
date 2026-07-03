@@ -147,7 +147,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
 
       {/* MOOD BEFORE / AFTER CAPTURE */}
       <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 14, padding: "18px 20px", marginBottom: 16 }}>
-        <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>How are you feeling?</div>
+        <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>How are you feeling?</div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           <div>
             <div style={{ fontSize: 12, color: T.textFaint, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Before listening</div>
@@ -156,7 +156,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
               onChange={e => setLocalMoodBefore(e.target.value)}
               placeholder="e.g. anxious about money, stressed, doubtful..."
               rows={2}
-              style={{ width: "100%", background: "#060400", border: "1px solid #1e1c0a", borderRadius: 8, padding: "10px 12px", color: T.textPrimary, fontSize: 13, resize: "none", fontFamily: "Inter,sans-serif", outline: "none" }}
+              style={{ width: "100%", background: "#060400", border: "1px solid #1e1c0a", borderRadius: 8, padding: "10px 12px", color: T.textPrimary, fontSize: 13, resize: "none", fontFamily: "'Jost',sans-serif", outline: "none" }}
             />
           </div>
           <div>
@@ -166,7 +166,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
               onChange={e => setLocalMoodAfter(e.target.value)}
               placeholder="e.g. more relaxed, certain, calm, detached..."
               rows={2}
-              style={{ width: "100%", background: "#060400", border: "1px solid #B76E7933", borderRadius: 8, padding: "10px 12px", color: T.textPrimary, fontSize: 13, resize: "none", fontFamily: "Inter,sans-serif", outline: "none" }}
+              style={{ width: "100%", background: "#060400", border: "1px solid #B76E7933", borderRadius: 8, padding: "10px 12px", color: T.textPrimary, fontSize: 13, resize: "none", fontFamily: "'Jost',sans-serif", outline: "none" }}
             />
           </div>
         </div>
