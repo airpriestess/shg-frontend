@@ -1,4 +1,4 @@
-/* PortalScreenshot — pure px sizing, dark/light theme */
+/* PortalScreenshot — pure px sizing, dark/light theme, real stock images */
 const THEMES = {
   dark:  { bg:"#121212", bg2:"#1a1a1a", bg3:"#282828", bg4:"#2a2a2a", cr:"#ffffff", mu:"#b3b3b3", dim:"#727272", nav:"#0a0a0a" },
   light: { bg:"#fdf0e8", bg2:"rgba(255,255,255,0.9)", bg3:"rgba(0,0,0,0.07)", bg4:"rgba(0,0,0,0.1)", cr:"#111111", mu:"#6a5048", dim:"#a08878", nav:"rgba(255,255,255,0.97)" },
@@ -6,23 +6,26 @@ const THEMES = {
 const R="#B76E79", P="#d4a090";
 const OMBRE="linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
 
-const ART = {
-  "Spoilt Goddess":           ["#c87890","#8a3060","♡"],
-  "He Finds His Way Back":    ["#4060b0","#6080d0","✉"],
-  "Money Finds Me First":     ["#306040","#50a070","✦"],
-  "While I Sleep I Manifest": ["#483878","#6858a8","☽"],
-  "Gorgeous Is My Default":   ["#b06840","#d4a060","◎"],
-  "Lucky Girl Summer":        ["#808020","#c0c040","★"],
+// Unsplash stock image URLs for each track category
+const IMGS = {
+  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#c87890,#8a3060" },
+  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#4060b0,#6080d0" },
+  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#306040,#50a070" },
+  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#483878,#6858a8" },
+  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#b06840,#d4a060" },
+  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#808020,#c0c040" },
+  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#604080,#9060b0" },
+  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#305070,#4080a0" },
 };
+
 const RECENT = ["Spoilt Goddess","He Finds His Way Back","Money Finds Me First","While I Sleep I Manifest","Gorgeous Is My Default","Lucky Girl Summer"];
 
 function Thumb({ title, size, r=3 }) {
-  const d = ART[title] || ["#483060","#604880","✦"];
+  const d = IMGS[title] || { url:null, g:"#483060,#604880" };
   return (
     <div style={{ width:size, height:size, borderRadius:r, flexShrink:0, overflow:"hidden",
-      background:`linear-gradient(135deg,${d[0]},${d[1]})`,
-      display:"flex", alignItems:"center", justifyContent:"center" }}>
-      <span style={{ fontSize:size*0.42, color:"rgba(255,255,255,0.5)", lineHeight:1, userSelect:"none" }}>{d[2]}</span>
+      background:`linear-gradient(135deg,${d.g})`, position:"relative" }}>
+      {d.url && <img src={d.url} alt={title} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:0.85 }} onError={e=>e.target.style.display="none"}/>}
     </div>
   );
 }
@@ -32,8 +35,8 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
   const h = Math.round(width * (844/390));
   const s = width / 390;
   const f = { xs:Math.max(6,Math.round(9*s)), sm:Math.max(7,Math.round(11*s)), md:Math.max(8,Math.round(13*s)), lg:Math.max(10,Math.round(16*s)) };
-  const thumb=Math.round(46*s), thumbCard=Math.round(80*s), gap=Math.round(6*s), pad=Math.round(14*s);
-  const r8=Math.round(8*s), r14=Math.round(14*s), r24=Math.round(24*s);
+  const thumb=Math.round(46*s), thumbCard=Math.round(80*s), pad=Math.round(14*s);
+  const r8=Math.round(8*s), r24=Math.round(24*s);
 
   return (
     <div style={{ width, height:h, background:C.bg, borderRadius:r24, overflow:"hidden",
@@ -45,8 +48,6 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         <span style={{ fontSize:f.sm, fontWeight:700, color:C.cr }}>9:41</span>
         <span style={{ fontSize:f.xs, color:C.cr }}>●● 100%</span>
       </div>
-
-      {/* NOTCH */}
       <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)", width:Math.round(90*s), height:Math.round(26*s), background:C.bg, borderRadius:`0 0 ${Math.round(12*s)}px ${Math.round(12*s)}px`, zIndex:50 }}/>
 
       {/* GREETING */}
@@ -98,7 +99,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         </div>
       </div>
 
-      {/* 4-TAB BOTTOM NAV */}
+      {/* 4-TAB NAV */}
       <div style={{ position:"absolute", bottom:0, left:0, right:0, height:Math.round(56*s), background:C.nav, borderTop:`0.5px solid ${C.bg3}`, display:"flex", alignItems:"center" }}>
         {[
           { label:"Home", active:true, color:C.cr, icon:<svg width={Math.round(20*s)} height={Math.round(20*s)} viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={C.cr}/></svg> },
