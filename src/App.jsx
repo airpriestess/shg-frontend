@@ -725,41 +725,45 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       {/* THE PROBLEM SECTION */}
       <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", maxWidth: 1100, margin: "0 auto", background: "linear-gradient(160deg,#fce8dc 0%,#f8ddd0 50%,#fce8dc 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Why it hasn't worked yet</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: "#1a0808", lineHeight: 1.15, marginBottom: 16 }}>
+          <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Why it hasn't clicked yet</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,54px)", color: "#1a0808", lineHeight: 1.1, marginBottom: 20 }}>
             You've done everything.<br />
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing's changed.</span>
+            You've even taken massive action.<br />
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Results are nowhere to be seen.</span>
           </h2>
-          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#1a0808", lineHeight: 1.85, maxWidth: 580, margin: "0 auto" }}>
-            Scripting. Affirmations. Vision boards. You've done everything right. You're still waiting. The problem isn't your effort. <strong style={{ color: "#1a0808", fontWeight: 800 }}>It's your brainwave state.</strong>
+          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#1a0808", lineHeight: 1.9, maxWidth: 620, margin: "0 auto" }}>
+            Whether it's love, money, your business — you've tried it all. Scripting. Visualising. Affirmations. Action. And you're still standing in the same place asking <em>what is going on?</em>
+          </p>
+          <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#1a0808", lineHeight: 1.9, maxWidth: 560, margin: "20px auto 0", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
+            Here's the truth nobody told you: <strong style={{ fontStyle: "normal", fontWeight: 700 }}>it's not your effort that's the problem. It's the wiring.</strong>
           </p>
         </div>
         <div style={{ ...G3(isMobile), gap: 20 }}>
           {[
             {
               num: "01",
-              title: "Your brain hasn't entered theta state",
-              body: "Conscious effort — journaling, affirming, visualising — operates at beta frequency. The subconscious mind is only accessible in theta (4–8 Hz). Without it, you're installing nothing. You're talking to a locked door.",
-              fix: "SHG audios use binaural beats and EMDR to drop you into theta within minutes."
+              title: "It's all happening at the conscious level",
+              body: "Scripting, visualising, affirming — everything you've been doing is conscious. It operates at beta frequency. But your beliefs, your identity, the patterns that create your reality? Those live in the subconscious. And the subconscious is only accessible in theta state (4–8 Hz). You've been knocking on a door that's been locked the whole time.",
+              fix: "SHG audios guide your brain into theta using binaural beats and EMDR — within minutes of pressing play."
             },
             {
               num: "02",
-              title: "Generic affirmations don't resonate with your nervous system",
-              body: "A stranger's voice. Generic words. No EMDR. No frequency. Your subconscious mind is pattern-matching whether this input feels true and familiar. If the voice, energy, or specificity is off — it rejects it. Nothing installs.",
-              fix: "Reshma's voice is calibrated to guide your nervous system into receptivity. The specificity is what makes it land."
+              title: "The wiring underneath hasn't changed",
+              body: "You can repeat 'I am abundant' a thousand times. But if the subconscious is still running 'money is hard' — the conscious affirmation doesn't stand a chance. The old belief isn't wrong because you haven't tried hard enough. It's wrong because it was installed before you had the words for it, at a cellular level, through experience. You need to go that deep to change it.",
+              fix: "Reshma's voice + EMDR bilateral stimulation dissolves the old belief at its root — not just the surface thought."
             },
             {
               num: "03",
-              title: "You have no way to track what's shifting",
-              body: "Without a system to capture signs, synchronicities, and evidence — you give up before the rewire is complete. You can't see the progress, so you assume nothing's working. You stop at day 9. It would have landed on day 14.",
-              fix: "ProofOS links every audio session to real evidence. You see the pattern building in real time."
+              title: "You stopped before the rewire was complete",
+              body: "Most people give up at day 9. The shift was happening on day 14. Without a way to see the evidence building — the sign, the synchronicity, the unexpected thing that arrived — you assume nothing's working. You stop. And you miss it. The pattern was already in motion.",
+              fix: "ProofOS captures every sign as it arrives. You see the evidence building in real time. You don't stop early."
             }
           ].map((p, i) => (
             <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 16, padding: 28, borderTop: "2px solid #B76E79", boxShadow: "0 2px 18px rgba(183,110,121,0.07)" }}>
               <div style={{ fontSize: 12, color: "#B76E7966", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 14 }}>{p.num}</div>
               <div style={{ fontSize: "clamp(18px,2vw,22px)", fontWeight: 800, color: "#1a0808", marginBottom: 12, lineHeight: 1.2, fontFamily: "'Jost',sans-serif" }}>{p.title}</div>
-              <p style={{ fontSize: 14, color: "#1a0808", lineHeight: 1.85, marginBottom: 16 }}>{p.body}</p>
-              <div style={{ fontSize: 14, color: "#B76E79", fontWeight: 500, paddingTop: 14, borderTop: "1px solid #1c1828" }}>✦ {p.fix}</div>
+              <p style={{ fontSize: 15, color: "#1a0808", lineHeight: 1.9, marginBottom: 16 }}>{p.body}</p>
+              <div style={{ fontSize: 14, color: "#B76E79", fontWeight: 600, paddingTop: 14, borderTop: "1px solid rgba(183,110,121,0.2)" }}>✦ {p.fix}</div>
             </div>
           ))}
         </div>
