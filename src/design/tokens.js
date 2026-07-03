@@ -145,4 +145,33 @@ img{max-width:100%;}
   .grid-3{grid-template-columns:1fr 1fr!important;}
   .steps-grid{grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr!important;}
 }
+
+/* ── MARQUEE FLASH ─────────────────── */
+@keyframes flash{0%,100%{opacity:1;color:inherit;}50%{opacity:0.5;}}
+@keyframes maxxFlash{
+  0%,85%,100%{opacity:1;transform:none;}
+  90%{opacity:0.3;transform:scaleX(0.97);}
+  95%{opacity:1;transform:none;}
+}
+@keyframes shake{
+  0%,100%{transform:none;}
+  10%,30%,50%,70%,90%{transform:translateX(-3px);}
+  20%,40%,60%,80%{transform:translateX(3px);}
+}
+@keyframes shimmerGold{
+  0%{background-position:200% center;}
+  100%{background-position:-200% center;}
+}
+@keyframes joinPulse{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(183,110,121,0.4);}
+  50%{transform:scale(1.03);box-shadow:0 0 0 8px rgba(183,110,121,0);}
+}
+.maxx-item{animation:maxxFlash 3s ease-in-out infinite;}
+.maxx-item:nth-child(2n){animation-delay:0.4s;}
+.maxx-item:nth-child(3n){animation-delay:0.8s;}
+.maxx-item:nth-child(4n){animation-delay:1.2s;}
+.maxx-item:nth-child(5n){animation-delay:1.6s;}
+.cta-shake{animation:shake 0.6s ease-in-out infinite;animation-delay:2s;}
+.join-pulse{animation:joinPulse 1.8s ease-in-out infinite;}
+@media(prefers-reduced-motion:reduce){.maxx-item,.cta-shake,.join-pulse{animation:none;}}
 `;
