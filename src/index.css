@@ -67,6 +67,40 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── CTA SHAKE — aggressive vibrate like YouTube viral ads ──── */
+@keyframes ctaShake{
+  0%,72%,100%{transform:translate3d(0,0,0) scale(1);}
+  73%,75%,77%,79%,81%{transform:translate3d(-4px,0,0) scale(1.01);}
+  74%,76%,78%,80%{transform:translate3d(4px,0,0) scale(1.01);}
+  82%{transform:translate3d(-2px,0,0) scale(1);}
+  83%{transform:translate3d(2px,0,0) scale(1);}
+  84%{transform:translate3d(0,0,0) scale(1);}
+}
+@keyframes ctaGlow{
+  0%,100%{box-shadow:0 0 20px rgba(183,110,121,0.35),0 4px 20px rgba(0,0,0,0.4);}
+  50%{box-shadow:0 0 40px rgba(212,160,144,0.7),0 0 60px rgba(183,110,121,0.4),0 4px 20px rgba(0,0,0,0.4);}
+}
+@keyframes ctaPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.03);}
+}
+.cta-shake{
+  animation:ctaShake 4s ease-in-out infinite, ctaGlow 2s ease-in-out infinite;
+  will-change:transform;
+}
+.cta-pulse{
+  animation:ctaPulse 2.2s ease-in-out infinite;
+}
+.cta-shake.cta-pulse{
+  animation:ctaShake 4s ease-in-out infinite, ctaGlow 2s ease-in-out infinite;
+}
+/* join-pulse = subtler gentle pulse for secondary buttons */
+@keyframes joinPulse{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:0.88;transform:scale(0.985);}
+}
+.join-pulse{animation:joinPulse 2.8s ease-in-out infinite;}
+
 .fade{animation:fadeUp .45s ease both;}
 .wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
 .pulse{animation:slowPulse 1.5s ease-in-out infinite;}
