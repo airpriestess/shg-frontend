@@ -44,7 +44,11 @@ function SectionHead({ children, action, onAction }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
       <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>{children}</div>
-      {action && <button onClick={onAction} style={{ background: "none", border: "none", color: "#555", fontSize: 12, cursor: "pointer" }}>{action} →</button>}
+      {action && (
+        <button onClick={onAction} style={{ background: "none", border: "0.5px solid #B76E7944", borderRadius: 20, color: "#B76E79", fontSize: 11, fontWeight: 600, cursor: "pointer", padding: "4px 12px", letterSpacing: "0.06em" }}>
+          {action} →
+        </button>
+      )}
     </div>
   );
 }
@@ -166,7 +170,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
               <SectionHead action="View all" onAction={() => onNavigate("proof-threads")}>Recent Photo Proof</SectionHead>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }} className="grid-3">
                 {RECENT_PROOF.map((p, i) => (
-                  <div key={i} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
+                  <div key={i} onClick={() => onNavigate("proof-threads")} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
                     onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
                     onMouseLeave={e => e.currentTarget.style.borderColor = "#1a1a1a"}
                   >
@@ -227,7 +231,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             {PROOF_THREADS.map(t => {
               const sc = STATUS_LABEL[t.status] || { label: t.status, color: "#555" };
               return (
-                <div key={t.id} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "18px 20px",
+                <div key={t.id} onClick={() => onNavigate("proof-threads")} style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 14, padding: "18px 20px",
                   transition: "border-color 0.15s", cursor: "pointer" }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
                   onMouseLeave={e => e.currentTarget.style.borderColor = "#1a1a1a"}
