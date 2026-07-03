@@ -78,7 +78,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
             { v: totalManifested, l: "Manifested", c: "#4a9a5a" },
             { v: "14d", l: "Listening Streak", c: "#B76E79" },
           ].map((s, i) => (
-            <div key={i} style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "#060410", border: "1px solid #1e1c0a", borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
               <div style={{ fontSize: 24, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 4 }}>{s.v}</div>
               <div style={{ fontSize: 11, color: T.textMuted }}>{s.l}</div>
             </div>
@@ -127,7 +127,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
       </div>
 
       {/* ── RIGHT PANEL ── */}
-      <div className="hide-mob" style={{ width: 320, borderLeft: "1px solid #1e1c0a", background: "#060400", overflowY: "auto", padding: "24px 18px", flexShrink: 0 }}>
+      <div className="hide-mob" style={{ width: 320, borderLeft: "1px solid #1e1c0a", background: "#040208", overflowY: "auto", padding: "24px 18px", flexShrink: 0 }}>
         {!sel ? (
           <div style={{ padding: "60px 0", textAlign: "center" }}>
             <div style={{ fontSize: 28, marginBottom: 12, opacity: 0.3 }}>◈</div>
@@ -148,7 +148,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
 
   return (
     <div onClick={onSelect} style={{
-      background: isSelected ? "#0f0b02" : "#0a0800",
+      background: isSelected ? "#0f0b02" : "#060410",
       border: `1px solid ${isSelected ? "#B76E7966" : "#1e1c0a"}`,
       borderRadius: 14, padding: "16px 18px", cursor: "pointer",
       transition: "border-color 0.2s",
@@ -288,7 +288,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
             {linked.map(t => {
               const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#B76E79" : T.textMuted;
               return (
-                <div key={t.id} style={{ background: "#0a0800", border: "1px solid #1e1c0a", borderRadius: 10, padding: "12px 14px" }}>
+                <div key={t.id} style={{ background: "#060410", border: "1px solid #1e1c0a", borderRadius: 10, padding: "12px 14px" }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: T.textPrimary, marginBottom: 6, lineHeight: 1.35 }}>{t.intentionTitle}</div>
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: t.mood_before ? 8 : 0 }}>
                     <span style={{ fontSize: 11, color: statusColor, fontWeight: 700 }}>{t.status}</span>
