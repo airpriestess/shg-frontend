@@ -93,8 +93,8 @@ const Ico = {
 };
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
-export default function SpotifyPortal({ onSignOut, isPreview=false }) {
-  const [tab, setTab]         = useState("home");
+export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home" }) {
+  const [tab, setTab]         = useState(initialTab);
   const [track, setTrack]     = useState(TRACKS[0]);
   const [playing, setPlay]    = useState(false);
   const [liked, setLiked]     = useState(new Set([1,3,7]));
@@ -102,12 +102,15 @@ export default function SpotifyPortal({ onSignOut, isPreview=false }) {
   const [prog, setProg]       = useState(0);
   const [searchQ, setQ]       = useState("");
   const [libCat, setLibCat]   = useState("All");
+  const [libFormat, setLibFormat] = useState("All");
   const [threads, setThreads] = useState(INIT_THREADS);
-  const [theme, setTheme]     = useState("dark");
+  const [theme, setTheme]     = useState(forceTheme || "dark");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
   const audioRef = useRef(null);
   const intervalRef = useRef(null);
+
+  useEffect(() => { if (forceTheme) setTheme(forceTheme); }, [forceTheme]);
 
   const C = THEMES[theme];
   const isDark = theme === "dark";
@@ -167,12 +170,49 @@ export default function SpotifyPortal({ onSignOut, isPreview=false }) {
   const nextTrack = () => { const i=TRACKS.findIndex(t=>t.id===track.id); setTrack(TRACKS[(i+1)%TRACKS.length]); setProg(0); };
   const prevTrack = () => { const i=TRACKS.findIndex(t=>t.id===track.id); setTrack(TRACKS[(i-1+TRACKS.length)%TRACKS.length]); setProg(0); };
 
-  const [isDesktop, setDesktop] = useState(typeof window!=="undefined" && window.innerWidth>768);
-  useEffect(()=>{const h=()=>setDesktop(window.innerWidth>768); window.addEventListener("resize",h); return()=>window.removeEventListener("resize",h);},[]);
+  const [isDesktop, setDesktop] = useState(forceMode ? forceMode==="desktop" : (typeof window!=="undefined" && window.innerWidth>768));
+  useEffect(()=>{
+    if (forceMode) { setDesktop(forceMode==="desktop"); return; }
+    const h=()=>setDesktop(window.innerWidth>768); window.addEventListener("resize",h); return()=>window.removeEventListener("resize",h);
+  },[forceMode]);
 
   // ── PROFILE PANEL ────────────────────────────────────────────────────────
   const manifestedCount = threads.filter(t=>t.done).length;
   const thisMonth = threads.filter(t=>t.done).length; // simplified
+  const [billingOpen, setBillingOpen] = useState(false);
+
+  const BillingPanel = () => (
+    <>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.6)" }} onClick={()=>setBillingOpen(false)}/>
+      <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:999,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ fontSize:11,fontWeight:800,color:R,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
+        <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:20 }}>
+          <div style={{ width:44,height:44,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,fontWeight:800,color:"#000",flexShrink:0 }}>R</div>
+          <div>
+            <div style={{ fontSize:15,fontWeight:700,color:C.cr }}>Reshma Oracle</div>
+            <div style={{ fontSize:12,color:C.mu }}>reshma@reshmaoracle.com</div>
+          </div>
+        </div>
+        <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:10 }}>
+          <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
+            <span style={{ fontSize:12,color:C.mu }}>Current plan</span>
+            <span style={{ fontSize:13,fontWeight:700,color:R }}>Goddess Tier ✦</span>
+          </div>
+          <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
+            <span style={{ fontSize:12,color:C.mu }}>Amount paid</span>
+            <span style={{ fontSize:13,fontWeight:700,color:C.cr }}>£33.00 / month</span>
+          </div>
+          <div style={{ display:"flex",justifyContent:"space-between" }}>
+            <span style={{ fontSize:12,color:C.mu }}>Next billing date</span>
+            <span style={{ fontSize:13,fontWeight:700,color:C.cr }}>29 July 2026</span>
+          </div>
+        </div>
+        <div style={{ fontSize:11,color:C.dim,lineHeight:1.6,marginBottom:18 }}>No refunds after 14 days from payment · Cancel before renewal to avoid the next charge</div>
+        <button onClick={()=>window.open("https://billing.stripe.com","_blank")} style={{ width:"100%",padding:"13px",background:`linear-gradient(90deg,${P},${R})`,border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>Update payment method / cancel →</button>
+        <button onClick={()=>setBillingOpen(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+      </div>
+    </>
+  );
 
   const ProfilePanel = () => (
     <>
@@ -204,8 +244,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false }) {
           {[
             { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile — connect to Supabase auth") },
             { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
-            { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Push notifications — requires PWA/native app") },
-            { icon:<Ico.Cog c={C.mu}/>, label:"Manage subscription", action:()=>window.open("https://billing.stripe.com","_blank") },
+            { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Coming soon: daily push reminders.\n\nThis requires the app to be installed to your home screen (iPhone: Share → Add to Home Screen) so your browser can send notifications even when SHG isn't open. We'll prompt you to enable this once it's live.") },
+            { icon:<Ico.Cog c={C.mu}/>, label:"Manage subscription", action:()=>{setProfileOpen(false);setBillingOpen(true);} },
             { icon:isDark?<Ico.Cog c={C.mu}/>:<Ico.Cog c={C.mu}/>, label:`Switch to ${isDark?"light":"dark"} mode`, action:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);} },
           ].map((item,i)=>(
             <button key={i} onClick={item.action} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.cr,fontSize:14,fontWeight:500,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"background 0.1s" }}
@@ -235,7 +275,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false }) {
   const tabContent = (
     <>
       {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab}/>}
-      {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
+      {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>}
       {tab==="shop"    && <ShopTab C={C}/>}
@@ -249,6 +289,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false }) {
     <div style={{ width:"100%",height:"100%",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
+      {billingOpen && <BillingPanel/>}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <div style={{ flex:1,display:"flex",overflow:"hidden" }}>
         {/* Sidebar */}
@@ -298,6 +339,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false }) {
     <div style={{ width:"100%",height:"100%",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden",position:"relative" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
+      {billingOpen && <BillingPanel/>}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       {/* Status bar with avatar */}
       <div style={{ height:52,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
@@ -477,14 +519,14 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
       {/* NEW THIS WEEK */}
       <Sec title="New this week ✦" C={C}>
         <HRow>
-          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C}/>)}
+          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
         </HRow>
       </Sec>
 
       {/* JUMP BACK IN */}
       <Sec title="Jump back in" C={C}>
         <HRow>
-          {TRACKS.slice(0,5).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C}/>)}
+          {TRACKS.slice(0,5).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
         </HRow>
       </Sec>
 
@@ -522,7 +564,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
 }
 
 // ── SEARCH TAB ────────────────────────────────────────────────────────────────
-function SearchTab({ tracks, searchQ, setQ, play, track:cur, liked, toggleLike, isPreview, C }) {
+function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, toggleLike, isPreview, C }) {
   const res = searchQ.length>1 ? tracks.filter(t=>t.title.toLowerCase().includes(searchQ.toLowerCase())||t.cat.toLowerCase().includes(searchQ.toLowerCase())) : tracks;
   return (
     <div style={{ padding:"16px 16px 0" }}>
@@ -533,19 +575,29 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, liked, toggleLike, 
           style={{ border:"none",background:"transparent",flex:1,fontSize:14,color:C.inputCr,outline:"none",fontFamily:"'Jost',sans-serif"}}/>
         {searchQ && <button onClick={()=>setQ("")} style={{ background:"none",border:"none",color:C.dim,fontSize:16,cursor:"pointer",lineHeight:1 }}>✕</button>}
       </div>
-      {res.map(t=>(
+      {res.map(t=>{
+        const isP = cur?.id===t.id;
+        return (
         <div key={t.id} onClick={()=>play(t)} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} size={48} radius={6}/>
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:13,fontWeight:600,color:cur?.id===t.id?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+            <div style={{ fontSize:13,fontWeight:600,color:isP?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
             <div style={{ fontSize:11,color:C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
           </div>
           {t.isNew&&<span style={{ fontSize:9,padding:"2px 7px",background:`${R}22`,color:R,borderRadius:20,fontWeight:700,flexShrink:0 }}>NEW</span>}
+          {!isPreview && (
+            <>
+              <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0,flexShrink:0 }}><Ico.Heart on={liked.has(t.id)}/></button>
+              <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:32,height:32,borderRadius:"50%",background:isP?R:C.bg3,border:"none",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+                {isP&&playing?<Ico.Pause dark={isP}/>:<Ico.Play dark={isP}/>}
+              </button>
+            </>
+          )}
         </div>
-      ))}
+      );})}
     </div>
   );
 }
@@ -589,9 +641,14 @@ function LibraryTab({ tracks, cat, setCat, play, track:cur, liked, toggleLike, p
               <div style={{ fontSize:11,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.dur}</div>
             </div>
             {!isPreview&&(
-              <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:8,lineHeight:0 }}>
-                <Ico.Heart on={liked.has(t.id)}/>
-              </button>
+              <>
+                <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:8,lineHeight:0 }}>
+                  <Ico.Heart on={liked.has(t.id)}/>
+                </button>
+                <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:30,height:30,borderRadius:"50%",background:cur?.id===t.id?R:C.bg3,border:"none",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+                  {cur?.id===t.id&&playing?<Ico.Pause dark={cur?.id===t.id}/>:<Ico.Play dark={cur?.id===t.id}/>}
+                </button>
+              </>
             )}
           </div>
         ))}
@@ -781,20 +838,30 @@ function Sec({ title, children, C }) {
 function HRow({ children }) {
   return <div style={{ display:"flex",gap:12,padding:"0 16px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none" }}>{children}</div>;
 }
-function TCard({ track:t, current, play, playing, isPreview, C }) {
+function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike }) {
   const isP = current?.id===t.id;
   return (
-    <div onClick={()=>play(t)} style={{ flexShrink:0,width:140,cursor:isPreview?"not-allowed":"pointer" }}>
-      <div style={{ position:"relative",marginBottom:8 }}>
+    <div style={{ flexShrink:0,width:140 }}>
+      <div onClick={()=>play(t)} style={{ position:"relative",marginBottom:8,cursor:isPreview?"not-allowed":"pointer" }}>
         <Thumb title={t.title} size={140} radius={8}/>
         {isPreview?(
           <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
-        ):(isP&&playing&&(
-          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}>
-            <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:R,borderRadius:1 }}/>)}</div>
+        ):(
+          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:isP&&playing?"rgba(0,0,0,0.45)":"rgba(0,0,0,0)",transition:"background 0.15s" }}
+            onMouseEnter={e=>{if(!(isP&&playing))e.currentTarget.style.background="rgba(0,0,0,0.3)";}}
+            onMouseLeave={e=>{if(!(isP&&playing))e.currentTarget.style.background="rgba(0,0,0,0)";}}>
+            {isP&&playing
+              ? <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:R,borderRadius:1 }}/>)}</div>
+              : <div style={{ width:40,height:40,borderRadius:"50%",background:"rgba(255,255,255,0.92)",display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Play dark/></div>
+            }
           </div>
-        ))}
+        )}
         {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:R,color:"#000",borderRadius:20,fontSize:9,fontWeight:800 }}>NEW</div>}
+        {!isPreview && (
+          <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"rgba(0,0,0,0.55)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
+            <Ico.Heart on={liked?.has(t.id)}/>
+          </button>
+        )}
       </div>
       <div style={{ fontSize:13,fontWeight:600,color:(!isPreview&&isP)?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
       <div style={{ fontSize:11,color:C.mu }}>{t.cat} · {t.dur}</div>
