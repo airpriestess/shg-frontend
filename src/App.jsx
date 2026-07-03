@@ -563,8 +563,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing's changed.</span>
           </h2>
           <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: T.textMuted, lineHeight: 1.85, maxWidth: 580, margin: "0 auto" }}>
-            Scripting. Affirmations. Vision boards. You've done everything right. You're still waiting.<br />
-            The problem isn't your effort. <strong style={{ color: "#f2ece4" }}>It's your brainwave state.</strong>
+            Scripting. Affirmations. Vision boards. You've done everything right. You're still waiting. The problem isn't your effort. <strong style={{ color: "#f2ece4" }}>It's your brainwave state.</strong>
           </p>
         </div>
         <div style={{ ...G3(isMobile), gap: 20 }}>
@@ -599,7 +598,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* PROOFOS INTRO — directly after problem section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#000 0%,#060402 100%)" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#0d0804 0%,#120a06 100%)", borderTop: "1px solid #2a1410", borderBottom: "1px solid #2a1410" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -768,11 +767,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div className="comp-table" style={{ marginBottom: 2 }}>
             <div style={{ background: "#0a0505", borderRadius: "14px 0 0 0", padding: "22px 30px", border: "1px solid #2a1010", borderBottom: "none", borderRight: "none" }}>
               <div style={{ fontSize: 12, color: T.danger, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>Old self-concept</div>
-              <div className="wm" style={{ fontSize: 26, color: "#8a5560" }}>Running old programming</div>
+              <div className="wm" style={{ fontSize: 32, color: "#8a5560" }}>Running old programming</div>
             </div>
             <div style={{ background: "#080a08", borderRadius: "0 14px 0 0", padding: "22px 30px", border: `1px solid ${T.gold}33`, borderBottom: "none", borderLeft: "none" }}>
               <div style={{ fontSize: 12, color: T.champagne, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>New self-concept</div>
-              <div className="wm" style={{ fontSize: 26, color: T.textSecondary }}>Reprogrammed subconscious</div>
+              <div className="wm" style={{ fontSize: 32, color: T.textSecondary }}>Reprogrammed subconscious</div>
             </div>
           </div>
           {compRows.map((row, i) => (
@@ -780,13 +779,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div style={{ background: "#0a0900", padding: "18px 24px", border: "1px solid #1e1a08", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#4a3030", fontSize: 16, flexShrink: 0, marginTop: 3 }}>✗</span>
-                  <span style={{ fontSize: 15, color: "#786860", lineHeight: 1.75 }}>{row.old}</span>
+                  <span style={{ fontSize: 18, color: "#8a7060", lineHeight: 1.7, fontStyle: "italic", display: "block", background: "#0f0804", borderRadius: 12, padding: "14px 16px", border: "1px solid #2a1a10" }}>{row.old}</span>
                 </div>
               </div>
               <div style={{ background: "#0c0a06", padding: "18px 24px", border: "1px solid #1e1a08", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
                   <span style={{ color: T.champagne, fontSize: 16, flexShrink: 0, marginTop: 2 }}>✦</span>
-                  <span style={{ fontSize: 15, color: T.textPrimary, lineHeight: 1.7, fontWeight: 500 }}>{row.neu}</span>
+                  <span style={{ fontSize: 18, color: "#f2ece4", lineHeight: 1.7, fontWeight: 600, display: "block", background: "#0a0e08", borderRadius: 12, padding: "14px 16px", border: "1px solid #2a3a10" }}>{row.neu}</span>
                 </div>
                 {row.proof && <div style={{ fontSize: 12, color: T.roseGold, fontStyle: "italic", paddingLeft: 26, lineHeight: 1.6, marginBottom: 6 }}>"{row.proof}"</div>}
                 {row.cat && <div style={{ paddingLeft: 26 }}><span style={{ fontSize: 10, padding: "2px 8px", background: "#B76E7915", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.08em" }}>{row.cat}</span></div>}
@@ -1118,27 +1117,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-                  {/* REFERRAL */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 720, margin: "0 auto" }}>
-        <div style={{ background: "#0a0908", border: "1px solid #B76E7944", borderRadius: 20, padding: "36px 40px", textAlign: "center" }}>
-          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Refer a friend</div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,40px)", background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 14, lineHeight: 1.2 }}>
-            Share the portal.<br />Both of you receive one month free.
-          </h2>
-          <p style={{ fontSize: 16, color: "#b09888", lineHeight: 1.8, marginBottom: 28, maxWidth: 480, margin: "0 auto 28px" }}>
-            Invite a friend to Self Hypnosis Goddess. When they subscribe to an annual plan, you both receive one month free. No codes. No limits.
-          </p>
-          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-            <button onClick={() => { const url = "https://reshmaoracle.com?ref=friend"; if (navigator.share) { navigator.share({ title: "Self Hypnosis Goddess", text: "I have been using this — thought of you.", url }); } else { navigator.clipboard?.writeText(url); alert("Link copied to clipboard"); } }} style={{ padding: "14px 28px", background: "linear-gradient(90deg,#d4a090,#B76E79)", border: "none", borderRadius: 12, color: "#000", fontSize: 15, fontWeight: 700, cursor: "pointer" }}>
-              Share your link
-            </button>
-            <button onClick={onJoin} style={{ padding: "14px 28px", background: "transparent", border: "1px solid #B76E7966", borderRadius: 12, color: "#B76E79", fontSize: 15, fontWeight: 600, cursor: "pointer" }}>
-              View all options
-            </button>
-          </div>
-          <div style={{ fontSize: 12, color: "#786860", marginTop: 16 }}>Annual plan required for referral bonus · Applied automatically</div>
-        </div>
-      </div>
+
 
 {/* PRICING */}
       <div id="pricing" style={{ padding: "0 clamp(16px,4vw,24px) 80px", maxWidth: 960, margin: "0 auto" }}>
@@ -1148,7 +1127,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ display: "inline-flex", background: T.surfaceBase, border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
             {["monthly", "annual"].map(b => (
               <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? "linear-gradient(90deg,#d4a090,#B76E79)" : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
-                {b === "annual" ? "Annual — save £36" : "Monthly"}
+                {b === "annual" ? "Annual — save 20%" : "Monthly"}
               </button>
             ))}
           </div>
@@ -1161,7 +1140,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               id: "audio", name: "Audio Tier", cls: "price-card-audio",
               price: billing === "monthly" ? "£19" : "£144",
               period: billing === "monthly" ? "/month" : "/year",
-              sub: billing === "annual" ? "£19/mo · save £36/year" : null,
+              sub: billing === "annual" ? "£19/mo · save 20%" : null,
               color: T.textSecondary,
               features: ["An ever-expanding hypnosis library", "All 6 desire categories", "4 new tracks every week", "Loop player + sleep timer", "Plays in background like Spotify", "No ads. Ever."],
               cta: "Join Audio Tier",
@@ -1170,7 +1149,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               id: "goddess", name: "Goddess Tier", cls: "price-card-goddess", popular: true,
               price: billing === "monthly" ? "£33" : "£317",
               period: billing === "monthly" ? "/month" : "/year",
-              sub: billing === "annual" ? "£33/mo · save £79/year" : null,
+              sub: billing === "annual" ? "£33/mo · save 20%" : null,
               color: T.roseGold,
               features: ["Everything in Audio Tier", "ProofOS manifestation tracker ✦", "Log desires · link to audios · capture proof", "Early access — 48hrs before everyone", "Monthly ritual audio included", "Goddess community"],
               cta: "Activate Goddess Tier",
