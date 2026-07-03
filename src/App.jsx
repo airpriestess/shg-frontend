@@ -459,7 +459,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* NAV */}
       <nav style={{ position: "fixed", top: 40, left: 0, right: 0, zIndex: 300, height: 58, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
-        <span className="wm" style={{ fontSize: 22, fontWeight: 500, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "0.02em" }}>Self Hypnosis Goddess</span>
+        <span className="wm wm-shimmer" style={{ fontSize: 22, fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
           <div style={{ display: isMobile ? "none" : "flex", alignItems: "center", gap: 10 }}>
@@ -1438,7 +1438,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* FOOTER */}
       <div style={{ borderTop: T.border, padding: "28px 24px", textAlign: "center" }}>
-        <span className="wm" style={{ fontSize: 22, display: "block", marginBottom: 8, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
+        <span className="wm wm-shimmer" style={{ fontSize: 22, display: "block", marginBottom: 8 }}>Self Hypnosis Goddess</span>
         <div style={{ fontSize: 12, color: T.textFaint, marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com · Not on YouTube</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
       </div>
