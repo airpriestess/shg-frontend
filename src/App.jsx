@@ -10,6 +10,7 @@ import ListeningGuide from "./pages/ListeningGuide.jsx";
 import SpotifyPortal from "./pages/SpotifyPortal.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import DesktopMockup from "./components/DesktopMockup.jsx";
+import ProofWallScreenshot from "./components/ProofWallScreenshot.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
@@ -255,6 +256,81 @@ const MARQUEE_ITEMS = [
   {t:"My aura is undeniable.",c:"#d4a090"},{t:"Money comes from everywhere.",c:"#c8a870"},{t:"The shift is already done.",c:"#9a8ad0"},
   {t:"I am reprogramming daily.",c:"#7a9ab0"},{t:"He's obsessed with who I am.",c:"#B76E79"},{t:"Every night I become her more.",c:"#7a9ab0"},
 ];
+// ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
+function AppPreviewSection({ isMobile }) {
+  const [theme, setTheme] = useState("dark");
+  const [view,  setView]  = useState("dashboard"); // "dashboard" | "proof"
+
+  return (
+    <div style={{ width:"100%", display:"flex", flexDirection:"column", alignItems:"center", gap:20, marginBottom:16 }}>
+
+      {/* Headline copy */}
+      <div style={{ textAlign:"center", maxWidth:500 }}>
+        <div style={{ fontSize:10, color:"rgba(183,110,121,0.6)", letterSpacing:"0.28em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700, marginBottom:12 }}>
+          👇 This is what's inside
+        </div>
+        <div style={{ fontSize:isMobile?16:18, fontWeight:700, color:"#000", marginBottom:8, lineHeight:1.4 }}>
+          Your dashboard. Your audio vault. Your proof.
+        </div>
+        <div style={{ fontSize:isMobile?13:14, color:"#4a3830", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>
+          On mobile it looks like Spotify. On desktop, the same experience — full sidebar, player bar, everything. Switch between the <span style={{ color:"#B76E79", fontWeight:600 }}>audio dashboard</span> and your <span style={{ color:"#B76E79", fontWeight:600 }}>ProofOS wall</span> below.
+        </div>
+      </div>
+
+      {/* Tab switcher — Dashboard / ProofOS */}
+      <div style={{ display:"flex", gap:0, background:"rgba(0,0,0,0.08)", borderRadius:24, padding:4 }}>
+        {[["dashboard","Dashboard"],["proof","ProofOS ✦"]].map(([id,l])=>(
+          <button key={id} onClick={()=>setView(id)}
+            style={{ padding:"7px 18px", borderRadius:20, background:view===id?"#000":"transparent", border:"none",
+              color:view===id?"#fff":"#4a3830", fontSize:12, fontWeight:700, cursor:"pointer",
+              fontFamily:"'Jost',sans-serif", transition:"all 0.2s", letterSpacing:"0.04em" }}>
+            {l}
+          </button>
+        ))}
+      </div>
+
+      {/* Mockups */}
+      <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:isMobile?12:28, flexWrap:isMobile?"wrap":"nowrap", width:"100%" }}>
+
+        {/* Desktop (hidden on mobile) */}
+        {!isMobile && view==="dashboard" && (
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
+            <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
+            <DesktopMockup theme={theme}/>
+          </div>
+        )}
+
+        {/* Mobile phone */}
+        <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
+          <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>
+            {isMobile?"Preview":"Mobile"}
+          </div>
+          {view==="dashboard"
+            ? <PortalScreenshot width={isMobile?240:190} theme={theme}/>
+            : <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>
+          }
+        </div>
+      </div>
+
+      {/* Dark / Light toggle */}
+      <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+        <span style={{ fontSize:11, color:"#8a6858", fontFamily:"'Jost',sans-serif" }}>Dark</span>
+        <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
+          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#B76E79":"#333",
+            border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff",
+            position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
+        </button>
+        <span style={{ fontSize:11, color:"#8a6858", fontFamily:"'Jost',sans-serif" }}>Light</span>
+      </div>
+
+      <div style={{ fontSize:11, color:"rgba(183,110,121,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em", textAlign:"center" }}>
+        Works in any browser · iPhone · Android · No download needed
+      </div>
+    </div>
+  );
+}
+
 function HeroMarquee() {
   const [lit, setLit] = useState(-1);
   const doubled = [...MARQUEE_ITEMS,...MARQUEE_ITEMS,...MARQUEE_ITEMS];
@@ -722,32 +798,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 40 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
 
           {/* ── APP PREVIEW — right after CTAs ─────────────────────────── */}
-          <div style={{ width:"100%", display:"flex", flexDirection:"column", alignItems:"center", gap:20, marginBottom:16 }}>
-            <div style={{ fontSize:10, color:"rgba(183,110,121,0.6)", letterSpacing:"0.28em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>
-              👇 This is what's inside
-            </div>
-
-            <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap: isMobile ? 12 : 28, flexWrap: isMobile ? "wrap" : "nowrap", width:"100%" }}>
-
-              {/* DESKTOP MOCKUP — browser chrome + app */}
-              {!isMobile && (
-                <div style={{ flexShrink:0 }}>
-                  <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8, textAlign:"center" }}>Desktop</div>
-                  <DesktopMockup/>
-                </div>
-              )}
-
-              {/* MOBILE PHONE */}
-              <div style={{ flexShrink:0 }}>
-                <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8, textAlign:"center" }}>Mobile</div>
-                <PortalScreenshot width={isMobile ? 240 : 190}/>
-              </div>
-            </div>
-
-            <div style={{ fontSize:11, color:"rgba(183,110,121,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em", textAlign:"center" }}>
-              Works in any browser · iPhone · Android · No download needed
-            </div>
-          </div>
+          <AppPreviewSection isMobile={isMobile}/>
 
         </div>
       </div>
@@ -851,18 +902,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* MELODIC HOUSE USP — dark black section */}
       <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#000", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ background: "rgba(255,255,255,0.92)", border: "none", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
-          {/* Background glow */}
-          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ background: "#000", border: "none", borderRadius: 20, padding: isMobile?"28px 20px":"36px 40px", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#B76E7918,transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
             <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,60px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
-              Hypnosis layered beneath<br />melodic house music.
+              Hypnosis layered beneath<br/>melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#d8c8a0", lineHeight: 1.85, marginBottom: 24, maxWidth: 680, textAlign: "center", margin: "0 auto 24px" }}>
+            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#c8c0bc", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#111111", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#a0989c", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
             <div style={G3(isMobile)}>
@@ -871,17 +921,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 { icon: "✦", title: "Deeper receptivity", body: "Music bypasses resistance. The body relaxes. The subconscious opens. Reshma's voice installs the new self-concept." },
                 { icon: "★", title: "Ritual, not content", body: "Listening is not consuming content. It is a daily practice. The music makes you want to return." },
               ].map((c, i) => (
-                <div key={i} style={{ background: "#0d0c02", border: "1px solid #161228", borderRadius: 14, padding: "18px 16px" }}>
+                <div key={i} style={{ background: "#111", border: "0.5px solid #2a2a2a", borderRadius: 14, padding: "18px 16px" }}>
                   <div style={{ fontSize: 20, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 10 }}>{c.icon}</div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: "#f4ead8", marginBottom: 8 }}>{c.title}</div>
-                  <div style={{ fontSize: 14, color: "#111111", lineHeight: 1.7 }}>{c.body}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: "#f2ece4", marginBottom: 8 }}>{c.title}</div>
+                  <div style={{ fontSize: 14, color: "#c8c0bc", lineHeight: 1.7 }}>{c.body}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
-
 </div>
       {/* MAXXING CAROUSEL */}
       <MaxxingCarousel cats={cats} />
