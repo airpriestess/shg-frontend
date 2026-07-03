@@ -506,23 +506,41 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ position:"fixed", top:0, left:0, right:0, bottom:0, zIndex:399 }} onClick={()=>setMenuOpen(false)}/>
         )}
         {menuOpen && (
-          <div style={{ position:"absolute", top:60, right:16, background:"rgba(10,6,20,0.97)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:16, padding:8, minWidth:220, zIndex:400, boxShadow:"0 24px 60px rgba(0,0,0,0.95)", backdropFilter:"blur(20px)" }}>
-            {/* Sign in / Join */}
-            <div style={{ padding:"8px 12px 10px", borderBottom:"0.5px solid rgba(183,110,121,0.15)", marginBottom:6 }}>
-              <button onClick={()=>{if(onSignIn)onSignIn();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"11px 16px",background:"rgba(183,110,121,0.12)",border:"1px solid rgba(183,110,121,0.3)",borderRadius:10,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer",marginBottom:8,textAlign:"center" }}>Sign in →</button>
-              <button onClick={()=>{if(onJoin)onJoin("audio");setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"11px 16px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",textAlign:"center",textTransform:"uppercase",letterSpacing:"0.08em" }}>Join Now ✦</button>
-            </div>
-            {/* Nav links */}
+          <div style={{ position:"absolute", top:60, right:16, background:"#0a0612", border:"1px solid rgba(183,110,121,0.35)", borderRadius:16, padding:10, minWidth:240, zIndex:400, boxShadow:"0 24px 60px rgba(0,0,0,0.98)", backdropFilter:"blur(20px)" }}>
+
+            {/* TOP — Preview Dashboard CTA */}
+            <button onClick={()=>{if(onDemo)onDemo();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"14px 16px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",textAlign:"center",letterSpacing:"0.06em",marginBottom:10,fontFamily:"'Jost',sans-serif" }}>
+              👁 Preview the Dashboard
+            </button>
+
+            {/* Sign in */}
+            <button onClick={()=>{if(onSignIn)onSignIn();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"11px 16px",background:"rgba(183,110,121,0.1)",border:"1px solid rgba(183,110,121,0.25)",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:8,textAlign:"center",fontFamily:"'Jost',sans-serif" }}>
+              Sign in →
+            </button>
+
+            <div style={{ height:"0.5px", background:"rgba(183,110,121,0.15)", margin:"8px 0" }}/>
+
+            {/* Join options */}
             {[
-              ["Audio Tier — £19/mo", ()=>{if(onJoin)onJoin("audio");setMenuOpen(false);}],
-              ["Goddess Tier — £33/mo", ()=>{if(onJoin)onJoin("goddess");setMenuOpen(false);}],
-              ["Lifetime Access — £500", ()=>{if(onJoin)onJoin("lifetime");setMenuOpen(false);}],
-              ["ProofOS ✦", ()=>{window.dispatchEvent(new CustomEvent("scrollTo",{detail:"proofos"}));setMenuOpen(false);}],
-              ["Pricing", ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}],
-              ["YouTube ↗", ()=>window.open("https://www.youtube.com/@Reshma.Oracle","_blank")],
+              ["Join — Audio Tier · £19/mo",  ()=>{if(onJoin)onJoin("audio");setMenuOpen(false);}],
+              ["Join — Goddess Tier · £33/mo", ()=>{if(onJoin)onJoin("goddess");setMenuOpen(false);}],
+              ["Lifetime Access · £500",        ()=>{if(onJoin)onJoin("lifetime");setMenuOpen(false);}],
             ].map(([label,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"flex",alignItems:"center",width:"100%",textAlign:"left",padding:"11px 16px",background:"none",border:"none",color:i<3?"#e8e0d0":"#a08878",fontSize:i<3?14:13,fontWeight:i<3?600:500,cursor:"pointer",borderRadius:8,fontFamily:"'Jost',sans-serif" }}
-                onMouseEnter={e=>e.currentTarget.style.background="rgba(183,110,121,0.1)"}
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#f2ece4",fontSize:13,fontWeight:600,cursor:"pointer",borderRadius:8,fontFamily:"'Jost',sans-serif",letterSpacing:"0.01em" }}
+                onMouseEnter={e=>e.currentTarget.style.background="rgba(183,110,121,0.12)"}
+                onMouseLeave={e=>e.currentTarget.style.background="none"}>{label}</button>
+            ))}
+
+            <div style={{ height:"0.5px", background:"rgba(183,110,121,0.15)", margin:"8px 0" }}/>
+
+            {/* Page links */}
+            {[
+              ["ProofOS ✦",  ()=>{document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}],
+              ["Pricing",    ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}],
+              ["YouTube ↗",  ()=>{ window.open("https://www.youtube.com/@Reshma.Oracle","_blank"); setMenuOpen(false); }],
+            ].map(([label,fn],i)=>(
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"9px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:12,fontWeight:500,cursor:"pointer",borderRadius:8,fontFamily:"'Jost',sans-serif" }}
+                onMouseEnter={e=>e.currentTarget.style.background="rgba(183,110,121,0.08)"}
                 onMouseLeave={e=>e.currentTarget.style.background="none"}>{label}</button>
             ))}
           </div>
