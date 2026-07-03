@@ -63,7 +63,7 @@ img{max-width:100%;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(183,110,121,0.5);}50%{box-shadow:0 0 0 12px rgba(183,110,121,0);}}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:var(--op);}50%{transform:translate(-50%,-50%) scale(1.06);opacity:calc(var(--op)*2);}}
 .fade{animation:fadeIn 0.4s ease both;}
-.marquee-track{display:flex;width:max-content;animation:marquee 200s linear infinite;}
+.marquee-track{display:flex;width:max-content;animation:marquee 320s linear infinite;}
 .cta-pulse{animation:pulse 2.2s ease-in-out infinite;}
 .ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none;top:50%;left:50%;animation:breathe 6s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){.marquee-track,.cta-pulse,.ring{animation:none;}}
@@ -208,13 +208,15 @@ img{max-width:100%;}
   100%{background-position:0% center;}
 }
 .wm-shimmer{
-  background:linear-gradient(90deg,#f0cdb8 0%,#e0b09a 15%,#d4a090 30%,#c8889a 50%,#B76E79 65%,#d4a090 80%,#f0cdb8 100%)!important;
-  background-size:300% auto!important;
+  background:linear-gradient(90deg,#B76E79 0%,#d4a090 20%,#f2ece4 38%,#d4a090 50%,#B76E79 65%,#9a4060 80%,#B76E79 100%)!important;
+  background-size:280% auto!important;
   -webkit-background-clip:text!important;
   -webkit-text-fill-color:transparent!important;
   background-clip:text!important;
   color:transparent!important;
-  animation:wordmarkShimmer 3.5s ease-in-out infinite;
+  animation:wordmarkShimmer 3s ease-in-out infinite;
+  font-weight:500!important;
+  letter-spacing:0.03em!important;
 }
 
 /* ── SECTION COLOUR BANDS ─────────────── */
