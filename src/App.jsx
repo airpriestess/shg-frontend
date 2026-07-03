@@ -960,36 +960,35 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-            {/* MELODIC HOUSE USP — dark black section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#000", width: "100%" }}>
+            {/* MELODIC HOUSE USP — light yellow background */}
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fffde8 0%,#fff9cc 40%,#fffde8 80%,#fff8d0 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ background: "#000", border: "none", borderRadius: 20, padding: isMobile?"28px 20px":"36px 40px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#7040b018,transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 12, color: "#9060c0", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,60px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#a060d0,#c080e0)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
+            <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,60px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#6040b0,#9060c0)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#c8c0bc", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
+            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#3a2a60", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#a0989c", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#5a4880", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
 
-            {/* THREE FORMATS — bullet list */}
-            <div style={{ background: "#111", border: "0.5px solid #2a2a2a", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 11, color: "#9060c0", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Three formats — each does something different</div>
+            {/* THREE FORMATS */}
+            <div style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(144,96,192,0.2)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
+              <div style={{ fontSize: 11, color: "#7040a0", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Three formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
                 { icon: "🌙", label: "Subliminal", body: "Pure music. No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day." },
                 { icon: "◈", label: "EMDR Hypnosis", body: "Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
               ].map((f,i)=>(
-                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<2?12:0, marginBottom: i<2?12:0, borderBottom: i<2?"0.5px solid #222":"none" }}>
+                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<2?12:0, marginBottom: i<2?12:0, borderBottom: i<2?"1px solid rgba(144,96,192,0.12)":"none" }}>
                   <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#f2ece4", marginBottom: 3 }}>{f.label}</div>
-                    <div style={{ fontSize: 13, color: "#c8c0bc", lineHeight: 1.65 }}>{f.body}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#2a1a50", marginBottom: 3 }}>{f.label}</div>
+                    <div style={{ fontSize: 13, color: "#5a4060", lineHeight: 1.65 }}>{f.body}</div>
                   </div>
                 </div>
               ))}
@@ -997,20 +996,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
             <div style={G3(isMobile)}>
               {[
-                { icon: "◈", title: "Music as frequency", body: "The melodic house tracks are selected to hold a specific energetic state throughout the session.", imgColor: "#2a1040" },
-                { icon: "✦", title: "Deeper receptivity", body: "You get addicted to the music. Your body relaxes. Your subconscious opens. Reshma's voice installs the version of you who already has it.", imgColor: "#0a1a30" },
-                { icon: "★", title: "Ritual, not content", body: "From pain to pleasure — the music is so good you want to come back. And every time you do, the new identity installs deeper. The addiction becomes the transformation.", imgColor: "#1a0a30" },
+                { icon: "◈", title: "Music as frequency", body: "The melodic house tracks are selected to hold a specific energetic state throughout the session.", imgColor: "#e8e0ff" },
+                { icon: "✦", title: "Deeper receptivity", body: "You get addicted to the music. Your body relaxes. Your subconscious opens. Reshma's voice installs the version of you who already has it.", imgColor: "#f0e8ff" },
+                { icon: "★", title: "Ritual, not content", body: "The music is so good you want to come back. And every time you do, the new identity installs deeper. The addiction becomes the transformation.", imgColor: "#ece0ff" },
               ].map((c, i) => (
-                <div key={i} style={{ background: "#111", border: "0.5px solid #2a2a2a", borderRadius: 14, overflow: "hidden" }}>
-                  {/* Image placeholder */}
-                  <div style={{ height: isMobile?100:120, background: `linear-gradient(135deg,${c.imgColor},#1a1a2a)`, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-                    <div style={{ fontSize: 32, opacity: 0.4 }}>{c.icon}</div>
-                    <div style={{ position: "absolute", bottom: 8, right: 10, fontSize: 9, color: "rgba(255,255,255,0.25)", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>[ Add image ]</div>
+                <div key={i} style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(144,96,192,0.15)", borderRadius: 14, overflow: "hidden" }}>
+                  <div style={{ height: isMobile?100:120, background: c.imgColor, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ fontSize: 40, opacity: 0.5 }}>{c.icon}</div>
                   </div>
                   <div style={{ padding: "16px" }}>
-                    <div style={{ fontSize: 20, background: "linear-gradient(90deg,#a060d0,#c080e0)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 8 }}>{c.icon}</div>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: "#f2ece4", marginBottom: 8 }}>{c.title}</div>
-                    <div style={{ fontSize: 14, color: "#c8c0bc", lineHeight: 1.7 }}>{c.body}</div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#2a1a50", marginBottom: 8 }}>{c.title}</div>
+                    <div style={{ fontSize: 14, color: "#5a4080", lineHeight: 1.7 }}>{c.body}</div>
                   </div>
                 </div>
               ))}
