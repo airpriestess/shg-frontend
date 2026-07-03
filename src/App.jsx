@@ -619,23 +619,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#111111", marginBottom: 32, lineHeight: 1.7 }}>
             Wake up knowing. Not hoping. <span style={{ color: "#000000", fontWeight: 600 }}>Knowing.</span>
           </div>
-
-          {/* APP PREVIEW — desktop + mobile, visible immediately after CTAs */}
-          <div style={{ width:"100%", margin:"0 auto 48px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-            <div style={{ fontSize:10, color:"rgba(183,110,121,0.55)", letterSpacing:"0.28em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>
-              Inside the portal
-            </div>
-            <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"center", gap: isMobile ? 14 : 32, flexWrap:"nowrap" }}>
-              {/* Desktop mockup — browser window style */}
-              {!isMobile && <DesktopMockup/>}
-              {/* Mobile phone */}
-              <PortalScreenshot width={isMobile ? 230 : 200}/>
-            </div>
-            <div style={{ fontSize:11, color:"rgba(183,110,121,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>
-              {isMobile ? "Mobile app · works on any device" : "Desktop & mobile · works on any browser · no download needed"}
-            </div>
-          </div>
-
           {/* SPOTIFY-STYLE PLAYER */}
           <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c8789a 80%,#B76E79 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(212,160,144,0.4)" }}>
             {/* Top row — track info + waveform */}
@@ -736,7 +719,35 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               LIFETIME ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 40 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
+
+          {/* ── APP PREVIEW — right after CTAs ─────────────────────────── */}
+          <div style={{ width:"100%", display:"flex", flexDirection:"column", alignItems:"center", gap:20, marginBottom:16 }}>
+            <div style={{ fontSize:10, color:"rgba(183,110,121,0.6)", letterSpacing:"0.28em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>
+              👇 This is what's inside
+            </div>
+
+            <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap: isMobile ? 12 : 28, flexWrap: isMobile ? "wrap" : "nowrap", width:"100%" }}>
+
+              {/* DESKTOP MOCKUP — browser chrome + app */}
+              {!isMobile && (
+                <div style={{ flexShrink:0 }}>
+                  <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8, textAlign:"center" }}>Desktop</div>
+                  <DesktopMockup/>
+                </div>
+              )}
+
+              {/* MOBILE PHONE */}
+              <div style={{ flexShrink:0 }}>
+                <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8, textAlign:"center" }}>Mobile</div>
+                <PortalScreenshot width={isMobile ? 240 : 190}/>
+              </div>
+            </div>
+
+            <div style={{ fontSize:11, color:"rgba(183,110,121,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em", textAlign:"center" }}>
+              Works in any browser · iPhone · Android · No download needed
+            </div>
+          </div>
 
         </div>
       </div>
@@ -1606,83 +1617,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           No refunds after 14 days · Cancel before renewal · Web app — no download · iPhone: Add to Home Screen
         </div>
       </div>
-      {/* ── PORTAL SCREENSHOT — right after Lifetime Access ─────────── */}
-      <div style={{ background: "#000", padding: isMobile ? "48px 0 72px" : "72px 0 90px", borderTop: "1px solid #1c1828" }}>
-        <div style={{ textAlign: "center", padding: "0 24px", marginBottom: 48 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
-            👇 This is what you get
-          </div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4.5vw,48px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 12 }}>
-            The moment you join —<br/>
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>this is what you open.</span>
-          </h2>
-          <p style={{ fontSize: 16, color: "#c8c0bc", lineHeight: 1.8, maxWidth: 420, margin: "0 auto" }}>
-            Tap the phone below. It's live — browse the vault, the player, ProofOS. Exactly what members see.
-          </p>
-        </div>
-
-        {/* App Store style screenshots — 2 phones side by side */}
-        <div style={{ display: "flex", justifyContent: "center", gap: isMobile ? 16 : 32, padding: "0 16px", alignItems: "flex-start", flexWrap: "nowrap", overflowX: isMobile ? "auto" : "visible" }}>
-          {/* Phone 1 — Home screen */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, flexShrink: 0 }}>
-            <div style={{ background: "#1a1a1a", borderRadius: isMobile ? 34 : 44, padding: 8, boxShadow: "0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px #333, 0 0 50px rgba(183,110,121,0.12)" }}>
-              <div style={{ borderRadius: isMobile ? 28 : 36, overflow: "hidden", position: "relative" }}>
-                <PortalScreenshot width={isMobile ? 200 : 320} />
-              </div>
-            </div>
-            <span style={{ fontSize: 11, color: "#636363", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>Home · Library</span>
-          </div>
-
-          {/* Phone 2 — Full player (static mockup) */}
-          <div style={{ display: isMobile ? "none" : "flex", flexDirection: "column", alignItems: "center", gap: 12, flexShrink: 0 }}>
-            <div style={{ background: "#1a1a1a", borderRadius: 44, padding: 8, boxShadow: "0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px #333, 0 0 50px rgba(212,160,144,0.15)" }}>
-              <div style={{ borderRadius: 36, overflow: "hidden", width: 320, height: Math.round(320*2.16), background: "linear-gradient(180deg,#3a1828 0%,#121212 40%)", display: "flex", flexDirection: "column", alignItems: "center", padding: "52px 28px 16px", fontFamily: "'Jost',sans-serif" }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#c8c0bc", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 32 }}>Now Playing</div>
-                {/* Album art */}
-                <div style={{ width: 220, height: 220, borderRadius: 16, background: "linear-gradient(135deg,#d4a090,#B76E79)", marginBottom: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 20px 60px rgba(183,110,121,0.5)", fontSize: 64 }}>✦</div>
-                <div style={{ width: "100%", marginBottom: 24 }}>
-                  <div style={{ fontSize: 22, fontWeight: 800, color: "#f2ece4", marginBottom: 4 }}>Spoilt Goddess</div>
-                  <div style={{ fontSize: 14, color: "#a0a0a0" }}>Reshma Oracle · Melodic House · 528hz</div>
-                </div>
-                {/* Progress */}
-                <div style={{ width: "100%", marginBottom: 10 }}>
-                  <div style={{ height: 4, background: "#4a4a4a", borderRadius: 2, position: "relative" }}>
-                    <div style={{ width: "42%", height: "100%", background: "#f2ece4", borderRadius: 2 }}/>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                    <span style={{ fontSize: 11, color: "#636363" }}>1:48</span>
-                    <span style={{ fontSize: 11, color: "#636363" }}>4:32</span>
-                  </div>
-                </div>
-                {/* Controls */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginTop: 8 }}>
-                  <span style={{ fontSize: 18, color: "#B76E79" }}>⇄</span>
-                  <span style={{ fontSize: 24, color: "#f2ece4" }}>⏮</span>
-                  <div style={{ width: 64, height: 64, borderRadius: "50%", background: "#f2ece4", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
-                  </div>
-                  <span style={{ fontSize: 24, color: "#f2ece4" }}>⏭</span>
-                  <span style={{ fontSize: 18, color: "#B76E79" }}>↻</span>
-                </div>
-              </div>
-            </div>
-            <span style={{ fontSize: 11, color: "#636363", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>Full Player</span>
-          </div>
-        </div>
-
-        <div style={{ textAlign: "center", padding: "44px 24px 0" }}>
-          <p style={{ fontSize: 15, color: "#a0989c", marginBottom: 28, lineHeight: 1.7 }}>
-            Works in any browser · iPhone · Android<br/>No App Store download needed
-          </p>
-          <button onClick={onJoin} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 30, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>
-            Join & get instant access ✦
-          </button>
-          <div style={{ marginTop: 12, fontSize: 13, color: "#636363" }}>Audio £19/mo · Goddess £33/mo · Lifetime £500 once</div>
-        </div>
-      </div>
-
-      
-
       {/* FAQ */}
       <FAQSection />
 
