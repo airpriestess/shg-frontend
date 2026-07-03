@@ -481,7 +481,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   ];
 
   return (
-    <div className="hypno-bg" style={{ background: "#000000", minHeight: "100vh" }}>
+    <div className="hypno-bg" style={{ background: "linear-gradient(180deg,#fde8f2 0%,#f5d8e8 8%,#f0d0e8 15%,#f8e4d0 22%,#fef4ee 30%)", minHeight: "100vh" }}>
       <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" />
       <audio ref={vaultRef} preload="none" />
 
@@ -522,11 +522,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </nav>
 
       {/* HERO */}
-      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: isMobile ? 100 : 110, overflow: "hidden", minHeight: isMobile ? "auto" : "90vh" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: isMobile ? 100 : 110, overflow: "hidden", minHeight: isMobile ? "auto" : "90vh" }}>
         <Rings count={5} />
         {/* Dot grid overlay */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-          backgroundImage: "radial-gradient(circle, rgba(183,110,121,0.15) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(183,110,121,0.2) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
@@ -560,18 +560,18 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </h1>
 
           {/* SPOTIFY TAGLINE */}
-          <div style={{ fontSize: "clamp(11px,1.4vw,13px)", color: "#786860", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
+          <div style={{ fontSize: "clamp(11px,1.4vw,13px)", color: "#5a3838", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
             The Spotify for your subconscious mind
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(18px,2.5vw,24px)", color: T.roseGold, fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
+          <div style={{ fontSize: "clamp(18px,2.5vw,24px)", color: "#B76E79", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
             Shift into your dream reality.
           </div>
 
           {/* WAKE UP KNOWING */}
-          <div style={{ fontSize: "clamp(15px,1.8vw,18px)", color: T.textMuted, marginBottom: 32, lineHeight: 1.7 }}>
-            Wake up knowing. Not hoping. <span style={{ color: T.textPrimary, fontWeight: 600 }}>Knowing.</span>
+          <div style={{ fontSize: "clamp(15px,1.8vw,18px)", color: "#5a3838", marginBottom: 32, lineHeight: 1.7 }}>
+            Wake up knowing. Not hoping. <span style={{ color: "#1a0808", fontWeight: 600 }}>Knowing.</span>
           </div>
 
           {/* SPOTIFY-STYLE PLAYER */}
@@ -645,10 +645,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               LIFETIME ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 13, color: "#8a6858", textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
 
           {/* HERO IMAGE PLACEHOLDER */}
-          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid #2a0a28", background: "linear-gradient(160deg,#000000,#06040c)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
+          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid #B76E7966", background: "linear-gradient(160deg,#fde8f4,#f8d8ee)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
             <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 40%,#B76E7912,transparent 65%)",pointerEvents:"none" }}/>
             <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 20% 80%,#d4a09008,transparent 60%)",pointerEvents:"none" }}/>
             {/* Floating labels like ClickUp */}
