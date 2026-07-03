@@ -972,6 +972,84 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
+
+      {/* DNA ACTIVATION SECTION */}
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "#000", position: "relative", overflow: "hidden" }}>
+        {/* Background glow */}
+        <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
+        <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
+
+          {/* Eyebrow */}
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
+              963hz · DNA Activation
+            </div>
+            <h2 className="wm" style={{ fontSize: "clamp(30px,5vw,58px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20 }}>
+              We don't stop at the surface.<br/>
+              <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
+            </h2>
+            <p style={{ fontSize: isMobile ? 16 : 18, color: "#c0a898", lineHeight: 1.85, maxWidth: 580, margin: "0 auto" }}>
+              Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
+            </p>
+          </div>
+
+          {/* Two column — passion statement left, what this means right */}
+          <div style={{ display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: "1fr 1fr", gap: isMobile ? 24 : 40, marginBottom: 48 }}>
+
+            {/* Left — Reshma's voice */}
+            <div style={{ borderLeft: "2px solid #B76E79", paddingLeft: 28 }}>
+              <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#f2ece4", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
+                "I got obsessed with the science of why some people shift fast and others stay stuck for years. The answer wasn't mindset. It wasn't effort. It was depth.
+              </p>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#c0a898", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
+                The subconscious doesn't respond to the words. It responds to the frequency, the state, and the repetition. When you combine theta brainwaves with 963hz and EMDR — you're not just changing a thought. You're changing the signal your cells are running on.
+              </p>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#f2ece4", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
+                That's why this works when everything else didn't."
+              </p>
+              <div style={{ marginTop: 20, fontSize: 13, color: "#B76E79", fontWeight: 600, fontFamily: "'Jost',sans-serif" }}>— Reshma Oracle</div>
+            </div>
+
+            {/* Right — the three levels */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {[
+                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis and subliminals operate.", color: "#d4a090" },
+                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation dissolves the old self-concept at its root — the assumption that was formed before you had the words for it.", color: "#B76E79" },
+                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. This is where the deepest patterns live, and where they can be permanently rewritten.", color: "#c87890" },
+              ].map((item, i) => (
+                <div key={i} style={{ background: "#06040c", border: `1px solid ${item.color}33`, borderLeft: `3px solid ${item.color}`, borderRadius: 12, padding: "20px 22px" }}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
+                    <span style={{ fontSize: 10, color: item.color, fontWeight: 800, letterSpacing: "0.2em", fontFamily: "'Jost',sans-serif" }}>{item.level}</span>
+                    <span style={{ fontSize: isMobile ? 18 : 20, fontWeight: 800, color: "#f2ece4", fontFamily: "'Jost',sans-serif" }}>{item.title}</span>
+                  </div>
+                  <div style={{ fontSize: 14, color: "#c0a898", lineHeight: 1.75 }}>{item.body}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom — the passive daily practice promise */}
+          <div style={{ background: "linear-gradient(135deg,#0c0610,#100814)", border: "1px solid #B76E7933", borderRadius: 18, padding: isMobile ? "28px 22px" : "36px 44px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 100%,rgba(183,110,121,0.08),transparent 70%)", pointerEvents: "none" }}/>
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <h3 className="wm" style={{ fontSize: "clamp(22px,3.5vw,36px)", color: "#f2ece4", marginBottom: 14, lineHeight: 1.2 }}>
+                Something you do every day.<br/>
+                <span style={{ color: "#B76E79" }}>Passively. For the rest of your life.</span>
+              </h3>
+              <p style={{ fontSize: 16, color: "#a08878", lineHeight: 1.85, maxWidth: 540, margin: "0 auto 24px" }}>
+                You are not wasting time anymore. You are not hoping something might stick. You press play — and the reprogramming happens. In your sleep. In the background. Every single day. Building the version of you that already has everything.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 10 }}>
+                {["Sleep while it installs", "No effort required", "Works every session", "Deeper every time"].map((tag, i) => (
+                  <span key={i} style={{ padding: "7px 16px", background: "rgba(183,110,121,0.12)", border: "1px solid rgba(183,110,121,0.3)", borderRadius: 20, fontSize: 12, color: "#d4a090", fontWeight: 600, fontFamily: "'Jost',sans-serif" }}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* SCIENCE — golden peach */}
       <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto", background: "linear-gradient(160deg,#ecddf8 0%,#e5d2f4 50%,#ecddf8 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
