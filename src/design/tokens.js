@@ -63,7 +63,7 @@ img{max-width:100%;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(183,110,121,0.5);}50%{box-shadow:0 0 0 12px rgba(183,110,121,0);}}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:var(--op);}50%{transform:translate(-50%,-50%) scale(1.06);opacity:calc(var(--op)*2);}}
 .fade{animation:fadeIn 0.4s ease both;}
-.marquee-track{display:flex;width:max-content;animation:marquee 22s linear infinite;}
+.marquee-track{display:flex;width:max-content;animation:marquee 55s linear infinite;}
 .cta-pulse{animation:pulse 2.2s ease-in-out infinite;}
 .ring{position:absolute;border-radius:50%;border:1px solid;pointer-events:none;top:50%;left:50%;animation:breathe 6s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){.marquee-track,.cta-pulse,.ring{animation:none;}}
@@ -199,5 +199,20 @@ img{max-width:100%;}
   .hero-ctas>button{width:100%!important;}
   /* Ensure page doesn't overflow */
   html,body{overflow-x:hidden!important;max-width:100vw!important;}
+}
+
+/* ── WORDMARK SHIMMER ───────────── */
+@keyframes wordmarkShimmer{
+  0%{background-position:0% center;}
+  50%{background-position:200% center;}
+  100%{background-position:0% center;}
+}
+.wm-shimmer{
+  background:linear-gradient(90deg,#d4a090 0%,#B76E79 30%,#f2ece4 50%,#B76E79 70%,#d4a090 100%);
+  background-size:300% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:wordmarkShimmer 4s ease-in-out infinite;
 }
 `;
