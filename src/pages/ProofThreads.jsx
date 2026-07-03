@@ -54,7 +54,7 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
     <div style={{ padding: "28px 24px", maxWidth: 880, overflowY: "auto", height: "100%" }} className="mob-pb">
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
-        <h1 style={{ fontSize: "clamp(24px,3vw,32px)", fontWeight: 700, color: "#e8e0d0", marginBottom: 6 }}>Proof Threads</h1>
+        <h1 style={{ fontSize: "clamp(22px,2.5vw,28px)", fontWeight: 300, color: "#f2ece4", marginBottom: 6, letterSpacing: "0.01em" }}>Proof Threads</h1>
         <p style={{ fontSize: 15, color: T.textMuted, marginBottom: 20, lineHeight: 1.65 }}>Every desire gets its own thread, linked to the audio that started the shift.</p>
         <Btn onClick={onCreateThread} variant="champagne" size="sm">+ Create Proof Thread</Btn>
       </div>
