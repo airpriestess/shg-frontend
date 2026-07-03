@@ -423,8 +423,44 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   const vaultRef = useRef(null);
   const [vaultPlaying, setVaultPlaying] = useState(null);
 
+  // ── HERO PLAYLIST ─────────────────────────────────────────────────────────
+  const PLAYLIST = [
+    { title: "Spoilt Goddess",           sub: "Identity · Self-concept · Receiving",   freq: "Melodic House · 528hz", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
+    { title: "While I Sleep I Manifest", sub: "Subliminal · Music only · No voice",    freq: "Delta · Sleep shifting", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
+    { title: "10 Years Into One Hour",   sub: "EMDR · Deep identity reset",            freq: "Theta · 432hz",         url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3" },
+    { title: "Money Finds Me First",     sub: "Wealth · Receiving · Abundance",        freq: "528hz · Spoken hypnosis",url: null },
+    { title: "He Finds His Way Back",    sub: "SP & Love · No contact",                freq: "432hz · EMDR",          url: null },
+    { title: "Gorgeous Is My Default",   sub: "Beauty · Glow · Self-image",            freq: "432hz · Binaural",      url: null },
+  ];
+  const [trackIdx, setTrackIdx] = useState(0);
+  const currentTrack = PLAYLIST[trackIdx];
+
+  const loadTrack = (idx) => {
+    const t = PLAYLIST[idx];
+    setTrackIdx(idx);
+    setProgress(0);
+    setPlaying(false);
+    if (audioRef.current) {
+      if (t.url) { audioRef.current.src = t.url; audioRef.current.load(); }
+      else { audioRef.current.src = ""; }
+    }
+  };
+
+  const nextTrack = () => {
+    const next = (trackIdx + 1) % PLAYLIST.length;
+    loadTrack(next);
+    // auto-play next if current was playing
+    setTimeout(() => {
+      const t = PLAYLIST[next];
+      if (t.url && audioRef.current) { audioRef.current.play().catch(()=>{}); setPlaying(true); }
+    }, 100);
+  };
+
+  const prevTrack = () => loadTrack((trackIdx - 1 + PLAYLIST.length) % PLAYLIST.length);
+
   const togglePlay = () => {
     if (!audioRef.current) return;
+    if (!currentTrack.url) return; // preview tracks — no audio yet
     if (playing) { audioRef.current.pause(); setPlaying(false); }
     else { audioRef.current.play().catch(() => {}); setPlaying(true); }
   };
@@ -432,10 +468,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   useEffect(() => {
     const a = audioRef.current; if (!a) return;
     const upd = () => setProgress((a.currentTime / a.duration) * 100 || 0);
-    const end = () => { setPlaying(false); setProgress(0); };
+    const end = () => { nextTrack(); }; // auto-advance on end
     a.addEventListener("timeupdate", upd); a.addEventListener("ended", end);
     return () => { a.removeEventListener("timeupdate", upd); a.removeEventListener("ended", end); };
-  }, []);
+  }, [trackIdx]);
 
   const cats = [
     { label: "Lovemaxxing", tagline: "He's obsessed. Of course he is.", color: T.rose },
@@ -475,7 +511,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
   return (
     <div className="hypno-bg" style={{ background: "linear-gradient(180deg,#fce8f0 0%,#f8e0ec 12%,#f5d8e8 22%,#f8e8d8 35%,#fdf4ee 50%)", minHeight: "100vh" }}>
-      <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" />
+      <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" onEnded={nextTrack} />
       <audio ref={vaultRef} preload="none" />
 
       {/* ANNOUNCEMENT BANNER */}
@@ -642,7 +678,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
               </button>
               {/* Prev */}
-              <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
+              <button onClick={prevTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.7)"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="rgba(0,0,0,0.7)"/></svg>
               </button>
               {/* Play/Pause — big circle */}
@@ -655,7 +691,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 }
               </button>
               {/* Next */}
-              <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
+              <button onClick={nextTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.7)"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="rgba(0,0,0,0.7)"/></svg>
               </button>
               {/* Repeat */}
@@ -664,6 +700,18 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               </button>
             </div>
 
+            {/* Track dots — playlist indicator */}
+            <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:12 }}>
+              {PLAYLIST.map((_,i) => (
+                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"rgba(0,0,0,0.6)":"rgba(0,0,0,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
+              ))}
+            </div>
+            {/* Preview label for tracks without audio */}
+            {!currentTrack.url && (
+              <div style={{ textAlign:"center", marginTop:8, fontSize:11, color:"rgba(0,0,0,0.45)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.15em" }}>
+                FULL TRACK · INSIDE THE VAULT
+              </div>
+            )}
             {/* Bottom — playing status */}
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#786860", fontFamily:"'Jost',sans-serif" }}>
               {playing ? "✦ Playing — continues in background" : "Tap ▶ to listen — free preview"}
