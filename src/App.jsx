@@ -323,7 +323,7 @@ function Landing({ onJoin, onDemo }) {
           {/* TITLE */}
           <h1 className="wm" style={{ fontSize: "clamp(30px,8vw,72px)", lineHeight: 1.05, marginBottom: 12 }}>
             <span style={{ background: "linear-gradient(135deg,#f2ece4 0%,#d4a090 40%,#B76E79 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block" }}>Self Hypnosis Goddess</span>
-            <span style={{ color: "#f2ece4", fontSize: "0.75em", fontWeight: 300, letterSpacing: "0.05em" }}>Audio Library</span>
+            <span style={{ color: "#f2ece4", fontSize: "0.7em", fontWeight: 300, letterSpacing: "0.05em" }}>Audio Library <span style={{ fontSize: "0.7em", color: "#B76E79", fontWeight: 500 }}>· ProofOS</span></span>
           </h1>
 
           {/* TAGLINE */}
@@ -414,22 +414,38 @@ function Landing({ onJoin, onDemo }) {
         </div>
       </div>
 
-      {/* VOICE TRUST */}
-      <div style={{ padding: "60px 24px 0", maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 20 }}>Why the audio works</div>
-        <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", color: T.textPrimary, lineHeight: 1.2, marginBottom: 20 }}>
-          Reshma's voice<br />
-          <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>is the installation.</span>
-        </h2>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14 }}>
-          Reshma's unique voice guides you into a hypnotic state where your subconscious begins to accept the desire as already real. Each audio is designed to guide your nervous system, subconscious mind, and identity into the state where your desire feels natural, inevitable, and already becoming visible.
-        </p>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 14, fontStyle: "italic" }}>
-          When you mix different voices, your subconscious fights it. It doesn't know who to trust. Consistency is part of the programming. One voice. One guide. One path.
-        </p>
-        <p style={{ fontSize: "clamp(15px,2vw,18px)", color: T.textMuted, lineHeight: 1.9, marginBottom: 20 }}>
-          Some audios are Spoken Hypnosis. Some are Sleep Subliminals. Some are EMDR. The format of each track is chosen by Reshma based on what the desire requires — not by the listener.
-        </p>
+      {/* PROOFOS INTRO — directly after problem section */}
+      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#000 0%,#060402 100%)" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", lineHeight: 1.1, marginBottom: 16 }}>
+              <span style={{ color: "#f2ece4" }}>Introducing </span>
+              <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
+            </h2>
+            <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: "#b09888", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+              The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#f2ece4" }}>Proof.</strong>
+            </p>
+          </div>
+          <div style={G4(isMobile, 14)}>
+            {[
+              { num: "01", icon: "🎧", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests." },
+              { num: "02", icon: "🧵", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it." },
+              { num: "03", icon: "📷", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here." },
+              { num: "04", icon: "★", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it." },
+            ].map((s, i) => (
+              <div key={i} style={{ background: "#0a0908", border: "1px solid #201e1c", borderRadius: 14, padding: "22px 18px", borderTop: "2px solid #B76E79" }}>
+                <div style={{ fontSize: 10, color: "#B76E7955", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 10 }}>{s.num}</div>
+                <div style={{ fontSize: 22, marginBottom: 10 }}>{s.icon}</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: "#f2ece4", marginBottom: 8 }}>{s.title}</div>
+                <div style={{ fontSize: 13, color: "#786860", lineHeight: 1.7 }}>{s.body}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 28 }}>
+            <span style={{ fontSize: 13, color: "#B76E79", fontWeight: 500 }}>Included in Goddess Tier · £33/mo</span>
+          </div>
+        </div>
       </div>
 
             {/* MELODIC HOUSE USP */}
@@ -438,14 +454,14 @@ function Landing({ onJoin, onDemo }) {
           {/* Background glow */}
           <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Unique to Self Hypnosis Goddess</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,48px)", lineHeight: 1.15, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
+            <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,60px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br />melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#d8c8a0", lineHeight: 1.85, marginBottom: 24, maxWidth: 580 }}>
+            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#d8c8a0", lineHeight: 1.85, marginBottom: 24, maxWidth: 680, textAlign: "center", margin: "0 auto 24px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#b09888", lineHeight: 1.85, marginBottom: 28, maxWidth: 580 }}>
+            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#b09888", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
             <div style={G3(isMobile)}>
