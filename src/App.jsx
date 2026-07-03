@@ -185,7 +185,7 @@ function CheckoutModal({ onClose, onDemo }) {
   return (
     <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.94)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:"20px" }}
       onClick={e => e.target===e.currentTarget && onClose()}>
-      <div style={{ background:"#08060c",border:"1px solid #2a0a28",borderRadius:20,padding:"36px 28px",maxWidth:480,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto" }}>
+      <div style={{ background:"#08060c",border:"1px solid #2a0a28",overflowY:"auto",maxHeight:"92vh",borderRadius:20,padding:"36px 28px",maxWidth:480,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto" }}>
         <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:22,cursor:"pointer",lineHeight:1}}>✕</button>
         <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:10}}>Choose your tier</div>
         <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,4vw,32px)",color:"#f2ece4",fontWeight:300,lineHeight:1.2,marginBottom:28}}>Start your shift today.</h3>
@@ -448,7 +448,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
     { label: "Lovemaxxing", tagline: "He's obsessed. Of course he is.", color: T.rose },
     { label: "Moneymaxxing", tagline: "Money finds you first. Obviously.", color: "#B76E79" },
     { label: "Beautymaxxing", tagline: "Gorgeous is your default.", color: T.champSoft },
-    { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: T.textSecondary },
+    { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: "#e8e0d0" },
     { label: "DNA Shifting", tagline: "Your bloodline remembers.", color: "#9a8ad0" },
     { label: "Sleep Shifting", tagline: "You shift while you sleep.", color: "#7a9ab0" },
   ];
@@ -511,11 +511,27 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </button>
         </div>
         {menuOpen && (
-          <div style={{ position: "absolute", top: 58, right: 24, background: "#000000", border: "1px solid #1c1828", borderRadius: 14, padding: 10, minWidth: 200, zIndex: 400, boxShadow: "0 24px 60px rgba(0,0,0,0.8)" }}>
-            {[["Preview Dashboard", onDemo], ["YouTube ↗", () => window.open("https://www.youtube.com/@Reshma.Oracle","_blank")], ["Instagram ↗", () => window.open("https://www.instagram.com/reshma.oracle/","_blank")]].map(([l,fn],i) => (
-              <button key={i} onClick={() => { fn(); setMenuOpen(false); }} style={{ display:"block",width:"100%",textAlign:"left",padding:"11px 16px",background:"none",border:"none",color:T.textSecondary,fontSize:14,cursor:"pointer",borderRadius:8 }}
-                onMouseEnter={e=>e.currentTarget.style.background="#12102a"}
-                onMouseLeave={e=>e.currentTarget.style.background="none"}>{l}</button>
+          <div style={{ position:"fixed", top:0, left:0, right:0, bottom:0, zIndex:399 }} onClick={()=>setMenuOpen(false)}/>
+        )}
+        {menuOpen && (
+          <div style={{ position:"absolute", top:60, right:16, background:"rgba(10,6,20,0.97)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:16, padding:8, minWidth:220, zIndex:400, boxShadow:"0 24px 60px rgba(0,0,0,0.95)", backdropFilter:"blur(20px)" }}>
+            {/* Sign in / Join */}
+            <div style={{ padding:"8px 12px 10px", borderBottom:"0.5px solid rgba(183,110,121,0.15)", marginBottom:6 }}>
+              <button onClick={()=>{if(onSignIn)onSignIn();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"11px 16px",background:"rgba(183,110,121,0.12)",border:"1px solid rgba(183,110,121,0.3)",borderRadius:10,color:"#B76E79",fontSize:14,fontWeight:600,cursor:"pointer",marginBottom:8,textAlign:"center" }}>Sign in →</button>
+              <button onClick={()=>{if(onJoin)onJoin("audio");setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"11px 16px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",textAlign:"center",textTransform:"uppercase",letterSpacing:"0.08em" }}>Join Now ✦</button>
+            </div>
+            {/* Nav links */}
+            {[
+              ["Audio Tier — £19/mo", ()=>{if(onJoin)onJoin("audio");setMenuOpen(false);}],
+              ["Goddess Tier — £33/mo", ()=>{if(onJoin)onJoin("goddess");setMenuOpen(false);}],
+              ["Lifetime Access — £500", ()=>{if(onJoin)onJoin("lifetime");setMenuOpen(false);}],
+              ["ProofOS ✦", ()=>{window.dispatchEvent(new CustomEvent("scrollTo",{detail:"proofos"}));setMenuOpen(false);}],
+              ["Pricing", ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}],
+              ["YouTube ↗", ()=>window.open("https://www.youtube.com/@Reshma.Oracle","_blank")],
+            ].map(([label,fn],i)=>(
+              <button key={i} onClick={fn} style={{ display:"flex",alignItems:"center",width:"100%",textAlign:"left",padding:"11px 16px",background:"none",border:"none",color:i<3?"#e8e0d0":"#a08878",fontSize:i<3?14:13,fontWeight:i<3?600:500,cursor:"pointer",borderRadius:8,fontFamily:"'Jost',sans-serif" }}
+                onMouseEnter={e=>e.currentTarget.style.background="rgba(183,110,121,0.1)"}
+                onMouseLeave={e=>e.currentTarget.style.background="none"}>{label}</button>
             ))}
           </div>
         )}
@@ -544,17 +560,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* AS SEEN ON YOUTUBE */}
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, marginBottom:32, flexWrap:"wrap" }}>
             <div style={{ fontSize:11, color:"#786860", letterSpacing:"0.15em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>As heard on</div>
-            <div style={{ display:"flex", alignItems:"center", gap:8, background:"rgba(255,255,255,0.7)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:24, padding:"8px 16px", gap:10 }}>
+            <a href="https://www.youtube.com/@Reshma.Oracle" target="_blank" rel="noopener" style={{ textDecoration:"none", display:"flex", alignItems:"center", gap:8, background:"rgba(255,255,255,0.7)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:24, padding:"8px 16px", cursor:"pointer" }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.8 7.2s-.2-1.7-1-2.4c-.9-1-1.9-1-2.4-1.1C17.2 3.5 12 3.5 12 3.5s-5.2 0-8.4.2c-.5.1-1.5.1-2.4 1.1-.8.7-1 2.4-1 2.4S0 9.1 0 11v1.8c0 1.9.2 3.8.2 3.8s.2 1.7 1 2.4c.9 1 2.1.9 2.6 1C5.6 20.2 12 20.2 12 20.2s5.2 0 8.4-.3c.5-.1 1.5-.1 2.4-1.1.8-.7 1-2.4 1-2.4s.2-1.9.2-3.8V11c0-1.9-.2-3.8-.2-3.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
               <span style={{ fontSize:12, color:"#5a3838", fontWeight:600 }}>@Reshma.Oracle · 5,700 subscribers</span>
-            </div>
+            </a>
             <div style={{ fontSize:11, color:"#786860" }}>· Spotify · Podcasts</div>
           </div>
           <HeroMarquee />
 
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
-            <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#f2ece4 0%,#d4a090 40%,#B76E79 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block" }}>Self Hypnosis Goddess</span>
+            <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#e8a060 0%,#d4788a 35%,#B76E79 60%,#c85878 80%,#e8a060 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", filter: "saturate(1.4)" }}>Self Hypnosis Goddess</span>
             <span style={{ fontSize: "clamp(22px,5.5vw,52px)", color: "#1a0808", fontWeight: 300, letterSpacing: "0.03em", display: "block", marginTop: 4 }}>Audio Library</span>
             <span style={{ fontSize: "clamp(14px,2.5vw,22px)", color: "#B76E79", fontWeight: 400, letterSpacing: "0.08em", display: "block", marginTop: 2 }}>(+ ProofOS)</span>
           </h1>
@@ -579,7 +595,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               {/* Album art */}
-              <div style={{ width: 56, height: 56, borderRadius: 10, background: "linear-gradient(135deg,#d4a090,#B76E79)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, boxShadow: "0 4px 20px rgba(183,110,121,0.4)" }}>✦</div>
+              <div style={{ width:56, height:56, borderRadius:10, background:"linear-gradient(135deg,#d4a090,#B76E79)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 20px rgba(183,110,121,0.4)", overflow:"hidden", position:"relative" }}>
+                <div style={{ display:"flex", alignItems:"flex-end", gap:2, height:28, position:"relative", zIndex:1 }}>
+                  {[12,20,14,24,18,10,22,16].map((h,i)=>(
+                    <div key={i} style={{ width:3, borderRadius:2, background:"rgba(0,0,0,0.6)", height:h, animation:`wave ${0.8+i*0.1}s ease-in-out infinite`, animationDelay:`${i*0.08}s` }}/>
+                  ))}
+                </div>
+              </div>
               {/* Track info */}
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 700, color: "#1a0808", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Spoilt Goddess</div>
@@ -1023,7 +1045,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </div>
             <div style={{ background: "#080a08", borderRadius: "0 14px 0 0", padding: "22px 30px", border: `1px solid ${T.gold}33`, borderBottom: "none", borderLeft: "none" }}>
               <div style={{ fontSize: 13, color: "#B76E79", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>New self-concept</div>
-              <div className="wm" style={{ fontSize: "clamp(22px,3.5vw,40px)", color: T.textSecondary, lineHeight: 1.1 }}>Reprogrammed<br/>subconscious</div>
+              <div className="wm" style={{ fontSize: "clamp(22px,3.5vw,40px)", color: "#e8e0d0", lineHeight: 1.1 }}>Reprogrammed<br/>subconscious</div>
             </div>
           </div>
           {compRows.map((row, i) => (
@@ -1112,7 +1134,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(215,185,130,0.05)" : "none" }}>
               <div style={{ padding: "15px 18px", fontSize: 15, fontWeight: 700, color: T.champSoft, borderRight: "1px solid rgba(215,185,130,0.06)" }}>{row.t}</div>
               <div style={{ padding: "15px 18px", fontSize: 14, color: "#c0a898", borderRight: "1px solid rgba(215,185,130,0.06)", lineHeight: 1.6 }}>{row.w}</div>
-              <div style={{ padding: "15px 18px", fontSize: 14, color: T.textSecondary, borderRight: "1px solid rgba(215,185,130,0.06)", lineHeight: 1.6 }}>{row.d}</div>
+              <div style={{ padding: "15px 18px", fontSize: 14, color: "#e8e0d0", borderRight: "1px solid rgba(215,185,130,0.06)", lineHeight: 1.6 }}>{row.d}</div>
               <div style={{ padding: "15px 18px", fontSize: 13, color: "#a08878", fontStyle: "italic", lineHeight: 1.6 }}>{row.when}</div>
             </div>
           ))}
@@ -1182,7 +1204,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                       {(side.msgs || []).map((m, mi) => (
                         <div key={mi}>
                           {m.center ? <div style={{ textAlign: "center", fontSize: 11, color: "#3a2a2a", marginBottom: 4 }}>{m.txt}</div>
-                            : m.from ? <div style={{ background: "rgba(25,15,3,0.8)", borderRadius: 7, padding: "6px 8px", marginBottom: 4, border: "1px solid rgba(215,185,130,0.1)" }}><div style={{ fontSize: 11, color: "#a08878", marginBottom: 2 }}>{m.from}</div><div style={{ fontSize: 12, color: T.textSecondary }}>{m.txt}</div></div>
+                            : m.from ? <div style={{ background: "rgba(25,15,3,0.8)", borderRadius: 7, padding: "6px 8px", marginBottom: 4, border: "1px solid rgba(215,185,130,0.1)" }}><div style={{ fontSize: 11, color: "#a08878", marginBottom: 2 }}>{m.from}</div><div style={{ fontSize: 12, color: "#e8e0d0" }}>{m.txt}</div></div>
                             : <div style={{ background: m.green ? "rgba(10,25,10,0.8)" : "rgba(25,15,15,0.8)", borderRadius: 7, padding: "5px 8px", marginBottom: 4 }}><div style={{ fontSize: m.small ? 10 : 11, color: m.green ? "#7ab07a" : "#4a3a3a" }}>{m.txt}</div></div>}
                         </div>
                       ))}
@@ -1325,7 +1347,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           ].map((t, i) => (
             <div key={i} style={{ background: "#000000", border: "1px solid #1c1828", borderRadius: 14, padding: "18px 16px", display: "flex", flexDirection: "column", gap: 10 }}>
               <div style={{ fontSize: 20, color: "#B76E7944", lineHeight: 1 }}>"</div>
-              <p style={{ fontSize: 14, color: T.textSecondary, lineHeight: 1.8, fontStyle: "italic", flex: 1 }}>{t.quote}</p>
+              <p style={{ fontSize: 14, color: "#e8e0d0", lineHeight: 1.8, fontStyle: "italic", flex: 1 }}>{t.quote}</p>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ fontSize: 13, color: "#a08878", fontWeight: 500 }}>{t.handle}</span>
                 <span style={{ fontSize: 11, padding: "2px 8px", background: "#B76E7915", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.08em" }}>{t.cat}</span>
@@ -1392,7 +1414,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               price: billing === "monthly" ? "£19" : "£144",
               period: billing === "monthly" ? "/month" : "/year",
               sub: billing === "annual" ? "£19/mo · save 20%" : null,
-              color: T.textSecondary,
+              color: "#e8e0d0",
               features: ["An ever-expanding hypnosis library", "All 6 desire categories", "4 new tracks every week", "Loop player + sleep timer", "Plays in background like Spotify", "No ads. Ever."],
               cta: "Join Audio Tier",
             },
