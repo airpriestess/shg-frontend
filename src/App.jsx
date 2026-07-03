@@ -170,7 +170,35 @@ function ArchivePage() {
 
 /* ── ADD PROOF MODAL (quick capture) ──────────────────────────────────────── */
 /* ── LANDING PAGE ─────────────────────────────────────────────────────────── */
+/* ── MOBILE HOOK — bypasses all CSS specificity issues ── */
+function useMobile() {
+  const [m, setM] = useState(() => typeof window !== "undefined" ? window.innerWidth <= 680 : false);
+  useEffect(() => {
+    const h = () => setM(window.innerWidth <= 680);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
+  }, []);
+  return m;
+}
+/* Grid helper — returns inline style that works on ALL devices */
+const G2 = (m, gap = 16) => m
+  ? { display: "flex", flexDirection: "column", gap: 14 }
+  : { display: "grid", gridTemplateColumns: "1fr 1fr", gap };
+const G3 = (m, gap = 16) => m
+  ? { display: "flex", flexDirection: "column", gap: 14 }
+  : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap };
+const G4 = (m, gap = 12) => m
+  ? { display: "flex", flexDirection: "column", gap: 12 }
+  : { display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap };
+const GPRICE = (m) => m
+  ? { display: "flex", flexDirection: "column", gap: 14 }
+  : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 };
+const GPROOF = (m) => m
+  ? { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }
+  : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 };
+
 function Landing({ onJoin, onDemo }) {
+  const isMobile = useMobile();
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [billing, setBilling] = useState("monthly");
@@ -234,12 +262,12 @@ function Landing({ onJoin, onDemo }) {
 
       {/* ANNOUNCEMENT BANNER */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
-          <span className="wm banner-inner" style={{ fontSize: 14, fontWeight: 300, color: "#000", letterSpacing: "0.08em" }}>
-            ✦ &nbsp; LIFETIME ACCESS &nbsp;·&nbsp; £500 once, forever &nbsp;·&nbsp; 1,000 spots only
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: isMobile ? "8px 14px" : "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, flexWrap: "nowrap" }}>
+          <span className="wm" style={{ fontSize: isMobile ? 12 : 15, fontWeight: 300, color: "#000", letterSpacing: isMobile ? "0.02em" : "0.08em", whiteSpace: isMobile ? "normal" : "nowrap", textAlign: isMobile ? "center" : "left", lineHeight: 1.4 }}>
+            {isMobile ? "✦ Lifetime Access · £500 once · 1,000 spots" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  1,000 spots only"}
           </span>
-          <button onClick={() => onJoin("founder")} style={{ padding: "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: 12, fontWeight: 800, cursor: "pointer", flexShrink: 0 }}>
-            Claim yours
+          <button onClick={() => onJoin("founder")} style={{ padding: isMobile ? "4px 12px" : "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: isMobile ? 11 : 12, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
+            Claim
           </button>
         </div>
       )}
@@ -249,7 +277,7 @@ function Landing({ onJoin, onDemo }) {
         <span className="wm" style={{ fontSize: 20, background: `linear-gradient(90deg, ${T.champagne}, ${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
-          <button onClick={() => onJoin("audio")} style={{ padding: "11px 28px", background: "#f2ece4", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.04em", boxShadow: "0 2px 20px rgba(242,236,228,0.35)" }}>Join now ✦</button>
+          <button onClick={() => onJoin("audio")} style={{ padding: "11px 28px", background: "#f2ece4", border: "none", borderRadius: 22, color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", letterSpacing: "0.04em", boxShadow: "0 2px 20px rgba(242,236,228,0.35)", display: isMobile ? "none" : "block" }}>Join now ✦</button>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 3 }}>
             {[0,1,2].map(i => <div key={i} style={{ width: 16, height: 1.5, background: T.textMuted }} />)}
           </button>
@@ -266,7 +294,7 @@ function Landing({ onJoin, onDemo }) {
       </nav>
 
       {/* HERO */}
-      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: "clamp(90px,12vw,110px)", overflow: "hidden" }}>
+      <div style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: isMobile ? 100 : 110, overflow: "hidden", minHeight: isMobile ? "auto" : "90vh" }}>
         <Rings count={5} />
         {/* Dot grid overlay */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
@@ -328,11 +356,11 @@ function Landing({ onJoin, onDemo }) {
 
           {/* PAIN POINT */}
                     {/* HERO CTA BUTTONS */}
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: "row" }} className="hero-ctas">
-            <button onClick={() => onJoin("audio")} className="cta-pulse mob-full" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.06em" }}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: isMobile ? "column" : "row", alignItems: "stretch", maxWidth: isMobile ? 340 : "none", margin: isMobile ? "0 auto 16px" : "0 0 16px" }}>
+            <button onClick={() => onJoin("audio")} className="cta-pulse" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.06em", width: isMobile ? "100%" : "auto" }}>
               START LISTENING ✦
             </button>
-            <button onClick={() => onJoin("founder")} className="mob-full" style={{ padding: "16px 32px", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
+            <button onClick={() => onJoin("founder")} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
               LIFETIME ACCESS →
             </button>
           </div>
@@ -343,7 +371,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* THE PROBLEM SECTION */}
-      <div style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Why it hasn't worked yet</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 16 }}>
@@ -355,7 +383,7 @@ function Landing({ onJoin, onDemo }) {
             The problem isn't your effort. It's the method.
           </p>
         </div>
-        <div className="grid-3" style={{ gap: 20 }}>
+        <div style={{ ...G3(isMobile), gap: 20 }}>
           {[
             {
               num: "01",
@@ -405,7 +433,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
             {/* MELODIC HOUSE USP */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 860, margin: "0 auto" }}>
+      <div style={{ padding: isMobile ? "0 18px 48px" : "0 clamp(16px,4vw,24px) 70px", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "#0a0900", border: "1px solid #B76E7933", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
           {/* Background glow */}
           <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
@@ -420,7 +448,7 @@ function Landing({ onJoin, onDemo }) {
             <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#b09888", lineHeight: 1.85, marginBottom: 28, maxWidth: 580 }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
-            <div className="grid-3">
+            <div style={G3(isMobile)}>
               {[
                 { icon: "◈", title: "Music as frequency", body: "The melodic house tracks are selected to hold a specific energetic state throughout the session." },
                 { icon: "✦", title: "Deeper receptivity", body: "Music bypasses resistance. The body relaxes. The subconscious opens. Reshma's voice installs the new self-concept." },
@@ -450,7 +478,7 @@ function Landing({ onJoin, onDemo }) {
       </div>
 
       {/* LANDING PROOF WALL */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 900, margin: "0 auto" }}>
+      <div style={{ padding: isMobile ? "0 18px 48px" : "0 clamp(16px,4vw,24px) 70px", maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -459,7 +487,7 @@ function Landing({ onJoin, onDemo }) {
           </h2>
           <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>Screenshot the bank transfer. Record the moment something shifts. Log the sign. Every piece of evidence linked to the audio that preceded it.</p>
         </div>
-        <div className="proof-grid" style={{ marginBottom: 12 }}>
+        <div style={{...GPROOF(isMobile), marginBottom: 12}}>
           {[
             { label: "Bank Transfer", sub: "£5,000 received · Day 8", bg: "linear-gradient(135deg,#0a1a0e,#051005)", color: "#4a9a5a", text: "£5,000", sz: 20 },
             { label: "Message Screenshot", sub: "He texted first · Day 5", bg: "linear-gradient(135deg,#1a0e12,#0e0810)", color: "#f2ece4", text: "I miss you.", sz: 13 },
@@ -608,7 +636,7 @@ function Landing({ onJoin, onDemo }) {
             Why desire doesn't manifest.<br/>
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And what does.</span>
           </h2>
-          <div className="grid-2" style={{ gap: 36 }}>
+          <div style={{...G2(isMobile), gap: 36}}>
             {[
               { title: "Why it hasn't worked", color: T.danger, items: ["Desire lives in the conscious mind. The conscious mind doesn't create reality.", "Affirmations are rejected by a subconscious that holds the opposite belief.", "Visualisation without identity shift is just imagination — the subconscious knows.", "Willpower requires constant effort. The subconscious always wins."], icon: "✗" },
               { title: "What actually works", color: T.champagne, items: ["The subconscious accepts new beliefs in theta and delta states — at the edge of sleep.", "Repetition installs the new self-concept below the threshold of conscious resistance.", "Once the subconscious holds the new identity as true, reality rearranges to match it.", "Passive. No effort. No force. The subconscious does the work while you rest."], icon: "✦" },
@@ -664,7 +692,7 @@ function Landing({ onJoin, onDemo }) {
         <div style={{ position: "relative", marginBottom: 64 }}>
           {/* Connecting line */}
           <div style={{ position: "absolute", top: 28, left: 28, right: 28, height: 1, background: "linear-gradient(90deg,#B76E7944,#B76E7988,#B76E7944)", zIndex: 0 }} className="hide-mob" />
-          <div className="steps-grid">
+          <div style={isMobile ? { display:"flex", flexDirection:"column", gap:0 } : { display:"grid", gridTemplateColumns:"1fr 36px 1fr 36px 1fr 36px 1fr", alignItems:"start" }}>
             {[
               { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#B76E79" },
               { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
@@ -692,7 +720,7 @@ function Landing({ onJoin, onDemo }) {
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>self-concept shifts.</span>
           </h2>
         </div>
-        <div className="grid-3" style={{ gap: 16 }}>
+        <div style={{...G3(isMobile), gap: 16}}>
           {[
             { cat: "Lovemaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "I am not enough. He leaves. I chase.", msgs: [{txt:"Hey are you there?",sent:true},{txt:"Can we talk?",sent:true},{txt:"8 days · No reply",center:true}] }, after: { label: "New assumption", text: "He comes back. Of course he does.", msgs: [{txt:"I miss you. Been thinking about you constantly.",green:true},{txt:"✓✓ Read",small:true,green:true}] } },
             { cat: "Moneymaxxing", color: "#B76E79", bgHdr: "#0a0800", before: { label: "Old assumption", text: "There is never enough. I am always behind.", amount: "£247", dim: true }, after: { label: "New assumption", text: "I receive unexpectedly. Always.", amount: "£10,000", transfer: true } },
@@ -738,7 +766,7 @@ function Landing({ onJoin, onDemo }) {
           </h2>
           <p style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.7, maxWidth: 540, margin: "0 auto" }}>New audios added regularly — and a proof system that shows you exactly what is working.</p>
         </div>
-        <div className="grid-2" style={{ gap: 16 }}>
+        <div style={{...G2(isMobile), gap: 16}}>
 
           {/* AUDIO DASHBOARD PREVIEW */}
           <div style={{ background: "#0a0800", border: "1.5px solid #B76E7944", borderRadius: 18, overflow: "hidden" }}>
@@ -845,7 +873,7 @@ function Landing({ onJoin, onDemo }) {
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>The proof arrived on its own.</span>
           </h2>
         </div>
-        <div className="price-grid">
+        <div style={{...GPRICE(isMobile)}}>
           {[
             { quote: "I listened on day 1 and felt something shift. By day 5 he texted. I didn't even look for it.", handle: "@manifestingwithme", cat: "SP & Love" },
             { quote: "£1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", handle: "@luckygirlenergy", cat: "Money" },
@@ -879,7 +907,7 @@ function Landing({ onJoin, onDemo }) {
             Photo proof, voice notes, signs, symptoms, synchronicities, and final manifestations — all stored inside the Proof Thread connected to the audio you listened to.
           </p>
         </div>
-        <div className="grid-3">
+        <div style={{...G3(isMobile)}}>
           {[
             { icon: "💬", label: "Message Screenshot",   sub: "He sent this on Day 8",         color: "#B76E79" },
             { icon: "💰", label: "Money Receipt",         sub: "£5,000 received",               color: "#B76E79" },
@@ -936,7 +964,7 @@ function Landing({ onJoin, onDemo }) {
         </div>
 
         {/* 2 tier cards */}
-        <div className="grid-2" style={{ gap: 16, marginBottom: 16 }}>
+        <div style={{...G2(isMobile), gap: 16, marginBottom: 16}}>
           {[
             {
               id: "audio", name: "Audio Tier", cls: "price-card-audio",
@@ -979,7 +1007,7 @@ function Landing({ onJoin, onDemo }) {
 
         {/* Lifetime Access card — full width */}
         <div style={{ background: "linear-gradient(135deg,#0d0900,#1a0d02)", border: "2px solid #B76E7955", borderRadius: 18, padding: "28px 32px" }}>
-          <div className="grid-2" style={{ gap: 32, alignItems: "center" }}>
+          <div style={{...G2(isMobile), gap: 32, alignItems: "center"}}>
             <div>
               <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10 }}>First 1,000 only · Lifetime access</div>
               <div className="wm" style={{ fontSize: "clamp(26px,4vw,38px)", color: T.textPrimary, marginBottom: 10 }}>Lifetime Access</div>
