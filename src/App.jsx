@@ -234,7 +234,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("goddess")} style={{width:"100%",padding:"15px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)"}}>Activate Goddess Tier — £33/month →</button>
+            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"15px",background:"linear-gradient(135deg,#f0cdb8,#e8b8a0,#d4a090,#c4789a,#B76E79)",backgroundSize:"200%",backgroundPosition:"left",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.5)"}}>Activate Goddess Tier — £33/month →</button>
           </div>
 
           {/* LIFETIME */}
@@ -410,9 +410,9 @@ function MaxxingCarousel({ cats }) {
 
   // Each category gets its own peach/rose shade so it feels alive
   const bgs = [
-    "linear-gradient(135deg,#e8b8a8,#d4909a)",  // Lovemaxxing — deep rose
-    "linear-gradient(135deg,#f0cdb4,#d4a090)",   // Moneymaxxing — warm peach
-    "linear-gradient(135deg,#f2d0c0,#e0b0a0)",   // Beautymaxxing — blush peach
+    "linear-gradient(135deg,#ffd6e7,#ffb3cc)",  // Lovemaxxing — bright pink
+    "linear-gradient(135deg,#d4f4d4,#a8e6a8)",   // Moneymaxxing — fresh green
+    "linear-gradient(135deg,#e8d0ff,#d4a8ff)",   // Beautymaxxing — lilac
     "linear-gradient(135deg,#dca8b8,#c47898)",   // DNAMaxxing — rose
     "linear-gradient(135deg,#edc0a8,#d49880)",   // Lifemaxxing — golden peach
     "linear-gradient(135deg,#c8b8d8,#a898c0)",   // SleepMaxxing — soft lavender-rose
@@ -476,6 +476,7 @@ function MaxxingCarousel({ cats }) {
 const FAQS = [
   {q:"What exactly is Self Hypnosis Goddess?",a:"A private audio membership of original hypnosis tracks produced by Reshma Oracle. Each audio is layered with EMDR, binaural beats, and melodic house music to guide your brain into theta state — where the subconscious accepts new beliefs. No app download needed. Access everything through a web portal that plays like Spotify."},
   {q:"How is this different from YouTube hypnosis?",a:"The YouTube audios are free and public. The vault contains originals never published — longer, deeper, produced specifically to rewire the subconscious around specific desires. No ads at 3am. No algorithm deciding what you hear next."},
+  {q:"Is this gender neutral?",a:"Yes. Depending on the track. The love and SP tracks are written with female listeners in mind by default, but the money, identity, beauty, DNA, and sleep tracks apply to anyone. More gender-neutral tracks are being added regularly."},
   {q:"Do I need headphones?",a:"Headphones maximise the binaural effect and are strongly recommended. The EMDR bilateral element works through left-right audio stimulation. AirPods, earbuds, over-ear — any pair works."},
   {q:"How long until I notice something shifting?",a:"Most members report something noticeable within 3 to 7 days — a small sign, a shift in how they feel about the desire, or a change in the obsessive loop. The install deepens with repetition. 30 days of consistent listening typically closes the old identity completely."},
   {q:"Can I listen while I sleep?",a:"Yes. This is one of the most effective ways to use the audios. Your conscious resistance is off. The subconscious is in delta and receives the installation without filtering. Several tracks are designed specifically for sleep listening."},
@@ -644,9 +645,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#f0cdb8 0%,#e0b09a 20%,#d4a090 40%,#c8889a 65%,#B76E79 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#b8860b 0%,#d4a017 20%,#f0c030 40%,#d4a017 65%,#b8860b 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
-            {isMobile ? "✦ Lifetime · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  1,000 spots only"}
+            {isMobile ? "✦ Lifetime · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  Only 1,000 spots"}
           </span>
           <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("founder"); }} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
             Claim
@@ -1157,29 +1158,29 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
 
-      {/* WHY I BUILT THIS — purple/lilac */}
-      <div style={{ background: "linear-gradient(160deg,#f0e8ff 0%,#e8dcff 40%,#f4eaff 70%,#ece0ff 100%)", padding: isMobile?"56px 18px":"90px 24px", position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", top:"30%", left:"50%", transform:"translateX(-50%)", width:500, height:500, background:"radial-gradient(ellipse,rgba(140,80,220,0.1) 0%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
+      {/* WHY I BUILT THIS — BLACK */}
+      <div style={{ background: "#000", padding: isMobile?"56px 18px":"90px 24px", position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", top:"30%", left:"50%", transform:"translateX(-50%)", width:500, height:500, background:"radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
         <div style={{ maxWidth:760, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:40 }}>
-            <div style={{ fontSize:11, color:"#7040b0", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Reshma Oracle · Why I built this</div>
-            <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,60px)", color:"#1a0830", lineHeight:1.1, marginBottom:24 }}>
+            <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Reshma Oracle · Why I built this</div>
+            <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,60px)", color:"#f2ece4", lineHeight:1.1, marginBottom:24 }}>
               The city was bingeing<br/>
-              <span style={{ background:"linear-gradient(90deg,#8040c0,#c050a0,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>on manifestation content.</span>
+              <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>on manifestation content.</span>
             </h2>
           </div>
           <div style={{ maxWidth:680, margin:"0 auto", display:"flex", flexDirection:"column", gap:20 }}>
-            <p style={{ fontSize:isMobile?17:20, color:"#2a1040", lineHeight:1.9, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>
+            <p style={{ fontSize:isMobile?17:20, color:"#e8ddd0", lineHeight:1.9, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>
               "And none of it was installing anything. The reels. The YouTube videos. The 369 method. The scripting. Everyone was consuming — and nothing was landing."
             </p>
-            <p style={{ fontSize:isMobile?15:17, color:"#4a2868", lineHeight:1.85 }}>
+            <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
               I'd been using self-hypnosis to shift my own identity for years before I ever talked about it publicly. It was the thing that actually worked — not as inspiration, not as a vibe check, but as a daily installation. You press play. Your subconscious receives it. The new version of you starts to feel inevitable.
             </p>
-            <p style={{ fontSize:isMobile?15:17, color:"#4a2868", lineHeight:1.85 }}>
+            <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
               That's why I built this. Not another thing to consume. A practice you do every single day, passively — while you sleep, rest, commute. That compounds. That builds evidence. That gives you proof so undeniable you stop doubting whether it works.
             </p>
-            <div style={{ background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.2)", borderRadius:14, padding:"20px 24px", marginTop:8 }}>
-              <p style={{ fontSize:isMobile?16:18, color:"#3a1040", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:0 }}>
+            <div style={{ background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:14, padding:"20px 24px", marginTop:8 }}>
+              <p style={{ fontSize:isMobile?16:18, color:"#e8ddd0", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:0 }}>
                 "I needed something I could do every single day — that wasn't another thing to check off a list. That happened while I lived my life. That installed me without needing me to be disciplined."
               </p>
               <div style={{ fontSize:13, fontWeight:700, color:"#B76E79", marginTop:12, fontFamily:"'Jost',sans-serif" }}>— Reshma Oracle</div>
@@ -1203,7 +1204,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               We don't stop at the surface.<br/>
               <span style={{ background: "linear-gradient(90deg,#0080c0,#0040a0)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
-            <p style={{ fontSize: isMobile ? 16 : 18, color: "#c0a898", lineHeight: 1.85, maxWidth: 580, margin: "0 auto" }}>
+            <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a2040", lineHeight: 1.85, maxWidth: 580, margin: "0 auto", fontWeight: 500 }}>
               Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
             </p>
           </div>
@@ -1214,13 +1215,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* Left — Reshma's voice */}
             <div style={{ borderLeft: "2px solid #B76E79", paddingLeft: 28 }}>
               <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#f2ece4", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a2040", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
                 "I got obsessed with the science of why some people shift fast and others stay stuck for years. The answer wasn't mindset. It wasn't effort. It was depth.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#c0a898", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a3060", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
                 The subconscious doesn't respond to the words. It responds to the frequency, the state, and the repetition. When you combine theta brainwaves with 963hz and EMDR — you're not just changing a thought. You're changing the signal your cells are running on.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#f2ece4", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a2040", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
                 That's why this works when everything else didn't."
               </p>
               <div style={{ marginTop: 20, fontSize: 13, color: "#B76E79", fontWeight: 600, fontFamily: "'Jost',sans-serif" }}>— Reshma Oracle</div>
@@ -1542,7 +1543,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,72px)", lineHeight: 1, marginBottom: 16, background: "linear-gradient(90deg,#8040c0,#c050a0,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               ProofOS ✦
             </h2>
-            <div style={{ fontSize: isMobile?16:20, color: "#c8c0bc", marginBottom: 24, fontFamily: "'Jost',sans-serif", fontWeight: 300, letterSpacing: "0.04em" }}>
+            <div style={{ fontSize: isMobile?16:20, color: "#000000", marginBottom: 24, fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.04em" }}>
               The manifestation ledger.
             </div>
             <p style={{ fontSize: isMobile?15:17, color: "#6a3858", lineHeight: 1.85, maxWidth: 620, margin: "0 auto 12px" }}>
