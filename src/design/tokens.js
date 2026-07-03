@@ -1,11 +1,11 @@
 export const T = {
   bgRoot: "#000000",
   bgSoft: "#050404",
-  surfaceBase: "#070608",
-  surfaceRaised: "#0c0b10",
+  surfaceBase: "#000000",
+  surfaceRaised: "#08060e",
   surfaceHigh: "#100e16",
-  borderSoft: "#1e1a28",
-  borderGlow: "#28203a",
+  borderSoft: "#1e1828",
+  borderGlow: "#241e38",
 
   // Text — warm cream white fading to soft peach
   textPrimary:   "#f2ece4",   // warm cream white
@@ -31,9 +31,9 @@ export const T = {
   gradV: "linear-gradient(135deg,#d4a090,#B76E79)",
 
   bgGrad:      "#000000",
-  cardBg:      "rgba(8,6,10,0.96)",
+  cardBg:      "rgba(6,4,10,0.97)",
   premiumCard: "linear-gradient(135deg,rgba(15,14,12,0.98),rgba(8,7,6,0.98))",
-  border:      "1px solid #1e1a28",
+  border:      "1px solid #1e1828",
   glow:        "0 0 40px rgba(183,110,121,0.1)",
   glowChamp:   "0 0 30px rgba(183,110,121,0.14)",
 };
@@ -46,10 +46,10 @@ export const CSS = `
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
 body{background:#000;color:#f2ece4;font-family:'Jost',sans-serif;font-weight:300;font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
 button,input,textarea,select{font-family:'Jost',sans-serif;}
-input,textarea{background:#070608;border:1px solid #1e1a28;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
+input,textarea{background:#000;border:1px solid #1e1828;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#B76E7966;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#1e1a28;border-radius:2px;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#1e1828;border-radius:2px;}
 *{-webkit-tap-highlight-color:transparent;}
 img{max-width:100%;}
 
@@ -215,4 +215,9 @@ img{max-width:100%;}
   background-clip:text;
   animation:wordmarkShimmer 4s ease-in-out infinite;
 }
+
+/* ── SECTION COLOUR BANDS ─────────────── */
+.section-rose{background:linear-gradient(180deg,#000 0%,#130818 50%,#000 100%)!important;}
+.section-peach{background:linear-gradient(180deg,#000 0%,#140c18 50%,#000 100%)!important;}
+.section-black{background:#000!important;}
 `;
