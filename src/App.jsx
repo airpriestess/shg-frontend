@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import VaultSettings from "./pages/VaultSettings.jsx";
 import ProofWall from "./pages/ProofWall.jsx";
 import ListeningGuide from "./pages/ListeningGuide.jsx";
+import SpotifyPortal from "./pages/SpotifyPortal.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
@@ -47,16 +48,7 @@ export default function App() {
       {screen === "landing" && <Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => goPortal("goddess")} />}
     {checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}
       {screen === "portal" && (
-        <AppShell
-          userTier={userTier} tab={portalTab} setTab={setPortalTab}
-          onSignOut={() => setScreen("landing")} onUpgrade={() => setScreen("landing")}
-          currentAudio={currentAudio} playingId={playingId}
-          onStopPlay={() => { setPlayingId(null); }}
-          onCreateThread={openCreateThread}
-          onAddProof={openAddProof}
-          onNavigate={navigate}
-          onPlayAudio={playAudio}
-        />
+        <SpotifyPortal onSignOut={() => setScreen("landing")} userTier={userTier} />
       )}
       <CreateThreadModal open={createThreadModal} onClose={() => setCreateThreadModal(false)} preselectedAudioId={preselectedAudioId} />
       <PhotoProofModal
@@ -721,7 +713,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing's changed.</span>
           </h2>
           <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#c0a898", lineHeight: 1.85, maxWidth: 580, margin: "0 auto" }}>
-            Scripting. Affirmations. Vision boards. You've done everything right. You're still waiting. The problem isn't your effort. <strong style={{ color: "#1a0808", fontWeight: 700 }}>It's your brainwave state.</strong>
+            Scripting. Affirmations. Vision boards. You've done everything right. You're still waiting. The problem isn't your effort. <strong style={{ color: "#1a0808", fontWeight: 800 }}>It's your brainwave state.</strong>
           </p>
         </div>
         <div style={{ ...G3(isMobile), gap: 20 }}>
@@ -747,7 +739,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           ].map((p, i) => (
             <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 16, padding: 28, borderTop: "2px solid #B76E79", boxShadow: "0 2px 18px rgba(183,110,121,0.07)" }}>
               <div style={{ fontSize: 12, color: "#B76E7966", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 14 }}>{p.num}</div>
-              <div style={{ fontSize: "clamp(15px,1.6vw,18px)", fontWeight: 700, color: "#1a0808", marginBottom: 14, lineHeight: 1.4 }}>{p.title}</div>
+              <div style={{ fontSize: "clamp(18px,2vw,22px)", fontWeight: 800, color: "#1a0808", marginBottom: 12, lineHeight: 1.2, fontFamily: "'Jost',sans-serif" }}>{p.title}</div>
               <p style={{ fontSize: 14, color: "#c0a898", lineHeight: 1.85, marginBottom: 16 }}>{p.body}</p>
               <div style={{ fontSize: 14, color: "#B76E79", fontWeight: 500, paddingTop: 14, borderTop: "1px solid #1c1828" }}>✦ {p.fix}</div>
             </div>
@@ -772,7 +764,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
             <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", lineHeight: 1.1, marginBottom: 16 }}>
-              <span style={{ color: "#f2ece4" }}>Introducing </span>
+              <span style={{ color: "#1a0808" }}>Introducing </span>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
             </h2>
             <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#5a3838", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
@@ -781,16 +773,20 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 14, flexWrap: "nowrap" }}>
             {[
-              { num: "01", icon: "🎧", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests." },
-              { num: "02", icon: "🧵", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it." },
-              { num: "03", icon: "📷", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here." },
-              { num: "04", icon: "★", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it." },
+              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "linear-gradient(135deg,#fde8f0,#f8d8e8)" },
+              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "linear-gradient(135deg,#f0ddf8,#e8d0f0)" },
+              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "linear-gradient(135deg,#fceedd,#f8e4cc)" },
+              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#f8e0e8,#f0d0dc)" },
             ].map((s, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 14, padding: "22px 18px", borderTop: "2px solid #B76E79", boxShadow: "0 2px 18px rgba(183,110,121,0.07)" }}>
-                <div style={{ fontSize: 11, color: "#B76E7955", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 10 }}>{s.num}</div>
-                <div style={{ fontSize: 22, marginBottom: 10 }}>{s.icon}</div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#1a0808", marginBottom: 8 }}>{s.title}</div>
-                <div style={{ fontSize: 14, color: "#a08878", lineHeight: 1.7 }}>{s.body}</div>
+              <div key={i} style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 14, overflow: "hidden", boxShadow: "0 2px 18px rgba(183,110,121,0.07)", flex: 1 }}>
+                {/* Image placeholder — branded gradient */}
+                <div style={{ height: isMobile ? 90 : 110, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid rgba(183,110,121,0.15)", position: "relative" }}>
+                  <div style={{ fontSize: 11, color: "rgba(183,110,121,0.6)", fontWeight: 800, letterSpacing: "0.25em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>{s.num} · Image</div>
+                </div>
+                <div style={{ padding: "18px 18px 20px" }}>
+                  <div style={{ fontSize: isMobile ? 22 : 26, fontWeight: 800, color: "#1a0808", marginBottom: 10, fontFamily: "'Jost',sans-serif", lineHeight: 1.1 }}>{s.title}</div>
+                  <div style={{ fontSize: 13, color: "#5a3838", lineHeight: 1.75 }}>{s.body}</div>
+                </div>
               </div>
             ))}
           </div>
