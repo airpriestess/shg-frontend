@@ -276,6 +276,101 @@ function CheckoutModal({ step, setStep, onClose, onDemo }) {
 }
 
 
+
+/* ── HERO MARQUEE — rotating flash ticker ─────────────────────────────────── */
+const MARQUEE_ITEMS = [
+  { text: "He texts me first. Obviously.", color: "#B76E79" },
+  { text: "Money finds me first.", color: "#c8a870" },
+  { text: "Gorgeous is my default.", color: "#d4a090" },
+  { text: "My DNA is shifting. Right now.", color: "#9a8ad0" },
+  { text: "My highest timeline. Activated.", color: "#c8a870" },
+  { text: "He's obsessed. Of course he is.", color: "#B76E79" },
+  { text: "My skin is porcelain. Always.", color: "#d4a090" },
+  { text: "I shift while I sleep.", color: "#7a9ab0" },
+  { text: "Money arrives unexpectedly.", color: "#c8a870" },
+  { text: "My bloodline is being rewritten.", color: "#9a8ad0" },
+  { text: "He comes back. Every time.", color: "#B76E79" },
+  { text: "My waist is always snatched.", color: "#d4a090" },
+  { text: "£10,000 months are my baseline.", color: "#c8a870" },
+  { text: "I receive. Constantly. Effortlessly.", color: "#B76E79" },
+  { text: "My self-concept is permanent now.", color: "#9a8ad0" },
+  { text: "He can't stop thinking about me.", color: "#B76E79" },
+  { text: "I am radiant without trying.", color: "#d4a090" },
+];
+
+function HeroMarquee() {
+  const [lit, setLit] = useState(-1);
+  const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+  useEffect(() => {
+    // Flash a random item every 800ms
+    const t = setInterval(() => setLit(Math.floor(Math.random() * MARQUEE_ITEMS.length)), 800);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div style={{ overflow:"hidden", marginBottom:24, maskImage:"linear-gradient(90deg,transparent,black 8%,black 92%,transparent)", WebkitMaskImage:"linear-gradient(90deg,transparent,black 8%,black 92%,transparent)" }}>
+      <div className="marquee-track" style={{ gap:"0 40px" }}>
+        {doubled.map((item,i) => {
+          const idx = i % MARQUEE_ITEMS.length;
+          const isLit = idx === lit;
+          return (
+            <span key={i} style={{
+              fontSize:11, fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase",
+              color: isLit ? "#fff" : item.color,
+              whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif",
+              transition:"color 0.15s, text-shadow 0.15s",
+              textShadow: isLit ? `0 0 20px ${item.color}, 0 0 40px ${item.color}88` : "none",
+            }}>{item.text}</span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ── FAQ SECTION ───────────────────────────────────────────────────────────── */
+const FAQS = [
+  { q: "What exactly is Self Hypnosis Goddess?", a: "A private audio membership of original hypnosis tracks produced by Reshma Oracle. Each audio is layered with EMDR, binaural beats, and melodic house music to guide your brain into theta state — where the subconscious accepts new beliefs. There are no apps to download. You access everything through a web portal, and it plays like Spotify." },
+  { q: "How is this different from YouTube hypnosis audios?", a: "The YouTube audios are free and public. The vault contains originals that have never been published — longer, deeper, and produced specifically to rewire the subconscious around specific desires. No ads interrupting at 3am. No algorithm deciding what you hear next." },
+  { q: "Do I need headphones?", a: "Headphones maximise the binaural effect and are strongly recommended. The EMDR bilateral element works specifically through left-right audio stimulation. AirPods, earbuds, over-ear — any pair works." },
+  { q: "How long until I notice something shifting?", a: "Most members report something noticeable within the first 3 to 7 days — a small sign, a shift in how they feel about the desire, or a change in the obsessive loop. The install deepens with repetition. 30 days of consistent listening typically closes the old identity completely." },
+  { q: "Can I listen while I sleep?", a: "Yes. This is one of the most effective ways to use the audios. Your conscious resistance is off. The subconscious is in delta and receives the installation without filtering. Several tracks are designed specifically for sleep listening." },
+  { q: "What is ProofOS?", a: "ProofOS is the manifestation tracking system included in the Goddess Tier. You log your desires, link them to the audio you listened to, capture signs and synchronicities as they arrive, and mark when it manifests. It creates a personal record of evidence — so you can see the pattern building and know exactly which audio preceded each result." },
+  { q: "What's the difference between Audio Tier and Goddess Tier?", a: "Audio Tier (£19/mo) gives you full access to the exclusive vault — all tracks across all categories, loop player, sleep timer, and new tracks every week. Goddess Tier (£33/mo) includes everything in Audio plus ProofOS, early access to drops 48 hours before everyone else, and a monthly ritual audio." },
+  { q: "What is Lifetime Access?", a: "A one-time payment of £500 that gives you everything in Goddess Tier, every future audio ever released, every future feature, and no monthly billing. 1,000 spots only. Once they're gone, this offer is gone." },
+  { q: "Can I cancel anytime?", a: "Yes. Cancel before your next renewal date and you will not be charged again. There are no refunds after 14 days from the payment date." },
+  { q: "Does this work if I've tried other subliminals and they didn't work?", a: "Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives. The specificity of the scripts and the consistency of one voice also matters. Your subconscious needs to trust the guide." },
+  { q: "What categories of audios are in the vault?", a: "SP & Love · Money · Beauty · DNA Activation · Sleep Shifting · Identity · Lifemaxxing. New categories will be added based on member requests." },
+  { q: "Is there a mobile app?", a: "The portal is a web app that works on any device in any browser. On iPhone: tap Share → Add to Home Screen and it installs like a native app. No App Store required. A dedicated iOS and Android app is in development." },
+];
+
+function FAQSection() {
+  const [open, setOpen] = useState(null);
+  return (
+    <div style={{ padding:"0 clamp(16px,4vw,24px) 80px", maxWidth:760, margin:"0 auto" }}>
+      <div style={{ textAlign:"center", marginBottom:40 }}>
+        <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.25em", textTransform:"uppercase", fontWeight:700, marginBottom:14, fontFamily:"'Jost',sans-serif" }}>FAQs</div>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)", color:"#f2ece4", lineHeight:1.2 }}>Everything you need to know.</h2>
+      </div>
+      <div style={{ display:"flex", flexDirection:"column", gap:2 }}>
+        {FAQS.map((faq,i) => (
+          <div key={i} style={{ background: open===i ? "#0d0a08" : "#080604", border:"1px solid", borderColor: open===i ? "#B76E7966" : "#1e1c0a", borderRadius:12, overflow:"hidden", transition:"all 0.2s" }}>
+            <button onClick={() => setOpen(open===i ? null : i)} style={{ width:"100%", padding:"20px 22px", background:"none", border:"none", display:"flex", justifyContent:"space-between", alignItems:"center", cursor:"pointer", gap:16 }}>
+              <span style={{ fontSize:15, fontWeight:600, color: open===i ? "#f2ece4" : "#c8b898", textAlign:"left", lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:18, color:"#B76E79", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform 0.2s" }}>+</span>
+            </button>
+            {open===i && (
+              <div style={{ padding:"0 22px 22px" }}>
+                <div style={{ height:1, background:"#1e1c0a", marginBottom:16 }}/>
+                <p style={{ fontSize:14, color:"#b09888", lineHeight:1.85, margin:0 }}>{faq.a}</p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── MAXXING CAROUSEL ──────────────────────────────────────────────────────── */
 function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
@@ -496,13 +591,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             })}
           </div>
 
-          <div style={{ overflow: "hidden", marginBottom: 24, maskImage: "linear-gradient(90deg,transparent,black 8%,black 92%,transparent)", WebkitMaskImage: "linear-gradient(90deg,transparent,black 8%,black 92%,transparent)" }}>
-            <div className="marquee-track" style={{ gap: "0 40px" }}>
-              {["MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦","MoneyMaxxing ✦","LoveMaxxing ✦","BeautyMaxxing ✦","LifeMaxxing ✦","IdentityMaxxing ✦","SleepMaxxing ✦","DNAMaxxing ✦"].map((t,i) => (
-              <span key={i} className="maxx-item" style={{ fontSize: isMobile ? 10 : 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: i%3===0?T.champagne:i%3===1?"#d4a090":"#B76E79", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif" }}>{t}</span>
-              ))}
-            </div>
-          </div>
+          <HeroMarquee />
 
           {/* TITLE */}
           <h1 className="wm" style={{ fontSize: "clamp(30px,8vw,72px)", lineHeight: 1.05, marginBottom: 12 }}>
@@ -1216,6 +1305,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           No refunds after 14 days · Cancel before renewal · Web app — no download · iPhone: Add to Home Screen
         </div>
       </div>
+
+      {/* FAQ */}
+      <FAQSection />
 
       {/* FINAL CTA */}
       <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: T.border }}>
