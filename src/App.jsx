@@ -176,7 +176,7 @@ const STRIPE = {
 };
 
 function CheckoutModal({ onClose, onDemo }) {
-  const [billing, setBilling] = React.useState("monthly");
+  const [billing, setBilling] = useState("monthly");
   const isAnnual = billing === "annual";
   const goStripe = (tier) => {
     const key = isAnnual && tier !== "lifetime" ? tier + "_annual" : tier;
@@ -482,7 +482,7 @@ function MaxxingCarousel({ cats }) {
             onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
             <div style={{ fontSize:9, color:"#d4a090", fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
-            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>{cat.tagline}</div>
+            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif" }}>{cat.tagline}</div>
           </div>
         ))}
       </div>
@@ -934,7 +934,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <span style={{ fontSize:isMobile?18:22 }}>✓</span>
               </div>
               <div style={{ flex:1, background:"linear-gradient(135deg,#fceedd,#f8d8f0,#ede0fc)", border:"2px solid rgba(183,110,121,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(183,110,121,0.2)" }}>
-                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#e8b870,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif", fontStyle:"italic" }}>Manifested.</div>
+                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#e8b870,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Manifested.</div>
                 <div style={{ fontSize:isMobile?13:15, color:"#6a3050", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
               </div>
             </div>
@@ -952,15 +952,15 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Why it hasn't clicked yet</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,54px)", color: "#000000", lineHeight: 1.1, marginBottom: 20 }}>
-            You've done everything<br />
-            to manifest this.<br />
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Results are nowhere to be seen.</span>
+            There's a reason<br />
+            it hasn't clicked yet.<br />
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And it's not your effort.</span>
           </h2>
           <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", lineHeight: 1.9, maxWidth: 620, margin: "0 auto" }}>
-            Whether it's love, money, your appearance, or your business — you've tried it all. Scripting. Visualising. Affirmations. Action. And you're still standing in the same place asking <em>what is going on?</em>
+            Whether it's love, money, your appearance, or your business — scripting, visualising, affirming, taking action. You've tried it all.
           </p>
-          <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#000000", lineHeight: 1.9, maxWidth: 560, margin: "20px auto 0", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
-            Here's the truth: <strong style={{ fontStyle: "normal", fontWeight: 700 }}>it's not your effort that's the problem. It's the state you're acting from.</strong>
+          <p style={{ fontSize: "clamp(17px,2.1vw,21px)", color: "#000000", lineHeight: 1.9, maxWidth: 560, margin: "20px auto 0", fontFamily: "'Jost',sans-serif", fontWeight: 600 }}>
+            It's not the effort that's the problem. It's the state you're acting from.
           </p>
           <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: "#000000", lineHeight: 1.9, maxWidth: 600, margin: "16px auto 0" }}>
             Your current actions lead to your current outcome. The version of you who already has what you want — she has a completely different identity. Different thoughts. Different ideas. Different actions that feel natural to her. You cannot know her actions until you become her. There is no other way.
@@ -1009,7 +1009,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
       {/* PROOFOS INTRO — peach section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#f0ddf8 0%,#ebd4f4 50%,#f0ddf8 100%)" }}>
+      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#f0ddf8 0%,#ebd4f4 50%,#f0ddf8 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -1040,6 +1040,27 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               </div>
             ))}
           </div>
+
+          {/* REAL PROOFOS SCREENSHOT */}
+          <div style={{ display: "flex", flexDirection: isMobile?"column":"row", alignItems: "center", gap: isMobile?28:48, marginTop: 48 }}>
+            <div style={{ flex: isMobile?"none":"0 0 auto" }}>
+              <ProofWallScreenshot width={isMobile?260:230} theme="dark"/>
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>How the tracking actually works</div>
+              <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#000", marginBottom: 12, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
+              <p style={{ fontSize: 14, color: "#1a1218", lineHeight: 1.85, marginBottom: 12 }}>
+                Say your desire out loud: "£5,000 arrives unexpectedly." Log it in ProofOS. Choose the audio you're pairing it with — Money Finds Me First, say. Now every time you play that track, ProofOS quietly counts the day.
+              </p>
+              <p style={{ fontSize: 14, color: "#1a1218", lineHeight: 1.85, marginBottom: 12 }}>
+                As signs show up — an unexpected refund, a client paying early, a random win — you log them against that thread. Each sign stacks as evidence. You watch the pile grow, day by day, listen by listen.
+              </p>
+              <p style={{ fontSize: 14, color: "#1a1218", lineHeight: 1.85 }}>
+                The moment it lands, you mark it manifested. ProofOS timestamps it — desire, track, days it took, signs logged along the way. That record never disappears. It becomes your evidence that this works, in your own data, not someone else's testimonial.
+              </p>
+            </div>
+          </div>
+
           <div style={{ textAlign: "center", marginTop: 28 }}>
             <span style={{ fontSize: 14, color: "#B76E79", fontWeight: 500 }}>Included in Goddess Tier · £33/mo</span>
           </div>
@@ -1145,7 +1166,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   </div>
                   <div style={{ padding: "16px 14px" }}>
                     <div style={{ background: "#1e1220", borderRadius: "14px 14px 14px 4px", padding: "12px 16px", display: "inline-block", maxWidth: "85%" }}>
-                      <div style={{ fontSize: 15, color: "#f2ece4", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", lineHeight: 1.5 }}>I miss you. Been thinking about you constantly. Can we talk?</div>
+                      <div style={{ fontSize: 15, color: "#f2ece4", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.5 }}>I miss you. Been thinking about you constantly. Can we talk?</div>
                     </div>
                   </div>
                   <div style={{ padding: "10px 16px", background: "#0a0610", borderTop: "1px solid #2a1a2a" }}>
@@ -1162,10 +1183,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                     <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#d4a09015,transparent 70%)" }}/>
                     <div style={{ fontSize: 12, color: "#d4a090", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.2em" }}>✦ SKIN GLOW · DAY 14</div>
                     <div style={{ fontSize: 22, color: "#d4a090", letterSpacing: 4 }}>◦ ◦ ◦</div>
-                    <div style={{ fontSize: 11, color: "#8a6858", fontStyle: "italic" }}>What are you doing differently?</div>
+                    <div style={{ fontSize: 11, color: "#8a6858" }}>What are you doing differently?</div>
                   </div>
                   <div style={{ padding: "12px 16px" }}>
-                    <div style={{ fontSize: 14, color: "#d4c0a8", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", lineHeight: 1.65 }}>"Three people asked what I was doing differently. My skin has never looked like this."</div>
+                    <div style={{ fontSize: 14, color: "#d4c0a8", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.65 }}>"Three people asked what I was doing differently. My skin has never looked like this."</div>
                   </div>
                   <div style={{ padding: "10px 16px", background: "#0c0608", borderTop: "1px solid #2a1a18" }}>
                     <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Gorgeous Is My Default</div>
@@ -1180,7 +1201,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <div style={{ padding: "22px 16px", textAlign: "center" }}>
                     <div style={{ fontSize: 42, fontWeight: 900, color: "#c8a840", fontFamily: "'Jost',sans-serif", letterSpacing: 8, marginBottom: 8, textShadow: "0 0 30px #c8a84044" }}>555</div>
                     <div style={{ fontSize: 12, color: "#9060c0", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>Angel Number · Three times today</div>
-                    <div style={{ fontSize: 13, color: "#c8b878", fontStyle: "italic", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.6 }}>Clock · Number plate · Total on receipt</div>
+                    <div style={{ fontSize: 13, color: "#c8b878", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.6 }}>Clock · Number plate · Total on receipt</div>
                   </div>
                   <div style={{ padding: "10px 16px", background: "#000000", borderTop: "1px solid #2a2200" }}>
                     <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Highest Timeline Activated</div>
@@ -1199,7 +1220,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                         <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: `linear-gradient(180deg,#d4a090,#B76E79)`, opacity: 0.8 }}/>
                       ))}
                     </div>
-                    <div style={{ fontSize: 14, color: "#000000", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", lineHeight: 1.65 }}>"I woke up knowing before anything happened."</div>
+                    <div style={{ fontSize: 14, color: "#000000", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.65 }}>"I woke up knowing before anything happened."</div>
                   </div>
                   <div style={{ padding: "10px 16px", background: "#050608", borderTop: "1px solid #1a2030" }}>
                     <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: I Am the Lucky Girl</div>
@@ -1215,7 +1236,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                     <div style={{ fontSize: 12, color: "#4a8a4a", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>Payment received</div>
                     <div style={{ fontSize: 28, fontWeight: 800, color: "#5ab06a", fontFamily: "'Jost',sans-serif", marginBottom: 6 }}>£2,500</div>
                     <div style={{ fontSize: 11, color: "#3a6a3a" }}>Day 21 · Second unexpected payment</div>
-                    <div style={{ fontSize: 13, color: "#6ab07a", fontStyle: "italic", fontFamily: "'Cormorant Garamond',serif", marginTop: 10, lineHeight: 1.6 }}>"It just keeps coming. Of course it does."</div>
+                    <div style={{ fontSize: 13, color: "#6ab07a", fontFamily: "'Cormorant Garamond',serif", marginTop: 10, lineHeight: 1.6 }}>"It just keeps coming. Of course it does."</div>
                   </div>
                   <div style={{ padding: "10px 16px", background: "#060e08", borderTop: "1px solid #1a3a1a" }}>
                     <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Money Finds Me First</div>
@@ -1234,7 +1255,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ flex: 1, marginLeft: 8 }}>
             <div style={{ fontSize: 14, fontWeight: 600, color: "#f2ece4", marginBottom: 2 }}>Voice Proof · Day 3</div>
-            <div style={{ fontSize: 13, color: "#c8c0bc", fontStyle: "italic" }}>"I woke up knowing before anything happened."</div>
+            <div style={{ fontSize: 13, color: "#c8c0bc" }}>"I woke up knowing before anything happened."</div>
           </div>
         </div>
       </div>
@@ -1252,7 +1273,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </h2>
           </div>
           <div style={{ maxWidth:680, margin:"0 auto", display:"flex", flexDirection:"column", gap:20 }}>
-            <p style={{ fontSize:isMobile?17:20, color:"#e8ddd0", lineHeight:1.9, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>
+            <p style={{ fontSize:isMobile?21:26, color:"#f2ece4", lineHeight:1.6, fontFamily:"'Jost',sans-serif", fontWeight:700 }}>
               "Everyone is consuming. And no one is installing. That's why I built this."
             </p>
             <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
@@ -1261,32 +1282,32 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
               That's why I built this. Not another thing to consume. A practice you repeat every single day, passively — while you sleep, rest, go to the gym, commute. You build evidence. The proof becomes impossible to ignore.
             </p>
-            <div style={{ background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:14, padding:"20px 24px", marginTop:8 }}>
-              <p style={{ fontSize:isMobile?16:18, color:"#e8ddd0", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:0 }}>
+            <div style={{ background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"250%", backgroundPosition:"left", borderRadius:16, padding:isMobile?"24px 22px":"32px 32px", marginTop:8 }}>
+              <p style={{ fontSize:isMobile?19:24, color:"#000", lineHeight:1.6, fontFamily:"'Jost',sans-serif", fontWeight:800, margin:0 }}>
                 "I needed something I could do every single day — that happened while I lived my life. That installed me without needing me to try."
               </p>
-              <div style={{ fontSize:13, fontWeight:700, color:"#B76E79", marginTop:12, fontFamily:"'Jost',sans-serif" }}>— Reshma Oracle</div>
+              <div style={{ fontSize:13, fontWeight:800, color:"#000", marginTop:14, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>— RESHMA ORACLE</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* DNA ACTIVATION SECTION */}
-      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "#000", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#dbeeff 0%,#c8e4fb 35%,#d4ecff 70%,#c0e0fa 100%)", position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
           {/* Eyebrow */}
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
+            <div style={{ fontSize: 11, color: "#0a5090", fontWeight: 800, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
               963hz · DNA Activation
             </div>
-            <h2 className="wm" style={{ fontSize: "clamp(34px,5.5vw,64px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20 }}>
+            <h2 className="wm" style={{ fontSize: "clamp(34px,5.5vw,64px)", color: "#000", lineHeight: 1.1, marginBottom: 20 }}>
               We don't stop at the surface.<br/>
-              <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
+              <span style={{ background: "linear-gradient(90deg,#0a5090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
-            <p style={{ fontSize: isMobile ? 16 : 18, color: "#c8c0bc", lineHeight: 1.85, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
+            <p style={{ fontSize: isMobile ? 17 : 19, color: "#000", lineHeight: 1.85, maxWidth: 580, margin: "0 auto", fontWeight: 500 }}>
               Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
             </p>
           </div>
@@ -1295,33 +1316,33 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: "1fr 1fr", gap: isMobile ? 24 : 40, marginBottom: 48 }}>
 
             {/* Left — Reshma's voice */}
-            <div style={{ borderLeft: "2px solid #B76E79", paddingLeft: 28 }}>
-              <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a2040", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
+            <div style={{ borderLeft: "3px solid #B76E79", paddingLeft: 28 }}>
+              <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a1a30", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
                 "I got obsessed with the science of why some people shift fast and others stay stuck for years. The answer wasn't mindset. It wasn't effort. It was depth.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a3060", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", marginBottom: 16 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a1a30", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
                 The subconscious doesn't respond to the words. It responds to the frequency, the state, and the repetition. When you combine theta brainwaves with 963hz and EMDR — you're not just changing a thought. You're changing the signal your cells are running on.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a2040", lineHeight: 1.9, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a1a30", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
                 That's why this works when everything else didn't."
               </p>
-              <div style={{ marginTop: 20, fontSize: 13, color: "#B76E79", fontWeight: 600, fontFamily: "'Jost',sans-serif" }}>— Reshma Oracle</div>
+              <div style={{ marginTop: 20, fontSize: 13, color: "#B76E79", fontWeight: 700, fontFamily: "'Jost',sans-serif" }}>— RESHMA ORACLE</div>
             </div>
 
             {/* Right — the three levels */}
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
-                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis, subliminals, and hemi-sync operate.", color: "#4a90d0", bg: "linear-gradient(135deg,#1a3a60,#0a2040)" },
-                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation and Reiki frequency encoding dissolve the old self-concept at its root — the assumption formed before you had the words for it.", color: "#5ab06a", bg: "linear-gradient(135deg,#1a3a1a,#0a2a0a)" },
-                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. Where the deepest patterns live, and where they can be permanently rewritten.", color: "#b090e0", bg: "linear-gradient(135deg,#2a1a40,#1a0a30)" },
+                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis, subliminals, and hemi-sync operate.", color: "#0a5090", bg: "linear-gradient(135deg,#cfe8ff,#a8d0f8)" },
+                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation and Reiki frequency encoding dissolve the old self-concept at its root — the assumption formed before you had the words for it.", color: "#1a7030", bg: "linear-gradient(135deg,#d0f4d0,#a8e8a8)" },
+                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. Where the deepest patterns live, and where they can be permanently rewritten.", color: "#7030a0", bg: "linear-gradient(135deg,#ecdcff,#d4b8f8)" },
               ].map((item, i) => (
-                <div key={i} style={{ background: item.bg, border: `1px solid ${item.color}44`, borderRadius: 12, padding: "20px 22px" }}>
+                <div key={i} style={{ background: item.bg, border: `1px solid ${item.color}33`, borderRadius: 12, padding: "20px 22px" }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
                     <span style={{ fontSize: 10, color: item.color, fontWeight: 800, letterSpacing: "0.2em", fontFamily: "'Jost',sans-serif" }}>{item.level}</span>
-                    <span style={{ fontSize: isMobile ? 18 : 20, fontWeight: 800, color: "#ffffff", fontFamily: "'Jost',sans-serif" }}>{item.title}</span>
+                    <span style={{ fontSize: isMobile ? 18 : 20, fontWeight: 800, color: "#000", fontFamily: "'Jost',sans-serif" }}>{item.title}</span>
                   </div>
-                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.8)", lineHeight: 1.75 }}>{item.body}</div>
+                  <div style={{ fontSize: 14, color: "#1a1a1a", lineHeight: 1.75 }}>{item.body}</div>
                 </div>
               ))}
             </div>
@@ -1427,7 +1448,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div style={{ background: "rgba(255,255,255,0.82)", padding: "18px 24px", border: "1px solid rgba(183,110,121,0.18)", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#4a3030", fontSize: 16, flexShrink: 0, marginTop: 3 }}>✗</span>
-                  <span style={{ fontSize: "clamp(18px,2.4vw,26px)", color: "#000000", lineHeight: 1.65, fontStyle: "italic", display: "block", background: "#0e0602", borderRadius: 16, padding: "20px 22px", border: "1px solid #2a1228", fontFamily: "'Cormorant Garamond',serif" }}>{row.old}</span>
+                  <span style={{ fontSize: "clamp(18px,2.4vw,26px)", color: "#000000", lineHeight: 1.65, display: "block", background: "#0e0602", borderRadius: 16, padding: "20px 22px", border: "1px solid #2a1228", fontFamily: "'Cormorant Garamond',serif" }}>{row.old}</span>
                 </div>
               </div>
               <div style={{ background: "rgba(255,255,255,0.8)", padding: "18px 24px", border: "1px solid rgba(183,110,121,0.2)", borderLeft: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 14px 0" : 0 }}>
@@ -1435,7 +1456,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <span style={{ color: "#B76E79", fontSize: 16, flexShrink: 0, marginTop: 2 }}>✦</span>
                   <span style={{ fontSize: "clamp(18px,2.4vw,26px)", color: "#000000", lineHeight: 1.65, fontWeight: 600, display: "block", background: "rgba(255,255,255,0.85)", borderRadius: 16, padding: "20px 22px", border: "1px solid rgba(183,110,121,0.2)", fontFamily: "'Cormorant Garamond',serif" }}>{row.neu}</span>
                 </div>
-                {row.proof && <div style={{ fontSize: 13, color: T.roseGold, fontStyle: "italic", paddingLeft: 26, lineHeight: 1.6, marginBottom: 6 }}>"{row.proof}"</div>}
+                {row.proof && <div style={{ fontSize: 13, color: T.roseGold, paddingLeft: 26, lineHeight: 1.6, marginBottom: 6 }}>"{row.proof}"</div>}
                 {row.cat && <div style={{ paddingLeft: 26 }}><span style={{ fontSize: 11, padding: "2px 8px", background: "#B76E7915", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700, letterSpacing: "0.08em" }}>{row.cat}</span></div>}
               </div>
             </div>
@@ -1480,7 +1501,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div key={i} style={{ background: "rgba(255,255,255,0.88)", border: "1px solid rgba(183,110,121,0.15)", borderRadius: 14, padding: "16px 18px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
                   <div style={{ fontSize: 15, fontWeight: 800, color: "#6040b0" }}>{row.t}</div>
-                  <div style={{ fontSize: 11, color: "#B76E79", fontStyle: "italic", textAlign: "right", maxWidth: "45%", lineHeight: 1.4 }}>{row.when}</div>
+                  <div style={{ fontSize: 11, color: "#B76E79", textAlign: "right", maxWidth: "45%", lineHeight: 1.4 }}>{row.when}</div>
                 </div>
                 <div style={{ fontSize: 13, color: "#333", lineHeight: 1.6, marginBottom: 4 }}><strong style={{color:"#000"}}>{row.w}</strong></div>
                 <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>{row.d}</div>
@@ -1500,7 +1521,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#5040a0", borderRight: "1px solid rgba(183,110,121,0.08)" }}>{row.t}</div>
                 <div style={{ padding: "15px 18px", fontSize: 13, color: "#1a0a1a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.w}</div>
                 <div style={{ padding: "15px 18px", fontSize: 13, color: "#2a1a2a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.d}</div>
-                <div style={{ padding: "15px 18px", fontSize: 12, color: "#B76E79", fontStyle: "italic", lineHeight: 1.6 }}>{row.when}</div>
+                <div style={{ padding: "15px 18px", fontSize: 12, color: "#B76E79", lineHeight: 1.6 }}>{row.when}</div>
               </div>
             ))}
           </div>
@@ -1512,7 +1533,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, fontStyle:"italic", color:"#1a0818", letterSpacing:"-0.01em", lineHeight:1 }}>
+            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#1a0818", letterSpacing:"-0.01em", lineHeight:1 }}>
               Wall of <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
           </div>
@@ -1529,7 +1550,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <div style={{ width:32, height:24, opacity:0.25 }}>
                   <svg viewBox="0 0 32 24" fill="#B76E79"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
-                <p style={{ fontSize:15, color:"#2a1020", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", flex:1, fontSize:isMobile?15:17 }}>{t.quote}</p>
+                <p style={{ fontSize:15, color:"#2a1020", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1, fontSize:isMobile?15:17 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                   <span style={{ fontSize:12, fontWeight:700, color:"#7a5060", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.1)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:20, color:"#B76E79", fontWeight:700, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
@@ -1555,7 +1576,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <p style={{ fontSize: isMobile?15:17, color: "#6a3858", lineHeight: 1.85, maxWidth: 620, margin: "0 auto 12px" }}>
               Most people manifest and forget. Something arrives — they move on. The pattern never becomes undeniable because it was never captured.
             </p>
-            <p style={{ fontSize: isMobile?15:17, color: "#4a2860", lineHeight: 1.85, maxWidth: 620, margin: "0 auto", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic" }}>
+            <p style={{ fontSize: isMobile?15:17, color: "#4a2860", lineHeight: 1.85, maxWidth: 620, margin: "0 auto", fontFamily: "'Cormorant Garamond',serif" }}>
               ProofOS changes that. Every audio you play gets linked to the desires you're working on. Every sign, every shift, every synchronicity — logged in real time. When it manifests, you mark it. The evidence stacks. The proof becomes undeniable.
             </p>
           </div>
