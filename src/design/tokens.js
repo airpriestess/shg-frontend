@@ -49,7 +49,7 @@ button,input,textarea,select{font-family:'Jost',sans-serif;}
 input,textarea{background:#070608;border:1px solid #1e1a28;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#B76E7966;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#201e1c;border-radius:2px;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#1e1a28;border-radius:2px;}
 *{-webkit-tap-highlight-color:transparent;}
 img{max-width:100%;}
 
