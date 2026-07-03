@@ -6,7 +6,7 @@ import { AUDIOS } from "../data/sample.js";
 const CATEGORIES = ["Money", "Beauty", "Body", "Love", "Career", "Home", "Protection", "Identity", "Health", "Custom"];
 const LISTENING_MODES = ["Morning", "Day", "Night", "Sleep", "Loop", "Custom"];
 const EXAMPLES = [
-  "I receive €5,000 from an unexpected source.",
+  "I receive £5,000 from an unexpected source.",
   "My skin looks clear, smooth, and luminous.",
   "He sends me a loving message and asks to see me.",
   "My body looks softer, slimmer, and more feminine.",
@@ -41,7 +41,7 @@ export default function CreateThreadModal({ open, onClose, preselectedAudioId })
         </div>
 
         <FormField label="Your specific intention *">
-          <input value={form.intentionTitle} onChange={e => set("intentionTitle")(e.target.value)} placeholder="I receive €5,000 from an unexpected source." />
+          <input value={form.intentionTitle} onChange={e => set("intentionTitle")(e.target.value)} placeholder="I receive £5,000 from an unexpected source." />
         </FormField>
 
         <FormField label="Details (optional)">
