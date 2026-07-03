@@ -10,10 +10,10 @@ const THEMES = {
     sidebar:"#0f0f0f", scrubBg:"#4a4a4a",
   },
   light: {
-    browser:"#f0f0f0", browserBorder:"#e0e0e0", urlBar:"#ffffff", urlText:"#888",
-    bg:"#fdf0e8", bg2:"#ffffff", bg3:"rgba(0,0,0,0.07)", nav:"rgba(255,255,255,0.97)",
-    cr:"#111111", mu:"#6a5048", dim:"#a08878", border:"rgba(0,0,0,0.08)",
-    sidebar:"rgba(255,255,255,0.95)", scrubBg:"#e0d0c8",
+    browser:"#ecdde0", browserBorder:"#ddd0d0", urlBar:"#fdf0e8", urlText:"#8a7060",
+    bg:"#fdf0e8", bg2:"#fff8f4", bg3:"rgba(183,110,121,0.08)", nav:"rgba(253,240,232,0.97)",
+    cr:"#111111", mu:"#6a5048", dim:"#a08878", border:"rgba(183,110,121,0.12)",
+    sidebar:"rgba(253,240,232,0.98)", scrubBg:"#e0c8c0",
   },
 };
 
