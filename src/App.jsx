@@ -387,6 +387,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState(null);
   const audioRef = useRef(null);
+  const vaultRef = useRef(null);
+  const [vaultPlaying, setVaultPlaying] = useState(null);
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -441,6 +443,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   return (
     <div className="hypno-bg" style={{ background: "#000000", minHeight: "100vh" }}>
       <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" />
+      <audio ref={vaultRef} preload="none" />
 
       {/* ANNOUNCEMENT BANNER */}
       {!menuOpen && (
@@ -603,6 +606,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
+
+      {/* IMAGE PLACEHOLDER — brain state visual */}
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
+        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid #2a1a14", background: "linear-gradient(135deg,#0a0604,#120a08)", height: isMobile ? 220 : 320, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, position: "relative" }}>
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#B76E7910,transparent 70%)", pointerEvents: "none" }}/>
+          <div style={{ fontSize: isMobile ? 40 : 56 }}>🧠</div>
+          <div style={{ fontSize: isMobile ? 14 : 16, color: "#B76E79", fontWeight: 600, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase" }}>Theta state · 4–8 Hz</div>
+          <div style={{ fontSize: isMobile ? 12 : 14, color: "#786860", textAlign: "center", maxWidth: 360, lineHeight: 1.6 }}>The subconscious is only accessible in theta.<br/>This is where the install happens.</div>
+          <div style={{ fontSize: 10, color: "#3a2a1a", marginTop: 8, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em" }}>[ BRAND IMAGE — replace with brain scan visual ]</div>
+        </div>
+      </div>
       {/* PROOFOS INTRO — directly after problem section */}
       <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#0d0804 0%,#120a06 100%)", borderTop: "1px solid #2a1410", borderBottom: "1px solid #2a1410" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
@@ -747,9 +761,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {[
-            { title: "Money Finds Me First", format: "Melodic House · Spoken Hypnosis", freq: "528hz", badge: "Melodic House", badgeColor: "#d4a090", icon: "🎵", desc: "Subconscious reprogramming for receiving. Reshma's voice layered beneath melodic house music." },
-            { title: "Gorgeous Is My Default Setting", format: "Sleep Subliminal", freq: "432hz", badge: "Sleep Subliminal", badgeColor: "#B76E79", icon: "🌙", desc: "8-hour overnight subliminal. Plays while you sleep. Identity installation at the deepest level." },
-            { title: "He Is Already On His Way Back", format: "Vocals Only · Subliminal", freq: "432hz", badge: "Vocals Only", badgeColor: "#c8a08a", icon: "🎙", desc: "Pure voice. No music. Just Reshma's hypnotic induction and bilateral subliminal installation." },
+            { title: "Spoilt Goddess", format: "Melodic House · EMDR · 528hz", freq: "528hz", badge: "Melodic House", badgeColor: "#d4a090", icon: "🎵", desc: "Self-concept. Receiving. Identity. Reshma's voice layered beneath melodic house music.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
+            { title: "While I Sleep I Manifest", format: "Subliminal · Music Only · No Voice", freq: "Delta", badge: "Subliminal", badgeColor: "#7a9ab0", icon: "🌙", desc: "Pure frequency. No voice. Affirmations beneath melodic house — works while you sleep.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
+            { title: "Money Finds Me First", format: "Spoken Hypnosis · 528hz", freq: "528hz", badge: "Locked Preview", badgeColor: "#786860", icon: "🔒", desc: "Full track inside the vault. Join to unlock — plus 50+ more across every category." },
           ].map((a, i) => (
             <div key={i} style={{ background: "#0a0908", border: "1px solid #201e1c", borderRadius: 14, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}
               onMouseEnter={e => e.currentTarget.style.borderColor = "#B76E7944"}
@@ -761,7 +775,18 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <div style={{ fontSize: 12, color: T.textMuted }}>{a.format} · {a.freq}</div>
               </div>
               <span style={{ fontSize: 10, padding: "3px 10px", background: a.badgeColor + "18", border: `1px solid ${a.badgeColor}44`, borderRadius: 20, color: a.badgeColor, fontWeight: 600, letterSpacing: "0.08em", flexShrink: 0, whiteSpace: "nowrap" }}>{a.badge}</span>
-              <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#d4a090,#B76E79)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flexShrink: 0, opacity: 0.5 }}>▶</div>
+              <button onClick={() => {
+                if (!a.url) return;
+                if (vaultPlaying === i) {
+                  vaultRef.current?.pause(); setVaultPlaying(null);
+                } else {
+                  if (playing) { audioRef.current?.pause(); setPlaying(false); }
+                  if (vaultRef.current) { vaultRef.current.src = a.url; vaultRef.current.play().catch(()=>{}); }
+                  setVaultPlaying(i);
+                }
+              }} style={{ width: 36, height: 36, borderRadius: "50%", background: a.url ? "linear-gradient(135deg,#d4a090,#B76E79)" : "#1a1614", border: "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flexShrink: 0, cursor: a.url ? "pointer" : "default", color: "#000" }}>
+                {a.url ? (vaultPlaying === i ? "⏸" : "▶") : "🔒"}
+              </button>
             </div>
           ))}
         </div>
