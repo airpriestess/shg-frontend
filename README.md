@@ -1,7 +1,10 @@
-# Self Hypnosis Goddess · Reshma Oracle
+# Self Hypnosis Goddess — App Brain
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/airpriestess/shg-frontend)
+See SHG_Business_Brain.md for business, avatar, email, and marketing strategy.
+See SHG_App_Brain.md for technical spec, wireframe, and build instructions.
 
-Live at: https://reshmaoracle.com
-
-Build: v2.2.0 · 2026-07-02 10:37 UTC
+## Quick reference
+- Domain: reshmaoracle.com
+- GitHub: airpriestess/shg-frontend
+- Stack: React + Vite + Supabase + Stripe + Vercel
+- Pricing: Audio £19/mo · Goddess £33/mo · Lifetime Access £500
