@@ -6,7 +6,7 @@ export function Btn({ children, onClick, variant = "primary", size = "md", full,
     primary: { background: "linear-gradient(135deg,#d4a090,#B76E79)", color: "#000", border: "none" },
     champagne: { background: "linear-gradient(135deg,#d4a090,#B76E79)", color: "#000", border: "none" },
     ghost: { background: "transparent", color: "#B76E79", border: "1px solid #B76E7966" },
-    soft: { background: "#0a0800", color: T.textMuted, border: `1px solid #1e1c0a` },
+    soft: { background: "#060410", color: T.textMuted, border: `1px solid #1e1c0a` },
     danger: { background: "transparent", color: T.rose, border: `1px solid ${T.rose}44` },
   };
   return (
@@ -48,7 +48,7 @@ export function Pill({ children, color, style }) {
     champagne: { bg: "#B76E7922", text: "#B76E79" },
     success: { bg: T.success + "22", text: T.success },
     danger: { bg: T.rose + "22", text: T.rose },
-    muted: { bg: "#0a0800", text: T.textMuted },
+    muted: { bg: "#060410", text: T.textMuted },
     blood: { bg: T.rose + "18", text: "#d06080" },
   };
   const c = colors[color] || colors.muted;
