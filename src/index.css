@@ -14,13 +14,13 @@ body{
 }
 button,input,textarea,select{font-family:'Jost',sans-serif;}
 input,textarea{
-  background:#0a0908;border:1px solid #201e1c;color:#f2ece4;
+  background:#000000;border:1px solid #1c1828;color:#f2ece4;
   border-radius:10px;padding:13px 16px;font-size:15px;width:100%;
   outline:none;transition:border-color 0.2s,box-shadow 0.2s;
 }
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#B76E7966;box-shadow:0 0 0 3px rgba(183,110,121,0.08);}
-select{background:#0a0908;border:1px solid #201e1c;color:#f2ece4;border-radius:10px;padding:10px 14px;outline:none;}
+select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:10px;padding:10px 14px;outline:none;}
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 .wrap{
