@@ -447,7 +447,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* ANNOUNCEMENT BANNER */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#e8c0a8 0%,#d4a090 30%,#c47868 60%,#B76E79 100%)", padding: isMobile ? "9px 14px" : "11px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, flexWrap: "nowrap" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#f0cdb8 0%,#e0b09a 20%,#d4a090 40%,#c8889a 65%,#B76E79 100%)", padding: isMobile ? "9px 14px" : "11px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, flexWrap: "nowrap" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 11 : 13, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.12em", whiteSpace: isMobile ? "normal" : "nowrap", textAlign: "center", lineHeight: 1.4, textTransform: "uppercase" }}>
             {isMobile ? "✦ Lifetime Access · £500 once · 1,000 spots" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  1,000 spots only"}
           </span>
@@ -534,21 +534,64 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             Wake up knowing. Not hoping. <span style={{ color: T.textPrimary, fontWeight: 600 }}>Knowing.</span>
           </div>
 
-          {/* FREE TRACK — right under heading */}
-          <div style={{ background: "#060408", border: "1.5px solid #B76E7955", borderRadius: 20, padding: "22px 26px", maxWidth: 500, margin: "0 auto 36px", boxShadow: "0 0 40px rgba(183,110,121,0.1)" }}>
-            <div style={{ fontSize: 11, color: T.roseGold, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>Audio Vault Preview</div>
-            <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 3 }}>Spoilt Goddess</div>
-            <div style={{ fontSize: 13, color: T.textMuted, marginBottom: 18 }}>Melodic House · Self-Concept · EMDR · 528hz</div>
-            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <button onClick={togglePlay} className={playing ? "pulse" : ""} style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", color: "#000", fontSize: 20, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>{playing ? "⏸" : "▶"}</button>
-              <div style={{ flex: 1 }}>
-                <div style={{ height: 4, background: "#1e1c0a", borderRadius: 2, marginBottom: 6, cursor: "pointer" }}
-                  onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}>
-                  <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#d4a090,#B76E79)", borderRadius:2 }} />
-                </div>
-                <div style={{ fontSize: 12, color: T.textFaint }}>{playing ? "Playing — continues in background ✦" : "Tap to listen now"}</div>
+          {/* SPOTIFY-STYLE PLAYER */}
+          <div style={{ background: "linear-gradient(160deg,#0c0810,#100a14)", border: "1px solid #B76E7933", borderRadius: 16, padding: isMobile ? "16px" : "20px 24px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 8px 60px rgba(183,110,121,0.15)" }}>
+            {/* Top row — track info + waveform */}
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
+              {/* Album art */}
+              <div style={{ width: 56, height: 56, borderRadius: 10, background: "linear-gradient(135deg,#d4a090,#B76E79)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, boxShadow: "0 4px 20px rgba(183,110,121,0.4)" }}>✦</div>
+              {/* Track info */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 700, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Spoilt Goddess</div>
+                <div style={{ fontSize: 12, color: "#B76E79", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: 11, color: "#786860", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>Melodic House · EMDR · 528hz</div>
               </div>
-              {playing && <WaveForm playing color="#B76E79" />}
+              {/* Live badge */}
+              {playing && (
+                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "#B76E7918", border: "1px solid #B76E7944", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#B76E79", animation: "pulse 1.2s ease-in-out infinite" }}/>
+                  <span style={{ fontSize: 10, color: "#B76E79", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
+                </div>
+              )}
+            </div>
+
+            {/* Progress bar */}
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ height: 4, background: "#1e1a28", borderRadius: 2, cursor: "pointer", position: "relative" }}
+                onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}
+                onMouseEnter={e => e.currentTarget.children[0].style.height="6px"}
+                onMouseLeave={e => e.currentTarget.children[0].style.height="4px"}>
+                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#d4a090,#B76E79)", borderRadius:2, transition:"height 0.1s", position:"relative" }}>
+                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#f2ece4", boxShadow:"0 0 6px rgba(183,110,121,0.8)", opacity: playing ? 1 : 0 }}/>
+                </div>
+              </div>
+              <div style={{ display:"flex", justifyContent:"space-between", marginTop:6 }}>
+                <span style={{ fontSize:10, color:"#786860", fontFamily:"'Jost',sans-serif" }}>{playing ? `${Math.floor((audioRef.current?.currentTime||0)/60)}:${String(Math.floor((audioRef.current?.currentTime||0)%60)).padStart(2,"0")}` : "0:00"}</span>
+                <span style={{ fontSize:10, color:"#786860", fontFamily:"'Jost',sans-serif" }}>4:32</span>
+              </div>
+            </div>
+
+            {/* Controls row */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+              {/* Shuffle */}
+              <button style={{ background:"none", border:"none", cursor:"pointer", fontSize:16, color:"#786860", padding:4 }} title="Shuffle">⇌</button>
+              {/* Prev */}
+              <button style={{ background:"none", border:"none", cursor:"pointer", fontSize:20, color:"#c8b898", padding:4 }} title="Previous">⏮</button>
+              {/* Play/Pause — big */}
+              <button onClick={togglePlay} style={{ width:52, height:52, borderRadius:"50%", background:"linear-gradient(135deg,#d4a090,#B76E79)", border:"none", color:"#000", fontSize:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 20px rgba(183,110,121,0.5)", transition:"transform 0.1s, box-shadow 0.1s" }}
+                onMouseEnter={e=>{e.target.style.transform="scale(1.06)";e.target.style.boxShadow="0 6px 28px rgba(183,110,121,0.7)"}}
+                onMouseLeave={e=>{e.target.style.transform="scale(1)";e.target.style.boxShadow="0 4px 20px rgba(183,110,121,0.5)"}}>
+                {playing ? "⏸" : "▶"}
+              </button>
+              {/* Next */}
+              <button style={{ background:"none", border:"none", cursor:"pointer", fontSize:20, color:"#c8b898", padding:4 }} title="Next">⏭</button>
+              {/* Loop */}
+              <button style={{ background:"none", border:"none", cursor:"pointer", fontSize:16, color:"#B76E79", padding:4 }} title="Loop">↻</button>
+            </div>
+
+            {/* Bottom — playing status */}
+            <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#786860", fontFamily:"'Jost',sans-serif" }}>
+              {playing ? "✦ Playing — continues in background" : "Tap ▶ to listen — free preview"}
             </div>
           </div>
 
