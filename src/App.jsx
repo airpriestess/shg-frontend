@@ -9,6 +9,7 @@ import ProofWall from "./pages/ProofWall.jsx";
 import ListeningGuide from "./pages/ListeningGuide.jsx";
 import SpotifyPortal from "./pages/SpotifyPortal.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
+import DesktopMockup from "./components/DesktopMockup.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
@@ -584,26 +585,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         )}
       </nav>
 
-      {/* ── AS HEARD ON — right after banners, ombre purple bg ─────────────── */}
-      <div style={{ marginTop: isMobile ? 90 : 94, background: "linear-gradient(135deg,#1a0828 0%,#2a1040 30%,#1e0a38 60%,#0e0820 100%)", padding: isMobile ? "18px 20px" : "22px 32px", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 12 : 24, flexWrap: "wrap", borderBottom: "0.5px solid rgba(180,160,220,0.15)" }}>
-        <div style={{ fontSize: 10, color: "rgba(200,180,230,0.55)", letterSpacing: "0.22em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif", fontWeight: 700, flexShrink: 0 }}>As heard on</div>
-        <a href="https://www.youtube.com/@Reshma.Oracle" target="_blank" rel="noopener" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.07)", border: "0.5px solid rgba(200,180,230,0.25)", borderRadius: 24, padding: "7px 14px", cursor: "pointer", transition: "background 0.2s" }}>
-          {/* YouTube icon — ombre, no red */}
-          <svg width="18" height="18" viewBox="0 0 24 24">
-            <defs><linearGradient id="ytg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#d4a090"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
-            <path fill="url(#ytg)" d="M23.8 7.2s-.2-1.7-1-2.4c-.9-1-1.9-1-2.4-1.1C17.2 3.5 12 3.5 12 3.5s-5.2 0-8.4.2c-.5.1-1.5.1-2.4 1.1-.8.7-1 2.4-1 2.4S0 9.1 0 11v1.8c0 1.9.2 3.8.2 3.8s.2 1.7 1 2.4c.9 1 2.1.9 2.6 1C5.6 20.2 12 20.2 12 20.2s5.2 0 8.4-.3c.5-.1 1.5-.1 2.4-1.1.8-.7 1-2.4 1-2.4s.2-1.9.2-3.8V11c0-1.9-.2-3.8-.2-3.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/>
-          </svg>
-          <span style={{ fontSize: 12, color: "rgba(230,210,240,0.85)", fontWeight: 600, fontFamily: "'Jost',sans-serif" }}>@Reshma.Oracle · 5,700 subscribers</span>
-        </a>
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          {["Spotify","Apple Podcasts","Insight Timer"].map((p,i) => (
-            <span key={i} style={{ fontSize: 10, color: "rgba(200,180,230,0.45)", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.08em" }}>{i>0?"· ":""}{p}</span>
-          ))}
-        </div>
-      </div>
-
       {/* HERO */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: isMobile ? 0 : 20, overflow: "hidden", minHeight: isMobile ? "auto" : "90vh" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: isMobile ? 90 : 94 }}>
         <Rings count={5} />
         {/* Dot grid overlay */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
@@ -635,6 +618,22 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* WAKE UP KNOWING */}
           <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#111111", marginBottom: 32, lineHeight: 1.7 }}>
             Wake up knowing. Not hoping. <span style={{ color: "#000000", fontWeight: 600 }}>Knowing.</span>
+          </div>
+
+          {/* APP PREVIEW — desktop + mobile, visible immediately after CTAs */}
+          <div style={{ width:"100%", margin:"0 auto 48px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
+            <div style={{ fontSize:10, color:"rgba(183,110,121,0.55)", letterSpacing:"0.28em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>
+              Inside the portal
+            </div>
+            <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"center", gap: isMobile ? 14 : 32, flexWrap:"nowrap" }}>
+              {/* Desktop mockup — browser window style */}
+              {!isMobile && <DesktopMockup/>}
+              {/* Mobile phone */}
+              <PortalScreenshot width={isMobile ? 230 : 200}/>
+            </div>
+            <div style={{ fontSize:11, color:"rgba(183,110,121,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>
+              {isMobile ? "Mobile app · works on any device" : "Desktop & mobile · works on any browser · no download needed"}
+            </div>
           </div>
 
           {/* SPOTIFY-STYLE PLAYER */}
@@ -738,21 +737,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </button>
           </div>
           <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
-
-          {/* PORTAL SCREENSHOT — right after CTA buttons */}
-          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:14, marginBottom:8, marginTop:8 }}>
-            <div style={{ fontSize:11, color:"rgba(183,110,121,0.6)", letterSpacing:"0.22em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>
-              👇 This is what you get
-            </div>
-            <div style={{ display:"flex", justifyContent:"center", gap: isMobile ? 16 : 40, alignItems:"flex-start", flexWrap:"wrap" }}>
-              <PortalScreenshot width={isMobile ? 170 : 220}/>
-              {!isMobile && <PortalScreenshot width={220}/>}
-            </div>
-            <div style={{ fontSize:11, color:"rgba(183,110,121,0.5)", letterSpacing:"0.14em", fontFamily:"'Jost',sans-serif" }}>
-              Home · Search · Library · ProofOS — works on any device
-            </div>
-          </div>
-
 
         </div>
       </div>
