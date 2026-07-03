@@ -178,43 +178,92 @@ const STRIPE = {
 function CheckoutModal({ onClose, onDemo }) {
   const goStripe = (tier) => { window.open(STRIPE[tier],"_blank"); onClose(); };
   return (
-    <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.94)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:"20px" }}
+    <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.7)",zIndex:2000,display:"flex",alignItems:"center",justifyContent:"center",padding:"16px" }}
       onClick={e => e.target===e.currentTarget && onClose()}>
-      <div style={{ background:"#08060c",border:"1px solid #2a0a28",overflowY:"auto",maxHeight:"92vh",borderRadius:20,padding:"36px 28px",maxWidth:480,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto" }}>
-        <button onClick={onClose} style={{position:"absolute",top:16,right:20,background:"none",border:"none",color:"#786860",fontSize:22,cursor:"pointer",lineHeight:1}}>✕</button>
-        <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:10}}>Choose your tier</div>
-        <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,4vw,32px)",color:"#f2ece4",fontWeight:300,lineHeight:1.2,marginBottom:28}}>Start your shift today.</h3>
-        <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:20}}>
-          {/* AUDIO */}
-          <div style={{background:"#0d0c0a",border:"1px solid #2a1a14",borderRadius:14,padding:"18px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:4}}>
-              <span style={{fontSize:16,fontWeight:700,color:"#000",fontFamily:"'Jost',sans-serif"}}>Audio Tier</span>
-              <span style={{fontSize:20,fontWeight:800,color:"#c8a870"}}>£19<span style={{fontSize:12,color:"#786860",fontWeight:400}}>/mo</span></span>
-            </div>
-            <div style={{fontSize:13,color:"#786860",marginBottom:12,lineHeight:1.5}}>Full exclusive vault · All 6 categories · New tracks weekly · Loop player</div>
-            <button onClick={() => goStripe("audio")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #c8a87044",borderRadius:10,color:"#c8a870",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em"}}>Join Audio · £19/mo →</button>
-          </div>
-          {/* GODDESS */}
-          <div style={{background:"linear-gradient(135deg,#0f0a08,#120d0a)",border:"2px solid #B76E79",borderRadius:14,padding:"18px",position:"relative"}}>
-            <div style={{position:"absolute",top:-10,left:16,background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"3px 12px",fontSize:9,fontWeight:800,color:"#000",letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif"}}>MOST POPULAR</div>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:4}}>
-              <span style={{fontSize:16,fontWeight:700,color:"#000",fontFamily:"'Jost',sans-serif"}}>Goddess Tier</span>
-              <span style={{fontSize:20,fontWeight:800,color:"#B76E79"}}>£33<span style={{fontSize:12,color:"#786860",fontWeight:400}}>/mo</span></span>
-            </div>
-            <div style={{fontSize:13,color:"#111",marginBottom:12,lineHeight:1.5}}>Everything in Audio + <strong style={{color:"#B76E79"}}>ProofOS</strong> · Track every sign · Early access drops</div>
-            <button onClick={() => goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.08em",textTransform:"uppercase"}}>Activate Goddess · £33/mo →</button>
-          </div>
-          {/* LIFETIME */}
-          <div style={{background:"#06040a",border:"1px solid #d4a09066",borderRadius:14,padding:"18px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:4}}>
-              <span style={{fontSize:16,fontWeight:700,color:"#d4a090",fontFamily:"'Jost',sans-serif"}}>Lifetime Access</span>
-              <span style={{fontSize:20,fontWeight:800,color:"#d4a090"}}>£500<span style={{fontSize:12,color:"#786860",fontWeight:400}}> once</span></span>
-            </div>
-            <div style={{fontSize:13,color:"#786860",marginBottom:12,lineHeight:1.5}}>Everything. Forever. Every future audio. No monthly billing. 1,000 spots only.</div>
-            <button onClick={() => goStripe("lifetime")} style={{width:"100%",padding:"12px",background:"none",border:"1.5px solid #d4a09044",borderRadius:10,color:"#d4a090",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em"}}>Claim Lifetime · £500 →</button>
-          </div>
+      <div style={{ background:"#fff",overflowY:"auto",maxHeight:"92vh",borderRadius:24,width:"100%",maxWidth:520,position:"relative",boxShadow:"0 40px 80px rgba(0,0,0,0.5)" }}>
+        <button onClick={onClose} style={{position:"sticky",top:0,float:"right",margin:"16px 16px 0 0",background:"rgba(0,0,0,0.08)",border:"none",borderRadius:"50%",width:32,height:32,fontSize:16,cursor:"pointer",lineHeight:"32px",zIndex:10}}>✕</button>
+
+        {/* HEADER */}
+        <div style={{background:"linear-gradient(135deg,#fceedd,#f8e0f0)",padding:"32px 28px 24px",borderRadius:"24px 24px 0 0"}}>
+          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:700,marginBottom:10}}>Start your shift today</div>
+          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(26px,4vw,36px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:6}}>Choose your membership.</h3>
+          <p style={{fontSize:14,color:"#6a4858",lineHeight:1.6}}>Full access from day one. Cancel anytime. No downloads needed.</p>
         </div>
-        <div style={{textAlign:"center"}}><button onClick={onDemo} style={{background:"none",border:"none",color:"#786860",fontSize:12,cursor:"pointer",textDecoration:"underline"}}>Preview the portal first</button></div>
+
+        <div style={{padding:"24px 24px 32px",display:"flex",flexDirection:"column",gap:12}}>
+
+          {/* AUDIO TIER */}
+          <div style={{background:"linear-gradient(135deg,#f0eaff,#e8e0ff)",border:"1.5px solid #9060c066",borderRadius:16,padding:"20px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+              <div>
+                <div style={{fontSize:17,fontWeight:800,color:"#4020a0",marginBottom:2}}>Audio Tier</div>
+                <div style={{fontSize:12,color:"#7050b0",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
+              </div>
+              <div style={{textAlign:"right"}}>
+                <div style={{fontSize:28,fontWeight:900,color:"#6040b0",lineHeight:1}}>£19</div>
+                <div style={{fontSize:11,color:"#9070c0"}}>/month</div>
+              </div>
+            </div>
+            <div style={{marginBottom:14}}>
+              {["An ever-expanding hypnosis library","All 6 desire categories: Love · Money · Appearance · Business · Sleep · DNA","4+ new tracks every week","Loop player · sleep timer · plays in background","No ads. Ever."].map((f,i)=>(
+                <div key={i} style={{fontSize:13,color:"#5040a0",marginBottom:6,paddingLeft:14,position:"relative",lineHeight:1.5}}>
+                  <span style={{position:"absolute",left:0,color:"#7050b0"}}>·</span>{f}
+                </div>
+              ))}
+            </div>
+            <button onClick={()=>goStripe("audio")} style={{width:"100%",padding:"13px",background:"linear-gradient(90deg,#7040b0,#9060d0)",border:"none",borderRadius:10,color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif"}}>Join Audio Tier — £19/month →</button>
+          </div>
+
+          {/* GODDESS TIER */}
+          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"20px",position:"relative"}}>
+            <div style={{position:"absolute",top:-12,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap"}}>✦ MOST POPULAR</div>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+              <div>
+                <div style={{fontSize:17,fontWeight:800,color:"#8a2050",marginBottom:2}}>Goddess Tier</div>
+                <div style={{fontSize:12,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS</div>
+              </div>
+              <div style={{textAlign:"right"}}>
+                <div style={{fontSize:28,fontWeight:900,color:"#B76E79",lineHeight:1}}>£33</div>
+                <div style={{fontSize:11,color:"#d4a090"}}>/month</div>
+              </div>
+            </div>
+            <div style={{marginBottom:14}}>
+              {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link to audios · capture every sign","Watch proof build in real time","Early access drops — 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
+                <div key={i} style={{fontSize:13,color:f.includes("✦")||f.includes("ProofOS")?"#B76E79":"#6a2848",marginBottom:6,paddingLeft:14,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?600:400}}>
+                  <span style={{position:"absolute",left:0,color:"#B76E79"}}>·</span>{f}
+                </div>
+              ))}
+            </div>
+            <button onClick={()=>goStripe("goddess")} style={{width:"100%",padding:"15px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)"}}>Activate Goddess Tier — £33/month →</button>
+          </div>
+
+          {/* LIFETIME */}
+          <div style={{background:"linear-gradient(135deg,#fffde8,#fff8cc)",border:"1.5px solid #c8a87066",borderRadius:16,padding:"20px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+              <div>
+                <div style={{fontSize:17,fontWeight:800,color:"#7a6010",marginBottom:2}}>Lifetime Access</div>
+                <div style={{fontSize:12,color:"#a08020",fontWeight:600,letterSpacing:"0.06em"}}>Once. Forever.</div>
+              </div>
+              <div style={{textAlign:"right"}}>
+                <div style={{fontSize:28,fontWeight:900,color:"#b08000",lineHeight:1}}>£500</div>
+                <div style={{fontSize:11,color:"#c0a030"}}>one time</div>
+              </div>
+            </div>
+            <div style={{marginBottom:14}}>
+              {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only · Price never this low again"].map((f,i)=>(
+                <div key={i} style={{fontSize:13,color:"#7a6010",marginBottom:6,paddingLeft:14,position:"relative",lineHeight:1.5}}>
+                  <span style={{position:"absolute",left:0,color:"#c8a830"}}>·</span>{f}
+                </div>
+              ))}
+            </div>
+            <button onClick={()=>goStripe("lifetime")} style={{width:"100%",padding:"13px",background:"linear-gradient(90deg,#c8a830,#a08010)",border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif"}}>Claim Lifetime Access — £500 →</button>
+          </div>
+
+          <div style={{textAlign:"center",paddingTop:8}}>
+            <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif"}}>👁 Preview the portal first — no signup needed</button>
+          </div>
+          <div style={{textAlign:"center",fontSize:12,color:"#a0909a",lineHeight:1.7}}>Cancel anytime · No refunds after 14 days · Stripe secure checkout · No download needed</div>
+        </div>
       </div>
     </div>
   );
@@ -971,7 +1020,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
         </div>
       </div>
-</div>
+      </div>
       {/* MAXXING CAROUSEL */}
       <MaxxingCarousel cats={cats} />
 
@@ -1333,47 +1382,61 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-      {/* LISTENING TIMELINE — lavender */}
-      <div style={{ padding: "48px 24px 80px", maxWidth: 1000, margin: "0 auto", background: "#000" }}>
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: "#000000", lineHeight: 1.15, marginBottom: 12 }}>
-            It is not one listen.<br/>
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>It is repetition that rewires.</span>
-          </h2>
-          <p style={{ fontSize: 16, color: "#000000", lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}>Every time you listen, the subconscious accepts the new self-concept more deeply. The first listen opens the channel. Thirty days closes the old identity completely.</p>
-        </div>
+      {/* HOW IT WORKS — JOURNEY TIMELINE */}
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#fce8f0 40%,#f0e8fc 70%,#e8f0fc 100%)", position:"relative", overflow:"hidden" }}>
+        {/* Ombre orb */}
+        <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
 
-        {/* TIMELINE — vertical rows, no overflow */}
-        <div style={{ marginBottom: 64, display: "flex", flexDirection: "column", gap: 0 }}>
-          {[
-            { day: "Day 1", icon: "🎧", label: "First listen", body: "You feel something loosen. The obsessive loop quiets. You fall asleep before the track ends.", color: "#B76E79" },
-            { day: "Day 3", icon: "◈", label: "Something shifts", body: "A small sign. A message you weren't expecting. Someone mentions your name. You notice.", color: "#C0789A" },
-            { day: "Day 7", icon: "✦", label: "Evidence appears", body: "Signs arrive faster. Money from somewhere forgotten. He texts. Your skin looks different.", color: "#d4a090" },
-            { day: "Day 14", icon: "◉", label: "Identity updates", body: "You stop needing it. Certainty replaces desire. The old self-concept has nowhere left to live.", color: "#B76E79" },
-            { day: "Day 30+", icon: "★", label: "Reality confirms", body: "What you assumed is now undeniable. The proof thread closes. Manifested.", color: "#c8a870" },
-          ].map((s, i, arr) => (
-            <div key={i} style={{ display: "flex", gap: 20, padding: "24px 0", borderBottom: i < arr.length-1 ? "1px solid #1a1614" : "none", alignItems: "flex-start" }}>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, gap: 0 }}>
-                <div style={{ width: 52, height: 52, borderRadius: "50%", background: `${s.color}15`, border: `1.5px solid ${s.color}66`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>{s.icon}</div>
-                {i < arr.length-1 && <div style={{ width: 1, height: 24, background: `${s.color}33`, marginTop: 8 }} />}
+        <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <div style={{ textAlign:"center", marginBottom:56 }}>
+            <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How it works</div>
+            <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,64px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
+              Set intention.<br/>
+              <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
+            </h2>
+            <p style={{ fontSize:isMobile?15:17, color:"#6a4858", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
+          </div>
+
+          {/* JOURNEY STEPS — ombre cards */}
+          <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative" }}>
+            {/* Vertical line */}
+            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79,#9060b0)", borderRadius:1, opacity:0.3 }}/>}
+
+            {[
+              { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#5a3810" },
+              { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#5a2818" },
+              { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#5a1030" },
+              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#f8f0fc,#f0e8f8)", border:"#9060b066", num:"#9060b0", text:"#3a1050" },
+            ].map((s,i)=>(
+              <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
+                {/* Step number circle */}
+                <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22` }}>
+                  <span style={{ fontSize:isMobile?14:16, fontWeight:900, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
+                </div>
+                {/* Card */}
+                <div style={{ flex:1, background:s.bg, border:`1px solid ${s.border}`, borderRadius:16, padding:"20px 22px", boxShadow:`0 4px 24px ${s.num}14` }}>
+                  <div style={{ fontSize:isMobile?16:20, fontWeight:800, color:s.text, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{s.label}</div>
+                  <div style={{ fontSize:isMobile?13:15, color:s.text, lineHeight:1.75, opacity:0.85 }}>{s.body}</div>
+                </div>
               </div>
-              <div style={{ flex: 1, paddingTop: 8 }}>
-                <div style={{ fontSize: 11, color: s.color, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{s.day}</div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: "#000000", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>{s.label}</div>
-                <div style={{ fontSize: 15, color: "#111111", lineHeight: 1.7 }}>{s.body}</div>
+            ))}
+
+            {/* MANIFESTED — final celebration */}
+            <div style={{ display:"flex", gap:isMobile?14:24, alignItems:"flex-start" }}>
+              <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#f5e0a0,#d4a090,#B76E79)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 8px 32px rgba(183,110,121,0.4)" }}>
+                <span style={{ fontSize:isMobile?18:22 }}>✓</span>
+              </div>
+              <div style={{ flex:1, background:"linear-gradient(135deg,#fceedd,#f8d8f0,#ede0fc)", border:"2px solid rgba(183,110,121,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(183,110,121,0.2)" }}>
+                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#e8b870,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif", fontStyle:"italic" }}>Manifested.</div>
+                <div style={{ fontSize:isMobile?13:15, color:"#6a3050", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-
-        {/* BEFORE / AFTER CARDS */}
+      </div>
+      {/* BEFORE / AFTER SECTION */}
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 36 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 12, fontWeight: 700 }}>The results</div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: "#000000", lineHeight: 1.2 }}>
-            From old self<br/>
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>to new self.</span>
-          </h2>
         </div>
         <div style={{...G3(isMobile), gap: 16}}>
           {[
