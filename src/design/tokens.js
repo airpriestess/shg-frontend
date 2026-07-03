@@ -174,4 +174,30 @@ img{max-width:100%;}
 .cta-shake{animation:shake 0.6s ease-in-out infinite;animation-delay:2s;}
 .join-pulse{animation:joinPulse 1.8s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){.maxx-item,.cta-shake,.join-pulse{animation:none;}}
+
+/* ── NUCLEAR MOBILE OVERRIDE — catches ALL inline grids ────────────── */
+@media(max-width:680px){
+  /* Force ANY element that has inline display:grid to flex-column */
+  /* This catches cases where JS hasn't run yet or inline styles win */
+  body [style*="grid-template-columns"]{
+    display:flex!important;
+    flex-direction:column!important;
+    flex-wrap:nowrap!important;
+  }
+  /* Exceptions — internal card stats that SHOULD stay grid */
+  body [style*="1.2fr 1.8fr"],[style*="1fr 36px"]{
+    display:none!important;
+  }
+  /* Force all top-level section padding to mobile */
+  body > #root > * [style*="padding"]{
+    max-width:100vw!important;
+    overflow-x:hidden!important;
+  }
+  /* Hero font */
+  h1{font-size:clamp(32px,9vw,52px)!important;}
+  /* Buttons full width in hero */
+  .hero-ctas>button{width:100%!important;}
+  /* Ensure page doesn't overflow */
+  html,body{overflow-x:hidden!important;max-width:100vw!important;}
+}
 `;
