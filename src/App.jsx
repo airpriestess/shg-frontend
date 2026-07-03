@@ -557,8 +557,36 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               LIFETIME ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 40 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 13, color: T.textFaint, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
 
+          {/* HERO IMAGE PLACEHOLDER */}
+          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid #2a1a14", background: "linear-gradient(160deg,#0d0804,#140c08)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
+            <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 40%,#B76E7912,transparent 65%)",pointerEvents:"none" }}/>
+            <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 20% 80%,#d4a09008,transparent 60%)",pointerEvents:"none" }}/>
+            {/* Floating labels like ClickUp */}
+            <div style={{ position:"absolute",top:isMobile?16:28,left:isMobile?16:32,background:"#0a0806",border:"1px solid #B76E7944",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
+              <div style={{ width:6,height:6,borderRadius:"50%",background:"#B76E79" }}/>
+              <span style={{ fontSize:10,color:"#d4a090",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>EMDR bilateral activation</span>
+            </div>
+            <div style={{ position:"absolute",top:isMobile?16:28,right:isMobile?16:32,background:"#0a0806",border:"1px solid #d4a09044",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
+              <div style={{ width:6,height:6,borderRadius:"50%",background:"#d4a090" }}/>
+              <span style={{ fontSize:10,color:"#d4a090",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>Theta state in 8 min</span>
+            </div>
+            <div style={{ position:"absolute",bottom:isMobile?16:28,left:isMobile?16:32,background:"#0a0806",border:"1px solid #B76E7944",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
+              <div style={{ width:6,height:6,borderRadius:"50%",background:"#7a9ab0" }}/>
+              <span style={{ fontSize:10,color:"#b0c0d0",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>528hz · 432hz · Delta</span>
+            </div>
+            <div style={{ position:"absolute",bottom:isMobile?16:28,right:isMobile?16:32,background:"#0a0806",border:"1px solid #d4a09044",borderRadius:20,padding:"6px 14px",display:"flex",alignItems:"center",gap:8 }}>
+              <div style={{ width:6,height:6,borderRadius:"50%",background:"#B76E79" }}/>
+              <span style={{ fontSize:10,color:"#d4a090",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>50+ exclusive tracks</span>
+            </div>
+            {/* Centre */}
+            <div style={{ textAlign:"center", zIndex:1 }}>
+              <div style={{ fontSize:isMobile?48:72,marginBottom:12 }}>🎧</div>
+              <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?18:24,color:"#f2ece4",marginBottom:6 }}>Sleeping. Listening. Shifting.</div>
+              <div style={{ fontSize:11,color:"#786860",letterSpacing:"0.15em",textTransform:"uppercase",fontFamily:"'Jost',sans-serif" }}>[ Replace with brand image ]</div>
+            </div>
+          </div>
 
         </div>
       </div>
