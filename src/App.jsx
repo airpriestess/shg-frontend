@@ -371,19 +371,19 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ padding:"48px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto",background:"linear-gradient(160deg,#fde8f0 0%,#f8dce8 50%,#fde8f0 100%)" }}>
+    <div style={{ padding:"48px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto",background:"linear-gradient(160deg,#fdeaf2 0%,#f8dde8 50%,#fdeaf2 100%)" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>FAQs</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#f2ece4",lineHeight:1.2 }}>Everything you need to know.</h2>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#1a0808",lineHeight:1.2 }}>Everything you need to know.</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:2 }}>
         {FAQS.map((faq,i) => (
           <div key={i} style={{ background:open===i?"#0d0a08":"#080604",border:"1px solid",borderColor:open===i?"#B76E7966":"#1c1828",borderRadius:12,overflow:"hidden",transition:"all 0.2s" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:600,color:open===i?"#f2ece4":"#c8b898",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:15,fontWeight:600,color:open===i?"#1a0808":"#3a2020",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
-            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"#1c1828",marginBottom:16 }}/><p style={{ fontSize:14,color:"#b09888",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"#1c1828",marginBottom:16 }}/><p style={{ fontSize:14,color:"#5a3838",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
         ))}
       </div>
@@ -481,7 +481,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   ];
 
   return (
-    <div className="hypno-bg" style={{ background: "#000", minHeight: "100vh" }}>
+    <div className="hypno-bg" style={{ background: "linear-gradient(180deg,#fce8f0 0%,#f8e0ec 12%,#f5d8e8 22%,#f8e8d8 35%,#fdf4ee 50%)", minHeight: "100vh" }}>
       <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" />
       <audio ref={vaultRef} preload="none" />
 
@@ -491,7 +491,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 11 : 13, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.12em", whiteSpace: isMobile ? "normal" : "nowrap", textAlign: "center", lineHeight: 1.4, textTransform: "uppercase" }}>
             {isMobile ? "✦ Lifetime Access · £500 once · 1,000 spots" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  1,000 spots only"}
           </span>
-          <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("founder"); }} style={{ padding: isMobile ? "4px 12px" : "5px 14px", background: "#000", border: "none", borderRadius: 20, color: "#B76E79", fontSize: isMobile ? 11 : 12, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
+          <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("founder"); }} style={{ padding: isMobile ? "4px 12px" : "5px 14px", background: "linear-gradient(160deg,#fce0ea 0%,#f8d4e4 50%,#fce0ea 100%)", border: "none", borderRadius: 20, color: "#B76E79", fontSize: isMobile ? 11 : 12, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
             Claim
           </button>
         </div>
@@ -544,7 +544,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* AS SEEN ON YOUTUBE */}
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, marginBottom:32, flexWrap:"wrap" }}>
             <div style={{ fontSize:11, color:"#786860", letterSpacing:"0.15em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>As heard on</div>
-            <div style={{ display:"flex", alignItems:"center", gap:8, background:"#06040c", border:"1px solid #B76E7933", borderRadius:24, padding:"8px 16px", gap:10 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:8, background:"rgba(255,255,255,0.7)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:24, padding:"8px 16px", gap:10 }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.8 7.2s-.2-1.7-1-2.4c-.9-1-1.9-1-2.4-1.1C17.2 3.5 12 3.5 12 3.5s-5.2 0-8.4.2c-.5.1-1.5.1-2.4 1.1-.8.7-1 2.4-1 2.4S0 9.1 0 11v1.8c0 1.9.2 3.8.2 3.8s.2 1.7 1 2.4c.9 1 2.1.9 2.6 1C5.6 20.2 12 20.2 12 20.2s5.2 0 8.4-.3c.5-.1 1.5-.1 2.4-1.1.8-.7 1-2.4 1-2.4s.2-1.9.2-3.8V11c0-1.9-.2-3.8-.2-3.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
               <span style={{ fontSize:12, color:"#c8b898", fontWeight:600 }}>@Reshma.Oracle · 5,700 subscribers</span>
             </div>
@@ -560,7 +560,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </h1>
 
           {/* SPOTIFY TAGLINE */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#a08878", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
+          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#7a4858", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
             The Spotify for your subconscious mind
           </div>
 
@@ -570,8 +570,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* WAKE UP KNOWING */}
-          <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#b09888", marginBottom: 32, lineHeight: 1.7 }}>
-            Wake up knowing. Not hoping. <span style={{ color: "#f2ece4", fontWeight: 600 }}>Knowing.</span>
+          <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#5a3838", marginBottom: 32, lineHeight: 1.7 }}>
+            Wake up knowing. Not hoping. <span style={{ color: "#1a0808", fontWeight: 600 }}>Knowing.</span>
           </div>
 
           {/* SPOTIFY-STYLE PLAYER */}
@@ -656,10 +656,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               LIFETIME ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 14, color: "#c0a898", fontWeight: 500, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 14, color: "#7a4858", fontWeight: 600, textAlign: "center", marginBottom: 32 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
 
           {/* HERO IMAGE PLACEHOLDER */}
-          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid #B76E7933", background: "linear-gradient(160deg,#06040c,#0c0814)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
+          <div style={{ maxWidth: 680, margin: "0 auto 0", borderRadius: 24, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(160deg,#fde8f0,#f8dde8)", height: isMobile ? 260 : 400, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, position: "relative" }}>
             <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 40%,#B76E7912,transparent 65%)",pointerEvents:"none" }}/>
             <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 20% 80%,#d4a09008,transparent 60%)",pointerEvents:"none" }}/>
             {/* Floating labels like ClickUp */}
@@ -691,10 +691,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* THE PROBLEM SECTION */}
-      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", maxWidth: 1100, margin: "0 auto", background: "linear-gradient(160deg,#fce8dc 0%,#f8ddd0 50%,#fce8dc 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Why it hasn't worked yet</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: "#f2ece4", lineHeight: 1.15, marginBottom: 16 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: "#1a0808", lineHeight: 1.15, marginBottom: 16 }}>
             You've done everything.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Nothing's changed.</span>
           </h2>
@@ -723,7 +723,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               fix: "ProofOS links every audio session to real evidence. You see the pattern building in real time."
             }
           ].map((p, i) => (
-            <div key={i} style={{ background: "#06040c", border: "1px solid rgba(183,110,121,0.25)", borderRadius: 16, padding: 28, borderTop: "2px solid #B76E79" }}>
+            <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 16, padding: 28, borderTop: "2px solid #B76E79", boxShadow: "0 2px 18px rgba(183,110,121,0.07)" }}>
               <div style={{ fontSize: 12, color: "#B76E7966", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 14 }}>{p.num}</div>
               <div style={{ fontSize: "clamp(15px,1.6vw,18px)", fontWeight: 700, color: T.textPrimary, marginBottom: 14, lineHeight: 1.4 }}>{p.title}</div>
               <p style={{ fontSize: 14, color: "#c0a898", lineHeight: 1.85, marginBottom: 16 }}>{p.body}</p>
@@ -736,7 +736,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* IMAGE PLACEHOLDER — brain state visual */}
       <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid #2a1a14", background: "linear-gradient(135deg,#000000,#08060e)", height: isMobile ? 220 : 320, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, position: "relative" }}>
+        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#fde8f0,#f8dde8)", height: isMobile ? 220 : 320, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, position: "relative" }}>
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#B76E7910,transparent 70%)", pointerEvents: "none" }}/>
           <div style={{ fontSize: isMobile ? 40 : 56 }}>🧠</div>
           <div style={{ fontSize: isMobile ? 14 : 16, color: "#B76E79", fontWeight: 600, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase" }}>Theta state · 4–8 Hz</div>
@@ -745,7 +745,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
       {/* PROOFOS INTRO — peach section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(180deg,#000 0%,#0a0614 50%,#000 100%)" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#f0ddf8 0%,#ebd4f4 50%,#f0ddf8 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -753,8 +753,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <span style={{ color: "#f2ece4" }}>Introducing </span>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#b09888", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
-              The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#f2ece4" }}>Proof.</strong>
+            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#5a3838", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+              The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#1a0808" }}>Proof.</strong>
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 14, flexWrap: "nowrap" }}>
@@ -764,7 +764,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               { num: "03", icon: "📷", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here." },
               { num: "04", icon: "★", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it." },
             ].map((s, i) => (
-              <div key={i} style={{ background: "#06040c", border: "1px solid rgba(183,110,121,0.25)", borderRadius: 14, padding: "22px 18px", borderTop: "2px solid #B76E79" }}>
+              <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 14, padding: "22px 18px", borderTop: "2px solid #B76E79", boxShadow: "0 2px 18px rgba(183,110,121,0.07)" }}>
                 <div style={{ fontSize: 11, color: "#B76E7955", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 10 }}>{s.num}</div>
                 <div style={{ fontSize: 22, marginBottom: 10 }}>{s.icon}</div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#f2ece4", marginBottom: 8 }}>{s.title}</div>
@@ -780,7 +780,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
             {/* MELODIC HOUSE USP */}
       <div style={{ padding: isMobile ? "0 18px 48px" : "0 clamp(16px,4vw,24px) 70px", maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ background: "#06040c", border: "1px solid rgba(183,110,121,0.3)", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
+        <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 20, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
           {/* Background glow */}
           <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle,#C8A05012,transparent 70%)", pointerEvents: "none" }} />
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -815,7 +815,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <MaxxingCarousel cats={cats} />
 
       {/* LANDING PROOF WALL — soft rose section */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "#000", borderTop: "1px solid #280828", borderBottom: "1px solid #280828" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto", background: "linear-gradient(160deg,#fceedd 0%,#f8e4cc 50%,#fceedd 100%)", borderTop: "1px solid #280828", borderBottom: "1px solid #280828" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: T.textPrimary, lineHeight: 1.15, marginBottom: 14 }}>
@@ -938,7 +938,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             },
           ].map((p, i) => p.render())}
         </div>
-        <div style={{ background: "#06040c", border: "1px solid rgba(183,110,121,0.25)", borderRadius: 14, padding: "14px 18px", display: "flex", gap: 14, alignItems: "center" }}>
+        <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "14px 18px", display: "flex", gap: 14, alignItems: "center" }}>
           <div style={{ width: 40, height: 40, borderRadius: 10, background: "#B76E7918", border: "1px solid #B76E7933", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>🎙</div>
           <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
             {[6,14,20,10,18,8,16,22,12,18,6,14,10,20,16].map((h,j) => (
@@ -953,17 +953,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* SCIENCE — golden peach */}
-      <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto", background: "#000" }}>
+      <div style={{ padding: "70px 24px", maxWidth: 960, margin: "0 auto", background: "linear-gradient(160deg,#ecddf8 0%,#e5d2f4 50%,#ecddf8 100%)" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div style={{ fontSize: 13, color: "#a08878", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The science</div>
-          <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,68px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 22 }}>
+          <div style={{ fontSize: 13, color: "#7a4858", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The science</div>
+          <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,68px)", color: "#1a0808", lineHeight: 1.1, marginBottom: 22 }}>
             Your subconscious mind<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
-          <p style={{ fontSize: 19, color: "#b09888", lineHeight: 1.9, maxWidth: 700, margin: "0 auto 16px" }}>
+          <p style={{ fontSize: 19, color: "#5a3838", lineHeight: 1.9, maxWidth: 700, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
-          <p style={{ fontSize: 19, color: "#b09888", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
+          <p style={{ fontSize: 19, color: "#5a3838", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
             You can read every book. Study Neville Goddard. Understand every theory. But theory without installation changes nothing. These audios install it — passively, at depth, while your conscious mind rests.
           </p>
         </div>
@@ -986,7 +986,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             { title: "While I Sleep I Manifest", format: "Subliminal · Music Only · No Voice", freq: "Delta", badge: "Subliminal", badgeColor: "#7a9ab0", icon: "🌙", desc: "Pure frequency. No voice. Affirmations beneath melodic house — works while you sleep.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
             { title: "Money Finds Me First", format: "Spoken Hypnosis · 528hz", freq: "528hz", badge: "Locked Preview", badgeColor: "#786860", icon: "🔒", desc: "Full track inside the vault. Join to unlock — plus 50+ more across every category." },
           ].map((a, i) => (
-            <div key={i} style={{ background: "#06040c", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}
+            <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}
               onMouseEnter={e => e.currentTarget.style.borderColor = "#B76E7944"}
               onMouseLeave={e => e.currentTarget.style.borderColor = "#1c1828"}
             >
@@ -1028,7 +1028,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           {compRows.map((row, i) => (
             <div key={i} className="comp-table" style={{ marginBottom: 1 }}>
-              <div style={{ background: "#06040c", padding: "18px 24px", border: "1px solid #1c1828", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
+              <div style={{ background: "rgba(255,255,255,0.82)", padding: "18px 24px", border: "1px solid rgba(183,110,121,0.18)", borderRight: "none", borderBottom: "none", borderRadius: i === compRows.length-1 ? "0 0 0 14px" : 0 }}>
                 <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <span style={{ color: "#4a3030", fontSize: 16, flexShrink: 0, marginTop: 3 }}>✗</span>
                   <span style={{ fontSize: "clamp(18px,2.4vw,26px)", color: "#8a7060", lineHeight: 1.65, fontStyle: "italic", display: "block", background: "#0e0602", borderRadius: 16, padding: "20px 22px", border: "1px solid #2a1228", fontFamily: "'Cormorant Garamond',serif" }}>{row.old}</span>
@@ -1072,8 +1072,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
 
         {/* WHY DESIRE DOESN'T MANIFEST */}
-        <div style={{ background: "#06040c", border: "1px solid rgba(183,110,121,0.25)", borderRadius: 20, padding: "44px 40px", marginBottom: 70 }}>
-          <div style={{ fontSize: 13, color: "#a08878", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The real reason</div>
+        <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 20, padding: "44px 40px", marginBottom: 70 }}>
+          <div style={{ fontSize: 13, color: "#7a4858", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The real reason</div>
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, marginBottom: 28, lineHeight: 1.2 }}>
             Why desire doesn't manifest.<br/>
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And what does.</span>
@@ -1098,11 +1098,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
         {/* TECHNOLOGY TABLE */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 13, color: "#a08878", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>The technology</div>
+          <div style={{ fontSize: 13, color: "#7a4858", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>The technology</div>
           <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: T.textPrimary, marginBottom: 12 }}>What's inside every audio.</h2>
           <p style={{ fontSize: 17, color: "#c0a898", maxWidth: 600, margin: "0 auto" }}>Every track is layered with multiple technologies working simultaneously to activate your ideal brainwave state and install the new self-concept at depth.</p>
         </div>
-        <div style={{ background: "#06040c", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
+        <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.8fr 2fr 1.5fr", background: "#0f0b01", borderBottom: "1px solid #1c1828" }}>
             {["Technology", "What it is", "What it does", "When it activates"].map((h, i) => (
               <div key={i} style={{ padding: "13px 18px", fontSize: 13, color: T.champagne, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1c1828" : "none" }}>{h}</div>
@@ -1123,7 +1123,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ padding: "48px 24px 80px", maxWidth: 1000, margin: "0 auto", background: "#000" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>What repetition does</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: "#f2ece4", lineHeight: 1.15, marginBottom: 12 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,54px)", color: "#1a0808", lineHeight: 1.15, marginBottom: 12 }}>
             It is not one listen.<br/>
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>It is repetition that rewires.</span>
           </h2>
@@ -1146,7 +1146,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               </div>
               <div style={{ flex: 1, paddingTop: 8 }}>
                 <div style={{ fontSize: 11, color: s.color, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{s.day}</div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: "#f2ece4", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>{s.label}</div>
+                <div style={{ fontSize: 20, fontWeight: 700, color: "#1a0808", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>{s.label}</div>
                 <div style={{ fontSize: 15, color: "#b09888", lineHeight: 1.7 }}>{s.body}</div>
               </div>
             </div>
@@ -1374,7 +1374,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div id="pricing" style={{ padding: "0 clamp(16px,4vw,24px) 80px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 12, color: T.roseGold, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Pricing</div>
-          <h2 className="wm" style={{ fontSize: "clamp(32px,4.5vw,56px)", color: "#f2ece4", marginBottom: 20 }}>Choose your tier</h2>
+          <h2 className="wm" style={{ fontSize: "clamp(32px,4.5vw,56px)", color: "#1a0808", marginBottom: 20 }}>Choose your tier</h2>
           <div style={{ display: "inline-flex", background: T.surfaceBase, border: T.border, borderRadius: 12, padding: 4, gap: 4 }}>
             {["monthly", "annual"].map(b => (
               <button key={b} onClick={() => setBilling(b)} style={{ padding: "9px 20px", borderRadius: 9, background: billing === b ? "linear-gradient(90deg,#d4a090,#B76E79)" : "transparent", border: "none", color: billing === b ? "#000" : T.textMuted, fontSize: 14, fontWeight: 700, cursor: "pointer", minHeight: 40 }}>
