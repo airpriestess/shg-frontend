@@ -1625,17 +1625,18 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           No refunds after 14 days · Cancel before renewal · Web app — no download · iPhone: Add to Home Screen
         </div>
       </div>
-
-      {/* ── PORTAL SCREENSHOT — App Store style ──────────────────────── */}
-      <div style={{ background: "#000", padding: isMobile ? "60px 0 80px" : "90px 0 100px" }}>
+      {/* ── PORTAL SCREENSHOT — right after Lifetime Access ─────────── */}
+      <div style={{ background: "#000", padding: isMobile ? "48px 0 72px" : "72px 0 90px", borderTop: "1px solid #1c1828" }}>
         <div style={{ textAlign: "center", padding: "0 24px", marginBottom: 48 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>This is what you unlock</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 16 }}>
-            Inside the portal.<br/>
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Exactly what you open after you join.</span>
+          <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
+            👇 This is what you get
+          </div>
+          <h2 className="wm" style={{ fontSize: "clamp(26px,4.5vw,48px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 12 }}>
+            The moment you join —<br/>
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>this is what you open.</span>
           </h2>
-          <p style={{ fontSize: 16, color: "#c8c0bc", lineHeight: 1.8, maxWidth: 460, margin: "0 auto" }}>
-            Spotify-style vault. Full audio library. ProofOS tracker. Works on any device — no download.
+          <p style={{ fontSize: 16, color: "#c8c0bc", lineHeight: 1.8, maxWidth: 420, margin: "0 auto" }}>
+            Tap the phone below. It's live — browse the vault, the player, ProofOS. Exactly what members see.
           </p>
         </div>
 
@@ -1698,6 +1699,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ marginTop: 12, fontSize: 13, color: "#636363" }}>Audio £19/mo · Goddess £33/mo · Lifetime £500 once</div>
         </div>
       </div>
+
+      
 
       {/* FAQ */}
       <FAQSection />
