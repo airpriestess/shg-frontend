@@ -8,6 +8,7 @@ import VaultSettings from "./pages/VaultSettings.jsx";
 import ProofWall from "./pages/ProofWall.jsx";
 import ListeningGuide from "./pages/ListeningGuide.jsx";
 import SpotifyPortal from "./pages/SpotifyPortal.jsx";
+import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
@@ -558,15 +559,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
         }} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
-          {/* Soundwave */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 3, height: 56, marginBottom: 28 }}>
-            {Array.from({ length: 24 }).map((_, i) => {
-              const heights = [8,18,30,22,38,26,42,20,34,16,40,24,36,28,18,42,22,32,14,26,20,36,24,30];
-              return <div key={i} style={{ width: 3, borderRadius: 2, height: heights[i], background: "linear-gradient(180deg,#d4a090,#B76E79)", animation: `wave ${0.9+(i%5)*0.15}s ease-in-out infinite`, animationDelay: `${i*0.06}s`, opacity: 0.6+(i%3)*0.12 }} />;
-            })}
-          </div>
-
-
           {/* AS SEEN ON YOUTUBE */}
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, marginBottom:32, flexWrap:"wrap" }}>
             <div style={{ fontSize:11, color:"#786860", letterSpacing:"0.15em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>As heard on</div>
@@ -601,7 +593,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* SPOTIFY-STYLE PLAYER */}
-          <div style={{ background: "linear-gradient(160deg,#0c0810,#100a14)", border: "1px solid #B76E7933", borderRadius: 16, padding: isMobile ? "16px" : "20px 24px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 8px 60px rgba(183,110,121,0.15)" }}>
+          <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c8789a 80%,#B76E79 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(212,160,144,0.4)" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               {/* Album art */}
@@ -614,22 +606,22 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               </div>
               {/* Track info */}
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 700, color: "#1a0808", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Spoilt Goddess</div>
-                <div style={{ fontSize: 13, color: "#B76E79", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 800, color: "#000", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Spoilt Goddess</div>
+                <div style={{ fontSize: 13, color: "rgba(0,0,0,0.65)", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.06em" }}>Reshma Oracle</div>
                 <div style={{ fontSize: 12, color: "#5a3838", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>Melodic House · EMDR · 528hz</div>
               </div>
               {/* Live badge */}
               {playing && (
-                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "#B76E7918", border: "1px solid #B76E7944", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#B76E79", animation: "pulse 1.2s ease-in-out infinite" }}/>
-                  <span style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
+                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(0,0,0,0.5)", animation: "pulse 1.2s ease-in-out infinite" }}/>
+                  <span style={{ fontSize: 11, color: "rgba(0,0,0,0.75)", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
                 </div>
               )}
             </div>
 
             {/* Progress bar */}
             <div style={{ marginBottom: 12 }}>
-              <div style={{ height: 4, background: "#1e1828", borderRadius: 2, cursor: "pointer", position: "relative" }}
+              <div style={{ height: 4, background: "rgba(0,0,0,0.2)", borderRadius: 2, cursor: "pointer", position: "relative" }}
                 onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}
                 onMouseEnter={e => e.currentTarget.children[0].style.height="6px"}
                 onMouseLeave={e => e.currentTarget.children[0].style.height="4px"}>
@@ -647,28 +639,28 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 4px" }}>
               {/* Shuffle */}
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, opacity:0.45, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a3838" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
               </button>
               {/* Prev */}
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#5a3838"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#5a3838"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.7)"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="rgba(0,0,0,0.7)"/></svg>
               </button>
               {/* Play/Pause — big circle */}
-              <button onClick={togglePlay} style={{ width:58, height:58, borderRadius:"50%", background:"linear-gradient(135deg,#d4a090,#B76E79)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(183,110,121,0.45)", flexShrink:0, lineHeight:0, transition:"transform 0.15s, box-shadow 0.15s" }}
+              <button onClick={togglePlay} style={{ width:58, height:58, borderRadius:"50%", background:"rgba(0,0,0,0.75)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(183,110,121,0.45)", flexShrink:0, lineHeight:0, transition:"transform 0.15s, box-shadow 0.15s" }}
                 onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.07)";e.currentTarget.style.boxShadow="0 6px 32px rgba(183,110,121,0.65)"}}
                 onMouseLeave={e=>{e.currentTarget.style.transform="scale(1)";e.currentTarget.style.boxShadow="0 4px 24px rgba(183,110,121,0.45)"}}>
                 {playing
-                  ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
-                  : <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
+                  ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
+                  : <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><polygon points="7 3 21 12 7 21 7 3"/></svg>
                 }
               </button>
               {/* Next */}
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#5a3838"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="#5a3838"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.7)"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="rgba(0,0,0,0.7)"/></svg>
               </button>
               {/* Repeat */}
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B76E79" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.7)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
               </button>
             </div>
 
@@ -711,11 +703,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div style={{ width:6,height:6,borderRadius:"50%",background:"#B76E79" }}/>
               <span style={{ fontSize:10,color:"#d4a090",fontWeight:700,letterSpacing:"0.12em",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>50+ exclusive tracks</span>
             </div>
-            {/* Centre */}
+            {/* Centre placeholder */}
             <div style={{ textAlign:"center", zIndex:1 }}>
-              <div style={{ fontSize:isMobile?48:72,marginBottom:12 }}>🎧</div>
-              <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?18:24,color:"#1a0808",marginBottom:6 }}>Sleeping. Listening. Shifting.</div>
-              <div style={{ fontSize:11,color:"#786860",letterSpacing:"0.15em",textTransform:"uppercase",fontFamily:"'Jost',sans-serif" }}>[ Replace with brand image ]</div>
+              <div style={{ fontSize:11,color:"rgba(183,110,121,0.5)",letterSpacing:"0.2em",textTransform:"uppercase",fontFamily:"'Jost',sans-serif" }}>[ Add brand image here ]</div>
             </div>
           </div>
 
@@ -1588,69 +1578,76 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          LIVE DASHBOARD PREVIEW — what members see the moment they join
-         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <div style={{ background: "#000", padding: isMobile ? "60px 0 80px" : "90px 0 100px", overflow: "hidden" }}>
-        {/* Header */}
+      {/* ── PORTAL SCREENSHOT — App Store style ──────────────────────── */}
+      <div style={{ background: "#000", padding: isMobile ? "60px 0 80px" : "90px 0 100px" }}>
         <div style={{ textAlign: "center", padding: "0 24px", marginBottom: 48 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
-            This is what you unlock
-          </div>
+          <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>This is what you unlock</div>
           <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 16 }}>
             Inside the portal.<br/>
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Tap around. See for yourself.</span>
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Exactly what you open after you join.</span>
           </h2>
           <p style={{ fontSize: 16, color: "#c8c0bc", lineHeight: 1.8, maxWidth: 460, margin: "0 auto" }}>
-            The full Spotify-style vault. Every track. ProofOS. Your member dashboard. Tap anything below — it's the real thing.
+            Spotify-style vault. Full audio library. ProofOS tracker. Works on any device — no download.
           </p>
         </div>
 
-        {/* LIVE PORTAL EMBEDDED IN PHONE FRAME */}
-        <div style={{ display: "flex", justifyContent: "center", padding: "0 16px" }}>
-          <div style={{ position: "relative", width: isMobile ? "100%" : 390, maxWidth: 390 }}>
-            {/* Phone outer shell */}
-            <div style={{
-              background: "#1a1a1a",
-              borderRadius: 44,
-              padding: 10,
-              boxShadow: "0 48px 120px rgba(0,0,0,0.8), 0 0 0 1px #333, 0 0 60px rgba(183,110,121,0.15)",
-              position: "relative"
-            }}>
-              {/* Notch */}
-              <div style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 100, height: 28, background: "#0a0a0a", borderRadius: "0 0 18px 18px", zIndex: 10 }}/>
-              {/* Screen */}
-              <div style={{
-                borderRadius: 36,
-                overflow: "hidden",
-                height: isMobile ? 580 : 720,
-                position: "relative",
-                background: "#121212"
-              }}>
-                {/* Render the actual SpotifyPortal scaled to fit */}
-                <div style={{ transform: isMobile ? "scale(0.85)" : "scale(1)", transformOrigin: "top left", width: isMobile ? "118%" : "100%", height: isMobile ? "118%" : "100%" }}>
-                  <SpotifyPortal onSignOut={()=>{}} userTier="goddess" />
+        {/* App Store style screenshots — 2 phones side by side */}
+        <div style={{ display: "flex", justifyContent: "center", gap: isMobile ? 16 : 32, padding: "0 16px", alignItems: "flex-start", flexWrap: "nowrap", overflowX: isMobile ? "auto" : "visible" }}>
+          {/* Phone 1 — Home screen */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, flexShrink: 0 }}>
+            <div style={{ background: "#1a1a1a", borderRadius: isMobile ? 34 : 44, padding: 8, boxShadow: "0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px #333, 0 0 50px rgba(183,110,121,0.12)" }}>
+              <div style={{ borderRadius: isMobile ? 28 : 36, overflow: "hidden", position: "relative" }}>
+                <PortalScreenshot width={isMobile ? 200 : 320} />
+              </div>
+            </div>
+            <span style={{ fontSize: 11, color: "#636363", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>Home · Library</span>
+          </div>
+
+          {/* Phone 2 — Full player (static mockup) */}
+          <div style={{ display: isMobile ? "none" : "flex", flexDirection: "column", alignItems: "center", gap: 12, flexShrink: 0 }}>
+            <div style={{ background: "#1a1a1a", borderRadius: 44, padding: 8, boxShadow: "0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px #333, 0 0 50px rgba(212,160,144,0.15)" }}>
+              <div style={{ borderRadius: 36, overflow: "hidden", width: 320, height: Math.round(320*2.16), background: "linear-gradient(180deg,#3a1828 0%,#121212 40%)", display: "flex", flexDirection: "column", alignItems: "center", padding: "52px 28px 16px", fontFamily: "'Jost',sans-serif" }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#c8c0bc", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 32 }}>Now Playing</div>
+                {/* Album art */}
+                <div style={{ width: 220, height: 220, borderRadius: 16, background: "linear-gradient(135deg,#d4a090,#B76E79)", marginBottom: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 20px 60px rgba(183,110,121,0.5)", fontSize: 64 }}>✦</div>
+                <div style={{ width: "100%", marginBottom: 24 }}>
+                  <div style={{ fontSize: 22, fontWeight: 800, color: "#f2ece4", marginBottom: 4 }}>Spoilt Goddess</div>
+                  <div style={{ fontSize: 14, color: "#a0a0a0" }}>Reshma Oracle · Melodic House · 528hz</div>
+                </div>
+                {/* Progress */}
+                <div style={{ width: "100%", marginBottom: 10 }}>
+                  <div style={{ height: 4, background: "#4a4a4a", borderRadius: 2, position: "relative" }}>
+                    <div style={{ width: "42%", height: "100%", background: "#f2ece4", borderRadius: 2 }}/>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+                    <span style={{ fontSize: 11, color: "#636363" }}>1:48</span>
+                    <span style={{ fontSize: 11, color: "#636363" }}>4:32</span>
+                  </div>
+                </div>
+                {/* Controls */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginTop: 8 }}>
+                  <span style={{ fontSize: 18, color: "#B76E79" }}>⇄</span>
+                  <span style={{ fontSize: 24, color: "#f2ece4" }}>⏮</span>
+                  <div style={{ width: 64, height: 64, borderRadius: "50%", background: "#f2ece4", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                  </div>
+                  <span style={{ fontSize: 24, color: "#f2ece4" }}>⏭</span>
+                  <span style={{ fontSize: 18, color: "#B76E79" }}>↻</span>
                 </div>
               </div>
             </div>
-
-            {/* Side buttons decorative */}
-            <div style={{ position: "absolute", right: -4, top: 100, width: 4, height: 60, background: "#333", borderRadius: "0 2px 2px 0" }}/>
-            <div style={{ position: "absolute", left: -4, top: 80, width: 4, height: 40, background: "#333", borderRadius: "2px 0 0 2px" }}/>
-            <div style={{ position: "absolute", left: -4, top: 132, width: 4, height: 40, background: "#333", borderRadius: "2px 0 0 2px" }}/>
+            <span style={{ fontSize: 11, color: "#636363", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>Full Player</span>
           </div>
         </div>
 
-        {/* Caption below */}
-        <div style={{ textAlign: "center", padding: "40px 24px 0" }}>
+        <div style={{ textAlign: "center", padding: "44px 24px 0" }}>
           <p style={{ fontSize: 15, color: "#a0989c", marginBottom: 28, lineHeight: 1.7 }}>
-            This is exactly what you open after you join.<br/>
-            Home · Library · ProofOS · Full player. Works on any device.
+            Works in any browser · iPhone · Android<br/>No App Store download needed
           </p>
           <button onClick={onJoin} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 30, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>
             Join & get instant access ✦
           </button>
-          <div style={{ marginTop: 12, fontSize: 13, color: "#636363" }}>Audio £19/mo · Goddess £33/mo · Lifetime £500</div>
+          <div style={{ marginTop: 12, fontSize: 13, color: "#636363" }}>Audio £19/mo · Goddess £33/mo · Lifetime £500 once</div>
         </div>
       </div>
 
