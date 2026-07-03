@@ -275,6 +275,81 @@ function CheckoutModal({ step, setStep, onClose, onDemo }) {
   );
 }
 
+
+/* ── MAXXING CAROUSEL ──────────────────────────────────────────────────────── */
+function MaxxingCarousel({ cats }) {
+  const [idx, setIdx] = useState(0);
+  const [flash, setFlash] = useState(false);
+  const [sub, setSub] = useState(0); // sub-index for mobile grid flicker
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFlash(true);
+      setTimeout(() => {
+        setIdx(i => (i + 1) % cats.length);
+        setFlash(false);
+      }, 280);
+    }, 2400);
+    return () => clearInterval(timer);
+  }, [cats.length]);
+
+  const current = cats[idx];
+  const next1 = cats[(idx + 1) % cats.length];
+  const next2 = cats[(idx + 2) % cats.length];
+
+  return (
+    <div style={{ padding: "0 0 64px", borderTop: "1px solid #1e1c0a", borderBottom: "1px solid #1e1c0a", overflow: "hidden" }}>
+      {/* Large rotating hero card */}
+      <div style={{
+        transition: "opacity 0.28s ease, transform 0.28s ease",
+        opacity: flash ? 0 : 1,
+        transform: flash ? "scale(0.98)" : "scale(1)",
+        background: `linear-gradient(135deg, #080600, ${current.color}12)`,
+        borderBottom: `2px solid ${current.color}33`,
+        padding: "48px 24px 40px",
+        textAlign: "center",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        {/* Background glow */}
+        <div style={{ position:"absolute",inset:0,background:`radial-gradient(ellipse at 50% 80%,${current.color}08,transparent 70%)`,pointerEvents:"none" }}/>
+        {/* Flash overlay */}
+        <div style={{ position:"absolute",inset:0,background:`${current.color}`,opacity: flash ? 0.04 : 0, transition:"opacity 0.1s", pointerEvents:"none" }}/>
+        
+        <div style={{ fontSize: 10, color: current.color, fontWeight: 800, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 20, fontFamily:"'Jost',sans-serif" }}>
+          {current.label} ✦
+        </div>
+        <div className="wm" style={{ fontSize: "clamp(28px,5vw,60px)", lineHeight: 1.1, color: "#f2ece4", marginBottom: 0 }}>
+          {current.tagline}
+        </div>
+      </div>
+
+      {/* Preview strip — next 3 cards flickering */}
+      <div style={{ display: "flex", borderBottom: "none" }}>
+        {[next1, next2, cats[(idx+3) % cats.length]].map((cat, i) => (
+          <div key={i} onClick={() => { setFlash(true); setTimeout(() => { setIdx((idx + i + 1) % cats.length); setFlash(false); }, 200); }}
+            style={{ flex: 1, padding: "18px 20px", background: i === 0 ? `${cat.color}08` : "transparent", borderRight: i < 2 ? "1px solid #1a1816" : "none", cursor: "pointer", transition: "background 0.2s" }}
+            onMouseEnter={e => e.currentTarget.style.background = `${cat.color}12`}
+            onMouseLeave={e => e.currentTarget.style.background = i === 0 ? `${cat.color}08` : "transparent"}
+          >
+            <div style={{ fontSize: 9, color: cat.color, fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
+            <div style={{ fontSize: 13, color: "#786860", lineHeight: 1.5 }}>{cat.tagline}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div style={{ display: "flex", justifyContent: "center", gap: 8, paddingTop: 20 }}>
+        {cats.map((_, i) => (
+          <div key={i} onClick={() => { setFlash(true); setTimeout(() => { setIdx(i); setFlash(false); }, 200); }}
+            style={{ width: i === idx ? 20 : 6, height: 6, borderRadius: 3, background: i === idx ? current.color : "#2a1e1c", transition: "all 0.3s", cursor: "pointer" }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── LANDING PAGE ─────────────────────────────────────────────────────────── */
 /* ── MOBILE HOOK — bypasses all CSS specificity issues ── */
 function useMobile() {
@@ -590,17 +665,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-{/* SLIDING BANNER */}
-      <div style={{ overflow: "hidden", padding: "0 0 70px", borderTop: "1px solid #1e1c0a" }}>
-        <div style={{ display: "flex", gap: 16, animation: "slide 32s linear infinite", width: "max-content", paddingTop: 36 }}>
-          {[...cats, ...cats].map((c, i) => (
-            <div key={i} style={{ background: "#0a0800", border: `1px solid ${c.color}44`, borderRadius: 18, padding: "22px 30px", minWidth: 280, flexShrink: 0 }}>
-              <div style={{ fontSize: 12, color: c.color || "#B76E79", fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 10 }}>{c.label}</div>
-              <div style={{ fontSize: 18, color: T.textSecondary, lineHeight: 1.5, fontWeight: 500 }}>{c.tagline}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+{/* MAXXING CAROUSEL */}
+      <MaxxingCarousel cats={cats} />
 
       {/* LANDING PROOF WALL */}
       <div style={{ padding: isMobile ? "0 18px 48px" : "0 clamp(16px,4vw,24px) 70px", maxWidth: 900, margin: "0 auto" }}>
