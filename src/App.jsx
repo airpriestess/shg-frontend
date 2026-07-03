@@ -264,7 +264,7 @@ const MARQUEE_ITEMS = [
 function HeroMarquee() {
   const [lit, setLit] = useState(-1);
   const doubled = [...MARQUEE_ITEMS,...MARQUEE_ITEMS,...MARQUEE_ITEMS];
-  useEffect(() => { const t = setInterval(() => setLit(Math.floor(Math.random()*MARQUEE_ITEMS.length)), 1400); return () => clearInterval(t); }, []);
+  useEffect(() => { const t = setInterval(() => setLit(Math.floor(Math.random()*MARQUEE_ITEMS.length)), 2800); return () => clearInterval(t); }, []);
   return (
     <div style={{ overflow:"hidden", marginBottom:24, maskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)", WebkitMaskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)" }}>
       <div className="marquee-track" style={{ gap:"0 36px" }}>
@@ -281,7 +281,7 @@ function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
   useEffect(() => {
-    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 250); }, 1600);
+    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 220); }, 1100);
     return () => clearInterval(timer);
   }, [cats.length]);
   const current = cats[idx];
@@ -444,7 +444,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* ANNOUNCEMENT BANNER */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#d4a090,#B76E79)", padding: isMobile ? "8px 14px" : "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, flexWrap: "nowrap" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, background: "linear-gradient(90deg,#e8c0a8 0%,#d4a090 30%,#c47868 60%,#B76E79 100%)", padding: isMobile ? "9px 14px" : "11px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, flexWrap: "nowrap" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 11 : 13, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.12em", whiteSpace: isMobile ? "normal" : "nowrap", textAlign: "center", lineHeight: 1.4, textTransform: "uppercase" }}>
             {isMobile ? "✦ Lifetime Access · £500 once · 1,000 spots" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  1,000 spots only"}
           </span>
@@ -461,7 +461,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <Btn size="sm" variant="ghost" onClick={onDemo} style={{ display: "none" }}>See Dashboard</Btn>
           <div style={{ display: isMobile ? "none" : "flex", alignItems: "center", gap: 10 }}>
           <button onClick={onSignIn || onDemo} style={{ padding: "10px 20px", background: "none", border: "1px solid #B76E7944", borderRadius: 22, color: "#B76E79", fontSize: 12, fontWeight: 600, cursor: "pointer", letterSpacing: "0.08em", fontFamily: "'Jost',sans-serif" }}>Sign in</button>
-          <button onClick={onJoin} className="join-pulse" style={{ padding: "11px 24px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 12, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Join now ✦</button>
+          <button onClick={onJoin} className="join-pulse cta-shake" style={{ padding: "11px 24px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 22, color: "#000", fontSize: 12, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Join now ✦</button>
         </div>
           <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "1px solid rgba(215,185,130,0.14)", borderRadius: 8, padding: "8px 10px", cursor: "pointer", display: "flex", flexDirection: "column", gap: 3 }}>
             {[0,1,2].map(i => <div key={i} style={{ width: 16, height: 1.5, background: T.textMuted }} />)}
@@ -510,9 +510,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <HeroMarquee />
 
           {/* TITLE */}
-          <h1 className="wm" style={{ fontSize: "clamp(30px,8vw,72px)", lineHeight: 1.05, marginBottom: 12 }}>
-            <span style={{ background: "linear-gradient(135deg,#f2ece4 0%,#d4a090 40%,#B76E79 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block" }}>Self Hypnosis Goddess</span>
-            <span style={{ color: "#f2ece4", fontSize: "0.7em", fontWeight: 300, letterSpacing: "0.05em" }}>Audio Library <span style={{ fontSize: "0.7em", color: "#B76E79", fontWeight: 500 }}>· ProofOS</span></span>
+          <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
+            <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#f2ece4 0%,#d4a090 40%,#B76E79 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block" }}>Self Hypnosis Goddess</span>
+            <span style={{ fontSize: "clamp(22px,5.5vw,52px)", color: "#f2ece4", fontWeight: 300, letterSpacing: "0.03em", display: "block", marginTop: 4 }}>Audio Library</span>
+            <span style={{ fontSize: "clamp(14px,2.5vw,22px)", color: "#B76E79", fontWeight: 400, letterSpacing: "0.08em", display: "block", marginTop: 2 }}>(+ ProofOS)</span>
           </h1>
 
           {/* TAGLINE */}
