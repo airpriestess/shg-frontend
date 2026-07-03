@@ -89,9 +89,9 @@ export default function ListeningGuide() {
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {section.content.map((item, ii) => (
-                <div key={ii} style={{ borderLeft: `2px solid ${ii === 0 ? "#B76E79" : "#201e1c"}`, paddingLeft: 24, paddingBottom: 28, marginLeft: 8, transition: "border-color 0.2s" }}
+                <div key={ii} style={{ borderLeft: `2px solid ${ii === 0 ? "#B76E79" : "#1c1828"}`, paddingLeft: 24, paddingBottom: 28, marginLeft: 8, transition: "border-color 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.borderLeftColor = "#B76E79"}
-                  onMouseLeave={e => e.currentTarget.style.borderLeftColor = ii === 0 ? "#B76E79" : "#201e1c"}
+                  onMouseLeave={e => e.currentTarget.style.borderLeftColor = ii === 0 ? "#B76E79" : "#1c1828"}
                 >
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#B76E79", marginLeft: -29, marginBottom: 12, position: "relative", zIndex: 1 }} />
                   <div style={{ fontSize: 16, fontWeight: 700, color: T.textPrimary, marginBottom: 10, lineHeight: 1.3 }}>{item.title}</div>
@@ -103,7 +103,7 @@ export default function ListeningGuide() {
         ))}
 
         {/* Footer note */}
-        <div style={{ background: "#0a0908", border: "1px solid #B76E7933", borderRadius: 16, padding: "28px 32px", textAlign: "center" }}>
+        <div style={{ background: "#000000", border: "1px solid #B76E7933", borderRadius: 16, padding: "28px 32px", textAlign: "center" }}>
           <div className="wm" style={{ fontSize: 28, background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 12 }}>
             This guide is always here.
           </div>
