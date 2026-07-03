@@ -519,6 +519,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <span style={{ fontSize: "clamp(14px,2.5vw,22px)", color: "#B76E79", fontWeight: 400, letterSpacing: "0.08em", display: "block", marginTop: 2 }}>(+ ProofOS)</span>
           </h1>
 
+          {/* SPOTIFY TAGLINE */}
+          <div style={{ fontSize: "clamp(11px,1.4vw,13px)", color: "#786860", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
+            The Spotify for your subconscious mind
+          </div>
+
           {/* TAGLINE */}
           <div style={{ fontSize: "clamp(18px,2.5vw,24px)", color: T.roseGold, fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
             Shift into your dream reality.
