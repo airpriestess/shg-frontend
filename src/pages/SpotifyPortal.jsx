@@ -66,7 +66,7 @@ const TRACKS = [
   { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Identity",  format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
   { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Identity",  format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
 ];
-const FORMATS = ["All","Melodic House","Melodic Calm","Subliminal","EMDR","528hz","Reiki"];
+const FORMATS = ["All","Melodic House","Melodic Calm","Subliminal","EMDR","Voice Only","528hz","Reiki"];
 
 const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 
@@ -536,19 +536,6 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
         />
       </div>
 
-      {/* 2×3 RECENTLY PLAYED */}
-      <div style={{ padding:"0 16px 20px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
-        {TRACKS.slice(0,6).map((t,i)=>(
-          <button key={i} onClick={()=>play(t)}
-            style={{ background:C.bg3,borderRadius:8,display:"flex",alignItems:"center",overflow:"hidden",height:52,cursor:isPreview?"not-allowed":"pointer",border:"none",textAlign:"left",width:"100%",position:"relative" }}>
-            <Thumb title={t.title} size={52} radius={0}/>
-            {isPreview&&<div style={{ position:"absolute",left:0,top:0,width:52,height:52,background:"rgba(0,0,0,0.5)",display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
-            <span style={{ fontSize:12,fontWeight:700,padding:"0 10px",lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",color:C.cr }}>{t.title}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* NEW THIS WEEK */}
       <Sec title="Your favorites ♡" C={C}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
           ? <div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:12,color:C.mu,fontWeight:600 }}>Tap the ♡ on any track and it lives here — your personal rotation.</div>
@@ -764,7 +751,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
       const chunks = [];
       mr.ondataavailable = e => chunks.push(e.data);
       mr.onstop = () => {
-        const url = URL.createObjectURL(new Blob(chunks,{type:"audio/webm"}));
+        const url = URL.createObjectURL(new Blob(chunks,{type:mr.mimeType||"audio/mp4"}));
         addMediaSign(id,{audio:url,text:"Voice note"});
         stream.getTracks().forEach(t=>t.stop());
         setRecId(null);
@@ -818,6 +805,18 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
               <div style={{ background:"rgba(255,255,255,0.35)",border:"1px dashed rgba(0,0,0,0.3)",borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
                 <span style={{ fontSize:11,color:"#1a0a10",textAlign:"center",fontWeight:700,lineHeight:1.4 }}>Your next<br/>manifestation</span>
               </div>
+              <div style={{ gridColumn:"1/-1" }}>
+              <div style={{ fontSize:11,fontWeight:900,color:"#000",letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
+              <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
+                {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
+                  <div key={s.key} style={{ background:"rgba(255,255,255,0.85)",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
+                    {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
+                    {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
+                    <div style={{ fontSize:8.5,fontWeight:700,color:"#333",marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
+                  </div>
+                ))}
+              </div>
+              </div>
             </div>
           )}
         </div>
@@ -845,8 +844,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
             ))}
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <input value={newFeel} onChange={e=>setFeel(e.target.value)} placeholder="Honest snapshot — you'll compare later"
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:12,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ display:"flex",gap:6,overflowX:"auto",WebkitOverflowScrolling:"touch",paddingBottom:4,marginBottom:12 }}>
+            {["Fear","Anger","Pride","Courage","Willingness","Acceptance","Love","Joy","Peace"].map(f=>(
+              <button key={f} onClick={()=>setFeel(f)} style={{ flexShrink:0,padding:"7px 13px",borderRadius:20,border:newFeel===f?"none":`1px solid ${PC.border}`,background:newFeel===f?"linear-gradient(90deg,#e8b870,#B76E79)":PC.inputBg,color:"#000",fontSize:12,fontWeight:newFeel===f?800:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{f}</button>
+            ))}
+          </div>
           <button onClick={()=>{
             if(!newD.trim()) return;
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:newFeel,feelAfter:""},...threads]);
@@ -876,7 +878,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
                     <span style={{ fontSize:10,padding:"3px 10px",background:CAT_GRAD[d.category]||CAT_GRAD.Money,color:"#000",borderRadius:20,fontWeight:800 }}>✓ manifested</span>
                     <button onClick={()=>undoMarkDone(d.id)} style={{ fontSize:10,padding:"2px 8px",background:"none",border:`1px solid ${PC.border}`,borderRadius:20,color:PC.mu,cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:700 }}>undo</button>
                   </>
-                : <button onClick={()=>startFinish(d.id)} style={{ fontSize:10,padding:"4px 12px",background:"#000",border:"none",borderRadius:20,color:"#f2ece4",fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>mark ✓</button>
+                : <button onClick={()=>startFinish(d.id)} style={{ fontSize:10,padding:"5px 14px",background:"linear-gradient(90deg,#f5e0a0,#e8b870,#B76E79)",border:"none",borderRadius:20,color:"#000",fontWeight:900,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 0 16px rgba(232,184,112,0.85)" }}>Manifested ✓</button>
               }
             </div>
           </div>
