@@ -3,6 +3,14 @@ const THEMES = {
   dark:  { bg:"#121212", bg2:"#1a1a1a", bg3:"#282828", bg4:"#d4b06a", cr:"#ffffff", mu:"#b3b3b3", dim:"#727272", nav:"#0a0a0a" },
   light: { bg:"#fdf0e8", bg2:"rgba(255,255,255,0.9)", bg3:"rgba(0,0,0,0.07)", bg4:"rgba(0,0,0,0.1)", cr:"#000000", mu:"#4a3028", dim:"#7a5a48", nav:"rgba(255,255,255,0.97)" },
 };
+const TILE_OMBRES = [
+  "linear-gradient(135deg,#ffd6e7,#ffb3cc)",
+  "linear-gradient(135deg,#d4f4d4,#a8e6a8)",
+  "linear-gradient(135deg,#e8d0ff,#d4a8ff)",
+  "linear-gradient(135deg,#d0e8f8,#a8ccf0)",
+  "linear-gradient(135deg,#f5e0a0,#e8c070)",
+  "linear-gradient(135deg,#f8d8c8,#eab8a0)",
+];
 const R="#B76E79", P="#d4a090";
 const OMBRE="linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
 
@@ -59,9 +67,9 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
       {/* 2×3 RECENTLY PLAYED */}
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:Math.round(4*s), padding:`0 ${pad}px ${Math.round(12*s)}px` }}>
         {RECENT.map((title,i)=>(
-          <div key={i} style={{ background:C.bg3, borderRadius:Math.round(5*s), display:"flex", alignItems:"center", overflow:"hidden", height:thumb }}>
+          <div key={i} style={{ background:TILE_OMBRES[i%TILE_OMBRES.length], borderRadius:Math.round(5*s), display:"flex", alignItems:"center", overflow:"hidden", height:thumb }}>
             <Thumb title={title} size={thumb} r={0}/>
-            <span style={{ fontSize:f.xs, fontWeight:700, color:C.cr, padding:`0 ${Math.round(6*s)}px`, lineHeight:1.25, overflow:"hidden", display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical" }}>{title}</span>
+            <span style={{ fontSize:f.xs, fontWeight:700, color:"#000", padding:`0 ${Math.round(6*s)}px`, lineHeight:1.25, overflow:"hidden", display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical" }}>{title}</span>
           </div>
         ))}
       </div>
