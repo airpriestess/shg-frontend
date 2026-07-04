@@ -1,5 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
+import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
+
+// Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
+const HAWKINS = [
+  {n:"Shame",v:20,c:"#3a1a1a"}, {n:"Guilt",v:30,c:"#4a2020"}, {n:"Apathy",v:50,c:"#5a3030"}, {n:"Grief",v:75,c:"#6a4030"},
+  {n:"Fear",v:100,c:"#8a5030"}, {n:"Desire",v:125,c:"#a06030"}, {n:"Anger",v:150,c:"#b47030"}, {n:"Pride",v:175,c:"#c68830"},
+  {n:"Courage",v:200,c:"#d4a028"}, {n:"Neutrality",v:250,c:"#c8a848"}, {n:"Willingness",v:310,c:"#a8b860"}, {n:"Acceptance",v:350,c:"#78b078"},
+  {n:"Reason",v:400,c:"#48a898"}, {n:"Love",v:500,c:"#B76E79"}, {n:"Joy",v:540,c:"#c4789a"}, {n:"Peace",v:600,c:"#8a6ac0"}, {n:"Enlightenment",v:700,c:"#5a4ab0"},
+];
+const dominant = (log,days) => {
+  const cutoff = Date.now() - days*86400000;
+  const recent = log.filter(e=>new Date(e.date).getTime()>=cutoff);
+  if (!recent.length) return null;
+  const avg = recent.reduce((s,e)=>s+(HAWKINS.find(h=>h.n===e.level)?.v||0),0)/recent.length;
+  return HAWKINS.reduce((best,h)=>Math.abs(h.v-avg)<Math.abs(best.v-avg)?h:best,HAWKINS[0]);
+};
 
 /* ═══════════════════════════════════════════════════════════════════════
    SHG PORTAL — Full Spotify-style with:
@@ -306,7 +322,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} openProfile={()=>setProfileOpen(true)}/>}
+      {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>}
@@ -322,6 +338,23 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
+      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
+      {showEmoLog && (
+        <>
+          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.6)" }} onClick={()=>setShowEmoLog(false)}/>
+          <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif" }}>
+            <div style={{ fontSize:11,fontWeight:900,color:"#B76E79",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:12 }}>How are you feeling right now?</div>
+            <div style={{ display:"flex",flexDirection:"column",gap:6,maxHeight:"55vh",overflowY:"auto",paddingRight:4 }}>
+              {HAWKINS.slice().reverse().map(h=>(
+                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"11px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
+                  <span>{h.n}</span><span style={{ fontSize:11,opacity:0.7 }}>{h.v}</span>
+                </button>
+              ))}
+            </div>
+            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,marginTop:12,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+          </div>
+        </>
+      )}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <div style={{ flex:1,display:"flex",overflow:"hidden" }}>
         {/* Sidebar */}
@@ -509,13 +542,48 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, openProfile }) {
+function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, openProfile, emoLog=[], openGuide, openEmoLog }) {
+  const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
   return (
     <div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 12px" }}>
         <span onClick={openProfile} style={{ fontSize:20,fontWeight:700,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8 }}>{greet} <span style={{ width:26,height:26,borderRadius:"50%",background:"linear-gradient(135deg,#e8b870,#B76E79)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#000" }}>R</span></span>
+      </div>
+
+      {/* ★ EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
+      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+          <span style={{ fontSize:10, fontWeight:900, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your dominant state</span>
+          <button onClick={openEmoLog} style={{ fontSize:10, fontWeight:800, padding:"4px 10px", borderRadius:20, background:"rgba(0,0,0,0.85)", border:"none", color:"#fff", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Log now +</button>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
+          {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
+            <div key={i} style={{ background:"rgba(255,255,255,0.85)", borderRadius:10, padding:"9px 8px", textAlign:"center" }}>
+              <div style={{ fontSize:9, color:"#333", fontWeight:800, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:4 }}>{l}</div>
+              <div style={{ fontSize:14, fontWeight:900, color:d?.c||"#000", lineHeight:1.1 }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:9, color:"#666", fontWeight:700, marginTop:2 }}>{d?.v||""}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:10.5, color:"#000", marginTop:9, textAlign:"center", fontWeight:600 }}>
+          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
+        </div>
+      </div>
+
+      {/* ✦ THE GUIDE — money's worth on entry */}
+      <div style={{ margin:"0 16px 18px" }}>
+        <button onClick={openGuide} style={{ width:"100%", padding:"13px 14px", background:C.bg3, border:`1px solid ${C.border}`, borderRadius:12, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", gap:10, fontFamily:"'Jost',sans-serif" }}>
+          <span style={{ display:"flex", alignItems:"center", gap:10, textAlign:"left" }}>
+            <span style={{ width:32, height:32, borderRadius:10, background:"linear-gradient(135deg,#f5e0a0,#e8b870,#B76E79)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:900, color:"#000" }}>✦</span>
+            <span>
+              <div style={{ fontSize:13, fontWeight:800, color:C.cr }}>The Guide</div>
+              <div style={{ fontSize:11, color:C.mu, fontWeight:600, marginTop:1 }}>Formula · Brainwaves · Signs · How to listen</div>
+            </span>
+          </span>
+          <span style={{ fontSize:15, color:C.mu }}>›</span>
+        </button>
       </div>
 
       {/* ANALYTICS BOARD — first thing you see on the dashboard */}
@@ -745,6 +813,21 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
   const [editText, setEditText] = useState("");
   const saveEdit = (id) => { if(editText.trim()) setThreads(ts=>ts.map(t=>t.id===id?{...t,desire:editText.trim()}:t)); setEditId(null); };
   const [recId, setRecId] = useState(null);
+  // Seeded 30-day emotional log — dominant state trends upward on Hawkins scale
+  const [emoLog, setEmoLog] = useState(()=>{
+    const arr=[]; const now=Date.now();
+    const path=["Fear","Fear","Desire","Anger","Pride","Pride","Courage","Neutrality","Willingness","Courage","Willingness","Acceptance","Reason","Acceptance","Love","Willingness","Acceptance","Love","Joy","Reason","Love","Love","Peace","Joy","Love","Peace","Joy","Peace","Love","Love"];
+    for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
+    return arr;
+  });
+  const [showGuide, setShowGuide] = useState(false);
+  const [showEmoLog, setShowEmoLog] = useState(false);
+  const [quickFeel, setQuickFeel] = useState("");
+  const logEmotion = (level) => {
+    const today = new Date().toISOString().slice(0,10);
+    setEmoLog(l=>[...l.filter(e=>e.date!==today),{date:today,level}]);
+    setQuickFeel(level); setTimeout(()=>setShowEmoLog(false),700);
+  };
   const recRef = useRef(null);
   const toggleRec = async (id) => {
     if (recId === id) { recRef.current?.stop(); return; }
@@ -848,8 +931,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
           <div style={{ display:"flex",gap:6,overflowX:"auto",WebkitOverflowScrolling:"touch",paddingBottom:4,marginBottom:12 }}>
-            {["Fear","Anger","Pride","Courage","Willingness","Acceptance","Love","Joy","Peace"].map(f=>(
-              <button key={f} onClick={()=>setFeel(f)} style={{ flexShrink:0,padding:"7px 13px",borderRadius:20,border:newFeel===f?"none":`1px solid ${PC.border}`,background:newFeel===f?"linear-gradient(90deg,#e8b870,#B76E79)":PC.inputBg,color:"#000",fontSize:12,fontWeight:newFeel===f?800:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{f}</button>
+            {HAWKINS.map(h=>(
+              <button key={h.n} onClick={()=>setFeel(h.n)} style={{ flexShrink:0,padding:"7px 12px",borderRadius:20,border:newFeel===h.n?"none":`1px solid ${PC.border}`,background:newFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:PC.inputBg,color:newFeel===h.n?"#fff":"#000",fontSize:11,fontWeight:newFeel===h.n?800:600,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>{h.n} · {h.v}</button>
             ))}
           </div>
           <button onClick={()=>{
