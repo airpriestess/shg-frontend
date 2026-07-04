@@ -9,6 +9,7 @@ import ProofWall from "./pages/ProofWall.jsx";
 import ListeningGuide from "./pages/ListeningGuide.jsx";
 import SpotifyPortal from "./pages/SpotifyPortal.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
+import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
 import DesktopMockup from "./components/DesktopMockup.jsx";
 import ProofWallScreenshot from "./components/ProofWallScreenshot.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
@@ -95,8 +96,8 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
           <span className="wm wm-shimmer" style={{ fontSize: 22, fontWeight: 500, cursor: "pointer", letterSpacing: "0.02em" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
         </button>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          {userTier === "goddess" || userTier === "founder"
-            ? <Pill color="champagne">{userTier === "founder" ? "Lifetime ✦" : "Goddess ✦"}</Pill>
+          {userTier === "goddess" || userTier === "lifetime"
+            ? <Pill color="champagne">{userTier === "lifetime" ? "Lifetime ✦" : "Goddess ✦"}</Pill>
             : <Btn size="sm" variant="champagne" onClick={onUpgrade}>Unlock Goddess Vault</Btn>}
         </div>
       </header>
@@ -175,6 +176,28 @@ const STRIPE = {
   lifetime: "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02",
 };
 
+// ═══ SINGLE SOURCE OF TRUTH — every price, feature list, CTA everywhere reads from here ═══
+const TIERS = {
+  audio: {
+    name: "Audio Tier", emoji: "🔊",
+    monthly: "£19", annual: "£143", annualNote: "≈ £11.99/mo · 2 months free",
+    features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","4 new tracks every week","All desire categories","No ads. Ever."],
+    cta: (annual)=> annual ? "Join Audio — £143/year →" : "Join Audio Tier — £19/month →",
+  },
+  goddess: {
+    name: "Goddess Tier", emoji: "✦",
+    monthly: "£33", annual: "£317", annualNote: "≈ £26.40/mo · 2 months free",
+    features: ["Everything in Audio Tier","ProofOS — manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall — every win, forever","Early access drops — 48hrs ahead","Analytics board — watch your evidence build"],
+    cta: (annual)=> annual ? "Activate Goddess — £317/year →" : "Activate Goddess Tier — £33/month →",
+  },
+  lifetime: {
+    name: "Lifetime Access", emoji: "♾",
+    monthly: "£500", annual: "£500", annualNote: "One payment. Forever.",
+    features: ["Everything in Goddess Tier","Every future audio ever released","Every future feature — included","No monthly billing, ever","1,000 spots only"],
+    cta: ()=> "Claim Lifetime Access — £500 →",
+  },
+};
+
 function CheckoutModal({ onClose, onDemo }) {
   const [billing, setBilling] = useState("monthly");
   const isAnnual = billing === "annual";
@@ -223,7 +246,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:11,color:"#7050b0",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#6040b0",lineHeight:1}}>{isAnnual?"£143":"£19"}</div>
+                <div style={{fontSize:26,fontWeight:900,color:"#6040b0",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
                 <div style={{fontSize:11,color:"#9070c0"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#8060c0"}}>£11.92/mo · billed once</div>}
               </div>
@@ -236,7 +259,7 @@ function CheckoutModal({ onClose, onDemo }) {
               ))}
             </div>
             <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#ede8ff,#d4c8ff)",border:"none",borderRadius:10,color:"#3a1a80",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em"}}>
-              {isAnnual?"Join Audio — £143/year →":"Join Audio Tier — £19/month →"}
+              {TIERS.audio.cta(isAnnual)}
             </button>
           </div>
 
@@ -249,7 +272,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:11,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#B76E79",lineHeight:1}}>{isAnnual?"£317":"£33"}</div>
+                <div style={{fontSize:26,fontWeight:900,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
                 <div style={{fontSize:11,color:"#d4a090"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>£26.42/mo · billed once</div>}
               </div>
@@ -262,7 +285,7 @@ function CheckoutModal({ onClose, onDemo }) {
               ))}
             </div>
             <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)"}}>
-              {isAnnual?"Activate Goddess — £317/year →":"Activate Goddess Tier — £33/month →"}
+              {TIERS.goddess.cta(isAnnual)}
             </button>
           </div>
 
@@ -274,7 +297,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:11,color:"#a08020",fontWeight:600,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#b08000",lineHeight:1}}>£500</div>
+                <div style={{fontSize:26,fontWeight:900,color:"#b08000",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
                 <div style={{fontSize:11,color:"#c0a030"}}>one time</div>
               </div>
             </div>
@@ -285,7 +308,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)",backgroundSize:"300%",backgroundPosition:"center",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,160,0,0.35)"}}>Claim Lifetime Access — £500 →</button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)",backgroundSize:"300%",backgroundPosition:"center",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,160,0,0.35)"}}>{TIERS.lifetime.cta()}</button>
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
@@ -355,7 +378,7 @@ function AppPreviewSection({ isMobile }) {
 
       {/* Tab switcher — Dashboard / ProofOS */}
       <div style={{ display:"flex", gap:0, background:"rgba(0,0,0,0.08)", borderRadius:24, padding:4 }}>
-        {[["dashboard","Dashboard"],["proof","ProofOS ✦"]].map(([id,l])=>(
+        {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
             style={{ padding:"7px 18px", borderRadius:20, background:view===id?"#000":"transparent", border:"none",
               color:view===id?"#fff":"#4a3830", fontSize:12, fontWeight:700, cursor:"pointer",
@@ -375,16 +398,27 @@ function AppPreviewSection({ isMobile }) {
             <DesktopMockup theme={theme}/>
           </div>
         )}
+        {!isMobile && view==="analytics" && (
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, width:400 }}>
+            <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Your evidence, visualised</div>
+            <div style={{ width:"100%", borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)" }}>
+              <AnalyticsBoard theme={theme}/>
+            </div>
+          </div>
+        )}
 
         {/* Mobile phone */}
         <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
           <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>
             {isMobile?"Preview":"Mobile"}
           </div>
-          {view==="dashboard"
-            ? <PortalScreenshot width={isMobile?240:190} theme={theme}/>
-            : <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>
-          }
+          {view==="dashboard" && <PortalScreenshot width={isMobile?240:190} theme={theme}/>}
+          {view==="proof" && <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>}
+          {view==="analytics" && (
+            <div style={{ width:isMobile?260:230, borderRadius:24, overflow:"hidden", boxShadow:"0 24px 60px rgba(0,0,0,0.8), 0 0 0 7px #1c1c1c, 0 0 0 8px #2a2a2a", background:theme==="dark"?"#121212":"#fdf0e8", padding:"14px 10px" }}>
+              <AnalyticsBoard theme={theme} compact/>
+            </div>
+          )}
         </div>
       </div>
 
@@ -508,8 +542,8 @@ const FAQS = [
   {q:"How long until I notice something shifting?",a:"Most members report something noticeable within 3 to 7 days — a small sign, a shift in how they feel about the desire, or a change in the obsessive loop. The install deepens with repetition. 30 days of consistent listening typically closes the old identity completely."},
   {q:"Can I listen while I sleep?",a:"Yes. This is one of the most effective ways to use the audios. Your conscious resistance is off. The subconscious is in delta and receives the installation without filtering. Several tracks are designed specifically for sleep listening."},
   {q:"What is ProofOS?",a:"ProofOS is the manifestation tracking system included in Goddess Tier. Log your desires, link them to the audio you listened to, capture signs as they arrive, and mark when it manifests. It creates a personal record of evidence so you can see the pattern building."},
-  {q:"What's the difference between Audio and Goddess Tier?",a:"Audio Tier (£19/mo): full vault, all categories, new tracks weekly, loop player, sleep timer. Goddess Tier (£33/mo): everything in Audio plus ProofOS tracking, early access drops 48hrs before everyone else, and monthly ritual audio."},
-  {q:"What is Lifetime Access?",a:"A one-time payment of £500 that gives you everything in Goddess Tier, every future audio ever released, every future feature, and no monthly billing. 1,000 spots only."},
+  {q:"What's the difference between Audio and Goddess Tier?",a:`Audio Tier (${TIERS.audio.monthly}/mo): full vault, all categories, new tracks weekly, loop player, sleep timer. Goddess Tier (${TIERS.goddess.monthly}/mo): everything in Audio plus ProofOS tracking, early access drops 48hrs before everyone else, and monthly ritual audio.`},
+  {q:"What is Lifetime Access?",a:`A one-time payment of ${TIERS.lifetime.monthly} that gives you everything in Goddess Tier, every future audio ever released, every future feature, and no monthly billing. 1,000 spots only.`},
   {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
   {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
   {q:"What categories are in the vault?",a:"SP & Love · Money · Beauty · DNA Activation · Sleep Shifting · Identity · Lifemaxxing. New categories added based on member requests."},
@@ -676,7 +710,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
             {isMobile ? "✦ Lifetime · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  Only 1,000 spots"}
           </span>
-          <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("founder"); }} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
+          <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("lifetime"); }} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
             Claim
           </button>
         </div>
@@ -718,9 +752,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </button>
             <div style={{ height:"0.5px",background:"rgba(183,110,121,0.18)",margin:"10px 0" }}/>
             {[
-              ["🔊 Audio Tier · £19/mo",  ()=>{onJoin?.("audio");setMenuOpen(false);}],
-              ["✦ Goddess Tier · £33/mo", ()=>{onJoin?.("goddess");setMenuOpen(false);}],
-              ["♾ Lifetime Access · £500", ()=>{onJoin?.("lifetime");setMenuOpen(false);}],
+              [`${TIERS.audio.emoji} ${TIERS.audio.name} · ${TIERS.audio.monthly}/mo`,  ()=>{onJoin?.("audio");setMenuOpen(false);}],
+              [`${TIERS.goddess.emoji} ${TIERS.goddess.name} · ${TIERS.goddess.monthly}/mo`, ()=>{onJoin?.("goddess");setMenuOpen(false);}],
+              [`${TIERS.lifetime.emoji} ${TIERS.lifetime.name} · ${TIERS.lifetime.monthly}`, ()=>{onJoin?.("lifetime");setMenuOpen(false);}],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"13px 14px",background:"none",border:"none",color:"#f2ece4",fontSize:14,fontWeight:600,cursor:"pointer",borderRadius:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}</button>
             ))}
@@ -870,7 +904,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               LIFETIME ACCESS →
             </button>
           </div>
-          <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 20 }}>Audio Tier £19/mo · Goddess Tier £33/mo · Cancel anytime</div>
+          <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 20 }}>{`Audio Tier ${TIERS.audio.monthly}/mo · Goddess Tier ${TIERS.goddess.monthly}/mo · Cancel anytime`}</div>
 
           {/* PREVIEW DASHBOARD — prominent on both mobile and desktop */}
           <div style={{ textAlign: "center", marginBottom: 32 }}>
@@ -1630,9 +1664,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {[
             {
               id: "audio", name: "Audio Tier",
-              price: billing === "monthly" ? "£19" : "£144",
+              price: billing === "monthly" ? TIERS.audio.monthly : TIERS.audio.annual,
               period: billing === "monthly" ? "/month" : "/year",
-              sub: billing === "annual" ? "£19/mo · save 20%" : null,
+              sub: billing === "annual" ? TIERS.audio.annualNote : null,
               bg: "linear-gradient(135deg,#ede8ff,#e4dcff)", border: "#7040b066",
               priceColor: "#5030a0",
               features: [
@@ -1643,14 +1677,14 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 "Loop player · sleep timer · plays in background",
                 "No ads. Ever.",
               ],
-              cta: "Join Audio Tier — £19/mo",
+              cta: TIERS.audio.cta(billing==="annual"),
               ctaBg: "linear-gradient(135deg,#ede8ff,#d4c8ff)", ctaClass: "cta-shake", ctaTextColor: "#3a1a80",
             },
             {
               id: "goddess", name: "Goddess Tier", popular: true,
-              price: billing === "monthly" ? "£33" : "£317",
+              price: billing === "monthly" ? TIERS.goddess.monthly : TIERS.goddess.annual,
               period: billing === "monthly" ? "/month" : "/year",
-              sub: billing === "annual" ? "£33/mo · save 20%" : null,
+              sub: billing === "annual" ? TIERS.goddess.annualNote : null,
               bg: "linear-gradient(135deg,#fce8f0,#f8d8e8)", border: "#B76E7966",
               priceColor: "#8a2050",
               features: [
@@ -1661,7 +1695,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 "Early access drops — 48hrs before everyone",
                 "Monthly ritual audio included",
               ],
-              cta: "Activate Goddess Tier — £33/mo",
+              cta: TIERS.goddess.cta(billing==="annual"),
               ctaBg: "linear-gradient(90deg,#d4a090,#B76E79)", ctaClass: "cta-shake", ctaTextColor: "#000",
             }
           ].map(p => (
