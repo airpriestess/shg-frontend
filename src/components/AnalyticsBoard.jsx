@@ -54,10 +54,11 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
 
       {/* Row 2: 7-day listening bars */}
       <div style={{ background:C.card2, borderRadius:12, padding:`${10*fs}px ${12*fs}px`, marginBottom:10 }}>
-        <div style={{ fontSize:9.5*fs, fontWeight:800, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Listens this week</div>
+        <div style={{ fontSize:9.5*fs, fontWeight:800, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Times you pressed play — this week</div>
         <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:42*fs }}>
           {week.map((v,i)=>(
-            <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:3, height:"100%", justifyContent:"flex-end" }}>
+            <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
+              <span style={{ fontSize:8.5*fs, fontWeight:800, color:C.mu }}>{v}</span>
               <div style={{ width:"100%", maxWidth:22, height:`${(v/maxW)*100}%`, minHeight:3, background:i===week.length-2?OMBRE:C.track, backgroundSize:"200%", backgroundPosition:"left", borderRadius:3 }}/>
               <span style={{ fontSize:8*fs, color:C.dim, fontWeight:700 }}>{days[i]}</span>
             </div>
