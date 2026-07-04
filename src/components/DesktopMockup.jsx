@@ -1,3 +1,11 @@
+const TILE_OMBRES = [
+  "linear-gradient(135deg,#ffd6e7,#ffb3cc)",
+  "linear-gradient(135deg,#d4f4d4,#a8e6a8)",
+  "linear-gradient(135deg,#e8d0ff,#d4a8ff)",
+  "linear-gradient(135deg,#d0e8f8,#a8ccf0)",
+  "linear-gradient(135deg,#f5e0a0,#e8c070)",
+  "linear-gradient(135deg,#f8d8c8,#eab8a0)",
+];
 /* DesktopMockup — mini browser frame with full theme support (dark/light)
    Pass theme="dark" | theme="light"
    All px, no vw — pure scaled layout */
@@ -117,10 +125,10 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
             <div style={{ fontSize:f.lg, fontWeight:700, color:C.cr, marginBottom:Math.round(8*s) }}>Good evening</div>
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap, marginBottom:Math.round(10*s) }}>
               {TRACKS.slice(0,4).map((title,i)=>(
-                <div key={i} style={{ background:C.bg3, borderRadius:r6, display:"flex",
+                <div key={i} style={{ background:TILE_OMBRES[i%TILE_OMBRES.length], borderRadius:r6, display:"flex",
                   alignItems:"center", overflow:"hidden", height:Math.round(34*s) }}>
                   <Thumb title={title} size={Math.round(34*s)}/>
-                  <span style={{ fontSize:f.xs, fontWeight:700, color:C.cr,
+                  <span style={{ fontSize:f.xs, fontWeight:700, color:"#000",
                     padding:`0 ${Math.round(7*s)}px`, overflow:"hidden",
                     textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{title}</span>
                 </div>
