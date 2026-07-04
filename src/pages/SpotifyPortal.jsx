@@ -73,10 +73,10 @@ const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 const INIT_THREADS = [
   { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"SP & Love",
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
-    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"He viewed my story twice",date:"18 Jun"} ], manifestedAt:"20 Jun" },
+    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot — the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note — the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun" },
   { id:2, desire:"£5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Money",
     feelBefore:"Tight and worried about money.", feelAfter:"",
-    signs:[ {text:"Got a random refund £180",date:"28 Jun"}, {text:"Found £20 in my coat pocket",date:"1 Jul"} ] },
+    signs:[ {text:"Got a random refund £180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found £20 in my coat pocket",date:"1 Jul"} ] },
   { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Money",
     feelBefore:"Doubtful but hopeful.", feelAfter:"",
     signs:[ {text:"Two new enquiries the same day",date:"30 Jun"} ] },
@@ -741,6 +741,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
     setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date}]}:t));
   };
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
+  const saveEdit = (id) => { if(editText.trim()) setThreads(ts=>ts.map(t=>t.id===id?{...t,desire:editText.trim()}:t)); setEditId(null); };
   const [recId, setRecId] = useState(null);
   const recRef = useRef(null);
   const toggleRec = async (id) => {
@@ -767,7 +770,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 
       {/* Stats */}
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14 }}>
-        {[[threads.length,"Desires"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
+        {[[threads.length,"Intentions"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
           <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
             <div style={{ fontSize:22,fontWeight:800,color:PC.text }}>{v}</div>
             <div style={{ fontSize:10,color:PC.mu,fontWeight:700 }}>{l}</div>
@@ -824,7 +827,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
       <>
       {/* ADD NEW THREAD */}
       <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:"#000",border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:13,fontWeight:800,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-        {adding?"✕ Cancel":"+ New Proof Thread"}
+        {adding?"✕ Cancel":"+ New Intention"}
       </button>
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
@@ -864,7 +867,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
         <div key={d.id} onTouchStart={e=>{window.__sx=e.touches[0].clientX;}} onTouchEnd={e=>{if(window.__sx-e.changedTouches[0].clientX>90)deleteThread(d.id);}} style={{ background:PC.cardSolid,borderRadius:14,padding:"14px 14px",marginBottom:10,position:"relative" }}>
           <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10 }}>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:15,fontWeight:800,marginBottom:4,color:"#000" }}>{d.desire}</div>
+              {editId===d.id
+                ? <div style={{ display:"flex",gap:6,marginBottom:4 }}>
+                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #B76E79",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:700,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                    <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
+                  </div>
+                : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:15,fontWeight:800,marginBottom:4,color:"#000",cursor:"pointer" }}>{d.desire} <span style={{ fontSize:11,opacity:0.45 }}>✎</span></div>}
               <div style={{ display:"flex",alignItems:"center",gap:6,flexWrap:"wrap" }}>
                 {d.category && <span style={{ fontSize:10,padding:"2px 9px",background:CAT_GRAD[d.category]||CAT_GRAD.Identity,color:"#000",borderRadius:20,fontWeight:800 }}>{d.category}</span>}
                 {d.track && <span style={{ fontSize:11,color:PC.mu,fontWeight:600 }}>♪ {d.track}</span>}
@@ -873,12 +881,19 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
               {d.done && d.feelAfter && <div style={{ fontSize:11,color:"#1a7030",marginTop:2,lineHeight:1.5,fontWeight:600 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
             <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
+              <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:12,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>
               {d.done
                 ? <>
-                    <span style={{ fontSize:10,padding:"3px 10px",background:CAT_GRAD[d.category]||CAT_GRAD.Money,color:"#000",borderRadius:20,fontWeight:800 }}>✓ manifested</span>
-                    <button onClick={()=>undoMarkDone(d.id)} style={{ fontSize:10,padding:"2px 8px",background:"none",border:`1px solid ${PC.border}`,borderRadius:20,color:PC.mu,cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:700 }}>undo</button>
+                    <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#f5e0a0,#e8b870,#B76E79)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:900,color:"#000",boxShadow:"0 0 12px rgba(232,184,112,0.9)" }}>✓</span>
+                      <span style={{ fontSize:11,fontWeight:900,color:"#000" }}>Manifested</span>
+                    </label>
+                    <span style={{ fontSize:9,color:PC.dim,fontWeight:600 }}>tap to undo</span>
                   </>
-                : <button onClick={()=>startFinish(d.id)} style={{ fontSize:10,padding:"5px 14px",background:"linear-gradient(90deg,#f5e0a0,#e8b870,#B76E79)",border:"none",borderRadius:20,color:"#000",fontWeight:900,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 0 16px rgba(232,184,112,0.85)" }}>Manifested ✓</button>
+                : <label onClick={()=>startFinish(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
+                    <span style={{ width:21,height:21,borderRadius:6,background:"#fff",border:"2px solid #000",boxShadow:"0 0 10px rgba(232,184,112,0.55)" }}/>
+                    <span style={{ fontSize:11,fontWeight:900,color:"#000" }}>Manifested</span>
+                  </label>
               }
             </div>
           </div>
