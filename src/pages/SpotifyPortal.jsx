@@ -25,7 +25,7 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
   dark:  { bg:"#0f0f0f", bg2:"#181818", bg3:"#282828", bg4:"#2a2a2a", nav:"#0a0a0a", cr:"#ffffff", mu:"#b3b3b3", dim:"#727272", border:"#2a2a2a", inputBg:"#333", inputCr:"#fff" },
-  light: { bg:"#fdf0e8", bg2:"#fff8f4", bg3:"rgba(183,110,121,0.08)", bg4:"rgba(183,110,121,0.12)", nav:"rgba(253,240,232,0.97)", cr:"#111111", mu:"#6a5048", dim:"#a08878", border:"rgba(183,110,121,0.12)", inputBg:"rgba(0,0,0,0.07)", inputCr:"#111" },
+  light: { bg:"#fdf0e8", bg2:"#fff8f4", bg3:"rgba(183,110,121,0.08)", bg4:"rgba(183,110,121,0.12)", nav:"rgba(253,240,232,0.97)", cr:"#000000", mu:"#4a3028", dim:"#7a5a48", border:"rgba(183,110,121,0.12)", inputBg:"rgba(0,0,0,0.07)", inputCr:"#111" },
 };
 
 const R = "#B76E79", P = "#d4a090";
@@ -55,25 +55,38 @@ function Thumb({ title, size=48, radius=4 }) {
 
 // ── TRACK DATA ────────────────────────────────────────────────────────────────
 const TRACKS = [
-  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Identity",  tier:"audio",   isNew:true,  hasAudio:true  },
-  { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"SP & Love", tier:"audio",   isNew:false, hasAudio:false },
-  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Money",     tier:"audio",   isNew:true,  hasAudio:true  },
-  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleep",     tier:"audio",   isNew:false, hasAudio:false },
-  { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beauty",    tier:"audio",   isNew:false, hasAudio:false },
-  { id:6,  title:"DNA Activation Ceremony",  artist:"Reshma Oracle", dur:"45:00", cat:"DNA",       tier:"goddess", isNew:false, hasAudio:false },
-  { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Identity",  tier:"audio",   isNew:true,  hasAudio:false },
-  { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Identity",  tier:"audio",   isNew:false, hasAudio:true  },
-  { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Identity",  tier:"goddess", isNew:false, hasAudio:false },
+  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Identity",  format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
+  { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"SP & Love", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false },
+  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Money",     format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
+  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleep",     format:"Melodic Calm",  tier:"audio",   isNew:false, hasAudio:false },
+  { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beauty",    format:"528hz",         tier:"audio",   isNew:false, hasAudio:false },
+  { id:6,  title:"DNA Activation Ceremony",  artist:"Reshma Oracle", dur:"45:00", cat:"DNA",       format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
+  { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Identity",  format:"Subliminal",    tier:"audio",   isNew:true,  hasAudio:false },
+  { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Identity",  format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
+  { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Identity",  format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
 ];
+const FORMATS = ["All","Melodic House","Melodic Calm","Subliminal","EMDR","528hz","Reiki"];
 
 const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 
 const INIT_THREADS = [
-  { id:1, desire:"He texts me first",     days:14, done:true,  signs:3, track:"He Finds His Way Back", category:"SP & Love", notes:"" },
-  { id:2, desire:"£5,000 arrives",        days:6,  done:false, signs:2, track:"Money Finds Me First",  category:"Money",     notes:"Got a random refund £180" },
-  { id:3, desire:"10k per day business",  days:9,  done:false, signs:1, track:"Spoilt Goddess",        category:"Money",     notes:"" },
-  { id:4, desire:"Skin visibly glowing",  days:3,  done:false, signs:1, track:"Gorgeous Is My Default",category:"Beauty",    notes:"" },
+  { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"SP & Love",
+    feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
+    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"He viewed my story twice",date:"18 Jun"} ], manifestedAt:"20 Jun" },
+  { id:2, desire:"£5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Money",
+    feelBefore:"Tight and worried about money.", feelAfter:"",
+    signs:[ {text:"Got a random refund £180",date:"28 Jun"}, {text:"Found £20 in my coat pocket",date:"1 Jul"} ] },
+  { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Money",
+    feelBefore:"Doubtful but hopeful.", feelAfter:"",
+    signs:[ {text:"Two new enquiries the same day",date:"30 Jun"} ] },
+  { id:4, desire:"Skin visibly glowing",  days:3,  done:false, track:"Gorgeous Is My Default",category:"Beauty",
+    feelBefore:"Self-conscious without makeup.", feelAfter:"",
+    signs:[ {text:"Colleague asked what I changed",date:"2 Jul"} ] },
 ];
+
+// Category → proof wall colours (matches landing Proof Wall)
+const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#ffc8e0,#f8a8c8)", "Money":"linear-gradient(135deg,#c8ecc8,#a0d8a0)", "Beauty":"linear-gradient(135deg,#fff8a0,#f8e860)", "Identity":"linear-gradient(135deg,#d8c8ff,#c0a8f0)", "DNA":"linear-gradient(135deg,#d8c8ff,#c0a8f0)", "Sleep":"linear-gradient(135deg,#cfe8ff,#a8d0f8)" };
+const CAT_COLOR = { "SP & Love":"#c84880", "Money":"#1a7030", "Beauty":"#9a7800", "Identity":"#6030a0", "DNA":"#6030a0", "Sleep":"#0a5090" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -276,7 +289,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
     <>
       {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
-      {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
+      {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
@@ -487,13 +500,30 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
       {!isPreview && (
         <div style={{ margin:"0 16px 20px",background:C.bg3,borderRadius:14,padding:"14px 16px",border:`0.5px solid ${C.border}` }}>
           <div style={{ fontSize:11,fontWeight:700,color:R,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Your wins this month ✦</div>
-          <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
-            {[[manifested,"Manifested",R],[inProgress,"In progress",P],[listenCount,"Times listened",C.cr]].map(([v,l,c],i)=>(
-              <div key={i} style={{ textAlign:"center" }}>
-                <div style={{ fontSize:24,fontWeight:800,color:c,lineHeight:1 }}>{v}</div>
-                <div style={{ fontSize:10,color:C.mu,marginTop:2,lineHeight:1.3 }}>{l}</div>
-              </div>
-            ))}
+          <div style={{ display:"flex",alignItems:"center",gap:16 }}>
+            {/* Simple donut chart: manifested vs in progress */}
+            {(()=>{
+              const total = Math.max(manifested+inProgress,1);
+              const pct = manifested/total;
+              const r2=26, circ=2*Math.PI*r2;
+              return (
+                <svg width="72" height="72" viewBox="0 0 72 72" style={{ flexShrink:0,transform:"rotate(-90deg)" }}>
+                  <circle cx="36" cy="36" r={r2} fill="none" stroke={C.border} strokeWidth="9"/>
+                  <circle cx="36" cy="36" r={r2} fill="none" stroke="url(#winGrad)" strokeWidth="9" strokeLinecap="round"
+                    strokeDasharray={`${circ*pct} ${circ}`}/>
+                  <defs><linearGradient id="winGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#e8b870"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
+                  <text x="36" y="36" transform="rotate(90 36 36)" textAnchor="middle" dominantBaseline="central" fill={C.cr} fontSize="16" fontWeight="800" fontFamily="'Jost',sans-serif">{manifested}</text>
+                </svg>
+              );
+            })()}
+            <div style={{ flex:1,display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
+              {[[manifested,"Manifested",R],[inProgress,"In progress",P],[listenCount,"Times listened",C.cr]].map(([v,l,c],i)=>(
+                <div key={i} style={{ textAlign:"center" }}>
+                  <div style={{ fontSize:24,fontWeight:800,color:c,lineHeight:1 }}>{v}</div>
+                  <div style={{ fontSize:10,color:C.mu,marginTop:2,lineHeight:1.3 }}>{l}</div>
+                </div>
+              ))}
+            </div>
           </div>
           {manifested > 0 && (
             <div style={{ marginTop:10,padding:"8px 10px",background:"rgba(90,176,106,0.1)",border:"0.5px solid #2a4a2a",borderRadius:8 }}>
@@ -603,17 +633,24 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 }
 
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
-function LibraryTab({ tracks, cat, setCat, play, track:cur, liked, toggleLike, playing, isPreview, C }) {
+function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C }) {
   const cats = ["All","Liked","SP & Love","Money","Beauty","Sleep","DNA","Identity"];
-  const shown = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
+  const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
+  const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   return (
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>Your Library</span>
       </div>
-      <div style={{ display:"flex",gap:8,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
+      <div style={{ display:"flex",gap:8,padding:"0 16px 8px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {cats.map(c=>(
           <button key={c} onClick={()=>setCat(c)} style={{ flexShrink:0,padding:"6px 14px",borderRadius:20,background:cat===c?C.cr:C.bg3,border:"none",color:cat===c?"#000":C.cr,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
+        ))}
+      </div>
+      {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
+      <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
+        {FORMATS.map(fm=>(
+          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?R:"none",border:`1px solid ${libFormat===fm?R:C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
         ))}
       </div>
       {shown.length===0 && cat==="Liked" && (
@@ -638,7 +675,7 @@ function LibraryTab({ tracks, cat, setCat, play, track:cur, liked, toggleLike, p
               <div style={{ fontSize:14,fontWeight:600,color:(!isPreview&&cur?.id===t.id)?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:9,background:`${R}22`,color:R,padding:"1px 5px",borderRadius:8,fontWeight:700,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:11,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.dur}</div>
+              <div style={{ fontSize:11,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
@@ -662,72 +699,127 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
   const [newD, setD]       = useState("");
   const [newCat, setCat]   = useState("Money");
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
+  const [newFeel, setFeel] = useState("");
   const [adding, setAdding] = useState(false);
-  const [editing, setEditing]= useState(null); // id of thread being edited
-  const [editNote, setEditNote]=useState("");
+  const [view, setView] = useState("threads"); // threads | wall
+  const [signInput, setSignInput] = useState({}); // {threadId: text}
+  const [finishing, setFinishing] = useState(null); // threadId being marked done
+  const [feelAfterInput, setFeelAfterInput] = useState("");
+
+  // Local palette for ombre dashboard — black text on ombre, cream cards
+  const PC = { card:"rgba(255,252,248,0.88)", cardSolid:"#fffcf8", text:"#000", mu:"#4a2830", dim:"#6a4048", border:"rgba(0,0,0,0.14)", inputBg:"rgba(255,255,255,0.95)" };
+  const OMBRE_BG = "linear-gradient(165deg,#f5e0a0 0%,#e8b870 20%,#d4a090 45%,#c4789a 72%,#B76E79 100%)";
 
   if (isPreview) return (
-    <div style={{ padding:"40px 20px",textAlign:"center" }}>
+    <div style={{ padding:"40px 20px",textAlign:"center",background:OMBRE_BG,minHeight:"100%" }}>
       <div style={{ fontSize:36,marginBottom:16 }}>✦</div>
-      <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:26,color:C.cr,marginBottom:10 }}>ProofOS</div>
-      <div style={{ fontSize:14,color:C.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px" }}>
-        Log desires. Link audios. Watch proof build. Included in Goddess Tier.
+      <div style={{ fontFamily:"'Cormorant Garamond',serif",fontSize:28,fontWeight:600,color:"#000",marginBottom:10 }}>ProofOS</div>
+      <div style={{ fontSize:14,color:"#1a0a10",lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:500 }}>
+        Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
       </div>
-      <button style={{ padding:"12px 24px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",borderRadius:12,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button style={{ padding:"12px 24px",background:"#000",border:"none",borderRadius:12,color:"#f2ece4",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         Upgrade to Goddess — £33/mo
       </button>
     </div>
   );
 
-  const manifested = threads.filter(t=>t.done).length;
+  const manifested = threads.filter(t=>t.done);
+  const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
 
-  const markDone = (id) => setThreads(threads.map(t=>t.id===id?{...t,done:true,manifestedAt:new Date().toLocaleDateString()}:t));
+  const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
+  const confirmFinish = (id) => {
+    setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:feelAfterInput||t.feelAfter,manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"})}:t));
+    setFinishing(null); setFeelAfterInput("");
+  };
   const undoMarkDone = (id) => setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
   const deleteThread = (id) => { if(window.confirm("Delete this thread?")) setThreads(threads.filter(t=>t.id!==id)); };
-  const saveEdit = (id) => { setThreads(threads.map(t=>t.id===id?{...t,notes:editNote}:t)); setEditing(null); };
+  const addSign = (id) => {
+    const text = (signInput[id]||"").trim();
+    if(!text) return;
+    const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date}]}:t));
+    setSignInput({...signInput,[id]:""});
+  };
 
   return (
-    <div style={{ padding:"16px 16px 0" }}>
-      <div style={{ fontSize:20,fontWeight:700,marginBottom:4,color:C.cr }}>ProofOS <span style={{ color:R }}>✦</span></div>
-      <div style={{ fontSize:13,color:C.mu,marginBottom:16 }}>Your manifestation ledger</div>
+    <div style={{ padding:"16px 16px 24px", background:OMBRE_BG, minHeight:"100%" }}>
+      <div style={{ fontSize:22,fontWeight:800,marginBottom:2,color:PC.text }}>ProofOS <span style={{ color:"#000" }}>✦</span></div>
+      <div style={{ fontSize:13,color:PC.mu,marginBottom:14,fontWeight:600 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
+
       {/* Stats */}
-      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:16 }}>
-        {[[threads.length,"Desires",C.cr],[manifested,"Manifested",R],["14d","Streak",P]].map(([v,l,c],i)=>(
-          <div key={i} style={{ background:C.bg3,borderRadius:10,padding:"12px 6px",textAlign:"center" }}>
-            <div style={{ fontSize:22,fontWeight:800,color:c }}>{v}</div>
-            <div style={{ fontSize:10,color:C.mu,fontWeight:600 }}>{l}</div>
+      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14 }}>
+        {[[threads.length,"Desires"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
+          <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
+            <div style={{ fontSize:22,fontWeight:800,color:PC.text }}>{v}</div>
+            <div style={{ fontSize:10,color:PC.mu,fontWeight:700 }}>{l}</div>
           </div>
         ))}
       </div>
 
+      {/* View toggle: Threads | Proof Wall */}
+      <div style={{ display:"flex",gap:6,marginBottom:14 }}>
+        {[["threads","Threads"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
+          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 8px",borderRadius:10,background:view===k?"#000":PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:12,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+        ))}
+      </div>
+
+      {view==="wall" ? (
+        /* ═══ PROOF WALL — your wins, forever ═══ */
+        <div>
+          <div style={{ fontSize:11,color:"#000",fontWeight:800,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>✓ Your proof wall</div>
+          {manifested.length===0 ? (
+            <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
+              <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
+              <div style={{ fontSize:13,color:PC.mu,lineHeight:1.7,fontWeight:600 }}>Nothing manifested yet.<br/>Your first win lands here — and stays here for life.</div>
+            </div>
+          ) : (
+            <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
+              {manifested.map(d=>(
+                <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
+                  <span style={{ fontSize:9,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:CAT_COLOR[d.category]||"#000",borderRadius:20,fontWeight:800 }}>✓ {d.category}</span>
+                  <div style={{ fontSize:13,fontWeight:800,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
+                  <div style={{ fontSize:10,color:"#1a1a1a",fontWeight:700,marginTop:4 }}>{d.days}d · {d.signs?.length||0} signs · {d.manifestedAt||""}</div>
+                  {d.feelAfter && <div style={{ fontSize:10,color:"#1a1a1a",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
+                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:9,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:700,fontFamily:"'Jost',sans-serif" }}>undo</button>
+                </div>
+              ))}
+              <div style={{ background:"rgba(255,255,255,0.35)",border:"1px dashed rgba(0,0,0,0.3)",borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
+                <span style={{ fontSize:11,color:"#1a0a10",textAlign:"center",fontWeight:700,lineHeight:1.4 }}>Your next<br/>manifestation</span>
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+      <>
       {/* ADD NEW THREAD */}
-      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:C.bg3,border:`1px solid ${R}55`,borderRadius:10,color:C.cr,fontSize:13,fontWeight:600,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:"#000",border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:13,fontWeight:800,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         {adding?"✕ Cancel":"+ New Proof Thread"}
       </button>
       {adding && (
-        <div style={{ background:C.bg3,borderRadius:12,padding:14,marginBottom:14,border:`0.5px solid ${C.border}` }}>
-          <div style={{ fontSize:11,color:C.mu,fontWeight:700,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
+        <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
+          <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
           <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
-            style={{ width:"100%",background:C.inputBg,border:"none",color:C.inputCr,borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
-          {/* Link to audio */}
-          <div style={{ fontSize:11,color:C.mu,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
           <select value={linkedTrack} onChange={e=>setLinked(e.target.value)}
-            style={{ width:"100%",background:C.inputBg,border:`0.5px solid ${C.border}`,color:C.inputCr,borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box" }}>
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box" }}>
             <option value="">— Select a track —</option>
             {TRACKS.map(t=><option key={t.id} value={t.title}>{t.title} · {t.cat}</option>)}
           </select>
-          {/* Category */}
-          <div style={{ fontSize:11,color:C.mu,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
+          <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
           <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginBottom:12 }}>
             {["SP & Love","Money","Beauty","Identity","DNA","Sleep"].map(c=>(
-              <button key={c} onClick={()=>setCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?R:"none",border:`0.5px solid ${newCat===c?R:C.border}`,color:newCat===c?"#000":C.mu,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
+              <button key={c} onClick={()=>setCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?"#000":"none",border:`1px solid ${newCat===c?"#000":PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
             ))}
           </div>
+          <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
+          <input value={newFeel} onChange={e=>setFeel(e.target.value)} placeholder="Honest snapshot — you'll compare later"
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:12,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
           <button onClick={()=>{
             if(!newD.trim()) return;
-            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:0,track:linkedTrack,category:newCat,notes:""},...threads]);
-            setD(""); setLinked(""); setAdding(false);
-          }} style={{ padding:"10px 20px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer" }}>
+            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:newFeel,feelAfter:""},...threads]);
+            setD(""); setLinked(""); setFeel(""); setAdding(false);
+          }} style={{ padding:"11px 22px",background:"#000",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             Add Proof Thread
           </button>
         </div>
@@ -735,50 +827,70 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 
       {/* THREAD LIST */}
       {threads.map(d=>(
-        <div key={d.id} style={{ background:C.bg2,border:`0.5px solid ${d.done?"#2a4a2a55":C.border}`,borderRadius:12,padding:"12px 14px",marginBottom:10,position:"relative" }}>
+        <div key={d.id} style={{ background:PC.cardSolid,borderRadius:14,padding:"14px 14px",marginBottom:10,position:"relative" }}>
           <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10 }}>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:14,fontWeight:600,marginBottom:3,color:C.cr }}>{d.desire}</div>
-              {d.category && <span style={{ fontSize:10,padding:"2px 8px",background:C.bg3,color:R,borderRadius:20,fontWeight:700,marginRight:6 }}>{d.category}</span>}
-              {d.track && <div style={{ fontSize:11,color:C.mu,marginTop:4 }}>🎵 {d.track}</div>}
-              {d.days>0 && <div style={{ fontSize:11,color:C.dim,marginTop:2 }}>{d.days} days · {d.signs} sign{d.signs!==1?"s":""} logged</div>}
-              {d.notes && <div style={{ fontSize:12,color:C.mu,marginTop:4,fontStyle:"italic" }}>"{d.notes}"</div>}
+              <div style={{ fontSize:15,fontWeight:800,marginBottom:4,color:"#000" }}>{d.desire}</div>
+              <div style={{ display:"flex",alignItems:"center",gap:6,flexWrap:"wrap" }}>
+                {d.category && <span style={{ fontSize:10,padding:"2px 9px",background:CAT_GRAD[d.category]||CAT_GRAD.Identity,color:"#000",borderRadius:20,fontWeight:800 }}>{d.category}</span>}
+                {d.track && <span style={{ fontSize:11,color:PC.mu,fontWeight:600 }}>♪ {d.track}</span>}
+              </div>
+              {d.feelBefore && <div style={{ fontSize:11,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
+              {d.done && d.feelAfter && <div style={{ fontSize:11,color:"#1a7030",marginTop:2,lineHeight:1.5,fontWeight:600 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
             <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
               {d.done
                 ? <>
-                    <span style={{ fontSize:10,padding:"3px 10px",background:"#1a3a1a",color:"#5ab06a",borderRadius:20,fontWeight:700 }}>✓ manifested</span>
-                    <button onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:4,fontSize:10,padding:"2px 8px",background:"none",border:`0.5px solid ${C.border}`,borderRadius:20,color:C.mu,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-                      <Ico.Undo c={C.mu}/> Undo
-                    </button>
+                    <span style={{ fontSize:10,padding:"3px 10px",background:CAT_GRAD[d.category]||CAT_GRAD.Money,color:"#000",borderRadius:20,fontWeight:800 }}>✓ manifested</span>
+                    <button onClick={()=>undoMarkDone(d.id)} style={{ fontSize:10,padding:"2px 8px",background:"none",border:`1px solid ${PC.border}`,borderRadius:20,color:PC.mu,cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:700 }}>undo</button>
                   </>
-                : <button onClick={()=>markDone(d.id)} style={{ fontSize:10,padding:"3px 10px",background:"none",border:`1px solid ${R}55`,borderRadius:20,color:R,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>mark ✓</button>
+                : <button onClick={()=>startFinish(d.id)} style={{ fontSize:10,padding:"4px 12px",background:"#000",border:"none",borderRadius:20,color:"#f2ece4",fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>mark ✓</button>
               }
             </div>
           </div>
-          {/* Progress bar */}
-          <div style={{ marginTop:10,height:2,background:C.border,borderRadius:1 }}>
-            <div style={{ width:`${Math.min(d.days*5,100)}%`,height:"100%",background:OMBRE,borderRadius:1,backgroundSize:"200%",backgroundPosition:"left" }}/>
-          </div>
-          {/* Edit / Delete */}
-          <div style={{ display:"flex",gap:8,marginTop:8 }}>
-            <button onClick={()=>{setEditing(d.id);setEditNote(d.notes||"");}} style={{ fontSize:11,color:C.mu,background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",gap:4,padding:0,fontFamily:"'Jost',sans-serif" }}>
-              <Ico.Edit c={C.dim}/> Add note
-            </button>
-            <button onClick={()=>deleteThread(d.id)} style={{ fontSize:11,color:"#a04040",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginLeft:"auto" }}>
-              Remove
-            </button>
-          </div>
-          {editing===d.id && (
-            <div style={{ marginTop:8,display:"flex",gap:8 }}>
-              <input value={editNote} onChange={e=>setEditNote(e.target.value)} placeholder="Log a sign, synchronicity…"
-                style={{ flex:1,background:C.inputBg,border:"none",color:C.inputCr,borderRadius:8,padding:"8px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}
-                onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)}/>
-              <button onClick={()=>saveEdit(d.id)} style={{ padding:"8px 12px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",borderRadius:8,color:"#000",fontSize:11,fontWeight:700,cursor:"pointer" }}>Save</button>
+
+          {/* Marking manifested — capture feelAfter */}
+          {finishing===d.id && (
+            <div style={{ marginTop:10,background:"rgba(200,236,200,0.5)",borderRadius:10,padding:"10px 12px" }}>
+              <div style={{ fontSize:11,color:"#1a5028",fontWeight:800,marginBottom:6 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ display:"flex",gap:6 }}>
+                <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment"
+                  onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
+                  style={{ flex:1,background:"#fff",border:"1px solid rgba(26,112,48,0.3)",color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"9px 14px",background:"#1a7030",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
+              </div>
             </div>
           )}
+
+          {/* ═══ SIGNS & SYNCHRONICITY LOG — the heart of ProofOS ═══ */}
+          <div style={{ marginTop:12,paddingTop:10,borderTop:`1px solid ${PC.border}` }}>
+            <div style={{ fontSize:10,color:PC.mu,fontWeight:800,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
+            {(d.signs||[]).map((sg,si)=>(
+              <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
+                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#B76E79",flexShrink:0,marginTop:1 }}>✦</span>
+                <span style={{ fontSize:12,color:"#1a1218",lineHeight:1.5,flex:1 }}>{sg.text}</span>
+                <span style={{ fontSize:10,color:PC.dim,flexShrink:0,fontWeight:600 }}>{sg.date}</span>
+              </div>
+            ))}
+            {!d.done && (
+              <div style={{ display:"flex",gap:6,marginTop:8 }}>
+                <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
+                  onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
+                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#f2ece4",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
+              </div>
+            )}
+          </div>
+
+          {/* Progress + delete */}
+          <div style={{ marginTop:10,height:3,background:"rgba(0,0,0,0.1)",borderRadius:2 }}>
+            <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"#000",borderRadius:2 }}/>
+          </div>
+          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:10,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:700 }}>Remove thread</button>
         </div>
       ))}
+      </>
+      )}
     </div>
   );
 }
