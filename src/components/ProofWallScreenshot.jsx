@@ -1,8 +1,10 @@
 /* ProofWallScreenshot — phone showing ProofOS tracker
    Full theme support (dark/light), real stock evidence images */
 
-const DARK  = { bg:"#121212", bg2:"#1a1a1a", bg3:"#282828", cr:"#ffffff", mu:"#b3b3b3", dim:"#727272", nav:"#0a0a0a" };
-const LIGHT = { bg:"#fdf0e8", bg2:"#ffffff", bg3:"rgba(0,0,0,0.07)", cr:"#111111", mu:"#6a5048", dim:"#a08878", nav:"rgba(255,255,255,0.97)" };
+// GOLD proof wall — both themes render gold (locked by Reshma)
+const GOLD_PAL = { bg:"#f5dfa2", bg2:"#fff8e6", bg3:"rgba(0,0,0,0.07)", cr:"#111111", mu:"#5a4420", dim:"#8a6a35", nav:"rgba(245,223,162,0.97)" };
+const DARK  = GOLD_PAL;
+const LIGHT = GOLD_PAL;
 const R="#B76E79", P="#d4a090";
 const OMBRE="linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
 
