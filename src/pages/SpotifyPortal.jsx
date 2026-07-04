@@ -861,7 +861,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 
       {/* THREAD LIST */}
       {threads.map(d=>(
-        <div key={d.id} style={{ background:PC.cardSolid,borderRadius:14,padding:"14px 14px",marginBottom:10,position:"relative" }}>
+        <div key={d.id} onTouchStart={e=>{window.__sx=e.touches[0].clientX;}} onTouchEnd={e=>{if(window.__sx-e.changedTouches[0].clientX>90)deleteThread(d.id);}} style={{ background:PC.cardSolid,borderRadius:14,padding:"14px 14px",marginBottom:10,position:"relative" }}>
           <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10 }}>
             <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:15,fontWeight:800,marginBottom:4,color:"#000" }}>{d.desire}</div>
