@@ -931,22 +931,33 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
         <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:56 }}>
-      {/* FORMULA CLARITY — what this actually is, said fast */}
-      <div style={{ padding: isMobile?"40px 18px 20px":"56px 24px 30px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
-        <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>What this actually is</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4.2vw,50px)", color:"#000", lineHeight:1.15, marginBottom:20 }}>
-          My voice, guiding you into the state.<br/>
-          <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Subliminals your conscious mind can't hear, installing underneath.</span>
+      {/* PURPOSE — what this is for, said first */}
+      <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
+        <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
+        <h2 className="wm" style={{ fontSize:"clamp(30px,4.6vw,54px)", color:"#000", lineHeight:1.12, marginBottom:20 }}>
+          Shift into the state of<br/>
+          <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
-        <p style={{ fontSize:"clamp(15px,1.9vw,18px)", color:"#000", lineHeight:1.85, maxWidth:640, margin:"0 auto 22px" }}>
-          Every SHG track combines two things at once. My spoken hypnosis on top — the new self-concept, spoken as if it's already yours. Subliminal affirmations beneath the music, at a volume your subconscious receives clearly. You listen like you would a song. You're being installed while you enjoy it.
+        <p style={{ fontSize:"clamp(16px,2vw,20px)", color:"#000", lineHeight:1.8, maxWidth:600, margin:"0 auto 16px", fontWeight:600 }}>
+          Your reality reorganizes to match who you become.
         </p>
-        <div style={{ display:"flex", gap:10, flexWrap:"wrap", justifyContent:"center", marginBottom:8 }}>
-          {[["🎙","Spoken hypnosis on top"],["♪","Subliminals underneath"],["◈","Melodic house · EMDR · 528hz"]].map(([e,l],i)=>(
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
+          The version of you who already has it — she has a different state. That's the only real gap. My audios shift you into her state while you rest. You start acting from her. Reality reorganizes around it.
+        </p>
+      </div>
+
+      {/* THE MECHANISM — how it does that */}
+      <div style={{ padding: isMobile?"20px 18px 40px":"20px 24px 56px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
+        <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>How</div>
+        <p style={{ fontSize:"clamp(15px,1.9vw,18px)", color:"#000", lineHeight:1.85, maxWidth:640, margin:"0 auto 22px" }}>
+          Every SHG track combines two things at once. My spoken self-hypnosis on top — the new self-concept, spoken as if it's already yours. Subliminals beneath the music, at a volume your subconscious receives clearly. You listen like you would a song. You're being installed while you enjoy it.
+        </p>
+        <div style={{ display:"flex", gap:10, flexWrap:"wrap", justifyContent:"center" }}>
+          {[["🎙","Spoken hypnosis on top"],["♪","Subliminals underneath"],["◈","Music · EMDR · 528hz"]].map(([e,l],i)=>(
             <div key={i} style={{ padding:"10px 16px", background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:24, fontSize:13, fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif" }}>{e} {l}</div>
           ))}
         </div>
-        <p style={{ fontSize:12.5, color:"#666", marginTop:14, fontStyle:"normal" }}>Scroll for the full formula ↓</p>
+        <p style={{ fontSize:12.5, color:"#666", marginTop:16 }}>Full breakdown lives inside the app · under The Guide ✦</p>
       </div>
 
             <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:900, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
