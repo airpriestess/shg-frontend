@@ -415,7 +415,7 @@ function AppPreviewSection({ isMobile }) {
           {view==="dashboard" && <PortalScreenshot width={isMobile?240:190} theme={theme}/>}
           {view==="proof" && <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>}
           {view==="analytics" && (
-            <div style={{ width:isMobile?260:230, borderRadius:24, overflow:"hidden", boxShadow:"0 24px 60px rgba(0,0,0,0.8), 0 0 0 7px #1c1c1c, 0 0 0 8px #2a2a2a", background:theme==="dark"?"#121212":"#fdf0e8", padding:"14px 10px" }}>
+            <div style={{ width:isMobile?260:230, borderRadius:24, overflow:"hidden", boxShadow:"0 24px 60px rgba(140,100,40,0.45), 0 0 0 7px #b8934a, 0 0 0 8px #d4b06a", background:theme==="dark"?"#121212":"#fdf0e8", padding:"14px 10px" }}>
               <AnalyticsBoard theme={theme} compact/>
             </div>
           )}
@@ -1104,7 +1104,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
       {/* PROOFOS INTRO — peach section */}
-      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#ffe4ef 0%,#ffd6e7 50%,#ffe4ef 100%)" }}>
+      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#f5e0a0 0%,#eeca8e 30%,#e4b295 60%,#d8a094 80%,#cb8f92 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -1224,7 +1224,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
       </div>
       {/* LANDING PROOF WALL — BRIGHT light section */}
-      <div style={{ padding: isMobile ? "48px 0" : "70px 0", background: "linear-gradient(160deg,#ffe4ef 0%,#ffd6e7 50%,#ffe4ef 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 0" : "70px 0", background: "linear-gradient(160deg,#f5e0a0 0%,#eeca8e 30%,#e4b295 60%,#d8a094 80%,#cb8f92 100%)", width: "100%" }}>
       <div style={{ padding: isMobile ? "0 18px" : "0 clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
@@ -1643,7 +1643,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* PROOFOS INTRO — what it is, why you need it */}
-      <div style={{ padding: isMobile?"48px 20px":"80px 24px", background: "linear-gradient(160deg,#ffe4ef 0%,#ffd6e7 50%,#ffe4ef 100%)", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile?"48px 20px":"80px 24px", background: "linear-gradient(160deg,#f5e0a0 0%,#eeca8e 30%,#e4b295 60%,#d8a094 80%,#cb8f92 100%)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 60% 40%,#7040b015,transparent 60%)", pointerEvents: "none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
