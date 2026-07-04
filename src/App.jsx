@@ -1020,6 +1020,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#111111", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
               The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#000000" }}>Proof.</strong>
             </p>
+            <p style={{ fontSize: "clamp(15px,1.9vw,19px)", color: "#000", lineHeight: 1.75, maxWidth: 540, margin: "14px auto 0", fontWeight: 700 }}>
+              Your manifestation tracker for life. Your proof wall for life. Every sign, every synchronicity, every screenshot — captured in one place for the rest of your life.
+            </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {[
@@ -1085,13 +1088,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
             {/* THREE FORMATS */}
             <div style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(144,96,192,0.2)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 11, color: "#7040a0", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Three formats — each does something different</div>
+              <div style={{ fontSize: 11, color: "#7040a0", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
+                { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
                 { icon: "🌙", label: "Subliminal", body: "Pure music. No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day." },
                 { icon: "◈", label: "EMDR Hypnosis", body: "Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
+                { icon: "🎼", label: "528hz Frequency", body: "The 'love frequency' — tuned to promote repair and coherence at the cellular level while you rest." },
+                { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
               ].map((f,i)=>(
-                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<2?12:0, marginBottom: i<2?12:0, borderBottom: i<2?"1px solid rgba(144,96,192,0.12)":"none" }}>
+                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(144,96,192,0.12)":"none" }}>
                   <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 700, color: "#2a1a50", marginBottom: 3 }}>{f.label}</div>
