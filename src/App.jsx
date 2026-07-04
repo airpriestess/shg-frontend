@@ -665,11 +665,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
   const cats = [
     { label: "Lovemaxxing", tagline: "He's obsessed. Of course he is.", color: T.rose },
-    { label: "Moneymaxxing", tagline: "Money finds you first. Obviously.", color: "#B76E79" },
-    { label: "Beautymaxxing", tagline: "Gorgeous is your default.", color: T.champSoft },
+    { label: "Moneymaxxing", tagline: "Money finds me first. Obviously.", color: "#B76E79" },
+    { label: "Beautymaxxing", tagline: "Gorgeous is my default.", color: T.champSoft },
     { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: "#e8e0d0" },
-    { label: "DNA Shifting", tagline: "Your bloodline remembers.", color: "#9a8ad0" },
-    { label: "Sleep Shifting", tagline: "You shift while you sleep.", color: "#000000" },
+    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#9a8ad0" },
+    { label: "Sleep Shifting", tagline: "I shift while I sleep.", color: "#000000" },
   ];
 
   // Comparison section heading explanation is added in JSX below
