@@ -1,6 +1,6 @@
 /* PortalScreenshot — pure px sizing, dark/light theme, real stock images */
 const THEMES = {
-  dark:  { bg:"#121212", bg2:"#1a1a1a", bg3:"#282828", bg4:"#2a2a2a", cr:"#ffffff", mu:"#b3b3b3", dim:"#727272", nav:"#0a0a0a" },
+  dark:  { bg:"#121212", bg2:"#1a1a1a", bg3:"#282828", bg4:"#d4b06a", cr:"#ffffff", mu:"#b3b3b3", dim:"#727272", nav:"#0a0a0a" },
   light: { bg:"#fdf0e8", bg2:"rgba(255,255,255,0.9)", bg3:"rgba(0,0,0,0.07)", bg4:"rgba(0,0,0,0.1)", cr:"#000000", mu:"#4a3028", dim:"#7a5a48", nav:"rgba(255,255,255,0.97)" },
 };
 const R="#B76E79", P="#d4a090";
@@ -41,7 +41,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
   return (
     <div style={{ width, height:h, background:C.bg, borderRadius:r24, overflow:"hidden",
       fontFamily:"'Jost',sans-serif", color:C.cr, position:"relative", flexShrink:0,
-      boxShadow:`0 ${Math.round(24*s)}px ${Math.round(60*s)}px rgba(0,0,0,0.8), 0 0 0 ${Math.round(7*s)}px #1c1c1c, 0 0 0 ${Math.round(8*s)}px #2a2a2a` }}>
+      boxShadow:`0 ${Math.round(24*s)}px ${Math.round(60*s)}px rgba(140,100,40,0.45), 0 0 0 ${Math.round(7*s)}px #b8934a, 0 0 0 ${Math.round(8*s)}px #d4b06a` }}>
 
       {/* STATUS BAR */}
       <div style={{ height:Math.round(38*s), display:"flex", alignItems:"flex-end", justifyContent:"space-between", padding:`0 ${pad}px ${Math.round(6*s)}px` }}>
