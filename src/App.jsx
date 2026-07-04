@@ -357,7 +357,7 @@ const MARQUEE_ITEMS = [
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const [view,  setView]  = useState("dashboard"); // "dashboard" | "proof"
 
   return (
