@@ -194,6 +194,10 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
   const manifestedCount = threads.filter(t=>t.done).length;
   const thisMonth = threads.filter(t=>t.done).length; // simplified
   const [billingOpen, setBillingOpen] = useState(false);
+  const [planSel, setPlanSel] = useState("goddess");
+  const [planMsg, setPlanMsg] = useState("");
+  const [cancelReq, setCancelReq] = useState(false);
+  const PLANS = [["audio","Audio","£19/mo"],["goddess","Goddess ✦","£33/mo"],["lifetime","Lifetime ♾","£500 once"]];
 
   const BillingPanel = () => (
     <>
@@ -221,8 +225,22 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             <span style={{ fontSize:13,fontWeight:700,color:C.cr }}>29 July 2026</span>
           </div>
         </div>
-        <div style={{ fontSize:11,color:C.dim,lineHeight:1.6,marginBottom:18 }}>No refunds after 14 days from payment · Cancel before renewal to avoid the next charge</div>
-        <button onClick={()=>window.open("https://billing.stripe.com","_blank")} style={{ width:"100%",padding:"13px",background:`linear-gradient(90deg,${P},${R})`,border:"none",borderRadius:10,color:"#000",fontSize:14,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>Update payment method / cancel →</button>
+        {/* CHANGE PLAN — in-app, no redirect */}
+        <div style={{ fontSize:10,fontWeight:800,color:C.mu,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Change plan</div>
+        <div style={{ display:"flex",gap:6,marginBottom:10 }}>
+          {PLANS.map(([id,l,pr])=>(
+            <button key={id} onClick={()=>{setPlanSel(id);setPlanMsg(`Plan updated to ${l} ✓`);setCancelReq(false);}} style={{ flex:1,padding:"9px 4px",background:planSel===id?OMBRE:C.bg3,backgroundSize:"200%",backgroundPosition:"left",border:planSel===id?"none":`1px solid ${C.border}`,borderRadius:10,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+              <div style={{ fontSize:11,fontWeight:800,color:planSel===id?"#000":C.cr }}>{l}</div>
+              <div style={{ fontSize:9,fontWeight:700,color:planSel===id?"#000":C.mu,marginTop:2 }}>{pr}</div>
+            </button>
+          ))}
+        </div>
+        {planMsg && <div style={{ fontSize:11,fontWeight:700,color:"#1a7030",marginBottom:8 }}>{planMsg}</div>}
+        {!cancelReq
+          ? <button onClick={()=>{ if(window.confirm("Cancel your subscription? You keep access until 29 July 2026.")) {setCancelReq(true);setPlanMsg("");} }} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:12,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>Cancel subscription</button>
+          : <div style={{ fontSize:11,fontWeight:700,color:"#b03030",marginBottom:8,textAlign:"center" }}>Cancels 29 July 2026 · full access until then · <span onClick={()=>setCancelReq(false)} style={{ textDecoration:"underline",cursor:"pointer",color:C.cr }}>undo</span></div>}
+        <div style={{ fontSize:11,color:C.dim,lineHeight:1.6,marginBottom:12 }}>No refunds after 14 days from payment · Changes apply from your next billing date</div>
+        <div style={{ fontSize:10,color:C.dim,textAlign:"center",marginBottom:10 }}>Payments secured by Stripe</div>
         <button onClick={()=>setBillingOpen(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
       </div>
     </>
@@ -288,7 +306,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab}/>}
+      {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} openProfile={()=>setProfileOpen(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>}
@@ -488,13 +506,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab }) {
+function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, openProfile }) {
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
   return (
     <div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 12px" }}>
-        <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>{greet}</span>
+        <span onClick={openProfile} style={{ fontSize:20,fontWeight:700,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8 }}>{greet} <span style={{ width:26,height:26,borderRadius:"50%",background:"linear-gradient(135deg,#e8b870,#B76E79)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#000" }}>R</span></span>
       </div>
 
       {/* ANALYTICS BOARD — first thing you see on the dashboard */}
@@ -528,6 +546,14 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
       </div>
 
       {/* NEW THIS WEEK */}
+      <Sec title="Your favorites ♡" C={C}>
+        {TRACKS.filter(t=>liked.has(t.id)).length===0
+          ? <div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:12,color:C.mu,fontWeight:600 }}>Tap the ♡ on any track and it lives here — your personal rotation.</div>
+          : <HRow>
+              {TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
+            </HRow>}
+      </Sec>
+
       <Sec title="New this week ✦" C={C}>
         <HRow>
           {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
@@ -721,6 +747,28 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
     setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date}]}:t));
     setSignInput({...signInput,[id]:""});
   };
+  const addMediaSign = (id, media) => {
+    const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+    setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date}]}:t));
+  };
+  const [recId, setRecId] = useState(null);
+  const recRef = useRef(null);
+  const toggleRec = async (id) => {
+    if (recId === id) { recRef.current?.stop(); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+      const mr = new MediaRecorder(stream);
+      const chunks = [];
+      mr.ondataavailable = e => chunks.push(e.data);
+      mr.onstop = () => {
+        const url = URL.createObjectURL(new Blob(chunks,{type:"audio/webm"}));
+        addMediaSign(id,{audio:url,text:"Voice note"});
+        stream.getTracks().forEach(t=>t.stop());
+        setRecId(null);
+      };
+      mr.start(); recRef.current = mr; setRecId(id);
+    } catch { alert("Microphone access needed for voice notes."); }
+  };
 
   return (
     <div style={{ padding:"16px 16px 24px", background:OMBRE_BG, minHeight:"100%" }}>
@@ -759,7 +807,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
                   <span style={{ fontSize:9,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:CAT_COLOR[d.category]||"#000",borderRadius:20,fontWeight:800 }}>✓ {d.category}</span>
                   <div style={{ fontSize:13,fontWeight:800,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
-                  <div style={{ fontSize:10,color:"#1a1a1a",fontWeight:700,marginTop:4 }}>{d.days}d · {d.signs?.length||0} signs · {d.manifestedAt||""}</div>
+                  <div style={{ fontSize:10,color:"#1a1a1a",fontWeight:700,marginTop:4 }}>{d.days}d · {d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""} · {d.manifestedAt||""}</div>
                   {d.feelAfter && <div style={{ fontSize:10,color:"#1a1a1a",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:9,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:700,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
@@ -848,8 +896,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
             <div style={{ fontSize:10,color:PC.mu,fontWeight:800,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
               <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
-                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#B76E79",flexShrink:0,marginTop:1 }}>✦</span>
-                <span style={{ fontSize:12,color:"#1a1218",lineHeight:1.5,flex:1 }}>{sg.text}</span>
+                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#B76E79",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
+                <span style={{ fontSize:12,color:"#1a1218",lineHeight:1.5,flex:1 }}>
+                  {sg.text}
+                  {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}
+                  {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
+                </span>
                 <span style={{ fontSize:10,color:PC.dim,flexShrink:0,fontWeight:600 }}>{sg.date}</span>
               </div>
             ))}
@@ -859,6 +911,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
                   style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                 <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#f2ece4",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
+                <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:13,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
+                  <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
+                </label>
+                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#b03030":"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:13,cursor:"pointer",color:recId===d.id?"#fff":"#000" }}>{recId===d.id?"⏹":"🎤"}</button>
               </div>
             )}
           </div>
