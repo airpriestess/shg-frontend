@@ -28,17 +28,24 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
 
   return (
     <div style={{ background:C.card, borderRadius:16, padding:compact?"12px 14px":"16px 16px", border:`1px solid ${C.border}`, fontFamily:"'Jost',sans-serif" }}>
+      <style>{`
+        @keyframes abGrow { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+        @keyframes abPulse { 0%,100% { filter:brightness(1); box-shadow:0 0 0 rgba(232,184,112,0); } 50% { filter:brightness(1.3); box-shadow:0 0 14px rgba(232,184,112,0.95); } }
+        @keyframes abDonut { from { stroke-dasharray:0 999; } }
+        @keyframes abFlash { 0%,100% { opacity:1; } 50% { opacity:0.55; } }
+      `}</style>
       {/* Header */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:12 }}>
         <span style={{ fontSize:11*fs, fontWeight:800, color:R, letterSpacing:"0.15em", textTransform:"uppercase" }}>Your analytics ✦</span>
-        <span style={{ fontSize:10*fs, fontWeight:800, padding:"3px 10px", background:OMBRE, backgroundSize:"200%", backgroundPosition:"left", borderRadius:20, color:"#000" }}>{streakDays}-day streak</span>
+        <span style={{ fontSize:10*fs, fontWeight:800, padding:"3px 10px", background:OMBRE, backgroundSize:"200%", backgroundPosition:"left", borderRadius:20, color:"#000", animation:"abFlash 2.2s ease-in-out infinite" }}>{streakDays}-day streak</span>
       </div>
+      <div style={{ fontSize:11.5*fs, fontWeight:800, color:C.text, marginBottom:10 }}>{manifested} of {total} intentions manifested <span style={{ color:R }}>✦</span></div>
 
       {/* Row 1: donut + stat tiles */}
       <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:12 }}>
         <svg width={72*fs} height={72*fs} viewBox="0 0 72 72" style={{ flexShrink:0, transform:"rotate(-90deg)" }}>
           <circle cx="36" cy="36" r={r2} fill="none" stroke={C.track} strokeWidth="9"/>
-          <circle cx="36" cy="36" r={r2} fill="none" stroke="url(#abGrad)" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${circ*pct} ${circ}`}/>
+          <circle cx="36" cy="36" r={r2} fill="none" stroke="url(#abGrad)" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${circ*pct} ${circ}`} style={{ animation:"abDonut 1.1s ease both" }}/>
           <defs><linearGradient id="abGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#e8b870"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
           <text x="36" y="36" transform="rotate(90 36 36)" textAnchor="middle" dominantBaseline="central" fill={C.text} fontSize="17" fontWeight="800" fontFamily="'Jost',sans-serif">{manifested}</text>
         </svg>
@@ -59,7 +66,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
           {week.map((v,i)=>(
             <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
               <span style={{ fontSize:8.5*fs, fontWeight:800, color:C.mu }}>{v}</span>
-              <div style={{ width:"100%", maxWidth:22, height:`${(v/maxW)*100}%`, minHeight:3, background:i===week.length-2?OMBRE:C.track, backgroundSize:"200%", backgroundPosition:"left", borderRadius:3 }}/>
+              <div style={{ width:"100%", maxWidth:22, height:`${(v/maxW)*100}%`, minHeight:3, background:i===week.length-2?OMBRE:C.track, backgroundSize:"200%", backgroundPosition:"left", borderRadius:3, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${i===week.length-2?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
               <span style={{ fontSize:8*fs, color:C.dim, fontWeight:700 }}>{days[i]}</span>
             </div>
           ))}
