@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
 
 /* ═══════════════════════════════════════════════════════════════════════
    SHG PORTAL — Full Spotify-style with:
@@ -496,43 +497,23 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
         <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>{greet}</span>
       </div>
 
-      {/* WIN SUMMARY DASHBOARD */}
-      {!isPreview && (
-        <div style={{ margin:"0 16px 20px",background:C.bg3,borderRadius:14,padding:"14px 16px",border:`0.5px solid ${C.border}` }}>
-          <div style={{ fontSize:11,fontWeight:700,color:R,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Your wins this month ✦</div>
-          <div style={{ display:"flex",alignItems:"center",gap:16 }}>
-            {/* Simple donut chart: manifested vs in progress */}
-            {(()=>{
-              const total = Math.max(manifested+inProgress,1);
-              const pct = manifested/total;
-              const r2=26, circ=2*Math.PI*r2;
-              return (
-                <svg width="72" height="72" viewBox="0 0 72 72" style={{ flexShrink:0,transform:"rotate(-90deg)" }}>
-                  <circle cx="36" cy="36" r={r2} fill="none" stroke={C.border} strokeWidth="9"/>
-                  <circle cx="36" cy="36" r={r2} fill="none" stroke="url(#winGrad)" strokeWidth="9" strokeLinecap="round"
-                    strokeDasharray={`${circ*pct} ${circ}`}/>
-                  <defs><linearGradient id="winGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#e8b870"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
-                  <text x="36" y="36" transform="rotate(90 36 36)" textAnchor="middle" dominantBaseline="central" fill={C.cr} fontSize="16" fontWeight="800" fontFamily="'Jost',sans-serif">{manifested}</text>
-                </svg>
-              );
-            })()}
-            <div style={{ flex:1,display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
-              {[[manifested,"Manifested",R],[inProgress,"In progress",P],[listenCount,"Times listened",C.cr]].map(([v,l,c],i)=>(
-                <div key={i} style={{ textAlign:"center" }}>
-                  <div style={{ fontSize:24,fontWeight:800,color:c,lineHeight:1 }}>{v}</div>
-                  <div style={{ fontSize:10,color:C.mu,marginTop:2,lineHeight:1.3 }}>{l}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-          {manifested > 0 && (
-            <div style={{ marginTop:10,padding:"8px 10px",background:"rgba(90,176,106,0.1)",border:"0.5px solid #2a4a2a",borderRadius:8 }}>
-              <span style={{ fontSize:12,color:"#5ab06a",fontWeight:600 }}>✓ {manifested} desire{manifested!==1?"s":""} manifested</span>
-              <span onClick={()=>setTab("proof")} style={{ fontSize:11,color:R,marginLeft:8,cursor:"pointer",textDecoration:"underline" }}>View proof →</span>
-            </div>
-          )}
-        </div>
-      )}
+      {/* ANALYTICS BOARD — first thing you see on the dashboard */}
+      <div style={{ margin:"0 16px 20px" }}>
+        <AnalyticsBoard
+          theme={C.bg==="#121212"?"dark":"light"}
+          data={isPreview ? DEMO_ANALYTICS : {
+            manifested, inProgress,
+            signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
+            listens: listenCount,
+            streakDays: 14,
+            week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
+            topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
+              .sort((a,b)=>b[1]-a[1]).slice(0,3)
+              .map(([name,n])=>[name,({"SP & Love":"#c84880","Money":"#1a7030","Beauty":"#9a7800","Identity":"#6030a0","DNA":"#6030a0","Sleep":"#0a5090"})[name]||"#B76E79",n]),
+          }}
+          onViewProof={isPreview?null:()=>setTab("proof")}
+        />
+      </div>
 
       {/* 2×3 RECENTLY PLAYED */}
       <div style={{ padding:"0 16px 20px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
