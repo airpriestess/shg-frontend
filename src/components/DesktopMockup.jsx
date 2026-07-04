@@ -12,7 +12,7 @@ const THEMES = {
   light: {
     browser:"#ecdde0", browserBorder:"#ddd0d0", urlBar:"#fdf0e8", urlText:"#8a7060",
     bg:"#fdf0e8", bg2:"#fff8f4", bg3:"rgba(183,110,121,0.08)", nav:"rgba(253,240,232,0.97)",
-    cr:"#111111", mu:"#6a5048", dim:"#a08878", border:"rgba(183,110,121,0.12)",
+    cr:"#000000", mu:"#4a3028", dim:"#7a5a48", border:"rgba(183,110,121,0.12)",
     sidebar:"rgba(253,240,232,0.98)", scrubBg:"#e0c8c0",
   },
 };
