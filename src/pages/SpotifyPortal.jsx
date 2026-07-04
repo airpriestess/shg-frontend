@@ -344,9 +344,18 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.6)" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif" }}>
             <div style={{ fontSize:11,fontWeight:900,color:"#B76E79",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:12 }}>How are you feeling right now?</div>
-            <div style={{ display:"flex",flexDirection:"column",gap:6,maxHeight:"55vh",overflowY:"auto",paddingRight:4 }}>
-              {HAWKINS.slice().reverse().map(h=>(
-                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"11px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
+            <div style={{ fontSize:11,color:C.mu,marginBottom:8,fontWeight:700 }}>Below 200 · contractive · drains energy</div>
+            <div style={{ display:"flex",flexDirection:"column",gap:5,marginBottom:12 }}>
+              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
+                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
+                  <span>{h.n}</span><span style={{ fontSize:11,opacity:0.7 }}>{h.v}</span>
+                </button>
+              ))}
+            </div>
+            <div style={{ fontSize:11,color:"#B76E79",marginBottom:8,fontWeight:800 }}>200 and above · expansive · creates ✦</div>
+            <div style={{ display:"flex",flexDirection:"column",gap:5 }}>
+              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
                   <span>{h.n}</span><span style={{ fontSize:11,opacity:0.7 }}>{h.v}</span>
                 </button>
               ))}
@@ -552,6 +561,18 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
         <span onClick={openProfile} style={{ fontSize:20,fontWeight:700,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8 }}>{greet} <span style={{ width:26,height:26,borderRadius:"50%",background:"linear-gradient(135deg,#e8b870,#B76E79)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#000" }}>R</span></span>
       </div>
 
+      {/* ★ THE GUIDE — first, biggest, unmissable */}
+      <div style={{ margin:"0 16px 14px" }}>
+        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c4789a 80%,#B76E79 100%)", backgroundSize:"200%", backgroundPosition:"left", border:"none", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", boxShadow:"0 8px 24px rgba(183,110,121,0.35)" }}>
+          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, fontWeight:900, color:"#f5e0a0", flexShrink:0 }}>✦</span>
+          <span style={{ flex:1, textAlign:"left" }}>
+            <div style={{ fontSize:16, fontWeight:900, color:"#000" }}>Open The Guide</div>
+            <div style={{ fontSize:12, color:"#000", fontWeight:700, marginTop:3, lineHeight:1.4 }}>The formula · brainwave states · Hawkins scale · how to capture signs · how often to listen</div>
+          </span>
+          <span style={{ fontSize:22, color:"#000", fontWeight:900, flexShrink:0 }}>›</span>
+        </button>
+      </div>
+
       {/* ★ EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
@@ -572,19 +593,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
         </div>
       </div>
 
-      {/* ✦ THE GUIDE — money's worth on entry */}
-      <div style={{ margin:"0 16px 18px" }}>
-        <button onClick={openGuide} style={{ width:"100%", padding:"13px 14px", background:C.bg3, border:`1px solid ${C.border}`, borderRadius:12, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", gap:10, fontFamily:"'Jost',sans-serif" }}>
-          <span style={{ display:"flex", alignItems:"center", gap:10, textAlign:"left" }}>
-            <span style={{ width:32, height:32, borderRadius:10, background:"linear-gradient(135deg,#f5e0a0,#e8b870,#B76E79)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:900, color:"#000" }}>✦</span>
-            <span>
-              <div style={{ fontSize:13, fontWeight:800, color:C.cr }}>The Guide</div>
-              <div style={{ fontSize:11, color:C.mu, fontWeight:600, marginTop:1 }}>Formula · Brainwaves · Signs · How to listen</div>
-            </span>
-          </span>
-          <span style={{ fontSize:15, color:C.mu }}>›</span>
-        </button>
-      </div>
+
 
       {/* ANALYTICS BOARD — first thing you see on the dashboard */}
       <div style={{ margin:"0 16px 20px" }}>
@@ -930,11 +939,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
             ))}
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <div style={{ display:"flex",gap:6,overflowX:"auto",WebkitOverflowScrolling:"touch",paddingBottom:4,marginBottom:12 }}>
-            {HAWKINS.map(h=>(
-              <button key={h.n} onClick={()=>setFeel(h.n)} style={{ flexShrink:0,padding:"7px 12px",borderRadius:20,border:newFeel===h.n?"none":`1px solid ${PC.border}`,background:newFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:PC.inputBg,color:newFeel===h.n?"#fff":"#000",fontSize:11,fontWeight:newFeel===h.n?800:600,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>{h.n} · {h.v}</button>
-            ))}
-          </div>
+          <select value={newFeel} onChange={e=>setFeel(e.target.value)}
+            style={{ width:"100%",padding:"11px 14px",borderRadius:10,border:`1px solid ${PC.border}`,background:newFeel?`linear-gradient(90deg,${(HAWKINS.find(h=>h.n===newFeel)||{}).c||"#B76E79"},#B76E79)`:PC.inputBg,color:newFeel?"#fff":"#000",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:12,outline:"none",appearance:"none",WebkitAppearance:"none",backgroundImage:"url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3'><polyline points='6 9 12 15 18 9'/></svg>\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 14px center",paddingRight:36 }}>
+            <option value="">— Select on the Hawkins scale (Shame 20 → Enlightenment 700) —</option>
+            <optgroup label="Below 200 · Contractive (drains energy)">
+              {HAWKINS.filter(h=>h.v<200).map(h=><option key={h.n} value={h.n}>{h.n} · {h.v}</option>)}
+            </optgroup>
+            <optgroup label="200 and above · Expansive (creates)">
+              {HAWKINS.filter(h=>h.v>=200).map(h=><option key={h.n} value={h.n}>{h.n} · {h.v}</option>)}
+            </optgroup>
+          </select>
           <button onClick={()=>{
             if(!newD.trim()) return;
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:newFeel,feelAfter:""},...threads]);
