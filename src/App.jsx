@@ -990,13 +990,15 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               Your reality runs on assumptions — what you quietly hold as true about yourself. Installed in theta, the new assumption becomes the default. Then your reality reorganises to match it.
             </p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: isMobile?26:32 }}>
             {[
-              ["Love is scarce. I have to chase it.", "I am chosen. He finds his way to me."],
+              ["I'm never the one he chooses.", "I am chosen. I'm his dream girl."],
               ["Money comes from grinding harder.", "Money finds me first — effortlessly."],
-              ["This is just how my life is.", "My reality bends to who I've become."],
+              ["Some women are just born with it. I wasn't.", "Gorgeous is my default. My bloodline remembers."],
             ].map(([o,nw],i)=>(
-              <div key={i} style={{ display: "flex", flexDirection: isMobile?"column":"row", gap: isMobile?8:14, alignItems: "stretch" }}>
+              <div key={i} style={{ position: "relative" }}>
+              <div style={{ fontSize: isMobile?18:22, fontWeight: 900, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", marginBottom: 10 }}>{String(i+1).padStart(2,"0")}</div>
+              <div style={{ display: "flex", flexDirection: isMobile?"column":"row", gap: isMobile?8:14, alignItems: "stretch" }}>
                 <div style={{ flex: 1, background: "rgba(255,255,255,0.8)", border: "1px solid rgba(180,60,60,0.25)", borderRadius: 14, padding: "16px 18px" }}>
                   <div style={{ fontSize: 10, fontWeight: 800, color: "#a04040", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✗ Old assumption</div>
                   <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 500, lineHeight: 1.5 }}>{o}</div>
@@ -1006,6 +1008,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <div style={{ fontSize: 10, fontWeight: 800, color: "#B76E79", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✦ New assumption</div>
                   <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 700, lineHeight: 1.5 }}>{nw}</div>
                 </div>
+              </div>
               </div>
             ))}
           </div>
