@@ -10,6 +10,7 @@ import ListeningGuide from "./pages/ListeningGuide.jsx";
 import SpotifyPortal from "./pages/SpotifyPortal.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
+import LandingProofWall from "./components/LandingProofWall.jsx";
 import DesktopMockup from "./components/DesktopMockup.jsx";
 import ProofWallScreenshot from "./components/ProofWallScreenshot.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
@@ -1047,6 +1048,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </p>
           <div style={{ background: "rgba(255,255,255,0.85)", border: "2px solid rgba(183,110,121,0.35)", borderRadius: 18, padding: isMobile?"22px 20px":"30px 34px", maxWidth: 640, margin: "32px auto 0" }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12 }}>This is where self-hypnosis comes in</div>
+            <p style={{ fontSize: "clamp(15px,1.9vw,18px)", color: "#000", lineHeight: 1.85, margin: "0 0 14px" }}>
+              Self-hypnosis is the same practice as hypnotherapy — the same depth, the same direct access to the subconscious. The difference: no therapist, no appointments, no waiting a week between sessions. You reprogram your own subconscious mind through daily practice, on your own. My voice guides you into the state — you just press play. And because you can do it every single day, you get the one thing a session with a therapist can never give you: repetition. That's what makes it permanent.
+            </p>
             <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000", lineHeight: 1.8, margin: 0, fontWeight: 600 }}>
               My audios shift you into the state — theta, where the subconscious actually opens. The new assumption installs while you rest. You start acting from her state without trying.
             </p>
@@ -1223,147 +1227,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
       </div>
-      {/* LANDING PROOF WALL — BRIGHT light section */}
-      <div style={{ padding: isMobile ? "48px 0" : "70px 0", background: "linear-gradient(160deg,#f5e0a0 0%,#eeca8e 30%,#e4b295 60%,#d8a094 80%,#cb8f92 100%)", width: "100%" }}>
-      <div style={{ padding: isMobile ? "0 18px" : "0 clamp(16px,4vw,24px)", maxWidth: 900, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>ProofOS · Real evidence</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: "#000000", lineHeight: 1.15, marginBottom: 14 }}>
-            Proof Wall.<br />
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>The evidence captured.</span>
-          </h2>
-          <p style={{ fontSize: 15, color: "#000000", lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>Screenshot the bank transfer. Record the moment something shifts. Log the sign. Every piece of evidence linked to the audio that preceded it.</p>
-        </div>
-        <div style={{...GPROOF(isMobile), marginBottom: 12}}>
-          {[
-            {
-              type: "bank", label: "Bank Transfer", sub: "10 days of listening · Money finds me first",
-              render: () => (
-                <div style={{ background: "linear-gradient(160deg,#040a08,#060e0a)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
-                  <div style={{ background: "#060e0a", padding: "12px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #1a3a1a" }}>
-                    <span style={{ fontSize: 10, color: "#60a870", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.15em" }}>BANKING APP · NOTIFICATION</span>
-                    <span style={{ fontSize: 10, color: "#3a6a3a" }}>✓ Received</span>
-                  </div>
-                  <div style={{ padding: "18px 16px" }}>
-                    <div style={{ fontSize: 12, color: "#4a8a4a", marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>Payment received</div>
-                    <div style={{ fontSize: 32, fontWeight: 800, color: "#5ab06a", fontFamily: "'Jost',sans-serif", marginBottom: 6 }}>£5,000</div>
-                    <div style={{ fontSize: 11, color: "#3a6a3a" }}>Day 8 · 23:47 · Transferred in full</div>
-                  </div>
-                  <div style={{ padding: "10px 16px", background: "#060e08", borderTop: "1px solid #1a3a1a" }}>
-                    <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Money Finds Me First</div>
-                  </div>
-                </div>
-              )
-            },
-            {
-              type: "message", label: "Message Screenshot", sub: "3 hours after listening · He texted first",
-              render: () => (
-                <div style={{ background: "#06040c", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a2a" }}>
-                  <div style={{ background: "#0c0612", padding: "10px 14px", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid #2a1a2a" }}>
-                    <div style={{ width: 28, height: 28, borderRadius: "50%", background: "linear-gradient(135deg,#d4a090,#B76E79)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>H</div>
-                    <div>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: "#f2ece4" }}>Him</div>
-                      <div style={{ fontSize: 10, color: "#a0989c" }}>Today 14:23</div>
-                    </div>
-                  </div>
-                  <div style={{ padding: "16px 14px" }}>
-                    <div style={{ background: "#1e1220", borderRadius: "14px 14px 14px 4px", padding: "12px 16px", display: "inline-block", maxWidth: "85%" }}>
-                      <div style={{ fontSize: 15, color: "#f2ece4", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.5 }}>I miss you. Been thinking about you constantly. Can we talk?</div>
-                    </div>
-                  </div>
-                  <div style={{ padding: "10px 16px", background: "#0a0610", borderTop: "1px solid #2a1a2a" }}>
-                    <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: He Finds His Way Back</div>
-                  </div>
-                </div>
-              )
-            },
-            {
-              type: "skin", label: "Mirror Selfie", sub: "Day 14 · They all noticed",
-              render: () => (
-                <div style={{ background: "linear-gradient(160deg,#080408,#0e0610)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a1a18" }}>
-                  <div style={{ height: 100, background: "linear-gradient(160deg,#1a0e10,#250e14)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, borderBottom: "1px solid #2a1a18", position: "relative" }}>
-                    <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#d4a09015,transparent 70%)" }}/>
-                    <div style={{ fontSize: 12, color: "#d4a090", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.2em" }}>✦ SKIN GLOW · DAY 14</div>
-                    <div style={{ fontSize: 22, color: "#d4a090", letterSpacing: 4 }}>◦ ◦ ◦</div>
-                    <div style={{ fontSize: 11, color: "#8a6858" }}>What are you doing differently?</div>
-                  </div>
-                  <div style={{ padding: "12px 16px" }}>
-                    <div style={{ fontSize: 14, color: "#d4c0a8", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.65 }}>"Three people asked what I was doing differently. My skin has never looked like this."</div>
-                  </div>
-                  <div style={{ padding: "10px 16px", background: "#0c0608", borderTop: "1px solid #2a1a18" }}>
-                    <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Gorgeous Is My Default</div>
-                  </div>
-                </div>
-              )
-            },
-            {
-              type: "angel", label: "Angel Numbers", sub: "555 · Three times in one day",
-              render: () => (
-                <div style={{ background: "linear-gradient(160deg,#08060a,#0c080e)", borderRadius: 12, overflow: "hidden", border: "1px solid #2a2200" }}>
-                  <div style={{ padding: "22px 16px", textAlign: "center" }}>
-                    <div style={{ fontSize: 42, fontWeight: 900, color: "#c8a840", fontFamily: "'Jost',sans-serif", letterSpacing: 8, marginBottom: 8, textShadow: "0 0 30px #c8a84044" }}>555</div>
-                    <div style={{ fontSize: 12, color: "#9060c0", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>Angel Number · Three times today</div>
-                    <div style={{ fontSize: 13, color: "#c8b878", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.6 }}>Clock · Number plate · Total on receipt</div>
-                  </div>
-                  <div style={{ padding: "10px 16px", background: "#000000", borderTop: "1px solid #2a2200" }}>
-                    <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Highest Timeline Activated</div>
-                  </div>
-                </div>
-              )
-            },
-            {
-              type: "voice", label: "Voice Note", sub: "Day 3 · Recorded in the moment",
-              render: () => (
-                <div style={{ background: "#000000", borderRadius: 12, overflow: "hidden", border: "1px solid #1a2030" }}>
-                  <div style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 12 }}>
-                    <div style={{ fontSize: 12, color: "#000000", fontFamily: "'Jost',sans-serif", fontWeight: 700, letterSpacing: "0.15em" }}>VOICE PROOF · DAY 3</div>
-                    <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
-                      {[6,14,20,10,18,8,22,12,18,6,16,10,20,8,14,18,10,16].map((h,j) => (
-                        <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: `linear-gradient(180deg,#d4a090,#B76E79)`, opacity: 0.8 }}/>
-                      ))}
-                    </div>
-                    <div style={{ fontSize: 14, color: "#000000", fontFamily: "'Cormorant Garamond',serif", lineHeight: 1.65 }}>"I woke up knowing before anything happened."</div>
-                  </div>
-                  <div style={{ padding: "10px 16px", background: "#050608", borderTop: "1px solid #1a2030" }}>
-                    <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: I Am the Lucky Girl</div>
-                  </div>
-                </div>
-              )
-            },
-            {
-              type: "money2", label: "Transfer #2", sub: "Day 21 · Money keeps arriving",
-              render: () => (
-                <div style={{ background: "linear-gradient(160deg,#040a08,#060e0a)", borderRadius: 12, overflow: "hidden", border: "1px solid #1a3a1a" }}>
-                  <div style={{ padding: "18px 16px" }}>
-                    <div style={{ fontSize: 12, color: "#4a8a4a", marginBottom: 8, fontFamily: "'Jost',sans-serif" }}>Payment received</div>
-                    <div style={{ fontSize: 28, fontWeight: 800, color: "#5ab06a", fontFamily: "'Jost',sans-serif", marginBottom: 6 }}>£2,500</div>
-                    <div style={{ fontSize: 11, color: "#3a6a3a" }}>Day 21 · Second unexpected payment</div>
-                    <div style={{ fontSize: 13, color: "#6ab07a", fontFamily: "'Cormorant Garamond',serif", marginTop: 10, lineHeight: 1.6 }}>"It just keeps coming. Of course it does."</div>
-                  </div>
-                  <div style={{ padding: "10px 16px", background: "#060e08", borderTop: "1px solid #1a3a1a" }}>
-                    <div style={{ fontSize: 11, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em" }}>✦ Linked to: Money Finds Me First</div>
-                  </div>
-                </div>
-              )
-            },
-          ].map((p, i) => p.render())}
-        </div>
-        <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "14px 18px", display: "flex", gap: 14, alignItems: "center" }}>
-          <div style={{ width: 40, height: 40, borderRadius: 10, background: "#B76E7918", border: "1px solid #B76E7933", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>🎙</div>
-          <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
-            {[6,14,20,10,18,8,16,22,12,18,6,14,10,20,16].map((h,j) => (
-              <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "linear-gradient(180deg,#d4a090,#B76E79)", opacity: 0.7 }} />
-            ))}
-          </div>
-          <div style={{ flex: 1, marginLeft: 8 }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#f2ece4", marginBottom: 2 }}>Voice Proof · Day 3</div>
-            <div style={{ fontSize: 13, color: "#c8c0bc" }}>"I woke up knowing before anything happened."</div>
-          </div>
-        </div>
-      </div>
+      {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
+      <LandingProofWall isMobile={isMobile}/>
 
-
-      </div>
       {/* WHY I BUILT THIS — BLACK */}
       <div style={{ background: "#000", padding: isMobile?"56px 18px":"90px 24px", position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:"30%", left:"50%", transform:"translateX(-50%)", width:500, height:500, background:"radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
