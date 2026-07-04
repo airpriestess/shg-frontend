@@ -377,7 +377,10 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       <div style={{ height:52,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
         <span style={{ fontSize:13,fontWeight:700,color:C.cr }}>9:41</span>
         <span style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:15,fontWeight:500,background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>SHG</span>
-        <button onClick={()=>setProfileOpen(true)} style={{ width:34,height:34,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:800,color:"#000",cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>R</button>
+        <div style={{ display:"flex",alignItems:"center",gap:8 }}>
+          <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{C.cr==="#ffffff"?"☀️":"🌙"}</button>
+          <button onClick={()=>setProfileOpen(true)} style={{ width:34,height:34,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:800,color:"#000",cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>R</button>
+        </div>
       </div>
       {/* Screen */}
       <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch" }}>{tabContent}</div>
@@ -518,7 +521,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
       {/* ANALYTICS BOARD — first thing you see on the dashboard */}
       <div style={{ margin:"0 16px 20px" }}>
         <AnalyticsBoard
-          theme={C.bg==="#121212"?"dark":"light"}
+          theme={C.cr==="#ffffff"?"dark":"light"}
           data={isPreview ? DEMO_ANALYTICS : {
             manifested, inProgress,
             signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
@@ -946,7 +949,7 @@ function ShopTab({ C }) {
       <div style={{ fontSize:13,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
         {products.map((p,i)=>(
-          <div key={i} onClick={()=>window.open(p.link,"_blank")}
+          <div key={i} onClick={()=>window.open(p.stripe||p.link,"_blank")}
             style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:"pointer",transition:"transform 0.15s" }}
             onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
             onMouseLeave={e=>e.currentTarget.style.transform="none"}>
@@ -959,7 +962,7 @@ function ShopTab({ C }) {
               <div style={{ fontSize:11,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
               <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
                 <span style={{ fontSize:15,fontWeight:800,color:R }}>{p.price}</span>
-                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:10,fontWeight:800,fontFamily:"'Jost',sans-serif" }}>Buy on Beacons →</span>
+                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:10,fontWeight:800,fontFamily:"'Jost',sans-serif" }}>{p.stripe?"Buy now · Stripe →":"Buy on Beacons →"}</span>
               </div>
             </div>
           </div>
