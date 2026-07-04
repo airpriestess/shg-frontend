@@ -931,6 +931,24 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
         <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:56 }}>
+      {/* FORMULA CLARITY — what this actually is, said fast */}
+      <div style={{ padding: isMobile?"40px 18px 20px":"56px 24px 30px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
+        <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>What this actually is</div>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.2vw,50px)", color:"#000", lineHeight:1.15, marginBottom:20 }}>
+          My voice, guiding you into the state.<br/>
+          <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Subliminals your conscious mind can't hear, installing underneath.</span>
+        </h2>
+        <p style={{ fontSize:"clamp(15px,1.9vw,18px)", color:"#000", lineHeight:1.85, maxWidth:640, margin:"0 auto 22px" }}>
+          Every SHG track combines two things at once. My spoken hypnosis on top — the new self-concept, spoken as if it's already yours. Subliminal affirmations beneath the music, at a volume your subconscious receives clearly. You listen like you would a song. You're being installed while you enjoy it.
+        </p>
+        <div style={{ display:"flex", gap:10, flexWrap:"wrap", justifyContent:"center", marginBottom:8 }}>
+          {[["🎙","Spoken hypnosis on top"],["♪","Subliminals underneath"],["◈","Melodic house · EMDR · 528hz"]].map(([e,l],i)=>(
+            <div key={i} style={{ padding:"10px 16px", background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:24, fontSize:13, fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif" }}>{e} {l}</div>
+          ))}
+        </div>
+        <p style={{ fontSize:12.5, color:"#666", marginTop:14, fontStyle:"normal" }}>Scroll for the full formula ↓</p>
+      </div>
+
             <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:900, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
             <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,64px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
               Set intention.<br/>
