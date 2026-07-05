@@ -772,12 +772,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </>
       )}
 
-      {/* HERO */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: isMobile ? 90 : 94 }}>
+      {/* HERO — DARK goddess energy */}
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: isMobile ? 90 : 94, background: "radial-gradient(ellipse at 50% 30%, #1a0a18 0%, #0a0510 45%, #000000 85%)" }}>
         <Rings count={5} />
         {/* Dot grid overlay */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-          backgroundImage: "radial-gradient(circle, rgba(183,110,121,0.2) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(232,184,112,0.28) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
