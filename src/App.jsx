@@ -604,6 +604,7 @@ const GPROOF = (m) => m
   : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 };
 
 function Landing({ onJoin, onDemo, onSignIn }) {
+  const [proofTheme, setProofTheme] = useState("dark");
   const isMobile = useMobile();
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -1233,8 +1234,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* REAL PROOFOS SCREENSHOT */}
           <div style={{ display: "flex", flexDirection: isMobile?"column":"row", alignItems: "center", gap: isMobile?28:48, marginTop: 48 }}>
-            <div style={{ flex: isMobile?"none":"0 0 auto" }}>
-              <ProofWallScreenshot width={isMobile?260:230} theme="dark"/>
+            <div style={{ flex: isMobile?"none":"0 0 auto", display:"flex", flexDirection:"column", alignItems:"center", gap:14 }}>
+              <ProofWallScreenshot width={isMobile?260:230} theme={proofTheme}/>
+              {/* Dark/Light toggle — matches hero style */}
+              <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                <span style={{ fontSize:11, color:proofTheme==="dark"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Dark</span>
+                <button onClick={()=>setProofTheme(t=>t==="dark"?"light":"dark")}
+                  style={{ width:44, height:24, borderRadius:12, background:proofTheme==="light"?"#B76E79":"#1a0a10", border:"1px solid rgba(0,0,0,0.15)", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+                  <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:2, left:proofTheme==="light"?23:3, transition:"left 0.25s", boxShadow:"0 1px 4px rgba(0,0,0,0.2)" }}/>
+                </button>
+                <span style={{ fontSize:11, color:proofTheme==="light"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Light</span>
+              </div>
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>How the tracking actually works</div>
@@ -1294,22 +1304,60 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               ))}
             </div>
 
-            <div style={G3(isMobile)}>
-              {[
-                { icon: "◈", title: "Music as frequency", body: "The melodic house tracks are selected to hold a specific energetic state throughout the session.", imgColor: "#e8e0ff" },
-                { icon: "✦", title: "Deeper receptivity", body: "You get addicted to the music. Your body relaxes. Your subconscious opens. Reshma's voice installs the version of you who already has it.", imgColor: "#f0e8ff" },
-                { icon: "★", title: "Ritual, not content", body: "The music is so good you want to come back. And every time you do, the new identity installs deeper. The addiction becomes the transformation.", imgColor: "#ece0ff" },
-              ].map((c, i) => (
-                <div key={i} style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(144,96,192,0.15)", borderRadius: 14, overflow: "hidden" }}>
-                  <div style={{ height: isMobile?100:120, background: c.imgColor, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <div style={{ fontSize: 40, opacity: 0.5 }}>{c.icon}</div>
+            {/* INFINITY DIAGRAM — the addiction loop */}
+            <div style={{ background:"linear-gradient(135deg,#0a0508,#1a0a15,#0a0508)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:20, padding: isMobile?"32px 18px":"48px 40px", marginBottom: 24, boxShadow:"0 12px 60px rgba(183,110,121,0.15)" }}>
+              <div style={{ textAlign:"center", marginBottom: 24 }}>
+                <div style={{ fontSize:11, letterSpacing:"0.25em", color:"#B76E79", textTransform:"uppercase", fontWeight:800, fontFamily:"'Jost',sans-serif" }}>The addiction loop</div>
+                <div style={{ fontSize:isMobile?15:18, color:"#f5e0a0", marginTop:8, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Music installs the state. You come back. The state deepens.</div>
+              </div>
+              <svg viewBox="0 0 800 260" style={{ width:"100%", height:"auto", display:"block", maxWidth:720, margin:"0 auto" }}>
+                <defs>
+                  <linearGradient id="infA" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/>
+                  </linearGradient>
+                  <linearGradient id="infB" x1="1" y1="0" x2="0" y2="0">
+                    <stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/>
+                  </linearGradient>
+                  <radialGradient id="nodeA"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#e8b870"/></radialGradient>
+                  <radialGradient id="nodeB"><stop offset="0" stopColor="#f0d0c0" stopOpacity="1"/><stop offset="1" stopColor="#d4a090"/></radialGradient>
+                  <radialGradient id="nodeC"><stop offset="0" stopColor="#e89aa8"/><stop offset="1" stopColor="#B76E79"/></radialGradient>
+                </defs>
+                {/* Left lobe — arcs from music node up + around to receptivity center */}
+                <path d="M 400 130 C 380 40, 220 40, 160 130 C 100 220, 260 220, 400 130" stroke="url(#infA)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                {/* Right lobe — from center out to ritual and back */}
+                <path d="M 400 130 C 420 40, 580 40, 640 130 C 700 220, 540 220, 400 130" stroke="url(#infB)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                {/* Soft glow rings behind nodes */}
+                <circle cx="160" cy="130" r="42" fill="url(#nodeA)" opacity="0.08"/>
+                <circle cx="400" cy="130" r="48" fill="url(#nodeB)" opacity="0.10"/>
+                <circle cx="640" cy="130" r="42" fill="url(#nodeC)" opacity="0.08"/>
+                {/* Node dots */}
+                <circle cx="160" cy="130" r="11" fill="url(#nodeA)"/>
+                <circle cx="400" cy="130" r="14" fill="url(#nodeB)"/>
+                <circle cx="640" cy="130" r="11" fill="url(#nodeC)"/>
+                {/* Node labels */}
+                <text x="160" y="80" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">01 · MUSIC</text>
+                <text x="160" y="185" textAnchor="middle" fill="#c8b8a0" fontSize="11" fontFamily="Jost,sans-serif">Holds the frequency</text>
+                <text x="400" y="80" textAnchor="middle" fill="#e8c4a8" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">02 · RECEPTIVITY</text>
+                <text x="400" y="185" textAnchor="middle" fill="#c8b8a0" fontSize="11" fontFamily="Jost,sans-serif">You open. Identity installs.</text>
+                <text x="640" y="80" textAnchor="middle" fill="#e89aa8" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">03 · RITUAL</text>
+                <text x="640" y="185" textAnchor="middle" fill="#c8b8a0" fontSize="11" fontFamily="Jost,sans-serif">You return. It deepens.</text>
+                {/* Directional arrows on the path */}
+                <polygon points="0,-5 10,0 0,5" fill="#f5e0a0" transform="translate(240,50) rotate(180)"/>
+                <polygon points="0,-5 10,0 0,5" fill="#B76E79" transform="translate(560,50)"/>
+              </svg>
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: 14, marginTop: 24 }}>
+                {[
+                  { n:"01", title:"Music as frequency", body:"Melodic house holds a specific energetic state throughout the session. You're not analysing — you're bathing in it.", accent:"#f5e0a0" },
+                  { n:"02", title:"Deeper receptivity", body:"Body relaxes. Subconscious opens. Reshma's voice installs the version of you who already has it — while you enjoy the track.", accent:"#d4a090" },
+                  { n:"03", title:"Ritual, not content", body:"The music is so good you come back. Every return installs the identity deeper. The addiction becomes the transformation.", accent:"#B76E79" },
+                ].map((c,i)=>(
+                  <div key={i} style={{ padding: 16, background:"rgba(245,224,160,0.04)", border:`1px solid ${c.accent}33`, borderRadius: 12 }}>
+                    <div style={{ fontSize:10, letterSpacing:"0.15em", color:c.accent, fontWeight:800, fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.n}</div>
+                    <div style={{ fontSize:14, fontWeight:700, color:"#f5e0a0", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.title}</div>
+                    <div style={{ fontSize:12.5, color:"#c8b8a0", lineHeight:1.7 }}>{c.body}</div>
                   </div>
-                  <div style={{ padding: "16px" }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: "#2a1a50", marginBottom: 8 }}>{c.title}</div>
-                    <div style={{ fontSize: 14, color: "#5a4080", lineHeight: 1.7 }}>{c.body}</div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
