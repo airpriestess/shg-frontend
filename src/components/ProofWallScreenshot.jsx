@@ -2,9 +2,10 @@
    Full theme support (dark/light), real stock evidence images */
 
 // GOLD proof wall — both themes render gold (locked by Reshma)
-const GOLD_PAL = { bg:"#f5dfa2", bg2:"#fff8e6", bg3:"rgba(0,0,0,0.07)", cr:"#111111", mu:"#5a4420", dim:"#8a6a35", nav:"rgba(245,223,162,0.97)" };
-const DARK  = GOLD_PAL;
-const LIGHT = GOLD_PAL;
+// DARK — espresso gold, feels like a candlelit vault
+const DARK  = { bg:"#1a1008", bg2:"#251a0e", bg3:"rgba(232,184,112,0.10)", cr:"#f5e0a0", mu:"#c8a870", dim:"#8a6a35", nav:"rgba(26,16,8,0.97)" };
+// LIGHT — peachy rose gold, warm and open
+const LIGHT = { bg:"#fce4d4", bg2:"#fef2ea", bg3:"rgba(183,110,121,0.10)", cr:"#1a0a10", mu:"#8a5060", dim:"#b07890", nav:"rgba(252,228,212,0.97)" };
 const R="#B76E79", P="#d4a090";
 const OMBRE="linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
 
