@@ -367,9 +367,8 @@ function AppPreviewSection({ isMobile }) {
 
       {/* Headline copy */}
       <div style={{ textAlign:"center", maxWidth:500 }}>
-        <div style={{ fontSize:10, color:"rgba(183,110,121,0.6)", letterSpacing:"0.28em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:700, marginBottom:12 }}>
-          👇 This is what's inside
-        </div>
+        <div style={{ fontSize: isMobile?17:21, fontWeight: 800, color: "#ffffff", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em", marginBottom: 6 }}>👇 This is what's inside</div>
+        <div style={{ fontSize: isMobile?12:13, fontWeight: 600, color: "#e8b4a0", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>Tap Dashboard · ProofOS ✦ · Analytics below to explore each screen</div>
         <div style={{ fontSize:isMobile?16:18, fontWeight:700, color:"#000", marginBottom:8, lineHeight:1.4 }}>
           Your dashboard. Your audio vault. Your proof.
         </div>
@@ -788,23 +787,23 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
             <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#e8c4a0 0%,#d4a090 35%,#c49090 60%,#B76E79 85%,#e8c4a0 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", filter: "saturate(1.4)" }}>Self Hypnosis Goddess</span>
-            <span style={{ fontSize: "clamp(22px,5.5vw,52px)", color: "#000000", fontWeight: 300, letterSpacing: "0.03em", display: "block", marginTop: 4 }}>Audio Library</span>
+            <span style={{ fontSize: "clamp(22px,5.5vw,52px)", color: "#f2ece4", fontWeight: 300, letterSpacing: "0.03em", display: "block", marginTop: 4 }}>Audio Library</span>
             <span style={{ fontSize: "clamp(14px,2.5vw,22px)", color: "#B76E79", fontWeight: 400, letterSpacing: "0.08em", display: "block", marginTop: 2 }}>(+ ProofOS)</span>
           </h1>
 
           {/* SPOTIFY TAGLINE */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#000000", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
+          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#f2ece4", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
             Spotify for your subconscious mind
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(20px,2.7vw,26px)", color: "#B76E79", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
+          <div style={{ fontSize: "clamp(20px,2.7vw,26px)", color: "#e8b4a0", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
             Shift into your dream reality.
           </div>
 
           {/* WAKE UP KNOWING */}
-          <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#111111", marginBottom: 32, lineHeight: 1.7 }}>
-            Wake up knowing. Not hoping. <span style={{ color: "#000000", fontWeight: 600 }}>Knowing.</span>
+          <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#d8ccc0", marginBottom: 32, lineHeight: 1.7 }}>
+            Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
           <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c8789a 80%,#B76E79 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(212,160,144,0.4)" }}>
@@ -925,90 +924,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-      {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#fce8f0 40%,#f0e8fc 70%,#e8f0fc 100%)", position:"relative", overflow:"hidden" }}>
-        {/* Ombre orb */}
-        <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
-
-        <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <div style={{ textAlign:"center", marginBottom:56 }}>
-      {/* THE PROBLEM SECTION — full-bleed peach */}
-      <div style={{ padding: isMobile ? "48px 0" : "80px 0", background: "linear-gradient(160deg,#fce4d0 0%,#fbd8c2 50%,#fce4d0 100%)", width: "100%" }}>
-      <div style={{ padding: isMobile ? "0 18px" : "0 24px", maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Read this if you're stuck</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,54px)", color: "#000000", lineHeight: 1.1, marginBottom: 20 }}>
-            There's a reason<br />
-            it hasn't clicked yet.<br />
-            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And it's not your effort.</span>
-          </h2>
-          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", lineHeight: 1.9, maxWidth: 620, margin: "0 auto" }}>
-            You've watched the videos at 2am. Saved the affirmations. Scripted for three days straight. Journaled until your hand hurt. Made the vision board and looked at it every morning.
-          </p>
-          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", lineHeight: 1.9, maxWidth: 620, margin: "16px auto 0" }}>
-            And you're still refreshing your phone for the text that doesn't come. Still checking the bank balance that won't move. Still watching other women receive the exact thing you've been asking for — with half your effort.
-          </p>
-          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", lineHeight: 1.9, maxWidth: 620, margin: "16px auto 0" }}>
-            So you've started to quietly wonder if you're the problem. If you're blocked. If it works for everyone except you.
-          </p>
-          <p style={{ fontSize: "clamp(18px,2.2vw,23px)", color: "#000000", lineHeight: 1.7, maxWidth: 560, margin: "24px auto 0", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>
-            It's not the effort that's the problem.<br/>
-            It's the state you're acting from.
-          </p>
-          <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: "#000000", lineHeight: 1.9, maxWidth: 600, margin: "16px auto 0" }}>
-            Your current actions lead to your current outcome. The version of you who already has what you want — she has a completely different identity. Different thoughts. Different ideas. Different actions that feel natural to her. You cannot know her actions until you become her. There is no other way.
-          </p>
-          <div style={{ background: "rgba(255,255,255,0.85)", border: "2px solid rgba(183,110,121,0.35)", borderRadius: 18, padding: isMobile?"22px 20px":"30px 34px", maxWidth: 640, margin: "32px auto 0" }}>
-            <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12 }}>This is where self-hypnosis comes in</div>
-            <p style={{ fontSize: "clamp(15px,1.9vw,18px)", color: "#000", lineHeight: 1.85, margin: "0 0 14px" }}>
-              Self-hypnosis is the same practice as hypnotherapy — the same depth, the same direct access to the subconscious. The difference: no therapist, no appointments, no waiting a week between sessions. You reprogram your own subconscious mind through daily practice, on your own. My voice guides you into the state — you just press play. And because you can do it every single day, you get the one thing a session with a therapist can never give you: repetition. That's what makes it permanent.
-            </p>
-            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000", lineHeight: 1.8, margin: 0, fontWeight: 600 }}>
-              My audios shift you into the state — theta, where the subconscious actually opens. The new assumption installs while you rest. You start acting from her state without trying.
-            </p>
-            <p style={{ fontSize: "clamp(17px,2.1vw,22px)", color: "#000", lineHeight: 1.7, margin: "14px 0 0", fontWeight: 800 }}>
-              You shift into your dream reality because you shifted into the state first.
-            </p>
-          </div>
-        </div>
-        <div style={{ ...G3(isMobile), gap: 20 }}>
-          {[
-            {
-              num: "01",
-              title: "It's all happening at the conscious level",
-              body: "Scripting, visualising, affirming — everything you've been doing is conscious. It operates at beta frequency. But your beliefs, your identity, the patterns that create your reality? Those live in the subconscious. And the subconscious is only accessible in theta state (4–8 Hz). You've been knocking on a door that's been locked the whole time.",
-              fix: "SHG audios guide your brain into theta using binaural beats and EMDR — within minutes of pressing play."
-            },
-            {
-              num: "02",
-              title: "The wiring underneath hasn't changed",
-              body: "You can repeat 'I am abundant' a thousand times. But if the subconscious is still running 'money is hard' — the conscious affirmation doesn't stand a chance. The old belief isn't wrong because you haven't tried hard enough. It's wrong because it was installed before you had the words for it, at a cellular level, through experience. You need to go that deep to change it.",
-              fix: "Reshma's voice + EMDR bilateral stimulation dissolves the old belief at its root — not just the surface thought."
-            },
-            {
-              num: "03",
-              title: "You stopped before the rewire was complete",
-              body: "Most people give up at day 9. The shift was happening on day 14. Without a way to see the evidence building — the sign, the synchronicity, the unexpected thing that arrived — you assume nothing's working. You stop. And you miss it. The pattern was already in motion.",
-              fix: "ProofOS captures every sign as it arrives. You see the evidence building in real time. You don't stop early."
-            }
-          ].map((p, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 16, padding: 28, borderTop: "2px solid #B76E79", boxShadow: "0 2px 18px rgba(183,110,121,0.07)" }}>
-              <div style={{ fontSize: 12, color: "#B76E7966", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 14 }}>{p.num}</div>
-              <div style={{ fontSize: "clamp(18px,2vw,22px)", fontWeight: 800, color: "#000000", marginBottom: 12, lineHeight: 1.2, fontFamily: "'Jost',sans-serif" }}>{p.title}</div>
-              <p style={{ fontSize: 15, color: "#000000", lineHeight: 1.9, marginBottom: 16 }}>{p.body}</p>
-              <div style={{ fontSize: 14, color: "#B76E79", fontWeight: 600, paddingTop: 14, borderTop: "1px solid rgba(183,110,121,0.2)" }}>✦ {p.fix}</div>
-            </div>
-          ))}
-        </div>
-        {/* IMAGE PLACEHOLDER — after the three reasons */}
-        <div style={{ marginTop: 32, borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#fff4ea,#ffe8d8)", height: isMobile ? 200 : 300, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
-          <div style={{ fontSize: isMobile ? 36 : 48 }}>🌀</div>
-          <div style={{ fontSize: 11, color: "#3a2a1a", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em" }}>[ BRAND IMAGE — beta vs theta state visual ]</div>
-        </div>
-      </div>
-      </div>
-
-
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
         <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
@@ -1024,6 +939,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </p>
       </div>
 
+
       {/* THE MECHANISM — how it does that */}
       <div style={{ padding: isMobile?"20px 18px 40px":"20px 24px 56px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
         <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>How</div>
@@ -1038,6 +954,14 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <p style={{ fontSize:12.5, color:"#666", marginTop:16 }}>Full breakdown lives inside the app · under The Guide ✦</p>
       </div>
 
+
+      {/* HOW IT WORKS — JOURNEY TIMELINE */}
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#fce8f0 40%,#f0e8fc 70%,#e8f0fc 100%)", position:"relative", overflow:"hidden" }}>
+        {/* Ombre orb */}
+        <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
+
+        <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <div style={{ textAlign:"center", marginBottom:56 }}>
             <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:900, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
             <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,64px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
               Set intention.<br/>
@@ -1137,8 +1061,95 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ fontSize: 11, color: "#3a2a1a", marginTop: 8, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em" }}>[ BRAND IMAGE — replace with brain scan visual ]</div>
         </div>
       </div>
+      {/* THE PROBLEM SECTION — full-bleed peach */}
+      <div style={{ padding: isMobile ? "48px 0" : "80px 0", background: "linear-gradient(160deg,#fce4d0 0%,#fbd8c2 50%,#fce4d0 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "0 18px" : "0 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Read this if you're stuck</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,54px)", color: "#000000", lineHeight: 1.1, marginBottom: 20 }}>
+            There's a reason<br />
+            it hasn't clicked yet.<br />
+            <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And it's not your effort.</span>
+          </h2>
+          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", lineHeight: 1.9, maxWidth: 620, margin: "0 auto" }}>
+            You've watched the videos at 2am. Saved the affirmations. Scripted for three days straight. Journaled until your hand hurt. Made the vision board and looked at it every morning.
+          </p>
+          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", lineHeight: 1.9, maxWidth: 620, margin: "16px auto 0" }}>
+            And you're still refreshing your phone for the text that doesn't come. Still checking the bank balance that won't move. Still watching other women receive the exact thing you've been asking for — with half your effort.
+          </p>
+          <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", lineHeight: 1.9, maxWidth: 620, margin: "16px auto 0" }}>
+            So you've started to quietly wonder if you're the problem. If you're blocked. If it works for everyone except you.
+          </p>
+          <p style={{ fontSize: "clamp(18px,2.2vw,23px)", color: "#000000", lineHeight: 1.7, maxWidth: 560, margin: "24px auto 0", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>
+            It's not the effort that's the problem.<br/>
+            It's the state you're acting from.
+          </p>
+          <p style={{ fontSize: "clamp(15px,1.8vw,18px)", color: "#000000", lineHeight: 1.9, maxWidth: 600, margin: "16px auto 0" }}>
+            Your current actions lead to your current outcome. The version of you who already has what you want — she has a completely different identity. Different thoughts. Different ideas. Different actions that feel natural to her. You cannot know her actions until you become her. There is no other way.
+          </p>
+          <div style={{ background: "rgba(255,255,255,0.85)", border: "2px solid rgba(183,110,121,0.35)", borderRadius: 18, padding: isMobile?"22px 20px":"30px 34px", maxWidth: 640, margin: "32px auto 0" }}>
+            <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12 }}>This is where self-hypnosis comes in</div>
+            <p style={{ fontSize: "clamp(15px,1.9vw,18px)", color: "#000", lineHeight: 1.85, margin: "0 0 14px" }}>
+              Self-hypnosis is the same practice as hypnotherapy — the same depth, the same direct access to the subconscious. The difference: no therapist, no appointments, no waiting a week between sessions. You reprogram your own subconscious mind through daily practice, on your own. My voice guides you into the state — you just press play. And because you can do it every single day, you get the one thing a session with a therapist can never give you: repetition. That's what makes it permanent.
+            </p>
+            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000", lineHeight: 1.8, margin: 0, fontWeight: 600 }}>
+              My audios shift you into the state — theta, where the subconscious actually opens. The new assumption installs while you rest. You start acting from her state without trying.
+            </p>
+            <p style={{ fontSize: "clamp(17px,2.1vw,22px)", color: "#000", lineHeight: 1.7, margin: "14px 0 0", fontWeight: 800 }}>
+              You shift into your dream reality because you shifted into the state first.
+            </p>
+          </div>
+        </div>
+        <div style={{ ...G3(isMobile), gap: 20 }}>
+          {[
+            {
+              num: "01",
+              title: "It's all happening at the conscious level",
+              body: "Scripting, visualising, affirming — everything you've been doing is conscious. It operates at beta frequency. But your beliefs, your identity, the patterns that create your reality? Those live in the subconscious. And the subconscious is only accessible in theta state (4–8 Hz). You've been knocking on a door that's been locked the whole time.",
+              fix: "SHG audios guide your brain into theta using binaural beats and EMDR — within minutes of pressing play."
+            },
+            {
+              num: "02",
+              title: "The wiring underneath hasn't changed",
+              body: "You can repeat 'I am abundant' a thousand times. But if the subconscious is still running 'money is hard' — the conscious affirmation doesn't stand a chance. The old belief isn't wrong because you haven't tried hard enough. It's wrong because it was installed before you had the words for it, at a cellular level, through experience. You need to go that deep to change it.",
+              fix: "Reshma's voice + EMDR bilateral stimulation dissolves the old belief at its root — not just the surface thought."
+            },
+            {
+              num: "03",
+              title: "You stopped before the rewire was complete",
+              body: "Most people give up at day 9. The shift was happening on day 14. Without a way to see the evidence building — the sign, the synchronicity, the unexpected thing that arrived — you assume nothing's working. You stop. And you miss it. The pattern was already in motion.",
+              fix: "ProofOS captures every sign as it arrives. You see the evidence building in real time. You don't stop early."
+            }
+          ].map((p, i) => (
+            <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 16, padding: 28, borderTop: "2px solid #B76E79", boxShadow: "0 2px 18px rgba(183,110,121,0.07)" }}>
+              <div style={{ fontSize: 12, color: "#B76E7966", fontWeight: 700, letterSpacing: "0.2em", marginBottom: 14 }}>{p.num}</div>
+              <div style={{ fontSize: "clamp(18px,2vw,22px)", fontWeight: 800, color: "#000000", marginBottom: 12, lineHeight: 1.2, fontFamily: "'Jost',sans-serif" }}>{p.title}</div>
+              <p style={{ fontSize: 15, color: "#000000", lineHeight: 1.9, marginBottom: 16 }}>{p.body}</p>
+              <div style={{ fontSize: 14, color: "#B76E79", fontWeight: 600, paddingTop: 14, borderTop: "1px solid rgba(183,110,121,0.2)" }}>✦ {p.fix}</div>
+            </div>
+          ))}
+        </div>
+        {/* IMAGE PLACEHOLDER — after the three reasons */}
+        <div style={{ marginTop: 32, borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#2a1020,#180a18)", padding: isMobile?"24px 16px":"36px 32px" }}>
+          <svg viewBox="0 0 800 220" style={{ width:"100%", height:"auto", display:"block" }}>
+            <defs>
+              <linearGradient id="betaG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#8a6a70"/><stop offset="1" stopColor="#a08088"/></linearGradient>
+              <linearGradient id="thetaG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
+            </defs>
+            <text x="20" y="40" fill="#a08088" fontSize="15" fontFamily="Jost,sans-serif" fontWeight="700" letterSpacing="2">BETA — AWAKE, GUARDED</text>
+            <path d="M20 75 Q30 55 40 75 Q50 95 60 75 Q70 55 80 75 Q90 95 100 75 Q110 55 120 75 Q130 95 140 75 Q150 55 160 75 Q170 95 180 75 Q190 55 200 75 Q210 95 220 75 Q230 55 240 75 Q250 95 260 75 Q270 55 280 75 Q290 95 300 75 Q310 55 320 75 Q330 95 340 75 Q350 55 360 75 Q370 95 380 75 Q390 55 400 75 Q410 95 420 75 Q430 55 440 75 Q450 95 460 75 Q470 55 480 75 Q490 95 500 75 Q510 55 520 75 Q530 95 540 75 Q550 55 560 75 Q570 95 580 75 Q590 55 600 75 Q610 95 620 75 Q630 55 640 75 Q650 95 660 75 Q670 55 680 75 Q690 95 700 75 Q710 55 720 75 Q730 95 740 75 Q750 55 760 75 Q770 95 780 75" stroke="url(#betaG)" strokeWidth="2.5" fill="none" opacity="0.85"/>
+            <text x="20" y="145" fill="#f5e0a0" fontSize="15" fontFamily="Jost,sans-serif" fontWeight="700" letterSpacing="2">THETA — WHERE MY AUDIOS TAKE YOU</text>
+            <path d="M20 185 Q65 140 110 185 Q155 230 200 185 Q245 140 290 185 Q335 230 380 185 Q425 140 470 185 Q515 230 560 185 Q605 140 650 185 Q695 230 740 185 Q762 163 780 176" stroke="url(#thetaG)" strokeWidth="4" fill="none" strokeLinecap="round"/>
+          </svg>
+          <div style={{ fontSize: 12, color: "#d8ccc0", fontFamily: "'Jost',sans-serif", letterSpacing: "0.12em", textAlign:"center", marginTop:14 }}>Fast, defended brainwaves — vs the slow, open state where the new identity installs</div>
+        </div>
+      </div>
+      </div>
+
+
+
       {/* PROOFOS INTRO — peach section */}
-      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#f5e0a0 0%,#eeca8e 30%,#e4b295 60%,#d8a094 80%,#cb8f92 100%)" }}>
+      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#fce4d4 0%,#f5cfc0 30%,#eab8ac 60%,#d9a2a0 80%,#c98d96 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -1413,12 +1424,30 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* IMAGE PLACEHOLDER — after bloodline remembers */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 40px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#e8f0ff,#f0e4ff)", height: isMobile ? 200 : 300, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
-          <div style={{ fontSize: isMobile ? 36 : 48 }}>🧬</div>
-          <div style={{ fontSize: 11, color: "#2a2a4a", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em" }}>[ BRAND IMAGE — DNA / bloodline visual ]</div>
+      <div style={{ marginTop: 32, borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#180a18,#2a1020)", padding: isMobile?"20px 16px":"32px", display:"flex", justifyContent:"center" }}>
+          <svg viewBox="0 0 600 200" style={{ width:"100%", maxWidth:560, height:"auto" }}>
+            <defs><linearGradient id="dnaG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.35" stopColor="#e8b870"/><stop offset="0.7" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
+            <path d="M30 40 Q105 160 180 40 Q255 -80 330 40 Q405 160 480 40 Q530 -40 570 40" stroke="url(#dnaG)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+            <path d="M30 160 Q105 40 180 160 Q255 280 330 160 Q405 40 480 160 Q530 240 570 160" stroke="url(#dnaG)" strokeWidth="3.5" fill="none" strokeLinecap="round" opacity="0.75"/>
+            <line x1="68" y1="72" x2="68" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
+            <line x1="105" y1="95" x2="105" y2="105" stroke="#e8b870" strokeWidth="2" opacity="0.7"/>
+            <line x1="142" y1="72" x2="142" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
+            <line x1="180" y1="52" x2="180" y2="148" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
+            <line x1="218" y1="72" x2="218" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
+            <line x1="255" y1="95" x2="255" y2="105" stroke="#e8b870" strokeWidth="2" opacity="0.7"/>
+            <line x1="292" y1="72" x2="292" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
+            <line x1="330" y1="52" x2="330" y2="148" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
+            <line x1="368" y1="72" x2="368" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
+            <line x1="405" y1="95" x2="405" y2="105" stroke="#e8b870" strokeWidth="2" opacity="0.7"/>
+            <line x1="442" y1="72" x2="442" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
+            <line x1="480" y1="52" x2="480" y2="148" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
+            <line x1="518" y1="72" x2="518" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
+            <circle cx="30" cy="40" r="5" fill="#f5e0a0"/><circle cx="30" cy="160" r="5" fill="#f5e0a0" opacity="0.75"/>
+            <circle cx="180" cy="40" r="5" fill="#e8b870"/><circle cx="180" cy="160" r="5" fill="#e8b870" opacity="0.75"/>
+            <circle cx="330" cy="40" r="5" fill="#d4a090"/><circle cx="330" cy="160" r="5" fill="#d4a090" opacity="0.75"/>
+            <circle cx="480" cy="40" r="5" fill="#B76E79"/><circle cx="480" cy="160" r="5" fill="#B76E79" opacity="0.75"/>
+          </svg>
         </div>
-      </div>
 
       {/* SCIENCE — cream, one colour throughout */}
       <div style={{ padding: "70px 0", background: "#fdf0e8", width: "100%" }}>
