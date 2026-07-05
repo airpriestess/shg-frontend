@@ -18,10 +18,14 @@ import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
 import { createClient as _sbClient } from "@supabase/supabase-js";
+import AuthGate from "./components/AuthGate.jsx";
+import { useAuth } from "./contexts/AuthContext.jsx";
 
 const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3";
 
 export default function App() {
+  const authCtx = useAuth();
+  const { isAuthenticated, profile } = authCtx;
   const [screen, setScreen] = useState("landing");
   const [userTier, setUserTier] = useState("goddess");
   const [checkoutModal, setCheckoutModal] = useState(false);
@@ -51,10 +55,11 @@ export default function App() {
   return (
     <>
       <style>{CSS}</style>
-      {screen === "landing" && <Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => goPortal("goddess")} />}
+      {screen === "landing" && <Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => setScreen("auth")} />}
     {checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}
+      {screen === "auth" && <AuthGate onSuccess={() => goPortal()} />}
       {screen === "portal" && (
-        <ErrorBoundary><SpotifyPortal onSignOut={() => setScreen("landing")} userTier={userTier} /></ErrorBoundary>
+        <ErrorBoundary><SpotifyPortal onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || userTier} /></ErrorBoundary>
       )}
       <CreateThreadModal open={createThreadModal} onClose={() => setCreateThreadModal(false)} preselectedAudioId={preselectedAudioId} />
       <PhotoProofModal
