@@ -378,12 +378,12 @@ function AppPreviewSection({ isMobile }) {
       </div>
 
       {/* Tab switcher — Dashboard / ProofOS */}
-      <div style={{ display:"flex", gap:0, background:"rgba(0,0,0,0.08)", borderRadius:24, padding:4 }}>
+      <div style={{ display:"flex", gap:0, background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.15)", borderRadius:24, padding:4 }}>
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
-            style={{ padding:"7px 18px", borderRadius:20, background:view===id?"#000":"transparent", border:"none",
-              color:view===id?"#fff":"#4a3830", fontSize:12, fontWeight:700, cursor:"pointer",
-              fontFamily:"'Jost',sans-serif", transition:"all 0.2s", letterSpacing:"0.04em" }}>
+            style={{ padding:"7px 18px", borderRadius:20, background:view===id?"linear-gradient(90deg,#d4a090,#B76E79)":"transparent", border:"none",
+              color:view===id?"#000":"#ffffff", fontSize:12, fontWeight:700, cursor:"pointer",
+              fontFamily:"'Jost',sans-serif", transition:"all 0.25s", letterSpacing:"0.04em" }}>
             {l}
           </button>
         ))}
@@ -425,14 +425,14 @@ function AppPreviewSection({ isMobile }) {
 
       {/* Dark / Light toggle */}
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-        <span style={{ fontSize:11, color:"#8a6858", fontFamily:"'Jost',sans-serif" }}>Dark</span>
+        <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
           style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#B76E79":"#333",
             border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff",
             position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
         </button>
-        <span style={{ fontSize:11, color:"#8a6858", fontFamily:"'Jost',sans-serif" }}>Light</span>
+        <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
 
       <div style={{ fontSize:12, color:"rgba(183,110,121,0.7)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center", fontWeight:600 }}>
@@ -772,7 +772,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       )}
 
       {/* HERO — DARK goddess energy */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: isMobile ? 90 : 94, background: "radial-gradient(ellipse at 50% 30%, #1a0a18 0%, #0a0510 45%, #000000 85%)" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: isMobile ? 90 : 94, background: "#000000" }}>
         <Rings count={5} />
         {/* Dot grid overlay */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
@@ -786,23 +786,23 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
-            <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#e8c4a0 0%,#d4a090 35%,#c49090 60%,#B76E79 85%,#e8c4a0 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", filter: "saturate(1.4)" }}>Self Hypnosis Goddess</span>
-            <span style={{ fontSize: "clamp(22px,5.5vw,52px)", color: "#f2ece4", fontWeight: 300, letterSpacing: "0.03em", display: "block", marginTop: 4 }}>Audio Library</span>
+            <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#e8c4a0 0%,#d4a090 35%,#c49090 60%,#B76E79 85%,#e8c4a0 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", }}>Self Hypnosis Goddess</span>
+            <span style={{ fontSize: "clamp(22px,5.5vw,52px)", color: "#ffffff", fontWeight: 300, letterSpacing: "0.03em", display: "block", marginTop: 4 }}>Audio Library</span>
             <span style={{ fontSize: "clamp(14px,2.5vw,22px)", color: "#B76E79", fontWeight: 400, letterSpacing: "0.08em", display: "block", marginTop: 2 }}>(+ ProofOS)</span>
           </h1>
 
           {/* SPOTIFY TAGLINE */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#f2ece4", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
+          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#ffffff", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
             Spotify for your subconscious mind
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(20px,2.7vw,26px)", color: "#e8b4a0", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
+          <div style={{ fontSize: "clamp(20px,2.7vw,26px)", color: "#ffffff", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
             Shift into your dream reality.
           </div>
 
           {/* WAKE UP KNOWING */}
-          <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#d8ccc0", marginBottom: 32, lineHeight: 1.7 }}>
+          <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#ffffff", marginBottom: 32, lineHeight: 1.7 }}>
             Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
@@ -932,7 +932,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
         <p style={{ fontSize:"clamp(16px,2vw,20px)", color:"#000", lineHeight:1.8, maxWidth:600, margin:"0 auto 16px", fontWeight:600 }}>
-          Your reality reorganizes to match who you become.
+          If you're reading this, you're probably stuck. You feel the gap — between your dream reality and your current one. I'm here to close that gap.
+        </p>
+        <p style={{ fontSize:"clamp(16px,2vw,20px)", color:"#000", lineHeight:1.8, maxWidth:600, margin:"0 auto 16px", fontWeight:600 }}>
+          Your subconscious mind creates your entire reality. Your reality reorganizes to match who you become.
         </p>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
           The version of you who already has it — she has a different state. That's the only real gap. My audios shift you into her state while you rest. You start acting from her. Reality reorganizes around it.
@@ -1511,31 +1514,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
         <div style={{ textAlign: "center", marginTop: 14, fontSize: 13, color: "#111111" }}>Sample previews · Full tracks unlock in the vault</div>
       </div>
-
-        {/* WHY DESIRE DOESN'T MANIFEST */}
-        <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize: "300%", backgroundPosition: "left", border: "none", borderRadius: 20, padding: isMobile?"28px 20px":"44px 40px", marginBottom: 70 }}>
-          <div style={{ fontSize: isMobile?14:16, color: "#000", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontWeight: 900 }}>THE REAL REASON</div>
-          <h2 className="wm" style={{ fontSize: "clamp(26px,4vw,48px)", color: "#000", marginBottom: 28, lineHeight: 1.2 }}>
-            Why your desire hasn't arrived yet.<br/>
-            <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And what does.</span>
-          </h2>
-          <div style={{...G2(isMobile), gap: 36}}>
-            {[
-              { title: "Why it hasn't worked", color: "#3a0a1a", items: ["Desire lives in the conscious mind. The conscious mind doesn't create reality.", "Affirmations are rejected by a subconscious that holds the opposite belief.", "Visualisation without identity shift is just imagination — the subconscious knows.", "Willpower requires constant effort. The subconscious always wins."], icon: "✗" },
-              { title: "What actually works", color: "#000", items: ["The subconscious accepts new beliefs in theta and delta states — at the edge of sleep.", "Repetition installs the new self-concept below the threshold of conscious resistance.", "Once the subconscious holds the new identity as true, reality rearranges to match it.", "Passive. No effort. No force. The subconscious does the work while you rest."], icon: "✦" },
-            ].map((col, ci) => (
-              <div key={ci}>
-                <div style={{ fontSize: 14, color: col.color, fontWeight: 800, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 16 }}>{col.title}</div>
-                {col.items.map((t, i) => (
-                  <div key={i} style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-                    <span style={{ color: col.color, fontSize: ci === 0 ? 18 : 16, flexShrink: 0, marginTop: 2 }}>{col.icon}</span>
-                    <span style={{ fontSize: 16, color: "#1a0a0a", lineHeight: 1.75 }}>{t}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* TECHNOLOGY TABLE */}
         <div style={{ textAlign: "center", marginBottom: 32 }}>
