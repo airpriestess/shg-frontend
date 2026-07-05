@@ -1155,15 +1155,59 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {[
-              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "linear-gradient(135deg,#fde8f0,#f8d8e8)" },
-              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "linear-gradient(135deg,#f0ddf8,#e8d0f0)" },
-              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "linear-gradient(135deg,#fceedd,#f8e4cc)" },
-              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#f8e0e8,#f0d0dc)" },
+              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "linear-gradient(135deg,#fde8f0,#f8d8e8)", icon: (
+                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
+                  <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
+                  <path d="M25 55 Q25 30 50 30 Q75 30 75 55" stroke="url(#g1)" strokeWidth="3" strokeLinecap="round" fill="none"/>
+                  <rect x="18" y="52" width="14" height="22" rx="4" fill="url(#g1)"/>
+                  <rect x="68" y="52" width="14" height="22" rx="4" fill="url(#g1)"/>
+                  <path d="M15 40 Q10 45 15 50" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+                  <path d="M85 40 Q90 45 85 50" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+                  <path d="M10 35 Q3 45 10 55" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.3"/>
+                  <path d="M90 35 Q97 45 90 55" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.3"/>
+                </svg>
+              )},
+              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "linear-gradient(135deg,#f0ddf8,#e8d0f0)", icon: (
+                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
+                  <defs><linearGradient id="g2a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e8b870"/><stop offset="1" stopColor="#d4a090"/></linearGradient><linearGradient id="g2b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
+                  <ellipse cx="38" cy="50" rx="20" ry="14" stroke="url(#g2a)" strokeWidth="4" fill="none" transform="rotate(-25 38 50)"/>
+                  <ellipse cx="62" cy="50" rx="20" ry="14" stroke="url(#g2b)" strokeWidth="4" fill="none" transform="rotate(25 62 50)"/>
+                  <circle cx="50" cy="50" r="2" fill="#B76E79"/>
+                </svg>
+              )},
+              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "linear-gradient(135deg,#fceedd,#f8e4cc)", icon: (
+                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
+                  <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e8b870"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
+                  <rect x="30" y="18" width="40" height="64" rx="6" stroke="url(#g3)" strokeWidth="3" fill="rgba(255,255,255,0.5)"/>
+                  <path d="M50 35 L52 42 L59 42 L53 46 L55 53 L50 49 L45 53 L47 46 L41 42 L48 42 Z" fill="url(#g3)"/>
+                  <circle cx="40" cy="62" r="1.5" fill="#B76E79" opacity="0.7"/>
+                  <circle cx="60" cy="60" r="1.5" fill="#e8b870" opacity="0.7"/>
+                  <circle cx="50" cy="70" r="1.5" fill="#d4a090" opacity="0.7"/>
+                  <circle cx="45" cy="55" r="1" fill="#B76E79" opacity="0.5"/>
+                  <circle cx="55" cy="66" r="1" fill="#e8b870" opacity="0.5"/>
+                </svg>
+              )},
+              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#f8e0e8,#f0d0dc)", icon: (
+                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
+                  <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient><radialGradient id="g4b"><stop offset="0" stopColor="#f5e0a0" stopOpacity="0.4"/><stop offset="1" stopColor="#B76E79" stopOpacity="0"/></radialGradient></defs>
+                  <circle cx="50" cy="50" r="40" fill="url(#g4b)"/>
+                  <circle cx="50" cy="50" r="26" stroke="url(#g4)" strokeWidth="3" fill="rgba(255,255,255,0.6)"/>
+                  <path d="M38 50 L46 58 L62 42" stroke="url(#g4)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                  <line x1="50" y1="10" x2="50" y2="16" stroke="#e8b870" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+                  <line x1="50" y1="84" x2="50" y2="90" stroke="#B76E79" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+                  <line x1="10" y1="50" x2="16" y2="50" stroke="#d4a090" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+                  <line x1="84" y1="50" x2="90" y2="50" stroke="#d4a090" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+                  <line x1="22" y1="22" x2="26" y2="26" stroke="#e8b870" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+                  <line x1="74" y1="74" x2="78" y2="78" stroke="#B76E79" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+                  <line x1="22" y1="78" x2="26" y2="74" stroke="#d4a090" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+                  <line x1="74" y1="26" x2="78" y2="22" stroke="#e8b870" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+                </svg>
+              )},
             ].map((s, i) => (
               <div key={i} style={{ background: "rgba(255,255,255,0.9)", border: "1px solid rgba(183,110,121,0.22)", borderRadius: 14, overflow: "hidden", boxShadow: "0 2px 18px rgba(183,110,121,0.07)", display: "flex", flexDirection: isMobile ? "column" : "row" }}>
-                {/* Image placeholder */}
-                <div style={{ width: isMobile ? "100%" : 180, height: isMobile ? 90 : "auto", minHeight: 110, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, borderBottom: isMobile ? "1px solid rgba(183,110,121,0.15)" : "none", borderRight: isMobile ? "none" : "1px solid rgba(183,110,121,0.15)" }}>
-                  <div style={{ fontSize: 11, color: "rgba(183,110,121,0.6)", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase" }}>{s.num} · Image</div>
+                {/* SVG icon */}
+                <div style={{ width: isMobile ? "100%" : 180, height: isMobile ? 120 : "auto", minHeight: 110, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, borderBottom: isMobile ? "1px solid rgba(183,110,121,0.15)" : "none", borderRight: isMobile ? "none" : "1px solid rgba(183,110,121,0.15)" }}>
+                  {s.icon}
                 </div>
                 <div style={{ padding: "20px 22px", flex: 1 }}>
                   <div style={{ fontSize: isMobile ? 22 : 28, fontWeight: 800, color: "#000000", marginBottom: 8, fontFamily: "'Jost',sans-serif", lineHeight: 1.1 }}>{s.title}</div>
