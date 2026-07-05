@@ -137,6 +137,21 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
   const [theme, setTheme]     = useState(forceTheme || "dark");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
+  // Seeded 30-day emotional log — dominant state trends upward on Hawkins scale
+  const [emoLog, setEmoLog] = useState(()=>{
+    const arr=[]; const now=Date.now();
+    const path=["Fear","Fear","Desire","Anger","Pride","Pride","Courage","Neutrality","Willingness","Courage","Willingness","Acceptance","Reason","Acceptance","Love","Willingness","Acceptance","Love","Joy","Reason","Love","Love","Peace","Joy","Love","Peace","Joy","Peace","Love","Love"];
+    for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
+    return arr;
+  });
+  const [showGuide, setShowGuide] = useState(false);
+  const [showEmoLog, setShowEmoLog] = useState(false);
+  const [quickFeel, setQuickFeel] = useState("");
+  const logEmotion = (level) => {
+    const today = new Date().toISOString().slice(0,10);
+    setEmoLog(l=>[...l.filter(e=>e.date!==today),{date:today,level}]);
+    setQuickFeel(level); setTimeout(()=>setShowEmoLog(false),700);
+  };
   const audioRef = useRef(null);
   const intervalRef = useRef(null);
 
@@ -822,21 +837,6 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
   const [editText, setEditText] = useState("");
   const saveEdit = (id) => { if(editText.trim()) setThreads(ts=>ts.map(t=>t.id===id?{...t,desire:editText.trim()}:t)); setEditId(null); };
   const [recId, setRecId] = useState(null);
-  // Seeded 30-day emotional log — dominant state trends upward on Hawkins scale
-  const [emoLog, setEmoLog] = useState(()=>{
-    const arr=[]; const now=Date.now();
-    const path=["Fear","Fear","Desire","Anger","Pride","Pride","Courage","Neutrality","Willingness","Courage","Willingness","Acceptance","Reason","Acceptance","Love","Willingness","Acceptance","Love","Joy","Reason","Love","Love","Peace","Joy","Love","Peace","Joy","Peace","Love","Love"];
-    for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
-    return arr;
-  });
-  const [showGuide, setShowGuide] = useState(false);
-  const [showEmoLog, setShowEmoLog] = useState(false);
-  const [quickFeel, setQuickFeel] = useState("");
-  const logEmotion = (level) => {
-    const today = new Date().toISOString().slice(0,10);
-    setEmoLog(l=>[...l.filter(e=>e.date!==today),{date:today,level}]);
-    setQuickFeel(level); setTimeout(()=>setShowEmoLog(false),700);
-  };
   const recRef = useRef(null);
   const toggleRec = async (id) => {
     if (recId === id) { recRef.current?.stop(); return; }
