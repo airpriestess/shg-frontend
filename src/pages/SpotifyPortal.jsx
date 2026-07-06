@@ -52,18 +52,18 @@ const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
 const IMGS = {
   "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#c87890,#8a3060" },
-  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#4060b0,#6080d0" },
-  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#306040,#50a070" },
-  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#483878,#6858a8" },
+  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#c4789a,#B76E79" },
+  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#8a5048,#4a2818" },
   "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#b06840,#d4a060" },
-  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#604080,#9060b0" },
-  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#808020,#c0c040" },
-  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#305070,#4080a0" },
-  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#802050,#c04080" },
+  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#8a5048,#B76E79" },
+  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#d4a090,#e8b870" },
+  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#6a4038,#8a5048" },
+  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#8a3050,#c4789a" },
 };
 
 function Thumb({ title, size=48, radius=4 }) {
-  const d = IMGS[title] || { url:null, g:"#483060,#604880" };
+  const d = IMGS[title] || { url:null, g:"#B76E79,#8a3050" };
   return (
     <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:`linear-gradient(135deg,${d.g})`, position:"relative" }}>
       {d.url && <img src={d.url} alt={title} style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }} onError={e=>e.target.style.display="none"}/>}
@@ -104,7 +104,7 @@ const INIT_THREADS = [
 
 // Category → proof wall colours (matches landing Proof Wall)
 const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "DNA":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
-const CAT_COLOR = { "SP & Love":"#c84880", "Money":"#1a7030", "Beauty":"#9a7800", "Identity":"#6030a0", "DNA":"#6030a0", "Sleep":"#0a5090" };
+const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#9a6838", "Beauty":"#c4789a", "Identity":"#8a5048", "DNA":"#8a5048", "Sleep":"#6a4038" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
