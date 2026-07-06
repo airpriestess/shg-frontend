@@ -34,8 +34,8 @@ const IMGS = {
 };
 const GRAD_FALLBACK = {
   "Spoilt Goddess":"#c87890,#8a3060","He Finds His Way Back":"#c4789a,#B76E79",
-  "Money Finds Me First":"#e8b870,#B76E79","While I Sleep I Manifest":"#8a5048,#4a2818",
-  "Gorgeous Is My Default":"#b06840,#d4a060","Lucky Girl Summer":"#d4a090,#e8b870",
+  "Money Finds Me First":"#e8b870,#B76E79","While I Sleep I Manifest":"#c4789a,#6a2840",
+  "Gorgeous Is My Default":"#e8b870,#d4a090","Lucky Girl Summer":"#d4a090,#e8b870",
 };
 
 function Thumb({ title, size }) {
