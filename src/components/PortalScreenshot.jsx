@@ -4,12 +4,7 @@ const THEMES = {
   light: { bg:"#fdf0e8", bg2:"rgba(255,255,255,0.9)", bg3:"rgba(0,0,0,0.07)", bg4:"rgba(0,0,0,0.1)", cr:"#000000", mu:"#4a3028", dim:"#7a5a48", nav:"rgba(255,255,255,0.97)" },
 };
 const TILE_OMBRES = [
-  "linear-gradient(135deg,#ffd6e7,#ffb3cc)",
-  "linear-gradient(135deg,#d4f4d4,#a8e6a8)",
-  "linear-gradient(135deg,#e8d0ff,#d4a8ff)",
-  "linear-gradient(135deg,#d0e8f8,#a8ccf0)",
-  "linear-gradient(135deg,#f5e0a0,#e8c070)",
-  "linear-gradient(135deg,#f8d8c8,#eab8a0)",
+  "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",
 ];
 const R="#B76E79", P="#d4a090";
 const OMBRE="linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
