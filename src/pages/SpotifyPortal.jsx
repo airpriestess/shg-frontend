@@ -527,13 +527,26 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
 function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, onClose, C, isDark, hasAudio }) {
   const d = IMGS[track.title] || { g:"#d4a090,#B76E79" };
+  const [showScript, setShowScript] = useState(false);
   return (
     <div style={{ position:"absolute",inset:0,background:`linear-gradient(180deg,${d.g.split(",")[0]}cc 0%,${C.bg} 50%)`,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:52,marginBottom:24 }}>
         <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <span style={{ fontSize:12,fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
-        <div style={{ width:22 }}/>
+        <button onClick={()=>setShowScript(s=>!s)} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={showScript?"#e8b870":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+        </button>
       </div>
+      {showScript ? (
+        <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
+          <div style={{ fontSize:22,fontWeight:800,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
+          <div style={{ fontSize:13,color:C.mu,marginBottom:24 }}>Read along</div>
+          <div style={{ width:"100%",fontSize:19,lineHeight:1.9,color:C.cr,fontWeight:600,textAlign:"center",whiteSpace:"pre-line",paddingBottom:40 }}>
+            {track.script || "Script coming soon — this affirmation script hasn't been added yet."}
+          </div>
+        </div>
+      ) : (
+      <>
       <Thumb title={track.title} size={270} radius={14}/>
       {!hasAudio && <div style={{ marginTop:8,fontSize:11,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",marginTop:24,marginBottom:20 }}>
@@ -543,6 +556,8 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
       </div>
+      </>
+      )}
       <div style={{ width:"100%",marginBottom:8 }}>
         <div style={{ height:4,background:"#4a4a4a",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
           <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",position:"relative",transition:"width 0.3s" }}>
