@@ -796,7 +796,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* NAV */}
       <nav style={{ position: "fixed", top: isMobile ? 36 : 40, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
-        <span className="wm wm-shimmer" style={{ fontSize: "clamp(13px,3.8vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "56vw" : "none" }}>Self Hypnosis Goddess</span>
+          <span className="wm wm-shimmer" style={{ fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "74vw" : "none" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           {/* Desktop nav */}
           {!isMobile && (<>
@@ -863,7 +863,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
-            <span style={{ fontSize: "clamp(30px,8vw,72px)", color: "#B76E79", display: "block", }}>Self Hypnosis Goddess</span>
+            <span className="wm-shimmer" style={{ fontSize: "clamp(30px,8vw,72px)", display: "block", }}>Self Hypnosis Goddess</span>
             <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(20px,4.5vw,42px)", color: "#f2ece4", fontWeight: 700, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#B76E79", fontWeight: 600 }}>(+ ProofOS)</span></span>
           </h1>
 
