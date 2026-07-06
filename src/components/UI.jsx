@@ -1,5 +1,21 @@
 import { T } from "../design/tokens.js";
 
+export function ArrowIcon({ size = 13, style, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, display: "inline-block", ...style }}>
+      <path d="M2.5 8H13.2M13.2 8L9 3.8M13.2 8L9 12.2" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ExternalArrowIcon({ size = 12, style, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, display: "inline-block", ...style }}>
+      <path d="M5 11L11 5M11 5H6M11 5V10" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function Btn({ children, onClick, variant = "primary", size = "md", full, disabled, style: extra }) {
   const sizes = { sm: { padding: "8px 16px", fontSize: 13 }, md: { padding: "11px 22px", fontSize: 14 }, lg: { padding: "14px 28px", fontSize: 15 } };
   const variants = {
