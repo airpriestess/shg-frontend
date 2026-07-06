@@ -338,7 +338,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)}/>}
+      {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>}
@@ -567,7 +567,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, openProfile, emoLog=[], openGuide, openEmoLog }) {
+function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -623,13 +623,13 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
             week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"SP & Love":"#c84880","Money":"#1a7030","Beauty":"#9a7800","Identity":"#6030a0","DNA":"#6030a0","Sleep":"#0a5090"})[name]||"#B76E79",n]),
+              .map(([name,n])=>[name,({"SP & Love":"#B76E79","Money":"#e8b870","Beauty":"#d4a090","Identity":"#c4789a","DNA":"#c4789a","Sleep":"#d4a090"})[name]||"#B76E79",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
         />
       </div>
 
-      <Sec title="Your favorites ♡" C={C}>
+      <Sec title="Your favorites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
           ? <div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:12,color:C.mu,fontWeight:600 }}>Tap the ♡ on any track and it lives here — your personal rotation.</div>
           : <HRow>
@@ -637,21 +637,21 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
             </HRow>}
       </Sec>
 
-      <Sec title="New this week ✦" C={C}>
+      <Sec title="New this week ✦" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
         <HRow>
           {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
         </HRow>
       </Sec>
 
       {/* JUMP BACK IN */}
-      <Sec title="Jump back in" C={C}>
+      <Sec title="Jump back in" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
         <HRow>
           {TRACKS.slice(0,5).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
         </HRow>
       </Sec>
 
       {/* LISTENING GUIDE */}
-      <Sec title="Listening guide" C={C}>
+      <Sec title="Listening guide" C={C} onShowAll={openGuide}>
         <div style={{ padding:"0 16px" }}>
           {[
             { time:"Morning", tip:"Listen before getting up — your brain is in alpha. Best for identity tracks.", icon:"🌅" },
@@ -673,7 +673,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
       <Sec title="Browse by desire" C={C}>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,padding:"0 16px" }}>
           {[["SP & Love","#ffd6e7","#ffb3cc"],["Money","#d4f4d4","#a8e6a8"],["Beauty","#e8d0ff","#d4a8ff"],["Sleep","#d0e8f8","#a8ccf0"],["DNA","#e0d0ff","#c0a8f0"],["Identity","#fde8e8","#f0b8b8"]].map(([l,c1,c2],i)=>(
-            <div key={i} style={{ height:64,borderRadius:10,overflow:"hidden",position:"relative",cursor:"pointer",background:`linear-gradient(135deg,${c1},${c2})` }}>
+            <div key={i} onClick={()=>{setLibCat(l);setTab("library");}} style={{ height:64,borderRadius:10,overflow:"hidden",position:"relative",cursor:"pointer",background:`linear-gradient(135deg,${c1},${c2})` }}>
               <span style={{ position:"absolute",bottom:10,left:12,fontSize:13,fontWeight:800,color:"#000" }}>{l}</span>
             </div>
           ))}
@@ -1091,12 +1091,12 @@ function ShopTab({ C }) {
 }
 
 // ── HELPERS ────────────────────────────────────────────────────────────────────
-function Sec({ title, children, C }) {
+function Sec({ title, children, C, onShowAll }) {
   return (
     <div style={{ marginBottom:24 }}>
       <div style={{ padding:"0 16px 10px",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
         <span style={{ fontSize:16,fontWeight:700,color:C.cr }}>{title}</span>
-        <span style={{ fontSize:11,fontWeight:600,color:C.mu }}>Show all</span>
+        {onShowAll && <button onClick={onShowAll} style={{ fontSize:11,fontWeight:700,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",padding:"6px 4px" }}>Show all</button>}
       </div>
       {children}
     </div>
