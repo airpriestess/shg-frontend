@@ -3,7 +3,7 @@
 
 const OMBRE_BG = "linear-gradient(165deg,#f5e0a0 0%,#e8b870 20%,#d4a090 45%,#c4789a 72%,#B76E79 100%)";
 const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
-const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#8a5030", "Beauty":"#B76E79", "Identity":"#8a3050", "Sleep":"#6a2038" };
+const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "Sleep":"#6a2840" };
 const PC = { card:"rgba(255,248,240,0.92)", text:"#1a1218", mu:"#3a2830", dim:"#5a4048" };
 
 const WALL = [
