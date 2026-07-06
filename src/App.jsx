@@ -863,7 +863,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
-            <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", }}>Self Hypnosis Goddess</span>
+            <span style={{ fontSize: "clamp(30px,8vw,72px)", color: "#B76E79", display: "block", }}>Self Hypnosis Goddess</span>
             <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(20px,4.5vw,42px)", color: "#f2ece4", fontWeight: 700, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#B76E79", fontWeight: 600 }}>(+ ProofOS)</span></span>
           </h1>
 
@@ -1087,7 +1087,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f9dcc4 40%,#f0c4a8 70%,#e0a898 100%)", position:"relative", overflow:"hidden" }}>
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#fdf0e8", position:"relative", overflow:"hidden" }}>
         {/* Ombre orb */}
         <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
 
@@ -1183,7 +1183,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* THE PROBLEM SECTION — full-bleed peach */}
-      <div style={{ padding: isMobile ? "48px 0" : "80px 0", background: "linear-gradient(160deg,#fce4d0 0%,#fbd8c2 50%,#fce4d0 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 0" : "80px 0", background: "#f2ece4", width: "100%" }}>
       <div style={{ padding: isMobile ? "0 18px" : "0 24px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Read this if you're stuck</div>
@@ -1270,7 +1270,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* PROOFOS INTRO — peach section */}
-      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#fce4d4 0%,#f5cfc0 30%,#eab8ac 60%,#d9a2a0 80%,#c98d96 100%)" }}>
+      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
@@ -1385,7 +1385,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
             {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fdf0e8 0%,#f5e0d8 40%,#fdf0e8 80%,#f2ece4 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#fdf0e8", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -1515,7 +1515,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* DNA ACTIVATION SECTION */}
-      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#fdf0d8 0%,#f9dfa8 35%,#f0c888 70%,#e0ac7c 100%)", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "#fdf0e8", position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -1590,32 +1590,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
         </div>
       </div>
-
-      {/* IMAGE PLACEHOLDER — after bloodline remembers */}
-      <div style={{ marginTop: 32, borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#180a18,#2a1020)", padding: isMobile?"20px 16px":"32px", display:"flex", justifyContent:"center" }}>
-          <svg viewBox="0 0 600 200" style={{ width:"100%", maxWidth:560, height:"auto" }}>
-            <defs><linearGradient id="dnaG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.35" stopColor="#e8b870"/><stop offset="0.7" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
-            <path d="M30 40 Q105 160 180 40 Q255 -80 330 40 Q405 160 480 40 Q530 -40 570 40" stroke="url(#dnaG)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-            <path d="M30 160 Q105 40 180 160 Q255 280 330 160 Q405 40 480 160 Q530 240 570 160" stroke="url(#dnaG)" strokeWidth="3.5" fill="none" strokeLinecap="round" opacity="0.75"/>
-            <line x1="68" y1="72" x2="68" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
-            <line x1="105" y1="95" x2="105" y2="105" stroke="#e8b870" strokeWidth="2" opacity="0.7"/>
-            <line x1="142" y1="72" x2="142" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
-            <line x1="180" y1="52" x2="180" y2="148" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
-            <line x1="218" y1="72" x2="218" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
-            <line x1="255" y1="95" x2="255" y2="105" stroke="#e8b870" strokeWidth="2" opacity="0.7"/>
-            <line x1="292" y1="72" x2="292" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
-            <line x1="330" y1="52" x2="330" y2="148" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
-            <line x1="368" y1="72" x2="368" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
-            <line x1="405" y1="95" x2="405" y2="105" stroke="#e8b870" strokeWidth="2" opacity="0.7"/>
-            <line x1="442" y1="72" x2="442" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
-            <line x1="480" y1="52" x2="480" y2="148" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
-            <line x1="518" y1="72" x2="518" y2="128" stroke="#d4a090" strokeWidth="2" opacity="0.6"/>
-            <circle cx="30" cy="40" r="5" fill="#f5e0a0"/><circle cx="30" cy="160" r="5" fill="#f5e0a0" opacity="0.75"/>
-            <circle cx="180" cy="40" r="5" fill="#e8b870"/><circle cx="180" cy="160" r="5" fill="#e8b870" opacity="0.75"/>
-            <circle cx="330" cy="40" r="5" fill="#d4a090"/><circle cx="330" cy="160" r="5" fill="#d4a090" opacity="0.75"/>
-            <circle cx="480" cy="40" r="5" fill="#B76E79"/><circle cx="480" cy="160" r="5" fill="#B76E79" opacity="0.75"/>
-          </svg>
-        </div>
 
       {/* SCIENCE — cream, one colour throughout */}
       <div style={{ padding: "70px 0", background: "#fdf0e8", width: "100%" }}>
