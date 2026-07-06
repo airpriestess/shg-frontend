@@ -271,9 +271,9 @@ function CheckoutModal({ onClose, onDemo }) {
           </div>
 
           {/* GODDESS TIER */}
-          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"18px",marginTop:16,position:"relative",overflow:"visible"}}>
-            <div style={{position:"absolute",top:-10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
+          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"22px 18px 18px",marginTop:16,position:"relative",overflow:"visible"}}>
+            <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
                 <div style={{fontSize:16,fontWeight:800,color:"#8a2050",marginBottom:2}}>Goddess Tier</div>
                 <div style={{fontSize:11,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
@@ -372,8 +372,8 @@ function PricingSection({ onJoin }) {
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16, overflow: "visible" }}>
           {cards.map(c => (
-            <div key={c.id} style={{ background: c.bg.startsWith("linear") || c.bg === "#000" ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, backgroundColor: c.bg === "#000" ? "#000" : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: "24px 22px", marginTop: c.popular ? 14 : 0, position: "relative", overflow: "visible", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
-              {c.popular && <div style={{ position: "absolute", top: -10, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#f5e0a0,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "4px 14px", borderRadius: 20, letterSpacing: "0.1em", whiteSpace: "nowrap", zIndex: 5 }}>MOST POPULAR</div>}
+            <div key={c.id} style={{ background: c.bg.startsWith("linear") || c.bg === "#000" ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, backgroundColor: c.bg === "#000" ? "#000" : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: c.popular ? "38px 22px 24px" : "24px 22px", marginTop: c.popular ? 14 : 0, position: "relative", overflow: "visible", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
+              {c.popular && <div style={{ position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#f5e0a0,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "4px 14px", borderRadius: 20, letterSpacing: "0.1em", whiteSpace: "nowrap", zIndex: 5 }}>MOST POPULAR</div>}
               <div style={{ fontSize: 16, fontWeight: 700, color: c.nameColor, marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 32, fontWeight: 900, color: c.priceColor }}>{c.price}</span>
@@ -977,7 +977,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <button onClick={onJoin} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", width: isMobile ? "100%" : "auto" }}>
               START LISTENING ✦
             </button>
-            <button onClick={() => { window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank"); }} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank"); }} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
               LIFETIME ACCESS<ArrowIcon size={14}/>
             </button>
           </div>
