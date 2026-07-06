@@ -552,15 +552,9 @@ function MaxxingCarousel({ cats }) {
   const next2 = cats[(idx+2)%cats.length];
   const next3 = cats[(idx+3)%cats.length];
 
-  // Each category gets its own peach/rose shade so it feels alive
-  const bgs = [
-    "linear-gradient(135deg,#ffd6e7,#ffb3cc)",  // Lovemaxxing — bright pink
-    "linear-gradient(135deg,#d4f4d4,#a8e6a8)",   // Moneymaxxing — fresh green
-    "linear-gradient(135deg,#e8d0ff,#d4a8ff)",   // Beautymaxxing — lilac
-    "linear-gradient(135deg,#dca8b8,#c47898)",   // DNAMaxxing — rose
-    "linear-gradient(135deg,#edc0a8,#d49880)",   // Lifemaxxing — golden peach
-    "linear-gradient(135deg,#c8b8d8,#a898c0)",   // SleepMaxxing — soft lavender-rose
-  ];
+  // One locked ombre, everywhere — no per-category hue variation
+  const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+  const bgs = [OMBRE, OMBRE, OMBRE, OMBRE, OMBRE, OMBRE];
   const bg = bgs[idx % bgs.length];
 
   return (
@@ -1137,14 +1131,56 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <MaxxingCarousel cats={cats} />
 
 
-      {/* IMAGE PLACEHOLDER — brain state visual */}
+      {/* HEMI-SYNC — how the audio actually shifts the brain */}
       <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#fde8f0,#f8dde8)", height: isMobile ? 220 : 320, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, position: "relative" }}>
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
+          <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#1a0818", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
+          <p style={{ fontSize: isMobile?13.5:15, color:"#3a2018", lineHeight:1.75, maxWidth:560, margin:"0 auto" }}>
+            Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
+          </p>
+        </div>
+        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", padding: isMobile ? "24px 18px" : "36px 32px", position: "relative" }}>
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#B76E7910,transparent 70%)", pointerEvents: "none" }}/>
-          <div style={{ fontSize: isMobile ? 40 : 56 }}>🧠</div>
-          <div style={{ fontSize: isMobile ? 14 : 16, color: "#B76E79", fontWeight: 600, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", textTransform: "uppercase" }}>Theta state · 4–8 Hz</div>
-          <div style={{ fontSize: isMobile ? 12 : 14, color: "#111111", textAlign: "center", maxWidth: 360, lineHeight: 1.6 }}>The subconscious is only accessible in theta.<br/>This is where the install happens.</div>
-          <div style={{ fontSize: 11, color: "#3a2a1a", marginTop: 8, fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em" }}>[ BRAND IMAGE — replace with brain scan visual ]</div>
+          <div style={{ display:"flex", justifyContent:"center", gap: isMobile?24:56, position:"relative", flexWrap:"wrap" }}>
+            {/* BEFORE — beta, unsynced */}
+            <div style={{ textAlign:"center" }}>
+              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
+                <defs>
+                  <linearGradient id="brainL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
+                </defs>
+                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainL)" strokeWidth="2.5" opacity="0.55"/>
+                <line x1="70" y1="20" x2="70" y2="114" stroke="#B76E79" strokeWidth="1" opacity="0.35" strokeDasharray="2 3"/>
+                <path d="M30 58 Q38 48 46 58 Q54 68 62 58" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
+                <path d="M30 72 Q40 80 48 72 Q56 64 64 72" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
+                <path d="M78 62 Q84 74 92 62 Q98 52 106 62" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
+                <path d="M78 76 Q86 68 94 78 Q100 86 106 76" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
+              </svg>
+              <div style={{ fontSize:11, color:"#8a5030", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Beta · Awake</div>
+              <div style={{ fontSize:10.5, color:"#7a5040", marginTop:2 }}>Hemispheres out of sync</div>
+            </div>
+            {/* ARROW */}
+            <div style={{ display:"flex", alignItems:"center", color:"#B76E79" }}>
+              <ArrowIcon size={22}/>
+            </div>
+            {/* AFTER — theta, hemi-synced */}
+            <div style={{ textAlign:"center" }}>
+              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
+                <defs>
+                  <linearGradient id="brainR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
+                  <radialGradient id="brainGlow"><stop offset="0" stopColor="#f5e0a0" stopOpacity="0.5"/><stop offset="1" stopColor="#B76E79" stopOpacity="0"/></radialGradient>
+                </defs>
+                <circle cx="70" cy="68" r="58" fill="url(#brainGlow)"/>
+                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainR)" strokeWidth="3"/>
+                <line x1="70" y1="20" x2="70" y2="114" stroke="#f5e0a0" strokeWidth="1" opacity="0.5" strokeDasharray="2 3"/>
+                <path d="M30 65 Q40 55 50 65 Q60 75 70 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
+                <path d="M70 65 Q80 55 90 65 Q100 75 110 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
+                <circle cx="70" cy="65" r="3.5" fill="#f5e0a0"/>
+              </svg>
+              <div style={{ fontSize:11, color:"#B76E79", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Theta · 4–8Hz</div>
+              <div style={{ fontSize:10.5, color:"#8a3050", marginTop:2 }}>Hemi-synced · one wave</div>
+            </div>
+          </div>
         </div>
       </div>
       {/* THE PROBLEM SECTION — full-bleed peach */}
@@ -1252,7 +1288,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {[
-              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "linear-gradient(135deg,#fde8f0,#f8d8e8)", icon: (
+              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "linear-gradient(135deg,#fff8f0,#fceedd)", icon: (
                 <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
                   <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
                   <path d="M25 55 Q25 30 50 30 Q75 30 75 55" stroke="url(#g1)" strokeWidth="3" strokeLinecap="round" fill="none"/>
@@ -1264,7 +1300,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <path d="M90 35 Q97 45 90 55" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.3"/>
                 </svg>
               )},
-              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "linear-gradient(135deg,#f0ddf8,#e8d0f0)", icon: (
+              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "linear-gradient(135deg,#fdf0f0,#fce8e4)", icon: (
                 <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
                   <defs><linearGradient id="g2a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e8b870"/><stop offset="1" stopColor="#d4a090"/></linearGradient><linearGradient id="g2b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
                   <ellipse cx="38" cy="50" rx="20" ry="14" stroke="url(#g2a)" strokeWidth="4" fill="none" transform="rotate(-25 38 50)"/>
@@ -1284,7 +1320,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <circle cx="55" cy="66" r="1" fill="#e8b870" opacity="0.5"/>
                 </svg>
               )},
-              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#f8e0e8,#f0d0dc)", icon: (
+              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", icon: (
                 <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
                   <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient><radialGradient id="g4b"><stop offset="0" stopColor="#f5e0a0" stopOpacity="0.4"/><stop offset="1" stopColor="#B76E79" stopOpacity="0"/></radialGradient></defs>
                   <circle cx="50" cy="50" r="40" fill="url(#g4b)"/>
@@ -1487,14 +1523,14 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* Eyebrow */}
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div style={{ fontSize: 11, color: "#0a5090", fontWeight: 800, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
+            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 800, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
               963hz · DNA Activation
             </div>
-            <h2 className="wm" style={{ fontSize: "clamp(34px,5.5vw,64px)", color: "#000", lineHeight: 1.1, marginBottom: 20 }}>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000", lineHeight: 1.15, marginBottom: 20 }}>
               We don't stop at the surface.<br/>
-              <span style={{ background: "linear-gradient(90deg,#0a5090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
+              <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
-            <p style={{ fontSize: isMobile ? 17 : 19, color: "#000", lineHeight: 1.85, maxWidth: 580, margin: "0 auto", fontWeight: 500 }}>
+            <p style={{ fontSize: isMobile ? 15 : 17, color: "#2a1210", lineHeight: 1.8, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
               Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
             </p>
           </div>
@@ -1520,9 +1556,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* Right — the three levels */}
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
-                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis, subliminals, and hemi-sync operate.", color: "#0a5090", bg: "linear-gradient(135deg,#cfe8ff,#a8d0f8)" },
-                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation and Reiki frequency encoding dissolve the old self-concept at its root — the assumption formed before you had the words for it.", color: "#1a7030", bg: "linear-gradient(135deg,#d0f4d0,#a8e8a8)" },
-                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. Where the deepest patterns live, and where they can be permanently rewritten.", color: "#7030a0", bg: "linear-gradient(135deg,#ecdcff,#d4b8f8)" },
+                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis, subliminals, and hemi-sync operate.", color: "#B76E79", bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)" },
+                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation and Reiki frequency encoding dissolve the old self-concept at its root — the assumption formed before you had the words for it.", color: "#8a5030", bg: "linear-gradient(135deg,#fceedd,#f8e4cc)" },
+                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. Where the deepest patterns live, and where they can be permanently rewritten.", color: "#6a2038", bg: "linear-gradient(135deg,#f5e0d0,#e8c4b0)" },
               ].map((item, i) => (
                 <div key={i} style={{ background: item.bg, border: `1px solid ${item.color}33`, borderRadius: 12, padding: "20px 22px" }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
@@ -1536,7 +1572,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* Bottom — the passive daily practice promise */}
-          <div style={{ background: "linear-gradient(135deg,#e8f8f4,#f4e8f8)", border: "1px solid rgba(183,110,121,0.25)", borderRadius: 18, padding: isMobile ? "28px 22px" : "36px 44px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+          <div style={{ background: "linear-gradient(135deg,#fdf0e8,#f2ece4)", border: "1px solid rgba(183,110,121,0.25)", borderRadius: 18, padding: isMobile ? "28px 22px" : "36px 44px", textAlign: "center", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 100%,rgba(183,110,121,0.08),transparent 70%)", pointerEvents: "none" }}/>
             <div style={{ position: "relative", zIndex: 1 }}>
               <h3 className="wm" style={{ fontSize: "clamp(22px,3.5vw,36px)", color: "#1a1018", marginBottom: 14, lineHeight: 1.2 }}>
@@ -1586,12 +1622,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ padding: "70px 0", background: "#fdf0e8", width: "100%" }}>
       <div style={{ padding: "0 24px", maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div style={{ fontSize: 13, color: "#000000", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The science</div>
-          <h2 className="wm" style={{ fontSize: "clamp(36px,6vw,68px)", color: "#000000", lineHeight: 1.1, marginBottom: 22 }}>
+          <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 16, fontWeight: 700 }}>The science</div>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000000", lineHeight: 1.15, marginBottom: 22 }}>
             Your subconscious mind<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
-          <p style={{ fontSize: 19, color: "#111111", lineHeight: 1.9, maxWidth: 700, margin: "0 auto 16px" }}>
+          <p style={{ fontSize: 16, color: "#2a1210", lineHeight: 1.85, maxWidth: 700, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
           <p style={{ fontSize: 19, color: "#111111", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
