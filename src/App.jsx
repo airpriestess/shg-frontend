@@ -463,8 +463,8 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", gap:0, background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.15)", borderRadius:24, padding:4 }}>
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
-            style={{ padding:"7px 18px", borderRadius:20, background:view===id?"linear-gradient(90deg,#d4a090,#B76E79)":"transparent", border:"none",
-              color:view===id?"#000":"#ffffff", fontSize:12, fontWeight:700, cursor:"pointer",
+            style={{ padding:"7px 18px", borderRadius:20, background:view===id?"#f2ece4":"transparent", border:"none",
+              color:view===id?"#1a1210":"#ffffff", fontSize:12, fontWeight:700, cursor:"pointer",
               fontFamily:"'Jost',sans-serif", transition:"all 0.25s", letterSpacing:"0.04em" }}>
             {l}
           </button>
