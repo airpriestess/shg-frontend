@@ -1103,7 +1103,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#fdf0e8", position:"relative", overflow:"hidden" }}>
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f9dfc8 50%,#f0c8a0 100%)", position:"relative", overflow:"hidden" }}>
         {/* Ombre orb */}
         <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
 
@@ -1199,7 +1199,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* THE PROBLEM SECTION — full-bleed peach */}
-      <div style={{ padding: isMobile ? "48px 0" : "80px 0", background: "#f2ece4", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 0" : "80px 0", background: "linear-gradient(160deg,#fdf0e8 0%,#fce0e8 50%,#f5c8d8 100%)", width: "100%" }}>
       <div style={{ padding: isMobile ? "0 18px" : "0 24px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Read this if you're stuck</div>
@@ -1531,7 +1531,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* DNA ACTIVATION SECTION */}
-      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "#fdf0e8", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#e8f0d8 50%,#c8dcb0 100%)", position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -1712,7 +1712,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf6ee 0%,#faeee2 50%,#fdf6ee 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf6ee 0%,#f0e4f5 50%,#dcc4e8 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
