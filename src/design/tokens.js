@@ -208,10 +208,11 @@ img{max-width:100%;}
   100%{background-position:0% center;}
 }
 .wm-shimmer{
-  color:#B76E79!important;
-  -webkit-text-fill-color:#B76E79!important;
-  background:none!important;
-  animation:none!important;
+  background:linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  color:transparent!important;
 }
 
 /* ── SECTION COLOUR BANDS ─────────────── */
