@@ -70,9 +70,12 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
             {week.map((v,i)=>{
               const isToday = i===week.length-1;
               return (
-              <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
+              <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end", position:"relative" }}>
                 <span style={{ fontSize:9*fs, fontWeight:800, color:isToday?R:C.text }}>{v}</span>
-                <div style={{ width:"100%", maxWidth:24, height:`${Math.max((v/maxW)*100,8)}%`, minHeight:5, background:isToday?OMBRE:`${R}38`, border:isToday?"none":`1px solid ${R}55`, backgroundSize:"200%", backgroundPosition:"left", borderRadius:4, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${isToday?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
+                <div style={{ position:"relative", width:"100%", maxWidth:24, height:"calc(100% - 30px)", display:"flex", alignItems:"flex-end" }}>
+                  <div style={{ position:"absolute", inset:0, background:C.track, borderRadius:4 }}/>
+                  <div style={{ position:"relative", width:"100%", height:`${Math.max((v/maxW)*100,10)}%`, minHeight:6, background:isToday?OMBRE:R, opacity:isToday?1:0.65, backgroundSize:"200%", backgroundPosition:"left", borderRadius:4, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${isToday?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
+                </div>
                 <span style={{ fontSize:9*fs, color:isToday?R:C.dim, fontWeight:isToday?800:700 }}>{days[i]}{isToday?" ●":""}</span>
               </div>
             );})}
