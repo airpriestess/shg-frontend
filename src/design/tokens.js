@@ -208,7 +208,7 @@ img{max-width:100%;}
   100%{background-position:0% center;}
 }
 .wm-shimmer{
-  background:linear-gradient(90deg,#c85070 0%,#e09060 18%,#f8e0d0 36%,#e09060 50%,#B76E79 65%,#a03060 82%,#c85070 100%)!important;
+  background:linear-gradient(90deg,#e8b870 0%,#f5e0a0 16%,#d4a090 38%,#c4789a 58%,#B76E79 78%,#e8b870 100%)!important;
   background-size:260% auto!important;
   -webkit-background-clip:text!important;
   -webkit-text-fill-color:transparent!important;
@@ -217,7 +217,6 @@ img{max-width:100%;}
   animation:wordmarkShimmer 2.8s ease-in-out infinite;
   font-weight:600!important;
   letter-spacing:0.03em!important;
-  filter:saturate(1.3);
 }
 
 /* ── SECTION COLOUR BANDS ─────────────── */
