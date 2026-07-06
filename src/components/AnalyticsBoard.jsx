@@ -14,7 +14,7 @@ const PALETTES = {
 export const DEMO_ANALYTICS = {
   manifested: 3, inProgress: 4, signs: 11, listens: 27, streakDays: 14,
   week: [2,4,3,6,5,4,3], // listens per day, Mon–Sun
-  topCats: [ ["Money","#1a7030",5], ["SP & Love","#c84880",4], ["Identity","#6030a0",2] ],
+  topCats: [ ["Money","#B76E79",5], ["SP & Love","#e8b870",4], ["Identity","#d4a090",2] ],
 };
 
 export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof }) {
@@ -62,15 +62,21 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
 
       {/* Row 2: 7-day listening bars */}
       <div style={{ background:C.card2, borderRadius:12, padding:`${10*fs}px ${12*fs}px`, marginBottom:10 }}>
-        <div style={{ fontSize:9.5*fs, fontWeight:800, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Times you pressed play — this week</div>
-        <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:42*fs }}>
-          {week.map((v,i)=>(
-            <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
-              <span style={{ fontSize:8.5*fs, fontWeight:800, color:C.mu }}>{v}</span>
-              <div style={{ width:"100%", maxWidth:22, height:`${(v/maxW)*100}%`, minHeight:3, background:i===week.length-2?OMBRE:C.track, backgroundSize:"200%", backgroundPosition:"left", borderRadius:3, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${i===week.length-2?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
-              <span style={{ fontSize:8*fs, color:C.dim, fontWeight:700 }}>{days[i]}</span>
-            </div>
-          ))}
+        <div style={{ fontSize:9.5*fs, fontWeight:800, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:2 }}>Plays per day — this week</div>
+        <div style={{ fontSize:8.5*fs, color:C.dim, marginBottom:8 }}>Taller bar = more listens that day. Gold bar = today.</div>
+        <div style={{ position:"relative" }}>
+          <div style={{ position:"absolute", left:0, right:0, bottom:16*fs, height:1, background:C.border }}/>
+          <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:48*fs, position:"relative" }}>
+            {week.map((v,i)=>{
+              const isToday = i===week.length-1;
+              return (
+              <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
+                <span style={{ fontSize:9*fs, fontWeight:800, color:isToday?R:C.text }}>{v}</span>
+                <div style={{ width:"100%", maxWidth:24, height:`${Math.max((v/maxW)*100,8)}%`, minHeight:5, background:isToday?OMBRE:`${R}38`, border:isToday?"none":`1px solid ${R}55`, backgroundSize:"200%", backgroundPosition:"left", borderRadius:4, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${isToday?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
+                <span style={{ fontSize:9*fs, color:isToday?R:C.dim, fontWeight:isToday?800:700 }}>{days[i]}{isToday?" ●":""}</span>
+              </div>
+            );})}
+          </div>
         </div>
       </div>
 
