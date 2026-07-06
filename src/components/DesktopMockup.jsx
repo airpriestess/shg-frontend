@@ -1,10 +1,5 @@
 const TILE_OMBRES = [
-  "linear-gradient(135deg,#ffd6e7,#ffb3cc)",
-  "linear-gradient(135deg,#d4f4d4,#a8e6a8)",
-  "linear-gradient(135deg,#e8d0ff,#d4a8ff)",
-  "linear-gradient(135deg,#d0e8f8,#a8ccf0)",
-  "linear-gradient(135deg,#f5e0a0,#e8c070)",
-  "linear-gradient(135deg,#f8d8c8,#eab8a0)",
+  "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",
 ];
 /* DesktopMockup — mini browser frame with full theme support (dark/light)
    Pass theme="dark" | theme="light"
