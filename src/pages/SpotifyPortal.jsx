@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
 import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
+import { ArrowIcon } from "../components/UI.jsx";
 
 // Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
@@ -1076,7 +1077,7 @@ function ShopTab({ C }) {
               <div style={{ fontSize:11,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
               <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
                 <span style={{ fontSize:15,fontWeight:800,color:R }}>{p.price}</span>
-                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:10,fontWeight:800,fontFamily:"'Jost',sans-serif" }}>{p.stripe?"Buy now · Stripe →":"Buy on Beacons →"}</span>
+                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:10,fontWeight:800,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>{p.stripe?"Buy now · Stripe":"Buy on Beacons"}<ArrowIcon size={10}/></span>
               </div>
             </div>
           </div>
