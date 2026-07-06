@@ -104,7 +104,7 @@ const INIT_THREADS = [
 
 // Category → proof wall colours (matches landing Proof Wall)
 const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "DNA":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
-const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#9a6838", "Beauty":"#c4789a", "Identity":"#8a5048", "DNA":"#8a5048", "Sleep":"#6a4038" };
+const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "DNA":"#8a3050", "Sleep":"#6a2840" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
