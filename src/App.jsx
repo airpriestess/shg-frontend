@@ -246,26 +246,26 @@ function CheckoutModal({ onClose, onDemo }) {
         <div style={{padding:"20px 24px 28px",display:"flex",flexDirection:"column",gap:12}}>
 
           {/* AUDIO TIER */}
-          <div style={{background:"linear-gradient(135deg,#f0eaff,#e8e0ff)",border:"1.5px solid #9060c066",borderRadius:16,padding:"18px"}}>
+          <div style={{background:"linear-gradient(135deg,#fdf0e8,#f5e0d0)",border:"1.5px solid #B76E7955",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#4020a0",marginBottom:2}}>Audio Tier</div>
-                <div style={{fontSize:11,color:"#7050b0",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#2a1210",marginBottom:2}}>Audio Tier</div>
+                <div style={{fontSize:11,color:"#8a7268",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#6040b0",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
-                <div style={{fontSize:11,color:"#9070c0"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#8060c0"}}>£11.92/mo · billed once</div>}
+                <div style={{fontSize:26,fontWeight:900,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
+                <div style={{fontSize:11,color:"#d4a090"}}>{isAnnual?"/year":"/month"}</div>
+                {isAnnual && <div style={{fontSize:10,color:"#d4a090"}}>£11.92/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full audio vault — all desire categories","4+ new tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:"#5040a0",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#7050b0"}}>·</span>{f}
+                <div key={i} style={{fontSize:12,color:"#4a2820",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
+                  <span style={{position:"absolute",left:0,color:"#B76E79"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#ede8ff,#d4c8ff)",border:"none",borderRadius:10,color:"#3a1a80",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#e8b870,#d4a090)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
               {TIERS.audio.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
@@ -297,25 +297,25 @@ function CheckoutModal({ onClose, onDemo }) {
           </div>
 
           {/* LIFETIME */}
-          <div style={{background:"linear-gradient(135deg,#fffde8,#fff8cc)",border:"1.5px solid #c8a87066",borderRadius:16,padding:"18px"}}>
+          <div style={{background:"#000",border:"1.5px solid #e8b87066",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#7a6010",marginBottom:2}}>Lifetime Access</div>
-                <div style={{fontSize:11,color:"#a08020",fontWeight:600,letterSpacing:"0.06em"}}>Once. Forever.</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#f5e0a0",marginBottom:2}}>Lifetime Access</div>
+                <div style={{fontSize:11,color:"#c8a870",fontWeight:600,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#b08000",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
-                <div style={{fontSize:11,color:"#c0a030"}}>one time</div>
+                <div style={{fontSize:26,fontWeight:900,color:"#f5e0a0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
+                <div style={{fontSize:11,color:"#c8a870"}}>one time</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:"#7a6010",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#c8a830"}}>·</span>{f}
+                <div key={i} style={{fontSize:12,color:"#e8dcc8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
+                  <span style={{position:"absolute",left:0,color:"#e8b870"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)",backgroundSize:"300%",backgroundPosition:"center",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,160,0,0.35)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(232,184,112,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
@@ -338,9 +338,9 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : null, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "#fff", border: "rgba(183,110,121,0.3)", priceColor: "#B76E79", ctaBg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", ctaColor: "#7a3020" },
-    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fff4e4,#ffe8dc)", border: "#B76E79", priceColor: "#B76E79", ctaBg: "linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "linear-gradient(160deg,#fffde8,#fff8cc)", border: "#c8a87066", priceColor: "#a08020", ctaBg: "linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)", ctaColor: "#000" },
+    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : null, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", border: "#B76E7955", nameColor: "#2a1210", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#4a2820", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
+    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fff4e4,#ffe8dc)", border: "#B76E79", nameColor: "#1a0818", muteColor: "#B76E79", priceColor: "#B76E79", periodColor: "#8a7268", featureColor: "#6a2848", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "#000", border: "#e8b87066", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)", ctaColor: "#000" },
   ];
 
   return (
@@ -372,23 +372,23 @@ function PricingSection({ onJoin }) {
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
           {cards.map(c => (
-            <div key={c.id} style={{ background: c.bg.startsWith("linear") ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: "24px 22px", position: "relative", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
+            <div key={c.id} style={{ background: c.bg.startsWith("linear") || c.bg === "#000" ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, backgroundColor: c.bg === "#000" ? "#000" : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: "24px 22px", position: "relative", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
               {c.popular && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#f5e0a0,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "4px 14px", borderRadius: 20, letterSpacing: "0.1em", whiteSpace: "nowrap" }}>MOST POPULAR</div>}
-              <div style={{ fontSize: 16, fontWeight: 700, color: "#1a0818", marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{c.name}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: c.nameColor, marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 32, fontWeight: 900, color: c.priceColor }}>{c.price}</span>
-                <span style={{ fontSize: 13, color: "#8a7268" }}>{c.id === "lifetime" ? "one time" : isAnnual ? "/year" : "/month"}</span>
+                <span style={{ fontSize: 13, color: c.periodColor }}>{c.id === "lifetime" ? "one time" : isAnnual ? "/year" : "/month"}</span>
               </div>
-              {c.note && <div style={{ fontSize: 11, color: "#a08868", marginBottom: 14 }}>{c.note}</div>}
+              {c.note && <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 14 }}>{c.note}</div>}
               {!c.note && <div style={{ marginBottom: 14 }} />}
               <div style={{ marginBottom: 18 }}>
                 {c.features.map((f, i) => (
-                  <div key={i} style={{ fontSize: 12.5, color: f.includes("✦") ? "#B76E79" : "#4a3830", marginBottom: 7, paddingLeft: 14, position: "relative", lineHeight: 1.5, fontWeight: f.includes("✦") ? 700 : 400 }}>
-                    <span style={{ position: "absolute", left: 0, color: "#B76E79" }}>·</span>{f}
+                  <div key={i} style={{ fontSize: 12.5, color: f.includes("✦") ? c.priceColor : c.featureColor, marginBottom: 7, paddingLeft: 14, position: "relative", lineHeight: 1.5, fontWeight: f.includes("✦") ? 700 : 400 }}>
+                    <span style={{ position: "absolute", left: 0, color: c.dot }}>·</span>{f}
                   </div>
                 ))}
               </div>
-              <button onClick={() => goStripe(c.id)} className="cta-shake" style={{ width: "100%", padding: "13px", backgroundImage: c.ctaBg, backgroundSize: c.id === "lifetime" ? "300%" : undefined, backgroundPosition: c.id === "lifetime" ? "center" : undefined, border: "none", borderRadius: 10, color: c.ctaColor, fontSize: 13, fontWeight: 800, cursor: "pointer", fontFamily: "'Jost',sans-serif", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
+              <button onClick={() => goStripe(c.id)} className="cta-shake" style={{ width: "100%", padding: "13px", backgroundImage: c.ctaBg, border: "none", borderRadius: 10, color: c.ctaColor, fontSize: 13, fontWeight: 800, cursor: "pointer", fontFamily: "'Jost',sans-serif", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
                 {c.cta}<ArrowIcon size={13} />
               </button>
             </div>
@@ -407,37 +407,37 @@ function PricingSection({ onJoin }) {
 
 const MARQUEE_ITEMS = [
   {t:"He texts me first. Obviously.",c:"#B76E79"},{t:"Money finds me first.",c:"#c8a870"},{t:"Gorgeous is my default.",c:"#d4a090"},
-  {t:"My DNA is shifting. Right now.",c:"#9a8ad0"},{t:"My highest timeline. Activated.",c:"#c8a870"},{t:"He's obsessed. Of course he is.",c:"#B76E79"},
-  {t:"My skin is porcelain. Always.",c:"#d4a090"},{t:"I shift while I sleep.",c:"#7a9ab0"},{t:"Money arrives unexpectedly.",c:"#c8a870"},
-  {t:"My bloodline is being rewritten.",c:"#9a8ad0"},{t:"He comes back. Every time.",c:"#B76E79"},{t:"My waist is always snatched.",c:"#d4a090"},
-  {t:"£10,000 months are my baseline.",c:"#c8a870"},{t:"I receive. Constantly. Effortlessly.",c:"#B76E79"},{t:"My self-concept is permanent now.",c:"#9a8ad0"},
+  {t:"My DNA is shifting. Right now.",c:"#e8b870"},{t:"My highest timeline. Activated.",c:"#c8a870"},{t:"He's obsessed. Of course he is.",c:"#B76E79"},
+  {t:"My skin is porcelain. Always.",c:"#d4a090"},{t:"I shift while I sleep.",c:"#d4a090"},{t:"Money arrives unexpectedly.",c:"#c8a870"},
+  {t:"My bloodline is being rewritten.",c:"#e8b870"},{t:"He comes back. Every time.",c:"#B76E79"},{t:"My waist is always snatched.",c:"#d4a090"},
+  {t:"£10,000 months are my baseline.",c:"#c8a870"},{t:"I receive. Constantly. Effortlessly.",c:"#B76E79"},{t:"My self-concept is permanent now.",c:"#e8b870"},
   {t:"He can't stop thinking about me.",c:"#B76E79"},{t:"I am radiant without trying.",c:"#d4a090"},{t:"My skin glows. Everyone sees it.",c:"#d4a090"},
   {t:"He chose me. Again.",c:"#B76E79"},{t:"Abundance is my default state.",c:"#c8a870"},{t:"My beauty is effortless.",c:"#d4a090"},
   {t:"He's already mine.",c:"#B76E79"},{t:"Money loves me. Of course it does.",c:"#c8a870"},{t:"I am the woman he keeps coming back to.",c:"#B76E79"},
-  {t:"My cells hold my new identity.",c:"#9a8ad0"},{t:"My glow is undeniable.",c:"#d4a090"},{t:"Six figures is just the start.",c:"#c8a870"},
-  {t:"He finds his way back. Every time.",c:"#B76E79"},{t:"My subconscious knows. It delivers.",c:"#9a8ad0"},{t:"I am paid just for existing.",c:"#c8a870"},
+  {t:"My cells hold my new identity.",c:"#e8b870"},{t:"My glow is undeniable.",c:"#d4a090"},{t:"Six figures is just the start.",c:"#c8a870"},
+  {t:"He finds his way back. Every time.",c:"#B76E79"},{t:"My subconscious knows. It delivers.",c:"#e8b870"},{t:"I am paid just for existing.",c:"#c8a870"},
   {t:"My face is symmetrical and clear.",c:"#d4a090"},{t:"Of course it worked out. It always does.",c:"#c8a870"},{t:"He's devoted. Obviously.",c:"#B76E79"},
-  {t:"My identity upgrades in my sleep.",c:"#9a8ad0"},{t:"I am magnetic. Naturally.",c:"#d4a090"},{t:"My wealth expands while I sleep.",c:"#c8a870"},
-  {t:"He reaches out first. Always.",c:"#B76E79"},{t:"I embody my dream self. Naturally.",c:"#9a8ad0"},{t:"My energy is intoxicating.",c:"#d4a090"},
-  {t:"My income is limitless.",c:"#c8a870"},{t:"I am the upgraded version. Now.",c:"#9a8ad0"},{t:"He misses me and he's saying it.",c:"#B76E79"},
-  {t:"My bank account grows daily.",c:"#c8a870"},{t:"My nervous system knows who I am.",c:"#9a8ad0"},{t:"I look better every single day.",c:"#d4a090"},
+  {t:"My identity upgrades in my sleep.",c:"#e8b870"},{t:"I am magnetic. Naturally.",c:"#d4a090"},{t:"My wealth expands while I sleep.",c:"#c8a870"},
+  {t:"He reaches out first. Always.",c:"#B76E79"},{t:"I embody my dream self. Naturally.",c:"#e8b870"},{t:"My energy is intoxicating.",c:"#d4a090"},
+  {t:"My income is limitless.",c:"#c8a870"},{t:"I am the upgraded version. Now.",c:"#e8b870"},{t:"He misses me and he's saying it.",c:"#B76E79"},
+  {t:"My bank account grows daily.",c:"#c8a870"},{t:"My nervous system knows who I am.",c:"#e8b870"},{t:"I look better every single day.",c:"#d4a090"},
   {t:"Love finds me. It always does.",c:"#B76E79"},{t:"I am always in the right place.",c:"#c8a870"},{t:"My body reflects my beliefs.",c:"#d4a090"},
-  {t:"My SP is devoted. Obviously.",c:"#B76E79"},{t:"The installation is complete.",c:"#9a8ad0"},{t:"I receive in my sleep. Obviously.",c:"#7a9ab0"},
+  {t:"My SP is devoted. Obviously.",c:"#B76E79"},{t:"The installation is complete.",c:"#e8b870"},{t:"I receive in my sleep. Obviously.",c:"#d4a090"},
   {t:"I am stunning. It's obvious.",c:"#d4a090"},{t:"My financial reality is effortless.",c:"#c8a870"},{t:"He can't get me out of his head.",c:"#B76E79"},
-  {t:"My highest self is my only self.",c:"#9a8ad0"},{t:"People notice. They can't help it.",c:"#d4a090"},{t:"My lineage shifts with me.",c:"#9a8ad0"},
-  {t:"I am a money magnet. Obviously.",c:"#c8a870"},{t:"He's on his way back. Of course.",c:"#B76E79"},{t:"I wake up transformed.",c:"#7a9ab0"},
-  {t:"My life is effortless luxury.",c:"#c8a870"},{t:"My subconscious is now on my side.",c:"#9a8ad0"},{t:"My skin is flawless. Obviously.",c:"#d4a090"},
-  {t:"Everything works out for me. Always.",c:"#c8a870"},{t:"He's never leaving. I'm that girl.",c:"#B76E79"},{t:"My DNA reflects my desires.",c:"#9a8ad0"},
-  {t:"I am chosen. Every single time.",c:"#B76E79"},{t:"Thirty days changes everything.",c:"#7a9ab0"},{t:"My frequency is locked in.",c:"#9a8ad0"},
-  {t:"I am the most beautiful version of me.",c:"#d4a090"},{t:"The universe is obsessed with me.",c:"#c8a870"},{t:"My parallel reality is now.",c:"#9a8ad0"},
+  {t:"My highest self is my only self.",c:"#e8b870"},{t:"People notice. They can't help it.",c:"#d4a090"},{t:"My lineage shifts with me.",c:"#e8b870"},
+  {t:"I am a money magnet. Obviously.",c:"#c8a870"},{t:"He's on his way back. Of course.",c:"#B76E79"},{t:"I wake up transformed.",c:"#d4a090"},
+  {t:"My life is effortless luxury.",c:"#c8a870"},{t:"My subconscious is now on my side.",c:"#e8b870"},{t:"My skin is flawless. Obviously.",c:"#d4a090"},
+  {t:"Everything works out for me. Always.",c:"#c8a870"},{t:"He's never leaving. I'm that girl.",c:"#B76E79"},{t:"My DNA reflects my desires.",c:"#e8b870"},
+  {t:"I am chosen. Every single time.",c:"#B76E79"},{t:"Thirty days changes everything.",c:"#d4a090"},{t:"My frequency is locked in.",c:"#e8b870"},
+  {t:"I am the most beautiful version of me.",c:"#d4a090"},{t:"The universe is obsessed with me.",c:"#c8a870"},{t:"My parallel reality is now.",c:"#e8b870"},
   {t:"He's constantly thinking of me.",c:"#B76E79"},{t:"My love life is effortless.",c:"#B76E79"},{t:"I am on the frequency of receiving.",c:"#c8a870"},
-  {t:"Every listen deepens the install.",c:"#7a9ab0"},{t:"I am becoming her daily.",c:"#9a8ad0"},{t:"My reality bends to my self-concept.",c:"#9a8ad0"},
-  {t:"Unexpected income is normal for me.",c:"#c8a870"},{t:"My sleep is doing the work.",c:"#7a9ab0"},{t:"I am irresistible. Obviously.",c:"#d4a090"},
-  {t:"He comes back. Of course he does.",c:"#B76E79"},{t:"I exist on the frequency of abundance.",c:"#c8a870"},{t:"My cells shift with every listen.",c:"#9a8ad0"},
+  {t:"Every listen deepens the install.",c:"#d4a090"},{t:"I am becoming her daily.",c:"#e8b870"},{t:"My reality bends to my self-concept.",c:"#e8b870"},
+  {t:"Unexpected income is normal for me.",c:"#c8a870"},{t:"My sleep is doing the work.",c:"#d4a090"},{t:"I am irresistible. Obviously.",c:"#d4a090"},
+  {t:"He comes back. Of course he does.",c:"#B76E79"},{t:"I exist on the frequency of abundance.",c:"#c8a870"},{t:"My cells shift with every listen.",c:"#e8b870"},
   {t:"Beauty is who I am.",c:"#d4a090"},{t:"Life is happening for me. Always.",c:"#c8a870"},{t:"My manifestations arrive fast.",c:"#c8a870"},
-  {t:"My theta state holds my desires.",c:"#7a9ab0"},{t:"The new me is permanent now.",c:"#9a8ad0"},{t:"I attract what I want. Effortlessly.",c:"#c8a870"},
-  {t:"My aura is undeniable.",c:"#d4a090"},{t:"Money comes from everywhere.",c:"#c8a870"},{t:"The shift is already done.",c:"#9a8ad0"},
-  {t:"I am reprogramming daily.",c:"#7a9ab0"},{t:"He's obsessed with who I am.",c:"#B76E79"},{t:"Every night I become her more.",c:"#7a9ab0"},
+  {t:"My theta state holds my desires.",c:"#d4a090"},{t:"The new me is permanent now.",c:"#e8b870"},{t:"I attract what I want. Effortlessly.",c:"#c8a870"},
+  {t:"My aura is undeniable.",c:"#d4a090"},{t:"Money comes from everywhere.",c:"#c8a870"},{t:"The shift is already done.",c:"#e8b870"},
+  {t:"I am reprogramming daily.",c:"#d4a090"},{t:"He's obsessed with who I am.",c:"#B76E79"},{t:"Every night I become her more.",c:"#d4a090"},
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
@@ -635,20 +635,20 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ background:"linear-gradient(160deg,#f0f8ff 0%,#e8f4fc 50%,#f0f8ff 100%)", padding:"0 0 0 0" }}>
+    <div style={{ background:"linear-gradient(160deg,#fdf0e8 0%,#f2ece4 50%,#fdf0e8 100%)", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
-        <div style={{ fontSize:11,color:"#0060a0",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#0a2040",lineHeight:1.2 }}>FAQs</h2>
+        <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#1a0818",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
-          <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(0,80,180,0.3)":"rgba(0,80,180,0.12)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(0,80,180,0.1)":"none" }}>
+          <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(183,110,121,0.35)":"rgba(183,110,121,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(183,110,121,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:600,color:"#0a2040",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
-              <span style={{ fontSize:20,color:"#0060a0",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
+              <span style={{ fontSize:15,fontWeight:600,color:"#1a0818",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
-            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(0,80,180,0.12)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#2a4060",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#4a2820",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
         ))}
       </div>
@@ -752,7 +752,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
     { label: "Moneymaxxing", tagline: "Money finds me first. Obviously.", color: "#B76E79" },
     { label: "Beautymaxxing", tagline: "Gorgeous is my default.", color: T.champSoft },
     { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: "#e8e0d0" },
-    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#9a8ad0" },
+    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#e8b870" },
     { label: "Sleep Shifting", tagline: "I shift while I sleep.", color: "#000000" },
   ];
 
@@ -1059,13 +1059,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* JOURNEY STEPS — ombre cards */}
           <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative" }}>
             {/* Vertical line */}
-            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79,#9060b0)", borderRadius:1, opacity:0.3 }}/>}
+            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79)", borderRadius:1, opacity:0.3 }}/>}
 
             {[
               { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#5a3810" },
               { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#5a2818" },
               { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#5a1030" },
-              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#f8f0fc,#f0e8f8)", border:"#9060b066", num:"#9060b0", text:"#3a1050" },
+              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#fdf0e8,#f5e0d0)", border:"#B76E7966", num:"#B76E79", text:"#5a1418" },
             ].map((s,i)=>(
               <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
                 {/* Step number circle */}
@@ -1349,25 +1349,25 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
-            {/* MELODIC HOUSE USP — light yellow background */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fffde8 0%,#fff9cc 40%,#fffde8 80%,#fff8d0 100%)", width: "100%" }}>
+            {/* MELODIC HOUSE USP — cream background, locked palette */}
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fdf0e8 0%,#f5e0d8 40%,#fdf0e8 80%,#f2ece4 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 12, color: "#9060c0", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,60px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#6040b0,#9060c0)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
+            <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
+            <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,60px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#3a2a60", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
+            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#2a1210", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#5a4880", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#5a3830", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
 
             {/* THREE FORMATS */}
-            <div style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(144,96,192,0.2)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 11, color: "#7040a0", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Six formats — each does something different</div>
+            <div style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
+              <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
                 { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
@@ -1376,11 +1376,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 { icon: "🎼", label: "528hz Frequency", body: "The 'love frequency' — tuned to promote repair and coherence at the cellular level while you rest." },
                 { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
               ].map((f,i)=>(
-                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(144,96,192,0.12)":"none" }}>
+                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
                   <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#2a1a50", marginBottom: 3 }}>{f.label}</div>
-                    <div style={{ fontSize: 13, color: "#5a4060", lineHeight: 1.65 }}>{f.body}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#2a1210", marginBottom: 3 }}>{f.label}</div>
+                    <div style={{ fontSize: 13, color: "#5a3830", lineHeight: 1.65 }}>{f.body}</div>
                   </div>
                 </div>
               ))}
@@ -1615,7 +1615,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {[
             { title: "Spoilt Goddess", format: "Melodic House · EMDR · 528hz", freq: "528hz", badge: "▶ Free Preview", badgeColor: "#B76E79", icon: "🎵", desc: "Self-concept. Receiving. Identity. Reshma's voice layered beneath melodic house music.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
             { title: "Money Finds Me First", format: "Spoken Hypnosis · 528hz", freq: "528hz", badge: "In the vault", badgeColor: "#1a7030", icon: "💰", desc: "Wealth. Receiving. Abundance. One of the tracks waiting inside.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
-            { title: "While I Sleep I Manifest", format: "Subliminal · Music Only · No Voice", freq: "Delta", badge: "Subliminal", badgeColor: "#7a9ab0", icon: "🌙", desc: "Pure frequency. No voice. Affirmations beneath melodic house — works while you sleep." },
+            { title: "While I Sleep I Manifest", format: "Subliminal · Music Only · No Voice", freq: "Delta", badge: "Subliminal", badgeColor: "#d4a090", icon: "🌙", desc: "Pure frequency. No voice. Affirmations beneath melodic house — works while you sleep." },
           ].map((a, i) => (
             <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}
               onMouseEnter={e => e.currentTarget.style.borderColor = "#B76E7944"}
@@ -1657,7 +1657,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {TECH_ROWS.map((row, i) => (
               <div key={i} style={{ background: "rgba(255,255,255,0.88)", border: "1px solid rgba(183,110,121,0.15)", borderRadius: 14, padding: "16px 18px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#6040b0" }}>{row.t}</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#B76E79" }}>{row.t}</div>
                   <div style={{ fontSize: 11, color: "#B76E79", textAlign: "right", maxWidth: "45%", lineHeight: 1.4 }}>{row.when}</div>
                 </div>
                 <div style={{ fontSize: 13, color: "#333", lineHeight: 1.6, marginBottom: 4 }}><strong style={{color:"#000"}}>{row.w}</strong></div>
@@ -1675,7 +1675,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </div>
             {TECH_ROWS.map((row, i) => (
               <div key={i} style={{ display: "grid", gridTemplateColumns: "1.3fr 1.8fr 2fr 1.6fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(183,110,121,0.08)" : "none" }}>
-                <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#5040a0", borderRight: "1px solid rgba(183,110,121,0.08)" }}>{row.t}</div>
+                <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#B76E79", borderRight: "1px solid rgba(183,110,121,0.08)" }}>{row.t}</div>
                 <div style={{ padding: "15px 18px", fontSize: 13, color: "#1a0a1a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.w}</div>
                 <div style={{ padding: "15px 18px", fontSize: 13, color: "#2a1a2a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.d}</div>
                 <div style={{ padding: "15px 18px", fontSize: 12, color: "#B76E79", lineHeight: 1.6 }}>{row.when}</div>
