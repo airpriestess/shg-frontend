@@ -104,16 +104,16 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
       <div style={{ padding:`${Math.round(6*s)}px ${pad}px ${Math.round(4*s)}px`, fontSize:f.xs, color:"#5ab06a", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>✓ Manifested</div>
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:Math.round(4*s), padding:`0 ${pad}px` }}>
         {THREADS.filter(t=>t.done).map((d,i)=>(
-          <div key={i} style={{ background:"#0d1f0d", border:"0.5px solid #2a4a2a", borderRadius:r8, padding:`${Math.round(6*s)}px ${Math.round(8*s)}px` }}>
+          <div key={i} style={{ background:"#1a1008", border:"0.5px solid #4a3020", borderRadius:r8, padding:`${Math.round(6*s)}px ${Math.round(8*s)}px` }}>
             {/* Evidence preview image */}
-            {d.evidence && <div style={{ marginBottom:Math.round(4*s), borderRadius:Math.round(4*s), overflow:"hidden", height:Math.round(32*s), position:"relative", background:"#1a3a1a" }}>
+            {d.evidence && <div style={{ marginBottom:Math.round(4*s), borderRadius:Math.round(4*s), overflow:"hidden", height:Math.round(32*s), position:"relative", background:"#2a1a10" }}>
               <img src={EVIDENCE[d.evidence[0]]} alt="proof" style={{ width:"100%",height:"100%",objectFit:"cover",opacity:0.7 }} onError={e=>e.target.style.display="none"}/>
               <div style={{ position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center" }}>
-                <span style={{ fontSize:Math.max(7,Math.round(14*s)),color:"#5ab06a" }}>✓</span>
+                <span style={{ fontSize:Math.max(7,Math.round(14*s)),color:"#e8b870" }}>✓</span>
               </div>
             </div>}
-            <span style={{ fontSize:Math.max(5,f.xs-1), padding:`1px ${Math.round(4*s)}px`, background:"#1a3a1a", color:"#5ab06a", borderRadius:r20, fontWeight:700 }}>✓ {d.cat}</span>
-            <div style={{ fontSize:f.xs, fontWeight:600, color:"#c8e0c8", marginTop:Math.round(3*s), lineHeight:1.35 }}>{d.desire}</div>
+            <span style={{ fontSize:Math.max(5,f.xs-1), padding:`1px ${Math.round(4*s)}px`, background:"#2a1a10", color:"#e8b870", borderRadius:r20, fontWeight:700 }}>✓ {d.cat}</span>
+            <div style={{ fontSize:f.xs, fontWeight:600, color:"#e8ddd0", marginTop:Math.round(3*s), lineHeight:1.35 }}>{d.desire}</div>
             <div style={{ fontSize:Math.max(5,f.xs-1), color:"#5ab06a", marginTop:Math.round(2*s) }}>{d.days}d · {d.signs} signs</div>
           </div>
         ))}
