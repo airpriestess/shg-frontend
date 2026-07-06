@@ -103,7 +103,11 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
 
 .fade{animation:fadeUp .45s ease both;}
 .wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
-.wm-shimmer{color:#e8b870;}
+.wm-shimmer{
+  background:linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
 .pulse{animation:slowPulse 1.5s ease-in-out infinite;}
 
 /* ── BACKGROUND ─────────────────────────────────────────────── */
