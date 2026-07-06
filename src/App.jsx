@@ -243,7 +243,7 @@ function CheckoutModal({ onClose, onDemo }) {
           {isAnnual && <div style={{marginTop:10,fontSize:12,color:"#8a3060",background:"rgba(183,110,121,0.1)",borderRadius:8,padding:"6px 12px",lineHeight:1.5}}>⚠ Annual plans are paid upfront and <strong>cannot be cancelled</strong> once purchased.</div>}
         </div>
 
-        <div style={{padding:"20px 24px 28px",display:"flex",flexDirection:"column",gap:12}}>
+        <div style={{padding:"20px 24px 28px",display:"flex",flexDirection:"column",gap:12,overflow:"visible"}}>
 
           {/* AUDIO TIER */}
           <div style={{background:"linear-gradient(135deg,#fdf0e8,#f5e0d0)",border:"1.5px solid #B76E7955",borderRadius:16,padding:"18px"}}>
@@ -271,8 +271,8 @@ function CheckoutModal({ onClose, onDemo }) {
           </div>
 
           {/* GODDESS TIER */}
-          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"18px",position:"relative"}}>
-            <div style={{position:"absolute",top:-12,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap"}}>✦ MOST POPULAR</div>
+          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"18px",marginTop:16,position:"relative",overflow:"visible"}}>
+            <div style={{position:"absolute",top:-10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
                 <div style={{fontSize:16,fontWeight:800,color:"#8a2050",marginBottom:2}}>Goddess Tier</div>
@@ -370,10 +370,10 @@ function PricingSection({ onJoin }) {
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16, overflow: "visible" }}>
           {cards.map(c => (
-            <div key={c.id} style={{ background: c.bg.startsWith("linear") || c.bg === "#000" ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, backgroundColor: c.bg === "#000" ? "#000" : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: "24px 22px", position: "relative", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
-              {c.popular && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#f5e0a0,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "4px 14px", borderRadius: 20, letterSpacing: "0.1em", whiteSpace: "nowrap" }}>MOST POPULAR</div>}
+            <div key={c.id} style={{ background: c.bg.startsWith("linear") || c.bg === "#000" ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, backgroundColor: c.bg === "#000" ? "#000" : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: "24px 22px", marginTop: c.popular ? 14 : 0, position: "relative", overflow: "visible", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
+              {c.popular && <div style={{ position: "absolute", top: -10, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#f5e0a0,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "4px 14px", borderRadius: 20, letterSpacing: "0.1em", whiteSpace: "nowrap", zIndex: 5 }}>MOST POPULAR</div>}
               <div style={{ fontSize: 16, fontWeight: 700, color: c.nameColor, marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 32, fontWeight: 900, color: c.priceColor }}>{c.price}</span>
@@ -792,7 +792,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 25%,#d4a090 50%,#c4789a 75%,#B76E79 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
-            {isMobile ? "✦ Lifetime · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  Only 1,000 spots"}
+            {isMobile ? "✦ Lifetime Access · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  Only 1,000 spots"}
           </span>
           <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("lifetime"); }} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
             Claim
