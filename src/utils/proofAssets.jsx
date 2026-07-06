@@ -13,7 +13,7 @@ export const PROOF_ASSETS = [
     type: "Photo Proof",
     icon: null,
     color: "#3a7a4a",
-    thread: "I receive €5,000 from an unexpected source",
+    thread: "I receive £5,000 from an unexpected source",
     audio: "Money Finds Me First",
     date: "2026-07-01",
     render: (size = 56) => ({
@@ -21,7 +21,7 @@ export const PROOF_ASSETS = [
       border: "#2a5a3a",
       content: [
         { text: "✦ TRANSFER RECEIVED", size: 9, color: "#4a9a5a", bold: true, spacing: "0.15em" },
-        { text: "€5,000.00", size: size > 48 ? 22 : 14, color: "#f4ead8", bold: true },
+        { text: "£5,000.00", size: size > 48 ? 22 : 14, color: "#f4ead8", bold: true },
         { text: "Reshma Oracle", size: 10, color: "#4a6a4a" },
       ]
     })
@@ -66,7 +66,7 @@ export const PROOF_ASSETS = [
     label: "Angel Number",
     type: "Sign",
     color: "#C8A050",
-    thread: "I receive €5,000 from an unexpected source",
+    thread: "I receive £5,000 from an unexpected source",
     audio: "Money Finds Me First",
     date: "2026-06-27",
     render: (size = 56) => ({
@@ -83,8 +83,8 @@ export const PROOF_ASSETS = [
     id: "email",
     label: "Email Confirmation",
     type: "Photo Proof",
-    color: "#8a9ab0",
-    thread: "I receive €5,000 from an unexpected source",
+    color: "#B76E79",
+    thread: "I receive £5,000 from an unexpected source",
     audio: "Money Finds Me First",
     date: "2026-06-26",
     render: (size = 56) => ({
@@ -92,7 +92,7 @@ export const PROOF_ASSETS = [
       border: "#1a2030",
       content: [
         { text: "📧", size: size > 48 ? 20 : 13 },
-        { text: "Payment confirmed", size: 9, color: "#8a9ab0" },
+        { text: "Payment confirmed", size: 9, color: "#B76E79" },
       ]
     })
   },
@@ -100,8 +100,8 @@ export const PROOF_ASSETS = [
     id: "calendar",
     label: "Calendar Invite",
     type: "Photo Proof",
-    color: "#9ab0C8",
-    thread: "I receive €5,000 from an unexpected source",
+    color: "#d4a090",
+    thread: "I receive £5,000 from an unexpected source",
     audio: "I Have Always Been The Prize",
     date: "2026-06-25",
     render: (size = 56) => ({
@@ -109,7 +109,7 @@ export const PROOF_ASSETS = [
       border: "#1a2040",
       content: [
         { text: "📅", size: size > 48 ? 20 : 13 },
-        { text: "Jul 7 · Meeting", size: 9, color: "#9ab0C8" },
+        { text: "Jul 7 · Meeting", size: 9, color: "#d4a090" },
       ]
     })
   },
@@ -118,7 +118,7 @@ export const PROOF_ASSETS = [
     label: "Receipt",
     type: "Photo Proof",
     color: "#4a9a5a",
-    thread: "I receive €5,000 from an unexpected source",
+    thread: "I receive £5,000 from an unexpected source",
     audio: "Money Finds Me First",
     date: "2026-06-24",
     render: () => ({
@@ -126,7 +126,7 @@ export const PROOF_ASSETS = [
       border: "#1a401a",
       content: [
         { text: "RECEIPT", size: 9, color: "#4a9a5a", bold: true, spacing: "0.15em" },
-        { text: "€5,000.00", size: 14, color: "#f4ead8", bold: true },
+        { text: "£5,000.00", size: 14, color: "#f4ead8", bold: true },
       ]
     })
   },
