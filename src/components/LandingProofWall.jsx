@@ -2,8 +2,8 @@
    Same gold ombre, same category gradient cards, same media grid. Static demo data. */
 
 const OMBRE_BG = "linear-gradient(165deg,#f5e0a0 0%,#e8b870 20%,#d4a090 45%,#c4789a 72%,#B76E79 100%)";
-const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#ffc8e0,#f8a8c8)", "Money":"linear-gradient(135deg,#c8ecc8,#a0d8a0)", "Beauty":"linear-gradient(135deg,#fff8a0,#f8e860)", "Identity":"linear-gradient(135deg,#d8c8ff,#c0a8f0)", "Sleep":"linear-gradient(135deg,#cfe8ff,#a8d0f8)" };
-const CAT_COLOR = { "SP & Love":"#c84880", "Money":"#1a7030", "Beauty":"#9a7800", "Identity":"#6030a0", "Sleep":"#0a5090" };
+const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
+const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#8a5030", "Beauty":"#B76E79", "Identity":"#8a3050", "Sleep":"#6a2038" };
 const PC = { card:"rgba(255,248,240,0.92)", text:"#1a1218", mu:"#3a2830", dim:"#5a4048" };
 
 const WALL = [
