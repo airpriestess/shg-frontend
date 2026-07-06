@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { CSS, T } from "./design/tokens.js";
-import { Btn, Card, Rings, WaveForm, Pill, Modal, FormField, Label, ProgressBar } from "./components/UI.jsx";
+import { Btn, Card, Rings, WaveForm, Pill, Modal, FormField, Label, ProgressBar, ArrowIcon, ExternalArrowIcon } from "./components/UI.jsx";
 import AudioVault from "./pages/AudioVault.jsx";
 import ProofThreads from "./pages/ProofThreads.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -189,19 +189,19 @@ const TIERS = {
     name: "Audio Tier", emoji: "🔊",
     monthly: "£19", annual: "£143", annualNote: "≈ £11.99/mo · 2 months free",
     features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","4 new tracks every week","All desire categories","No ads. Ever."],
-    cta: (annual)=> annual ? "Join Audio — £143/year →" : "Join Audio Tier — £19/month →",
+    cta: (annual)=> annual ? "Join Audio — £143/year" : "Join Audio Tier — £19/month",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
     monthly: "£33", annual: "£317", annualNote: "≈ £26.40/mo · 2 months free",
     features: ["Everything in Audio Tier","ProofOS — manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall — every win, forever","Early access drops — 48hrs ahead","Analytics board — watch your evidence build"],
-    cta: (annual)=> annual ? "Activate Goddess — £317/year →" : "Activate Goddess Tier — £33/month →",
+    cta: (annual)=> annual ? "Activate Goddess — £317/year" : "Activate Goddess Tier — £33/month",
   },
   lifetime: {
     name: "Lifetime Access", emoji: "♾",
     monthly: "£500", annual: "£500", annualNote: "One payment. Forever.",
     features: ["Everything in Goddess Tier","Every future audio ever released","Every future feature — included","No monthly billing, ever","1,000 spots only"],
-    cta: ()=> "Claim Lifetime Access — £500 →",
+    cta: ()=> "Claim Lifetime Access — £500",
   },
 };
 
@@ -265,8 +265,8 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#ede8ff,#d4c8ff)",border:"none",borderRadius:10,color:"#3a1a80",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em"}}>
-              {TIERS.audio.cta(isAnnual)}
+            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#ede8ff,#d4c8ff)",border:"none",borderRadius:10,color:"#3a1a80",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+              {TIERS.audio.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
 
@@ -291,8 +291,8 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)"}}>
-              {TIERS.goddess.cta(isAnnual)}
+            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+              {TIERS.goddess.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
 
@@ -315,7 +315,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)",backgroundSize:"300%",backgroundPosition:"center",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,160,0,0.35)"}}>{TIERS.lifetime.cta()}</button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)",backgroundSize:"300%",backgroundPosition:"center",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,160,0,0.35)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
@@ -327,7 +327,84 @@ function CheckoutModal({ onClose, onDemo }) {
 }
 
 
-/* ── HERO MARQUEE — 100 lines, random flash ────────────────────────────────── */
+/* ── PRICING SECTION — lives on the page itself, not just inside the modal ──── */
+function PricingSection({ onJoin }) {
+  const isMobile = useMobile();
+  const [billing, setBilling] = useState("monthly");
+  const isAnnual = billing === "annual";
+  const goStripe = (tier) => {
+    const key = isAnnual && tier !== "lifetime" ? tier + "_annual" : tier;
+    window.open(STRIPE[key] || STRIPE[tier], "_blank");
+  };
+
+  const cards = [
+    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : null, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "#fff", border: "rgba(183,110,121,0.3)", priceColor: "#B76E79", ctaBg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", ctaColor: "#7a3020" },
+    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fff4e4,#ffe8dc)", border: "#B76E79", priceColor: "#B76E79", ctaBg: "linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "linear-gradient(160deg,#fffde8,#fff8cc)", border: "#c8a87066", priceColor: "#a08020", ctaBg: "linear-gradient(90deg,#b8860b,#d4a017,#f0c030,#d4a017,#b8860b)", ctaColor: "#000" },
+  ];
+
+  return (
+    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#fdf0e8", width: "100%" }}>
+      <div style={{ maxWidth: 1040, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ fontSize: isMobile ? 12 : 13, fontWeight: 700, color: "#B76E79", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
+          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#1a0818", lineHeight: 1.1 }}>
+            Full access. <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>No download needed.</span>
+          </h2>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
+          <div style={{ display: "flex", background: "rgba(0,0,0,0.06)", borderRadius: 50, padding: 3 }}>
+            {["monthly", "annual"].map(b => (
+              <button key={b} onClick={() => setBilling(b)} style={{
+                padding: "9px 22px", borderRadius: 50, border: "none", cursor: "pointer",
+                fontSize: 13, fontWeight: 700, letterSpacing: "0.04em",
+                background: billing === b ? "#fff" : "transparent",
+                color: billing === b ? "#8a2050" : "#a09098",
+                boxShadow: billing === b ? "0 2px 8px rgba(0,0,0,0.12)" : "none",
+                fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 6,
+              }}>
+                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontSize: 11, fontWeight: 800 }}>SAVE 25%</span></>}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
+          {cards.map(c => (
+            <div key={c.id} style={{ background: c.bg.startsWith("linear") ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: "24px 22px", position: "relative", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
+              {c.popular && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#f5e0a0,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "4px 14px", borderRadius: 20, letterSpacing: "0.1em", whiteSpace: "nowrap" }}>MOST POPULAR</div>}
+              <div style={{ fontSize: 16, fontWeight: 700, color: "#1a0818", marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{c.name}</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
+                <span style={{ fontSize: 32, fontWeight: 900, color: c.priceColor }}>{c.price}</span>
+                <span style={{ fontSize: 13, color: "#8a7268" }}>{c.id === "lifetime" ? "one time" : isAnnual ? "/year" : "/month"}</span>
+              </div>
+              {c.note && <div style={{ fontSize: 11, color: "#a08868", marginBottom: 14 }}>{c.note}</div>}
+              {!c.note && <div style={{ marginBottom: 14 }} />}
+              <div style={{ marginBottom: 18 }}>
+                {c.features.map((f, i) => (
+                  <div key={i} style={{ fontSize: 12.5, color: f.includes("✦") ? "#B76E79" : "#4a3830", marginBottom: 7, paddingLeft: 14, position: "relative", lineHeight: 1.5, fontWeight: f.includes("✦") ? 700 : 400 }}>
+                    <span style={{ position: "absolute", left: 0, color: "#B76E79" }}>·</span>{f}
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => goStripe(c.id)} className="cta-shake" style={{ width: "100%", padding: "13px", backgroundImage: c.ctaBg, backgroundSize: c.id === "lifetime" ? "300%" : undefined, backgroundPosition: c.id === "lifetime" ? "center" : undefined, border: "none", borderRadius: 10, color: c.ctaColor, fontSize: 13, fontWeight: 800, cursor: "pointer", fontFamily: "'Jost',sans-serif", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
+                {c.cta}<ArrowIcon size={13} />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: 24, textAlign: "center", fontSize: 12, color: "#8a7268", lineHeight: 1.8 }}>
+          Monthly: cancel anytime · Annual: paid upfront, non-refundable · Stripe secure checkout<br />
+          No app to download — works in any browser, on any device
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 const MARQUEE_ITEMS = [
   {t:"He texts me first. Obviously.",c:"#B76E79"},{t:"Money finds me first.",c:"#c8a870"},{t:"Gorgeous is my default.",c:"#d4a090"},
   {t:"My DNA is shifting. Right now.",c:"#9a8ad0"},{t:"My highest timeline. Activated.",c:"#c8a870"},{t:"He's obsessed. Of course he is.",c:"#B76E79"},
@@ -754,8 +831,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <button onClick={()=>{onDemo?.();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"15px 16px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:800,cursor:"pointer",textAlign:"center",marginBottom:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
               👁 Preview the Dashboard
             </button>
-            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"12px 16px",background:"rgba(183,110,121,0.1)",border:"1px solid rgba(183,110,121,0.25)",borderRadius:10,color:"#f2ece4",fontSize:14,fontWeight:600,cursor:"pointer",marginBottom:8,textAlign:"center",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
-              Sign in →
+            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ display:"flex",width:"100%",padding:"12px 16px",background:"rgba(183,110,121,0.1)",border:"1px solid rgba(183,110,121,0.25)",borderRadius:10,color:"#f2ece4",fontSize:14,fontWeight:600,cursor:"pointer",marginBottom:8,alignItems:"center",justifyContent:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
+              Sign in<ArrowIcon size={12}/>
             </button>
             <div style={{ height:"0.5px",background:"rgba(183,110,121,0.18)",margin:"10px 0" }}/>
             {[
@@ -767,11 +844,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             ))}
             <div style={{ height:"0.5px",background:"rgba(183,110,121,0.18)",margin:"10px 0" }}/>
             {[
-              ["Pricing", ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}],
-              ["ProofOS ✦", ()=>{document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}],
-              ["YouTube ↗", ()=>{window.open("https://www.youtube.com/@Reshma.Oracle","_blank");setMenuOpen(false);}],
-            ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",borderRadius:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}</button>
+              ["Pricing", ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
+              ["ProofOS ✦", ()=>{document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
+              ["YouTube", ()=>{window.open("https://www.youtube.com/@Reshma.Oracle","_blank");setMenuOpen(false);}, true],
+            ].map(([l,fn,ext],i)=>(
+              <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
             ))}
           </div>
         </>
@@ -907,8 +984,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <button onClick={onJoin} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", width: isMobile ? "100%" : "auto" }}>
               START LISTENING ✦
             </button>
-            <button onClick={() => { window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank"); }} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em" }}>
-              LIFETIME ACCESS →
+            <button onClick={() => { window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank"); }} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #B76E7966", borderRadius: 14, color: "#B76E79", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+              LIFETIME ACCESS<ArrowIcon size={14}/>
             </button>
           </div>
           <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 20 }}>{`Audio Tier ${TIERS.audio.monthly}/mo · Goddess Tier ${TIERS.goddess.monthly}/mo · Cancel anytime`}</div>
@@ -1044,7 +1121,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <div style={{ fontSize: 10, fontWeight: 800, color: "#a04040", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✗ Old assumption</div>
                   <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 500, lineHeight: 1.5 }}>{o}</div>
                 </div>
-                <div style={{ alignSelf: "center", fontSize: 18, color: "#B76E79", fontWeight: 800, transform: isMobile?"rotate(90deg)":"none" }}>→</div>
+                <div style={{ alignSelf: "center", transform: isMobile?"rotate(90deg)":"none" }}><ArrowIcon size={18} color="#B76E79"/></div>
                 <div style={{ flex: 1, background: "linear-gradient(135deg,#fff4e4,#ffe8dc)", border: "1.5px solid rgba(183,110,121,0.4)", borderRadius: 14, padding: "16px 18px" }}>
                   <div style={{ fontSize: 10, fontWeight: 800, color: "#B76E79", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✦ New assumption</div>
                   <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 700, lineHeight: 1.5 }}>{nw}</div>
@@ -1642,6 +1719,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
       </div>
 
+      {/* PRICING */}
+      <PricingSection onJoin={onJoin} />
+
       {/* FAQ */}
       <FAQSection />
 
@@ -1656,7 +1736,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <p style={{ fontSize: 17, color: "#000000", marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
             In that state, reality shows you the proof of what you already know.
           </p>
-          <button onClick={onJoin} className="cta-shake" style={{ padding: "18px 52px", background: "linear-gradient(135deg,#d4a090,#B76E79)", boxShadow: "0 0 40px rgba(183,110,121,0.4)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56, fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>Start your shift →</button>
+          <button onClick={onJoin} className="cta-shake" style={{ padding: "18px 52px", background: "linear-gradient(135deg,#d4a090,#B76E79)", boxShadow: "0 0 40px rgba(183,110,121,0.4)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 800, cursor: "pointer", minHeight: 56, fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10 }}>Start your shift<ArrowIcon size={16}/></button>
           <div style={{ marginTop: 12, fontSize: 14, color: "#111111" }}>Cancel anytime · No download · Any device</div>
         </div>
       </div>
