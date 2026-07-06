@@ -1157,7 +1157,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* OLD ASSUMPTION → NEW ASSUMPTION */}
-      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "#fdf0e8", width: "100%" }}>
+      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#fdf0e8 0%,#d8dce8 50%,#a8b0c8 100%)", width: "100%" }}>
         <div style={{ padding: isMobile?"0 18px":"0 24px", maxWidth: 860, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14 }}>The mechanism</div>
@@ -1401,7 +1401,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
             {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#fdf0e8", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fdf0e8 0%,#f5d8dc 50%,#d89aa4 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
