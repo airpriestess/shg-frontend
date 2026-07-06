@@ -82,6 +82,106 @@ const TRACKS = [
   { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Identity",  format:"Subliminal",    tier:"audio",   isNew:true,  hasAudio:false },
   { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Identity",  format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
   { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Identity",  format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
+  { id:10, title:"My face is his favourite view", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:11, title:"Even my details are exquisite", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:12, title:"My mornings open like a film I star in", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:13, title:"Youth keeps renewing its lease in my body", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:14, title:"His eyes follow me around the room", artist:"Reshma Oracle", dur:"15:00", cat:"Erosmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:15, title:"I make rich decisions on instinct", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:16, title:"I chose me first and he followed", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:17, title:"I take up space like it was saved for me", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:18, title:"Every season of my life outdoes the last", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:19, title:"I am the vision board breathing", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:20, title:"Loving me is the easiest thing he does", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:21, title:"My body and I are in perfect agreement", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:22, title:"Barefaced is my boldest look", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:23, title:"My skin is clear calm and committed", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:24, title:"Every day is a payday somewhere in my life", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:25, title:"Peace is my personality now", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:26, title:"His actions and his words tell the same story", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:27, title:"The right audience found me and keeps growing", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:28, title:"My name gets drawn from every hat", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:29, title:"My biology takes orders from my imagination", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:30, title:"My face belongs in campaigns and it knows it", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:31, title:"My body is the outfit and everything else is accessories", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:32, title:"Love and money arrived holding hands", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:33, title:"Every area of my life said yes at the same time", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:34, title:"Another zero joined my account balance", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:35, title:"He plans our future in present tense", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:36, title:"I negotiate like a woman with options", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:37, title:"Life keeps slipping gifts into my pockets", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:38, title:"My beauty deepens like a vintage year", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:39, title:"I became my own dream girl", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:40, title:"My face belongs in campaigns and it knows it", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:41, title:"He speaks my love language fluently", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:42, title:"My smile is my most expensive feature", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:43, title:"I stumble into blessings on ordinary errands", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:44, title:"My calendar fills with dream clients", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:45, title:"I am the centre of his world and he built it that way", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:46, title:"Strength looks stunning on me", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:47, title:"My standards raised and money rose to meet them", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:48, title:"Compliments follow me like perfume", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:49, title:"My cells drink light like champagne", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:50, title:"I live in the home I once screenshotted", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:51, title:"He looks at me like I hung the moon", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:52, title:"First class is my natural habitat", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:53, title:"My empire pays me in freedom", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:54, title:"I am the muse and the masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:55, title:"My body sculpts itself while I rest", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:56, title:"My face is my fortune and it keeps appreciating", artist:"Reshma Oracle", dur:"20:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:57, title:"Every cell in me is tuned to gorgeous", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:58, title:"Wealth is written into my name", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:59, title:"He looks at me like I hung the moon", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:60, title:"My inner world is a luxury residence", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:61, title:"I fall asleep loved and wake up chosen", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:62, title:"I am lucky in love specifically", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:63, title:"My side profile is a masterpiece", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:64, title:"My whole life entered its golden era", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:65, title:"I am the CEO of a business that adores me", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:66, title:"The best outcomes are reserved under my name", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:67, title:"I am the woman I answer to", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:68, title:"I am on the payroll of the universe", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:69, title:"Golden hour follows me around", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:70, title:"My curves arrived exactly as ordered", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:71, title:"I am his peace and his favourite place", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:72, title:"Money multiplies the moment it reaches my hands", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:73, title:"Vitality pours through every cell of me", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:74, title:"My body speaks a language everyone wants to learn", artist:"Reshma Oracle", dur:"15:00", cat:"Erosmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:75, title:"My body moves like it knows it is admired", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:76, title:"My eyes are the first thing people fall for", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:77, title:"He closes the distance and comes back to me", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:78, title:"He spoils me because he adores me", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:79, title:"I am the name they put on the waitlist for", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:80, title:"I wake up inside the life I used to dream about", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:81, title:"The universe treats me like its favourite", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:82, title:"Money is calm and safe in my life now", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:83, title:"A large sum is already on its way to me", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:84, title:"My face looks lifted sculpted and snatched", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:85, title:"He wants forever and he says so out loud", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:86, title:"My phone lights up and it is always him", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:87, title:"Certainty is my natural state now", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:88, title:"My body runs light and burns bright", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:89, title:"I won the genetic lottery and it shows", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:90, title:"Every light turns green when I arrive", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:91, title:"Every room notices the moment I walk in", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:92, title:"I am the rich woman I decided to become", artist:"Reshma Oracle", dur:"20:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:93, title:"I wake up prettier than the day before", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:94, title:"He cannot get me out of his head", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:95, title:"I glow up and he falls deeper", artist:"Reshma Oracle", dur:"20:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:96, title:"Unexpected money keeps finding me", artist:"Reshma Oracle", dur:"15:00", cat:"Money & Luxury", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:97, title:"My hair is thick and my glow is loud", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:98, title:"I am my own favourite person", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:99, title:"Good things chase me down", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:100, title:"Money comes to me for being exactly who I am", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:101, title:"Everything I touch turns golden", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:102, title:"Nothing outside me decides how I feel about me", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:103, title:"My body is becoming its most beautiful shape", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:104, title:"Everything works out in my favour without exception", artist:"Reshma Oracle", dur:"15:00", cat:"Lucky Girl Forever", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:105, title:"He is obsessed with coming home to me", artist:"Reshma Oracle", dur:"15:00", cat:"SP & Love", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:106, title:"My business is scaling while I sleep", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:107, title:"My face is rearranging itself into perfection", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:108, title:"I glow like I am lit from the inside", artist:"Reshma Oracle", dur:"15:00", cat:"Beauty & Glow", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:109, title:"My cells are rewriting me younger every night", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
 ];
 const FORMATS = ["All","Melodic House","Melodic Calm","Subliminal","EMDR","Voice Only","528hz","Reiki"];
 
@@ -104,7 +204,7 @@ const INIT_THREADS = [
 
 // Category → proof wall colours (matches landing Proof Wall)
 const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "DNA":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
-const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "DNA":"#8a3050", "Sleep":"#6a2840" };
+const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "DNA":"#8a3050", "Sleep":"#6a2840", "Beauty & Glow":"#c4789a", "Facemaxxing":"#d4a090", "Bodymaxxing":"#B76E79", "Money & Luxury":"#e8b870", "Businessmaxxing":"#c9963a", "DNAmaxxing":"#8a3050", "Selfmaxxing":"#8a5068", "Erosmaxxing":"#a8506a", "Lifemaxxing":"#e0a868", "Lucky Girl Forever":"#e8b870", "Sovereignmaxxing":"#6a2840" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -350,7 +450,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   // ── DESKTOP ──────────────────────────────────────────────────────────────
   if (isDesktop) return (
-    <div style={{ width:"100%",height:"100%",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
+    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
@@ -739,7 +839,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C }) {
-  const cats = ["All","Liked","SP & Love","Money","Beauty","Sleep","DNA","Identity"];
+  const cats = ["All","Liked","SP & Love","Beauty & Glow","Facemaxxing","Bodymaxxing","Money & Luxury","Businessmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Lifemaxxing","Lucky Girl Forever","Sovereignmaxxing","Sleep","Identity"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   return (
