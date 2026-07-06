@@ -863,9 +863,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
-            <span style={{ fontSize: "clamp(30px,8vw,72px)", background: "linear-gradient(135deg,#e8c4a0 0%,#d4a090 35%,#c49090 60%,#B76E79 85%,#e8c4a0 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "block", }}>Self Hypnosis Goddess</span>
-            <span style={{ fontSize: "clamp(22px,5.5vw,52px)", color: "#ffffff", fontWeight: 300, letterSpacing: "0.03em", display: "block", marginTop: 4 }}>Audio Library</span>
-            <span style={{ fontSize: "clamp(14px,2.5vw,22px)", color: "#B76E79", fontWeight: 400, letterSpacing: "0.08em", display: "block", marginTop: 2 }}>(+ ProofOS)</span>
+            <span style={{ fontSize: "clamp(30px,8vw,72px)", color: "#e8b870", display: "block", }}>Self Hypnosis Goddess</span>
+            <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(20px,4.5vw,42px)", color: "#f2ece4", fontWeight: 500, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#B76E79", fontWeight: 400 }}>+ ProofOS</span></span>
           </h1>
 
           {/* SPOTIFY TAGLINE */}
