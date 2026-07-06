@@ -188,8 +188,9 @@ const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
     monthly: "£19", annual: "£143", annualNote: "≈ £11.99/mo · 2 months free",
+    trialNote: "3-day free trial, then £19/mo",
     features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","4 new tracks every week","All desire categories","No ads. Ever."],
-    cta: (annual)=> annual ? "Join Audio — £143/year" : "Join Audio Tier — £19/month",
+    cta: (annual)=> annual ? "Join Audio — £143/year" : "Start 3-Day Free Trial",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
@@ -338,7 +339,7 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : null, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", border: "#B76E7955", nameColor: "#2a1210", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#4a2820", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
+    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : TIERS.audio.trialNote, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", border: "#B76E7955", nameColor: "#2a1210", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#4a2820", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
     { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fce4ec,#f5cfdc)", border: "#B76E79", nameColor: "#1a0818", muteColor: "#B76E79", priceColor: "#B76E79", periodColor: "#8a7268", featureColor: "#6a2848", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e0a0b8,#c4789a,#B76E79)", ctaColor: "#000", popular: true },
     { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "#000", border: "#e8b87066", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)", ctaColor: "#000" },
   ];
@@ -878,8 +879,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
-            <span className="wm-shimmer" style={{ fontSize: "clamp(30px,8vw,72px)", display: "block", }}>Self Hypnosis Goddess</span>
-            <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(20px,4.5vw,42px)", color: "#f2ece4", fontWeight: 700, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#B76E79", fontWeight: 600 }}>(+ ProofOS)</span></span>
+            <span className="wm-shimmer" style={{ fontSize: "clamp(26px,6.5vw,56px)", display: "block", }}>Self Hypnosis Goddess</span>
+            <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(17px,3.8vw,34px)", color: "#f2ece4", fontWeight: 700, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#B76E79", fontWeight: 600 }}>(+ ProofOS)</span></span>
           </h1>
 
           {/* SPOTIFY TAGLINE */}
