@@ -633,7 +633,7 @@ function FAQSection() {
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4vw,48px)",color:"#1a0818",lineHeight:1.2 }}>FAQs</h2>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#1a0818",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
@@ -1004,7 +1004,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
         <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
-        <h2 className="wm" style={{ fontSize:"clamp(30px,4.6vw,54px)", color:"#000", lineHeight:1.12, marginBottom:20 }}>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#000", lineHeight:1.12, marginBottom:20 }}>
           Shift into the state of<br/>
           <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
@@ -1043,7 +1043,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:56 }}>
             <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:900, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
-            <h2 className="wm" style={{ fontSize:"clamp(32px,5vw,64px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
+            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
               Set intention.<br/>
               <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
             </h2>
@@ -1094,7 +1094,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ padding: isMobile?"0 18px":"0 24px", maxWidth: 860, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14 }}>The mechanism</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", color: "#000", lineHeight: 1.12, marginBottom: 16 }}>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000", lineHeight: 1.12, marginBottom: 16 }}>
               Every audio replaces<br/>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>an old assumption with a new one.</span>
             </h2>
@@ -1188,7 +1188,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ padding: isMobile ? "0 18px" : "0 24px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 16 }}>Read this if you're stuck</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,54px)", color: "#000000", lineHeight: 1.1, marginBottom: 20 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000000", lineHeight: 1.1, marginBottom: 20 }}>
             There's a reason<br />
             it hasn't clicked yet.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>And it's not your effort.</span>
@@ -1275,7 +1275,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,52px)", lineHeight: 1.1, marginBottom: 16 }}>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16 }}>
               <span style={{ color: "#000000" }}>Introducing </span>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
             </h2>
@@ -1391,7 +1391,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,60px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
             <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#2a1210", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
@@ -1490,7 +1490,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ maxWidth:760, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:40 }}>
             <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Reshma Oracle · Why I built this</div>
-            <h2 className="wm" style={{ fontSize:"clamp(28px,4.2vw,52px)", color:"#f2ece4", lineHeight:1.15, marginBottom:24, fontWeight:400 }}>
+            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#f2ece4", lineHeight:1.15, marginBottom:24, fontWeight:400 }}>
               The world is bingeing<br/>
               <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>on manifestation content.</span>
             </h2>
@@ -1639,7 +1639,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ padding: "0 clamp(16px,4vw,24px) 70px", maxWidth: 720, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Inside the vault</div>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4vw,44px)", color: "#000000", lineHeight: 1.15, marginBottom: 14 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000000", lineHeight: 1.15, marginBottom: 14 }}>
             Three formats.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>One voice. Your subconscious.</span>
           </h2>
@@ -1684,7 +1684,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         {/* TECHNOLOGY TABLE */}
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 13, color: "#000000", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>The technology</div>
-          <h2 className="wm" style={{ fontSize: "clamp(24px,4vw,48px)", color: "#000000", marginBottom: 12 }}>What's inside every audio.</h2>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000000", marginBottom: 12 }}>What's inside every audio.</h2>
           <p style={{ fontSize: isMobile?15:17, color: "#000000", maxWidth: 600, margin: "0 auto", lineHeight: 1.7 }}>Every track is layered with multiple technologies working simultaneously to activate your brainwave state and install the new self-concept at depth.</p>
         </div>
         {isMobile ? (
@@ -1765,7 +1765,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: T.border }}>
         <Rings count={3} />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,5vw,52px)", color: "#000000", lineHeight: 1.2, marginBottom: 24 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000000", lineHeight: 1.2, marginBottom: 24 }}>
             Wake up knowing.<br />
             <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
           </h2>
