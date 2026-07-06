@@ -1,5 +1,6 @@
 /* AnalyticsBoard — ONE component, used in BOTH the portal dashboard (HomeTab)
    and the landing-page preview. Single source of truth for the analytics UI. */
+import { ArrowIcon } from "./UI.jsx";
 
 const R = "#B76E79", P = "#d4a090";
 const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
@@ -80,7 +81,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
             <span key={i} style={{ fontSize:9.5*fs, fontWeight:800, padding:"3px 9px", borderRadius:20, background:C.card2, color, border:`1px solid ${color}33` }}>{name} · {n}</span>
           ))}
         </div>
-        {onViewProof && <span onClick={onViewProof} style={{ fontSize:10.5*fs, color:R, fontWeight:800, cursor:"pointer", textDecoration:"underline", whiteSpace:"nowrap" }}>View proof wall →</span>}
+        {onViewProof && <span onClick={onViewProof} style={{ fontSize:10.5*fs, color:R, fontWeight:800, cursor:"pointer", textDecoration:"underline", whiteSpace:"nowrap", display:"inline-flex", alignItems:"center", gap:4 }}>View proof wall<ArrowIcon size={10} style={{textDecoration:"none"}}/></span>}
       </div>
     </div>
   );
