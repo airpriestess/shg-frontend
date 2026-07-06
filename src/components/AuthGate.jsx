@@ -53,7 +53,7 @@ export default function AuthGate({ onSuccess }) {
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#000", padding: 24 }}>
       <div style={{ width: "100%", maxWidth: 400, textAlign: "center" }}>
         {/* Logo */}
-        <div className="wm" style={{ fontSize: 28, marginBottom: 6 }}>Self Hypnosis Goddess</div>
+        <div className="wm wm-shimmer" style={{ fontSize: 28, marginBottom: 6 }}>Self Hypnosis Goddess</div>
         <div style={{ fontSize: 12, color: "#8a6858", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", marginBottom: 36 }}>
           {mode === "signin" ? "Welcome back" : mode === "signup" ? "Create your account" : "Reset password"}
         </div>
