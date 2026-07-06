@@ -796,7 +796,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* NAV */}
       <nav style={{ position: "fixed", top: isMobile ? 36 : 40, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
-        <span className="wm wm-shimmer" style={{ fontSize: 18, fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap" }}>Self Hypnosis Goddess</span>
+        <span className="wm wm-shimmer" style={{ fontSize: "clamp(13px,3.8vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "56vw" : "none" }}>Self Hypnosis Goddess</span>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           {/* Desktop nav */}
           {!isMobile && (<>
@@ -1019,6 +1019,58 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
 
+      {/* HEMI-SYNC — how the audio actually shifts the brain */}
+      <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
+          <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#1a0818", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
+          <p style={{ fontSize: isMobile?13.5:15, color:"#3a2018", lineHeight:1.75, maxWidth:560, margin:"0 auto" }}>
+            Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
+          </p>
+        </div>
+        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", padding: isMobile ? "24px 18px" : "36px 32px", position: "relative" }}>
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#B76E7910,transparent 70%)", pointerEvents: "none" }}/>
+          <div style={{ display:"flex", justifyContent:"center", gap: isMobile?24:56, position:"relative", flexWrap:"wrap" }}>
+            {/* BEFORE — beta, unsynced */}
+            <div style={{ textAlign:"center" }}>
+              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
+                <defs>
+                  <linearGradient id="brainL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
+                </defs>
+                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainL)" strokeWidth="2.5" opacity="0.55"/>
+                <line x1="70" y1="20" x2="70" y2="114" stroke="#B76E79" strokeWidth="1" opacity="0.35" strokeDasharray="2 3"/>
+                <path d="M30 58 Q38 48 46 58 Q54 68 62 58" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
+                <path d="M30 72 Q40 80 48 72 Q56 64 64 72" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
+                <path d="M78 62 Q84 74 92 62 Q98 52 106 62" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
+                <path d="M78 76 Q86 68 94 78 Q100 86 106 76" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
+              </svg>
+              <div style={{ fontSize:11, color:"#8a5030", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Beta · Awake</div>
+              <div style={{ fontSize:10.5, color:"#7a5040", marginTop:2 }}>Hemispheres out of sync</div>
+            </div>
+            {/* ARROW */}
+            <div style={{ display:"flex", alignItems:"center", color:"#B76E79" }}>
+              <ArrowIcon size={22}/>
+            </div>
+            {/* AFTER — theta, hemi-synced */}
+            <div style={{ textAlign:"center" }}>
+              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
+                <defs>
+                  <linearGradient id="brainR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
+                  <radialGradient id="brainGlow"><stop offset="0" stopColor="#f5e0a0" stopOpacity="0.5"/><stop offset="1" stopColor="#B76E79" stopOpacity="0"/></radialGradient>
+                </defs>
+                <circle cx="70" cy="68" r="58" fill="url(#brainGlow)"/>
+                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainR)" strokeWidth="3"/>
+                <line x1="70" y1="20" x2="70" y2="114" stroke="#f5e0a0" strokeWidth="1" opacity="0.5" strokeDasharray="2 3"/>
+                <path d="M30 65 Q40 55 50 65 Q60 75 70 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
+                <path d="M70 65 Q80 55 90 65 Q100 75 110 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
+                <circle cx="70" cy="65" r="3.5" fill="#f5e0a0"/>
+              </svg>
+              <div style={{ fontSize:11, color:"#B76E79", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Theta · 4–8Hz</div>
+              <div style={{ fontSize:10.5, color:"#8a3050", marginTop:2 }}>Hemi-synced · one wave</div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* THE MECHANISM — how it does that */}
       <div style={{ padding: isMobile?"20px 18px 40px":"20px 24px 56px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
         <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>How</div>
@@ -1130,58 +1182,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <MaxxingCarousel cats={cats} />
 
 
-      {/* HEMI-SYNC — how the audio actually shifts the brain */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 20 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
-          <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#1a0818", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
-          <p style={{ fontSize: isMobile?13.5:15, color:"#3a2018", lineHeight:1.75, maxWidth:560, margin:"0 auto" }}>
-            Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
-          </p>
-        </div>
-        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", padding: isMobile ? "24px 18px" : "36px 32px", position: "relative" }}>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#B76E7910,transparent 70%)", pointerEvents: "none" }}/>
-          <div style={{ display:"flex", justifyContent:"center", gap: isMobile?24:56, position:"relative", flexWrap:"wrap" }}>
-            {/* BEFORE — beta, unsynced */}
-            <div style={{ textAlign:"center" }}>
-              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
-                <defs>
-                  <linearGradient id="brainL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
-                </defs>
-                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainL)" strokeWidth="2.5" opacity="0.55"/>
-                <line x1="70" y1="20" x2="70" y2="114" stroke="#B76E79" strokeWidth="1" opacity="0.35" strokeDasharray="2 3"/>
-                <path d="M30 58 Q38 48 46 58 Q54 68 62 58" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
-                <path d="M30 72 Q40 80 48 72 Q56 64 64 72" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
-                <path d="M78 62 Q84 74 92 62 Q98 52 106 62" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
-                <path d="M78 76 Q86 68 94 78 Q100 86 106 76" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
-              </svg>
-              <div style={{ fontSize:11, color:"#8a5030", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Beta · Awake</div>
-              <div style={{ fontSize:10.5, color:"#7a5040", marginTop:2 }}>Hemispheres out of sync</div>
-            </div>
-            {/* ARROW */}
-            <div style={{ display:"flex", alignItems:"center", color:"#B76E79" }}>
-              <ArrowIcon size={22}/>
-            </div>
-            {/* AFTER — theta, hemi-synced */}
-            <div style={{ textAlign:"center" }}>
-              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
-                <defs>
-                  <linearGradient id="brainR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
-                  <radialGradient id="brainGlow"><stop offset="0" stopColor="#f5e0a0" stopOpacity="0.5"/><stop offset="1" stopColor="#B76E79" stopOpacity="0"/></radialGradient>
-                </defs>
-                <circle cx="70" cy="68" r="58" fill="url(#brainGlow)"/>
-                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainR)" strokeWidth="3"/>
-                <line x1="70" y1="20" x2="70" y2="114" stroke="#f5e0a0" strokeWidth="1" opacity="0.5" strokeDasharray="2 3"/>
-                <path d="M30 65 Q40 55 50 65 Q60 75 70 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
-                <path d="M70 65 Q80 55 90 65 Q100 75 110 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
-                <circle cx="70" cy="65" r="3.5" fill="#f5e0a0"/>
-              </svg>
-              <div style={{ fontSize:11, color:"#B76E79", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Theta · 4–8Hz</div>
-              <div style={{ fontSize:10.5, color:"#8a3050", marginTop:2 }}>Hemi-synced · one wave</div>
-            </div>
-          </div>
-        </div>
-      </div>
       {/* THE PROBLEM SECTION — full-bleed peach */}
       <div style={{ padding: isMobile ? "48px 0" : "80px 0", background: "linear-gradient(160deg,#fce4d0 0%,#fbd8c2 50%,#fce4d0 100%)", width: "100%" }}>
       <div style={{ padding: isMobile ? "0 18px" : "0 24px", maxWidth: 1100, margin: "0 auto" }}>
@@ -1540,13 +1540,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* Left — Reshma's voice */}
             <div style={{ borderLeft: "3px solid #B76E79", paddingLeft: 28 }}>
               <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a1a30", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a1210", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
                 "I got obsessed with the science of why some people shift fast and others stay stuck for years. The answer wasn't mindset. It wasn't effort. It was depth.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a1a30", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a1210", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
                 The subconscious doesn't respond to the words. It responds to the frequency, the state, and the repetition. When you combine theta brainwaves with 963hz and EMDR — you're not just changing a thought. You're changing the signal your cells are running on.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#0a1a30", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a1210", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
                 That's why this works when everything else didn't."
               </p>
               <div style={{ marginTop: 20, fontSize: 13, color: "#B76E79", fontWeight: 700, fontFamily: "'Jost',sans-serif" }}>— RESHMA ORACLE</div>
