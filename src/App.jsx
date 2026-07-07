@@ -624,7 +624,10 @@ const FAQS = [
   {q:"What is Lifetime Access?",a:`A one-time payment of ${TIERS.lifetime.monthly} that gives you everything in Goddess Tier, every future audio ever released, every future feature, and no monthly billing. 1,000 spots only.`},
   {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
   {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
-  {q:"What categories are in the vault?",a:"Lovemaxxing · Money · Beauty · DNA Activation · Sleep Shifting · Identity · Lifemaxxing. New categories added based on member requests."},
+  {q:"What categories are in the vault?",a:"Twelve: Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Moneymaxxing, Businessmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New tracks added weekly within each."},
+  {q:"What are subliminals?",a:"Affirmations recorded below the threshold of conscious hearing, layered underneath the music and spoken hypnosis. Your conscious mind doesn't register them as words — but your subconscious does. They bypass the part of you that would normally argue back with a new belief."},
+  {q:"How do the different elements combine in one track?",a:"Each audio layers four things at once: spoken hypnosis (guiding you into the state), subliminal affirmations (below hearing threshold), binaural beats (two slightly different frequencies, one per ear, syncing both brain hemispheres into theta), and original melodic house music (so it's something you actually want to listen to, not just tolerate). All four play simultaneously, not in sequence."},
+  {q:"Who is Reshma Oracle?",a:"The person recording every track in this vault. No agency, no outsourced voice work — every hypnosis session, every affirmation, every frequency choice is hers. Self Hypnosis Goddess exists because she noticed everyone in this space consumes content and no one actually installs a new identity — so she built something designed for daily repetition, not one-off inspiration."},
   {q:"Is there a mobile app?",a:"The portal is a web app that works on any device in any browser. On iPhone: tap Share → Add to Home Screen. A dedicated iOS and Android app is in development."},
 ];
 function FAQSection() {
@@ -1679,7 +1682,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <p style={{ fontSize: 16, color: "#2a1210", lineHeight: 1.85, maxWidth: 700, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
-          <p style={{ fontSize: 19, color: "#111111", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
+          <p style={{ fontSize: 16, color: "#111111", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
             You can read every book. Study Neville Goddard. Understand every theory. But theory without installation changes nothing. These audios install it — passively, at depth, while your conscious mind rests.
           </p>
         </div>
