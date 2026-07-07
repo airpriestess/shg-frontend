@@ -1059,10 +1059,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           Shift into the state of<br/>
           <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
-        <p style={{ fontSize:"clamp(16px,2vw,20px)", color:"#000", lineHeight:1.8, maxWidth:600, margin:"0 auto 16px", fontWeight:600 }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
           If you're reading this, you're probably stuck. You feel the gap — between your dream reality and your current one. I'm here to close that gap.
         </p>
-        <p style={{ fontSize:"clamp(16px,2vw,20px)", color:"#000", lineHeight:1.8, maxWidth:600, margin:"0 auto 16px", fontWeight:600 }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
           Your subconscious mind creates your entire reality. Your reality reorganizes to match who you become.
         </p>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
