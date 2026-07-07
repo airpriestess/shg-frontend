@@ -904,6 +904,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             Spotify for your subconscious mind
           </div>
 
+          {/* PLAIN-ENGLISH EXPLAINER */}
+          <div style={{ fontSize: "clamp(14px,1.7vw,17px)", color: "#c8beb8", fontWeight: 400, marginBottom: 18, lineHeight: 1.65, maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>
+            Playing in the background on your hot girl walk, mid-gym set, between Pilates and your next meeting — daily audio built to help you regulate your emotions, believe in yourself, feel beautiful, and know you're worthy of the money you want.
+          </div>
+
           {/* TAGLINE */}
           <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", fontWeight: 400, marginBottom: 10, letterSpacing: "0.01em" }}>
             Brainwash yourself every single day to match the frequency of your dream reality.
