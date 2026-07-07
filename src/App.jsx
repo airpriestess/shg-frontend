@@ -1116,30 +1116,43 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
       <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "#fdf0e8", width: "100%" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 40 }}>
+        <div style={{ maxWidth: 1080, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: 11, fontWeight: 900, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14 }}>What's Inside</div>
             <h2 style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#1a1210", fontWeight: 700, marginBottom: 12 }}>Whatever it is, it's covered.</h2>
             <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 560, margin: "0 auto" }}>Twelve categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 14 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 16 }}>
             {[
-              { name: "Lovemaxxing", pain: "The one you can't stop thinking about" },
-              { name: "Beautymaxxing", pain: "The face you see vs. the one you feel" },
-              { name: "Facemaxxing", pain: "Skin, symmetry, the mirror check" },
-              { name: "Bodymaxxing", pain: "The body you're building toward" },
-              { name: "Moneymaxxing", pain: "The balance that won't move" },
-              { name: "Businessmaxxing", pain: "The empire you're building" },
-              { name: "DNAmaxxing", pain: "Vitality, youth, cellular glow" },
-              { name: "Selfmaxxing", pain: "Who you are underneath it all" },
-              { name: "Erosmaxxing", pain: "Desire, magnetism, presence" },
-              { name: "Lifemaxxing", pain: "The whole season, leveling up" },
-              { name: "Luckygirlmaxxing", pain: "Things just going your way" },
-              { name: "Sovereignmaxxing", pain: "Answering to no one but you" },
+              { name: "Lovemaxxing", pain: "The one you can't stop thinking about", accent: "#a85a42",
+                icon: <path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinejoin="round"/> },
+              { name: "Beautymaxxing", pain: "The face you see vs. the one you feel", accent: "#b8547a",
+                icon: <><circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 16 L30 10 M30 44 L30 50 M16 30 L10 30 M44 30 L50 30" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></> },
+              { name: "Facemaxxing", pain: "Skin, symmetry, the mirror check", accent: "#a85a42",
+                icon: <><ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" strokeWidth="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
+              { name: "Bodymaxxing", pain: "The body you're building toward", accent: "#B76E79",
+                icon: <><circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></> },
+              { name: "Moneymaxxing", pain: "The balance that won't move", accent: "#c9963a",
+                icon: <><circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
+              { name: "Businessmaxxing", pain: "The empire you're building", accent: "#c9963a",
+                icon: <><rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" strokeWidth="3"/></> },
+              { name: "DNAmaxxing", pain: "Vitality, youth, cellular glow", accent: "#8a3050",
+                icon: <><path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(-10,0)"/><path d="M18 18 L42 18 M16 30 L44 30 M18 42 L42 42" stroke="currentColor" strokeWidth="1.5" opacity="0.5"/></> },
+              { name: "Selfmaxxing", pain: "Who you are underneath it all", accent: "#8a5068",
+                icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/></> },
+              { name: "Erosmaxxing", pain: "Desire, magnetism, presence", accent: "#a8506a",
+                icon: <path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/> },
+              { name: "Lifemaxxing", pain: "The whole season, leveling up", accent: "#e0a868",
+                icon: <><circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30 M16 16 L12 12 M44 16 L48 12 M16 44 L12 48 M44 44 L48 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
+              { name: "Luckygirlmaxxing", pain: "Things just going your way", accent: "#e8b870",
+                icon: <><path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></> },
+              { name: "Sovereignmaxxing", pain: "Answering to no one but you", accent: "#6a2840",
+                icon: <path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/> },
             ].map((cat, i) => (
-              <div key={i} style={{ background: "#fff", border: "1px solid #B76E7922", borderRadius: 14, padding: isMobile ? "16px 14px" : "20px 18px" }}>
-                <div style={{ fontSize: isMobile ? 13 : 14, fontWeight: 800, color: "#1a1210", marginBottom: 6 }}>{cat.name}</div>
-                <div style={{ fontSize: isMobile ? 11.5 : 12.5, color: "#7a6a60", lineHeight: 1.4 }}>{cat.pain}</div>
+              <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
+                <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
+                <div style={{ fontSize: isMobile ? 12.5 : 14, fontWeight: 800, color: "#1a1210", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontSize: isMobile ? 11 : 12, color: "#7a6a60", lineHeight: 1.4 }}>{cat.pain}</div>
               </div>
             ))}
           </div>
