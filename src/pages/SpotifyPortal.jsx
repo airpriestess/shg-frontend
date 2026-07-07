@@ -51,19 +51,19 @@ const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
 const IMGS = {
-  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#c87890,#8a3060" },
-  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#c4789a,#B76E79" },
+  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
   "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#c4789a,#6a2840" },
-  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#d4a090" },
-  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#c4789a,#B76E79" },
-  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#d4a090,#e8b870" },
-  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#d4a090,#8a3050" },
-  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#8a3050,#c4789a" },
+  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
 };
 
 function Thumb({ title, size=48, radius=4 }) {
-  const d = IMGS[title] || { url:null, g:"#B76E79,#8a3050" };
+  const d = IMGS[title] || { url:null, g:"#e8b870,#B76E79" };
   return (
     <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:`linear-gradient(135deg,${d.g})`, position:"relative" }}>
       {d.url && <img src={d.url} alt={title} style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }} onError={e=>e.target.style.display="none"}/>}
@@ -634,7 +634,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
 
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
 function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, onClose, C, isDark, hasAudio }) {
-  const d = IMGS[track.title] || { g:"#d4a090,#B76E79" };
+  const d = IMGS[track.title] || { g:"#e8b870,#B76E79" };
   const [showScript, setShowScript] = useState(false);
   return (
     <div style={{ position:"absolute",inset:0,background:`linear-gradient(180deg,${d.g.split(",")[0]}cc 0%,${C.bg} 50%)`,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
