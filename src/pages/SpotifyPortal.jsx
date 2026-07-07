@@ -534,7 +534,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   // ── MOBILE ───────────────────────────────────────────────────────────────
   return (
-    <div style={{ width:"100%",height:"100%",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden",position:"relative" }}>
+    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden",position:"relative" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
