@@ -1357,6 +1357,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <p style={{ fontSize: "clamp(15px,1.9vw,19px)", color: "#000", lineHeight: 1.75, maxWidth: 540, margin: "14px auto 0", fontWeight: 700 }}>
               Your manifestation tracker for life. Your proof wall for life. Every sign, every synchronicity, every screenshot — captured in one place for the rest of your life.
             </p>
+            <p style={{ fontSize: "clamp(14px,1.7vw,17px)", color: "#1a1210", lineHeight: 1.8, maxWidth: 560, margin: "20px auto 0" }}>
+              Here's why that matters: doubt doesn't ask nicely. It shows up at 2am asking if any of this is actually working. Belief alone can't answer that — it just argues back. Proof can. A dated, logged list of things that actually happened is the one thing doubt can't talk you out of. That's the whole point of ProofOS — not another journal, your evidence.
+            </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {[
@@ -1572,10 +1575,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               "Everyone is consuming. And no one is installing. That's why I built this."
             </p>
             <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
-              I press play. My subconscious received it. And a new version of me was starting to be born.
+              I press play. My subconscious receives it. A new version of me begins to build — quietly, underneath everything else I'm doing.
             </p>
             <p style={{ fontSize:isMobile?15:17, color:"#c8c0bc", lineHeight:1.85 }}>
-              That's why I built this. Not another thing to consume. A practice you repeat every single day, passively — while you sleep, rest, go to the gym, commute. You build evidence. The proof becomes impossible to ignore.
+              Not another thing to consume. A practice you repeat every single day, passively — while you sleep, rest, go to the gym, commute. You build evidence. The proof becomes impossible to ignore.
             </p>
             <div style={{ background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"250%", backgroundPosition:"left", borderRadius:16, padding:isMobile?"24px 22px":"32px 32px", marginTop:8 }}>
               <p style={{ fontSize:isMobile?13:14, color:"#000", lineHeight:1.8, fontFamily:"'Jost',sans-serif", fontWeight:500, margin:0 }}>
