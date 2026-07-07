@@ -1007,12 +1007,15 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* SKIMMABLE BENEFIT CHIPS */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 620, margin: "0 auto 28px" }}>
             {[
+              "Become a Spoiled Goddess",
               "Make him beg for you — you're the dream girl",
               "Live your delusional reality",
-              "Become the lucky girl every single second of the day",
+              "Become the lucky girl, every single second",
+              "An ever-growing library of thousands of audios — for life",
+              "Track every desire. Prove every manifestation.",
+              "For your gym, your hot girl walk, your morning routine, your commute, right before bed",
               "Romanticize your entire life",
               "Elevate your look. Upgrade your circle.",
-              "Attract your dream friend group",
               "Blow up your business — subconsciously",
               "Break your money ceiling. Expand your capacity.",
             ].map((line, i) => (
