@@ -888,8 +888,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
-            Brainwash yourself into your dream reality.
+          <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", fontWeight: 400, marginBottom: 10, letterSpacing: "0.01em" }}>
+            Brainwash yourself every single day to match the frequency of your dream reality.
           </div>
 
           {/* WAKE UP KNOWING */}
