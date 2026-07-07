@@ -24,10 +24,10 @@ const IMGS = {
 const RECENT = ["Spoilt Goddess","He Finds His Way Back","Money Finds Me First","While I Sleep I Manifest","Gorgeous Is My Default","Lucky Girl Summer"];
 
 function Thumb({ title, size, r=3 }) {
-  const d = IMGS[title] || { url:null, g:"#e8b870,#B76E79" };
+  const d = IMGS[title] || { url:null };
   return (
     <div style={{ width:size, height:size, borderRadius:r, flexShrink:0, overflow:"hidden",
-      background:`linear-gradient(135deg,${d.g})`, position:"relative" }}>
+      background:"#e8e2da", position:"relative" }}>
       {d.url && <img src={d.url} alt={title} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:0.85 }} onError={e=>e.target.style.display="none"}/>}
     </div>
   );
