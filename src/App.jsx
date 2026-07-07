@@ -1263,8 +1263,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               Every audio replaces<br/>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>an old assumption with a new one.</span>
             </h2>
-            <p style={{ fontSize: "clamp(15px,1.9vw,18px)", color: "#000", lineHeight: 1.85, maxWidth: 560, margin: "0 auto" }}>
+            <p style={{ fontSize: "clamp(15px,1.9vw,18px)", color: "#000", lineHeight: 1.85, maxWidth: 560, margin: "0 auto 14px" }}>
               Your reality runs on assumptions — what you quietly hold as true about yourself. Installed in theta, the new assumption becomes the default. Then your reality reorganises to match it.
+            </p>
+            <p style={{ fontSize: "clamp(14px,1.7vw,16px)", color: "#2a1810", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+              This runs both directions. Assume you're not the one he chooses, and you won't be. Assume you can't make money, and you won't. The audio isn't wishing on your behalf — it's replacing the assumption underneath, so what reflects back actually changes.
             </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile?26:32 }}>
