@@ -1076,7 +1076,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
           <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#1a0818", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
-          <p style={{ fontSize: isMobile?13.5:15, color:"#3a2018", lineHeight:1.75, maxWidth:560, margin:"0 auto" }}>
+          <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color:"#3a2018", lineHeight:1.85, maxWidth:560, margin:"0 auto" }}>
             Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
           </p>
         </div>
