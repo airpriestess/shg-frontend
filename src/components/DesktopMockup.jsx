@@ -33,14 +33,14 @@ const IMGS = {
   "Lucky Girl Summer":        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=120&h=120&fit=crop&auto=format",
 };
 const GRAD_FALLBACK = {
-  "Spoilt Goddess":"#c87890,#8a3060","He Finds His Way Back":"#c4789a,#B76E79",
-  "Money Finds Me First":"#e8b870,#B76E79","While I Sleep I Manifest":"#c4789a,#6a2840",
-  "Gorgeous Is My Default":"#e8b870,#d4a090","Lucky Girl Summer":"#d4a090,#e8b870",
+  "Spoilt Goddess":"#e8b870,#B76E79","He Finds His Way Back":"#e8b870,#B76E79",
+  "Money Finds Me First":"#e8b870,#B76E79","While I Sleep I Manifest":"#e8b870,#B76E79",
+  "Gorgeous Is My Default":"#e8b870,#B76E79","Lucky Girl Summer":"#e8b870,#B76E79",
 };
 
 function Thumb({ title, size }) {
   const url = IMGS[title];
-  const fb = GRAD_FALLBACK[title] || "#B76E79,#8a3050";
+  const fb = GRAD_FALLBACK[title] || "#e8b870,#B76E79";
   const r = Math.round(size * 0.1);
   return (
     <div style={{ width:size, height:size, borderRadius:r, flexShrink:0, overflow:"hidden",
