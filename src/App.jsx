@@ -687,6 +687,19 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   const [progress, setProgress] = useState(0);
   const [billing, setBilling] = useState("monthly");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const [waitlistEmail, setWaitlistEmail] = useState("");
+  const [waitlistStatus, setWaitlistStatus] = useState("idle"); // idle | saving | done | error
+
+  const submitWaitlist = async (e) => {
+    e?.preventDefault();
+    const email = waitlistEmail.trim();
+    if (!email || !email.includes("@")) { setWaitlistStatus("error"); return; }
+    setWaitlistStatus("saving");
+    const { error } = await _sb.from("waitlist").insert({ email, source: "landing_page_banner" });
+    if (error) { setWaitlistStatus("error"); return; }
+    setWaitlistStatus("done");
+  };
   const [faqOpen, setFaqOpen] = useState(null);
   const audioRef = useRef(null);
   const vaultRef = useRef(null);
@@ -789,7 +802,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
             {isMobile ? "✦ Coming Soon · Join the Waitlist" : "✦  COMING SOON  ·  Self Hypnosis Goddess launches soon  ·  Join the waitlist"}
           </span>
-          <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("audio"); }} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
             Join Waitlist
           </button>
         </div>
@@ -1771,6 +1784,41 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ fontSize: 13, color: "#111111", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com · Not on YouTube</div>
         <div style={{ fontSize: 12, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
       </div>
+
+      {/* WAITLIST MODAL */}
+      {waitlistOpen && (
+        <div onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.75)", zIndex:900, display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ background:"#000", border:"1.5px solid #e8b87055", borderRadius:20, padding:"36px 28px", maxWidth:400, width:"100%", textAlign:"center" }}>
+            {waitlistStatus === "done" ? (
+              <>
+                <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
+                <div style={{ fontSize:20, fontWeight:700, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
+                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
+                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:800, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
+              </>
+            ) : (
+              <>
+                <div className="wm wm-shimmer" style={{ fontSize:20, marginBottom:8 }}>Join the Waitlist</div>
+                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:22, lineHeight:1.6 }}>We're not live yet — get first access the moment it opens.</div>
+                <form onSubmit={submitWaitlist}>
+                  <input
+                    type="email"
+                    required
+                    value={waitlistEmail}
+                    onChange={e=>{setWaitlistEmail(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
+                    placeholder="your@email.com"
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#B76E79":"#2a2a2a"}`, borderRadius:12, color:"#f2ece4", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                  />
+                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#B76E79", marginBottom:12 }}>Please enter a valid email.</div>}
+                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:800, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
+                    {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
