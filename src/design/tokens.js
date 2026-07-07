@@ -1,11 +1,11 @@
 export const T = {
   bgRoot: "#000000",
-  bgSoft: "#050404",
+  bgSoft: "#050505",
   surfaceBase: "#000000",
-  surfaceRaised: "#08060e",
-  surfaceHigh: "#100e16",
-  borderSoft: "#1e1828",
-  borderGlow: "#241e38",
+  surfaceRaised: "#0a0a0a",
+  surfaceHigh: "#121212",
+  borderSoft: "#1e1e1e",
+  borderGlow: "#242424",
 
   // Text — warm cream white fading to soft peach
   textPrimary:   "#f2ece4",   // warm cream white
@@ -13,15 +13,17 @@ export const T = {
   textMuted:     "#b09888",   // muted peach — readable
   textFaint:     "#786860",   // dim peach — still legible
 
-  // THE LOCKED ACCENT — soft dusty rose gold to light peach
-  // This is the colour Reshma approved. Light. Feminine. Not orange. Not red.
-  gold:      "#C8956A",   // warm peach (used as secondary)
-  roseGold:  "#B76E79",   // LOCKED — soft dusty rose gold   // THE accent — soft dusty rose gold ← LOCKED
+  // THE LOCKED ACCENT — champagne gold to rose. Matches the site-wide
+  // locked palette exactly (#e8b870 / #B76E79). Previous value here
+  // (#C8956A, a warm tan) was never actually the locked colour and was
+  // rendering as a brown/tan glow via the Rings component on the hero.
+  gold:      "#e8b870",   // champagne gold — matches locked palette
+  roseGold:  "#B76E79",   // LOCKED — soft dusty rose gold
   rose:      "#B76E79",
-  champagne: "#B76E79",
-  champSoft: "#C8956A",
+  champagne: "#e8b870",
+  champSoft: "#f5e0a0",
   success:   "#4a9a5a",
-  warning:   "#C8956A",
+  warning:   "#e8b870",
   danger:    "#B76E79",
   blood:     "#B76E79",
 
@@ -31,9 +33,9 @@ export const T = {
   gradV: "linear-gradient(135deg,#d4a090,#B76E79)",
 
   bgGrad:      "#000000",
-  cardBg:      "rgba(6,4,10,0.97)",
-  premiumCard: "linear-gradient(135deg,rgba(15,14,12,0.98),rgba(8,7,6,0.98))",
-  border:      "1px solid #1e1828",
+  cardBg:      "rgba(10,10,10,0.97)",
+  premiumCard: "linear-gradient(135deg,rgba(14,14,14,0.98),rgba(8,8,8,0.98))",
+  border:      "1px solid #1e1e1e",
   glow:        "0 0 40px rgba(183,110,121,0.1)",
   glowChamp:   "0 0 30px rgba(183,110,121,0.14)",
 };
@@ -46,10 +48,10 @@ export const CSS = `
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
 body{background:#000;color:#f2ece4;font-family:'Jost',sans-serif;font-weight:300;font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
 button,input,textarea,select{font-family:'Jost',sans-serif;}
-input,textarea{background:#000;border:1px solid #1e1828;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
+input,textarea{background:#000;border:1px solid #1e1e1e;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#B76E7966;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#1e1828;border-radius:2px;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#1e1e1e;border-radius:2px;}
 *{-webkit-tap-highlight-color:transparent;}
 img{max-width:100%;}
 
