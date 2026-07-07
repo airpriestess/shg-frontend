@@ -1007,13 +1007,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* SKIMMABLE BENEFIT CHIPS */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 620, margin: "0 auto 28px" }}>
             {[
-              "An unlimited playlist for your gym sessions, work, and commute",
-              "Regulate your emotions",
-              "Hype yourself up",
-              "Fall in love with your life again",
-              "Activate calm. Activate confidence.",
-              "Feel beautiful",
-              "Know you're worthy of your dream reality",
+              "Make him beg for you — you're the dream girl",
+              "Live your delusional reality",
+              "Become the lucky girl every single second of the day",
+              "Romanticize your entire life",
+              "Elevate your look. Upgrade your circle.",
+              "Attract your dream friend group",
+              "Blow up your business — subconsciously",
               "Break your money ceiling. Expand your capacity.",
             ].map((line, i) => (
               <span key={i} style={{ fontSize: isMobile ? 12 : 13, color: "#f2ece4", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: "7px 14px", fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
