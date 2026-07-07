@@ -829,6 +829,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <button onClick={()=>document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Pricing</button>
               <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>ProofOS</button>
               <button onClick={onDemo} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Preview</button>
+              <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",textDecoration:"none" }}>Shop</a>
             </div>
           )}
 
@@ -872,6 +873,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {[
               ["Pricing", ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
               ["ProofOS ✦", ()=>{document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
+              ["Shop", ()=>{window.open("https://beacons.ai/reshmaoracle","_blank");setMenuOpen(false);}, true],
               ["YouTube", ()=>{window.open("https://www.youtube.com/@Reshma.Oracle","_blank");setMenuOpen(false);}, true],
             ].map(([l,fn,ext],i)=>(
               <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
