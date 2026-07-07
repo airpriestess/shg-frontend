@@ -189,7 +189,7 @@ const TIERS = {
     name: "Audio Tier", emoji: "🔊",
     monthly: "£19", annual: "£143", annualNote: "≈ £11.99/mo · 2 months free",
     trialNote: "3-day free trial, then £19/mo",
-    features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","4 new tracks every week","All desire categories","No ads. Ever."],
+    features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
     cta: (annual)=> annual ? "Join Audio — £143/year" : "Start 3-Day Free Trial",
   },
   goddess: {
@@ -260,7 +260,7 @@ function CheckoutModal({ onClose, onDemo }) {
               </div>
             </div>
             <div style={{marginBottom:12}}>
-              {["Full audio vault — all desire categories","4+ new tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
+              {["Full audio vault — all desire categories","New tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#4a2820",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#B76E79"}}>·</span>{f}
                 </div>
