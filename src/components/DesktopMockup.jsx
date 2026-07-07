@@ -40,11 +40,10 @@ const GRAD_FALLBACK = {
 
 function Thumb({ title, size }) {
   const url = IMGS[title];
-  const fb = GRAD_FALLBACK[title] || "#e8b870,#B76E79";
   const r = Math.round(size * 0.1);
   return (
     <div style={{ width:size, height:size, borderRadius:r, flexShrink:0, overflow:"hidden",
-      background:`linear-gradient(135deg,${fb})`, position:"relative" }}>
+      background:"#e8e2da", position:"relative" }}>
       {url && <img src={url} alt={title} style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }} onError={e=>e.target.style.display="none"}/>}
     </div>
   );
