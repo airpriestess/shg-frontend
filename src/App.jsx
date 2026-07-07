@@ -890,7 +890,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TAGLINE */}
           <div style={{ fontSize: "clamp(20px,2.7vw,26px)", color: "#ffffff", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
-            Shift into your dream reality.
+            Brainwash yourself into your dream reality.
           </div>
 
           {/* WAKE UP KNOWING */}
