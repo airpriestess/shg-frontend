@@ -904,11 +904,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             Spotify for your subconscious mind
           </div>
 
-          {/* PLAIN-ENGLISH EXPLAINER */}
-          <div style={{ fontSize: "clamp(14px,1.7vw,17px)", color: "#c8beb8", fontWeight: 400, marginBottom: 18, lineHeight: 1.65, maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>
-            Playing in the background on your hot girl walk, mid-gym set, between Pilates and your next meeting — daily audio built to help you regulate your emotions, believe in yourself, feel beautiful, and know you're worthy of the money you want.
-          </div>
-
           {/* TAGLINE */}
           <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", fontWeight: 400, marginBottom: 10, letterSpacing: "0.01em" }}>
             Brainwash yourself every single day to match the frequency of your dream reality.
@@ -1009,6 +1004,23 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* PAIN POINT */}
+          {/* SKIMMABLE BENEFIT CHIPS */}
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 620, margin: "0 auto 28px" }}>
+            {[
+              "An unlimited playlist for your gym sessions, work, and commute",
+              "Regulate your emotions",
+              "Hype yourself up",
+              "Fall in love with your life again",
+              "Activate calm. Activate confidence.",
+              "Feel beautiful",
+              "Know you're worthy of your dream reality",
+              "Break your money ceiling. Expand your capacity.",
+            ].map((line, i) => (
+              <span key={i} style={{ fontSize: isMobile ? 12 : 13, color: "#f2ece4", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: "7px 14px", fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
+                {line}
+              </span>
+            ))}
+          </div>
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: isMobile ? "column" : "row", alignItems: "stretch", maxWidth: isMobile ? 340 : "none", margin: isMobile ? "0 auto 16px" : "0 0 16px" }}>
             <button onClick={onJoin} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#d4a090,#B76E79)", border: "none", borderRadius: 14, color: "#000", fontSize: 16, fontWeight: 800, cursor: "pointer", letterSpacing: "0.1em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", width: isMobile ? "100%" : "auto" }}>
