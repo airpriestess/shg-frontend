@@ -914,7 +914,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
-          <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(232,184,112,0.4)" }}>
+          <div style={{ background: "linear-gradient(135deg,#fdf0e8 0%,#fce0e8 50%,#f5c8d8 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(232,168,192,0.35)" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               {/* Album art */}
