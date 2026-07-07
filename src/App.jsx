@@ -785,7 +785,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 25%,#d4a090 50%,#c4789a 75%,#B76E79 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
             {isMobile ? "✦ Lifetime Access · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  Only 1,000 spots"}
           </span>
@@ -875,7 +875,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
         }} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
-          <HeroMarquee />
 
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
@@ -889,16 +888,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(20px,2.7vw,26px)", color: "#ffffff", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
+          <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", fontWeight: 600, marginBottom: 10, letterSpacing: "0.01em" }}>
             Brainwash yourself into your dream reality.
           </div>
 
           {/* WAKE UP KNOWING */}
-          <div style={{ fontSize: "clamp(16px,2vw,20px)", color: "#ffffff", marginBottom: 32, lineHeight: 1.7 }}>
+          <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", marginBottom: 32, lineHeight: 1.7 }}>
             Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
-          <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c8789a 80%,#B76E79 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(212,160,144,0.4)" }}>
+          <div style={{ background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(232,184,112,0.4)" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               {/* Album art */}
