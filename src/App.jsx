@@ -624,7 +624,7 @@ const FAQS = [
   {q:"What is Lifetime Access?",a:`A one-time payment of ${TIERS.lifetime.monthly} that gives you everything in Goddess Tier, every future audio ever released, every future feature, and no monthly billing. 1,000 spots only.`},
   {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
   {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
-  {q:"What categories are in the vault?",a:"SP & Love · Money · Beauty · DNA Activation · Sleep Shifting · Identity · Lifemaxxing. New categories added based on member requests."},
+  {q:"What categories are in the vault?",a:"Lovemaxxing · Money · Beauty · DNA Activation · Sleep Shifting · Identity · Lifemaxxing. New categories added based on member requests."},
   {q:"Is there a mobile app?",a:"The portal is a web app that works on any device in any browser. On iPhone: tap Share → Add to Home Screen. A dedicated iOS and Android app is in development."},
 ];
 function FAQSection() {
@@ -711,7 +711,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
     { title: "While I Sleep I Manifest", sub: "Subliminal · Music only · No voice",    freq: "Delta · Sleep shifting", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
     { title: "10 Years Into One Hour",   sub: "EMDR · Deep identity reset",            freq: "Theta · 432hz",         url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3" },
     { title: "Money Finds Me First",     sub: "Wealth · Receiving · Abundance",        freq: "528hz · Spoken hypnosis",url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
-    { title: "He Finds His Way Back",    sub: "SP & Love · No contact",                freq: "432hz · EMDR",          url: null },
+    { title: "He Finds His Way Back",    sub: "Lovemaxxing · No contact",                freq: "432hz · EMDR",          url: null },
     { title: "Gorgeous Is My Default",   sub: "Beauty · Glow · Self-image",            freq: "432hz · Binaural",      url: null },
   ];
   const [trackIdx, setTrackIdx] = useState(0);
@@ -767,7 +767,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   // Comparison section heading explanation is added in JSX below
   const compRows = [
     { old: "I have to work hard to receive money.", neu: "Money found me without effort.", proof: "£2,000 refund arrived out of nowhere. Day 6.", cat: "Money" },
-    { old: "He has moved on. I need to accept it.", neu: "He is already on his way back.", proof: "He texted first after 3 weeks of silence. Day 9.", cat: "SP & Love" },
+    { old: "He has moved on. I need to accept it.", neu: "He is already on his way back.", proof: "He texted first after 3 weeks of silence. Day 9.", cat: "Lovemaxxing" },
     { old: "I don't feel beautiful unless someone tells me.", neu: "I feel gorgeous from the inside. The mirror confirmed it.", proof: "Woke up and felt it before I even looked. Day 4.", cat: "Beauty" },
     { old: "I've tried scripting, affirmations, vision boards. Nothing sticks.", neu: "I stopped trying. The subconscious installed it while I slept.", proof: "Stopped forcing it. It arrived anyway.", cat: "Identity" },
     { old: "I've been visualising for months. Still waiting.", neu: "One listen changed how I felt about it. Then it moved.", proof: "Felt the shift after the first audio. Evidence followed.", cat: "Identity" },
@@ -1124,17 +1124,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 14 }}>
             {[
-              { name: "SP & Love", pain: "The one you can't stop thinking about" },
-              { name: "Beauty & Glow", pain: "The face you see vs. the one you feel" },
+              { name: "Lovemaxxing", pain: "The one you can't stop thinking about" },
+              { name: "Beautymaxxing", pain: "The face you see vs. the one you feel" },
               { name: "Facemaxxing", pain: "Skin, symmetry, the mirror check" },
               { name: "Bodymaxxing", pain: "The body you're building toward" },
-              { name: "Money & Luxury", pain: "The balance that won't move" },
+              { name: "Moneymaxxing", pain: "The balance that won't move" },
               { name: "Businessmaxxing", pain: "The empire you're building" },
               { name: "DNAmaxxing", pain: "Vitality, youth, cellular glow" },
               { name: "Selfmaxxing", pain: "Who you are underneath it all" },
               { name: "Erosmaxxing", pain: "Desire, magnetism, presence" },
               { name: "Lifemaxxing", pain: "The whole season, leveling up" },
-              { name: "Lucky Girl Forever", pain: "Things just going your way" },
+              { name: "Luckygirlmaxxing", pain: "Things just going your way" },
               { name: "Sovereignmaxxing", pain: "Answering to no one but you" },
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: "1px solid #B76E7922", borderRadius: 14, padding: isMobile ? "16px 14px" : "20px 18px" }}>
@@ -1766,11 +1766,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{...GPRICE(isMobile)}}>
             {[
-              { quote: "I listened on day 1 and felt something shift. By day 5 he texted. I didn't even look for it.", name: "Sarah, 29", cat: "SP & Love" },
+              { quote: "I listened on day 1 and felt something shift. By day 5 he texted. I didn't even look for it.", name: "Sarah, 29", cat: "Lovemaxxing" },
               { quote: "£1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", name: "Priya, 33", cat: "Money" },
               { quote: "I look the same and feel completely different about my face. The glow is internal first.", name: "Maya, 26", cat: "Beauty" },
               { quote: "I've tried every subliminal channel. This is the only one where I actually feel it working in real time.", name: "Jade, 31", cat: "Identity" },
-              { quote: "Woke up knowing he was coming back. No logical reason. He called that afternoon.", name: "Layla, 28", cat: "SP & Love" },
+              { quote: "Woke up knowing he was coming back. No logical reason. He called that afternoon.", name: "Layla, 28", cat: "Lovemaxxing" },
               { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Money" },
             ].map((t, i) => (
               <div key={i} style={{ background:"#fff", border:"1px solid rgba(183,110,121,0.2)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(183,110,121,0.08)" }}>
