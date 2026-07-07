@@ -1114,6 +1114,37 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <p style={{ fontSize:12.5, color:"#666", marginTop:16 }}>Full breakdown lives inside the app · under The Guide ✦</p>
       </div>
 
+      {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
+      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "#fdf0e8", width: "100%" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 40 }}>
+            <div style={{ fontSize: 11, fontWeight: 900, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14 }}>What's Inside</div>
+            <h2 style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#1a1210", fontWeight: 700, marginBottom: 12 }}>Whatever it is, it's covered.</h2>
+            <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 560, margin: "0 auto" }}>Twelve categories. Real tracks for the exact thing that's actually keeping you up.</p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 14 }}>
+            {[
+              { name: "SP & Love", pain: "The one you can't stop thinking about" },
+              { name: "Beauty & Glow", pain: "The face you see vs. the one you feel" },
+              { name: "Facemaxxing", pain: "Skin, symmetry, the mirror check" },
+              { name: "Bodymaxxing", pain: "The body you're building toward" },
+              { name: "Money & Luxury", pain: "The balance that won't move" },
+              { name: "Businessmaxxing", pain: "The empire you're building" },
+              { name: "DNAmaxxing", pain: "Vitality, youth, cellular glow" },
+              { name: "Selfmaxxing", pain: "Who you are underneath it all" },
+              { name: "Erosmaxxing", pain: "Desire, magnetism, presence" },
+              { name: "Lifemaxxing", pain: "The whole season, leveling up" },
+              { name: "Lucky Girl Forever", pain: "Things just going your way" },
+              { name: "Sovereignmaxxing", pain: "Answering to no one but you" },
+            ].map((cat, i) => (
+              <div key={i} style={{ background: "#fff", border: "1px solid #B76E7922", borderRadius: 14, padding: isMobile ? "16px 14px" : "20px 18px" }}>
+                <div style={{ fontSize: isMobile ? 13 : 14, fontWeight: 800, color: "#1a1210", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontSize: isMobile ? 11.5 : 12.5, color: "#7a6a60", lineHeight: 1.4 }}>{cat.pain}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* HOW IT WORKS — JOURNEY TIMELINE */}
       <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f9dfc8 50%,#f0c8a0 100%)", position:"relative", overflow:"hidden" }}>
