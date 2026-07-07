@@ -1390,7 +1390,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Goddess Tier · Included</div>
+            <div style={{ fontSize: 12, color: "#000", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12, opacity: 0.75 }}>Goddess Tier · Included</div>
             <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16 }}>
               <span style={{ color: "#000000" }}>Introducing </span>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
@@ -1484,7 +1484,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               </div>
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>How the tracking actually works</div>
+              <div style={{ fontSize: 12, color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14, opacity: 0.75 }}>How the tracking actually works</div>
               <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#000", marginBottom: 12, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
               <p style={{ fontSize: 14, color: "#1a1218", lineHeight: 1.85, marginBottom: 12 }}>
                 Say your desire out loud: "£5,000 arrives unexpectedly." Log it in ProofOS. Choose the audio you're pairing it with — Money Finds Me First, say. Now every time you play that track, ProofOS quietly counts the day.
@@ -1499,7 +1499,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           <div style={{ textAlign: "center", marginTop: 28 }}>
-            <span style={{ fontSize: 14, color: "#B76E79", fontWeight: 500 }}>Included in Goddess Tier · £33/mo</span>
+            <span style={{ fontSize: 14, color: "#000", fontWeight: 700, opacity: 0.75 }}>Included in Goddess Tier · £33/mo</span>
           </div>
         </div>
       </div>
