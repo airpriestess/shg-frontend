@@ -228,6 +228,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
   const [tab, setTab]         = useState(initialTab);
   const [track, setTrack]     = useState(TRACKS[0]);
   const [playing, setPlay]    = useState(false);
+  const [isLooping, setLooping] = useState(false);
   const [liked, setLiked]     = useState(new Set([1,3,7]));
   const [fullP, setFullP]     = useState(false);
   const [prog, setProg]       = useState(0);
@@ -298,9 +299,17 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       if (audio.duration) setProg(Math.round((audio.currentTime/audio.duration)*100));
     };
     audio.addEventListener("timeupdate", update);
-    audio.addEventListener("ended", nextTrack);
-    return () => { audio.removeEventListener("timeupdate", update); audio.removeEventListener("ended", nextTrack); };
-  }, [track]);
+    const handleEnded = () => {
+      if (isLooping) {
+        audio.currentTime = 0;
+        audio.play().catch(()=>{});
+      } else {
+        nextTrack();
+      }
+    };
+    audio.addEventListener("ended", handleEnded);
+    return () => { audio.removeEventListener("timeupdate", update); audio.removeEventListener("ended", handleEnded); };
+  }, [track, isLooping]);
 
   const seekTo = (pct, e) => {
     e?.stopPropagation();
@@ -528,7 +537,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         {/* Main */}
         <div style={{ flex:1,overflowY:"auto",background:C.bg2,paddingBottom:20 }}>{tabContent}</div>
       </div>
-      {!isPreview && <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} C={C} isDark={isDark}/>}
+      {!isPreview && <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark}/>}
     </div>
   );
 
@@ -567,7 +576,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           </div>
         </div>
       )}
-      {!isPreview && fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]}/>}
+      {!isPreview && fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]}/>}
       {/* Bottom nav */}
       {!fullP && (
         <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
@@ -595,7 +604,7 @@ function PreviewBanner({ onSignOut, C }) {
 }
 
 // ── DESKTOP PLAYER ─────────────────────────────────────────────────────────────
-function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, C, isDark }) {
+function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark }) {
   return (
     <div style={{ height:88,background:C.nav,borderTop:`1px solid ${C.border}`,display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
@@ -614,7 +623,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
           </button>
           <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
-          <span style={{ fontSize:14,color:R,cursor:"pointer" }}>↻</span>
+          <button onClick={()=>setLooping(l=>!l)} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer",fontSize:14,color:isLooping?"#e8b870":R,textShadow:isLooping?"0 0 8px rgba(232,184,112,0.6)":"none" }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
           <span style={{ fontSize:11,color:C.dim,width:32,textAlign:"right" }}>—</span>
@@ -633,7 +642,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
 }
 
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
-function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, onClose, C, isDark, hasAudio }) {
+function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, C, isDark, hasAudio }) {
   const d = IMGS[track.title] || { g:"#e8b870,#B76E79" };
   const [showScript, setShowScript] = useState(false);
   return (
@@ -683,7 +692,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
         </button>
         <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="24" height="24" viewBox="0 0 24 24" fill={C.cr}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.cr}/></svg></button>
-        <span style={{ fontSize:18,color:R,cursor:"pointer" }}>↻</span>
+        <button onClick={()=>setLooping(l=>!l)} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer",fontSize:18,color:isLooping?"#e8b870":R,textShadow:isLooping?"0 0 10px rgba(232,184,112,0.6)":"none" }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
       </div>
     </div>
   );
