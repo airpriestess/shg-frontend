@@ -787,10 +787,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
-            {isMobile ? "✦ Lifetime Access · £500 · 1,000 spots only" : "✦  LIFETIME ACCESS  ·  £500 once, forever  ·  Only 1,000 spots"}
+            {isMobile ? "✦ Coming Soon · Join the Waitlist" : "✦  COMING SOON  ·  Self Hypnosis Goddess launches soon  ·  Join the waitlist"}
           </span>
-          <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("lifetime"); }} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
-            Claim
+          <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : onJoin("audio"); }} style={{ padding: "3px 10px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 800, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap" }}>
+            Join Waitlist
           </button>
         </div>
       )}
@@ -996,7 +996,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               LIFETIME ACCESS<ArrowIcon size={14}/>
             </button>
           </div>
-          <div style={{ fontSize: 14, color: "#000000", fontWeight: 600, textAlign: "center", marginBottom: 20 }}>{`Audio Tier ${TIERS.audio.monthly}/mo · Goddess Tier ${TIERS.goddess.monthly}/mo · Cancel anytime`}</div>
+          <div style={{ fontSize: 14, color: "#f2ece4", fontWeight: 600, textAlign: "center", marginBottom: 20, whiteSpace: isMobile ? "normal" : "nowrap" }}>{`Audio Tier ${TIERS.audio.monthly}/mo · Goddess Tier ${TIERS.goddess.monthly}/mo · Cancel anytime`}</div>
 
           {/* PREVIEW DASHBOARD — prominent on both mobile and desktop */}
           <div style={{ textAlign: "center", marginBottom: 32 }}>
