@@ -1277,6 +1277,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <p style={{ fontSize: "clamp(14px,1.7vw,16px)", color: "#2a1810", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
               This runs both directions. Assume you're not the one he chooses, and you won't be. Assume you can't make money, and you won't. The audio isn't wishing on your behalf — it's replacing the assumption underneath, so what reflects back actually changes.
             </p>
+            <p style={{ fontSize: "clamp(14px,1.7vw,16px)", color: "#2a1810", lineHeight: 1.8, maxWidth: 560, margin: "14px auto 0" }}>
+              Once your assumption changes, your reality starts mirroring it back — small, specific, undeniable. That's not a metaphor. It's exactly what ProofOS is built to track: the dated, logged proof that the mirror is real.
+            </p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile?26:32 }}>
             {[
@@ -1335,13 +1338,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </p>
           <div style={{ background: "rgba(255,255,255,0.85)", border: "2px solid rgba(183,110,121,0.35)", borderRadius: 18, padding: isMobile?"22px 20px":"30px 34px", maxWidth: 640, margin: "32px auto 0" }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12 }}>This is where self-hypnosis comes in</div>
-            <p style={{ fontSize: "clamp(15px,1.9vw,18px)", color: "#000", lineHeight: 1.85, margin: "0 0 14px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#000", lineHeight: 1.85, margin: "0 0 14px" }}>
               Self-hypnosis is the same practice as hypnotherapy — the same depth, the same direct access to the subconscious. The difference: no therapist, no appointments, no waiting a week between sessions. You reprogram your own subconscious mind through daily practice, on your own. My voice guides you into the state — you just press play. And because you can do it every single day, you get the one thing a session with a therapist can never give you: repetition. That's what makes it permanent.
             </p>
-            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000", lineHeight: 1.8, margin: 0, fontWeight: 600 }}>
-              My audios shift you into the state — theta, where the subconscious actually opens. The new assumption installs while you rest. You start acting from her state without trying.
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#000", lineHeight: 1.85, margin: "0 0 14px", fontWeight: 600 }}>
+              My audios shift you into the state — theta, where the subconscious actually opens. The new assumption installs while you rest. You start acting from that state without trying.
             </p>
-            <p style={{ fontSize: "clamp(17px,2.1vw,22px)", color: "#000", lineHeight: 1.7, margin: "14px 0 0", fontWeight: 800 }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#000", lineHeight: 1.85, margin: 0, fontWeight: 700 }}>
               You shift into your dream reality because you shifted into the state first.
             </p>
           </div>
@@ -1416,51 +1419,29 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {[
               { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "linear-gradient(135deg,#fff8f0,#fceedd)", icon: (
-                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
-                  <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
-                  <path d="M25 55 Q25 30 50 30 Q75 30 75 55" stroke="url(#g1)" strokeWidth="3" strokeLinecap="round" fill="none"/>
-                  <rect x="18" y="52" width="14" height="22" rx="4" fill="url(#g1)"/>
-                  <rect x="68" y="52" width="14" height="22" rx="4" fill="url(#g1)"/>
-                  <path d="M15 40 Q10 45 15 50" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
-                  <path d="M85 40 Q90 45 85 50" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
-                  <path d="M10 35 Q3 45 10 55" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.3"/>
-                  <path d="M90 35 Q97 45 90 55" stroke="#B76E79" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.3"/>
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <path d="M12 32 A18 18 0 0 1 48 32" stroke="#B76E79" strokeWidth="3" strokeLinecap="round"/>
+                  <rect x="8" y="30" width="10" height="16" rx="3" fill="#B76E79"/>
+                  <rect x="42" y="30" width="10" height="16" rx="3" fill="#B76E79"/>
                 </svg>
               )},
               { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "linear-gradient(135deg,#fdf0f0,#fce8e4)", icon: (
-                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
-                  <defs><linearGradient id="g2a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e8b870"/><stop offset="1" stopColor="#d4a090"/></linearGradient><linearGradient id="g2b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
-                  <ellipse cx="38" cy="50" rx="20" ry="14" stroke="url(#g2a)" strokeWidth="4" fill="none" transform="rotate(-25 38 50)"/>
-                  <ellipse cx="62" cy="50" rx="20" ry="14" stroke="url(#g2b)" strokeWidth="4" fill="none" transform="rotate(25 62 50)"/>
-                  <circle cx="50" cy="50" r="2" fill="#B76E79"/>
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <rect x="10" y="22" width="22" height="16" rx="8" stroke="#B76E79" strokeWidth="3" fill="none" transform="rotate(-20 21 30)"/>
+                  <rect x="28" y="22" width="22" height="16" rx="8" stroke="#B76E79" strokeWidth="3" fill="none" transform="rotate(20 39 30)"/>
                 </svg>
               )},
               { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "linear-gradient(135deg,#fceedd,#f8e4cc)", icon: (
-                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
-                  <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e8b870"/><stop offset="1" stopColor="#B76E79"/></linearGradient></defs>
-                  <rect x="30" y="18" width="40" height="64" rx="6" stroke="url(#g3)" strokeWidth="3" fill="rgba(255,255,255,0.5)"/>
-                  <path d="M50 35 L52 42 L59 42 L53 46 L55 53 L50 49 L45 53 L47 46 L41 42 L48 42 Z" fill="url(#g3)"/>
-                  <circle cx="40" cy="62" r="1.5" fill="#B76E79" opacity="0.7"/>
-                  <circle cx="60" cy="60" r="1.5" fill="#e8b870" opacity="0.7"/>
-                  <circle cx="50" cy="70" r="1.5" fill="#d4a090" opacity="0.7"/>
-                  <circle cx="45" cy="55" r="1" fill="#B76E79" opacity="0.5"/>
-                  <circle cx="55" cy="66" r="1" fill="#e8b870" opacity="0.5"/>
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <rect x="10" y="16" width="40" height="30" rx="5" stroke="#B76E79" strokeWidth="3" fill="none"/>
+                  <path d="M22 16 L25 10 L35 10 L38 16" stroke="#B76E79" strokeWidth="3" strokeLinecap="round" fill="none"/>
+                  <circle cx="30" cy="31" r="8" stroke="#B76E79" strokeWidth="3" fill="none"/>
                 </svg>
               )},
               { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", icon: (
-                <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
-                  <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient><radialGradient id="g4b"><stop offset="0" stopColor="#f5e0a0" stopOpacity="0.4"/><stop offset="1" stopColor="#B76E79" stopOpacity="0"/></radialGradient></defs>
-                  <circle cx="50" cy="50" r="40" fill="url(#g4b)"/>
-                  <circle cx="50" cy="50" r="26" stroke="url(#g4)" strokeWidth="3" fill="rgba(255,255,255,0.6)"/>
-                  <path d="M38 50 L46 58 L62 42" stroke="url(#g4)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                  <line x1="50" y1="10" x2="50" y2="16" stroke="#e8b870" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
-                  <line x1="50" y1="84" x2="50" y2="90" stroke="#B76E79" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
-                  <line x1="10" y1="50" x2="16" y2="50" stroke="#d4a090" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
-                  <line x1="84" y1="50" x2="90" y2="50" stroke="#d4a090" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
-                  <line x1="22" y1="22" x2="26" y2="26" stroke="#e8b870" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
-                  <line x1="74" y1="74" x2="78" y2="78" stroke="#B76E79" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
-                  <line x1="22" y1="78" x2="26" y2="74" stroke="#d4a090" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
-                  <line x1="74" y1="26" x2="78" y2="22" stroke="#e8b870" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="30" r="20" stroke="#B76E79" strokeWidth="3" fill="none"/>
+                  <path d="M21 30 L27 36 L40 22" stroke="#B76E79" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
                 </svg>
               )},
             ].map((s, i) => (
@@ -1521,10 +1502,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,19px)", color: "#2a1210", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#2a1210", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.8vw,17px)", color: "#5a3830", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#5a3830", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
 
