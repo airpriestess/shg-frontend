@@ -801,7 +801,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, padding: "0 14px", overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 36 : 40, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 14, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 700, color: "#000", letterSpacing: isMobile ? "0.06em" : "0.14em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
             {isMobile ? "✦ Coming Soon · Join the Waitlist" : "✦  COMING SOON  ·  Self Hypnosis Goddess launches soon  ·  Join the waitlist"}
           </span>
