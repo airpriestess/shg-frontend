@@ -647,7 +647,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {!isPreview && fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]}/>}
       {/* Bottom nav */}
       {!fullP && (
-        <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
+        <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
               <n.I a={tab===n.id} c={tab===n.id?(n.id==="proof"?R:C.cr):C.dim}/>
