@@ -562,7 +562,20 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           </button>
         </div>
         {/* Main */}
-        <div style={{ flex:1,overflowY:"auto",background:C.bg2,paddingBottom:20 }}>{tabContent}</div>
+        <div style={{ flex:1,overflowY:"auto",background:C.bg2,paddingBottom:20 }}>
+          <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
+            <div style={{ maxWidth:360,position:"relative" }}>
+              <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:14,color:C.dim }}>⌕</span>
+              <input
+                value={searchQ}
+                onChange={e=>{setQ(e.target.value); setTab("search");}}
+                placeholder="What do you want to play?"
+                style={{ width:"100%",padding:"11px 14px 11px 36px",borderRadius:24,background:C.bg3,border:`1px solid ${C.border}`,color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",outline:"none" }}
+              />
+            </div>
+          </div>
+          {tabContent}
+        </div>
       </div>
       {!isPreview && <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark}/>}
     </div>
