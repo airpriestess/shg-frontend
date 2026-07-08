@@ -105,7 +105,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
 
           {/* Sidebar */}
           <div style={{ width:sidebar, background:C.sidebar, display:"flex", flexDirection:"column",
-            padding:`${pad}px 0`, flexShrink:0, borderRight:`0.5px solid ${C.border}` }}>
+            padding:`${Math.round(pad*1.8)}px 0 ${pad}px`, flexShrink:0, borderRight:`0.5px solid ${C.border}` }}>
             <div style={{ padding:`0 ${Math.round(10*s)}px ${Math.round(12*s)}px`,
               fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:f.sm, fontWeight:500,
               background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", lineHeight:1.3 }}>
