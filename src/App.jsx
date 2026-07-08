@@ -1532,11 +1532,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
             {/* INFINITY DIAGRAM — the addiction loop */}
             <div style={{ background:"linear-gradient(135deg,#0a0508,#1a0a15,#0a0508)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:20, padding: isMobile?"32px 18px":"48px 40px", marginBottom: 24, boxShadow:"0 12px 60px rgba(183,110,121,0.15)" }}>
-              <div style={{ textAlign:"center", marginBottom: 24 }}>
+              <div style={{ textAlign:"center", marginBottom: 28, position:"relative", zIndex:2 }}>
                 <div style={{ fontSize:11, letterSpacing:"0.25em", color:"#B76E79", textTransform:"uppercase", fontWeight:800, fontFamily:"'Jost',sans-serif" }}>The addiction loop</div>
                 <div style={{ fontSize:isMobile?15:18, color:"#f5e0a0", marginTop:8, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Music installs the state. You come back. The state deepens.</div>
               </div>
-              <svg viewBox="0 0 800 260" style={{ width:"100%", height:"auto", display:"block", maxWidth:720, margin:"0 auto" }}>
+              <svg viewBox="0 0 800 260" style={{ width:"100%", aspectRatio:"800/260", height:"auto", display:"block", maxWidth:720, margin:"0 auto", position:"relative", zIndex:1 }}>
                 <defs>
                   <linearGradient id="infA" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/>
