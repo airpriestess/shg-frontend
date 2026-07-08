@@ -38,16 +38,32 @@ const GRAD_FALLBACK = {
   "Gorgeous Is My Default":"#e8b870,#B76E79","Lucky Girl Summer":"#e8b870,#B76E79",
 };
 
+const TITLE_TO_CAT = {
+  "Spoilt Goddess":"Selfmaxxing","He Finds His Way Back":"Lovemaxxing",
+  "Money Finds Me First":"Moneymaxxing","While I Sleep I Manifest":"Sleepmaxxing",
+  "Gorgeous Is My Default":"Beautymaxxing","Lucky Girl Summer":"Luckygirlmaxxing",
+};
+const CAT_ICONS = {
+  Lovemaxxing:{accent:"#a85a42",icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>'},
+  Beautymaxxing:{accent:"#b8547a",icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 16 L30 10 M30 44 L30 50 M16 30 L10 30 M44 30 L50 30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>'},
+  Moneymaxxing:{accent:"#c9963a",icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>'},
+  Sleepmaxxing:{accent:"#2a2e58",icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>'},
+  Selfmaxxing:{accent:"#8a5068",icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>'},
+  Luckygirlmaxxing:{accent:"#e8b870",icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>'},
+};
+
 function Thumb({ title, size }) {
-  const url = IMGS[title];
+  const cat = TITLE_TO_CAT[title];
+  const c = CAT_ICONS[cat] || { accent:"#B76E79", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
   const r = Math.round(size * 0.1);
   return (
     <div style={{ width:size, height:size, borderRadius:r, flexShrink:0, overflow:"hidden",
-      background:"#e8e2da", position:"relative" }}>
-      {url && <img src={url} alt={title} style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }} onError={e=>e.target.style.display="none"}/>}
+      background:"#000", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
+      <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: c.icon }} />
     </div>
   );
 }
+
 
 const TRACKS = ["Spoilt Goddess","He Finds His Way Back","Money Finds Me First","While I Sleep I Manifest","Gorgeous Is My Default","Lucky Girl Summer"];
 
