@@ -896,7 +896,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <HeroMarquee />
 
           {/* TITLE */}
-          <h1 className="wm" style={{ lineHeight: 1.05, marginBottom: 12 }}>
+          <h1 className="wm" style={{ lineHeight: 1.3, marginBottom: 12, paddingTop: 6 }}>
             <span className="wm-shimmer" style={{ fontSize: "clamp(26px,6.5vw,56px)", display: "block", }}>Self Hypnosis Goddess</span>
             <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(17px,3.8vw,34px)", color: "#f2ece4", fontWeight: 700, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#B76E79", fontWeight: 600 }}>(+ ProofOS)</span></span>
           </h1>
