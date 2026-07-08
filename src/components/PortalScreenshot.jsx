@@ -31,7 +31,7 @@ const TITLE_TO_CAT = {
 };
 const CAT_ICONS = {
   Lovemaxxing:{accent:"#a85a42",icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>'},
-  Beautymaxxing:{accent:"#b8547a",icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 16 L30 10 M30 44 L30 50 M16 30 L10 30 M44 30 L50 30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>'},
+  Beautymaxxing:{accent:"#b8547a",icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>'},
   Moneymaxxing:{accent:"#c9963a",icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>'},
   Sleepmaxxing:{accent:"#2a2e58",icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>'},
   Selfmaxxing:{accent:"#8a5068",icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>'},
