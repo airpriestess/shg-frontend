@@ -907,12 +907,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", fontWeight: 400, marginBottom: 10, letterSpacing: "0.01em" }}>
+          <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", fontWeight: 400, marginBottom: 8, letterSpacing: "0.01em", whiteSpace: isMobile ? "normal" : "nowrap" }}>
             Brainwash yourself every single day to match the frequency of your dream reality.
           </div>
 
           {/* WAKE UP KNOWING */}
-          <div style={{ fontSize: "clamp(18px,2.3vw,23px)", color: "#ffffff", marginBottom: 32, lineHeight: 1.7 }}>
+          <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", marginBottom: 28, lineHeight: 1.6, whiteSpace: isMobile ? "normal" : "nowrap" }}>
             Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
