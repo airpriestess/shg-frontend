@@ -62,26 +62,53 @@ const IMGS = {
   "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
 };
 
-function Thumb({ title, size=48, radius=4 }) {
-  const d = IMGS[title] || { url:null, g:"#e8b870,#B76E79" };
+const CAT_ICONS = {
+  Lovemaxxing: { accent:"#a85a42", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
+  Beautymaxxing: { accent:"#b8547a", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 16 L30 10 M30 44 L30 50 M16 30 L10 30 M44 30 L50 30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Facemaxxing: { accent:"#a85a42", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Bodymaxxing: { accent:"#B76E79", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Skinnymaxxing: { accent:"#B76E79", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Moneymaxxing: { accent:"#c9963a", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Businessmaxxing: { accent:"#c9963a", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Careermaxxing: { accent:"#c9963a", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
+  DNAmaxxing: { accent:"#8a3050", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
+  Selfmaxxing: { accent:"#8a5068", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
+  Erosmaxxing: { accent:"#a8506a", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
+  Singlemaxxing: { accent:"#a8506a", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
+  Wellnessmaxxing: { accent:"#6a8a5a", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Sleepmaxxing: { accent:"#2a2e58", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
+  Studymaxxing: { accent:"#c9963a", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
+  Friendmaxxing: { accent:"#d4917a", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Peacemaxxing: { accent:"#8a6aa8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
+  Confidencemaxxing: { accent:"#B76E79", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
+  Stylemaxxing: { accent:"#a85a42", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
+  Healmaxxing: { accent:"#a8506a", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
+  Intuitionmaxxing: { accent:"#8a6aa8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
+  Lifemaxxing: { accent:"#e0a868", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Luckygirlmaxxing: { accent:"#e8b870", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
+  Sovereignmaxxing: { accent:"#6a2840", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
+};
+
+function Thumb({ title, cat, size=48, radius=4 }) {
+  const c = CAT_ICONS[cat] || { accent:"#B76E79", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
   return (
-    <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:`linear-gradient(135deg,${d.g})`, position:"relative" }}>
-      {d.url && <img src={d.url} alt={title} style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }} onError={e=>e.target.style.display="none"}/>}
+    <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:"#000", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
+      <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: c.icon }} />
     </div>
   );
 }
 
 // ── TRACK DATA ────────────────────────────────────────────────────────────────
 const TRACKS = [
-  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Identity",  format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
+  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Selfmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
   { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false },
-  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Money",     format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
-  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleep",     format:"Melodic Calm",  tier:"audio",   isNew:false, hasAudio:false },
-  { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beauty",    format:"528hz",         tier:"audio",   isNew:false, hasAudio:false },
-  { id:6,  title:"DNA Activation Ceremony",  artist:"Reshma Oracle", dur:"45:00", cat:"DNA",       format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
-  { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Identity",  format:"Subliminal",    tier:"audio",   isNew:true,  hasAudio:false },
-  { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Identity",  format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
-  { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Identity",  format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
+  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Moneymaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
+  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleepmaxxing", format:"Melodic Calm",  tier:"audio",   isNew:false, hasAudio:false },
+  { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beautymaxxing", format:"528hz",         tier:"audio",   isNew:false, hasAudio:false },
+  { id:6,  title:"DNA Activation Ceremony",  artist:"Reshma Oracle", dur:"45:00", cat:"DNAmaxxing", format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
+  { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Luckygirlmaxxing", format:"Subliminal", tier:"audio", isNew:true,  hasAudio:false },
+  { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Healmaxxing", format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
+  { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Sovereignmaxxing", format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
   { id:10, title:"My face is his favourite view", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:11, title:"Even my details are exquisite", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:12, title:"My mornings open like a film I star in", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
@@ -519,7 +546,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
               style={{ display:"flex",alignItems:"center",gap:10,padding:"5px 20px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:12,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
               onMouseEnter={e=>e.currentTarget.style.color=C.cr}
               onMouseLeave={e=>{if(track.id!==t.id)e.currentTarget.style.color=C.mu;}}>
-              <div style={{ position:"relative" }}><Thumb title={t.title} size={28} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
+              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={28} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
               <span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{t.title}</span>
             </button>
           ))}
@@ -562,7 +589,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {/* Mini player */}
       {!isPreview && !fullP && (
         <div onClick={()=>setFullP(true)} style={{ position:"absolute",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
-          <Thumb title={track.title} size={42} radius={6}/>
+          <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
             <div style={{ fontSize:13,fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:C.cr }}>{track.title}</div>
             <div style={{ fontSize:11,color:C.mu }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
@@ -608,7 +635,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
   return (
     <div style={{ height:88,background:C.nav,borderTop:`1px solid ${C.border}`,display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
-        <Thumb title={track.title} size={52} radius={4}/>
+        <Thumb title={track.title} cat={track.cat} size={52} radius={4}/>
         <div style={{ minWidth:0 }}>
           <div style={{ fontSize:13,fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:C.cr }}>{track.title}</div>
           <div style={{ fontSize:11,color:C.mu }}>Reshma Oracle</div>
@@ -664,7 +691,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
       ) : (
       <>
-      <Thumb title={track.title} size={270} radius={14}/>
+      <Thumb title={track.title} cat={track.cat} size={270} radius={14}/>
       {!hasAudio && <div style={{ marginTop:8,fontSize:11,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",marginTop:24,marginBottom:20 }}>
         <div>
@@ -832,7 +859,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
         return (
         <div key={t.id} onClick={()=>play(t)} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
-            <Thumb title={t.title} size={48} radius={6}/>
+            <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
@@ -885,7 +912,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
         {shown.map(t=>(
           <div key={t.id} onClick={()=>play(t)} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
-              <Thumb title={t.title} size={50} radius={6}/>
+              <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
               {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
               {!isPreview&&cur?.id===t.id&&playing&&(
                 <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
@@ -1242,7 +1269,7 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
   return (
     <div style={{ flexShrink:0,width:140 }}>
       <div onClick={()=>play(t)} style={{ position:"relative",marginBottom:8,cursor:isPreview?"not-allowed":"pointer" }}>
-        <Thumb title={t.title} size={140} radius={8}/>
+        <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
         {isPreview?(
           <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
         ):(
