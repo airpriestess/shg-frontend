@@ -1264,10 +1264,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
   const products = [
-    { name:"SP Ritual Bundle",      price:"£29", desc:"3-day SP activation + audio guide + intention pages", img:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300&h=300&fit=crop&auto=format", link:BEACONS },
-    { name:"Money Frequency Kit",   price:"£19", desc:"Abundance affirmation deck + 528hz curation guide",  img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=300&h=300&fit=crop&auto=format", link:BEACONS },
-    { name:"Identity Workbook",     price:"£24", desc:"30-day self-concept workbook with listening prompts", img:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=300&h=300&fit=crop&auto=format", link:BEACONS },
-    { name:"Beauty Reset Protocol", price:"£22", desc:"14-day glow protocol + subliminal pairing guide",    img:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=300&h=300&fit=crop&auto=format", link:BEACONS },
+    { name:"Lovemaxxing",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
+    { name:"Moneymaxxing",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Moneymaxxing" },
+    { name:"Luckygirlmaxxing", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
+    { name:"Sovereignmaxxing", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
+    { name:"Confidencemaxxing",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
+    { name:"Beautymaxxing",    price:"£19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
+    { name:"Healmaxxing",      price:"£19", desc:"Physical or emotional pain, released",               cat:"Healmaxxing" },
+    { name:"Sleepmaxxing",     price:"£19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
+    { name:"Businessmaxxing",  price:"£19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
+    { name:"Peacemaxxing",     price:"£19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
   ];
   return (
     <div style={{ padding:"16px 16px 40px" }}>
@@ -1275,13 +1281,12 @@ function ShopTab({ C }) {
       <div style={{ fontSize:13,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
         {products.map((p,i)=>(
-          <div key={i} onClick={()=>window.open(p.stripe||p.link,"_blank")}
+          <div key={i} onClick={()=>window.open(BEACONS,"_blank")}
             style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:"pointer",transition:"transform 0.15s" }}
             onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
             onMouseLeave={e=>e.currentTarget.style.transform="none"}>
-            <div style={{ height:100,overflow:"hidden",position:"relative",background:`linear-gradient(135deg,#1a0a14,#2a1020)` }}>
-              <img src={p.img} alt={p.name} style={{ width:"100%",height:"100%",objectFit:"cover",opacity:0.7 }} onError={e=>e.target.style.display="none"}/>
-              <div style={{ position:"absolute",bottom:0,left:0,right:0,height:40,background:"linear-gradient(transparent,rgba(0,0,0,0.6))" }}/>
+            <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"#000" }}>
+              <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
             </div>
             <div style={{ padding:"10px 12px" }}>
               <div style={{ fontSize:12,fontWeight:700,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
