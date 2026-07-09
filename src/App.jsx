@@ -1877,28 +1877,33 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf6ee 0%,#f0e4f5 50%,#dcc4e8 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#c9963a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
             <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#1a0818", letterSpacing:"-0.01em", lineHeight:1 }}>
-              Wall of <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
+              Wall of <span style={{ background:"linear-gradient(90deg,#e8a860,#c9963a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
           </div>
           <div style={{...GPRICE(isMobile)}}>
             {[
               { quote: "I listened on day 1 and felt something shift. By day 5 he texted. I didn't even look for it.", name: "Sarah, 29", cat: "Lovemaxxing" },
-              { quote: "£1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", name: "Priya, 33", cat: "Money" },
-              { quote: "I look the same and feel completely different about my face. The glow is internal first.", name: "Maya, 26", cat: "Beauty" },
-              { quote: "I've tried every subliminal channel. This is the only one where I actually feel it working in real time.", name: "Jade, 31", cat: "Identity" },
+              { quote: "£1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", name: "Priya, 33", cat: "Moneymaxxing" },
+              { quote: "I look the same and feel completely different about my face. The glow is internal first.", name: "Maya, 26", cat: "Beautymaxxing" },
+              { quote: "I've tried every subliminal channel. This is the only one where I actually feel it working in real time.", name: "Jade, 31", cat: "Selfmaxxing" },
+              { quote: "I genuinely thought he was about to break up with me. I kept listening anyway. He proposed three weeks later.", name: "Ellie, 30", cat: "Lovemaxxing" },
+              { quote: "I was convinced I was about to lose my job. Instead I got a promotion I hadn't even applied for.", name: "Freya, 27", cat: "Careermaxxing" },
+              { quote: "I was so sure my business was about to crash. A client came out of nowhere and it turned everything around.", name: "Nadia, 34", cat: "Businessmaxxing" },
+              { quote: "People offer to buy me a coffee or a drink now — genuinely, 90% of the time I go out. It never used to happen.", name: "Bella, 28", cat: "Erosmaxxing" },
+              { quote: "I found €50 on the street one day, out of nowhere, while I had Money Finds Me First on repeat. Then it happened again. Then again. It just keeps happening.", name: "Camille, 25", cat: "Luckygirlmaxxing" },
               { quote: "Woke up knowing he was coming back. No logical reason. He called that afternoon.", name: "Layla, 28", cat: "Lovemaxxing" },
-              { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Money" },
+              { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Moneymaxxing" },
             ].map((t, i) => (
-              <div key={i} style={{ background:"#fff", border:"1px solid rgba(183,110,121,0.2)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(183,110,121,0.08)" }}>
+              <div key={i} style={{ background:"#fff", border:"1px solid rgba(232,168,96,0.25)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(232,168,96,0.1)" }}>
                 <div style={{ width:32, height:24, opacity:0.25 }}>
-                  <svg viewBox="0 0 32 24" fill="#B76E79"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
+                  <svg viewBox="0 0 32 24" fill="#c9963a"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
                 <p style={{ fontSize:isMobile?15:17, color:"#2a1020", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <span style={{ fontSize:12, fontWeight:700, color:"#7a5060", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
-                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.1)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:20, color:"#B76E79", fontWeight:700, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
+                  <span style={{ fontSize:12, fontWeight:700, color:"#8a6838", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
+                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(232,168,96,0.12)", border:"1px solid rgba(232,168,96,0.3)", borderRadius:20, color:"#c9963a", fontWeight:700, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
             ))}
