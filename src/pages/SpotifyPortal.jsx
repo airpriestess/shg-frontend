@@ -788,16 +788,26 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
         </div>
       )}
 
-      {/* ★ THE GUIDE — first, biggest, unmissable */}
+      {/* ★ THE GUIDE — first, biggest, unmissable — real members only */}
       <div style={{ margin:"0 16px 14px" }}>
-        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left", border:"none", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", boxShadow:"0 8px 24px rgba(183,110,121,0.35)" }}>
-          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, fontWeight:900, color:"#f5e0a0", flexShrink:0 }}>✦</span>
-          <span style={{ flex:1, textAlign:"left" }}>
-            <div style={{ fontSize:16, fontWeight:900, color:"#000" }}>Open The Guide</div>
-            <div style={{ fontSize:12, color:"#000", fontWeight:700, marginTop:3, lineHeight:1.4 }}>The formula · brainwave states · Hawkins scale · how to capture signs · how often to listen</div>
-          </span>
-          <span style={{ fontSize:22, color:"#000", fontWeight:900, flexShrink:0 }}>›</span>
-        </button>
+        {isPreview ? (
+          <div style={{ width:"100%", padding:"18px 18px", background:"#141414", border:"1px solid rgba(232,168,96,0.25)", borderRadius:16, display:"flex", alignItems:"center", gap:14 }}>
+            <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,168,96,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, fontWeight:900, color:"#e8a860", flexShrink:0 }}>🔒</span>
+            <span style={{ flex:1, textAlign:"left" }}>
+              <div style={{ fontSize:16, fontWeight:900, color:"#f5e0a0" }}>The Guide</div>
+              <div style={{ fontSize:12, color:"#8a7868", fontWeight:600, marginTop:3, lineHeight:1.4 }}>Unlocks for paying members — the formula, brainwave states, Hawkins scale, and everything else, in full.</div>
+            </span>
+          </div>
+        ) : (
+          <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left", border:"none", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", boxShadow:"0 8px 24px rgba(183,110,121,0.35)" }}>
+            <span style={{ width:48, height:48, borderRadius:14, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, fontWeight:900, color:"#f5e0a0", flexShrink:0 }}>✦</span>
+            <span style={{ flex:1, textAlign:"left" }}>
+              <div style={{ fontSize:16, fontWeight:900, color:"#000" }}>Open The Guide</div>
+              <div style={{ fontSize:12, color:"#000", fontWeight:700, marginTop:3, lineHeight:1.4 }}>The formula · brainwave states · Hawkins scale · how to capture signs · how often to listen</div>
+            </span>
+            <span style={{ fontSize:22, color:"#000", fontWeight:900, flexShrink:0 }}>›</span>
+          </button>
+        )}
       </div>
 
       {/* ★ EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
@@ -862,7 +872,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
       </Sec>
 
       {/* LISTENING GUIDE */}
-      <Sec title="Listening guide" C={C} onShowAll={openGuide}>
+      <Sec title="Listening guide" C={C} onShowAll={isPreview ? undefined : openGuide}>
         <div style={{ padding:"0 16px" }}>
           {[
             { time:"Morning", tip:"Listen before getting up — your brain is in alpha. Best for identity tracks.", icon:"🌅" },
