@@ -605,6 +605,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
+      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
@@ -1014,11 +1015,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
   const [newCat, setCat]   = useState("Money");
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
   const [newFeel, setFeel] = useState("");
+  const [newFeelText, setFeelText] = useState("");
   const [adding, setAdding] = useState(false);
   const [view, setView] = useState("threads"); // threads | wall
   const [signInput, setSignInput] = useState({}); // {threadId: text}
   const [finishing, setFinishing] = useState(null); // threadId being marked done
   const [feelAfterInput, setFeelAfterInput] = useState("");
+  const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
   // Local palette for ombre dashboard — black text on ombre, cream cards
   const PC = { card:"rgba(255,252,248,0.88)", cardSolid:"#fffcf8", text:"#000", mu:"#4a2830", dim:"#6a4048", border:"rgba(0,0,0,0.14)", inputBg:"rgba(255,255,255,0.95)" };
@@ -1042,8 +1045,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
   const confirmFinish = (id) => {
-    setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:feelAfterInput||t.feelAfter,manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"})}:t));
-    setFinishing(null); setFeelAfterInput("");
+    const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(" — ");
+    setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"})}:t));
+    setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
   };
   const undoMarkDone = (id) => setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
   const deleteThread = (id) => { if(window.confirm("Delete this thread?")) setThreads(threads.filter(t=>t.id!==id)); };
@@ -1173,10 +1177,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
               </button>
             ))}
           </div>
+          <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
+            style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:13, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
           <button onClick={()=>{
             if(!newD.trim()) return;
-            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:newFeel,feelAfter:""},...threads]);
-            setD(""); setLinked(""); setFeel(""); setAdding(false);
+            const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
+            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:""},...threads]);
+            setD(""); setLinked(""); setFeel(""); setFeelText(""); setAdding(false);
           }} style={{ padding:"11px 22px",background:"#000",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             Add Proof Thread
           </button>
@@ -1223,8 +1230,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
           {finishing===d.id && (
             <div style={{ marginTop:10,background:"rgba(200,236,200,0.5)",borderRadius:10,padding:"10px 12px" }}>
               <div style={{ fontSize:11,color:"#1a5028",fontWeight:800,marginBottom:6 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ display:"flex", gap:5, overflowX:"auto", marginBottom:8, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
+                {HAWKINS.slice().reverse().map(h=>(
+                  <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
+                    style={{ flexShrink:0, padding:"5px 10px", borderRadius:14, background:feelAfterLevel===h.n?h.c:"transparent", border:`1px solid ${h.c}`, color:feelAfterLevel===h.n?"#fff":h.c, fontSize:10.5, fontWeight:700, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>{h.n}</button>
+                ))}
+              </div>
               <div style={{ display:"flex",gap:6 }}>
-                <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment"
+                <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment, in your own words"
                   onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
                   style={{ flex:1,background:"#fff",border:"1px solid rgba(26,112,48,0.3)",color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                 <button onClick={()=>confirmFinish(d.id)} style={{ padding:"9px 14px",background:"#1a7030",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
