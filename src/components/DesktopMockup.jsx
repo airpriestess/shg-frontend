@@ -20,8 +20,8 @@ const THEMES = {
   },
 };
 
-const R="#B76E79", P="$d4a090";
-const OMBRE="linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+const R="#e8a860", P="$d4a090";
+const OMBRE="linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
 
 // Unsplash images (same as PortalScreenshot)
 const IMGS = {
@@ -33,9 +33,9 @@ const IMGS = {
   "Lucky Girl Summer":        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=120&h=120&fit=crop&auto=format",
 };
 const GRAD_FALLBACK = {
-  "Spoilt Goddess":"#e8b870,#B76E79","He Finds His Way Back":"#e8b870,#B76E79",
-  "Money Finds Me First":"#e8b870,#B76E79","While I Sleep I Manifest":"#e8b870,#B76E79",
-  "Gorgeous Is My Default":"#e8b870,#B76E79","Lucky Girl Summer":"#e8b870,#B76E79",
+  "Spoilt Goddess":"#fce4c0,#e8a860","He Finds His Way Back":"#fce4c0,#e8a860",
+  "Money Finds Me First":"#fce4c0,#e8a860","While I Sleep I Manifest":"#fce4c0,#e8a860",
+  "Gorgeous Is My Default":"#fce4c0,#e8a860","Lucky Girl Summer":"#fce4c0,#e8a860",
 };
 
 const TITLE_TO_CAT = {
@@ -54,7 +54,7 @@ const CAT_ICONS = {
 
 function Thumb({ title, size }) {
   const cat = TITLE_TO_CAT[title];
-  const c = CAT_ICONS[cat] || { accent:"#B76E79", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
+  const c = CAT_ICONS[cat] || { accent:"#e8a860", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
   const r = Math.round(size * 0.1);
   return (
     <div style={{ width:size, height:size, borderRadius:r, flexShrink:0, overflow:"hidden",
@@ -108,14 +108,14 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
             padding:`${Math.round(pad*1.8)}px 0 ${pad}px`, flexShrink:0, borderRight:`0.5px solid ${C.border}` }}>
             <div style={{ padding:`0 ${Math.round(10*s)}px ${Math.round(12*s)}px`,
               fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:f.sm, fontWeight:500,
-              background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", lineHeight:1.3 }}>
+              background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", lineHeight:1.3 }}>
               Self Hypnosis<br/>Goddess
             </div>
             {[["Home","●",true],["Search","○",false],["Library","☰",false],["ProofOS ✦","✓",false]].map(([l,ic,active],i)=>(
               <div key={i} style={{ display:"flex", alignItems:"center", gap:Math.round(7*s),
                 padding:`${Math.round(5*s)}px ${Math.round(10*s)}px`,
                 background:active?C.bg3:"none",
-                color:active?C.cr:i===3?"#B76E79":C.mu, fontSize:f.xs, fontWeight:active?700:500 }}>
+                color:active?C.cr:i===3?"#e8a860":C.mu, fontSize:f.xs, fontWeight:active?700:500 }}>
                 <span style={{ fontSize:f.sm }}>{ic}</span>{l}
               </div>
             ))}
@@ -149,7 +149,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
               {TRACKS.slice(0,4).map((title,i)=>(
                 <div key={i} style={{ flexShrink:0, width:Math.round(72*s) }}>
                   <Thumb title={title} size={Math.round(72*s)}/>
-                  <div style={{ fontSize:f.xs, color:i===0?"#B76E79":C.mu, marginTop:Math.round(3*s),
+                  <div style={{ fontSize:f.xs, color:i===0?"#e8a860":C.mu, marginTop:Math.round(3*s),
                     overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", fontWeight:i===0?600:400 }}>{title}</div>
                 </div>
               ))}
@@ -166,7 +166,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
               <div style={{ fontSize:f.sm, fontWeight:600, color:C.cr, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>Spoilt Goddess</div>
               <div style={{ fontSize:f.xs, color:C.mu }}>Reshma Oracle</div>
             </div>
-            <span style={{ fontSize:f.md, color:"#B76E79", marginLeft:Math.round(4*s) }}>♡</span>
+            <span style={{ fontSize:f.md, color:"#e8a860", marginLeft:Math.round(4*s) }}>♡</span>
           </div>
           <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:Math.round(4*s) }}>
             <div style={{ display:"flex", alignItems:"center", gap:Math.round(12*s) }}>
@@ -178,7 +178,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
                 <svg width={Math.round(9*s)} height={Math.round(9*s)} viewBox="0 0 24 24" fill={theme==="light"?"#000":"#000"}><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
               </div>
               <span style={{ fontSize:f.md, color:C.mu }}>⏭</span>
-              <span style={{ fontSize:f.md, color:"#B76E79" }}>↻</span>
+              <span style={{ fontSize:f.md, color:"#e8a860" }}>↻</span>
             </div>
             <div style={{ display:"flex", alignItems:"center", gap:Math.round(5*s), width:"100%" }}>
               <span style={{ fontSize:f.xs, color:C.dim }}>1:24</span>
