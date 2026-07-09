@@ -904,7 +904,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </h1>
 
           {/* SPOTIFY TAGLINE */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#ffffff", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
+          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#e8a860", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
             Spotify for your subconscious mind
           </div>
 
@@ -1196,12 +1196,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <ProofWallScreenshot width={isMobile?260:230} theme={proofTheme}/>
               {/* Dark/Light toggle — matches hero style */}
               <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-                <span style={{ fontSize:11, color:proofTheme==="dark"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Dark</span>
+                <span style={{ fontSize:11, color:proofTheme==="dark"?"#f5e0a0":"#8a7868", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Dark</span>
                 <button onClick={()=>setProofTheme(t=>t==="dark"?"light":"dark")}
-                  style={{ width:44, height:24, borderRadius:12, background:proofTheme==="light"?"#B76E79":"#1a0a10", border:"1px solid rgba(0,0,0,0.15)", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+                  style={{ width:44, height:24, borderRadius:12, background:proofTheme==="light"?"#e8a860":"#3a3020", border:"1px solid rgba(232,168,96,0.3)", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
                   <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:2, left:proofTheme==="light"?23:3, transition:"left 0.25s", boxShadow:"0 1px 4px rgba(0,0,0,0.2)" }}/>
                 </button>
-                <span style={{ fontSize:11, color:proofTheme==="light"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Light</span>
+                <span style={{ fontSize:11, color:proofTheme==="light"?"#f5e0a0":"#8a7868", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Light</span>
               </div>
             </div>
             <div style={{ flex: 1 }}>
@@ -1348,28 +1348,28 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
         <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(232,168,96,0.3)", background: "#000000", padding: isMobile ? "32px 20px" : "48px 40px", position: "relative" }}>
           <div style={{ display:"flex", justifyContent:"center", gap: isMobile?28:64, position:"relative", flexWrap:"wrap", alignItems:"center" }}>
-            {/* BEFORE — beta, unsynced: two mismatched wavy lines */}
+            {/* BEFORE — beta, unsynced: fast, tight, erratic oscillation */}
             <div style={{ textAlign:"center" }}>
               <svg width={isMobile?140:170} height={90} viewBox="0 0 170 90">
-                <path d="M10 30 Q25 12 40 30 T70 30 T100 30 T130 30 T160 30" fill="none" stroke="#c9963a" strokeWidth="2.5" strokeLinecap="round" opacity="0.85"/>
-                <path d="M10 60 Q22 48 34 60 T58 60 T82 60 T106 60 T130 60 T160 60" fill="none" stroke="#8a6838" strokeWidth="2.5" strokeLinecap="round" opacity="0.85"/>
+                <path d="M10 30 Q14 20 18 30 T26 30 T34 30 T42 30 T50 30 T58 30 T66 30 T74 30 T82 30 T90 30 T98 30 T106 30 T114 30 T122 30 T130 30 T138 30 T146 30 T154 30 T160 30" fill="none" stroke="#c9963a" strokeWidth="2" strokeLinecap="round" opacity="0.9"/>
+                <path d="M10 60 Q13 52 16 60 T22 60 T28 60 T34 60 T40 60 T46 60 T52 60 T58 60 T64 60 T70 60 T76 60 T82 60 T88 60 T94 60 T100 60 T106 60 T112 60 T118 60 T124 60 T130 60 T136 60 T142 60 T148 60 T154 60 T160 60" fill="none" stroke="#8a6838" strokeWidth="2" strokeLinecap="round" opacity="0.9"/>
               </svg>
               <div style={{ fontSize:11, color:"#c9963a", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Beta · Awake</div>
-              <div style={{ fontSize:10.5, color:"#8a7868", marginTop:2 }}>Hemispheres out of sync</div>
+              <div style={{ fontSize:10.5, color:"#8a7868", marginTop:2 }}>13–30Hz · fast, hemispheres out of sync</div>
             </div>
             {/* ARROW */}
             <div style={{ display:"flex", alignItems:"center", color:"#e8a860" }}>
               <ArrowIcon size={22}/>
             </div>
-            {/* AFTER — theta, hemi-synced: one matched wave */}
+            {/* AFTER — theta, hemi-synced: slow, wide, one matched wave */}
             <div style={{ textAlign:"center" }}>
               <svg width={isMobile?140:170} height={90} viewBox="0 0 170 90">
                 <defs><linearGradient id="syncWave" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#fce4c0"/><stop offset="1" stopColor="#e8a860"/></linearGradient></defs>
-                <path d="M10 45 Q25 22 40 45 T70 45 T100 45 T130 45 T160 45" fill="none" stroke="url(#syncWave)" strokeWidth="3.5" strokeLinecap="round"/>
-                <circle cx="85" cy="45" r="4" fill="#fce4c0"/>
+                <path d="M10 45 Q42 12 74 45 T138 45" fill="none" stroke="url(#syncWave)" strokeWidth="4" strokeLinecap="round"/>
+                <circle cx="74" cy="45" r="4.5" fill="#fce4c0"/>
               </svg>
               <div style={{ fontSize:11, color:"#e8a860", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Theta · 4–8Hz</div>
-              <div style={{ fontSize:10.5, color:"#d4c0a8", marginTop:2 }}>Hemi-synced · one wave</div>
+              <div style={{ fontSize:10.5, color:"#d4c0a8", marginTop:2 }}>Slow, wide · hemi-synced · one wave</div>
             </div>
           </div>
         </div>
