@@ -1041,9 +1041,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* PREVIEW DASHBOARD — prominent on both mobile and desktop */}
           <div style={{ textAlign: "center", marginBottom: 32 }}>
-            <button onClick={onDemo} style={{ padding: "14px 36px", background: "#000", border: "2px solid #B76E7966", borderRadius: 40, color: "#B76E79", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: 10, transition: "all 0.2s" }}
-              onMouseEnter={e=>e.currentTarget.style.borderColor="#B76E79"}
-              onMouseLeave={e=>e.currentTarget.style.borderColor="#B76E7966"}>
+            <button onClick={onDemo} style={{ padding: "14px 36px", background: "#000", border: "2px solid #e8a86066", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: 10, transition: "all 0.2s" }}
+              onMouseEnter={e=>e.currentTarget.style.borderColor="#e8a860"}
+              onMouseLeave={e=>e.currentTarget.style.borderColor="#e8a86066"}>
               <span style={{ fontSize: 16 }}>👁</span>
               Preview Dashboard
             </button>
@@ -1472,7 +1472,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               ["My face just is what it is.", "My face reflects exactly who I'm becoming.", "Someone says you look different — softer, brighter."],
               ["My body and I are at war.", "My body and I are in perfect agreement.", "Clothes fit differently before any visible change should be possible."],
               ["I'll always struggle with my weight.", "My body releases what it doesn't need, easily.", "The number moves without you tracking a single thing."],
-              ["Money comes from grinding harder.", "Money finds me first — effortlessly.", "A client reaches out unexpectedly, books you."],
+              ["It's impossible to make real money as an entrepreneur.", "Money comes to me through unexpected ways, not just my business.", "A random refund lands, a friend sends you money out of nowhere, you win something you didn't enter."],
               ["I have to force this business to work.", "My business is easy. It grows because I do.", "A stranger refers you, unprompted, out of nowhere."],
               ["I have to wait my turn to be recognised.", "I'm recognised before I even ask.", "Your manager mentions the promotion before you bring it up."],
               ["Aging just happens to me.", "My cells regenerate. I get more radiant with time.", "Someone guesses your age wrong — younger."],
@@ -1487,6 +1487,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               ["I have to earn the right to take up space.", "I already belong in every room I walk into.", "You speak up in a meeting without rehearsing it first."],
               ["I don't know how to dress for who I am.", "I dress like the woman I'm becoming.", "Someone asks where you got something you just threw on."],
               ["This pain is just part of who I am now.", "My body and mind release what they no longer need.", "A pain you've carried for years quietly fades."],
+              ["I'll never actually get a visa to move to this country.", "The path is already clearing for me, even if I can't see how yet.", "The visa comes through — randomly, faster than anyone said was possible."],
+              ["There's nothing in my budget, in my area. I'm never gonna find a home.", "My home is already looking for me. It's just a matter of time.", "The exact flat appears — right budget, right area, right when you'd stopped checking."],
               ["Nothing in my life moves at the same time.", "Every area of my life levels up together.", "Multiple good things land in the same week."],
               ["Good things happen to other people.", "I'm the luckiest girl I know.", "You get the exact parking spot, the exact table, the exact timing."],
               ["I need permission to do what I want.", "I answer to no one but myself.", "You make a decision and it just feels final — no second-guessing."],
