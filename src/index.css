@@ -111,21 +111,6 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
 .pulse{animation:slowPulse 1.5s ease-in-out infinite;}
 
 /* ── BACKGROUND ─────────────────────────────────────────────── */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:
-    linear-gradient(rgba(232,168,96,0.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(232,168,96,0.04) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
-}
-body::after{
-  content:'';position:fixed;top:50%;left:50%;width:600px;height:600px;
-  transform:translate(-50%,-50%);border-radius:50%;
-  background:radial-gradient(circle,rgba(232,168,96,0.03) 0%,rgba(252,228,192,0.02) 30%,transparent 70%);
-  pointer-events:none;z-index:0;animation:slowPulse 8s ease-in-out infinite;
-}
 #root{position:relative;z-index:1;}
 
 /* ── NAV HELPERS ─────────────────────────────────────────────── */
