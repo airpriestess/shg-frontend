@@ -2,19 +2,20 @@
    Same gold ombre, same category gradient cards, same media grid. Static demo data. */
 
 const OMBRE_BG = "linear-gradient(160deg,#fdf6ee 0%,#f0e4f5 50%,#dcc4e8 100%)";
-const CAT_GRAD = { "SP & Love":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
-const CAT_COLOR = { "SP & Love":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "Sleep":"#6a2840" };
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#fce4c0,#e8a860)", "Moneymaxxing":"linear-gradient(135deg,#e8a860,#c9963a)", "Beautymaxxing":"linear-gradient(135deg,#fce4c0,#e8a860)", "Bodymaxxing":"linear-gradient(135deg,#e8a860,#c9963a)" };
+const CAT_COLOR = { "Lovemaxxing":"#e8a860", "Moneymaxxing":"#c9963a", "Beautymaxxing":"#e8a860", "Bodymaxxing":"#c9963a" };
 const PC = { card:"rgba(255,248,240,0.92)", text:"#1a1218", mu:"#3a2830", dim:"#5a4048" };
 
 const WALL = [
-  { desire:"He texts me first", category:"SP & Love", days:14, signs:5, media:"📷 · 🎤", date:"20 Jun", feel:"Calm. It was always inevitable." },
-  { desire:"Glowing skin — compliments daily", category:"Beauty", days:9, signs:3, media:"📷", date:"21 Jun", feel:"I catch myself in mirrors now." },
-  { desire:"£180 refund out of nowhere", category:"Money", days:4, signs:2, media:"📷", date:"28 Jun", feel:"Money really does find me first." },
+  { desire:"He texts me first", category:"Lovemaxxing", days:14, signs:5, media:"📷 · 🎤", date:"20 Jun", feel:"Calm, not anxious — like I always knew this was coming." },
+  { desire:"Glowing skin — compliments daily", category:"Beautymaxxing", days:9, signs:3, media:"📷", date:"21 Jun", feel:"I catch myself in mirrors now." },
+  { desire:"£1,800 refund out of nowhere", category:"Moneymaxxing", days:4, signs:2, media:"📷", date:"28 Jun", feel:"Money really does find me first." },
+  { desire:"My dream body — not just weight, the whole shape of it", category:"Bodymaxxing", days:22, signs:6, media:"📷 · 📷", date:"3 Jul", feel:"I stopped checking the mirror to criticise. Now I check it to look." },
 ];
 
 const MEDIA = [
   { img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format", label:"He texts me first · 19 Jun" },
-  { img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format", label:"£180 refund · 28 Jun" },
+  { img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format", label:"£1,800 refund · 28 Jun" },
   { audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", label:"Voice note · 20 Jun" },
   { img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&auto=format", label:"The sign I asked for · 1 Jul" },
 ];
