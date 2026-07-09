@@ -1216,6 +1216,15 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
                 The moment it lands, you mark it manifested. ProofOS timestamps it — desire, track, days it took, signs logged along the way. That record never disappears. It becomes your evidence that this works, in your own data, not someone else's testimonial.
               </p>
+              <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid rgba(232,168,96,0.2)" }}>
+                <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12, opacity: 0.75 }}>Before every intention: the Hawkins Scale</div>
+                <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
+                  Before you log a new desire, you log how you actually feel right now — on the Hawkins Scale, a 17-level map of emotional states from Shame up to Enlightenment. Not what you think you should feel. What's actually true in your body.
+                </p>
+                <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginTop: 12 }}>
+                  ProofOS tracks that number over time — your average emotional state across days, weeks, a month. That average is the real predictor. Manifestation isn't random: a higher, more expansive emotional state is a higher-frequency state, and a higher-frequency state is what your reality actually reorganises around. Your Hawkins average tells you exactly where you sit on that scale — and exactly what's realistic to expect next.
+                </p>
+              </div>
             </div>
           </div>
 
