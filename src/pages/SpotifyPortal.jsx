@@ -8,7 +8,7 @@ const HAWKINS = [
   {n:"Shame",v:20,c:"#3a1a1a"}, {n:"Guilt",v:30,c:"#4a2020"}, {n:"Apathy",v:50,c:"#5a3030"}, {n:"Grief",v:75,c:"#6a4030"},
   {n:"Fear",v:100,c:"#8a5030"}, {n:"Desire",v:125,c:"#a06030"}, {n:"Anger",v:150,c:"#b47030"}, {n:"Pride",v:175,c:"#c68830"},
   {n:"Courage",v:200,c:"#d4a028"}, {n:"Neutrality",v:250,c:"#c8a848"}, {n:"Willingness",v:310,c:"#a8b860"}, {n:"Acceptance",v:350,c:"#78b078"},
-  {n:"Reason",v:400,c:"#48a898"}, {n:"Love",v:500,c:"#B76E79"}, {n:"Joy",v:540,c:"#c4789a"}, {n:"Peace",v:600,c:"#8a6ac0"}, {n:"Enlightenment",v:700,c:"#5a4ab0"},
+  {n:"Reason",v:400,c:"#48a898"}, {n:"Love",v:500,c:"#e8a860"}, {n:"Joy",v:540,c:"#e8a860"}, {n:"Peace",v:600,c:"#8a6ac0"}, {n:"Enlightenment",v:700,c:"#5a4ab0"},
 ];
 const dominant = (log,days) => {
   const cutoff = Date.now() - days*86400000;
@@ -46,32 +46,32 @@ const THEMES = {
   light: { bg:"#fdf0e8", bg2:"#fff8f4", bg3:"rgba(183,110,121,0.08)", bg4:"rgba(183,110,121,0.12)", nav:"rgba(253,240,232,0.97)", cr:"#000000", mu:"#4a3028", dim:"#7a5a48", border:"rgba(183,110,121,0.12)", inputBg:"rgba(0,0,0,0.07)", inputCr:"#111" },
 };
 
-const R = "#B76E79", P = "#d4a090";
-const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+const R = "#e8a860", P = "#e8a860";
+const OMBRE = "linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
 const IMGS = {
-  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
-  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#e8b870,#B76E79" },
+  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
 };
 
 const CAT_ICONS = {
   Lovemaxxing: { accent:"#a85a42", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
   Beautymaxxing: { accent:"#b8547a", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
   Facemaxxing: { accent:"#a85a42", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Bodymaxxing: { accent:"#B76E79", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Skinnymaxxing: { accent:"#B76E79", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Bodymaxxing: { accent:"#e8a860", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Skinnymaxxing: { accent:"#e8a860", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Moneymaxxing: { accent:"#c9963a", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Businessmaxxing: { accent:"#c9963a", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Careermaxxing: { accent:"#c9963a", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
-  DNAmaxxing: { accent:"#8a3050", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
+  DNAmaxxing: { accent:"#8a6020", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
   Selfmaxxing: { accent:"#8a6838", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
   Erosmaxxing: { accent:"#a8506a", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
   Singlemaxxing: { accent:"#a8506a", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
@@ -80,7 +80,7 @@ const CAT_ICONS = {
   Studymaxxing: { accent:"#c9963a", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
   Friendmaxxing: { accent:"#d4917a", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Peacemaxxing: { accent:"#8a6aa8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
-  Confidencemaxxing: { accent:"#B76E79", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
+  Confidencemaxxing: { accent:"#e8a860", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
   Stylemaxxing: { accent:"#a85a42", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
   Healmaxxing: { accent:"#a8506a", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#8a6aa8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
@@ -90,7 +90,7 @@ const CAT_ICONS = {
 };
 
 function Thumb({ title, cat, size=48, radius=4 }) {
-  const c = CAT_ICONS[cat] || { accent:"#B76E79", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
+  const c = CAT_ICONS[cat] || { accent:"#e8a860", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
   return (
     <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:"#000", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
       <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: c.icon }} />
@@ -230,8 +230,8 @@ const INIT_THREADS = [
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
-const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "DNA":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
-const CAT_COLOR = { "Lovemaxxing":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "DNA":"#8a3050", "Sleep":"#6a2840", "Beautymaxxing":"#c4789a", "Facemaxxing":"#d4a090", "Bodymaxxing":"#B76E79", "Moneymaxxing":"#e8b870", "Businessmaxxing":"#c9963a", "DNAmaxxing":"#8a3050", "Selfmaxxing":"#8a6838", "Erosmaxxing":"#a8506a", "Lifemaxxing":"#e0a868", "Luckygirlmaxxing":"#e8b870", "Sovereignmaxxing":"#6a2840" };
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#c9963a)", "Beauty":"linear-gradient(135deg,#f5e0a0,#e8a860)", "Identity":"linear-gradient(135deg,#c9963a,#e8a860)", "DNA":"linear-gradient(135deg,#c9963a,#e8a860)", "Sleep":"linear-gradient(135deg,#e8a860,#e8a860)" };
+const CAT_COLOR = { "Lovemaxxing":"#e8a860", "Money":"#e8b870", "Beauty":"#e8a860", "Identity":"#8a6020", "DNA":"#8a6020", "Sleep":"#6a2840", "Beautymaxxing":"#e8a860", "Facemaxxing":"#c9963a", "Bodymaxxing":"#e8a860", "Moneymaxxing":"#e8b870", "Businessmaxxing":"#c9963a", "DNAmaxxing":"#8a6020", "Selfmaxxing":"#8a6838", "Erosmaxxing":"#a8506a", "Lifemaxxing":"#e0a868", "Luckygirlmaxxing":"#e8b870", "Sovereignmaxxing":"#6a2840" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -502,19 +502,19 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <>
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.6)" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif" }}>
-            <div style={{ fontSize:11,fontWeight:900,color:"#B76E79",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:12 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:11,fontWeight:900,color:"#e8a860",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:12 }}>How are you feeling right now?</div>
             <div style={{ fontSize:11,color:C.mu,marginBottom:8,fontWeight:700 }}>Below 200 · contractive · drains energy</div>
             <div style={{ display:"flex",flexDirection:"column",gap:5,marginBottom:12 }}>
               {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
-                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
+                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#e8a860)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
                   <span>{h.n}</span><span style={{ fontSize:11,opacity:0.7 }}>{h.v}</span>
                 </button>
               ))}
             </div>
-            <div style={{ fontSize:11,color:"#B76E79",marginBottom:8,fontWeight:800 }}>200 and above · expansive · creates ✦</div>
+            <div style={{ fontSize:11,color:"#e8a860",marginBottom:8,fontWeight:800 }}>200 and above · expansive · creates ✦</div>
             <div style={{ display:"flex",flexDirection:"column",gap:5 }}>
               {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
-                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#B76E79)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
+                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#e8a860)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
                   <span>{h.n}</span><span style={{ fontSize:11,opacity:0.7 }}>{h.v}</span>
                 </button>
               ))}
@@ -525,7 +525,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       )}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",textAlign:"center" }}>
             <div style={{ fontSize:11,fontWeight:900,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:800,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
             <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
@@ -540,12 +540,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",flexShrink:0,borderRight:`1px solid ${C.border}` }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
             <svg viewBox="0 0 64 64" width="22" height="22" style={{flexShrink:0}}>
-              <defs><linearGradient id="sidemark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#d4a090"/><stop offset="72%" stopColor="#c4789a"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
+              <defs><linearGradient id="sidemark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#c9963a"/><stop offset="72%" stopColor="#e8a860"/><stop offset="100%" stopColor="#e8a860"/></linearGradient></defs>
               <path d="M32 10 A22 22 0 0 0 32 54 Z" fill="url(#sidemark)" opacity="0.92"/>
               <path d="M32 10 A22 22 0 0 1 32 54 Z" fill="none" stroke="url(#sidemark)" strokeWidth="2.6"/>
               <line x1="32" y1="8" x2="32" y2="56" stroke="url(#sidemark)" strokeWidth="1.2" opacity="0.6"/>
             </svg>
-            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:18,fontWeight:500,background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent"}}>
+            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:18,fontWeight:500,background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent"}}>
               Self Hypnosis Goddess
             </span>
           </div>
@@ -608,7 +608,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",textAlign:"center" }}>
             <div style={{ fontSize:11,fontWeight:900,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:800,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
             <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
@@ -619,7 +619,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       )}
       <div style={{ height:52,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
         <span style={{ fontSize:13,fontWeight:700,color:C.cr }}>9:41</span>
-        <span style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:15,fontWeight:500,background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>SHG</span>
+        <span style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:15,fontWeight:500,background:"linear-gradient(90deg,#fce4c0,#e8a860)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>SHG</span>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{C.cr==="#ffffff"?"☀️":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{ width:34,height:34,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:800,color:"#000",cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>R</button>
@@ -711,7 +711,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
 
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
 function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, C, isDark, hasAudio }) {
-  const d = IMGS[track.title] || { g:"#e8b870,#B76E79" };
+  const d = IMGS[track.title] || { g:"#fce4c0,#e8a860" };
   const [showScript, setShowScript] = useState(false);
   return (
     <div style={{ position:"absolute",inset:0,background:`linear-gradient(180deg,${d.g.split(",")[0]}cc 0%,${C.bg} 50%)`,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
@@ -774,11 +774,11 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
   return (
     <div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 12px" }}>
-        <span onClick={openProfile} style={{ fontSize:20,fontWeight:700,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8 }}>{greet} <span style={{ width:26,height:26,borderRadius:"50%",background:"linear-gradient(135deg,#e8b870,#B76E79)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#000" }}>R</span></span>
+        <span onClick={openProfile} style={{ fontSize:20,fontWeight:700,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8 }}>{greet} <span style={{ width:26,height:26,borderRadius:"50%",background:"linear-gradient(135deg,#fce4c0,#e8a860)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#000" }}>R</span></span>
       </div>
 
       {userTier === "audio" && (
-        <div onClick={onUpgradeClick} style={{ margin:"0 16px 16px",padding:"18px 20px",borderRadius:16,background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
+        <div onClick={onUpgradeClick} style={{ margin:"0 16px 16px",padding:"18px 20px",borderRadius:16,background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
             <div style={{ fontSize:11,fontWeight:900,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:4,opacity:0.75 }}>Member-exclusive offer</div>
             <div style={{ fontSize:15,fontWeight:800,color:"#000",marginBottom:2 }}>Unlock ProofOS — 10% off, this once</div>
@@ -790,7 +790,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
 
       {/* ★ THE GUIDE — first, biggest, unmissable */}
       <div style={{ margin:"0 16px 14px" }}>
-        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c4789a 80%,#B76E79 100%)", backgroundSize:"200%", backgroundPosition:"left", border:"none", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", boxShadow:"0 8px 24px rgba(183,110,121,0.35)" }}>
+        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left", border:"none", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", boxShadow:"0 8px 24px rgba(183,110,121,0.35)" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, fontWeight:900, color:"#f5e0a0", flexShrink:0 }}>✦</span>
           <span style={{ flex:1, textAlign:"left" }}>
             <div style={{ fontSize:16, fontWeight:900, color:"#000" }}>Open The Guide</div>
@@ -801,7 +801,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
       </div>
 
       {/* ★ EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
-      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
+      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
           <span style={{ fontSize:10, fontWeight:900, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your dominant state</span>
           <button onClick={openEmoLog} style={{ fontSize:10, fontWeight:800, padding:"4px 10px", borderRadius:20, background:"rgba(0,0,0,0.85)", border:"none", color:"#fff", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Log now +</button>
@@ -834,7 +834,7 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
             week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#B76E79","Money":"#e8b870","Beauty":"#d4a090","Identity":"#c4789a","DNA":"#c4789a","Sleep":"#d4a090"})[name]||"#B76E79",n]),
+              .map(([name,n])=>[name,({"Lovemaxxing":"#e8a860","Money":"#e8b870","Beauty":"#c9963a","Identity":"#e8a860","DNA":"#e8a860","Sleep":"#c9963a"})[name]||"#e8a860",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
         />
@@ -935,7 +935,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C }) {
-  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Moneymaxxing","Businessmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Sleep","Identity"];
+  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Moneymaxxing","Businessmaxxing","Careermaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   return (
