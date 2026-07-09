@@ -1375,9 +1375,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div style={{ fontSize:11, color:"#c9963a", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Beta · Awake</div>
               <div style={{ fontSize:10.5, color:"#8a7868", marginTop:2 }}>13–30Hz · fast, hemispheres out of sync</div>
             </div>
-            {/* ARROW */}
-            <div style={{ display:"flex", alignItems:"center", color:"#e8a860" }}>
-              <ArrowIcon size={22}/>
+            {/* TRANSITION LABEL — clearer than an abstract arrow */}
+            <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:2 }}>
+              <span style={{ fontSize:20, color:"#e8a860" }}>→</span>
+              <span style={{ fontSize:9, color:"#8a7868", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>becomes</span>
             </div>
             {/* AFTER — theta, hemi-synced: slow, wide, one matched wave */}
             <div style={{ textAlign:"center" }}>
@@ -1495,24 +1496,25 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile?26:32 }}>
             {[
               ["I'm never the one he chooses.", "I am chosen. I'm his dream girl.", "He texts first, out of nowhere, after weeks of silence."],
+              ["Dating apps are impossible. I have to look hard to find the man of my dreams.", "The right person finds me when I'm not looking. I don't have to search.", "You meet him doing something completely unrelated to finding him — and it's obvious immediately."],
               ["Some women are just born with it. I wasn't.", "Gorgeous is my default. My bloodline remembers.", "A stranger stops you to say your skin is glowing."],
               ["My face just is what it is.", "My face reflects exactly who I'm becoming.", "Someone says you look different — softer, brighter."],
-              ["My body and I are at war.", "My body and I are in perfect agreement.", "Clothes fit differently before any visible change should be possible."],
-              ["I'll always struggle with my weight.", "My body releases what it doesn't need, easily.", "The number moves without you tracking a single thing."],
+              ["My body and I are at war.", "My body and I are in perfect agreement.", "Your body starts craving what's actually good for it — no willpower required."],
+              ["It's so hard to lose the last 20 pounds.", "Skinny is my natural body weight. I've always been naturally skinny.", "Your body drops the last weight without you trying or dieting. It happens through the mind."],
               ["It's impossible to make real money as an entrepreneur.", "Money comes to me through unexpected ways, not just my business.", "A random refund lands, a friend sends you money out of nowhere, you win something you didn't enter."],
               ["I have to force this business to work.", "My business is easy. It grows because I do.", "A stranger refers you, unprompted, out of nowhere."],
               ["I have to wait my turn to be recognised.", "I'm recognised before I even ask.", "Your manager mentions the promotion before you bring it up."],
-              ["Aging just happens to me.", "My cells regenerate. I get more radiant with time.", "Someone guesses your age wrong — younger."],
-              ["I don't fully know who I am yet.", "I am exactly who I was always becoming.", "A decision that used to feel hard becomes obvious."],
-              ["I have to try hard to be desired.", "I am magnetic without trying.", "Someone across the room can't stop looking at you."],
-              ["Being single means something's wrong with me.", "I'm single because my standards are that high.", "You catch yourself feeling genuinely fine — no ache."],
-              ["My body and mind are always fighting.", "My body and mind are finally on the same side.", "You sleep through the night without trying to."],
+              ["Everything takes ages. I always end up waiting.", "I'm always first in line. I get seen fast. I jump the queue.", "You get called up early, out of turn, no explanation given."],
+              ["I'm afraid of aging.", "I am aging backwards. I see it in the mirror.", "You see exactly that — the mirror shows it before anyone has to tell you."],
+              ["I don't fully know who I am yet. I can't decide. I never know what to choose.", "I always make the best decisions.", "Every decision feels like a full-body yes."],
+              ["I have to try so hard to be noticed.", "I'm magnetic to exactly the people I desire.", "The person you're attracted to can't stop looking at you."],
+              ["Being single means something's wrong with me.", "I romanticise my day and love every moment of my own company.", "You catch yourself genuinely enjoying being alone — no ache, no waiting for someone else to start your life."],
               ["I have to consciously fix myself.", "I install while I'm unconscious.", "You wake up and the anxious loop from last night is just gone."],
               ["I'm just not a good student.", "Information sticks. I retain what I need.", "A concept clicks instantly that used to take hours."],
-              ["I always end up in one-sided friendships.", "My circle reflects exactly who I am.", "Someone new becomes a real friend, fast, with no effort."],
-              ["I'm always on edge.", "My nervous system is regulated. Nothing rattles me.", "A situation that used to spiral just doesn't."],
+              ["I always end up in one-sided friendships.", "All my relationships are equal — give and take.", "A friend reaches out first, checks in on you, before you even think to."],
+              ["I'm always on edge.", "My nervous system is regulated. Nothing throws me off anymore.", "A situation that used to spiral just doesn't."],
               ["I have to earn the right to take up space.", "I already belong in every room I walk into.", "You speak up in a meeting without rehearsing it first."],
-              ["I don't know how to dress for who I am.", "I dress like the woman I'm becoming.", "Someone asks where you got something you just threw on."],
+              ["I don't identify with my clothes anymore.", "I'm always the best dressed in the room.", "Someone asks where you got that from."],
               ["This pain is just part of who I am now.", "My body and mind release what they no longer need.", "A pain you've carried for years quietly fades."],
               ["I'll never actually get a visa to move to this country.", "The path is already clearing for me, even if I can't see how yet.", "The visa comes through — randomly, faster than anyone said was possible."],
               ["There's nothing in my budget, in my area. I'm never gonna find a home.", "My home is already looking for me. It's just a matter of time.", "The exact flat appears — right budget, right area, right when you'd stopped checking."],
