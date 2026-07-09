@@ -1074,6 +1074,61 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
 
+      {/* HOW IT WORKS — JOURNEY TIMELINE */}
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f9dfc8 50%,#f0c8a0 100%)", position:"relative", overflow:"hidden" }}>
+        {/* Ombre orb */}
+        <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
+
+        <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
+          <div style={{ textAlign:"center", marginBottom:56 }}>
+            <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:900, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
+            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
+              Set intention.<br/>
+              <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
+            </h2>
+            <p style={{ fontSize:isMobile?15:17, color:"#6a4858", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
+          </div>
+
+          {/* JOURNEY STEPS — ombre cards */}
+          <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative" }}>
+            {/* Vertical line */}
+            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79)", borderRadius:1, opacity:0.3 }}/>}
+
+            {[
+              { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#5a3810" },
+              { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#5a2818" },
+              { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#5a1030" },
+              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#fdf0e8,#f5e0d0)", border:"#B76E7966", num:"#B76E79", text:"#5a1418" },
+            ].map((s,i)=>(
+              <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
+                {/* Step number circle */}
+                <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22` }}>
+                  <span style={{ fontSize:isMobile?14:16, fontWeight:900, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
+                </div>
+                {/* Card */}
+                <div style={{ flex:1, background:s.bg, border:`1px solid ${s.border}`, borderRadius:16, padding:"20px 22px", boxShadow:`0 4px 24px ${s.num}14` }}>
+                  <div style={{ fontSize:isMobile?16:20, fontWeight:800, color:s.text, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{s.label}</div>
+                  <div style={{ fontSize:isMobile?13:15, color:s.text, lineHeight:1.75, opacity:0.85 }}>{s.body}</div>
+                </div>
+              </div>
+            ))}
+
+            {/* MANIFESTED — final celebration */}
+            <div style={{ display:"flex", gap:isMobile?14:24, alignItems:"flex-start" }}>
+              <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 8px 32px rgba(232,168,96,0.4)" }}>
+                <span style={{ fontSize:isMobile?18:22 }}>✓</span>
+              </div>
+              <div style={{ flex:1, background:"#0a0a0a", border:"2px solid rgba(232,168,96,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(0,0,0,0.4)" }}>
+                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Manifested.</div>
+                <div style={{ fontSize:isMobile?13:15, color:"#d4c0a8", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
       <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "#000000" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
@@ -1389,60 +1444,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
         </div>
       </div>
-
-      {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f9dfc8 50%,#f0c8a0 100%)", position:"relative", overflow:"hidden" }}>
-        {/* Ombre orb */}
-        <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
-
-        <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <div style={{ textAlign:"center", marginBottom:56 }}>
-            <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:900, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
-            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
-              Set intention.<br/>
-              <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
-            </h2>
-            <p style={{ fontSize:isMobile?15:17, color:"#6a4858", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
-          </div>
-
-          {/* JOURNEY STEPS — ombre cards */}
-          <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative" }}>
-            {/* Vertical line */}
-            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79)", borderRadius:1, opacity:0.3 }}/>}
-
-            {[
-              { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#5a3810" },
-              { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#5a2818" },
-              { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#5a1030" },
-              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#fdf0e8,#f5e0d0)", border:"#B76E7966", num:"#B76E79", text:"#5a1418" },
-            ].map((s,i)=>(
-              <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
-                {/* Step number circle */}
-                <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22` }}>
-                  <span style={{ fontSize:isMobile?14:16, fontWeight:900, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
-                </div>
-                {/* Card */}
-                <div style={{ flex:1, background:s.bg, border:`1px solid ${s.border}`, borderRadius:16, padding:"20px 22px", boxShadow:`0 4px 24px ${s.num}14` }}>
-                  <div style={{ fontSize:isMobile?16:20, fontWeight:800, color:s.text, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{s.label}</div>
-                  <div style={{ fontSize:isMobile?13:15, color:s.text, lineHeight:1.75, opacity:0.85 }}>{s.body}</div>
-                </div>
-              </div>
-            ))}
-
-            {/* MANIFESTED — final celebration */}
-            <div style={{ display:"flex", gap:isMobile?14:24, alignItems:"flex-start" }}>
-              <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 8px 32px rgba(232,168,96,0.4)" }}>
-                <span style={{ fontSize:isMobile?18:22 }}>✓</span>
-              </div>
-              <div style={{ flex:1, background:"#0a0a0a", border:"2px solid rgba(232,168,96,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(0,0,0,0.4)" }}>
-                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Manifested.</div>
-                <div style={{ fontSize:isMobile?13:15, color:"#d4c0a8", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
       {/* OLD ASSUMPTION → NEW ASSUMPTION */}
       <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#fdf0e8 0%,#d8dce8 50%,#a8b0c8 100%)", width: "100%" }}>
