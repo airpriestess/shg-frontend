@@ -1074,6 +1074,204 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
 
+      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "#000000" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12, opacity: 0.75 }}>Goddess Tier · Included</div>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16 }}>
+              <span style={{ color: "#f5e0a0" }}>Introducing </span>
+              <span style={{ background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
+            </h2>
+            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#e8d4c0", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+              The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#f5e0a0" }}>Proof.</strong>
+            </p>
+            <p style={{ fontSize: "clamp(15px,1.9vw,19px)", color: "#f5e0a0", lineHeight: 1.75, maxWidth: 540, margin: "14px auto 0", fontWeight: 700 }}>
+              Your manifestation tracker for life. Your proof wall for life. Every sign, every synchronicity, every screenshot — captured in one place for the rest of your life.
+            </p>
+            <p style={{ fontSize: "clamp(14px,1.7vw,17px)", color: "#e8d4c0", lineHeight: 1.8, maxWidth: 560, margin: "20px auto 0" }}>
+              Here's why that matters: doubt doesn't ask nicely. It shows up at 2am asking if any of this is actually working. Belief alone can't answer that — it just argues back. Proof can. A dated, logged list of things that actually happened is the one thing doubt can't talk you out of. That's the whole point of ProofOS — not another journal, your evidence.
+            </p>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {[
+              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "#0a0a0a", icon: (
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <path d="M12 32 A18 18 0 0 1 48 32" stroke="#e8a860" strokeWidth="3" strokeLinecap="round"/>
+                  <rect x="8" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
+                  <rect x="42" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
+                </svg>
+              )},
+              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "#0a0a0a", icon: (
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <rect x="10" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(-20 21 30)"/>
+                  <rect x="28" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(20 39 30)"/>
+                </svg>
+              )},
+              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "#0a0a0a", icon: (
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <rect x="10" y="16" width="40" height="30" rx="5" stroke="#e8a860" strokeWidth="3" fill="none"/>
+                  <path d="M22 16 L25 10 L35 10 L38 16" stroke="#e8a860" strokeWidth="3" strokeLinecap="round" fill="none"/>
+                  <circle cx="30" cy="31" r="8" stroke="#e8a860" strokeWidth="3" fill="none"/>
+                </svg>
+              )},
+              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", icon: (
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="30" r="20" stroke="#e8a860" strokeWidth="3" fill="none"/>
+                  <path d="M21 30 L27 36 L40 22" stroke="#e8a860" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </svg>
+              )},
+            ].map((s, i) => (
+              <div key={i} style={{ background: "#141414", border: "1px solid rgba(232,168,96,0.25)", borderRadius: 14, overflow: "hidden", boxShadow: "0 2px 18px rgba(0,0,0,0.4)", display: "flex", flexDirection: isMobile ? "column" : "row" }}>
+                {/* SVG icon */}
+                <div style={{ width: isMobile ? "100%" : 180, height: isMobile ? 120 : "auto", minHeight: 110, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, borderBottom: isMobile ? "1px solid rgba(183,110,121,0.15)" : "none", borderRight: isMobile ? "none" : "1px solid rgba(183,110,121,0.15)" }}>
+                  {s.icon}
+                </div>
+                <div style={{ padding: "20px 22px", flex: 1 }}>
+                  <div style={{ fontSize: isMobile ? 22 : 28, fontWeight: 800, color: "#f5e0a0", marginBottom: 8, fontFamily: "'Jost',sans-serif", lineHeight: 1.1 }}>{s.title}</div>
+                  <div style={{ fontSize: 14, color: "#f5e0a0", lineHeight: 1.75 }}>{s.body}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* REAL PROOFOS SCREENSHOT */}
+          <div style={{ display: "flex", flexDirection: isMobile?"column":"row", alignItems: "center", gap: isMobile?28:48, marginTop: 48 }}>
+            <div style={{ flex: isMobile?"none":"0 0 auto", display:"flex", flexDirection:"column", alignItems:"center", gap:14 }}>
+              <ProofWallScreenshot width={isMobile?260:230} theme={proofTheme}/>
+              {/* Dark/Light toggle — matches hero style */}
+              <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                <span style={{ fontSize:11, color:proofTheme==="dark"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Dark</span>
+                <button onClick={()=>setProofTheme(t=>t==="dark"?"light":"dark")}
+                  style={{ width:44, height:24, borderRadius:12, background:proofTheme==="light"?"#B76E79":"#1a0a10", border:"1px solid rgba(0,0,0,0.15)", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+                  <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:2, left:proofTheme==="light"?23:3, transition:"left 0.25s", boxShadow:"0 1px 4px rgba(0,0,0,0.2)" }}/>
+                </button>
+                <span style={{ fontSize:11, color:proofTheme==="light"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Light</span>
+              </div>
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14, opacity: 0.75 }}>How the tracking actually works</div>
+              <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#f5e0a0", marginBottom: 12, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
+              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
+                Say your desire out loud: "£5,000 arrives unexpectedly." Log it in ProofOS. Choose the audio you're pairing it with — Money Finds Me First, say. Now every time you play that track, ProofOS quietly counts the day.
+              </p>
+              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
+                As signs show up — an unexpected refund, a client paying early, a random win — you log them against that thread. Each sign stacks as evidence. You watch the pile grow, day by day, listen by listen.
+              </p>
+              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
+                The moment it lands, you mark it manifested. ProofOS timestamps it — desire, track, days it took, signs logged along the way. That record never disappears. It becomes your evidence that this works, in your own data, not someone else's testimonial.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: 28 }}>
+            <span style={{ fontSize: 14, color: "#f5e0a0", fontWeight: 700, opacity: 0.75 }}>Included in Goddess Tier · £33/mo</span>
+          </div>
+        </div>
+      </div>
+
+            {/* MELODIC HOUSE USP — cream background, locked palette */}
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fdf0e8 0%,#f5d8dc 50%,#d89aa4 100%)", width: "100%" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto" }}>
+        <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ fontSize: 12, color: "#c9963a", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
+              Hypnosis layered beneath<br/>melodic house music.
+            </h2>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#2a1210", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
+              Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
+            </p>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#5a3830", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+              You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
+            </p>
+
+            {/* THREE FORMATS */}
+            <div style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
+              <div style={{ fontSize: 11, color: "#c9963a", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Six formats — each does something different</div>
+              {[
+                { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
+                { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
+                { icon: "🌙", label: "Subliminal", body: "Pure music. No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day." },
+                { icon: "◈", label: "EMDR Hypnosis", body: "Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
+                { icon: "🎼", label: "528hz Frequency", body: "The 'love frequency' — tuned to promote repair and coherence at the cellular level while you rest." },
+                { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
+              ].map((f,i)=>(
+                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
+                  <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#2a1210", marginBottom: 3 }}>{f.label}</div>
+                    <div style={{ fontSize: 13, color: "#5a3830", lineHeight: 1.65 }}>{f.body}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* INFINITY DIAGRAM — the addiction loop */}
+            <div style={{ background:"#000000", border:"1px solid rgba(232,168,96,0.25)", borderRadius:20, padding: isMobile?"32px 18px":"48px 40px", marginBottom: 24, boxShadow:"0 12px 60px rgba(0,0,0,0.5)" }}>
+              <div style={{ textAlign:"center", marginBottom: 44, position:"relative", zIndex:2 }}>
+                <div style={{ fontSize:isMobile?14:16, letterSpacing:"0.25em", color:"#e8a860", textTransform:"uppercase", fontWeight:800, fontFamily:"'Jost',sans-serif" }}>The addiction loop</div>
+                <div style={{ fontSize:isMobile?15:18, color:"#f5e0a0", marginTop:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Music installs the state. You come back. The state deepens.</div>
+              </div>
+              <svg viewBox="0 0 800 285" style={{ width:"100%", aspectRatio:"800/285", height:"auto", display:"block", maxWidth:600, margin:"20px auto 0", position:"relative", zIndex:1 }}>
+                <defs>
+                  <linearGradient id="infA" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#e8a860"/>
+                  </linearGradient>
+                  <linearGradient id="infB" x1="1" y1="0" x2="0" y2="0">
+                    <stop offset="0" stopColor="#e8a860"/><stop offset="1" stopColor="#e08aa8"/>
+                  </linearGradient>
+                  <linearGradient id="infC" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0" stopColor="#e08aa8"/><stop offset="1" stopColor="#f5e0a0"/>
+                  </linearGradient>
+                  <radialGradient id="nodeA"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#c9963a"/></radialGradient>
+                  <radialGradient id="nodeB"><stop offset="0" stopColor="#f2b8cc"/><stop offset="1" stopColor="#b8547a"/></radialGradient>
+                  <radialGradient id="nodeC"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#c9963a"/></radialGradient>
+                </defs>
+                {/* Three arcs forming a continuous circular loop: Music (top) -> Ritual (bottom right) -> Receptivity (bottom left) -> Music */}
+                <path d="M 400 45 A 130 130 0 0 1 512 210" stroke="url(#infA)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                <path d="M 512 210 A 130 130 0 0 1 288 210" stroke="url(#infB)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                <path d="M 288 210 A 130 130 0 0 1 400 45" stroke="url(#infC)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                {/* Soft glow rings behind nodes */}
+                <circle cx="400" cy="45" r="40" fill="url(#nodeA)" opacity="0.10"/>
+                <circle cx="512" cy="210" r="40" fill="url(#nodeB)" opacity="0.10"/>
+                <circle cx="288" cy="210" r="40" fill="url(#nodeC)" opacity="0.10"/>
+                {/* Node dots */}
+                <circle cx="400" cy="45" r="12" fill="url(#nodeA)"/>
+                <circle cx="512" cy="210" r="12" fill="url(#nodeB)"/>
+                <circle cx="288" cy="210" r="12" fill="url(#nodeC)"/>
+                {/* Node labels */}
+                <text x="400" y="18" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">01 · MUSIC</text>
+                <text x="400" y="70" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">Holds the frequency</text>
+                <text x="530" y="245" textAnchor="middle" fill="#f2b8cc" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">03 · RITUAL</text>
+                <text x="530" y="262" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">You return. It deepens.</text>
+                <text x="270" y="245" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">02 · RECEPTIVITY</text>
+                <text x="270" y="262" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">You open. Identity installs.</text>
+                {/* Directional arrows showing the loop direction */}
+                <polygon points="0,-5 10,0 0,5" fill="#e8a860" transform="translate(465,90) rotate(50)"/>
+                <polygon points="0,-5 10,0 0,5" fill="#e08aa8" transform="translate(400,215) rotate(180)"/>
+                <polygon points="0,-5 10,0 0,5" fill="#f5e0a0" transform="translate(335,90) rotate(230)"/>
+              </svg>
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: 14, marginTop: 24 }}>
+                {[
+                  { n:"01", title:"Music as frequency", body:"Melodic house holds a specific energetic state throughout the session. You're not analysing — you're bathing in it.", accent:"#f5e0a0" },
+                  { n:"02", title:"Deeper receptivity", body:"Body relaxes. Subconscious opens. Reshma's voice installs the version of you who already has it — while you enjoy the track.", accent:"#d4a090" },
+                  { n:"03", title:"Ritual, not content", body:"The music is so good you come back. Every return installs the identity deeper. The addiction becomes the transformation.", accent:"#B76E79" },
+                ].map((c,i)=>(
+                  <div key={i} style={{ padding: 16, background:"rgba(245,224,160,0.04)", border:`1px solid ${c.accent}33`, borderRadius: 12 }}>
+                    <div style={{ fontSize:10, letterSpacing:"0.15em", color:c.accent, fontWeight:800, fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.n}</div>
+                    <div style={{ fontSize:14, fontWeight:700, color:"#f5e0a0", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.title}</div>
+                    <div style={{ fontSize:12.5, color:"#c8b8a0", lineHeight:1.7 }}>{c.body}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
+      <LandingProofWall isMobile={isMobile}/>
+
       {/* HEMI-SYNC — how the audio actually shifts the brain */}
       <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 20 }}>
@@ -1397,203 +1595,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* PROOFOS INTRO — peach section */}
-      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "#000000" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12, opacity: 0.75 }}>Goddess Tier · Included</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16 }}>
-              <span style={{ color: "#f5e0a0" }}>Introducing </span>
-              <span style={{ background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
-            </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#e8d4c0", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
-              The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#f5e0a0" }}>Proof.</strong>
-            </p>
-            <p style={{ fontSize: "clamp(15px,1.9vw,19px)", color: "#f5e0a0", lineHeight: 1.75, maxWidth: 540, margin: "14px auto 0", fontWeight: 700 }}>
-              Your manifestation tracker for life. Your proof wall for life. Every sign, every synchronicity, every screenshot — captured in one place for the rest of your life.
-            </p>
-            <p style={{ fontSize: "clamp(14px,1.7vw,17px)", color: "#e8d4c0", lineHeight: 1.8, maxWidth: 560, margin: "20px auto 0" }}>
-              Here's why that matters: doubt doesn't ask nicely. It shows up at 2am asking if any of this is actually working. Belief alone can't answer that — it just argues back. Proof can. A dated, logged list of things that actually happened is the one thing doubt can't talk you out of. That's the whole point of ProofOS — not another journal, your evidence.
-            </p>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {[
-              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <path d="M12 32 A18 18 0 0 1 48 32" stroke="#e8a860" strokeWidth="3" strokeLinecap="round"/>
-                  <rect x="8" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
-                  <rect x="42" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
-                </svg>
-              )},
-              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="10" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(-20 21 30)"/>
-                  <rect x="28" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(20 39 30)"/>
-                </svg>
-              )},
-              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="10" y="16" width="40" height="30" rx="5" stroke="#e8a860" strokeWidth="3" fill="none"/>
-                  <path d="M22 16 L25 10 L35 10 L38 16" stroke="#e8a860" strokeWidth="3" strokeLinecap="round" fill="none"/>
-                  <circle cx="30" cy="31" r="8" stroke="#e8a860" strokeWidth="3" fill="none"/>
-                </svg>
-              )},
-              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <circle cx="30" cy="30" r="20" stroke="#e8a860" strokeWidth="3" fill="none"/>
-                  <path d="M21 30 L27 36 L40 22" stroke="#e8a860" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                </svg>
-              )},
-            ].map((s, i) => (
-              <div key={i} style={{ background: "#141414", border: "1px solid rgba(232,168,96,0.25)", borderRadius: 14, overflow: "hidden", boxShadow: "0 2px 18px rgba(0,0,0,0.4)", display: "flex", flexDirection: isMobile ? "column" : "row" }}>
-                {/* SVG icon */}
-                <div style={{ width: isMobile ? "100%" : 180, height: isMobile ? 120 : "auto", minHeight: 110, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, borderBottom: isMobile ? "1px solid rgba(183,110,121,0.15)" : "none", borderRight: isMobile ? "none" : "1px solid rgba(183,110,121,0.15)" }}>
-                  {s.icon}
-                </div>
-                <div style={{ padding: "20px 22px", flex: 1 }}>
-                  <div style={{ fontSize: isMobile ? 22 : 28, fontWeight: 800, color: "#f5e0a0", marginBottom: 8, fontFamily: "'Jost',sans-serif", lineHeight: 1.1 }}>{s.title}</div>
-                  <div style={{ fontSize: 14, color: "#f5e0a0", lineHeight: 1.75 }}>{s.body}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* REAL PROOFOS SCREENSHOT */}
-          <div style={{ display: "flex", flexDirection: isMobile?"column":"row", alignItems: "center", gap: isMobile?28:48, marginTop: 48 }}>
-            <div style={{ flex: isMobile?"none":"0 0 auto", display:"flex", flexDirection:"column", alignItems:"center", gap:14 }}>
-              <ProofWallScreenshot width={isMobile?260:230} theme={proofTheme}/>
-              {/* Dark/Light toggle — matches hero style */}
-              <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-                <span style={{ fontSize:11, color:proofTheme==="dark"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Dark</span>
-                <button onClick={()=>setProofTheme(t=>t==="dark"?"light":"dark")}
-                  style={{ width:44, height:24, borderRadius:12, background:proofTheme==="light"?"#B76E79":"#1a0a10", border:"1px solid rgba(0,0,0,0.15)", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
-                  <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:2, left:proofTheme==="light"?23:3, transition:"left 0.25s", boxShadow:"0 1px 4px rgba(0,0,0,0.2)" }}/>
-                </button>
-                <span style={{ fontSize:11, color:proofTheme==="light"?"#1a0a10":"#5a4060", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Light</span>
-              </div>
-            </div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14, opacity: 0.75 }}>How the tracking actually works</div>
-              <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#f5e0a0", marginBottom: 12, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
-              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
-                Say your desire out loud: "£5,000 arrives unexpectedly." Log it in ProofOS. Choose the audio you're pairing it with — Money Finds Me First, say. Now every time you play that track, ProofOS quietly counts the day.
-              </p>
-              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
-                As signs show up — an unexpected refund, a client paying early, a random win — you log them against that thread. Each sign stacks as evidence. You watch the pile grow, day by day, listen by listen.
-              </p>
-              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
-                The moment it lands, you mark it manifested. ProofOS timestamps it — desire, track, days it took, signs logged along the way. That record never disappears. It becomes your evidence that this works, in your own data, not someone else's testimonial.
-              </p>
-            </div>
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: 28 }}>
-            <span style={{ fontSize: 14, color: "#f5e0a0", fontWeight: 700, opacity: 0.75 }}>Included in Goddess Tier · £33/mo</span>
-          </div>
-        </div>
-      </div>
-
-            {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fdf0e8 0%,#f5d8dc 50%,#d89aa4 100%)", width: "100%" }}>
-      <div style={{ maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 12, color: "#B76E79", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
-              Hypnosis layered beneath<br/>melodic house music.
-            </h2>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#2a1210", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
-              Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
-            </p>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#5a3830", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
-              You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
-            </p>
-
-            {/* THREE FORMATS */}
-            <div style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Six formats — each does something different</div>
-              {[
-                { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
-                { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
-                { icon: "🌙", label: "Subliminal", body: "Pure music. No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day." },
-                { icon: "◈", label: "EMDR Hypnosis", body: "Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
-                { icon: "🎼", label: "528hz Frequency", body: "The 'love frequency' — tuned to promote repair and coherence at the cellular level while you rest." },
-                { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
-              ].map((f,i)=>(
-                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
-                  <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
-                  <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#2a1210", marginBottom: 3 }}>{f.label}</div>
-                    <div style={{ fontSize: 13, color: "#5a3830", lineHeight: 1.65 }}>{f.body}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* INFINITY DIAGRAM — the addiction loop */}
-            <div style={{ background:"#000000", border:"1px solid rgba(232,168,96,0.25)", borderRadius:20, padding: isMobile?"32px 18px":"48px 40px", marginBottom: 24, boxShadow:"0 12px 60px rgba(0,0,0,0.5)" }}>
-              <div style={{ textAlign:"center", marginBottom: 44, position:"relative", zIndex:2 }}>
-                <div style={{ fontSize:isMobile?14:16, letterSpacing:"0.25em", color:"#e8a860", textTransform:"uppercase", fontWeight:800, fontFamily:"'Jost',sans-serif" }}>The addiction loop</div>
-                <div style={{ fontSize:isMobile?15:18, color:"#f5e0a0", marginTop:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Music installs the state. You come back. The state deepens.</div>
-              </div>
-              <svg viewBox="0 0 800 285" style={{ width:"100%", aspectRatio:"800/285", height:"auto", display:"block", maxWidth:600, margin:"20px auto 0", position:"relative", zIndex:1 }}>
-                <defs>
-                  <linearGradient id="infA" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#e8a860"/>
-                  </linearGradient>
-                  <linearGradient id="infB" x1="1" y1="0" x2="0" y2="0">
-                    <stop offset="0" stopColor="#e8a860"/><stop offset="1" stopColor="#e08aa8"/>
-                  </linearGradient>
-                  <linearGradient id="infC" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0" stopColor="#e08aa8"/><stop offset="1" stopColor="#f5e0a0"/>
-                  </linearGradient>
-                  <radialGradient id="nodeA"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#c9963a"/></radialGradient>
-                  <radialGradient id="nodeB"><stop offset="0" stopColor="#f2b8cc"/><stop offset="1" stopColor="#b8547a"/></radialGradient>
-                  <radialGradient id="nodeC"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#c9963a"/></radialGradient>
-                </defs>
-                {/* Three arcs forming a continuous circular loop: Music (top) -> Ritual (bottom right) -> Receptivity (bottom left) -> Music */}
-                <path d="M 400 45 A 130 130 0 0 1 512 210" stroke="url(#infA)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-                <path d="M 512 210 A 130 130 0 0 1 288 210" stroke="url(#infB)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-                <path d="M 288 210 A 130 130 0 0 1 400 45" stroke="url(#infC)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-                {/* Soft glow rings behind nodes */}
-                <circle cx="400" cy="45" r="40" fill="url(#nodeA)" opacity="0.10"/>
-                <circle cx="512" cy="210" r="40" fill="url(#nodeB)" opacity="0.10"/>
-                <circle cx="288" cy="210" r="40" fill="url(#nodeC)" opacity="0.10"/>
-                {/* Node dots */}
-                <circle cx="400" cy="45" r="12" fill="url(#nodeA)"/>
-                <circle cx="512" cy="210" r="12" fill="url(#nodeB)"/>
-                <circle cx="288" cy="210" r="12" fill="url(#nodeC)"/>
-                {/* Node labels */}
-                <text x="400" y="18" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">01 · MUSIC</text>
-                <text x="400" y="70" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">Holds the frequency</text>
-                <text x="530" y="245" textAnchor="middle" fill="#f2b8cc" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">03 · RITUAL</text>
-                <text x="530" y="262" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">You return. It deepens.</text>
-                <text x="270" y="245" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">02 · RECEPTIVITY</text>
-                <text x="270" y="262" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">You open. Identity installs.</text>
-                {/* Directional arrows showing the loop direction */}
-                <polygon points="0,-5 10,0 0,5" fill="#e8a860" transform="translate(465,90) rotate(50)"/>
-                <polygon points="0,-5 10,0 0,5" fill="#e08aa8" transform="translate(400,215) rotate(180)"/>
-                <polygon points="0,-5 10,0 0,5" fill="#f5e0a0" transform="translate(335,90) rotate(230)"/>
-              </svg>
-              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: 14, marginTop: 24 }}>
-                {[
-                  { n:"01", title:"Music as frequency", body:"Melodic house holds a specific energetic state throughout the session. You're not analysing — you're bathing in it.", accent:"#f5e0a0" },
-                  { n:"02", title:"Deeper receptivity", body:"Body relaxes. Subconscious opens. Reshma's voice installs the version of you who already has it — while you enjoy the track.", accent:"#d4a090" },
-                  { n:"03", title:"Ritual, not content", body:"The music is so good you come back. Every return installs the identity deeper. The addiction becomes the transformation.", accent:"#B76E79" },
-                ].map((c,i)=>(
-                  <div key={i} style={{ padding: 16, background:"rgba(245,224,160,0.04)", border:`1px solid ${c.accent}33`, borderRadius: 12 }}>
-                    <div style={{ fontSize:10, letterSpacing:"0.15em", color:c.accent, fontWeight:800, fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.n}</div>
-                    <div style={{ fontSize:14, fontWeight:700, color:"#f5e0a0", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.title}</div>
-                    <div style={{ fontSize:12.5, color:"#c8b8a0", lineHeight:1.7 }}>{c.body}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
-      <LandingProofWall isMobile={isMobile}/>
 
       {/* WHY I BUILT THIS — BLACK */}
       <div style={{ background: "#000", padding: isMobile?"56px 18px":"90px 24px", position:"relative", overflow:"hidden" }}>
