@@ -339,7 +339,7 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : TIERS.audio.trialNote, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", border: "#B76E7955", nameColor: "#2a1210", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#4a2820", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
+    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : TIERS.audio.trialNote, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "#0a0a0a", border: "#B76E7955", nameColor: "#2a1210", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#4a2820", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
     { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fce4ec,#f5cfdc)", border: "#B76E79", nameColor: "#1a0818", muteColor: "#B76E79", priceColor: "#B76E79", periodColor: "#8a7268", featureColor: "#6a2848", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e0a0b8,#c4789a,#B76E79)", ctaColor: "#000", popular: true },
     { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "#000", border: "#e8b87066", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)", ctaColor: "#000" },
   ];
@@ -1180,8 +1180,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 icon: <><circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 34 L30 48" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/></> },
               { name: "Wellnessmaxxing", pain: "Your body and mind, finally in sync", accent: "#6a8a5a",
                 icon: <><path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 26 L27 26 L29 20 L32 32 L34 26 L38 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/></> },
-              { name: "Sleepmaxxing", pain: "Manifesting while you're unconscious", accent: "#2a2e58",
-                icon: <path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/> },
               { name: "Studymaxxing", pain: "The grades everyone said were out of reach", accent: "#c9963a",
                 icon: <><path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M22 26 L22 36 Q30 40 38 36 L38 26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
               { name: "Friendmaxxing", pain: "A circle that actually deserves you", accent: "#d4917a",
@@ -1201,7 +1199,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
-                <div style={{ fontSize: isMobile ? 12.5 : 14, fontWeight: 800, color: "#1a1210", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: isMobile ? 16 : 19, fontWeight: 600, color: "#1a1210", marginBottom: 6 }}>{cat.name}</div>
                 <div style={{ fontSize: isMobile ? 11 : 12, color: "#7a6a60", lineHeight: 1.4 }}>{cat.pain}</div>
               </div>
             ))}
@@ -1407,7 +1405,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <span style={{ color: "#f5e0a0" }}>Introducing </span>
               <span style={{ background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ProofOS</span>
             </h2>
-            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#111111", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+            <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#e8d4c0", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
               The system that links every audio you listen to with real evidence of what shifts. Not journaling. Not affirmations. <strong style={{ color: "#f5e0a0" }}>Proof.</strong>
             </p>
             <p style={{ fontSize: "clamp(15px,1.9vw,19px)", color: "#f5e0a0", lineHeight: 1.75, maxWidth: 540, margin: "14px auto 0", fontWeight: 700 }}>
@@ -1419,20 +1417,20 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {[
-              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "linear-gradient(135deg,#fff8f0,#fceedd)", icon: (
+              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "#0a0a0a", icon: (
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
                   <path d="M12 32 A18 18 0 0 1 48 32" stroke="#e8a860" strokeWidth="3" strokeLinecap="round"/>
                   <rect x="8" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
                   <rect x="42" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
                 </svg>
               )},
-              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "linear-gradient(135deg,#fdf0f0,#fce8e4)", icon: (
+              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "#0a0a0a", icon: (
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
                   <rect x="10" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(-20 21 30)"/>
                   <rect x="28" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(20 39 30)"/>
                 </svg>
               )},
-              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "linear-gradient(135deg,#fceedd,#f8e4cc)", icon: (
+              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "#0a0a0a", icon: (
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
                   <rect x="10" y="16" width="40" height="30" rx="5" stroke="#e8a860" strokeWidth="3" fill="none"/>
                   <path d="M22 16 L25 10 L35 10 L38 16" stroke="#e8a860" strokeWidth="3" strokeLinecap="round" fill="none"/>
@@ -1476,13 +1474,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14, opacity: 0.75 }}>How the tracking actually works</div>
               <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#f5e0a0", marginBottom: 12, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
-              <p style={{ fontSize: 14, color: "#1a1218", lineHeight: 1.85, marginBottom: 12 }}>
+              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
                 Say your desire out loud: "£5,000 arrives unexpectedly." Log it in ProofOS. Choose the audio you're pairing it with — Money Finds Me First, say. Now every time you play that track, ProofOS quietly counts the day.
               </p>
-              <p style={{ fontSize: 14, color: "#1a1218", lineHeight: 1.85, marginBottom: 12 }}>
+              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
                 As signs show up — an unexpected refund, a client paying early, a random win — you log them against that thread. Each sign stacks as evidence. You watch the pile grow, day by day, listen by listen.
               </p>
-              <p style={{ fontSize: 14, color: "#1a1218", lineHeight: 1.85 }}>
+              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
                 The moment it lands, you mark it manifested. ProofOS timestamps it — desire, track, days it took, signs logged along the way. That record never disappears. It becomes your evidence that this works, in your own data, not someone else's testimonial.
               </p>
             </div>
@@ -1532,45 +1530,49 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </div>
 
             {/* INFINITY DIAGRAM — the addiction loop */}
-            <div style={{ background:"linear-gradient(135deg,#0a0508,#1a0a15,#0a0508)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:20, padding: isMobile?"32px 18px":"48px 40px", marginBottom: 24, boxShadow:"0 12px 60px rgba(183,110,121,0.15)" }}>
+            <div style={{ background:"#000000", border:"1px solid rgba(232,168,96,0.25)", borderRadius:20, padding: isMobile?"32px 18px":"48px 40px", marginBottom: 24, boxShadow:"0 12px 60px rgba(0,0,0,0.5)" }}>
               <div style={{ textAlign:"center", marginBottom: 44, position:"relative", zIndex:2 }}>
                 <div style={{ fontSize:isMobile?14:16, letterSpacing:"0.25em", color:"#e8a860", textTransform:"uppercase", fontWeight:800, fontFamily:"'Jost',sans-serif" }}>The addiction loop</div>
                 <div style={{ fontSize:isMobile?15:18, color:"#f5e0a0", marginTop:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Music installs the state. You come back. The state deepens.</div>
               </div>
-              <svg viewBox="0 0 800 260" style={{ width:"100%", aspectRatio:"800/260", height:"auto", display:"block", maxWidth:720, margin:"20px auto 0", position:"relative", zIndex:1 }}>
+              <svg viewBox="0 0 800 285" style={{ width:"100%", aspectRatio:"800/285", height:"auto", display:"block", maxWidth:600, margin:"20px auto 0", position:"relative", zIndex:1 }}>
                 <defs>
                   <linearGradient id="infA" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/>
+                    <stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#e8a860"/>
                   </linearGradient>
                   <linearGradient id="infB" x1="1" y1="0" x2="0" y2="0">
-                    <stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/>
+                    <stop offset="0" stopColor="#e8a860"/><stop offset="1" stopColor="#e08aa8"/>
                   </linearGradient>
-                  <radialGradient id="nodeA"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#e8b870"/></radialGradient>
-                  <radialGradient id="nodeB"><stop offset="0" stopColor="#f0d0c0" stopOpacity="1"/><stop offset="1" stopColor="#d4a090"/></radialGradient>
-                  <radialGradient id="nodeC"><stop offset="0" stopColor="#e89aa8"/><stop offset="1" stopColor="#B76E79"/></radialGradient>
+                  <linearGradient id="infC" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0" stopColor="#e08aa8"/><stop offset="1" stopColor="#f5e0a0"/>
+                  </linearGradient>
+                  <radialGradient id="nodeA"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#c9963a"/></radialGradient>
+                  <radialGradient id="nodeB"><stop offset="0" stopColor="#f2b8cc"/><stop offset="1" stopColor="#b8547a"/></radialGradient>
+                  <radialGradient id="nodeC"><stop offset="0" stopColor="#f5e0a0"/><stop offset="1" stopColor="#c9963a"/></radialGradient>
                 </defs>
-                {/* Left lobe — arcs from music node up + around to receptivity center */}
-                <path d="M 400 130 C 380 40, 220 40, 160 130 C 100 220, 260 220, 400 130" stroke="url(#infA)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-                {/* Right lobe — from center out to ritual and back */}
-                <path d="M 400 130 C 420 40, 580 40, 640 130 C 700 220, 540 220, 400 130" stroke="url(#infB)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                {/* Three arcs forming a continuous circular loop: Music (top) -> Ritual (bottom right) -> Receptivity (bottom left) -> Music */}
+                <path d="M 400 45 A 130 130 0 0 1 512 210" stroke="url(#infA)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                <path d="M 512 210 A 130 130 0 0 1 288 210" stroke="url(#infB)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+                <path d="M 288 210 A 130 130 0 0 1 400 45" stroke="url(#infC)" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
                 {/* Soft glow rings behind nodes */}
-                <circle cx="160" cy="130" r="42" fill="url(#nodeA)" opacity="0.08"/>
-                <circle cx="400" cy="130" r="48" fill="url(#nodeB)" opacity="0.10"/>
-                <circle cx="640" cy="130" r="42" fill="url(#nodeC)" opacity="0.08"/>
+                <circle cx="400" cy="45" r="40" fill="url(#nodeA)" opacity="0.10"/>
+                <circle cx="512" cy="210" r="40" fill="url(#nodeB)" opacity="0.10"/>
+                <circle cx="288" cy="210" r="40" fill="url(#nodeC)" opacity="0.10"/>
                 {/* Node dots */}
-                <circle cx="160" cy="130" r="11" fill="url(#nodeA)"/>
-                <circle cx="400" cy="130" r="14" fill="url(#nodeB)"/>
-                <circle cx="640" cy="130" r="11" fill="url(#nodeC)"/>
+                <circle cx="400" cy="45" r="12" fill="url(#nodeA)"/>
+                <circle cx="512" cy="210" r="12" fill="url(#nodeB)"/>
+                <circle cx="288" cy="210" r="12" fill="url(#nodeC)"/>
                 {/* Node labels */}
-                <text x="160" y="80" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">01 · MUSIC</text>
-                <text x="160" y="185" textAnchor="middle" fill="#c8b8a0" fontSize="11" fontFamily="Jost,sans-serif">Holds the frequency</text>
-                <text x="400" y="80" textAnchor="middle" fill="#e8c4a8" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">02 · RECEPTIVITY</text>
-                <text x="400" y="185" textAnchor="middle" fill="#c8b8a0" fontSize="11" fontFamily="Jost,sans-serif">You open. Identity installs.</text>
-                <text x="640" y="80" textAnchor="middle" fill="#e89aa8" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">03 · RITUAL</text>
-                <text x="640" y="185" textAnchor="middle" fill="#c8b8a0" fontSize="11" fontFamily="Jost,sans-serif">You return. It deepens.</text>
-                {/* Directional arrows on the path */}
-                <polygon points="0,-5 10,0 0,5" fill="#f5e0a0" transform="translate(240,50) rotate(180)"/>
-                <polygon points="0,-5 10,0 0,5" fill="#B76E79" transform="translate(560,50)"/>
+                <text x="400" y="18" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">01 · MUSIC</text>
+                <text x="400" y="70" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">Holds the frequency</text>
+                <text x="530" y="245" textAnchor="middle" fill="#f2b8cc" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">03 · RITUAL</text>
+                <text x="530" y="262" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">You return. It deepens.</text>
+                <text x="270" y="245" textAnchor="middle" fill="#f5e0a0" fontSize="17" fontFamily="Jost,sans-serif" fontWeight="800" letterSpacing="2">02 · RECEPTIVITY</text>
+                <text x="270" y="262" textAnchor="middle" fill="#d4c0a0" fontSize="11" fontFamily="Jost,sans-serif">You open. Identity installs.</text>
+                {/* Directional arrows showing the loop direction */}
+                <polygon points="0,-5 10,0 0,5" fill="#e8a860" transform="translate(465,90) rotate(50)"/>
+                <polygon points="0,-5 10,0 0,5" fill="#e08aa8" transform="translate(400,215) rotate(180)"/>
+                <polygon points="0,-5 10,0 0,5" fill="#f5e0a0" transform="translate(335,90) rotate(230)"/>
               </svg>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: 14, marginTop: 24 }}>
                 {[
