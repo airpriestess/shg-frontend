@@ -691,6 +691,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   const [billing, setBilling] = useState("monthly");
   const [menuOpen, setMenuOpen] = useState(false);
   const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [waitlistStatus, setWaitlistStatus] = useState("idle"); // idle | saving | done | error
 
@@ -829,7 +830,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <button onClick={()=>document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Pricing</button>
               <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>ProofOS</button>
               <button onClick={onDemo} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Preview</button>
-              <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",textDecoration:"none" }}>Shop</a>
+              <button onClick={()=>setShopOpen(true)} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Shop</button>
             </div>
           )}
 
@@ -873,7 +874,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {[
               ["Pricing", ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
               ["ProofOS ✦", ()=>{document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
-              ["Shop", ()=>{window.open("https://beacons.ai/reshmaoracle","_blank");setMenuOpen(false);}, true],
+              ["Shop", ()=>{setShopOpen(true);setMenuOpen(false);}, true],
               ["YouTube", ()=>{window.open("https://www.youtube.com/@Reshma.Oracle","_blank");setMenuOpen(false);}, true],
             ].map(([l,fn,ext],i)=>(
               <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
@@ -1866,6 +1867,22 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         </div>
         <div style={{ fontSize: 12, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
       </div>
+
+      {/* SHOP MODAL — embedded Beacons, stays on-site */}
+      {shopOpen && (
+        <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(232,168,96,0.3)" }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(232,168,96,0.2)", flexShrink:0 }}>
+              <span className="wm wm-shimmer" style={{ fontSize:16 }}>Shop</span>
+              <div style={{ display:"flex", gap:10, alignItems:"center" }}>
+                <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#8a7868", textDecoration:"none" }}>Open in new tab ↗</a>
+                <button onClick={()=>setShopOpen(false)} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:22, cursor:"pointer", lineHeight:1, padding:4 }}>×</button>
+              </div>
+            </div>
+            <iframe src="https://beacons.ai/reshmaoracle" title="SHG Shop" style={{ flex:1, border:"none", width:"100%", background:"#fff" }} />
+          </div>
+        </div>
+      )}
 
       {/* WAITLIST MODAL */}
       {waitlistOpen && (
