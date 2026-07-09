@@ -72,7 +72,7 @@ const CAT_ICONS = {
   Businessmaxxing: { accent:"#c9963a", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Careermaxxing: { accent:"#c9963a", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#8a3050", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
-  Selfmaxxing: { accent:"#8a5068", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
+  Selfmaxxing: { accent:"#8a6838", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
   Erosmaxxing: { accent:"#a8506a", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
   Singlemaxxing: { accent:"#a8506a", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
   Wellnessmaxxing: { accent:"#6a8a5a", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
@@ -231,7 +231,7 @@ const INIT_THREADS = [
 
 // Category → proof wall colours (matches landing Proof Wall)
 const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#c4789a)", "Identity":"linear-gradient(135deg,#d4a090,#c4789a)", "DNA":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
-const CAT_COLOR = { "Lovemaxxing":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "DNA":"#8a3050", "Sleep":"#6a2840", "Beautymaxxing":"#c4789a", "Facemaxxing":"#d4a090", "Bodymaxxing":"#B76E79", "Moneymaxxing":"#e8b870", "Businessmaxxing":"#c9963a", "DNAmaxxing":"#8a3050", "Selfmaxxing":"#8a5068", "Erosmaxxing":"#a8506a", "Lifemaxxing":"#e0a868", "Luckygirlmaxxing":"#e8b870", "Sovereignmaxxing":"#6a2840" };
+const CAT_COLOR = { "Lovemaxxing":"#B76E79", "Money":"#e8b870", "Beauty":"#c4789a", "Identity":"#8a3050", "DNA":"#8a3050", "Sleep":"#6a2840", "Beautymaxxing":"#c4789a", "Facemaxxing":"#d4a090", "Bodymaxxing":"#B76E79", "Moneymaxxing":"#e8b870", "Businessmaxxing":"#c9963a", "DNAmaxxing":"#8a3050", "Selfmaxxing":"#8a6838", "Erosmaxxing":"#a8506a", "Lifemaxxing":"#e0a868", "Luckygirlmaxxing":"#e8b870", "Sovereignmaxxing":"#6a2840" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
