@@ -1207,16 +1207,23 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14, opacity: 0.75 }}>How the tracking actually works</div>
-              <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#f5e0a0", marginBottom: 12, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
-              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
-                Say your desire out loud: "£5,000 arrives unexpectedly." Log it in ProofOS. Choose the audio you're pairing it with — Money Finds Me First, say. Now every time you play that track, ProofOS quietly counts the day.
-              </p>
-              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginBottom: 12 }}>
-                As signs show up — an unexpected refund, a client paying early, a random win — you log them against that thread. Each sign stacks as evidence. You watch the pile grow, day by day, listen by listen.
-              </p>
-              <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
-                The moment it lands, you mark it manifested. ProofOS timestamps it — desire, track, days it took, signs logged along the way. That record never disappears. It becomes your evidence that this works, in your own data, not someone else's testimonial.
-              </p>
+              <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#f5e0a0", marginBottom: 16, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {[
+                  { n: "1", t: "Say it, log it.", d: "\"£5,000 arrives unexpectedly.\" Log it in ProofOS. Pick the track you're pairing it with — Money Finds Me First, say." },
+                  { n: "2", t: "Play the track.", d: "Every time you play it, ProofOS counts the day. Day 1, day 2, day 6." },
+                  { n: "3", t: "Log every sign.", d: "A refund, a client paying early, a random win. Each one stacks as evidence on that thread." },
+                  { n: "4", t: "Mark it manifested.", d: "ProofOS timestamps it — desire, track, days it took, signs logged. Your evidence, your data, not someone else's testimonial." },
+                ].map((step) => (
+                  <div key={step.n} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                    <div style={{ width: 30, height: 30, borderRadius: 8, background: "rgba(232,168,96,0.15)", border: "1px solid rgba(232,168,96,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 900, color: "#e8a860" }}>{step.n}</div>
+                    <div>
+                      <div style={{ fontSize: 14, fontWeight: 800, color: "#f5e0a0", marginBottom: 2 }}>{step.t}</div>
+                      <div style={{ fontSize: 13, color: "#d4c0a8", lineHeight: 1.6 }}>{step.d}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
               <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid rgba(232,168,96,0.2)" }}>
                 <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 16, opacity: 0.75 }}>Before every intention: the Hawkins Scale</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 16, maxWidth: 420 }}>
@@ -1235,6 +1242,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <p style={{ fontSize: 12, color: "#8a7868", marginBottom: 16 }}>Below 200 drains you. 200 and above builds. Courage is the tipping point.</p>
                 <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
                   Before you log a new desire, you log how you actually feel right now — on the Hawkins Scale, a 17-level map of emotional states from Shame up to Enlightenment. Not what you think you should feel. What's actually true in your body.
+                </p>
+                <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginTop: 12 }}>
+                  Then when it actually manifests, you log it again — how you feel the moment it lands. Before and after, side by side, on your own thread. That shift, in your own words and your own data, is proof the state came first.
                 </p>
                 <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginTop: 12 }}>
                   ProofOS tracks that number over time — your average emotional state across days, weeks, a month. That average is the real predictor. Manifestation isn't random: a higher, more expansive emotional state is a higher-frequency state, and a higher-frequency state is what your reality actually reorganises around. Your Hawkins average tells you exactly where you sit on that scale — and exactly what's realistic to expect next.
@@ -1447,6 +1457,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 icon: <><circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 34 L30 48" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/></> },
               { name: "Wellnessmaxxing", pain: "Your body and mind, finally in sync", accent: "#6a8a5a",
                 icon: <><path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 26 L27 26 L29 20 L32 32 L34 26 L38 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/></> },
+              { name: "Sleepmaxxing", pain: "Manifesting while you're unconscious", accent: "#2a2e58",
+                icon: <path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/> },
               { name: "Studymaxxing", pain: "The grades everyone said were out of reach", accent: "#c9963a",
                 icon: <><path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M22 26 L22 36 Q30 40 38 36 L38 26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
               { name: "Friendmaxxing", pain: "A circle that actually deserves you", accent: "#d4917a",
@@ -1498,12 +1510,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               ["I'm never the one he chooses.", "I am chosen. I'm his dream girl.", "He texts first, out of nowhere, after weeks of silence."],
               ["Dating apps are impossible. I have to look hard to find the man of my dreams.", "The right person finds me when I'm not looking. I don't have to search.", "You meet him doing something completely unrelated to finding him — and it's obvious immediately."],
               ["Some women are just born with it. I wasn't.", "Gorgeous is my default. My bloodline remembers.", "A stranger stops you to say your skin is glowing."],
-              ["My face just is what it is.", "My face reflects exactly who I'm becoming.", "Someone says you look different — softer, brighter."],
+              ["My face is always bloated and puffy.", "My face is snatched. I'm glowing.", "You see it in the mirror first — then other people confirm it."],
               ["My body and I are at war.", "My body and I are in perfect agreement.", "Your body starts craving what's actually good for it — no willpower required."],
               ["It's so hard to lose the last 20 pounds.", "Skinny is my natural body weight. I've always been naturally skinny.", "Your body drops the last weight without you trying or dieting. It happens through the mind."],
               ["It's impossible to make real money as an entrepreneur.", "Money comes to me through unexpected ways, not just my business.", "A random refund lands, a friend sends you money out of nowhere, you win something you didn't enter."],
               ["I have to force this business to work.", "My business is easy. It grows because I do.", "A stranger refers you, unprompted, out of nowhere."],
-              ["I have to wait my turn to be recognised.", "I'm recognised before I even ask.", "Your manager mentions the promotion before you bring it up."],
+              ["No one takes me seriously at work.", "I command respect the moment I walk in.", "Colleagues start deferring to your opinion, unprompted, in a meeting you used to stay quiet in."],
               ["Everything takes ages. I always end up waiting.", "I'm always first in line. I get seen fast. I jump the queue.", "You get called up early, out of turn, no explanation given."],
               ["I'm afraid of aging.", "I am aging backwards. I see it in the mirror.", "You see exactly that — the mirror shows it before anyone has to tell you."],
               ["I don't fully know who I am yet. I can't decide. I never know what to choose.", "I always make the best decisions.", "Every decision feels like a full-body yes."],
