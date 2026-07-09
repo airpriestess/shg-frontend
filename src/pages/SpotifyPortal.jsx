@@ -952,7 +952,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   return (
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-        <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>Your Library</span>
+        <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>Browse by Desire</span>
       </div>
       <div style={{ position:"relative" }}>
         <div style={{ display:"flex",gap:8,padding:"0 16px 8px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
