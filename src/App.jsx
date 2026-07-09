@@ -1002,20 +1002,15 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* PAIN POINT */}
           {/* SKIMMABLE BENEFIT CHIPS */}
-          <div style={{ fontSize: 12, color: "#8a7868", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, textAlign: "center", marginBottom: 12 }}>What listening actually does for you</div>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 620, margin: "0 auto 28px" }}>
+          <div style={{ fontSize: 12, color: "#e8a860", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, textAlign: "center", marginBottom: 12 }}>What listening actually does for you</div>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 560, margin: "0 auto 28px" }}>
             {[
               "Become a Spoiled Goddess",
-              "Make him beg for you — you're the dream girl",
+              "Make him beg for you",
               "Live your delusional reality",
-              "Become the lucky girl, every single second",
-              "An ever-growing library of thousands of audios — for life",
-              "Track every desire. Prove every manifestation.",
-              "For your gym, your hot girl walk, your morning routine, your commute, right before bed",
-              "Romanticize your entire life",
-              "Elevate your look. Upgrade your circle.",
-              "Blow up your business — subconsciously",
-              "Break your money ceiling. Expand your capacity.",
+              "Become the lucky girl",
+              "Track every desire. Prove it.",
+              "Break your money ceiling",
             ].map((line, i) => (
               <span key={i} style={{ fontSize: isMobile ? 12 : 13, color: "#f2ece4", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: "7px 14px", fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
                 {line}
