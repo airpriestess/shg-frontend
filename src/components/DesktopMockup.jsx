@@ -145,13 +145,19 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
               ))}
             </div>
             <div style={{ fontSize:f.sm, fontWeight:700, color:C.cr, marginBottom:gap }}>Jump back in</div>
-            <div style={{ display:"flex", gap, overflow:"hidden" }}>
+            <div style={{ display:"flex", gap, overflow:"hidden", marginBottom:gap*1.5 }}>
               {TRACKS.slice(0,4).map((title,i)=>(
                 <div key={i} style={{ flexShrink:0, width:Math.round(72*s) }}>
                   <Thumb title={title} size={Math.round(72*s)}/>
                   <div style={{ fontSize:f.xs, color:i===0?"#e8a860":C.mu, marginTop:Math.round(3*s),
                     overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", fontWeight:i===0?600:400 }}>{title}</div>
                 </div>
+              ))}
+            </div>
+            <div style={{ fontSize:f.sm, fontWeight:700, color:C.cr, marginBottom:gap }}>Browse by desire</div>
+            <div style={{ display:"flex", gap:Math.round(6*s), overflow:"hidden" }}>
+              {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Confidencemaxxing","Luckygirlmaxxing"].map((cat,i)=>(
+                <span key={i} style={{ flexShrink:0, fontSize:f.xs, fontWeight:600, color:"#000", background:"linear-gradient(135deg,#fce4c0,#e8a860)", padding:`${Math.round(4*s)}px ${Math.round(10*s)}px`, borderRadius:20, whiteSpace:"nowrap" }}>{cat}</span>
               ))}
             </div>
           </div>
