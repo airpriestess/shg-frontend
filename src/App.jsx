@@ -1467,21 +1467,47 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile?26:32 }}>
             {[
-              ["I'm never the one he chooses.", "I am chosen. I'm his dream girl."],
-              ["Money comes from grinding harder.", "Money finds me first — effortlessly."],
-              ["Some women are just born with it. I wasn't.", "Gorgeous is my default. My bloodline remembers."],
-            ].map(([o,nw],i)=>(
+              ["I'm never the one he chooses.", "I am chosen. I'm his dream girl.", "He texts first, out of nowhere, after weeks of silence."],
+              ["Some women are just born with it. I wasn't.", "Gorgeous is my default. My bloodline remembers.", "A stranger stops you to say your skin is glowing."],
+              ["My face just is what it is.", "My face reflects exactly who I'm becoming.", "Someone says you look different — softer, brighter."],
+              ["My body and I are at war.", "My body and I are in perfect agreement.", "Clothes fit differently before any visible change should be possible."],
+              ["I'll always struggle with my weight.", "My body releases what it doesn't need, easily.", "The number moves without you tracking a single thing."],
+              ["Money comes from grinding harder.", "Money finds me first — effortlessly.", "A client reaches out unexpectedly, books you."],
+              ["I have to force this business to work.", "My business is easy. It grows because I do.", "A stranger refers you, unprompted, out of nowhere."],
+              ["I have to wait my turn to be recognised.", "I'm recognised before I even ask.", "Your manager mentions the promotion before you bring it up."],
+              ["Aging just happens to me.", "My cells regenerate. I get more radiant with time.", "Someone guesses your age wrong — younger."],
+              ["I don't fully know who I am yet.", "I am exactly who I was always becoming.", "A decision that used to feel hard becomes obvious."],
+              ["I have to try hard to be desired.", "I am magnetic without trying.", "Someone across the room can't stop looking at you."],
+              ["Being single means something's wrong with me.", "I'm single because my standards are that high.", "You catch yourself feeling genuinely fine — no ache."],
+              ["My body and mind are always fighting.", "My body and mind are finally on the same side.", "You sleep through the night without trying to."],
+              ["I have to consciously fix myself.", "I install while I'm unconscious.", "You wake up and the anxious loop from last night is just gone."],
+              ["I'm just not a good student.", "Information sticks. I retain what I need.", "A concept clicks instantly that used to take hours."],
+              ["I always end up in one-sided friendships.", "My circle reflects exactly who I am.", "Someone new becomes a real friend, fast, with no effort."],
+              ["I'm always on edge.", "My nervous system is regulated. Nothing rattles me.", "A situation that used to spiral just doesn't."],
+              ["I have to earn the right to take up space.", "I already belong in every room I walk into.", "You speak up in a meeting without rehearsing it first."],
+              ["I don't know how to dress for who I am.", "I dress like the woman I'm becoming.", "Someone asks where you got something you just threw on."],
+              ["This pain is just part of who I am now.", "My body and mind release what they no longer need.", "A pain you've carried for years quietly fades."],
+              ["Nothing in my life moves at the same time.", "Every area of my life levels up together.", "Multiple good things land in the same week."],
+              ["Good things happen to other people.", "I'm the luckiest girl I know.", "You get the exact parking spot, the exact table, the exact timing."],
+              ["I need permission to do what I want.", "I answer to no one but myself.", "You make a decision and it just feels final — no second-guessing."],
+              ["I can't trust my own gut.", "My first instinct is always right.", "You get a hunch, act on it, and it's confirmed within days."],
+            ].map(([o,nw,reality],i)=>(
               <div key={i} style={{ position: "relative" }}>
-              <div style={{ fontSize: isMobile?18:22, fontWeight: 900, color: "#B76E79", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", marginBottom: 10 }}>{String(i+1).padStart(2,"0")}</div>
+              <div style={{ fontSize: isMobile?18:22, fontWeight: 900, color: "#c9963a", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", marginBottom: 10 }}>{String(i+1).padStart(2,"0")}</div>
               <div style={{ display: "flex", flexDirection: isMobile?"column":"row", gap: isMobile?8:14, alignItems: "stretch" }}>
-                <div style={{ flex: 1, background: "rgba(255,255,255,0.8)", border: "1px solid rgba(180,60,60,0.25)", borderRadius: 14, padding: "16px 18px" }}>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: "#a04040", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✗ Old assumption</div>
+                <div style={{ flex: 1, background: "rgba(255,255,255,0.8)", border: "1px solid rgba(120,120,120,0.25)", borderRadius: 14, padding: "16px 18px" }}>
+                  <div style={{ fontSize: 10, fontWeight: 800, color: "#7a6a5a", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✗ Old assumption</div>
                   <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 500, lineHeight: 1.5 }}>{o}</div>
                 </div>
-                <div style={{ alignSelf: "center", transform: isMobile?"rotate(90deg)":"none" }}><ArrowIcon size={18} color="#B76E79"/></div>
-                <div style={{ flex: 1, background: "linear-gradient(135deg,#fff4e4,#ffe8dc)", border: "1.5px solid rgba(183,110,121,0.4)", borderRadius: 14, padding: "16px 18px" }}>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: "#B76E79", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✦ New assumption</div>
+                <div style={{ alignSelf: "center", transform: isMobile?"rotate(90deg)":"none" }}><ArrowIcon size={18} color="#e8a860"/></div>
+                <div style={{ flex: 1, background: "linear-gradient(135deg,#fff4e4,#fce4c0)", border: "1.5px solid rgba(232,168,96,0.4)", borderRadius: 14, padding: "16px 18px" }}>
+                  <div style={{ fontSize: 10, fontWeight: 800, color: "#c9963a", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✦ New assumption</div>
                   <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 700, lineHeight: 1.5 }}>{nw}</div>
+                </div>
+                <div style={{ alignSelf: "center", transform: isMobile?"rotate(90deg)":"none" }}><ArrowIcon size={18} color="#0a0a0a"/></div>
+                <div style={{ flex: 1, background: "#0a0a0a", border: "1.5px solid rgba(232,168,96,0.3)", borderRadius: 14, padding: "16px 18px" }}>
+                  <div style={{ fontSize: 10, fontWeight: 800, color: "#f5e0a0", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>→ New reality</div>
+                  <div style={{ fontSize: isMobile?14:16, color: "#e8d4c0", fontWeight: 600, lineHeight: 1.5 }}>{reality}</div>
                 </div>
               </div>
               </div>
@@ -1649,22 +1675,22 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a1210", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
                 That's why this works when everything else didn't."
               </p>
-              <div style={{ marginTop: 20, fontSize: 13, color: "#B76E79", fontWeight: 700, fontFamily: "'Jost',sans-serif" }}>— RESHMA ORACLE</div>
+              <div style={{ marginTop: 20, fontSize: 13, color: "#c9963a", fontWeight: 700, fontFamily: "'Jost',sans-serif" }}>— RESHMA ORACLE</div>
             </div>
 
             {/* Right — the three levels */}
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
-                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis, subliminals, and hemi-sync operate.", color: "#B76E79", bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)" },
-                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation and Reiki frequency encoding dissolve the old self-concept at its root — the assumption formed before you had the words for it.", color: "#8a5030", bg: "linear-gradient(135deg,#fceedd,#f8e4cc)" },
-                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. Where the deepest patterns live, and where they can be permanently rewritten.", color: "#6a2038", bg: "linear-gradient(135deg,#f5e0d0,#e8c4b0)" },
+                { level: "Level 01", title: "Mind", body: "Theta brainwaves (4–8 Hz) bypass the conscious filter entirely. New beliefs install without resistance. This is where hypnosis, subliminals, and hemi-sync operate.", color: "#e8a860" },
+                { level: "Level 02", title: "Identity", body: "EMDR bilateral stimulation and Reiki frequency encoding dissolve the old self-concept at its root — the assumption formed before you had the words for it.", color: "#e8a860" },
+                { level: "Level 03", title: "DNA", body: "963hz activates what researchers call the 'God frequency' — the cellular resonance that governs your energetic blueprint. Where the deepest patterns live, and where they can be permanently rewritten.", color: "#e8a860" },
               ].map((item, i) => (
-                <div key={i} style={{ background: item.bg, border: `1px solid ${item.color}33`, borderRadius: 12, padding: "20px 22px" }}>
+                <div key={i} style={{ background: "#0a0a0a", border: `1px solid ${item.color}44`, borderRadius: 12, padding: "20px 22px" }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
                     <span style={{ fontSize: 10, color: item.color, fontWeight: 800, letterSpacing: "0.2em", fontFamily: "'Jost',sans-serif" }}>{item.level}</span>
-                    <span style={{ fontSize: isMobile ? 18 : 20, fontWeight: 800, color: "#000", fontFamily: "'Jost',sans-serif" }}>{item.title}</span>
+                    <span style={{ fontSize: isMobile ? 18 : 20, fontWeight: 800, color: "#f5e0a0", fontFamily: "'Jost',sans-serif" }}>{item.title}</span>
                   </div>
-                  <div style={{ fontSize: 14, color: "#1a1a1a", lineHeight: 1.75 }}>{item.body}</div>
+                  <div style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.75 }}>{item.body}</div>
                 </div>
               ))}
             </div>
