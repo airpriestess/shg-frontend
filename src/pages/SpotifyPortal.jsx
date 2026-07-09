@@ -953,15 +953,35 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>Browse by Desire</span>
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:12,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:700 }}>Clear ✕</button>}
       </div>
-      <div style={{ position:"relative" }}>
-        <div style={{ display:"flex",gap:8,padding:"0 16px 8px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
-          {cats.map(c=>(
-            <button key={c} onClick={()=>setCat(c)} style={{ flexShrink:0,padding:"6px 14px",borderRadius:20,background:cat===c?C.cr:C.bg3,border:"none",color:cat===c?"#000":C.cr,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
-          ))}
+      {cat==="All" || cat==="Liked" ? (
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8, padding:"0 16px 16px" }}>
+          {[
+            { id:"Liked", label:"Liked ♡" },
+            ...cats.filter(c=>c!=="All"&&c!=="Liked").map(c=>({ id:c, label:c })),
+          ].map(({id,label})=>{
+            const ic = CAT_ICONS[id];
+            return (
+              <button key={id} onClick={()=>setCat(id)} style={{ background:C.bg3, border:`1px solid ${ic?ic.accent+"55":C.border}`, borderRadius:14, padding:"14px 8px", display:"flex", flexDirection:"column", alignItems:"center", gap:6, cursor:"pointer" }}>
+                <div style={{ width:36, height:36, borderRadius:10, background:"#000", display:"flex", alignItems:"center", justifyContent:"center", color:ic?ic.accent:R }}>
+                  {ic ? <svg width={20} height={20} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: ic.icon }} /> : <span style={{fontSize:18}}>♡</span>}
+                </div>
+                <span style={{ fontSize:10.5, fontWeight:700, color:C.cr, textAlign:"center", lineHeight:1.2 }}>{label}</span>
+              </button>
+            );
+          })}
         </div>
-        <div style={{ position:"absolute", top:0, right:0, bottom:8, width:36, background:`linear-gradient(90deg,transparent,${C.bg})`, pointerEvents:"none" }}/>
-      </div>
+      ) : (
+        <div style={{ display:"flex",gap:8,padding:"0 16px 8px",alignItems:"center" }}>
+          {(() => { const ic = CAT_ICONS[cat]; return (
+            <div style={{ width:32, height:32, borderRadius:9, background:"#000", display:"flex", alignItems:"center", justifyContent:"center", color:ic?ic.accent:R, flexShrink:0 }}>
+              {ic ? <svg width={18} height={18} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: ic.icon }} /> : null}
+            </div>
+          );})()}
+          <span style={{ fontSize:15, fontWeight:800, color:C.cr }}>{cat}</span>
+        </div>
+      )}
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
