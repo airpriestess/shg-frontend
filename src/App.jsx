@@ -903,7 +903,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TAGLINE */}
           <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", fontWeight: 400, marginBottom: 8, letterSpacing: "0.01em", whiteSpace: isMobile ? "normal" : "nowrap" }}>
-            Brainwash yourself every day to manifest your desires — and log the evidence to prove it.
+            Brainwash yourself every day to manifest your desires — and unlock every piece of evidence to prove it's true. To prove it as <span style={{ fontWeight: 800 }}>FACT</span>.
           </div>
 
           {/* WAKE UP KNOWING */}
