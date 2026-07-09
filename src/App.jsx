@@ -510,7 +510,7 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#B76E79":"#333",
+          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#e8a860":"#333",
             border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff",
             position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
@@ -518,7 +518,7 @@ function AppPreviewSection({ isMobile }) {
         <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
 
-      <div style={{ fontSize:12, color:"rgba(183,110,121,0.7)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center", fontWeight:600 }}>
+      <div style={{ fontSize:12, color:"rgba(232,168,96,0.8)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center", fontWeight:600 }}>
         Works in any browser · iPhone · Android · No download needed
       </div>
     </div>
@@ -886,13 +886,6 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       {/* HERO — DARK goddess energy */}
       <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: isMobile ? 90 : 94, background: "#000000" }}>
         <Rings count={5} />
-        {/* Dot grid overlay */}
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-          backgroundImage: "radial-gradient(circle, rgba(232,184,112,0.28) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
-        }} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           <HeroMarquee />
 
@@ -910,7 +903,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* TAGLINE */}
           <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", fontWeight: 400, marginBottom: 8, letterSpacing: "0.01em", whiteSpace: isMobile ? "normal" : "nowrap" }}>
-            Brainwash yourself every single day to match the frequency of your dream reality.
+            Brainwash yourself every day to manifest your desires — and log the evidence to prove it.
           </div>
 
           {/* WAKE UP KNOWING */}
@@ -1009,6 +1002,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
           {/* PAIN POINT */}
           {/* SKIMMABLE BENEFIT CHIPS */}
+          <div style={{ fontSize: 12, color: "#8a7868", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, textAlign: "center", marginBottom: 12 }}>What listening actually does for you</div>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 620, margin: "0 auto 28px" }}>
             {[
               "Become a Spoiled Goddess",
@@ -1170,7 +1164,14 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <circle cx="30" cy="31" r="8" stroke="#e8a860" strokeWidth="3" fill="none"/>
                 </svg>
               )},
-              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "#0a0a0a", icon: (
+              { num: "04", title: "Watch it stack up", body: "Every sign you log sits on your Proof Wall, dated. Come back and watch the evidence grow — it stops feeling random fast.", bg: "#0a0a0a", icon: (
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <rect x="12" y="34" width="10" height="16" rx="2" fill="none" stroke="#e8a860" strokeWidth="3"/>
+                  <rect x="25" y="24" width="10" height="26" rx="2" fill="none" stroke="#e8a860" strokeWidth="3"/>
+                  <rect x="38" y="14" width="10" height="36" rx="2" fill="none" stroke="#e8a860" strokeWidth="3"/>
+                </svg>
+              )},
+              { num: "05", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "#0a0a0a", icon: (
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
                   <circle cx="30" cy="30" r="20" stroke="#e8a860" strokeWidth="3" fill="none"/>
                   <path d="M21 30 L27 36 L40 22" stroke="#e8a860" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
@@ -1217,7 +1218,21 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 The moment it lands, you mark it manifested. ProofOS timestamps it — desire, track, days it took, signs logged along the way. That record never disappears. It becomes your evidence that this works, in your own data, not someone else's testimonial.
               </p>
               <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid rgba(232,168,96,0.2)" }}>
-                <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12, opacity: 0.75 }}>Before every intention: the Hawkins Scale</div>
+                <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 16, opacity: 0.75 }}>Before every intention: the Hawkins Scale</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 16, maxWidth: 420 }}>
+                  {[
+                    { n: "Enlightenment", v: 700, c: "#5a4ab0" }, { n: "Peace", v: 600, c: "#8a6ac0" }, { n: "Joy", v: 540, c: "#f5d090" },
+                    { n: "Love", v: 500, c: "#e8b870" }, { n: "Reason", v: 400, c: "#48a898" }, { n: "Acceptance", v: 350, c: "#78b078" },
+                    { n: "Courage", v: 200, c: "#d4a028" }, { n: "Pride", v: 175, c: "#c68830" }, { n: "Anger", v: 150, c: "#b47030" },
+                    { n: "Fear", v: 100, c: "#8a5030" }, { n: "Grief", v: 75, c: "#6a4030" }, { n: "Shame", v: 20, c: "#3a1a1a" },
+                  ].map((lvl, i, arr) => (
+                    <div key={lvl.n} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <div style={{ height: 16, width: `${30 + (arr.length - i) * 6}%`, background: lvl.c, borderRadius: 3, transition: "width 0.2s" }}/>
+                      <span style={{ fontSize: 10.5, color: "#d4c0a8", fontWeight: 600, whiteSpace: "nowrap" }}>{lvl.n} · {lvl.v}</span>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize: 12, color: "#8a7868", marginBottom: 16 }}>Below 200 drains you. 200 and above builds. Courage is the tipping point.</p>
                 <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85 }}>
                   Before you log a new desire, you log how you actually feel right now — on the Hawkins Scale, a 17-level map of emotional states from Shame up to Enlightenment. Not what you think you should feel. What's actually true in your body.
                 </p>
