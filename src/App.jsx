@@ -812,7 +812,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       )}
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: isMobile ? 36 : 40, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
+      <nav style={{ position: "fixed", top: isMobile ? 36 : 40, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 64 64" width="24" height="24" style={{flexShrink:0}}>
               <defs><linearGradient id="navmark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#d4a090"/><stop offset="72%" stopColor="#c4789a"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
@@ -1002,7 +1002,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             )}
             {/* Bottom — playing status */}
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#786860", fontFamily:"'Jost',sans-serif" }}>
-              {playing ? "✦ Playing — continues in background" : "Tap ▶ to listen — free preview"}
+              {playing ? "✦ Playing — continues in background" : "Tap play to listen — free preview"}
             </div>
           </div>
 
@@ -1757,8 +1757,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   if (vaultRef.current) { vaultRef.current.src = a.url; vaultRef.current.play().catch(()=>{}); }
                   setVaultPlaying(i);
                 }
-              }} style={{ width: 36, height: 36, borderRadius: "50%", background: a.url ? "linear-gradient(135deg,#d4a090,#B76E79)" : "#1a1614", border: "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0, cursor: a.url ? "pointer" : "default", color: "#000" }}>
-                {a.url ? (vaultPlaying === i ? "⏸" : "▶") : "🔒"}
+              }} style={{ width: 36, height: 36, borderRadius: "50%", background: a.url ? "linear-gradient(135deg,#fce4c0,#e8a860)" : "#1a1614", border: "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0, cursor: a.url ? "pointer" : "default", color: "#000" }}>
+                {a.url ? (
+                  vaultPlaying === i ? (
+                    <svg width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="1" width="4" height="12" rx="1" fill="#000"/><rect x="8" y="1" width="4" height="12" rx="1" fill="#000"/></svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 1 L12 7 L2 13 Z" fill="#000"/></svg>
+                  )
+                ) : (
+                  <svg width="14" height="14" viewBox="0 0 14 14"><rect x="3" y="6" width="8" height="7" rx="1.5" fill="none" stroke="#8a7868" strokeWidth="1.3"/><path d="M4.5 6 L4.5 4 A2.5 2.5 0 0 1 9.5 4 L9.5 6" fill="none" stroke="#8a7868" strokeWidth="1.3"/></svg>
+                )}
               </button>
             </div>
           ))}
