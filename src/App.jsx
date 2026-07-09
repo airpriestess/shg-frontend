@@ -276,7 +276,7 @@ function CheckoutModal({ onClose, onDemo }) {
             <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#8a2050",marginBottom:2}}>Goddess Tier</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#8a6020",marginBottom:2}}>Goddess Tier</div>
                 <div style={{fontSize:11,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
@@ -340,7 +340,7 @@ function PricingSection({ onJoin }) {
 
   const cards = [
     { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : TIERS.audio.trialNote, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "#0a0a0a", border: "#B76E7955", nameColor: "#2a1210", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#4a2820", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
-    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fce4ec,#f5cfdc)", border: "#B76E79", nameColor: "#1a0818", muteColor: "#B76E79", priceColor: "#B76E79", periodColor: "#8a7268", featureColor: "#6a2848", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e0a0b8,#c4789a,#B76E79)", ctaColor: "#000", popular: true },
+    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fce4c0,#f5d9a8)", border: "#e8a860", nameColor: "#2a1a08", muteColor: "#c9963a", priceColor: "#c9963a", periodColor: "#8a7268", featureColor: "#5a4020", dot: "#e8a860", ctaBg: "linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", ctaColor: "#000", popular: true },
     { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "#000", border: "#e8b87066", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)", ctaColor: "#000" },
   ];
 
@@ -1905,7 +1905,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                     placeholder="your@email.com"
                     style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#B76E79":"#2a2a2a"}`, borderRadius:12, color:"#f2ece4", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
-                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#B76E79", marginBottom:12 }}>Please enter a valid email.</div>}
+                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#e8a860", marginBottom:12 }}>Please enter a valid email.</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:800, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
