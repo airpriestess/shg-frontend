@@ -79,7 +79,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
 
       {/* 2×3 RECENTLY PLAYED */}
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:Math.round(4*s), padding:`0 ${pad}px ${Math.round(12*s)}px` }}>
-        {RECENT.map((title,i)=>(
+        {RECENT.slice(0,4).map((title,i)=>(
           <div key={i} style={{ background:TILE_OMBRES[i%TILE_OMBRES.length], borderRadius:Math.round(5*s), display:"flex", alignItems:"center", overflow:"hidden", height:thumb }}>
             <Thumb title={title} size={thumb} r={0}/>
             <span style={{ fontSize:f.xs, fontWeight:700, color:"#000", padding:`0 ${Math.round(6*s)}px`, lineHeight:1.25, overflow:"hidden", display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical" }}>{title}</span>
@@ -92,13 +92,23 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         <span style={{ fontSize:f.md, fontWeight:700, color:C.cr }}>Jump back in</span>
         <span style={{ fontSize:f.xs, color:C.mu }}>Show all</span>
       </div>
-      <div style={{ display:"flex", gap:Math.round(8*s), padding:`0 ${pad}px ${Math.round(12*s)}px`, overflow:"hidden" }}>
-        {["Spoilt Goddess","Money Finds Me First","Lucky Girl Summer"].map((title,i)=>(
+      <div style={{ display:"flex", gap:Math.round(8*s), padding:`0 ${pad}px ${Math.round(12*s)}px`, overflowX:"auto" }}>
+        {["Spoilt Goddess","Money Finds Me First","Lucky Girl Summer","He Finds His Way Back","Gorgeous Is My Default"].map((title,i)=>(
           <div key={i} style={{ flexShrink:0 }}>
             <Thumb title={title} size={thumbCard} r={Math.round(5*s)}/>
             <div style={{ fontSize:f.xs, fontWeight:600, color:C.cr, marginTop:Math.round(4*s), width:thumbCard, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{title}</div>
             <div style={{ fontSize:f.xs-1, color:C.mu }}>Reshma Oracle</div>
           </div>
+        ))}
+      </div>
+
+      {/* BROWSE BY DESIRE — category chips, single scrollable row to save vertical space */}
+      <div style={{ padding:`0 ${pad}px ${Math.round(6*s)}px` }}>
+        <span style={{ fontSize:f.md, fontWeight:700, color:C.cr }}>Browse by desire</span>
+      </div>
+      <div style={{ display:"flex", gap:Math.round(5*s), padding:`0 ${pad}px ${Math.round(14*s)}px`, overflowX:"auto", flexWrap:"nowrap" }}>
+        {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Confidencemaxxing","Luckygirlmaxxing","Healmaxxing"].map((cat,i)=>(
+          <span key={i} style={{ flexShrink:0, fontSize:f.xs, fontWeight:600, color:"#000", background:"linear-gradient(135deg,#fce4c0,#e8a860)", padding:`${Math.round(4*s)}px ${Math.round(9*s)}px`, borderRadius:20, whiteSpace:"nowrap" }}>{cat}</span>
         ))}
       </div>
 
