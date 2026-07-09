@@ -70,10 +70,10 @@ const WALL = [
 ];
 
 const MEDIA = [
-  { img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format", label:"He texts me first · 19 Jun" },
-  { img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format", label:"£1,800 refund · 28 Jun" },
+  { icon: "💬", label: "He texts me first · 19 Jun" },
+  { icon: "💰", label: "£1,800 refund · 28 Jun" },
   { audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", label:"Voice note · 20 Jun" },
-  { img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&auto=format", label:"The sign I asked for · 1 Jul" },
+  { icon: "✦", label: "The sign I asked for · 1 Jul" },
 ];
 
 export default function LandingProofWall({ isMobile }) {
@@ -130,10 +130,10 @@ export default function LandingProofWall({ isMobile }) {
         <div style={{ fontSize:11, fontWeight:900, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase", margin:"18px 0 8px" }}>All captured proof · newest last</div>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))", gap:8 }}>
           {MEDIA.map((m,i)=>(
-            <div key={i} style={{ background:"rgba(255,255,255,0.85)", borderRadius:10, padding:6, border:"1px solid rgba(0,0,0,0.12)" }}>
-              {m.img && <img src={m.img} alt="proof" style={{ width:"100%", height:72, objectFit:"cover", borderRadius:7 }}/>}
+            <div key={i} style={{ background:"#0a0a0a", borderRadius:10, padding:6, border:"1px solid rgba(232,168,96,0.25)" }}>
+              {m.icon && <div style={{ width:"100%", height:72, display:"flex", alignItems:"center", justifyContent:"center", borderRadius:7, background:"linear-gradient(135deg,#1a1508,#0a0a0a)" }}><span style={{ fontSize:28 }}>{m.icon}</span></div>}
               {m.audio && <div style={{ height:72, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:4 }}><span style={{ fontSize:22 }}>🎤</span><audio src={m.audio} controls style={{ width:"100%", height:24 }}/></div>}
-              <div style={{ fontSize:8.5, fontWeight:700, color:"#333", marginTop:4, lineHeight:1.3 }}>{m.label}</div>
+              <div style={{ fontSize:8.5, fontWeight:700, color:"#e8d4c0", marginTop:4, lineHeight:1.3 }}>{m.label}</div>
             </div>
           ))}
         </div>
