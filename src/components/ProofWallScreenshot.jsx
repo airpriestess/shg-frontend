@@ -4,10 +4,10 @@
 // GOLD proof wall — both themes render gold (locked by Reshma)
 // DARK — espresso gold, feels like a candlelit vault
 const DARK  = { bg:"#1a1008", bg2:"#251a0e", bg3:"rgba(232,184,112,0.10)", cr:"#f5e0a0", mu:"#c8a870", dim:"#8a6a35", nav:"rgba(26,16,8,0.97)" };
-// LIGHT — peachy rose gold, warm and open
-const LIGHT = { bg:"#fce4d4", bg2:"#fef2ea", bg3:"rgba(183,110,121,0.10)", cr:"#1a0a10", mu:"#8a5060", dim:"#b07890", nav:"rgba(252,228,212,0.97)" };
-const R="#B76E79", P="#d4a090";
-const OMBRE="linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+// LIGHT — pure cream, warm and open, no rose
+const LIGHT = { bg:"#fdf0e0", bg2:"#fef8ee", bg3:"rgba(232,168,96,0.10)", cr:"#1a1408", mu:"#8a6838", dim:"#b09060", nav:"rgba(253,240,224,0.97)" };
+const R="#e8a860", P="#c9963a";
+const OMBRE="linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
 
 // Evidence/proof images — what users capture as signs
 const EVIDENCE = {
@@ -18,11 +18,11 @@ const EVIDENCE = {
 };
 
 const THREADS = [
-  { desire:"He texts me first", cat:"Love", catColor:"#B76E79", catBg:"rgba(183,110,121,0.15)", days:14, done:true, signs:3, track:"He Finds His Way Back", evidence:["text"], evidenceBg:"linear-gradient(135deg,#f5e0a0,#e8b870)" },
-  { desire:"£20k received. Paid by client.", cat:"Money", catColor:"#8a5030", catBg:"rgba(212,160,144,0.15)", days:6, done:false, signs:2, track:"Money Finds Me First", evidence:["money"], evidenceBg:"linear-gradient(135deg,#e8b870,#d4a090)" },
-  { desire:"My skin is glowing", cat:"Appearance", catColor:"#B76E79", catBg:"rgba(232,184,112,0.18)", days:3, done:false, signs:1, track:"Gorgeous Is My Default", evidence:["skin"], evidenceBg:"linear-gradient(135deg,#f5e0a0,#c4789a)" },
-  { desire:"I am a lucky girl", cat:"Identity", catColor:"#8a3050", catBg:"rgba(196,120,154,0.15)", days:7, done:true, signs:4, track:"Lucky Girl Summer", evidence:["nature"], evidenceBg:"linear-gradient(135deg,#d4a090,#c4789a)" },
-  { desire:"555 method · manifested", cat:"Identity", catColor:"#6a2038", catBg:"rgba(183,110,121,0.18)", days:5, done:true, signs:3, track:"Highest Timeline", evidence:[], evidenceBg:"linear-gradient(135deg,#c4789a,#B76E79)" },
+  { desire:"He texts me first", cat:"Lovemaxxing", catColor:"#e8a860", catBg:"rgba(232,168,96,0.15)", days:14, done:true, signs:3, track:"He Finds His Way Back", evidence:["text"], evidenceBg:"linear-gradient(135deg,#fce4c0,#e8a860)" },
+  { desire:"£1,800 received. Paid by client.", cat:"Moneymaxxing", catColor:"#c9963a", catBg:"rgba(201,150,58,0.15)", days:6, done:false, signs:2, track:"Money Finds Me First", evidence:["money"], evidenceBg:"linear-gradient(135deg,#e8a860,#c9963a)" },
+  { desire:"My skin is glowing", cat:"Beautymaxxing", catColor:"#e8a860", catBg:"rgba(232,168,96,0.18)", days:3, done:false, signs:1, track:"Gorgeous Is My Default", evidence:["skin"], evidenceBg:"linear-gradient(135deg,#fce4c0,#e8a860)" },
+  { desire:"I am a lucky girl", cat:"Luckygirlmaxxing", catColor:"#c9963a", catBg:"rgba(201,150,58,0.15)", days:7, done:true, signs:4, track:"Lucky Girl Summer", evidence:["nature"], evidenceBg:"linear-gradient(135deg,#e8a860,#c9963a)" },
+  { desire:"555 method · manifested", cat:"Sovereignmaxxing", catColor:"#8a6020", catBg:"rgba(138,96,32,0.18)", days:5, done:true, signs:3, track:"Highest Timeline", evidence:[], evidenceBg:"linear-gradient(135deg,#c9963a,#8a6020)" },
 ];
 
 function EvidenceThumb({ type, size, bg }) {
