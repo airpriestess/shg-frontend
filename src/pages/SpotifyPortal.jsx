@@ -1009,7 +1009,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 
   // Local palette for ombre dashboard — black text on ombre, cream cards
   const PC = { card:"rgba(255,252,248,0.88)", cardSolid:"#fffcf8", text:"#000", mu:"#4a2830", dim:"#6a4048", border:"rgba(0,0,0,0.14)", inputBg:"rgba(255,255,255,0.95)" };
-  const OMBRE_BG = "linear-gradient(165deg,#f5e0a0 0%,#e8b870 20%,#d4a090 45%,#c4789a 72%,#B76E79 100%)";
+  const OMBRE_BG = "linear-gradient(165deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
 
   if (isPreview) return (
     <div style={{ padding:"40px 20px",textAlign:"center",background:OMBRE_BG,minHeight:"100%" }}>
@@ -1152,7 +1152,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
           <select value={newFeel} onChange={e=>setFeel(e.target.value)}
-            style={{ width:"100%",padding:"11px 14px",borderRadius:10,border:`1px solid ${PC.border}`,background:newFeel?`linear-gradient(90deg,${(HAWKINS.find(h=>h.n===newFeel)||{}).c||"#B76E79"},#B76E79)`:PC.inputBg,color:newFeel?"#fff":"#000",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:12,outline:"none",appearance:"none",WebkitAppearance:"none",backgroundImage:"url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3'><polyline points='6 9 12 15 18 9'/></svg>\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 14px center",paddingRight:36 }}>
+            style={{ width:"100%",padding:"11px 14px",borderRadius:10,border:`1px solid ${PC.border}`,background:newFeel?`linear-gradient(90deg,${(HAWKINS.find(h=>h.n===newFeel)||{}).c||"#e8a860"},#e8a860)`:PC.inputBg,color:newFeel?"#fff":"#000",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:12,outline:"none",appearance:"none",WebkitAppearance:"none",backgroundImage:"url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3'><polyline points='6 9 12 15 18 9'/></svg>\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 14px center",paddingRight:36 }}>
             <option value="">— Select on the Hawkins scale (Shame 20 → Enlightenment 700) —</option>
             <optgroup label="Below 200 · Contractive (drains energy)">
               {HAWKINS.filter(h=>h.v<200).map(h=><option key={h.n} value={h.n}>{h.n} · {h.v}</option>)}
@@ -1178,7 +1178,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
             <div style={{ flex:1,minWidth:0 }}>
               {editId===d.id
                 ? <div style={{ display:"flex",gap:6,marginBottom:4 }}>
-                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #B76E79",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:700,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #e8a860",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:700,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                     <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
                   </div>
                 : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:15,fontWeight:800,marginBottom:4,color:"#000",cursor:"pointer" }}>{d.desire} <span style={{ fontSize:11,opacity:0.45 }}>✎</span></div>}
@@ -1194,7 +1194,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
               {d.done
                 ? <>
                     <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#f5e0a0,#e8b870,#B76E79)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:900,color:"#000",boxShadow:"0 0 12px rgba(232,184,112,0.9)" }}>✓</span>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:900,color:"#000",boxShadow:"0 0 12px rgba(232,184,112,0.9)" }}>✓</span>
                       <span style={{ fontSize:11,fontWeight:900,color:"#000" }}>Manifested</span>
                     </label>
                     <span style={{ fontSize:9,color:PC.dim,fontWeight:600 }}>tap to undo</span>
@@ -1225,7 +1225,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
             <div style={{ fontSize:10,color:PC.mu,fontWeight:800,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
               <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
-                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#B76E79",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
+                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#e8a860",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
                 <span style={{ fontSize:12,color:"#1a1218",lineHeight:1.5,flex:1 }}>
                   {sg.text}
                   {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}
