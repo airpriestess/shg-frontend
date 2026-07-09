@@ -1170,7 +1170,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   <circle cx="30" cy="31" r="8" stroke="#e8a860" strokeWidth="3" fill="none"/>
                 </svg>
               )},
-              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", icon: (
+              { num: "04", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "#0a0a0a", icon: (
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
                   <circle cx="30" cy="30" r="20" stroke="#e8a860" strokeWidth="3" fill="none"/>
                   <path d="M21 30 L27 36 L40 22" stroke="#e8a860" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
