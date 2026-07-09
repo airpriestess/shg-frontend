@@ -2,8 +2,8 @@
    Full theme support (dark/light), real stock evidence images */
 
 // GOLD proof wall — both themes render gold (locked by Reshma)
-// DARK — espresso gold, feels like a candlelit vault
-const DARK  = { bg:"#1a1008", bg2:"#251a0e", bg3:"rgba(232,184,112,0.10)", cr:"#f5e0a0", mu:"#c8a870", dim:"#8a6a35", nav:"rgba(26,16,8,0.97)" };
+// DARK — pure black, matches the real dashboard exactly
+const DARK  = { bg:"#000000", bg2:"#0f0f0f", bg3:"rgba(232,184,112,0.10)", cr:"#f5e0a0", mu:"#c8a870", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
 // LIGHT — pure cream, warm and open, no rose
 const LIGHT = { bg:"#fdf0e0", bg2:"#fef8ee", bg3:"rgba(232,168,96,0.10)", cr:"#1a1408", mu:"#8a6838", dim:"#b09060", nav:"rgba(253,240,224,0.97)" };
 const R="#e8a860", P="#c9963a";
