@@ -1224,6 +1224,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginTop: 12 }}>
                   ProofOS tracks that number over time — your average emotional state across days, weeks, a month. That average is the real predictor. Manifestation isn't random: a higher, more expansive emotional state is a higher-frequency state, and a higher-frequency state is what your reality actually reorganises around. Your Hawkins average tells you exactly where you sit on that scale — and exactly what's realistic to expect next.
                 </p>
+                <p style={{ fontSize: 14, color: "#d4c0a8", lineHeight: 1.85, marginTop: 12 }}>
+                  You can write your intention in present tense or past tense, as if it's already happened — both work, since your subconscious doesn't distinguish between the two the way your conscious mind does. All the detail on why, and everything else — is inside The Guide once you're in.
+                </p>
               </div>
             </div>
           </div>
