@@ -898,7 +898,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* TITLE */}
           <h1 className="wm" style={{ lineHeight: 1.3, marginBottom: 12, paddingTop: 6 }}>
             <span className="wm-shimmer" style={{ fontSize: "clamp(26px,6.5vw,56px)", display: "block", }}>Self Hypnosis Goddess</span>
-            <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(17px,3.8vw,34px)", color: "#f2ece4", fontWeight: 700, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#B76E79", fontWeight: 600 }}>(+ ProofOS)</span></span>
+            <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(17px,3.8vw,34px)", color: "#f2ece4", fontWeight: 700, letterSpacing: "0.02em", display: "block", marginTop: 6 }}>Audio Library <span style={{ color: "#e8a860", fontWeight: 600 }}>(+ ProofOS)</span></span>
           </h1>
 
           {/* SPOTIFY TAGLINE */}
@@ -916,7 +916,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
-          <div style={{ background: "linear-gradient(135deg,#fdf0e8 0%,#fce0e8 50%,#f5c8d8 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(232,168,192,0.35)" }}>
+          <div style={{ background: "linear-gradient(135deg,#fce4c0 0%,#e8a860 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(180,104,48,0.35)" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               {/* Album art */}
