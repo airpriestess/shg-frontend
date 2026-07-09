@@ -484,7 +484,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
-      {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>}
+      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)}/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -1010,6 +1010,17 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
 }
 
 // ── PROOFOS TAB ────────────────────────────────────────────────────────────────
+function ProofLockedScreen({ C, onUpgrade }) {
+  return (
+    <div style={{ padding:"60px 24px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
+      <div style={{ width:64, height:64, borderRadius:20, background:"rgba(232,168,96,0.12)", border:"1px solid rgba(232,168,96,0.3)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:28 }}>🔒</div>
+      <div style={{ fontSize:20, fontWeight:800, color:C.cr }}>ProofOS is a Goddess Tier feature</div>
+      <div style={{ fontSize:14, color:C.mu, maxWidth:320, lineHeight:1.6 }}>Tracking your desires, logging signs, and marking manifestations isn't included on Audio Tier. Upgrade to unlock the full proof wall.</div>
+      <button onClick={onUpgrade} style={{ marginTop:8, padding:"13px 32px", background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:800, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Upgrade to Goddess Tier</button>
+    </div>
+  );
+}
+
 function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
   const [newD, setD]       = useState("");
   const [newCat, setCat]   = useState("Money");
