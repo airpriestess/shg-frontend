@@ -8,7 +8,7 @@ const HAWKINS = [
   {n:"Shame",v:20,c:"#3a1a1a"}, {n:"Guilt",v:30,c:"#4a2020"}, {n:"Apathy",v:50,c:"#5a3030"}, {n:"Grief",v:75,c:"#6a4030"},
   {n:"Fear",v:100,c:"#8a5030"}, {n:"Desire",v:125,c:"#a06030"}, {n:"Anger",v:150,c:"#b47030"}, {n:"Pride",v:175,c:"#c68830"},
   {n:"Courage",v:200,c:"#d4a028"}, {n:"Neutrality",v:250,c:"#c8a848"}, {n:"Willingness",v:310,c:"#a8b860"}, {n:"Acceptance",v:350,c:"#78b078"},
-  {n:"Reason",v:400,c:"#48a898"}, {n:"Love",v:500,c:"#e8a860"}, {n:"Joy",v:540,c:"#e8a860"}, {n:"Peace",v:600,c:"#8a6ac0"}, {n:"Enlightenment",v:700,c:"#5a4ab0"},
+  {n:"Reason",v:400,c:"#48a898"}, {n:"Love",v:500,c:"#e8b870"}, {n:"Joy",v:540,c:"#f5d090"}, {n:"Peace",v:600,c:"#8a6ac0"}, {n:"Enlightenment",v:700,c:"#5a4ab0"},
 ];
 const dominant = (log,days) => {
   const cutoff = Date.now() - days*86400000;
@@ -953,10 +953,13 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>Your Library</span>
       </div>
-      <div style={{ display:"flex",gap:8,padding:"0 16px 8px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
-        {cats.map(c=>(
-          <button key={c} onClick={()=>setCat(c)} style={{ flexShrink:0,padding:"6px 14px",borderRadius:20,background:cat===c?C.cr:C.bg3,border:"none",color:cat===c?"#000":C.cr,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
-        ))}
+      <div style={{ position:"relative" }}>
+        <div style={{ display:"flex",gap:8,padding:"0 16px 8px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
+          {cats.map(c=>(
+            <button key={c} onClick={()=>setCat(c)} style={{ flexShrink:0,padding:"6px 14px",borderRadius:20,background:cat===c?C.cr:C.bg3,border:"none",color:cat===c?"#000":C.cr,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
+          ))}
+        </div>
+        <div style={{ position:"absolute", top:0, right:0, bottom:8, width:36, background:`linear-gradient(90deg,transparent,${C.bg})`, pointerEvents:"none" }}/>
       </div>
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
@@ -1156,21 +1159,20 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
           </select>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
           <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginBottom:12 }}>
-            {["Lovemaxxing","Money","Beauty","Identity","DNA","Sleep"].map(c=>(
+            {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","DNAmaxxing","Sleepmaxxing"].map(c=>(
               <button key={c} onClick={()=>setCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?"#000":"none",border:`1px solid ${newCat===c?"#000":PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
             ))}
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:800,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <select value={newFeel} onChange={e=>setFeel(e.target.value)}
-            style={{ width:"100%",padding:"11px 14px",borderRadius:10,border:`1px solid ${PC.border}`,background:newFeel?`linear-gradient(90deg,${(HAWKINS.find(h=>h.n===newFeel)||{}).c||"#e8a860"},#e8a860)`:PC.inputBg,color:newFeel?"#fff":"#000",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:12,outline:"none",appearance:"none",WebkitAppearance:"none",backgroundImage:"url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3'><polyline points='6 9 12 15 18 9'/></svg>\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 14px center",paddingRight:36 }}>
-            <option value="">— Select on the Hawkins scale (Shame 20 → Enlightenment 700) —</option>
-            <optgroup label="Below 200 · Contractive (drains energy)">
-              {HAWKINS.filter(h=>h.v<200).map(h=><option key={h.n} value={h.n}>{h.n} · {h.v}</option>)}
-            </optgroup>
-            <optgroup label="200 and above · Expansive (creates)">
-              {HAWKINS.filter(h=>h.v>=200).map(h=><option key={h.n} value={h.n}>{h.n} · {h.v}</option>)}
-            </optgroup>
-          </select>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:6, marginBottom:12, maxHeight:220, overflowY:"auto", padding:2 }}>
+            {HAWKINS.slice().reverse().map(h=>(
+              <button key={h.n} onClick={()=>setFeel(h.n)}
+                style={{ padding:"8px 10px", borderRadius:8, background:newFeel===h.n?h.c:"transparent", border:`1.5px solid ${h.c}`, color:newFeel===h.n?"#fff":h.c, fontSize:11.5, fontWeight:700, cursor:"pointer", fontFamily:"'Jost',sans-serif", textAlign:"left", display:"flex", alignItems:"center", gap:6 }}>
+                <span style={{ width:9, height:9, borderRadius:"50%", background:h.c, flexShrink:0 }}/>
+                {h.n} · {h.v}
+              </button>
+            ))}
+          </div>
           <button onClick={()=>{
             if(!newD.trim()) return;
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:newFeel,feelAfter:""},...threads]);
