@@ -60,7 +60,25 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
           <span style={{ fontSize:f.lg, fontWeight:700, color:C.cr }}>ProofOS </span>
           <span style={{ color:R }}>✦</span>
         </div>
-        <div style={{ padding:`${Math.round(2*s)}px ${Math.round(8*s)}px`, background:OMBRE, borderRadius:r20, fontSize:f.xs, fontWeight:700, color:"#000", backgroundSize:"200%", backgroundPosition:"left" }}>+ New</div>
+        <div style={{ display:"flex", alignItems:"center", gap:Math.round(6*s) }}>
+          <div style={{ width:Math.round(28*s), height:Math.round(16*s), borderRadius:Math.round(8*s), background:theme==="light"?R:"#3a3020", position:"relative", flexShrink:0 }}>
+            <div style={{ width:Math.round(12*s), height:Math.round(12*s), borderRadius:"50%", background:"#fff", position:"absolute", top:Math.round(2*s), left:theme==="light"?Math.round(14*s):Math.round(2*s) }}/>
+          </div>
+          <div style={{ padding:`${Math.round(2*s)}px ${Math.round(8*s)}px`, background:OMBRE, borderRadius:r20, fontSize:f.xs, fontWeight:700, color:"#000", backgroundSize:"200%", backgroundPosition:"left" }}>+ New</div>
+        </div>
+      </div>
+
+      {/* DOMINANT STATE — Hawkins scale mini visual */}
+      <div style={{ margin:`0 ${pad}px ${Math.round(8*s)}px`, background:C.bg3, borderRadius:r8, padding:`${Math.round(8*s)}px ${Math.round(10*s)}px` }}>
+        <div style={{ fontSize:Math.max(5,f.xs-1), color:C.mu, fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:Math.round(5*s) }}>Your dominant state · Today</div>
+        <div style={{ display:"flex", alignItems:"center", gap:Math.round(6*s) }}>
+          <span style={{ fontSize:f.md, fontWeight:800, color:"#e8b870" }}>Love · 500</span>
+        </div>
+        <div style={{ display:"flex", gap:Math.round(1.5*s), marginTop:Math.round(6*s), borderRadius:Math.round(3*s), overflow:"hidden" }}>
+          {["#3a1a1a","#5a3030","#8a5030","#b47030","#d4a028","#78b078","#48a898","#e8b870","#8a6ac0","#5a4ab0"].map((c,i)=>(
+            <div key={i} style={{ flex:1, height:Math.round(5*s), background:c }}/>
+          ))}
+        </div>
       </div>
 
       {/* STATS */}
@@ -77,7 +95,7 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
       <div style={{ padding:`0 ${pad}px ${Math.round(4*s)}px`, fontSize:f.xs, color:C.mu, fontWeight:700, letterSpacing:"0.12em", textTransform:"uppercase" }}>In progress</div>
 
       {/* THREAD CARDS — with evidence images */}
-      {THREADS.filter(t=>!t.done).map((d,i)=>(
+      {THREADS.filter(t=>!t.done).slice(0,2).map((d,i)=>(
         <div key={i} style={{ margin:`0 ${pad}px ${Math.round(6*s)}px`, background:C.bg2, border:`0.5px solid ${C.bg3}`, borderRadius:r8, padding:`${Math.round(8*s)}px ${Math.round(10*s)}px` }}>
           <div style={{ display:"flex", alignItems:"center", gap:Math.round(5*s), marginBottom:Math.round(4*s) }}>
             <span style={{ fontSize:Math.max(5,f.xs-1), padding:`${Math.round(1*s)}px ${Math.round(6*s)}px`, background:d.catBg, color:d.catColor, borderRadius:r20, fontWeight:700 }}>{d.cat}</span>
@@ -103,7 +121,7 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
       {/* PROOF WALL — Manifested */}
       <div style={{ padding:`${Math.round(6*s)}px ${pad}px ${Math.round(4*s)}px`, fontSize:f.xs, color:"#5ab06a", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>✓ Manifested</div>
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:Math.round(4*s), padding:`0 ${pad}px` }}>
-        {THREADS.filter(t=>t.done).map((d,i)=>(
+        {THREADS.filter(t=>t.done).slice(0,1).map((d,i)=>(
           <div key={i} style={{ background:"#000000", border:"0.5px solid rgba(232,184,112,0.35)", borderRadius:r8, padding:`${Math.round(6*s)}px ${Math.round(8*s)}px` }}>
             {/* Evidence preview image */}
             {d.evidence && <div style={{ marginBottom:Math.round(4*s), borderRadius:Math.round(4*s), overflow:"hidden", height:Math.round(32*s), position:"relative", background:"#000000" }}>
