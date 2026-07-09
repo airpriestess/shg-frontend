@@ -1057,19 +1057,19 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
-        <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
+        <div style={{ fontSize:11, fontWeight:900, color:"#c9963a", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
         <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#000", lineHeight:1.12, marginBottom:20 }}>
           Shift into the state of<br/>
-          <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
+          <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          If you're reading this, you're probably stuck. You feel the gap — between your dream reality and your current one. I'm here to close that gap.
+          You feel the gap — between your current self and the dream self you're aspiring to become, between where you are and the dream reality you want to shift into. I'm here to close that gap.
         </p>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          Your subconscious mind creates your entire reality. Your reality reorganizes to match who you become.
+          My self-hypnosis and subliminal audios shift you into that state while you rest, while you play, while you're at the gym. You automatically start acting from that version of you — without even trying.
         </p>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
-          The version of you who already has it — she has a different state. That's the only real gap. My audios shift you into her state while you rest. You start acting from her. Reality reorganizes around it.
+          And reality mirrors that back to you.
         </p>
       </div>
 
@@ -1273,53 +1273,38 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <LandingProofWall isMobile={isMobile}/>
 
       {/* HEMI-SYNC — how the audio actually shifts the brain */}
-      <div style={{ padding: "0 clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
+      <div style={{ padding: isMobile?"56px clamp(16px,4vw,24px) 24px":"80px clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 20 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
+          <div style={{ fontSize: 11, color: "#c9963a", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
           <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#1a0818", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
           <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color:"#3a2018", lineHeight:1.85, maxWidth:560, margin:"0 auto" }}>
             Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
           </p>
         </div>
-        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#fdf0e8,#f5e0d0)", padding: isMobile ? "24px 18px" : "36px 32px", position: "relative" }}>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%,#B76E7910,transparent 70%)", pointerEvents: "none" }}/>
-          <div style={{ display:"flex", justifyContent:"center", gap: isMobile?24:56, position:"relative", flexWrap:"wrap" }}>
-            {/* BEFORE — beta, unsynced */}
+        <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(232,168,96,0.3)", background: "#000000", padding: isMobile ? "32px 20px" : "48px 40px", position: "relative" }}>
+          <div style={{ display:"flex", justifyContent:"center", gap: isMobile?28:64, position:"relative", flexWrap:"wrap", alignItems:"center" }}>
+            {/* BEFORE — beta, unsynced: two mismatched wavy lines */}
             <div style={{ textAlign:"center" }}>
-              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
-                <defs>
-                  <linearGradient id="brainL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
-                </defs>
-                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainL)" strokeWidth="2.5" opacity="0.55"/>
-                <line x1="70" y1="20" x2="70" y2="114" stroke="#B76E79" strokeWidth="1" opacity="0.35" strokeDasharray="2 3"/>
-                <path d="M30 58 Q38 48 46 58 Q54 68 62 58" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
-                <path d="M30 72 Q40 80 48 72 Q56 64 64 72" fill="none" stroke="#c4789a" strokeWidth="2.2" strokeLinecap="round"/>
-                <path d="M78 62 Q84 74 92 62 Q98 52 106 62" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
-                <path d="M78 76 Q86 68 94 78 Q100 86 106 76" fill="none" stroke="#e8b870" strokeWidth="2.2" strokeLinecap="round"/>
+              <svg width={isMobile?140:170} height={90} viewBox="0 0 170 90">
+                <path d="M10 30 Q25 12 40 30 T70 30 T100 30 T130 30 T160 30" fill="none" stroke="#c9963a" strokeWidth="2.5" strokeLinecap="round" opacity="0.85"/>
+                <path d="M10 60 Q22 48 34 60 T58 60 T82 60 T106 60 T130 60 T160 60" fill="none" stroke="#8a6838" strokeWidth="2.5" strokeLinecap="round" opacity="0.85"/>
               </svg>
-              <div style={{ fontSize:11, color:"#c9963a", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Beta · Awake</div>
-              <div style={{ fontSize:10.5, color:"#8a7050", marginTop:2 }}>Hemispheres out of sync</div>
+              <div style={{ fontSize:11, color:"#c9963a", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Beta · Awake</div>
+              <div style={{ fontSize:10.5, color:"#8a7868", marginTop:2 }}>Hemispheres out of sync</div>
             </div>
             {/* ARROW */}
             <div style={{ display:"flex", alignItems:"center", color:"#e8a860" }}>
               <ArrowIcon size={22}/>
             </div>
-            {/* AFTER — theta, hemi-synced */}
+            {/* AFTER — theta, hemi-synced: one matched wave */}
             <div style={{ textAlign:"center" }}>
-              <svg width={isMobile?130:170} height={isMobile?130:170} viewBox="0 0 140 140">
-                <defs>
-                  <linearGradient id="brainR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5e0a0"/><stop offset="0.5" stopColor="#d4a090"/><stop offset="1" stopColor="#B76E79"/></linearGradient>
-                  <radialGradient id="brainGlow"><stop offset="0" stopColor="#f5e0a0" stopOpacity="0.5"/><stop offset="1" stopColor="#B76E79" stopOpacity="0"/></radialGradient>
-                </defs>
-                <circle cx="70" cy="68" r="58" fill="url(#brainGlow)"/>
-                <path d="M70 18 C40 18 20 40 20 68 C20 92 34 108 50 116 C48 106 52 98 52 90 C44 86 40 78 40 68 C40 48 54 34 70 34 C86 34 100 48 100 68 C100 78 96 86 88 90 C88 98 92 106 90 116 C106 108 120 92 120 68 C120 40 100 18 70 18 Z" fill="none" stroke="url(#brainR)" strokeWidth="3"/>
-                <line x1="70" y1="20" x2="70" y2="114" stroke="#f5e0a0" strokeWidth="1" opacity="0.5" strokeDasharray="2 3"/>
-                <path d="M30 65 Q40 55 50 65 Q60 75 70 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
-                <path d="M70 65 Q80 55 90 65 Q100 75 110 65" fill="none" stroke="url(#brainR)" strokeWidth="2.6" strokeLinecap="round"/>
-                <circle cx="70" cy="65" r="3.5" fill="#f5e0a0"/>
+              <svg width={isMobile?140:170} height={90} viewBox="0 0 170 90">
+                <defs><linearGradient id="syncWave" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#fce4c0"/><stop offset="1" stopColor="#e8a860"/></linearGradient></defs>
+                <path d="M10 45 Q25 22 40 45 T70 45 T100 45 T130 45 T160 45" fill="none" stroke="url(#syncWave)" strokeWidth="3.5" strokeLinecap="round"/>
+                <circle cx="85" cy="45" r="4" fill="#fce4c0"/>
               </svg>
-              <div style={{ fontSize:11, color:"#e8a860", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:6 }}>Theta · 4–8Hz</div>
-              <div style={{ fontSize:10.5, color:"#b46830", marginTop:2 }}>Hemi-synced · one wave</div>
+              <div style={{ fontSize:11, color:"#e8a860", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Theta · 4–8Hz</div>
+              <div style={{ fontSize:10.5, color:"#d4c0a8", marginTop:2 }}>Hemi-synced · one wave</div>
             </div>
           </div>
         </div>
@@ -1344,7 +1329,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: 11, fontWeight: 900, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14 }}>What's Inside</div>
             <h2 style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#1a1210", fontWeight: 700, marginBottom: 12 }}>Whatever it is, it's covered.</h2>
-            <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 560, margin: "0 auto" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
+            <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 16 }}>
             {[
@@ -1446,12 +1431,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
             {/* MANIFESTED — final celebration */}
             <div style={{ display:"flex", gap:isMobile?14:24, alignItems:"flex-start" }}>
-              <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#f5e0a0,#d4a090,#B76E79)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 8px 32px rgba(183,110,121,0.4)" }}>
+              <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 8px 32px rgba(232,168,96,0.4)" }}>
                 <span style={{ fontSize:isMobile?18:22 }}>✓</span>
               </div>
-              <div style={{ flex:1, background:"linear-gradient(135deg,#fceedd,#f8d8f0,#ede0fc)", border:"2px solid rgba(183,110,121,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(183,110,121,0.2)" }}>
-                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#e8b870,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Manifested.</div>
-                <div style={{ fontSize:isMobile?13:15, color:"#6a3050", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
+              <div style={{ flex:1, background:"#0a0a0a", border:"2px solid rgba(232,168,96,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(0,0,0,0.4)" }}>
+                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Manifested.</div>
+                <div style={{ fontSize:isMobile?13:15, color:"#d4c0a8", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
               </div>
             </div>
           </div>
