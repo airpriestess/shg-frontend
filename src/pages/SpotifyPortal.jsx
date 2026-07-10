@@ -1343,16 +1343,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
   const products = [
-    { name:"Lovemaxxing Ritual",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
-    { name:"Moneymaxxing Ritual",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Moneymaxxing" },
-    { name:"Luckygirlmaxxing Ritual", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
-    { name:"Sovereignmaxxing Ritual", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
-    { name:"Confidencemaxxing Ritual",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
-    { name:"Beautymaxxing Ritual",    price:"£19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
-    { name:"Healmaxxing Ritual",      price:"£19", desc:"Physical or emotional pain, released",               cat:"Healmaxxing" },
-    { name:"Sleepmaxxing Ritual",     price:"£19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
-    { name:"Businessmaxxing Ritual",  price:"£19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
-    { name:"Peacemaxxing Ritual",     price:"£19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
+    { name:"Lovemaxxing Guide",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
+    { name:"Moneymaxxing Guide",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Moneymaxxing" },
+    { name:"Luckygirlmaxxing Guide", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
+    { name:"Sovereignmaxxing Guide", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
+    { name:"Confidencemaxxing Guide",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
+    { name:"Beautymaxxing Guide",    price:"£19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
+    { name:"Healmaxxing Guide",      price:"£19", desc:"Physical or emotional pain, released",               cat:"Healmaxxing" },
+    { name:"Sleepmaxxing Guide",     price:"£19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
+    { name:"Businessmaxxing Guide",  price:"£19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
+    { name:"Peacemaxxing Guide",     price:"£19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
   ];
   return (
     <div style={{ padding:"16px 16px 40px" }}>
