@@ -788,6 +788,9 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
     <div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 12px" }}>
         <span onClick={openProfile} style={{ fontSize:20,fontWeight:700,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8 }}>{greet} <span style={{ width:26,height:26,borderRadius:"50%",background:"linear-gradient(135deg,#fce4c0,#e8a860)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#000" }}>R</span></span>
+        <button onClick={()=>setTab("shop")} style={{ width:36,height:36,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </button>
       </div>
 
       {userTier === "audio" && (
