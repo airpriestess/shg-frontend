@@ -1450,9 +1450,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 icon: <><path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></> },
               { name: "Singlemaxxing", pain: "Too full of yourself to settle", accent: "#a8506a",
                 icon: <><circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 34 L30 48" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/></> },
-              { name: "Wellnessmaxxing", pain: "Your body and mind, finally in sync", accent: "#6a8a5a",
+              { name: "Wellnessmaxxing", pain: "Your body and mind, finally in sync", accent: "#c4789a",
                 icon: <><path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 26 L27 26 L29 20 L32 32 L34 26 L38 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/></> },
-              { name: "Sleepmaxxing", pain: "Manifesting while you're unconscious", accent: "#2a2e58",
+              { name: "Sleepmaxxing", pain: "Manifesting while you're unconscious", accent: "#f5e0a0",
                 icon: <path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/> },
               { name: "Studymaxxing", pain: "The grades everyone said were out of reach", accent: "#c9963a",
                 icon: <><path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M22 26 L22 36 Q30 40 38 36 L38 26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
@@ -1482,7 +1482,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* OLD ASSUMPTION → NEW ASSUMPTION */}
-      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#fdf0e8 0%,#d8dce8 50%,#a8b0c8 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#fdf0e8 0%,#f5e0d0 50%,#e8b870 100%)", width: "100%" }}>
         <div style={{ padding: isMobile?"0 18px":"0 24px", maxWidth: 860, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14 }}>The mechanism</div>
@@ -1628,7 +1628,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           ))}
         </div>
         {/* IMAGE PLACEHOLDER — after the three reasons */}
-        <div style={{ marginTop: 32, borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "linear-gradient(135deg,#2a1020,#180a18)", padding: isMobile?"24px 16px":"36px 32px" }}>
+        <div style={{ marginTop: 32, borderRadius: 20, overflow: "hidden", border: "1px solid rgba(183,110,121,0.3)", background: "#000000", padding: isMobile?"24px 16px":"36px 32px" }}>
           <svg viewBox="0 0 800 220" style={{ width:"100%", height:"auto", display:"block" }}>
             <defs>
               <linearGradient id="betaG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#8a6a70"/><stop offset="1" stopColor="#a08088"/></linearGradient>
@@ -1680,7 +1680,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* DNA ACTIVATION SECTION */}
-      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#e8f0d8 50%,#c8dcb0 100%)", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f5d8e8 50%,#c4789a 100%)", position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -1788,7 +1788,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {[
             { title: "Spoilt Goddess", format: "Melodic House · EMDR · 528hz", freq: "528hz", badge: "▶ Free Preview", badgeColor: "#B76E79", icon: "🎵", desc: "Self-concept. Receiving. Identity. Reshma's voice layered beneath melodic house music.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
-            { title: "Money Finds Me First", format: "Spoken Hypnosis · 528hz", freq: "528hz", badge: "In the vault", badgeColor: "#1a7030", icon: "💰", desc: "Wealth. Receiving. Abundance. One of the tracks waiting inside.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
+            { title: "Money Finds Me First", format: "Spoken Hypnosis · 528hz", freq: "528hz", badge: "In the vault", badgeColor: "#e8a860", icon: "💰", desc: "Wealth. Receiving. Abundance. One of the tracks waiting inside.", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
             { title: "While I Sleep I Manifest", format: "Subliminal · Music Only · No Voice", freq: "Delta", badge: "Subliminal", badgeColor: "#d4a090", icon: "🌙", desc: "Pure frequency. No voice. Affirmations beneath melodic house — works while you sleep." },
           ].map((a, i) => (
             <div key={i} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "16px 20px", display: "flex", gap: 14, alignItems: "center" }}
@@ -1869,7 +1869,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf6ee 0%,#f0e4f5 50%,#dcc4e8 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf6ee 0%,#f5e0d0 50%,#e8b870 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#c9963a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
