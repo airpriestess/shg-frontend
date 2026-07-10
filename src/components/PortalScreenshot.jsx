@@ -30,14 +30,14 @@ const TITLE_TO_CAT = {
   "DNA Activation Ceremony":"DNAmaxxing","10 Years Into One Hour":"Healmaxxing",
 };
 const CAT_ICONS = {
-  Lovemaxxing:{accent:"#a85a42",icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>'},
-  Beautymaxxing:{accent:"#b8547a",icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>'},
+  Lovemaxxing:{accent:"#e8a860",icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>'},
+  Beautymaxxing:{accent:"#f5e0a0",icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>'},
   Moneymaxxing:{accent:"#c9963a",icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>'},
-  Sleepmaxxing:{accent:"#2a2e58",icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>'},
-  Selfmaxxing:{accent:"#8a6838",icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>'},
+  Sleepmaxxing:{accent:"#f5e0a0",icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>'},
+  Selfmaxxing:{accent:"#e8b870",icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>'},
   Luckygirlmaxxing:{accent:"#e8b870",icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>'},
-  DNAmaxxing:{accent:"#8a3050",icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>'},
-  Healmaxxing:{accent:"#a8506a",icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>'},
+  DNAmaxxing:{accent:"#b8934a",icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>'},
+  Healmaxxing:{accent:"#d4a028",icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>'},
 };
 
 function Thumb({ title, size, r=3 }) {
@@ -66,7 +66,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
 
       {/* STATUS BAR */}
       <div style={{ height:Math.round(38*s), display:"flex", alignItems:"flex-end", justifyContent:"space-between", padding:`0 ${pad}px ${Math.round(6*s)}px` }}>
-        <span style={{ fontSize:f.sm, fontWeight:700, color:C.cr }}>9:41</span>
+        <span style={{ fontSize:f.sm, fontWeight:700, color:"#e8a860" }}>9:41</span>
         <span style={{ fontSize:f.xs, color:C.cr }}>●● 100%</span>
       </div>
       <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)", width:Math.round(90*s), height:Math.round(26*s), background:C.bg, borderRadius:`0 0 ${Math.round(12*s)}px ${Math.round(12*s)}px`, zIndex:50 }}/>
@@ -99,16 +99,6 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
             <div style={{ fontSize:f.xs, fontWeight:600, color:C.cr, marginTop:Math.round(4*s), width:thumbCard, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{title}</div>
             <div style={{ fontSize:f.xs-1, color:C.mu }}>Reshma Oracle</div>
           </div>
-        ))}
-      </div>
-
-      {/* BROWSE BY DESIRE — category chips, single scrollable row to save vertical space */}
-      <div style={{ padding:`0 ${pad}px ${Math.round(6*s)}px` }}>
-        <span style={{ fontSize:f.md, fontWeight:700, color:C.cr }}>Browse by desire</span>
-      </div>
-      <div style={{ display:"flex", gap:Math.round(5*s), padding:`0 ${pad}px ${Math.round(14*s)}px`, overflowX:"auto", flexWrap:"nowrap" }}>
-        {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Confidencemaxxing","Luckygirlmaxxing","Healmaxxing"].map((cat,i)=>(
-          <span key={i} style={{ flexShrink:0, fontSize:f.xs, fontWeight:600, color:"#000", background:"linear-gradient(135deg,#fce4c0,#e8a860)", padding:`${Math.round(4*s)}px ${Math.round(9*s)}px`, borderRadius:20, whiteSpace:"nowrap" }}>{cat}</span>
         ))}
       </div>
 
