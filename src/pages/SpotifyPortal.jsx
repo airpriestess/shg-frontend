@@ -945,33 +945,25 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
         <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>Browse by Desire</span>
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:12,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:700 }}>Clear ✕</button>}
       </div>
-      {cat==="All" || cat==="Liked" ? (
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8, padding:"0 16px 16px" }}>
-          {[
-            { id:"Liked", label:"Liked ♡" },
-            ...cats.filter(c=>c!=="All"&&c!=="Liked").map(c=>({ id:c, label:c })),
-          ].map(({id,label})=>{
-            const ic = CAT_ICONS[id];
-            return (
-              <button key={id} onClick={()=>setCat(id)} style={{ background:C.bg3, border:`1px solid ${ic?ic.accent+"55":C.border}`, borderRadius:14, padding:"14px 8px", display:"flex", flexDirection:"column", alignItems:"center", gap:6, cursor:"pointer" }}>
-                <div style={{ width:36, height:36, borderRadius:10, background:"#000", display:"flex", alignItems:"center", justifyContent:"center", color:ic?ic.accent:R }}>
-                  {ic ? <svg width={20} height={20} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: ic.icon }} /> : <span style={{fontSize:18}}>♡</span>}
-                </div>
-                <span style={{ fontSize:10.5, fontWeight:700, color:C.cr, textAlign:"center", lineHeight:1.2 }}>{label}</span>
-              </button>
-            );
-          })}
+      <div style={{ padding:"0 16px 14px" }}>
+        <div style={{ position:"relative" }}>
+          <select
+            value={cat}
+            onChange={e=>setCat(e.target.value)}
+            style={{
+              width:"100%", appearance:"none", WebkitAppearance:"none", MozAppearance:"none",
+              background:C.bg3, border:`1px solid ${C.border}`, borderRadius:12,
+              padding:"14px 40px 14px 16px", fontSize:14, fontWeight:700, color:C.cr,
+              fontFamily:"'Jost',sans-serif", cursor:"pointer"
+            }}
+          >
+            <option value="All">All categories</option>
+            <option value="Liked">Liked ♡</option>
+            {cats.filter(c=>c!=="All"&&c!=="Liked").map(c=><option key={c} value={c}>{c}</option>)}
+          </select>
+          <span style={{ position:"absolute", right:16, top:"50%", transform:"translateY(-50%)", pointerEvents:"none", color:C.mu, fontSize:11 }}>▾</span>
         </div>
-      ) : (
-        <div style={{ display:"flex",gap:8,padding:"0 16px 8px",alignItems:"center" }}>
-          {(() => { const ic = CAT_ICONS[cat]; return (
-            <div style={{ width:32, height:32, borderRadius:9, background:"#000", display:"flex", alignItems:"center", justifyContent:"center", color:ic?ic.accent:R, flexShrink:0 }}>
-              {ic ? <svg width={18} height={18} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: ic.icon }} /> : null}
-            </div>
-          );})()}
-          <span style={{ fontSize:15, fontWeight:800, color:C.cr }}>{cat}</span>
-        </div>
-      )}
+      </div>
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
