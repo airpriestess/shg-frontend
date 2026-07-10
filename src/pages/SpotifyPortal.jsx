@@ -891,16 +891,6 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
         </div>
       </Sec>
 
-      {/* CATEGORIES */}
-      <Sec title="Browse by desire" C={C}>
-        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,padding:"0 16px" }}>
-          {[["Lovemaxxing","#ffd6e7","#ffb3cc"],["Money","#d4f4d4","#a8e6a8"],["Beauty","#e8d0ff","#d4a8ff"],["Sleep","#d0e8f8","#a8ccf0"],["DNA","#e0d0ff","#c0a8f0"],["Identity","#fde8e8","#f0b8b8"]].map(([l,c1,c2],i)=>(
-            <div key={i} onClick={()=>{setLibCat(l);setTab("library");}} style={{ height:64,borderRadius:10,overflow:"hidden",position:"relative",cursor:"pointer",background:`linear-gradient(135deg,${c1},${c2})` }}>
-              <span style={{ position:"absolute",bottom:10,left:12,fontSize:13,fontWeight:800,color:"#000" }}>{l}</span>
-            </div>
-          ))}
-        </div>
-      </Sec>
     </div>
   );
 }
