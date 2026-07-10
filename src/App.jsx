@@ -837,7 +837,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: isMobile ? "0 0 auto" : "1 1 0", justifyContent:"flex-end" }}>
           {/* Desktop CTAs */}
           {!isMobile && (<>
-            <button onClick={onSignIn||onDemo} style={{ padding:"10px 18px",background:"none",border:"1px solid #B76E7944",borderRadius:22,color:"#B76E79",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Sign in</button>
+            <button onClick={onSignIn||onDemo} style={{ padding:"10px 18px",background:"none",border:"1px solid #e8a86055",borderRadius:22,color:"#e8a860",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Sign in</button>
             <button onClick={onJoin} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#fce4c0,#e8a860)",border:"none",borderRadius:22,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>Join ✦</button>
           </>)}
           {/* Mobile hamburger — white bars, animates to X */}
