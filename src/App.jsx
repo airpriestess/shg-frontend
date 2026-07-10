@@ -1869,12 +1869,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf6ee 0%,#f5e0d0 50%,#e8b870 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf0f2 0%,#f8d8e0 35%,#e8a8bc 68%,#B76E79 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#c9963a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
             <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#1a0818", letterSpacing:"-0.01em", lineHeight:1 }}>
-              Wall of <span style={{ background:"linear-gradient(90deg,#e8a860,#c9963a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
+              Wall of <span style={{ background:"linear-gradient(90deg,#e8a8bc,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
           </div>
           <div style={{...GPRICE(isMobile)}}>
@@ -1892,14 +1892,14 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Moneymaxxing" },
               { quote: "I used to check my phone every five minutes waiting for him to text. Now I forget to check, and that's exactly when he does.", name: "Amara, 30", cat: "Lovemaxxing" },
             ].map((t, i) => (
-              <div key={i} style={{ background:"#fff", border:"1px solid rgba(232,168,96,0.25)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(232,168,96,0.1)" }}>
+              <div key={i} style={{ background:"#fff", border:"1px solid rgba(183,110,121,0.25)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(183,110,121,0.12)" }}>
                 <div style={{ width:32, height:24, opacity:0.25 }}>
-                  <svg viewBox="0 0 32 24" fill="#c9963a"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
+                  <svg viewBox="0 0 32 24" fill="#B76E79"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
                 <p style={{ fontSize:isMobile?15:17, color:"#2a1020", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                   <span style={{ fontSize:12, fontWeight:700, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
-                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(232,168,96,0.12)", border:"1px solid rgba(232,168,96,0.3)", borderRadius:20, color:"#c9963a", fontWeight:700, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
+                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.12)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:20, color:"#B76E79", fontWeight:700, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
             ))}
