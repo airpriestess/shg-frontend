@@ -250,7 +250,7 @@ function CheckoutModal({ onClose, onDemo }) {
           <div style={{background:"linear-gradient(135deg,#fdf0e8,#f5e0d0)",border:"1.5px solid #B76E7955",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#2a1210",marginBottom:2}}>Audio Tier</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#000000",marginBottom:2}}>Audio Tier</div>
                 <div style={{fontSize:11,color:"#8a7268",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
@@ -261,7 +261,7 @@ function CheckoutModal({ onClose, onDemo }) {
             </div>
             <div style={{marginBottom:12}}>
               {["Full audio vault — all desire categories","New tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:"#4a2820",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
+                <div key={i} style={{fontSize:12,color:"#000000",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#B76E79"}}>·</span>{f}
                 </div>
               ))}
@@ -276,7 +276,7 @@ function CheckoutModal({ onClose, onDemo }) {
             <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#8a6020",marginBottom:2}}>Goddess Tier</div>
+                <div style={{fontSize:16,fontWeight:800,color:"#B76E79",marginBottom:2}}>Goddess Tier</div>
                 <div style={{fontSize:11,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
@@ -339,8 +339,8 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : TIERS.audio.trialNote, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "#0a0a0a", border: "#B76E7955", nameColor: "#2a1210", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#4a2820", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
-    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fce4c0,#f5d9a8)", border: "#e8a860", nameColor: "#2a1a08", muteColor: "#c9963a", priceColor: "#c9963a", periodColor: "#8a7268", featureColor: "#5a4020", dot: "#e8a860", ctaBg: "linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", ctaColor: "#000", popular: true },
+    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: isAnnual ? TIERS.audio.annualNote : TIERS.audio.trialNote, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "#0a0a0a", border: "#B76E7955", nameColor: "#000000", muteColor: "#8a7268", priceColor: "#B76E79", periodColor: "#d4a090", featureColor: "#000000", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#e8b870,#d4a090)", ctaColor: "#000" },
+    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fce4c0,#f5d9a8)", border: "#e8a860", nameColor: "#2a1a08", muteColor: "#c9963a", priceColor: "#c9963a", periodColor: "#8a7268", featureColor: "#000000", dot: "#e8a860", ctaBg: "linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", ctaColor: "#000", popular: true },
     { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "#000", border: "#e8b87066", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)", ctaColor: "#000" },
   ];
 
@@ -455,7 +455,7 @@ function AppPreviewSection({ isMobile }) {
         <div style={{ fontSize:isMobile?16:18, fontWeight:700, color:"#000", marginBottom:8, lineHeight:1.4 }}>
           Your dashboard. Your audio vault. Your proof.
         </div>
-        <div style={{ fontSize:isMobile?13:14, color:"#4a3830", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ fontSize:isMobile?13:14, color:"#000000", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>
           On mobile it looks like Spotify. On desktop, the same experience — full sidebar, player bar, everything. Switch between the <span style={{ color:"#B76E79", fontWeight:600 }}>audio dashboard</span> and your <span style={{ color:"#B76E79", fontWeight:600 }}>ProofOS wall</span> below.
         </div>
       </div>
@@ -465,7 +465,7 @@ function AppPreviewSection({ isMobile }) {
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
             style={{ padding:"7px 18px", borderRadius:20, background:view===id?"#f2ece4":"transparent", border:"none",
-              color:view===id?"#1a1210":"#ffffff", fontSize:12, fontWeight:700, cursor:"pointer",
+              color:view===id?"#000000":"#ffffff", fontSize:12, fontWeight:700, cursor:"pointer",
               fontFamily:"'Jost',sans-serif", transition:"all 0.25s", letterSpacing:"0.04em" }}>
             {l}
           </button>
@@ -646,7 +646,7 @@ function FAQSection() {
               <span style={{ fontSize:15,fontWeight:600,color:"#1a0818",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
-            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#4a2820",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#000000",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
         ))}
       </div>
@@ -1085,10 +1085,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79)", borderRadius:1, opacity:0.3 }}/>}
 
             {[
-              { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#5a3810" },
-              { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#5a2818" },
-              { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#5a1030" },
-              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#fdf0e8,#f5e0d0)", border:"#B76E7966", num:"#B76E79", text:"#5a1418" },
+              { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#000000" },
+              { step:"02", label:"Listen to your audio", body:"Press play. Daily. First thing in the morning or last thing at night — when your brain is in theta. Melodic house as the foundation. Reshma's voice beneath it. Let it wash over you. No effort needed.", bg:"linear-gradient(135deg,#fdf0f0,#fce8e4)", border:"#d4a09066", num:"#d4a090", text:"#000000" },
+              { step:"03", label:"Log signs and synchronicities", body:"Something shifts. He messages. Money arrives from somewhere you forgot. Your skin looks different in the mirror. A friend says your name first. Log it in ProofOS immediately — voice note, screenshot, written sign.", bg:"linear-gradient(135deg,#fdf0f5,#fce8f0)", border:"#c4789a66", num:"#c4789a", text:"#000000" },
+              { step:"04", label:"Mark it manifested", body:"The moment the full desire lands — mark it. ProofOS records the date, the days of listening, the audio, the signs that preceded it. Your personal proof. Undeniable and documented forever.", bg:"linear-gradient(135deg,#fdf0e8,#f5e0d0)", border:"#B76E7966", num:"#B76E79", text:"#000000" },
             ].map((s,i)=>(
               <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
                 {/* Step number circle */}
@@ -1266,10 +1266,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#2a1210", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#000000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#5a3830", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#000000", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
 
@@ -1287,8 +1287,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
                   <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#2a1210", marginBottom: 3 }}>{f.label}</div>
-                    <div style={{ fontSize: 13, color: "#5a3830", lineHeight: 1.65 }}>{f.body}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "#000000", marginBottom: 3 }}>{f.label}</div>
+                    <div style={{ fontSize: 13, color: "#000000", lineHeight: 1.65 }}>{f.body}</div>
                   </div>
                 </div>
               ))}
@@ -1365,7 +1365,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <div style={{ fontSize: 11, color: "#c9963a", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
           <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#1a0818", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
-          <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color:"#3a2018", lineHeight:1.85, maxWidth:560, margin:"0 auto" }}>
+          <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color:"#000000", lineHeight:1.85, maxWidth:560, margin:"0 auto" }}>
             Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
           </p>
         </div>
@@ -1417,16 +1417,16 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: 11, fontWeight: 900, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14 }}>What's Inside</div>
-            <h2 style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#1a1210", fontWeight: 700, marginBottom: 12 }}>Whatever it is, it's covered.</h2>
+            <h2 style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000000", fontWeight: 700, marginBottom: 12 }}>Whatever it is, it's covered.</h2>
             <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 16 }}>
             {[
-              { name: "Lovemaxxing", pain: "Him, obsessed. You, unbothered.", accent: "#a85a42",
+              { name: "Lovemaxxing", pain: "Him, obsessed. You, unbothered.", accent: "#B76E79",
                 icon: <path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinejoin="round"/> },
               { name: "Beautymaxxing", pain: "The face in the mirror, finally the one you manifested", accent: "#b8547a",
                 icon: <><path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/></> },
-              { name: "Facemaxxing", pain: "Skin so good they ask what you use", accent: "#a85a42",
+              { name: "Facemaxxing", pain: "Skin so good they ask what you use", accent: "#c4789a",
                 icon: <><ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" strokeWidth="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
               { name: "Bodymaxxing", pain: "The body that makes a room stop", accent: "#B76E79",
                 icon: <><circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></> },
@@ -1436,7 +1436,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 icon: <><rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" strokeWidth="3"/></> },
               { name: "DNAmaxxing", pain: "Ageless. Radiant. Undeniable.", accent: "#8a3050",
                 icon: <><path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(-10,0)"/><path d="M18 18 L42 18 M16 30 L44 30 M18 42 L42 42" stroke="currentColor" strokeWidth="1.5" opacity="0.5"/></> },
-              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#8a6838",
+              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#e8b870",
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/></> },
               { name: "Erosmaxxing", pain: "Magnetic enough to stop a room", accent: "#a8506a",
                 icon: <path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/> },
@@ -1462,7 +1462,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/></> },
               { name: "Confidencemaxxing", pain: "Walk in like you already own the room", accent: "#B76E79",
                 icon: <><path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/></> },
-              { name: "Stylemaxxing", pain: "Dressed like the girl who already made it", accent: "#a85a42",
+              { name: "Stylemaxxing", pain: "Dressed like the girl who already made it", accent: "#d4a090",
                 icon: <><path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/></> },
               { name: "Healmaxxing", pain: "Physical pain, emotional pain — gone, not just managed", accent: "#a8506a",
                 icon: <><path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M22 20 Q24 24 22 28 Q26 30 26 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/><path d="M38 20 Q36 24 38 28 Q34 30 34 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/></> },
@@ -1473,7 +1473,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: isMobile ? 16 : 19, fontWeight: 600, color: "#1a1210", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: isMobile ? 16 : 19, fontWeight: 600, color: "#000000", marginBottom: 6 }}>{cat.name}</div>
                 <div style={{ fontSize: isMobile ? 11 : 12, color: "#7a6a60", lineHeight: 1.4 }}>{cat.pain}</div>
               </div>
             ))}
@@ -1493,10 +1493,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <p style={{ fontSize: "clamp(15px,1.9vw,18px)", color: "#000", lineHeight: 1.85, maxWidth: 560, margin: "0 auto 14px" }}>
               Your reality runs on assumptions — what you quietly hold as true about yourself. Installed in theta, the new assumption becomes the default. Then your reality reorganises to match it.
             </p>
-            <p style={{ fontSize: "clamp(14px,1.7vw,16px)", color: "#2a1810", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
+            <p style={{ fontSize: "clamp(14px,1.7vw,16px)", color: "#000000", lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>
               This runs both directions. Assume you're not the one he chooses, and you won't be. Assume you can't make money, and you won't. The audio isn't wishing on your behalf — it's replacing the assumption underneath, so what reflects back actually changes.
             </p>
-            <p style={{ fontSize: "clamp(14px,1.7vw,16px)", color: "#2a1810", lineHeight: 1.8, maxWidth: 560, margin: "14px auto 0" }}>
+            <p style={{ fontSize: "clamp(14px,1.7vw,16px)", color: "#000000", lineHeight: 1.8, maxWidth: 560, margin: "14px auto 0" }}>
               Once your assumption changes, your reality starts mirroring it back — small, specific, undeniable. That's not a metaphor. It's exactly what ProofOS is built to track: the dated, logged proof that the mirror is real.
             </p>
           </div>
@@ -1694,7 +1694,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               We don't stop at the surface.<br/>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
-            <p style={{ fontSize: isMobile ? 15 : 17, color: "#2a1210", lineHeight: 1.8, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
+            <p style={{ fontSize: isMobile ? 15 : 17, color: "#000000", lineHeight: 1.8, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
               Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
             </p>
           </div>
@@ -1705,13 +1705,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* Left — Reshma's voice */}
             <div style={{ borderLeft: "3px solid #B76E79", paddingLeft: 28 }}>
               <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a1210", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#000000", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
                 "I got obsessed with the science of why some people shift fast and others stay stuck for years. The answer wasn't mindset. It wasn't effort. It was depth.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a1210", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#000000", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
                 The subconscious doesn't respond to the words. It responds to the frequency, the state, and the repetition. When you combine theta brainwaves with 963hz and EMDR — you're not just changing a thought. You're changing the signal your cells are running on.
               </p>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#1a1210", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#000000", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
                 That's why this works when everything else didn't."
               </p>
               <div style={{ marginTop: 20, fontSize: 13, color: "#c9963a", fontWeight: 700, fontFamily: "'Jost',sans-serif" }}>— RESHMA ORACLE</div>
@@ -1765,7 +1765,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             Your subconscious mind<br />
             <span style={{ background: `linear-gradient(90deg,${T.champagne},${T.rose})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>creates your entire reality.</span>
           </h2>
-          <p style={{ fontSize: 16, color: "#2a1210", lineHeight: 1.85, maxWidth: 700, margin: "0 auto 16px" }}>
+          <p style={{ fontSize: 16, color: "#000000", lineHeight: 1.85, maxWidth: 700, margin: "0 auto 16px" }}>
             Neuroscience confirms 95% of your thoughts, beliefs and behaviours are subconscious. Your self-concept — what you assume to be true about yourself, down to a DNA level — determines everything you experience. Not your desires. Your assumptions.
           </p>
           <p style={{ fontSize: 16, color: "#111111", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
@@ -1898,7 +1898,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 </div>
                 <p style={{ fontSize:isMobile?15:17, color:"#2a1020", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <span style={{ fontSize:12, fontWeight:700, color:"#8a6838", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
+                  <span style={{ fontSize:12, fontWeight:700, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(232,168,96,0.12)", border:"1px solid rgba(232,168,96,0.3)", borderRadius:20, color:"#c9963a", fontWeight:700, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
