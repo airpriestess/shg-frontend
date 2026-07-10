@@ -452,11 +452,11 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ textAlign:"center", maxWidth:500 }}>
         <div style={{ fontSize: isMobile?17:21, fontWeight: 800, color: "#ffffff", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em", marginBottom: 6 }}>👇 This is what's inside</div>
         <div style={{ fontSize: isMobile?12:13, fontWeight: 600, color: "#e8b4a0", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>Tap Dashboard · ProofOS ✦ · Analytics below to explore each screen</div>
-        <div style={{ fontSize:isMobile?16:18, fontWeight:700, color:"#000", marginBottom:8, lineHeight:1.4 }}>
+        <div style={{ fontSize:isMobile?16:18, fontWeight:700, color:"#ffffff", marginBottom:8, lineHeight:1.4 }}>
           Your dashboard. Your audio vault. Your proof.
         </div>
-        <div style={{ fontSize:isMobile?13:14, color:"#000000", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>
-          On mobile it looks like Spotify. On desktop, the same experience — full sidebar, player bar, everything. Switch between the <span style={{ color:"#B76E79", fontWeight:600 }}>audio dashboard</span> and your <span style={{ color:"#B76E79", fontWeight:600 }}>ProofOS wall</span> below.
+        <div style={{ fontSize:isMobile?13:14, color:"#e8dcd0", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>
+          On mobile it looks like Spotify. On desktop, the same experience — full sidebar, player bar, everything. Switch between the <span style={{ color:"#e8a860", fontWeight:600 }}>audio dashboard</span> and your <span style={{ color:"#e8a860", fontWeight:600 }}>ProofOS wall</span> below.
         </div>
       </div>
 
@@ -1050,17 +1050,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
         <div style={{ fontSize:11, fontWeight:900, color:"#c9963a", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#000", lineHeight:1.12, marginBottom:20 }}>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#f2ece4", lineHeight:1.12, marginBottom:20 }}>
           Shift into the state of<br/>
           <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
           You feel the gap — between your current self and the dream self you're aspiring to become, between where you are and the dream reality you want to shift into. I'm here to close that gap.
         </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
           My self-hypnosis and subliminal audios shift you into that state while you rest, while you play, while you're at the gym. You automatically start acting from that version of you — without even trying.
         </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#000", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
           And reality mirrors that back to you.
         </p>
       </div>
