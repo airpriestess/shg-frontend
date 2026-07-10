@@ -259,6 +259,7 @@ const Ico = {
   Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||"#727272"} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
   Cog:    ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
   Shop:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"#727272"} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
+  Stats:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"#727272"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
 };
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
@@ -462,6 +463,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           {[
             { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile — connect to Supabase auth") },
             { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
+            { icon:<Ico.Shop c={C.mu}/>, label:"Shop", action:()=>{setTab("shop");setProfileOpen(false);} },
             { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Coming soon: daily push reminders.\n\nThis requires the app to be installed to your home screen (iPhone: Share → Add to Home Screen) so your browser can send notifications even when SHG isn't open. We'll prompt you to enable this once it's live.") },
             { icon:<Ico.Cog c={C.mu}/>, label:"Manage subscription", action:()=>{setProfileOpen(false);setBillingOpen(true);} },
             { icon:isDark?<Ico.Cog c={C.mu}/>:<Ico.Cog c={C.mu}/>, label:`Switch to ${isDark?"light":"dark"} mode`, action:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);} },
@@ -484,10 +486,11 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   // ── NAV TABS ────────────────────────────────────────────────────────────
   const tabs = [
-    { id:"home",    label:"Home",    I:Ico.Home   },
-    { id:"search",  label:"Search",  I:Ico.Search },
-    { id:"library", label:"Library", I:Ico.Lib    },
-    { id:"proof",   label:"ProofOS", I:Ico.Proof  },
+    { id:"home",      label:"Home",      I:Ico.Home   },
+    { id:"search",    label:"Search",    I:Ico.Search },
+    { id:"library",   label:"Library",   I:Ico.Lib    },
+    { id:"proof",     label:"ProofOS",   I:Ico.Proof  },
+    { id:"analytics", label:"Analytics", I:Ico.Stats  },
   ];
 
   const tabContent = (
@@ -496,6 +499,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)}/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)}/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -660,7 +664,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {/* Bottom nav */}
       {!fullP && (
         <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
-          {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
+          {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
               <n.I a={tab===n.id} c={tab===n.id?(n.id==="proof"?R:C.cr):C.dim}/>
               <span style={{ fontSize:9,fontWeight:tab===n.id?700:400,color:tab===n.id?(n.id==="proof"?R:C.cr):C.dim }}>{n.label}</span>
@@ -780,9 +784,6 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
 function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick }) {
-  const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
-  const manifested = threads.filter(t=>t.done).length;
-  const inProgress = threads.filter(t=>!t.done).length;
   return (
     <div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 12px" }}>
@@ -820,46 +821,6 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
             <span style={{ fontSize:22, color:"#000", fontWeight:900, flexShrink:0 }}>›</span>
           </button>
         )}
-      </div>
-
-      {/* ★ EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
-      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
-          <span style={{ fontSize:10, fontWeight:900, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your dominant state</span>
-          <button onClick={openEmoLog} style={{ fontSize:10, fontWeight:800, padding:"4px 10px", borderRadius:20, background:"rgba(0,0,0,0.85)", border:"none", color:"#fff", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Log now +</button>
-        </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
-          {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
-            <div key={i} style={{ background:"rgba(255,255,255,0.85)", borderRadius:10, padding:"9px 8px", textAlign:"center" }}>
-              <div style={{ fontSize:9, color:"#333", fontWeight:800, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:4 }}>{l}</div>
-              <div style={{ fontSize:14, fontWeight:900, color:d?.c||"#000", lineHeight:1.1 }}>{d?.n||"—"}</div>
-              <div style={{ fontSize:9, color:"#666", fontWeight:700, marginTop:2 }}>{d?.v||""}</div>
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize:10.5, color:"#000", marginTop:9, textAlign:"center", fontWeight:600 }}>
-          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
-        </div>
-      </div>
-
-
-
-      {/* ANALYTICS BOARD — first thing you see on the dashboard */}
-      <div style={{ margin:"0 16px 20px" }}>
-        <AnalyticsBoard
-          theme={C.cr==="#ffffff"?"dark":"light"}
-          data={isPreview ? DEMO_ANALYTICS : {
-            manifested, inProgress,
-            signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
-            listens: listenCount,
-            streakDays: 14,
-            week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
-            topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
-              .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#e8a860","Money":"#e8b870","Beauty":"#c9963a","Identity":"#e8a860","DNA":"#e8a860","Sleep":"#c9963a"})[name]||"#e8a860",n]),
-          }}
-          onViewProof={isPreview?null:()=>setTab("proof")}
-        />
       </div>
 
       <Sec title="Your favorites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
@@ -902,6 +863,69 @@ function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C,
         </div>
       </Sec>
 
+    </div>
+  );
+}
+
+// ── ANALYTICS TAB — dominant emotional state + full analytics board, its own destination ──
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[] }) {
+  const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
+  const manifested = threads.filter(t=>t.done).length;
+  const inProgress = threads.filter(t=>!t.done).length;
+  return (
+    <div>
+      <div style={{ padding:"20px 16px 12px" }}>
+        <span style={{ fontSize:20,fontWeight:700,color:C.cr }}>Analytics</span>
+      </div>
+
+      {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
+      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+          <span style={{ fontSize:10, fontWeight:900, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your dominant state</span>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
+          {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
+            <div key={i} style={{ background:"rgba(255,255,255,0.85)", borderRadius:10, padding:"9px 8px", textAlign:"center" }}>
+              <div style={{ fontSize:9, color:"#333", fontWeight:800, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:4 }}>{l}</div>
+              <div style={{ fontSize:14, fontWeight:900, color:d?.c||"#000", lineHeight:1.1 }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:9, color:"#666", fontWeight:700, marginTop:2 }}>{d?.v||""}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:10.5, color:"#000", marginTop:9, textAlign:"center", fontWeight:600 }}>
+          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
+        </div>
+      </div>
+
+      {/* FULL ANALYTICS BOARD */}
+      <div style={{ margin:"0 16px 20px" }}>
+        <AnalyticsBoard
+          theme={C.cr==="#ffffff"?"dark":"light"}
+          data={isPreview ? DEMO_ANALYTICS : {
+            manifested, inProgress,
+            signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
+            listens: listenCount,
+            streakDays: 14,
+            week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
+            topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
+              .sort((a,b)=>b[1]-a[1]).slice(0,3)
+              .map(([name,n])=>[name,({"Lovemaxxing":"#e8a860","Money":"#e8b870","Beauty":"#c9963a","Identity":"#e8a860","DNA":"#e8a860","Sleep":"#c9963a"})[name]||"#e8a860",n]),
+          }}
+          onViewProof={isPreview?null:()=>setTab("proof")}
+        />
+      </div>
+
+      {/* GUIDES PROMO — links into Shop */}
+      <div style={{ margin:"0 16px 20px" }}>
+        <button onClick={()=>setTab("shop")} style={{ width:"100%", padding:"18px 18px", background:"#0a0a0a", border:"1px solid rgba(232,168,96,0.3)", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,168,96,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
+          <span style={{ flex:1 }}>
+            <div style={{ fontSize:15, fontWeight:800, color:"#f2ece4" }}>Explore the Guides</div>
+            <div style={{ fontSize:12, color:"#b09888", fontWeight:600, marginTop:3, lineHeight:1.4 }}>Moneymaxxing Guide, Lovemaxxing Guide, and more — deep-dive workbooks for every category</div>
+          </span>
+          <span style={{ fontSize:20, color:"#e8a860", flexShrink:0 }}>›</span>
+        </button>
+      </div>
     </div>
   );
 }
