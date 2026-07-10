@@ -1055,13 +1055,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          You feel the gap — between your current self and the dream self you're aspiring to become, between where you are and the dream reality you want to shift into. I'm here to close that gap.
+          The waiting is the actual pain. Not him, not the money, not the mirror — the not-knowing if any of it is coming.
         </p>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          My self-hypnosis and subliminal audios shift you into that state while you rest, while you play, while you're at the gym. You automatically start acting from that version of you — without even trying.
+          Every night, while you sleep, this rewires what your subconscious already assumes is true. Not "I am worthy." Not a script you say and doubt. The install that makes the outcome inevitable, not hoped-for.
         </p>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
-          And reality mirrors that back to you.
+          You stop checking your phone. You start already knowing.
         </p>
       </div>
 
