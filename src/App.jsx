@@ -813,7 +813,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       )}
 
       {/* NAV */}
-      <nav style={{ position: "fixed", top: isMobile ? 36 : 40, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
+      <nav style={{ position: "fixed", top: `calc(${isMobile ? "36px" : "40px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 64 64" width="24" height="24" style={{flexShrink:0}}>
               <defs><linearGradient id="navmark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#d4a090"/><stop offset="72%" stopColor="#c4789a"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
@@ -884,7 +884,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       )}
 
       {/* HERO — DARK goddess energy */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: isMobile ? 90 : 94, background: "#000000" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: `calc(${isMobile ? "90px" : "94px"} + env(safe-area-inset-top,0px))`, background: "#000000" }}>
         <Rings count={5} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           <HeroMarquee />
