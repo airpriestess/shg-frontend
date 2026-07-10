@@ -1084,7 +1084,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* JOURNEY STEPS — ombre cards */}
           <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative" }}>
             {/* Vertical line */}
-            {!isMobile && <div style={{ position:"absolute", left:40, top:0, bottom:0, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79)", borderRadius:1, opacity:0.3 }}/>}
+            {!isMobile && <div style={{ position:"absolute", left:28, top:28, bottom:28, width:2, background:"linear-gradient(180deg,#e8b870,#d4a090,#c4789a,#B76E79)", borderRadius:1, opacity:0.3, zIndex:0 }}/>}
 
             {[
               { step:"01", label:"Set your intention", body:"Choose your desire. State it in present tense. Be specific — love, money, appearance, business. Write it in ProofOS. This is the anchor everything links back to.", bg:"linear-gradient(135deg,#fff8f0,#fceedd)", border:"#e8b87066", num:"#e8b870", text:"#000000" },
@@ -1094,7 +1094,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             ].map((s,i)=>(
               <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
                 {/* Step number circle */}
-                <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22` }}>
+                <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22`, position:"relative", zIndex:1 }}>
                   <span style={{ fontSize:isMobile?14:16, fontWeight:900, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
                 </div>
                 {/* Card */}
