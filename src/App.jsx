@@ -910,22 +910,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", fontWeight: 400, marginBottom: 8, letterSpacing: "0.01em", textAlign: "center" }}>
-            {isMobile ? (
-              <>
-                Brainwash yourself every day<br/>
-                to manifest your desires.<br/>
-                Document every piece of evidence<br/>
-                in ProofOS.<br/>
-                Keep a record. <span style={{ fontWeight: 800 }}>FACT</span>.
-              </>
-            ) : (
-              <>
-                Brainwash yourself every day to manifest your desires. Document every piece of evidence in ProofOS.
-                <br/>
-                Keep a record. <span style={{ fontWeight: 800 }}>FACT</span>.
-              </>
-            )}
+          <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", fontWeight: 400, marginBottom: 8, letterSpacing: "0.01em", textAlign: "center", maxWidth: isMobile ? 340 : "none", margin: "0 auto 8px" }}>
+            Brainwash yourself every day to manifest your desires. Document every piece of evidence in ProofOS.
+            <br/>
+            Keep a record. <span style={{ fontWeight: 800 }}>FACT</span>.
           </div>
 
           {/* WAKE UP KNOWING */}
