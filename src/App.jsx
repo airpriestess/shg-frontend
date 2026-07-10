@@ -139,7 +139,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
               <WaveForm playing color={T.champagne} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#B76E79", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
-                <div style={{ fontSize: 12, color: "#111111" }}>{(currentAudio.audioFormats || []).join(' · ')}{currentAudio.frequency ? ` · ${currentAudio.frequency}` : ''}</div>
+                <div style={{ fontSize: 12, color: "#b09888" }}>{(currentAudio.audioFormats || []).join(' · ')}{currentAudio.frequency ? ` · ${currentAudio.frequency}` : ''}</div>
               </div>
               <button onClick={onStopPlay} style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg, ${T.blood}, ${T.rose})`, border: "none", color: "#fff", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>⏸</button>
             </div>
@@ -187,10 +187,10 @@ const STRIPE = {
 const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
-    monthly: "£19", annual: "£143", annualNote: "≈ £11.99/mo · 2 months free",
+    monthly: "£19", annual: "£228", annualNote: "£19/mo, billed annually",
     trialNote: "3-day free trial, then £19/mo",
     features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
-    cta: (annual)=> annual ? "Join Audio — £143/year" : "Start 3-Day Free Trial",
+    cta: (annual)=> annual ? "Join Audio — £228/year" : "Start 3-Day Free Trial",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
@@ -237,7 +237,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
-                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:800}}>SAVE 25%</span></>}
+                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:800}}>BEST VALUE</span></>}
               </button>
             ))}
           </div>
@@ -365,7 +365,7 @@ function PricingSection({ onJoin }) {
                 boxShadow: billing === b ? "0 2px 8px rgba(0,0,0,0.12)" : "none",
                 fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 6,
               }}>
-                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontSize: 11, fontWeight: 800 }}>SAVE 25%</span></>}
+                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontSize: 11, fontWeight: 800 }}>BEST VALUE</span></>}
               </button>
             ))}
           </div>
@@ -1366,8 +1366,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ padding: isMobile?"56px clamp(16px,4vw,24px) 24px":"80px clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <div style={{ fontSize: 11, color: "#c9963a", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
-          <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#1a0818", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
-          <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color:"#000000", lineHeight:1.85, maxWidth:560, margin:"0 auto" }}>
+          <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#f2ece4", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
+          <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:560, margin:"0 auto" }}>
             Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
           </p>
         </div>
@@ -1859,10 +1859,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             </div>
             {TECH_ROWS.map((row, i) => (
               <div key={i} style={{ display: "grid", gridTemplateColumns: "1.3fr 1.8fr 2fr 1.6fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(183,110,121,0.08)" : "none" }}>
-                <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#B76E79", borderRight: "1px solid rgba(183,110,121,0.08)" }}>{row.t}</div>
-                <div style={{ padding: "15px 18px", fontSize: 13, color: "#1a0a1a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.w}</div>
-                <div style={{ padding: "15px 18px", fontSize: 13, color: "#2a1a2a", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.d}</div>
-                <div style={{ padding: "15px 18px", fontSize: 12, color: "#B76E79", lineHeight: 1.6 }}>{row.when}</div>
+                <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#e8a860", borderRight: "1px solid rgba(183,110,121,0.08)" }}>{row.t}</div>
+                <div style={{ padding: "15px 18px", fontSize: 13, color: "#e8dcd0", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.w}</div>
+                <div style={{ padding: "15px 18px", fontSize: 13, color: "#d8ccc0", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.d}</div>
+                <div style={{ padding: "15px 18px", fontSize: 12, color: "#e8a860", lineHeight: 1.6 }}>{row.when}</div>
               </div>
             ))}
           </div>
