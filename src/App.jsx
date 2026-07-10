@@ -913,7 +913,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
-          <div style={{ background: "linear-gradient(135deg,#fce4c0 0%,#e8a860 100%)", border: "none", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(180,104,48,0.35)" }}>
+          <div style={{ background: "#0a0a0a", border: "1px solid rgba(232,168,96,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(0,0,0,0.5)" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               {/* Album art */}
@@ -926,32 +926,32 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               </div>
               {/* Track info */}
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 800, color: "#000", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Spoilt Goddess</div>
-                <div style={{ fontSize: 13, color: "rgba(0,0,0,0.65)", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.06em" }}>Reshma Oracle</div>
-                <div style={{ fontSize: 12, color: "#111111", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>Melodic House · EMDR · 528hz</div>
+                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 800, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Spoilt Goddess</div>
+                <div style={{ fontSize: 13, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: 12, color: "#b09888", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>Melodic House · EMDR · 528hz</div>
               </div>
               {/* Live badge */}
               {playing && (
-                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(0,0,0,0.5)", animation: "pulse 1.2s ease-in-out infinite" }}/>
-                  <span style={{ fontSize: 11, color: "rgba(0,0,0,0.75)", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
+                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(232,168,96,0.12)", border: "1px solid rgba(232,168,96,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#e8a860", animation: "pulse 1.2s ease-in-out infinite" }}/>
+                  <span style={{ fontSize: 11, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
                 </div>
               )}
             </div>
 
             {/* Progress bar */}
             <div style={{ marginBottom: 12 }}>
-              <div style={{ height: 4, background: "rgba(0,0,0,0.2)", borderRadius: 2, cursor: "pointer", position: "relative" }}
+              <div style={{ height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, cursor: "pointer", position: "relative" }}
                 onClick={e => { const r=e.currentTarget.getBoundingClientRect(); if(audioRef.current?.duration) audioRef.current.currentTime=((e.clientX-r.left)/r.width)*audioRef.current.duration; }}
                 onMouseEnter={e => e.currentTarget.children[0].style.height="6px"}
                 onMouseLeave={e => e.currentTarget.children[0].style.height="4px"}>
-                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#d4a090,#B76E79)", borderRadius:2, transition:"height 0.1s", position:"relative" }}>
-                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#f2ece4", boxShadow:"0 0 6px rgba(183,110,121,0.8)", opacity: playing ? 1 : 0 }}/>
+                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#e8b870,#e8a860)", borderRadius:2, transition:"height 0.1s", position:"relative" }}>
+                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#f5e0a0", boxShadow:"0 0 6px rgba(232,168,96,0.8)", opacity: playing ? 1 : 0 }}/>
                 </div>
               </div>
               <div style={{ display:"flex", justifyContent:"space-between", marginTop:6 }}>
-                <span style={{ fontSize:10, color:"#786860", fontFamily:"'Jost',sans-serif" }}>{playing ? `${Math.floor((audioRef.current?.currentTime||0)/60)}:${String(Math.floor((audioRef.current?.currentTime||0)%60)).padStart(2,"0")}` : "0:00"}</span>
-                <span style={{ fontSize:10, color:"#786860", fontFamily:"'Jost',sans-serif" }}>4:32</span>
+                <span style={{ fontSize:10, color:"#7a6a60", fontFamily:"'Jost',sans-serif" }}>{playing ? `${Math.floor((audioRef.current?.currentTime||0)/60)}:${String(Math.floor((audioRef.current?.currentTime||0)%60)).padStart(2,"0")}` : "0:00"}</span>
+                <span style={{ fontSize:10, color:"#7a6a60", fontFamily:"'Jost',sans-serif" }}>4:32</span>
               </div>
             </div>
 
@@ -959,28 +959,28 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 4px" }}>
               {/* Shuffle */}
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, opacity:0.45, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.6)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8a860" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
               </button>
               {/* Prev */}
               <button onClick={prevTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.7)"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="rgba(0,0,0,0.7)"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8a860"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#e8a860"/></svg>
               </button>
               {/* Play/Pause — big circle */}
-              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"rgba(0,0,0,0.75)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(183,110,121,0.45)", flexShrink:0, lineHeight:0, transition:"transform 0.15s, box-shadow 0.15s" }}
-                onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.07)";e.currentTarget.style.boxShadow="0 6px 32px rgba(183,110,121,0.65)"}}
-                onMouseLeave={e=>{e.currentTarget.style.transform="scale(1)";e.currentTarget.style.boxShadow="0 4px 24px rgba(183,110,121,0.45)"}}>
+              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#e8b870,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,168,96,0.45)", flexShrink:0, lineHeight:0, transition:"transform 0.15s, box-shadow 0.15s" }}
+                onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.07)";e.currentTarget.style.boxShadow="0 6px 32px rgba(232,168,96,0.65)"}}
+                onMouseLeave={e=>{e.currentTarget.style.transform="scale(1)";e.currentTarget.style.boxShadow="0 4px 24px rgba(232,168,96,0.45)"}}>
                 {playing
-                  ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
-                  : <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><polygon points="7 3 21 12 7 21 7 3"/></svg>
+                  ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
+                  : <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
                 }
               </button>
               {/* Next */}
               <button onClick={nextTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.7)"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="rgba(0,0,0,0.7)"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8a860"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="#e8a860"/></svg>
               </button>
               {/* Repeat */}
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.7)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8a860" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
               </button>
             </div>
 
