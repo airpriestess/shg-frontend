@@ -939,6 +939,15 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Moneymaxxing","Businessmaxxing","Careermaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
+  const [catOpen, setCatOpen] = useState(false);
+  const catRef = useRef(null);
+  useEffect(() => {
+    const onClick = e => { if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+  const catLabel = cat==="All" ? "All categories" : (cat==="Liked" ? "Liked ♡" : cat);
+  const catOptions = ["All","Liked",...cats.filter(c=>c!=="All"&&c!=="Liked")];
   return (
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
@@ -946,22 +955,43 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:12,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:700 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
-        <div style={{ position:"relative" }}>
-          <select
-            value={cat}
-            onChange={e=>setCat(e.target.value)}
+        <div ref={catRef} style={{ position:"relative" }}>
+          <button
+            onClick={()=>setCatOpen(o=>!o)}
             style={{
-              width:"100%", appearance:"none", WebkitAppearance:"none", MozAppearance:"none",
-              background:C.bg3, border:`1px solid ${C.border}`, borderRadius:12,
-              padding:"14px 40px 14px 16px", fontSize:14, fontWeight:700, color:C.cr,
+              width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
+              background:"#000", border:`1px solid ${R}66`, borderRadius:12,
+              padding:"14px 16px", fontSize:14, fontWeight:700, color:R,
               fontFamily:"'Jost',sans-serif", cursor:"pointer"
             }}
           >
-            <option value="All">All categories</option>
-            <option value="Liked">Liked ♡</option>
-            {cats.filter(c=>c!=="All"&&c!=="Liked").map(c=><option key={c} value={c}>{c}</option>)}
-          </select>
-          <span style={{ position:"absolute", right:16, top:"50%", transform:"translateY(-50%)", pointerEvents:"none", color:C.mu, fontSize:11 }}>▾</span>
+            <span>{catLabel}</span>
+            <span style={{ fontSize:11, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+          </button>
+          {catOpen && (
+            <div style={{
+              position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:40,
+              background:"#000", border:`1px solid ${R}66`, borderRadius:12,
+              maxHeight:320, overflowY:"auto", boxShadow:"0 12px 32px rgba(0,0,0,0.5)"
+            }}>
+              {catOptions.map(c=>{
+                const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
+                const active = cat===c;
+                return (
+                  <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
+                    style={{
+                      padding:"12px 16px", fontSize:14, fontWeight:active?800:600,
+                      color:active?R:"#f2ece4", background:active?`${R}22`:"transparent",
+                      cursor:"pointer", fontFamily:"'Jost',sans-serif",
+                      borderBottom:`1px solid rgba(255,255,255,0.06)`
+                    }}
+                    onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${R}14`; }}
+                    onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "transparent"; }}
+                  >{label}</div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
@@ -1302,16 +1332,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
   const products = [
-    { name:"Lovemaxxing",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
-    { name:"Moneymaxxing",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Moneymaxxing" },
-    { name:"Luckygirlmaxxing", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
-    { name:"Sovereignmaxxing", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
-    { name:"Confidencemaxxing",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
-    { name:"Beautymaxxing",    price:"£19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
-    { name:"Healmaxxing",      price:"£19", desc:"Physical or emotional pain, released",               cat:"Healmaxxing" },
-    { name:"Sleepmaxxing",     price:"£19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
-    { name:"Businessmaxxing",  price:"£19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
-    { name:"Peacemaxxing",     price:"£19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
+    { name:"Lovemaxxing Ritual",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
+    { name:"Moneymaxxing Ritual",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Moneymaxxing" },
+    { name:"Luckygirlmaxxing Ritual", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
+    { name:"Sovereignmaxxing Ritual", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
+    { name:"Confidencemaxxing Ritual",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
+    { name:"Beautymaxxing Ritual",    price:"£19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
+    { name:"Healmaxxing Ritual",      price:"£19", desc:"Physical or emotional pain, released",               cat:"Healmaxxing" },
+    { name:"Sleepmaxxing Ritual",     price:"£19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
+    { name:"Businessmaxxing Ritual",  price:"£19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
+    { name:"Peacemaxxing Ritual",     price:"£19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
   ];
   return (
     <div style={{ padding:"16px 16px 40px" }}>
