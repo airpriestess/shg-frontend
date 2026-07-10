@@ -49,6 +49,17 @@ const THEMES = {
 const R = "#e8a860", P = "#e8a860";
 const OMBRE = "linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
 
+// Per-tab subtle wash — the "color experience." Locked family only: pink / rose / gold / cream / black.
+// Dark theme: near-black fading to a faint tint of the tab's shade, so content stays readable.
+// Light theme: cream fading to a soft pastel of the tab's shade.
+const TAB_WASH = {
+  home:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#1a1214 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#fbe4e8 55%,#fdf0e8 100%)" }, // blush
+  search:  { dark: "linear-gradient(180deg,#0f0f0f 0%,#1c1416 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#f8dde4 55%,#fdf0e8 100%)" }, // rose
+  library: { dark: "linear-gradient(180deg,#0f0f0f 0%,#1a1610 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#fce8cc 55%,#fdf0e8 100%)" }, // gold
+  proof:   { dark: "linear-gradient(180deg,#0f0f0f 0%,#1e1216 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#f6d8dc 55%,#fdf0e8 100%)" }, // deep rose
+  shop:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#1a1512 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#f9e4d0 55%,#fdf0e8 100%)" }, // peach
+};
+
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
 const IMGS = {
   "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
@@ -71,19 +82,19 @@ const CAT_ICONS = {
   Moneymaxxing: { accent:"#c9963a", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Businessmaxxing: { accent:"#c9963a", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Careermaxxing: { accent:"#c9963a", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
-  DNAmaxxing: { accent:"#8a6020", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
-  Selfmaxxing: { accent:"#8a6838", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
+  DNAmaxxing: { accent:"#8a3050", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
+  Selfmaxxing: { accent:"#e8b870", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
   Erosmaxxing: { accent:"#a8506a", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
   Singlemaxxing: { accent:"#a8506a", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
-  Wellnessmaxxing: { accent:"#6a8a5a", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
-  Sleepmaxxing: { accent:"#2a2e58", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
+  Wellnessmaxxing: { accent:"#c4789a", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Sleepmaxxing: { accent:"#f5e0a0", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
   Studymaxxing: { accent:"#c9963a", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
   Friendmaxxing: { accent:"#d4917a", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Peacemaxxing: { accent:"#8a6aa8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
+  Peacemaxxing: { accent:"#d4a090", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
   Confidencemaxxing: { accent:"#e8a860", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
-  Stylemaxxing: { accent:"#a85a42", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
+  Stylemaxxing: { accent:"#d4a090", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
   Healmaxxing: { accent:"#a8506a", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
-  Intuitionmaxxing: { accent:"#8a6aa8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
+  Intuitionmaxxing: { accent:"#c4789a", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Lifemaxxing: { accent:"#e0a868", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Luckygirlmaxxing: { accent:"#e8b870", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Sovereignmaxxing: { accent:"#6a2840", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
@@ -410,7 +421,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             </button>
           ))}
         </div>
-        {planMsg && <div style={{ fontSize:11,fontWeight:700,color:"#1a7030",marginBottom:8 }}>{planMsg}</div>}
+        {planMsg && <div style={{ fontSize:11,fontWeight:700,color:"#B76E79",marginBottom:8 }}>{planMsg}</div>}
         {!cancelReq
           ? <button onClick={()=>{ if(window.confirm("Cancel your subscription? You keep access until 29 July 2026.")) {setCancelReq(true);setPlanMsg("");} }} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:12,fontWeight:700,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>Cancel subscription</button>
           : <div style={{ fontSize:11,fontWeight:700,color:"#b03030",marginBottom:8,textAlign:"center" }}>Cancels 29 July 2026 · full access until then · <span onClick={()=>setCancelReq(false)} style={{ textDecoration:"underline",cursor:"pointer",color:C.cr }}>undo</span></div>}
@@ -580,7 +591,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           </button>
         </div>
         {/* Main */}
-        <div style={{ flex:1,overflowY:"auto",background:C.bg2,paddingBottom:20 }}>
+        <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20 }}>
           <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
             <div style={{ maxWidth:360,position:"relative" }}>
               <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:14,color:C.dim }}>⌕</span>
@@ -627,7 +638,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         </div>
       </div>
       {/* Screen */}
-      <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch" }}>{tabContent}</div>
+      <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
       {!isPreview && !fullP && (
         <div onClick={()=>setFullP(true)} style={{ position:"absolute",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
@@ -1249,7 +1260,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
                 {d.track && <span style={{ fontSize:11,color:PC.mu,fontWeight:600 }}>♪ {d.track}</span>}
               </div>
               {d.feelBefore && <div style={{ fontSize:11,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
-              {d.done && d.feelAfter && <div style={{ fontSize:11,color:"#1a7030",marginTop:2,lineHeight:1.5,fontWeight:600 }}><b>After:</b> "{d.feelAfter}"</div>}
+              {d.done && d.feelAfter && <div style={{ fontSize:11,color:"#B76E79",marginTop:2,lineHeight:1.5,fontWeight:600 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
             <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
               <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:12,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>
@@ -1272,7 +1283,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
           {/* Marking manifested — capture feelAfter */}
           {finishing===d.id && (
             <div style={{ marginTop:10,background:"rgba(200,236,200,0.5)",borderRadius:10,padding:"10px 12px" }}>
-              <div style={{ fontSize:11,color:"#1a5028",fontWeight:800,marginBottom:6 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ fontSize:11,color:"#B76E79",fontWeight:800,marginBottom:6 }}>IT ARRIVED ✓ — how are you feeling now?</div>
               <div style={{ display:"flex", gap:5, overflowX:"auto", marginBottom:8, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
                 {HAWKINS.slice().reverse().map(h=>(
                   <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
@@ -1283,7 +1294,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
                 <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment, in your own words"
                   onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
                   style={{ flex:1,background:"#fff",border:"1px solid rgba(26,112,48,0.3)",color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"9px 14px",background:"#1a7030",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
+                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"9px 14px",background:"#B76E79",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
               </div>
             </div>
           )}
