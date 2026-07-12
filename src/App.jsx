@@ -636,13 +636,13 @@ function FAQSection() {
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#1a0818",lineHeight:1.2 }}>FAQs</h2>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#f2ece4",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
           <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(183,110,121,0.35)":"rgba(183,110,121,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(183,110,121,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:400,color:"#1a0818",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:15,fontWeight:400,color:"#f2ece4",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
             {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#000000",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
@@ -1075,18 +1075,18 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f9dfc8 50%,#f0c8a0 100%)", position:"relative", overflow:"hidden" }}>
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#0a0808", position:"relative", overflow:"hidden" }}>
         {/* Ombre orb */}
         <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
 
         <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:56 }}>
-            <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:400, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
-            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
+            <div style={{ fontSize:isMobile?24:36, color:"#e8a860", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:400, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
+            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#f2ece4" }}>
               Set intention.<br/>
               <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
             </h2>
-            <p style={{ fontSize:isMobile?15:17, color:"#6a4858", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
+            <p style={{ fontSize:isMobile?15:17, color:"#c8bcb0", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
           </div>
 
           {/* JOURNEY STEPS — ombre cards */}
@@ -1268,7 +1268,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
             {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fdf0e8 0%,#f5d8dc 50%,#d89aa4 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#0a0808 0%,#1a0818 50%,#2a1020 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -1492,7 +1492,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* OLD ASSUMPTION → NEW ASSUMPTION */}
-      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#fdf0e8 0%,#f5e0d0 50%,#e8b870 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#0a0808 0%,#0f0b05 100%)", width: "100%" }}>
         <div style={{ padding: isMobile?"0 18px":"0 24px", maxWidth: 860, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14 }}>The mechanism</div>
@@ -1690,21 +1690,21 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* DNA ACTIVATION SECTION */}
-      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#fdf0e8 0%,#f5d8e8 50%,#c4789a 100%)", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "#000000", position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
           {/* Eyebrow */}
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 800, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
+            <div style={{ fontSize: 11, color: "#e8a860", fontWeight: 400, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
               963hz · DNA Activation
             </div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000", lineHeight: 1.15, marginBottom: 20 }}>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#f2ece4", lineHeight: 1.15, marginBottom: 20 }}>
               We don't stop at the surface.<br/>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
-            <p style={{ fontSize: isMobile ? 15 : 17, color: "#000000", lineHeight: 1.8, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
+            <p style={{ fontSize: isMobile ? 15 : 17, color: "#c8bcb0", lineHeight: 1.8, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
               Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
             </p>
           </div>
@@ -1713,9 +1713,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: "1fr 1fr", gap: isMobile ? 24 : 40, marginBottom: 48 }}>
 
             {/* Left — Reshma's voice */}
-            <div style={{ borderLeft: "3px solid #B76E79", paddingLeft: 28 }}>
-              <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
-              <p style={{ fontSize: isMobile ? 16 : 18, color: "#000000", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
+            <div style={{ borderLeft: "3px solid #e8a860", paddingLeft: 28 }}>
+              <div style={{ fontSize: 11, color: "#e8a860", fontWeight: 400, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>Why I built this</div>
+              <p style={{ fontSize: isMobile ? 16 : 18, color: "#c8bcb0", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 400, marginBottom: 16 }}>
                 "I got obsessed with the science of why some people shift fast and others stay stuck for years. The answer wasn't mindset. It wasn't effort. It was depth.
               </p>
               <p style={{ fontSize: isMobile ? 16 : 18, color: "#000000", lineHeight: 1.8, fontFamily: "'Jost',sans-serif", fontWeight: 500, marginBottom: 16 }}>
@@ -1883,7 +1883,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#1a0818", letterSpacing:"-0.01em", lineHeight:1 }}>
+            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#f2ece4", letterSpacing:"-0.01em", lineHeight:1 }}>
               Wall of <span style={{ background:"linear-gradient(90deg,#e8a8bc,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
           </div>
