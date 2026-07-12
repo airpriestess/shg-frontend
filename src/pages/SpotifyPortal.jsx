@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
 import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
+import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
+import { useAuth } from "../contexts/AuthContext.jsx";
 
 // Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
@@ -263,7 +265,10 @@ const Ico = {
 };
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
-export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio" }) {
+export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
+  const { session } = useAuth();
+  const userId = session?.user?.id;
+  const [pushDismissed, setPushDismissed] = useState(false);
   const [tab, setTab]         = useState(initialTab);
   const [track, setTrack]     = useState(TRACKS[0]);
   const [playing, setPlay]    = useState(false);
@@ -308,7 +313,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
   const C = THEMES[theme];
   const isDark = theme === "dark";
   const hour = new Date().getHours();
-  const greet = hour<12?"Good morning":hour<17?"Good afternoon":"Good evening";
+  const firstName = userName ? userName.charAt(0).toUpperCase() + userName.slice(1).split(" ")[0] : "you";
+  const greet = (hour<12?"Good morning":"Good evening") + (isPreview ? "" : `, ${firstName}`);
 
   // ── AUDIO PLAYBACK ───────────────────────────────────────────────────────
   const play = (t) => {
@@ -475,6 +481,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 20px" }}/>
+          <PushNotificationToggle userId={userId} C={C}/>
           <button onClick={onSignOut} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             Sign out
           </button>
@@ -495,7 +502,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)}/>}
+      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)}/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>)}
@@ -783,87 +790,101 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick }) {
+function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, pushDismissed, onDismissPush }) {
+  const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Sleepmaxxing","Businessmaxxing"];
   return (
-    <div>
-      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 12px" }}>
-        <span onClick={openProfile} style={{ fontSize:20,fontWeight:700,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8 }}>{greet} <span style={{ width:26,height:26,borderRadius:"50%",background:"linear-gradient(135deg,#fce4c0,#e8a860)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:"#000" }}>R</span></span>
+    <div style={{ paddingBottom:80 }}>
+      {/* HEADER */}
+      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 6px" }}>
+        <div>
+          <div style={{ fontSize:11,color:C.mu,fontWeight:600,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
+          <span onClick={openProfile} style={{ fontSize:22,fontWeight:800,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
+            {isPreview?"Goddess":firstName}
+            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#fce4c0,#e8a860)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:800,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
+              {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
+            </span>
+          </span>
+        </div>
         <button onClick={()=>setTab("shop")} style={{ width:36,height:36,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         </button>
       </div>
 
-      {userTier === "audio" && (
-        <div onClick={onUpgradeClick} style={{ margin:"0 16px 16px",padding:"18px 20px",borderRadius:16,background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
+      {/* UPGRADE BANNER */}
+      {userTier==="audio"&&!isPreview&&(
+        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
-            <div style={{ fontSize:11,fontWeight:900,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:4,opacity:0.75 }}>Member-exclusive offer</div>
-            <div style={{ fontSize:15,fontWeight:800,color:"#000",marginBottom:2 }}>Unlock ProofOS — 10% off, this once</div>
-            <div style={{ fontSize:12,color:"#000",opacity:0.75 }}>This discount only exists because you're already here.</div>
+            <div style={{ fontSize:10,fontWeight:900,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
+            <div style={{ fontSize:14,fontWeight:800,color:"#000" }}>Unlock ProofOS + Analytics — 10% off</div>
           </div>
-          <div style={{ fontSize:20,color:"#000",flexShrink:0 }}>→</div>
+          <div style={{ fontSize:18,color:"#000",flexShrink:0 }}>→</div>
         </div>
       )}
 
-      {/* ★ THE GUIDE — first, biggest, unmissable — real members only */}
-      <div style={{ margin:"0 16px 14px" }}>
-        {isPreview ? (
-          <div style={{ width:"100%", padding:"18px 18px", background:"#141414", border:"1px solid rgba(232,168,96,0.25)", borderRadius:16, display:"flex", alignItems:"center", gap:14 }}>
-            <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,168,96,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, fontWeight:900, color:"#e8a860", flexShrink:0 }}>🔒</span>
-            <span style={{ flex:1, textAlign:"left" }}>
-              <div style={{ fontSize:16, fontWeight:900, color:"#f5e0a0" }}>The Guide</div>
-              <div style={{ fontSize:12, color:"#8a7868", fontWeight:600, marginTop:3, lineHeight:1.4 }}>Unlocks for paying members — the formula, brainwave states, Hawkins scale, and everything else, in full.</div>
-            </span>
-          </div>
-        ) : (
-          <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left", border:"none", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", boxShadow:"0 8px 24px rgba(183,110,121,0.35)" }}>
-            <span style={{ width:48, height:48, borderRadius:14, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, fontWeight:900, color:"#f5e0a0", flexShrink:0 }}>✦</span>
-            <span style={{ flex:1, textAlign:"left" }}>
-              <div style={{ fontSize:16, fontWeight:900, color:"#000" }}>Open The Guide</div>
-              <div style={{ fontSize:12, color:"#000", fontWeight:700, marginTop:3, lineHeight:1.4 }}>The formula · brainwave states · Hawkins scale · how to capture signs · how often to listen</div>
-            </span>
-            <span style={{ fontSize:22, color:"#000", fontWeight:900, flexShrink:0 }}>›</span>
-          </button>
-        )}
-      </div>
+      {/* PUSH PROMPT */}
+      {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} C={C} onDismiss={onDismissPush}/>}
 
-      <Sec title="Your favorites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
-        {TRACKS.filter(t=>liked.has(t.id)).length===0
-          ? <div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:12,color:C.mu,fontWeight:600 }}>Tap the ♡ on any track and it lives here — your personal rotation.</div>
-          : <HRow>
-              {TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
-            </HRow>}
+      {/* JUMP BACK IN */}
+      <Sec title="Jump back in" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
+        <HRow>
+          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
+        </HRow>
       </Sec>
 
+      {/* MADE FOR YOU */}
+      <div style={{ padding:"0 16px 8px" }}>
+        <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12 }}>
+          <span style={{ fontSize:16,fontWeight:800,color:C.cr }}>Made for you</span>
+          <button onClick={()=>setTab("library")} style={{ fontSize:12,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:600 }}>See all</button>
+        </div>
+        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
+          {FEATURED_CATS.map(cat=>{
+            const c=CAT_ICONS[cat]||{accent:"#e8a860",icon:''};
+            const n=TRACKS.filter(t=>t.cat===cat).length;
+            return(
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:`linear-gradient(135deg,#0a0a0a 0%,${c.accent}20 100%)`,border:`1px solid ${c.accent}33`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
+                <div style={{ width:38,height:38,borderRadius:8,background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:c.accent }}>
+                  <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
+                </div>
+                <div>
+                  <div style={{ fontSize:12,fontWeight:700,color:C.cr,lineHeight:1.2 }}>{cat.replace("maxxing","")}</div>
+                  <div style={{ fontSize:10,color:C.mu,marginTop:2 }}>{n} tracks</div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* YOUR FAVOURITES */}
+      <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
+        {TRACKS.filter(t=>liked.has(t.id)).length===0
+          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:12,color:C.mu,fontWeight:600 }}>Tap the ♡ on any track — it lives here.</div>
+          :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}</HRow>}
+      </Sec>
+
+      {/* NEW THIS WEEK */}
       <Sec title="New this week ✦" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
         <HRow>
           {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
         </HRow>
       </Sec>
 
-      {/* JUMP BACK IN */}
-      <Sec title="Jump back in" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
+      {/* BY DESIRE */}
+      <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
-          {TRACKS.slice(0,5).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
+          {["Lovemaxxing","Moneymaxxing","DNAmaxxing","Facemaxxing","Erosmaxxing","Sovereignmaxxing"].map(cat=>{
+            const c=CAT_ICONS[cat]||{accent:"#e8a860",icon:''};
+            return(
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
+                <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,#111 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
+                  <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
+                </div>
+                <div style={{ fontSize:10,fontWeight:700,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
+              </button>
+            );
+          })}
         </HRow>
-      </Sec>
-
-      {/* LISTENING GUIDE */}
-      <Sec title="Listening guide" C={C} onShowAll={isPreview ? undefined : openGuide}>
-        <div style={{ padding:"0 16px" }}>
-          {[
-            { time:"Morning", tip:"Listen before getting up — your brain is in alpha. Best for identity tracks.", icon:"🌅" },
-            { time:"Night",   tip:"Loop sleep tracks as you fall asleep. Brain enters theta, then delta — deepest install.", icon:"🌙" },
-            { time:"Anytime", tip:"Subliminal tracks play in background while you work, cook, commute. Every listen counts.", icon:"✦" },
-          ].map((g,i)=>(
-            <div key={i} style={{ display:"flex",gap:12,alignItems:"flex-start",padding:"10px 0",borderBottom:i<2?`0.5px solid ${C.border}`:"none" }}>
-              <span style={{ fontSize:20,flexShrink:0,marginTop:2 }}>{g.icon}</span>
-              <div>
-                <div style={{ fontSize:13,fontWeight:700,color:C.cr,marginBottom:2 }}>{g.time}</div>
-                <div style={{ fontSize:12,color:C.mu,lineHeight:1.6 }}>{g.tip}</div>
-              </div>
-            </div>
-          ))}
-        </div>
       </Sec>
 
     </div>
