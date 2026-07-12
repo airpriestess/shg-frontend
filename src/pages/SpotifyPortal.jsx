@@ -45,8 +45,8 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  dark:  { bg:"#0f0f0f", bg2:"#181818", bg3:"#282828", bg4:"#2a2a2a", nav:"#0a0a0a", cr:"#ffffff", mu:"#b3b3b3", dim:"#727272", border:"#2a2a2a", inputBg:"#333", inputCr:"#fff" },
-  light: { bg:"#fdf0e8", bg2:"#fff8f4", bg3:"rgba(183,110,121,0.08)", bg4:"rgba(183,110,121,0.12)", nav:"rgba(253,240,232,0.97)", cr:"#000000", mu:"#4a3028", dim:"#7a5a48", border:"rgba(183,110,121,0.12)", inputBg:"rgba(0,0,0,0.07)", inputCr:"#111" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,168,96,0.08)", bg4:"rgba(232,168,96,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(232,168,96,0.12)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
+  light: { bg:"#faf7f2", bg2:"#ffffff", bg3:"rgba(232,168,96,0.10)", bg4:"rgba(232,168,96,0.18)", nav:"rgba(250,247,242,0.97)", cr:"#1a1410", mu:"#7a6858", dim:"#a89888", border:"rgba(200,168,120,0.2)", inputBg:"rgba(0,0,0,0.05)", inputCr:"#1a1410" },
 };
 
 const R = "#e8a860", P = "#e8a860";
@@ -578,9 +578,9 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:tab===n.id?C.bg3:"none",border:"none",color:tab===n.id?C.cr:n.id==="proof"?R:C.mu,fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
-              onMouseEnter={e=>e.currentTarget.style.color=n.id==="proof"?R:C.cr}
-              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?R:C.mu;}}>
+              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #e8a860":"2px solid transparent",color:tab===n.id?"#e8a860":n.id==="proof"?"#e8a860":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              onMouseEnter={e=>e.currentTarget.style.color="#e8a860"}
+              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#e8a860":C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
             </button>
           ))}
@@ -678,8 +678,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
-              <n.I a={tab===n.id} c={tab===n.id?(n.id==="proof"?R:C.cr):C.dim}/>
-              <span style={{ fontSize:9,fontWeight:tab===n.id?700:400,color:tab===n.id?(n.id==="proof"?R:C.cr):C.dim }}>{n.label}</span>
+              <n.I a={tab===n.id} c={tab===n.id?"#e8a860":C.dim}/>
+              <span style={{ fontSize:9,fontWeight:400,color:tab===n.id?"#e8a860":C.dim }}>{n.label}</span>
             </button>
           ))}
         </div>
