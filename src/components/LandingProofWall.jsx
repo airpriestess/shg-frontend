@@ -1,10 +1,10 @@
 /* LandingProofWall — EXACT mirror of the live dashboard Proof Wall (ProofTab wall view).
    Same gold ombre, same category gradient cards, same media grid. Static demo data. */
 
-const OMBRE_BG = "linear-gradient(160deg,#fdf6ee 0%,#f0e4f5 50%,#dcc4e8 100%)";
+const OMBRE_BG = "#000000";
 const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#fce4c0,#e8a860)", "Moneymaxxing":"linear-gradient(135deg,#e8a860,#c9963a)", "Beautymaxxing":"linear-gradient(135deg,#fce4c0,#e8a860)", "Bodymaxxing":"linear-gradient(135deg,#e8a860,#c9963a)", "Luckygirlmaxxing":"linear-gradient(135deg,#fce4c0,#c9963a)", "Sovereignmaxxing":"linear-gradient(135deg,#e8a860,#8a6020)" };
 const CAT_COLOR = { "Lovemaxxing":"#e8a860", "Moneymaxxing":"#c9963a", "Beautymaxxing":"#e8a860", "Bodymaxxing":"#c9963a", "Luckygirlmaxxing":"#c9963a", "Sovereignmaxxing":"#8a6020" };
-const PC = { card:"rgba(255,248,240,0.92)", text:"#1a1218", mu:"#3a2830", dim:"#5a4048" };
+const PC = { card:"rgba(255,255,255,0.06)", text:"#f2ece4", mu:"#9a8878", dim:"#7a6860" };
 
 const WALL = [
   {
@@ -82,23 +82,23 @@ export default function LandingProofWall({ isMobile }) {
       <div style={{ padding: isMobile?"0 18px":"0 24px", maxWidth: 640, margin:"0 auto", fontFamily:"'Jost',sans-serif" }}>
 
         <div style={{ textAlign:"center", marginBottom:22 }}>
-          <div style={{ fontSize:12, color:"#000", fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:12 }}>ProofOS · Real evidence</div>
-          <h2 className="wm" style={{ fontSize:"clamp(30px,4.5vw,52px)", color:"#000", lineHeight:1.1, marginBottom:10 }}>This is your Proof Wall.</h2>
-          <p style={{ fontSize:isMobile?14:16, color:"#1a0a08", lineHeight:1.8, maxWidth:480, margin:"0 auto", fontWeight:500 }}>
+          <div style={{ fontSize:12, color:"#e8a860", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:12 }}>ProofOS · Real evidence</div>
+          <h2 className="wm" style={{ fontSize:"clamp(30px,4.5vw,52px)", color:"#f2ece4", lineHeight:1.1, marginBottom:10 }}>This is your Proof Wall.</h2>
+          <p style={{ fontSize:isMobile?14:16, color:"#c8bcb0", lineHeight:1.8, maxWidth:480, margin:"0 auto", fontWeight:400 }}>
             Exactly as it looks inside the app. Every manifested intention. Every screenshot, every voice note — captured for life.
           </p>
         </div>
 
         {/* Header — mirrors the app */}
-        <div style={{ fontSize:22, fontWeight:800, marginBottom:2, color:PC.text }}>ProofOS <span style={{ color:"#000" }}>✦</span></div>
-        <div style={{ fontSize:13, color:PC.mu, marginBottom:14, fontWeight:600 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
+        <div style={{ fontSize:22, fontWeight:400, marginBottom:2, color:PC.text }}>ProofOS <span style={{ color:"#e8a860" }}>✦</span></div>
+        <div style={{ fontSize:13, color:PC.mu, marginBottom:14, fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
         {/* Stats — mirrors the app */}
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8, marginBottom:14 }}>
           {[["6","Intentions"],["6","Manifested"],["18","Signs logged"]].map(([v,l],i)=>(
             <div key={i} style={{ background:PC.card, borderRadius:12, padding:"12px 6px", textAlign:"center" }}>
-              <div style={{ fontSize:22, fontWeight:800, color:PC.text }}>{v}</div>
-              <div style={{ fontSize:10, color:PC.dim, fontWeight:700, letterSpacing:"0.08em", textTransform:"uppercase", marginTop:2 }}>{l}</div>
+              <div style={{ fontSize:22, fontWeight:400, color:PC.text }}>{v}</div>
+              <div style={{ fontSize:10, color:PC.dim, fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginTop:2 }}>{l}</div>
             </div>
           ))}
         </div>
@@ -108,11 +108,11 @@ export default function LandingProofWall({ isMobile }) {
           {WALL.map((d,i)=>(
             <div key={i} style={{ background:CAT_GRAD[d.category], borderRadius:14, padding:"16px 18px" }}>
               <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:8, marginBottom:8 }}>
-                <span style={{ fontSize:9, padding:"3px 9px", background:"rgba(255,255,255,0.7)", color:CAT_COLOR[d.category], borderRadius:20, fontWeight:800, flexShrink:0 }}>✓ {d.category}</span>
+                <span style={{ fontSize:9, padding:"3px 9px", background:"rgba(0,0,0,0.35)", color:CAT_COLOR[d.category], borderRadius:20, fontWeight:400, flexShrink:0 }}>✓ {d.category}</span>
                 <span style={{ fontSize:10, color:"#1a1a1a", fontWeight:700, textAlign:"right" }}>{d.days}d · {d.signs} signs</span>
               </div>
-              <div style={{ fontSize:15, fontWeight:800, color:"#000", marginBottom:4, lineHeight:1.3 }}>{d.desire}</div>
-              <div style={{ fontSize:10.5, color:"#3a2a10", fontWeight:700, marginBottom:10 }}>♪ Linked to: {d.track}</div>
+              <div style={{ fontSize:15, fontWeight:400, color:"#000", marginBottom:4, lineHeight:1.3 }}>{d.desire}</div>
+              <div style={{ fontSize:10.5, color:"#5a3a10", fontWeight:400, marginBottom:10 }}>♪ Linked to: {d.track}</div>
               <div style={{ background:"rgba(255,255,255,0.55)", borderRadius:10, padding:"10px 12px", marginBottom:10 }}>
                 {d.log.map((line,li)=>(
                   <div key={li} style={{ fontSize:10.5, color:"#1a1a1a", lineHeight:1.6, marginBottom: li===d.log.length-1?0:4 }}>{line}</div>
@@ -121,13 +121,13 @@ export default function LandingProofWall({ isMobile }) {
               <div style={{ fontSize:11, color:"#1a1a1a", fontStyle:"italic", lineHeight:1.5 }}>"{d.feel}"</div>
             </div>
           ))}
-          <div style={{ background:"rgba(255,255,255,0.35)", border:"1px dashed rgba(0,0,0,0.3)", borderRadius:14, padding:20, display:"flex", alignItems:"center", justifyContent:"center", minHeight:70 }}>
-            <span style={{ fontSize:12, color:"#1a0a10", textAlign:"center", fontWeight:700 }}>Your next manifestation goes here.</span>
+          <div style={{ background:"rgba(255,255,255,0.04)", border:"1px dashed rgba(232,168,96,0.25)", borderRadius:14, padding:20, display:"flex", alignItems:"center", justifyContent:"center", minHeight:70 }}>
+            <span style={{ fontSize:12, color:"#7a6860", textAlign:"center", fontWeight:400 }}>Your next manifestation goes here.</span>
           </div>
         </div>
 
         {/* All captured proof — mirrors the app */}
-        <div style={{ fontSize:11, fontWeight:900, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase", margin:"18px 0 8px" }}>All captured proof · newest last</div>
+        <div style={{ fontSize:11, fontWeight:400, color:"#e8a860", letterSpacing:"0.15em", textTransform:"uppercase", margin:"18px 0 8px" }}>All captured proof · newest last</div>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))", gap:8 }}>
           {MEDIA.map((m,i)=>(
             <div key={i} style={{ background:"#0a0a0a", borderRadius:10, padding:6, border:"1px solid rgba(232,168,96,0.25)" }}>
@@ -138,7 +138,7 @@ export default function LandingProofWall({ isMobile }) {
           ))}
         </div>
 
-        <div style={{ textAlign:"center", marginTop:22, fontSize:12, color:"#1a0a08", fontWeight:700 }}>Included in Goddess Tier ✦ · Your evidence, for life</div>
+        <div style={{ textAlign:"center", marginTop:22, fontSize:12, color:"#9a8878", fontWeight:400 }}>Included in Goddess Tier ✦ · Your evidence, for life</div>
       </div>
     </div>
   );
