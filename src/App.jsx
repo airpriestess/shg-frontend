@@ -1062,13 +1062,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           Shift into the state of<br/>
           <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
         </h2>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
           The waiting is the actual pain. Not him, not the money, not the mirror — the not-knowing if any of it is coming.
         </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
           Every night, while you sleep, this rewires what your subconscious already assumes is true. Not "I am worthy." Not a script you say and doubt. The install that makes the outcome inevitable, not hoped-for.
         </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
           You stop checking your phone. You start already knowing.
         </p>
       </div>
@@ -1849,8 +1849,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {TECH_ROWS.map((row, i) => (
               <div key={i} style={{ background: "rgba(255,255,255,0.88)", border: "1px solid rgba(183,110,121,0.15)", borderRadius: 14, padding: "16px 18px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#B76E79" }}>{row.t}</div>
-                  <div style={{ fontSize: 11, color: "#B76E79", textAlign: "right", maxWidth: "45%", lineHeight: 1.4 }}>{row.when}</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#a06a2a" }}>{row.t}</div>
+                  <div style={{ fontSize: 11, color: "#a06a2a", textAlign: "right", maxWidth: "45%", lineHeight: 1.4 }}>{row.when}</div>
                 </div>
                 <div style={{ fontSize: 13, color: "#333", lineHeight: 1.6, marginBottom: 4 }}><strong style={{color:"#000"}}>{row.w}</strong></div>
                 <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>{row.d}</div>
@@ -1862,15 +1862,15 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 16, overflow: "hidden", marginBottom: 70 }}>
             <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1.8fr 2fr 1.6fr", background: "#0f0b01", borderBottom: "1px solid #1c1828" }}>
               {["Technology", "What it is", "What it does", "When it activates"].map((h, i) => (
-                <div key={i} style={{ padding: "13px 18px", fontSize: 12, color: "#B76E79", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1c1828" : "none" }}>{h}</div>
+                <div key={i} style={{ padding: "13px 18px", fontSize: 12, color: "#e8a860", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", borderRight: i < 3 ? "1px solid #1c1828" : "none" }}>{h}</div>
               ))}
             </div>
             {TECH_ROWS.map((row, i) => (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "1.3fr 1.8fr 2fr 1.6fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(183,110,121,0.08)" : "none" }}>
-                <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#e8a860", borderRight: "1px solid rgba(183,110,121,0.08)" }}>{row.t}</div>
-                <div style={{ padding: "15px 18px", fontSize: 13, color: "#e8dcd0", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.w}</div>
-                <div style={{ padding: "15px 18px", fontSize: 13, color: "#d8ccc0", borderRight: "1px solid rgba(183,110,121,0.08)", lineHeight: 1.6 }}>{row.d}</div>
-                <div style={{ padding: "15px 18px", fontSize: 12, color: "#e8a860", lineHeight: 1.6 }}>{row.when}</div>
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "1.3fr 1.8fr 2fr 1.6fr", borderBottom: i < TECH_ROWS.length-1 ? "1px solid rgba(120,90,60,0.15)" : "none" }}>
+                <div style={{ padding: "15px 18px", fontSize: 14, fontWeight: 700, color: "#a06a2a", borderRight: "1px solid rgba(120,90,60,0.12)" }}>{row.t}</div>
+                <div style={{ padding: "15px 18px", fontSize: 13, color: "#2a2018", borderRight: "1px solid rgba(120,90,60,0.12)", lineHeight: 1.6 }}>{row.w}</div>
+                <div style={{ padding: "15px 18px", fontSize: 13, color: "#2a2018", borderRight: "1px solid rgba(120,90,60,0.12)", lineHeight: 1.6 }}>{row.d}</div>
+                <div style={{ padding: "15px 18px", fontSize: 12, color: "#a06a2a", lineHeight: 1.6, fontWeight: 600 }}>{row.when}</div>
               </div>
             ))}
           </div>
