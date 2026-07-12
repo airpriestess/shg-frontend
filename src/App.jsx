@@ -348,7 +348,7 @@ function PricingSection({ onJoin }) {
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: isMobile ? 12 : 13, fontWeight: 700, color: "#B76E79", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
-          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#1a0818", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#f2ece4", lineHeight: 1.1 }}>
             Full access. <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>No download needed.</span>
           </h2>
         </div>
@@ -1075,7 +1075,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
 
       {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#0a0808", position:"relative", overflow:"hidden" }}>
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#000000", position:"relative", overflow:"hidden" }}>
         {/* Ombre orb */}
         <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
 
@@ -1268,7 +1268,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
             {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#0a0808 0%,#1a0818 50%,#2a1020 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#000000", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -1492,7 +1492,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
 
       {/* OLD ASSUMPTION → NEW ASSUMPTION */}
-      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#0a0808 0%,#0f0b05 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "#000000", width: "100%" }}>
         <div style={{ padding: isMobile?"0 18px":"0 24px", maxWidth: 860, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14 }}>The mechanism</div>
@@ -1906,7 +1906,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <div style={{ width:32, height:24, opacity:0.25 }}>
                   <svg viewBox="0 0 32 24" fill="#B76E79"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
-                <p style={{ fontSize:isMobile?15:17, color:"#2a1020", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
+                <p style={{ fontSize:isMobile?15:17, color:"#1a1410", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                   <span style={{ fontSize:12, fontWeight:400, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.12)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:20, color:"#B76E79", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
