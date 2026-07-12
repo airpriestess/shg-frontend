@@ -46,7 +46,7 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
   dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,168,96,0.08)", bg4:"rgba(232,168,96,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(232,168,96,0.12)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
-  light: { bg:"#faf7f2", bg2:"#ffffff", bg3:"rgba(232,168,96,0.10)", bg4:"rgba(232,168,96,0.18)", nav:"rgba(250,247,242,0.97)", cr:"#1a1410", mu:"#7a6858", dim:"#a89888", border:"rgba(200,168,120,0.2)", inputBg:"rgba(0,0,0,0.05)", inputCr:"#1a1410" },
+  light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(232,168,96,0.12)", bg4:"rgba(232,168,96,0.22)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)", inputBg:"rgba(180,104,48,0.08)", inputCr:"#1a1008" },
 };
 
 const R = "#e8a860", P = "#e8a860";
