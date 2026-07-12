@@ -796,7 +796,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
   ];
 
   return (
-    <div className="hypno-bg" style={{ background: "linear-gradient(180deg,#fce8f0 0%,#f8e0ec 12%,#f5d8e8 22%,#f8e8d8 35%,#fdf4ee 50%)", minHeight: "100vh" }}>
+    <div className="hypno-bg" style={{ background: "#000000", minHeight: "100vh" }}>
       <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" onEnded={nextTrack} />
       <audio ref={vaultRef} preload="none" />
 
