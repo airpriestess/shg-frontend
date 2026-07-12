@@ -221,7 +221,7 @@ function CheckoutModal({ onClose, onDemo }) {
 
         {/* HEADER */}
         <div style={{background:"linear-gradient(135deg,#fceedd,#f8e0f0)",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
-          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:700,marginBottom:8}}>Start your shift today</div>
+          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
           <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,5vw,34px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4}}>Choose your membership.</h3>
           <p style={{fontSize:13,color:"#6a4858",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
@@ -230,13 +230,13 @@ function CheckoutModal({ onClose, onDemo }) {
             {["monthly","annual"].map(b => (
               <button key={b} onClick={()=>setBilling(b)} style={{
                 padding:"8px 20px",borderRadius:50,border:"none",cursor:"pointer",
-                fontSize:12,fontWeight:700,letterSpacing:"0.06em",textTransform:"uppercase",
+                fontSize:12,fontWeight:400,letterSpacing:"0.06em",textTransform:"uppercase",
                 background:billing===b?"#fff":"transparent",
                 color:billing===b?"#8a2050":"#a09098",
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
-                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:800}}>BEST VALUE</span></>}
+                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:400}}>BEST VALUE</span></>}
               </button>
             ))}
           </div>
@@ -249,11 +249,11 @@ function CheckoutModal({ onClose, onDemo }) {
           <div style={{background:"linear-gradient(135deg,#fdf0e8,#f5e0d0)",border:"1.5px solid #B76E7955",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#000000",marginBottom:2}}>Audio Tier</div>
-                <div style={{fontSize:11,color:"#8a7268",fontWeight:600,letterSpacing:"0.06em"}}>The full vault</div>
+                <div style={{fontSize:16,fontWeight:400,color:"#000000",marginBottom:2}}>Audio Tier</div>
+                <div style={{fontSize:11,color:"#8a7268",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
+                <div style={{fontSize:26,fontWeight:400,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
                 <div style={{fontSize:11,color:"#d4a090"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#d4a090"}}>£11.92/mo · billed once</div>}
               </div>
@@ -265,21 +265,21 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#e8b870,#d4a090)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#e8b870,#d4a090)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
               {TIERS.audio.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
 
           {/* GODDESS TIER */}
           <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"22px 18px 18px",marginTop:16,position:"relative",overflow:"visible"}}>
-            <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:800,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
+            <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#B76E79",marginBottom:2}}>Goddess Tier</div>
-                <div style={{fontSize:11,color:"#B76E79",fontWeight:600,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
+                <div style={{fontSize:16,fontWeight:400,color:"#B76E79",marginBottom:2}}>Goddess Tier</div>
+                <div style={{fontSize:11,color:"#B76E79",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
+                <div style={{fontSize:26,fontWeight:400,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
                 <div style={{fontSize:11,color:"#d4a090"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>£26.42/mo · billed once</div>}
               </div>
@@ -291,7 +291,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
               {TIERS.goddess.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
@@ -300,11 +300,11 @@ function CheckoutModal({ onClose, onDemo }) {
           <div style={{background:"#000",border:"1.5px solid #e8b87066",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:16,fontWeight:800,color:"#f5e0a0",marginBottom:2}}>Lifetime Access</div>
-                <div style={{fontSize:11,color:"#c8a870",fontWeight:600,letterSpacing:"0.06em"}}>Once. Forever.</div>
+                <div style={{fontSize:16,fontWeight:400,color:"#f5e0a0",marginBottom:2}}>Lifetime Access</div>
+                <div style={{fontSize:11,color:"#c8a870",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:900,color:"#f5e0a0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
+                <div style={{fontSize:26,fontWeight:400,color:"#f5e0a0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
                 <div style={{fontSize:11,color:"#c8a870"}}>one time</div>
               </div>
             </div>
@@ -315,7 +315,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(232,184,112,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(232,184,112,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
@@ -451,11 +451,11 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ textAlign:"center", maxWidth:500 }}>
         <div style={{ fontSize: isMobile?17:21, fontWeight: 800, color: "#ffffff", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em", marginBottom: 6 }}>👇 This is what's inside</div>
         <div style={{ fontSize: isMobile?12:13, fontWeight: 600, color: "#e8b4a0", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>Tap Dashboard · ProofOS ✦ · Analytics below to explore each screen</div>
-        <div style={{ fontSize:isMobile?16:18, fontWeight:700, color:"#ffffff", marginBottom:8, lineHeight:1.4 }}>
+        <div style={{ fontSize:isMobile?16:18, fontWeight:400, color:"#ffffff", marginBottom:8, lineHeight:1.4 }}>
           Your dashboard. Your audio vault. Your proof.
         </div>
         <div style={{ fontSize:isMobile?13:14, color:"#e8dcd0", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>
-          On mobile it looks like Spotify. On desktop, the same experience — full sidebar, player bar, everything. Switch between the <span style={{ color:"#e8a860", fontWeight:600 }}>audio dashboard</span> and your <span style={{ color:"#e8a860", fontWeight:600 }}>ProofOS wall</span> below.
+          On mobile it looks like Spotify. On desktop, the same experience — full sidebar, player bar, everything. Switch between the <span style={{ color:"#e8a860", fontWeight:400 }}>audio dashboard</span> and your <span style={{ color:"#e8a860", fontWeight:400 }}>ProofOS wall</span> below.
         </div>
       </div>
 
@@ -464,7 +464,7 @@ function AppPreviewSection({ isMobile }) {
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
             style={{ padding:"7px 18px", borderRadius:20, background:view===id?"#f2ece4":"transparent", border:"none",
-              color:view===id?"#000000":"#ffffff", fontSize:12, fontWeight:700, cursor:"pointer",
+              color:view===id?"#000000":"#ffffff", fontSize:12, fontWeight:400, cursor:"pointer",
               fontFamily:"'Jost',sans-serif", transition:"all 0.25s", letterSpacing:"0.04em" }}>
             {l}
           </button>
@@ -517,7 +517,7 @@ function AppPreviewSection({ isMobile }) {
         <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
 
-      <div style={{ fontSize:12, color:"rgba(232,168,96,0.8)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center", fontWeight:600 }}>
+      <div style={{ fontSize:12, color:"rgba(232,168,96,0.8)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center", fontWeight:400 }}>
         Works in any browser · iPhone · Android · No download needed
       </div>
     </div>
@@ -532,7 +532,7 @@ function HeroMarquee() {
     <div style={{ overflow:"hidden", marginBottom:24, maskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)", WebkitMaskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)" }}>
       <div className="marquee-track" style={{ gap:"0 36px" }}>
         {doubled.map((item,i) => { const idx=i%MARQUEE_ITEMS.length; const isLit=idx===lit; return (
-          <span key={i} style={{ fontSize:11, fontWeight:700, letterSpacing:"0.15em", textTransform:"uppercase", color:isLit?"#fff":item.c, whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif", transition:"color 0.12s, text-shadow 0.12s", textShadow:isLit?`0 0 18px ${item.c},0 0 36px ${item.c}66`:"none" }}>{item.t}</span>
+          <span key={i} style={{ fontSize:11, fontWeight:400, letterSpacing:"0.15em", textTransform:"uppercase", color:isLit?"#fff":item.c, whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif", transition:"color 0.12s, text-shadow 0.12s", textShadow:isLit?`0 0 18px ${item.c},0 0 36px ${item.c}66`:"none" }}>{item.t}</span>
         );})}
       </div>
     </div>
@@ -574,7 +574,7 @@ function MaxxingCarousel({ cats }) {
         <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.08),transparent 70%)",pointerEvents:"none" }}/>
         {/* Category eyebrow */}
         <div style={{
-          fontSize:10, fontWeight:800, letterSpacing:"0.35em", textTransform:"uppercase",
+          fontSize:10, fontWeight:400, letterSpacing:"0.35em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"rgba(0,0,0,0.5)"
         }}>{current.label} ✦</div>
         {/* BIG tagline — black text, Cormorant */}
@@ -592,7 +592,7 @@ function MaxxingCarousel({ cats }) {
             style={{ flex:1, padding:"16px 18px", cursor:"pointer", borderRight:i<2?"1px solid #1c1828":"none", transition:"background 0.2s" }}
             onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-            <div style={{ fontSize:9, color:"#d4a090", fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
+            <div style={{ fontSize:9, color:"#d4a090", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
             <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif" }}>{cat.tagline}</div>
           </div>
         ))}
@@ -635,14 +635,14 @@ function FAQSection() {
     <div style={{ background:"linear-gradient(160deg,#fdf0e8 0%,#f2ece4 50%,#fdf0e8 100%)", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
-        <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:700,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
+        <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
         <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#1a0818",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
           <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(183,110,121,0.35)":"rgba(183,110,121,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(183,110,121,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:600,color:"#1a0818",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:15,fontWeight:400,color:"#1a0818",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
             {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#000000",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
@@ -827,18 +827,18 @@ function Landing({ onJoin, onDemo, onSignIn }) {
           {/* Desktop nav — centered, equal weight, none singled out */}
           {!isMobile && (
             <div style={{ display:"flex", gap:28, alignItems:"center", justifyContent:"center", flex:"0 0 auto" }}>
-              <button onClick={()=>document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Pricing</button>
-              <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>ProofOS</button>
-              <button onClick={onDemo} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Preview</button>
-              <button onClick={()=>setShopOpen(true)} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Shop</button>
+              <button onClick={()=>document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Pricing</button>
+              <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>ProofOS</button>
+              <button onClick={onDemo} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Preview</button>
+              <button onClick={()=>setShopOpen(true)} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Shop</button>
             </div>
           )}
 
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: isMobile ? "0 0 auto" : "1 1 0", justifyContent:"flex-end" }}>
           {/* Desktop CTAs */}
           {!isMobile && (<>
-            <button onClick={onSignIn||onDemo} style={{ padding:"10px 18px",background:"none",border:"1px solid #e8a86055",borderRadius:22,color:"#e8a860",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Sign in</button>
-            <button onClick={onJoin} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#fce4c0,#e8a860)",border:"none",borderRadius:22,color:"#000",fontSize:13,fontWeight:800,cursor:"pointer",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>Join ✦</button>
+            <button onClick={onSignIn||onDemo} style={{ padding:"10px 18px",background:"none",border:"1px solid #e8a86055",borderRadius:22,color:"#e8a860",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Sign in</button>
+            <button onClick={onJoin} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#fce4c0,#e8a860)",border:"none",borderRadius:22,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",textTransform:"uppercase" }}>Join ✦</button>
           </>)}
           {/* Mobile hamburger — white bars, animates to X */}
           {isMobile && (
@@ -856,17 +856,17 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <>
           <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.65)" }} onClick={()=>setMenuOpen(false)}/>
           <div style={{ position:"fixed",top:90,left:12,right:12,zIndex:999,background:"#0a0612",border:"1px solid rgba(183,110,121,0.35)",borderRadius:18,padding:14,boxShadow:"0 24px 60px rgba(0,0,0,0.99)" }}>
-            <button onClick={()=>{onDemo?.();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"15px 16px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:800,cursor:"pointer",textAlign:"center",marginBottom:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{onDemo?.();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"15px 16px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"center",marginBottom:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
               👁 Preview the Dashboard
             </button>
-            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ display:"flex",width:"100%",padding:"12px 16px",background:"rgba(183,110,121,0.1)",border:"1px solid rgba(183,110,121,0.25)",borderRadius:10,color:"#f2ece4",fontSize:14,fontWeight:600,cursor:"pointer",marginBottom:8,alignItems:"center",justifyContent:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ display:"flex",width:"100%",padding:"12px 16px",background:"rgba(183,110,121,0.1)",border:"1px solid rgba(183,110,121,0.25)",borderRadius:10,color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",marginBottom:8,alignItems:"center",justifyContent:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
               Sign in<ArrowIcon size={12}/>
             </button>
             <div style={{ height:"0.5px",background:"rgba(183,110,121,0.18)",margin:"10px 0" }}/>
             {/* Monthly / Annual toggle */}
             <div style={{ display:"flex", background:"rgba(232,168,96,0.08)", border:"1px solid rgba(232,168,96,0.25)", borderRadius:10, padding:3, marginBottom:8 }}>
               {["monthly","annual"].map(b=>(
-                <button key={b} onClick={()=>setMenuAnnual(b==="annual")} style={{ flex:1, padding:"7px 0", border:"none", borderRadius:8, cursor:"pointer", fontSize:12, fontWeight:700, fontFamily:"'Jost',sans-serif", background:(b==="annual")===menuAnnual?"#e8a860":"transparent", color:(b==="annual")===menuAnnual?"#000":"#e8a860" }}>
+                <button key={b} onClick={()=>setMenuAnnual(b==="annual")} style={{ flex:1, padding:"7px 0", border:"none", borderRadius:8, cursor:"pointer", fontSize:12, fontWeight:400, fontFamily:"'Jost',sans-serif", background:(b==="annual")===menuAnnual?"#e8a860":"transparent", color:(b==="annual")===menuAnnual?"#000":"#e8a860" }}>
                   {b==="monthly"?"Monthly":"Annual"}
                 </button>
               ))}
@@ -876,7 +876,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               [`${TIERS.goddess.emoji} ${TIERS.goddess.name} · ${menuAnnual?TIERS.goddess.annual+"/yr":TIERS.goddess.monthly+"/mo"}`, ()=>{onJoin?.("goddess");setMenuOpen(false);}],
               [`${TIERS.lifetime.emoji} ${TIERS.lifetime.name} · ${TIERS.lifetime.monthly}`, ()=>{onJoin?.("lifetime");setMenuOpen(false);}],
             ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"13px 14px",background:"none",border:"none",color:"#f2ece4",fontSize:14,fontWeight:600,cursor:"pointer",borderRadius:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}</button>
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"13px 14px",background:"none",border:"none",color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",borderRadius:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}</button>
             ))}
             <div style={{ height:"0.5px",background:"rgba(183,110,121,0.18)",margin:"10px 0" }}/>
             {[
@@ -885,7 +885,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               ["Shop", ()=>{setShopOpen(true);setMenuOpen(false);}, true],
               ["YouTube", ()=>{window.open("https://www.youtube.com/@Reshma.Oracle","_blank");setMenuOpen(false);}, true],
             ].map(([l,fn,ext],i)=>(
-              <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:500,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
+              <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
             ))}
           </div>
         </>
@@ -1057,7 +1057,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
-        <div style={{ fontSize:11, fontWeight:900, color:"#c9963a", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
+        <div style={{ fontSize:11, fontWeight:400, color:"#c9963a", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
         <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#f2ece4", lineHeight:1.12, marginBottom:20 }}>
           Shift into the state of<br/>
           <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
@@ -1081,7 +1081,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
 
         <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:56 }}>
-            <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:900, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
+            <div style={{ fontSize:isMobile?24:36, color:"#B76E79", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:400, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
             <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#1a0818" }}>
               Set intention.<br/>
               <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
@@ -1103,11 +1103,11 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div key={i} style={{ display:"flex", gap:isMobile?14:24, marginBottom:16, alignItems:"flex-start" }}>
                 {/* Step number circle */}
                 <div style={{ width:isMobile?48:56, height:isMobile?48:56, borderRadius:"50%", background:"linear-gradient(135deg,#fff,rgba(255,255,255,0.8))", border:`2px solid ${s.num}66`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:`0 4px 20px ${s.num}22`, position:"relative", zIndex:1 }}>
-                  <span style={{ fontSize:isMobile?14:16, fontWeight:900, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
+                  <span style={{ fontSize:isMobile?14:16, fontWeight:400, color:s.num, fontFamily:"'Jost',sans-serif" }}>{s.step}</span>
                 </div>
                 {/* Card */}
                 <div style={{ flex:1, background:s.bg, border:`1px solid ${s.border}`, borderRadius:16, padding:"20px 22px", boxShadow:`0 4px 24px ${s.num}14` }}>
-                  <div style={{ fontSize:isMobile?16:20, fontWeight:800, color:s.text, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{s.label}</div>
+                  <div style={{ fontSize:isMobile?16:20, fontWeight:400, color:s.text, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{s.label}</div>
                   <div style={{ fontSize:isMobile?13:15, color:s.text, lineHeight:1.75, opacity:0.85 }}>{s.body}</div>
                 </div>
               </div>
@@ -1119,7 +1119,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <span style={{ fontSize:isMobile?18:22 }}>✓</span>
               </div>
               <div style={{ flex:1, background:"#0a0a0a", border:"2px solid rgba(232,168,96,0.4)", borderRadius:16, padding:"24px 24px", boxShadow:"0 8px 40px rgba(0,0,0,0.4)" }}>
-                <div style={{ fontSize:isMobile?18:24, fontWeight:900, background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Manifested.</div>
+                <div style={{ fontSize:isMobile?18:24, fontWeight:400, background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Manifested.</div>
                 <div style={{ fontSize:isMobile?13:15, color:"#d4c0a8", lineHeight:1.75 }}>The proof thread closes. The date is recorded. The evidence was there the whole time. You close the loop and open the next one.</div>
               </div>
             </div>
@@ -1202,12 +1202,12 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <ProofWallScreenshot width={isMobile?260:230} theme={proofTheme}/>
               {/* Dark/Light toggle — matches hero style */}
               <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-                <span style={{ fontSize:11, color:proofTheme==="dark"?"#f5e0a0":"#8a7868", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Dark</span>
+                <span style={{ fontSize:11, color:proofTheme==="dark"?"#f5e0a0":"#8a7868", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.05em" }}>Dark</span>
                 <button onClick={()=>setProofTheme(t=>t==="dark"?"light":"dark")}
                   style={{ width:44, height:24, borderRadius:12, background:proofTheme==="light"?"#e8a860":"#3a3020", border:"1px solid rgba(232,168,96,0.3)", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
                   <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:2, left:proofTheme==="light"?23:3, transition:"left 0.25s", boxShadow:"0 1px 4px rgba(0,0,0,0.2)" }}/>
                 </button>
-                <span style={{ fontSize:11, color:proofTheme==="light"?"#f5e0a0":"#8a7868", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.05em" }}>Light</span>
+                <span style={{ fontSize:11, color:proofTheme==="light"?"#f5e0a0":"#8a7868", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.05em" }}>Light</span>
               </div>
             </div>
             <div style={{ flex: 1 }}>
@@ -1307,8 +1307,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {/* INFINITY DIAGRAM — the addiction loop */}
             <div style={{ background:"#000000", border:"1px solid rgba(232,168,96,0.25)", borderRadius:20, padding: isMobile?"32px 18px":"48px 40px", marginBottom: 24, boxShadow:"0 12px 60px rgba(0,0,0,0.5)" }}>
               <div style={{ textAlign:"center", marginBottom: 44, position:"relative", zIndex:2 }}>
-                <div style={{ fontSize:isMobile?14:16, letterSpacing:"0.25em", color:"#e8a860", textTransform:"uppercase", fontWeight:800, fontFamily:"'Jost',sans-serif" }}>The addiction loop</div>
-                <div style={{ fontSize:isMobile?15:18, color:"#f5e0a0", marginTop:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Music installs the state. You come back. The state deepens.</div>
+                <div style={{ fontSize:isMobile?14:16, letterSpacing:"0.25em", color:"#e8a860", textTransform:"uppercase", fontWeight:400, fontFamily:"'Jost',sans-serif" }}>The addiction loop</div>
+                <div style={{ fontSize:isMobile?15:18, color:"#f5e0a0", marginTop:10, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Music installs the state. You come back. The state deepens.</div>
               </div>
               <svg viewBox="0 0 800 285" style={{ width:"100%", aspectRatio:"800/285", height:"auto", display:"block", maxWidth:600, margin:"20px auto 0", position:"relative", zIndex:1 }}>
                 <defs>
@@ -1356,8 +1356,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                   { n:"03", title:"Ritual, not content", body:"The music is so good you come back. Every return installs the identity deeper. The addiction becomes the transformation.", accent:"#B76E79" },
                 ].map((c,i)=>(
                   <div key={i} style={{ padding: 16, background:"rgba(245,224,160,0.04)", border:`1px solid ${c.accent}33`, borderRadius: 12 }}>
-                    <div style={{ fontSize:10, letterSpacing:"0.15em", color:c.accent, fontWeight:800, fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.n}</div>
-                    <div style={{ fontSize:14, fontWeight:700, color:"#f5e0a0", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.title}</div>
+                    <div style={{ fontSize:10, letterSpacing:"0.15em", color:c.accent, fontWeight:400, fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.n}</div>
+                    <div style={{ fontSize:14, fontWeight:400, color:"#f5e0a0", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>{c.title}</div>
                     <div style={{ fontSize:12.5, color:"#c8b8a0", lineHeight:1.7 }}>{c.body}</div>
                   </div>
                 ))}
@@ -1387,13 +1387,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <path d="M10 30 Q14 20 18 30 T26 30 T34 30 T42 30 T50 30 T58 30 T66 30 T74 30 T82 30 T90 30 T98 30 T106 30 T114 30 T122 30 T130 30 T138 30 T146 30 T154 30 T160 30" fill="none" stroke="#c9963a" strokeWidth="2" strokeLinecap="round" opacity="0.9"/>
                 <path d="M10 60 Q13 52 16 60 T22 60 T28 60 T34 60 T40 60 T46 60 T52 60 T58 60 T64 60 T70 60 T76 60 T82 60 T88 60 T94 60 T100 60 T106 60 T112 60 T118 60 T124 60 T130 60 T136 60 T142 60 T148 60 T154 60 T160 60" fill="none" stroke="#8a6838" strokeWidth="2" strokeLinecap="round" opacity="0.9"/>
               </svg>
-              <div style={{ fontSize:11, color:"#c9963a", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Beta · Awake</div>
+              <div style={{ fontSize:11, color:"#c9963a", fontWeight:400, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Beta · Awake</div>
               <div style={{ fontSize:10.5, color:"#8a7868", marginTop:2 }}>13–30Hz · fast, hemispheres out of sync</div>
             </div>
             {/* TRANSITION LABEL — clearer than an abstract arrow */}
             <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:2 }}>
               <span style={{ fontSize:20, color:"#e8a860" }}>→</span>
-              <span style={{ fontSize:9, color:"#8a7868", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>becomes</span>
+              <span style={{ fontSize:9, color:"#8a7868", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase" }}>becomes</span>
             </div>
             {/* AFTER — theta, hemi-synced: slow, wide, one matched wave */}
             <div style={{ textAlign:"center" }}>
@@ -1402,7 +1402,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 <path d="M10 45 Q42 12 74 45 T138 45" fill="none" stroke="url(#syncWave)" strokeWidth="4" strokeLinecap="round"/>
                 <circle cx="74" cy="45" r="4.5" fill="#fce4c0"/>
               </svg>
-              <div style={{ fontSize:11, color:"#e8a860", fontWeight:800, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Theta · 4–8Hz</div>
+              <div style={{ fontSize:11, color:"#e8a860", fontWeight:400, letterSpacing:"0.15em", textTransform:"uppercase", marginTop:10 }}>Theta · 4–8Hz</div>
               <div style={{ fontSize:10.5, color:"#d4c0a8", marginTop:2 }}>Slow, wide · hemi-synced · one wave</div>
             </div>
           </div>
@@ -1410,13 +1410,13 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       </div>
       {/* THE MECHANISM — how it does that */}
       <div style={{ padding: isMobile?"20px 18px 40px":"20px 24px 56px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
-        <div style={{ fontSize:11, fontWeight:900, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>How</div>
+        <div style={{ fontSize:11, fontWeight:400, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>How</div>
         <p style={{ fontSize:"clamp(15px,1.9vw,18px)", color:"#000", lineHeight:1.85, maxWidth:640, margin:"0 auto 22px" }}>
           Every SHG track combines two things at once. My spoken self-hypnosis on top — the new self-concept, spoken as if it's already yours. Subliminals beneath the music, at a volume your subconscious receives clearly. You listen like you would a song. You're being installed while you enjoy it.
         </p>
         <div style={{ display:"flex", gap:10, flexWrap:"wrap", justifyContent:"center" }}>
           {[["🎙","Spoken hypnosis on top"],["♪","Subliminals underneath"],["◈","Music · EMDR · 528hz"]].map(([e,l],i)=>(
-            <div key={i} style={{ padding:"10px 16px", background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:24, fontSize:13, fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif" }}>{e} {l}</div>
+            <div key={i} style={{ padding:"10px 16px", background:"rgba(183,110,121,0.08)", border:"1px solid rgba(183,110,121,0.25)", borderRadius:24, fontSize:13, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif" }}>{e} {l}</div>
           ))}
         </div>
         <p style={{ fontSize:12.5, color:"#666", marginTop:16 }}>Full breakdown lives inside the app · under The Guide ✦</p>
@@ -1663,7 +1663,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
         <div style={{ position:"absolute", top:"30%", left:"50%", transform:"translateX(-50%)", width:500, height:500, background:"radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
         <div style={{ maxWidth:760, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:40 }}>
-            <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:700, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Reshma Oracle · Why I built this</div>
+            <div style={{ fontSize:11, color:"#B76E79", letterSpacing:"0.28em", textTransform:"uppercase", fontWeight:400, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Reshma Oracle · Why I built this</div>
             <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#f2ece4", lineHeight:1.15, marginBottom:24, fontWeight:400 }}>
               The world is bingeing<br/>
               <span style={{ background:"linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>on manifestation content.</span>
@@ -1680,10 +1680,10 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               Not another thing to consume. A practice you repeat every single day, passively — while you sleep, rest, go to the gym, commute. You build evidence. The proof becomes impossible to ignore.
             </p>
             <div style={{ background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"250%", backgroundPosition:"left", borderRadius:16, padding:isMobile?"24px 22px":"32px 32px", marginTop:8 }}>
-              <p style={{ fontSize:isMobile?13:14, color:"#000", lineHeight:1.8, fontFamily:"'Jost',sans-serif", fontWeight:500, margin:0 }}>
+              <p style={{ fontSize:isMobile?13:14, color:"#000", lineHeight:1.8, fontFamily:"'Jost',sans-serif", fontWeight:400, margin:0 }}>
                 "I needed something I could do every single day — that happened while I lived my life. That installed me without needing me to try."
               </p>
-              <div style={{ fontSize:11, fontWeight:700, color:"#000", marginTop:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em" }}>— RESHMA ORACLE</div>
+              <div style={{ fontSize:11, fontWeight:400, color:"#000", marginTop:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em" }}>— RESHMA ORACLE</div>
             </div>
           </div>
         </div>
@@ -1882,7 +1882,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
       <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf0f2 0%,#f8d8e0 35%,#e8a8bc 68%,#B76E79 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
             <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#1a0818", letterSpacing:"-0.01em", lineHeight:1 }}>
               Wall of <span style={{ background:"linear-gradient(90deg,#e8a8bc,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
@@ -1908,8 +1908,8 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                 </div>
                 <p style={{ fontSize:isMobile?15:17, color:"#2a1020", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <span style={{ fontSize:12, fontWeight:700, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
-                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.12)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:20, color:"#B76E79", fontWeight:700, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
+                  <span style={{ fontSize:12, fontWeight:400, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
+                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.12)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:20, color:"#B76E79", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
             ))}
@@ -1972,9 +1972,9 @@ function Landing({ onJoin, onDemo, onSignIn }) {
             {waitlistStatus === "done" ? (
               <>
                 <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
-                <div style={{ fontSize:20, fontWeight:700, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
+                <div style={{ fontSize:20, fontWeight:400, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
                 <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
-                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:800, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
+                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
               </>
             ) : (
               <>
@@ -1990,7 +1990,7 @@ function Landing({ onJoin, onDemo, onSignIn }) {
                     style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#B76E79":"#2a2a2a"}`, borderRadius:12, color:"#f2ece4", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
                   {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#e8a860", marginBottom:12 }}>Please enter a valid email.</div>}
-                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:800, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
+                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
                 </form>
