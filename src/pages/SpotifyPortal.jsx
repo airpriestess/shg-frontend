@@ -4,6 +4,7 @@ import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
+import { supabase } from "../lib/supabase.js";
 
 // Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
@@ -387,53 +388,57 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
   const manifestedCount = threads.filter(t=>t.done).length;
   const thisMonth = threads.filter(t=>t.done).length; // simplified
   const [billingOpen, setBillingOpen] = useState(false);
-  const [planSel, setPlanSel] = useState("goddess");
-  const [planMsg, setPlanMsg] = useState("");
-  const [cancelReq, setCancelReq] = useState(false);
-  const PLANS = [["audio","Audio","£19/mo"],["goddess","Goddess ✦","£33/mo"],["lifetime","Lifetime ♾","£500 once"]];
+  const [portalLoading, setPortalLoading] = useState(false);
+
+  const openStripePortal = async () => {
+    if (isPreview) { alert("Sign up to manage your subscription."); return; }
+    setPortalLoading(true);
+    try {
+      const { data: { session: s } } = await supabase.auth.getSession();
+      const res = await fetch("https://qtwvslrwmreazmrdktsn.supabase.co/functions/v1/create-portal-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${s?.access_token}` },
+        body: JSON.stringify({ return_url: window.location.href }),
+      });
+      const { url, error } = await res.json();
+      if (error) throw new Error(error);
+      window.location.href = url;
+    } catch (err) {
+      console.error("Portal error:", err);
+      alert("Could not open billing portal. Please try again.");
+    } finally {
+      setPortalLoading(false);
+    }
+  };
 
   const BillingPanel = () => (
     <>
       <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.6)" }} onClick={()=>setBillingOpen(false)}/>
       <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:999,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
-        <div style={{ fontSize:11,fontWeight:400,color:R,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
-        <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:20 }}>
-          <div style={{ width:44,height:44,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,fontWeight:400,color:"#000",flexShrink:0 }}>R</div>
-          <div>
-            <div style={{ fontSize:15,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
-            <div style={{ fontSize:12,color:C.mu }}>reshma@reshmaoracle.com</div>
-          </div>
-        </div>
-        <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:10 }}>
+        <div style={{ fontSize:11,color:C.mu,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
+        <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
           <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
             <span style={{ fontSize:12,color:C.mu }}>Current plan</span>
-            <span style={{ fontSize:13,fontWeight:400,color:R }}>Goddess Tier ✦</span>
-          </div>
-          <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
-            <span style={{ fontSize:12,color:C.mu }}>Amount paid</span>
-            <span style={{ fontSize:13,fontWeight:400,color:C.cr }}>£33.00 / month</span>
+            <span style={{ fontSize:13,color:userTier==="goddess"?R:C.cr }}>{userTier==="goddess"?"Goddess Tier ✦":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
-            <span style={{ fontSize:12,color:C.mu }}>Next billing date</span>
-            <span style={{ fontSize:13,fontWeight:400,color:C.cr }}>29 July 2026</span>
+            <span style={{ fontSize:12,color:C.mu }}>Monthly rate</span>
+            <span style={{ fontSize:13,color:C.cr }}>{userTier==="goddess"?"£33/mo":userTier==="lifetime"?"£500 one-time":"£19/mo"}</span>
           </div>
         </div>
-        {/* CHANGE PLAN — in-app, no redirect */}
-        <div style={{ fontSize:10,fontWeight:400,color:C.mu,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Change plan</div>
-        <div style={{ display:"flex",gap:6,marginBottom:10 }}>
-          {PLANS.map(([id,l,pr])=>(
-            <button key={id} onClick={()=>{setPlanSel(id);setPlanMsg(`Plan updated to ${l} ✓`);setCancelReq(false);}} style={{ flex:1,padding:"9px 4px",background:planSel===id?OMBRE:C.bg3,backgroundSize:"200%",backgroundPosition:"left",border:planSel===id?"none":`1px solid ${C.border}`,borderRadius:10,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-              <div style={{ fontSize:11,fontWeight:400,color:planSel===id?"#000":C.cr }}>{l}</div>
-              <div style={{ fontSize:9,fontWeight:400,color:planSel===id?"#000":C.mu,marginTop:2 }}>{pr}</div>
+        {userTier==="audio" && (
+          <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
+            <div style={{ fontSize:12,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
+            <div style={{ fontSize:11,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+              {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
-          ))}
-        </div>
-        {planMsg && <div style={{ fontSize:11,fontWeight:400,color:"#B76E79",marginBottom:8 }}>{planMsg}</div>}
-        {!cancelReq
-          ? <button onClick={()=>{ if(window.confirm("Cancel your subscription? You keep access until 29 July 2026.")) {setCancelReq(true);setPlanMsg("");} }} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:12,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>Cancel subscription</button>
-          : <div style={{ fontSize:11,fontWeight:400,color:"#b03030",marginBottom:8,textAlign:"center" }}>Cancels 29 July 2026 · full access until then · <span onClick={()=>setCancelReq(false)} style={{ textDecoration:"underline",cursor:"pointer",color:C.cr }}>undo</span></div>}
-        <div style={{ fontSize:11,color:C.dim,lineHeight:1.6,marginBottom:12 }}>No refunds after 14 days from payment · Changes apply from your next billing date</div>
-        <div style={{ fontSize:10,color:C.dim,textAlign:"center",marginBottom:10 }}>Payments secured by Stripe</div>
+          </div>
+        )}
+        <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>
+          {portalLoading ? "Opening..." : "Manage billing, cancel or change plan →"}
+        </button>
+        <div style={{ fontSize:10,color:C.dim,textAlign:"center",marginBottom:12 }}>Managed securely by Stripe · your card is already saved</div>
         <button onClick={()=>setBillingOpen(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
       </div>
     </>
@@ -505,8 +510,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
-      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)}/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)}/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog}/>)}
+      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -1101,13 +1106,25 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
 }
 
 // ── PROOFOS TAB ────────────────────────────────────────────────────────────────
-function ProofLockedScreen({ C, onUpgrade }) {
+function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
   return (
-    <div style={{ padding:"60px 24px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-      <div style={{ width:64, height:64, borderRadius:20, background:"rgba(232,168,96,0.12)", border:"1px solid rgba(232,168,96,0.3)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:28 }}>🔒</div>
-      <div style={{ fontSize:20, fontWeight:400, color:C.cr }}>ProofOS is a Goddess Tier feature</div>
-      <div style={{ fontSize:14, color:C.mu, maxWidth:320, lineHeight:1.6 }}>Tracking your desires, logging signs, and marking manifestations isn't included on Audio Tier. Upgrade to unlock the full proof wall.</div>
-      <button onClick={onUpgrade} style={{ marginTop:8, padding:"13px 32px", background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Upgrade to Goddess Tier</button>
+    <div style={{ padding:"48px 24px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:14, minHeight:400, justifyContent:"center" }}>
+      <div style={{ width:72, height:72, borderRadius:22, background:"rgba(232,168,96,0.08)", border:"1px solid rgba(232,168,96,0.25)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:30 }}>🔒</div>
+      <div style={{ fontSize:18, color:C.cr }}>{feature} is a Goddess Tier feature</div>
+      <div style={{ fontSize:13, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
+        {feature === "ProofOS"
+          ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
+          : "Track your dominant emotional state, listening streaks, and the evidence building over time."}
+      </div>
+      <div style={{ background:"rgba(232,168,96,0.08)", border:"1px solid rgba(232,168,96,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
+        <div style={{ fontSize:11, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
+        <div style={{ fontSize:22, color:"#e8a860", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:11, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
+      </div>
+      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+        Unlock {feature} — upgrade now ✦
+      </button>
+      <div style={{ fontSize:11, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
     </div>
   );
 }
