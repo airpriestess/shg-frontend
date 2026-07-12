@@ -5,7 +5,7 @@
 // DARK — pure black, matches the real dashboard exactly
 const DARK  = { bg:"#000000", bg2:"#0f0f0f", bg3:"rgba(232,184,112,0.10)", cr:"#f5e0a0", mu:"#c8a870", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
 // LIGHT — pure cream, warm and open, no rose
-const LIGHT = { bg:"#fdf0e0", bg2:"#fef8ee", bg3:"rgba(232,168,96,0.10)", cr:"#1a1408", mu:"#8a6838", dim:"#b09060", nav:"rgba(253,240,224,0.97)" };
+const LIGHT = { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(232,168,96,0.12)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", nav:"rgba(253,248,242,0.97)" };
 const R="#e8a860", P="#c9963a";
 const OMBRE="linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
 
@@ -49,7 +49,7 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
 
       {/* STATUS BAR */}
       <div style={{ height:Math.round(38*s), display:"flex", alignItems:"flex-end", justifyContent:"space-between", padding:`0 ${pad}px ${Math.round(6*s)}px` }}>
-        <span style={{ fontSize:f.sm, fontWeight:700, color:C.cr }}>9:41</span>
+        <span style={{ fontSize:f.sm, fontWeight:400, color:"#e8a860" }}>9:41</span>
         <span style={{ fontSize:f.xs, color:C.cr }}>●● 100%</span>
       </div>
       <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)", width:Math.round(90*s), height:Math.round(26*s), background:C.bg, borderRadius:`0 0 ${Math.round(12*s)}px ${Math.round(12*s)}px`, zIndex:50 }}/>
@@ -57,22 +57,22 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
       {/* HEADER */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:`${Math.round(6*s)}px ${pad}px ${Math.round(6*s)}px` }}>
         <div>
-          <span style={{ fontSize:f.lg, fontWeight:700, color:C.cr }}>ProofOS </span>
+          <span style={{ fontSize:f.lg, fontWeight:400, color:C.cr }}>ProofOS </span>
           <span style={{ color:R }}>✦</span>
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:Math.round(6*s) }}>
           <div style={{ width:Math.round(28*s), height:Math.round(16*s), borderRadius:Math.round(8*s), background:theme==="light"?R:"#3a3020", position:"relative", flexShrink:0 }}>
             <div style={{ width:Math.round(12*s), height:Math.round(12*s), borderRadius:"50%", background:"#fff", position:"absolute", top:Math.round(2*s), left:theme==="light"?Math.round(14*s):Math.round(2*s) }}/>
           </div>
-          <div style={{ padding:`${Math.round(2*s)}px ${Math.round(8*s)}px`, background:OMBRE, borderRadius:r20, fontSize:f.xs, fontWeight:700, color:"#000", backgroundSize:"200%", backgroundPosition:"left" }}>+ New</div>
+          <div style={{ padding:`${Math.round(2*s)}px ${Math.round(8*s)}px`, background:OMBRE, borderRadius:r20, fontSize:f.xs, fontWeight:400, color:"#000", backgroundSize:"200%", backgroundPosition:"left" }}>+ New</div>
         </div>
       </div>
 
       {/* DOMINANT STATE — Hawkins scale mini visual */}
       <div style={{ margin:`0 ${pad}px ${Math.round(8*s)}px`, background:C.bg3, borderRadius:r8, padding:`${Math.round(8*s)}px ${Math.round(10*s)}px` }}>
-        <div style={{ fontSize:Math.max(5,f.xs-1), color:C.mu, fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:Math.round(5*s) }}>Your dominant state · Today</div>
+        <div style={{ fontSize:Math.max(5,f.xs-1), color:C.mu, fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:Math.round(5*s) }}>Your dominant state · Today</div>
         <div style={{ display:"flex", alignItems:"center", gap:Math.round(6*s) }}>
-          <span style={{ fontSize:f.md, fontWeight:800, color:"#e8b870" }}>Love · 500</span>
+          <span style={{ fontSize:f.md, fontWeight:400, color:"#e8b870" }}>Love · 500</span>
         </div>
         <div style={{ display:"flex", gap:Math.round(1.5*s), marginTop:Math.round(6*s), borderRadius:Math.round(3*s), overflow:"hidden" }}>
           {["#3a1a1a","#5a3030","#8a5030","#b47030","#d4a028","#78b078","#48a898","#e8b870","#8a6ac0","#5a4ab0"].map((c,i)=>(
@@ -85,23 +85,23 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
       <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:Math.round(4*s), padding:`0 ${pad}px ${Math.round(10*s)}px` }}>
         {[[3,"Desires",C.cr],[1,"Manifested",R],["14d","Streak",P]].map(([v,l,c],i)=>(
           <div key={i} style={{ background:C.bg3, borderRadius:r8, padding:`${Math.round(8*s)}px ${Math.round(4*s)}px`, textAlign:"center" }}>
-            <div style={{ fontSize:f.lg, fontWeight:800, color:c }}>{v}</div>
-            <div style={{ fontSize:Math.max(5,f.xs-1), color:C.mu, fontWeight:600 }}>{l}</div>
+            <div style={{ fontSize:f.lg, fontWeight:400, color:c }}>{v}</div>
+            <div style={{ fontSize:Math.max(5,f.xs-1), color:C.mu, fontWeight:400 }}>{l}</div>
           </div>
         ))}
       </div>
 
       {/* IN PROGRESS label */}
-      <div style={{ padding:`0 ${pad}px ${Math.round(4*s)}px`, fontSize:f.xs, color:C.mu, fontWeight:700, letterSpacing:"0.12em", textTransform:"uppercase" }}>In progress</div>
+      <div style={{ padding:`0 ${pad}px ${Math.round(4*s)}px`, fontSize:f.xs, color:C.mu, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase" }}>In progress</div>
 
       {/* THREAD CARDS — with evidence images */}
       {THREADS.filter(t=>!t.done).slice(0,2).map((d,i)=>(
         <div key={i} style={{ margin:`0 ${pad}px ${Math.round(6*s)}px`, background:C.bg2, border:`0.5px solid ${C.bg3}`, borderRadius:r8, padding:`${Math.round(8*s)}px ${Math.round(10*s)}px` }}>
           <div style={{ display:"flex", alignItems:"center", gap:Math.round(5*s), marginBottom:Math.round(4*s) }}>
-            <span style={{ fontSize:Math.max(5,f.xs-1), padding:`${Math.round(1*s)}px ${Math.round(6*s)}px`, background:d.catBg, color:d.catColor, borderRadius:r20, fontWeight:700 }}>{d.cat}</span>
+            <span style={{ fontSize:Math.max(5,f.xs-1), padding:`${Math.round(1*s)}px ${Math.round(6*s)}px`, background:d.catBg, color:d.catColor, borderRadius:r20, fontWeight:400 }}>{d.cat}</span>
             <span style={{ fontSize:Math.max(5,f.xs-1), color:C.dim }}>Day {d.days}</span>
           </div>
-          <div style={{ fontSize:f.sm, fontWeight:600, color:C.cr, lineHeight:1.3, marginBottom:Math.round(5*s) }}>{d.desire}</div>
+          <div style={{ fontSize:f.sm, fontWeight:400, color:C.cr, lineHeight:1.3, marginBottom:Math.round(5*s) }}>{d.desire}</div>
           {/* Evidence thumbnails */}
           {d.evidence && d.evidence.length > 0 && (
             <div style={{ display:"flex", gap:Math.round(4*s), marginBottom:Math.round(5*s) }}>
@@ -119,7 +119,7 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
       ))}
 
       {/* PROOF WALL — Manifested */}
-      <div style={{ padding:`${Math.round(6*s)}px ${pad}px ${Math.round(4*s)}px`, fontSize:f.xs, color:"#5ab06a", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>✓ Manifested</div>
+      <div style={{ padding:`${Math.round(6*s)}px ${pad}px ${Math.round(4*s)}px`, fontSize:f.xs, color:"#5ab06a", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase" }}>✓ Manifested</div>
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:Math.round(4*s), padding:`0 ${pad}px` }}>
         {THREADS.filter(t=>t.done).slice(0,1).map((d,i)=>(
           <div key={i} style={{ background:"#000000", border:"0.5px solid rgba(232,184,112,0.35)", borderRadius:r8, padding:`${Math.round(6*s)}px ${Math.round(8*s)}px` }}>
@@ -130,8 +130,8 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
                 <span style={{ fontSize:Math.max(7,Math.round(14*s)),color:"#e8b870" }}>✓</span>
               </div>
             </div>}
-            <span style={{ fontSize:Math.max(5,f.xs-1), padding:`1px ${Math.round(4*s)}px`, background:"rgba(232,184,112,0.15)", color:"#e8b870", borderRadius:r20, fontWeight:700 }}>✓ {d.cat}</span>
-            <div style={{ fontSize:f.xs, fontWeight:600, color:"#f2e9dc", marginTop:Math.round(3*s), lineHeight:1.35 }}>{d.desire}</div>
+            <span style={{ fontSize:Math.max(5,f.xs-1), padding:`1px ${Math.round(4*s)}px`, background:"rgba(232,184,112,0.15)", color:"#e8b870", borderRadius:r20, fontWeight:400 }}>✓ {d.cat}</span>
+            <div style={{ fontSize:f.xs, fontWeight:400, color:"#f2e9dc", marginTop:Math.round(3*s), lineHeight:1.35 }}>{d.desire}</div>
             <div style={{ fontSize:Math.max(5,f.xs-1), color:"#5ab06a", marginTop:Math.round(2*s) }}>{d.days}d · {d.signs} signs</div>
           </div>
         ))}
@@ -143,10 +143,11 @@ export default function ProofWallScreenshot({ width=260, theme="dark" }) {
       {/* NAV */}
       <div style={{ position:"absolute", bottom:0, left:0, right:0, height:Math.round(56*s), background:C.nav, borderTop:`0.5px solid ${C.bg3}`, display:"flex", alignItems:"center" }}>
         {[
-          { label:"Home", color:C.dim, icon:<svg width={Math.round(20*s)} height={Math.round(20*s)} viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={C.dim}/></svg> },
-          { label:"Search", color:C.dim, icon:<svg width={Math.round(20*s)} height={Math.round(20*s)} viewBox="0 0 24 24" fill="none" stroke={C.dim} strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
-          { label:"Library", color:C.dim, icon:<svg width={Math.round(20*s)} height={Math.round(20*s)} viewBox="0 0 24 24" fill={C.dim}><path d="M3 3h4v18H3zM9 3h2v18H9zM14 3l7 2.5v13L14 21z"/></svg> },
-          { label:"ProofOS", color:R, active:true, icon:<svg width={Math.round(20*s)} height={Math.round(20*s)} viewBox="0 0 24 24" fill="none" stroke={R} strokeWidth="1.8" strokeLinecap="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg> },
+          { label:"Home",      active:false, color:C.dim, icon:<svg width={Math.round(18*s)} height={Math.round(18*s)} viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={C.dim}/></svg> },
+          { label:"Search",    active:false, color:C.dim, icon:<svg width={Math.round(18*s)} height={Math.round(18*s)} viewBox="0 0 24 24" fill="none" stroke={C.dim} strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
+          { label:"Library",   active:false, color:C.dim, icon:<svg width={Math.round(18*s)} height={Math.round(18*s)} viewBox="0 0 24 24" fill={C.dim}><path d="M3 3h4v18H3zM9 3h2v18H9zM14 3l7 2.5v13L14 21z"/></svg> },
+          { label:"ProofOS",   active:true,  color:"#e8a860", icon:<svg width={Math.round(18*s)} height={Math.round(18*s)} viewBox="0 0 24 24" fill="none" stroke="#e8a860" strokeWidth="1.8" strokeLinecap="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg> },
+          { label:"Analytics", active:false, color:C.dim, icon:<svg width={Math.round(18*s)} height={Math.round(18*s)} viewBox="0 0 24 24" fill="none" stroke={C.dim} strokeWidth="1.8" strokeLinecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> },
         ].map((n,i)=>(
           <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:Math.round(2*s), paddingBottom:Math.round(4*s) }}>
             {n.icon}
