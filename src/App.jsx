@@ -1545,18 +1545,18 @@ function Landing({ onJoin, onDemo, onSignIn }) {
               <div style={{ fontSize: isMobile?18:22, fontWeight: 900, color: "#c9963a", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", marginBottom: 10 }}>{String(i+1).padStart(2,"0")}</div>
               <div style={{ display: "flex", flexDirection: isMobile?"column":"row", gap: isMobile?8:14, alignItems: "stretch" }}>
                 <div style={{ flex: 1, background: "rgba(255,255,255,0.8)", border: "1px solid rgba(120,120,120,0.25)", borderRadius: 14, padding: "16px 18px" }}>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: "#7a6a5a", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✗ Old assumption</div>
-                  <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 500, lineHeight: 1.5 }}>{o}</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, color: "#7a6a5a", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✗ Old assumption</div>
+                  <div style={{ fontSize: isMobile?15:17, color: "#1a1a1a", fontWeight: 300, lineHeight: 1.55 }}>{o}</div>
                 </div>
                 <div style={{ alignSelf: "center", transform: isMobile?"rotate(90deg)":"none" }}><ArrowIcon size={18} color="#e8a860"/></div>
                 <div style={{ flex: 1, background: "linear-gradient(135deg,#fff4e4,#fce4c0)", border: "1.5px solid rgba(232,168,96,0.4)", borderRadius: 14, padding: "16px 18px" }}>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: "#c9963a", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✦ New assumption</div>
-                  <div style={{ fontSize: isMobile?14:16, color: "#000", fontWeight: 700, lineHeight: 1.5 }}>{nw}</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, color: "#c9963a", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>✦ New assumption</div>
+                  <div style={{ fontSize: isMobile?15:17, color: "#1a1a1a", fontWeight: 400, lineHeight: 1.55 }}>{nw}</div>
                 </div>
                 <div style={{ alignSelf: "center", transform: isMobile?"rotate(90deg)":"none" }}><ArrowIcon size={18} color="#0a0a0a"/></div>
                 <div style={{ flex: 1, background: "#0a0a0a", border: "1.5px solid rgba(232,168,96,0.3)", borderRadius: 14, padding: "16px 18px" }}>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: "#f5e0a0", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>→ New reality</div>
-                  <div style={{ fontSize: isMobile?14:16, color: "#e8d4c0", fontWeight: 600, lineHeight: 1.5 }}>{reality}</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, color: "#f5e0a0", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 6 }}>→ New reality</div>
+                  <div style={{ fontSize: isMobile?15:17, color: "#e8d4c0", fontWeight: 300, lineHeight: 1.55 }}>{reality}</div>
                 </div>
               </div>
               </div>
