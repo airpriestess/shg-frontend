@@ -261,6 +261,7 @@ const Ico = {
   Undo:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
   Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||"#727272"} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
   Cog:    ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  Book:   ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="1.8" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
   Shop:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"#727272"} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
   Stats:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"#727272"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
 };
@@ -472,6 +473,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         {/* Menu items */}
         <div style={{ flex:1,overflowY:"auto",padding:"8px 0" }}>
           {[
+            { icon:<Ico.Book c={C.mu}/>, label:"Listening Guide", action:()=>{setShowGuide(true);setProfileOpen(false);} },
             { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile — connect to Supabase auth") },
             { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
             { icon:<Ico.Shop c={C.mu}/>, label:"Shop", action:()=>{setTab("shop");setProfileOpen(false);} },
@@ -511,7 +513,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -584,7 +586,13 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
             </button>
           ))}
-          <div style={{ height:1,background:C.border,margin:"12px 16px" }}/>
+          <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
+          <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:13,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
+            onMouseEnter={e=>e.currentTarget.style.color="#e8a860"}
+            onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
+            <Ico.Book c={C.mu}/> Listening Guide
+          </button>
+          <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
           <div style={{ padding:"0 20px 6px",fontSize:11,fontWeight:400,color:C.dim,letterSpacing:"0.12em",textTransform:"uppercase" }}>Recently played</div>
           {TRACKS.slice(0,5).map(t=>(
             <button key={t.id} onClick={()=>play(t)}
@@ -897,7 +905,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 }
 
 // ── ANALYTICS TAB — dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[] }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark" }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -929,7 +937,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[] })
       {/* FULL ANALYTICS BOARD */}
       <div style={{ margin:"0 16px 20px" }}>
         <AnalyticsBoard
-          theme={C.cr==="#ffffff"?"dark":"light"}
+          theme={theme}
           data={isPreview ? DEMO_ANALYTICS : {
             manifested, inProgress,
             signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
