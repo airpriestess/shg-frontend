@@ -477,13 +477,55 @@ function AppPreviewSection({ isMobile }) {
         {/* Desktop (hidden on mobile) */}
         {!isMobile && view==="dashboard" && (
           <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
-            <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
+            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
             <DesktopMockup theme={theme}/>
+          </div>
+        )}
+        {!isMobile && view==="proof" && (
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:420 }}>
+            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
+            <div style={{ width:420, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
+              <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"20px 24px" }}>
+                <div style={{ fontSize:14, color:"#e8a860", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
+                  {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
+                    <div key={i} style={{ background:theme==="dark"?"rgba(232,168,96,0.08)":"rgba(232,168,96,0.12)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+                      <div style={{ fontSize:20, color:"#e8a860" }}>{v}</div>
+                      <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6840", letterSpacing:"0.08em", textTransform:"uppercase" }}>{l}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ fontSize:10, color:theme==="dark"?"#9a8878":"#8a6840", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:10 }}>In progress</div>
+                {[
+                  { desire:"He texts me first", cat:"Lovemaxxing", days:14, signs:3, track:"He Finds His Way Back" },
+                  { desire:"£1,800 received. Paid by client.", cat:"Moneymaxxing", days:6, signs:2, track:"Money Finds Me First" },
+                  { desire:"My skin is glowing", cat:"Beautymaxxing", days:3, signs:1, track:"Gorgeous Is My Default" },
+                ].map((d,i)=>(
+                  <div key={i} style={{ background:theme==="dark"?"#111111":"#ffffff", border:`1px solid ${theme==="dark"?"rgba(232,168,96,0.1)":"rgba(180,104,48,0.15)"}`, borderRadius:10, padding:"12px 14px", marginBottom:8 }}>
+                    <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
+                      <span style={{ fontSize:9, padding:"2px 8px", background:"rgba(232,168,96,0.12)", color:"#e8a860", borderRadius:12 }}>{d.cat}</span>
+                      <span style={{ fontSize:9, color:theme==="dark"?"#5a4a40":"#b89060" }}>Day {d.days} · {d.signs} signs</span>
+                    </div>
+                    <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, marginBottom:6 }}>{d.desire}</div>
+                    <div style={{ height:2, background:theme==="dark"?"#222":"#e8d0b0", borderRadius:1 }}>
+                      <div style={{ width:`${Math.min(d.days*8,90)}%`, height:"100%", background:"linear-gradient(90deg,#fce4c0,#e8a860)", borderRadius:1 }}/>
+                    </div>
+                    <div style={{ fontSize:9, color:theme==="dark"?"#5a4a40":"#b89060", marginTop:4 }}>♪ {d.track}</div>
+                  </div>
+                ))}
+                <div style={{ fontSize:10, color:"#e8a860", letterSpacing:"0.12em", textTransform:"uppercase", margin:"12px 0 8px" }}>✓ Manifested</div>
+                <div style={{ background:theme==="dark"?"#000":"#fffcf8", border:"1px solid rgba(232,168,96,0.25)", borderRadius:10, padding:"12px 14px" }}>
+                  <div style={{ fontSize:9, padding:"2px 8px", background:"rgba(232,168,96,0.12)", color:"#e8a860", borderRadius:12, display:"inline-block", marginBottom:6 }}>✓ Lovemaxxing</div>
+                  <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008" }}>He texts me first and initiates plans.</div>
+                  <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6840", marginTop:4 }}>14d · 5 signs logged</div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
         {!isMobile && view==="analytics" && (
           <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, width:400 }}>
-            <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Your evidence, visualised</div>
+            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Your evidence, visualised</div>
             <div style={{ width:"100%", borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)" }}>
               <AnalyticsBoard theme={theme}/>
             </div>
@@ -492,13 +534,13 @@ function AppPreviewSection({ isMobile }) {
 
         {/* Mobile phone */}
         <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
-          <div style={{ fontSize:10, color:"rgba(183,110,121,0.45)", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>
+          <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>
             {isMobile?"Preview":"Mobile"}
           </div>
           {view==="dashboard" && <PortalScreenshot width={isMobile?240:190} theme={theme}/>}
           {view==="proof" && <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>}
           {view==="analytics" && (
-            <div style={{ width:isMobile?260:230, borderRadius:24, overflow:"hidden", boxShadow:"0 24px 60px rgba(140,100,40,0.45), 0 0 0 7px #b8934a, 0 0 0 8px #d4b06a", background:theme==="dark"?"#121212":"#fdf0e8", padding:"14px 10px" }}>
+            <div style={{ width:isMobile?260:230, borderRadius:24, overflow:"hidden", boxShadow:"0 24px 60px rgba(140,100,40,0.45), 0 0 0 7px #b8934a, 0 0 0 8px #d4b06a", background:theme==="dark"?"#080808":"#fdf8f2", padding:"14px 10px" }}>
               <AnalyticsBoard theme={theme} compact/>
             </div>
           )}
