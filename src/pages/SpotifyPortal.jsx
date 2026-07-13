@@ -1152,7 +1152,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
 
 function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade }) {
   const [newD, setD]       = useState("");
-  const [newCat, setCat]   = useState("Money");
+  const [newCat, setNewCat]   = useState("Moneymaxxing");
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
   const [newFeel, setFeel] = useState("");
   const [newFeelText, setFeelText] = useState("");
@@ -1304,7 +1304,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
           <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginBottom:12 }}>
             {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","DNAmaxxing","Sleepmaxxing"].map(c=>(
-              <button key={c} onClick={()=>setCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?"#000":"none",border:`1px solid ${newCat===c?"#000":PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
+              <button key={c} onClick={()=>setNewCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?"#000":"none",border:`1px solid ${newCat===c?"#000":PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
             ))}
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
@@ -1338,7 +1338,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:""},...threads]);
-            setD(""); setLinked(""); setFeel(""); setFeelText(""); setAdding(false);
+            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Moneymaxxing"); setAdding(false);
           }} style={{ padding:"11px 22px",background:"#000",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
