@@ -512,7 +512,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
-      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track}/>)}
+      {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)}/>}
       {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
@@ -531,24 +531,37 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <>
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.6)" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif" }}>
-            <div style={{ fontSize:11,fontWeight:400,color:"#e8a860",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:12 }}>How are you feeling right now?</div>
-            <div style={{ fontSize:11,color:C.mu,marginBottom:8,fontWeight:400 }}>Below 200 · contractive · drains energy</div>
-            <div style={{ display:"flex",flexDirection:"column",gap:5,marginBottom:12 }}>
-              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
-                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#e8a860)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
-                  <span>{h.n}</span><span style={{ fontSize:11,opacity:0.7 }}>{h.v}</span>
-                </button>
-              ))}
-            </div>
-            <div style={{ fontSize:11,color:"#e8a860",marginBottom:8,fontWeight:400 }}>200 and above · expansive · creates ✦</div>
-            <div style={{ display:"flex",flexDirection:"column",gap:5 }}>
-              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
-                <button key={h.n} onClick={()=>logEmotion(h.n)} style={{ padding:"10px 14px",borderRadius:10,background:quickFeel===h.n?`linear-gradient(90deg,${h.c},#e8a860)`:C.bg3,border:`1px solid ${C.border}`,color:quickFeel===h.n?"#fff":C.cr,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",textAlign:"left" }}>
-                  <span>{h.n}</span><span style={{ fontSize:11,opacity:0.7 }}>{h.v}</span>
-                </button>
-              ))}
-            </div>
-            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,marginTop:12,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+            <div style={{ fontSize:11,color:"#e8a860",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:6 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:11,color:C.mu,marginBottom:14 }}>Select your state on the Hawkins scale — this becomes your point of attraction today.</div>
+            <select
+              value={quickFeel}
+              onChange={e=>logEmotion(e.target.value)}
+              style={{ width:"100%",padding:"12px 14px",borderRadius:12,border:`1px solid ${C.border}`,background:C.bg,color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",appearance:"none",WebkitAppearance:"none",marginBottom:14,outline:"none",cursor:"pointer" }}>
+              <option value="">— Choose your state —</option>
+              <optgroup label="200+ · Expansive · Creates ✦">
+                {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+                  <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
+                ))}
+              </optgroup>
+              <optgroup label="Below 200 · Contractive · Drains">
+                {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
+                  <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
+                ))}
+              </optgroup>
+            </select>
+            {quickFeel && (() => {
+              const h = HAWKINS.find(x=>x.n===quickFeel);
+              return h ? (
+                <div style={{ padding:"12px 14px",borderRadius:10,marginBottom:14,display:"flex",alignItems:"center",gap:10,background:`${h.c}22`,border:`1px solid ${h.c}66` }}>
+                  <div style={{ width:14,height:14,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+                  <div>
+                    <div style={{ fontSize:13,color:C.cr }}>{h.n} · {h.v}</div>
+                    <div style={{ fontSize:11,color:C.mu }}>{h.v>=200?"Expansive energy — you're creating from above the line":"Contractive energy — the audio will help lift you"}</div>
+                  </div>
+                </div>
+              ) : null;
+            })()}
+            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
           </div>
         </>
       )}
@@ -1137,7 +1150,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
   );
 }
 
-function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
+function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade }) {
   const [newD, setD]       = useState("");
   const [newCat, setCat]   = useState("Money");
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
@@ -1295,25 +1308,45 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack }) {
             ))}
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:6, marginBottom:12, maxHeight:220, overflowY:"auto", padding:2 }}>
-            {HAWKINS.slice().reverse().map(h=>(
-              <button key={h.n} onClick={()=>setFeel(h.n)}
-                style={{ padding:"8px 10px", borderRadius:8, background:newFeel===h.n?h.c:"transparent", border:`1.5px solid ${h.c}`, color:newFeel===h.n?"#fff":h.c, fontSize:11.5, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif", textAlign:"left", display:"flex", alignItems:"center", gap:6 }}>
-                <span style={{ width:9, height:9, borderRadius:"50%", background:h.c, flexShrink:0 }}/>
-                {h.n} · {h.v}
-              </button>
-            ))}
-          </div>
+          <select value={newFeel} onChange={e=>setFeel(e.target.value)}
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:6,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box",appearance:"none",WebkitAppearance:"none",cursor:"pointer" }}>
+            <option value="">— Select your state —</option>
+            <optgroup label="200+ · Expansive ✦">
+              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
+              ))}
+            </optgroup>
+            <optgroup label="Below 200 · Contractive">
+              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
+                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
+              ))}
+            </optgroup>
+          </select>
+          {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
+            <div style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:10 }}>
+              <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+              <span style={{ fontSize:11,color:"#1a0a10" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
+            </div>
+          ) : null; })()}
           <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
             style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:13, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
           <button onClick={()=>{
             if(!newD.trim()) return;
+            if(userTier === "audio" && !isPreview) {
+              onUpgrade?.();
+              return;
+            }
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:""},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setAdding(false);
           }} style={{ padding:"11px 22px",background:"#000",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-            Add Proof Thread
+            {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
+          {userTier === "audio" && !isPreview && (
+            <div style={{ fontSize:11,color:"#9a8878",marginTop:8,lineHeight:1.5 }}>
+              You're on Audio Tier. Log your desire — then upgrade to Goddess to save it to your Proof Thread and track every sign.
+            </div>
+          )}
         </div>
       )}
 
