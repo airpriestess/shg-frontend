@@ -182,9 +182,14 @@ function ArchivePage() {
 
 /* ── CHECKOUT MODAL ────────────────────────────────────────────────────────── */
 const STRIPE = {
-  audio: "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00",
-  goddess: "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01",
-  lifetime: "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02",
+  // Monthly
+  audio:          "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00",
+  goddess:        "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01",
+  lifetime:       "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02",
+  // Annual — UPDATE THESE with real Stripe annual price links once created
+  // Currently routes to monthly links as fallback until annual prices exist in Stripe
+  audio_annual:   "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00",
+  goddess_annual: "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01",
 };
 
 // ═══ SINGLE SOURCE OF TRUTH — every price, feature list, CTA everywhere reads from here ═══
@@ -763,7 +768,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
     if (!email || !email.includes("@")) { setWaitlistStatus("error"); return; }
     setWaitlistStatus("saving");
     const { error } = await _sb.from("waitlist").insert({ email, source: "landing_page_banner" });
-    if (error) { setWaitlistStatus("error"); return; }
+    if (error && !error.message?.includes("duplicate")) { setWaitlistStatus("error"); return; }
     setWaitlistStatus("done");
   };
   const [faqOpen, setFaqOpen] = useState(null);
@@ -1585,9 +1590,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {waitlistStatus === "done" ? (
               <>
                 <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
-                <div style={{ fontSize:20, fontWeight:400, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
-                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
-                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
+                <div style={{ fontSize:20, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>You're on the list.</div>
+                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:8, lineHeight:1.6 }}>Check your inbox — your free Spoilt Goddess audio is on its way.</div>
+                <div style={{ fontSize:12, color:"#9a8878", marginBottom:24, lineHeight:1.6 }}>We'll also email you the moment SHG opens. You're first in.</div>
+                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
               </>
             ) : (
               <>
