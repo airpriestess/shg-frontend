@@ -1492,7 +1492,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* WALL OF LOVE */}
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fdf0f2 0%,#f8d8e0 35%,#e8a8bc 68%,#B76E79 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#000000" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
