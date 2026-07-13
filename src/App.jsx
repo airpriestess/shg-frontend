@@ -1079,20 +1079,22 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* PAIN POINT */}
           {/* SKIMMABLE BENEFIT CHIPS */}
-          <div style={{ fontSize: 12, color: "#e8a860", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, textAlign: "center", marginBottom: 12 }}>What listening actually does for you</div>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 560, margin: "0 auto 28px" }}>
-            {[
-              "Become a Spoiled Goddess",
-              "Make him beg for you",
-              "Live your delusional reality",
-              "Become the lucky girl",
-              "Track every desire. Prove it.",
-              "Break your money ceiling",
-            ].map((line, i) => (
-              <span key={i} style={{ fontSize: isMobile ? 12 : 13, color: "#f2ece4", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: "7px 14px", fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
-                {line}
-              </span>
-            ))}
+          <div style={{ maxWidth: 640, margin: "0 auto 28px", padding: "24px 20px", background: "rgba(232,168,96,0.06)", border: "1px solid rgba(232,168,96,0.2)", borderRadius: 18 }}>
+            <div style={{ fontSize: 11, color: "#e8a860", letterSpacing: "0.18em", textTransform: "uppercase", textAlign: "center", marginBottom: 18 }}>The transformation</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {[
+                { before: "Waiting for him to text", after: "He texts first. Every time." },
+                { before: "Checking your account hoping", after: "Money arrives. You expected it." },
+                { before: "Looking in the mirror wanting", after: "Strangers stop you to say you're glowing." },
+                { before: "Trying to believe it", after: "You already know it's done." },
+              ].map((row, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
+                  <span style={{ fontSize: isMobile ? 13 : 14, color: "#7a6858", fontFamily: "'Jost',sans-serif", fontStyle: "italic" }}>{row.before}</span>
+                  <span style={{ color: "#e8a860", fontSize: 16, flexShrink: 0 }}>→</span>
+                  <span style={{ fontSize: isMobile ? 13 : 14, color: "#f2ece4", fontFamily: "'Jost',sans-serif" }}>{row.after}</span>
+                </div>
+              ))}
+            </div>
           </div>
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: isMobile ? "column" : "row", alignItems: "stretch", maxWidth: isMobile ? 340 : "none", margin: isMobile ? "0 auto 16px" : "0 0 16px" }}>
@@ -1107,13 +1109,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* PREVIEW DASHBOARD — prominent on both mobile and desktop */}
           <div style={{ textAlign: "center", marginBottom: 32 }}>
-            <button onClick={onDemo} style={{ padding: "14px 36px", background: "#000", border: "2px solid #e8a86066", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: 10, transition: "all 0.2s" }}
-              onMouseEnter={e=>e.currentTarget.style.borderColor="#e8a860"}
-              onMouseLeave={e=>e.currentTarget.style.borderColor="#e8a86066"}>
+            <button onClick={onDemo} style={{ padding: "16px 40px", background: "linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", border: "none", borderRadius: 40, color: "#000", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: 10, boxShadow: "0 0 32px rgba(232,168,96,0.4)" }}>
               <span style={{ fontSize: 16 }}>👁</span>
-              Preview Dashboard
+              Preview Dashboard — no signup needed
             </button>
-            <div style={{ fontSize: 11, color: "rgba(183,110,121,0.5)", marginTop: 8, fontFamily: "'Jost',sans-serif" }}>See exactly what members see — no signup needed</div>
+            <div style={{ fontSize: 11, color: "#ffffff", marginTop: 10, fontFamily: "'Jost',sans-serif", opacity: 0.8 }}>See exactly what members see — no account required</div>
           </div>
 
           {/* ── APP PREVIEW — right after CTAs ─────────────────────────── */}
@@ -1141,17 +1141,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
         <div style={{ fontSize:11, fontWeight:400, color:"#c9963a", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
         <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#f2ece4", lineHeight:1.12, marginBottom:20 }}>
-          Shift into the state of<br/>
-          <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
+          The version of you<br/>
+          <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>who already has it.</span>
         </h2>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          The waiting is the actual pain. Not him, not the money, not the mirror — the not-knowing if any of it is coming.
+        <p style={{ fontSize:"clamp(15px,1.85vw,18px)", color:"#f2ece4", lineHeight:1.9, maxWidth:580, margin:"0 auto 18px" }}>
+          She doesn't chase. She doesn't check. She doesn't wonder if it's coming — because at the subconscious level, it's already arrived.
         </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          Every night, while you sleep, this rewires what your subconscious already assumes is true. Not "I am worthy." Not a script you say and doubt. The install that makes the outcome inevitable, not hoped-for.
+        <p style={{ fontSize:"clamp(15px,1.85vw,18px)", color:"#d4c4b0", lineHeight:1.9, maxWidth:580, margin:"0 auto 18px" }}>
+          SHG installs her while you sleep. Not affirmations you say and doubt. Not visualisation you have to maintain. Audio that reaches the part of you still running the old programme — and quietly, while you rest, replaces it.
         </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
-          You stop checking your phone. You start already knowing.
+        <p style={{ fontSize:"clamp(16px,2vw,20px)", color:"#f2ece4", lineHeight:1.7, maxWidth:520, margin:"0 auto", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>
+          Thirty days from now, you're not hoping. You're showing someone your proof wall.
         </p>
       </div>
 
