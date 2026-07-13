@@ -1590,7 +1590,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {waitlistStatus === "done" ? (
               <>
                 <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
-                <div style={{ fontSize:20, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>You're on the list.</div>
+                <div style={{ fontSize:20, color:"#f2ece4", marginBottom:8, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>You're on the list.</div>
                 <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:8, lineHeight:1.6 }}>Check your inbox — your free Spoilt Goddess audio is on its way.</div>
                 <div style={{ fontSize:12, color:"#9a8878", marginBottom:24, lineHeight:1.6 }}>We'll also email you the moment SHG opens. You're first in.</div>
                 <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
