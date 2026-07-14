@@ -868,7 +868,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             const c=CAT_ICONS[cat]||{accent:"#e8a860",icon:''};
             const n=TRACKS.filter(t=>t.cat===cat).length;
             return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:`linear-gradient(135deg,#0a0a0a 0%,${c.accent}20 100%)`,border:`1px solid ${c.accent}33`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:`linear-gradient(135deg,${isDark?"#0a0a0a":C.bg2} 0%,${c.accent}20 100%)`,border:`1px solid ${c.accent}33`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
                 <div style={{ width:38,height:38,borderRadius:8,background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:c.accent }}>
                   <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
                 </div>
@@ -903,7 +903,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             const c=CAT_ICONS[cat]||{accent:"#e8a860",icon:''};
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
-                <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,#111 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
+                <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,${isDark?"#111":C.bg2} 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
                   <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
                 </div>
                 <div style={{ fontSize:10,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
@@ -936,7 +936,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
             <div key={i} style={{ background:"rgba(255,255,255,0.85)", borderRadius:10, padding:"9px 8px", textAlign:"center" }}>
-              <div style={{ fontSize:9, color:"#333", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:4 }}>{l}</div>
+              <div style={{ fontSize:9, color:C.mu, fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:4 }}>{l}</div>
               <div style={{ fontSize:14, fontWeight:400, color:d?.c||"#000", lineHeight:1.1 }}>{d?.n||"—"}</div>
               <div style={{ fontSize:9, color:"#666", fontWeight:400, marginTop:2 }}>{d?.v||""}</div>
             </div>
@@ -967,10 +967,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* GUIDES PROMO — links into Shop */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={()=>setTab("shop")} style={{ width:"100%", padding:"18px 18px", background:"#0a0a0a", border:"1px solid rgba(232,168,96,0.3)", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+        <button onClick={()=>setTab("shop")} style={{ width:"100%", padding:"18px 18px", background:isDark?"#0a0a0a":C.bg2, border:"1px solid rgba(232,168,96,0.3)", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,168,96,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:15, fontWeight:400, color:"#f2ece4" }}>Explore the Guides</div>
+            <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Explore the Guides</div>
             <div style={{ fontSize:12, color:"#b09888", fontWeight:400, marginTop:3, lineHeight:1.4 }}>Moneymaxxing Guide, Lovemaxxing Guide, and more — deep-dive workbooks for every category</div>
           </span>
           <span style={{ fontSize:20, color:"#e8a860", flexShrink:0 }}>›</span>
@@ -1066,7 +1066,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
                       padding:"12px 16px", fontSize:14, fontWeight:active?800:600,
-                      color:active?R:"#f2ece4", background:active?`${R}22`:"transparent",
+                      color:active?R:C.cr, background:active?`${R}22`:"transparent",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
                       borderBottom:`1px solid rgba(255,255,255,0.06)`
                     }}
@@ -1171,10 +1171,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     <div style={{ padding:"40px 20px",textAlign:"center",background:OMBRE_BG,minHeight:"100%" }}>
       <div style={{ fontSize:36,marginBottom:16 }}>✦</div>
       <div style={{ fontFamily:"'Cormorant Garamond',serif",fontSize:28,fontWeight:400,color:"#000",marginBottom:10 }}>ProofOS</div>
-      <div style={{ fontSize:14,color:"#1a0a10",lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
+      <div style={{ fontSize:14,color:C.cr,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
       </div>
-      <button style={{ padding:"12px 24px",background:"#000",border:"none",borderRadius:12,color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button style={{ padding:"12px 24px",background:isDark?"#000":"#1a0a04",border:"none",borderRadius:12,color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         Upgrade to Goddess — £33/mo
       </button>
     </div>
@@ -1242,7 +1242,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {/* View toggle: Threads | Proof Wall */}
       <div style={{ display:"flex",gap:6,marginBottom:14 }}>
         {[["threads","Threads"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
-          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 8px",borderRadius:10,background:view===k?"#000":PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:12,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 8px",borderRadius:10,background:view===k?(isDark?"#000":"#1a0a04"):PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:12,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
       </div>
 
@@ -1261,13 +1261,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
                   <span style={{ fontSize:9,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:CAT_COLOR[d.category]||"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
                   <div style={{ fontSize:13,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
-                  <div style={{ fontSize:10,color:"#1a1a1a",fontWeight:400,marginTop:4 }}>{d.days}d · {d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""} · {d.manifestedAt||""}</div>
-                  {d.feelAfter && <div style={{ fontSize:10,color:"#1a1a1a",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
+                  <div style={{ fontSize:10,color:C.cr,fontWeight:400,marginTop:4 }}>{d.days}d · {d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""} · {d.manifestedAt||""}</div>
+                  {d.feelAfter && <div style={{ fontSize:10,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:9,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
               ))}
               <div style={{ background:"rgba(255,255,255,0.35)",border:"1px dashed rgba(0,0,0,0.3)",borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
-                <span style={{ fontSize:11,color:"#1a0a10",textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
+                <span style={{ fontSize:11,color:C.cr,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
               </div>
               <div style={{ gridColumn:"1/-1" }}>
               <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
@@ -1276,7 +1276,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   <div key={s.key} style={{ background:"rgba(255,255,255,0.85)",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
                     {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
                     {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
-                    <div style={{ fontSize:8.5,fontWeight:400,color:"#333",marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
+                    <div style={{ fontSize:8.5,fontWeight:400,color:C.mu,marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
                   </div>
                 ))}
               </div>
@@ -1287,7 +1287,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : (
       <>
       {/* ADD NEW THREAD */}
-      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:"#000",border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:13,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#1a0a04"),border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:13,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         {adding?"✕ Cancel":"+ New Intention"}
       </button>
       {adding && (
@@ -1304,7 +1304,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
           <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginBottom:12 }}>
             {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","DNAmaxxing","Sleepmaxxing"].map(c=>(
-              <button key={c} onClick={()=>setNewCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?"#000":"none",border:`1px solid ${newCat===c?"#000":PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
+              <button key={c} onClick={()=>setNewCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?(isDark?"#000":"#1a0a04"):"none",border:`1px solid ${newCat===c?(isDark?"#000":"#1a0a04"):PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
             ))}
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
@@ -1325,7 +1325,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:10 }}>
               <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-              <span style={{ fontSize:11,color:"#1a0a10" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
+              <span style={{ fontSize:11,color:C.cr }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
             </div>
           ) : null; })()}
           <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
@@ -1339,7 +1339,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:""},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Moneymaxxing"); setAdding(false);
-          }} style={{ padding:"11px 22px",background:"#000",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          }} style={{ padding:"11px 22px",background:isDark?"#000":"#1a0a04",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
           {userTier === "audio" && !isPreview && (
@@ -1411,7 +1411,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {(d.signs||[]).map((sg,si)=>(
               <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
                 <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#e8a860",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
-                <span style={{ fontSize:12,color:"#1a1218",lineHeight:1.5,flex:1 }}>
+                <span style={{ fontSize:12,color:C.cr,lineHeight:1.5,flex:1 }}>
                   {sg.text}
                   {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}
                   {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
@@ -1424,7 +1424,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
                   style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#f2ece4",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
+                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:isDark?"#000":"#1a0a04",border:"none",borderRadius:8,color:"#f2ece4",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
                 <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:13,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
                   <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
                 </label>
