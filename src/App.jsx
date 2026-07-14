@@ -448,24 +448,26 @@ const MARQUEE_ITEMS = [
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
   const [theme, setTheme] = useState("light");
-  const [view,  setView]  = useState("dashboard"); // "dashboard" | "proof"
+  const [view,  setView]  = useState("dashboard");
 
   return (
     <div style={{ width:"100%", display:"flex", flexDirection:"column", alignItems:"center", gap:20, marginBottom:16 }}>
 
-      {/* Headline copy */}
-      <div style={{ textAlign:"center", maxWidth:500 }}>
-        <div style={{ fontSize: isMobile?17:21, fontWeight: 800, color: "#ffffff", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em", marginBottom: 6 }}>👇 This is what's inside</div>
-        <div style={{ fontSize: isMobile?12:13, fontWeight: 600, color: "#e8b4a0", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>Tap Dashboard · ProofOS ✦ · Analytics below to explore each screen</div>
-        <div style={{ fontSize:isMobile?16:18, fontWeight:400, color:"#ffffff", marginBottom:8, lineHeight:1.4 }}>
-          Your dashboard. Your audio vault. Your proof.
-        </div>
-        <div style={{ fontSize:isMobile?13:14, color:"#e8dcd0", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>
-          On mobile it looks like Spotify. On desktop, the same experience — full sidebar, player bar, everything. Switch between the <span style={{ color:"#e8a860", fontWeight:400 }}>audio dashboard</span> and your <span style={{ color:"#e8a860", fontWeight:400 }}>ProofOS wall</span> below.
-        </div>
+      {/* Headline copy — rewritten */}
+      <div style={{ textAlign:"center", maxWidth:560 }}>
+        <div style={{ fontSize: isMobile?13:14, color:"#e8a860", letterSpacing:"0.25em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>This is what's inside</div>
+        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", lineHeight:1.3, marginBottom:12 }}>
+          A growing library of hypnosis and subliminal audios — melodic house, EMDR and binaural beats — designed to shift your identity at the subconscious level.
+        </h2>
+        <p style={{ fontSize:isMobile?13:14, color:"#c8bcb0", lineHeight:1.8, fontFamily:"'Jost',sans-serif", marginBottom:8 }}>
+          Plus <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — the place where you log and track every single manifestation you receive. Forever.
+        </p>
+        <p style={{ fontSize:12, color:"#7a6858", fontFamily:"'Jost',sans-serif" }}>
+          Tap Dashboard · ProofOS ✦ · Analytics to explore each screen
+        </p>
       </div>
 
-      {/* Tab switcher — Dashboard / ProofOS */}
+      {/* Tab switcher */}
       <div style={{ display:"flex", gap:0, background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.15)", borderRadius:24, padding:4 }}>
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
@@ -501,30 +503,18 @@ function AppPreviewSection({ isMobile }) {
                     </div>
                   ))}
                 </div>
-                <div style={{ fontSize:10, color:theme==="dark"?"#9a8878":"#8a6840", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:10 }}>In progress</div>
                 {[
                   { desire:"He texts me first", cat:"Lovemaxxing", days:14, signs:3, track:"He Finds His Way Back" },
                   { desire:"£1,800 received. Paid by client.", cat:"Moneymaxxing", days:6, signs:2, track:"Money Finds Me First" },
-                  { desire:"My skin is glowing", cat:"Beautymaxxing", days:3, signs:1, track:"Gorgeous Is My Default" },
                 ].map((d,i)=>(
                   <div key={i} style={{ background:theme==="dark"?"#111111":"#ffffff", border:`1px solid ${theme==="dark"?"rgba(232,168,96,0.1)":"rgba(180,104,48,0.15)"}`, borderRadius:10, padding:"12px 14px", marginBottom:8 }}>
                     <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
                       <span style={{ fontSize:9, padding:"2px 8px", background:"rgba(232,168,96,0.12)", color:"#e8a860", borderRadius:12 }}>{d.cat}</span>
                       <span style={{ fontSize:9, color:theme==="dark"?"#5a4a40":"#b89060" }}>Day {d.days} · {d.signs} signs</span>
                     </div>
-                    <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, marginBottom:6 }}>{d.desire}</div>
-                    <div style={{ height:2, background:theme==="dark"?"#222":"#e8d0b0", borderRadius:1 }}>
-                      <div style={{ width:`${Math.min(d.days*8,90)}%`, height:"100%", background:"linear-gradient(90deg,#fce4c0,#e8a860)", borderRadius:1 }}/>
-                    </div>
-                    <div style={{ fontSize:9, color:theme==="dark"?"#5a4a40":"#b89060", marginTop:4 }}>♪ {d.track}</div>
+                    <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4 }}>{d.desire}</div>
                   </div>
                 ))}
-                <div style={{ fontSize:10, color:"#e8a860", letterSpacing:"0.12em", textTransform:"uppercase", margin:"12px 0 8px" }}>✓ Manifested</div>
-                <div style={{ background:theme==="dark"?"#000":"#fffcf8", border:"1px solid rgba(232,168,96,0.25)", borderRadius:10, padding:"12px 14px" }}>
-                  <div style={{ fontSize:9, padding:"2px 8px", background:"rgba(232,168,96,0.12)", color:"#e8a860", borderRadius:12, display:"inline-block", marginBottom:6 }}>✓ Lovemaxxing</div>
-                  <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008" }}>He texts me first and initiates plans.</div>
-                  <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6840", marginTop:4 }}>14d · 5 signs logged</div>
-                </div>
               </div>
             </div>
           </div>
@@ -538,18 +528,38 @@ function AppPreviewSection({ isMobile }) {
           </div>
         )}
 
-        {/* Mobile phone */}
+        {/* iPhone frame — mobile preview */}
         <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
           <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>
-            {isMobile?"Preview":"Mobile"}
+            {isMobile?"Preview":"iPhone"}
           </div>
-          {view==="dashboard" && <PortalScreenshot width={isMobile?240:190} theme={theme}/>}
-          {view==="proof" && <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>}
-          {view==="analytics" && (
-            <div style={{ width:isMobile?260:230, borderRadius:24, overflow:"hidden", boxShadow:"0 24px 60px rgba(140,100,40,0.45), 0 0 0 7px #b8934a, 0 0 0 8px #d4b06a", background:theme==="dark"?"#080808":"#fdf8f2", padding:"14px 10px" }}>
-              <AnalyticsBoard theme={theme} compact/>
+          {/* iPhone shell */}
+          <div style={{
+            position:"relative",
+            width: isMobile?252:202,
+            background:"#1a1a1a",
+            borderRadius: isMobile?48:42,
+            padding: isMobile?"14px 6px":"12px 5px",
+            boxShadow:"0 0 0 2px #3a3a3a, 0 0 0 4px #1a1a1a, 0 0 0 6px #3a3a3a, 0 30px 60px rgba(0,0,0,0.8)",
+          }}>
+            {/* Side buttons */}
+            <div style={{ position:"absolute", left:-3, top:80, width:3, height:30, background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+            <div style={{ position:"absolute", left:-3, top:120, width:3, height:50, background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+            <div style={{ position:"absolute", left:-3, top:180, width:3, height:50, background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+            <div style={{ position:"absolute", right:-3, top:120, width:3, height:70, background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
+            {/* Screen */}
+            <div style={{ borderRadius: isMobile?38:34, overflow:"hidden", position:"relative" }}>
+              {/* Dynamic island */}
+              <div style={{ position:"absolute", top:8, left:"50%", transform:"translateX(-50%)", width:isMobile?90:72, height:isMobile?22:18, background:"#000", borderRadius:20, zIndex:10 }}/>
+              {view==="dashboard" && <PortalScreenshot width={isMobile?240:190} theme={theme}/>}
+              {view==="proof" && <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>}
+              {view==="analytics" && (
+                <div style={{ width:isMobile?240:190, background:theme==="dark"?"#080808":"#fdf8f2", padding:"14px 10px" }}>
+                  <AnalyticsBoard theme={theme} compact/>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
 
@@ -565,7 +575,7 @@ function AppPreviewSection({ isMobile }) {
         <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
 
-      <div style={{ fontSize:12, color:"rgba(232,168,96,0.8)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center", fontWeight:400 }}>
+      <div style={{ fontSize:12, color:"rgba(232,168,96,0.8)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center" }}>
         Works in any browser · iPhone · Android · No download needed
       </div>
     </div>
@@ -1006,10 +1016,26 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           <HeroMarquee />
 
+          {/* IDENTITY CAROUSEL — right under player */}
+          <div style={{ width:"100%", marginTop:8 }}>
+            <IdentityCarousel cats={[
+              { label:"Lovemaxxing",      tagline:"He thinks about me. He can't help it." },
+              { label:"Moneymaxxing",     tagline:"Money finds me first. Always." },
+              { label:"Beautymaxxing",    tagline:"Gorgeous is my default." },
+              { label:"Selfmaxxing",      tagline:"I am the main character. Obviously." },
+              { label:"DNAmaxxing",       tagline:"My bloodline remembers." },
+              { label:"Sleepmaxxing",     tagline:"Highest timeline. Activated." },
+              { label:"Luckygirlmaxxing", tagline:"Lucky girl? That's just who I am." },
+              { label:"Sovereignmaxxing", tagline:"I don't chase. I attract. Always." },
+              { label:"Erosmaxxing",      tagline:"Desire flows to me naturally." },
+              { label:"Lifemaxxing",      tagline:"This is the version of me I kept for myself." },
+            ]} />
+          </div>
+
           {/* TITLE */}
-          <div style={{ fontSize: "clamp(11px,1.4vw,13px)", letterSpacing: "0.35em", textTransform: "uppercase", color: "#e8a860", marginBottom: 14, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>Self Hypnosis Goddess</div>
+          <div style={{ fontSize: "clamp(13px,1.8vw,16px)", letterSpacing: "0.35em", textTransform: "uppercase", color: "#e8a860", marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>Self Hypnosis Goddess</div>
           <h1 className="wm" style={{ lineHeight: 1.15, marginBottom: 12 }}>
-            <span className="wm-shimmer" style={{ fontSize: "clamp(38px,8vw,80px)", display: "block" }}>Audio Library</span>
+            <span className="wm-shimmer" style={{ fontSize: "clamp(48px,10vw,96px)", display: "block" }}>Audio Library</span>
             <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(14px,2.2vw,18px)", color: "rgba(253,240,232,0.55)", fontWeight: 400, letterSpacing: "0.25em", textTransform: "uppercase", display: "block", marginTop: 12 }}>+ ProofOS</span>
           </h1>
 
@@ -1120,22 +1146,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
 
           {/* PAIN POINT */}
-          {/* SKIMMABLE BENEFIT CHIPS */}
-          <div style={{ fontSize: 12, color: "#e8a860", letterSpacing: "0.15em", textTransform: "uppercase", fontWeight: 700, textAlign: "center", marginBottom: 12 }}>What listening actually does for you</div>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, maxWidth: 560, margin: "0 auto 28px" }}>
-            {[
-              "Become a Spoiled Goddess",
-              "Make him beg for you",
-              "Live your delusional reality",
-              "Become the lucky girl",
-              "Track every desire. Prove it.",
-              "Break your money ceiling",
-            ].map((line, i) => (
-              <span key={i} style={{ fontSize: isMobile ? 12 : 13, color: "#f2ece4", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: "7px 14px", fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>
-                {line}
-              </span>
-            ))}
-          </div>
+
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: isMobile ? "column" : "row", alignItems: "stretch", maxWidth: isMobile ? 340 : "none", margin: isMobile ? "0 auto 16px" : "0 0 16px" }}>
             <button onClick={onJoin} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#fce4c0,#e8a860)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 400, cursor: "pointer", letterSpacing: "0.06em", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", width: isMobile ? "100%" : "auto" }}>
@@ -1164,15 +1175,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* IDENTITY CAROUSEL — early, after preview, before purpose */}
-      <IdentityCarousel cats={[
-        { label:"Moneymaxxing",     tagline:"Money finds me. I don't chase it." },
-        { label:"Lovemaxxing",      tagline:"He thinks about me before he falls asleep." },
-        { label:"Beautymaxxing",    tagline:"My face is the first thing they notice." },
-        { label:"Selfmaxxing",      tagline:"I am the main character. Obviously." },
-        { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
-        { label:"DNAmaxxing",       tagline:"My bloodline remembers who I really am." },
-      ]} />
+
 
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
