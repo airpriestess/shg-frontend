@@ -57,7 +57,7 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
 
 /* ── ANIMATIONS ─────────────────────────────────────────────── */
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.marquee-track{display:flex;width:max-content;animation:marquee 24s linear infinite;}
+.marquee-track{display:flex;width:max-content;animation:marquee 45s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
 
 @keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.6)}}
