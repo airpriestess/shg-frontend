@@ -1266,50 +1266,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               Here's why that matters: doubt doesn't ask nicely. It shows up at 2am asking if any of this is actually working. Belief alone can't answer that — it just argues back. Proof can. A dated, logged list of things that actually happened is the one thing doubt can't talk you out of. That's the whole point of ProofOS — not another journal, your evidence.
             </p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
-              { num: "01", title: "Listen", body: "Press play. Sleep with it on. Let the audio do the work while your conscious mind rests.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <path d="M12 32 A18 18 0 0 1 48 32" stroke="#e8a860" strokeWidth="3" strokeLinecap="round"/>
-                  <rect x="8" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
-                  <rect x="42" y="30" width="10" height="16" rx="3" fill="#e8a860"/>
-                </svg>
-              )},
-              { num: "02", title: "Link", body: "Open a Proof Thread for your specific desire. Link it to the audio that's working on it.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="10" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(-20 21 30)"/>
-                  <rect x="28" y="22" width="22" height="16" rx="8" stroke="#e8a860" strokeWidth="3" fill="none" transform="rotate(20 39 30)"/>
-                </svg>
-              )},
-              { num: "03", title: "Capture", body: "Log signs, synchronicities, photo proof, voice notes. Anything that arrives — capture it here.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="10" y="16" width="40" height="30" rx="5" stroke="#e8a860" strokeWidth="3" fill="none"/>
-                  <path d="M22 16 L25 10 L35 10 L38 16" stroke="#e8a860" strokeWidth="3" strokeLinecap="round" fill="none"/>
-                  <circle cx="30" cy="31" r="8" stroke="#e8a860" strokeWidth="3" fill="none"/>
-                </svg>
-              )},
-              { num: "04", title: "Watch it stack up", body: "Every sign you log sits on your Proof Wall, dated. Come back and watch the evidence grow — it stops feeling random fast.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="12" y="34" width="10" height="16" rx="2" fill="none" stroke="#e8a860" strokeWidth="3"/>
-                  <rect x="25" y="24" width="10" height="26" rx="2" fill="none" stroke="#e8a860" strokeWidth="3"/>
-                  <rect x="38" y="14" width="10" height="36" rx="2" fill="none" stroke="#e8a860" strokeWidth="3"/>
-                </svg>
-              )},
-              { num: "05", title: "Mark manifested", body: "When it arrives, mark it. See exactly how many days it took and which audio preceded it.", bg: "#0a0a0a", icon: (
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <circle cx="30" cy="30" r="20" stroke="#e8a860" strokeWidth="3" fill="none"/>
-                  <path d="M21 30 L27 36 L40 22" stroke="#e8a860" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                </svg>
-              )},
+              { num:"01", title:"Listen", body:"Press play. Sleep with it on. Daily. First thing in the morning or last thing at night — when your brain is in theta. Let it wash over you. No effort needed." },
+              { num:"02", title:"Open a thread", body:"Create a Proof Thread for your specific desire. Link it to the audio you're listening to. One desire, one thread, one track." },
+              { num:"03", title:"Capture every sign", body:"A text out of nowhere. A refund. A compliment. A dream. Log it here — dated, noted, stacked. Each sign is evidence the mirror is shifting." },
+              { num:"04", title:"Watch it build", body:"Your Proof Wall shows every sign in order, with dates. Come back and read it. The pattern becomes undeniable fast." },
+              { num:"05", title:"Mark it manifested", body:"When it arrives, mark it. ProofOS shows exactly how many days it took and which audio preceded it. That is your data. Not a testimonial — your proof." },
             ].map((s, i) => (
-              <div key={i} style={{ background: "#141414", border: "1px solid rgba(232,168,96,0.25)", borderRadius: 14, overflow: "hidden", boxShadow: "0 2px 18px rgba(0,0,0,0.4)", display: "flex", flexDirection: isMobile ? "column" : "row" }}>
-                {/* SVG icon */}
-                <div style={{ width: isMobile ? "100%" : 180, height: isMobile ? 120 : "auto", minHeight: 110, background: s.bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, borderBottom: isMobile ? "1px solid rgba(183,110,121,0.15)" : "none", borderRight: isMobile ? "none" : "1px solid rgba(183,110,121,0.15)" }}>
-                  {s.icon}
-                </div>
-                <div style={{ padding: "20px 22px", flex: 1 }}>
-                  <div style={{ fontSize: isMobile ? 22 : 28, fontWeight: 800, color: "#f5e0a0", marginBottom: 8, fontFamily: "'Jost',sans-serif", lineHeight: 1.1 }}>{s.title}</div>
-                  <div style={{ fontSize: 14, color: "#f5e0a0", lineHeight: 1.75 }}>{s.body}</div>
+              <div key={i} style={{ display:"flex", gap: isMobile?16:24, padding:"20px 0", borderBottom: i<4?"1px solid rgba(232,168,96,0.12)":"none", alignItems:"flex-start" }}>
+                <div style={{ fontSize:11, color:"#e8a860", letterSpacing:"0.15em", fontFamily:"'Jost',sans-serif", minWidth:28, paddingTop:3, flexShrink:0 }}>{s.num}</div>
+                <div>
+                  <div style={{ fontSize:isMobile?16:18, color:"#1a0a04", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", marginBottom:6, lineHeight:1.2 }}>{s.title}</div>
+                  <div style={{ fontSize:14, color:"#3a2010", lineHeight:1.8 }}>{s.body}</div>
                 </div>
               </div>
             ))}
@@ -1330,11 +1299,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </div>
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14, opacity: 0.75 }}>How the tracking actually works</div>
-              <div style={{ fontSize: isMobile?16:18, fontWeight: 700, color: "#f5e0a0", marginBottom: 16, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
+              <div style={{ fontSize: 11, color: "#b46830", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 14 }}>How the tracking actually works</div>
+              <div style={{ fontSize: isMobile?17:20, color: "#1a0a04", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", marginBottom: 16, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[
-                  { n: "1", t: "Say it, log it.", d: "\"£5,000 arrives unexpectedly.\" Log it in ProofOS. Pick the track you're pairing it with — Money Finds Me First, say." },
+                  { n: "01", t: "Say it, log it.", d: "\"£5,000 arrives unexpectedly.\" Log it in ProofOS. Pick the track you're pairing it with — Money Finds Me First, say." },
                   { n: "2", t: "Play the track.", d: "Every time you play it, ProofOS counts the day. Day 1, day 2, day 6." },
                   { n: "3", t: "Log every sign.", d: "A refund, a client paying early, a random win. Each one stacks as evidence on that thread." },
                   { n: "4", t: "Mark it manifested.", d: "ProofOS timestamps it — desire, track, days it took, signs logged. Your evidence, your data, not someone else's testimonial." },
@@ -1381,18 +1350,18 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
 
           <div style={{ textAlign: "center", marginTop: 28 }}>
-            <span style={{ fontSize: 14, color: "#f5e0a0", fontWeight: 700, opacity: 0.75 }}>Included in Goddess Tier · £33/mo</span>
+            <span style={{ fontSize: 14, color: "#3a2010", opacity: 0.75 }}>Included in Goddess Tier · £33/mo</span>
           </div>
         </div>
       </div>
 
-            {/* MELODIC HOUSE USP — cream background, locked palette */}
+      {/* MELODIC HOUSE USP — cream background, locked palette */}
       <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 12, color: "#c9963a", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
+            <div style={{ fontSize: 12, color: "#b46830", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, color: "#1a0a04", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
             <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
