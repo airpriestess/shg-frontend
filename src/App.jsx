@@ -412,42 +412,42 @@ function PricingSection({ onJoin }) {
 
 
 const MARQUEE_ITEMS = [
-  {t:"He texts me first. Obviously.",c:"#B76E79"},{t:"Money finds me first.",c:"#c8a870"},{t:"Gorgeous is my default.",c:"#d4a090"},
-  {t:"My DNA is shifting. Right now.",c:"#e8b870"},{t:"My highest timeline. Activated.",c:"#c8a870"},{t:"He's obsessed. Of course he is.",c:"#B76E79"},
+  {t:"He texts me first. Obviously.",c:"#d4789a"},{t:"Money finds me first.",c:"#c8a870"},{t:"Gorgeous is my default.",c:"#d4a090"},
+  {t:"My DNA is shifting. Right now.",c:"#e8b870"},{t:"My highest timeline. Activated.",c:"#c8a870"},{t:"He's obsessed. Of course he is.",c:"#d4789a"},
   {t:"My skin is porcelain. Always.",c:"#d4a090"},{t:"I shift while I sleep.",c:"#d4a090"},{t:"Money arrives unexpectedly.",c:"#c8a870"},
-  {t:"My bloodline is being rewritten.",c:"#e8b870"},{t:"He comes back. Every time.",c:"#B76E79"},{t:"My waist is always snatched.",c:"#d4a090"},
-  {t:"£10,000 months are my baseline.",c:"#c8a870"},{t:"I receive. Constantly. Effortlessly.",c:"#B76E79"},{t:"My self-concept is permanent now.",c:"#e8b870"},
-  {t:"He can't stop thinking about me.",c:"#B76E79"},{t:"I am radiant without trying.",c:"#d4a090"},{t:"My skin glows. Everyone sees it.",c:"#d4a090"},
-  {t:"He chose me. Again.",c:"#B76E79"},{t:"Abundance is my default state.",c:"#c8a870"},{t:"My beauty is effortless.",c:"#d4a090"},
-  {t:"He's already mine.",c:"#B76E79"},{t:"Money loves me. Of course it does.",c:"#c8a870"},{t:"I am the woman he keeps coming back to.",c:"#B76E79"},
+  {t:"My bloodline is being rewritten.",c:"#e8b870"},{t:"He comes back. Every time.",c:"#d4789a"},{t:"My waist is always snatched.",c:"#d4a090"},
+  {t:"£10,000 months are my baseline.",c:"#c8a870"},{t:"I receive. Constantly. Effortlessly.",c:"#d4789a"},{t:"My self-concept is permanent now.",c:"#e8b870"},
+  {t:"He can't stop thinking about me.",c:"#d4789a"},{t:"I am radiant without trying.",c:"#d4a090"},{t:"My skin glows. Everyone sees it.",c:"#d4a090"},
+  {t:"He chose me. Again.",c:"#d4789a"},{t:"Abundance is my default state.",c:"#c8a870"},{t:"My beauty is effortless.",c:"#d4a090"},
+  {t:"He's already mine.",c:"#d4789a"},{t:"Money loves me. Of course it does.",c:"#c8a870"},{t:"I am the woman he keeps coming back to.",c:"#d4789a"},
   {t:"My cells hold my new identity.",c:"#e8b870"},{t:"My glow is undeniable.",c:"#d4a090"},{t:"Six figures is just the start.",c:"#c8a870"},
-  {t:"He finds his way back. Every time.",c:"#B76E79"},{t:"My subconscious knows. It delivers.",c:"#e8b870"},{t:"I am paid just for existing.",c:"#c8a870"},
-  {t:"My face is symmetrical and clear.",c:"#d4a090"},{t:"Of course it worked out. It always does.",c:"#c8a870"},{t:"He's devoted. Obviously.",c:"#B76E79"},
+  {t:"He finds his way back. Every time.",c:"#d4789a"},{t:"My subconscious knows. It delivers.",c:"#e8b870"},{t:"I am paid just for existing.",c:"#c8a870"},
+  {t:"My face is symmetrical and clear.",c:"#d4a090"},{t:"Of course it worked out. It always does.",c:"#c8a870"},{t:"He's devoted. Obviously.",c:"#d4789a"},
   {t:"My identity upgrades in my sleep.",c:"#e8b870"},{t:"I am magnetic. Naturally.",c:"#d4a090"},{t:"My wealth expands while I sleep.",c:"#c8a870"},
-  {t:"He reaches out first. Always.",c:"#B76E79"},{t:"I embody my dream self. Naturally.",c:"#e8b870"},{t:"My energy is intoxicating.",c:"#d4a090"},
-  {t:"My income is limitless.",c:"#c8a870"},{t:"I am the upgraded version. Now.",c:"#e8b870"},{t:"He misses me and he's saying it.",c:"#B76E79"},
+  {t:"He reaches out first. Always.",c:"#d4789a"},{t:"I embody my dream self. Naturally.",c:"#e8b870"},{t:"My energy is intoxicating.",c:"#d4a090"},
+  {t:"My income is limitless.",c:"#c8a870"},{t:"I am the upgraded version. Now.",c:"#e8b870"},{t:"He misses me and he's saying it.",c:"#d4789a"},
   {t:"My bank account grows daily.",c:"#c8a870"},{t:"My nervous system knows who I am.",c:"#e8b870"},{t:"I look better every single day.",c:"#d4a090"},
-  {t:"Love finds me. It always does.",c:"#B76E79"},{t:"I am always in the right place.",c:"#c8a870"},{t:"My body reflects my beliefs.",c:"#d4a090"},
-  {t:"My SP is devoted. Obviously.",c:"#B76E79"},{t:"The installation is complete.",c:"#e8b870"},{t:"I receive in my sleep. Obviously.",c:"#d4a090"},
-  {t:"I am stunning. It's obvious.",c:"#d4a090"},{t:"My financial reality is effortless.",c:"#c8a870"},{t:"He can't get me out of his head.",c:"#B76E79"},
+  {t:"Love finds me. It always does.",c:"#d4789a"},{t:"I am always in the right place.",c:"#c8a870"},{t:"My body reflects my beliefs.",c:"#d4a090"},
+  {t:"My SP is devoted. Obviously.",c:"#d4789a"},{t:"The installation is complete.",c:"#e8b870"},{t:"I receive in my sleep. Obviously.",c:"#d4a090"},
+  {t:"I am stunning. It's obvious.",c:"#d4a090"},{t:"My financial reality is effortless.",c:"#c8a870"},{t:"He can't get me out of his head.",c:"#d4789a"},
   {t:"My highest self is my only self.",c:"#e8b870"},{t:"People notice. They can't help it.",c:"#d4a090"},{t:"My lineage shifts with me.",c:"#e8b870"},
-  {t:"I am a money magnet. Obviously.",c:"#c8a870"},{t:"He's on his way back. Of course.",c:"#B76E79"},{t:"I wake up transformed.",c:"#d4a090"},
+  {t:"I am a money magnet. Obviously.",c:"#c8a870"},{t:"He's on his way back. Of course.",c:"#d4789a"},{t:"I wake up transformed.",c:"#d4a090"},
   {t:"My life is effortless luxury.",c:"#c8a870"},{t:"My subconscious is now on my side.",c:"#e8b870"},{t:"My skin is flawless. Obviously.",c:"#d4a090"},
-  {t:"Everything works out for me. Always.",c:"#c8a870"},{t:"He's never leaving. I'm that girl.",c:"#B76E79"},{t:"My DNA reflects my desires.",c:"#e8b870"},
-  {t:"I am chosen. Every single time.",c:"#B76E79"},{t:"Thirty days changes everything.",c:"#d4a090"},{t:"My frequency is locked in.",c:"#e8b870"},
+  {t:"Everything works out for me. Always.",c:"#c8a870"},{t:"He's never leaving. I'm that girl.",c:"#d4789a"},{t:"My DNA reflects my desires.",c:"#e8b870"},
+  {t:"I am chosen. Every single time.",c:"#d4789a"},{t:"Thirty days changes everything.",c:"#d4a090"},{t:"My frequency is locked in.",c:"#e8b870"},
   {t:"I am the most beautiful version of me.",c:"#d4a090"},{t:"The universe is obsessed with me.",c:"#c8a870"},{t:"My parallel reality is now.",c:"#e8b870"},
-  {t:"He's constantly thinking of me.",c:"#B76E79"},{t:"My love life is effortless.",c:"#B76E79"},{t:"I am on the frequency of receiving.",c:"#c8a870"},
+  {t:"He's constantly thinking of me.",c:"#d4789a"},{t:"My love life is effortless.",c:"#d4789a"},{t:"I am on the frequency of receiving.",c:"#c8a870"},
   {t:"Every listen deepens the install.",c:"#d4a090"},{t:"I am becoming her daily.",c:"#e8b870"},{t:"My reality bends to my self-concept.",c:"#e8b870"},
   {t:"Unexpected income is normal for me.",c:"#c8a870"},{t:"My sleep is doing the work.",c:"#d4a090"},{t:"I am irresistible. Obviously.",c:"#d4a090"},
-  {t:"He comes back. Of course he does.",c:"#B76E79"},{t:"I exist on the frequency of abundance.",c:"#c8a870"},{t:"My cells shift with every listen.",c:"#e8b870"},
+  {t:"He comes back. Of course he does.",c:"#d4789a"},{t:"I exist on the frequency of abundance.",c:"#c8a870"},{t:"My cells shift with every listen.",c:"#e8b870"},
   {t:"Beauty is who I am.",c:"#d4a090"},{t:"Life is happening for me. Always.",c:"#c8a870"},{t:"My manifestations arrive fast.",c:"#c8a870"},
   {t:"My theta state holds my desires.",c:"#d4a090"},{t:"The new me is permanent now.",c:"#e8b870"},{t:"I attract what I want. Effortlessly.",c:"#c8a870"},
   {t:"My aura is undeniable.",c:"#d4a090"},{t:"Money comes from everywhere.",c:"#c8a870"},{t:"The shift is already done.",c:"#e8b870"},
-  {t:"I am reprogramming daily.",c:"#d4a090"},{t:"He's obsessed with who I am.",c:"#B76E79"},{t:"Every night I become her more.",c:"#d4a090"},
+  {t:"I am reprogramming daily.",c:"#d4a090"},{t:"He's obsessed with who I am.",c:"#d4789a"},{t:"Every night I become her more.",c:"#d4a090"},
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("light"); // default light — user can toggle dark
   const [view,  setView]  = useState("dashboard");
 
   return (
@@ -590,7 +590,8 @@ function HeroMarquee() {
     <div style={{ overflow:"hidden", marginBottom:24, maskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)", WebkitMaskImage:"linear-gradient(90deg,transparent,black 6%,black 94%,transparent)" }}>
       <div className="marquee-track" style={{ gap:"0 36px" }}>
         {doubled.map((item,i) => { const idx=i%MARQUEE_ITEMS.length; const isLit=idx===lit; return (
-          <span key={i} style={{ fontSize:11, fontWeight:400, letterSpacing:"0.15em", textTransform:"uppercase", color:isLit?"#fff":item.c, whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif", transition:"color 0.12s, text-shadow 0.12s", textShadow:isLit?`0 0 18px ${item.c},0 0 36px ${item.c}66`:"none" }}>{item.t}</span>
+          <span key={i} style={{ fontSize:11, fontWeight:400, letterSpacing:"0.15em", textTransform:"uppercase", color:isLit?"#fff":item.c, whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif", transition:"color 0.12s, text-shadow 0.12s", textShadow:isLit?`0 0 18px ${item.c},0 0 36px ${item.c}66`:"none" }}>
+          <span style={{marginRight:6,opacity:0.7}}>{item.t.toLowerCase().includes("money")||item.t.toLowerCase().includes("£")||item.t.toLowerCase().includes("income")||item.t.toLowerCase().includes("wealth")||item.t.toLowerCase().includes("financial")?"💰":item.t.toLowerCase().includes("skin")||item.t.toLowerCase().includes("face")||item.t.toLowerCase().includes("beauty")||item.t.toLowerCase().includes("glow")||item.t.toLowerCase().includes("gorgeous")||item.t.toLowerCase().includes("radiant")||item.t.toLowerCase().includes("stunning")?"✦":item.t.toLowerCase().includes("he ")||item.t.toLowerCase().includes("him")||item.t.toLowerCase().includes("sp ")||item.t.toLowerCase().includes("love")||item.t.toLowerCase().includes("devoted")?"♡":item.t.toLowerCase().includes("sleep")||item.t.toLowerCase().includes("dna")||item.t.toLowerCase().includes("cell")||item.t.toLowerCase().includes("blood")?"◐":"✦"}</span>{item.t}</span>
         );})}
       </div>
     </div>
