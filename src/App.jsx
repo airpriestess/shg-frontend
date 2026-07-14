@@ -1011,7 +1011,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       )}
 
       {/* HERO — DARK goddess energy */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "hidden", minHeight: isMobile ? "auto" : "100vh", marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))`, background: "#000000" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 0, overflow: "visible", minHeight: isMobile ? "auto" : "100vh", marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))`, background: "#000000" }}>
         <Rings count={5} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "clamp(52px,8vw,80px) clamp(20px,5vw,32px) clamp(52px,8vw,80px)", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           <HeroMarquee />
@@ -1056,14 +1056,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
-          <div style={{ background: "#0a0a0a", border: "1px solid rgba(232,168,96,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(0,0,0,0.5)" }}>
+          <div style={{ background: "#0a0a0a", border: "1px solid rgba(232,168,96,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-              {/* Album art */}
-              <div style={{ width:56, height:56, borderRadius:10, background:"linear-gradient(135deg,#d4a090,#B76E79)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 20px rgba(183,110,121,0.4)", overflow:"hidden", position:"relative" }}>
-                <div style={{ display:"flex", alignItems:"flex-end", gap:2, height:28, position:"relative", zIndex:1 }}>
-                  {[12,20,14,24,18,10,22,16].map((h,i)=>(
-                    <div key={i} style={{ width:3, borderRadius:2, background:"rgba(0,0,0,0.6)", height:h, animation:`wave ${0.8+i*0.1}s ease-in-out infinite`, animationDelay:`${i*0.08}s` }}/>
+              {/* Waveform visualizer — replaces pink box */}
+              <div style={{ width:56, height:56, borderRadius:10, background:"#000", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(232,168,96,0.2)", overflow:"hidden" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:2, height:36 }}>
+                  {[6,14,22,18,28,12,24,20,16,10,26,8,22,18,14].map((h,i)=>(
+                    <div key={i} style={{ width:2.5, borderRadius:2, background: playing ? `linear-gradient(to top, #e8a860, #fce4c0)` : "rgba(232,168,96,0.3)", height: playing ? h : Math.max(4, h*0.4), animation: playing ? `wave ${0.7+i*0.08}s ease-in-out infinite` : "none", animationDelay:`${i*0.06}s`, transition:"height 0.3s" }}/>
                   ))}
                 </div>
               </div>
@@ -1099,7 +1099,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </div>
 
             {/* Controls row — Apple Music / Spotify style */}
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 4px" }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"4px 4px 0", overflow:"visible" }}>
               {/* Shuffle */}
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, opacity:0.45, lineHeight:0 }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8a860" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
