@@ -338,7 +338,7 @@ function CheckoutModal({ onClose, onDemo }) {
 
 /* ── ACCORDION ITEM — used in the "want to go deeper" section ── */
 function AccordionItem({ title, body }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <div style={{ borderBottom:"1px solid rgba(232,168,96,0.12)", overflow:"hidden" }}>
       <button onClick={()=>setOpen(o=>!o)} style={{ width:"100%", background:"none", border:"none", padding:"18px 0", display:"flex", alignItems:"center", justifyContent:"space-between", gap:16, cursor:"pointer", fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
