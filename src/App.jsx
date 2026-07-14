@@ -1179,19 +1179,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
-        <div style={{ fontSize:11, fontWeight:400, color:"#c9963a", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>The purpose</div>
+        <div style={{ fontSize:11, fontWeight:400, color:"#c9963a", letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14 }}>What this is</div>
         <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", color:"#f2ece4", lineHeight:1.12, marginBottom:20 }}>
-          Shift into the state of<br/>
-          <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your dream reality.</span>
+          Hypnosis and subliminals to reprogram<br/>
+          <span style={{ background:"linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>your subconscious mind.</span>
         </h2>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          The waiting is the actual pain. Not him, not the money, not the mirror — the not-knowing if any of it is coming.
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#c8bcb0", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
+          Your subconscious runs your behaviour, your emotions, your defaults — everything that actually determines your outcomes. Hypnosis and subliminals reach it directly, beneath conscious thought, and replace the old programme with a new one.
         </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:600, margin:"0 auto 16px" }}>
-          Every night, while you sleep, this rewires what your subconscious already assumes is true. Not "I am worthy." Not a script you say and doubt. The install that makes the outcome inevitable, not hoped-for.
-        </p>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#f2ece4", lineHeight:1.85, maxWidth:620, margin:"0 auto" }}>
-          You stop checking your phone. You start already knowing.
+        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#c8bcb0", lineHeight:1.85, maxWidth:600, margin:"0 auto" }}>
+          This is a daily practice. You press play while you sleep, rest, work out, or go about your life. The audio does the work. You just show up and repeat.
         </p>
       </div>
 
@@ -1203,12 +1200,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         <div style={{ maxWidth:860, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:56 }}>
-            <div style={{ fontSize:isMobile?24:36, color:"#e8a860", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:400, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
-            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#f2ece4" }}>
+            <div style={{ fontSize:isMobile?24:36, color:"#b46830", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:400, marginBottom:18, fontFamily:"'Jost',sans-serif" }}>How it works</div>
+            <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)", lineHeight:1, marginBottom:16, color:"#1a0a04" }}>
               Set intention.<br/>
               <span style={{ background:"linear-gradient(90deg,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Watch reality bend.</span>
             </h2>
-            <p style={{ fontSize:isMobile?15:17, color:"#c8bcb0", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>This is not inspiration content. This is a daily practice that rewires you while you sleep, rest, and go about your life.</p>
+            <p style={{ fontSize:isMobile?15:17, color:"#3a2010", lineHeight:1.8, maxWidth:560, margin:"0 auto" }}>A daily practice. Press play while you sleep, rest, work out or go about your life. Repeat until it lands.</p>
           </div>
 
           {/* JOURNEY STEPS — ombre cards */}
