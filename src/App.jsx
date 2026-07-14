@@ -350,11 +350,11 @@ function PricingSection({ onJoin }) {
   ];
 
   return (
-    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#fdf0e8", width: "100%" }}>
+    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "linear-gradient(160deg,#fce4c0 0%,#f0d4a8 40%,#ece8d8 100%)", width: "100%" }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: isMobile ? 12 : 13, fontWeight: 700, color: "#B76E79", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
-          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#f2ece4", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#2a1a0a", lineHeight: 1.1 }}>
             Full access. <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>No download needed.</span>
           </h2>
         </div>
@@ -680,7 +680,7 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ background:"linear-gradient(160deg,#fdf0e8 0%,#f2ece4 50%,#fdf0e8 100%)", padding:"0 0 0 0" }}>
+    <div style={{ background:"linear-gradient(160deg,#fce4c0 0%,#f0d4a8 50%,#ece8d8 100%)", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
@@ -693,7 +693,7 @@ function FAQSection() {
               <span style={{ fontSize:15,fontWeight:400,color:"#f2ece4",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
-            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#000000",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#2a1a0a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
         ))}
       </div>
@@ -1123,7 +1123,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
       {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#000000", position:"relative", overflow:"hidden" }}>
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#0a0808", position:"relative", overflow:"hidden" }}>
         {/* Ombre orb */}
         <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
 
@@ -1177,7 +1177,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
 
-      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "#000000" }}>
+      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#0f0906 0%,#0a0808 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12, opacity: 0.75 }}>Goddess Tier · Included</div>
@@ -1316,7 +1316,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
             {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#000000", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#0a0808 0%,#120a04 50%,#0a0606 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -1324,15 +1324,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#000000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#c8bcb0", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#000000", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#c8bcb0", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
 
             {/* THREE FORMATS */}
-            <div style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
+            <div style={{ background: "rgba(232,168,96,0.06)", border: "1px solid rgba(232,168,96,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
               <div style={{ fontSize: 11, color: "#c9963a", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
@@ -1422,7 +1422,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ padding: isMobile?"56px clamp(16px,4vw,24px) 24px":"80px clamp(16px,4vw,24px) 24px", maxWidth: 760, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <div style={{ fontSize: 11, color: "#c9963a", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>How the audio actually works</div>
-          <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#f2ece4", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
+          <h3 className="wm" style={{ fontSize: "clamp(24px,3.6vw,38px)", color: "#2a1a0a", lineHeight: 1.2, marginBottom: 12 }}>Hemi-sync: both sides of your brain, one frequency.</h3>
           <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color:"#d8ccc0", lineHeight:1.85, maxWidth:560, margin:"0 auto" }}>
             Your subconscious mind creates your entire reality — but you can only reach it when both hemispheres of your brain fall into the same rhythm. Awake and scrolling, your left and right hemispheres run slightly out of sync, in beta. Reshma's audio layers two close frequencies — one in each ear — so your brain naturally bends both sides into a single matching wave: hemi-sync. That's the exact moment the subconscious opens and a new belief can install.
           </p>
@@ -1471,7 +1471,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
-      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "#fdf0e8", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)", width: "100%" }}>
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: 11, fontWeight: 900, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14 }}>What's Inside</div>
@@ -1540,7 +1540,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* OLD ASSUMPTION → NEW ASSUMPTION */}
-      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "#000000", width: "100%" }}>
+      <div style={{ padding: isMobile?"48px 0":"70px 0", background: "linear-gradient(160deg,#0a0808 0%,#000000 100%)", width: "100%" }}>
         <div style={{ padding: isMobile?"0 18px":"0 24px", maxWidth: 860, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
             <div style={{ fontSize: 12, color: "#B76E79", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 14 }}>The mechanism</div>
@@ -1748,7 +1748,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ fontSize: 11, color: "#e8a860", fontWeight: 400, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>
               963hz · DNA Activation
             </div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#f2ece4", lineHeight: 1.15, marginBottom: 20 }}>
+            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#2a1a0a", lineHeight: 1.15, marginBottom: 20 }}>
               We don't stop at the surface.<br/>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
@@ -1927,7 +1927,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#000000" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#1a0e06 0%,#0a0808 50%,#000000 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
@@ -1975,7 +1975,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: T.border, background: "#000000" }}>
         <Rings count={3} />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#f2ece4", lineHeight: 1.2, marginBottom: 24 }}>
+          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#2a1a0a", lineHeight: 1.2, marginBottom: 24 }}>
             Wake up knowing.<br />
             <span style={{ background: "linear-gradient(90deg,#e8a860,#e08aa8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
           </h2>
@@ -2040,7 +2040,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                     value={waitlistEmail}
                     onChange={e=>{setWaitlistEmail(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
                     placeholder="your@email.com"
-                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#B76E79":"#2a2a2a"}`, borderRadius:12, color:"#f2ece4", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#B76E79":"#2a2a2a"}`, borderRadius:12, color:"#2a1a0a", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
                   {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#e8a860", marginBottom:12 }}>Please enter a valid email.</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
