@@ -1324,10 +1324,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, background: "linear-gradient(90deg,#fce4c0,#e8a860)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textAlign: "center" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#c8bcb0", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
               Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#c8bcb0", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
+            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#3a2010", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
               You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
             </p>
 
