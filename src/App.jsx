@@ -1456,6 +1456,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
       </div>
+
       {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
       <LandingProofWall isMobile={isMobile}/>
 
