@@ -1123,7 +1123,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
       {/* HOW IT WORKS — JOURNEY TIMELINE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "#0a0808", position:"relative", overflow:"hidden" }}>
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background: "linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)", position:"relative", overflow:"hidden" }}>
         {/* Ombre orb */}
         <div style={{ position:"absolute", top:"20%", left:"50%", transform:"translateX(-50%)", width:600, height:600, background:"radial-gradient(ellipse,rgba(212,160,144,0.15) 0%,rgba(183,110,121,0.08) 40%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
 
@@ -1177,7 +1177,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
 
-      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#0f0906 0%,#0a0808 100%)" }}>
+      <div id="proofos" style={{ padding: isMobile ? "48px 18px" : "70px 24px", background: "linear-gradient(160deg,#000000 0%,#0a0808 50%,#120a04 100%)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div style={{ fontSize: 12, color: "#f5e0a0", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 800, marginBottom: 12, opacity: 0.75 }}>Goddess Tier · Included</div>
@@ -1316,7 +1316,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
             {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#0a0808 0%,#120a04 50%,#0a0606 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -1471,7 +1471,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
-      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "linear-gradient(160deg,#f5ede0 0%,#ece0cc 50%,#e8d4b4 100%)", width: "100%" }}>
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: 11, fontWeight: 900, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14 }}>What's Inside</div>
@@ -1707,7 +1707,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* PROOFOS INTRO — peach section */}
 
       {/* WHY I BUILT THIS — BLACK */}
-      <div style={{ background: "#000", padding: isMobile?"56px 18px":"90px 24px", position:"relative", overflow:"hidden" }}>
+      <div style={{ background: "linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)", padding: isMobile?"56px 18px":"90px 24px", position:"relative", overflow:"hidden" }}>
         <div style={{ position:"absolute", top:"30%", left:"50%", transform:"translateX(-50%)", width:500, height:500, background:"radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none", borderRadius:"50%" }}/>
         <div style={{ maxWidth:760, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ textAlign:"center", marginBottom:40 }}>
@@ -1738,7 +1738,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* DNA ACTIVATION SECTION */}
-      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "#000000", position: "relative", overflow: "hidden" }}>
+      <div style={{ padding: isMobile ? "60px 18px" : "90px 24px", background: "linear-gradient(160deg,#000000 0%,#0a0808 50%,#120a04 100%)", position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width: 600, height: 600, background: "radial-gradient(ellipse,rgba(183,110,121,0.06) 0%,transparent 70%)", pointerEvents:"none" }}/>
         <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -1752,7 +1752,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               We don't stop at the surface.<br/>
               <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>We go all the way down.</span>
             </h2>
-            <p style={{ fontSize: isMobile ? 15 : 17, color: "#c8bcb0", lineHeight: 1.8, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
+            <p style={{ fontSize: isMobile ? 15 : 17, color: "#3a2010", lineHeight: 1.8, maxWidth: 580, margin: "0 auto", fontWeight: 400 }}>
               Most audios work on thought patterns. Ours go deeper — to the cellular level. To the part of you that holds the pattern before the thought even forms.
             </p>
           </div>
