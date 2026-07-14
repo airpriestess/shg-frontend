@@ -755,14 +755,14 @@ function FAQSection() {
     <div style={{ background:"linear-gradient(160deg,#fce4c0 0%,#f0d4a8 50%,#ece8d8 100%)", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
-        <div style={{ fontSize:11,color:"#B76E79",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#f2ece4",lineHeight:1.2 }}>FAQs</h2>
+        <div style={{ fontSize:11,color:"#b46830",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#1a0a04",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
           <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(183,110,121,0.35)":"rgba(183,110,121,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(183,110,121,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:400,color:"#f2ece4",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:15,fontWeight:400,color:"#1a0a04",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
             {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#2a1a0a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
@@ -1020,16 +1020,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           {/* IDENTITY CAROUSEL — right under player */}
           <div style={{ width:"100%", marginTop:8 }}>
             <IdentityCarousel cats={[
-              { label:"Lovemaxxing",      tagline:"He thinks about me. He can't help it." },
-              { label:"Moneymaxxing",     tagline:"Money finds me first. Always." },
-              { label:"Beautymaxxing",    tagline:"Gorgeous is my default." },
-              { label:"Selfmaxxing",      tagline:"I am the main character. Obviously." },
               { label:"DNAmaxxing",       tagline:"My bloodline remembers." },
-              { label:"Sleepmaxxing",     tagline:"Highest timeline. Activated." },
-              { label:"Luckygirlmaxxing", tagline:"Lucky girl? That's just who I am." },
-              { label:"Sovereignmaxxing", tagline:"I don't chase. I attract. Always." },
-              { label:"Erosmaxxing",      tagline:"Desire flows to me naturally." },
-              { label:"Lifemaxxing",      tagline:"This is the version of me I kept for myself." },
+              { label:"Lifemaxxing",      tagline:"Highest timeline. Activated." },
+              { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
+              { label:"Luckygirlmaxxing", tagline:"Lucky girl? That\'s just who I am." },
             ]} />
           </div>
 
@@ -1040,21 +1034,30 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <span style={{ fontFamily: "'Jost',sans-serif", fontStyle: "normal", fontSize: "clamp(14px,2.2vw,18px)", color: "rgba(253,240,232,0.55)", fontWeight: 400, letterSpacing: "0.25em", textTransform: "uppercase", display: "block", marginTop: 12 }}>+ ProofOS</span>
           </h1>
 
-          {/* SPOTIFY TAGLINE */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#e8a860", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>
-            Spotify for your subconscious mind
+          {/* COSMIC ICON + TAGLINE */}
+          <div style={{ marginBottom: 16, textAlign: "center" }}>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style={{ margin: "0 auto 12px", display: "block" }}>
+              <circle cx="24" cy="24" r="3" fill="#e8a860"/>
+              <circle cx="24" cy="24" r="7" stroke="#e8a860" strokeWidth="0.8" strokeDasharray="2 3" fill="none" opacity="0.5"/>
+              <circle cx="24" cy="24" r="13" stroke="#e8b870" strokeWidth="0.6" strokeDasharray="1 4" fill="none" opacity="0.3"/>
+              <circle cx="24" cy="24" r="20" stroke="#fce4c0" strokeWidth="0.4" strokeDasharray="1 5" fill="none" opacity="0.15"/>
+              {[0,45,90,135,180,225,270,315].map((deg,i) => {
+                const rad = deg * Math.PI / 180;
+                const x1 = 24 + 15 * Math.cos(rad);
+                const y1 = 24 + 15 * Math.sin(rad);
+                const x2 = 24 + 22 * Math.cos(rad);
+                const y2 = 24 + 22 * Math.sin(rad);
+                return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#e8a860" strokeWidth="0.8" opacity="0.4"/>;
+              })}
+            </svg>
+            <div style={{ fontSize: "clamp(13px,1.5vw,15px)", color: "#e8a860", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: 400, marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>
+              Spotify for your subconscious mind
+            </div>
           </div>
 
           {/* TAGLINE */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", fontWeight: 400, marginBottom: 8, letterSpacing: "0.01em", textAlign: "center", maxWidth: isMobile ? 340 : "none", margin: "0 auto 8px" }}>
-            Brainwash yourself every day to manifest your desires. Document every piece of evidence in ProofOS.
-            <br/>
-            Keep a record. <span style={{ fontWeight: 800 }}>FACT</span>.
-          </div>
-
-          {/* WAKE UP KNOWING */}
-          <div style={{ fontSize: "clamp(13px,1.5vw,16px)", color: "#ffffff", marginBottom: 28, lineHeight: 1.6, whiteSpace: isMobile ? "normal" : "nowrap" }}>
-            Wake up knowing. Not hoping. <span style={{ color: "#f5e0a0", fontWeight: 600 }}>Knowing.</span>
+          <div style={{ fontSize: "clamp(14px,1.6vw,17px)", color: "#c8bcb0", fontWeight: 400, marginBottom: 28, lineHeight: 1.75, textAlign: "center", maxWidth: isMobile ? 340 : 480, margin: "0 auto 28px" }}>
+            Hypnosis and subliminals — layered beneath melodic house music — to reprogram your subconscious mind and manifest your desires. Press play while you sleep. Repeat. Watch reality shift.
           </div>
           {/* SPOTIFY-STYLE PLAYER */}
           <div style={{ background: "#0a0a0a", border: "1px solid rgba(232,168,96,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto 36px", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
@@ -1655,8 +1658,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* MAXXING CAROUSEL */}
-      <MaxxingCarousel cats={cats} />
+      {/* BOTTOM CAROUSEL — same ombre style as top, different affirmations */}
+      <IdentityCarousel cats={[
+        { label:"Moneymaxxing",     tagline:"Money finds me first. Obviously." },
+        { label:"Lovemaxxing",      tagline:"He's obsessed. Of course he is." },
+        { label:"Beautymaxxing",    tagline:"Gorgeous is my default. Always." },
+        { label:"Selfmaxxing",      tagline:"I am the upgraded version. Now." },
+        { label:"Sovereignmaxxing", tagline:"I receive. Constantly. Effortlessly." },
+        { label:"Wellnessmaxxing",  tagline:"My body reflects my beliefs." },
+      ]} />
 
 
       {/* THE PROBLEM SECTION — full-bleed peach */}
