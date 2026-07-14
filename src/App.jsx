@@ -600,14 +600,12 @@ function MaxxingCarousel({ cats }) {
   const next2 = cats[(idx+2)%cats.length];
   const next3 = cats[(idx+3)%cats.length];
 
-  // One locked ombre, everywhere — no per-category hue variation
   const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
   const bgs = [OMBRE, OMBRE, OMBRE, OMBRE, OMBRE, OMBRE];
   const bg = bgs[idx % bgs.length];
 
   return (
     <div style={{ overflow:"hidden" }}>
-      {/* MAIN HERO CARD — full peach/rose background, black text */}
       <div style={{
         transition:"opacity 0.25s, transform 0.25s",
         opacity: flash ? 0 : 1,
@@ -618,21 +616,16 @@ function MaxxingCarousel({ cats }) {
         position:"relative",
         overflow:"hidden",
       }}>
-        {/* Soft radial overlay for depth */}
         <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.08),transparent 70%)",pointerEvents:"none" }}/>
-        {/* Category eyebrow */}
         <div style={{
           fontSize:10, fontWeight:400, letterSpacing:"0.35em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"rgba(0,0,0,0.5)"
         }}>{current.label} ✦</div>
-        {/* BIG tagline — black text, Cormorant */}
         <div className="wm" style={{
           fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05, color:"#000",
           fontWeight:400, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
-
-      {/* PREVIEW STRIP — 3 upcoming, dark bg, peach text */}
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
         {[next1,next2,next3].map((cat,i) => (
           <div key={i}
@@ -645,13 +638,81 @@ function MaxxingCarousel({ cats }) {
           </div>
         ))}
       </div>
-
-      {/* DOTS */}
       <div style={{ display:"flex", justifyContent:"center", gap:7, padding:"16px 0", background:"#000" }}>
         {cats.map((_,i) => (
           <div key={i}
             onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
             style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#d4a090":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── IDENTITY CAROUSEL — six accent ombres, rotates through brand colours ──── */
+function IdentityCarousel({ cats }) {
+  const [idx, setIdx] = useState(0);
+  const [flash, setFlash] = useState(false);
+  useEffect(() => {
+    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 250); }, 3200);
+    return () => clearInterval(timer);
+  }, [cats.length]);
+  const current = cats[idx];
+  const next1 = cats[(idx+1)%cats.length];
+  const next2 = cats[(idx+2)%cats.length];
+  const next3 = cats[(idx+3)%cats.length];
+
+  // Six rotating ombres — one per accent colour from brand system
+  const OMBRES = [
+    "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)",  // Lilac
+    "linear-gradient(135deg,#fce4c0 0%,#e8b870 40%,#c9963a 100%)",  // Amber
+    "linear-gradient(135deg,#c8d4e8 0%,#8a9ec8 40%,#6b7db3 100%)",  // Midnight
+    "linear-gradient(135deg,#d0e8d4 0%,#a0c8a8 40%,#7a9e7e 100%)",  // Sage
+    "linear-gradient(135deg,#f0d8cc 0%,#d8a898 40%,#c4856a 100%)",  // Terracotta
+    "linear-gradient(135deg,#f0d0e0 0%,#d8a0b8 40%,#d4789a 100%)",  // Petal Pink
+  ];
+  const bg = OMBRES[idx % OMBRES.length];
+  const textColor = idx === 1 ? "#000" : "#000"; // all dark text on light ombres
+
+  return (
+    <div style={{ overflow:"hidden" }}>
+      <div style={{
+        transition:"opacity 0.25s, transform 0.25s",
+        opacity: flash ? 0 : 1,
+        transform: flash ? "scale(0.98)" : "scale(1)",
+        background: bg,
+        padding:"clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
+        textAlign:"center",
+        position:"relative",
+        overflow:"hidden",
+      }}>
+        <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.15),transparent 70%)",pointerEvents:"none" }}/>
+        <div style={{
+          fontSize:10, fontWeight:400, letterSpacing:"0.35em", textTransform:"uppercase",
+          marginBottom:20, fontFamily:"'Jost',sans-serif", color:"rgba(0,0,0,0.45)"
+        }}>{current.label} ✦</div>
+        <div className="wm" style={{
+          fontSize:"clamp(28px,5.5vw,68px)", lineHeight:1.08, color:"#000",
+          fontWeight:400, letterSpacing:"-0.01em"
+        }}>{current.tagline}</div>
+      </div>
+      <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
+        {[next1,next2,next3].map((cat,i) => (
+          <div key={i}
+            onClick={() => { setFlash(true); setTimeout(()=>{setIdx((idx+i+1)%cats.length);setFlash(false);},200); }}
+            style={{ flex:1, padding:"16px 18px", cursor:"pointer", borderRight:i<2?"1px solid #1c1828":"none", transition:"background 0.2s" }}
+            onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
+            onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+            <div style={{ fontSize:9, color:"#9b87c4", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
+            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif" }}>{cat.tagline}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display:"flex", justifyContent:"center", gap:7, padding:"16px 0", background:"#000" }}>
+        {cats.map((_,i) => (
+          <div key={i}
+            onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
+            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#9b87c4":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
         ))}
       </div>
     </div>
@@ -1102,6 +1163,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         </div>
       </div>
+
+      {/* IDENTITY CAROUSEL — early, after preview, before purpose */}
+      <IdentityCarousel cats={[
+        { label:"Moneymaxxing",     tagline:"Money finds me. I don't chase it." },
+        { label:"Lovemaxxing",      tagline:"He thinks about me before he falls asleep." },
+        { label:"Beautymaxxing",    tagline:"My face is the first thing they notice." },
+        { label:"Selfmaxxing",      tagline:"I am the main character. Obviously." },
+        { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
+        { label:"DNAmaxxing",       tagline:"My bloodline remembers who I really am." },
+      ]} />
 
       {/* PURPOSE — what this is for, said first */}
       <div style={{ padding: isMobile?"48px 18px 24px":"64px 24px 32px", maxWidth: 780, margin: "0 auto", textAlign:"center" }}>
