@@ -6,8 +6,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode><AuthProvider><App /></AuthProvider></React.StrictMode>
 )
 
+// Unregister any existing service workers to prevent PWA app install behaviour
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    regs.forEach(reg => reg.unregister());
   });
 }
