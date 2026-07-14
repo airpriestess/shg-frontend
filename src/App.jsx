@@ -394,7 +394,7 @@ function PricingSection({ onJoin }) {
                   </div>
                 ))}
               </div>
-              <button onClick={() => goStripe(c.id)} className="cta-shake" style={{ width: "100%", padding: "13px", backgroundImage: c.ctaBg, border: "none", borderRadius: 10, color: c.ctaColor, fontSize: 14, fontWeight: 400, cursor: "pointer", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
+              <button onClick={() => goStripe(c.id)} className="cta-shake" style={{ width: "100%", padding: "13px", backgroundImage: c.ctaBg, border: "none", borderRadius: 10, color: c.ctaColor, fontSize: 14, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
                 {c.cta}<ArrowIcon size={13} />
               </button>
             </div>
@@ -922,10 +922,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
-          <span style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: isMobile ? 14 : 16, fontWeight: 400, color: "#000", letterSpacing: isMobile ? "0.02em" : "0.04em", whiteSpace: "nowrap" }}>
+          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 15, fontWeight: 400, color: "#000", letterSpacing: isMobile ? "0.04em" : "0.08em", whiteSpace: "nowrap" }}>
             {isMobile ? "✦ Coming Soon · Self Hypnosis Goddess" : "✦  COMING SOON  ·  Self Hypnosis Goddess launches soon  ·  Join the waitlist"}
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#e8b870", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", letterSpacing: "0.04em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#e8b870", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join Waitlist ✦
           </button>
         </div>
@@ -957,7 +957,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           {/* Desktop CTAs */}
           {!isMobile && (<>
             <button onClick={onSignIn||onDemo} style={{ padding:"10px 18px",background:"none",border:"1px solid #e8a86055",borderRadius:22,color:"#e8a860",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Sign in</button>
-            <button onClick={onJoin} style={{ padding:"11px 24px",background:"linear-gradient(135deg,#fce4c0,#e8a860)",border:"none",borderRadius:22,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>Join ✦</button>
+            <button onClick={onJoin} style={{ padding:"11px 24px",background:"linear-gradient(135deg,#fce4c0,#e8a860)",border:"none",borderRadius:22,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em" }}>Join ✦</button>
           </>)}
           {/* Mobile hamburger — white bars, animates to X */}
           {isMobile && (
@@ -1149,7 +1149,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
                     {/* HERO CTA BUTTONS */}
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 16, flexDirection: isMobile ? "column" : "row", alignItems: "stretch", maxWidth: isMobile ? 340 : "none", margin: isMobile ? "0 auto 16px" : "0 0 16px" }}>
-            <button onClick={onJoin} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#fce4c0,#e8a860)", border: "none", borderRadius: 14, color: "#000", fontSize: 17, fontWeight: 400, cursor: "pointer", letterSpacing: "0.06em", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", width: isMobile ? "100%" : "auto" }}>
+            <button onClick={onJoin} className="cta-pulse cta-shake" style={{ padding: "16px 40px", background: "linear-gradient(135deg,#fce4c0,#e8a860)", border: "none", borderRadius: 14, color: "#000", fontSize: 15, fontWeight: 400, cursor: "pointer", letterSpacing: "0.12em", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", width: isMobile ? "100%" : "auto" }}>
               START LISTENING ✦
             </button>
             <button onClick={() => { const el = document.getElementById("pricing"); el ? el.scrollIntoView({behavior:"smooth"}) : window.open("https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02","_blank"); }} style={{ padding: "16px 32px", width: isMobile ? "100%" : "auto", background: "transparent", border: "1.5px solid #e8a86066", borderRadius: 14, color: "#e8a860", fontSize: 16, fontWeight: 300, cursor: "pointer", letterSpacing: "0.1em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
@@ -1303,7 +1303,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 11, color: "#b46830", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 14 }}>How the tracking actually works</div>
-              <div style={{ fontSize: isMobile?17:20, color: "#1a0a04", fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", marginBottom: 16, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
+              <div style={{ fontSize: isMobile?17:20, color: "#1a0a04", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", marginBottom: 16, lineHeight: 1.3 }}>Every desire gets its own thread. Every thread links to a track.</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[
                   { n: "01", t: "Say it, log it.", d: "\"£5,000 arrives unexpectedly.\" Log it in ProofOS. Pick the track you're pairing it with — Money Finds Me First, say." },
@@ -1574,7 +1574,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: isMobile ? 16 : 19, fontWeight: 600, color: "#000000", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", fontSize: isMobile ? 16 : 19, fontWeight: 600, color: "#000000", marginBottom: 6 }}>{cat.name}</div>
                 <div style={{ fontSize: isMobile ? 11 : 12, color: "#7a6a60", lineHeight: 1.4 }}>{cat.pain}</div>
               </div>
             ))}
@@ -2025,7 +2025,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: 17, color: "#d4c0a8", marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
             In that state, reality shows you the proof of what you already know.
           </p>
-          <button onClick={onJoin} className="cta-shake" style={{ padding: "18px 52px", background: "linear-gradient(135deg,#fce4c0,#e8a860)", boxShadow: "0 0 40px rgba(232,168,96,0.4)", border: "none", borderRadius: 14, color: "#000", fontSize: 19, fontWeight: 400, cursor: "pointer", minHeight: 56, fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", letterSpacing: "0.04em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10 }}>Start your shift<ArrowIcon size={16}/></button>
+          <button onClick={onJoin} className="cta-shake" style={{ padding: "18px 52px", background: "linear-gradient(135deg,#fce4c0,#e8a860)", boxShadow: "0 0 40px rgba(232,168,96,0.4)", border: "none", borderRadius: 14, color: "#000", fontSize: 19, fontWeight: 400, cursor: "pointer", minHeight: 56, fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10 }}>Start your shift<ArrowIcon size={16}/></button>
           <div style={{ marginTop: 12, fontSize: 14, color: "#8a7868" }}>Cancel anytime · No download · Any device</div>
         </div>
       </div>
