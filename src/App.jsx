@@ -1049,6 +1049,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
+      {/* SPOTIFY TAGLINE */}
+      <div style={{ background:"#000", padding: isMobile?"28px 20px 8px":"36px 32px 8px", textAlign:"center" }}>
+        <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>
+          Spotify for your subconscious mind
+        </div>
+        <h2 className="wm" style={{ fontSize:"clamp(32px,6vw,72px)", color:"#f2ece4", lineHeight:1.05, marginBottom:16 }}>
+          Audio Library<br/>
+          <span style={{ fontSize:"clamp(14px,2vw,20px)", fontStyle:"normal", fontFamily:"'Jost',sans-serif", letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", display:"block", marginTop:8 }}>+ ProofOS ✦</span>
+        </h2>
+      </div>
+
       {/* APP PREVIEW */}
       <AppPreviewSection isMobile={isMobile}/>
 
@@ -1270,7 +1281,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?15:17, color: "rgba(0,0,0,0.6)", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             Join the waitlist and be the first to know when the audio library opens.
           </p>
-          <button onClick={onJoin} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Join Waitlist ✦
           </button>
           <div style={{ marginTop: 14, fontSize: 12, color: "rgba(0,0,0,0.4)", fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
