@@ -1088,15 +1088,23 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
-      {/* SPOTIFY TAGLINE */}
-      <div style={{ background:"#000", padding: isMobile?"28px 20px 8px":"36px 32px 8px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>
-          Spotify for your subconscious mind
+      {/* SPOTIFY TAGLINE + FULL COPY */}
+      <div style={{ background:"#000", padding: isMobile?"36px 20px 0":"52px 32px 0", textAlign:"center" }}>
+        <div style={{ maxWidth:680, margin:"0 auto" }}>
+          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:16 }}>
+            Spotify for your subconscious mind
+          </div>
+          <h2 className="wm" style={{ fontSize:"clamp(36px,7vw,80px)", color:"#f2ece4", lineHeight:1.0, marginBottom:12 }}>
+            Audio Library
+          </h2>
+          <div style={{ fontSize: isMobile?13:15, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", marginBottom:28 }}>+ ProofOS ✦</div>
+          <p style={{ fontSize: isMobile?16:18, color:"#c8bcb0", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+            Hypnosis and subliminals — layered beneath melodic house music, EMDR and binaural beats — to reprogram your subconscious mind and manifest your desires. Press play while you sleep. Repeat. Watch reality shift.
+          </p>
+          <p style={{ fontSize: isMobile?15:17, color:"#9a8878", lineHeight:1.8, marginBottom:32, fontFamily:"'Jost',sans-serif" }}>
+            Plus <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — the place where you log and track every single manifestation you receive. Forever.
+          </p>
         </div>
-        <h2 className="wm" style={{ fontSize:"clamp(32px,6vw,72px)", color:"#f2ece4", lineHeight:1.05, marginBottom:16 }}>
-          Audio Library<br/>
-          <span style={{ fontSize:"clamp(14px,2vw,20px)", fontStyle:"normal", fontFamily:"'Jost',sans-serif", letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", display:"block", marginTop:8 }}>+ ProofOS ✦</span>
-        </h2>
       </div>
 
       {/* APP PREVIEW */}
