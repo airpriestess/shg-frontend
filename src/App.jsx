@@ -1097,8 +1097,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* SEGMENT 3 — What's inside, cream */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?"clamp(26px,7vw,40px)":"clamp(40px,5vw,64px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:28 }}>
-            This is what's inside.
+          <div style={{ fontSize: isMobile?"clamp(52px,16vw,80px)":"clamp(80px,12vw,140px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.9, marginBottom:28 }}>
+            Preview.
           </div>
           <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             A growing library of hypnosis and subliminal audios — layered beneath melodic house music, EMDR and binaural beats — designed to shift your identity and manifest every single desire you have ever dreamed of.
