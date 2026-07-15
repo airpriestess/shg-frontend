@@ -1051,15 +1051,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
         <div style={{ flex:1, minWidth:0 }}>
-          <div style={{ fontSize:isMobile?13:15, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{TRACKS[trackIdx].title}</div>
-          <div style={{ fontSize:11, color:"#6a5040", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:2 }}>{TRACKS[trackIdx].cat} · {TRACKS[trackIdx].dur}</div>
+          <div style={{ fontSize:isMobile?13:15, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{PLAYLIST[trackIdx]?.title}</div>
+          <div style={{ fontSize:11, color:"#6a5040", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:2 }}>{PLAYLIST[trackIdx]?.freq}</div>
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:12, flexShrink:0 }}>
-          <button onClick={()=>setTrackIdx(i=>(i-1+TRACKS.length)%TRACKS.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", fontSize:20, padding:4, lineHeight:1 }}>‹</button>
+          <button onClick={()=>setTrackIdx(i=>(i-1+PLAYLIST.length)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", fontSize:20, padding:4, lineHeight:1 }}>‹</button>
           <button onClick={()=>setPlaying(p=>!p)} style={{ width:40, height:40, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="#000"><path d={playing?"M2 2H5V12H2V2ZM9 2H12V12H9V2Z":"M1 1L13 7L1 13V1Z"}/></svg>
           </button>
-          <button onClick={()=>setTrackIdx(i=>(i+1)%TRACKS.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", fontSize:20, padding:4, lineHeight:1 }}>›</button>
+          <button onClick={()=>setTrackIdx(i=>(i+1)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", fontSize:20, padding:4, lineHeight:1 }}>›</button>
         </div>
       </div>
 
