@@ -1012,7 +1012,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,52px)":"clamp(40px,6vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12 }}>Spotify for your subconscious mind</div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,52px)":"clamp(40px,6vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", lineHeight:1.0, marginBottom:12, textTransform:"uppercase" }}>SPOTIFY<br/>FOR YOUR<br/>SUBCONSCIOUS MIND</div>
           <div style={{ fontSize: isMobile?18:22, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", marginBottom:24 }}>Manifest your dream reality.</div>
         </div>
 
@@ -1096,15 +1096,18 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* SEGMENT 3 — What's inside, cream */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
-        <div style={{ maxWidth:660, margin:"0 auto" }}>
+        <div style={{ maxWidth:680, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?"clamp(26px,7vw,40px)":"clamp(40px,5vw,64px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:28 }}>
             This is what's inside.
           </div>
-          <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.8, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats. Press play while you sleep, on your hot girl walk, at the gym, or any time. Repeat. Watch your reality shift.
+          <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            A growing library of hypnosis and subliminal audios — layered beneath melodic house music, EMDR and binaural beats — designed to shift your identity and manifest every single desire you have ever dreamed of.
           </p>
-          <p style={{ fontSize: isMobile?16:18, color:"#7a5038", lineHeight:1.8, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Plus <span style={{ color:"#c9963a" }}>ProofOS</span> — log and track every manifestation you receive. Forever.
+          <p style={{ fontSize: isMobile?17:20, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Press play while you sleep, on your hot girl walk, at the gym, or any time. Repeat. Watch your reality shift.
+          </p>
+          <p style={{ fontSize: isMobile?16:18, color:"#6a4028", lineHeight:1.8, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Log and track every single manifestation you receive with <span style={{ color:"#c9963a" }}>ProofOS</span>. Keep a record. Forever.
           </p>
         </div>
       </div>
@@ -1114,12 +1117,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
 
-      {/* PURPOSE — one sentence */}
-      <div style={{ padding: isMobile?"32px 18px 8px":"48px 24px 8px", maxWidth: 720, margin: "0 auto", textAlign:"center" }}>
-        <p style={{ fontSize:"clamp(16px,2vw,20px)", color:"#c8bcb0", lineHeight:1.8 }}>
-          Hypnosis and subliminals — layered beneath melodic house music — to reprogram your subconscious mind. Press play while you sleep, rest, or move. Repeat. Watch reality shift.
-        </p>
-      </div>
+
 
       {/* HOW IT WORKS — 4 bullets */}
       <div style={{ padding: isMobile?"32px 18px":"48px 24px", background:"linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)" }}>
