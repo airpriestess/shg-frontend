@@ -1022,8 +1022,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 </div>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 500, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
-                <div style={{ fontSize: 13, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: isMobile ? 16 : 17, fontWeight: 400, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
+                <div style={{ fontSize: 13, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
                 <div style={{ fontSize: 12, color: "#b09888", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
               </div>
               {playing && (
@@ -1080,7 +1080,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
       {/* SEGMENT 1 — Manifest banner, gold ombre */}
       <div style={{ background:"linear-gradient(135deg,#fce4c0 0%,#e8b870 30%,#d4a090 60%,#c4789a 100%)", padding: isMobile?"32px 24px":"40px 48px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(36px,5vw,56px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.1 }}>
+        <div style={{ fontSize: isMobile?"clamp(22px,6vw,36px)":"clamp(36px,5vw,56px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.1 }}>
           Manifest your dream reality.
         </div>
       </div>
@@ -1088,7 +1088,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* SEGMENT 2 — Brand + Audio Library, black */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ fontSize: isMobile?12:13, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:16 }}>Self Hypnosis Goddess</div>
-        <div style={{ fontSize: isMobile?"clamp(52px,14vw,80px)":"clamp(72px,10vw,120px)", color:"#f2ece4", lineHeight:0.95, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", marginBottom:24 }}>
+        <div style={{ fontSize: isMobile?"clamp(40px,11vw,64px)":"clamp(72px,10vw,120px)", color:"#f2ece4", lineHeight:0.95, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", marginBottom:24 }}>
           Audio Library
         </div>
         <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
@@ -1097,7 +1097,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* SEGMENT 3 — What's inside, cream */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,5vw,64px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:28 }}>
+          <div style={{ fontSize: isMobile?"clamp(26px,7vw,40px)":"clamp(40px,5vw,64px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:28 }}>
             This is what's inside.
           </div>
           <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.8, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
