@@ -971,7 +971,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           {/* Main nav items — massive */}
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {[
-              ["Audio Library", ()=>{ window.scrollTo({top:0,behavior:"smooth"}); setMenuOpen(false); }],
+              ["Audio Library", ()=>{ document.getElementById("audio-library")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["Pricing",       ()=>{ onJoin?.(); setMenuOpen(false); }],
               ["ProofOS",       ()=>{ document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["Preview",       ()=>{ onDemo?.(); setMenuOpen(false); }],
@@ -1074,7 +1074,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
       {/* SPOTIFY TAGLINE + FULL COPY */}
-      <div style={{ background:"#000", padding: isMobile?"36px 20px 0":"52px 32px 0", textAlign:"center" }}>
+      <div id="audio-library" style={{ background:"#000", padding: isMobile?"36px 20px 0":"52px 32px 0", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:16 }}>
             Manifest your dream reality
