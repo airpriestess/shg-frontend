@@ -456,8 +456,8 @@ function AppPreviewSection({ isMobile }) {
       {/* Headline copy — rewritten */}
       <div style={{ textAlign:"center", maxWidth:560 }}>
         <div style={{ fontSize: isMobile?13:14, color:"#e8a860", letterSpacing:"0.25em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>This is what's inside</div>
-        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"normal", lineHeight:1.3, marginBottom:12 }}>
-          Your dashboard, ProofOS, and analytics — one login, everything in sync.
+        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", lineHeight:1.3, marginBottom:12 }}>
+          A growing library of hypnosis and subliminal audios — melodic house, EMDR and binaural beats — designed to shift your identity at the subconscious level.
         </h2>
         <p style={{ fontSize:isMobile?13:14, color:"#c8bcb0", lineHeight:1.8, fontFamily:"'Jost',sans-serif", marginBottom:8 }}>
           Plus <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — the place where you log and track every single manifestation you receive. Forever.
@@ -482,17 +482,17 @@ function AppPreviewSection({ isMobile }) {
       {/* Mockups */}
       <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:isMobile?12:28, flexWrap:isMobile?"wrap":"nowrap", width:"100%" }}>
 
-        {/* Desktop */}
-        {view==="dashboard" && (
+        {/* Desktop (hidden on mobile) */}
+        {!isMobile && view==="dashboard" && (
           <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
             <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
-            <DesktopMockup theme={theme} width={isMobile?336:480}/>
+            <DesktopMockup theme={theme}/>
           </div>
         )}
-        {view==="proof" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:isMobile?336:420 }}>
+        {!isMobile && view==="proof" && (
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:420 }}>
             <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
-            <div style={{ width:isMobile?336:420, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
+            <div style={{ width:420, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
               <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"20px 24px" }}>
                 <div style={{ fontSize:14, color:"#e8a860", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
                 <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
@@ -519,8 +519,8 @@ function AppPreviewSection({ isMobile }) {
             </div>
           </div>
         )}
-        {view==="analytics" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, width:isMobile?336:400 }}>
+        {!isMobile && view==="analytics" && (
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, width:400 }}>
             <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Your evidence, visualised</div>
             <div style={{ width:"100%", borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)" }}>
               <AnalyticsBoard theme={theme}/>
@@ -1015,7 +1015,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Beautymaxxing",     tagline:"Gorgeous is my default." },
               { label:"Lovemaxxing",       tagline:"He only has eyes for me." },
               { label:"Selfmaxxing",       tagline:"I am the main character. Obviously." },
-              { label:"Erosmaxxing",       tagline:"I activate my most sensual self." },
+              { label:"Erosmaxxing",       tagline:"I am a goddess in the bedroom." },
               { label:"Bodymaxxing",       tagline:"My body is snatched. Obviously." },
               { label:"Moneymaxxing",      tagline:"Billions are my birthright." },
               { label:"Luckygirlmaxxing",  tagline:"Everything always works out for me." },
@@ -1024,7 +1024,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Bodymaxxing",       tagline:"I am snatched, toned and radiant." },
               { label:"DNAmaxxing",        tagline:"My bloodline remembers." },
               { label:"Sleepmaxxing",      tagline:"I install a new identity every night." },
-              { label:"Businessmaxxing",   tagline:"Money finds me first." },
+              { label:"Businessmaxxing",   tagline:"My business is booked, banked and busy." },
               { label:"Singlemaxxing",     tagline:"I am whole. I am enough. I am it." },
               { label:"Facemaxxing",       tagline:"I am the most gorgeous woman in the multiverse." },
               { label:"Erosmaxxing",       tagline:"My energy is magnetic. People know it." },
@@ -1032,9 +1032,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Lifemaxxing",       tagline:"Highest timeline. Activated." },
               { label:"DNAmaxxing",        tagline:"My cells are rewriting themselves right now." },
               { label:"Beautymaxxing",     tagline:"People stare. I understand. Obviously." },
-              { label:"Businessmaxxing",   tagline:"My income is embarrassing. In the best way." },
-              { label:"Lovemaxxing",       tagline:"He finds his way back to me. Every time." },
-              { label:"Selfmaxxing",       tagline:"I became her. She was always me." },
+              { label:"Businessmaxxing",   tagline:"My income is embarrassing. In the best way. Obviously." },
+              { label:"Lovemaxxing",       tagline:"He dreams about me. He can't help it." },
+              { label:"Selfmaxxing",       tagline:"Luxury is the only standard I know." },
               { label:"Skinnymaxxing",     tagline:"I am snatched, toned and radiant." },
               { label:"Luckygirlmaxxing",  tagline:"I win things I didn't even enter for." },
               { label:"Singlemaxxing",     tagline:"I am so full I don't need anyone to complete me." },
@@ -1131,16 +1131,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?"clamp(52px,16vw,80px)":"clamp(80px,12vw,140px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.9, marginBottom:28 }}>
-            Preview.
+            Inside the Library.
           </div>
           <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             A growing library of hypnosis and subliminal audios — layered beneath melodic house music, EMDR and binaural beats — designed to shift your identity and manifest every single desire you have ever dreamed of.
           </p>
           <p style={{ fontSize: isMobile?17:20, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Press play while you sleep, on your hot girl walk, at the gym, or any time. Repeat. Watch your reality shift.
+            No one will ever know you're reprogramming your subconscious while you listen to music. Repeat, repeat, repeat.
           </p>
-          <p style={{ fontSize: isMobile?16:18, color:"#6a4028", lineHeight:1.8, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Log and track every single manifestation you receive with <span style={{ color:"#c9963a" }}>ProofOS</span>. Keep a record. Forever.
+          <p style={{ fontSize: isMobile?17:20, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Watch your reality bend right in front of your eyes.
+          </p>
+          <p style={{ fontSize: isMobile?16:18, color:"#6a4028", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Log and track every single manifestation you receive with <span style={{ color:"#c9963a" }}>ProofOS</span>. Keep a record. Build your evidence. See your patterns. Forever.
           </p>
         </div>
       </div>
@@ -1148,32 +1151,30 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* APP PREVIEW */}
       <AppPreviewSection isMobile={isMobile}/>
 
-      {/* HOW THIS WORKS — heading, hero-carousel colours only */}
-      <div style={{ background:"#000", padding: isMobile?"48px 24px 16px":"72px 24px 24px", textAlign:"center" }}>
-        <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:14,
-          background:"linear-gradient(90deg,#e8b870,#d4789a,#9b87c4,#5a7ab8,#4aa8a0)",
-          WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>
-          Five steps
-        </div>
-        <h2 style={{ fontSize:"clamp(28px,5vw,46px)", color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"normal", fontWeight:400, lineHeight:1.15 }}>
-          How this works
-        </h2>
-      </div>
+
+
 
 
       {/* HOW IT WORKS — 5 massive steps in ombre colours */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"28px 24px 0":"36px 48px 0", textAlign:"center" }}>
+        <div style={{ fontSize:11, color:"#b46830", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:12 }}>How it works</div>
+        <div style={{ fontSize: isMobile?"clamp(36px,10vw,56px)":"clamp(48px,6vw,72px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0, paddingBottom:28 }}>Five steps.</div>
+      </div>
       <div style={{ background:"#000" }}>
         {[
-          { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", bg:"linear-gradient(135deg,#fce4c0,#f5d4a0)" },
-          { n:"02", title:"Press play", body:"Listen before sleep, after waking, on your walk, at the gym. Daily.", bg:"linear-gradient(135deg,#f5d4a0,#e8b870)" },
-          { n:"03", title:"Let it install", body:"Your subconscious receives it while you rest. No effort. No forcing.", bg:"linear-gradient(135deg,#e8b870,#d4a090)" },
-          { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", bg:"linear-gradient(135deg,#d4a090,#c4789a)" },
-          { n:"05", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", bg:"linear-gradient(135deg,#c4789a,#B76E79)" },
-        ].map(({n,title,body,bg},i)=>(
+          { n:"01", icon:"✦", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", bg:"linear-gradient(135deg,#fce4c0,#f5d4a0)" },
+          { n:"02", icon:"▶", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", bg:"linear-gradient(135deg,#f5d4a0,#e8b870)" },
+          { n:"03", icon:"◎", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", bg:"linear-gradient(135deg,#e8b870,#d4a090)" },
+          { n:"04", icon:"📷", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", bg:"linear-gradient(135deg,#d4a090,#c4789a)" },
+          { n:"05", icon:"✓", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", bg:"linear-gradient(135deg,#c4789a,#B76E79)" },
+        ].map(({n,icon,title,body,bg},i)=>(
           <div key={i} style={{ background:bg, padding: isMobile?"32px 24px":"48px 64px", display:"flex", flexDirection: isMobile?"column":"row", alignItems: isMobile?"flex-start":"center", gap: isMobile?12:48 }}>
             <div style={{ fontSize: isMobile?"clamp(64px,20vw,100px)":"clamp(80px,10vw,120px)", color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", fontWeight:700, lineHeight:1, flexShrink:0, letterSpacing:"-0.04em" }}>{n}</div>
             <div>
-              <div style={{ fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(32px,4vw,52px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:10 }}>{title}</div>
+              <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:10 }}>
+                <span style={{ fontSize: isMobile?24:28, lineHeight:1 }}>{icon}</span>
+                <div style={{ fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(32px,4vw,52px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1 }}>{title}</div>
+              </div>
               <div style={{ fontSize: isMobile?16:19, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.7 }}>{body}</div>
             </div>
           </div>
@@ -1186,14 +1187,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 12, color: "#b46830", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, color: "#1a0a04", textAlign: "center" }}>
-              Hypnosis layered beneath<br/>melodic house music.
+            <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5.5vw,72px)", lineHeight: 1.05, marginBottom: 20, color: "#1a0a04", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
+              Most hypnosis is boring.<br/>This is different.
             </h2>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
-              Reshma's audios are produced with melodic house music as the sonic foundation. This is not background noise. The music is chosen and layered at specific frequencies to keep the body in a receptive, open state — so Reshma's voice can reach deeper.
+            <p style={{ fontSize: isMobile?17:20, color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+              Monotone voice. Generic ambient sound. You fall asleep in two minutes and nothing changes. Most hypnosis feels like a task, not a ritual.
             </p>
-            <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#3a2010", lineHeight: 1.85, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px" }}>
-              You will not find this anywhere else. Most hypnosis is voice-only or layered with generic ambient sound. This is a different experience — one that makes listening feel like a ritual, not a task.
+            <p style={{ fontSize: isMobile?17:20, color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+              This is the only one that makes listening feel like a daily ritual. Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats — produced to keep you coming back.
+            </p>
+            <p style={{ fontSize: isMobile?18:22, color: "#1a0a04", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+              Save yourself thousands in therapy sessions.
             </p>
 
             {/* THREE FORMATS */}
