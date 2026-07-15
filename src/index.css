@@ -102,7 +102,7 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
 .join-pulse{animation:joinPulse 2.8s ease-in-out infinite;}
 
 .fade{animation:fadeUp .45s ease both;}
-.wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
+.wm{font-family:'Jost',sans-serif;font-style:normal;font-weight:700;}
 .wm-shimmer{
   background:linear-gradient(135deg,#fce4c0 0%,#e8a860 35%,#b46830 70%,#4a1a08 100%);
   -webkit-background-clip:text;background-clip:text;
