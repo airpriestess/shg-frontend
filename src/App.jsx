@@ -1013,7 +1013,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center" }}>
           <div style={{ fontSize: isMobile?"clamp(28px,8vw,52px)":"clamp(40px,6vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12 }}>Spotify for your subconscious mind</div>
-          <div style={{ fontSize: isMobile?16:20, color:"rgba(232,168,96,0.7)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", marginBottom:24 }}>Manifest your dream reality.</div>
+          <div style={{ fontSize: isMobile?18:22, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", marginBottom:24 }}>Manifest your dream reality.</div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
