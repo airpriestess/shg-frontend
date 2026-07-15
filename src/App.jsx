@@ -1087,7 +1087,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* SEGMENT 2 — Brand + Audio Library, black */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?12:13, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:16 }}>Self Hypnosis Goddess</div>
+        <div style={{ fontSize: isMobile?12:13, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:12 }}>Self Hypnosis Goddess</div>
+        <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.35)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:20 }}>Spotify for your subconscious mind</div>
         <div style={{ fontSize: isMobile?"clamp(40px,11vw,64px)":"clamp(72px,10vw,120px)", color:"#f2ece4", lineHeight:0.95, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", marginBottom:24 }}>
           Audio Library
         </div>
