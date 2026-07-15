@@ -976,37 +976,21 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {menuOpen && isMobile && (
         <>
           <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.65)" }} onClick={()=>setMenuOpen(false)}/>
-          <div style={{ position:"fixed",top:98,left:12,right:12,zIndex:999,background:"#0a0612",border:"1px solid rgba(183,110,121,0.35)",borderRadius:18,padding:14,boxShadow:"0 24px 60px rgba(0,0,0,0.99)" }}>
-            <button onClick={()=>{onDemo?.();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"15px 16px",background:"linear-gradient(135deg,#d4a090,#B76E79)",border:"none",borderRadius:12,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"center",marginBottom:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
-              👁 Preview the Dashboard
+          <div style={{ position:"fixed",top:98,left:12,right:12,zIndex:999,background:"#0a0612",border:"1px solid rgba(232,168,96,0.2)",borderRadius:18,padding:14,boxShadow:"0 24px 60px rgba(0,0,0,0.99)" }}>
+            <button onClick={()=>{onDemo?.();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"15px 16px",background:"#1a1208",border:"1px solid rgba(232,168,96,0.25)",borderRadius:12,color:"#f2ece4",fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"center",marginBottom:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
+              Preview the Dashboard
             </button>
-            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ display:"flex",width:"100%",padding:"12px 16px",background:"rgba(183,110,121,0.1)",border:"1px solid rgba(183,110,121,0.25)",borderRadius:10,color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",marginBottom:8,alignItems:"center",justifyContent:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
-              Sign in<ArrowIcon size={12}/>
+            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ display:"flex",width:"100%",padding:"12px 16px",background:"none",border:"1px solid rgba(232,168,96,0.15)",borderRadius:10,color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",marginBottom:8,alignItems:"center",justifyContent:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
+              Sign in
             </button>
-            <div style={{ height:"0.5px",background:"rgba(183,110,121,0.18)",margin:"10px 0" }}/>
-            {/* Monthly / Annual toggle */}
-            <div style={{ display:"flex", background:"rgba(232,168,96,0.08)", border:"1px solid rgba(232,168,96,0.25)", borderRadius:10, padding:3, marginBottom:8 }}>
-              {["monthly","annual"].map(b=>(
-                <button key={b} onClick={()=>setMenuAnnual(b==="annual")} style={{ flex:1, padding:"7px 0", border:"none", borderRadius:8, cursor:"pointer", fontSize:12, fontWeight:400, fontFamily:"'Jost',sans-serif", background:(b==="annual")===menuAnnual?"#e8a860":"transparent", color:(b==="annual")===menuAnnual?"#000":"#e8a860" }}>
-                  {b==="monthly"?"Monthly":"Annual"}
-                </button>
-              ))}
-            </div>
+            <div style={{ height:"0.5px",background:"rgba(232,168,96,0.12)",margin:"10px 0" }}/>
             {[
-              [`${TIERS.audio.emoji} ${TIERS.audio.name} · ${menuAnnual?TIERS.audio.annual+"/yr":TIERS.audio.monthly+"/mo"}`,  ()=>{onJoin?.("audio");setMenuOpen(false);}],
-              [`${TIERS.goddess.emoji} ${TIERS.goddess.name} · ${menuAnnual?TIERS.goddess.annual+"/yr":TIERS.goddess.monthly+"/mo"}`, ()=>{onJoin?.("goddess");setMenuOpen(false);}],
-              [`${TIERS.lifetime.emoji} ${TIERS.lifetime.name} · ${TIERS.lifetime.monthly}`, ()=>{onJoin?.("lifetime");setMenuOpen(false);}],
-            ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"13px 14px",background:"none",border:"none",color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",borderRadius:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}</button>
-            ))}
-            <div style={{ height:"0.5px",background:"rgba(183,110,121,0.18)",margin:"10px 0" }}/>
-            {[
-              ["Pricing", ()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
+              ["Pricing", ()=>{onJoin?.();setMenuOpen(false);}, false],
               ["ProofOS ✦", ()=>{document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
               ["Shop", ()=>{setShopOpen(true);setMenuOpen(false);}, true],
               ["YouTube", ()=>{window.open("https://www.youtube.com/@Reshma.Oracle","_blank");setMenuOpen(false);}, true],
             ].map(([l,fn,ext],i)=>(
-              <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"11px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
+              <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"13px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:14,fontWeight:400,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
             ))}
           </div>
         </>
@@ -1027,25 +1011,45 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
 
-        {/* PLAYER — right under carousel */}
-        <div style={{ background:"#0a0806", borderTop:"1px solid rgba(232,168,96,0.15)", borderBottom:"1px solid rgba(232,168,96,0.15)", padding: isMobile?"18px":"20px 32px", display:"flex", alignItems:"center", gap:16 }}>
-          <div style={{ width:52, height:52, borderRadius:10, background:"#060402", border:"1px solid rgba(232,168,96,0.2)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:2, height:30 }}>
-              {[6,14,22,18,28,12,24,20,16,10].map((h,i)=>(
-                <div key={i} style={{ width:2.5, borderRadius:2, background:playing?`linear-gradient(to top,#e8a860,#fce4c0)`:"rgba(232,168,96,0.25)", height:playing?h:Math.max(3,h*0.35), transition:"height 0.3s" }}/>
+        {/* PLAYER CARD — full Spotify style */}
+        <div style={{ background:"#000", padding: isMobile?"16px 18px 24px":"20px 24px 32px" }}>
+          <div style={{ background:"#0a0a0a", border:"1px solid rgba(232,168,96,0.35)", borderRadius:18, padding: isMobile?"18px":"22px 26px", maxWidth:520, margin:"0 auto", boxShadow:"0 12px 60px rgba(0,0,0,0.5)" }}>
+            {/* Track header */}
+            <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:16 }}>
+              <div style={{ width:52, height:52, borderRadius:10, background:"linear-gradient(135deg,#1a1208,#2a1a08)", border:"1px solid rgba(232,168,96,0.2)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:2, height:28 }}>
+                  {[5,12,20,16,26,10,22,18,14,8].map((h,i)=>(
+                    <div key={i} style={{ width:2.5, borderRadius:2, background:playing?`linear-gradient(to top,#e8a860,#fce4c0)`:"rgba(232,168,96,0.3)", height:playing?h:Math.max(3,h*0.35), transition:"height 0.4s ease" }}/>
+                  ))}
+                </div>
+              </div>
+              <div style={{ flex:1, minWidth:0 }}>
+                <div style={{ fontSize:isMobile?15:17, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", marginBottom:3, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{PLAYLIST[trackIdx]?.title}</div>
+                <div style={{ fontSize:11, color:"#6a5040", letterSpacing:"0.1em", textTransform:"uppercase" }}>{PLAYLIST[trackIdx]?.freq}</div>
+              </div>
+            </div>
+            {/* Progress bar */}
+            <div style={{ height:3, background:"rgba(232,168,96,0.15)", borderRadius:2, marginBottom:16, overflow:"hidden" }}>
+              <div style={{ height:"100%", width:playing?"35%":"0%", background:"linear-gradient(90deg,#e8a860,#fce4c0)", borderRadius:2, transition:"width 0.5s" }}/>
+            </div>
+            {/* Controls */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:24 }}>
+              <button onClick={()=>setTrackIdx(i=>(i-1+PLAYLIST.length)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", padding:8 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+              </button>
+              <button onClick={()=>setPlaying(p=>!p)} style={{ width:52, height:52, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="#000"><path d={playing?"M4 4h3v10H4V4zm7 0h3v10h-3V4Z":"M3 2l14 7-14 7V2z"}/></svg>
+              </button>
+              <button onClick={()=>setTrackIdx(i=>(i+1)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", padding:8 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+              </button>
+            </div>
+            {/* Track list dots */}
+            <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:14 }}>
+              {PLAYLIST.map((_,i)=>(
+                <div key={i} onClick={()=>setTrackIdx(i)} style={{ width:i===trackIdx?18:6, height:6, borderRadius:3, background:i===trackIdx?"#e8a860":"rgba(232,168,96,0.2)", cursor:"pointer", transition:"all 0.3s" }}/>
               ))}
             </div>
-          </div>
-          <div style={{ flex:1, minWidth:0 }}>
-            <div style={{ fontSize:isMobile?14:16, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", marginBottom:3 }}>{PLAYLIST[trackIdx]?.title}</div>
-            <div style={{ fontSize:11, color:"#6a5040", letterSpacing:"0.1em", textTransform:"uppercase" }}>{PLAYLIST[trackIdx]?.freq}</div>
-          </div>
-          <div style={{ display:"flex", alignItems:"center", gap:14, flexShrink:0 }}>
-            <button onClick={()=>setTrackIdx(i=>(i-1+PLAYLIST.length)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#8a6848", fontSize:22, padding:4, lineHeight:1 }}>‹</button>
-            <button onClick={()=>setPlaying(p=>!p)} style={{ width:44, height:44, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="#000"><path d={playing?"M2 2H5V12H2V2ZM9 2H12V12H9V2Z":"M1 1L13 7L1 13V1Z"}/></svg>
-            </button>
-            <button onClick={()=>setTrackIdx(i=>(i+1)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#8a6848", fontSize:22, padding:4, lineHeight:1 }}>›</button>
           </div>
         </div>
       </div>
