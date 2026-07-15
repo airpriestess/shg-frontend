@@ -1111,6 +1111,57 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
+      {/* PURPOSE — subconscious creates your reality */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
+        <div style={{ maxWidth:680, margin:"0 auto" }}>
+          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#B76E79", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>The premise</div>
+          <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
+            Shift into the state of your dream reality.
+          </h2>
+          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+            You feel the gap between who you are and who you're becoming. I close it.
+          </p>
+          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
+            Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life. These tracks go there directly.
+          </p>
+        </div>
+      </div>
+
+      {/* HEMI-SYNC — how the audio actually works */}
+      <div style={{ background:"#000", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
+        <div style={{ maxWidth:760, margin:"0 auto" }}>
+          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
+          <h2 style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(34px,4vw,48px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.2, marginBottom:32 }}>
+            Hemi-sync. Two hemispheres, one frequency.
+          </h2>
+
+          {/* Before / after brainwave visual */}
+          <div style={{ display:"flex", flexDirection: isMobile?"column":"row", gap: isMobile?24:0, alignItems:"center", justifyContent:"center", marginBottom:36 }}>
+            <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#7a6858", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>Before — scattered beta</div>
+              <svg width="100%" height="60" viewBox="0 0 220 60" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
+                <path d="M0 30 Q5 8 10 30 T20 30 T30 30 T40 30 T50 30 T60 30 T70 30 T80 30 T90 30 T100 30 T110 30 T120 30 T130 30 T140 30 T150 30 T160 30 T170 30 T180 30 T190 30 T200 30 T210 30 T220 30"
+                  fill="none" stroke="#B76E79" strokeWidth="1.8" opacity="0.5"/>
+                <path d="M0 30 Q4 45 8 30 T16 30 T24 30 T32 30 T40 30 T48 30 T56 30 T64 30 T72 30 T80 30 T88 30 T96 30 T104 30 T112 30 T120 30 T128 30 T136 30 T144 30 T152 30 T160 30 T168 30 T176 30 T184 30 T192 30 T200 30 T208 30 T216 30"
+                  fill="none" stroke="#e8a860" strokeWidth="1.8" opacity="0.5"/>
+              </svg>
+            </div>
+            <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#B76E79)" }}/>
+            <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>After — synced theta</div>
+              <svg width="100%" height="60" viewBox="0 0 220 60" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
+                <path d="M0 30 Q27.5 8 55 30 T110 30 T165 30 T220 30" fill="none" stroke="#B76E79" strokeWidth="2.4"/>
+                <path d="M0 30 Q27.5 8 55 30 T110 30 T165 30 T220 30" fill="none" stroke="#e8a860" strokeWidth="2.4" opacity="0.7" transform="translate(0,0)"/>
+              </svg>
+            </div>
+          </div>
+
+          <p style={{ fontSize: isMobile?14:16, color:"#9a8878", lineHeight:1.85, maxWidth:600, margin:"0 auto" }}>
+            Left and right hemispheres normally fire at different rates — one scattered, one quiet. Binaural beats bring both into the same frequency at once, dropping your whole brain into theta together. That's the state where new beliefs stop being argued with and start being accepted as true.
+          </p>
+        </div>
+      </div>
+
       {/* LOGO — drop in here */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
         {/* logo goes here */}
