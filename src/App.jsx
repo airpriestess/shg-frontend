@@ -1001,10 +1001,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ height: `calc(100vh - ${isMobile?"98px":"102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile?480:560, display:"flex", flexDirection:"column", background:"#000" }}>
           <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center" }}>
             <IdentityCarousel cats={[
+              { label:"Lifemaxxing",      tagline:"Manifest your dream reality." },
               { label:"DNAmaxxing",       tagline:"My bloodline remembers." },
-              { label:"Lifemaxxing",      tagline:"Highest timeline. Activated." },
               { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
               { label:"Luckygirlmaxxing", tagline:"Lucky girl? That's just who I am." },
+              { label:"Moneymaxxing",     tagline:"Highest timeline. Activated." },
             ]} fullscreen={true} />
           </div>
         </div>
@@ -1078,13 +1079,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
-      {/* SEGMENT 1 — Manifest banner, gold ombre */}
-      <div style={{ background:"linear-gradient(135deg,#fce4c0 0%,#e8b870 30%,#d4a090 60%,#c4789a 100%)", padding: isMobile?"32px 24px":"40px 48px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?"clamp(22px,6vw,36px)":"clamp(36px,5vw,56px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.1 }}>
-          Manifest your dream reality.
-        </div>
-      </div>
-
       {/* SEGMENT 2 — Brand + Audio Library, black */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ fontSize: isMobile?12:13, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:12 }}>Self Hypnosis Goddess</div>
