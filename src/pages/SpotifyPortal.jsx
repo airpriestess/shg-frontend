@@ -817,7 +817,8 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
 function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, pushDismissed, onDismissPush }) {
-  const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Sleepmaxxing","Businessmaxxing"];
+
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Sleepmaxxing","Businessmaxxing"];
   return (
     <div style={{ paddingBottom:80 }}>
       {/* HEADER */}
