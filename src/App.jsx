@@ -456,8 +456,8 @@ function AppPreviewSection({ isMobile }) {
       {/* Headline copy — rewritten */}
       <div style={{ textAlign:"center", maxWidth:560 }}>
         <div style={{ fontSize: isMobile?13:14, color:"#e8a860", letterSpacing:"0.25em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>This is what's inside</div>
-        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", lineHeight:1.3, marginBottom:12 }}>
-          A growing library of hypnosis and subliminal audios — melodic house, EMDR and binaural beats — designed to shift your identity at the subconscious level.
+        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"normal", lineHeight:1.3, marginBottom:12 }}>
+          Your dashboard, ProofOS, and analytics — one login, everything in sync.
         </h2>
         <p style={{ fontSize:isMobile?13:14, color:"#c8bcb0", lineHeight:1.8, fontFamily:"'Jost',sans-serif", marginBottom:8 }}>
           Plus <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — the place where you log and track every single manifestation you receive. Forever.
@@ -482,17 +482,17 @@ function AppPreviewSection({ isMobile }) {
       {/* Mockups */}
       <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:isMobile?12:28, flexWrap:isMobile?"wrap":"nowrap", width:"100%" }}>
 
-        {/* Desktop (hidden on mobile) */}
-        {!isMobile && view==="dashboard" && (
+        {/* Desktop */}
+        {view==="dashboard" && (
           <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
             <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
-            <DesktopMockup theme={theme}/>
+            <DesktopMockup theme={theme} width={isMobile?336:480}/>
           </div>
         )}
-        {!isMobile && view==="proof" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:420 }}>
+        {view==="proof" && (
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:isMobile?336:420 }}>
             <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
-            <div style={{ width:420, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
+            <div style={{ width:isMobile?336:420, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
               <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"20px 24px" }}>
                 <div style={{ fontSize:14, color:"#e8a860", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
                 <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
@@ -519,8 +519,8 @@ function AppPreviewSection({ isMobile }) {
             </div>
           </div>
         )}
-        {!isMobile && view==="analytics" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, width:400 }}>
+        {view==="analytics" && (
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, width:isMobile?336:400 }}>
             <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Your evidence, visualised</div>
             <div style={{ width:"100%", borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)" }}>
               <AnalyticsBoard theme={theme}/>
@@ -1148,8 +1148,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* APP PREVIEW */}
       <AppPreviewSection isMobile={isMobile}/>
 
-
-
+      {/* HOW THIS WORKS — heading, hero-carousel colours only */}
+      <div style={{ background:"#000", padding: isMobile?"48px 24px 16px":"72px 24px 24px", textAlign:"center" }}>
+        <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:14,
+          background:"linear-gradient(90deg,#e8b870,#d4789a,#9b87c4,#5a7ab8,#4aa8a0)",
+          WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>
+          Five steps
+        </div>
+        <h2 style={{ fontSize:"clamp(28px,5vw,46px)", color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"normal", fontWeight:400, lineHeight:1.15 }}>
+          How this works
+        </h2>
+      </div>
 
 
       {/* HOW IT WORKS — 5 massive steps in ombre colours */}
