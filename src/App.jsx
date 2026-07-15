@@ -945,35 +945,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <span className="wm wm-shimmer" style={{ fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
-          {/* Desktop nav — centered, equal weight, none singled out */}
-          {!isMobile && (
-            <div style={{ display:"flex", gap:28, alignItems:"center", justifyContent:"center", flex:"0 0 auto" }}>
-              <button onClick={()=>document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Pricing</button>
-              <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>ProofOS</button>
-              <button onClick={onDemo} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Preview</button>
-              <button onClick={()=>setShopOpen(true)} style={{ padding:"8px 0",background:"none",border:"none",color:"#c8c0bc",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Shop</button>
-            </div>
-          )}
 
-        <div style={{ display: "flex", gap: 8, alignItems: "center", flex: isMobile ? "0 0 auto" : "1 1 0", justifyContent:"flex-end" }}>
-          {/* Desktop CTAs */}
-          {!isMobile && (<>
-            <button onClick={onSignIn||onDemo} style={{ padding:"10px 18px",background:"none",border:"1px solid #e8a86055",borderRadius:22,color:"#e8a860",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Sign in</button>
-            <button onClick={onJoin} style={{ padding:"11px 24px",background:"linear-gradient(135deg,#fce4c0,#e8a860)",border:"none",borderRadius:22,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em" }}>Join ✦</button>
-          </>)}
-          {/* Mobile hamburger — white bars, animates to X */}
-          {isMobile && (
-            <button onClick={()=>setMenuOpen(m=>!m)} style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent",touchAction:"manipulation" }} aria-label="Open menu">
-              <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s,opacity 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,5px)":"none" }}/>
-              <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"opacity 0.2s",opacity:menuOpen?0:1 }}/>
-              <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s",transform:menuOpen?"rotate(-45deg) translate(5px,-5px)":"none" }}/>
-            </button>
-          )}
+
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flex: "0 0 auto", justifyContent:"flex-end" }}>
+          {/* Hamburger — both mobile and desktop */}
+          <button onClick={()=>setMenuOpen(m=>!m)} style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent",touchAction:"manipulation" }} aria-label="Open menu">
+            <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s,opacity 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,5px)":"none" }}/>
+            <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"opacity 0.2s",opacity:menuOpen?0:1 }}/>
+            <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s",transform:menuOpen?"rotate(-45deg) translate(5px,-5px)":"none" }}/>
+          </button>
         </div>
       </nav>
 
       {/* MOBILE MENU — full screen takeover like Steven Bartlett */}
-      {menuOpen && isMobile && (
+      {menuOpen && (
         <div style={{ position:"fixed",inset:0,zIndex:999,background:"#e8a860",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar — logo + close */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
@@ -993,7 +978,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ["Shop",          ()=>{ setShopOpen(true); setMenuOpen(false); }],
               ["YouTube",       ()=>{ window.open("https://www.youtube.com/@Reshma.Oracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(0,0,0,0.12)",color:"#000",fontSize:"clamp(36px,10vw,52px)",fontWeight:700,letterSpacing:"-0.01em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(0,0,0,0.12)",color:"#000",fontSize:"clamp(24px,6vw,38px)",fontWeight:400,letterSpacing:"0.04em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
           </div>
 
