@@ -673,17 +673,25 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   const next2 = cats[(idx+2)%cats.length];
   const next3 = cats[(idx+3)%cats.length];
 
-  // Six rotating ombres — one per accent colour from brand system
-  const OMBRES = [
-    "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)",  // Lilac
-    "linear-gradient(135deg,#fce4c0 0%,#e8b870 40%,#c9963a 100%)",  // Amber
-    "linear-gradient(135deg,#c8d4e8 0%,#8a9ec8 40%,#6b7db3 100%)",  // Midnight
-    "linear-gradient(135deg,#d0e8d4 0%,#a0c8a8 40%,#7a9e7e 100%)",  // Sage
-    "linear-gradient(135deg,#f0d8cc 0%,#d8a898 40%,#c4856a 100%)",  // Terracotta
-    "linear-gradient(135deg,#f0d0e0 0%,#d8a0b8 40%,#d4789a 100%)",  // Petal Pink
-  ];
-  const bg = OMBRES[idx % OMBRES.length];
-  const textColor = idx === 1 ? "#000" : "#000"; // all dark text on light ombres
+  // Category-specific colours
+  const CAT_COLOURS = {
+    "Moneymaxxing":     "linear-gradient(135deg,#c8d8f0 0%,#8aaad8 40%,#5a7ab8 100%)",
+    "Luckygirlmaxxing": "linear-gradient(135deg,#c0e8e4 0%,#80ccc4 40%,#4aa8a0 100%)",
+    "Beautymaxxing":    "linear-gradient(135deg,#f8d0e8 0%,#e898c4 40%,#d4689a 100%)",
+    "Lovemaxxing":      "linear-gradient(135deg,#f0d0dc 0%,#e098b0 40%,#c4607a 100%)",
+    "DNAmaxxing":       "linear-gradient(135deg,#e0d0f0 0%,#b898d8 40%,#9068b8 100%)",
+    "Lifemaxxing":      "linear-gradient(135deg,#fce4c0 0%,#e8b870 40%,#c9963a 100%)",
+    "Bodymaxxing":      "linear-gradient(135deg,#d0e8d4 0%,#a0c8a8 40%,#6a9870 100%)",
+    "Selfmaxxing":      "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)",
+    "Erosmaxxing":      "linear-gradient(135deg,#f0c8d8 0%,#d88098 40%,#b85068 100%)",
+    "Businessmaxxing":  "linear-gradient(135deg,#c8d8f0 0%,#8aaad8 40%,#5a7ab8 100%)",
+    "Singlemaxxing":    "linear-gradient(135deg,#e4d0f0 0%,#c0a0d8 40%,#a070c0 100%)",
+    "Skinnymaxxing":    "linear-gradient(135deg,#d8f0d8 0%,#a8d8a8 40%,#78b878 100%)",
+    "Sleepmaxxing":     "linear-gradient(135deg,#c8d4e8 0%,#8a9ec8 40%,#6b7db3 100%)",
+    "Facemaxxing":      "linear-gradient(135deg,#f0dcd0 0%,#d8b098 40%,#c08870 100%)",
+  };
+  const FALLBACK = "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)";
+  const bg = CAT_COLOURS[current.label] || FALLBACK;
 
   return (
     <div style={{ overflow:"hidden", display:"flex", flexDirection:"column", ...(fullscreen?{flex:1}:{}) }}>
@@ -1007,7 +1015,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Beautymaxxing",     tagline:"Gorgeous is my default." },
               { label:"Lovemaxxing",       tagline:"He thinks about me. He's obsessed with me." },
               { label:"Selfmaxxing",       tagline:"I am the main character. Obviously." },
-              { label:"Erosmaxxing",       tagline:"I am so magnetic it's almost unfair." },
+              { label:"Erosmaxxing",       tagline:"I am irresistible. People feel it." },
               { label:"Bodymaxxing",       tagline:"My body is snatched. Obviously." },
               { label:"Moneymaxxing",      tagline:"Billions are my birthright." },
               { label:"Luckygirlmaxxing",  tagline:"Everything always works out for me." },
@@ -1027,7 +1035,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Businessmaxxing",   tagline:"My income is embarrassing. In the best way." },
               { label:"Lovemaxxing",       tagline:"He finds his way back. Every time." },
               { label:"Selfmaxxing",       tagline:"I became her. She was always me." },
-              { label:"Skinnymaxxing",     tagline:"My body is snatched. It's giving." },
+              { label:"Skinnymaxxing",     tagline:"My body is a temple. It shows." },
               { label:"Luckygirlmaxxing",  tagline:"I win things I didn't even enter for." },
               { label:"Singlemaxxing",     tagline:"I am so full I don't need anyone to complete me." },
               { label:"Lifemaxxing",       tagline:"I am living my dream reality right now." },
