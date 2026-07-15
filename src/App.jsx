@@ -1119,27 +1119,23 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
 
-      {/* HOW IT WORKS — 4 bullets */}
-      <div style={{ padding: isMobile?"32px 18px":"48px 24px", background:"linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)" }}>
-        <div style={{ maxWidth:640, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize:11, color:"#b46830", letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:20 }}>How it works</div>
-          <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
-            {[
-              ["01", "Set your intention", "Choose your desire. Be specific. Log it in ProofOS."],
-              ["02", "Press play", "Listen before sleep, after waking, or any time. Daily."],
-              ["03", "Log every sign", "A text. A refund. A compliment. Screenshot it. Log it."],
-              ["04", "Mark it manifested", "When it arrives — close the thread. Your proof is permanent."],
-            ].map(([n,t,b],i)=>(
-              <div key={i} style={{ display:"flex", gap:isMobile?14:20, padding:"16px 0", borderBottom:i<3?"1px solid rgba(180,104,48,0.12)":"none", alignItems:"flex-start", textAlign:"left" }}>
-                <span style={{ fontSize:11, color:"#b46830", fontFamily:"'Jost',sans-serif", minWidth:24, paddingTop:2, flexShrink:0 }}>{n}</span>
-                <div>
-                  <div style={{ fontSize:isMobile?15:17, color:"#1a0a04", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", marginBottom:3 }}>{t}</div>
-                  <div style={{ fontSize:13, color:"#5a3020", lineHeight:1.7 }}>{b}</div>
-                </div>
-              </div>
-            ))}
+      {/* HOW IT WORKS — 5 massive steps in ombre colours */}
+      <div style={{ background:"#000" }}>
+        {[
+          { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", bg:"linear-gradient(135deg,#fce4c0,#f5d4a0)" },
+          { n:"02", title:"Press play", body:"Listen before sleep, after waking, on your walk, at the gym. Daily.", bg:"linear-gradient(135deg,#f5d4a0,#e8b870)" },
+          { n:"03", title:"Let it install", body:"Your subconscious receives it while you rest. No effort. No forcing.", bg:"linear-gradient(135deg,#e8b870,#d4a090)" },
+          { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", bg:"linear-gradient(135deg,#d4a090,#c4789a)" },
+          { n:"05", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", bg:"linear-gradient(135deg,#c4789a,#B76E79)" },
+        ].map(({n,title,body,bg},i)=>(
+          <div key={i} style={{ background:bg, padding: isMobile?"32px 24px":"48px 64px", display:"flex", flexDirection: isMobile?"column":"row", alignItems: isMobile?"flex-start":"center", gap: isMobile?12:48 }}>
+            <div style={{ fontSize: isMobile?"clamp(64px,20vw,100px)":"clamp(80px,10vw,120px)", color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", fontWeight:700, lineHeight:1, flexShrink:0, letterSpacing:"-0.04em" }}>{n}</div>
+            <div>
+              <div style={{ fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(32px,4vw,52px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:10 }}>{title}</div>
+              <div style={{ fontSize: isMobile?16:19, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.7 }}>{body}</div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
 
       {/* MELODIC HOUSE USP — cream background, locked palette */}
