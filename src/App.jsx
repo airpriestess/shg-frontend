@@ -1038,7 +1038,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(30px,9vw,44px)":"clamp(56px,8.5vw,160px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:14, whiteSpace: isMobile?"normal":"nowrap", padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind</div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,5.2vw,84px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:14, whiteSpace: isMobile?"normal":"nowrap", padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind</div>
           <div style={{ fontSize: isMobile?13:15, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:24 }}>Manifest your dream reality</div>
         </div>
 
@@ -1121,7 +1121,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(52px,6.5vw,84px)", color:"#f2ece4", lineHeight:1.0, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing:"-0.01em", marginBottom:16 }}>
           Self Hypnosis Goddess
         </div>
-        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.25em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
+        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
         <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
       </div>
 
