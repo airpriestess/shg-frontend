@@ -185,15 +185,15 @@ const STRIPE = {
   audio:          "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00",
   goddess:        "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01",
   lifetime:       "https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02",
-  audio_annual:   "https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00",
-  goddess_annual: "https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01",
+  audio_annual:   "https://buy.stripe.com/eVq4gz5Fn4rY8Jz8P67AI03",
+  goddess_annual: "https://buy.stripe.com/5kQ3cvgk17Ea1h7aXe7AI04",
 };
 
 // ═══ SINGLE SOURCE OF TRUTH — every price, feature list, CTA everywhere reads from here ═══
 const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
-    monthly: "£19", annual: "£228", annualNote: "£19/mo, billed annually",
+    monthly: "£19", annual: "£182", annualNote: "£15.17/mo, billed annually",
     features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
     cta: (annual)=> annual ? "Join Audio — £228/year" : "Join Audio — £19/month",
   },
@@ -242,7 +242,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
-                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:400}}>BEST VALUE</span></>}
+                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:700}}>SAVE 20%</span></>}
               </button>
             ))}
           </div>
