@@ -925,10 +925,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 15, fontWeight: 400, color: "#000", letterSpacing: isMobile ? "0.04em" : "0.08em", whiteSpace: "nowrap" }}>
-            {isMobile ? "✦ Coming Soon" : "✦  COMING SOON"}
+            "COMING SOON"
           </span>
           <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#e8b870", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
-            Join Waitlist ✦
+            Join Waitlist
           </button>
         </div>
       )}
@@ -1022,7 +1022,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 </div>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 800, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
+                <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 500, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
                 <div style={{ fontSize: 13, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 600, letterSpacing: "0.06em" }}>Reshma Oracle</div>
                 <div style={{ fontSize: 12, color: "#b09888", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
               </div>
@@ -1053,7 +1053,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <button onClick={prevTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8a860"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#e8a860"/></svg>
               </button>
-              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#e8b870,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,168,96,0.45)", flexShrink:0, lineHeight:0 }}>
+              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#e8b870,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,168,96,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
                 {playing
                   ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
                   : <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
@@ -1078,21 +1078,21 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
-      {/* SPOTIFY TAGLINE + FULL COPY */}
-      <div id="audio-library" style={{ background:"#000", padding: isMobile?"36px 20px 0":"52px 32px 0", textAlign:"center" }}>
-        <div style={{ maxWidth:680, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:16 }}>
-            Manifest your dream reality
+      {/* AUDIO LIBRARY HEADING */}
+      <div id="audio-library" style={{ background:"#000", padding: isMobile?"48px 24px 0":"64px 40px 0", textAlign:"center" }}>
+        <div style={{ maxWidth:720, margin:"0 auto" }}>
+          <div style={{ fontSize: isMobile?12:13, letterSpacing:"0.25em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:20 }}>
+            Self Hypnosis Goddess
           </div>
-          <h2 className="wm" style={{ fontSize:"clamp(36px,7vw,80px)", color:"#f2ece4", lineHeight:1.0, marginBottom:12 }}>
+          <h2 style={{ fontSize: isMobile?"clamp(44px,12vw,64px)":"clamp(56px,8vw,96px)", color:"#f2ece4", lineHeight:1.0, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
             Audio Library
           </h2>
-          <div style={{ fontSize: isMobile?13:15, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", marginBottom:28 }}>+ ProofOS ✦</div>
-          <p style={{ fontSize: isMobile?16:18, color:"#c8bcb0", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.15em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:32 }}>Manifest your dream reality</div>
+          <p style={{ fontSize: isMobile?17:20, color:"#c8bcb0", lineHeight:1.75, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats. Press play while you sleep. Repeat. Watch your reality shift.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#9a8878", lineHeight:1.8, marginBottom:32, fontFamily:"'Jost',sans-serif" }}>
-            Plus <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — log and track every manifestation you receive. Forever.
+          <p style={{ fontSize: isMobile?16:18, color:"#7a6858", lineHeight:1.75, marginBottom:40, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Plus <span style={{ color:"#e8a860" }}>ProofOS</span> — log and track every manifestation you receive. Forever.
           </p>
         </div>
       </div>
@@ -1319,7 +1319,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Join the waitlist and be the first to know when the audio library opens.
           </p>
           <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            Join Waitlist ✦
+            Join Waitlist
           </button>
           <div style={{ marginTop: 14, fontSize: 12, color: "rgba(0,0,0,0.4)", fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
         </div>
