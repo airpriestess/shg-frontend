@@ -483,31 +483,46 @@ function AppPreviewSection({ isMobile }) {
           </div>
         )}
         {!isMobile && view==="proof" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:420 }}>
+          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:440 }}>
             <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
-            <div style={{ width:420, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
+            <div style={{ width:440, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
               <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"20px 24px" }}>
-                <div style={{ fontSize:14, color:"#e8a860", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
+                <div style={{ fontSize:14, color:theme==="dark"?"#e8a860":"#a86820", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:16, fontWeight:600 }}>ProofOS ✦</div>
                 <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
                   {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
-                    <div key={i} style={{ background:theme==="dark"?"rgba(232,168,96,0.08)":"rgba(232,168,96,0.12)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                      <div style={{ fontSize:20, color:"#e8a860" }}>{v}</div>
-                      <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6840", letterSpacing:"0.08em", textTransform:"uppercase" }}>{l}</div>
+                    <div key={i} style={{ background:theme==="dark"?"rgba(232,168,96,0.08)":"rgba(180,104,48,0.1)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+                      <div style={{ fontSize:20, color:theme==="dark"?"#e8a860":"#8a5818", fontWeight:600 }}>{v}</div>
+                      <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#6a5238", letterSpacing:"0.08em", textTransform:"uppercase" }}>{l}</div>
                     </div>
                   ))}
                 </div>
-                {[
-                  { desire:"He texts me first", cat:"Lovemaxxing", days:14, signs:3, track:"He Finds His Way Back" },
-                  { desire:"£1,800 received. Paid by client.", cat:"Moneymaxxing", days:6, signs:2, track:"Money Finds Me First" },
-                ].map((d,i)=>(
-                  <div key={i} style={{ background:theme==="dark"?"#111111":"#ffffff", border:`1px solid ${theme==="dark"?"rgba(232,168,96,0.1)":"rgba(180,104,48,0.15)"}`, borderRadius:10, padding:"12px 14px", marginBottom:8 }}>
-                    <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
-                      <span style={{ fontSize:9, padding:"2px 8px", background:"rgba(232,168,96,0.12)", color:"#e8a860", borderRadius:12 }}>{d.cat}</span>
-                      <span style={{ fontSize:9, color:theme==="dark"?"#5a4a40":"#b89060" }}>Day {d.days} · {d.signs} signs</span>
-                    </div>
-                    <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4 }}>{d.desire}</div>
+                {/* Real thread card — one open, full log visible, feels like the actual ProofOS thread */}
+                <div style={{ background:theme==="dark"?"#111111":"#ffffff", border:`1px solid ${theme==="dark"?"rgba(232,168,96,0.14)":"rgba(180,104,48,0.22)"}`, borderRadius:12, padding:"16px 16px 14px", marginBottom:10 }}>
+                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
+                    <span style={{ fontSize:9, fontWeight:600, padding:"2px 9px", background:theme==="dark"?"rgba(232,168,96,0.14)":"rgba(180,104,48,0.14)", color:theme==="dark"?"#e8a860":"#8a5818", borderRadius:12 }}>✓ Lovemaxxing</span>
+                    <span style={{ fontSize:9, color:theme==="dark"?"#7a6a60":"#8a7460" }}>5d · 5 signs</span>
                   </div>
-                ))}
+                  <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4 }}>He always texts me first and initiates plans.</div>
+                  <div style={{ fontSize:11, color:theme==="dark"?"#9a8878":"#8a7460", marginBottom:10 }}>♪ He Finds His Way Back</div>
+                  <div style={{ background:theme==="dark"?"rgba(255,255,255,0.03)":"rgba(180,104,48,0.05)", borderRadius:8, padding:"10px 12px", display:"flex", flexDirection:"column", gap:6 }}>
+                    {[
+                      "Day 1: Started listening to He Finds His Way Back.",
+                      "Day 2: He texted first — \"thinking about you.\"",
+                      "Day 3: He asked to see me this weekend, unprompted.",
+                      "Day 4: He texted first again, no gap, no waiting.",
+                      "Day 5: He planned the whole date — time, place, all of it.",
+                    ].map((line,i) => (
+                      <div key={i} style={{ fontSize:11, color:theme==="dark"?"#c8bcb0":"#4a3828", lineHeight:1.5 }}>{line}</div>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ background:theme==="dark"?"#111111":"#ffffff", border:`1px solid ${theme==="dark"?"rgba(232,168,96,0.1)":"rgba(180,104,48,0.18)"}`, borderRadius:10, padding:"12px 14px", opacity:0.75 }}>
+                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
+                    <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,168,96,0.12)":"rgba(180,104,48,0.14)", color:theme==="dark"?"#e8a860":"#8a5818", borderRadius:12 }}>Moneymaxxing</span>
+                    <span style={{ fontSize:9, color:theme==="dark"?"#7a6a60":"#8a7460" }}>Day 6 · 2 signs</span>
+                  </div>
+                  <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4 }}>£1,800 received. Paid by client.</div>
+                </div>
               </div>
             </div>
           </div>
