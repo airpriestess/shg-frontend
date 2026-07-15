@@ -1078,21 +1078,33 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
-      {/* AUDIO LIBRARY HEADING */}
-      <div id="audio-library" style={{ background:"#000", padding: isMobile?"48px 24px 0":"64px 40px 0", textAlign:"center" }}>
-        <div style={{ maxWidth:720, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?12:13, letterSpacing:"0.25em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:20 }}>
-            Self Hypnosis Goddess
+      {/* SEGMENT 1 — Manifest banner, gold ombre */}
+      <div style={{ background:"linear-gradient(135deg,#fce4c0 0%,#e8b870 30%,#d4a090 60%,#c4789a 100%)", padding: isMobile?"32px 24px":"40px 48px", textAlign:"center" }}>
+        <div style={{ fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(36px,5vw,56px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.1 }}>
+          Manifest your dream reality.
+        </div>
+      </div>
+
+      {/* SEGMENT 2 — Brand + Audio Library, black */}
+      <div id="audio-library" style={{ background:"#000", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
+        <div style={{ fontSize: isMobile?12:13, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:16 }}>Self Hypnosis Goddess</div>
+        <div style={{ fontSize: isMobile?"clamp(52px,14vw,80px)":"clamp(72px,10vw,120px)", color:"#f2ece4", lineHeight:0.95, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", marginBottom:24 }}>
+          Audio Library
+        </div>
+        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
+      </div>
+
+      {/* SEGMENT 3 — What's inside, cream */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
+        <div style={{ maxWidth:660, margin:"0 auto" }}>
+          <div style={{ fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,5vw,64px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1, marginBottom:28 }}>
+            This is what's inside.
           </div>
-          <h2 style={{ fontSize: isMobile?"clamp(44px,12vw,64px)":"clamp(56px,8vw,96px)", color:"#f2ece4", lineHeight:1.0, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
-            Audio Library
-          </h2>
-          <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.15em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:32 }}>Manifest your dream reality</div>
-          <p style={{ fontSize: isMobile?17:20, color:"#c8bcb0", lineHeight:1.75, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats. Press play while you sleep. Repeat. Watch your reality shift.
+          <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.8, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats. Press play while you sleep, on your hot girl walk, at the gym, or any time. Repeat. Watch your reality shift.
           </p>
-          <p style={{ fontSize: isMobile?16:18, color:"#7a6858", lineHeight:1.75, marginBottom:40, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Plus <span style={{ color:"#e8a860" }}>ProofOS</span> — log and track every manifestation you receive. Forever.
+          <p style={{ fontSize: isMobile?16:18, color:"#7a5038", lineHeight:1.8, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Plus <span style={{ color:"#c9963a" }}>ProofOS</span> — log and track every manifestation you receive. Forever.
           </p>
         </div>
       </div>
