@@ -661,7 +661,7 @@ function MaxxingCarousel({ cats }) {
 }
 
 /* ── IDENTITY CAROUSEL — six accent ombres, rotates through brand colours ──── */
-function IdentityCarousel({ cats }) {
+function IdentityCarousel({ cats, fullscreen=false }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
   useEffect(() => {
@@ -686,16 +686,17 @@ function IdentityCarousel({ cats }) {
   const textColor = idx === 1 ? "#000" : "#000"; // all dark text on light ombres
 
   return (
-    <div style={{ overflow:"hidden" }}>
+    <div style={{ overflow:"hidden", display:"flex", flexDirection:"column", ...(fullscreen?{flex:1}:{}) }}>
       <div style={{
         transition:"opacity 0.25s, transform 0.25s",
         opacity: flash ? 0 : 1,
         transform: flash ? "scale(0.98)" : "scale(1)",
         background: bg,
-        padding:"clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
+        padding: fullscreen ? "0 clamp(20px,5vw,60px)" : "clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
         position:"relative",
         overflow:"hidden",
+        ...(fullscreen ? {flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"} : {}),
       }}>
         <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.15),transparent 70%)",pointerEvents:"none" }}/>
         <div style={{
@@ -703,7 +704,7 @@ function IdentityCarousel({ cats }) {
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"rgba(0,0,0,0.45)"
         }}>{current.label} ✦</div>
         <div className="wm" style={{
-          fontSize:"clamp(28px,5.5vw,68px)", lineHeight:1.08, color:"#000",
+          fontSize: fullscreen ? "clamp(48px,10vw,110px)" : "clamp(28px,5.5vw,68px)", lineHeight:1.08, color:"#000",
           fontWeight:400, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
@@ -1011,68 +1012,47 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </>
       )}
 
-      {/* HERO — full viewport, name only */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", height: `calc(100vh - ${isMobile ? "98px" : "102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile ? 500 : 600, marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))`, background: "#000000" }}>
-        <Rings count={5} />
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "0 clamp(20px,5vw,40px)", width: "100%" }}>
-          {/* Cosmic icon */}
-          <svg width={isMobile?40:52} height={isMobile?40:52} viewBox="0 0 52 52" fill="none" style={{ margin: "0 auto 28px", display: "block", opacity: 0.85 }}>
-            <circle cx="26" cy="26" r="3" fill="#e8a860"/>
-            <circle cx="26" cy="26" r="8" stroke="#e8a860" strokeWidth="0.8" strokeDasharray="2 3" fill="none" opacity="0.5"/>
-            <circle cx="26" cy="26" r="14" stroke="#e8b870" strokeWidth="0.6" strokeDasharray="1 4" fill="none" opacity="0.3"/>
-            <circle cx="26" cy="26" r="22" stroke="#fce4c0" strokeWidth="0.4" strokeDasharray="1 5" fill="none" opacity="0.15"/>
-            {[0,45,90,135,180,225,270,315].map((deg,i)=>{
-              const rad=deg*Math.PI/180;
-              return <line key={i} x1={26+15*Math.cos(rad)} y1={26+15*Math.sin(rad)} x2={26+22*Math.cos(rad)} y2={26+22*Math.sin(rad)} stroke="#e8a860" strokeWidth="0.8" opacity="0.4"/>;
-            })}
-          </svg>
+      {/* HERO — full viewport carousel, then player */}
+      <div style={{ marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))` }}>
 
-          {/* THE NAME — fills the screen */}
-          <h1 style={{ margin: 0, lineHeight: 0.95, letterSpacing: "-0.02em" }}>
-            <span className="wm" style={{ display: "block", fontSize: "clamp(52px,13vw,140px)", color: "#f2ece4", fontWeight: 400 }}>Self Hypnosis</span>
-            <span className="wm wm-shimmer" style={{ display: "block", fontSize: "clamp(52px,13vw,140px)", fontWeight: 400 }}>Goddess</span>
-          </h1>
-        </div>
-
-        {/* Scroll indicator */}
-        <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-          <div style={{ width: 1, height: 36, background: "linear-gradient(to bottom, rgba(232,168,96,0.6), transparent)", animation: "scrollPulse 2s ease-in-out infinite" }}/>
-          <div style={{ fontSize: 9, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(232,168,96,0.4)", fontFamily: "'Jost',sans-serif" }}>Scroll</div>
-        </div>
-      </div>
-
-      {/* PLAYER STRIP — right under the full-viewport hero */}
-      <div style={{ background:"#060402", borderBottom:"1px solid #1a1208", padding: isMobile?"14px 18px":"16px 28px", display:"flex", alignItems:"center", gap:16 }}>
-        <div style={{ width:50, height:50, borderRadius:10, background:"#0a0806", border:"1px solid rgba(232,168,96,0.2)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
-          <div style={{ display:"flex", alignItems:"center", gap:2, height:30 }}>
-            {[6,14,22,18,28,12,24,20,16,10].map((h,i)=>(
-              <div key={i} style={{ width:2.5, borderRadius:2, background:playing?`linear-gradient(to top, #e8a860, #fce4c0)`:"rgba(232,168,96,0.3)", height:playing?h:Math.max(4,h*0.4), transition:"height 0.3s" }}/>
-            ))}
+        {/* FULL SCREEN CAROUSEL */}
+        <div style={{ height: `calc(100vh - ${isMobile?"98px":"102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile?480:560, display:"flex", flexDirection:"column", background:"#000" }}>
+          <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center" }}>
+            <IdentityCarousel cats={[
+              { label:"DNAmaxxing",       tagline:"My bloodline remembers." },
+              { label:"Lifemaxxing",      tagline:"Highest timeline. Activated." },
+              { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
+              { label:"Luckygirlmaxxing", tagline:"Lucky girl? That's just who I am." },
+            ]} fullscreen={true} />
           </div>
         </div>
-        <div style={{ flex:1, minWidth:0 }}>
-          <div style={{ fontSize:isMobile?13:15, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{PLAYLIST[trackIdx]?.title}</div>
-          <div style={{ fontSize:11, color:"#6a5040", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:2 }}>{PLAYLIST[trackIdx]?.freq}</div>
-        </div>
-        <div style={{ display:"flex", alignItems:"center", gap:12, flexShrink:0 }}>
-          <button onClick={()=>setTrackIdx(i=>(i-1+PLAYLIST.length)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", fontSize:20, padding:4, lineHeight:1 }}>‹</button>
-          <button onClick={()=>setPlaying(p=>!p)} style={{ width:40, height:40, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="#000"><path d={playing?"M2 2H5V12H2V2ZM9 2H12V12H9V2Z":"M1 1L13 7L1 13V1Z"}/></svg>
-          </button>
-          <button onClick={()=>setTrackIdx(i=>(i+1)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", fontSize:20, padding:4, lineHeight:1 }}>›</button>
+
+        {/* PLAYER — right under carousel */}
+        <div style={{ background:"#0a0806", borderTop:"1px solid rgba(232,168,96,0.15)", borderBottom:"1px solid rgba(232,168,96,0.15)", padding: isMobile?"18px":"20px 32px", display:"flex", alignItems:"center", gap:16 }}>
+          <div style={{ width:52, height:52, borderRadius:10, background:"#060402", border:"1px solid rgba(232,168,96,0.2)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:2, height:30 }}>
+              {[6,14,22,18,28,12,24,20,16,10].map((h,i)=>(
+                <div key={i} style={{ width:2.5, borderRadius:2, background:playing?`linear-gradient(to top,#e8a860,#fce4c0)`:"rgba(232,168,96,0.25)", height:playing?h:Math.max(3,h*0.35), transition:"height 0.3s" }}/>
+              ))}
+            </div>
+          </div>
+          <div style={{ flex:1, minWidth:0 }}>
+            <div style={{ fontSize:isMobile?14:16, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", marginBottom:3 }}>{PLAYLIST[trackIdx]?.title}</div>
+            <div style={{ fontSize:11, color:"#6a5040", letterSpacing:"0.1em", textTransform:"uppercase" }}>{PLAYLIST[trackIdx]?.freq}</div>
+          </div>
+          <div style={{ display:"flex", alignItems:"center", gap:14, flexShrink:0 }}>
+            <button onClick={()=>setTrackIdx(i=>(i-1+PLAYLIST.length)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#8a6848", fontSize:22, padding:4, lineHeight:1 }}>‹</button>
+            <button onClick={()=>setPlaying(p=>!p)} style={{ width:44, height:44, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#000"><path d={playing?"M2 2H5V12H2V2ZM9 2H12V12H9V2Z":"M1 1L13 7L1 13V1Z"}/></svg>
+            </button>
+            <button onClick={()=>setTrackIdx(i=>(i+1)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#8a6848", fontSize:22, padding:4, lineHeight:1 }}>›</button>
+          </div>
         </div>
       </div>
-
       {/* APP PREVIEW */}
       <AppPreviewSection isMobile={isMobile}/>
 
-      {/* IDENTITY CAROUSEL — after preview dashboard, before purpose */}
-      <IdentityCarousel cats={[
-        { label:"DNAmaxxing",       tagline:"My bloodline remembers." },
-        { label:"Lifemaxxing",      tagline:"Highest timeline. Activated." },
-        { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
-        { label:"Luckygirlmaxxing", tagline:"Lucky girl? That's just who I am." },
-      ]} />
+
 
       {/* PURPOSE — one sentence */}
       <div style={{ padding: isMobile?"32px 18px 8px":"48px 24px 8px", maxWidth: 720, margin: "0 auto", textAlign:"center" }}>
