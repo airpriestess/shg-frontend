@@ -1281,18 +1281,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <FAQSection />
 
       {/* FINAL CTA */}
-      <div style={{ position: "relative", padding: "80px 24px", textAlign: "center", overflow: "hidden", borderTop: T.border, background: "#000000" }}>
-        <Rings count={3} />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#2a1a0a", lineHeight: 1.2, marginBottom: 24 }}>
-            Wake up knowing.<br />
-            <span style={{ background: "linear-gradient(90deg,#e8a860,#e08aa8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Not hoping. Knowing.</span>
+      <div style={{ background: "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 35%,#9b87c4 65%,#7a6aaa 100%)", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: 560, margin: "0 auto" }}>
+          <div style={{ fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", fontFamily: "'Jost',sans-serif", marginBottom: 16 }}>Coming soon</div>
+          <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,58px)", color: "#000", lineHeight: 1.1, marginBottom: 20, fontWeight: 400 }}>
+            Let's stay<br/>connected.
           </h2>
-          <p style={{ fontSize: 17, color: "#d4c0a8", marginBottom: 32, lineHeight: 1.7, maxWidth: 500, margin: "0 auto 32px" }}>
-            In that state, reality shows you the proof of what you already know.
+          <p style={{ fontSize: isMobile?15:17, color: "rgba(0,0,0,0.6)", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
+            Join the waitlist and be the first to know when the audio library opens.
           </p>
-          <button onClick={onJoin} className="cta-shake" style={{ padding: "18px 52px", background: "linear-gradient(135deg,#fce4c0,#e8a860)", boxShadow: "0 0 40px rgba(232,168,96,0.4)", border: "none", borderRadius: 14, color: "#000", fontSize: 19, fontWeight: 400, cursor: "pointer", minHeight: 56, fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10 }}>Start your shift<ArrowIcon size={16}/></button>
-          <div style={{ marginTop: 12, fontSize: 14, color: "#8a7868" }}>Cancel anytime · No download · Any device</div>
+          <button onClick={onJoin} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Join Waitlist ✦
+          </button>
+          <div style={{ marginTop: 14, fontSize: 12, color: "rgba(0,0,0,0.4)", fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
         </div>
       </div>
 
