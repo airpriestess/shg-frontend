@@ -936,13 +936,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
-            <svg viewBox="0 0 64 64" width="24" height="24" style={{flexShrink:0}}>
-              <defs><linearGradient id="navmark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#d4a090"/><stop offset="72%" stopColor="#c4789a"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
-              <path d="M32 10 A22 22 0 0 0 32 54 Z" fill="url(#navmark)" opacity="0.92"/>
-              <path d="M32 10 A22 22 0 0 1 32 54 Z" fill="none" stroke="url(#navmark)" strokeWidth="2.6"/>
-              <line x1="32" y1="8" x2="32" y2="56" stroke="url(#navmark)" strokeWidth="1.2" opacity="0.6"/>
+            <svg viewBox="0 0 36 36" width="28" height="28" style={{flexShrink:0}}>
+              <circle cx="18" cy="18" r="16" fill="none" stroke="#e8a860" strokeWidth="2.5"/>
+              <circle cx="18" cy="18" r="5" fill="#e8a860"/>
+              <line x1="18" y1="2" x2="18" y2="8" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
+              <line x1="18" y1="28" x2="18" y2="34" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
+              <line x1="2" y1="18" x2="8" y2="18" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
+              <line x1="28" y1="18" x2="34" y2="18" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
             </svg>
-            <span className="wm wm-shimmer" style={{ fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+            <span style={{ fontSize: isMobile?"clamp(13px,4vw,16px)":"17px", fontWeight: 500, letterSpacing: "0.08em", textTransform:"uppercase", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "65vw" : "none", color:"#f2ece4", fontFamily:"'Jost',sans-serif" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
           {/* Desktop nav — centered, equal weight, none singled out */}
@@ -1011,43 +1013,43 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
 
-        {/* PLAYER CARD — full Spotify style */}
-        <div style={{ background:"#000", padding: isMobile?"16px 18px 24px":"20px 24px 32px" }}>
-          <div style={{ background:"#0a0a0a", border:"1px solid rgba(232,168,96,0.35)", borderRadius:18, padding: isMobile?"18px":"22px 26px", maxWidth:520, margin:"0 auto", boxShadow:"0 12px 60px rgba(0,0,0,0.5)" }}>
+        {/* PLAYER CARD — Spotify style, ombre bg matching carousel, black text */}
+        <div style={{ background:"#000", padding: isMobile?"0 0 28px":"0 0 36px" }}>
+          <div style={{ background:"linear-gradient(135deg,#fce4c0 0%,#e8b870 30%,#d4a090 60%,#c4789a 100%)", padding: isMobile?"22px 18px 24px":"28px 32px 32px", maxWidth:"100%" }}>
             {/* Track header */}
-            <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:16 }}>
-              <div style={{ width:52, height:52, borderRadius:10, background:"linear-gradient(135deg,#1a1208,#2a1a08)", border:"1px solid rgba(232,168,96,0.2)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                <div style={{ display:"flex", alignItems:"center", gap:2, height:28 }}>
-                  {[5,12,20,16,26,10,22,18,14,8].map((h,i)=>(
-                    <div key={i} style={{ width:2.5, borderRadius:2, background:playing?`linear-gradient(to top,#e8a860,#fce4c0)`:"rgba(232,168,96,0.3)", height:playing?h:Math.max(3,h*0.35), transition:"height 0.4s ease" }}/>
+            <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:20 }}>
+              <div style={{ width:60, height:60, borderRadius:12, background:"rgba(0,0,0,0.15)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <div style={{ display:"flex", alignItems:"center", gap:2.5, height:32 }}>
+                  {[6,14,24,18,30,12,26,20,16,10].map((h,i)=>(
+                    <div key={i} style={{ width:3, borderRadius:2, background:playing?"rgba(0,0,0,0.7)":"rgba(0,0,0,0.3)", height:playing?h:Math.max(4,h*0.35), transition:"height 0.4s ease" }}/>
                   ))}
                 </div>
               </div>
               <div style={{ flex:1, minWidth:0 }}>
-                <div style={{ fontSize:isMobile?15:17, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", marginBottom:3, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{PLAYLIST[trackIdx]?.title}</div>
-                <div style={{ fontSize:11, color:"#6a5040", letterSpacing:"0.1em", textTransform:"uppercase" }}>{PLAYLIST[trackIdx]?.freq}</div>
+                <div style={{ fontSize:isMobile?19:22, color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:4, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", letterSpacing:"0.01em" }}>{PLAYLIST[trackIdx]?.title}</div>
+                <div style={{ fontSize:isMobile?12:13, color:"rgba(0,0,0,0.55)", letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{PLAYLIST[trackIdx]?.freq}</div>
               </div>
             </div>
             {/* Progress bar */}
-            <div style={{ height:3, background:"rgba(232,168,96,0.15)", borderRadius:2, marginBottom:16, overflow:"hidden" }}>
-              <div style={{ height:"100%", width:playing?"35%":"0%", background:"linear-gradient(90deg,#e8a860,#fce4c0)", borderRadius:2, transition:"width 0.5s" }}/>
+            <div style={{ height:4, background:"rgba(0,0,0,0.15)", borderRadius:2, marginBottom:20, overflow:"hidden" }}>
+              <div style={{ height:"100%", width:playing?"35%":"0%", background:"rgba(0,0,0,0.5)", borderRadius:2, transition:"width 0.5s" }}/>
             </div>
             {/* Controls */}
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:24 }}>
-              <button onClick={()=>setTrackIdx(i=>(i-1+PLAYLIST.length)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", padding:8 }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:28 }}>
+              <button onClick={()=>setTrackIdx(i=>(i-1+PLAYLIST.length)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"rgba(0,0,0,0.5)", padding:8 }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
               </button>
-              <button onClick={()=>setPlaying(p=>!p)} style={{ width:52, height:52, borderRadius:"50%", background:"linear-gradient(135deg,#fce4c0,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="#000"><path d={playing?"M4 4h3v10H4V4zm7 0h3v10h-3V4Z":"M3 2l14 7-14 7V2z"}/></svg>
+              <button onClick={()=>setPlaying(p=>!p)} style={{ width:60, height:60, borderRadius:"50%", background:"#000", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <svg width="20" height="20" viewBox="0 0 18 18" fill="#e8a860"><path d={playing?"M4 4h3v10H4V4zm7 0h3v10h-3V4Z":"M3 2l14 7-14 7V2z"}/></svg>
               </button>
-              <button onClick={()=>setTrackIdx(i=>(i+1)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"#6a5040", padding:8 }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+              <button onClick={()=>setTrackIdx(i=>(i+1)%PLAYLIST.length)} style={{ background:"none", border:"none", cursor:"pointer", color:"rgba(0,0,0,0.5)", padding:8 }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
               </button>
             </div>
-            {/* Track list dots */}
-            <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:14 }}>
+            {/* Track dots */}
+            <div style={{ display:"flex", justifyContent:"center", gap:7, marginTop:18 }}>
               {PLAYLIST.map((_,i)=>(
-                <div key={i} onClick={()=>setTrackIdx(i)} style={{ width:i===trackIdx?18:6, height:6, borderRadius:3, background:i===trackIdx?"#e8a860":"rgba(232,168,96,0.2)", cursor:"pointer", transition:"all 0.3s" }}/>
+                <div key={i} onClick={()=>setTrackIdx(i)} style={{ width:i===trackIdx?22:7, height:7, borderRadius:4, background:i===trackIdx?"rgba(0,0,0,0.6)":"rgba(0,0,0,0.2)", cursor:"pointer", transition:"all 0.3s" }}/>
               ))}
             </div>
           </div>
