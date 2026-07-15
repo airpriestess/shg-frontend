@@ -453,15 +453,8 @@ function AppPreviewSection({ isMobile }) {
   return (
     <div style={{ width:"100%", display:"flex", flexDirection:"column", alignItems:"center", gap:20, marginBottom:16 }}>
 
-      {/* Headline copy — rewritten */}
+      {/* Tap-to-explore hint only — duplicate copy removed */}
       <div style={{ textAlign:"center", maxWidth:560 }}>
-        <div style={{ fontSize: isMobile?13:14, color:"#e8a860", letterSpacing:"0.25em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>This is what's inside</div>
-        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", lineHeight:1.3, marginBottom:12 }}>
-          A growing library of hypnosis and subliminal audios — melodic house, EMDR and binaural beats — designed to shift your identity at the subconscious level.
-        </h2>
-        <p style={{ fontSize:isMobile?13:14, color:"#c8bcb0", lineHeight:1.8, fontFamily:"'Jost',sans-serif", marginBottom:8 }}>
-          Plus <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — the place where you log and track every single manifestation you receive. Forever.
-        </p>
         <p style={{ fontSize:12, color:"#7a6858", fontFamily:"'Jost',sans-serif" }}>
           Tap Dashboard · ProofOS ✦ · Analytics to explore each screen
         </p>
@@ -761,7 +754,7 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ background:"linear-gradient(160deg,#fce4c0 0%,#f0d4a8 50%,#ece8d8 100%)", padding:"0 0 0 0" }}>
+    <div style={{ background:"linear-gradient(160deg,#cdeae6 0%,#a8d8d2 50%,#7ec3ba 100%)", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#b46830",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
@@ -1125,8 +1118,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* BRAND BLOCK — below player */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(232,168,96,0.4)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:16 }}>Self Hypnosis Goddess</div>
-        <div style={{ fontSize: isMobile?"clamp(40px,11vw,64px)":"clamp(72px,10vw,120px)", color:"#f2ece4", lineHeight:0.95, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", marginBottom:20 }}>
+        <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:16 }}>Self Hypnosis Goddess</div>
+        <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,6vw,64px)", color:"#f2ece4", lineHeight:0.95, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", marginBottom:20 }}>
           Audio Library
         </div>
         <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
@@ -1135,7 +1128,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* SEGMENT 3 — What's inside, cream */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?"clamp(52px,16vw,80px)":"clamp(80px,12vw,140px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.9, marginBottom:28 }}>
+          <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,6vw,64px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:28 }}>
             Inside the Library.
           </div>
           <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
@@ -1237,9 +1230,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "linear-gradient(160deg,#f5ede0 0%,#ece0cc 50%,#e8d4b4 100%)", width: "100%" }}>
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
-            <div style={{ fontSize: 11, fontWeight: 900, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14 }}>What's Inside</div>
-            <h2 style={{ fontSize: "clamp(28px,4.5vw,52px)", color: "#000000", fontWeight: 700, marginBottom: 12 }}>Whatever it is, it's covered.</h2>
-            <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
+            <div style={{ fontSize: 11, fontWeight: 400, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
+            <h2 style={{ fontSize: "clamp(28px,4.5vw,44px)", color: "#000000", fontWeight: 400, marginBottom: 12, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>Whatever it is, it's covered.</h2>
+            <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap", fontFamily:"'Jost',sans-serif" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 16 }}>
             {[
@@ -1321,7 +1314,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </p>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#1a0e06 0%,#0a0808 50%,#000000 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#2a0f18 0%,#1a0810 50%,#000000 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
