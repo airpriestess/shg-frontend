@@ -1018,10 +1018,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <HeroMarquee />
 
           {/* YOUTUBE STRIP */}
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:10, padding:"10px 0 4px" }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#e8a860"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.1 2.7 12 2.7 12 2.7s-4.1 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2 .3 4.1.3 4.1s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 21.5 12 21.5 12 21.5s4.1 0 6.8-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.1v-2C23.3 9.1 23 7 23 7zm-13.5 8.5v-7l6.5 3.5-6.5 3.5z"/></svg>
-            <span style={{ fontSize:12, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Find me on YouTube</span>
-            <a href="https://youtube.com/@ReshmaOracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#e8a860", fontFamily:"'Jost',sans-serif", textDecoration:"none" }}>@ReshmaOracle</a>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, padding:"10px 0 4px" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#e8a860"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.1 2.7 12 2.7 12 2.7s-4.1 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.2v2c0 2 .3 4.1.3 4.1s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.3 21.5 12 21.5 12 21.5s4.1 0 6.8-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.1v-2C23.3 9.1 23 7 23 7zm-13.5 8.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+            <a href="https://www.youtube.com/@ReshmaOracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#9a8878", fontFamily:"'Jost',sans-serif", textDecoration:"none", letterSpacing:"0.06em" }}>@ReshmaOracle</a>
           </div>
 
           {/* TITLE */}
