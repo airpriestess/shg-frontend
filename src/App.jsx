@@ -104,7 +104,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
       {/* TOP NAV */}
       <header style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1c1828", flexShrink: 0, zIndex: 50 }}>
         <button onClick={onSignOut} style={{ background: "none", border: "none", cursor: "pointer" }} title="Back to homepage">
-          <span className="wm wm-shimmer" style={{ fontSize: 22, fontWeight: 500, cursor: "pointer", letterSpacing: "0.02em" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+          <span style={{ fontSize: 22, fontWeight: 700, letterSpacing: "0.1em", textTransform:"uppercase", cursor: "pointer", color:"#f2ece4", fontFamily:"'Jost',sans-serif" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
         </button>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           {userTier === "goddess" || userTier === "lifetime"
@@ -228,7 +228,7 @@ function CheckoutModal({ onClose, onDemo }) {
         {/* HEADER */}
         <div style={{background:"linear-gradient(135deg,#fceedd,#f8e0f0)",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
           <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
-          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,5vw,34px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4}}>Choose your membership.</h3>
+          <h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(22px,4vw,30px)",color:"#1a1218",fontWeight:700,letterSpacing:"-0.01em",lineHeight:1.2,marginBottom:4}}>Choose your membership.</h3>
           <p style={{fontSize:13,color:"#6a4858",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
           {/* MONTHLY / ANNUAL TOGGLE */}
@@ -354,7 +354,7 @@ function PricingSection({ onJoin }) {
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: isMobile ? 12 : 13, fontWeight: 700, color: "#B76E79", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
-          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#2a1a0a", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(28px,7vw,40px)" : "clamp(36px,4.5vw,52px)", fontWeight: 700, letterSpacing:"-0.02em", color: "#2a1a0a", lineHeight: 1.1 }}>
             Full access. <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>No download needed.</span>
           </h2>
         </div>
@@ -456,7 +456,7 @@ function AppPreviewSection({ isMobile }) {
       {/* Headline copy — rewritten */}
       <div style={{ textAlign:"center", maxWidth:560 }}>
         <div style={{ fontSize: isMobile?13:14, color:"#e8a860", letterSpacing:"0.25em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>This is what's inside</div>
-        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", lineHeight:1.3, marginBottom:12 }}>
+        <h2 style={{ fontSize:isMobile?20:26, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:700, letterSpacing:"-0.01em", lineHeight:1.3, marginBottom:12 }}>
           A growing library of hypnosis and subliminal audios — melodic house, EMDR and binaural beats — designed to shift your identity at the subconscious level.
         </h2>
         <p style={{ fontSize:isMobile?13:14, color:"#c8bcb0", lineHeight:1.8, fontFamily:"'Jost',sans-serif", marginBottom:8 }}>
@@ -645,7 +645,7 @@ function MaxxingCarousel({ cats }) {
             onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
             <div style={{ fontSize:9, color:"#d4a090", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
-            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif" }}>{cat.tagline}</div>
+            <div style={{ fontSize:13, color:"#a08878", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{cat.tagline}</div>
           </div>
         ))}
       </div>
@@ -716,7 +716,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
             onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
             <div style={{ fontSize:9, color:"#9b87c4", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
-            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif" }}>{cat.tagline}</div>
+            <div style={{ fontSize:13, color:"#a08878", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{cat.tagline}</div>
           </div>
         ))}
       </div>
@@ -757,7 +757,7 @@ function FAQSection() {
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#b46830",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#1a0a04",lineHeight:1.2 }}>FAQs</h2>
+        <h2 style={{ fontSize:"clamp(26px,4.5vw,52px)",color:"#1a0a04",lineHeight:1.2, fontFamily:"'Jost',sans-serif", fontWeight:700, letterSpacing:"-0.02em" }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
@@ -936,15 +936,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
-            <svg viewBox="0 0 36 36" width="28" height="28" style={{flexShrink:0}}>
-              <circle cx="18" cy="18" r="16" fill="none" stroke="#e8a860" strokeWidth="2.5"/>
-              <circle cx="18" cy="18" r="5" fill="#e8a860"/>
-              <line x1="18" y1="2" x2="18" y2="8" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
-              <line x1="18" y1="28" x2="18" y2="34" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
-              <line x1="2" y1="18" x2="8" y2="18" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
-              <line x1="28" y1="18" x2="34" y2="18" stroke="#e8a860" strokeWidth="2.5" strokeLinecap="round"/>
-            </svg>
-            <span style={{ fontSize: isMobile?"clamp(13px,4vw,16px)":"17px", fontWeight: 500, letterSpacing: "0.08em", textTransform:"uppercase", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "65vw" : "none", color:"#f2ece4", fontFamily:"'Jost',sans-serif" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+            <span style={{ fontSize: isMobile?"clamp(13px,4vw,15px)":"16px", fontWeight: 700, letterSpacing: "0.12em", textTransform:"uppercase", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "72vw" : "none", color:"#f2ece4", fontFamily:"'Jost',sans-serif" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
           {/* Desktop nav — centered, equal weight, none singled out */}
@@ -1068,7 +1060,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>
           Spotify for your subconscious mind
         </div>
-        <h2 className="wm" style={{ fontSize:"clamp(32px,6vw,72px)", color:"#f2ece4", lineHeight:1.05, marginBottom:16 }}>
+        <h2 style={{ fontSize:"clamp(28px,6vw,64px)", color:"#f2ece4", lineHeight:1.05, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:700, letterSpacing:"-0.02em" }}>
           Audio Library<br/>
           <span style={{ fontSize:"clamp(14px,2vw,20px)", fontStyle:"normal", fontFamily:"'Jost',sans-serif", letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.5)", display:"block", marginTop:8 }}>+ ProofOS ✦</span>
         </h2>
@@ -1100,7 +1092,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div key={i} style={{ display:"flex", gap:isMobile?14:20, padding:"16px 0", borderBottom:i<3?"1px solid rgba(180,104,48,0.12)":"none", alignItems:"flex-start", textAlign:"left" }}>
                 <span style={{ fontSize:11, color:"#b46830", fontFamily:"'Jost',sans-serif", minWidth:24, paddingTop:2, flexShrink:0 }}>{n}</span>
                 <div>
-                  <div style={{ fontSize:isMobile?15:17, color:"#1a0a04", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", marginBottom:3 }}>{t}</div>
+                  <div style={{ fontSize:isMobile?15:17, color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:500, marginBottom:3 }}>{t}</div>
                   <div style={{ fontSize:13, color:"#5a3020", lineHeight:1.7 }}>{b}</div>
                 </div>
               </div>
@@ -1115,7 +1107,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 12, color: "#b46830", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 className="wm" style={{ fontSize: "clamp(28px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, color: "#1a0a04", textAlign: "center" }}>
+            <h2 style={{ fontSize: "clamp(26px,4.5vw,52px)", lineHeight: 1.1, marginBottom: 16, color: "#1a0a04", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:700, letterSpacing:"-0.02em" }}>
               Hypnosis layered beneath<br/>melodic house music.
             </h2>
             <p style={{ fontSize: "clamp(15px,1.85vw,17px)", color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px" }}>
@@ -1245,7 +1237,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#f2ece4", letterSpacing:"-0.01em", lineHeight:1 }}>
+            <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize:isMobile?"clamp(36px,9vw,52px)":"clamp(42px,5.5vw,64px)", fontWeight:700, color:"#f2ece4", letterSpacing:"-0.02em", lineHeight:1 }}>
               Wall of <span style={{ background:"linear-gradient(90deg,#e8a8bc,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
           </div>
@@ -1268,7 +1260,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <div style={{ width:32, height:24, opacity:0.25 }}>
                   <svg viewBox="0 0 32 24" fill="#B76E79"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
-                <p style={{ fontSize:isMobile?15:17, color:"#1a1410", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
+                <p style={{ fontSize:isMobile?16:18, color:"#1a1410", lineHeight:1.8, fontFamily:"'Jost',sans-serif", flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                   <span style={{ fontSize:12, fontWeight:400, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.12)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:20, color:"#B76E79", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
@@ -1289,7 +1281,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ background: "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 35%,#9b87c4 65%,#7a6aaa 100%)", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
           <div style={{ fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", fontFamily: "'Jost',sans-serif", marginBottom: 16 }}>Coming soon</div>
-          <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,58px)", color: "#000", lineHeight: 1.1, marginBottom: 20, fontWeight: 400 }}>
+          <h2 style={{ fontSize: "clamp(32px,5vw,58px)", color: "#000", lineHeight: 1.1, marginBottom: 20, fontWeight: 700, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>
             Let's stay<br/>connected.
           </h2>
           <p style={{ fontSize: isMobile?15:17, color: "rgba(0,0,0,0.6)", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
@@ -1304,7 +1296,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* FOOTER */}
       <div style={{ borderTop: T.border, padding: "28px 24px", textAlign: "center" }}>
-        <span className="wm wm-shimmer" style={{ fontSize: 22, display: "block", marginBottom: 8 }}>Self Hypnosis Goddess</span>
+        <span style={{ fontSize: 18, display: "block", marginBottom: 8, fontFamily:"'Jost',sans-serif", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
         <div style={{ fontSize: 13, color: "#8a7868", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com · Not on YouTube</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
           Self Hypnosis Goddess is a self-hypnosis and manifestation audio product. It is not therapy, medical treatment, or a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact a licensed professional or emergency services.
@@ -1322,7 +1314,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(232,168,96,0.3)" }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(232,168,96,0.2)", flexShrink:0 }}>
-              <span className="wm wm-shimmer" style={{ fontSize:16 }}>Shop</span>
+              <span style={{ fontSize:16, fontFamily:"'Jost',sans-serif", fontWeight:700, color:"#f2ece4" }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
                 <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#8a7868", textDecoration:"none" }}>Open in new tab ↗</a>
                 <button onClick={()=>setShopOpen(false)} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:22, cursor:"pointer", lineHeight:1, padding:4 }}>×</button>
@@ -1346,7 +1338,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </>
             ) : (
               <>
-                <div className="wm wm-shimmer" style={{ fontSize:20, marginBottom:8 }}>Join the Waitlist</div>
+                <div style={{ fontSize:20, marginBottom:8, fontFamily:"'Jost',sans-serif", fontWeight:700, letterSpacing:"-0.01em", color:"#f2ece4" }}>Join the Waitlist</div>
                 <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:22, lineHeight:1.6 }}>We're not live yet — get first access the moment it opens.</div>
                 <form onSubmit={submitWaitlist}>
                   <input
