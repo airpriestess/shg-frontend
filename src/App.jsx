@@ -1118,6 +1118,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
+      {/* LOGO — drop in here */}
+      <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
+        {/* logo goes here */}
+      </div>
+
       {/* BRAND BLOCK — below player */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
         <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(232,168,96,0.4)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:16 }}>Self Hypnosis Goddess</div>
