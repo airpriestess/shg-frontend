@@ -622,8 +622,8 @@ function MaxxingCarousel({ cats }) {
       }}>
         <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.08),transparent 70%)",pointerEvents:"none" }}/>
         <div style={{
-          fontSize:10, fontWeight:400, letterSpacing:"0.35em", textTransform:"uppercase",
-          marginBottom:20, fontFamily:"'Jost',sans-serif", color:"rgba(0,0,0,0.5)"
+          fontSize:13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
+          marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
         }}>{current.label} ✦</div>
         <div className="wm" style={{
           fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05, color:"#000",
@@ -701,8 +701,8 @@ function IdentityCarousel({ cats, fullscreen=false }) {
       }}>
         <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.15),transparent 70%)",pointerEvents:"none" }}/>
         <div style={{
-          fontSize:10, fontWeight:400, letterSpacing:"0.35em", textTransform:"uppercase",
-          marginBottom:20, fontFamily:"'Jost',sans-serif", color:"rgba(0,0,0,0.45)"
+          fontSize: fullscreen ? 15 : 13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
+          marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
         }}>{current.label} ✦</div>
         <div className="wm" style={{
           fontSize: fullscreen ? "clamp(48px,10vw,110px)" : "clamp(28px,5.5vw,68px)", lineHeight:1.08, color:"#000",
