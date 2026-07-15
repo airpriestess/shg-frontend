@@ -974,28 +974,36 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </nav>
 
-      {/* MOBILE MENU — rendered outside nav, truly fixed */}
+      {/* MOBILE MENU — full screen takeover like Steven Bartlett */}
       {menuOpen && isMobile && (
-        <>
-          <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.65)" }} onClick={()=>setMenuOpen(false)}/>
-          <div style={{ position:"fixed",top:98,left:12,right:12,zIndex:999,background:"#0a0612",border:"1px solid rgba(232,168,96,0.2)",borderRadius:18,padding:14,boxShadow:"0 24px 60px rgba(0,0,0,0.99)" }}>
-            <button onClick={()=>{onDemo?.();setMenuOpen(false);}} style={{ display:"block",width:"100%",padding:"15px 16px",background:"#1a1208",border:"1px solid rgba(232,168,96,0.25)",borderRadius:12,color:"#f2ece4",fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"center",marginBottom:10,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
-              Preview the Dashboard
+        <div style={{ position:"fixed",inset:0,zIndex:999,background:"#e8a860",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
+          {/* Top bar — logo + close */}
+          <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
+            <span style={{ fontSize:15,fontWeight:700,letterSpacing:"0.12em",textTransform:"uppercase",color:"#000",fontFamily:"'Jost',sans-serif" }}>Self Hypnosis Goddess</span>
+            <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#000",WebkitTapHighlightColor:"transparent" }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
             </button>
-            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ display:"flex",width:"100%",padding:"12px 16px",background:"none",border:"1px solid rgba(232,168,96,0.15)",borderRadius:10,color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",marginBottom:8,alignItems:"center",justifyContent:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>
-              Sign in
-            </button>
-            <div style={{ height:"0.5px",background:"rgba(232,168,96,0.12)",margin:"10px 0" }}/>
+          </div>
+
+          {/* Main nav items — massive */}
+          <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {[
-              ["Pricing", ()=>{onJoin?.();setMenuOpen(false);}, false],
-              ["ProofOS ✦", ()=>{document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}, false],
-              ["Shop", ()=>{setShopOpen(true);setMenuOpen(false);}, true],
-              ["YouTube", ()=>{window.open("https://www.youtube.com/@Reshma.Oracle","_blank");setMenuOpen(false);}, true],
-            ].map(([l,fn,ext],i)=>(
-              <button key={i} onClick={fn} style={{ display:"flex",width:"100%",textAlign:"left",padding:"13px 14px",background:"none",border:"none",color:"#c8c0bc",fontSize:14,fontWeight:400,cursor:"pointer",borderRadius:10,alignItems:"center",gap:6,fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent" }}>{l}{ext && <ExternalArrowIcon size={11}/>}</button>
+              ["Audio Library", ()=>{ window.scrollTo({top:0,behavior:"smooth"}); setMenuOpen(false); }],
+              ["Pricing",       ()=>{ onJoin?.(); setMenuOpen(false); }],
+              ["ProofOS",       ()=>{ document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
+              ["Preview",       ()=>{ onDemo?.(); setMenuOpen(false); }],
+              ["Shop",          ()=>{ setShopOpen(true); setMenuOpen(false); }],
+              ["YouTube",       ()=>{ window.open("https://www.youtube.com/@Reshma.Oracle","_blank"); setMenuOpen(false); }],
+            ].map(([l,fn],i)=>(
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(0,0,0,0.12)",color:"#000",fontSize:"clamp(36px,10vw,52px)",fontWeight:700,letterSpacing:"-0.01em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
           </div>
-        </>
+
+          {/* Bottom — sign in */}
+          <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+            Sign in
+          </button>
+        </div>
       )}
 
       {/* HERO — full viewport carousel, then player */}
