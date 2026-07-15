@@ -1024,16 +1024,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <a href="https://youtube.com/@ReshmaOracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#e8a860", fontFamily:"'Jost',sans-serif", textDecoration:"none" }}>@ReshmaOracle</a>
           </div>
 
-          {/* IDENTITY CAROUSEL — right under player */}
-          <div style={{ width:"100%", marginTop:8 }}>
-            <IdentityCarousel cats={[
-              { label:"DNAmaxxing",       tagline:"My bloodline remembers." },
-              { label:"Lifemaxxing",      tagline:"Highest timeline. Activated." },
-              { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
-              { label:"Luckygirlmaxxing", tagline:"Lucky girl? That\'s just who I am." },
-            ]} />
-          </div>
-
           {/* TITLE */}
           <div style={{ fontSize: "clamp(13px,1.8vw,16px)", letterSpacing: "0.35em", textTransform: "uppercase", color: "#e8a860", marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>Self Hypnosis Goddess</div>
           <h1 className="wm" style={{ lineHeight: 1.15, marginBottom: 12 }}>
@@ -1186,7 +1176,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-
+      {/* IDENTITY CAROUSEL — after preview dashboard, before purpose */}
+      <IdentityCarousel cats={[
+        { label:"DNAmaxxing",       tagline:"My bloodline remembers." },
+        { label:"Lifemaxxing",      tagline:"Highest timeline. Activated." },
+        { label:"Sleepmaxxing",     tagline:"I install a new identity every night." },
+        { label:"Luckygirlmaxxing", tagline:"Lucky girl? That's just who I am." },
+      ]} />
 
       {/* PURPOSE — one sentence */}
       <div style={{ padding: isMobile?"32px 18px 8px":"48px 24px 8px", maxWidth: 720, margin: "0 auto", textAlign:"center" }}>
