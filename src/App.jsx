@@ -1126,6 +1126,21 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
         </div>
       </div>
+
+      {/* LOGO — drop in here */}
+      <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
+        {/* logo goes here */}
+      </div>
+
+      {/* BRAND BLOCK — immediately after player, so people know what this IS before we explain how it works */}
+      <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
+        <div style={{ fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(52px,6.5vw,84px)", color:"#f2ece4", lineHeight:1.0, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing:"-0.01em", marginBottom:16 }}>
+          Self Hypnosis Goddess
+        </div>
+        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
+        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
+      </div>
+
       {/* PURPOSE — subconscious creates your reality */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
@@ -1175,20 +1190,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Left and right hemispheres normally fire at different rates — one scattered, one quiet. Binaural beats bring both into the same frequency at once, dropping your whole brain into theta together. That's the state where new beliefs stop being argued with and start being accepted as true.
           </p>
         </div>
-      </div>
-
-      {/* LOGO — drop in here */}
-      <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        {/* logo goes here */}
-      </div>
-
-      {/* BRAND BLOCK — below player */}
-      <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(52px,6.5vw,84px)", color:"#f2ece4", lineHeight:1.0, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing:"-0.01em", marginBottom:16 }}>
-          Self Hypnosis Goddess
-        </div>
-        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
-        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
       </div>
 
       {/* SEGMENT 3 — What's inside, cream */}
