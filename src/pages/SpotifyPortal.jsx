@@ -526,7 +526,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
-      {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter}/>}
+      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter}/>)}
       {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
@@ -548,7 +548,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:11,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
               Select your state on the Hawkins scale.{" "}
-              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#e8b870",cursor:"pointer",textDecoration:"underline" }}>See Knowledge Guide ✦</span>
+              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#e8b870",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
             </div>
             <div style={{ fontSize:9,color:"#2ecc71",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
             <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
@@ -883,7 +883,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(232,184,112,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:14, fontWeight:400, color:C.cr }}>Knowledge Guide ✦</div>
+            <div style={{ fontSize:14, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:11, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
           </span>
           <span style={{ fontSize:18, color:"#e8b870" }}>›</span>
@@ -975,10 +975,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
-            <div key={i} style={{ background:"rgba(255,255,255,0.85)", borderRadius:10, padding:"9px 8px", textAlign:"center" }}>
-              <div style={{ fontSize:9, color:C.mu, fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:4 }}>{l}</div>
-              <div style={{ fontSize:14, fontWeight:400, color:d?.c||"#000", lineHeight:1.1 }}>{d?.n||"—"}</div>
-              <div style={{ fontSize:9, color:"#666", fontWeight:400, marginTop:2 }}>{d?.v||""}</div>
+            <div key={i} style={{ background:"rgba(255,255,255,0.9)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+              <div style={{ fontSize:11, color:"#000", fontWeight:400, letterSpacing:"0.06em", textTransform:"uppercase", marginBottom:6 }}>{l}</div>
+              <div style={{ fontSize:16, fontWeight:400, color:"#000", lineHeight:1.1 }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:12, color:"#333", fontWeight:400, marginTop:3 }}>{d?.v||""}</div>
             </div>
           ))}
         </div>
@@ -1011,7 +1011,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,184,112,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Knowledge Guide ✦</div>
+            <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:12, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
           </span>
           <span style={{ fontSize:20, color:"#e8b870", flexShrink:0 }}>›</span>
