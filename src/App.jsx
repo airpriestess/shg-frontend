@@ -451,7 +451,7 @@ function AppPreviewSection({ isMobile }) {
   const [view,  setView]  = useState("dashboard");
 
   return (
-    <div style={{ width:"100%", display:"flex", flexDirection:"column", alignItems:"center", gap:20, marginBottom:16 }}>
+    <div style={{ width:"100%", background:"#000", padding: isMobile?"32px 0 40px":"48px 0 56px", display:"flex", flexDirection:"column", alignItems:"center", gap:20 }}>
 
       {/* Tap-to-explore hint only — duplicate copy removed */}
       <div style={{ textAlign:"center", maxWidth:560 }}>
