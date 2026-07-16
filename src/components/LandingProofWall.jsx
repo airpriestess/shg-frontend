@@ -45,7 +45,7 @@ const WALL = [
     track: "a Moneymaxxing track", feel: "Money really does find me first.",
     log: [
       "Day 1: Old belief — \"It's so hard to attract money out of thin air.\" Started listening to a Moneymaxxing track.",
-      "Day 2: An old invoice I'd forgotten about finally got paid — £1,800 landed as a refund, no chasing.",
+      "Day 2: £1,800 landed in my account as a refund. I still don't know what it was for. Got paid automatically, no explanation.",
       "Day 4: Marked manifested.",
     ]
   },
@@ -150,8 +150,11 @@ export default function LandingProofWall({ isMobile }) {
           <div style={{ fontSize: isMobile?"clamp(44px,13vw,64px)":"clamp(56px,8vw,80px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:20 }}>
             The Proof Thread.
           </div>
-          <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.8, maxWidth:480, margin:"0 auto", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.8, maxWidth:480, margin:"0 auto 14px", fontWeight:400 }}>
             Track every manifestation in one place — for the rest of your life. Never lose your desires in a dusty journal again.
+          </p>
+          <p style={{ fontSize: isMobile?14:16, color:"#c8bcb0", lineHeight:1.75, maxWidth:520, margin:"0 auto" }}>
+            Every thread starts with your old assumption — the belief you're actually working against — logged the moment you start listening. As the signs come in, you watch it shift into a new assumption in real time. That's the proof: not just that something manifested, but that the belief underneath it changed first.
           </p>
         </div>
 
