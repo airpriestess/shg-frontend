@@ -1109,7 +1109,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Erosmaxxing",        tagline:"Seduction is second nature to me now." },
               { label:"Beautymaxxing",      tagline:"My skin glows without trying." },
               { label:"Studymaxxing",       tagline:"I know it before I've even revised it." },
-              { label:"Singlemaxxing",      tagline:"Peace found me when I stopped looking for him." },
+              { label:"Singlemaxxing",      tagline:"Peace found me when I stopped looking for it." },
               { label:"Erosmaxxing",        tagline:"He can't stop thinking about last night." },
               { label:"Careermaxxing",      tagline:"Promoted. Obviously." },
               { label:"Selfmaxxing",        tagline:"I am the version of me I used to pray for." },
