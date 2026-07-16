@@ -49,8 +49,8 @@ const THEMES = {
   light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(232,168,96,0.12)", bg4:"rgba(232,168,96,0.22)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)", inputBg:"rgba(180,104,48,0.08)", inputCr:"#1a1008" },
 };
 
-const R = "#e8a860", P = "#e8a860";
-const OMBRE = "linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
+const R = "#e8b870", P = "#d4a090";
+const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
 
 // Per-tab subtle wash — black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
@@ -82,16 +82,16 @@ const CAT_ICONS = {
   Facemaxxing: { accent:"#e8c088", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Bodymaxxing: { accent:"#e8a860", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#e8a860", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Moneymaxxing: { accent:"#c9963a", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Businessmaxxing: { accent:"#c9963a", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
-  Careermaxxing: { accent:"#c9963a", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
+  Moneymaxxing: { accent:"#e8b870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Businessmaxxing: { accent:"#e8b870", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Careermaxxing: { accent:"#e8b870", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#b8934a", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
   Selfmaxxing: { accent:"#e8b870", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
   Erosmaxxing: { accent:"#d4a028", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
   Singlemaxxing: { accent:"#d4a028", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
   Wellnessmaxxing: { accent:"#e0c090", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Sleepmaxxing: { accent:"#f5e0a0", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
-  Studymaxxing: { accent:"#c9963a", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
+  Studymaxxing: { accent:"#e8b870", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
   Friendmaxxing: { accent:"#e8b870", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Peacemaxxing: { accent:"#c8a870", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
   Confidencemaxxing: { accent:"#e8a860", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
@@ -244,8 +244,8 @@ const INIT_THREADS = [
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
-const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#c9963a)", "Beauty":"linear-gradient(135deg,#f5e0a0,#e8a860)", "Identity":"linear-gradient(135deg,#c9963a,#e8a860)", "DNA":"linear-gradient(135deg,#c9963a,#e8a860)", "Sleep":"linear-gradient(135deg,#e8a860,#e8a860)" };
-const CAT_COLOR = { "Lovemaxxing":"#e8a860", "Money":"#e8b870", "Beauty":"#e8a860", "Identity":"#8a6020", "DNA":"#8a6020", "Sleep":"#6a2840", "Beautymaxxing":"#e8a860", "Facemaxxing":"#c9963a", "Bodymaxxing":"#e8a860", "Moneymaxxing":"#e8b870", "Businessmaxxing":"#c9963a", "DNAmaxxing":"#8a6020", "Selfmaxxing":"#8a6838", "Erosmaxxing":"#a8506a", "Lifemaxxing":"#e0a868", "Luckygirlmaxxing":"#e8b870", "Sovereignmaxxing":"#6a2840" };
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Money":"linear-gradient(135deg,#e8b870,#d4a090)", "Beauty":"linear-gradient(135deg,#f5e0a0,#e8b870)", "Identity":"linear-gradient(135deg,#e8b870,#c4789a)", "DNA":"linear-gradient(135deg,#d4a090,#c4789a)", "Sleep":"linear-gradient(135deg,#c4789a,#B76E79)" };
+const CAT_COLOR = { "Lovemaxxing":"#e8b870", "Money":"#e8b870", "Beauty":"#e8b870", "Identity":"#c4789a", "DNA":"#c4789a", "Sleep":"#B76E79", "Beautymaxxing":"#e8b870", "Facemaxxing":"#d4a090", "Bodymaxxing":"#e8b870", "Moneymaxxing":"#e8b870", "Businessmaxxing":"#d4a090", "DNAmaxxing":"#c4789a", "Selfmaxxing":"#c4789a", "Erosmaxxing":"#B76E79", "Lifemaxxing":"#e8b870", "Luckygirlmaxxing":"#e8b870", "Sovereignmaxxing":"#B76E79" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -567,7 +567,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       )}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",textAlign:"center" }}>
             <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
             <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
@@ -582,12 +582,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",flexShrink:0,borderRight:`1px solid ${C.border}` }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
             <svg viewBox="0 0 64 64" width="22" height="22" style={{flexShrink:0}}>
-              <defs><linearGradient id="sidemark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#c9963a"/><stop offset="72%" stopColor="#e8a860"/><stop offset="100%" stopColor="#e8a860"/></linearGradient></defs>
+              <defs><linearGradient id="sidemark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#e8b870"/><stop offset="72%" stopColor="#e8a860"/><stop offset="100%" stopColor="#e8a860"/></linearGradient></defs>
               <path d="M32 10 A22 22 0 0 0 32 54 Z" fill="url(#sidemark)" opacity="0.92"/>
               <path d="M32 10 A22 22 0 0 1 32 54 Z" fill="none" stroke="url(#sidemark)" strokeWidth="2.6"/>
               <line x1="32" y1="8" x2="32" y2="56" stroke="url(#sidemark)" strokeWidth="1.2" opacity="0.6"/>
             </svg>
-            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:18,fontWeight:400,background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent"}}>
+            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:18,fontWeight:400,background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent"}}>
               Self Hypnosis Goddess
             </span>
           </div>
@@ -657,7 +657,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",textAlign:"center" }}>
             <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
             <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
@@ -839,7 +839,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* UPGRADE BANNER */}
       {userTier==="audio"&&!isPreview&&(
-        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
+        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
             <div style={{ fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
             <div style={{ fontSize:14,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics — 10% off</div>
@@ -930,7 +930,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       </div>
 
       {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
-      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
+      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
           <span style={{ fontSize:10, fontWeight:400, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your dominant state</span>
         </div>
@@ -960,7 +960,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#e8a860","Money":"#e8b870","Beauty":"#c9963a","Identity":"#e8a860","DNA":"#e8a860","Sleep":"#c9963a"})[name]||"#e8a860",n]),
+              .map(([name,n])=>[name,({"Lovemaxxing":"#e8a860","Money":"#e8b870","Beauty":"#e8b870","Identity":"#e8a860","DNA":"#e8a860","Sleep":"#e8b870"})[name]||"#e8a860",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
         />
@@ -1143,7 +1143,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
         <div style={{ fontSize:22, color:"#e8a860", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:11, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
-      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
         Unlock {feature} — upgrade now ✦
       </button>
       <div style={{ fontSize:11, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
@@ -1164,9 +1164,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterInput, setFeelAfterInput] = useState("");
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
-  // Local palette for ombre dashboard — black text on ombre, cream cards
-  const PC = { card:"rgba(255,252,248,0.88)", cardSolid:"#fffcf8", text:"#000", mu:"#4a2830", dim:"#6a4048", border:"rgba(0,0,0,0.14)", inputBg:"rgba(255,255,255,0.95)" };
-  const OMBRE_BG = "linear-gradient(165deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
+  // ProofOS always renders on the locked ombre — always treat as light context
+  const isDark = false;
+  const PC = { card:"rgba(255,252,248,0.92)", cardSolid:"#fffcf8", text:"#000", mu:"#5a3040", dim:"#7a4858", border:"rgba(0,0,0,0.12)", inputBg:"rgba(255,255,255,0.96)" };
+  const OMBRE_BG = "linear-gradient(165deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c4789a 80%,#B76E79 100%)";
 
   if (isPreview) return (
     <div style={{ padding:"40px 20px",textAlign:"center",background:OMBRE_BG,minHeight:"100%" }}>
@@ -1374,7 +1375,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               {d.done
                 ? <>
                     <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(232,184,112,0.9)" }}>✓</span>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(232,184,112,0.9)" }}>✓</span>
                       <span style={{ fontSize:11,fontWeight:400,color:"#000" }}>Manifested</span>
                     </label>
                     <span style={{ fontSize:9,color:PC.dim,fontWeight:400 }}>tap to undo</span>
