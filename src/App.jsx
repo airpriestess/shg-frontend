@@ -1187,8 +1187,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             Left and right hemispheres normally fire at different rates — one scattered, one quiet. Binaural beats and EMDR's bilateral audio stimulation bring both into the same frequency at once, syncing your whole brain into theta together.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto" }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             Trying to change beliefs while your brain is in beta — normal, conscious waking awareness — doesn't work. Your conscious mind argues, filters, resists. To actually shift a belief, your brain needs to be synced into theta state, where you access the subconscious mind directly — the part responsible for roughly 90% of your reality and everything you believe about yourself.
+          </p>
+          <p style={{ fontSize: isMobile?15:17, color:"#e8a860", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:500 }}>
+            That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. The belief changes first, quietly, underneath conscious effort. Then your choices change. Then what shows up in your life changes. You don't have to fight for it — you just have to keep pressing play.
           </p>
         </div>
       </div>
