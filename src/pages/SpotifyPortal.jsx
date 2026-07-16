@@ -69,11 +69,11 @@ const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
 // Light theme: cream fading to a soft champagne pastel.
 const TAB_WASH = {
-  home:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#1a1710 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#fce8cc 55%,#fdf0e8 100%)" }, // soft champagne
-  search:  { dark: "linear-gradient(180deg,#0f0f0f 0%,#181510 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#fae4c4 55%,#fdf0e8 100%)" }, // pale gold
-  library: { dark: "linear-gradient(180deg,#0f0f0f 0%,#1c180e 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#f8dfae 55%,#fdf0e8 100%)" }, // deeper gold
-  proof:   { dark: "linear-gradient(180deg,#0f0f0f 0%,#1e190f 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#f5daa0 55%,#fdf0e8 100%)" }, // richest gold
-  shop:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#191510 55%,#0f0f0f 100%)",  light: "linear-gradient(180deg,#fdf0e8 0%,#fbe6ce 55%,#fdf0e8 100%)" }, // warm champagne
+  home:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#1a1710 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
+  search:  { dark: "linear-gradient(180deg,#0f0f0f 0%,#181510 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
+  library: { dark: "linear-gradient(180deg,#0f0f0f 0%,#1c180e 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
+  proof:   { dark: "linear-gradient(180deg,#0f0f0f 0%,#1e190f 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
+  shop:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#191510 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
 };
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
@@ -1062,6 +1062,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C }) {
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Moneymaxxing","Businessmaxxing","Careermaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
@@ -1120,10 +1121,10 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                 return (
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
-                      padding:"12px 16px", fontSize:14, fontWeight:active?400:400,
-                      color:active?R:C.cr, background:active?`${R}22`:"transparent",
+                      padding:"12px 16px", fontSize:14, fontWeight:400,
+                      color:active?R:"#f2ece4", background:active?`${R}22`:"transparent",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
-                      borderBottom:`1px solid rgba(255,255,255,0.06)`
+                      borderBottom:"1px solid rgba(255,255,255,0.06)"
                     }}
                     onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${R}14`; }}
                     onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "transparent"; }}
@@ -1159,10 +1160,10 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:14,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+              <div style={{ fontSize:14,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:9,background:`${R}22`,color:R,padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:11,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:11,color:isDark?"#9a8878":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
