@@ -444,7 +444,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:12,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
-            <div style={{ fontSize:11,color:C.mu,marginBottom:12 }}>+£14/month · that's the difference from Audio Tier, not the full £33 · cancel anytime · charged to the card already on file</div>
+            <div style={{ fontSize:11,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
@@ -994,15 +994,15 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         />
       </div>
 
-      {/* GUIDES PROMO — links into Shop */}
+      {/* KNOWLEDGE GUIDE — available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={()=>setTab("shop")} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:"1px solid rgba(232,168,96,0.3)", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
-          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,168,96,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
+        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,184,112,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Explore the Guides</div>
-            <div style={{ fontSize:12, color:"#b09888", fontWeight:400, marginTop:3, lineHeight:1.4 }}>Moneymaxxing Guide, Lovemaxxing Guide, and more — deep-dive workbooks for every category</div>
+            <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Knowledge Guide ✦</div>
+            <div style={{ fontSize:12, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
           </span>
-          <span style={{ fontSize:20, color:"#e8a860", flexShrink:0 }}>›</span>
+          <span style={{ fontSize:20, color:"#e8b870", flexShrink:0 }}>›</span>
         </button>
       </div>
     </div>
@@ -1182,8 +1182,8 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(232,168,96,0.08)", border:"1px solid rgba(232,168,96,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:11, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#e8a860", marginBottom:4 }}>+£14<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
-        <div style={{ fontSize:11, color:C.mu }}>That's the difference from your Audio Tier plan — you're not charged the full £33, just the top-up. No re-entering card details. Switch to annual billing any time.</div>
+        <div style={{ fontSize:22, color:"#e8a860", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:11, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
         Unlock {feature} — upgrade now ✦
@@ -1364,24 +1364,22 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             ))}
           </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <select value={newFeel} onChange={e=>setFeel(e.target.value)}
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:6,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box",appearance:"none",WebkitAppearance:"none",cursor:"pointer" }}>
-            <option value="">— Select your state —</option>
-            <optgroup label="200+ · Expansive ✦">
-              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
-                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Below 200 · Contractive">
-              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
-                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
-              ))}
-            </optgroup>
-          </select>
+          <div style={{ marginBottom:6, maxHeight:180, overflowY:"auto", border:`1px solid ${PC.border}`, borderRadius:10, background:PC.inputBg }}>
+            {HAWKINS.slice().reverse().map(h=>(
+              <div key={h.n} onClick={()=>setFeel(h.n)}
+                style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",cursor:"pointer",
+                  background:newFeel===h.n?`${h.c}22`:"transparent",
+                  borderBottom:`1px solid ${PC.border}` }}>
+                <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:h.v>=200?`0 0 5px ${h.c}88`:"none" }}/>
+                <span style={{ fontSize:12,color:h.v<=30?"#9a8878":h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:10,color:PC.mu }}>{h.v}</span>
+              </div>
+            ))}
+          </div>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:10 }}>
               <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-              <span style={{ fontSize:11,color:C.cr }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
+              <span style={{ fontSize:11,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
             </div>
           ) : null; })()}
           <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
