@@ -939,13 +939,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
-            <svg viewBox="0 0 64 64" width="24" height="24" style={{flexShrink:0}}>
-              <defs><linearGradient id="navmark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#d4a090"/><stop offset="72%" stopColor="#c4789a"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
-              <path d="M32 10 A22 22 0 0 0 32 54 Z" fill="url(#navmark)" opacity="0.92"/>
-              <path d="M32 10 A22 22 0 0 1 32 54 Z" fill="none" stroke="url(#navmark)" strokeWidth="2.6"/>
-              <line x1="32" y1="8" x2="32" y2="56" stroke="url(#navmark)" strokeWidth="1.2" opacity="0.6"/>
+            <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
+              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
             </svg>
-            <span className="wm wm-shimmer" style={{ fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+            <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#B76E79" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
 
@@ -1114,14 +1112,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* LOGO — drop in here */}
+      {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        {/* logo goes here */}
+        <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
+          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
+          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
+        </svg>
       </div>
 
       {/* BRAND BLOCK — immediately after player, so people know what this IS before we explain how it works */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(52px,6.5vw,84px)", color:"#f2ece4", lineHeight:1.0, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing:"-0.01em", marginBottom:16 }}>
+        <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", marginBottom:16 }}>
           Self Hypnosis Goddess
         </div>
         <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
@@ -1207,30 +1208,42 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
 
-      {/* HOW IT WORKS — 5 massive steps in ombre colours */}
-      <div style={{ background:"#fdf0e8", padding: isMobile?"28px 24px 0":"36px 48px 0", textAlign:"center" }}>
-        <div style={{ fontSize:11, color:"#b46830", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:12 }}>How it works</div>
-        <div style={{ fontSize: isMobile?"clamp(36px,10vw,56px)":"clamp(48px,6vw,72px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0, paddingBottom:28 }}>Five steps.</div>
-      </div>
-      <div style={{ background:"#000" }}>
-        {[
-          { n:"01", icon:"✦", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", bg:"linear-gradient(135deg,#fce4c0,#f5d4a0)" },
-          { n:"02", icon:"▶", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", bg:"linear-gradient(135deg,#f5d4a0,#e8b870)" },
-          { n:"03", icon:"◎", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", bg:"linear-gradient(135deg,#e8b870,#d4a090)" },
-          { n:"04", icon:"📷", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", bg:"linear-gradient(135deg,#d4a090,#c4789a)" },
-          { n:"05", icon:"✓", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", bg:"linear-gradient(135deg,#c4789a,#B76E79)" },
-        ].map(({n,icon,title,body,bg},i)=>(
-          <div key={i} style={{ background:bg, padding: isMobile?"32px 24px":"48px 64px", display:"flex", flexDirection: isMobile?"column":"row", alignItems: isMobile?"flex-start":"center", gap: isMobile?12:48 }}>
-            <div style={{ fontSize: isMobile?"clamp(64px,20vw,100px)":"clamp(80px,10vw,120px)", color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", fontWeight:700, lineHeight:1, flexShrink:0, letterSpacing:"-0.04em" }}>{n}</div>
-            <div>
-              <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:10 }}>
-                <span style={{ fontSize: isMobile?24:28, lineHeight:1 }}>{icon}</span>
-                <div style={{ fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(32px,4vw,52px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1 }}>{title}</div>
+      {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
+      <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
+        <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
+          <div style={{ fontSize:11, color:"#e8a860", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
+          <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0 }}>Five steps.</div>
+        </div>
+
+        <div style={{ maxWidth:840, margin:"0 auto", position:"relative" }}>
+          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#fce4c0,#f5d4a0,#e8b870,#d4a090,#c4789a,#B76E79)", opacity:0.4 }}/>}
+
+          {[
+            { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", accent:"#f5d4a0",
+              icon: <path d="M30 8 L36 24 L52 30 L36 36 L30 52 L24 36 L8 30 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/> },
+            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#e8b870",
+              icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M25 20 L41 30 L25 40 Z" fill="currentColor"/></> },
+            { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#d4a090",
+              icon: <><circle cx="30" cy="30" r="6" fill="currentColor"/><circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" strokeWidth="1.8" opacity="0.6"/><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" strokeWidth="1.6" opacity="0.35"/></> },
+            { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", accent:"#c4789a",
+              icon: <><rect x="10" y="20" width="40" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M22 20 L25 14 L35 14 L38 20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/><circle cx="30" cy="34" r="8" fill="none" stroke="currentColor" strokeWidth="2.2"/></> },
+            { n:"05", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", accent:"#B76E79",
+              icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M20 30 L27 37 L41 22" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></> },
+          ].map(({n,icon,title,body,accent},i)=>(
+            <div key={i} style={{ display:"flex", gap: isMobile?18:32, alignItems:"flex-start", marginBottom: i===4?0:(isMobile?32:40), position:"relative" }}>
+              <div style={{ flexShrink:0, width: isMobile?60:78, height: isMobile?60:78, borderRadius:"50%", background:`${accent}18`, border:`1.5px solid ${accent}55`, display:"flex", alignItems:"center", justifyContent:"center", color:accent, position:"relative", zIndex:1 }}>
+                <svg width={isMobile?26:32} height={isMobile?26:32} viewBox="0 0 60 60">{icon}</svg>
               </div>
-              <div style={{ fontSize: isMobile?16:19, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.7 }}>{body}</div>
+              <div style={{ flex:1, paddingTop: isMobile?4:10 }}>
+                <div style={{ display:"flex", alignItems:"baseline", gap:12, marginBottom:6 }}>
+                  <span style={{ fontSize: isMobile?12:13, color:accent, fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.1em" }}>{n}</span>
+                  <div style={{ fontSize: isMobile?"clamp(20px,6vw,26px)":"clamp(24px,2.6vw,32px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.15 }}>{title}</div>
+                </div>
+                <div style={{ fontSize: isMobile?14:16, color:"#9a8878", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.65, maxWidth:460 }}>{body}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* MELODIC HOUSE USP — cream background, locked palette */}
@@ -1285,7 +1298,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:20 }}>The Library.</div>
-            <div style={{ fontSize: 11, fontWeight: 400, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
             <h2 style={{ fontSize: "clamp(28px,4.5vw,44px)", color: "#000000", fontWeight: 400, marginBottom: 12, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>Whatever it is, it's covered.</h2>
             <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap", fontFamily:"'Jost',sans-serif" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
@@ -1343,7 +1356,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
                 <div style={{ fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", fontSize: isMobile ? 16 : 19, fontWeight: 600, color: "#000000", marginBottom: 6 }}>{cat.name}</div>
-                <div style={{ fontSize: isMobile ? 11 : 12, color: "#7a6a60", lineHeight: 1.4 }}>{cat.pain}</div>
+                <div style={{ fontSize: isMobile ? 13 : 14, color: "#5a4a40", lineHeight: 1.45 }}>{cat.pain}</div>
               </div>
             ))}
           </div>
@@ -1396,7 +1409,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <div style={{ width:32, height:24, opacity:0.25 }}>
                   <svg viewBox="0 0 32 24" fill="#B76E79"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
-                <p style={{ fontSize:isMobile?15:17, color:"#1a1410", lineHeight:1.85, fontFamily:"'Cormorant Garamond',serif", flex:1 }}>{t.quote}</p>
+                <p style={{ fontSize:isMobile?16:18, color:"#1a1410", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                   <span style={{ fontSize:12, fontWeight:400, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.12)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:20, color:"#B76E79", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
