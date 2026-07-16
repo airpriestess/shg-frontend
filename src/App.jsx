@@ -852,10 +852,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
   // ── HERO PLAYLIST ─────────────────────────────────────────────────────────
   const PLAYLIST = [
-    { title: "Spoilt Goddess",           sub: "Self Hypnosis",   freq: "Melodic House · 528hz · EMDR", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
-    { title: "While I Sleep I Manifest", sub: "Subliminal",      freq: "Sleep shifting · EMDR", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
+    { title: "Spoilt Goddess",           sub: "Self Hypnosis",   freq: "Hypnosis · Melodic House · 528hz · EMDR", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
+    { title: "While I Sleep I Manifest", sub: "Subliminal",      freq: "Subliminal · Sleep track · EMDR", url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
     { title: "10 Years Into One Hour",   sub: "EMDR · Deep identity reset",            freq: "Theta · 432hz",         url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3" },
-    { title: "Money Finds Me First",     sub: "Wealth · Receiving · Abundance",        freq: "528hz · Spoken hypnosis",url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
+    { title: "Money Finds Me First",     sub: "Wealth · Receiving · Abundance",        freq: "Hypnosis · Vocal only (no music) · EMDR",url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
     { title: "He Finds His Way Back",    sub: "Lovemaxxing · No contact",                freq: "432hz · EMDR",          url: null },
     { title: "Gorgeous Is My Default",   sub: "Beauty · Glow · Self-image",            freq: "432hz · Binaural",      url: null },
   ];
