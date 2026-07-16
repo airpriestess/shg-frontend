@@ -1217,8 +1217,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             If you are feeling the gap between who you are and who you want to be, I help you close the gap. These hypnosis and subliminal tracks reprogram your mind at a subconscious level — directly, while you listen.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life.
+          </p>
+          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
+            Here's the part most people miss: your current self and your future self are not the same identity. She has different beliefs. She takes different actions. She makes different decisions, for different reasons, from a completely different set of assumptions about what's possible for her. You cannot think your way into her reality using your current self's beliefs — that's not a small gap, it's a different identity entirely. And you can't fully know what she does, or how she moves through the world, until you actually become her. That's the reprogramming. Not adding new thoughts on top of the old ones — replacing the identity underneath them, so the actions that were always out of reach for you become the only actions she knows how to take.
           </p>
         </div>
       </div>
