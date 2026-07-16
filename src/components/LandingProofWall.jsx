@@ -71,13 +71,13 @@ const WALL = [
     ]
   },
   {
-    desire: "My body finally matches how disciplined I've actually been.",
+    desire: "I finally lost the last 20 pounds I'd been stuck on for three years.",
     category: "Skinnymaxxing", days: 21, signs: 3,
-    track: "a Skinnymaxxing track", feel: "The old belief was that discipline alone wasn't enough for my body. It was never about willpower.",
+    track: "a Skinnymaxxing track", feel: "The old belief was that discipline alone wasn't enough for my body. It was never about willpower — I'd tried everything and stayed stuck on the exact same 20 pounds.",
     log: [
-      "Day 1: Started listening to a Skinnymaxxing track.",
+      "Day 1: Started listening to a Skinnymaxxing track. Wrote down 'I've tried so hard to lose the last 20 pounds' — the belief I was actually working against.",
       "Day 9: Cravings that used to run my evenings just... quieted down.",
-      "Day 21: Jeans I'd kept 'for motivation' finally fit. No new diet.",
+      "Day 21: Down 6 pounds without changing my diet. Jeans I'd kept 'for motivation' finally fit.",
     ]
   },
   {
