@@ -444,7 +444,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:12,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
-            <div style={{ fontSize:11,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <div style={{ fontSize:11,color:C.mu,marginBottom:12 }}>+£14/month · that's the difference from Audio Tier, not the full £33 · cancel anytime · charged to the card already on file</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
@@ -1182,8 +1182,8 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(232,168,96,0.08)", border:"1px solid rgba(232,168,96,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:11, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#e8a860", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
-        <div style={{ fontSize:11, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
+        <div style={{ fontSize:22, color:"#e8a860", marginBottom:4 }}>+£14<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:11, color:C.mu }}>That's the difference from your Audio Tier plan — you're not charged the full £33, just the top-up. No re-entering card details. Switch to annual billing any time.</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
         Unlock {feature} — upgrade now ✦
