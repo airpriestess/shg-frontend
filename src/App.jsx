@@ -973,12 +973,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           {/* Main nav items — massive */}
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {[
-              ["Audio Library", ()=>{ document.getElementById("audio-library")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["Pricing",       ()=>{ document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["ProofOS",       ()=>{ document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["Preview",       ()=>{ onDemo?.(); setMenuOpen(false); }],
-              ["Shop",          ()=>{ setShopOpen(true); setMenuOpen(false); }],
-              ["YouTube",       ()=>{ window.open("https://www.youtube.com/@Reshma.Oracle","_blank"); setMenuOpen(false); }],
+              ["Shop",          ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
+              ["YouTube",       ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(0,0,0,0.12)",color:"#000",fontSize:"clamp(24px,6vw,38px)",fontWeight:400,letterSpacing:"0.04em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
@@ -986,7 +985,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* Bottom — join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <button onClick={()=>{onJoin?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Join Now ✦
             </button>
             <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(0,0,0,0.25)",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
@@ -1427,7 +1426,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
       {/* PROOFOS INTRO — brief 2 sentence version */}
-      <div style={{ padding: isMobile?"32px 18px":"48px 24px", textAlign:"center", maxWidth:680, margin:"0 auto" }}>
+      <div id="proofos" style={{ padding: isMobile?"32px 18px":"48px 24px", textAlign:"center", maxWidth:680, margin:"0 auto" }}>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#c8bcb0", lineHeight:1.85 }}>
           Every track links to a desire. Every sign you receive gets logged in <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
