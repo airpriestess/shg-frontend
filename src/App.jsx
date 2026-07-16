@@ -1301,6 +1301,37 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 </div>
               ))}
             </div>
+
+            {/* FREQUENCY TABLE — Solfeggio + binaural reference */}
+            <div style={{ maxWidth: 680, margin: "0 auto" }}>
+              <div style={{ fontSize: 11, color: "#c9963a", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
+              <p style={{ fontSize: isMobile?14:15, color:"#3a2010", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
+                Every track is tuned to a specific frequency — Solfeggio tones layered under the music, plus binaural beats for hemi-sync. Here's what each one is associated with:
+              </p>
+              <div style={{ background:"#fff", borderRadius:14, overflow:"hidden", border:"1px solid rgba(183,110,121,0.2)" }}>
+                {[
+                  { hz:"174hz", name:"Foundation", assoc:"Pain relief, safety, grounding" },
+                  { hz:"285hz", name:"Restoration", assoc:"Tissue and energy field repair" },
+                  { hz:"396hz", name:"Liberation", assoc:"Releasing fear and guilt" },
+                  { hz:"417hz", name:"Change", assoc:"Undoing situations, facilitating change" },
+                  { hz:"432hz", name:"Harmony", assoc:"Natural tuning, calm, coherence" },
+                  { hz:"528hz", name:"Transformation", assoc:"The \"love frequency\" — repair, DNA, abundance" },
+                  { hz:"639hz", name:"Connection", assoc:"Relationships, harmonising with others" },
+                  { hz:"741hz", name:"Expression", assoc:"Awakening intuition, problem-solving" },
+                  { hz:"852hz", name:"Intuition", assoc:"Returning to spiritual order" },
+                  { hz:"963hz", name:"Activation", assoc:"Pineal gland activation, higher connection" },
+                ].map((row,i)=>(
+                  <div key={i} style={{ display:"flex", alignItems:"center", gap:14, padding: isMobile?"10px 14px":"12px 20px", borderBottom: i<9?"1px solid rgba(183,110,121,0.1)":"none" }}>
+                    <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#B76E79", width: isMobile?52:64, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
+                    <div style={{ fontSize: isMobile?13:14, fontWeight:600, color:"#1a0a04", width: isMobile?90:120, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
+                    <div style={{ fontSize: isMobile?12:13, color:"#5a4a40", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize:11, color:"#8a7060", textAlign:"center", marginTop:14, lineHeight:1.5 }}>
+                Plus binaural beats layered underneath, syncing both hemispheres into theta for the hemi-sync effect explained above.
+              </p>
+            </div>
           </div>
         </div>
       </div>
