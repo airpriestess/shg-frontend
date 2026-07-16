@@ -350,12 +350,12 @@ function PricingSection({ onJoin }) {
   ];
 
   return (
-    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "linear-gradient(160deg,#fce4c0 0%,#f0d4a8 40%,#ece8d8 100%)", width: "100%" }}>
+    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "linear-gradient(160deg,#f0e4f8 0%,#dcc4ec 50%,#c4a0dc 100%)", width: "100%" }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontSize: isMobile ? 12 : 13, fontWeight: 700, color: "#B76E79", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
-          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#2a1a0a", lineHeight: 1.1 }}>
-            Full access. <span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>No download needed.</span>
+          <div style={{ fontSize: isMobile ? 12 : 13, fontWeight: 700, color: "#6a3d8a", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
+          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#2a1030", lineHeight: 1.1 }}>
+            Full access. <span style={{ color: "#6a3d8a", fontWeight:500 }}>No download needed.</span>
           </h2>
         </div>
 
@@ -1369,12 +1369,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </p>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#2a0f18 0%,#1a0810 50%,#000000 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fce4ec 0%,#f8d0de 50%,#f0b8cc 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#f2ece4", letterSpacing:"-0.01em", lineHeight:1 }}>
-              Wall of <span style={{ background:"linear-gradient(90deg,#e8a8bc,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#8a2f4a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#3a0f1e", letterSpacing:"-0.01em", lineHeight:1 }}>
+              Wall of <span style={{ background:"linear-gradient(90deg,#8a2f4a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
           </div>
           <div style={{...GPRICE(isMobile)}}>
