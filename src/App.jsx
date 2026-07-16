@@ -1432,17 +1432,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* FINAL CTA */}
       <div style={{ background: "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 35%,#9b87c4 65%,#7a6aaa 100%)", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <div style={{ fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", fontFamily: "'Jost',sans-serif", marginBottom: 16 }}>Coming soon</div>
+          <div style={{ fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: "#000000", fontFamily: "'Jost',sans-serif", fontWeight:600, marginBottom: 16 }}>Coming soon</div>
           <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,58px)", color: "#000", lineHeight: 1.1, marginBottom: 20, fontWeight: 400 }}>
             Let's stay<br/>connected.
           </h2>
-          <p style={{ fontSize: isMobile?15:17, color: "rgba(0,0,0,0.6)", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?15:17, color: "#1a1218", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             Join the waitlist and be the first to know when the audio library opens.
           </p>
           <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Join Waitlist
           </button>
-          <div style={{ marginTop: 14, fontSize: 12, color: "rgba(0,0,0,0.4)", fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
+          <div style={{ marginTop: 14, fontSize: 13, color: "#1a1218", fontWeight:500, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
         </div>
       </div>
 
