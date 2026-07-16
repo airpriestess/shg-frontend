@@ -1101,7 +1101,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Healmaxxing",        tagline:"What used to hurt doesn't run me anymore." },
               { label:"Lovemaxxing",        tagline:"He chooses me. Every single day." },
               { label:"Singlemaxxing",      tagline:"I'm dating myself first. Everyone else can wait." },
-              { label:"Peacemaxxing",       tagline:"Nothing rattles me anymore." },
+              { label:"Peacemaxxing",       tagline:"Nothing shakes me anymore." },
               { label:"Selfmaxxing",        tagline:"I am the standard other women measure against." },
               { label:"Lovemaxxing",        tagline:"He shows up exactly when I need him to." },
               { label:"Bodymaxxing",        tagline:"My body listens to me now." },
@@ -1275,7 +1275,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             It's impossible to actually reprogram your beliefs while you're in beta state — your normal, wide-awake conscious mind. Beta is where you argue, filter, and resist anything new. That's why we need to get you into theta state instead — the state where reprogramming actually happens.
           </p>
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
-            We get you there three ways at once: binaural beats, EMDR's bilateral audio stimulation, and my own vocal auto-suggestion recorded directly into every self-hypnosis track. Left and right hemispheres normally fire at different rates — one scattered, one quiet. All three bring both hemispheres into the same frequency together, syncing your whole brain into theta.
+            We get you there three ways at once: binaural beats, EMDR's bilateral audio stimulation, and my own vocal auto-suggestion recorded directly into every self-hypnosis and subliminal track. Left and right hemispheres normally fire at different rates — one scattered, one quiet. All three bring both hemispheres into the same frequency together, syncing your whole brain into theta.
           </p>
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             Theta is where the reprogramming begins. In theta, you access the subconscious mind directly — the part responsible for roughly 95% of your reality and everything you believe about yourself. Trying to install a new belief in beta means fighting your own conscious mind the whole way. In theta, there's nothing to fight.
