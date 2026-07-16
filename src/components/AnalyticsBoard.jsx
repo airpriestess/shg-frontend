@@ -55,26 +55,26 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
               cursor:onClick?"pointer":"default",
               border:onClick?`1px solid ${c}44`:"1px solid transparent" }}>
             <div style={{ fontSize:22*fs, fontWeight:400, color:c, lineHeight:1 }}>{v}</div>
-            <div style={{ fontSize:11*fs, color:BLACK, marginTop:4, lineHeight:1.2, fontWeight:400 }}>{l}{onClick?" →":""}</div>
+            <div style={{ fontSize:11*fs, color:C.text, marginTop:4, lineHeight:1.2, fontWeight:400 }}>{l}{onClick?" →":""}</div>
           </div>
         ))}
       </div>
 
       {/* 7-day bars */}
       <div style={{ background:C.card2, borderRadius:12, padding:"12px 14px", marginBottom:12 }}>
-        <div style={{ fontSize:11*fs, fontWeight:400, color:BLACK, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:4 }}>Plays this week</div>
+        <div style={{ fontSize:11*fs, fontWeight:400, color:C.text, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:4 }}>Plays this week</div>
         <div style={{ position:"relative" }}>
           <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:48*fs, position:"relative" }}>
             {week.map((v,i)=>{
               const isToday = i===week.length-1;
               return (
               <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
-                <span style={{ fontSize:10*fs, fontWeight:400, color:isToday?R:BLACK }}>{v}</span>
+                <span style={{ fontSize:10*fs, fontWeight:400, color:isToday?R:C.text }}>{v}</span>
                 <div style={{ position:"relative", width:"100%", maxWidth:24, height:"calc(100% - 22px)", display:"flex", alignItems:"flex-end" }}>
                   <div style={{ position:"absolute", inset:0, background:C.track, borderRadius:4 }}/>
                   <div style={{ position:"relative", width:"100%", height:`${Math.max((v/maxW)*100,10)}%`, minHeight:6, background:isToday?OMBRE:R, opacity:isToday?1:0.65, backgroundSize:"200%", backgroundPosition:"left", borderRadius:4, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${isToday?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
                 </div>
-                <span style={{ fontSize:10*fs, color:isToday?R:BLACK, fontWeight:400 }}>{days[i]}</span>
+                <span style={{ fontSize:10*fs, color:isToday?R:C.text, fontWeight:400 }}>{days[i]}</span>
               </div>
             );})}
           </div>
@@ -85,7 +85,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", gap:8, flexWrap:"wrap" }}>
         <div style={{ display:"flex", gap:5, flexWrap:"wrap" }}>
           {topCats.map(([name,color,n],i)=>(
-            <span key={i} style={{ fontSize:11*fs, fontWeight:400, padding:"4px 10px", borderRadius:20, background:C.card2, color:BLACK, border:`1px solid ${color}44` }}>{name} · {n}</span>
+            <span key={i} style={{ fontSize:11*fs, fontWeight:400, padding:"4px 10px", borderRadius:20, background:C.card2, color:C.text, border:`1px solid ${color}44` }}>{name} · {n}</span>
           ))}
         </div>
         {onViewProof && <span onClick={onViewProof} style={{ fontSize:12*fs, color:R, fontWeight:400, cursor:"pointer", textDecoration:"underline", whiteSpace:"nowrap", display:"inline-flex", alignItems:"center", gap:4 }}>View proof wall<ArrowIcon size={10}/></span>}
