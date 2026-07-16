@@ -1250,46 +1250,64 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Hemi-sync.<br/>Two hemispheres, one frequency.
           </h2>
 
-          {/* Before / after brain visual — actual hemisphere shapes */}
+          {/* Before / after brain heat-map visual — top-down head, matching real Hemi-Sync brainwave map reference */}
           <div style={{ display:"flex", flexDirection: isMobile?"column":"row", gap: isMobile?24:0, alignItems:"center", justifyContent:"center", marginBottom:36 }}>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Before — hemispheres unsynced</div>
-              <svg width="100%" height="120" viewBox="0 0 220 120" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                {/* Left hemisphere outline */}
-                <path d="M110 20 C 70 18, 30 40, 26 65 C 23 85, 38 100, 60 104 C 80 107, 100 100, 108 90 L 110 20 Z"
-                  fill="none" stroke="#e8a860" strokeWidth="2" opacity="0.55"/>
-                {/* Right hemisphere outline */}
-                <path d="M110 20 C 150 18, 190 40, 194 65 C 197 85, 182 100, 160 104 C 140 107, 120 100, 112 90 L 110 20 Z"
-                  fill="none" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
-                {/* Corpus callosum divider */}
-                <line x1="110" y1="20" x2="110" y2="92" stroke="#f2ece4" strokeWidth="1" opacity="0.3" strokeDasharray="2 3"/>
-                {/* Left hemisphere - fast scattered wave */}
-                <path d="M32 62 C 40 50, 46 74, 54 62 C 62 50, 68 74, 76 62 C 84 50, 90 74, 98 62"
-                  fill="none" stroke="#e8a860" strokeWidth="1.8" opacity="0.8" strokeLinecap="round"/>
-                {/* Right hemisphere - slow quiet wave, out of phase */}
-                <path d="M122 68 C 132 76, 142 58, 152 68 C 162 76, 172 58, 182 68"
-                  fill="none" stroke="#B76E79" strokeWidth="1.8" opacity="0.8" strokeLinecap="round"/>
+              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Before — beta wave state <span style={{opacity:0.6}}>(unsynced)</span></div>
+              <svg width="140" height="150" viewBox="0 0 140 150" style={{ margin:"0 auto", display:"block" }}>
+                <defs>
+                  <clipPath id="headClipBefore"><path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z"/></clipPath>
+                  <radialGradient id="hotBefore1" cx="35%" cy="30%" r="30%"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="60%" stopColor="#c4789a" stopOpacity="0.7"/><stop offset="100%" stopColor="#2a0f18" stopOpacity="0"/></radialGradient>
+                  <radialGradient id="hotBefore2" cx="70%" cy="55%" r="22%"><stop offset="0%" stopColor="#B76E79"/><stop offset="70%" stopColor="#4a1a28" stopOpacity="0.5"/><stop offset="100%" stopColor="#2a0f18" stopOpacity="0"/></radialGradient>
+                  <radialGradient id="hotBefore3" cx="40%" cy="80%" r="18%"><stop offset="0%" stopColor="#8a5060" stopOpacity="0.6"/><stop offset="100%" stopColor="#2a0f18" stopOpacity="0"/></radialGradient>
+                </defs>
+                <path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z" fill="#1a0810" stroke="#e8a86055" strokeWidth="1.5"/>
+                <g clipPath="url(#headClipBefore)">
+                  <rect x="0" y="0" width="140" height="150" fill="#160a10"/>
+                  <rect x="0" y="0" width="140" height="150" fill="url(#hotBefore1)"/>
+                  <rect x="0" y="0" width="140" height="150" fill="url(#hotBefore2)"/>
+                  <rect x="0" y="0" width="140" height="150" fill="url(#hotBefore3)"/>
+                  <line x1="70" y1="8" x2="70" y2="144" stroke="#000" strokeWidth="0.75" opacity="0.35"/>
+                </g>
               </svg>
             </div>
-            <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#B76E79)" }}/>
+            <div style={{ width: isMobile?32:1, height: isMobile?1:110, background:"linear-gradient(90deg,#e8a860,#B76E79)" }}/>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — synced theta</div>
-              <svg width="100%" height="120" viewBox="0 0 220 120" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                {/* Left hemisphere outline */}
-                <path d="M110 20 C 70 18, 30 40, 26 65 C 23 85, 38 100, 60 104 C 80 107, 100 100, 108 90 L 110 20 Z"
-                  fill="none" stroke="#e8a860" strokeWidth="2" opacity="0.7"/>
-                {/* Right hemisphere outline */}
-                <path d="M110 20 C 150 18, 190 40, 194 65 C 197 85, 182 100, 160 104 C 140 107, 120 100, 112 90 L 110 20 Z"
-                  fill="none" stroke="#B76E79" strokeWidth="2" opacity="0.7"/>
-                {/* Corpus callosum divider, now glowing to show connection */}
-                <line x1="110" y1="20" x2="110" y2="92" stroke="#f5e0a0" strokeWidth="1.5" opacity="0.6"/>
-                {/* Both hemispheres - matching synchronized wave, same phase */}
-                <path d="M32 65 Q41 52 50 65 T68 65 T86 65 T98 65"
-                  fill="none" stroke="#e8a860" strokeWidth="2.2" opacity="0.9" strokeLinecap="round"/>
-                <path d="M122 65 Q131 52 140 65 T158 65 T176 65 T188 65"
-                  fill="none" stroke="#B76E79" strokeWidth="2.2" opacity="0.9" strokeLinecap="round"/>
+              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
+              <svg width="140" height="150" viewBox="0 0 140 150" style={{ margin:"0 auto", display:"block" }}>
+                <defs>
+                  <clipPath id="headClipAfter"><path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z"/></clipPath>
+                  <radialGradient id="hotAfter" cx="50%" cy="48%" r="42%"><stop offset="0%" stopColor="#fdf3e0"/><stop offset="35%" stopColor="#f5e0a0"/><stop offset="65%" stopColor="#e8a860"/><stop offset="100%" stopColor="#B76E79" stopOpacity="0.15"/></radialGradient>
+                </defs>
+                <path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z" fill="#1a0810" stroke="#e8a860aa" strokeWidth="1.5"/>
+                <g clipPath="url(#headClipAfter)">
+                  <rect x="0" y="0" width="140" height="150" fill="#160a10"/>
+                  <rect x="0" y="0" width="140" height="150" fill="url(#hotAfter)"/>
+                  <line x1="70" y1="8" x2="70" y2="144" stroke="#fdf3e0" strokeWidth="0.75" opacity="0.4"/>
+                </g>
               </svg>
             </div>
+          </div>
+
+          {/* Brainwave frequency reference strip */}
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?10:0, marginBottom:36, border:"1px solid rgba(232,168,96,0.15)", borderRadius:14, overflow:"hidden" }}>
+            {[
+              { name:"Gamma", hz:"30–100Hz", tag:"Insight", freq:16 },
+              { name:"Beta",  hz:"12–30Hz",  tag:"Alert, thinking — where beliefs get argued with", freq:9 },
+              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", freq:6 },
+              { name:"Theta", hz:"4–8Hz",    tag:"Trance, deep reprogramming — where we take you", freq:3 },
+              { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep", freq:1.5 },
+            ].map((w,i)=>(
+              <div key={i} style={{ padding:"16px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(232,168,96,0.08)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(232,168,96,0.12)" : "none" }}>
+                <div style={{ fontSize:13, color: (w.name==="Beta"||w.name==="Theta") ? "#e8a860" : "#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2 }}>{w.name}</div>
+                <div style={{ fontSize:10, color:"#9a8878", marginBottom:8 }}>{w.hz}</div>
+                <svg width="100%" height="24" viewBox="0 0 100 24" style={{ marginBottom:8, display:"block" }}>
+                  <path d={Array.from({length:9},(_,n)=>{const x=n*12.5; const y = n%2===0 ? 12-w.freq : 12+w.freq; return `${n===0?'M':'L'}${x} ${y}`;}).join(' ')}
+                    fill="none" stroke={(w.name==="Beta"||w.name==="Theta") ? "#e8a860" : "#7a6858"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <div style={{ fontSize:10, color:"#9a8878", lineHeight:1.4 }}>{w.tag}</div>
+              </div>
+            ))}
           </div>
 
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
@@ -1301,7 +1319,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             Theta is where the reprogramming begins. In theta, you access the subconscious mind directly — the part responsible for roughly 95% of your reality and everything you believe about yourself. Trying to install a new belief in beta means fighting your own conscious mind the whole way. In theta, there's nothing to fight.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#e8a860", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:500 }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#e8a860", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:400 }}>
             That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. First, we change your assumption — not just a passing thought, but the hard-coded belief you've carried your whole life. Then your thoughts change. Then your feelings change. Then your actions change. Then your opportunities change. Then your reality changes. And all you did was press play.
           </p>
         </div>
