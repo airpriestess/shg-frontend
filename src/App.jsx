@@ -344,33 +344,33 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio", name: TIERS.audio.name, price: isAnnual ? TIERS.audio.annual : TIERS.audio.monthly, note: TIERS.audio.annualNote, features: TIERS.audio.features, cta: TIERS.audio.cta(isAnnual), bg: "#0a0a0a", border: "#e8a86055", nameColor: "#000000", muteColor: "#8a7268", priceColor: "#e8a860", periodColor: "#d4a090", featureColor: "#000000", dot: "#e8a860", ctaBg: "linear-gradient(135deg,#e8b870,#e8a860)", ctaColor: "#000" },
-    { id: "goddess", name: TIERS.goddess.name, price: isAnnual ? TIERS.goddess.annual : TIERS.goddess.monthly, note: isAnnual ? TIERS.goddess.annualNote : null, features: TIERS.goddess.features, cta: TIERS.goddess.cta(isAnnual), bg: "linear-gradient(160deg,#fce4c0,#f5d9a8)", border: "#e8a860", nameColor: "#2a1a08", muteColor: "#c9963a", priceColor: "#c9963a", periodColor: "#8a7268", featureColor: "#000000", dot: "#e8a860", ctaBg: "linear-gradient(135deg,#fce4c0,#e8a860,#c9963a)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly, note: TIERS.lifetime.annualNote, features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(), bg: "#000", border: "#e8b87066", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(232,184,112,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#e8b870", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 40%,#d4a090 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(183,110,121,0.5)",  nameColor: "#f2ece4", muteColor: "#B76E79", priceColor: "#e8b870", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(232,184,112,0.35)", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", ctaColor: "#000" },
   ];
 
   return (
-    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "linear-gradient(160deg,#f0e4f8 0%,#dcc4ec 50%,#c4a0dc 100%)", width: "100%" }}>
+    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%" }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontSize: isMobile ? 12 : 13, fontWeight: 700, color: "#6a3d8a", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
-          <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,5vw,56px)", fontWeight: 400, color: "#2a1030", lineHeight: 1.1 }}>
-            Full access. <span style={{ color: "#6a3d8a", fontWeight:500 }}>No download needed.</span>
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
+          <div style={{ fontSize: 11, fontWeight: 400, color: "#9a8878", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
+          <h2 style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(28px,8vw,40px)" : "clamp(32px,4vw,48px)", fontWeight: 400, color: "#f2ece4", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
+            Full access. No download needed.
           </h2>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
-          <div style={{ display: "flex", background: "rgba(0,0,0,0.06)", borderRadius: 50, padding: 3 }}>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
+          <div style={{ display: "flex", background: "rgba(255,255,255,0.07)", borderRadius: 50, padding: 3, border: "1px solid rgba(255,255,255,0.1)" }}>
             {["monthly", "annual"].map(b => (
               <button key={b} onClick={() => setBilling(b)} style={{
-                padding: "9px 22px", borderRadius: 50, border: "none", cursor: "pointer",
-                fontSize: 13, fontWeight: 700, letterSpacing: "0.04em",
-                background: billing === b ? "#fff" : "transparent",
-                color: billing === b ? "#8a2050" : "#a09098",
-                boxShadow: billing === b ? "0 2px 8px rgba(0,0,0,0.12)" : "none",
-                fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 6,
+                padding: "9px 24px", borderRadius: 50, border: "none", cursor: "pointer",
+                fontSize: 12, fontWeight: 400, letterSpacing: "0.06em",
+                background: billing === b ? "#f2ece4" : "transparent",
+                color: billing === b ? "#000" : "#9a8878",
+                fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 8,
+                transition: "all 0.2s",
               }}>
-                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontSize: 11, fontWeight: 800 }}>BEST VALUE</span></>}
+                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ fontSize: 10, color: billing === b ? "#B76E79" : "#B76E79", letterSpacing: "0.1em" }}>SAVE 20%</span></>}
               </button>
             ))}
           </div>
@@ -378,32 +378,32 @@ function PricingSection({ onJoin }) {
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16, overflow: "visible" }}>
           {cards.map(c => (
-            <div key={c.id} style={{ background: c.bg.startsWith("linear") || c.bg === "#000" ? undefined : c.bg, backgroundImage: c.bg.startsWith("linear") ? c.bg : undefined, backgroundColor: c.bg === "#000" ? "#000" : undefined, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 18, padding: c.popular ? "38px 22px 24px" : "24px 22px", marginTop: c.popular ? 14 : 0, position: "relative", overflow: "visible", boxShadow: c.popular ? "0 8px 32px rgba(183,110,121,0.18)" : "0 4px 20px rgba(0,0,0,0.04)" }}>
-              {c.popular && <div style={{ position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#f5e0a0,#B76E79)", color: "#000", fontSize: 10, fontWeight: 800, padding: "4px 14px", borderRadius: 20, letterSpacing: "0.1em", whiteSpace: "nowrap", zIndex: 5 }}>MOST POPULAR</div>}
-              <div style={{ fontSize: 16, fontWeight: 700, color: c.nameColor, marginBottom: 4, fontFamily: "'Jost',sans-serif" }}>{c.name}</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
-                <span style={{ fontSize: 32, fontWeight: 900, color: c.priceColor }}>{c.price}</span>
-                <span style={{ fontSize: 13, color: c.periodColor }}>{c.id === "lifetime" ? "one time" : isAnnual ? "/year" : "/month"}</span>
+            <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? "40px 24px 28px" : "28px 24px", marginTop: isMobile ? 0 : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(183,110,121,0.2)" : "none" }}>
+              {c.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", color: "#000", fontSize: 9, fontWeight: 400, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.18em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Most popular</div>}
+              <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 6 }}>
+                <span style={{ fontSize: 36, fontWeight: 400, color: c.priceColor, fontFamily: "'Jost',sans-serif" }}>{c.price}</span>
+                <span style={{ fontSize: 13, color: c.periodColor, fontFamily: "'Jost',sans-serif" }}>{c.id === "lifetime" ? " one time" : isAnnual ? "/year" : "/month"}</span>
               </div>
-              {c.note && <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 14 }}>{c.note}</div>}
-              {!c.note && <div style={{ marginBottom: 14 }} />}
-              <div style={{ marginBottom: 18 }}>
+              {c.note && <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 20, fontFamily: "'Jost',sans-serif" }}>{c.note}</div>}
+              {!c.note && <div style={{ marginBottom: 20 }} />}
+              <div style={{ marginBottom: 24, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 16 }}>
                 {c.features.map((f, i) => (
-                  <div key={i} style={{ fontSize: 12.5, color: f.includes("✦") ? c.priceColor : c.featureColor, marginBottom: 7, paddingLeft: 14, position: "relative", lineHeight: 1.5, fontWeight: f.includes("✦") ? 700 : 400 }}>
+                  <div key={i} style={{ fontSize: 13, color: f.includes("✦") ? c.dot : c.featureColor, marginBottom: 9, paddingLeft: 16, position: "relative", lineHeight: 1.5, fontFamily: "'Jost',sans-serif", fontWeight: 400 }}>
                     <span style={{ position: "absolute", left: 0, color: c.dot }}>·</span>{f}
                   </div>
                 ))}
               </div>
-              <button onClick={() => goStripe(c.id)} className="cta-shake" style={{ width: "100%", padding: "13px", backgroundImage: c.ctaBg, border: "none", borderRadius: 10, color: c.ctaColor, fontSize: 14, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
-                {c.cta}<ArrowIcon size={13} />
+              <button onClick={() => goStripe(c.id)} style={{ width: "100%", padding: "14px", background: c.ctaBg, border: "none", borderRadius: 12, color: c.ctaColor, fontSize: 13, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
+                {c.cta}<ArrowIcon size={12} />
               </button>
             </div>
           ))}
         </div>
 
-        <div style={{ marginTop: 24, textAlign: "center", fontSize: 12, color: "#8a7268", lineHeight: 1.8 }}>
-          Monthly: cancel anytime · Annual: paid upfront, non-refundable · Stripe secure checkout<br />
-          No app to download — works in any browser, on any device
+        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: "#5a4a40", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
+          Monthly: cancel anytime · Annual: paid upfront · Stripe secure checkout<br />
+          No app to download — works in any browser, iPhone, Android
         </div>
       </div>
     </div>
@@ -939,9 +939,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
-            <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
+            <svg viewBox="0 0 64 64" width="24" height="24" style={{flexShrink:0}}>
+              <defs><linearGradient id="navmark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#d4a090"/><stop offset="72%" stopColor="#c4789a"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
+              <path d="M32 10 A22 22 0 0 0 32 54 Z" fill="url(#navmark)" opacity="0.92"/>
+              <path d="M32 10 A22 22 0 0 1 32 54 Z" fill="none" stroke="url(#navmark)" strokeWidth="2.6"/>
+              <line x1="32" y1="8" x2="32" y2="56" stroke="url(#navmark)" strokeWidth="1.2" opacity="0.6"/>
             </svg>
             <span className="wm wm-shimmer" style={{ fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -973,7 +975,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {[
               ["Audio Library", ()=>{ document.getElementById("audio-library")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
-              ["Pricing",       ()=>{ onJoin?.(); setMenuOpen(false); }],
+              ["Pricing",       ()=>{ document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["ProofOS",       ()=>{ document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["Preview",       ()=>{ onDemo?.(); setMenuOpen(false); }],
               ["Shop",          ()=>{ setShopOpen(true); setMenuOpen(false); }],
@@ -1112,12 +1114,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* LOGO — mark above Self Hypnosis Goddess / Audio Library, shows on mobile and desktop identically */}
+      {/* LOGO — drop in here */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
-          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
-        </svg>
+        {/* logo goes here */}
       </div>
 
       {/* BRAND BLOCK — immediately after player, so people know what this IS before we explain how it works */}
@@ -1370,12 +1369,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </p>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#fce4ec 0%,#f8d0de 50%,#f0b8cc 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#2a0f18 0%,#1a0810 50%,#000000 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#8a2f4a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#3a0f1e", letterSpacing:"-0.01em", lineHeight:1 }}>
-              Wall of <span style={{ background:"linear-gradient(90deg,#8a2f4a,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#B76E79", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#f2ece4", letterSpacing:"-0.01em", lineHeight:1 }}>
+              Wall of <span style={{ background:"linear-gradient(90deg,#e8a8bc,#B76E79)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Love</span>
             </h2>
           </div>
           <div style={{...GPRICE(isMobile)}}>
