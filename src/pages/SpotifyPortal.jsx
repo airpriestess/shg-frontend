@@ -527,7 +527,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
       {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter}/>}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -571,7 +571,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                     background:quickFeel===h.n?`${h.c}33`:"transparent",
                     border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                  <span style={{ fontSize:13,color:h.v<=30?"#9a8878":h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:13,color:h.v>=600?"#1a1008":h.v<=30?"#9a8878":h.c,flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:11,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
@@ -878,6 +878,18 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* PUSH PROMPT */}
       {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} C={C} onDismiss={onDismissPush}/>}
 
+      {/* KNOWLEDGE GUIDE — all tiers */}
+      <div style={{ margin:"12px 16px 4px" }}>
+        <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(232,184,112,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+          <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
+          <span style={{ flex:1 }}>
+            <div style={{ fontSize:14, fontWeight:400, color:C.cr }}>Knowledge Guide ✦</div>
+            <div style={{ fontSize:11, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
+          </span>
+          <span style={{ fontSize:18, color:"#e8b870" }}>›</span>
+        </button>
+      </div>
+
       {/* JUMP BACK IN */}
       <Sec title="Jump back in" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
         <HRow>
@@ -946,7 +958,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 }
 
 // ── ANALYTICS TAB — dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -1359,7 +1371,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </select>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
           <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginBottom:12 }}>
-            {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","DNAmaxxing","Sleepmaxxing"].map(c=>(
+            {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Careermaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>(
               <button key={c} onClick={()=>setNewCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?(isDark?"#000":"#1a0a04"):"none",border:`1px solid ${newCat===c?(isDark?"#000":"#1a0a04"):PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
             ))}
           </div>
@@ -1371,7 +1383,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   background:newFeel===h.n?`${h.c}22`:"transparent",
                   borderBottom:`1px solid ${PC.border}` }}>
                 <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:h.v>=200?`0 0 5px ${h.c}88`:"none" }}/>
-                <span style={{ fontSize:12,color:h.v<=30?"#9a8878":h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:12,color:h.v>=600?"#1a1008":h.v<=30?"#9a8878":h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
                 <span style={{ fontSize:10,color:PC.mu }}>{h.v}</span>
               </div>
             ))}
