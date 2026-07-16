@@ -1250,23 +1250,44 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Hemi-sync.<br/>Two hemispheres, one frequency.
           </h2>
 
-          {/* Before / after brainwave visual */}
+          {/* Before / after brain visual — actual hemisphere shapes */}
           <div style={{ display:"flex", flexDirection: isMobile?"column":"row", gap: isMobile?24:0, alignItems:"center", justifyContent:"center", marginBottom:36 }}>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Before — scattered beta</div>
-              <svg width="100%" height="70" viewBox="0 0 220 70" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                <path d="M0 35 C 18 15, 37 55, 55 35 C 73 15, 92 55, 110 35 C 128 15, 147 55, 165 35 C 183 15, 202 55, 220 35"
-                  fill="none" stroke="#B76E79" strokeWidth="1.8" opacity="0.55" strokeLinecap="round"/>
-                <path d="M0 35 C 15 50, 30 22, 45 35 C 60 48, 75 20, 90 35 C 105 50, 120 22, 135 35 C 150 48, 165 20, 180 35 C 195 50, 210 22, 220 35"
-                  fill="none" stroke="#e8a860" strokeWidth="1.8" opacity="0.4" strokeLinecap="round"/>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Before — hemispheres unsynced</div>
+              <svg width="100%" height="120" viewBox="0 0 220 120" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
+                {/* Left hemisphere outline */}
+                <path d="M110 20 C 70 18, 30 40, 26 65 C 23 85, 38 100, 60 104 C 80 107, 100 100, 108 90 L 110 20 Z"
+                  fill="none" stroke="#e8a860" strokeWidth="2" opacity="0.55"/>
+                {/* Right hemisphere outline */}
+                <path d="M110 20 C 150 18, 190 40, 194 65 C 197 85, 182 100, 160 104 C 140 107, 120 100, 112 90 L 110 20 Z"
+                  fill="none" stroke="#B76E79" strokeWidth="2" opacity="0.55"/>
+                {/* Corpus callosum divider */}
+                <line x1="110" y1="20" x2="110" y2="92" stroke="#f2ece4" strokeWidth="1" opacity="0.3" strokeDasharray="2 3"/>
+                {/* Left hemisphere - fast scattered wave */}
+                <path d="M32 62 C 40 50, 46 74, 54 62 C 62 50, 68 74, 76 62 C 84 50, 90 74, 98 62"
+                  fill="none" stroke="#e8a860" strokeWidth="1.8" opacity="0.8" strokeLinecap="round"/>
+                {/* Right hemisphere - slow quiet wave, out of phase */}
+                <path d="M122 68 C 132 76, 142 58, 152 68 C 162 76, 172 58, 182 68"
+                  fill="none" stroke="#B76E79" strokeWidth="1.8" opacity="0.8" strokeLinecap="round"/>
               </svg>
             </div>
             <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#B76E79)" }}/>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
               <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — synced theta</div>
-              <svg width="100%" height="70" viewBox="0 0 220 70" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                <path d="M0 35 Q27.5 12 55 35 T110 35 T165 35 T220 35" fill="none" stroke="#B76E79" strokeWidth="2.4" strokeLinecap="round"/>
-                <path d="M0 35 Q27.5 12 55 35 T110 35 T165 35 T220 35" fill="none" stroke="#e8a860" strokeWidth="2.4" opacity="0.7" strokeLinecap="round"/>
+              <svg width="100%" height="120" viewBox="0 0 220 120" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
+                {/* Left hemisphere outline */}
+                <path d="M110 20 C 70 18, 30 40, 26 65 C 23 85, 38 100, 60 104 C 80 107, 100 100, 108 90 L 110 20 Z"
+                  fill="none" stroke="#e8a860" strokeWidth="2" opacity="0.7"/>
+                {/* Right hemisphere outline */}
+                <path d="M110 20 C 150 18, 190 40, 194 65 C 197 85, 182 100, 160 104 C 140 107, 120 100, 112 90 L 110 20 Z"
+                  fill="none" stroke="#B76E79" strokeWidth="2" opacity="0.7"/>
+                {/* Corpus callosum divider, now glowing to show connection */}
+                <line x1="110" y1="20" x2="110" y2="92" stroke="#f5e0a0" strokeWidth="1.5" opacity="0.6"/>
+                {/* Both hemispheres - matching synchronized wave, same phase */}
+                <path d="M32 65 Q41 52 50 65 T68 65 T86 65 T98 65"
+                  fill="none" stroke="#e8a860" strokeWidth="2.2" opacity="0.9" strokeLinecap="round"/>
+                <path d="M122 65 Q131 52 140 65 T158 65 T176 65 T188 65"
+                  fill="none" stroke="#B76E79" strokeWidth="2.2" opacity="0.9" strokeLinecap="round"/>
               </svg>
             </div>
           </div>
