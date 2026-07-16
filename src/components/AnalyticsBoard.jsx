@@ -17,7 +17,7 @@ export const DEMO_ANALYTICS = {
   topCats: [ ["Money","#B76E79",5], ["SP & Love","#e8b870",4], ["Identity","#d4a090",2] ],
 };
 
-export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof }) {
+export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof, onDrillDown }) {
   const C = PALETTES[theme] || PALETTES.dark;
   const { manifested, inProgress, signs, listens, streakDays, week, topCats } = data;
   const total = Math.max(manifested + inProgress, 1);
@@ -51,10 +51,20 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
           <text x="36" y="36" transform="rotate(90 36 36)" textAnchor="middle" dominantBaseline="central" fill={C.text} fontSize="17" fontWeight="400" fontFamily="'Jost',sans-serif">{manifested}</text>
         </svg>
         <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:6 }}>
-          {[[manifested,"Manifested",R],[inProgress,"In progress",P],[signs,"Signs logged",C.text],[listens,"Listens",C.text]].map(([v,l,c],i)=>(
-            <div key={i} style={{ background:C.card2, borderRadius:10, padding:`${8*fs}px 4px`, textAlign:"center" }}>
+          {[
+            [manifested, "Manifested", R, onDrillDown ? ()=>onDrillDown("manifested") : null],
+            [inProgress, "In progress", P, onDrillDown ? ()=>onDrillDown("inProgress") : null],
+            [signs, "Signs logged", C.text, null],
+            [listens, "Listens", C.text, null],
+          ].map(([v,l,c,onClick],i)=>(
+            <div key={i} onClick={onClick||undefined}
+              style={{ background:C.card2, borderRadius:10, padding:`${8*fs}px 4px`, textAlign:"center",
+                cursor: onClick ? "pointer" : "default",
+                border: onClick ? `1px solid ${c}44` : "1px solid transparent",
+                transition:"border 0.15s",
+              }}>
               <div style={{ fontSize:18*fs, fontWeight:400, color:c, lineHeight:1 }}>{v}</div>
-              <div style={{ fontSize:8.5*fs, color:C.mu, marginTop:3, lineHeight:1.2, fontWeight:400 }}>{l}</div>
+              <div style={{ fontSize:8.5*fs, color: theme==="dark" ? "#f2ece4" : "#1a1008", marginTop:3, lineHeight:1.2, fontWeight:400 }}>{l}{onClick ? " →" : ""}</div>
             </div>
           ))}
         </div>
@@ -62,8 +72,8 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
 
       {/* Row 2: 7-day listening bars */}
       <div style={{ background:C.card2, borderRadius:12, padding:`${10*fs}px ${12*fs}px`, marginBottom:10 }}>
-        <div style={{ fontSize:9.5*fs, fontWeight:400, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:2 }}>Plays per day — this week</div>
-        <div style={{ fontSize:8.5*fs, color:C.dim, marginBottom:8 }}>Taller bar = more listens that day. Gold bar = today.</div>
+        <div style={{ fontSize:9.5*fs, fontWeight:400, color:theme==="dark"?"#f2ece4":"#1a1008", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:2 }}>Plays per day — this week</div>
+        <div style={{ fontSize:8.5*fs, color:theme==="dark"?"#c8bcb0":"#3a2010", marginBottom:8 }}>Taller bar = more listens that day. Gold bar = today.</div>
         <div style={{ position:"relative" }}>
           <div style={{ position:"absolute", left:0, right:0, bottom:16*fs, height:1, background:C.border }}/>
           <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:48*fs, position:"relative" }}>
@@ -76,7 +86,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
                   <div style={{ position:"absolute", inset:0, background:C.track, borderRadius:4 }}/>
                   <div style={{ position:"relative", width:"100%", height:`${Math.max((v/maxW)*100,10)}%`, minHeight:6, background:isToday?OMBRE:R, opacity:isToday?1:0.65, backgroundSize:"200%", backgroundPosition:"left", borderRadius:4, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${isToday?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
                 </div>
-                <span style={{ fontSize:9*fs, color:isToday?R:C.dim, fontWeight:isToday?800:700 }}>{days[i]}{isToday?" ●":""}</span>
+                <span style={{ fontSize:9*fs, color:isToday?R:(theme==="dark"?"#c8bcb0":"#3a2010"), fontWeight:isToday?800:700 }}>{days[i]}{isToday?" ●":""}</span>
               </div>
             );})}
           </div>
