@@ -390,6 +390,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
   const thisMonth = threads.filter(t=>t.done).length; // simplified
   const [billingOpen, setBillingOpen] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
+  const [proofFilter, setProofFilter] = useState("all"); // "all" | "manifested" | "inProgress"
 
   const openStripePortal = async () => {
     if (isPreview) { alert("Sign up to manage your subscription."); return; }
@@ -512,8 +513,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
-      {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)}/>}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme}/>)}
+      {tab==="proof"   && <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter}/>}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -919,7 +920,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 }
 
 // ── ANALYTICS TAB — dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark" }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -963,6 +964,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               .map(([name,n])=>[name,({"Lovemaxxing":"#e8a860","Money":"#e8b870","Beauty":"#e8b870","Identity":"#e8a860","DNA":"#e8a860","Sleep":"#e8b870"})[name]||"#e8a860",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
+          onDrillDown={isPreview?null:onDrillDown}
         />
       </div>
 
@@ -1151,7 +1153,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
   );
 }
 
-function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade }) {
+function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter }) {
   const [newD, setD]       = useState("");
   const [newCat, setNewCat]   = useState("Moneymaxxing");
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
@@ -1183,6 +1185,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   );
 
   const manifested = threads.filter(t=>t.done);
+  const inProgress = threads.filter(t=>!t.done);
+  const displayedThreads = proofFilter==="manifested" ? manifested : proofFilter==="inProgress" ? inProgress : threads;
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
@@ -1231,12 +1235,22 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ fontSize:22,fontWeight:400,marginBottom:2,color:PC.text }}>ProofOS <span style={{ color:"#000" }}>✦</span></div>
       <div style={{ fontSize:13,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
+      {/* Filter banner — shown when drilled in from Analytics */}
+      {proofFilter!=="all" && (
+        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",background:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14 }}>
+          <span style={{ fontSize:12,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
+            {proofFilter==="manifested" ? `Showing ${manifested.length} manifested ✓` : `Showing ${inProgress.length} in progress`}
+          </span>
+          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#9a8878",fontSize:11,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
+        </div>
+      )}
+
       {/* Stats */}
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14 }}>
         {[[threads.length,"Intentions"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
           <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
             <div style={{ fontSize:22,fontWeight:400,color:PC.text }}>{v}</div>
-            <div style={{ fontSize:10,color:PC.mu,fontWeight:400 }}>{l}</div>
+            <div style={{ fontSize:10,color:"#000",fontWeight:400 }}>{l}</div>
           </div>
         ))}
       </div>
@@ -1244,7 +1258,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {/* View toggle: Threads | Proof Wall */}
       <div style={{ display:"flex",gap:6,marginBottom:14 }}>
         {[["threads","Threads"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
-          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 8px",borderRadius:10,background:view===k?(isDark?"#000":"#1a0a04"):PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:12,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 8px",borderRadius:10,background:view===k?"#000":PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:12,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
       </div>
 
@@ -1353,7 +1367,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       )}
 
       {/* THREAD LIST */}
-      {threads.map(d=>(
+      {displayedThreads.length===0 && proofFilter!=="all" && (
+        <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center",marginBottom:10 }}>
+          <div style={{ fontSize:13,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} intentions yet.</div>
+        </div>
+      )}
+      {displayedThreads.map(d=>(
         <div key={d.id} onTouchStart={e=>{window.__sx=e.touches[0].clientX;}} onTouchEnd={e=>{if(window.__sx-e.changedTouches[0].clientX>90)deleteThread(d.id);}} style={{ background:PC.cardSolid,borderRadius:14,padding:"14px 14px",marginBottom:10,position:"relative" }}>
           <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10 }}>
             <div style={{ flex:1,minWidth:0 }}>
