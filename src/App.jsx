@@ -1186,10 +1186,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
 
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
-            Left and right hemispheres normally fire at different rates — one scattered, one quiet. Binaural beats and EMDR's bilateral audio stimulation bring both into the same frequency at once, syncing your whole brain into theta together.
+            It's impossible to actually reprogram your beliefs while you're in beta state — your normal, wide-awake conscious mind. Beta is where you argue, filter, and resist anything new. That's why we need to get you into theta state instead — the state where reprogramming actually happens.
           </p>
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
-            Trying to change beliefs while your brain is in beta — normal, conscious waking awareness — doesn't work. Your conscious mind argues, filters, resists. To actually shift a belief, your brain needs to be synced into theta state, where you access the subconscious mind directly — the part responsible for roughly 90% of your reality and everything you believe about yourself.
+            We get you there three ways at once: binaural beats, EMDR's bilateral audio stimulation, and my own vocal auto-suggestion recorded directly into every self-hypnosis track. Left and right hemispheres normally fire at different rates — one scattered, one quiet. All three bring both hemispheres into the same frequency together, syncing your whole brain into theta.
+          </p>
+          <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
+            Theta is where the reprogramming begins. In theta, you access the subconscious mind directly — the part responsible for roughly 95% of your reality and everything you believe about yourself. Trying to install a new belief in beta means fighting your own conscious mind the whole way. In theta, there's nothing to fight.
           </p>
           <p style={{ fontSize: isMobile?15:17, color:"#e8a860", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:500 }}>
             That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. The belief changes first, quietly, underneath conscious effort. Then your choices change. Then what shows up in your life changes. You don't have to fight for it — you just have to keep pressing play.
