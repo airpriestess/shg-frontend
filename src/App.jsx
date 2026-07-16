@@ -1299,7 +1299,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             })}
           </div>
 
-          <div style={{ fontSize: isMobile?"clamp(28px,9vw,40px)":"clamp(36px,4.5vw,54px)", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.02em", textTransform:"uppercase", textAlign:"center", marginBottom:36, lineHeight:1.2 }}>
+          <div style={{ fontSize: isMobile?"clamp(28px,9vw,42px)":"clamp(38px,5vw,58px)", color:"#e8a860", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, letterSpacing:"-0.01em", textAlign:"center", marginBottom:36, lineHeight:1.2 }}>
             Theta is the secret door.
           </div>
 
