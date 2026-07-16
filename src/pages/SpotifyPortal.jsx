@@ -8,10 +8,23 @@ import { supabase } from "../lib/supabase.js";
 
 // Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
-  {n:"Shame",v:20,c:"#3a1a1a"}, {n:"Guilt",v:30,c:"#4a2020"}, {n:"Apathy",v:50,c:"#5a3030"}, {n:"Grief",v:75,c:"#6a4030"},
-  {n:"Fear",v:100,c:"#8a5030"}, {n:"Desire",v:125,c:"#a06030"}, {n:"Anger",v:150,c:"#b47030"}, {n:"Pride",v:175,c:"#c68830"},
-  {n:"Courage",v:200,c:"#d4a028"}, {n:"Neutrality",v:250,c:"#c8a848"}, {n:"Willingness",v:310,c:"#a8b860"}, {n:"Acceptance",v:350,c:"#78b078"},
-  {n:"Reason",v:400,c:"#48a898"}, {n:"Love",v:500,c:"#e8b870"}, {n:"Joy",v:540,c:"#f5d090"}, {n:"Peace",v:600,c:"#8a6ac0"}, {n:"Enlightenment",v:700,c:"#5a4ab0"},
+  {n:"Shame",       v:20,  c:"#2a0a0a"}, // near black-red
+  {n:"Guilt",       v:30,  c:"#5a0f0f"}, // deep crimson
+  {n:"Apathy",      v:50,  c:"#6b6b6b"}, // flat grey
+  {n:"Grief",       v:75,  c:"#4a3060"}, // deep purple-grey
+  {n:"Fear",        v:100, c:"#7b3f00"}, // dark amber-brown
+  {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
+  {n:"Anger",       v:150, c:"#e67e22"}, // orange
+  {n:"Pride",       v:175, c:"#f1c40f"}, // yellow
+  {n:"Courage",     v:200, c:"#2ecc71"}, // green — the line
+  {n:"Neutrality",  v:250, c:"#1abc9c"}, // teal-green
+  {n:"Willingness", v:310, c:"#3498db"}, // sky blue
+  {n:"Acceptance",  v:350, c:"#2980b9"}, // deeper blue
+  {n:"Reason",      v:400, c:"#9b59b6"}, // purple
+  {n:"Love",        v:500, c:"#e8b870"}, // gold — SHG brand
+  {n:"Joy",         v:540, c:"#f5d090"}, // champagne
+  {n:"Peace",       v:600, c:"#fdf0e8"}, // cream-white
+  {n:"Enlightenment",v:700,c:"#ffffff"}, // pure white
 ];
 const dominant = (log,days) => {
   const cutoff = Date.now() - days*86400000;
@@ -530,31 +543,44 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {showEmoLog && (
         <>
-          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.6)" }} onClick={()=>setShowEmoLog(false)}/>
-          <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif" }}>
-            <div style={{ fontSize:11,color:"#e8a860",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:6 }}>How are you feeling right now?</div>
-            <div style={{ fontSize:11,color:C.mu,marginBottom:14 }}>Select your state on the Hawkins scale — this becomes your point of attraction today.</div>
-            <select
-              value={quickFeel}
-              onChange={e=>logEmotion(e.target.value)}
-              style={{ width:"100%",padding:"12px 14px",borderRadius:12,border:`1px solid ${C.border}`,background:C.bg,color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",appearance:"none",WebkitAppearance:"none",marginBottom:14,outline:"none",cursor:"pointer" }}>
-              <option value="">— Choose your state —</option>
-              <optgroup label="200+ · Expansive · Creates ✦">
-                {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
-                  <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
-                ))}
-              </optgroup>
-              <optgroup label="Below 200 · Contractive · Drains">
-                {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
-                  <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
-                ))}
-              </optgroup>
-            </select>
-            {quickFeel && (() => {
+          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowEmoLog(false)}/>
+          <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
+            <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:11,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
+              Select your state on the Hawkins scale.{" "}
+              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#e8b870",cursor:"pointer",textDecoration:"underline" }}>See Knowledge Guide ✦</span>
+            </div>
+            <div style={{ fontSize:9,color:"#2ecc71",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
+            <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
+              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+                <div key={h.n} onClick={()=>logEmotion(h.n)}
+                  style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
+                    background:quickFeel===h.n?`${h.c}22`:"transparent",
+                    border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
+                  <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 6px ${h.c}99` }}/>
+                  <span style={{ fontSize:13,color:h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:11,color:C.mu }}>{h.v}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize:9,color:"#e67e22",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive · Drains</div>
+            <div style={{ overflowY:"auto",maxHeight:170,marginBottom:12 }}>
+              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
+                <div key={h.n} onClick={()=>logEmotion(h.n)}
+                  style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
+                    background:quickFeel===h.n?`${h.c}33`:"transparent",
+                    border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
+                  <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+                  <span style={{ fontSize:13,color:h.v<=30?"#9a8878":h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:11,color:C.mu }}>{h.v}</span>
+                </div>
+              ))}
+            </div>
+            {quickFeel && (()=>{
               const h = HAWKINS.find(x=>x.n===quickFeel);
               return h ? (
-                <div style={{ padding:"12px 14px",borderRadius:10,marginBottom:14,display:"flex",alignItems:"center",gap:10,background:`${h.c}22`,border:`1px solid ${h.c}66` }}>
-                  <div style={{ width:14,height:14,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+                <div style={{ padding:"10px 14px",borderRadius:10,marginBottom:12,display:"flex",alignItems:"center",gap:10,background:`${h.c}22`,border:`1px solid ${h.c}66` }}>
+                  <div style={{ width:14,height:14,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 8px ${h.c}` }}/>
                   <div>
                     <div style={{ fontSize:13,color:C.cr }}>{h.n} · {h.v}</div>
                     <div style={{ fontSize:11,color:C.mu }}>{h.v>=200?"Expansive energy — you're creating from above the line":"Contractive energy — the audio will help lift you"}</div>
@@ -562,7 +588,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                 </div>
               ) : null;
             })()}
-            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>Close</button>
           </div>
         </>
       )}
