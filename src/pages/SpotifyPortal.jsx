@@ -968,7 +968,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* GUIDES PROMO — links into Shop */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={()=>setTab("shop")} style={{ width:"100%", padding:"18px 18px", background:isDark?"#0a0a0a":C.bg2, border:"1px solid rgba(232,168,96,0.3)", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+        <button onClick={()=>setTab("shop")} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:"1px solid rgba(232,168,96,0.3)", borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(232,168,96,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Explore the Guides</div>
