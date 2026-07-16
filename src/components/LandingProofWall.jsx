@@ -146,11 +146,11 @@ export default function LandingProofWall({ isMobile }) {
 
         {/* Heading */}
         <div style={{ textAlign:"center", marginBottom:32 }}>
-          <div style={{ fontSize:11, color:"rgba(232,168,96,0.6)", fontWeight:400, letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, color:"#e8b870", fontWeight:500, letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
           <div style={{ fontSize: isMobile?"clamp(44px,13vw,64px)":"clamp(56px,8vw,80px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:20 }}>
             The Proof Thread.
           </div>
-          <p style={{ fontSize: isMobile?15:17, color:"#9a8878", lineHeight:1.8, maxWidth:480, margin:"0 auto", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.8, maxWidth:480, margin:"0 auto", fontWeight:400 }}>
             Track every manifestation in one place — for the rest of your life. Never lose your desires in a dusty journal again.
           </p>
         </div>
