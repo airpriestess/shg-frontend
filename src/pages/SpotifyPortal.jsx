@@ -1028,12 +1028,21 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   const [catOpen, setCatOpen] = useState(false);
+  const [dropRect, setDropRect] = useState(null);
   const catRef = useRef(null);
+  const btnRef = useRef(null);
   useEffect(() => {
     const onClick = e => { if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
     document.addEventListener("mousedown", onClick);
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
+  const openDropdown = () => {
+    if (btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setDropRect(r);
+    }
+    setCatOpen(o=>!o);
+  };
   const catLabel = cat==="All" ? "All categories" : (cat==="Liked" ? "Liked ♡" : cat);
   const catOptions = ["All","Liked",...cats.filter(c=>c!=="All"&&c!=="Liked")];
   return (
@@ -1045,7 +1054,8 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
           <button
-            onClick={()=>setCatOpen(o=>!o)}
+            ref={btnRef}
+            onClick={openDropdown}
             style={{
               width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
               background:"#000", border:`1px solid ${R}66`, borderRadius:12,
@@ -1056,11 +1066,15 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <span>{catLabel}</span>
             <span style={{ fontSize:11, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
-          {catOpen && (
+          {catOpen && dropRect && (
             <div style={{
-              position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:40,
-              background:"#000", border:`1px solid ${R}66`, borderRadius:12,
-              maxHeight:320, overflowY:"auto", boxShadow:"0 12px 32px rgba(0,0,0,0.5)"
+              position:"fixed",
+              top: dropRect.bottom + 6,
+              left: dropRect.left,
+              width: dropRect.width,
+              zIndex:9999,
+              background:"#111", border:`1px solid ${R}66`, borderRadius:12,
+              maxHeight:320, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.9)"
             }}>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
@@ -1068,7 +1082,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                 return (
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
-                      padding:"12px 16px", fontSize:14, fontWeight:active?800:600,
+                      padding:"12px 16px", fontSize:14, fontWeight:active?400:400,
                       color:active?R:C.cr, background:active?`${R}22`:"transparent",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
                       borderBottom:`1px solid rgba(255,255,255,0.06)`
