@@ -1293,7 +1293,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
                 { icon: "🌙", label: "Subliminal", body: "Pure music. No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day." },
                 { icon: "◈", label: "EMDR Hypnosis", body: "Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
-                { icon: "🎼", label: "528hz Frequency", body: "The 'love frequency' — tuned to promote repair and coherence at the cellular level while you rest." },
+                { icon: "🎼", label: "Binaural Beats / Solfeggio Frequency", body: "Two slightly different tones, one per ear, syncing both hemispheres into theta — layered with Solfeggio frequencies tuned to specific effects. See the full frequency table below." },
                 { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
               ].map((f,i)=>(
                 <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
