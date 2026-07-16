@@ -627,9 +627,9 @@ function MaxxingCarousel({ cats }) {
           fontSize:13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
         }}>{current.label} ✦</div>
-        <div className="wm wm-shimmer" style={{
-          fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05,
-          fontWeight:400, letterSpacing:"-0.01em"
+        <div style={{
+          fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05, color:"#000",
+          fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
@@ -706,9 +706,9 @@ function IdentityCarousel({ cats, fullscreen=false }) {
           fontSize: fullscreen ? 15 : 13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
         }}>{current.label} ✦</div>
-        <div className="wm wm-shimmer" style={{
-          fontSize: fullscreen ? "clamp(48px,10vw,110px)" : "clamp(28px,5.5vw,68px)", lineHeight:1.08,
-          fontWeight:400, letterSpacing:"-0.01em"
+        <div style={{
+          fontSize: fullscreen ? "clamp(48px,10vw,110px)" : "clamp(28px,5.5vw,68px)", lineHeight:1.08, color:"#000",
+          fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
