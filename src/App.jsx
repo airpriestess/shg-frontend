@@ -627,9 +627,9 @@ function MaxxingCarousel({ cats }) {
           fontSize:13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
         }}>{current.label} ✦</div>
-        <div className="wm" style={{
+        <div style={{
           fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05, color:"#000",
-          fontWeight:400, letterSpacing:"-0.01em"
+          fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
@@ -639,8 +639,8 @@ function MaxxingCarousel({ cats }) {
             style={{ flex:1, padding:"16px 18px", cursor:"pointer", borderRight:i<2?"1px solid #1c1828":"none", transition:"background 0.2s" }}
             onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-            <div style={{ fontSize:9, color:"#d4a090", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
-            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif" }}>{cat.tagline}</div>
+            <div style={{ fontSize:9, color:"#f2ece4", fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
+            <div style={{ fontSize:12, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{cat.tagline}</div>
           </div>
         ))}
       </div>
@@ -706,9 +706,9 @@ function IdentityCarousel({ cats, fullscreen=false }) {
           fontSize: fullscreen ? 15 : 13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
         }}>{current.label} ✦</div>
-        <div className="wm" style={{
+        <div style={{
           fontSize: fullscreen ? "clamp(48px,10vw,110px)" : "clamp(28px,5.5vw,68px)", lineHeight:1.08, color:"#000",
-          fontWeight:400, letterSpacing:"-0.01em"
+          fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
@@ -718,8 +718,8 @@ function IdentityCarousel({ cats, fullscreen=false }) {
             style={{ flex:1, padding:"16px 18px", cursor:"pointer", borderRight:i<2?"1px solid #1c1828":"none", transition:"background 0.2s" }}
             onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-            <div style={{ fontSize:9, color:"#9b87c4", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
-            <div style={{ fontSize:12, color:"#a08878", lineHeight:1.5, fontFamily:"'Cormorant Garamond',serif" }}>{cat.tagline}</div>
+            <div style={{ fontSize:9, color:"#f2ece4", fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
+            <div style={{ fontSize:12, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{cat.tagline}</div>
           </div>
         ))}
       </div>
@@ -964,7 +964,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ position:"fixed",inset:0,zIndex:999,background:"#e8a860",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar — logo + close */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
-            <span style={{ fontSize:15,fontWeight:700,letterSpacing:"0.12em",textTransform:"uppercase",color:"#000",fontFamily:"'Jost',sans-serif" }}>Self Hypnosis Goddess</span>
+            <span style={{ fontFamily:"'Jost',sans-serif", fontSize:16, fontWeight:300, letterSpacing:"0.02em", color:"#000" }}>Self Hypnosis Goddess</span>
             <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#000",WebkitTapHighlightColor:"transparent" }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
             </button>
@@ -985,7 +985,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* Bottom — join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <button onClick={()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Join Now ✦
             </button>
             <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(0,0,0,0.25)",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
@@ -1537,7 +1537,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </>
             ) : (
               <>
-                <div className="wm wm-shimmer" style={{ fontSize:20, marginBottom:8 }}>Join the Waitlist</div>
+                <div style={{ fontFamily:"'Jost',sans-serif", fontSize:34, fontWeight:300, color:"#f2ece4", marginBottom:10, letterSpacing:"-0.01em" }}>Join the Waitlist</div>
                 <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:22, lineHeight:1.6 }}>We're not live yet — get first access the moment it opens.</div>
                 <form onSubmit={submitWaitlist}>
                   <input
