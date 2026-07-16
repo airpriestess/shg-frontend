@@ -1250,64 +1250,53 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Hemi-sync.<br/>Two hemispheres, one frequency.
           </h2>
 
-          {/* Before / after brain heat-map visual — top-down head, matching real Hemi-Sync brainwave map reference */}
+          {/* Before / after — real smooth sine waves, not heat-map blobs */}
           <div style={{ display:"flex", flexDirection: isMobile?"column":"row", gap: isMobile?24:0, alignItems:"center", justifyContent:"center", marginBottom:36 }}>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
               <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Before — beta wave state <span style={{opacity:0.6}}>(unsynced)</span></div>
-              <svg width="140" height="150" viewBox="0 0 140 150" style={{ margin:"0 auto", display:"block" }}>
-                <defs>
-                  <clipPath id="headClipBefore"><path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z"/></clipPath>
-                  <radialGradient id="hotBefore1" cx="35%" cy="30%" r="30%"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="60%" stopColor="#c4789a" stopOpacity="0.7"/><stop offset="100%" stopColor="#2a0f18" stopOpacity="0"/></radialGradient>
-                  <radialGradient id="hotBefore2" cx="70%" cy="55%" r="22%"><stop offset="0%" stopColor="#B76E79"/><stop offset="70%" stopColor="#4a1a28" stopOpacity="0.5"/><stop offset="100%" stopColor="#2a0f18" stopOpacity="0"/></radialGradient>
-                  <radialGradient id="hotBefore3" cx="40%" cy="80%" r="18%"><stop offset="0%" stopColor="#8a5060" stopOpacity="0.6"/><stop offset="100%" stopColor="#2a0f18" stopOpacity="0"/></radialGradient>
-                </defs>
-                <path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z" fill="#1a0810" stroke="#e8a86055" strokeWidth="1.5"/>
-                <g clipPath="url(#headClipBefore)">
-                  <rect x="0" y="0" width="140" height="150" fill="#160a10"/>
-                  <rect x="0" y="0" width="140" height="150" fill="url(#hotBefore1)"/>
-                  <rect x="0" y="0" width="140" height="150" fill="url(#hotBefore2)"/>
-                  <rect x="0" y="0" width="140" height="150" fill="url(#hotBefore3)"/>
-                  <line x1="70" y1="8" x2="70" y2="144" stroke="#000" strokeWidth="0.75" opacity="0.35"/>
-                </g>
+              <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
+                <path d="M4 40 Q13 22 22 40 T40 40 T58 40 T76 40 T94 40 T112 40 T130 40 T148 40 T166 40 T184 40 T202 40 T216 40"
+                  fill="none" stroke="#e8a860" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
+                <path d="M4 40 Q11 55 18 40 T32 40 T46 40 T60 40 T74 40 T88 40 T102 40 T116 40 T130 40 T144 40 T158 40 T172 40 T186 40 T200 40 T214 40"
+                  fill="none" stroke="#B76E79" strokeWidth="2" opacity="0.6" strokeLinecap="round"/>
               </svg>
             </div>
-            <div style={{ width: isMobile?32:1, height: isMobile?1:110, background:"linear-gradient(90deg,#e8a860,#B76E79)" }}/>
+            <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#B76E79)" }}/>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
               <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
-              <svg width="140" height="150" viewBox="0 0 140 150" style={{ margin:"0 auto", display:"block" }}>
-                <defs>
-                  <clipPath id="headClipAfter"><path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z"/></clipPath>
-                  <radialGradient id="hotAfter" cx="50%" cy="48%" r="42%"><stop offset="0%" stopColor="#fdf3e0"/><stop offset="35%" stopColor="#f5e0a0"/><stop offset="65%" stopColor="#e8a860"/><stop offset="100%" stopColor="#B76E79" stopOpacity="0.15"/></radialGradient>
-                </defs>
-                <path d="M70 8 C105 8 128 32 128 68 C128 100 112 122 96 132 L92 144 L48 144 L44 132 C28 122 12 100 12 68 C12 32 35 8 70 8 Z" fill="#1a0810" stroke="#e8a860aa" strokeWidth="1.5"/>
-                <g clipPath="url(#headClipAfter)">
-                  <rect x="0" y="0" width="140" height="150" fill="#160a10"/>
-                  <rect x="0" y="0" width="140" height="150" fill="url(#hotAfter)"/>
-                  <line x1="70" y1="8" x2="70" y2="144" stroke="#fdf3e0" strokeWidth="0.75" opacity="0.4"/>
-                </g>
+              <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
+                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#e8a860" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
+                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#B76E79" strokeWidth="2.6" opacity="0.55" strokeLinecap="round" transform="translate(0,0)"/>
               </svg>
             </div>
           </div>
 
-          {/* Brainwave frequency reference strip */}
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?10:0, marginBottom:36, border:"1px solid rgba(232,168,96,0.15)", borderRadius:14, overflow:"hidden" }}>
+          {/* Brainwave frequency reference strip — real smooth waves, black bg, ombre colors */}
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(232,168,96,0.2)", borderRadius:14, overflow:"hidden" }}>
             {[
-              { name:"Gamma", hz:"30–100Hz", tag:"Insight", freq:16 },
-              { name:"Beta",  hz:"12–30Hz",  tag:"Alert, thinking — where beliefs get argued with", freq:9 },
-              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", freq:6 },
-              { name:"Theta", hz:"4–8Hz",    tag:"Trance, deep reprogramming — where we take you", freq:3 },
-              { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep", freq:1.5 },
-            ].map((w,i)=>(
-              <div key={i} style={{ padding:"16px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(232,168,96,0.08)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(232,168,96,0.12)" : "none" }}>
-                <div style={{ fontSize:13, color: (w.name==="Beta"||w.name==="Theta") ? "#e8a860" : "#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2 }}>{w.name}</div>
-                <div style={{ fontSize:10, color:"#9a8878", marginBottom:8 }}>{w.hz}</div>
-                <svg width="100%" height="24" viewBox="0 0 100 24" style={{ marginBottom:8, display:"block" }}>
-                  <path d={Array.from({length:9},(_,n)=>{const x=n*12.5; const y = n%2===0 ? 12-w.freq : 12+w.freq; return `${n===0?'M':'L'}${x} ${y}`;}).join(' ')}
-                    fill="none" stroke={(w.name==="Beta"||w.name==="Theta") ? "#e8a860" : "#7a6858"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <div style={{ fontSize:10, color:"#9a8878", lineHeight:1.4 }}>{w.tag}</div>
-              </div>
-            ))}
+              { name:"Gamma", hz:"30–100Hz", tag:"Insight, peak experiences", cycles:11, color:"#f5e0a0" },
+              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#e8b870" },
+              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", cycles:5, color:"#d4a090" },
+              { name:"Theta", hz:"4–8Hz",    tag:"Trance — where reprogramming happens", cycles:3, color:"#c4789a" },
+              { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep, restoration", cycles:1.5, color:"#B76E79" },
+            ].map((w,i)=>{
+              const width = 100, cx = width/2, amp = 9;
+              const pts = Array.from({length:81},(_,n)=>{
+                const x = (n/80)*width;
+                const y = 24 + amp*Math.sin((n/80)*Math.PI*2*w.cycles);
+                return `${n===0?'M':'L'}${x.toFixed(1)} ${y.toFixed(1)}`;
+              }).join(' ');
+              return (
+                <div key={i} style={{ padding:"18px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(232,168,96,0.06)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(232,168,96,0.15)" : "none" }}>
+                  <div style={{ fontSize:13, color:w.color, fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2 }}>{w.name}</div>
+                  <div style={{ fontSize:10, color:"#9a8878", marginBottom:10 }}>{w.hz}</div>
+                  <svg width="100%" height="48" viewBox="0 0 100 48" style={{ marginBottom:10, display:"block" }}>
+                    <path d={pts} fill="none" stroke={w.color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <div style={{ fontSize:10, color:"#9a8878", lineHeight:1.4 }}>{w.tag}</div>
+                </div>
+              );
+            })}
           </div>
 
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
