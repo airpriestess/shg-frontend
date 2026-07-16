@@ -1299,6 +1299,52 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             })}
           </div>
 
+          {/* CYMATICS-INSPIRED VISUAL — what each state "looks like", original patterns not photography */}
+          <div style={{ marginBottom:36 }}>
+            <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:500, marginBottom:8, textAlign:"center" }}>What each state looks like</div>
+            <p style={{ fontSize:13, color:"#9a8878", textAlign:"center", maxWidth:520, margin:"0 auto 24px", lineHeight:1.6 }}>
+              Sound and frequency form symmetrical patterns when visualised — a field called cymatics. As brainwaves slow from Gamma toward Delta, the pattern simplifies: more chaotic and fragmented at high frequency, more ordered and unified as frequency drops.
+            </p>
+            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr 1fr":"repeat(4,1fr)", gap:14, marginBottom:16 }}>
+              {[
+                { name:"Gamma", petals:16, color1:"#f5e0a0", color2:"#B76E79", brain:"Many small, fragmented petals — the brain processing multiple things at once, fast and fractured." },
+                { name:"Beta",  petals:10, color1:"#e8b870", color2:"#c4789a", brain:"Still busy, still segmented — this is your everyday thinking, filtering, arguing mind." },
+                { name:"Alpha", petals:6,  color1:"#d4a090", color2:"#9868b8", brain:"Fewer, wider petals — the noise starts to settle, resistance starts to soften." },
+                { name:"Theta", petals:4,  color1:"#c4789a", color2:"#B76E79", brain:"One unified, symmetrical bloom — the door is open. This is where reprogramming happens." },
+              ].map((s,i)=>(
+                <div key={i} style={{ background:"#000", border:"1px solid rgba(232,168,96,0.15)", borderRadius:14, padding:"18px 12px", textAlign:"center" }}>
+                  <svg width="100%" height="100" viewBox="0 0 100 100" style={{ marginBottom:10 }}>
+                    <defs>
+                      <radialGradient id={`mandala${i}`} cx="50%" cy="50%" r="60%">
+                        <stop offset="0%" stopColor={s.color1}/>
+                        <stop offset="100%" stopColor={s.color2}/>
+                      </radialGradient>
+                    </defs>
+                    {Array.from({length:s.petals}).map((_,p)=>{
+                      const angle = (p/s.petals)*360;
+                      const len = 38;
+                      return (
+                        <ellipse key={p} cx="50" cy="50" rx="7" ry={len} 
+                          transform={`rotate(${angle} 50 50) translate(0 ${-len+8})`}
+                          fill="none" stroke={`url(#mandala${i})`} strokeWidth="1.3" opacity="0.75"/>
+                      );
+                    })}
+                    <circle cx="50" cy="50" r="6" fill={s.color1} opacity="0.9"/>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke={s.color2} strokeWidth="0.5" opacity="0.3"/>
+                  </svg>
+                  <div style={{ fontSize:13, color:s.color1, fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:6 }}>{s.name}</div>
+                  <div style={{ fontSize:10, color:"#9a8878", lineHeight:1.5 }}>{s.brain}</div>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontSize:10, color:"#7a6858", textAlign:"center", lineHeight:1.5, marginBottom:20 }}>
+              Illustrative patterns, not scientific brain scans — inspired by cymatics research (Cymascope) showing how sound and frequency form visible symmetry. Shown here as original artwork.
+            </p>
+            <p style={{ fontSize: isMobile?15:17, color:"#e8a860", lineHeight:1.85, maxWidth:640, margin:"0 auto", textAlign:"center", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>
+              Theta is the secret door.
+            </p>
+          </div>
+
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             It's impossible to actually reprogram your beliefs while you're in beta state — your normal, wide-awake conscious mind. Beta is where you argue, filter, and resist anything new. That's why we need to get you into theta state instead — the state where reprogramming actually happens.
           </p>
