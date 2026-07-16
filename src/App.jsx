@@ -943,7 +943,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
               <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
             </svg>
-            <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#B76E79" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+            <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 400, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
 
@@ -1122,7 +1122,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* BRAND BLOCK — immediately after player, so people know what this IS before we explain how it works */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", marginBottom:16 }}>
+        <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#ffffff", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0em", marginBottom:16 }}>
           Self Hypnosis Goddess
         </div>
         <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
