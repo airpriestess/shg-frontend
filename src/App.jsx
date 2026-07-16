@@ -447,145 +447,132 @@ const MARQUEE_ITEMS = [
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
-  const [theme, setTheme] = useState("light"); // default light — user can toggle dark
+  const [theme, setTheme] = useState("light");
   const [view,  setView]  = useState("dashboard");
 
-  return (
-    <div style={{ width:"100%", background:"#000", padding: isMobile?"32px 0 40px":"48px 0 56px", display:"flex", flexDirection:"column", alignItems:"center", gap:20 }}>
+  /* ── Desktop panel content (changes per tab) ── */
+  function DesktopPanel() {
+    if (view === "dashboard") return <DesktopMockup theme={theme} width={460}/>;
+    if (view === "proof") return (
+      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.15)" }}>
+        <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
+          <div style={{ fontSize:13, color:theme==="dark"?"#e8b870":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
+            {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
+              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.08)":"rgba(183,110,121,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+                <div style={{ fontSize:22, color:theme==="dark"?"#e8b870":"#B76E79", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
+                <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.14)":"rgba(183,110,121,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(183,110,121,0.12)", color:theme==="dark"?"#e8b870":"#B76E79", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
+              <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
+            </div>
+            <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
+            <div style={{ fontSize:11, color:"#9a8878", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>♪ He Finds His Way Back</div>
+            <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
+              {["Day 1: Started listening to He Finds His Way Back.","Day 2: He texted first — \"thinking about you.\"","Day 3: He asked to see me this weekend, unprompted.","Day 4: He texted first again, no gap, no waiting.","Day 5: He planned the whole date — time, place, all of it."].map((line,i)=>(
+                <div key={i} style={{ fontSize:11, color:theme==="dark"?"#c8bcb0":"#4a3828", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{line}</div>
+              ))}
+            </div>
+          </div>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.1)":"rgba(183,110,121,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.12)":"rgba(183,110,121,0.1)", color:theme==="dark"?"#e8b870":"#B76E79", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
+            </div>
+            <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
+          </div>
+        </div>
+      </div>
+    );
+    if (view === "analytics") return (
+      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)" }}>
+        <AnalyticsBoard theme={theme}/>
+      </div>
+    );
+    return null;
+  }
 
-      {/* Tap-to-explore hint only — duplicate copy removed */}
-      <div style={{ textAlign:"center", maxWidth:560 }}>
-        <p style={{ fontSize:13, color:"#c8bcb0", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
-          Tap Dashboard · ProofOS ✦ · Analytics to explore each screen
-        </p>
+  /* ── iPhone shell ── */
+  function PhoneShell({ w=200 }) {
+    const br = Math.round(w * 0.21);
+    const pad = Math.round(w * 0.025);
+    return (
+      <div style={{ position:"relative", width:w, background:"#1a1a1a", borderRadius:br, padding:`${Math.round(w*0.055)}px ${pad}px`, boxShadow:"0 0 0 2px #3a3a3a, 0 0 0 4px #1a1a1a, 0 0 0 6px #3a3a3a, 0 28px 56px rgba(0,0,0,0.85)" }}>
+        <div style={{ position:"absolute", left:-3, top:"22%", width:3, height:"10%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+        <div style={{ position:"absolute", left:-3, top:"35%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+        <div style={{ position:"absolute", left:-3, top:"54%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+        <div style={{ position:"absolute", right:-3, top:"38%", width:3, height:"22%", background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
+        <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative" }}>
+          <div style={{ position:"absolute", top:Math.round(w*0.033), left:"50%", transform:"translateX(-50%)", width:Math.round(w*0.38), height:Math.round(w*0.077), background:"#000", borderRadius:20, zIndex:10 }}/>
+          {view==="dashboard" && <PortalScreenshot width={w - pad*2} theme={theme}/>}
+          {view==="proof"     && <ProofWallScreenshot width={w - pad*2} theme={theme}/>}
+          {view==="analytics" && (
+            <div style={{ width:w - pad*2, background:theme==="dark"?"#080808":"#fdf8f2", padding:"12px 8px" }}>
+              <AnalyticsBoard theme={theme} compact/>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ width:"100%", background:"#000", padding:isMobile?"36px 0 44px":"56px 0 64px", display:"flex", flexDirection:"column", alignItems:"center", gap:24 }}>
+
+      {/* Heading */}
+      <div style={{ textAlign:"center" }}>
+        <div style={{ fontSize:11, color:"#9a8878", letterSpacing:"0.22em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Live preview</div>
+        <div style={{ fontSize:isMobile?22:28, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em" }}>
+          {isMobile ? "See inside the platform." : "Desktop and iPhone. No download needed."}
+        </div>
       </div>
 
       {/* Tab switcher */}
-      <div style={{ display:"flex", gap:0, background:"rgba(255,255,255,0.08)", border:"1px solid rgba(255,255,255,0.15)", borderRadius:24, padding:4 }}>
+      <div style={{ display:"flex", gap:0, background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.13)", borderRadius:24, padding:4 }}>
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
-            style={{ padding:"7px 18px", borderRadius:20, background:view===id?"#f2ece4":"transparent", border:"none",
-              color:view===id?"#000000":"#ffffff", fontSize:12, fontWeight:400, cursor:"pointer",
-              fontFamily:"'Jost',sans-serif", transition:"all 0.25s", letterSpacing:"0.04em" }}>
+            style={{ padding:"8px 20px", borderRadius:20, background:view===id?"#f2ece4":"transparent", border:"none",
+              color:view===id?"#000":"#fff", fontSize:12, fontWeight:400, cursor:"pointer",
+              fontFamily:"'Jost',sans-serif", transition:"all 0.2s", letterSpacing:"0.04em" }}>
             {l}
           </button>
         ))}
       </div>
 
-      {/* Mockups */}
-      <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:isMobile?12:28, flexWrap:isMobile?"wrap":"nowrap", width:"100%" }}>
-
-        {/* Desktop (hidden on mobile) */}
-        {!isMobile && view==="dashboard" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
-            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
-            <DesktopMockup theme={theme}/>
+      {/* Mockups row */}
+      {isMobile ? (
+        /* Mobile: just the phone, centred */
+        <PhoneShell w={252}/>
+      ) : (
+        /* Desktop: browser mockup left, iPhone right — always both visible */
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:40, padding:"0 32px", maxWidth:1100, width:"100%" }}>
+          {/* Desktop panel */}
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
+            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop · works in any browser</div>
+            <DesktopPanel/>
           </div>
-        )}
-        {!isMobile && view==="proof" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, maxWidth:440 }}>
-            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
-            <div style={{ width:440, borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)", border:"1px solid rgba(232,168,96,0.15)" }}>
-              <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"20px 24px" }}>
-                <div style={{ fontSize:14, color:theme==="dark"?"#e8a860":"#a86820", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:16, fontWeight:600 }}>ProofOS ✦</div>
-                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
-                  {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
-                    <div key={i} style={{ background:theme==="dark"?"rgba(232,168,96,0.08)":"rgba(180,104,48,0.1)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                      <div style={{ fontSize:20, color:theme==="dark"?"#e8a860":"#8a5818", fontWeight:600 }}>{v}</div>
-                      <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#6a5238", letterSpacing:"0.08em", textTransform:"uppercase" }}>{l}</div>
-                    </div>
-                  ))}
-                </div>
-                {/* Real thread card — one open, full log visible, feels like the actual ProofOS thread */}
-                <div style={{ background:theme==="dark"?"#111111":"#ffffff", border:`1px solid ${theme==="dark"?"rgba(232,168,96,0.14)":"rgba(180,104,48,0.22)"}`, borderRadius:12, padding:"16px 16px 14px", marginBottom:10 }}>
-                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-                    <span style={{ fontSize:9, fontWeight:600, padding:"2px 9px", background:theme==="dark"?"rgba(232,168,96,0.14)":"rgba(180,104,48,0.14)", color:theme==="dark"?"#e8a860":"#8a5818", borderRadius:12 }}>✓ Lovemaxxing</span>
-                    <span style={{ fontSize:9, color:theme==="dark"?"#7a6a60":"#8a7460" }}>5d · 5 signs</span>
-                  </div>
-                  <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4 }}>He always texts me first and initiates plans.</div>
-                  <div style={{ fontSize:11, color:theme==="dark"?"#9a8878":"#8a7460", marginBottom:10 }}>♪ He Finds His Way Back</div>
-                  <div style={{ background:theme==="dark"?"rgba(255,255,255,0.03)":"rgba(180,104,48,0.05)", borderRadius:8, padding:"10px 12px", display:"flex", flexDirection:"column", gap:6 }}>
-                    {[
-                      "Day 1: Started listening to He Finds His Way Back.",
-                      "Day 2: He texted first — \"thinking about you.\"",
-                      "Day 3: He asked to see me this weekend, unprompted.",
-                      "Day 4: He texted first again, no gap, no waiting.",
-                      "Day 5: He planned the whole date — time, place, all of it.",
-                    ].map((line,i) => (
-                      <div key={i} style={{ fontSize:11, color:theme==="dark"?"#c8bcb0":"#4a3828", lineHeight:1.5 }}>{line}</div>
-                    ))}
-                  </div>
-                </div>
-                <div style={{ background:theme==="dark"?"#111111":"#ffffff", border:`1px solid ${theme==="dark"?"rgba(232,168,96,0.1)":"rgba(180,104,48,0.18)"}`, borderRadius:10, padding:"12px 14px", opacity:0.75 }}>
-                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
-                    <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,168,96,0.12)":"rgba(180,104,48,0.14)", color:theme==="dark"?"#e8a860":"#8a5818", borderRadius:12 }}>Moneymaxxing</span>
-                    <span style={{ fontSize:9, color:theme==="dark"?"#7a6a60":"#8a7460" }}>Day 6 · 2 signs</span>
-                  </div>
-                  <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4 }}>£1,800 received. Paid by client.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-        {!isMobile && view==="analytics" && (
-          <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8, width:400 }}>
-            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Your evidence, visualised</div>
-            <div style={{ width:"100%", borderRadius:18, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.5)" }}>
-              <AnalyticsBoard theme={theme}/>
-            </div>
-          </div>
-        )}
-
-        {/* iPhone frame — mobile preview */}
-        <div style={{ flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
-          <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>
-            {isMobile?"Preview":"iPhone"}
-          </div>
-          {/* iPhone shell */}
-          <div style={{
-            position:"relative",
-            width: isMobile?252:202,
-            background:"#1a1a1a",
-            borderRadius: isMobile?48:42,
-            padding: isMobile?"14px 6px":"12px 5px",
-            boxShadow:"0 0 0 2px #3a3a3a, 0 0 0 4px #1a1a1a, 0 0 0 6px #3a3a3a, 0 30px 60px rgba(0,0,0,0.8)",
-          }}>
-            {/* Side buttons */}
-            <div style={{ position:"absolute", left:-3, top:80, width:3, height:30, background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
-            <div style={{ position:"absolute", left:-3, top:120, width:3, height:50, background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
-            <div style={{ position:"absolute", left:-3, top:180, width:3, height:50, background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
-            <div style={{ position:"absolute", right:-3, top:120, width:3, height:70, background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
-            {/* Screen */}
-            <div style={{ borderRadius: isMobile?38:34, overflow:"hidden", position:"relative" }}>
-              {/* Dynamic island */}
-              <div style={{ position:"absolute", top:8, left:"50%", transform:"translateX(-50%)", width:isMobile?90:72, height:isMobile?22:18, background:"#000", borderRadius:20, zIndex:10 }}/>
-              {view==="dashboard" && <PortalScreenshot width={isMobile?240:190} theme={theme}/>}
-              {view==="proof" && <ProofWallScreenshot width={isMobile?240:190} theme={theme}/>}
-              {view==="analytics" && (
-                <div style={{ width:isMobile?240:190, background:theme==="dark"?"#080808":"#fdf8f2", padding:"14px 10px" }}>
-                  <AnalyticsBoard theme={theme} compact/>
-                </div>
-              )}
-            </div>
+          {/* iPhone */}
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
+            <div style={{ fontSize:10, color:"#9a8878", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>iPhone · Android</div>
+            <PhoneShell w={210}/>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Dark / Light toggle */}
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-        <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Dark</span>
+        <span style={{ fontSize:11, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#e8a860":"#333",
-            border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
-          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff",
-            position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
+          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#e8b870":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
         </button>
-        <span style={{ fontSize:11, color:"#ffffff", fontFamily:"'Jost',sans-serif" }}>Light</span>
+        <span style={{ fontSize:11, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
 
-      <div style={{ fontSize:12, color:"rgba(232,168,96,0.8)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textAlign:"center" }}>
-        Works in any browser · iPhone · Android · No download needed
-      </div>
     </div>
   );
 }
@@ -952,9 +939,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
-            <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
+            <svg viewBox="0 0 64 64" width="24" height="24" style={{flexShrink:0}}>
+              <defs><linearGradient id="navmark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#d4a090"/><stop offset="72%" stopColor="#c4789a"/><stop offset="100%" stopColor="#B76E79"/></linearGradient></defs>
+              <path d="M32 10 A22 22 0 0 0 32 54 Z" fill="url(#navmark)" opacity="0.92"/>
+              <path d="M32 10 A22 22 0 0 1 32 54 Z" fill="none" stroke="url(#navmark)" strokeWidth="2.6"/>
+              <line x1="32" y1="8" x2="32" y2="56" stroke="url(#navmark)" strokeWidth="1.2" opacity="0.6"/>
             </svg>
             <span className="wm wm-shimmer" style={{ fontSize: "clamp(14px,4.2vw,18px)", fontWeight: 500, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -973,7 +962,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* MOBILE MENU — full screen takeover like Steven Bartlett */}
       {menuOpen && (
-        <div style={{ position:"fixed",inset:0,zIndex:999,background:"linear-gradient(160deg,#e8b870 0%,#d4a090 55%,#c4789a 100%)",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
+        <div style={{ position:"fixed",inset:0,zIndex:999,background:"#e8a860",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar — logo + close */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
             <span style={{ fontSize:15,fontWeight:700,letterSpacing:"0.12em",textTransform:"uppercase",color:"#000",fontFamily:"'Jost',sans-serif" }}>Self Hypnosis Goddess</span>
@@ -1032,25 +1021,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Sleepmaxxing",      tagline:"I install a new identity every night." },
               { label:"Businessmaxxing",   tagline:"My business is booked, banked and busy." },
               { label:"Singlemaxxing",     tagline:"I am whole. I am enough. I am it." },
-              { label:"Facemaxxing",       tagline:"My face is an icon. Desired by everyone." },
-              { label:"Erosmaxxing",       tagline:"I am the most magnetic. People know it." },
-              { label:"Luckygirlmaxxing",  tagline:"Everything always works out for me." },
-              { label:"Lovemaxxing",       tagline:"My person finds their way back. Always." },
-              { label:"Beautymaxxing",     tagline:"My face is getting better every day." },
-              { label:"Bodymaxxing",       tagline:"I am snatched, toned and radiant." },
-              { label:"DNAmaxxing",        tagline:"My bloodline remembers." },
-              { label:"Sleepmaxxing",      tagline:"I install a new identity every night." },
-              { label:"Businessmaxxing",   tagline:"My business is booked, banked and busy." },
-              { label:"Singlemaxxing",     tagline:"I am whole. I am enough. I am it." },
-              { label:"Luckygirlmaxxing",  tagline:"I'm always in the right place at the right time." },
-              { label:"Selfmaxxing",       tagline:"My standards stay high. People stay on their best behaviour." },
+              { label:"Facemaxxing",       tagline:"I am the most gorgeous woman in the multiverse." },
+              { label:"Erosmaxxing",       tagline:"My energy is magnetic. People know it." },
               { label:"Moneymaxxing",      tagline:"I make billions in my sleep." },
               { label:"Lifemaxxing",       tagline:"Highest timeline. Activated." },
               { label:"DNAmaxxing",        tagline:"My cells are rewriting themselves right now." },
               { label:"Beautymaxxing",     tagline:"People stare. I understand. Obviously." },
               { label:"Businessmaxxing",   tagline:"My income is embarrassing. In the best way. Obviously." },
               { label:"Lovemaxxing",       tagline:"He dreams about me. He can't help it." },
-              { label:"Selfmaxxing",       tagline:"I never chase. I am desired and desirable." },
+              { label:"Selfmaxxing",       tagline:"Luxury is the only standard I know." },
               { label:"Skinnymaxxing",     tagline:"I am snatched, toned and radiant." },
               { label:"Luckygirlmaxxing",  tagline:"I win things I didn't even enter for." },
               { label:"Singlemaxxing",     tagline:"I am so full I don't need anyone to complete me." },
@@ -1135,12 +1114,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
+      {/* LOGO — drop in here */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
-          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
-        </svg>
+        {/* logo goes here */}
       </div>
 
       {/* BRAND BLOCK — immediately after player, so people know what this IS before we explain how it works */}
@@ -1152,13 +1128,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
       </div>
 
-      {/* DELULU IS THE SOLULU — own box, right after brand block */}
-      <div style={{ background:"#000", padding: isMobile?"32px 24px 48px":"20px 48px 64px", textAlign:"center" }}>
-        <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(90deg,#f5e0a0,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
-          Delulu is the solulu.
-        </div>
-      </div>
-
       {/* PURPOSE — subconscious creates your reality */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
@@ -1167,13 +1136,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Shift into the state of your dream reality.
           </h2>
           <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
-            I help you stay delusional at all times.
-          </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
-            If you are feeling the gap between who you are and who you want to be, I help you close the gap. These hypnosis and subliminal tracks go directly there.
+            You feel the gap between who you are and who you're becoming. I close it.
           </p>
           <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
-            Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life.
+            Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life. These tracks go there directly.
           </p>
         </div>
       </div>
@@ -1228,8 +1194,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?17:20, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             Watch your reality bend right in front of your eyes.
           </p>
-          <p style={{ fontSize: isMobile?17:20, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Log and track every single manifestation you receive with <span style={{ color:"#B76E79" }}>ProofOS</span>. Keep a record. Build your evidence. See your patterns. Forever.
+          <p style={{ fontSize: isMobile?16:18, color:"#6a4028", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Log and track every single manifestation you receive with <span style={{ color:"#c9963a" }}>ProofOS</span>. Keep a record. Build your evidence. See your patterns. Forever.
           </p>
         </div>
       </div>
@@ -1241,43 +1207,30 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
 
-      {/* HOW IT WORKS — 5 steps, redesigned as connected flow */}
-      <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
-        <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
-          <div style={{ fontSize:11, color:"#e8a860", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
-          <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0 }}>Five steps.</div>
-        </div>
-
-        <div style={{ maxWidth:840, margin:"0 auto", position:"relative" }}>
-          {/* Connecting line down the left (desktop) / behind icons (mobile) */}
-          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#fce4c0,#f5d4a0,#e8b870,#d4a090,#c4789a,#B76E79)", opacity:0.4 }}/>}
-
-          {[
-            { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", accent:"#f5d4a0",
-              icon: <path d="M30 8 L36 24 L52 30 L36 36 L30 52 L24 36 L8 30 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/> },
-            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#e8b870",
-              icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M25 20 L41 30 L25 40 Z" fill="currentColor"/></> },
-            { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#d4a090",
-              icon: <><circle cx="30" cy="30" r="6" fill="currentColor"/><circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" strokeWidth="1.8" opacity="0.6"/><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" strokeWidth="1.6" opacity="0.35"/></> },
-            { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", accent:"#c4789a",
-              icon: <><rect x="10" y="20" width="40" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M22 20 L25 14 L35 14 L38 20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/><circle cx="30" cy="34" r="8" fill="none" stroke="currentColor" strokeWidth="2.2"/></> },
-            { n:"05", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", accent:"#B76E79",
-              icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M20 30 L27 37 L41 22" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></> },
-          ].map(({n,icon,title,body,accent},i)=>(
-            <div key={i} style={{ display:"flex", gap: isMobile?18:32, alignItems:"flex-start", marginBottom: i===4?0:(isMobile?32:40), position:"relative" }}>
-              <div style={{ flexShrink:0, width: isMobile?60:78, height: isMobile?60:78, borderRadius:"50%", background:`${accent}18`, border:`1.5px solid ${accent}55`, display:"flex", alignItems:"center", justifyContent:"center", color:accent, position:"relative", zIndex:1 }}>
-                <svg width={isMobile?26:32} height={isMobile?26:32} viewBox="0 0 60 60">{icon}</svg>
+      {/* HOW IT WORKS — 5 massive steps in ombre colours */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"28px 24px 0":"36px 48px 0", textAlign:"center" }}>
+        <div style={{ fontSize:11, color:"#b46830", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:12 }}>How it works</div>
+        <div style={{ fontSize: isMobile?"clamp(36px,10vw,56px)":"clamp(48px,6vw,72px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0, paddingBottom:28 }}>Five steps.</div>
+      </div>
+      <div style={{ background:"#000" }}>
+        {[
+          { n:"01", icon:"✦", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", bg:"linear-gradient(135deg,#fce4c0,#f5d4a0)" },
+          { n:"02", icon:"▶", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", bg:"linear-gradient(135deg,#f5d4a0,#e8b870)" },
+          { n:"03", icon:"◎", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", bg:"linear-gradient(135deg,#e8b870,#d4a090)" },
+          { n:"04", icon:"📷", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", bg:"linear-gradient(135deg,#d4a090,#c4789a)" },
+          { n:"05", icon:"✓", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", bg:"linear-gradient(135deg,#c4789a,#B76E79)" },
+        ].map(({n,icon,title,body,bg},i)=>(
+          <div key={i} style={{ background:bg, padding: isMobile?"32px 24px":"48px 64px", display:"flex", flexDirection: isMobile?"column":"row", alignItems: isMobile?"flex-start":"center", gap: isMobile?12:48 }}>
+            <div style={{ fontSize: isMobile?"clamp(64px,20vw,100px)":"clamp(80px,10vw,120px)", color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", fontWeight:700, lineHeight:1, flexShrink:0, letterSpacing:"-0.04em" }}>{n}</div>
+            <div>
+              <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:10 }}>
+                <span style={{ fontSize: isMobile?24:28, lineHeight:1 }}>{icon}</span>
+                <div style={{ fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(32px,4vw,52px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.1 }}>{title}</div>
               </div>
-              <div style={{ flex:1, paddingTop: isMobile?4:10 }}>
-                <div style={{ display:"flex", alignItems:"baseline", gap:12, marginBottom:6 }}>
-                  <span style={{ fontSize: isMobile?12:13, color:accent, fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.1em" }}>{n}</span>
-                  <div style={{ fontSize: isMobile?"clamp(20px,6vw,26px)":"clamp(24px,2.6vw,32px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.15 }}>{title}</div>
-                </div>
-                <div style={{ fontSize: isMobile?14:16, color:"#9a8878", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.65, maxWidth:460 }}>{body}</div>
-              </div>
+              <div style={{ fontSize: isMobile?16:19, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.7 }}>{body}</div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       {/* MELODIC HOUSE USP — cream background, locked palette */}
