@@ -1195,7 +1195,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Theta is where the reprogramming begins. In theta, you access the subconscious mind directly — the part responsible for roughly 95% of your reality and everything you believe about yourself. Trying to install a new belief in beta means fighting your own conscious mind the whole way. In theta, there's nothing to fight.
           </p>
           <p style={{ fontSize: isMobile?15:17, color:"#e8a860", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:500 }}>
-            That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. The belief changes first, quietly, underneath conscious effort. Then your choices change. Then what shows up in your life changes. You don't have to fight for it — you just have to keep pressing play.
+            That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. First, we change your assumption — not just a passing thought, but the hard-coded belief you've carried your whole life. Then your thoughts change. Then your feelings change. Then your actions change. Then your opportunities change. Then your reality changes. And all you did was press play.
           </p>
         </div>
       </div>
