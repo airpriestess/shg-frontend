@@ -1208,6 +1208,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
 
 function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter }) {
   const [newD, setD]       = useState("");
+  const [newBelief, setNewBelief] = useState("");
   const [newCat, setNewCat]   = useState("Moneymaxxing");
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
   const [newFeel, setFeel] = useState("");
@@ -1364,6 +1365,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
           <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
             style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
+          <input value={newBelief} onChange={e=>setNewBelief(e.target.value)} placeholder="What do you actually believe about this right now? e.g. 'It's never worked out for me before'"
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
           <select value={linkedTrack} onChange={e=>setLinked(e.target.value)}
             style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box" }}>
@@ -1371,24 +1375,27 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {TRACKS.map(t=><option key={t.id} value={t.title}>{t.title} · {t.cat}</option>)}
           </select>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
-          <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginBottom:12 }}>
+          <select value={newCat} onChange={e=>setNewCat(e.target.value)}
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:12,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box",appearance:"none",WebkitAppearance:"none",cursor:"pointer" }}>
             {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Careermaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>(
-              <button key={c} onClick={()=>setNewCat(c)} style={{ padding:"5px 12px",borderRadius:20,background:newCat===c?(isDark?"#000":"#1a0a04"):"none",border:`1px solid ${newCat===c?(isDark?"#000":"#1a0a04"):PC.border}`,color:newCat===c?"#f2ece4":PC.mu,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{c}</button>
+              <option key={c} value={c}>{c}</option>
             ))}
-          </div>
+          </select>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <div style={{ marginBottom:6, maxHeight:180, overflowY:"auto", border:`1px solid ${PC.border}`, borderRadius:10, background:PC.inputBg }}>
-            {HAWKINS.slice().reverse().map(h=>(
-              <div key={h.n} onClick={()=>setFeel(h.n)}
-                style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",cursor:"pointer",
-                  background:newFeel===h.n?`${h.c}22`:"transparent",
-                  borderBottom:`1px solid ${PC.border}` }}>
-                <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:h.v>=200?`0 0 5px ${h.c}88`:"none" }}/>
-                <span style={{ fontSize:12,color:h.v>=600?"#1a1008":h.v<=30?"#9a8878":h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:10,color:PC.mu }}>{h.v}</span>
-              </div>
-            ))}
-          </div>
+          <select value={newFeel} onChange={e=>setFeel(e.target.value)}
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:6,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box",appearance:"none",WebkitAppearance:"none",cursor:"pointer" }}>
+            <option value="">— Select your state —</option>
+            <optgroup label="200+ · Expansive ✦">
+              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
+              ))}
+            </optgroup>
+            <optgroup label="Below 200 · Contractive">
+              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
+                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
+              ))}
+            </optgroup>
+          </select>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:10 }}>
               <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
@@ -1404,8 +1411,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               return;
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
-            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:""},...threads]);
-            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Moneymaxxing"); setAdding(false);
+            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
+            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Moneymaxxing"); setNewBelief(""); setAdding(false);
           }} style={{ padding:"11px 22px",background:isDark?"#000":"#1a0a04",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
