@@ -1129,6 +1129,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
       </div>
 
+      {/* DELULU IS THE SOLULU — own box, right after brand block */}
+      <div style={{ background:"#000", padding: isMobile?"32px 24px 48px":"20px 48px 64px", textAlign:"center" }}>
+        <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(90deg,#f5e0a0,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
+          Delulu is the solulu.
+        </div>
+      </div>
+
       {/* PURPOSE — subconscious creates your reality */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
@@ -1137,10 +1144,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Shift into the state of your dream reality.
           </h2>
           <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
-            You feel the gap between who you are and who you're becoming. I close it.
+            I help you stay delusional at all times.
+          </p>
+          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+            If you are feeling the gap between who you are and who you want to be, I help you close the gap. These hypnosis and subliminal tracks reprogram your mind at a subconscious level — directly, while you listen.
           </p>
           <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
-            Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life. These tracks go there directly.
+            Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life.
           </p>
         </div>
       </div>
