@@ -9,7 +9,7 @@ const WALL = [
     category: "Lovemaxxing", days: 5, signs: 5,
     track: "a Lovemaxxing track", feel: "He's not chasing me. He's remembering me.",
     log: [
-      "Day 1: Started listening to a Lovemaxxing track.",
+      "Day 1: Old belief — \"I've never been chosen. He'll never choose me first.\" Started listening to a Lovemaxxing track.",
       "Day 2: He texted first — \"thinking about you.\"",
       "Day 3: He asked to see me this weekend, unprompted.",
       "Day 4: He texted first again, no gap, no waiting.",
@@ -21,7 +21,7 @@ const WALL = [
     category: "Businessmaxxing", days: 31, signs: 4,
     track: "a Businessmaxxing track", feel: "The number kept moving and I stopped being shocked by it.",
     log: [
-      "Day 1: Started listening to a Businessmaxxing track.",
+      "Day 1: Old belief — \"It's impossible for me to make the income I actually want.\" Started listening to a Businessmaxxing track.",
       "Week 1: £1,000 in a day for the first time — screenshot saved.",
       "Week 2: £2,000 in a day. Same store, same offer, nothing changed but me.",
       "Week 3: £3,500 in a day — a launch that shouldn't have worked, worked.",
@@ -29,14 +29,14 @@ const WALL = [
     ]
   },
   {
-    desire: "Glowing skin — compliments every single day.",
+    desire: "Clear, calm skin — no more hiding under makeup.",
     category: "Beautymaxxing", days: 9, signs: 3,
-    track: "a Beautymaxxing track", feel: "I catch myself in mirrors now.",
+    track: "a Beautymaxxing track", feel: "I catch myself in mirrors now instead of avoiding them.",
     log: [
-      "Day 1: Started listening to a Beautymaxxing track.",
+      "Day 1: Old belief — \"My skin will always be a problem I have to cover up.\" Started listening to a Beautymaxxing track — I'd been dealing with breakouts and rosacea flare-ups for years.",
       "Day 3: A stranger stopped me to ask what I use on my skin.",
       "Day 6: My sister said I looked different — \"lit from inside.\"",
-      "Day 9: Someone guessed my age five years younger, unprompted.",
+      "Day 9: First time in years I left the house with no makeup on, on purpose.",
     ]
   },
   {
@@ -44,8 +44,8 @@ const WALL = [
     category: "Moneymaxxing", days: 4, signs: 2,
     track: "a Moneymaxxing track", feel: "Money really does find me first.",
     log: [
-      "Day 1: Started listening to a Moneymaxxing track.",
-      "Day 2: An old invoice I'd forgotten about got settled — £1,800, no chasing.",
+      "Day 1: Old belief — \"It's so hard to attract money out of thin air.\" Started listening to a Moneymaxxing track.",
+      "Day 2: An old invoice I'd forgotten about finally got paid — £1,800 landed as a refund, no chasing.",
       "Day 4: Marked manifested.",
     ]
   },
@@ -54,7 +54,7 @@ const WALL = [
     category: "Luckygirlmaxxing", days: 7, signs: 4,
     track: "a Luckygirlmaxxing track", feel: "Things stopped being a fight. They just... aligned.",
     log: [
-      "Day 1: Started listening to a Luckygirlmaxxing track.",
+      "Day 1: Old belief — \"Everyone else is lucky. Never me.\" Started listening to a Luckygirlmaxxing track.",
       "Day 2: Flight got cancelled — rebooked me business class, no charge.",
       "Day 4: The exact parking spot, every single day this week.",
       "Day 7: Got picked for something I forgot I'd even applied for.",
@@ -65,7 +65,7 @@ const WALL = [
     category: "Careermaxxing", days: 18, signs: 3,
     track: "a Careermaxxing track", feel: "I stopped shrinking myself in meetings. People noticed before I said anything.",
     log: [
-      "Day 1: Started listening to a Careermaxxing track.",
+      "Day 1: Old belief — \"I have to overwork just to be seen as good enough.\" Started listening to a Careermaxxing track.",
       "Day 6: My manager asked me to lead the project I'd been quietly wanting.",
       "Day 18: Offered the promotion. They said it was 'obvious' I was ready.",
     ]
@@ -73,21 +73,21 @@ const WALL = [
   {
     desire: "I finally lost the last 20 pounds I'd been stuck on for three years.",
     category: "Skinnymaxxing", days: 21, signs: 3,
-    track: "a Skinnymaxxing track", feel: "The old belief was that discipline alone wasn't enough for my body. It was never about willpower — I'd tried everything and stayed stuck on the exact same 20 pounds.",
+    track: "a Skinnymaxxing track", feel: "It was never about willpower — I'd tried everything and stayed stuck on the exact same 20 pounds.",
     log: [
-      "Day 1: Started listening to a Skinnymaxxing track. Wrote down 'I've tried so hard to lose the last 20 pounds' — the belief I was actually working against.",
+      "Day 1: Old belief — \"I've tried so hard to lose the last 20 pounds and nothing works.\" Started listening to a Skinnymaxxing track.",
       "Day 9: Cravings that used to run my evenings just... quieted down.",
       "Day 21: Down 6 pounds without changing my diet. Jeans I'd kept 'for motivation' finally fit.",
     ]
   },
   {
-    desire: "People stop and stare when I walk into a room now.",
+    desire: "A six-pack and lean legs — the body I kept starting over for.",
     category: "Bodymaxxing", days: 14, signs: 2,
     track: "a Bodymaxxing track", feel: "I used to slouch to disappear. I don't anymore.",
     log: [
-      "Day 1: Started listening to a Bodymaxxing track.",
-      "Day 8: Caught myself standing taller without deciding to.",
-      "Day 14: A stranger complimented my posture. Never happened before.",
+      "Day 1: Old belief — \"My body doesn't change no matter what I do.\" Started listening to a Bodymaxxing track.",
+      "Day 8: Caught myself standing taller without deciding to. Definition starting to show.",
+      "Day 14: A stranger complimented my legs at the gym. Never happened before.",
     ]
   },
   {
@@ -95,7 +95,7 @@ const WALL = [
     category: "Selfmaxxing", days: 12, signs: 3,
     track: "a Selfmaxxing track", feel: "I used to over-explain every boundary. Now I just don't.",
     log: [
-      "Day 1: Started listening to a Selfmaxxing track.",
+      "Day 1: Old belief — \"Putting myself first makes me selfish.\" Started listening to a Selfmaxxing track.",
       "Day 5: Said no to something without the usual guilt spiral.",
       "Day 12: A friend said 'you seem different — more you.'",
     ]
@@ -103,29 +103,29 @@ const WALL = [
   {
     desire: "I am confident, magnetic, and fully present in the bedroom.",
     category: "Erosmaxxing", days: 16, signs: 2,
-    track: "an Erosmaxxing track", feel: "The belief underneath it was 'I'm not good enough in the bedroom.' That's what actually shifted.",
+    track: "an Erosmaxxing track", feel: "That's what actually shifted — not my body, the belief underneath it.",
     log: [
-      "Day 1: Started listening to an Erosmaxxing track. The old belief was clear once I wrote it down.",
+      "Day 1: Old belief — \"I'm not good enough in the bedroom.\" Started listening to an Erosmaxxing track — writing the belief down made it impossible to ignore.",
       "Day 9: Stopped performing confidence and started actually feeling it.",
       "Day 16: My partner asked what changed. I didn't have to explain — I just knew.",
     ]
   },
   {
-    desire: "My nervous system finally feels safe, not just managed.",
+    desire: "My back pain finally eased — not managed, actually eased.",
     category: "Healmaxxing", days: 24, signs: 2,
-    track: "a Healmaxxing track", feel: "I stopped bracing for the next thing to go wrong.",
+    track: "a Healmaxxing track", feel: "I didn't realise how much I was holding until it started to let go.",
     log: [
-      "Day 1: Started listening to a Healmaxxing track.",
-      "Day 11: Noticed I hadn't checked my phone anxiously in days.",
-      "Day 24: A hard conversation happened and I stayed regulated. That never used to be possible.",
+      "Day 1: Old belief — \"This pain is just something I have to live with.\" Started listening to a Healmaxxing track.",
+      "Day 11: Noticed I'd gone days without reaching for painkillers.",
+      "Day 24: Sat through a full day at my desk with no flare-up. First time in years.",
     ]
   },
   {
-    desire: "100% on my exam. The belief was I was never smart enough.",
+    desire: "100% on my exam.",
     category: "Studymaxxing", days: 10, signs: 2,
-    track: "a Studymaxxing track", feel: "The old belief was 'I'm not smart enough.' I didn't even realise how loud it was until it went quiet.",
+    track: "a Studymaxxing track", feel: "I didn't even realise how loud that belief was until it went quiet.",
     log: [
-      "Day 1: Started listening to a Studymaxxing track. Wrote the old belief down to let it go.",
+      "Day 1: Old belief — \"I'm not smart enough.\" Started listening to a Studymaxxing track. Wrote the old belief down to let it go.",
       "Day 6: Revision stopped feeling like proving myself and started feeling like just... knowing it.",
       "Day 10: 100%. Messaged my mum a screenshot before I even processed it.",
     ]
