@@ -1039,7 +1039,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Moneymaxxing",       tagline:"Billions are my birthright." },
               { label:"Luckygirlmaxxing",   tagline:"Everything always works out for me." },
               { label:"Lifemaxxing",        tagline:"Highest timeline. Activated." },
-              { label:"Beautymaxxing",      tagline:"My face is getting better every day." },
+              { label:"Beautymaxxing",      tagline:"My face is iconic and original." },
               { label:"Lovemaxxing",        tagline:"My person finds their way back. Always." },
               { label:"Selfmaxxing",        tagline:"My energy is magnetic. People know it." },
               { label:"Erosmaxxing",        tagline:"I know exactly what I want in the bedroom." },
