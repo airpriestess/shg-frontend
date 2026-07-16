@@ -471,9 +471,9 @@ function AppPreviewSection({ isMobile }) {
               <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
             <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
-            <div style={{ fontSize:11, color:"#9a8878", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>♪ He Finds His Way Back</div>
+            <div style={{ fontSize:11, color:"#9a8878", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>♪ a Lovemaxxing track</div>
             <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
-              {["Day 1: Started listening to He Finds His Way Back.","Day 2: He texted first — \"thinking about you.\"","Day 3: He asked to see me this weekend, unprompted.","Day 4: He texted first again, no gap, no waiting.","Day 5: He planned the whole date — time, place, all of it."].map((line,i)=>(
+              {["Day 1: Started listening to a Lovemaxxing track.","Day 2: He texted first — \"thinking about you.\"","Day 3: He asked to see me this weekend, unprompted.","Day 4: He texted first again, no gap, no waiting.","Day 5: He planned the whole date — time, place, all of it."].map((line,i)=>(
                 <div key={i} style={{ fontSize:11, color:theme==="dark"?"#c8bcb0":"#4a3828", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{line}</div>
               ))}
             </div>
