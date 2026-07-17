@@ -52,7 +52,7 @@ const TRACKS = [
   { title:"Lucky Girl Summer",        cat:"Luckygirlmaxxing" },
 ];
 
-const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Businessmaxxing","DNAmaxxing"];
+const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Erosmaxxing","Sovereignmaxxing"];
 const NAV_ITEMS = [["Home","●",true],["Search","○",false],["Library","☰",false],["ProofOS ✦","✓",false],["Analytics","▦",false]];
 
 function Thumb({ cat, size }) {
@@ -169,7 +169,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
             {/* Made for you — 2×3 category grid */}
             <div style={{ fontSize:f.sm, color:C.cr, marginBottom:gap }}>Made for you</div>
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:Math.round(4*s) }}>
-              {FEATURED_CATS.slice(0,6).map((cat,i)=>{
+              {FEATURED_CATS.slice(0,9).map((cat,i)=>{
                 const c = CAT_ICONS[cat] || { accent:GOLD };
                 return (
                   <div key={i} style={{ background:`linear-gradient(135deg,${C.bg} 0%,${c.accent}18 100%)`,
