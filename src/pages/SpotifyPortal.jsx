@@ -127,10 +127,18 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 
 // ── TRACK DATA ────────────────────────────────────────────────────────────────
 const TRACKS = [
-  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Selfmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
-  { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false },
-  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Moneymaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true  },
-  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleepmaxxing", format:"Melodic Calm",  tier:"audio",   isNew:false, hasAudio:false },
+  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Selfmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
+    desc:{ shift:"This shifts you from feeling like you have to earn good things happening to you, into feeling like you're already the woman everyone wants to spoil.",
+      benefits:["Stop over-giving to feel worthy of receiving","Let people show up for you without guilt","Feel deserving of ease, not just effort"] } },
+  { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false,
+    desc:{ shift:"This shifts you from feeling like you have to chase, check your phone, or wonder if he still thinks about you — into feeling secure that he's already finding his way back.",
+      benefits:["Stop the anxious phone-checking loop","Release the need to initiate contact first","Feel settled in the outcome instead of controlling it"] } },
+  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Moneymaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
+    desc:{ shift:"This shifts you from feeling like you have to hustle for every pound, into feeling like money is already looking for you.",
+      benefits:["Loosen the grip of financial anxiety","Notice unexpected income without shock","Build the identity of someone money flows toward"] } },
+  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleepmaxxing", format:"Melodic Calm",  tier:"audio",   isNew:false, hasAudio:false,
+    desc:{ shift:"This shifts you from feeling like manifestation requires constant conscious effort, into feeling like your reality can rebuild itself while you're unconscious.",
+      benefits:["Turn sleep into productive reprogramming time","Reduce the pressure to 'do the work' every waking hour","Wake up already closer to who you're becoming"] } },
   { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beautymaxxing", format:"528hz",         tier:"audio",   isNew:false, hasAudio:false },
   { id:6,  title:"DNA Activation Ceremony",  artist:"Reshma Oracle", dur:"45:00", cat:"DNAmaxxing", format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
   { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Luckygirlmaxxing", format:"Subliminal", tier:"audio", isNew:true,  hasAudio:false },
@@ -786,17 +794,44 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
 function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, C, isDark, hasAudio }) {
   const d = IMGS[track.title] || { g:"#fce4c0,#e8a860" };
-  const [showScript, setShowScript] = useState(false);
+  const [view, setView] = useState("cover"); // cover | script | desc
   return (
     <div style={{ position:"absolute",inset:0,background:`linear-gradient(180deg,${d.g.split(",")[0]}cc 0%,${C.bg} 50%)`,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:52,marginBottom:24 }}>
         <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <span style={{ fontSize:12,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
-        <button onClick={()=>setShowScript(s=>!s)} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={showScript?"#e8b870":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
-        </button>
+        <div style={{ display:"flex",gap:10 }}>
+          <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="About this track" title="About this track">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#e8b870":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#e8b870":C.cr}/></svg>
+          </button>
+          <button onClick={()=>setView(v=>v==="script"?"cover":"script")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#e8b870":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+          </button>
+        </div>
       </div>
-      {showScript ? (
+      {view==="desc" ? (
+        <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
+          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
+          <div style={{ fontSize:13,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
+          {track.desc ? (
+            <div style={{ width:"100%",paddingBottom:40 }}>
+              <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+              <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{track.desc.shift}</div>
+              <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+              <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
+                {track.desc.benefits.map((b,i)=>(
+                  <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
+                    <span style={{ color:"#e8b870",fontSize:14,marginTop:2 }}>✦</span>
+                    <span style={{ fontSize:15,lineHeight:1.6,color:C.cr }}>{b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div style={{ fontSize:15,lineHeight:1.8,color:C.mu,textAlign:"center",paddingBottom:40 }}>Description coming soon for this track.</div>
+          )}
+        </div>
+      ) : view==="script" ? (
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
           <div style={{ fontSize:13,color:C.mu,marginBottom:24 }}>Read along</div>
