@@ -501,7 +501,7 @@ function AppPreviewSection({ isMobile }) {
       </div>
     );
     if (view === "analytics") return (
-      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)" }}>
+      <div style={{ width:560, borderRadius:16, overflow:"visible", boxShadow:"0 18px 50px rgba(0,0,0,0.55)" }}>
         <AnalyticsBoard theme={theme}/>
       </div>
     );
@@ -1216,7 +1216,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           Self Hypnosis Goddess
         </div>
         <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
-        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
+        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:24 }}>+ ProofOS ✦</div>
+        <button onClick={onDemo} style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"12px 28px", background:"none", border:"1px solid rgba(232,168,96,0.4)", borderRadius:30, color:"#e8a860", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.06em", cursor:"pointer" }}>
+          👁 Preview the app — no signup needed
+        </button>
       </div>
 
       {/* DELULU IS THE SOLULU — own box, right after brand block */}
@@ -1606,7 +1609,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth:900, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:isMobile?"clamp(32px,9vw,44px)":"clamp(40px,5vw,56px)", color:"#f2ece4", marginBottom:32, fontWeight:400 }}>
-            @reshmaoracle
+            @selfhypnosisgoddess
           </h2>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(6,1fr)", gap: isMobile?6:10, marginBottom:32 }}>
             {[
@@ -1617,7 +1620,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { g:"linear-gradient(135deg,#f5e0a0,#c4789a)" },
               { g:"linear-gradient(135deg,#B76E79,#e8b870)" },
             ].map((tile,i)=>(
-              <a key={i} href="https://instagram.com/reshmaoracle" target="_blank" rel="noopener noreferrer"
+              <a key={i} href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
                 style={{ display:"block", aspectRatio:"1", borderRadius:8, background:tile.g, position:"relative", overflow:"hidden", opacity:0.9, transition:"opacity 0.2s" }}
                 onMouseEnter={e=>e.currentTarget.style.opacity=1} onMouseLeave={e=>e.currentTarget.style.opacity=0.9}>
                 <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -1626,7 +1629,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </a>
             ))}
           </div>
-          <a href="https://instagram.com/reshmaoracle" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
             style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(232,168,96,0.4)", borderRadius:30, color:"#e8a860", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
             Follow on Instagram
           </a>
