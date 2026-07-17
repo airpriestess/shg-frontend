@@ -1589,16 +1589,12 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
     <div style={{ flexShrink:0,width:140 }}>
       <div onClick={()=>play(t)} style={{ position:"relative",marginBottom:8,cursor:isPreview?"not-allowed":"pointer" }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
-        {isPreview?(
+        {isPreview&&(
           <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
-        ):(
-          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:isP&&playing?"rgba(0,0,0,0.45)":"rgba(0,0,0,0)",transition:"background 0.15s" }}
-            onMouseEnter={e=>{if(!(isP&&playing))e.currentTarget.style.background="rgba(0,0,0,0.3)";}}
-            onMouseLeave={e=>{if(!(isP&&playing))e.currentTarget.style.background="rgba(0,0,0,0)";}}>
-            {isP&&playing
-              ? <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:R,borderRadius:1 }}/>)}</div>
-              : <div style={{ width:40,height:40,borderRadius:"50%",background:"rgba(255,255,255,0.92)",display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Play dark/></div>
-            }
+        )}
+        {!isPreview&&isP&&playing&&(
+          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.45)" }}>
+            <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:R,borderRadius:1 }}/>)}</div>
           </div>
         )}
         {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:R,color:"#000",borderRadius:20,fontSize:9,fontWeight:400 }}>NEW</div>}
