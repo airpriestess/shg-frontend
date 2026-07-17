@@ -1054,7 +1054,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Luckygirlmaxxing",   tagline:"I win things I didn't even enter for." },
               { label:"Singlemaxxing",      tagline:"I am so full I don't need anyone to complete me." },
               { label:"Lifemaxxing",        tagline:"I am living my dream reality right now." },
-              { label:"Erosmaxxing",        tagline:"Confidence looks good on me in every room." },
+              { label:"Confidencemaxxing",  tagline:"Confidence looks good on me in every room." },
               { label:"Wellnessmaxxing",    tagline:"My body and mind are finally in sync." },
               { label:"Businessmaxxing",    tagline:"The empire everyone said was unrealistic — built." },
               { label:"Luckygirlmaxxing",   tagline:"I'm always in the right place at the right time." },
