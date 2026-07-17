@@ -608,13 +608,11 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         {/* Sidebar */}
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",flexShrink:0,borderRight:`1px solid ${C.border}` }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
-            <svg viewBox="0 0 64 64" width="22" height="22" style={{flexShrink:0}}>
-              <defs><linearGradient id="sidemark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5e0a0"/><stop offset="22%" stopColor="#e8b870"/><stop offset="48%" stopColor="#e8b870"/><stop offset="72%" stopColor="#e8a860"/><stop offset="100%" stopColor="#e8a860"/></linearGradient></defs>
-              <path d="M32 10 A22 22 0 0 0 32 54 Z" fill="url(#sidemark)" opacity="0.92"/>
-              <path d="M32 10 A22 22 0 0 1 32 54 Z" fill="none" stroke="url(#sidemark)" strokeWidth="2.6"/>
-              <line x1="32" y1="8" x2="32" y2="56" stroke="url(#sidemark)" strokeWidth="1.2" opacity="0.6"/>
+            <svg viewBox="0 0 100 100" width="22" height="22" style={{flexShrink:0}}>
+              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="5" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="5" strokeLinecap="round"/>
             </svg>
-            <span style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:18,fontWeight:400,background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent"}}>
+            <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:16,color:C.text}}>
               Self Hypnosis Goddess
             </span>
           </div>
