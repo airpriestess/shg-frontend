@@ -843,7 +843,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
 function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, pushDismissed, onDismissPush }) {
 
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Sleepmaxxing","Businessmaxxing"];
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
   return (
     <div style={{ paddingBottom:80 }}>
       {/* HEADER */}
@@ -937,7 +937,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* BY DESIRE */}
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
-          {["Lovemaxxing","Moneymaxxing","DNAmaxxing","Facemaxxing","Erosmaxxing","Sovereignmaxxing"].map(cat=>{
+          {Object.keys(CAT_ICONS).map(cat=>{
             const c=CAT_ICONS[cat]||{accent:"#e8a860",icon:''};
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
