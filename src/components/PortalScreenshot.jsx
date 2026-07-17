@@ -28,7 +28,7 @@ const TRACKS = [
   { title:"Lucky Girl Summer",        cat:"Luckygirlmaxxing" },
 ];
 
-const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing"];
+const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Erosmaxxing"];
 
 function Thumb({ cat, size, radius=3 }) {
   const c = CAT_ICONS[cat] || { accent: GOLD, icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
@@ -112,7 +112,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
                 border:`1px solid ${c.accent}30`, borderRadius:r8,
                 padding:Math.round(8*s), display:"flex", alignItems:"center", gap:Math.round(6*s) }}>
                 <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:Math.round(5*s),
-                  background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,
+                  background:`${c.accent}40`,
                   display:"flex", alignItems:"center", justifyContent:"center", color:c.accent, flexShrink:0 }}>
                   <svg width={Math.round(14*s)} height={Math.round(14*s)} viewBox="0 0 60 60"
                     dangerouslySetInnerHTML={{ __html: c.icon }}/>
