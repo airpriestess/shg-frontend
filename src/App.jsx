@@ -1530,7 +1530,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing: "-0.01em", fontSize: isMobile ? 22 : 26, fontWeight: 400, color: "#000000", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing: "-0.01em", fontSize: isMobile ? 22 : 26, fontWeight: 700, color: "#000000", marginBottom: 6 }}>{cat.name}</div>
                 <div style={{ fontSize: isMobile ? 13 : 14, color: "#5a4a40", lineHeight: 1.45 }}>{cat.pain}</div>
               </div>
             ))}
