@@ -1573,8 +1573,8 @@ function Sec({ title, children, C, onShowAll }) {
   return (
     <div style={{ marginBottom:24 }}>
       <div style={{ padding:"0 16px 10px",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-        <span style={{ fontSize:16,fontWeight:400,color:C.cr }}>{title}</span>
-        {onShowAll && <button onClick={onShowAll} style={{ fontSize:11,fontWeight:400,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",padding:"6px 4px" }}>Show all</button>}
+        <span style={{ fontSize:18,fontWeight:400,color:C.cr }}>{title}</span>
+        {onShowAll && <button onClick={onShowAll} style={{ fontSize:12,fontWeight:400,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",padding:"6px 4px" }}>Show all</button>}
       </div>
       {children}
     </div>
@@ -1608,8 +1608,8 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
           </button>
         )}
       </div>
-      <div style={{ fontSize:13,fontWeight:400,color:(!isPreview&&isP)?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
-      <div style={{ fontSize:11,color:C.mu }}>{t.cat} · {t.dur}</div>
+      <div style={{ fontSize:14,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+      <div style={{ fontSize:12,color:C.mu }}>{t.cat} · {t.dur}</div>
     </div>
   );
 }
