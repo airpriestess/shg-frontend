@@ -237,7 +237,7 @@ const TRACKS = [
   { id:108, title:"I glow like I am lit from the inside", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:109, title:"My cells are rewriting me younger every night", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
 ];
-const FORMATS = ["All","Melodic House","Melodic Calm","Subliminal","EMDR","Voice Only","528hz","Reiki"];
+const FORMATS = ["All","Subliminal","Hypnosis","Melodic Hypnosis","Melodic Subliminal","Calm Hypnosis","Calm Subliminal"];
 
 const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 
