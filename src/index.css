@@ -151,6 +151,15 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
     min-height:auto!important;
   }
   .science-body{font-size:15px!important;}
+  /* Mobile font floors */
+  h1,h2,h3{font-size:clamp(26px,7vw,40px)!important;}
+  .hero-sub{font-size:14px!important;letter-spacing:0.18em!important;}
+  .section-body{font-size:15px!important;line-height:1.75!important;}
+  .price-tier-name{font-size:15px!important;}
+  .price-amount{font-size:32px!important;}
+  .feature-item{font-size:13px!important;}
+  .cta-btn{font-size:14px!important;padding:14px!important;}
+  .eyebrow-label{font-size:11px!important;}
 }
 
 /* ── TABLET 701–1024px ───────────────────────────────────────── */
