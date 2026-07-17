@@ -965,24 +965,24 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
   return (
     <div>
       <div style={{ padding:"20px 16px 12px" }}>
-        <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Analytics</span>
+        <span style={{ fontSize:24,fontWeight:400,color:C.cr }}>Analytics</span>
       </div>
 
       {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
-      <div style={{ margin:"0 16px 14px", padding:"14px 14px 12px", borderRadius:14, background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", backgroundSize:"200%", backgroundPosition:"left" }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
-          <span style={{ fontSize:10, fontWeight:400, color:"#000", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your dominant state</span>
+      <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+          <span style={{ fontSize:11, fontWeight:400, color:"#e8b870", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
-            <div key={i} style={{ background:"rgba(255,255,255,0.9)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-              <div style={{ fontSize:11, color:"#000", fontWeight:400, letterSpacing:"0.06em", textTransform:"uppercase", marginBottom:6 }}>{l}</div>
-              <div style={{ fontSize:16, fontWeight:400, color:"#000", lineHeight:1.1 }}>{d?.n||"—"}</div>
-              <div style={{ fontSize:12, color:"#333", fontWeight:400, marginTop:3 }}>{d?.v||""}</div>
+            <div key={i} style={{ background:C.card2, borderRadius:12, padding:"16px 10px", textAlign:"center" }}>
+              <div style={{ fontSize:11, color:C.mu, fontWeight:400, letterSpacing:"0.05em", textTransform:"uppercase", marginBottom:8 }}>{l}</div>
+              <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:13, color:C.mu, fontWeight:400, marginTop:4 }}>{d?.v||""}</div>
             </div>
           ))}
         </div>
-        <div style={{ fontSize:10.5, color:"#000", marginTop:9, textAlign:"center", fontWeight:400 }}>
+        <div style={{ fontSize:12, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
           {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
