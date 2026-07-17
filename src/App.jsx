@@ -45,8 +45,10 @@ export default function App() {
     setScreen("portal");
     setPortalTab("dashboard");
     // Request notification permission and schedule reminders
-    const perm = await requestNotificationPermission();
-    if (perm === "granted") scheduleReminders();
+    try {
+      const perm = await requestNotificationPermission();
+      if (perm === "granted") scheduleReminders();
+    } catch(e) { /* silent — notifications not critical */ }
   };
   const openCreateThread = (audioId) => { setPreselectedAudioId(audioId || null); setCreateThreadModal(true); };
   const openAddProof = (type, threadId) => { setAddProofType(type); setAddProofThreadId(threadId || null); };
@@ -63,7 +65,11 @@ export default function App() {
     {checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}
       {screen === "auth" && <AuthGate onSuccess={() => goPortal()} />}
       {screen === "portal" && (
-        <ErrorBoundary><SpotifyPortal onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || userTier} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
+        authCtx.loading
+          ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#e8b870",opacity:0.7}}>Self Hypnosis Goddess</div>
+            </div>
+          : <ErrorBoundary><SpotifyPortal onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
       )}
       <CreateThreadModal open={createThreadModal} onClose={() => setCreateThreadModal(false)} preselectedAudioId={preselectedAudioId} />
       <PhotoProofModal
