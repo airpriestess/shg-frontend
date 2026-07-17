@@ -1601,6 +1601,38 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* FAQ */}
       <FAQSection />
 
+      {/* INSTAGRAM */}
+      <div style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
+        <div style={{ maxWidth:900, margin:"0 auto" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:isMobile?"clamp(32px,9vw,44px)":"clamp(40px,5vw,56px)", color:"#f2ece4", marginBottom:32, fontWeight:400 }}>
+            @reshmaoracle
+          </h2>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(6,1fr)", gap: isMobile?6:10, marginBottom:32 }}>
+            {[
+              { g:"linear-gradient(135deg,#f5e0a0,#e8b870)" },
+              { g:"linear-gradient(135deg,#e8b870,#d4a090)" },
+              { g:"linear-gradient(135deg,#d4a090,#c4789a)" },
+              { g:"linear-gradient(135deg,#c4789a,#B76E79)" },
+              { g:"linear-gradient(135deg,#f5e0a0,#c4789a)" },
+              { g:"linear-gradient(135deg,#B76E79,#e8b870)" },
+            ].map((tile,i)=>(
+              <a key={i} href="https://instagram.com/reshmaoracle" target="_blank" rel="noopener noreferrer"
+                style={{ display:"block", aspectRatio:"1", borderRadius:8, background:tile.g, position:"relative", overflow:"hidden", opacity:0.9, transition:"opacity 0.2s" }}
+                onMouseEnter={e=>e.currentTarget.style.opacity=1} onMouseLeave={e=>e.currentTarget.style.opacity=0.9}>
+                <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.6" opacity="0.55"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="#000"/></svg>
+                </div>
+              </a>
+            ))}
+          </div>
+          <a href="https://instagram.com/reshmaoracle" target="_blank" rel="noopener noreferrer"
+            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(232,168,96,0.4)", borderRadius:30, color:"#e8a860", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
+            Follow on Instagram
+          </a>
+        </div>
+      </div>
+
       {/* FINAL CTA */}
       <div style={{ background: "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 35%,#9b87c4 65%,#7a6aaa 100%)", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
