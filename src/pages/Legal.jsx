@@ -1,8 +1,8 @@
 /* Legal pages — ToS, Privacy, Refund */
-const GOLD = "#e8a860";
+const GOLD = "#e8b870";
 const CR = "#f2ece4";
 const MU = "#9a8878";
-const OMBRE = "linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
+const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 50%,#B76E79 100%)";
 
 const LAST_UPDATED = "13 July 2026";
 const COMPANY = "Self Hypnosis Goddess";
