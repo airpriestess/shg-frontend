@@ -396,15 +396,13 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   // ── AUDIO PLAYBACK ───────────────────────────────────────────────────────
   const play = (t) => {
-    if (isPreview) return;
     if (track.id === t.id) {
-      setPlay(p => !p);
+      if (!isPreview) setPlay(p => !p);
       return;
     }
     setTrack(t);
-    setPlay(true);
+    if (!isPreview) { setPlay(true); setListenCount(n=>n+1); }
     setProg(0);
-    setListenCount(n=>n+1);
   };
 
   useEffect(() => {
@@ -586,9 +584,9 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)}/>}
-      {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C}/>}
-      {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C}/>}
+      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={()=>setFullP(true)}/>}
+      {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={()=>setFullP(true)}/>}
+      {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={()=>setFullP(true)}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter}/>)}
       {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
@@ -781,7 +779,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           </div>
         </div>
       )}
-      {!isPreview && fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]}/>}
+      {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
       {/* Bottom nav */}
       {!fullP && (
         <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
@@ -849,7 +847,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
 function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, C, isDark, hasAudio }) {
   const d = IMGS[track.title] || { g:"#fce4c0,#e8a860" };
-  const [view, setView] = useState("cover"); // cover | script | desc
+  const [view, setView] = useState("desc"); // cover | script | desc
   return (
     <div style={{ position:"absolute",inset:0,background:`linear-gradient(180deg,${d.g.split(",")[0]}cc 0%,${C.bg} 50%)`,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:52,marginBottom:24 }}>
@@ -929,7 +927,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, pushDismissed, onDismissPush }) {
+function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, pushDismissed, onDismissPush, openPlayer }) {
 
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
   return (
@@ -979,7 +977,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* JUMP BACK IN */}
       <Sec title="Jump back in" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
         <HRow>
-          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
+          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </HRow>
       </Sec>
 
@@ -1012,13 +1010,13 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
           ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:12,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track — it lives here.</div>
-          :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}</HRow>}
+          :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
 
       {/* NEW THIS WEEK */}
       <Sec title="New this week ✦" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
         <HRow>
-          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike}/>)}
+          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </HRow>
       </Sec>
 
@@ -1108,7 +1106,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 }
 
 // ── SEARCH TAB ────────────────────────────────────────────────────────────────
-function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, toggleLike, isPreview, C }) {
+function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, toggleLike, isPreview, C, openPlayer }) {
   const res = searchQ.length>1 ? tracks.filter(t=>{
     const q = searchQ.toLowerCase();
     if (t.title.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q)) return true;
@@ -1128,7 +1126,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
-        <div key={t.id} onClick={()=>play(t)} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
@@ -1153,7 +1151,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 }
 
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
-function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C }) {
+function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C, openPlayer }) {
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Moneymaxxing","Businessmaxxing","Careermaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
@@ -1241,7 +1239,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       )}
       <div style={{ padding:"0 16px" }}>
         {shown.map(t=>(
-          <div key={t.id} onClick={()=>play(t)} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
+          <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
               <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
               {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
@@ -1677,11 +1675,11 @@ function Sec({ title, children, C, onShowAll }) {
 function HRow({ children }) {
   return <div style={{ display:"flex",gap:12,padding:"0 16px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none" }}>{children}</div>;
 }
-function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike }) {
+function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike, openPlayer }) {
   const isP = current?.id===t.id;
   return (
     <div style={{ flexShrink:0,width:140 }}>
-      <div onClick={()=>play(t)} style={{ position:"relative",marginBottom:8,cursor:isPreview?"not-allowed":"pointer" }}>
+      <div onClick={()=>{play(t); openPlayer?.();}} style={{ position:"relative",marginBottom:8,cursor:isPreview?"not-allowed":"pointer" }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
         {isPreview&&(
           <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
@@ -1698,7 +1696,7 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
           </button>
         )}
       </div>
-      <div style={{ fontSize:14,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+      <div onClick={()=>{play(t); openPlayer?.();}} style={{ fontSize:14,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:isPreview?"not-allowed":"pointer" }}>{t.title}</div>
       <div style={{ fontSize:12,color:C.mu }}>{t.cat} · {t.dur}</div>
     </div>
   );
