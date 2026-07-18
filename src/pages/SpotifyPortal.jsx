@@ -1268,14 +1268,16 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <span style={{ fontSize:11, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
           {catOpen && dropRect && (
+            <>
+            <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"transparent" }}/>
             <div style={{
               position:"fixed",
               top: dropRect.bottom + 6,
               left: dropRect.left,
               width: dropRect.width,
               zIndex:9999,
-              background:"#111", border:`1px solid ${R}66`, borderRadius:12,
-              maxHeight:320, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.9)"
+              background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
+              maxHeight:320, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
             }}>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
@@ -1284,16 +1286,17 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
                       padding:"12px 16px", fontSize:14, fontWeight:400,
-                      color:active?R:"#f2ece4", background:active?`${R}22`:"transparent",
+                      color:active?R:"#f2ece4", background:active?`${R}22`:"#0a0a0a",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
                       borderBottom:"1px solid rgba(255,255,255,0.06)"
                     }}
                     onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${R}14`; }}
-                    onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "transparent"; }}
+                    onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "#0a0a0a"; }}
                   >{label}</div>
                 );
               })}
             </div>
+            </>
           )}
         </div>
       </div>
