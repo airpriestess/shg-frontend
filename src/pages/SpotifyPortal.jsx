@@ -129,6 +129,20 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 // Category-level shift/benefit templates — used as a fallback description for tracks
 // that don't have a hand-written desc yet. Not unique per track, but genuinely tailored
 // per category so it's honest content, not generic filler repeated everywhere.
+// Guide names per category, shown as "Related guide" in each track's description.
+// SHOP_URL is the general storefront for now — swap in real per-product URLs here
+// once individual guide listings exist (e.g. GUIDE_URLS["Moneymaxxing"] = "https://...").
+const SHOP_URL = "https://beacons.ai/reshmaoracle";
+const CAT_GUIDE = {
+  Lovemaxxing:"Lovemaxxing Guide", Selfmaxxing:"Selfmaxxing Guide", Moneymaxxing:"Moneymaxxing Guide",
+  Sleepmaxxing:"Sleepmaxxing Guide", Beautymaxxing:"Beautymaxxing Guide", DNAmaxxing:"DNAmaxxing Guide",
+  Luckygirlmaxxing:"Luckygirlmaxxing Guide", Healmaxxing:"Healmaxxing Guide", Sovereignmaxxing:"Sovereignmaxxing Guide",
+  Lifemaxxing:"Lifemaxxing Guide", Erosmaxxing:"Erosmaxxing Guide", Bodymaxxing:"Bodymaxxing Guide",
+  Facemaxxing:"Facemaxxing Guide", Businessmaxxing:"Businessmaxxing Guide", Skinnymaxxing:"Skinnymaxxing Guide",
+  Wellnessmaxxing:"Wellnessmaxxing Guide", Studymaxxing:"Studymaxxing Guide", Friendmaxxing:"Friendmaxxing Guide",
+  Peacemaxxing:"Peacemaxxing Guide", Confidencemaxxing:"Confidencemaxxing Guide", Stylemaxxing:"Stylemaxxing Guide",
+  Intuitionmaxxing:"Intuitionmaxxing Guide", Careermaxxing:"Careermaxxing Guide",
+};
 const CAT_DESC = {
   Lovemaxxing: { shift:"This shifts you from feeling like you have to chase, prove, or wonder where you stand — into feeling like the security you want is already yours.",
     benefits:["Stop checking your phone for reassurance","Release anxious attachment patterns","Feel chosen without needing constant proof"] },
@@ -833,7 +847,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
               <div style={{ fontSize:12,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
               <div style={{ fontSize:19,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
               <div style={{ fontSize:12,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
-              <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
+              <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
                     <span style={{ color:"#e8b870",fontSize:15,marginTop:2 }}>✦</span>
@@ -841,6 +855,15 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                   </div>
                 ))}
               </div>
+              {CAT_GUIDE[track.cat] && (
+                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(232,168,96,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
+                  <span style={{ fontSize:20 }}>📖</span>
+                  <div>
+                    <div style={{ fontSize:10,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                    <div style={{ fontSize:14,color:"#f5f0e8",fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                  </div>
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -911,7 +934,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
               <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
               <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
               <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
-              <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
+              <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
                     <span style={{ color:"#e8b870",fontSize:14,marginTop:2 }}>✦</span>
@@ -919,6 +942,15 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                   </div>
                 ))}
               </div>
+              {CAT_GUIDE[track.cat] && (
+                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(232,168,96,0.4)",borderRadius:12,textDecoration:"none" }}>
+                  <span style={{ fontSize:18 }}>📖</span>
+                  <div style={{ flex:1 }}>
+                    <div style={{ fontSize:10,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                    <div style={{ fontSize:13,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                  </div>
+                </a>
+              )}
             </div>
           ); })()}
         </div>
