@@ -814,29 +814,37 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
   return (
     <>
     {showDesc && (
-      <>
-        <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowDesc(false)}/>
-        <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:520,maxHeight:"75vh",background:C.bg,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"28px 32px",fontFamily:"'Jost',sans-serif",overflowY:"auto" }}>
-          <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20 }}>
-            <div>
-              <div style={{ fontSize:22,fontWeight:400,color:"#f5f0e8",marginBottom:4 }}>{track.title}</div>
-              <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
+      <div style={{ position:"fixed",inset:0,zIndex:1000,background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"24px 48px" }}>
+          <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.cr,display:"flex",alignItems:"center",gap:8,fontSize:13,fontFamily:"'Jost',sans-serif" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg> Back
+          </button>
+          <span style={{ fontSize:12,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
+          <div style={{ width:60 }}/>
+        </div>
+        <div style={{ flex:1,overflowY:"auto",display:"flex",justifyContent:"center",padding:"20px 48px 60px" }}>
+          <div style={{ display:"flex",gap:56,maxWidth:900,width:"100%",alignItems:"flex-start" }}>
+            <div style={{ flexShrink:0 }}>
+              <Thumb title={track.title} cat={track.cat} size={260} radius={16}/>
             </div>
-            <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.mu,fontSize:20,lineHeight:1,padding:4 }}>✕</button>
-          </div>
-          <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
-          <div style={{ fontSize:18,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:24 }}>{d.shift}</div>
-          <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
-          <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
-            {d.benefits.map((b,i)=>(
-              <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                <span style={{ color:"#e8b870",fontSize:13,marginTop:2 }}>✦</span>
-                <span style={{ fontSize:15,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
+            <div style={{ flex:1,minWidth:0 }}>
+              <div style={{ fontSize:32,fontWeight:400,color:"#f5f0e8",marginBottom:6 }}>{track.title}</div>
+              <div style={{ fontSize:14,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
+              <div style={{ fontSize:12,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
+              <div style={{ fontSize:19,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
+              <div style={{ fontSize:12,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
+              <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
+                {d.benefits.map((b,i)=>(
+                  <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
+                    <span style={{ color:"#e8b870",fontSize:15,marginTop:2 }}>✦</span>
+                    <span style={{ fontSize:16,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
-      </>
+      </div>
     )}
     <div style={{ height:88,background:C.nav,borderTop:`1px solid ${C.border}`,display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
