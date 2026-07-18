@@ -359,7 +359,7 @@ function PricingSection({ onJoin }) {
   ];
 
   return (
-    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%" }}>
+    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%", scrollMarginTop: isMobile ? 24 : 0 }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 400, color: "#9a8878", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
@@ -995,7 +995,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           {/* Main nav items — massive */}
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {[
-              ["Pricing",       ()=>{ document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
+              ["Pricing",       ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
               ["ProofOS",       ()=>{ document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["Preview App",  ()=>{ onDemo?.(); setMenuOpen(false); }],
               ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
@@ -1007,7 +1007,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* Bottom — join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <button onClick={()=>{document.getElementById("pricing")?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Join Now ✦
             </button>
             <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(0,0,0,0.25)",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
@@ -1216,16 +1216,28 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           Self Hypnosis Goddess
         </div>
         <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
-        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:24 }}>+ ProofOS ✦</div>
-        <button onClick={onDemo} style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"12px 28px", background:"none", border:"1px solid rgba(232,168,96,0.4)", borderRadius:30, color:"#e8a860", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.06em", cursor:"pointer" }}>
-          👁 Preview the app — no signup needed
-        </button>
+        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
       </div>
 
       {/* DELULU IS THE SOLULU — own box, right after brand block */}
-      <div style={{ background:"#000", padding: isMobile?"32px 24px 48px":"20px 48px 64px", textAlign:"center" }}>
+      <div style={{ background:"#000", padding: isMobile?"32px 24px 48px":"20px 48px 48px", textAlign:"center" }}>
         <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(90deg,#f5e0a0,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
           Delulu is the solulu.
+        </div>
+      </div>
+
+      {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
+      <div style={{ background:"#000", padding: isMobile?"0 24px 56px":"0 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
+        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"2px solid #e8b870", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
+          👁 Preview the App
+        </button>
+        <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
+          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#c4789a,#B76E79)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
+            Join Now ✦
+          </button>
+          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1px solid rgba(232,168,96,0.5)", borderRadius:30, color:"#e8a860", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
+            Lifetime Access
+          </button>
         </div>
       </div>
 
