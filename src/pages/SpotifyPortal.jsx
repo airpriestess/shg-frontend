@@ -729,7 +729,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           {tabContent}
         </div>
       </div>
-      {!isPreview && <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark}/>}
+      <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark}/>
     </div>
   );
 
@@ -808,14 +808,45 @@ function PreviewBanner({ onSignOut, C }) {
 
 // ── DESKTOP PLAYER ─────────────────────────────────────────────────────────────
 function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark }) {
+  const [showDesc, setShowDesc] = useState(false);
+  const d = getDesc(track);
   return (
+    <>
+    {showDesc && (
+      <>
+        <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowDesc(false)}/>
+        <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:520,maxHeight:"75vh",background:C.bg,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"28px 32px",fontFamily:"'Jost',sans-serif",overflowY:"auto" }}>
+          <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20 }}>
+            <div>
+              <div style={{ fontSize:20,fontWeight:400,color:C.cr,marginBottom:4 }}>{track.title}</div>
+              <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
+            </div>
+            <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.mu,fontSize:20,lineHeight:1,padding:4 }}>✕</button>
+          </div>
+          <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+          <div style={{ fontSize:16,lineHeight:1.7,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
+          <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+          <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
+            {d.benefits.map((b,i)=>(
+              <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
+                <span style={{ color:"#e8b870",fontSize:13,marginTop:2 }}>✦</span>
+                <span style={{ fontSize:14,lineHeight:1.6,color:C.cr }}>{b}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    )}
     <div style={{ height:88,background:C.nav,borderTop:`1px solid ${C.border}`,display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
-        <Thumb title={track.title} cat={track.cat} size={52} radius={4}/>
-        <div style={{ minWidth:0 }}>
+        <div onClick={()=>setShowDesc(true)} style={{ cursor:"pointer" }}><Thumb title={track.title} cat={track.cat} size={52} radius={4}/></div>
+        <div style={{ minWidth:0, cursor:"pointer" }} onClick={()=>setShowDesc(true)}>
           <div style={{ fontSize:13,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:C.cr }}>{track.title}</div>
           <div style={{ fontSize:11,color:C.mu }}>Reshma Oracle</div>
         </div>
+        <button onClick={()=>setShowDesc(true)} style={{ background:"none",border:"none",lineHeight:0,padding:6,cursor:"pointer" }} title="About this track">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.mu} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={C.mu}/></svg>
+        </button>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",lineHeight:0,padding:8 }}><Ico.Heart on={liked.has(track.id)}/></button>
       </div>
       <div style={{ flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:6 }}>
@@ -841,6 +872,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
         <div style={{ width:80,height:4,background:C.border,borderRadius:2 }}><div style={{ width:"70%",height:"100%",background:C.cr,borderRadius:2 }}/></div>
       </div>
     </div>
+    </>
   );
 }
 
