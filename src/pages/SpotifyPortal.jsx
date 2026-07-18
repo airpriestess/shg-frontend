@@ -818,19 +818,19 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
         <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:520,maxHeight:"75vh",background:C.bg,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"28px 32px",fontFamily:"'Jost',sans-serif",overflowY:"auto" }}>
           <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20 }}>
             <div>
-              <div style={{ fontSize:20,fontWeight:400,color:C.cr,marginBottom:4 }}>{track.title}</div>
+              <div style={{ fontSize:22,fontWeight:400,color:"#f5f0e8",marginBottom:4 }}>{track.title}</div>
               <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
             </div>
             <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.mu,fontSize:20,lineHeight:1,padding:4 }}>✕</button>
           </div>
           <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
-          <div style={{ fontSize:16,lineHeight:1.7,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
+          <div style={{ fontSize:18,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:24 }}>{d.shift}</div>
           <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
           <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
             {d.benefits.map((b,i)=>(
               <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
                 <span style={{ color:"#e8b870",fontSize:13,marginTop:2 }}>✦</span>
-                <span style={{ fontSize:14,lineHeight:1.6,color:C.cr }}>{b}</span>
+                <span style={{ fontSize:15,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
               </div>
             ))}
           </div>
