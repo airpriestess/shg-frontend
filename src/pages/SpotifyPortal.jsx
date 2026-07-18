@@ -126,6 +126,61 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 }
 
 // ── TRACK DATA ────────────────────────────────────────────────────────────────
+// Category-level shift/benefit templates — used as a fallback description for tracks
+// that don't have a hand-written desc yet. Not unique per track, but genuinely tailored
+// per category so it's honest content, not generic filler repeated everywhere.
+const CAT_DESC = {
+  Lovemaxxing: { shift:"This shifts you from feeling like you have to chase, prove, or wonder where you stand — into feeling like the security you want is already yours.",
+    benefits:["Stop checking your phone for reassurance","Release anxious attachment patterns","Feel chosen without needing constant proof"] },
+  Selfmaxxing: { shift:"This shifts you from shrinking to fit into rooms, into taking up the space you were always allowed to take.",
+    benefits:["Stop over-explaining your boundaries","Build quiet, unshakeable self-trust","Feel like yourself even under pressure"] },
+  Moneymaxxing: { shift:"This shifts you from feeling like money is something you have to fight for, into feeling like it's already looking for you.",
+    benefits:["Loosen the grip of financial anxiety","Notice unexpected income without shock","Build the identity of someone money flows toward"] },
+  Sleepmaxxing: { shift:"This shifts you from feeling like manifestation takes constant conscious effort, into feeling like your reality rebuilds itself while you're unconscious.",
+    benefits:["Turn sleep into productive reprogramming time","Reduce pressure to 'do the work' every waking hour","Wake up already closer to who you're becoming"] },
+  Beautymaxxing: { shift:"This shifts you from picking yourself apart in the mirror, into actually seeing what other people already see.",
+    benefits:["Quiet the inner critic before it starts","Stop comparing your reflection to old photos","Let compliments land instead of deflecting them"] },
+  DNAmaxxing: { shift:"This shifts you from feeling like ageing and genetics are happening to you, into feeling like your body is listening to what you tell it.",
+    benefits:["Support your body's natural repair rhythms","Shift the belief that decline is inevitable","Feel more at home in your own skin"] },
+  Luckygirlmaxxing: { shift:"This shifts you from feeling like good things happen to other people, into expecting things to work out for you by default.",
+    benefits:["Notice small wins you'd normally dismiss","Stop bracing for the worst-case outcome","Build the identity of someone things go right for"] },
+  Healmaxxing: { shift:"This shifts you from carrying old pain as part of your identity, into feeling like the version of you that's already moved through it.",
+    benefits:["Process without having to relive every detail","Loosen the grip of stories that no longer serve you","Feel lighter without needing a reason why"] },
+  Sovereignmaxxing: { shift:"This shifts you from seeking approval before you act, into trusting your own judgement as enough.",
+    benefits:["Stop outsourcing decisions that are yours to make","Feel settled being disliked by the wrong people","Build a quieter, steadier inner authority"] },
+  Lifemaxxing: { shift:"This shifts you from waiting for your life to start, into feeling like you're already living the version you used to dream about.",
+    benefits:["Notice how far you've already come","Stop postponing joy for 'someday'","Feel present in a life that's actually yours"] },
+  Erosmaxxing: { shift:"This shifts you from performing confidence, into actually feeling it — especially in the moments that used to make you shrink.",
+    benefits:["Feel present instead of self-conscious","Release old shame around desire","Own your own magnetism without apology"] },
+  Bodymaxxing: { shift:"This shifts you from fighting your body, into feeling like it's finally on your side.",
+    benefits:["Reduce the mental noise around how you look","Feel strong without needing to prove it","Move through the world without shrinking"] },
+  Facemaxxing: { shift:"This shifts you from scrutinising every angle, into feeling settled in how you actually look.",
+    benefits:["Stop the mirror-checking spiral","Notice your face without judging it first","Let your features feel like features, not flaws"] },
+  Businessmaxxing: { shift:"This shifts you from feeling like you have to force growth, into feeling like your business is already finding its people.",
+    benefits:["Reduce the anxiety of inconsistent income","Attract clients without chasing them","Build the identity of someone whose work sells itself"] },
+  Skinnymaxxing: { shift:"This shifts you from fighting your body through restriction, into feeling like your body already knows what it's doing.",
+    benefits:["Quiet the food-anxiety spiral","Stop tying your worth to the number on a scale","Feel at ease in your body as it changes"] },
+  Wellnessmaxxing: { shift:"This shifts you from running on empty and calling it normal, into feeling like your body and mind are finally working together.",
+    benefits:["Reduce the background hum of overwhelm","Feel permission to actually rest","Build steadier energy without forcing it"] },
+  Studymaxxing: { shift:"This shifts you from feeling like you have to grind to keep up, into feeling like the information already makes sense to you.",
+    benefits:["Reduce pre-exam anxiety spirals","Retain information with less repetition","Feel confident walking into the room"] },
+  Friendmaxxing: { shift:"This shifts you from settling for a circle that drains you, into attracting people who actually see you.",
+    benefits:["Let go of one-sided friendships without guilt","Feel safe being fully yourself around people","Attract a circle that reflects who you're becoming"] },
+  Peacemaxxing: { shift:"This shifts you from being on edge waiting for the next thing to go wrong, into feeling steady no matter what happens around you.",
+    benefits:["Reduce your baseline anxiety","Stay regulated during hard conversations","Feel calm without needing everything to be perfect"] },
+  Confidencemaxxing: { shift:"This shifts you from waiting to feel ready, into walking into rooms like you already belong there.",
+    benefits:["Reduce the urge to over-prepare or over-apologise","Speak up without rehearsing it first","Feel steady under other people's opinions"] },
+  Stylemaxxing: { shift:"This shifts you from dressing to hide, into dressing like the woman you're already becoming.",
+    benefits:["Stop second-guessing your own taste","Feel like your outside matches your inside","Build a wardrobe identity that feels effortless"] },
+  Intuitionmaxxing: { shift:"This shifts you from talking yourself out of what you already know, into trusting your first instinct.",
+    benefits:["Stop overriding your gut with logic loops","Make decisions faster and with less regret","Feel less need for external validation"] },
+  Careermaxxing: { shift:"This shifts you from waiting to be picked, into feeling like the promotion is already yours to claim.",
+    benefits:["Reduce the anxiety of being overlooked","Speak up for what you're actually worth","Feel confident taking up space in the room"] },
+};
+function getDesc(track) {
+  return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively — no active effort required","Track the shift in ProofOS as signs come in"] };
+}
+
 const TRACKS = [
   { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Selfmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to earn good things happening to you, into feeling like you're already the woman everyone wants to spoil.",
@@ -813,13 +868,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
           <div style={{ fontSize:13,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
-          {track.desc ? (
+          {(() => { const d = getDesc(track); return (
             <div style={{ width:"100%",paddingBottom:40 }}>
               <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
-              <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{track.desc.shift}</div>
+              <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
               <div style={{ fontSize:11,color:"#e8b870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
-                {track.desc.benefits.map((b,i)=>(
+                {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
                     <span style={{ color:"#e8b870",fontSize:14,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:15,lineHeight:1.6,color:C.cr }}>{b}</span>
@@ -827,9 +882,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                 ))}
               </div>
             </div>
-          ) : (
-            <div style={{ fontSize:15,lineHeight:1.8,color:C.mu,textAlign:"center",paddingBottom:40 }}>Description coming soon for this track.</div>
-          )}
+          ); })()}
         </div>
       ) : view==="script" ? (
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
@@ -1056,7 +1109,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
 // ── SEARCH TAB ────────────────────────────────────────────────────────────────
 function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, toggleLike, isPreview, C }) {
-  const res = searchQ.length>1 ? tracks.filter(t=>t.title.toLowerCase().includes(searchQ.toLowerCase())||t.cat.toLowerCase().includes(searchQ.toLowerCase())) : tracks;
+  const res = searchQ.length>1 ? tracks.filter(t=>{
+    const q = searchQ.toLowerCase();
+    if (t.title.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q)) return true;
+    const d = getDesc(t);
+    const descText = (d.shift + " " + d.benefits.join(" ")).toLowerCase();
+    return descText.includes(q);
+  }) : tracks;
   return (
     <div style={{ padding:"16px 16px 0" }}>
       <div style={{ fontSize:20,fontWeight:400,marginBottom:14,color:C.cr }}>Search</div>
