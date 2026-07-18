@@ -1385,19 +1385,21 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterInput, setFeelAfterInput] = useState("");
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
-  // ProofOS always renders on the locked ombre — always treat as light context
-  const isDark = false;
-  const PC = { card:"rgba(255,252,248,0.92)", cardSolid:"#fffcf8", text:"#000", mu:"#5a3040", dim:"#7a4858", border:"rgba(0,0,0,0.12)", inputBg:"rgba(255,255,255,0.96)" };
-  const OMBRE_BG = "linear-gradient(165deg,#f5e0a0 0%,#e8b870 25%,#d4a090 55%,#c4789a 80%,#B76E79 100%)";
+  // ProofOS now respects the real app theme instead of being locked to the gold ombre
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+  const PC = isDark
+    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(232,168,96,0.14)", inputBg:"#1a1a1a" }
+    : { card:"#fffcf8", cardSolid:"#fffcf8", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.16)", inputBg:"rgba(180,104,48,0.06)" };
+  const PAGE_BG = isDark ? "#080808" : "#fdf8f2";
 
   if (isPreview) return (
-    <div style={{ padding:"40px 20px",textAlign:"center",background:OMBRE_BG,minHeight:"100%" }}>
-      <div style={{ fontSize:36,marginBottom:16 }}>✦</div>
-      <div style={{ fontFamily:"'Cormorant Garamond',serif",fontSize:28,fontWeight:400,color:"#000",marginBottom:10 }}>ProofOS</div>
-      <div style={{ fontSize:14,color:C.cr,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
+    <div style={{ padding:"40px 20px",textAlign:"center",background:PAGE_BG,minHeight:"100%" }}>
+      <div style={{ fontSize:36,marginBottom:16,color:"#e8b870" }}>✦</div>
+      <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:28,fontWeight:400,color:PC.text,marginBottom:10 }}>ProofOS</div>
+      <div style={{ fontSize:14,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
       </div>
-      <button style={{ padding:"12px 24px",background:isDark?"#000":"#1a0a04",border:"none",borderRadius:12,color:"#f2ece4",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",border:"none",borderRadius:12,color:"#000",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         Upgrade to Goddess — £33/mo
       </button>
     </div>
@@ -1450,7 +1452,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   };
 
   return (
-    <div style={{ padding:"16px 16px 24px", background:OMBRE_BG, minHeight:"100%" }}>
+    <div style={{ padding:"16px 16px 24px", background:PAGE_BG, minHeight:"100%" }}>
       <div style={{ fontSize:22,fontWeight:400,marginBottom:2,color:PC.text }}>ProofOS <span style={{ color:"#000" }}>✦</span></div>
       <div style={{ fontSize:13,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
@@ -1469,7 +1471,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         {[[threads.length,"Intentions"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
           <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
             <div style={{ fontSize:22,fontWeight:400,color:PC.text }}>{v}</div>
-            <div style={{ fontSize:10,color:"#000",fontWeight:400 }}>{l}</div>
+            <div style={{ fontSize:10,color:PC.mu,fontWeight:400 }}>{l}</div>
           </div>
         ))}
       </div>
@@ -1484,7 +1486,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {view==="wall" ? (
         /* ═══ PROOF WALL — your wins, forever ═══ */
         <div>
-          <div style={{ fontSize:11,color:"#000",fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>✓ Your proof wall</div>
+          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>✓ Your proof wall</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
@@ -1501,11 +1503,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:9,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
               ))}
-              <div style={{ background:"rgba(255,255,255,0.35)",border:"1px dashed rgba(0,0,0,0.3)",borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
-                <span style={{ fontSize:11,color:C.cr,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
+              <div style={{ background:PC.card,border:`1px dashed ${PC.border}`,borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
+                <span style={{ fontSize:11,color:PC.mu,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
               </div>
               <div style={{ gridColumn:"1/-1" }}>
-              <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
+              <div style={{ fontSize:11,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
               <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
                 {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
                   <div key={s.key} style={{ background:"rgba(255,255,255,0.85)",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
