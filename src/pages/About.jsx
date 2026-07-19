@@ -50,6 +50,18 @@ export default function About({ onBack }) {
           <p style={{ marginBottom:26 }}>
             I tried therapy. It didn't help — not because nothing helps, but because it wasn't built for the moment I actually needed help in: the spiral. The moment you're stuck, spinning, and every tool you own suddenly feels useless because you can't access any of them from where you are.
           </p>
+
+          {/* PLACEHOLDER — old self vs current self visual, stick-figure style before/after
+              (old unlucky/stuck version vs current lucky/manifesting version). Swap this
+              block for the real illustration once it's ready. */}
+          <div style={{ display:"flex", gap:16, margin:"36px 0", justifyContent:"center", flexWrap:"wrap" }}>
+            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(232,168,96,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
+              <span style={{ fontSize:12, color:MU, lineHeight:1.6 }}>Old self — image coming soon</span>
+            </div>
+            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(232,168,96,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
+              <span style={{ fontSize:12, color:MU, lineHeight:1.6 }}>Current self — image coming soon</span>
+            </div>
+          </div>
           <p style={{ marginBottom:26 }}>
             When I found manifestation work, something shifted. Not overnight, and not because of one video or one affirmation — but because I finally had language and tools for what I'd been missing: the idea that my emotional state wasn't just something that happened to me, it was something I could actually work on, deliberately, every day.
           </p>
