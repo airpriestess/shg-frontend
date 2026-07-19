@@ -1426,7 +1426,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* THREE FORMATS */}
             <div style={{ background: "rgba(232,168,96,0.06)", border: "1px solid rgba(232,168,96,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 11, color: "#c9963a", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>Six formats — each does something different</div>
+              <div style={{ fontSize: 12, color: "#e8b870", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
                 { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
@@ -1435,11 +1435,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 { icon: "🎼", label: "Binaural Beats / Solfeggio Frequency", body: "Two slightly different tones, one per ear, syncing both hemispheres into theta — layered with Solfeggio frequencies tuned to specific effects. See the full frequency table below." },
                 { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
               ].map((f,i)=>(
-                <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingBottom: i<5?12:0, marginBottom: i<5?12:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
-                  <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
+                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", paddingBottom: i<5?16:0, marginBottom: i<5?16:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
+                  <span style={{ fontSize: 22, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#000000", marginBottom: 3 }}>{f.label}</div>
-                    <div style={{ fontSize: 13, color: "#000000", lineHeight: 1.65 }}>{f.body}</div>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: "#000000", marginBottom: 5 }}>{f.label}</div>
+                    <div style={{ fontSize: 15, color: "#000000", lineHeight: 1.7 }}>{f.body}</div>
                   </div>
                 </div>
               ))}
@@ -1447,7 +1447,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* FREQUENCY TABLE — Solfeggio + binaural reference */}
             <div style={{ maxWidth: 680, margin: "0 auto" }}>
-              <div style={{ fontSize: 11, color: "#c9963a", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
+              <div style={{ fontSize: 12, color: "#e8b870", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
               <p style={{ fontSize: isMobile?14:15, color:"#3a2010", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
                 Every track is tuned to a specific frequency — Solfeggio tones layered under the music, plus binaural beats for hemi-sync. Here's what each one is associated with:
               </p>
