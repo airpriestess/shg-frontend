@@ -1549,20 +1549,30 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             ))}
           </select>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <select value={newFeel} onChange={e=>setFeel(e.target.value)}
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:6,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box",appearance:"none",WebkitAppearance:"none",cursor:"pointer" }}>
-            <option value="">— Select your state —</option>
-            <optgroup label="200+ · Expansive ✦">
-              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
-                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Below 200 · Contractive">
-              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
-                <option key={h.n} value={h.n}>{h.n} · {h.v}</option>
-              ))}
-            </optgroup>
-          </select>
+          <div style={{ fontSize:9,color:"#2ecc71",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive ✦</div>
+          <div style={{ overflowY:"auto",marginBottom:8,maxHeight:150,border:`1px solid ${PC.border}`,borderRadius:10 }}>
+            {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+              <div key={h.n} onClick={()=>setFeel(h.n)}
+                style={{ display:"flex",alignItems:"center",gap:10,padding:"8px 12px",cursor:"pointer",
+                  background:newFeel===h.n?`${h.c}22`:"transparent" }}>
+                <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>
+                <span style={{ fontSize:13,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:11,color:PC.mu }}>{h.v}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ fontSize:9,color:"#e67e22",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive</div>
+          <div style={{ overflowY:"auto",marginBottom:6,maxHeight:130,border:`1px solid ${PC.border}`,borderRadius:10 }}>
+            {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
+              <div key={h.n} onClick={()=>setFeel(h.n)}
+                style={{ display:"flex",alignItems:"center",gap:10,padding:"8px 12px",cursor:"pointer",
+                  background:newFeel===h.n?`${h.c}33`:"transparent" }}>
+                <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+                <span style={{ fontSize:13,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:11,color:PC.mu }}>{h.v}</span>
+              </div>
+            ))}
+          </div>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:10 }}>
               <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
