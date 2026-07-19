@@ -43,7 +43,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
       <div style={{ fontSize:16*fs, fontWeight:400, color:C.text, marginBottom:14 }}>{manifested} of {total} intentions manifested <span style={{ color:R }}>✦</span></div>
 
       {/* Stat tiles */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>
+      <div style={{ display:"grid", gridTemplateColumns: compact ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>
         {[
           [manifested, "Manifested", R, onDrillDown ? ()=>onDrillDown("manifested") : null],
           [inProgress, "In progress", P, onDrillDown ? ()=>onDrillDown("inProgress") : null],
