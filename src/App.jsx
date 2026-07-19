@@ -1480,6 +1480,53 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
       </div>
 
+      {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
+      <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
+        <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
+          <div style={{ fontSize: 12, color: "#e8b870", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
+            The Hawkins Scale.
+          </h2>
+          <p style={{ fontSize: isMobile?15:17, color:"#c8bcb0", lineHeight:1.85, maxWidth:600, margin:"0 auto 40px" }}>
+            Every intention you log in ProofOS gets tagged against this 17-level emotional scale — where you are when you set it, and where you land when it manifests. Watch your baseline climb as the shift takes hold. It's not just proof that something happened — it's proof your energy actually changed.
+          </p>
+          <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
+            {[
+              {n:"Enlightenment",v:700,c:"#ffffff"},
+              {n:"Peace",v:600,c:"#fdf0e8"},
+              {n:"Joy",v:540,c:"#f5d090"},
+              {n:"Love",v:500,c:"#e8b870"},
+              {n:"Reason",v:400,c:"#9b59b6"},
+              {n:"Acceptance",v:350,c:"#2980b9"},
+              {n:"Willingness",v:310,c:"#3498db"},
+              {n:"Neutrality",v:250,c:"#1abc9c"},
+              {n:"Courage",v:200,c:"#2ecc71"},
+              {n:"Pride",v:175,c:"#f1c40f"},
+              {n:"Anger",v:150,c:"#e67e22"},
+              {n:"Desire",v:125,c:"#c0392b"},
+              {n:"Fear",v:100,c:"#7b3f00"},
+              {n:"Grief",v:75,c:"#4a3060"},
+              {n:"Apathy",v:50,c:"#6b6b6b"},
+              {n:"Guilt",v:30,c:"#5a0f0f"},
+              {n:"Shame",v:20,c:"#2a0a0a"},
+            ].map((h,i)=>(
+              <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"6px 4px" }}>
+                <div style={{ width:10, height:10, borderRadius:"50%", background:h.c, flexShrink:0, boxShadow:h.v>=200?`0 0 6px ${h.c}88`:"none" }}/>
+                <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
+                  <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:h.c, opacity: h.v>=200?0.9:0.6 }}/>
+                </div>
+                <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":"#9a8878", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:11, color:"#5a4a40", width:32, textAlign:"right" }}>{h.v}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"8px 18px", background:"rgba(46,204,113,0.1)", border:"1px solid rgba(46,204,113,0.3)", borderRadius:20 }}>
+            <div style={{ width:8, height:8, borderRadius:"50%", background:"#2ecc71" }}/>
+            <span style={{ fontSize:12, color:"#c8bcb0" }}>200 — Courage — is the line. Below it, you're contracting. Above it, you're expanding.</span>
+          </div>
+        </div>
+      </div>
+
       {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
       <LandingProofWall isMobile={isMobile}/>
 
