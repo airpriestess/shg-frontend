@@ -1389,7 +1389,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [newFeel, setFeel] = useState("");
   const [newFeelText, setFeelText] = useState("");
   const [adding, setAdding] = useState(false);
-  const [view, setView] = useState("threads"); // threads | wall
+  const [view, setView] = useState("threads"); // threads | wall | bucket
   const [signInput, setSignInput] = useState({}); // {threadId: text}
   const [finishing, setFinishing] = useState(null); // threadId being marked done
   const [feelAfterInput, setFeelAfterInput] = useState("");
@@ -1417,8 +1417,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   const manifested = threads.filter(t=>t.done);
   const inProgress = threads.filter(t=>!t.done);
-  const displayedThreads = proofFilter==="manifested" ? manifested : proofFilter==="inProgress" ? inProgress : threads;
+  const bucketItems = threads.filter(t=>t.isBucket && !t.done);
+  const activeThreads = threads.filter(t=>!t.isBucket);
+  const displayedThreads = proofFilter==="manifested" ? manifested.filter(t=>!t.isBucket) : proofFilter==="inProgress" ? inProgress.filter(t=>!t.isBucket) : activeThreads;
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
+  const [bucketText, setBucketText] = useState("");
+  const [promotingId, setPromotingId] = useState(null);
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
   const confirmFinish = (id) => {
@@ -1486,14 +1490,77 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         ))}
       </div>
 
-      {/* View toggle: Threads | Proof Wall */}
+      {/* View toggle: Bucket List | Active | Proof Wall */}
       <div style={{ display:"flex",gap:6,marginBottom:14 }}>
-        {[["threads","Threads"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
-          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 8px",borderRadius:10,background:view===k?"#000":PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:12,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+        {[["bucket",`Bucket List (${bucketItems.length})`],["threads","Active"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
+          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 6px",borderRadius:10,background:view===k?"#000":PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
       </div>
 
-      {view==="wall" ? (
+      {view==="bucket" ? (
+        /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
+        <div>
+          <div style={{ background:PC.card,borderRadius:14,padding:14,marginBottom:14 }}>
+            <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>Add to your bucket list</div>
+            <div style={{ fontSize:12,color:PC.mu,lineHeight:1.6,marginBottom:10 }}>Write down anything you want to manifest — no category, no track, no pressure. You can promote it to active focus later, or just mark it manifested whenever it happens.</div>
+            <div style={{ display:"flex", gap:8 }}>
+              <input value={bucketText} onChange={e=>setBucketText(e.target.value)} placeholder="A holiday to... A new car... Whatever it is"
+                style={{ flex:1, padding:"10px 12px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:13, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
+              <button onClick={()=>{
+                if(!bucketText.trim()) return;
+                setThreads([{id:Date.now(),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
+                setBucketText("");
+              }} style={{ padding:"10px 18px", background:isDark?"#000":"#1a0a04", border:"none", borderRadius:8, color:"#f2ece4", fontSize:13, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
+            </div>
+          </div>
+
+          {activeThreads.filter(t=>!t.done).length >= 5 && (
+            <div style={{ fontSize:11, color:"#e8b870", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
+              ✦ You've got {activeThreads.filter(t=>!t.done).length} active intentions. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
+            </div>
+          )}
+
+          {bucketItems.length===0 ? (
+            <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
+              <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
+              <div style={{ fontSize:13,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest — big or small.</div>
+            </div>
+          ) : (
+            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+              {bucketItems.map(item=>(
+                <div key={item.id} style={{ background:PC.card, borderRadius:12, padding:"14px 16px" }}>
+                  <div style={{ fontSize:14, color:PC.text, marginBottom:10, lineHeight:1.5 }}>{item.desire}</div>
+                  {promotingId===item.id ? (
+                    <div style={{ marginBottom:10 }}>
+                      <div style={{ fontSize:10, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:6 }}>Choose a category to promote this</div>
+                      <div style={{ display:"flex", flexWrap:"wrap", gap:6 }}>
+                        {Object.keys(CAT_ICONS).slice(0,8).map(c=>(
+                          <button key={c} onClick={()=>{
+                            const suggested = suggestTrack(item.desire, c);
+                            setThreads(ts => ts.map(t => t.id===item.id ? {...t, isBucket:false, category:c, track:suggested?.title||""} : t));
+                            setPromotingId(null);
+                          }} style={{ padding:"5px 10px", borderRadius:16, background:`${CAT_ICONS[c].accent}1c`, border:`1px solid ${CAT_ICONS[c].accent}55`, color:CAT_ICONS[c].accent, fontSize:11, cursor:"pointer", fontFamily:"'Jost',sans-serif", display:"flex", alignItems:"center", gap:5 }}>
+                            <div style={{width:6,height:6,borderRadius:"50%",background:CAT_ICONS[c].accent}}/>{c}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ display:"flex", gap:8 }}>
+                      <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                        Focus on this now
+                      </button>
+                      <button onClick={()=>setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t))} style={{ flex:1, padding:"8px 12px", background:`${R}18`, border:`1px solid ${R}44`, borderRadius:8, color:R, fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                        ✓ Already manifested
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : view==="wall" ? (
         /* ═══ PROOF WALL — your wins, forever ═══ */
         <div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>✓ Your proof wall</div>
