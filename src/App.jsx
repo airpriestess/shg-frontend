@@ -974,7 +974,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
               <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
             </svg>
-            <span style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:500, fontSize: "clamp(14px,3.2vw,20px)", letterSpacing: "0.01em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+            <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: "clamp(11px,3.2vw,14px)", letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
 
@@ -994,7 +994,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ position:"fixed",inset:0,zIndex:999,background:"#000",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar — logo + close */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
-            <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:500, fontSize:22, letterSpacing:"0.01em", color:"#f2ece4", cursor:"pointer" }}>Self Hypnosis Goddess</span>
+            <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:18, letterSpacing:"0.02em", color:"#f2ece4", cursor:"pointer" }}>Self Hypnosis Goddess</span>
             <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#f2ece4",WebkitTapHighlightColor:"transparent" }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
             </button>
@@ -1833,7 +1833,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <line x1="50" y1="80" x2="50" y2="96" stroke="url(#footerlg)" strokeWidth="3.5" strokeLinecap="round"/>
           </svg>
         </div>
-        <span className="wm wm-shimmer" style={{ fontSize: 22, display: "block", marginBottom: 8 }}>Self Hypnosis Goddess</span>
+        <span style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:500, fontSize:26, display:"block", marginBottom:8, background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Self Hypnosis Goddess</span>
         <div style={{ fontSize: 13, color: "#8a7868", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
           Self Hypnosis Goddess is a self-hypnosis and manifestation audio product. It is not therapy, medical treatment, or a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact a licensed professional or emergency services.
