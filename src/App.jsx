@@ -1441,55 +1441,95 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               Save yourself thousands in therapy sessions.
             </p>
 
-            {/* THREE FORMATS */}
-            <div style={{ background: "rgba(42,168,154,0.06)", border: "1px solid rgba(42,168,154,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
-              {[
-                { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
-                { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
-                { icon: "🌙", label: "Subliminal", body: "Pure music. No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day." },
-                { icon: "◈", label: "EMDR Hypnosis", body: "Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
-                { icon: "🎼", label: "Binaural Beats / Solfeggio Frequency", body: "Two slightly different tones, one per ear, syncing both hemispheres into theta — layered with Solfeggio frequencies tuned to specific effects. See the full frequency table below." },
-                { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
-              ].map((f,i)=>(
-                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", paddingBottom: i<5?16:0, marginBottom: i<5?16:0, borderBottom: i<5?"1px solid rgba(44,183,167,0.12)":"none" }}>
-                  <span style={{ fontSize: 22, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
-                  <div>
-                    <div style={{ fontSize: 18, fontWeight: 700, color: "#f2ece4", marginBottom: 5 }}>{f.label}</div>
-                    <div style={{ fontSize: 19, color: "#e8e0d8", lineHeight: 1.7 }}>{f.body}</div>
-                  </div>
+            {/* SIX FORMATS — concentric ring diagram */}
+            <div style={{ maxWidth: 700, margin: "0 auto 48px", textAlign: "center" }}>
+              <div style={{ fontSize: 12, color: "#2CB7A7", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 32 }}>Six formats — layered into every track</div>
+              {/* Orbit diagram */}
+              <div style={{ position: "relative", width: isMobile?300:480, height: isMobile?300:480, margin: "0 auto 48px" }}>
+                {/* Concentric rings */}
+                {[1,0.78,0.58,0.40,0.24,0.10].map((scale,i)=>(
+                  <div key={i} style={{ position:"absolute", borderRadius:"50%", border:`1px solid rgba(44,183,167,${0.08+i*0.04})`, top:`${(1-scale)*50}%`, left:`${(1-scale)*50}%`, width:`${scale*100}%`, height:`${scale*100}%` }}/>
+                ))}
+                {/* Center label */}
+                <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", textAlign:"center" }}>
+                  <div style={{ fontSize: isMobile?9:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#2CB7A7" }}>your</div>
+                  <div style={{ fontSize: isMobile?12:15, color:"#f2ece4", fontWeight:300 }}>subconscious</div>
                 </div>
-              ))}
-            </div>
-
-            {/* FREQUENCY TABLE — Solfeggio + binaural reference */}
-            <div style={{ maxWidth: 680, margin: "0 auto" }}>
-              <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
-              <p style={{ fontSize: isMobile?14:15, color:"#e8e0d8", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
-                Every track is tuned to a specific frequency — Solfeggio tones layered under the music, plus binaural beats for hemi-sync. Here's what each one is associated with:
-              </p>
-              <div style={{ background:"#0a0a0a", borderRadius:14, overflow:"hidden", border:"1px solid rgba(44,183,167,0.15)" }}>
+                {/* Six format labels positioned around the circle */}
                 {[
-                  { hz:"174hz", name:"Foundation", assoc:"Pain relief, safety, grounding" },
-                  { hz:"285hz", name:"Restoration", assoc:"Tissue and energy field repair" },
-                  { hz:"396hz", name:"Liberation", assoc:"Releasing fear and guilt" },
-                  { hz:"417hz", name:"Change", assoc:"Undoing situations, facilitating change" },
-                  { hz:"432hz", name:"Harmony", assoc:"Natural tuning, calm, coherence" },
-                  { hz:"528hz", name:"Transformation", assoc:"The \"love frequency\" — repair, DNA, abundance" },
-                  { hz:"639hz", name:"Connection", assoc:"Relationships, harmonising with others" },
-                  { hz:"741hz", name:"Expression", assoc:"Awakening intuition, problem-solving" },
-                  { hz:"852hz", name:"Intuition", assoc:"Returning to spiritual order" },
-                  { hz:"963hz", name:"Activation", assoc:"Pineal gland activation, higher connection" },
-                ].map((row,i)=>(
-                  <div key={i} style={{ display:"flex", alignItems:"center", gap:14, padding: isMobile?"10px 14px":"12px 20px", borderBottom: i<9?"1px solid rgba(44,183,167,0.1)":"none" }}>
-                    <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#2CB7A7", width: isMobile?52:64, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
-                    <div style={{ fontSize: isMobile?13:14, fontWeight:600, color:"#f2ece4", width: isMobile?90:120, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
-                    <div style={{ fontSize: isMobile?12:13, color:"#e8e0d8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                  { label:"Melodic House", sub:"voice + music", angle:-90,  color:"#F5E0A0" },
+                  { label:"Melodic Calm",  sub:"winding down",  angle:-30,  color:"#E8B870" },
+                  { label:"Subliminal",    sub:"below hearing", angle: 30,  color:"#BFA5D8" },
+                  { label:"EMDR",          sub:"bilateral",     angle: 90,  color:"#2CB7A7" },
+                  { label:"Binaural",      sub:"hemisync",      angle: 150, color:"#167A6B" },
+                  { label:"Reiki",         sub:"frequency",     angle:-150, color:"#BFA5D8" },
+                ].map((f,i)=>{
+                  const rad = (f.angle * Math.PI) / 180;
+                  const r = isMobile ? 116 : 186;
+                  const x = 50 + Math.cos(rad) * (r / (isMobile?150:240) * 100);
+                  const y = 50 + Math.sin(rad) * (r / (isMobile?150:240) * 100);
+                  return (
+                    <div key={i} style={{ position:"absolute", left:`${x}%`, top:`${y}%`, transform:"translate(-50%,-50%)", textAlign:"center", width: isMobile?64:90 }}>
+                      <div style={{ fontSize: isMobile?9:11, fontWeight:500, color:f.color, letterSpacing:"0.06em", lineHeight:1.2, marginBottom:2 }}>{f.label}</div>
+                      <div style={{ fontSize: isMobile?8:10, color:"rgba(232,224,216,0.55)", letterSpacing:"0.04em" }}>{f.sub}</div>
+                    </div>
+                  );
+                })}
+                {/* Spoke lines */}
+                <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", overflow:"visible" }} viewBox="0 0 100 100" preserveAspectRatio="none">
+                  {[-90,-30,30,90,150,-150].map((angle,i)=>{
+                    const rad = (angle * Math.PI)/180;
+                    return <line key={i} x1="50" y1="50" x2={50+Math.cos(rad)*48} y2={50+Math.sin(rad)*48} stroke="rgba(44,183,167,0.15)" strokeWidth="0.5"/>;
+                  })}
+                </svg>
+              </div>
+              {/* Format detail cards — 3 col grid */}
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: isMobile?12:16, textAlign:"left" }}>
+                {[
+                  { label:"Melodic House", body:"Voice layered beneath original melodic house music — rewires you beneath the surface.", color:"#F5E0A0" },
+                  { label:"Melodic Calm",  body:"Slower layers for winding down. Same encoding, delivered at night-time pace.", color:"#E8B870" },
+                  { label:"Subliminal",    body:"No audible voice. Affirmations below hearing threshold. Works while you sleep.", color:"#BFA5D8" },
+                  { label:"EMDR",          body:"Bilateral audio stimulation dissolves old identity blocks at their root.", color:"#2CB7A7" },
+                  { label:"Binaural Beats",body:"Two frequencies, one per ear, syncing both hemispheres into theta state.", color:"#167A6B" },
+                  { label:"Reiki Encoded", body:"Channelled with Reiki energy during recording. Frequency healing in every track.", color:"#BFA5D8" },
+                ].map((f,i)=>(
+                  <div key={i} style={{ background:"#0a0a0a", border:`1px solid ${f.color}22`, borderRadius:12, padding:"16px 18px" }}>
+                    <div style={{ fontSize:13, fontWeight:500, color:f.color, marginBottom:6, letterSpacing:"0.04em" }}>{f.label}</div>
+                    <div style={{ fontSize: isMobile?13:15, color:"#e8e0d8", lineHeight:1.6 }}>{f.body}</div>
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize:11, color:"#ddd0c8", textAlign:"center", marginTop:14, lineHeight:1.5 }}>
-                Plus binaural beats layered underneath, syncing both hemispheres into theta for the hemi-sync effect explained above.
+            </div>
+
+            {/* FREQUENCY PYRAMID — ascending from foundation to activation */}
+            <div style={{ maxWidth: 680, margin: "0 auto" }}>
+              <div style={{ fontSize: 12, color: "#2CB7A7", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The Solfeggio Frequencies</div>
+              <p style={{ fontSize: isMobile?15:17, color:"#e8e0d8", lineHeight:1.75, textAlign:"center", marginBottom:36, maxWidth:520, margin:"0 auto 36px" }}>
+                Every track is tuned to a specific frequency. Here they are from ground to activation — lowest to highest.
+              </p>
+              {/* Pyramid — each row gets wider as we go down, narrower at top */}
+              <div style={{ display:"flex", flexDirection:"column", gap: isMobile?4:6, alignItems:"center" }}>
+                {[
+                  { hz:"963hz", name:"Activation",    assoc:"Pineal gland · higher connection",  color:"#F5E0A0", w:"20%" },
+                  { hz:"852hz", name:"Intuition",      assoc:"Returning to spiritual order",       color:"#E8B870", w:"30%" },
+                  { hz:"741hz", name:"Expression",     assoc:"Awakening intuition",                color:"#BFA5D8", w:"40%" },
+                  { hz:"639hz", name:"Connection",     assoc:"Relationships · harmonising",        color:"#9B8FD4", w:"52%" },
+                  { hz:"528hz", name:"Transformation", assoc:"Love frequency · DNA · abundance",   color:"#2CB7A7", w:"64%" },
+                  { hz:"432hz", name:"Harmony",        assoc:"Natural tuning · calm · coherence",  color:"#2CB7A7", w:"74%" },
+                  { hz:"417hz", name:"Change",         assoc:"Facilitating change",                color:"#167A6B", w:"82%" },
+                  { hz:"396hz", name:"Liberation",     assoc:"Releasing fear and guilt",           color:"#167A6B", w:"88%" },
+                  { hz:"285hz", name:"Restoration",    assoc:"Energy field repair",                color:"#2AA89A", w:"94%" },
+                  { hz:"174hz", name:"Foundation",     assoc:"Safety · grounding · pain relief",  color:"#2CB7A7", w:"100%" },
+                ].map((row,i)=>(
+                  <div key={i} style={{ width: isMobile?"100%":row.w, background:`${row.color}12`, border:`1px solid ${row.color}35`, borderRadius:8, padding: isMobile?"10px 14px":"11px 20px", display:"flex", alignItems:"center", gap: isMobile?10:16, transition:"all 0.2s" }}>
+                    <div style={{ fontSize: isMobile?11:13, fontWeight:600, color:row.color, width: isMobile?44:60, flexShrink:0, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>{row.hz}</div>
+                    <div style={{ fontSize: isMobile?12:14, fontWeight:500, color:"#f2ece4", width: isMobile?80:110, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
+                    <div style={{ fontSize: isMobile?11:13, color:"#e8e0d8", fontFamily:"'Jost',sans-serif", lineHeight:1.3 }}>{row.assoc}</div>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize:12, color:"#c8bcb0", textAlign:"center", marginTop:20, lineHeight:1.5 }}>
+                Binaural beats layered beneath every track sync both hemispheres into theta — where the reprogramming begins.
               </p>
             </div>
           </div>
