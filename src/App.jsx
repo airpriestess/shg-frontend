@@ -1258,6 +1258,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
+      
+      {/* ─── Section divider ─── */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
+        <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+        </svg>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
+      </div>
       {/* PURPOSE — subconscious creates your reality */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
@@ -1280,6 +1294,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
+      
+      {/* ─── Section divider ─── */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
+        <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+        </svg>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
+      </div>
       {/* HEMI-SYNC — how the audio actually works */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:780, margin:"0 auto" }}>
@@ -1384,6 +1412,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
 
 
+      
+      {/* ─── Section divider ─── */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
+        <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+        </svg>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
+      </div>
       {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
       <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
         <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
@@ -1422,6 +1464,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
+      
+      {/* ─── Section divider ─── */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
+        <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+        </svg>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
+      </div>
       {/* MELODIC HOUSE USP — cream background, locked palette */}
       <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#000", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
@@ -1637,11 +1693,39 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       ]} />
 
 
+      
+      {/* ─── Section divider ─── */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
+        <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+        </svg>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
+      </div>
       {/* PROOFOS INTRO — brief 2 sentence version */}
       <div id="proofos" style={{ padding: isMobile?"32px 18px":"48px 24px", textAlign:"center", maxWidth:680, margin:"0 auto" }}>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#ddd0c8", lineHeight:1.85 }}>
           Every track links to a desire. Every sign you receive gets logged in <span style={{ color:"#2AA89A" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
+      </div>
+      
+      {/* ─── Section divider ─── */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
+        <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+        </svg>
+        <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* WALL OF LOVE */}
       <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#000" }}>
@@ -1738,7 +1822,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* FOOTER */}
-      <div style={{ borderTop: T.border, padding: "28px 24px", textAlign: "center" }}>
+      <div style={{ borderTop: T.border, padding: "48px 24px 28px", textAlign: "center" }}>
+        <div style={{ display:"flex", justifyContent:"center", marginBottom:16 }}>
+          <svg viewBox="0 0 100 102" width={40} height={40}>
+            <defs><linearGradient id="footerlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+            <circle cx="35" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
+            <circle cx="65" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
+            <circle cx="35" cy="65" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
+            <circle cx="65" cy="65" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
+            <line x1="50" y1="80" x2="50" y2="96" stroke="url(#footerlg)" strokeWidth="3.5" strokeLinecap="round"/>
+          </svg>
+        </div>
         <span className="wm wm-shimmer" style={{ fontSize: 22, display: "block", marginBottom: 8 }}>Self Hypnosis Goddess</span>
         <div style={{ fontSize: 13, color: "#8a7868", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
