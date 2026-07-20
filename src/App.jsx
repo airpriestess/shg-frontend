@@ -1367,6 +1367,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             })}
           </div>
 
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:32 }}>
+            <img src="/secret_door.svg" alt="The secret door — theta state" style={{ width: isMobile?240:320, height:"auto", opacity:0.92 }}/>
+          </div>
+
           <div style={{ fontSize: isMobile?"clamp(28px,9vw,42px)":"clamp(38px,5vw,58px)", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, letterSpacing:"-0.01em", textAlign:"center", marginBottom:36, lineHeight:1.2, display:"inline-block" }}>
             Theta is the secret door.
           </div>
