@@ -1142,12 +1142,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
-        <div style={{ background:"#000", padding: isMobile?"16px 18px 24px":"20px 24px 32px" }}>
-          <div style={{ background: "#0a0a0a", border: "1px solid rgba(42,168,154,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
+        <div style={{ background:"#000", padding: isMobile?"12px 14px 20px":"32px 24px 48px" }}>
+          <div style={{ background: "#0a0a0a", border: "1px solid rgba(42,168,154,0.35)", borderRadius: isMobile?14:22, padding: isMobile ? "16px" : "36px 44px", maxWidth: isMobile?"100%":780, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-              <div style={{ width:56, height:56, borderRadius:10, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
-                <svg viewBox="0 0 100 102" width={38} height={38}>
+              <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
+                <svg viewBox="0 0 100 102" width={isMobile?34:64} height={isMobile?34:64}>
                   <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="45%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
                   <circle cx="35" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
                   <circle cx="65" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
@@ -1157,8 +1157,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 </svg>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: isMobile ? 16 : 17, fontWeight: 400, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
-                <div style={{ fontSize: 13, color: "#2AA89A", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#f2ece4", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
+                <div style={{ fontSize: isMobile?12:16, color: "#2AA89A", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
                 <div style={{ fontSize: 12, color: "#b09888", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
               </div>
               {playing && (
