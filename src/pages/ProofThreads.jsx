@@ -173,7 +173,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
         {(localMoodBefore !== t.mood_before || localMoodAfter !== t.mood_after) && (
           <div style={{ marginTop: 10, display: "flex", gap: 8 }}>
             <button onClick={() => { onSaveMood("mood_before", localMoodBefore); onSaveMood("mood_after", localMoodAfter); }}
-              style={{ padding: "7px 16px", background: "linear-gradient(90deg,#BFA5D8,#2CB7A7)", border: "none", borderRadius: 8, color: "#000", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Save</button>
+              style={{ padding: "7px 16px", background: "linear-gradient(90deg,#5B8DB8,#2CB7A7)", border: "none", borderRadius: 8, color: "#000", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Save</button>
             <button onClick={() => { setLocalMoodBefore(t.mood_before || ""); setLocalMoodAfter(t.mood_after || ""); }}
               style={{ padding: "7px 14px", background: "none", border: "1px solid #1e1c0a", borderRadius: 8, color: T.textMuted, fontSize: 13, cursor: "pointer" }}>Cancel</button>
           </div>

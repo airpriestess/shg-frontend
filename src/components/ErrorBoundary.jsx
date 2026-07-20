@@ -7,7 +7,7 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ minHeight:"100vh", background:"linear-gradient(135deg,#E8A030 0%,#C8860A 25%,#BFA5D8 55%,#167A6B 80%,#2CB7A7 100%)", display:"flex", alignItems:"center", justifyContent:"center", padding:24, fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ minHeight:"100vh", background:"linear-gradient(135deg,#C8960A 0%,#C8860A 25%,#5B8DB8 55%,#167A6B 80%,#2CB7A7 100%)", display:"flex", alignItems:"center", justifyContent:"center", padding:24, fontFamily:"'Jost',sans-serif" }}>
           <div style={{ maxWidth:440, background:"#fff8f4", borderRadius:20, padding:"32px 28px", textAlign:"center", boxShadow:"0 20px 60px rgba(0,0,0,0.2)" }}>
             <div style={{ fontSize:36, marginBottom:12 }}>✦</div>
             <div style={{ fontSize:11, fontWeight:900, color:"#2CB7A7", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:10 }}>Something interrupted the shift</div>

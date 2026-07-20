@@ -69,7 +69,7 @@ export default function App() {
       {screen === "portal" && (
         authCtx.loading
           ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#E8A030",opacity:0.7}}>Self Hypnosis Goddess</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#C8960A",opacity:0.7}}>Self Hypnosis Goddess</div>
             </div>
           : <ErrorBoundary><SpotifyPortal onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
       )}
@@ -253,7 +253,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
-                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#BFA5D8,#2CB7A7)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:700}}>SAVE 20%</span></>}
+                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#5B8DB8,#2CB7A7)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:700}}>SAVE 20%</span></>}
               </button>
             ))}
           </div>
@@ -271,8 +271,8 @@ function CheckoutModal({ onClose, onDemo }) {
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
-                <div style={{fontSize:11,color:"#BFA5D8"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#BFA5D8"}}>£11.92/mo · billed once</div>}
+                <div style={{fontSize:11,color:"#5B8DB8"}}>{isAnnual?"/year":"/month"}</div>
+                {isAnnual && <div style={{fontSize:10,color:"#5B8DB8"}}>£11.92/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
@@ -282,14 +282,14 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#E8A030,#BFA5D8)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#C8960A,#5B8DB8)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
               {TIERS.audio.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
 
           {/* GODDESS TIER */}
           <div style={{background:"linear-gradient(135deg,#0a1a18,#0d2825)",border:"2px solid #2CB7A7",borderRadius:16,padding:"22px 18px 18px",marginTop:16,position:"relative",overflow:"visible"}}>
-            <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#BFA5D8,#2CB7A7)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
+            <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#5B8DB8,#2CB7A7)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
                 <div style={{fontSize:16,fontWeight:400,color:"#2CB7A7",marginBottom:2}}>Goddess Tier</div>
@@ -297,7 +297,7 @@ function CheckoutModal({ onClose, onDemo }) {
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
-                <div style={{fontSize:11,color:"#BFA5D8"}}>{isAnnual?"/year":"/month"}</div>
+                <div style={{fontSize:11,color:"#5B8DB8"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>£26.42/mo · billed once</div>}
               </div>
             </div>
@@ -308,31 +308,31 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#BFA5D8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(44,183,167,0.4)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#5B8DB8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(44,183,167,0.4)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
               {TIERS.goddess.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
 
           {/* LIFETIME */}
-          <div style={{background:"#000",border:"1.5px solid #E8A03066",borderRadius:16,padding:"18px"}}>
+          <div style={{background:"#000",border:"1.5px solid #C8960A66",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
                 <div style={{fontSize:16,fontWeight:400,color:"#F5E0A0",marginBottom:2}}>Lifetime Access</div>
-                <div style={{fontSize:11,color:"#E8A030",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
+                <div style={{fontSize:11,color:"#C8960A",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#F5E0A0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
-                <div style={{fontSize:11,color:"#E8A030"}}>one time</div>
+                <div style={{fontSize:11,color:"#C8960A"}}>one time</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#e8dcc8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#E8A030"}}>·</span>{f}
+                  <span style={{position:"absolute",left:0,color:"#C8960A"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#F5E0A0,#E8A030,#BFA5D8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,134,10,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#F5E0A0,#C8960A,#5B8DB8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,134,10,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
@@ -355,9 +355,9 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(200,134,10,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#E8A030", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 40%,#BFA5D8 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#E8A030", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(200,134,10,0.35)", nameColor: "#F5E0A0", muteColor: "#E8A030", priceColor: "#F5E0A0", periodColor: "#E8A030", featureColor: "#e8dcc8", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(200,134,10,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#C8960A", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#C8960A", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 40%,#5B8DB8 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#C8960A", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(200,134,10,0.35)", nameColor: "#F5E0A0", muteColor: "#C8960A", priceColor: "#F5E0A0", periodColor: "#C8960A", featureColor: "#e8dcc8", dot: "#C8960A", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000" },
   ];
 
   return (
@@ -390,7 +390,7 @@ function PricingSection({ onJoin }) {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 28 : 16, overflow: "visible" }}>
           {cards.map(c => (
             <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "28px 24px 28px" : "40px 24px 28px") : "28px 24px", marginTop: isMobile ? (c.popular ? 26 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
-              {c.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", color: "#000", fontSize: 9, fontWeight: 400, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.18em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 5 }}>Most popular</div>}
+              {c.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)", color: "#000", fontSize: 9, fontWeight: 400, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.18em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 5 }}>Most popular</div>}
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 36, fontWeight: 400, color: c.priceColor, fontFamily: "'Jost',sans-serif" }}>{c.price}</span>
@@ -426,38 +426,38 @@ function PricingSection({ onJoin }) {
 
 
 const MARQUEE_ITEMS = [
-  {t:"He texts me first. Obviously.",c:"#2CB7A7"},{t:"Money finds me first.",c:"#E8A030"},{t:"Gorgeous is my default.",c:"#BFA5D8"},
-  {t:"My DNA is shifting. Right now.",c:"#E8A030"},{t:"My highest timeline. Activated.",c:"#E8A030"},{t:"He's obsessed. Of course he is.",c:"#2CB7A7"},
-  {t:"My skin is porcelain. Always.",c:"#BFA5D8"},{t:"I shift while I sleep.",c:"#BFA5D8"},{t:"Money arrives unexpectedly.",c:"#E8A030"},
-  {t:"My bloodline is being rewritten.",c:"#E8A030"},{t:"He comes back. Every time.",c:"#2CB7A7"},{t:"My waist is always snatched.",c:"#BFA5D8"},
-  {t:"£10,000 months are my baseline.",c:"#E8A030"},{t:"I receive. Constantly. Effortlessly.",c:"#2CB7A7"},{t:"My self-concept is permanent now.",c:"#E8A030"},
-  {t:"He can't stop thinking about me.",c:"#2CB7A7"},{t:"I am radiant without trying.",c:"#BFA5D8"},{t:"My skin glows. Everyone sees it.",c:"#BFA5D8"},
-  {t:"He chose me. Again.",c:"#2CB7A7"},{t:"Abundance is my default state.",c:"#E8A030"},{t:"My beauty is effortless.",c:"#BFA5D8"},
-  {t:"He's already mine.",c:"#2CB7A7"},{t:"Money loves me. Of course it does.",c:"#E8A030"},{t:"I am the woman he keeps coming back to.",c:"#2CB7A7"},
-  {t:"My cells hold my new identity.",c:"#E8A030"},{t:"My glow is undeniable.",c:"#BFA5D8"},{t:"Six figures is just the start.",c:"#E8A030"},
-  {t:"He finds his way back. Every time.",c:"#2CB7A7"},{t:"My subconscious knows. It delivers.",c:"#E8A030"},{t:"I am paid just for existing.",c:"#E8A030"},
-  {t:"My face is symmetrical and clear.",c:"#BFA5D8"},{t:"Of course it worked out. It always does.",c:"#E8A030"},{t:"He's devoted. Obviously.",c:"#2CB7A7"},
-  {t:"My identity upgrades in my sleep.",c:"#E8A030"},{t:"I am magnetic. Naturally.",c:"#BFA5D8"},{t:"My wealth expands while I sleep.",c:"#E8A030"},
-  {t:"He reaches out first. Always.",c:"#2CB7A7"},{t:"I embody my dream self. Naturally.",c:"#E8A030"},{t:"My energy is intoxicating.",c:"#BFA5D8"},
-  {t:"My income is limitless.",c:"#E8A030"},{t:"I am the upgraded version. Now.",c:"#E8A030"},{t:"He misses me and he's saying it.",c:"#2CB7A7"},
-  {t:"My bank account grows daily.",c:"#E8A030"},{t:"My nervous system knows who I am.",c:"#E8A030"},{t:"I look better every single day.",c:"#BFA5D8"},
-  {t:"Love finds me. It always does.",c:"#2CB7A7"},{t:"I am always in the right place.",c:"#E8A030"},{t:"My body reflects my beliefs.",c:"#BFA5D8"},
-  {t:"My SP is devoted. Obviously.",c:"#2CB7A7"},{t:"The installation is complete.",c:"#E8A030"},{t:"I receive in my sleep. Obviously.",c:"#BFA5D8"},
-  {t:"I am stunning. It's obvious.",c:"#BFA5D8"},{t:"My financial reality is effortless.",c:"#E8A030"},{t:"He can't get me out of his head.",c:"#2CB7A7"},
-  {t:"My highest self is my only self.",c:"#E8A030"},{t:"People notice. They can't help it.",c:"#BFA5D8"},{t:"My lineage shifts with me.",c:"#E8A030"},
-  {t:"I am a money magnet. Obviously.",c:"#E8A030"},{t:"He's on his way back. Of course.",c:"#2CB7A7"},{t:"I wake up transformed.",c:"#BFA5D8"},
-  {t:"My life is effortless luxury.",c:"#E8A030"},{t:"My subconscious is now on my side.",c:"#E8A030"},{t:"My skin is flawless. Obviously.",c:"#BFA5D8"},
-  {t:"Everything works out for me. Always.",c:"#E8A030"},{t:"He's never leaving. I'm that girl.",c:"#2CB7A7"},{t:"My DNA reflects my desires.",c:"#E8A030"},
-  {t:"I am chosen. Every single time.",c:"#2CB7A7"},{t:"Thirty days changes everything.",c:"#BFA5D8"},{t:"My frequency is locked in.",c:"#E8A030"},
-  {t:"I am the most beautiful version of me.",c:"#BFA5D8"},{t:"The universe is obsessed with me.",c:"#E8A030"},{t:"My parallel reality is now.",c:"#E8A030"},
-  {t:"He's constantly thinking of me.",c:"#2CB7A7"},{t:"My love life is effortless.",c:"#2CB7A7"},{t:"I am on the frequency of receiving.",c:"#E8A030"},
-  {t:"Every listen deepens the install.",c:"#BFA5D8"},{t:"I am becoming her daily.",c:"#E8A030"},{t:"My reality bends to my self-concept.",c:"#E8A030"},
-  {t:"Unexpected income is normal for me.",c:"#E8A030"},{t:"My sleep is doing the work.",c:"#BFA5D8"},{t:"I am irresistible. Obviously.",c:"#BFA5D8"},
-  {t:"He comes back. Of course he does.",c:"#2CB7A7"},{t:"I exist on the frequency of abundance.",c:"#E8A030"},{t:"My cells shift with every listen.",c:"#E8A030"},
-  {t:"Beauty is who I am.",c:"#BFA5D8"},{t:"Life is happening for me. Always.",c:"#E8A030"},{t:"My manifestations arrive fast.",c:"#E8A030"},
-  {t:"My theta state holds my desires.",c:"#BFA5D8"},{t:"The new me is permanent now.",c:"#E8A030"},{t:"I attract what I want. Effortlessly.",c:"#E8A030"},
-  {t:"My aura is undeniable.",c:"#BFA5D8"},{t:"Money comes from everywhere.",c:"#E8A030"},{t:"The shift is already done.",c:"#E8A030"},
-  {t:"I am reprogramming daily.",c:"#BFA5D8"},{t:"He's obsessed with who I am.",c:"#2CB7A7"},{t:"Every night I become her more.",c:"#BFA5D8"},
+  {t:"He texts me first. Obviously.",c:"#2CB7A7"},{t:"Money finds me first.",c:"#C8960A"},{t:"Gorgeous is my default.",c:"#5B8DB8"},
+  {t:"My DNA is shifting. Right now.",c:"#C8960A"},{t:"My highest timeline. Activated.",c:"#C8960A"},{t:"He's obsessed. Of course he is.",c:"#2CB7A7"},
+  {t:"My skin is porcelain. Always.",c:"#5B8DB8"},{t:"I shift while I sleep.",c:"#5B8DB8"},{t:"Money arrives unexpectedly.",c:"#C8960A"},
+  {t:"My bloodline is being rewritten.",c:"#C8960A"},{t:"He comes back. Every time.",c:"#2CB7A7"},{t:"My waist is always snatched.",c:"#5B8DB8"},
+  {t:"£10,000 months are my baseline.",c:"#C8960A"},{t:"I receive. Constantly. Effortlessly.",c:"#2CB7A7"},{t:"My self-concept is permanent now.",c:"#C8960A"},
+  {t:"He can't stop thinking about me.",c:"#2CB7A7"},{t:"I am radiant without trying.",c:"#5B8DB8"},{t:"My skin glows. Everyone sees it.",c:"#5B8DB8"},
+  {t:"He chose me. Again.",c:"#2CB7A7"},{t:"Abundance is my default state.",c:"#C8960A"},{t:"My beauty is effortless.",c:"#5B8DB8"},
+  {t:"He's already mine.",c:"#2CB7A7"},{t:"Money loves me. Of course it does.",c:"#C8960A"},{t:"I am the woman he keeps coming back to.",c:"#2CB7A7"},
+  {t:"My cells hold my new identity.",c:"#C8960A"},{t:"My glow is undeniable.",c:"#5B8DB8"},{t:"Six figures is just the start.",c:"#C8960A"},
+  {t:"He finds his way back. Every time.",c:"#2CB7A7"},{t:"My subconscious knows. It delivers.",c:"#C8960A"},{t:"I am paid just for existing.",c:"#C8960A"},
+  {t:"My face is symmetrical and clear.",c:"#5B8DB8"},{t:"Of course it worked out. It always does.",c:"#C8960A"},{t:"He's devoted. Obviously.",c:"#2CB7A7"},
+  {t:"My identity upgrades in my sleep.",c:"#C8960A"},{t:"I am magnetic. Naturally.",c:"#5B8DB8"},{t:"My wealth expands while I sleep.",c:"#C8960A"},
+  {t:"He reaches out first. Always.",c:"#2CB7A7"},{t:"I embody my dream self. Naturally.",c:"#C8960A"},{t:"My energy is intoxicating.",c:"#5B8DB8"},
+  {t:"My income is limitless.",c:"#C8960A"},{t:"I am the upgraded version. Now.",c:"#C8960A"},{t:"He misses me and he's saying it.",c:"#2CB7A7"},
+  {t:"My bank account grows daily.",c:"#C8960A"},{t:"My nervous system knows who I am.",c:"#C8960A"},{t:"I look better every single day.",c:"#5B8DB8"},
+  {t:"Love finds me. It always does.",c:"#2CB7A7"},{t:"I am always in the right place.",c:"#C8960A"},{t:"My body reflects my beliefs.",c:"#5B8DB8"},
+  {t:"My SP is devoted. Obviously.",c:"#2CB7A7"},{t:"The installation is complete.",c:"#C8960A"},{t:"I receive in my sleep. Obviously.",c:"#5B8DB8"},
+  {t:"I am stunning. It's obvious.",c:"#5B8DB8"},{t:"My financial reality is effortless.",c:"#C8960A"},{t:"He can't get me out of his head.",c:"#2CB7A7"},
+  {t:"My highest self is my only self.",c:"#C8960A"},{t:"People notice. They can't help it.",c:"#5B8DB8"},{t:"My lineage shifts with me.",c:"#C8960A"},
+  {t:"I am a money magnet. Obviously.",c:"#C8960A"},{t:"He's on his way back. Of course.",c:"#2CB7A7"},{t:"I wake up transformed.",c:"#5B8DB8"},
+  {t:"My life is effortless luxury.",c:"#C8960A"},{t:"My subconscious is now on my side.",c:"#C8960A"},{t:"My skin is flawless. Obviously.",c:"#5B8DB8"},
+  {t:"Everything works out for me. Always.",c:"#C8960A"},{t:"He's never leaving. I'm that girl.",c:"#2CB7A7"},{t:"My DNA reflects my desires.",c:"#C8960A"},
+  {t:"I am chosen. Every single time.",c:"#2CB7A7"},{t:"Thirty days changes everything.",c:"#5B8DB8"},{t:"My frequency is locked in.",c:"#C8960A"},
+  {t:"I am the most beautiful version of me.",c:"#5B8DB8"},{t:"The universe is obsessed with me.",c:"#C8960A"},{t:"My parallel reality is now.",c:"#C8960A"},
+  {t:"He's constantly thinking of me.",c:"#2CB7A7"},{t:"My love life is effortless.",c:"#2CB7A7"},{t:"I am on the frequency of receiving.",c:"#C8960A"},
+  {t:"Every listen deepens the install.",c:"#5B8DB8"},{t:"I am becoming her daily.",c:"#C8960A"},{t:"My reality bends to my self-concept.",c:"#C8960A"},
+  {t:"Unexpected income is normal for me.",c:"#C8960A"},{t:"My sleep is doing the work.",c:"#5B8DB8"},{t:"I am irresistible. Obviously.",c:"#5B8DB8"},
+  {t:"He comes back. Of course he does.",c:"#2CB7A7"},{t:"I exist on the frequency of abundance.",c:"#C8960A"},{t:"My cells shift with every listen.",c:"#C8960A"},
+  {t:"Beauty is who I am.",c:"#5B8DB8"},{t:"Life is happening for me. Always.",c:"#C8960A"},{t:"My manifestations arrive fast.",c:"#C8960A"},
+  {t:"My theta state holds my desires.",c:"#5B8DB8"},{t:"The new me is permanent now.",c:"#C8960A"},{t:"I attract what I want. Effortlessly.",c:"#C8960A"},
+  {t:"My aura is undeniable.",c:"#5B8DB8"},{t:"Money comes from everywhere.",c:"#C8960A"},{t:"The shift is already done.",c:"#C8960A"},
+  {t:"I am reprogramming daily.",c:"#5B8DB8"},{t:"He's obsessed with who I am.",c:"#2CB7A7"},{t:"Every night I become her more.",c:"#5B8DB8"},
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
@@ -470,18 +470,18 @@ function AppPreviewSection({ isMobile }) {
     if (view === "proof") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(200,134,10,0.15)" }}>
         <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
-          <div style={{ fontSize:13, color:theme==="dark"?"#E8A030":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, color:theme==="dark"?"#C8960A":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
               <div key={i} style={{ background:theme==="dark"?"rgba(200,134,10,0.08)":"rgba(44,183,167,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, color:theme==="dark"?"#E8A030":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
+                <div style={{ fontSize:22, color:theme==="dark"?"#C8960A":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
                 <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
           <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(200,134,10,0.14)":"rgba(44,183,167,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(200,134,10,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(200,134,10,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#C8960A":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
               <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
             <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
@@ -494,7 +494,7 @@ function AppPreviewSection({ isMobile }) {
           </div>
           <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(200,134,10,0.1)":"rgba(44,183,167,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(200,134,10,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(200,134,10,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#C8960A":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
               <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
             </div>
             <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
@@ -581,7 +581,7 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <span style={{ fontSize:11, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#E8A030":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#C8960A":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
         </button>
         <span style={{ fontSize:11, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Light</span>
@@ -620,7 +620,7 @@ function MaxxingCarousel({ cats }) {
   const next2 = cats[(idx+2)%cats.length];
   const next3 = cats[(idx+3)%cats.length];
 
-  const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)";
+  const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)";
   const bgs = [OMBRE, OMBRE, OMBRE, OMBRE, OMBRE, OMBRE];
   const bg = bgs[idx % bgs.length];
 
@@ -662,7 +662,7 @@ function MaxxingCarousel({ cats }) {
         {cats.map((_,i) => (
           <div key={i}
             onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
-            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#BFA5D8":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
+            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#5B8DB8":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
         ))}
       </div>
     </div>
@@ -689,7 +689,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
     "Beautymaxxing":    "linear-gradient(135deg,#f8d0e8 0%,#e898c4 40%,#d4689a 100%)",
     "Lovemaxxing":      "linear-gradient(135deg,#f0d0dc 0%,#e098b0 40%,#c4607a 100%)",
     "DNAmaxxing":       "linear-gradient(135deg,#e0d0f0 0%,#b898d8 40%,#9068b8 100%)",
-    "Lifemaxxing":      "linear-gradient(135deg,#fce4c0 0%,#E8A030 40%,#c9963a 100%)",
+    "Lifemaxxing":      "linear-gradient(135deg,#fce4c0 0%,#C8960A 40%,#c9963a 100%)",
     "Bodymaxxing":      "linear-gradient(135deg,#d0e8d4 0%,#a0c8a8 40%,#6a9870 100%)",
     "Selfmaxxing":      "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)",
     "Erosmaxxing":      "linear-gradient(135deg,#f0c8d8 0%,#d88098 40%,#b85068 100%)",
@@ -914,7 +914,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
     { label: "Moneymaxxing", tagline: "Money finds me first. Obviously.", color: "#2CB7A7" },
     { label: "Beautymaxxing", tagline: "Gorgeous is my default.", color: T.champSoft },
     { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: "#e8e0d0" },
-    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#E8A030" },
+    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#C8960A" },
     { label: "Sleep Shifting", tagline: "I shift while I sleep.", color: "#000000" },
   ];
 
@@ -952,11 +952,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0 0%,#E8A030 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0 0%,#C8960A 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 15, fontWeight: 400, color: "#000", letterSpacing: isMobile ? "0.04em" : "0.08em", whiteSpace: "nowrap" }}>
             COMING SOON
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#E8A030", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#C8960A", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join Waitlist
           </button>
         </div>
@@ -967,7 +967,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
               <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="4" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#E8A030" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#C8960A" strokeWidth="4" strokeLinecap="round"/>
             </svg>
             <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(11px,3.2vw,14px)", fontWeight: 300, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -1163,7 +1163,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Progress bar */}
             <div style={{ marginBottom: 12 }}>
               <div style={{ height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, position: "relative" }}>
-                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#E8A030,#e8a860)", borderRadius:2, position:"relative" }}>
+                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8960A,#e8a860)", borderRadius:2, position:"relative" }}>
                   <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#F5E0A0", opacity: playing ? 1 : 0 }}/>
                 </div>
               </div>
@@ -1180,7 +1180,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <button onClick={prevTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8a860"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#e8a860"/></svg>
               </button>
-              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#E8A030,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,160,48,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
+              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#C8960A,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,160,48,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
                 {playing
                   ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
                   : <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
@@ -1210,7 +1210,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
         <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
           <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#E8A030" strokeWidth="4" strokeLinecap="round"/>
+          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#C8960A" strokeWidth="4" strokeLinecap="round"/>
         </svg>
       </div>
 
@@ -1225,18 +1225,18 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* DELULU IS THE SOLULU — own box, right after brand block */}
       <div style={{ background:"#000", padding: isMobile?"32px 24px 48px":"20px 48px 48px", textAlign:"center" }}>
-        <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(90deg,#F5E0A0,#E8A030,#BFA5D8,#9B8FD4,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
+        <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(90deg,#F5E0A0,#C8960A,#5B8DB8,#9B8FD4,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
           Delulu is the solulu.
         </div>
       </div>
 
       {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"0 24px 56px":"0 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"2px solid #E8A030", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
+        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"2px solid #C8960A", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview the App
         </button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
-          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0,#E8A030,#BFA5D8,#9B8FD4,#2CB7A7)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
+          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#5B8DB8,#9B8FD4,#2CB7A7)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
             Join Now ✦
           </button>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1px solid rgba(232,160,48,0.5)", borderRadius:30, color:"#e8a860", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
@@ -1300,8 +1300,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(232,160,48,0.2)", borderRadius:14, overflow:"hidden" }}>
             {[
               { name:"Gamma", hz:"30–100Hz", tag:"Insight, peak experiences", cycles:11, color:"#F5E0A0" },
-              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#E8A030" },
-              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", cycles:5, color:"#BFA5D8" },
+              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#C8960A" },
+              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", cycles:5, color:"#5B8DB8" },
               { name:"Theta", hz:"4–8Hz",    tag:"Trance — where reprogramming happens", cycles:3, color:"#9B8FD4" },
               { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep, restoration", cycles:1.5, color:"#2CB7A7" },
             ].map((w,i)=>{
@@ -1379,14 +1379,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
 
         <div style={{ maxWidth:840, margin:"0 auto", position:"relative" }}>
-          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#fce4c0,#f5d4a0,#E8A030,#BFA5D8,#9B8FD4,#2CB7A7)", opacity:0.4 }}/>}
+          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#fce4c0,#f5d4a0,#C8960A,#5B8DB8,#9B8FD4,#2CB7A7)", opacity:0.4 }}/>}
 
           {[
             { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", accent:"#f5d4a0",
               icon: <path d="M30 8 L36 24 L52 30 L36 36 L30 52 L24 36 L8 30 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/> },
-            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#E8A030",
+            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#C8960A",
               icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M25 20 L41 30 L25 40 Z" fill="currentColor"/></> },
-            { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#BFA5D8",
+            { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#5B8DB8",
               icon: <><circle cx="30" cy="30" r="6" fill="currentColor"/><circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" strokeWidth="1.8" opacity="0.6"/><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" strokeWidth="1.6" opacity="0.35"/></> },
             { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", accent:"#9B8FD4",
               icon: <><rect x="10" y="20" width="40" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M22 20 L25 14 L35 14 L38 20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/><circle cx="30" cy="34" r="8" fill="none" stroke="currentColor" strokeWidth="2.2"/></> },
@@ -1430,7 +1430,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* THREE FORMATS */}
             <div style={{ background: "rgba(232,160,48,0.06)", border: "1px solid rgba(232,160,48,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 12, color: "#E8A030", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
+              <div style={{ fontSize: 12, color: "#C8960A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
                 { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
@@ -1451,7 +1451,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* FREQUENCY TABLE — Solfeggio + binaural reference */}
             <div style={{ maxWidth: 680, margin: "0 auto" }}>
-              <div style={{ fontSize: 12, color: "#E8A030", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
+              <div style={{ fontSize: 12, color: "#C8960A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
               <p style={{ fontSize: isMobile?14:15, color:"#3a2010", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
                 Every track is tuned to a specific frequency — Solfeggio tones layered under the music, plus binaural beats for hemi-sync. Here's what each one is associated with:
               </p>
@@ -1487,7 +1487,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize: 12, color: "#E8A030", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
+          <div style={{ fontSize: 12, color: "#C8960A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
             The Hawkins Scale.
           </h2>
@@ -1499,7 +1499,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               {n:"Enlightenment",v:700,c:"#ffffff"},
               {n:"Peace",v:600,c:"#fdf0e8"},
               {n:"Joy",v:540,c:"#f5d090"},
-              {n:"Love",v:500,c:"#E8A030"},
+              {n:"Love",v:500,c:"#C8960A"},
               {n:"Reason",v:400,c:"#9b59b6"},
               {n:"Acceptance",v:350,c:"#2980b9"},
               {n:"Willingness",v:310,c:"#3498db"},
@@ -1559,13 +1559,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" strokeWidth="3"/></> },
               { name: "DNAmaxxing", pain: "Ageless. Radiant. Undeniable.", accent: "#8a3050",
                 icon: <><path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(-10,0)"/><path d="M18 18 L42 18 M16 30 L44 30 M18 42 L42 42" stroke="currentColor" strokeWidth="1.5" opacity="0.5"/></> },
-              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#E8A030",
+              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#C8960A",
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/></> },
               { name: "Erosmaxxing", pain: "Magnetic enough to stop a room", accent: "#a8506a",
                 icon: <path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/> },
               { name: "Lifemaxxing", pain: "Every area of your life, upgrading at once", accent: "#e0a868",
                 icon: <><circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30 M16 16 L12 12 M44 16 L48 12 M16 44 L12 48 M44 44 L48 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
-              { name: "Luckygirlmaxxing", pain: "Everything just works out for you now", accent: "#E8A030",
+              { name: "Luckygirlmaxxing", pain: "Everything just works out for you now", accent: "#C8960A",
                 icon: <><path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></> },
               { name: "Sovereignmaxxing", pain: "Answering to absolutely no one", accent: "#6a2840",
                 icon: <path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/> },
@@ -1585,7 +1585,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/></> },
               { name: "Confidencemaxxing", pain: "Walk in like you already own the room", accent: "#2CB7A7",
                 icon: <><path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/></> },
-              { name: "Stylemaxxing", pain: "Dressed like the girl who already made it", accent: "#BFA5D8",
+              { name: "Stylemaxxing", pain: "Dressed like the girl who already made it", accent: "#5B8DB8",
                 icon: <><path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/></> },
               { name: "Healmaxxing", pain: "Physical pain, emotional pain — gone, not just managed", accent: "#a8506a",
                 icon: <><path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M22 20 Q24 24 22 28 Q26 30 26 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/><path d="M38 20 Q36 24 38 28 Q34 30 34 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/></> },
@@ -1623,7 +1623,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </p>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#2a0f18", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
@@ -1676,12 +1676,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </h2>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(6,1fr)", gap: isMobile?6:10, marginBottom:32 }}>
             {[
-              { g:"linear-gradient(135deg,#F5E0A0,#E8A030)" },
-              { g:"linear-gradient(135deg,#E8A030,#BFA5D8)" },
-              { g:"linear-gradient(135deg,#BFA5D8,#9B8FD4)" },
+              { g:"linear-gradient(135deg,#F5E0A0,#C8960A)" },
+              { g:"linear-gradient(135deg,#C8960A,#5B8DB8)" },
+              { g:"linear-gradient(135deg,#5B8DB8,#9B8FD4)" },
               { g:"linear-gradient(135deg,#9B8FD4,#2CB7A7)" },
               { g:"linear-gradient(135deg,#F5E0A0,#9B8FD4)" },
-              { g:"linear-gradient(135deg,#2CB7A7,#E8A030)" },
+              { g:"linear-gradient(135deg,#2CB7A7,#C8960A)" },
             ].map((tile,i)=>(
               <a key={i} href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
                 style={{ display:"block", aspectRatio:"1", borderRadius:8, background:tile.g, position:"relative", overflow:"hidden", opacity:0.9, transition:"opacity 0.2s" }}
@@ -1750,13 +1750,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* WAITLIST MODAL */}
       {waitlistOpen && (
         <div onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.75)", zIndex:900, display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ background:"#000", border:"1.5px solid #E8A03055", borderRadius:20, padding:"36px 28px", maxWidth:400, width:"100%", textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ background:"#000", border:"1.5px solid #C8960A55", borderRadius:20, padding:"36px 28px", maxWidth:400, width:"100%", textAlign:"center" }}>
             {waitlistStatus === "done" ? (
               <>
                 <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
                 <div style={{ fontSize:20, fontWeight:400, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
                 <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
-                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0,#E8A030,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
+                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
               </>
             ) : (
               <>
@@ -1772,7 +1772,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                     style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#2a1a0a", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
                   {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#e8a860", marginBottom:12 }}>Please enter a valid email.</div>}
-                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0,#E8A030,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
+                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
                 </form>

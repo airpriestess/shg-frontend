@@ -1,8 +1,8 @@
 // Lucky Girl color system — replacing all rose/peach/champagne
 // Primary gradient: gold → lavender → teal-green → deep teal
-export const LG_GRAD = "linear-gradient(110deg,#C8860A 0%,#E8A030 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+export const LG_GRAD = "linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)";
 export const LG_MID  = "#2CB7A7";   // teal-green — replaces #2CB7A7 rose
-export const LG_LAV  = "#BFA5D8";   // lavender   — replaces #BFA5D8 peach
+export const LG_LAV  = "#5B8DB8";   // lavender   — replaces #5B8DB8 peach
 export const LG_GOLD = "#C8860A";   // rich gold  — replaces #C8860A champagne
 export const LG_DEEP = "#167A6B";   // deep teal  — accent dark
 
@@ -26,15 +26,15 @@ export const T = {
   roseGold:  "#2CB7A7",   // was dusty rose, now teal-green
   rose:      "#2CB7A7",   // was rose, now teal-green
   champagne: "#C8860A",   // was pale champagne, now rich gold
-  champSoft: "#E8A030",   // warm amber-gold
+  champSoft: "#C8960A",   // warm amber-gold
   success:   "#4a9a5a",
   warning:   "#C8860A",
   danger:    "#2CB7A7",
   blood:     "#2CB7A7",
 
   // Lucky Girl gradient replaces old amber/rose ombre
-  grad:  "linear-gradient(110deg,#C8860A,#BFA5D8,#2CB7A7)",
-  gradV: "linear-gradient(135deg,#C8860A 0%,#E8A030 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
+  grad:  "linear-gradient(110deg,#C8960A,#5B8DB8,#167A6B)",
+  gradV: "linear-gradient(135deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)",
 
   bgGrad:      "#000000",
   cardBg:      "rgba(10,10,10,0.97)",
@@ -182,7 +182,7 @@ img{max-width:100%;}
   100%{background-position:0% center;}
 }
 .wm-shimmer{
-  background:linear-gradient(135deg,#C8860A 0%,#E8A030 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)!important;
+  background:linear-gradient(135deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)!important;
   -webkit-background-clip:text!important;
   background-clip:text!important;
   -webkit-text-fill-color:transparent!important;

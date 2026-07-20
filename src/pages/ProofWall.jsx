@@ -8,7 +8,7 @@ const sb = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MzIwMjAsImV4cCI6MjA5ODMwODAyMH0.FjfHRNOjnmbiYMjA9eKT1hexvwCN2ERtTyBOqY2cj-8"
 );
 
-const G = "linear-gradient(90deg,#BFA5D8,#2CB7A7)";
+const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
 const RG = "#2CB7A7";
 
 const TYPE_LABEL = {

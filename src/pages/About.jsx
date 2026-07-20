@@ -5,7 +5,7 @@ const GOLD = "#C8860A";
 const CR = "#f2ece4";
 const MU = "#9a8878";
 const ROSE = "#2CB7A7";
-const OMBRE = "linear-gradient(135deg,#E8A030 0%,#C8860A 22%,#BFA5D8 48%,#167A6B 72%,#2CB7A7 100%)";
+const OMBRE = "linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)";
 
 export default function About({ onBack }) {
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth <= 768);

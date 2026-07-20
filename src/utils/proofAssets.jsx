@@ -100,7 +100,7 @@ export const PROOF_ASSETS = [
     id: "calendar",
     label: "Calendar Invite",
     type: "Photo Proof",
-    color: "#BFA5D8",
+    color: "#5B8DB8",
     thread: "I receive £5,000 from an unexpected source",
     audio: "I Have Always Been The Prize",
     date: "2026-06-25",
@@ -109,7 +109,7 @@ export const PROOF_ASSETS = [
       border: "#1a2040",
       content: [
         { text: "📅", size: size > 48 ? 20 : 13 },
-        { text: "Jul 7 · Meeting", size: 9, color: "#BFA5D8" },
+        { text: "Jul 7 · Meeting", size: 9, color: "#5B8DB8" },
       ]
     })
   },

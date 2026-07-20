@@ -1,8 +1,8 @@
 /* AnalyticsBoard — portal + landing preview */
 import { ArrowIcon } from "./UI.jsx";
 
-const R = "#2CB7A7", P = "#BFA5D8";
-const OMBRE = "linear-gradient(110deg,#C8860A 0%,#E8A030 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+const R = "#2CB7A7", P = "#5B8DB8";
+const OMBRE = "linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)";
 
 const PALETTES = {
   dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(44,183,167,0.12)", track:"rgba(44,183,167,0.08)" },
@@ -12,7 +12,7 @@ const PALETTES = {
 export const DEMO_ANALYTICS = {
   manifested: 3, inProgress: 4, signs: 11, listens: 27, streakDays: 14,
   week: [2,4,3,6,5,4,3],
-  topCats: [ ["Money","#2CB7A7",5], ["SP & Love","#BFA5D8",4], ["Identity","#E8A030",2] ],
+  topCats: [ ["Money","#2CB7A7",5], ["SP & Love","#5B8DB8",4], ["Identity","#C8960A",2] ],
 };
 
 export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof, onDrillDown }) {

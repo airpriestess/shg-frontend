@@ -4,7 +4,7 @@ import { Btn, Card, Label, ProgressBar } from "../components/UI.jsx";
 import { USER, STORAGE } from "../data/sample.js";
 import { requestNotificationPermission, scheduleReminders, cancelReminders } from "../utils/notifications.js";
 
-const G = "linear-gradient(90deg,#BFA5D8,#2CB7A7)";
+const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
 const RG = "#2CB7A7";
 
 export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {

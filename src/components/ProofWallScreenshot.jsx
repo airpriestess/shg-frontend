@@ -1,6 +1,6 @@
 /* ProofWallScreenshot — phone showing ProofOS tracker */
 
-const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(200,134,10,0.10)", cr:"#E8A030", mu:"#c8a870", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
+const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(200,134,10,0.10)", cr:"#C8960A", mu:"#c8a870", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
 const LIGHT = { bg:"#fdf8f2", bg2:"#ffffff", bg3:"rgba(200,134,10,0.10)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", nav:"rgba(253,248,242,0.97)" };
 const R="#e8a860", P="#c9963a";
 const OMBRE="linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
