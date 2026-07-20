@@ -1,18 +1,18 @@
 /* AnalyticsBoard — portal + landing preview */
 import { ArrowIcon } from "./UI.jsx";
 
-const R = "#B76E79", P = "#d4a090";
-const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+const R = "#2CB7A7", P = "#BFA5D8";
+const OMBRE = "linear-gradient(110deg,#C8860A 0%,#E8A030 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const PALETTES = {
-  dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(232,168,96,0.12)", track:"rgba(232,168,96,0.08)" },
-  light: { card:"#fdf8f2", card2:"rgba(232,168,96,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)", track:"rgba(180,104,48,0.12)" },
+  dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(44,183,167,0.12)", track:"rgba(44,183,167,0.08)" },
+  light: { card:"#fdf8f2", card2:"rgba(232,168,96,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(44,183,167,0.18)", track:"rgba(44,183,167,0.12)" },
 };
 
 export const DEMO_ANALYTICS = {
   manifested: 3, inProgress: 4, signs: 11, listens: 27, streakDays: 14,
   week: [2,4,3,6,5,4,3],
-  topCats: [ ["Money","#B76E79",5], ["SP & Love","#e8b870",4], ["Identity","#d4a090",2] ],
+  topCats: [ ["Money","#2CB7A7",5], ["SP & Love","#BFA5D8",4], ["Identity","#E8A030",2] ],
 };
 
 export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof, onDrillDown }) {
@@ -30,7 +30,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
     <div style={{ background:C.card, borderRadius:16, padding:compact?"12px 14px":"20px 18px", border:`1px solid ${C.border}`, fontFamily:"'Jost',sans-serif" }}>
       <style>{`
         @keyframes abGrow { from { transform:scaleY(0); } to { transform:scaleY(1); } }
-        @keyframes abPulse { 0%,100% { filter:brightness(1); } 50% { filter:brightness(1.3); box-shadow:0 0 14px rgba(232,184,112,0.95); } }
+        @keyframes abPulse { 0%,100% { filter:brightness(1); } 50% { filter:brightness(1.3); box-shadow:0 0 14px rgba(44,183,167,0.95); } }
         @keyframes abDonut { from { stroke-dasharray:0 999; } }
         @keyframes abFlash { 0%,100% { opacity:1; } 50% { opacity:0.55; } }
       `}</style>
