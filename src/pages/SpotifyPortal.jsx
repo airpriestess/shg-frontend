@@ -1282,17 +1282,27 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
                 const active = cat===c;
+                const catColor = CAT_ICONS[c]?.accent || R;
                 return (
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
-                      padding:"12px 16px", fontSize:14, fontWeight:400,
-                      color:active?R:"#f2ece4", background:active?`${R}22`:"#0a0a0a",
+                      padding:"11px 16px", fontSize:14, fontWeight:400, display:"flex", alignItems:"center", gap:10,
+                      color:active?catColor:"#f2ece4", background:active?`${catColor}1c`:"#0a0a0a",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
-                      borderBottom:"1px solid rgba(255,255,255,0.06)"
+                      borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?`3px solid ${catColor}`:"3px solid transparent"
                     }}
-                    onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${R}14`; }}
+                    onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${catColor}14`; }}
                     onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "#0a0a0a"; }}
-                  >{label}</div>
+                  >
+                    {(c!=="All"&&c!=="Liked") ? (
+                      <div style={{ width:10, height:10, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 5px ${catColor}99` }}/>
+                    ) : c==="Liked" ? (
+                      <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:R, fontSize:11 }}>♡</div>
+                    ) : (
+                      <div style={{ width:10, height:10, borderRadius:"50%", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#c4789a,#B76E79)", flexShrink:0 }}/>
+                    )}
+                    <span>{c==="All"?"All categories":(c==="Liked"?"Liked":label)}</span>
+                  </div>
                 );
               })}
             </div>
@@ -1542,12 +1552,21 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {TRACKS.map(t=><option key={t.id} value={t.title}>{t.title} · {t.cat}</option>)}
           </select>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
-          <select value={newCat} onChange={e=>setNewCat(e.target.value)}
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:12,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box",appearance:"none",WebkitAppearance:"none",cursor:"pointer" }}>
-            {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Careermaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>(
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:14 }}>
+            {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Careermaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>{
+              const catColor = CAT_ICONS[c]?.accent || R;
+              const active = newCat===c;
+              return (
+                <button key={c} onClick={()=>setNewCat(c)}
+                  style={{ display:"flex", alignItems:"center", gap:6, padding:"6px 12px", borderRadius:20,
+                    background:active?`${catColor}22`:PC.inputBg, border:`1px solid ${active?catColor:PC.border}`,
+                    color:active?catColor:PC.text, fontSize:12, fontFamily:"'Jost',sans-serif", cursor:"pointer" }}>
+                  <div style={{ width:8, height:8, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
+                  {c}
+                </button>
+              );
+            })}
+          </div>
           <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
           <div style={{ fontSize:9,color:"#2ecc71",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive ✦</div>
           <div style={{ overflowY:"auto",marginBottom:8,maxHeight:150,border:`1px solid ${PC.border}`,borderRadius:10 }}>
