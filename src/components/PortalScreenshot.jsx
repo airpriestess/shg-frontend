@@ -1,11 +1,11 @@
 /* PortalScreenshot — mobile phone mockup, dark/light, matches real dashboard */
 
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(200,134,10,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(200,134,10,0.12)" },
-  light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(200,134,10,0.12)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(44,183,167,0.12)" },
+  light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(44,183,167,0.12)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)" },
 };
 
-const GOLD = "#e8a860";
+const GOLD = "#C8960A";
 const OMBRE = "linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)";
 
 const CAT_ICONS = {

@@ -2,11 +2,11 @@
 import { ArrowIcon } from "./UI.jsx";
 
 const R = "#2CB7A7", P = "#5B8DB8";
-const OMBRE = "linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)";
+const OMBRE = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const PALETTES = {
   dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(44,183,167,0.12)", track:"rgba(44,183,167,0.08)" },
-  light: { card:"#fdf8f2", card2:"rgba(200,134,10,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(44,183,167,0.18)", track:"rgba(44,183,167,0.12)" },
+  light: { card:"#fdf8f2", card2:"rgba(44,183,167,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(44,183,167,0.18)", track:"rgba(44,183,167,0.12)" },
 };
 
 export const DEMO_ANALYTICS = {

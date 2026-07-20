@@ -104,9 +104,9 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
 .fade{animation:fadeUp .45s ease both;}
 .wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
 .wm-shimmer{
-  background:linear-gradient(135deg,#fce4c0 0%,#e8a860 35%,#b46830 70%,#4a1a08 100%);
+  background:linear-gradient(135deg,#fce4c0 0%,#C8960A 35%,#b46830 70%,#4a1a08 100%);
   -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:#e8a860;
+  -webkit-text-fill-color:transparent;color:#C8960A;
 }
 .pulse{animation:slowPulse 1.5s ease-in-out infinite;}
 

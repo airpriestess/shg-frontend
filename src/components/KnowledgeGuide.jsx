@@ -123,7 +123,7 @@ export default function KnowledgeGuide({ onClose, C }) {
   const bg2 = isDark ? "#111111" : "#ffffff";
   const cr = isDark ? "#f2ece4" : "#1a1008";
   const mu = isDark ? "#9a8878" : "#8a6840";
-  const border = isDark ? "rgba(200,134,10,0.15)" : "rgba(180,104,48,0.18)";
+  const border = isDark ? "rgba(44,183,167,0.15)" : "rgba(180,104,48,0.18)";
 
   const visibleSections = SECTIONS.filter(s =>
     CATEGORIES.find(c => c.label === cat)?.keys.includes(s.k)
@@ -141,7 +141,7 @@ export default function KnowledgeGuide({ onClose, C }) {
           borderBottom:`1px solid ${border}`, zIndex:2 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
             <div>
-              <div style={{ fontSize:10, color:"#e8a860", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook ✦</div>
+              <div style={{ fontSize:10, color:"#C8960A", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook ✦</div>
               <div style={{ fontSize:18, color:cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Everything you need to know</div>
               <div style={{ fontSize:12, color:mu, marginTop:4 }}>{SECTIONS.length} questions answered</div>
             </div>
@@ -152,8 +152,8 @@ export default function KnowledgeGuide({ onClose, C }) {
           <div style={{ display:"flex", gap:6, marginTop:14, overflowX:"auto", paddingBottom:2 }}>
             {CATEGORIES.map(c=>(
               <button key={c.label} onClick={()=>{setCat(c.label);setOpen(null);}}
-                style={{ flexShrink:0, padding:"6px 14px", borderRadius:20, border:`1px solid ${cat===c.label?"#e8a860":border}`,
-                  background:cat===c.label?"#e8a860":"none", color:cat===c.label?"#000":mu,
+                style={{ flexShrink:0, padding:"6px 14px", borderRadius:20, border:`1px solid ${cat===c.label?"#C8960A":border}`,
+                  background:cat===c.label?"#C8960A":"none", color:cat===c.label?"#000":mu,
                   fontSize:11, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
                 {c.label}
               </button>
@@ -165,7 +165,7 @@ export default function KnowledgeGuide({ onClose, C }) {
         <div style={{ padding:"12px 16px 24px" }}>
           {visibleSections.map(s=>(
             <div key={s.k} style={{ marginBottom:6, border:`1px solid ${border}`, borderRadius:12,
-              overflow:"hidden", background:open===s.k?`rgba(200,134,10,0.06)`:bg2 }}>
+              overflow:"hidden", background:open===s.k?`rgba(44,183,167,0.06)`:bg2 }}>
               <button onClick={()=>setOpen(open===s.k?null:s.k)}
                 style={{ width:"100%", padding:"13px 14px", background:"none", border:"none", cursor:"pointer",
                   display:"flex", alignItems:"center", justifyContent:"space-between", gap:10, fontFamily:"'Jost',sans-serif" }}>

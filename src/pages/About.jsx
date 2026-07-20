@@ -55,10 +55,10 @@ export default function About({ onBack }) {
               (old unlucky/stuck version vs current lucky/manifesting version). Swap this
               block for the real illustration once it's ready. */}
           <div style={{ display:"flex", gap:16, margin:"36px 0", justifyContent:"center", flexWrap:"wrap" }}>
-            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(200,134,10,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
+            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(44,183,167,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
               <span style={{ fontSize:12, color:MU, lineHeight:1.6 }}>Old self — image coming soon</span>
             </div>
-            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(200,134,10,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
+            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(44,183,167,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
               <span style={{ fontSize:12, color:MU, lineHeight:1.6 }}>Current self — image coming soon</span>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function About({ onBack }) {
           </p>
         </div>
 
-        <div style={{ marginTop:56, paddingTop:32, borderTop:"1px solid rgba(200,134,10,0.15)", textAlign:"center" }}>
+        <div style={{ marginTop:56, paddingTop:32, borderTop:"1px solid rgba(44,183,167,0.15)", textAlign:"center" }}>
           <div style={{ fontSize:11, color:MU, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:16 }}>Find me elsewhere</div>
           <div style={{ fontSize:14, color:GOLD }}>
             YouTube link coming soon

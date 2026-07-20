@@ -26,7 +26,7 @@ function LegalShell({ title, eyebrow, children, onBack }) {
 }
 
 function H2({ children }) {
-  return <h2 style={{ fontSize:18, color:CR, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:"40px 0 12px", borderBottom:"1px solid rgba(200,134,10,0.15)", paddingBottom:8 }}>{children}</h2>;
+  return <h2 style={{ fontSize:18, color:CR, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:"40px 0 12px", borderBottom:"1px solid rgba(44,183,167,0.15)", paddingBottom:8 }}>{children}</h2>;
 }
 function P({ children }) {
   return <p style={{ margin:"0 0 16px", color:"#c8bcb0" }}>{children}</p>;

@@ -58,8 +58,8 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(200,134,10,0.08)", bg4:"rgba(200,134,10,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(200,134,10,0.12)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
-  light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(200,134,10,0.12)", bg4:"rgba(200,134,10,0.22)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)", inputBg:"rgba(180,104,48,0.08)", inputCr:"#1a1008" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(44,183,167,0.12)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
+  light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(44,183,167,0.12)", bg4:"rgba(44,183,167,0.22)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)", inputBg:"rgba(180,104,48,0.08)", inputCr:"#1a1008" },
 };
 
 const R = "#C8860A", P = "#5B8DB8";
@@ -78,15 +78,15 @@ const TAB_WASH = {
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
 const IMGS = {
-  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
-  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#e8a860" },
+  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
 };
 
 const CAT_ICONS = {
@@ -94,7 +94,7 @@ const CAT_ICONS = {
   Beautymaxxing: { accent:"#C8960A", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
   Facemaxxing: { accent:"#e8c088", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Bodymaxxing: { accent:"#C8860A", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Skinnymaxxing: { accent:"#e8a860", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Skinnymaxxing: { accent:"#C8960A", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Moneymaxxing: { accent:"#C8860A", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Businessmaxxing: { accent:"#C8860A", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Careermaxxing: { accent:"#C8860A", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
@@ -107,7 +107,7 @@ const CAT_ICONS = {
   Studymaxxing: { accent:"#C8860A", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
   Friendmaxxing: { accent:"#C8860A", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Peacemaxxing: { accent:"#c8a870", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
-  Confidencemaxxing: { accent:"#e8a860", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
+  Confidencemaxxing: { accent:"#C8960A", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
   Stylemaxxing: { accent:"#e0c090", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
   Healmaxxing: { accent:"#167A6B", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#c8a870", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
@@ -117,7 +117,7 @@ const CAT_ICONS = {
 };
 
 function Thumb({ title, cat, size=48, radius=4 }) {
-  const c = CAT_ICONS[cat] || { accent:"#e8a860", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
+  const c = CAT_ICONS[cat] || { accent:"#C8960A", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
   return (
     <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:"#000", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
       <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: c.icon }} />
@@ -808,7 +808,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       )}
       <div style={{ height:52,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
         <span style={{ fontSize:13,fontWeight:400,color:C.cr }}>9:41</span>
-        <span style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:15,fontWeight:400,background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>SHG</span>
+        <span style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:15,fontWeight:400,background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent" }}>SHG</span>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{C.cr==="#ffffff"?"☀️":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{ width:34,height:34,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>R</button>
@@ -894,7 +894,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                 ))}
               </div>
               {CAT_GUIDE[track.cat] && (
-                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(200,134,10,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
+                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
                   <span style={{ fontSize:20 }}>📖</span>
                   <div>
                     <div style={{ fontSize:10,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
@@ -927,7 +927,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
           </button>
           <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
-          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(200,134,10,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:14,color:isLooping?"#C8860A":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:14,color:isLooping?"#C8860A":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
           <span style={{ fontSize:11,color:C.dim,width:32,textAlign:"right" }}>—</span>
@@ -981,7 +981,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                 ))}
               </div>
               {CAT_GUIDE[track.cat] && (
-                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(200,134,10,0.4)",borderRadius:12,textDecoration:"none" }}>
+                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
                   <span style={{ fontSize:18 }}>📖</span>
                   <div style={{ flex:1 }}>
                     <div style={{ fontSize:10,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
@@ -1030,7 +1030,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
         </button>
         <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="24" height="24" viewBox="0 0 24 24" fill={C.cr}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.cr}/></svg></button>
-        <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(200,134,10,0.25)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#C8860A":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+        <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#C8860A":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
       </div>
     </div>
   );
@@ -1048,7 +1048,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ fontSize:11,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
           <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
             {isPreview?"Goddess":firstName}
-            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#fce4c0,#e8a860)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
+            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#fce4c0,#C8960A)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
               {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
             </span>
           </span>
@@ -1074,7 +1074,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* KNOWLEDGE GUIDE — all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
-        <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(200,134,10,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+        <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(44,183,167,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:14, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
@@ -1099,7 +1099,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
           {FEATURED_CATS.map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#e8a860",icon:''};
+            const c=CAT_ICONS[cat]||{accent:"#C8960A",icon:''};
             const n=TRACKS.filter(t=>t.cat===cat).length;
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:`linear-gradient(135deg,${isDark?"#0a0a0a":C.bg2} 0%,${c.accent}20 100%)`,border:`1px solid ${c.accent}33`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
@@ -1134,7 +1134,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
           {Object.keys(CAT_ICONS).map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#e8a860",icon:''};
+            const c=CAT_ICONS[cat]||{accent:"#C8960A",icon:''};
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
                 <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,${isDark?"#111":C.bg2} 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
@@ -1193,7 +1193,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#e8a860","Money":"#C8860A","Beauty":"#C8860A","Identity":"#e8a860","DNA":"#e8a860","Sleep":"#C8860A"})[name]||"#e8a860",n]),
+              .map(([name,n])=>[name,({"Lovemaxxing":"#C8960A","Money":"#C8860A","Beauty":"#C8860A","Identity":"#C8960A","DNA":"#C8960A","Sleep":"#C8860A"})[name]||"#C8960A",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
           onDrillDown={isPreview?null:onDrillDown}
@@ -1202,8 +1202,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* KNOWLEDGE GUIDE — available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(200,134,10,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
-          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(200,134,10,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
+        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(44,183,167,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:12, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
@@ -1399,16 +1399,16 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
 function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
   return (
     <div style={{ padding:"48px 24px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:14, minHeight:400, justifyContent:"center" }}>
-      <div style={{ width:72, height:72, borderRadius:22, background:"rgba(200,134,10,0.08)", border:"1px solid rgba(200,134,10,0.25)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:30 }}>🔒</div>
+      <div style={{ width:72, height:72, borderRadius:22, background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.25)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:30 }}>🔒</div>
       <div style={{ fontSize:18, color:C.cr }}>{feature} is a Goddess Tier feature</div>
       <div style={{ fontSize:13, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
         {feature === "ProofOS"
           ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
           : "Track your dominant emotional state, listening streaks, and the evidence building over time."}
       </div>
-      <div style={{ background:"rgba(200,134,10,0.08)", border:"1px solid rgba(200,134,10,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
+      <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:11, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#e8a860", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:22, color:"#C8960A", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:11, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
@@ -1436,7 +1436,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   // ProofOS now respects the real app theme instead of being locked to the gold ombre
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const PC = isDark
-    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(200,134,10,0.14)", inputBg:"#1a1a1a" }
+    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(44,183,167,0.14)", inputBg:"#1a1a1a" }
     : { card:"#fffcf8", cardSolid:"#fffcf8", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.16)", inputBg:"rgba(180,104,48,0.06)" };
   const PAGE_BG = isDark ? "#080808" : "#fdf8f2";
 
@@ -1783,7 +1783,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ flex:1,minWidth:0 }}>
               {editId===d.id
                 ? <div style={{ display:"flex",gap:6,marginBottom:4 }}>
-                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #e8a860",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #C8960A",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                     <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
                   </div>
                 : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:15,fontWeight:400,marginBottom:4,color:PC.text,cursor:"pointer" }}>{d.desire} <span style={{ fontSize:11,opacity:0.45 }}>✎</span></div>}
@@ -1799,13 +1799,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               {d.done
                 ? <>
                     <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(200,134,10,0.9)" }}>✓</span>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
                       <span style={{ fontSize:11,fontWeight:400,color:PC.text }}>Manifested</span>
                     </label>
                     <span style={{ fontSize:9,color:PC.dim,fontWeight:400 }}>tap to undo</span>
                   </>
                 : <label onClick={()=>startFinish(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                    <span style={{ width:21,height:21,borderRadius:6,background:PC.card,border:`2px solid ${PC.border}`,boxShadow:"0 0 10px rgba(200,134,10,0.35)" }}/>
+                    <span style={{ width:21,height:21,borderRadius:6,background:PC.card,border:`2px solid ${PC.border}`,boxShadow:"0 0 10px rgba(44,183,167,0.35)" }}/>
                     <span style={{ fontSize:11,fontWeight:400,color:PC.text }}>Manifested</span>
                   </label>
               }
@@ -1836,7 +1836,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ fontSize:10,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
               <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
-                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#e8a860",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
+                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#C8960A",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
                 <span style={{ fontSize:12,color:C.cr,lineHeight:1.5,flex:1 }}>
                   {sg.text}
                   {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}

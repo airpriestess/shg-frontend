@@ -119,7 +119,7 @@ export function PushNotificationToggle({ userId, C }) {
             disabled={loading}
             style={{
               width: 44, height: 26, borderRadius: 13, border: "none", cursor: loading ? "not-allowed" : "pointer",
-              background: subscribed ? "#e8a860" : "#2a2020",
+              background: subscribed ? "#C8960A" : "#2a2020",
               position: "relative", flexShrink: 0, transition: "background 0.2s",
             }}
           >
@@ -144,7 +144,7 @@ export function PushPromptBanner({ userId, C, onDismiss }) {
   return (
     <div style={{
       margin: "0 16px 16px", padding: "14px 16px", borderRadius: 14,
-      background: "#0a0a0a", border: "1px solid rgba(200,134,10,0.3)",
+      background: "#0a0a0a", border: "1px solid rgba(44,183,167,0.3)",
       display: "flex", alignItems: "center", gap: 12,
     }}>
       <span style={{ fontSize: 22, flexShrink: 0 }}>🔔</span>
@@ -165,7 +165,7 @@ export function PushPromptBanner({ userId, C, onDismiss }) {
           onClick={subscribe}
           disabled={loading}
           style={{
-            background: "linear-gradient(135deg,#C8860A,#e8a860)", border: "none", borderRadius: 8,
+            background: "linear-gradient(135deg,#C8860A,#C8960A)", border: "none", borderRadius: 8,
             padding: "7px 14px", fontSize: 12, fontWeight: 700, color: "#000", cursor: "pointer",
           }}
         >
