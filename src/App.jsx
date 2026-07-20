@@ -69,7 +69,7 @@ export default function App() {
       {screen === "portal" && (
         authCtx.loading
           ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#C8960A",opacity:0.7}}>Self Hypnosis Goddess</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#2CB7A7",opacity:0.7}}>Self Hypnosis Goddess</div>
             </div>
           : <ErrorBoundary><SpotifyPortal onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
       )}
@@ -318,17 +318,17 @@ function CheckoutModal({ onClose, onDemo }) {
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
                 <div style={{fontSize:16,fontWeight:400,color:"#F5E0A0",marginBottom:2}}>Lifetime Access</div>
-                <div style={{fontSize:11,color:"#C8960A",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
+                <div style={{fontSize:11,color:"#2CB7A7",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#F5E0A0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
-                <div style={{fontSize:11,color:"#C8960A"}}>one time</div>
+                <div style={{fontSize:11,color:"#2CB7A7"}}>one time</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#e8dcc8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#C8960A"}}>·</span>{f}
+                  <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
               ))}
             </div>
@@ -426,37 +426,37 @@ function PricingSection({ onJoin }) {
 
 
 const MARQUEE_ITEMS = [
-  {t:"He texts me first. Obviously.",c:"#2CB7A7"},{t:"Money finds me first.",c:"#C8960A"},{t:"Gorgeous is my default.",c:"#5B8DB8"},
-  {t:"My DNA is shifting. Right now.",c:"#C8960A"},{t:"My highest timeline. Activated.",c:"#C8960A"},{t:"He's obsessed. Of course he is.",c:"#2CB7A7"},
-  {t:"My skin is porcelain. Always.",c:"#5B8DB8"},{t:"I shift while I sleep.",c:"#5B8DB8"},{t:"Money arrives unexpectedly.",c:"#C8960A"},
-  {t:"My bloodline is being rewritten.",c:"#C8960A"},{t:"He comes back. Every time.",c:"#2CB7A7"},{t:"My waist is always snatched.",c:"#5B8DB8"},
-  {t:"£10,000 months are my baseline.",c:"#C8960A"},{t:"I receive. Constantly. Effortlessly.",c:"#2CB7A7"},{t:"My self-concept is permanent now.",c:"#C8960A"},
+  {t:"He texts me first. Obviously.",c:"#2CB7A7"},{t:"Money finds me first.",c:"#2CB7A7"},{t:"Gorgeous is my default.",c:"#5B8DB8"},
+  {t:"My DNA is shifting. Right now.",c:"#2CB7A7"},{t:"My highest timeline. Activated.",c:"#2CB7A7"},{t:"He's obsessed. Of course he is.",c:"#2CB7A7"},
+  {t:"My skin is porcelain. Always.",c:"#5B8DB8"},{t:"I shift while I sleep.",c:"#5B8DB8"},{t:"Money arrives unexpectedly.",c:"#2CB7A7"},
+  {t:"My bloodline is being rewritten.",c:"#2CB7A7"},{t:"He comes back. Every time.",c:"#2CB7A7"},{t:"My waist is always snatched.",c:"#5B8DB8"},
+  {t:"£10,000 months are my baseline.",c:"#2CB7A7"},{t:"I receive. Constantly. Effortlessly.",c:"#2CB7A7"},{t:"My self-concept is permanent now.",c:"#2CB7A7"},
   {t:"He can't stop thinking about me.",c:"#2CB7A7"},{t:"I am radiant without trying.",c:"#5B8DB8"},{t:"My skin glows. Everyone sees it.",c:"#5B8DB8"},
-  {t:"He chose me. Again.",c:"#2CB7A7"},{t:"Abundance is my default state.",c:"#C8960A"},{t:"My beauty is effortless.",c:"#5B8DB8"},
-  {t:"He's already mine.",c:"#2CB7A7"},{t:"Money loves me. Of course it does.",c:"#C8960A"},{t:"I am the woman he keeps coming back to.",c:"#2CB7A7"},
-  {t:"My cells hold my new identity.",c:"#C8960A"},{t:"My glow is undeniable.",c:"#5B8DB8"},{t:"Six figures is just the start.",c:"#C8960A"},
-  {t:"He finds his way back. Every time.",c:"#2CB7A7"},{t:"My subconscious knows. It delivers.",c:"#C8960A"},{t:"I am paid just for existing.",c:"#C8960A"},
-  {t:"My face is symmetrical and clear.",c:"#5B8DB8"},{t:"Of course it worked out. It always does.",c:"#C8960A"},{t:"He's devoted. Obviously.",c:"#2CB7A7"},
-  {t:"My identity upgrades in my sleep.",c:"#C8960A"},{t:"I am magnetic. Naturally.",c:"#5B8DB8"},{t:"My wealth expands while I sleep.",c:"#C8960A"},
-  {t:"He reaches out first. Always.",c:"#2CB7A7"},{t:"I embody my dream self. Naturally.",c:"#C8960A"},{t:"My energy is intoxicating.",c:"#5B8DB8"},
-  {t:"My income is limitless.",c:"#C8960A"},{t:"I am the upgraded version. Now.",c:"#C8960A"},{t:"He misses me and he's saying it.",c:"#2CB7A7"},
-  {t:"My bank account grows daily.",c:"#C8960A"},{t:"My nervous system knows who I am.",c:"#C8960A"},{t:"I look better every single day.",c:"#5B8DB8"},
-  {t:"Love finds me. It always does.",c:"#2CB7A7"},{t:"I am always in the right place.",c:"#C8960A"},{t:"My body reflects my beliefs.",c:"#5B8DB8"},
-  {t:"My SP is devoted. Obviously.",c:"#2CB7A7"},{t:"The installation is complete.",c:"#C8960A"},{t:"I receive in my sleep. Obviously.",c:"#5B8DB8"},
-  {t:"I am stunning. It's obvious.",c:"#5B8DB8"},{t:"My financial reality is effortless.",c:"#C8960A"},{t:"He can't get me out of his head.",c:"#2CB7A7"},
-  {t:"My highest self is my only self.",c:"#C8960A"},{t:"People notice. They can't help it.",c:"#5B8DB8"},{t:"My lineage shifts with me.",c:"#C8960A"},
-  {t:"I am a money magnet. Obviously.",c:"#C8960A"},{t:"He's on his way back. Of course.",c:"#2CB7A7"},{t:"I wake up transformed.",c:"#5B8DB8"},
-  {t:"My life is effortless luxury.",c:"#C8960A"},{t:"My subconscious is now on my side.",c:"#C8960A"},{t:"My skin is flawless. Obviously.",c:"#5B8DB8"},
-  {t:"Everything works out for me. Always.",c:"#C8960A"},{t:"He's never leaving. I'm that girl.",c:"#2CB7A7"},{t:"My DNA reflects my desires.",c:"#C8960A"},
-  {t:"I am chosen. Every single time.",c:"#2CB7A7"},{t:"Thirty days changes everything.",c:"#5B8DB8"},{t:"My frequency is locked in.",c:"#C8960A"},
-  {t:"I am the most beautiful version of me.",c:"#5B8DB8"},{t:"The universe is obsessed with me.",c:"#C8960A"},{t:"My parallel reality is now.",c:"#C8960A"},
-  {t:"He's constantly thinking of me.",c:"#2CB7A7"},{t:"My love life is effortless.",c:"#2CB7A7"},{t:"I am on the frequency of receiving.",c:"#C8960A"},
-  {t:"Every listen deepens the install.",c:"#5B8DB8"},{t:"I am becoming her daily.",c:"#C8960A"},{t:"My reality bends to my self-concept.",c:"#C8960A"},
-  {t:"Unexpected income is normal for me.",c:"#C8960A"},{t:"My sleep is doing the work.",c:"#5B8DB8"},{t:"I am irresistible. Obviously.",c:"#5B8DB8"},
-  {t:"He comes back. Of course he does.",c:"#2CB7A7"},{t:"I exist on the frequency of abundance.",c:"#C8960A"},{t:"My cells shift with every listen.",c:"#C8960A"},
-  {t:"Beauty is who I am.",c:"#5B8DB8"},{t:"Life is happening for me. Always.",c:"#C8960A"},{t:"My manifestations arrive fast.",c:"#C8960A"},
-  {t:"My theta state holds my desires.",c:"#5B8DB8"},{t:"The new me is permanent now.",c:"#C8960A"},{t:"I attract what I want. Effortlessly.",c:"#C8960A"},
-  {t:"My aura is undeniable.",c:"#5B8DB8"},{t:"Money comes from everywhere.",c:"#C8960A"},{t:"The shift is already done.",c:"#C8960A"},
+  {t:"He chose me. Again.",c:"#2CB7A7"},{t:"Abundance is my default state.",c:"#2CB7A7"},{t:"My beauty is effortless.",c:"#5B8DB8"},
+  {t:"He's already mine.",c:"#2CB7A7"},{t:"Money loves me. Of course it does.",c:"#2CB7A7"},{t:"I am the woman he keeps coming back to.",c:"#2CB7A7"},
+  {t:"My cells hold my new identity.",c:"#2CB7A7"},{t:"My glow is undeniable.",c:"#5B8DB8"},{t:"Six figures is just the start.",c:"#2CB7A7"},
+  {t:"He finds his way back. Every time.",c:"#2CB7A7"},{t:"My subconscious knows. It delivers.",c:"#2CB7A7"},{t:"I am paid just for existing.",c:"#2CB7A7"},
+  {t:"My face is symmetrical and clear.",c:"#5B8DB8"},{t:"Of course it worked out. It always does.",c:"#2CB7A7"},{t:"He's devoted. Obviously.",c:"#2CB7A7"},
+  {t:"My identity upgrades in my sleep.",c:"#2CB7A7"},{t:"I am magnetic. Naturally.",c:"#5B8DB8"},{t:"My wealth expands while I sleep.",c:"#2CB7A7"},
+  {t:"He reaches out first. Always.",c:"#2CB7A7"},{t:"I embody my dream self. Naturally.",c:"#2CB7A7"},{t:"My energy is intoxicating.",c:"#5B8DB8"},
+  {t:"My income is limitless.",c:"#2CB7A7"},{t:"I am the upgraded version. Now.",c:"#2CB7A7"},{t:"He misses me and he's saying it.",c:"#2CB7A7"},
+  {t:"My bank account grows daily.",c:"#2CB7A7"},{t:"My nervous system knows who I am.",c:"#2CB7A7"},{t:"I look better every single day.",c:"#5B8DB8"},
+  {t:"Love finds me. It always does.",c:"#2CB7A7"},{t:"I am always in the right place.",c:"#2CB7A7"},{t:"My body reflects my beliefs.",c:"#5B8DB8"},
+  {t:"My SP is devoted. Obviously.",c:"#2CB7A7"},{t:"The installation is complete.",c:"#2CB7A7"},{t:"I receive in my sleep. Obviously.",c:"#5B8DB8"},
+  {t:"I am stunning. It's obvious.",c:"#5B8DB8"},{t:"My financial reality is effortless.",c:"#2CB7A7"},{t:"He can't get me out of his head.",c:"#2CB7A7"},
+  {t:"My highest self is my only self.",c:"#2CB7A7"},{t:"People notice. They can't help it.",c:"#5B8DB8"},{t:"My lineage shifts with me.",c:"#2CB7A7"},
+  {t:"I am a money magnet. Obviously.",c:"#2CB7A7"},{t:"He's on his way back. Of course.",c:"#2CB7A7"},{t:"I wake up transformed.",c:"#5B8DB8"},
+  {t:"My life is effortless luxury.",c:"#2CB7A7"},{t:"My subconscious is now on my side.",c:"#2CB7A7"},{t:"My skin is flawless. Obviously.",c:"#5B8DB8"},
+  {t:"Everything works out for me. Always.",c:"#2CB7A7"},{t:"He's never leaving. I'm that girl.",c:"#2CB7A7"},{t:"My DNA reflects my desires.",c:"#2CB7A7"},
+  {t:"I am chosen. Every single time.",c:"#2CB7A7"},{t:"Thirty days changes everything.",c:"#5B8DB8"},{t:"My frequency is locked in.",c:"#2CB7A7"},
+  {t:"I am the most beautiful version of me.",c:"#5B8DB8"},{t:"The universe is obsessed with me.",c:"#2CB7A7"},{t:"My parallel reality is now.",c:"#2CB7A7"},
+  {t:"He's constantly thinking of me.",c:"#2CB7A7"},{t:"My love life is effortless.",c:"#2CB7A7"},{t:"I am on the frequency of receiving.",c:"#2CB7A7"},
+  {t:"Every listen deepens the install.",c:"#5B8DB8"},{t:"I am becoming her daily.",c:"#2CB7A7"},{t:"My reality bends to my self-concept.",c:"#2CB7A7"},
+  {t:"Unexpected income is normal for me.",c:"#2CB7A7"},{t:"My sleep is doing the work.",c:"#5B8DB8"},{t:"I am irresistible. Obviously.",c:"#5B8DB8"},
+  {t:"He comes back. Of course he does.",c:"#2CB7A7"},{t:"I exist on the frequency of abundance.",c:"#2CB7A7"},{t:"My cells shift with every listen.",c:"#2CB7A7"},
+  {t:"Beauty is who I am.",c:"#5B8DB8"},{t:"Life is happening for me. Always.",c:"#2CB7A7"},{t:"My manifestations arrive fast.",c:"#2CB7A7"},
+  {t:"My theta state holds my desires.",c:"#5B8DB8"},{t:"The new me is permanent now.",c:"#2CB7A7"},{t:"I attract what I want. Effortlessly.",c:"#2CB7A7"},
+  {t:"My aura is undeniable.",c:"#5B8DB8"},{t:"Money comes from everywhere.",c:"#2CB7A7"},{t:"The shift is already done.",c:"#2CB7A7"},
   {t:"I am reprogramming daily.",c:"#5B8DB8"},{t:"He's obsessed with who I am.",c:"#2CB7A7"},{t:"Every night I become her more.",c:"#5B8DB8"},
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
@@ -470,18 +470,18 @@ function AppPreviewSection({ isMobile }) {
     if (view === "proof") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(44,183,167,0.15)" }}>
         <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
-          <div style={{ fontSize:13, color:theme==="dark"?"#C8960A":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, color:theme==="dark"?"#2CB7A7":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
               <div key={i} style={{ background:theme==="dark"?"rgba(44,183,167,0.08)":"rgba(44,183,167,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, color:theme==="dark"?"#C8960A":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
+                <div style={{ fontSize:22, color:theme==="dark"?"#2CB7A7":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
                 <div style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
           <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#C8960A":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#2CB7A7":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
               <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
             <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
@@ -494,7 +494,7 @@ function AppPreviewSection({ isMobile }) {
           </div>
           <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(44,183,167,0.1)":"rgba(44,183,167,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(44,183,167,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#C8960A":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(44,183,167,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#2CB7A7":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
               <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
             </div>
             <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
@@ -581,7 +581,7 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#C8960A":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#2CB7A7":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
         </button>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Light</span>
@@ -915,7 +915,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
     { label: "Moneymaxxing", tagline: "Money finds me first. Obviously.", color: "#2CB7A7" },
     { label: "Beautymaxxing", tagline: "Gorgeous is my default.", color: T.champSoft },
     { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: "#e8e0d0" },
-    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#C8960A" },
+    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#2CB7A7" },
     { label: "Sleep Shifting", tagline: "I shift while I sleep.", color: "#000000" },
   ];
 
@@ -1148,7 +1148,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
                 <svg viewBox="0 0 100 102" width={isMobile?34:64} height={isMobile?34:64}>
-                  <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="45%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                  <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2CB7A7"/><stop offset="45%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
                   <circle cx="35" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
                   <circle cx="65" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
                   <circle cx="35" cy="65" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
@@ -1343,7 +1343,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(42,168,154,0.2)", borderRadius:14, overflow:"hidden" }}>
             {[
               { name:"Gamma", hz:"30–100Hz", tag:"Insight, peak experiences", cycles:11, color:"#F5E0A0" },
-              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#C8960A" },
+              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#2CB7A7" },
               { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", cycles:5, color:"#5B8DB8" },
               { name:"Theta", hz:"4–8Hz",    tag:"Trance — where reprogramming happens", cycles:3, color:"#9B8FD4" },
               { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep, restoration", cycles:1.5, color:"#2CB7A7" },
@@ -1410,7 +1410,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ].map((t,i)=>(
                 <div key={i} style={{ padding:"18px 16px", background:"rgba(255,255,255,0.03)", border:`1px solid ${t.color}30`, borderRadius:14 }}>
                   <div style={{ fontSize:13, fontWeight:500, color:t.color, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{t.time}</div>
-                  <div style={{ fontSize: isMobile?13:14, color:"#c8bcb0", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{t.desc}</div>
+                  <div style={{ fontSize: isMobile?13:14, color:"#ddd0c8", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{t.desc}</div>
                 </div>
               ))}
             </div>
@@ -1537,7 +1537,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ fontSize: isMobile?"clamp(22px,6vw,28px)":"clamp(26px,3vw,34px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.01em", lineHeight:1.2 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
-                  { label:"Melodic House",  sub:"Reshma's voice beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#C8960A", dot:"#C8960A" },
+                  { label:"Melodic House",  sub:"Reshma's voice beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
                   { label:"Sleep & Rest",   sub:"Calm background music — ambient, soft, and continuous. Designed for sleep, rest, or anytime you need to switch off without switching it off.", color:"#E8B870", dot:"#E8B870" },
                   { label:"Subliminal",     sub:"No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day.", color:"#BFA5D8", dot:"#BFA5D8" },
                   { label:"EMDR Hypnosis",  sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#2CB7A7", dot:"#2CB7A7" },
@@ -1610,7 +1610,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               {n:"Enlightenment",v:700,c:"#ffffff"},
               {n:"Peace",v:600,c:"#000000"},
               {n:"Joy",v:540,c:"#f5d090"},
-              {n:"Love",v:500,c:"#C8960A"},
+              {n:"Love",v:500,c:"#2CB7A7"},
               {n:"Reason",v:400,c:"#9b59b6"},
               {n:"Acceptance",v:350,c:"#2980b9"},
               {n:"Willingness",v:310,c:"#3498db"},
@@ -1670,13 +1670,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" strokeWidth="3"/></> },
               { name: "DNAmaxxing", pain: "Ageless. Radiant. Undeniable.", accent: "#8a3050",
                 icon: <><path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(-10,0)"/><path d="M18 18 L42 18 M16 30 L44 30 M18 42 L42 42" stroke="currentColor" strokeWidth="1.5" opacity="0.5"/></> },
-              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#C8960A",
+              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#2CB7A7",
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/></> },
               { name: "Erosmaxxing", pain: "Magnetic enough to stop a room", accent: "#a8506a",
                 icon: <path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/> },
               { name: "Lifemaxxing", pain: "Every area of your life, upgrading at once", accent: "#2CB7A7",
                 icon: <><circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30 M16 16 L12 12 M44 16 L48 12 M16 44 L12 48 M44 44 L48 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
-              { name: "Luckygirlmaxxing", pain: "Everything just works out for you now", accent: "#C8960A",
+              { name: "Luckygirlmaxxing", pain: "Everything just works out for you now", accent: "#2CB7A7",
                 icon: <><path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></> },
               { name: "Sovereignmaxxing", pain: "Answering to absolutely no one", accent: "#6a2840",
                 icon: <path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/> },

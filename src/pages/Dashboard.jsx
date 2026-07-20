@@ -60,7 +60,7 @@ function Tabs({ tabs, active, onChange }) {
       {tabs.map(t => (
         <button key={t} onClick={() => onChange(t)} style={{
           padding: "10px 18px", background: "none", border: "none",
-          color: active === t ? T.textPrimary : "#786860",
+          color: active === t ? T.textPrimary : "#c8bcb0",
           fontSize: 13, fontWeight: active === t ? 700 : 400, cursor: "pointer",
           borderBottom: active === t ? `2px solid ${RG}` : "2px solid transparent",
           marginBottom: -1, transition: "color 0.15s",

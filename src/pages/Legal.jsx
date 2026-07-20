@@ -1,7 +1,7 @@
 /* Legal pages — ToS, Privacy, Refund */
-const GOLD = "#C8860A";
+const GOLD = "#2CB7A7";
 const CR = "#f2ece4";
-const MU = "#9a8878";
+const MU = "#e8e0d8";
 const OMBRE = "linear-gradient(135deg,#C8960A 0%,#C8860A 50%,#2CB7A7 100%)";
 
 const LAST_UPDATED = "13 July 2026";
@@ -19,7 +19,7 @@ function LegalShell({ title, eyebrow, children, onBack }) {
         <div style={{ fontSize:11, color:GOLD, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:12 }}>{eyebrow}</div>
         <h1 style={{ fontSize:"clamp(28px,5vw,44px)", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:CR, marginBottom:8, lineHeight:1.15 }}>{title}</h1>
         <div style={{ fontSize:12, color:MU, marginBottom:48 }}>Last updated: {LAST_UPDATED}</div>
-        <div style={{ fontSize:15, lineHeight:1.9, color:"#c8bcb0" }}>{children}</div>
+        <div style={{ fontSize:15, lineHeight:1.9, color:"#ddd0c8" }}>{children}</div>
       </div>
     </div>
   );
@@ -29,7 +29,7 @@ function H2({ children }) {
   return <h2 style={{ fontSize:18, color:CR, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:"40px 0 12px", borderBottom:"1px solid rgba(44,183,167,0.15)", paddingBottom:8 }}>{children}</h2>;
 }
 function P({ children }) {
-  return <p style={{ margin:"0 0 16px", color:"#c8bcb0" }}>{children}</p>;
+  return <p style={{ margin:"0 0 16px", color:"#ddd0c8" }}>{children}</p>;
 }
 function Li({ children }) {
   return <li style={{ margin:"6px 0", paddingLeft:4 }}>{children}</li>;

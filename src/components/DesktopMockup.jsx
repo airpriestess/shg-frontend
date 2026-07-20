@@ -4,7 +4,7 @@ const THEMES = {
   dark: {
     browser:"#1a1a1a", browserBorder:"#2a2a2a", urlBar:"#222", urlText:"#e8e0d8",
     bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", nav:"#050505",
-    cr:"#f2ece4", mu:"#9a8878", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", scrubBg:"#2a2a2a",
+    cr:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", scrubBg:"#2a2a2a",
   },
   light: {
     browser:"#ede8e0", browserBorder:"#d8d0c4", urlBar:"#f5f0e8", urlText:"#8a7860",

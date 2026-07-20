@@ -5,14 +5,14 @@ const R = "#2CB7A7", P = "#5B8DB8";
 const OMBRE = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const PALETTES = {
-  dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#9a8878", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", track:"rgba(44,183,167,0.08)" },
+  dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", track:"rgba(44,183,167,0.08)" },
   light: { card:"#fdf8f2", card2:"rgba(44,183,167,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(44,183,167,0.18)", track:"rgba(44,183,167,0.12)" },
 };
 
 export const DEMO_ANALYTICS = {
   manifested: 3, inProgress: 4, signs: 11, listens: 27, streakDays: 14,
   week: [2,4,3,6,5,4,3],
-  topCats: [ ["Money","#2CB7A7",5], ["SP & Love","#5B8DB8",4], ["Identity","#C8960A",2] ],
+  topCats: [ ["Money","#2CB7A7",5], ["SP & Love","#5B8DB8",4], ["Identity","#2CB7A7",2] ],
 };
 
 export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof, onDrillDown }) {

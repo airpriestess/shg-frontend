@@ -686,7 +686,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                     background:quickFeel===h.n?`${h.c}33`:"transparent",
                     border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                  <span style={{ fontSize:13,color:h.v>=600?"#1a1008":h.v<=30?"#9a8878":h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:13,color:h.v>=600?"#1a1008":h.v<=30?"#e8e0d8":h.c,flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:11,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
@@ -1389,7 +1389,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               <div style={{ fontSize:14,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:9,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:11,color:isDark?"#9a8878":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:11,color:isDark?"#e8e0d8":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
@@ -1449,7 +1449,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   // ProofOS now respects the real app theme instead of being locked to the gold ombre
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const PC = isDark
-    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#9a8878", dim:"#e8e0d8", border:"rgba(44,183,167,0.14)", inputBg:"#1a1a1a" }
+    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.14)", inputBg:"#1a1a1a" }
     : { card:"#fffcf8", cardSolid:"#fffcf8", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.16)", inputBg:"rgba(180,104,48,0.06)" };
   const PAGE_BG = isDark ? "#080808" : "#fdf8f2";
 
@@ -1529,7 +1529,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <span style={{ fontSize:12,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
             {proofFilter==="manifested" ? `Showing ${manifested.length} manifested ✓` : `Showing ${inProgress.length} in progress`}
           </span>
-          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#9a8878",fontSize:11,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
+          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#e8e0d8",fontSize:11,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
         </div>
       )}
 
@@ -1777,7 +1777,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
           {userTier === "audio" && !isPreview && (
-            <div style={{ fontSize:11,color:"#9a8878",marginTop:8,lineHeight:1.5 }}>
+            <div style={{ fontSize:11,color:"#e8e0d8",marginTop:8,lineHeight:1.5 }}>
               You're on Audio Tier. Log your desire — then upgrade to Goddess to save it to your Proof Thread and track every sign.
             </div>
           )}

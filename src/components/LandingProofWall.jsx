@@ -1,7 +1,7 @@
 /* LandingProofWall — clean white cards, black text, Jost throughout */
 
 const OMBRE_BG = "#000000";
-const PC = { text:"#f2ece4", mu:"#9a8878" };
+const PC = { text:"#f2ece4", mu:"#e8e0d8" };
 
 const WALL = [
   {
@@ -153,7 +153,7 @@ export default function LandingProofWall({ isMobile }) {
           <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.8, maxWidth:480, margin:"0 auto 14px", fontWeight:400 }}>
             Track every manifestation in one place — for the rest of your life. Never lose your desires in a dusty journal again.
           </p>
-          <p style={{ fontSize: isMobile?14:16, color:"#c8bcb0", lineHeight:1.75, maxWidth:520, margin:"0 auto" }}>
+          <p style={{ fontSize: isMobile?14:16, color:"#ddd0c8", lineHeight:1.75, maxWidth:520, margin:"0 auto" }}>
             Every thread starts with your old assumption — the belief you're actually working against — logged the moment you start listening. As the signs come in, you watch it shift into a new assumption in real time. That's the proof: not just that something manifested, but that the belief underneath it changed first.
           </p>
         </div>
@@ -163,7 +163,7 @@ export default function LandingProofWall({ isMobile }) {
           {[["6","Intentions"],["6","Manifested"],["18","Signs logged"]].map(([v,l],i)=>(
             <div key={i} style={{ background:"rgba(255,255,255,0.06)", borderRadius:12, padding:"14px 6px", textAlign:"center" }}>
               <div style={{ fontSize:24, fontWeight:400, color:"#f2ece4" }}>{v}</div>
-              <div style={{ fontSize:10, color:"#9a8878", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase", marginTop:4 }}>{l}</div>
+              <div style={{ fontSize:10, color:"#e8e0d8", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase", marginTop:4 }}>{l}</div>
             </div>
           ))}
         </div>
@@ -201,7 +201,7 @@ export default function LandingProofWall({ isMobile }) {
           ))}
         </div>
 
-        <div style={{ textAlign:"center", marginTop:24, fontSize:13, color:"#9a8878", fontWeight:400 }}>Included in Goddess Tier ✦ · Your evidence, forever</div>
+        <div style={{ textAlign:"center", marginTop:24, fontSize:13, color:"#e8e0d8", fontWeight:400 }}>Included in Goddess Tier ✦ · Your evidence, forever</div>
       </div>
     </div>
   );

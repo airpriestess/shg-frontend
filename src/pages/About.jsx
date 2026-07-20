@@ -1,9 +1,9 @@
 /* About page — Reshma Oracle */
 import { useState, useEffect } from "react";
 
-const GOLD = "#C8860A";
+const GOLD = "#2CB7A7";
 const CR = "#f2ece4";
-const MU = "#9a8878";
+const MU = "#e8e0d8";
 const ROSE = "#2CB7A7";
 const OMBRE = "linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)";
 
@@ -28,7 +28,7 @@ export default function About({ onBack }) {
           <div style={{ width:"92%", height:"92%", borderRadius:"50%", background:"#000", display:"flex", alignItems:"center", justifyContent:"center" }}>
             <svg width="24" height="24" viewBox="0 0 100 100">
               <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#C8860A" strokeWidth="5" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
             </svg>
           </div>
         </div>

@@ -1,7 +1,7 @@
 /* PortalScreenshot — mobile phone mockup, dark/light, matches real dashboard */
 
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)" },
   light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(44,183,167,0.12)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)" },
 };
 

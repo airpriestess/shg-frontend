@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
-const R = "#2CB7A7", P = "#5B8DB8", CH = "#C8860A";
+const R = "#2CB7A7", P = "#5B8DB8", CH = "#2CB7A7";
 
 export default function AuthGate({ onSuccess }) {
   const { signIn, signUp, resetPassword } = useAuth();
