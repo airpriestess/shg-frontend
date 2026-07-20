@@ -1,7 +1,7 @@
 /* KnowledgeGuide — comprehensive listening guide covering every question */
 import { useState } from "react";
 
-const OMBRE = "linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
+const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
 
 const SECTIONS = [
   { k:"formula", icon:"◈", title:"The formula in every SHG audio",
@@ -84,6 +84,19 @@ const SECTIONS = [
 
   { k:"hypno-vs-sub-versions", icon:"⇌", title:"How to use the same track in both hypnosis and subliminal version",
     body:"Each desire category has tracks in different formats. Here is how to use them together for maximum effect:\n\nMorning protocol: play the vocal/hypnosis version. You've just woken up, you're in theta, your brain is fully receptive. Let the voice guide you into the new identity while you're in the most receptive state of the day. 20–30 minutes.\n\nDaytime or background: switch to the music-only version. Play it while you work, exercise, cook. Your conscious mind focuses on the task. Your subconscious keeps receiving the subliminal layer.\n\nNight protocol: loop the music-only version all night. No voice to wake you. Pure subliminal installation through delta sleep.\n\nUsing both formats for the same desire means your subconscious is receiving installation at every stage of consciousness — theta, beta, and delta. This is the accelerated protocol." },
+
+  { k:"how-to-write-intention", icon:"✧", title:"How to write a good intention in ProofOS",
+    body:"A good intention is specific, present-tense, and describes the outcome — not the process of getting there.\n\nWeak: \"I want to feel better about money.\"\nStrong: \"Money finds me easily and consistently, without me having to chase it.\"\n\nWeak: \"I hope he texts me.\"\nStrong: \"He texts me first, consistently, without me reaching out.\"\n\nThree things every good intention has: it names the exact outcome you want, it's written as if it's already becoming true rather than something you're waiting for, and it's specific enough that you'd actually recognise it when it happens. Vague intentions get vague evidence. Specific intentions get specific proof." },
+
+  { k:"choosing-your-emotion", icon:"◑", title:"How to choose your emotional state when logging an intention",
+    body:"When you log a new intention, you're asked how you're feeling right now — this uses the Hawkins scale (see the sections above on what it is and how to use it).\n\nBe honest, not aspirational. If you're anxious, log anxious — don't log \"peace\" because that's what you're aiming for. The whole point of tracking is to see the real starting point so the shift is actually visible later. There's no wrong answer here. Contractive states (below 200) aren't a failure — they're just where you're starting from, and the audio is built to move you out of them.\n\nIf you genuinely don't know what you're feeling, pick the closest match rather than skipping it. A rough guess logged consistently is more useful than a perfect answer logged never." },
+
+  { k:"spotting-signs", icon:"✦", title:"How to spot a sign or synchronicity worth logging", isNew:true,
+    body:"A sign is anything that feels like a nudge toward your intention — even a small one. You don't need to wait for the full manifestation to log something.\n\nWhat counts: a coincidence that's slightly too on-the-nose to ignore, a conversation that circles back to your exact desire, a number or name showing up repeatedly, a feeling of \"that's strange\" when something lines up with what you asked for, a small version of the thing itself arriving before the whole thing does.\n\nDon't overthink it — if it made you pause, log it. The habit of noticing and logging is what trains you to actually see the evidence building, instead of missing it because you weren't looking. Signs add up. That's the entire mechanism behind the Proof Wall." },
+
+  { k:"knowing-manifested", icon:"↑", title:"How to know when something has actually manifested",
+    body:"Mark an intention as manifested when the actual outcome has happened — not a sign pointing toward it, the real thing. If your intention was \"he texts me first,\" the manifestation is the text arriving, not the dream about him or the feeling that it's close.\n\nIt's fine to have multiple signs logged under an intention for weeks before it manifests — that's normal and expected. The signs are the trail, the manifestation is the destination. When you mark something manifested, you're also asked how you feel now — this is what lets you see your own before/after, side by side, permanently, on your Proof Wall." },
+
 ];
 
 const CATEGORIES = [
