@@ -1162,17 +1162,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 </div>
               )}
             </div>
-            {/* Progress bar */}
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, position: "relative" }}>
-                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", borderRadius:2, position:"relative" }}>
-                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#2AA89A", opacity: playing ? 1 : 0 }}/>
-                </div>
-              </div>
-              <div style={{ display:"flex", justifyContent:"space-between", marginTop:6 }}>
-                <span style={{ fontSize:10, color:"#7a6a60", fontFamily:"'Jost',sans-serif" }}>0:00</span>
-                <span style={{ fontSize:10, color:"#7a6a60", fontFamily:"'Jost',sans-serif" }}>4:32</span>
-              </div>
+            {/* Logo mark — replaces progress bar */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
+              <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
+              <svg viewBox="0 0 100 100" width={28} height={28} style={{ opacity: playing ? 1 : 0.35, transition:"opacity 0.4s" }}>
+                <defs><linearGradient id="playlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="40%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
+                <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
+              </svg>
+              <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
             </div>
             {/* Controls */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"4px 4px 0", overflow:"visible" }}>
