@@ -146,7 +146,7 @@ export default function LandingProofWall({ isMobile }) {
 
         {/* Heading */}
         <div style={{ textAlign:"center", marginBottom:32 }}>
-          <div style={{ fontSize:13, color:"#C8860A", fontWeight:500, letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, color:"#2CB7A7", fontWeight:500, letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
           <div style={{ fontSize: isMobile?"clamp(44px,13vw,64px)":"clamp(56px,8vw,80px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:20 }}>
             The Proof Thread.
           </div>
