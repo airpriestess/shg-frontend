@@ -684,33 +684,33 @@ function IdentityCarousel({ cats, fullscreen=false }) {
 
   // Category-specific colours
   const CAT_COLOURS = {
-    // Each tile: ONE clean two-stop ombre — turquoise/teal/gold/lilac family only
-    "Moneymaxxing":     "linear-gradient(135deg,#C8960A,#E8B870)",
-    "Luckygirlmaxxing": "linear-gradient(135deg,#2CB7A7,#167A6B)",
-    "Beautymaxxing":    "linear-gradient(135deg,#8B7FC8,#5B4FA8)",
-    "Lovemaxxing":      "linear-gradient(135deg,#5B8DB8,#2CB7A7)",
-    "DNAmaxxing":       "linear-gradient(135deg,#6B5FA8,#8B7FC8)",
-    "Lifemaxxing":      "linear-gradient(135deg,#E8B870,#C8960A)",
-    "Bodymaxxing":      "linear-gradient(135deg,#167A6B,#2CB7A7)",
-    "Selfmaxxing":      "linear-gradient(135deg,#8B7FC8,#2CB7A7)",
-    "Erosmaxxing":      "linear-gradient(135deg,#2CB7A7,#5B8DB8)",
-    "Businessmaxxing":  "linear-gradient(135deg,#5B8DB8,#C8960A)",
-    "Singlemaxxing":    "linear-gradient(135deg,#8B7FC8,#2CB7A7)",
-    "Skinnymaxxing":    "linear-gradient(135deg,#2CB7A7,#167A6B)",
-    "Sleepmaxxing":     "linear-gradient(135deg,#5B8DB8,#6B5FA8)",
-    "Facemaxxing":      "linear-gradient(135deg,#C8960A,#E8B870)",
-    "Careermaxxing":    "linear-gradient(135deg,#5B8DB8,#2CB7A7)",
-    "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#8B7FC8)",
-    "Confidencemaxxing":"linear-gradient(135deg,#C8960A,#8B7FC8)",
-    "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#C8960A)",
-    "Healmaxxing":      "linear-gradient(135deg,#8B7FC8,#5B8DB8)",
-    "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#8B7FC8)",
-    "Friendmaxxing":    "linear-gradient(135deg,#5B8DB8,#2CB7A7)",
-    "Studymaxxing":     "linear-gradient(135deg,#5B8DB8,#8B7FC8)",
-    "Intuitionmaxxing": "linear-gradient(135deg,#8B7FC8,#2CB7A7)",
-    "Sovereignmaxxing": "linear-gradient(135deg,#C8960A,#2CB7A7)",
+    // Carousel only — full palette including warm pink + hot blue accent tiles
+    "Moneymaxxing":     "linear-gradient(135deg,#C8960A,#E8B870)",        // gold
+    "Luckygirlmaxxing": "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
+    "Beautymaxxing":    "linear-gradient(135deg,#E8509A,#8B7FC8)",        // hot pink → lilac
+    "Lovemaxxing":      "linear-gradient(135deg,#D4408A,#5B8DB8)",        // deep pink → blue
+    "DNAmaxxing":       "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // hot blue → teal
+    "Lifemaxxing":      "linear-gradient(135deg,#E8B870,#C8960A)",        // amber gold
+    "Bodymaxxing":      "linear-gradient(135deg,#167A6B,#2CB7A7)",        // deep teal
+    "Selfmaxxing":      "linear-gradient(135deg,#8B7FC8,#2CB7A7)",        // lilac → teal
+    "Erosmaxxing":      "linear-gradient(135deg,#E8509A,#5B8DB8)",        // hot pink → blue
+    "Businessmaxxing":  "linear-gradient(135deg,#1A7FC8,#C8960A)",        // hot blue → gold
+    "Singlemaxxing":    "linear-gradient(135deg,#8B7FC8,#E8509A)",        // lilac → hot pink
+    "Skinnymaxxing":    "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
+    "Sleepmaxxing":     "linear-gradient(135deg,#1A4A8A,#1A7FC8)",        // deep blue → hot blue
+    "Facemaxxing":      "linear-gradient(135deg,#C8960A,#E8509A)",        // gold → hot pink
+    "Careermaxxing":    "linear-gradient(135deg,#1A7FC8,#8B7FC8)",        // hot blue → lilac
+    "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#8B7FC8)",        // teal → lilac
+    "Confidencemaxxing":"linear-gradient(135deg,#E8509A,#C8960A)",        // hot pink → gold
+    "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#E8509A)",        // gold → hot pink
+    "Healmaxxing":      "linear-gradient(135deg,#8B7FC8,#D4408A)",        // lilac → deep pink
+    "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#1A7FC8)",        // teal → hot blue
+    "Friendmaxxing":    "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // hot blue → teal
+    "Studymaxxing":     "linear-gradient(135deg,#1A7FC8,#8B7FC8)",        // hot blue → lilac
+    "Intuitionmaxxing": "linear-gradient(135deg,#8B7FC8,#E8509A)",        // lilac → hot pink
+    "Sovereignmaxxing": "linear-gradient(135deg,#C8960A,#1A7FC8)",        // gold → hot blue
   };
-  const FALLBACK = "linear-gradient(135deg,#2CB7A7,#8B7FC8)";
+  const FALLBACK = "linear-gradient(135deg,#1A7FC8,#2CB7A7)";
   const bg = CAT_COLOURS[current.label] || FALLBACK;
 
   return (
@@ -728,11 +728,11 @@ function IdentityCarousel({ cats, fullscreen=false }) {
       }}>
         <div style={{ position:"absolute",inset:0,background:"radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.15),transparent 70%)",pointerEvents:"none" }}/>
         <div style={{
-          fontSize: fullscreen ? 15 : 13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
+          fontSize: fullscreen ? 11 : 10, fontWeight:500, letterSpacing:"0.28em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
         }}>{current.label} ✦</div>
         <div style={{
-          fontSize: fullscreen ? "clamp(48px,10vw,110px)" : "clamp(28px,5.5vw,68px)", lineHeight:1.08, color:"#000",
+          fontSize: fullscreen ? "clamp(28px,5.5vw,56px)" : "clamp(20px,3.5vw,42px)", lineHeight:1.12, color:"#000",
           fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
