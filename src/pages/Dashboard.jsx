@@ -3,7 +3,7 @@ import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
 import { PROOF_THREADS, AUDIOS, USER } from "../data/sample.js";
 
-const RG = "#B76E79"; // rose gold — single accent
+const RG = "#2CB7A7"; // rose gold — single accent
 
 const STATUS_LABEL = {
   "Active": { label: "Active", color: "#d8c8a0" },
@@ -32,8 +32,8 @@ const RECENT_PROOF = [
 // ── Small stat number card ────────────────────────────────────────────────────
 function StatCard({ value, label }) {
   return (
-    <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
-      <div style={{ fontSize: 28, fontWeight: 800, color: "#B76E79", lineHeight: 1, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>{value}</div>
+    <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
+      <div style={{ fontSize: 28, fontWeight: 800, color: "#2CB7A7", lineHeight: 1, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>{value}</div>
       <div style={{ fontSize: 11, color: "#5a3838", letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
     </div>
   );
@@ -43,9 +43,9 @@ function StatCard({ value, label }) {
 function SectionHead({ children, action, onAction }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-      <div style={{ fontSize: 10, color: "#B76E79", fontWeight: 800, letterSpacing: "0.22em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>{children}</div>
+      <div style={{ fontSize: 10, color: "#2CB7A7", fontWeight: 800, letterSpacing: "0.22em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>{children}</div>
       {action && (
-        <button onClick={onAction} style={{ background: "none", border: "0.5px solid #B76E7944", borderRadius: 20, color: "#B76E79", fontSize: 11, fontWeight: 600, cursor: "pointer", padding: "4px 12px", letterSpacing: "0.06em" }}>
+        <button onClick={onAction} style={{ background: "none", border: "0.5px solid #2CB7A744", borderRadius: 20, color: "#2CB7A7", fontSize: 11, fontWeight: 600, cursor: "pointer", padding: "4px 12px", letterSpacing: "0.06em" }}>
           {action} →
         </button>
       )}
@@ -56,7 +56,7 @@ function SectionHead({ children, action, onAction }) {
 // ── Tab switcher (Member / User Types / User Trends style) ───────────────────
 function Tabs({ tabs, active, onChange }) {
   return (
-    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(183,110,121,0.2)", marginBottom: 20 }}>
+    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(44,183,167,0.2)", marginBottom: 20 }}>
       {tabs.map(t => (
         <button key={t} onClick={() => onChange(t)} style={{
           padding: "10px 18px", background: "none", border: "none",
@@ -89,8 +89,8 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
         {/* ── PAGE HEADER ── */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
           <div>
-            <div className="wm" style={{ fontSize: 16, color: "#B76E79", fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, fontStyle: "italic" }}>ProofOS</div>
-            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#d4a090,#B76E79)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <div className="wm" style={{ fontSize: 16, color: "#2CB7A7", fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, fontStyle: "italic" }}>ProofOS</div>
+            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               {USER.name}'s Vault
             </h1>
           </div>
@@ -117,7 +117,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 24 }} className="grid-2">
 
               {/* Current Ritual */}
-              <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 16, padding: "20px" }}>
+              <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 16, padding: "20px" }}>
                 <SectionHead>Current Ritual</SectionHead>
                 {currentAudio ? (
                   <>
@@ -125,7 +125,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                       <div style={{ width: 52, height: 52, borderRadius: 10, background: `${RG}18`, border: `1px solid ${RG}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🎧</div>
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontSize: 14, fontWeight: 700, color: "#1a0808", marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
-                        {currentThread && <div style={{ fontSize: 12, color: "#B76E79", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>🧵 {currentThread.intentionTitle}</div>}
+                        {currentThread && <div style={{ fontSize: 12, color: "#2CB7A7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>🧵 {currentThread.intentionTitle}</div>}
                       </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -142,7 +142,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
               </div>
 
               {/* Quick Capture */}
-              <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 16, padding: "20px" }}>
+              <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 16, padding: "20px" }}>
                 <SectionHead>Quick Capture</SectionHead>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {[
@@ -170,11 +170,11 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
               <SectionHead action="View all" onAction={() => onNavigate("proof-threads")}>Recent Photo Proof</SectionHead>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }} className="grid-3">
                 {RECENT_PROOF.map((p, i) => (
-                  <div key={i} onClick={() => onNavigate("proof-threads")} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
+                  <div key={i} onClick={() => onNavigate("proof-threads")} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
                     onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
                     onMouseLeave={e => e.currentTarget.style.borderColor = "#1c1828"}
                   >
-                    <div style={{ height: 68, background: `${RG}0e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, borderBottom: "1px solid rgba(183,110,121,0.2)" }}>{p.icon}</div>
+                    <div style={{ height: 68, background: `${RG}0e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, borderBottom: "1px solid rgba(44,183,167,0.2)" }}>{p.icon}</div>
                     <div style={{ padding: "10px 12px" }}>
                       <div style={{ fontSize: 12, fontWeight: 300, color: "#1a0808", marginBottom: 2 }}>{p.label}</div>
                       <div style={{ fontSize: 11, color: "#5a3838", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
@@ -210,10 +210,10 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             )}
 
             {/* ── STORAGE ── */}
-            <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "16px 18px" }}>
+            <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "16px 18px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
                 <span style={{ fontSize: 12, color: "#5a3838", textTransform: "uppercase", letterSpacing: "0.1em" }}>Storage</span>
-                <span style={{ fontSize: 12, color: "#B76E79", fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
+                <span style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
               </div>
               <div style={{ height: 4, background: "#1c1828", borderRadius: 2, marginBottom: 10 }}>
                 <div style={{ width: `${storagePct}%`, height: "100%", background: `linear-gradient(90deg,${RG},#C8956A)`, borderRadius: 2 }} />
@@ -231,7 +231,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             {PROOF_THREADS.map(t => {
               const sc = STATUS_LABEL[t.status] || { label: t.status, color: "#5a3838" };
               return (
-                <div key={t.id} onClick={() => onNavigate("proof-threads")} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(183,110,121,0.2)", borderRadius: 14, padding: "18px 20px",
+                <div key={t.id} onClick={() => onNavigate("proof-threads")} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "18px 20px",
                   transition: "border-color 0.15s", cursor: "pointer" }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
                   onMouseLeave={e => e.currentTarget.style.borderColor = "#1c1828"}

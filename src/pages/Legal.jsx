@@ -1,8 +1,8 @@
 /* Legal pages — ToS, Privacy, Refund */
-const GOLD = "#e8b870";
+const GOLD = "#C8860A";
 const CR = "#f2ece4";
 const MU = "#9a8878";
-const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 50%,#B76E79 100%)";
+const OMBRE = "linear-gradient(135deg,#E8A030 0%,#C8860A 50%,#2CB7A7 100%)";
 
 const LAST_UPDATED = "13 July 2026";
 const COMPANY = "Self Hypnosis Goddess";
@@ -26,7 +26,7 @@ function LegalShell({ title, eyebrow, children, onBack }) {
 }
 
 function H2({ children }) {
-  return <h2 style={{ fontSize:18, color:CR, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:"40px 0 12px", borderBottom:"1px solid rgba(232,168,96,0.15)", paddingBottom:8 }}>{children}</h2>;
+  return <h2 style={{ fontSize:18, color:CR, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", margin:"40px 0 12px", borderBottom:"1px solid rgba(200,134,10,0.15)", paddingBottom:8 }}>{children}</h2>;
 }
 function P({ children }) {
   return <p style={{ margin:"0 0 16px", color:"#c8bcb0" }}>{children}</p>;

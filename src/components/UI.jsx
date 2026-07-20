@@ -19,9 +19,9 @@ export function ExternalArrowIcon({ size = 12, style, color = "currentColor" }) 
 export function Btn({ children, onClick, variant = "primary", size = "md", full, disabled, style: extra }) {
   const sizes = { sm: { padding: "8px 16px", fontSize: 13 }, md: { padding: "11px 22px", fontSize: 14 }, lg: { padding: "14px 28px", fontSize: 15 } };
   const variants = {
-    primary: { background: "linear-gradient(135deg,#d4a090,#B76E79)", color: "#000", border: "none" },
-    champagne: { background: "linear-gradient(135deg,#d4a090,#B76E79)", color: "#000", border: "none" },
-    ghost: { background: "transparent", color: "#B76E79", border: "1px solid #B76E7966" },
+    primary: { background: "linear-gradient(135deg,#BFA5D8,#2CB7A7)", color: "#000", border: "none" },
+    champagne: { background: "linear-gradient(135deg,#BFA5D8,#2CB7A7)", color: "#000", border: "none" },
+    ghost: { background: "transparent", color: "#2CB7A7", border: "1px solid #2CB7A766" },
     soft: { background: "#060410", color: T.textMuted, border: `1px solid #1e1c0a` },
     danger: { background: "transparent", color: T.rose, border: `1px solid ${T.rose}44` },
   };
@@ -60,8 +60,8 @@ export function Card({ children, style, premium, onClick, hover }) {
 
 export function Pill({ children, color, style }) {
   const colors = {
-    rose: { bg: "#B76E7922", text: "#B76E79" },
-    champagne: { bg: "#B76E7922", text: "#B76E79" },
+    rose: { bg: "#2CB7A722", text: "#2CB7A7" },
+    champagne: { bg: "#2CB7A722", text: "#2CB7A7" },
     success: { bg: T.success + "22", text: T.success },
     danger: { bg: T.rose + "22", text: T.rose },
     muted: { bg: "#060410", text: T.textMuted },

@@ -4,8 +4,8 @@ import { Btn, Card, Pill, WaveForm, LockCard, Label, EmptyState } from "../compo
 import { AUDIOS, PROOF_THREADS } from "../data/sample.js";
 
 const CAT_COLOR = {
-  Money: "#B76E79", Beauty: "#B76E79", Love: "#B76E79",
-  Identity: "#d8c8a0", Sleep: "#6a8ad0", Body: "#B76E79",
+  Money: "#2CB7A7", Beauty: "#2CB7A7", Love: "#2CB7A7",
+  Identity: "#d8c8a0", Sleep: "#6a8ad0", Body: "#2CB7A7",
 };
 
 const FORMAT_SHORT = {
@@ -19,10 +19,10 @@ const FORMAT_SHORT = {
 
 function AccessBadge({ audio, userTier }) {
   const canAccess = !audio.isLocked || userTier === "goddess" || userTier === "founder";
-  if (userTier === "founder") return <span style={{ fontSize: 10, padding: "2px 8px", background: "#B76E7922", border: "1px solid #B76E7944", borderRadius: 20, color: "#B76E79", fontWeight: 700 }}>Founder</span>;
+  if (userTier === "founder") return <span style={{ fontSize: 10, padding: "2px 8px", background: "#2CB7A722", border: "1px solid #2CB7A744", borderRadius: 20, color: "#2CB7A7", fontWeight: 700 }}>Founder</span>;
   if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1e1c0a", border: "1px solid #a09070", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
-  if (audio.isLocked && canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#B76E7922", border: "1px solid #B76E7944", borderRadius: 20, color: "#B76E79", fontWeight: 700 }}>Goddess</span>;
-  return <span style={{ fontSize: 10, padding: "2px 8px", background: "#B76E7918", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79", fontWeight: 700 }}>Audio Tier</span>;
+  if (audio.isLocked && canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#2CB7A722", border: "1px solid #2CB7A744", borderRadius: 20, color: "#2CB7A7", fontWeight: 700 }}>Goddess</span>;
+  return <span style={{ fontSize: 10, padding: "2px 8px", background: "#2CB7A718", border: "1px solid #2CB7A733", borderRadius: 20, color: "#2CB7A7", fontWeight: 700 }}>Audio Tier</span>;
 }
 
 export default function AudioVault({ userTier, onCreateThread, onPlayAudio, playingId, onUpgrade }) {
@@ -56,7 +56,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
 
         {/* Header */}
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontSize: 11, color: "#B76E79", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 8 }}>Self Hypnosis Goddess</div>
+          <div style={{ fontSize: 11, color: "#2CB7A7", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 8 }}>Self Hypnosis Goddess</div>
           <h1 className="wm" style={{ fontSize: "clamp(28px,4vw,42px)", color: T.textPrimary, marginBottom: 8, lineHeight: 1.1 }}>Your Audio Vault</h1>
           <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.7, maxWidth: 520, marginBottom: 16 }}>
             Choose the audio you are working with. Link it to a Proof Thread. Capture what follows.
@@ -73,10 +73,10 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
         {/* Stats */}
         <div className="grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10, marginBottom: 20 }}>
           {[
-            { v: unlockedCount, l: "Audios Unlocked", c: "#B76E79" },
-            { v: totalThreads, l: "Active Intentions", c: "#B76E79" },
+            { v: unlockedCount, l: "Audios Unlocked", c: "#2CB7A7" },
+            { v: totalThreads, l: "Active Intentions", c: "#2CB7A7" },
             { v: totalManifested, l: "Manifested", c: "#4a9a5a" },
-            { v: "14d", l: "Listening Streak", c: "#B76E79" },
+            { v: "14d", l: "Listening Streak", c: "#2CB7A7" },
           ].map((s, i) => (
             <div key={i} style={{ background: "#060410", border: "1px solid #1e1c0a", borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
               <div style={{ fontSize: 24, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 4 }}>{s.v}</div>
@@ -96,9 +96,9 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
             {cats.map(c => (
               <button key={c} onClick={() => setFilter(c)} style={{
                 padding: "7px 14px", borderRadius: 20, minHeight: 36,
-                border: `1.5px solid ${filter === c ? "#B76E7988" : "#1e1c0a"}`,
-                background: filter === c ? "#B76E7918" : "transparent",
-                color: filter === c ? "#B76E79" : T.textMuted,
+                border: `1.5px solid ${filter === c ? "#2CB7A788" : "#1e1c0a"}`,
+                background: filter === c ? "#2CB7A718" : "transparent",
+                color: filter === c ? "#2CB7A7" : T.textMuted,
                 fontSize: 13, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
               }}>{c}</button>
             ))}
@@ -149,7 +149,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
   return (
     <div onClick={onSelect} style={{
       background: isSelected ? "#0f0b02" : "#060410",
-      border: `1px solid ${isSelected ? "#B76E7966" : "#1e1c0a"}`,
+      border: `1px solid ${isSelected ? "#2CB7A766" : "#1e1c0a"}`,
       borderRadius: 14, padding: "16px 18px", cursor: "pointer",
       transition: "border-color 0.2s",
       opacity: a.isLocked && !canPlay ? 0.65 : 1,
@@ -178,7 +178,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
       {/* Row 3 — proof stats */}
       {(linked.length > 0 || a.manifestedCount > 0) && (
         <div style={{ display: "flex", gap: 14, marginBottom: 12, flexWrap: "wrap" }}>
-          {linked.length > 0 && <span style={{ fontSize: 12, color: "#B76E79" }}>🧵 {linked.length} intention{linked.length !== 1 ? "s" : ""}</span>}
+          {linked.length > 0 && <span style={{ fontSize: 12, color: "#2CB7A7" }}>🧵 {linked.length} intention{linked.length !== 1 ? "s" : ""}</span>}
           {a.manifestedCount > 0 && <span style={{ fontSize: 12, color: "#4a9a5a" }}>✦ {a.manifestedCount} manifested</span>}
           {a.lastProofAt && <span style={{ fontSize: 12, color: T.textFaint }}>Last proof {a.lastProofAt}</span>}
         </div>
@@ -194,10 +194,10 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
           <div style={{ display: "flex", gap: 2, alignItems: "center" }}>
             {[6, 14, 20, 10, 16].map((h, j) => (
-              <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "#B76E79", opacity: 0.8 }} />
+              <div key={j} style={{ width: 2, height: h, borderRadius: 1, background: "#2CB7A7", opacity: 0.8 }} />
             ))}
           </div>
-          <span style={{ fontSize: 12, color: "#B76E79", fontWeight: 600 }}>Now playing</span>
+          <span style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 600 }}>Now playing</span>
         </div>
       )}
 
@@ -286,7 +286,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {linked.map(t => {
-              const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#B76E79" : T.textMuted;
+              const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#2CB7A7" : T.textMuted;
               return (
                 <div key={t.id} style={{ background: "#060410", border: "1px solid #1e1c0a", borderRadius: 10, padding: "12px 14px" }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: T.textPrimary, marginBottom: 6, lineHeight: 1.35 }}>{t.intentionTitle}</div>
@@ -300,7 +300,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 4 }}>
                       <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textFaint }}>{t.mood_before}</span>
                       <span style={{ fontSize: 10, color: T.textFaint }}>→</span>
-                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#B76E7918", border: "1px solid #B76E7933", borderRadius: 20, color: "#B76E79" }}>{t.mood_after}</span>
+                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#2CB7A718", border: "1px solid #2CB7A733", borderRadius: 20, color: "#2CB7A7" }}>{t.mood_after}</span>
                     </div>
                   )}
                 </div>

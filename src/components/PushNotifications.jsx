@@ -144,7 +144,7 @@ export function PushPromptBanner({ userId, C, onDismiss }) {
   return (
     <div style={{
       margin: "0 16px 16px", padding: "14px 16px", borderRadius: 14,
-      background: "#0a0a0a", border: "1px solid rgba(232,168,96,0.3)",
+      background: "#0a0a0a", border: "1px solid rgba(200,134,10,0.3)",
       display: "flex", alignItems: "center", gap: 12,
     }}>
       <span style={{ fontSize: 22, flexShrink: 0 }}>🔔</span>
@@ -165,7 +165,7 @@ export function PushPromptBanner({ userId, C, onDismiss }) {
           onClick={subscribe}
           disabled={loading}
           style={{
-            background: "linear-gradient(135deg,#e8b870,#e8a860)", border: "none", borderRadius: 8,
+            background: "linear-gradient(135deg,#C8860A,#e8a860)", border: "none", borderRadius: 8,
             padding: "7px 14px", fontSize: 12, fontWeight: 700, color: "#000", cursor: "pointer",
           }}
         >

@@ -1,13 +1,13 @@
 /* ProofWallScreenshot — phone showing ProofOS tracker */
 
-const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(232,184,112,0.10)", cr:"#f5e0a0", mu:"#c8a870", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
-const LIGHT = { bg:"#fdf8f2", bg2:"#ffffff", bg3:"rgba(232,168,96,0.10)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", nav:"rgba(253,248,242,0.97)" };
+const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(200,134,10,0.10)", cr:"#E8A030", mu:"#c8a870", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
+const LIGHT = { bg:"#fdf8f2", bg2:"#ffffff", bg3:"rgba(200,134,10,0.10)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", nav:"rgba(253,248,242,0.97)" };
 const R="#e8a860", P="#c9963a";
 const OMBRE="linear-gradient(135deg,#fce4c0 0%,#e8a860 50%,#c9963a 100%)";
 
 const THREADS = [
   { desire:"He texts me first", cat:"Lovemaxxing", catColor:"#d4789a", catBg:"rgba(212,120,154,0.12)", days:14, done:true, signs:3, track:"He Finds His Way Back" },
-  { desire:"£1,800 received. Paid by client.", cat:"Moneymaxxing", catColor:"#e8a860", catBg:"rgba(232,168,96,0.12)", days:6, done:false, signs:2, track:"Money Finds Me First" },
+  { desire:"£1,800 received. Paid by client.", cat:"Moneymaxxing", catColor:"#e8a860", catBg:"rgba(200,134,10,0.12)", days:6, done:false, signs:2, track:"Money Finds Me First" },
   { desire:"My skin is glowing", cat:"Beautymaxxing", catColor:"#c4856a", catBg:"rgba(196,133,106,0.12)", days:3, done:false, signs:1, track:"Gorgeous Is My Default" },
   { desire:"I am a lucky girl", cat:"Luckygirlmaxxing", catColor:"#9b87c4", catBg:"rgba(155,135,196,0.12)", days:7, done:true, signs:4, track:"Lucky Girl Summer" },
 ];
@@ -38,7 +38,7 @@ export default function ProofWallScreenshot({ width=260, theme="light" }) {
   return (
     <div style={{ width, height:h, background:C.bg, borderRadius:r24, overflow:"hidden",
       fontFamily:"'Jost',sans-serif", color:C.cr, position:"relative", flexShrink:0,
-      boxShadow:`0 ${Math.round(24*s)}px ${Math.round(60*s)}px rgba(0,0,0,0.3), 0 0 0 ${Math.round(1*s)}px rgba(232,168,96,0.3)` }}>
+      boxShadow:`0 ${Math.round(24*s)}px ${Math.round(60*s)}px rgba(0,0,0,0.3), 0 0 0 ${Math.round(1*s)}px rgba(200,134,10,0.3)` }}>
 
       {/* STATUS BAR */}
       <div style={{ height:Math.round(38*s), display:"flex", alignItems:"flex-end", justifyContent:"space-between", padding:`0 ${pad}px ${Math.round(6*s)}px` }}>

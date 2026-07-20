@@ -332,7 +332,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#F5E0A0,#E8A030,#BFA5D8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(232,184,112,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#F5E0A0,#E8A030,#BFA5D8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(200,134,10,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
@@ -355,9 +355,9 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(232,184,112,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#E8A030", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 40%,#BFA5D8 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(200,134,10,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#E8A030", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 40%,#BFA5D8 100%)", ctaColor: "#000" },
     { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#E8A030", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(232,184,112,0.35)", nameColor: "#F5E0A0", muteColor: "#E8A030", priceColor: "#F5E0A0", periodColor: "#E8A030", featureColor: "#e8dcc8", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(200,134,10,0.35)", nameColor: "#F5E0A0", muteColor: "#E8A030", priceColor: "#F5E0A0", periodColor: "#E8A030", featureColor: "#e8dcc8", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000" },
   ];
 
   return (
@@ -468,20 +468,20 @@ function AppPreviewSection({ isMobile }) {
   function DesktopPanel() {
     if (view === "dashboard") return <DesktopMockup theme={theme} width={460}/>;
     if (view === "proof") return (
-      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.15)" }}>
+      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(200,134,10,0.15)" }}>
         <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
           <div style={{ fontSize:13, color:theme==="dark"?"#E8A030":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
-              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.08)":"rgba(44,183,167,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+              <div key={i} style={{ background:theme==="dark"?"rgba(200,134,10,0.08)":"rgba(44,183,167,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
                 <div style={{ fontSize:22, color:theme==="dark"?"#E8A030":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
                 <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.14)":"rgba(44,183,167,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(200,134,10,0.14)":"rgba(44,183,167,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(200,134,10,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
               <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
             <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
@@ -492,9 +492,9 @@ function AppPreviewSection({ isMobile }) {
               ))}
             </div>
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.1)":"rgba(44,183,167,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(200,134,10,0.1)":"rgba(44,183,167,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(200,134,10,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
               <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
             </div>
             <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>

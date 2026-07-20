@@ -1,7 +1,7 @@
 /* KnowledgeGuide — comprehensive listening guide covering every question */
 import { useState } from "react";
 
-const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+const OMBRE = "linear-gradient(135deg,#E8A030 0%,#C8860A 22%,#BFA5D8 48%,#167A6B 72%,#2CB7A7 100%)";
 
 const SECTIONS = [
   { k:"formula", icon:"◈", title:"The formula in every SHG audio",
@@ -123,7 +123,7 @@ export default function KnowledgeGuide({ onClose, C }) {
   const bg2 = isDark ? "#111111" : "#ffffff";
   const cr = isDark ? "#f2ece4" : "#1a1008";
   const mu = isDark ? "#9a8878" : "#8a6840";
-  const border = isDark ? "rgba(232,168,96,0.15)" : "rgba(180,104,48,0.18)";
+  const border = isDark ? "rgba(200,134,10,0.15)" : "rgba(180,104,48,0.18)";
 
   const visibleSections = SECTIONS.filter(s =>
     CATEGORIES.find(c => c.label === cat)?.keys.includes(s.k)
@@ -165,7 +165,7 @@ export default function KnowledgeGuide({ onClose, C }) {
         <div style={{ padding:"12px 16px 24px" }}>
           {visibleSections.map(s=>(
             <div key={s.k} style={{ marginBottom:6, border:`1px solid ${border}`, borderRadius:12,
-              overflow:"hidden", background:open===s.k?`rgba(232,168,96,0.06)`:bg2 }}>
+              overflow:"hidden", background:open===s.k?`rgba(200,134,10,0.06)`:bg2 }}>
               <button onClick={()=>setOpen(open===s.k?null:s.k)}
                 style={{ width:"100%", padding:"13px 14px", background:"none", border:"none", cursor:"pointer",
                   display:"flex", alignItems:"center", justifyContent:"space-between", gap:10, fontFamily:"'Jost',sans-serif" }}>

@@ -101,7 +101,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
             onDragOver={e => e.preventDefault()}
             onClick={() => inputRef.current?.click()}
             style={{
-              border: `2px dashed ${preview ? "#B76E7966" : "#1e1c0a"}`,
+              border: `2px dashed ${preview ? "#2CB7A766" : "#1e1c0a"}`,
               borderRadius: 14, padding: preview ? 8 : "36px 20px",
               textAlign: "center", cursor: "pointer", marginBottom: 16,
               background: preview ? "#060410" : "#040208",
@@ -143,7 +143,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
             />
           </FormField>
 
-          {error && <div style={{ fontSize: 13, color: "#B76E79", marginBottom: 12, padding: "8px 12px", background: "#C8956A11", borderRadius: 8 }}>{error}</div>}
+          {error && <div style={{ fontSize: 13, color: "#2CB7A7", marginBottom: 12, padding: "8px 12px", background: "#C8956A11", borderRadius: 8 }}>{error}</div>}
 
           <div style={{ display: "flex", gap: 10 }}>
             <Btn full variant="champagne" onClick={save} disabled={uploading || !file}>
@@ -309,7 +309,7 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
                     }} />
                   ))}
                 </div>
-                <div style={{ fontSize: 28, fontWeight: 800, color: "#B76E79", marginBottom: 4, letterSpacing: "0.05em" }}>{fmt(duration)}</div>
+                <div style={{ fontSize: 28, fontWeight: 800, color: "#2CB7A7", marginBottom: 4, letterSpacing: "0.05em" }}>{fmt(duration)}</div>
                 <div style={{ fontSize: 12, color: T.textMuted, marginBottom: 20 }}>Recording…</div>
                 <Btn variant="ghost" onClick={stopRecording}>⏹ Stop</Btn>
               </>
@@ -317,7 +317,7 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
 
             {(state === "recorded" || state === "uploading") && audioUrl && (
               <>
-                <div style={{ fontSize: 13, color: "#B76E79", fontWeight: 700, marginBottom: 12 }}>🎙 Recording — {fmt(duration)}</div>
+                <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 700, marginBottom: 12 }}>🎙 Recording — {fmt(duration)}</div>
                 <audio controls src={audioUrl} style={{ width: "100%", marginBottom: 16, borderRadius: 8 }} />
                 <button onClick={reset} style={{ background: "none", border: "none", color: T.textMuted, fontSize: 12, cursor: "pointer" }}>✕ Discard and re-record</button>
               </>
@@ -334,7 +334,7 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
             </FormField>
           )}
 
-          {error && <div style={{ fontSize: 13, color: "#B76E79", marginBottom: 12, padding: "8px 12px", background: "#C8956A11", borderRadius: 8 }}>{error}</div>}
+          {error && <div style={{ fontSize: 13, color: "#2CB7A7", marginBottom: 12, padding: "8px 12px", background: "#C8956A11", borderRadius: 8 }}>{error}</div>}
 
           {(state === "recorded" || state === "uploading") && (
             <div style={{ display: "flex", gap: 10 }}>

@@ -1,11 +1,11 @@
 /* About page — Reshma Oracle */
 import { useState, useEffect } from "react";
 
-const GOLD = "#e8b870";
+const GOLD = "#C8860A";
 const CR = "#f2ece4";
 const MU = "#9a8878";
-const ROSE = "#B76E79";
-const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+const ROSE = "#2CB7A7";
+const OMBRE = "linear-gradient(135deg,#E8A030 0%,#C8860A 22%,#BFA5D8 48%,#167A6B 72%,#2CB7A7 100%)";
 
 export default function About({ onBack }) {
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth <= 768);
@@ -27,8 +27,8 @@ export default function About({ onBack }) {
         <div style={{ width: isMobile?140:180, height: isMobile?140:180, borderRadius:"50%", margin:"0 auto 28px", background:OMBRE, display:"flex", alignItems:"center", justifyContent:"center", position:"relative" }}>
           <div style={{ width:"92%", height:"92%", borderRadius:"50%", background:"#000", display:"flex", alignItems:"center", justifyContent:"center" }}>
             <svg width="24" height="24" viewBox="0 0 100 100">
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="5" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="5" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#C8860A" strokeWidth="5" strokeLinecap="round"/>
             </svg>
           </div>
         </div>
@@ -55,10 +55,10 @@ export default function About({ onBack }) {
               (old unlucky/stuck version vs current lucky/manifesting version). Swap this
               block for the real illustration once it's ready. */}
           <div style={{ display:"flex", gap:16, margin:"36px 0", justifyContent:"center", flexWrap:"wrap" }}>
-            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(232,168,96,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
+            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(200,134,10,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
               <span style={{ fontSize:12, color:MU, lineHeight:1.6 }}>Old self — image coming soon</span>
             </div>
-            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(232,168,96,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
+            <div style={{ flex:"1 1 200px", maxWidth:260, aspectRatio:"4/5", border:"1px dashed rgba(200,134,10,0.35)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", padding:20, textAlign:"center" }}>
               <span style={{ fontSize:12, color:MU, lineHeight:1.6 }}>Current self — image coming soon</span>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function About({ onBack }) {
           </p>
         </div>
 
-        <div style={{ marginTop:56, paddingTop:32, borderTop:"1px solid rgba(232,168,96,0.15)", textAlign:"center" }}>
+        <div style={{ marginTop:56, paddingTop:32, borderTop:"1px solid rgba(200,134,10,0.15)", textAlign:"center" }}>
           <div style={{ fontSize:11, color:MU, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:16 }}>Find me elsewhere</div>
           <div style={{ fontSize:14, color:GOLD }}>
             YouTube link coming soon

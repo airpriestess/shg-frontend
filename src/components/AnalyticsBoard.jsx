@@ -6,7 +6,7 @@ const OMBRE = "linear-gradient(110deg,#C8860A 0%,#E8A030 20%,#BFA5D8 52%,#2CB7A7
 
 const PALETTES = {
   dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#9a8878", dim:"#5a4a40", border:"rgba(44,183,167,0.12)", track:"rgba(44,183,167,0.08)" },
-  light: { card:"#fdf8f2", card2:"rgba(232,168,96,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(44,183,167,0.18)", track:"rgba(44,183,167,0.12)" },
+  light: { card:"#fdf8f2", card2:"rgba(200,134,10,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(44,183,167,0.18)", track:"rgba(44,183,167,0.12)" },
 };
 
 export const DEMO_ANALYTICS = {
@@ -37,10 +37,10 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
 
       {/* Header */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:14 }}>
-        <span style={{ fontSize:14*fs, fontWeight:400, color:"#B76E79", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your analytics ✦</span>
+        <span style={{ fontSize:14*fs, fontWeight:400, color:"#2CB7A7", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your analytics ✦</span>
         <span style={{ fontSize:12*fs, fontWeight:400, padding:"4px 12px", background:OMBRE, backgroundSize:"100%", borderRadius:20, color:BLACK, animation:"abFlash 2.2s ease-in-out infinite" }}>{streakDays}-day streak</span>
       </div>
-      <div style={{ fontSize:16*fs, fontWeight:400, color:C.text, marginBottom:14 }}>{manifested} of {total} intentions manifested <span style={{ color:"#B76E79" }}>✦</span></div>
+      <div style={{ fontSize:16*fs, fontWeight:400, color:C.text, marginBottom:14 }}>{manifested} of {total} intentions manifested <span style={{ color:"#2CB7A7" }}>✦</span></div>
 
       {/* Stat tiles */}
       <div style={{ display:"grid", gridTemplateColumns: compact ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>
@@ -88,7 +88,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
             <span key={i} style={{ fontSize:12*fs, fontWeight:400, padding:"4px 10px", borderRadius:20, background:C.card2, color:C.text, border:`1px solid ${color}44` }}>{name} · {n}</span>
           ))}
         </div>
-        {onViewProof && <span onClick={onViewProof} style={{ fontSize:13*fs, color:"#B76E79", fontWeight:400, cursor:"pointer", textDecoration:"underline", whiteSpace:"nowrap", display:"inline-flex", alignItems:"center", gap:4 }}>View proof wall<ArrowIcon size={10}/></span>}
+        {onViewProof && <span onClick={onViewProof} style={{ fontSize:13*fs, color:"#2CB7A7", fontWeight:400, cursor:"pointer", textDecoration:"underline", whiteSpace:"nowrap", display:"inline-flex", alignItems:"center", gap:4 }}>View proof wall<ArrowIcon size={10}/></span>}
       </div>
     </div>
   );

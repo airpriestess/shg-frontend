@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
-const R = "#B76E79", P = "#d4a090", CH = "#e8b870";
+const R = "#2CB7A7", P = "#BFA5D8", CH = "#C8860A";
 
 export default function AuthGate({ onSuccess }) {
   const { signIn, signUp, resetPassword } = useAuth();
@@ -37,7 +37,7 @@ export default function AuthGate({ onSuccess }) {
 
   const inputStyle = {
     width: "100%", padding: "12px 16px", background: "#0a0700",
-    border: `1px solid ${error ? "#c84040" : "rgba(183,110,121,0.25)"}`,
+    border: `1px solid ${error ? "#c84040" : "rgba(44,183,167,0.25)"}`,
     borderRadius: 10, color: "#f2ece4", fontSize: 14, fontFamily: "'Jost',sans-serif",
     outline: "none", marginBottom: 12,
   };

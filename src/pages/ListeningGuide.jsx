@@ -1,7 +1,7 @@
 import { T } from "../design/tokens.js";
 
-const RG = "#B76E79";
-const G = "linear-gradient(90deg,#d4a090,#B76E79)";
+const RG = "#2CB7A7";
+const G = "linear-gradient(90deg,#BFA5D8,#2CB7A7)";
 
 const SECTIONS = [
   {
@@ -78,7 +78,7 @@ export default function ListeningGuide() {
           <p style={{ fontSize: 18, color: T.textMuted, lineHeight: 1.85, maxWidth: 580 }}>
             Everything you need to listen effectively, build your Proof Thread, and shift into the identity where your desires are already real.
           </p>
-          <div style={{ height: 1, background: "linear-gradient(90deg,#B76E7944,transparent)", marginTop: 32 }} />
+          <div style={{ height: 1, background: "linear-gradient(90deg,#2CB7A744,transparent)", marginTop: 32 }} />
         </div>
 
         {/* Sections */}
@@ -89,11 +89,11 @@ export default function ListeningGuide() {
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {section.content.map((item, ii) => (
-                <div key={ii} style={{ borderLeft: `2px solid ${ii === 0 ? "#B76E79" : "#1c1828"}`, paddingLeft: 24, paddingBottom: 28, marginLeft: 8, transition: "border-color 0.2s" }}
-                  onMouseEnter={e => e.currentTarget.style.borderLeftColor = "#B76E79"}
-                  onMouseLeave={e => e.currentTarget.style.borderLeftColor = ii === 0 ? "#B76E79" : "#1c1828"}
+                <div key={ii} style={{ borderLeft: `2px solid ${ii === 0 ? "#2CB7A7" : "#1c1828"}`, paddingLeft: 24, paddingBottom: 28, marginLeft: 8, transition: "border-color 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.borderLeftColor = "#2CB7A7"}
+                  onMouseLeave={e => e.currentTarget.style.borderLeftColor = ii === 0 ? "#2CB7A7" : "#1c1828"}
                 >
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#B76E79", marginLeft: -29, marginBottom: 12, position: "relative", zIndex: 1 }} />
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#2CB7A7", marginLeft: -29, marginBottom: 12, position: "relative", zIndex: 1 }} />
                   <div style={{ fontSize: 16, fontWeight: 700, color: T.textPrimary, marginBottom: 10, lineHeight: 1.3 }}>{item.title}</div>
                   <div style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.85 }}>{item.body}</div>
                 </div>
@@ -103,7 +103,7 @@ export default function ListeningGuide() {
         ))}
 
         {/* Footer note */}
-        <div style={{ background: "#000000", border: "1px solid #B76E7933", borderRadius: 16, padding: "28px 32px", textAlign: "center" }}>
+        <div style={{ background: "#000000", border: "1px solid #2CB7A733", borderRadius: 16, padding: "28px 32px", textAlign: "center" }}>
           <div className="wm" style={{ fontSize: 28, background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 12 }}>
             This guide is always here.
           </div>
