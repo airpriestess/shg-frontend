@@ -1375,6 +1375,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             Theta is the secret door.
           </div>
 
+          {/* BRAIN HEMI-SYNC VISUAL */}
+          <div style={{ display:"flex", justifyContent:"center", margin: isMobile?"24px 0 28px":"36px 0 40px" }}>
+            <img src="/brain_hemisync.svg" alt="Left and right hemispheres syncing into theta" style={{ width: isMobile?"100%":700, maxWidth:"100%", height:"auto", opacity:0.95 }}/>
+          </div>
+
           <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             It's impossible to actually reprogram your beliefs while you're in beta state — your normal, wide-awake conscious mind. Beta is where you argue, filter, and resist anything new. That's why we need to get you into theta state instead — the state where reprogramming actually happens.
           </p>
@@ -1387,6 +1392,29 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?16:19, color:"#2AA89A", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:400 }}>
             That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. First, we change your assumption — not just a passing thought, but the hard-coded belief you've carried your whole life. Then your thoughts change. Then your feelings change. Then your actions change. Then your opportunities change. Then your reality changes. And all you did was press play.
           </p>
+
+          {/* BRUCE LIPTON CALLOUT */}
+          <div style={{ maxWidth:640, margin: isMobile?"28px auto":"36px auto", padding: isMobile?"20px":"24px 32px", background:"rgba(191,165,216,0.06)", border:"1px solid rgba(191,165,216,0.2)", borderRadius:16, textAlign:"left" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The science — Bruce Lipton, Biology of Belief</div>
+            <p style={{ fontSize: isMobile?15:17, color:"#e8e0d8", lineHeight:1.8, margin:0, fontFamily:"'Jost',sans-serif" }}>Children under 7 live almost entirely in theta — which is why everything they observe downloads directly as belief, without the conscious mind arguing back. That's how you got your original programming. The same window reopens every night as you drift to sleep, and again as you rise. That is when SHG works best.</p>
+          </div>
+
+          {/* WHEN TO LISTEN */}
+          <div style={{ maxWidth:640, margin:"0 auto" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>When to listen</div>
+            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:12 }}>
+              {[
+                { time:"As you fall asleep", desc:"Your brain crosses naturally from alpha into theta. Put the track on. Let it install while your conscious mind switches off.", color:"#BFA5D8" },
+                { time:"As you wake up", desc:"You rise back through theta before beta kicks in. Lie still. Don't check your phone. Press play instead.", color:"#F5E0A0" },
+                { time:"Any time", desc:"At the gym, on your walk, during your commute. Repetition builds the groove. You don't have to be in theta for it to accumulate.", color:"#2CB7A7" },
+              ].map((t,i)=>(
+                <div key={i} style={{ padding:"18px 16px", background:"rgba(255,255,255,0.03)", border:`1px solid ${t.color}30`, borderRadius:14 }}>
+                  <div style={{ fontSize:13, fontWeight:500, color:t.color, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{t.time}</div>
+                  <div style={{ fontSize: isMobile?13:14, color:"#c8bcb0", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{t.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
