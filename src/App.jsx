@@ -1510,7 +1510,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
                   { label:"Melodic House",  sub:"Reshma's voice beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#C8960A", dot:"#C8960A" },
-                  { label:"Melodic Calm",   sub:"Slower, softer layers for winding down. Same encoding delivered at the pace your nervous system needs at night.", color:"#E8B870", dot:"#E8B870" },
+                  { label:"Sleep & Rest",   sub:"Calm background music — ambient, soft, and continuous. Designed for sleep, rest, or anytime you need to switch off without switching it off.", color:"#E8B870", dot:"#E8B870" },
                   { label:"Subliminal",     sub:"No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day.", color:"#BFA5D8", dot:"#BFA5D8" },
                   { label:"EMDR Hypnosis",  sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#2CB7A7", dot:"#2CB7A7" },
                   { label:"Binaural Beats", sub:"Two different tones, one per ear, syncing both hemispheres into theta — layered with Solfeggio frequencies.", color:"#167A6B", dot:"#167A6B" },

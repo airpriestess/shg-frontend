@@ -205,7 +205,7 @@ const TRACKS = [
   { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Moneymaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to hustle for every pound, into feeling like money is already looking for you.",
       benefits:["Loosen the grip of financial anxiety","Notice unexpected income without shock","Build the identity of someone money flows toward"] } },
-  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleepmaxxing", format:"Melodic Calm",  tier:"audio",   isNew:false, hasAudio:false,
+  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleepmaxxing", format:"Sleep & Rest",  tier:"audio",   isNew:false, hasAudio:false,
     desc:{ shift:"This shifts you from feeling like manifestation requires constant conscious effort, into feeling like your reality can rebuild itself while you're unconscious.",
       benefits:["Turn sleep into productive reprogramming time","Reduce the pressure to 'do the work' every waking hour","Wake up already closer to who you're becoming"] } },
   { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beautymaxxing", format:"528hz",         tier:"audio",   isNew:false, hasAudio:false },
