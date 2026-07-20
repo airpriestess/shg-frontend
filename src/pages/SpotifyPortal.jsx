@@ -22,7 +22,7 @@ const HAWKINS = [
   {n:"Acceptance",  v:350, c:"#2980b9"}, // deeper blue
   {n:"Reason",      v:400, c:"#9b59b6"}, // purple
   {n:"Love",        v:500, c:"#F0B8C8"},
-  {n:"Joy",         v:540, c:"#2CB7A7"},
+  {n:"Joy",         v:540, c:"#F5E0A0"},
   {n:"Peace",       v:600, c:"#000000"}, // cream-white
   {n:"Enlightenment",v:700,c:"#ffffff"}, // pure white
 ];
@@ -90,30 +90,30 @@ const IMGS = {
 };
 
 const CAT_ICONS = {
-  Lovemaxxing: { accent:"#167A6B", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
-  Beautymaxxing: { accent:"#2CB7A7", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
-  Facemaxxing: { accent:"#2CB7A7", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Lovemaxxing: { accent:"#F0B8C8", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
+  Beautymaxxing: { accent:"#F2C4CE", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
+  Facemaxxing: { accent:"#E8B870", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Bodymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#2CB7A7", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Moneymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Businessmaxxing: { accent:"#2CB7A7", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Moneymaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Businessmaxxing: { accent:"#5B8DB8", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Careermaxxing: { accent:"#2CB7A7", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#5B8DB8", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
-  Selfmaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
-  Erosmaxxing: { accent:"#167A6B", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
-  Singlemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
+  Selfmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
+  Erosmaxxing: { accent:"#F0B8C8", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
+  Singlemaxxing: { accent:"#F2C4CE", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
   Wellnessmaxxing: { accent:"#e0c090", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
-  Sleepmaxxing: { accent:"#2CB7A7", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
-  Studymaxxing: { accent:"#2CB7A7", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
+  Sleepmaxxing: { accent:"#5B8DB8", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
+  Studymaxxing: { accent:"#5B8DB8", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
   Friendmaxxing: { accent:"#2CB7A7", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Peacemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
-  Confidencemaxxing: { accent:"#2CB7A7", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
+  Confidencemaxxing: { accent:"#E8B870", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
   Stylemaxxing: { accent:"#e0c090", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
-  Healmaxxing: { accent:"#167A6B", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
-  Intuitionmaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
-  Lifemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Healmaxxing: { accent:"#F0B8C8", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
+  Intuitionmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
+  Lifemaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Luckygirlmaxxing: { accent:"#2CB7A7", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
-  Sovereignmaxxing: { accent:"#2CB7A7", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
+  Sovereignmaxxing: { accent:"#BFA5D8", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
 };
 
 function Thumb({ title, cat, size=48, radius=4 }) {
@@ -733,7 +733,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #2CB7A7":"2px solid transparent",color:tab===n.id?"#2CB7A7":n.id==="proof"?"#2CB7A7":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #BFA5D8":"2px solid transparent",color:tab===n.id?"#E8B870":n.id==="proof"?"#2CB7A7":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
               onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#2CB7A7":C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
@@ -817,8 +817,14 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           <line x1="50" y1="80" x2="50" y2="96" stroke="url(#portallg)" strokeWidth="5" strokeLinecap="round"/>
         </svg>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
-          <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{C.cr==="#ffffff"?"☀️":"🌙"}</button>
-          <button onClick={()=>setProfileOpen(true)} style={{ width:34,height:34,borderRadius:"50%",background:OMBRE,border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>R</button>
+          <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
+          <button onClick={()=>setProfileOpen(true)} style={{
+            width:34,height:34,borderRadius:"50%",
+            background:OMBRE,border:"none",
+            display:"flex",alignItems:"center",justifyContent:"center",
+            fontSize:14,fontWeight:400,color:"#000",
+            cursor:"pointer",WebkitTapHighlightColor:"transparent"
+          }}>R</button>
         </div>
       </div>
       {/* Screen */}
@@ -846,8 +852,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
-              <n.I a={tab===n.id} c={tab===n.id?"#2CB7A7":C.dim}/>
-              <span style={{ fontSize:9,fontWeight:400,color:tab===n.id?"#2CB7A7":C.dim }}>{n.label}</span>
+              <n.I a={tab===n.id} c={tab===n.id?"#E8B870":C.dim}/>
+              <span style={{ fontSize:9,fontWeight:400,color:tab===n.id?"#E8B870":C.dim }}>{n.label}</span>
             </button>
           ))}
         </div>
@@ -889,13 +895,13 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:32,fontWeight:400,color:"#f5f0e8",marginBottom:6 }}>{track.title}</div>
               <div style={{ fontSize:14,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
-              <div style={{ fontSize:12,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
+              <div style={{ fontSize:12,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
               <div style={{ fontSize:19,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
-              <div style={{ fontSize:12,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
+              <div style={{ fontSize:12,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#2CB7A7",fontSize:15,marginTop:2 }}>✦</span>
+                    <span style={{ color:"#E8B870",fontSize:15,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:16,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
                   </div>
                 ))}
@@ -976,13 +982,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           <div style={{ fontSize:13,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
           {(() => { const d = getDesc(track); return (
             <div style={{ width:"100%",paddingBottom:40 }}>
-              <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+              <div style={{ fontSize:11,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
               <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
-              <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+              <div style={{ fontSize:11,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#2CB7A7",fontSize:14,marginTop:2 }}>✦</span>
+                    <span style={{ color:"#E8B870",fontSize:14,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:15,lineHeight:1.6,color:C.cr }}>{b}</span>
                   </div>
                 ))}
@@ -1055,7 +1061,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ fontSize:11,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
           <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
             {isPreview?"Goddess":firstName}
-            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
+            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
               {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
             </span>
           </span>
@@ -1087,7 +1093,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             <div style={{ fontSize:14, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:11, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
           </span>
-          <span style={{ fontSize:18, color:"#2CB7A7" }}>›</span>
+          <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
         </button>
       </div>
 
@@ -1172,7 +1178,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:11, fontWeight:400, color:"#2CB7A7", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
+          <span style={{ fontSize:11, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
@@ -1215,7 +1221,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:12, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
           </span>
-          <span style={{ fontSize:20, color:"#2CB7A7", flexShrink:0 }}>›</span>
+          <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
         </button>
       </div>
     </div>

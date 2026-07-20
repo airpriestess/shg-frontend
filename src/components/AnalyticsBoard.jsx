@@ -72,7 +72,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
                 <span style={{ fontSize:11*fs, fontWeight:400, color:isToday?R:C.text }}>{v}</span>
                 <div style={{ position:"relative", width:"100%", maxWidth:24, height:"calc(100% - 22px)", display:"flex", alignItems:"flex-end" }}>
                   <div style={{ position:"absolute", inset:0, background:C.track, borderRadius:4 }}/>
-                  <div style={{ position:"relative", width:"100%", height:`${Math.max((v/maxW)*100,10)}%`, minHeight:6, background:isToday?OMBRE:R, opacity:isToday?1:0.65, backgroundSize:"200%", backgroundPosition:"left", borderRadius:4, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${isToday?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
+                  <div style={{ position:"relative", width:"100%", height:`${Math.max((v/maxW)*100,10)}%`, minHeight:6, background:isToday?OMBRE:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B","#5B8DB8","#F0B8C8"][i%7], opacity:isToday?1:0.75, backgroundSize:"200%", backgroundPosition:"left", borderRadius:4, transformOrigin:"bottom", animation:`abGrow .7s ease both ${i*0.09}s${isToday?", abPulse 1.7s ease-in-out infinite 1s":""}` }}/>
                 </div>
                 <span style={{ fontSize:11*fs, color:isToday?R:C.text, fontWeight:400 }}>{days[i]}</span>
               </div>
