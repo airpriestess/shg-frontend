@@ -83,7 +83,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
   const storagePct   = Math.round((USER.storageUsedMb / storageLimit) * 100);
 
   return (
-    <div style={{ height: "100%", overflowY: "auto", background: "linear-gradient(160deg,#fef0f8 0%,#fde4f0 30%,#f8eafc 60%,#fef0ec 100%)", color: "#1a0808" }} className="mob-pb">
+    <div style={{ height: "100%", overflowY: "auto", background: "linear-gradient(160deg,#fef0f8 0%,#fde4f0 30%,#f8eafc 60%,#fef0ec 100%)", color: "#0a0a0a" }} className="mob-pb">
       <div style={{ maxWidth: 880, margin: "0 auto", padding: "28px 24px" }}>
 
         {/* ── PAGE HEADER ── */}
@@ -124,7 +124,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                     <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 14 }}>
                       <div style={{ width: 52, height: 52, borderRadius: 10, background: `${RG}18`, border: `1px solid ${RG}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>🎧</div>
                       <div style={{ minWidth: 0 }}>
-                        <div style={{ fontSize: 14, fontWeight: 700, color: "#1a0808", marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
+                        <div style={{ fontSize: 14, fontWeight: 700, color: "#0a0a0a", marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
                         {currentThread && <div style={{ fontSize: 12, color: "#2CB7A7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>🧵 {currentThread.intentionTitle}</div>}
                       </div>
                     </div>
@@ -176,7 +176,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                   >
                     <div style={{ height: 68, background: `${RG}0e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, borderBottom: "1px solid rgba(44,183,167,0.2)" }}>{p.icon}</div>
                     <div style={{ padding: "10px 12px" }}>
-                      <div style={{ fontSize: 12, fontWeight: 300, color: "#1a0808", marginBottom: 2 }}>{p.label}</div>
+                      <div style={{ fontSize: 12, fontWeight: 300, color: "#0a0a0a", marginBottom: 2 }}>{p.label}</div>
                       <div style={{ fontSize: 11, color: "#5a3838", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.thread}</div>
                       <div style={{ fontSize: 10, color: "#181428" }}>{p.date}</div>
                     </div>
@@ -193,7 +193,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                   {manifested.map(t => (
                     <div key={t.id} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid #1a3a1a", borderRadius: 12, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 14, fontWeight: 600, color: "#1a0808", marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.intentionTitle}</div>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: "#0a0a0a", marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.intentionTitle}</div>
                         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
                           <span style={{ fontSize: 12, color: "#5a3838" }}>🎧 {t.linkedAudioTitle}</span>
                           <span style={{ fontSize: 12, color: "#5a3838" }}>{t.daysActive}d</span>
@@ -238,7 +238,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 15, fontWeight: 700, color: "#1a0808", marginBottom: 4, lineHeight: 1.3 }}>{t.intentionTitle}</div>
+                      <div style={{ fontSize: 15, fontWeight: 700, color: "#0a0a0a", marginBottom: 4, lineHeight: 1.3 }}>{t.intentionTitle}</div>
                       <div style={{ fontSize: 12, color: RG }}>🎧 {t.linkedAudioTitle}</div>
                     </div>
                     <div style={{ textAlign: "right", flexShrink: 0 }}>

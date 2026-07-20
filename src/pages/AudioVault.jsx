@@ -20,7 +20,7 @@ const FORMAT_SHORT = {
 function AccessBadge({ audio, userTier }) {
   const canAccess = !audio.isLocked || userTier === "goddess" || userTier === "founder";
   if (userTier === "founder") return <span style={{ fontSize: 10, padding: "2px 8px", background: "#2CB7A722", border: "1px solid #2CB7A744", borderRadius: 20, color: "#2CB7A7", fontWeight: 700 }}>Founder</span>;
-  if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1e1c0a", border: "1px solid #a09070", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
+  if (audio.isLocked && !canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#1a1a1a", border: "1px solid #2CB7A7", borderRadius: 20, color: T.textMuted, fontWeight: 700 }}>🔒 Goddess</span>;
   if (audio.isLocked && canAccess) return <span style={{ fontSize: 10, padding: "2px 8px", background: "#2CB7A722", border: "1px solid #2CB7A744", borderRadius: 20, color: "#2CB7A7", fontWeight: 700 }}>Goddess</span>;
   return <span style={{ fontSize: 10, padding: "2px 8px", background: "#2CB7A718", border: "1px solid #2CB7A733", borderRadius: 20, color: "#2CB7A7", fontWeight: 700 }}>Audio Tier</span>;
 }
@@ -96,7 +96,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
             {cats.map(c => (
               <button key={c} onClick={() => setFilter(c)} style={{
                 padding: "7px 14px", borderRadius: 20, minHeight: 36,
-                border: `1.5px solid ${filter === c ? "#2CB7A788" : "#1e1c0a"}`,
+                border: `1.5px solid ${filter === c ? "#2CB7A788" : "#1a1a1a"}`,
                 background: filter === c ? "#2CB7A718" : "transparent",
                 color: filter === c ? "#2CB7A7" : T.textMuted,
                 fontSize: 13, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
@@ -148,14 +148,14 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
 
   return (
     <div onClick={onSelect} style={{
-      background: isSelected ? "#0f0b02" : "#060410",
-      border: `1px solid ${isSelected ? "#2CB7A766" : "#1e1c0a"}`,
+      background: isSelected ? "#0a0a0a" : "#060410",
+      border: `1px solid ${isSelected ? "#2CB7A766" : "#1a1a1a"}`,
       borderRadius: 14, padding: "16px 18px", cursor: "pointer",
       transition: "border-color 0.2s",
       opacity: a.isLocked && !canPlay ? 0.65 : 1,
     }}
       onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#ddd0c8")}
-      onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1e1c0a")}
+      onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1a1a1a")}
     >
       {/* Row 1 — title + access badge */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
@@ -235,7 +235,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
           <span style={{ fontSize: 11, padding: "2px 8px", background: catCol + "22", border: `1px solid ${catCol}44`, borderRadius: 20, color: catCol, fontWeight: 700 }}>{a.category}</span>
           <AccessBadge audio={a} userTier={userTier} />
-          {a.frequency && <span style={{ fontSize: 11, padding: "2px 7px", background: "#1e1c0a", borderRadius: 20, color: T.textMuted }}>{a.frequency}</span>}
+          {a.frequency && <span style={{ fontSize: 11, padding: "2px 7px", background: "#1a1a1a", borderRadius: 20, color: T.textMuted }}>{a.frequency}</span>}
         </div>
 
         {/* Formats */}
@@ -244,7 +244,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
             <div style={{ fontSize: 11, color: T.textFaint, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6 }}>Ritual Type</div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {a.audioFormats.map((f, i) => (
-                <span key={i} style={{ fontSize: 12, padding: "3px 10px", background: "#0f0b02", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textMuted }}>{f}</span>
+                <span key={i} style={{ fontSize: 12, padding: "3px 10px", background: "#0a0a0a", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textMuted }}>{f}</span>
               ))}
             </div>
           </div>
@@ -271,7 +271,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
       </div>
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#1e1c0a", margin: "0 0 18px" }} />
+      <div style={{ height: 1, background: "#1a1a1a", margin: "0 0 18px" }} />
 
       {/* Linked proof threads */}
       <div>

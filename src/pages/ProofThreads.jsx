@@ -63,7 +63,7 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
       <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {statuses.map(s => (
-            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? "#2CB7A788" : "#1e1c0a"}`, background: filter === s ? "#2CB7A718" : "transparent", color: filter === s ? "#2CB7A7" : T.textMuted, fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
+            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? "#2CB7A788" : "#1a1a1a"}`, background: filter === s ? "#2CB7A718" : "transparent", color: filter === s ? "#2CB7A7" : T.textMuted, fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
           ))}
         </div>
         <select value={sort} onChange={e => setSort(e.target.value)} style={{ maxWidth: 180 }}>
@@ -207,7 +207,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
               {/* Timeline line */}
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 16, flexShrink: 0 }}>
                 <div style={{ width: 36, height: 36, borderRadius: "50%", background: e.isFinal ? `linear-gradient(135deg, ${T.success}, ${T.gold})` : "#0f0b01", border: `2px solid ${e.isFinal ? T.success : "#ddd0c8"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0, zIndex: 1 }}>{TYPE_ICON[e.type] || "·"}</div>
-                {idx < (t.entries || []).length - 1 && <div style={{ width: 1, flex: 1, background: "#1e1c0a", minHeight: 20, margin: "4px 0" }} />}
+                {idx < (t.entries || []).length - 1 && <div style={{ width: 1, flex: 1, background: "#1a1a1a", minHeight: 20, margin: "4px 0" }} />}
               </div>
               {/* Entry card */}
               <Card onClick={() => setExpandedEntry(expandedEntry === e.id ? null : e.id)} style={{ flex: 1, padding: "14px 16px", marginBottom: 10, cursor: "pointer", background: e.isFinal ? "linear-gradient(135deg, rgba(141,175,122,0.1), #140f04)" : "#060410", border: e.isFinal ? "1px solid rgba(141,175,122,0.25)" : "1px solid #1e1c0a" }}>
@@ -269,7 +269,7 @@ function PhotoProofForm({ threadId, onClose }) {
   const proofStages = ["Before Manifestation", "Evidence Appearing", "Final Proof", "After Manifestation"];
   return (
     <div>
-      <div style={{ border: "2px dashed #a09070", borderRadius: 12, padding: "28px 20px", textAlign: "center", marginBottom: 16, cursor: "pointer", background: "#040208" }}
+      <div style={{ border: "2px dashed #2CB7A7", borderRadius: 12, padding: "28px 20px", textAlign: "center", marginBottom: 16, cursor: "pointer", background: "#040208" }}
         onClick={() => document.getElementById("photo-upload").click()}>
         <input id="photo-upload" type="file" accept=".jpg,.jpeg,.png,.webp,.heic" style={{ display: "none" }} onChange={e => setFile(e.target.files[0])} />
         {file ? <div style={{ color: T.success, fontSize: 14, fontWeight: 600 }}>📷 {file.name}</div> : <div><div style={{ fontSize: 28, marginBottom: 8 }}>📷</div><div style={{ fontSize: 14, color: T.textMuted }}>Tap to upload photo proof</div><div style={{ fontSize: 12, color: "#ddd0c8", marginTop: 4 }}>JPG · PNG · WEBP · HEIC</div></div>}

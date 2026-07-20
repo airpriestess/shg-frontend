@@ -16,7 +16,7 @@ const HAWKINS = [
   {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
   {n:"Anger",       v:150, c:"#e67e22"}, // orange
   {n:"Pride",       v:175, c:"#f1c40f"}, // yellow
-  {n:"Courage",     v:200, c:"#2ecc71"}, // green — the line
+  {n:"Courage",     v:200, c:"#2CB7A7"}, // green — the line
   {n:"Neutrality",  v:250, c:"#1abc9c"}, // teal-green
   {n:"Willingness", v:310, c:"#3498db"}, // sky blue
   {n:"Acceptance",  v:350, c:"#2980b9"}, // deeper blue
@@ -58,8 +58,8 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#9a8878", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
-  light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(44,183,167,0.12)", bg4:"rgba(44,183,167,0.22)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)", inputBg:"rgba(180,104,48,0.08)", inputCr:"#1a1008" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#7a9a98", dim:"#e8e0d8", border:"rgba(44,183,167,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
+  light: { bg:"#f8fbfb", bg2:"#f0f8f7", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.15)", nav:"rgba(248,251,251,0.97)", cr:"#0a1a18", mu:"#4a8a80", dim:"#2CB7A7", border:"rgba(44,183,167,0.2)", inputBg:"rgba(44,183,167,0.06)", inputCr:"#0a1a18" },
 };
 
 const R = "#2CB7A7", P = "#BFA5D8";
@@ -69,11 +69,11 @@ const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
 // Light theme: cream fading to a soft champagne pastel.
 const TAB_WASH = {
-  home:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#1a1710 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
-  search:  { dark: "linear-gradient(180deg,#0f0f0f 0%,#181510 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
-  library: { dark: "linear-gradient(180deg,#0f0f0f 0%,#1c180e 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
-  proof:   { dark: "linear-gradient(180deg,#0f0f0f 0%,#1e190f 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
-  shop:    { dark: "linear-gradient(180deg,#0f0f0f 0%,#191510 55%,#0f0f0f 100%)",  light: "#fdf8f2" },
+  home:    { dark: "linear-gradient(180deg,#080808 0%,#0a1210 55%,#080808 100%)",  light: "#f8fbfb" },
+  search:  { dark: "linear-gradient(180deg,#080808 0%,#0a1214 55%,#080808 100%)",  light: "#f8fbfb" },
+  library: { dark: "linear-gradient(180deg,#080808 0%,#0a1410 55%,#080808 100%)",  light: "#f8fbfb" },
+  proof:   { dark: "linear-gradient(180deg,#080808 0%,#0c1a18 55%,#080808 100%)",  light: "#f8fbfb" },
+  shop:    { dark: "linear-gradient(180deg,#080808 0%,#0a1010 55%,#080808 100%)",  light: "#f8fbfb" },
 };
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
@@ -372,8 +372,8 @@ const INIT_THREADS = [
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
-const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F0B8C8,#E8909A)", "Money":"linear-gradient(135deg,#1A7FC8,#2CB7A7)", "Beauty":"linear-gradient(135deg,#F2C4CE,#E8909A)", "Identity":"linear-gradient(135deg,#BFA5D8,#2CB7A7)", "DNA":"linear-gradient(135deg,#5B8DB8,#167A6B)", "Sleep":"linear-gradient(135deg,#1A4A8A,#2CB7A7)" };
-const CAT_COLOR = { "Lovemaxxing":"#F0B8C8", "Money":"#2CB7A7", "Beauty":"#F2C4CE", "Identity":"#BFA5D8", "DNA":"#167A6B", "Sleep":"#2CB7A7", "Beautymaxxing":"#F2C4CE", "Facemaxxing":"#5B8DB8", "Bodymaxxing":"#2CB7A7", "Moneymaxxing":"#2CB7A7", "Businessmaxxing":"#5B8DB8", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#F0B8C8", "Lifemaxxing":"#2CB7A7", "Luckygirlmaxxing":"#2CB7A7", "Sovereignmaxxing":"#BFA5D8" };
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F0B8C8,#E8909A)", "Money":"linear-gradient(135deg,#E8B870,#C8960A)", "Beauty":"linear-gradient(135deg,#F2C4CE,#E8909A)", "Identity":"linear-gradient(135deg,#BFA5D8,#9B8FD4)", "DNA":"linear-gradient(135deg,#5B8DB8,#167A6B)", "Sleep":"linear-gradient(135deg,#1A4A8A,#2CB7A7)", "Lovemaxxing2":"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" };
+const CAT_COLOR = { "Lovemaxxing":"#F0B8C8", "Money":"#E8B870", "Beauty":"#F2C4CE", "Identity":"#BFA5D8", "DNA":"#167A6B", "Sleep":"#5B8DB8", "Beautymaxxing":"#F2C4CE", "Facemaxxing":"#E8B870", "Bodymaxxing":"#2CB7A7", "Moneymaxxing":"#E8B870", "Businessmaxxing":"#5B8DB8", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#F0B8C8", "Lifemaxxing":"#E8B870", "Luckygirlmaxxing":"#2CB7A7", "Sovereignmaxxing":"#BFA5D8", "Healmaxxing":"#F0B8C8", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#2CB7A7", "Confidencemaxxing":"#E8B870", "Skinnymaxxing":"#2CB7A7", "Singlemaxxing":"#F2C4CE" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -665,7 +665,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
               Select your state on the Hawkins scale.{" "}
               <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#2CB7A7",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
             </div>
-            <div style={{ fontSize:9,color:"#2ecc71",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
+            <div style={{ fontSize:9,color:"#2CB7A7",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
             <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
               {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
@@ -678,7 +678,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                 </div>
               ))}
             </div>
-            <div style={{ fontSize:9,color:"#e67e22",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive · Drains</div>
+            <div style={{ fontSize:9,color:"rgba(191,165,216,0.8)",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive · Drains</div>
             <div style={{ overflowY:"auto",maxHeight:170,marginBottom:12 }}>
               {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
@@ -818,7 +818,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         </svg>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{C.cr==="#ffffff"?"☀️":"🌙"}</button>
-          <button onClick={()=>setProfileOpen(true)} style={{ width:34,height:34,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>R</button>
+          <button onClick={()=>setProfileOpen(true)} style={{ width:34,height:34,borderRadius:"50%",background:OMBRE,border:"none",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>R</button>
         </div>
       </div>
       {/* Screen */}

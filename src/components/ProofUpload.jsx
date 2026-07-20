@@ -101,7 +101,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
             onDragOver={e => e.preventDefault()}
             onClick={() => inputRef.current?.click()}
             style={{
-              border: `2px dashed ${preview ? "#2CB7A766" : "#1e1c0a"}`,
+              border: `2px dashed ${preview ? "#2CB7A766" : "#1a1a1a"}`,
               borderRadius: 14, padding: preview ? 8 : "36px 20px",
               textAlign: "center", cursor: "pointer", marginBottom: 16,
               background: preview ? "#060410" : "#040208",

@@ -53,7 +53,7 @@ export function Card({ children, style, premium, onClick, hover }) {
       ...style,
     }}
       onMouseEnter={e => (hover || onClick) && (e.currentTarget.style.borderColor = T.gold + "66", e.currentTarget.style.boxShadow = "0 0 30px rgba(200,137,42,0.1)")}
-      onMouseLeave={e => (hover || onClick) && (e.currentTarget.style.borderColor = "#1e1c0a", e.currentTarget.style.boxShadow = T.glow)}
+      onMouseLeave={e => (hover || onClick) && (e.currentTarget.style.borderColor = "#1a1a1a", e.currentTarget.style.boxShadow = T.glow)}
     >{children}</div>
   );
 }
