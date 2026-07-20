@@ -684,32 +684,33 @@ function IdentityCarousel({ cats, fullscreen=false }) {
 
   // Category-specific colours
   const CAT_COLOURS = {
-    "Moneymaxxing":     "linear-gradient(135deg,#c8d8f0 0%,#8aaad8 40%,#5a7ab8 100%)",
-    "Luckygirlmaxxing": "linear-gradient(135deg,#c0e8e4 0%,#80ccc4 40%,#4aa8a0 100%)",
-    "Beautymaxxing":    "linear-gradient(135deg,#f8d0e8 0%,#e898c4 40%,#d4689a 100%)",
-    "Lovemaxxing":      "linear-gradient(135deg,#f0d0dc 0%,#e098b0 40%,#c4607a 100%)",
-    "DNAmaxxing":       "linear-gradient(135deg,#e0d0f0 0%,#b898d8 40%,#9068b8 100%)",
-    "Lifemaxxing":      "linear-gradient(135deg,#fce4c0 0%,#C8960A 40%,#c9963a 100%)",
-    "Bodymaxxing":      "linear-gradient(135deg,#d0e8d4 0%,#a0c8a8 40%,#6a9870 100%)",
-    "Selfmaxxing":      "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)",
-    "Erosmaxxing":      "linear-gradient(135deg,#f0c8d8 0%,#d88098 40%,#b85068 100%)",
-    "Businessmaxxing":  "linear-gradient(135deg,#d0e0f4 0%,#9ab8dc 40%,#4a68a0 100%)",
-    "Singlemaxxing":    "linear-gradient(135deg,#e4d0f0 0%,#c0a0d8 40%,#a070c0 100%)",
-    "Skinnymaxxing":    "linear-gradient(135deg,#d8f0d8 0%,#a8d8a8 40%,#78b878 100%)",
-    "Sleepmaxxing":     "linear-gradient(135deg,#c8d4e8 0%,#8a9ec8 40%,#6b7db3 100%)",
-    "Facemaxxing":      "linear-gradient(135deg,#f0dcd0 0%,#d8b098 40%,#c08870 100%)",
-    "Careermaxxing":    "linear-gradient(135deg,#dce8f0 0%,#a8c4d8 40%,#6a94b8 100%)",
-    "Wellnessmaxxing":  "linear-gradient(135deg,#d4f0e0 0%,#a0d8bc 40%,#68b894 100%)",
-    "Confidencemaxxing":"linear-gradient(135deg,#f4d8e0 0%,#e0a0bc 40%,#c06888 100%)",
-    "Stylemaxxing":     "linear-gradient(135deg,#f0e0d0 0%,#d8b898 40%,#b88a60 100%)",
-    "Healmaxxing":      "linear-gradient(135deg,#e8d8f0 0%,#c8a0d8 40%,#9868b8 100%)",
-    "Peacemaxxing":     "linear-gradient(135deg,#d8e4f0 0%,#a8c0dc 40%,#7894b8 100%)",
-    "Friendmaxxing":    "linear-gradient(135deg,#fce0d0 0%,#e8b498 40%,#c88868 100%)",
-    "Studymaxxing":     "linear-gradient(135deg,#e0e8f0 0%,#b0c4d8 40%,#7894b8 100%)",
-    "Intuitionmaxxing": "linear-gradient(135deg,#ecd8f0 0%,#c8a4dc 40%,#9868b8 100%)",
-    "Sovereignmaxxing": "linear-gradient(135deg,#f0e4c8 0%,#dcc088 40%,#b89050 100%)",
+    // Lucky Girl palette — gold / slate-blue / teal / lavender only, no pink/rose
+    "Moneymaxxing":     "linear-gradient(135deg,#C8960A 0%,#B8820A 40%,#5B8DB8 100%)",
+    "Luckygirlmaxxing": "linear-gradient(135deg,#2AA89A 0%,#167A6B 50%,#0E5A50 100%)",
+    "Beautymaxxing":    "linear-gradient(135deg,#8B7FC8 0%,#6B5FA8 50%,#4B3F88 100%)",
+    "Lovemaxxing":      "linear-gradient(135deg,#5B8DB8 0%,#3B6D98 50%,#1B4D78 100%)",
+    "DNAmaxxing":       "linear-gradient(135deg,#7B6FC0 0%,#5B4FA0 50%,#3B2F80 100%)",
+    "Lifemaxxing":      "linear-gradient(135deg,#C8960A 0%,#A87800 50%,#886000 100%)",
+    "Bodymaxxing":      "linear-gradient(135deg,#2AA89A 0%,#1A8880 50%,#0A6860 100%)",
+    "Selfmaxxing":      "linear-gradient(135deg,#8B7FC8 0%,#7B6FB8 50%,#5B4F98 100%)",
+    "Erosmaxxing":      "linear-gradient(135deg,#5B8DB8 0%,#8B7FC8 50%,#2AA89A 100%)",
+    "Businessmaxxing":  "linear-gradient(135deg,#1E5FA0 0%,#5B8DB8 50%,#8BB8D8 100%)",
+    "Singlemaxxing":    "linear-gradient(135deg,#6B5FA8 0%,#8B7FC8 50%,#A89FD8 100%)",
+    "Skinnymaxxing":    "linear-gradient(135deg,#167A6B 0%,#2AA89A 50%,#4AC8B8 100%)",
+    "Sleepmaxxing":     "linear-gradient(135deg,#1B3A6B 0%,#3B5DB8 50%,#5B8DB8 100%)",
+    "Facemaxxing":      "linear-gradient(135deg,#B8820A 0%,#C8960A 50%,#D8AA20 100%)",
+    "Careermaxxing":    "linear-gradient(135deg,#2B5A98 0%,#5B8DB8 50%,#8BB8D8 100%)",
+    "Wellnessmaxxing":  "linear-gradient(135deg,#0A6860 0%,#167A6B 50%,#2AA89A 100%)",
+    "Confidencemaxxing":"linear-gradient(135deg,#C8960A 0%,#8B7FC8 50%,#5B8DB8 100%)",
+    "Stylemaxxing":     "linear-gradient(135deg,#B8820A 0%,#8B6B00 50%,#5B4800 100%)",
+    "Healmaxxing":      "linear-gradient(135deg,#7B6FC0 0%,#9B8FD0 50%,#BBB0E0 100%)",
+    "Peacemaxxing":     "linear-gradient(135deg,#2AA89A 0%,#5B8DB8 50%,#8B7FC8 100%)",
+    "Friendmaxxing":    "linear-gradient(135deg,#5B8DB8 0%,#2AA89A 50%,#167A6B 100%)",
+    "Studymaxxing":     "linear-gradient(135deg,#3B5DB8 0%,#5B8DB8 50%,#8BB8D8 100%)",
+    "Intuitionmaxxing": "linear-gradient(135deg,#8B7FC8 0%,#6B5FA8 50%,#4B3F88 100%)",
+    "Sovereignmaxxing": "linear-gradient(135deg,#C8960A 0%,#B8820A 40%,#8B7FC8 100%)",
   };
-  const FALLBACK = "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)";
+  const FALLBACK = "linear-gradient(135deg,#5B8DB8 0%,#8B7FC8 50%,#2AA89A 100%)";
   const bg = CAT_COLOURS[current.label] || FALLBACK;
 
   return (
@@ -952,11 +953,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0 0%,#C8960A 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#167A6B 0%,#2AA89A 30%,#5B8DB8 60%,#8B7FC8 80%,#C8960A 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 15, fontWeight: 400, color: "#000", letterSpacing: isMobile ? "0.04em" : "0.08em", whiteSpace: "nowrap" }}>
             COMING SOON
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#C8960A", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#f2ece4", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join Waitlist
           </button>
         </div>
@@ -966,8 +967,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="4" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#C8960A" strokeWidth="4" strokeLinecap="round"/>
+              <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="25%" stopColor="#B8820A"/><stop offset="55%" stopColor="#5B8DB8"/><stop offset="80%" stopColor="#2AA89A"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
             </svg>
             <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(11px,3.2vw,14px)", fontWeight: 300, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -986,11 +988,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* MOBILE MENU — full screen takeover like Steven Bartlett */}
       {menuOpen && (
-        <div style={{ position:"fixed",inset:0,zIndex:999,background:"#e8a860",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
+        <div style={{ position:"fixed",inset:0,zIndex:999,background:"#000",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar — logo + close */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
-            <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Jost',sans-serif", fontSize:16, fontWeight:300, letterSpacing:"0.02em", color:"#000", cursor:"pointer" }}>Self Hypnosis Goddess</span>
-            <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#000",WebkitTapHighlightColor:"transparent" }}>
+            <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Jost',sans-serif", fontSize:16, fontWeight:300, letterSpacing:"0.02em", color:"#f2ece4", cursor:"pointer" }}>Self Hypnosis Goddess</span>
+            <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#f2ece4",WebkitTapHighlightColor:"transparent" }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
             </button>
           </div>
@@ -1005,13 +1007,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ["About Reshma", ()=>{ onLegal?.("about"); setMenuOpen(false); }],
               ["YouTube",       ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(0,0,0,0.12)",color:"#000",fontSize:"clamp(24px,6vw,38px)",fontWeight:400,letterSpacing:"0.04em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(255,255,255,0.08)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:400,letterSpacing:"0.04em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
           </div>
 
           {/* Bottom — join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#e8a860",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#2AA89A",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Join Now ✦
             </button>
             <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(0,0,0,0.25)",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
@@ -1138,33 +1140,33 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         {/* SPOTIFY-STYLE PLAYER */}
         <div style={{ background:"#000", padding: isMobile?"16px 18px 24px":"20px 24px 32px" }}>
-          <div style={{ background: "#0a0a0a", border: "1px solid rgba(232,160,48,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
+          <div style={{ background: "#0a0a0a", border: "1px solid rgba(42,168,154,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-              <div style={{ width:56, height:56, borderRadius:10, background:"#000", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(232,160,48,0.2)", overflow:"hidden" }}>
+              <div style={{ width:56, height:56, borderRadius:10, background:"#000", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.2)", overflow:"hidden" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:2, height:36 }}>
                   {[6,14,22,18,28,12,24,20,16,10,26,8,22,18,14].map((h,i)=>(
-                    <div key={i} style={{ width:2.5, borderRadius:2, background: playing ? `linear-gradient(to top, #e8a860, #fce4c0)` : "rgba(232,160,48,0.3)", height: playing ? h : Math.max(4, h*0.4), transition:"height 0.3s" }}/>
+                    <div key={i} style={{ width:2.5, borderRadius:2, background: playing ? `linear-gradient(to top, #e8a860, #fce4c0)` : "rgba(42,168,154,0.3)", height: playing ? h : Math.max(4, h*0.4), transition:"height 0.3s" }}/>
                   ))}
                 </div>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 16 : 17, fontWeight: 400, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
-                <div style={{ fontSize: 13, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: 13, color: "#2AA89A", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
                 <div style={{ fontSize: 12, color: "#b09888", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
               </div>
               {playing && (
-                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(232,160,48,0.12)", border: "1px solid rgba(232,160,48,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#e8a860", animation: "pulse 1.2s ease-in-out infinite" }}/>
-                  <span style={{ fontSize: 11, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
+                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(42,168,154,0.12)", border: "1px solid rgba(42,168,154,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2AA89A", animation: "pulse 1.2s ease-in-out infinite" }}/>
+                  <span style={{ fontSize: 11, color: "#2AA89A", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
                 </div>
               )}
             </div>
             {/* Progress bar */}
             <div style={{ marginBottom: 12 }}>
               <div style={{ height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, position: "relative" }}>
-                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8960A,#e8a860)", borderRadius:2, position:"relative" }}>
-                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#F5E0A0", opacity: playing ? 1 : 0 }}/>
+                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", borderRadius:2, position:"relative" }}>
+                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#2AA89A", opacity: playing ? 1 : 0 }}/>
                 </div>
               </div>
               <div style={{ display:"flex", justifyContent:"space-between", marginTop:6 }}>
@@ -1175,28 +1177,28 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Controls */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"4px 4px 0", overflow:"visible" }}>
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, opacity:0.45, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8a860" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2AA89A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
               </button>
               <button onClick={prevTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8a860"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#e8a860"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#2AA89A"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#2AA89A"/></svg>
               </button>
-              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#C8960A,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,160,48,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
+              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(42,168,154,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
                 {playing
                   ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
                   : <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
                 }
               </button>
               <button onClick={nextTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8a860"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="#e8a860"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#2AA89A"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="#2AA89A"/></svg>
               </button>
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8a860" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2AA89A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
               </button>
             </div>
             {/* Track dots */}
             <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:12 }}>
               {PLAYLIST.map((_,i) => (
-                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#e8a860":"rgba(232,160,48,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
+                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#2AA89A":"rgba(42,168,154,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
               ))}
             </div>
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#786860", fontFamily:"'Jost',sans-serif" }}>
@@ -1219,8 +1221,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#ffffff", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0em", marginBottom:16 }}>
           Self Hypnosis Goddess
         </div>
-        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
-        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,160,48,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
+        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
+        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(42,168,154,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
       </div>
 
       {/* DELULU IS THE SOLULU — own box, right after brand block */}
@@ -1239,7 +1241,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#5B8DB8,#9B8FD4,#2CB7A7)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
             Join Now ✦
           </button>
-          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1px solid rgba(232,160,48,0.5)", borderRadius:30, color:"#e8a860", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
+          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1px solid rgba(42,168,154,0.5)", borderRadius:30, color:"#2AA89A", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
             Lifetime Access
           </button>
         </div>
@@ -1270,7 +1272,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HEMI-SYNC — how the audio actually works */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:780, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
+          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
           <h2 style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(34px,4vw,48px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.3, marginBottom:32 }}>
             Hemi-sync.<br/>Two hemispheres, one frequency.
           </h2>
@@ -1281,23 +1283,23 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Before — beta wave state <span style={{opacity:0.6}}>(unsynced)</span></div>
               <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
                 <path d="M4 40 Q13 22 22 40 T40 40 T58 40 T76 40 T94 40 T112 40 T130 40 T148 40 T166 40 T184 40 T202 40 T216 40"
-                  fill="none" stroke="#e8a860" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
+                  fill="none" stroke="#2AA89A" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
                 <path d="M4 40 Q11 55 18 40 T32 40 T46 40 T60 40 T74 40 T88 40 T102 40 T116 40 T130 40 T144 40 T158 40 T172 40 T186 40 T200 40 T214 40"
                   fill="none" stroke="#2CB7A7" strokeWidth="2" opacity="0.6" strokeLinecap="round"/>
               </svg>
             </div>
             <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#2CB7A7)" }}/>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
+              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
               <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#e8a860" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
+                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2AA89A" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
                 <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2CB7A7" strokeWidth="2.6" opacity="0.55" strokeLinecap="round" transform="translate(0,0)"/>
               </svg>
             </div>
           </div>
 
           {/* Brainwave frequency reference strip — real smooth waves, black bg, ombre colors */}
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(232,160,48,0.2)", borderRadius:14, overflow:"hidden" }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(42,168,154,0.2)", borderRadius:14, overflow:"hidden" }}>
             {[
               { name:"Gamma", hz:"30–100Hz", tag:"Insight, peak experiences", cycles:11, color:"#F5E0A0" },
               { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#C8960A" },
@@ -1312,7 +1314,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 return `${n===0?'M':'L'}${x.toFixed(1)} ${y.toFixed(1)}`;
               }).join(' ');
               return (
-                <div key={i} style={{ padding:"18px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(232,160,48,0.06)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(232,160,48,0.15)" : "none" }}>
+                <div key={i} style={{ padding:"18px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(42,168,154,0.06)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(42,168,154,0.15)" : "none" }}>
                   <div style={{ fontSize:13, color:w.color, fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2 }}>{w.name}</div>
                   <div style={{ fontSize:10, color:"#9a8878", marginBottom:10 }}>{w.hz}</div>
                   <svg width="100%" height="48" viewBox="0 0 100 48" style={{ marginBottom:10, display:"block" }}>
@@ -1324,7 +1326,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             })}
           </div>
 
-          <div style={{ fontSize: isMobile?"clamp(28px,9vw,42px)":"clamp(38px,5vw,58px)", color:"#e8a860", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, letterSpacing:"-0.01em", textAlign:"center", marginBottom:36, lineHeight:1.2 }}>
+          <div style={{ fontSize: isMobile?"clamp(28px,9vw,42px)":"clamp(38px,5vw,58px)", color:"#2AA89A", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, letterSpacing:"-0.01em", textAlign:"center", marginBottom:36, lineHeight:1.2 }}>
             Theta is the secret door.
           </div>
 
@@ -1337,7 +1339,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             Theta is where the reprogramming begins. In theta, you access the subconscious mind directly — the part responsible for roughly 95% of your reality and everything you believe about yourself. Trying to install a new belief in beta means fighting your own conscious mind the whole way. In theta, there's nothing to fight.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#e8a860", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#2AA89A", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:400 }}>
             That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. First, we change your assumption — not just a passing thought, but the hard-coded belief you've carried your whole life. Then your thoughts change. Then your feelings change. Then your actions change. Then your opportunities change. Then your reality changes. And all you did was press play.
           </p>
         </div>
@@ -1374,7 +1376,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
       <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
         <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
-          <div style={{ fontSize:11, color:"#e8a860", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
+          <div style={{ fontSize:11, color:"#2AA89A", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
           <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0 }}>Five steps.</div>
         </div>
 
@@ -1429,7 +1431,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </p>
 
             {/* THREE FORMATS */}
-            <div style={{ background: "rgba(232,160,48,0.06)", border: "1px solid rgba(232,160,48,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
+            <div style={{ background: "rgba(42,168,154,0.06)", border: "1px solid rgba(42,168,154,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
               <div style={{ fontSize: 12, color: "#C8960A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
@@ -1619,7 +1621,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* PROOFOS INTRO — brief 2 sentence version */}
       <div id="proofos" style={{ padding: isMobile?"32px 18px":"48px 24px", textAlign:"center", maxWidth:680, margin:"0 auto" }}>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#c8bcb0", lineHeight:1.85 }}>
-          Every track links to a desire. Every sign you receive gets logged in <span style={{ color:"#e8a860" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
+          Every track links to a desire. Every sign you receive gets logged in <span style={{ color:"#2AA89A" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
       </div>
       {/* WALL OF LOVE */}
@@ -1670,7 +1672,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* INSTAGRAM */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:900, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
+          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:isMobile?"clamp(32px,9vw,44px)":"clamp(40px,5vw,56px)", color:"#f2ece4", marginBottom:32, fontWeight:400 }}>
             @selfhypnosisgoddess
           </h2>
@@ -1693,7 +1695,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ))}
           </div>
           <a href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
-            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(232,160,48,0.4)", borderRadius:30, color:"#e8a860", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
+            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(42,168,154,0.4)", borderRadius:30, color:"#2AA89A", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
             Follow on Instagram
           </a>
         </div>
@@ -1709,7 +1711,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?15:17, color: "#1a1218", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             Join the waitlist and be the first to know when the audio library opens.
           </p>
-          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#e8a860", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#2AA89A", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Join Waitlist
           </button>
           <div style={{ marginTop: 14, fontSize: 13, color: "#1a1218", fontWeight:500, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
@@ -1734,8 +1736,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* SHOP MODAL — embedded Beacons, stays on-site */}
       {shopOpen && (
         <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(232,160,48,0.3)" }}>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(232,160,48,0.2)", flexShrink:0 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(42,168,154,0.3)" }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(42,168,154,0.2)", flexShrink:0 }}>
               <span className="wm wm-shimmer" style={{ fontSize:16 }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
                 <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#8a7868", textDecoration:"none" }}>Open in new tab ↗</a>
@@ -1771,7 +1773,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                     placeholder="your@email.com"
                     style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#2a1a0a", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
-                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#e8a860", marginBottom:12 }}>Please enter a valid email.</div>}
+                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2AA89A", marginBottom:12 }}>Please enter a valid email.</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
