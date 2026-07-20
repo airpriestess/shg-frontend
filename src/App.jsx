@@ -685,7 +685,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   // Category-specific colours
   const CAT_COLOURS = {
     // Carousel only — full palette including warm pink + hot blue accent tiles
-    "Moneymaxxing":     "linear-gradient(135deg,#C8960A,#E8B870)",        // gold
+    "Moneymaxxing":     "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // deep blue → teal
     "Luckygirlmaxxing": "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
     "Beautymaxxing":    "linear-gradient(135deg,#E8509A,#8B7FC8)",        // hot pink → lilac
     "Lovemaxxing":      "linear-gradient(135deg,#D4408A,#5B8DB8)",        // deep pink → blue
@@ -967,9 +967,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
-              <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="25%" stopColor="#B8820A"/><stop offset="55%" stopColor="#5B8DB8"/><stop offset="80%" stopColor="#2AA89A"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
+              <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+              <circle cx="38" cy="38" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <circle cx="62" cy="38" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <circle cx="38" cy="62" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <circle cx="62" cy="62" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <line x1="50" y1="78" x2="50" y2="94" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
             </svg>
             <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(11px,3.2vw,14px)", fontWeight: 300, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -1166,9 +1169,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
               <svg viewBox="0 0 100 100" width={28} height={28} style={{ opacity: playing ? 1 : 0.35, transition:"opacity 0.4s" }}>
-                <defs><linearGradient id="playlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="40%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-                <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
-                <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
+                <defs><linearGradient id="playlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                <circle cx="38" cy="38" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <circle cx="62" cy="38" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <circle cx="38" cy="62" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <circle cx="62" cy="62" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <line x1="50" y1="76" x2="50" y2="92" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
               </svg>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
             </div>
@@ -1209,9 +1215,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
         <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
-          <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="25%" stopColor="#B8820A"/><stop offset="55%" stopColor="#5B8DB8"/><stop offset="80%" stopColor="#2AA89A"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="url(#herolg)" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="url(#herolg)" strokeWidth="4" strokeLinecap="round"/>
+          <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <circle cx="38" cy="38" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <circle cx="62" cy="38" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <circle cx="38" cy="62" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <circle cx="62" cy="62" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <line x1="50" y1="78" x2="50" y2="94" stroke="url(#herolg)" strokeWidth="3.5" strokeLinecap="round"/>
         </svg>
       </div>
 
