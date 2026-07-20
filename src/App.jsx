@@ -1259,22 +1259,22 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* PURPOSE — subconscious creates your reality */}
-      <div style={{ background:"#fdf0e8", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
+      <div style={{ background:"#000", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>The premise</div>
-          <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
+          <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
             Shift into the state of your dream reality.
           </h2>
-          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#9a8878", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             I help you stay delusional at all times.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#9a8878", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             If you are feeling the gap between who you are and who you want to be, I help you close the gap. These hypnosis and subliminal tracks reprogram your mind at a subconscious level — directly, while you listen.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#9a8878", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life.
           </p>
-          <p style={{ fontSize: isMobile?15:17, color:"#5a4a40", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#9a8878", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
             Here's the part most people miss: your current self and your future self are not the same identity. She has different beliefs. She takes different actions. She makes different decisions, for different reasons, from a completely different set of assumptions about what's possible for her. You cannot think your way into her reality using your current self's beliefs — that's not a small gap, it's a different identity entirely. And you can't fully know what she does, or how she moves through the world, until you actually become her. That's the reprogramming. Not adding new thoughts on top of the old ones — replacing the identity underneath them, so the actions that were always out of reach for you become the only actions she knows how to take.
           </p>
         </div>
@@ -1357,22 +1357,22 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* SEGMENT 3 — What's inside, cream */}
-      <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
+      <div style={{ background:"#000", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,6vw,64px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:28 }}>
+          <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,6vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:28 }}>
             Inside the Library.
           </div>
-          <p style={{ fontSize: isMobile?18:21, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?18:21, color:"#9a8878", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             A growing library of hypnosis and subliminal audios — layered beneath melodic house music, EMDR and binaural beats — designed to shift your identity and manifest every single desire you have ever dreamed of.
           </p>
-          <p style={{ fontSize: isMobile?17:20, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?17:20, color:"#9a8878", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             No one will ever know you're reprogramming your subconscious while you listen to music. Repeat, repeat, repeat.
           </p>
-          <p style={{ fontSize: isMobile?17:20, color:"#3a2010", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?17:20, color:"#9a8878", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             Watch your reality bend right in front of your eyes.
           </p>
-          <p style={{ fontSize: isMobile?16:18, color:"#6a4028", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-            Log and track every single manifestation you receive with <span style={{ color:"#c9963a" }}>ProofOS</span>. Keep a record. Build your evidence. See your patterns. Forever.
+          <p style={{ fontSize: isMobile?16:18, color:"#9a8878", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            Log and track every single manifestation you receive with <span style={{ color:"#2CB7A7" }}>ProofOS</span>. Keep a record. Build your evidence. See your patterns. Forever.
           </p>
         </div>
       </div>
@@ -1423,27 +1423,27 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "linear-gradient(160deg,#fce4c0 0%,#f5d8a8 40%,#ece8d8 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#000", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 12, color: "#b46830", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
-            <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5.5vw,72px)", lineHeight: 1.05, marginBottom: 20, color: "#1a0a04", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
+            <div style={{ fontSize: 12, color: "#2CB7A7", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
+            <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5.5vw,72px)", lineHeight: 1.05, marginBottom: 20, color: "#f2ece4", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
               Most hypnosis is boring.<br/>This is different.
             </h2>
-            <p style={{ fontSize: isMobile?17:20, color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?17:20, color: "#9a8878", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               Monotone voice. Generic ambient sound. You fall asleep in two minutes and nothing changes. Most hypnosis feels like a task, not a ritual.
             </p>
-            <p style={{ fontSize: isMobile?17:20, color: "#3a2010", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?17:20, color: "#9a8878", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               This is the only one that makes listening feel like a daily ritual. Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats — produced to keep you coming back.
             </p>
-            <p style={{ fontSize: isMobile?18:22, color: "#1a0a04", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?18:22, color: "#f2ece4", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               Save yourself thousands in therapy sessions.
             </p>
 
             {/* THREE FORMATS */}
             <div style={{ background: "rgba(42,168,154,0.06)", border: "1px solid rgba(42,168,154,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 12, color: "#C8960A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
+              <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
                 { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
@@ -1455,8 +1455,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", paddingBottom: i<5?16:0, marginBottom: i<5?16:0, borderBottom: i<5?"1px solid rgba(44,183,167,0.12)":"none" }}>
                   <span style={{ fontSize: 22, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
                   <div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: "#000000", marginBottom: 5 }}>{f.label}</div>
-                    <div style={{ fontSize: 15, color: "#000000", lineHeight: 1.7 }}>{f.body}</div>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: "#f2ece4", marginBottom: 5 }}>{f.label}</div>
+                    <div style={{ fontSize: 15, color: "#9a8878", lineHeight: 1.7 }}>{f.body}</div>
                   </div>
                 </div>
               ))}
@@ -1464,8 +1464,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* FREQUENCY TABLE — Solfeggio + binaural reference */}
             <div style={{ maxWidth: 680, margin: "0 auto" }}>
-              <div style={{ fontSize: 12, color: "#C8960A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
-              <p style={{ fontSize: isMobile?14:15, color:"#3a2010", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
+              <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
+              <p style={{ fontSize: isMobile?14:15, color:"#9a8878", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
                 Every track is tuned to a specific frequency — Solfeggio tones layered under the music, plus binaural beats for hemi-sync. Here's what each one is associated with:
               </p>
               <div style={{ background:"#fff", borderRadius:14, overflow:"hidden", border:"1px solid rgba(44,183,167,0.2)" }}>
