@@ -1207,7 +1207,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
             <div style={{ fontSize:13,fontWeight:400,color:isP?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
             <div style={{ fontSize:11,color:C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
           </div>
-          {t.isNew&&<span style={{ fontSize:9,padding:"2px 7px",background:`${R}22`,color:R,borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
+          {t.isNew&&<span style={{ fontSize:9,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (
             <>
               <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0,flexShrink:0 }}><Ico.Heart on={liked.has(t.id)}/></button>
@@ -1320,13 +1320,13 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
               {!isPreview&&cur?.id===t.id&&playing&&(
                 <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
-                  <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:R,borderRadius:1 }}/>)}</div>
+                  <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:"#B76E79",borderRadius:1 }}/>)}</div>
                 </div>
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:14,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
-                {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:9,background:`${R}22`,color:R,padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
+                {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:9,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
               <div style={{ fontSize:11,color:isDark?"#9a8878":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
@@ -1773,7 +1773,7 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
         )}
         {!isPreview&&isP&&playing&&(
           <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.45)" }}>
-            <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:R,borderRadius:1 }}/>)}</div>
+            <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:"#B76E79",borderRadius:1 }}/>)}</div>
           </div>
         )}
         {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:9,fontWeight:400 }}>NEW</div>}
