@@ -687,27 +687,27 @@ function IdentityCarousel({ cats, fullscreen=false }) {
     // Carousel only — full palette including warm pink + hot blue accent tiles
     "Moneymaxxing":     "linear-gradient(135deg,#0A4A8A,#1A7FC8,#2CB7A7)",  // navy → deep blue → turquoise
     "Luckygirlmaxxing": "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
-    "Beautymaxxing":    "linear-gradient(135deg,#E8509A,#8B7FC8)",        // hot pink → lilac
-    "Lovemaxxing":      "linear-gradient(135deg,#D4408A,#5B8DB8)",        // deep pink → blue
+    "Beautymaxxing":    "linear-gradient(135deg,#F2C4CE,#E8909A)",        // blush → soft rose
+    "Lovemaxxing":      "linear-gradient(135deg,#F0B8C8,#E07898)",        // pale blush → warm rose
     "DNAmaxxing":       "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // hot blue → teal
     "Lifemaxxing":      "linear-gradient(135deg,#E8B870,#C8960A)",        // amber gold
     "Bodymaxxing":      "linear-gradient(135deg,#167A6B,#2CB7A7)",        // deep teal
     "Selfmaxxing":      "linear-gradient(135deg,#8B7FC8,#2CB7A7)",        // lilac → teal
-    "Erosmaxxing":      "linear-gradient(135deg,#E8509A,#5B8DB8)",        // hot pink → blue
+    "Erosmaxxing":      "linear-gradient(135deg,#E8909A,#F2C4CE)",        // warm rose → blush
     "Businessmaxxing":  "linear-gradient(135deg,#1A7FC8,#C8960A)",        // hot blue → gold
-    "Singlemaxxing":    "linear-gradient(135deg,#8B7FC8,#E8509A)",        // lilac → hot pink
+    "Singlemaxxing":    "linear-gradient(135deg,#F2C4CE,#D4889A)",        // blush → dusty rose
     "Skinnymaxxing":    "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
     "Sleepmaxxing":     "linear-gradient(135deg,#1A4A8A,#1A7FC8)",        // deep blue → hot blue
-    "Facemaxxing":      "linear-gradient(135deg,#C8960A,#E8509A)",        // gold → hot pink
+    "Facemaxxing":      "linear-gradient(135deg,#C8960A,#F2C4CE)",        // gold → blush
     "Careermaxxing":    "linear-gradient(135deg,#1A7FC8,#8B7FC8)",        // hot blue → lilac
     "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#8B7FC8)",        // teal → lilac
-    "Confidencemaxxing":"linear-gradient(135deg,#E8509A,#C8960A)",        // hot pink → gold
-    "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#E8509A)",        // gold → hot pink
-    "Healmaxxing":      "linear-gradient(135deg,#8B7FC8,#D4408A)",        // lilac → deep pink
+    "Confidencemaxxing":"linear-gradient(135deg,#F2C4CE,#C8960A)",        // blush → gold
+    "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#F0B8C8)",        // gold → soft pink
+    "Healmaxxing":      "linear-gradient(135deg,#F0B8C8,#E8909A)",        // pale pink → warm rose
     "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#1A7FC8)",        // teal → hot blue
     "Friendmaxxing":    "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // hot blue → teal
     "Studymaxxing":     "linear-gradient(135deg,#1A7FC8,#8B7FC8)",        // hot blue → lilac
-    "Intuitionmaxxing": "linear-gradient(135deg,#8B7FC8,#E8509A)",        // lilac → hot pink
+    "Intuitionmaxxing": "linear-gradient(135deg,#E8909A,#F2C4CE)",        // warm rose → blush
     "Sovereignmaxxing": "linear-gradient(135deg,#C8960A,#1A7FC8)",        // gold → hot blue
   };
   const FALLBACK = "linear-gradient(135deg,#1A7FC8,#2CB7A7)";
