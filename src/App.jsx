@@ -389,7 +389,7 @@ function PricingSection({ onJoin }) {
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 28 : 16, overflow: "visible" }}>
           {cards.map(c => (
-            <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "28px 24px 28px" : "40px 24px 28px") : "28px 24px", marginTop: isMobile ? (c.popular ? 26 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
+            <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "36px 20px 28px" : "40px 24px 28px") : "28px 20px", marginTop: isMobile ? (c.popular ? 20 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
               {c.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)", color: "#000", fontSize: 9, fontWeight: 400, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.18em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 5 }}>Most popular</div>}
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
@@ -783,7 +783,7 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ background:"linear-gradient(160deg,#cdeae6 0%,#a8d8d2 50%,#7ec3ba 100%)", padding:"0 0 0 0" }}>
+    <div style={{ background:"#000", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
@@ -793,10 +793,10 @@ function FAQSection() {
         {FAQS.map((faq,i) => (
           <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(44,183,167,0.35)":"rgba(44,183,167,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(44,183,167,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:400,color:"#f2ece4",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:15,fontWeight:400,color:"#0a0a0a",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#2CB7A7",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
-            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(44,183,167,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#2a1a0a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(44,183,167,0.15)",marginBottom:16 }}/><p style={{ fontSize:15,color:"#1a1a1a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
         ))}
       </div>
@@ -1232,8 +1232,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#ffffff", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0em", marginBottom:16 }}>
           Self Hypnosis Goddess
         </div>
-        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10, display:"inline-block" }}>Audio Library</div>
-        <div style={{ fontSize: isMobile?15:18, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block" }}>+ ProofOS ✦</div>
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+          <div style={{ fontSize: isMobile?24:36, letterSpacing:"0.12em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>Audio Library</div>
+          <div style={{ fontSize: isMobile?13:16, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>+ ProofOS ✦</div>
+        </div>
       </div>
 
       {/* DELULU IS THE SOLULU — own box, right after brand block */}
@@ -1673,8 +1675,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing: "-0.01em", fontSize: isMobile ? 22 : 26, fontWeight: 700, color: "#0a0a0a", marginBottom: 6 }}>{cat.name}</div>
-                <div style={{ fontSize: isMobile ? 13 : 14, color: "#4a4a4a", lineHeight: 1.45 }}>{cat.pain}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing: "-0.01em", fontSize: isMobile ? 20 : 24, fontWeight: 500, color: "#0a0a0a", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontSize: isMobile ? 13 : 15, color: "#1a1a1a", lineHeight: 1.5 }}>{cat.pain}</div>
               </div>
             ))}
           </div>
@@ -1728,7 +1730,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#000" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#080808 0%,#0c1a18 50%,#080808 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#e8e0d8", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
@@ -1751,14 +1753,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Moneymaxxing" },
               { quote: "I used to check my phone every five minutes waiting for him to text. Now I forget to check, and that's exactly when he does.", name: "Amara, 30", cat: "Lovemaxxing" },
             ].map((t, i) => (
-              <div key={i} style={{ background:"#0a0a0a", border:"1px solid rgba(42,168,154,0.2)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(44,183,167,0.12)" }}>
+              <div key={i} style={{ background:"#fff", border:"1px solid rgba(44,183,167,0.1)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(0,0,0,0.15)" }}>
                 <div style={{ width:32, height:24, opacity:0.25 }}>
-                  <svg viewBox="0 0 32 24" fill="#2CB7A7"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
+                  <svg viewBox="0 0 32 24" fill="#ccc"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
-                <p style={{ fontSize:isMobile?16:18, color:"#f2ece4", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
+                <p style={{ fontSize:isMobile?16:18, color:"#0a0a0a", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <span style={{ fontSize:12, fontWeight:400, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
-                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(44,183,167,0.12)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20, color:"#2CB7A7", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
+                  <span style={{ fontSize:12, fontWeight:400, color:"#6a6a6a", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
+                  <span style={{ fontSize:11, padding:"3px 10px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:20, color:"#000", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
             ))}
