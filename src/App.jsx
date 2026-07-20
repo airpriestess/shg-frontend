@@ -968,11 +968,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
               <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-              <circle cx="38" cy="38" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <circle cx="62" cy="38" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <circle cx="38" cy="62" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <circle cx="62" cy="62" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <line x1="50" y1="78" x2="50" y2="94" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
+              <circle cx="35" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <circle cx="65" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <circle cx="35" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
+              <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
             </svg>
             <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(11px,3.2vw,14px)", fontWeight: 300, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -1147,10 +1147,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               <div style={{ width:56, height:56, borderRadius:10, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
-                <svg viewBox="0 0 100 100" width={38} height={38}>
+                <svg viewBox="0 0 100 102" width={38} height={38}>
                   <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="45%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-                  <path d="M50 18 A32 32 0 0 0 50 82" fill="none" stroke="url(#artlg)" strokeWidth="4.5" strokeLinecap="round"/>
-                  <path d="M50 18 A32 32 0 0 1 50 82" fill="none" stroke="url(#artlg)" strokeWidth="4.5" strokeLinecap="round"/>
+                  <circle cx="35" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
+                  <circle cx="65" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
+                  <circle cx="35" cy="65" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
+                  <circle cx="65" cy="65" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
+                  <line x1="50" y1="79" x2="50" y2="95" stroke="url(#artlg)" strokeWidth="4.5" strokeLinecap="round"/>
                 </svg>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -1168,13 +1171,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Logo mark — replaces progress bar */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
-              <svg viewBox="0 0 100 100" width={28} height={28} style={{ opacity: playing ? 1 : 0.35, transition:"opacity 0.4s" }}>
+              <svg viewBox="0 0 100 102" width={28} height={28} style={{ opacity: playing ? 1 : 0.35, transition:"opacity 0.4s" }}>
                 <defs><linearGradient id="playlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-                <circle cx="38" cy="38" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
-                <circle cx="62" cy="38" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
-                <circle cx="38" cy="62" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
-                <circle cx="62" cy="62" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
-                <line x1="50" y1="76" x2="50" y2="92" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
+                <circle cx="35" cy="35" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <circle cx="65" cy="35" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <circle cx="35" cy="65" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <circle cx="65" cy="65" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <line x1="50" y1="79" x2="50" y2="95" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
               </svg>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
             </div>
@@ -1214,13 +1217,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
+        <svg viewBox="0 0 100 102" width={isMobile?44:56} height={isMobile?44:56}>
           <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <circle cx="38" cy="38" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <circle cx="62" cy="38" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <circle cx="38" cy="62" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <circle cx="62" cy="62" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <line x1="50" y1="78" x2="50" y2="94" stroke="url(#herolg)" strokeWidth="3.5" strokeLinecap="round"/>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#herolg)" strokeWidth="3.5" strokeLinecap="round"/>
         </svg>
       </div>
 
