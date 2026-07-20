@@ -1433,7 +1433,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?17:21, color:"#2a2a2a", lineHeight:1.85, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             Watch your reality bend right in front of your eyes.
           </p>
-          <p style={{ fontSize: isMobile?17:21, color:"#e8e0d8", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?17:21, color:"#2a2a2a", lineHeight:1.8, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
             Log and track every single manifestation you receive with <span style={{ color:"#2CB7A7" }}>ProofOS</span>. Keep a record. Build your evidence. See your patterns. Forever.
           </p>
         </div>
@@ -1513,7 +1513,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#16120a", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#fdf6ee", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
