@@ -1523,17 +1523,29 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {view==="bucket" ? (
         /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
         <div>
+          <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
+            <div style={{ fontSize:12,color:"#e8b870",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
+            <div style={{ fontSize:13,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
+              <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever — no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
+            </div>
+            <div style={{ fontSize:13,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
+              <b style={{fontWeight:600}}>Active</b> is different — it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5–10 at a time, so your energy stays focused instead of spread thin.
+            </div>
+            <div style={{ fontSize:13,color:PC.text,lineHeight:1.75 }}>
+              Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active — pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own — <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
+            </div>
+          </div>
+
           <div style={{ background:PC.card,borderRadius:14,padding:14,marginBottom:14 }}>
             <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>Add to your bucket list</div>
-            <div style={{ fontSize:12,color:PC.mu,lineHeight:1.6,marginBottom:10 }}>Write down anything you want to manifest — no category, no track, no pressure. You can promote it to active focus later, or just mark it manifested whenever it happens.</div>
             <div style={{ display:"flex", gap:8 }}>
               <input value={bucketText} onChange={e=>setBucketText(e.target.value)} placeholder="A holiday to... A new car... Whatever it is"
-                style={{ flex:1, padding:"10px 12px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:13, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
+                style={{ flex:1, padding:"11px 13px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:14, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
               <button onClick={()=>{
                 if(!bucketText.trim()) return;
                 setThreads([{id:Date.now(),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
                 setBucketText("");
-              }} style={{ padding:"10px 18px", background:isDark?"#000":"#1a0a04", border:"none", borderRadius:8, color:"#f2ece4", fontSize:13, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
+              }} style={{ padding:"11px 18px", background:isDark?"#000":"#1a0a04", border:"none", borderRadius:8, color:"#f2ece4", fontSize:13, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
             </div>
           </div>
 
