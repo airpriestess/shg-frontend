@@ -69,7 +69,7 @@ export default function App() {
       {screen === "portal" && (
         authCtx.loading
           ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#e8b870",opacity:0.7}}>Self Hypnosis Goddess</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#E8A030",opacity:0.7}}>Self Hypnosis Goddess</div>
             </div>
           : <ErrorBoundary><SpotifyPortal onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
       )}
@@ -147,10 +147,10 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
 
           {/* NOW PLAYING BAR */}
           {currentAudio && (
-            <div style={{ height: 60, background: "rgba(0,0,0,0.97)", borderTop: "1px solid #B76E7933", display: "flex", alignItems: "center", padding: "0 20px", gap: 16, flexShrink: 0 }}>
+            <div style={{ height: 60, background: "rgba(0,0,0,0.97)", borderTop: "1px solid #2CB7A733", display: "flex", alignItems: "center", padding: "0 20px", gap: 16, flexShrink: 0 }}>
               <WaveForm playing color={T.champagne} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#B76E79", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: "#2CB7A7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
                 <div style={{ fontSize: 12, color: "#b09888" }}>{(currentAudio.audioFormats || []).join(' · ')}{currentAudio.frequency ? ` · ${currentAudio.frequency}` : ''}</div>
               </div>
               <button onClick={onStopPlay} style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg, ${T.blood}, ${T.rose})`, border: "none", color: "#fff", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>⏸</button>
@@ -238,7 +238,7 @@ function CheckoutModal({ onClose, onDemo }) {
 
         {/* HEADER */}
         <div style={{background:"linear-gradient(135deg,#fceedd,#f8e0f0)",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
-          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#B76E79",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
+          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#2CB7A7",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
           <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,5vw,34px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4}}>Choose your membership.</h3>
           <p style={{fontSize:13,color:"#6a4858",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
@@ -253,89 +253,89 @@ function CheckoutModal({ onClose, onDemo }) {
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
-                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#d4a090,#B76E79)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:700}}>SAVE 20%</span></>}
+                {b==="monthly"?"Monthly":<><span>Annual</span><span style={{background:"linear-gradient(90deg,#BFA5D8,#2CB7A7)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",fontSize:10,fontWeight:700}}>SAVE 20%</span></>}
               </button>
             ))}
           </div>
-          {isAnnual && <div style={{marginTop:10,fontSize:12,color:"#8a3060",background:"rgba(183,110,121,0.1)",borderRadius:8,padding:"6px 12px",lineHeight:1.5}}>⚠ Annual plans are paid upfront and <strong>cannot be cancelled</strong> once purchased.</div>}
+          {isAnnual && <div style={{marginTop:10,fontSize:12,color:"#167A6B",background:"rgba(44,183,167,0.1)",borderRadius:8,padding:"6px 12px",lineHeight:1.5}}>⚠ Annual plans are paid upfront and <strong>cannot be cancelled</strong> once purchased.</div>}
         </div>
 
         <div style={{padding:"20px 24px 28px",display:"flex",flexDirection:"column",gap:12,overflow:"visible"}}>
 
           {/* AUDIO TIER */}
-          <div style={{background:"linear-gradient(135deg,#fdf0e8,#f5e0d0)",border:"1.5px solid #B76E7955",borderRadius:16,padding:"18px"}}>
+          <div style={{background:"linear-gradient(135deg,#0a1a18,#0d2825)",border:"1.5px solid #2CB7A755",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
                 <div style={{fontSize:16,fontWeight:400,color:"#000000",marginBottom:2}}>Audio Tier</div>
                 <div style={{fontSize:11,color:"#8a7268",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
-                <div style={{fontSize:11,color:"#d4a090"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#d4a090"}}>£11.92/mo · billed once</div>}
+                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
+                <div style={{fontSize:11,color:"#BFA5D8"}}>{isAnnual?"/year":"/month"}</div>
+                {isAnnual && <div style={{fontSize:10,color:"#BFA5D8"}}>£11.92/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full audio vault — all desire categories","New tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#000000",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#B76E79"}}>·</span>{f}
+                  <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#e8b870,#d4a090)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            <button onClick={()=>goStripe("audio")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#E8A030,#BFA5D8)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.04em",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
               {TIERS.audio.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
 
           {/* GODDESS TIER */}
-          <div style={{background:"linear-gradient(135deg,#fce8f0,#f8d8e8)",border:"2px solid #B76E79",borderRadius:16,padding:"22px 18px 18px",marginTop:16,position:"relative",overflow:"visible"}}>
-            <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#d4a090,#B76E79)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
+          <div style={{background:"linear-gradient(135deg,#0a1a18,#0d2825)",border:"2px solid #2CB7A7",borderRadius:16,padding:"22px 18px 18px",marginTop:16,position:"relative",overflow:"visible"}}>
+            <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(90deg,#BFA5D8,#2CB7A7)",borderRadius:20,padding:"4px 16px",fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.1em",whiteSpace:"nowrap",zIndex:5}}>✦ MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
-                <div style={{fontSize:16,fontWeight:400,color:"#B76E79",marginBottom:2}}>Goddess Tier</div>
-                <div style={{fontSize:11,color:"#B76E79",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
+                <div style={{fontSize:16,fontWeight:400,color:"#2CB7A7",marginBottom:2}}>Goddess Tier</div>
+                <div style={{fontSize:11,color:"#2CB7A7",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#B76E79",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
-                <div style={{fontSize:11,color:"#d4a090"}}>{isAnnual?"/year":"/month"}</div>
+                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
+                <div style={{fontSize:11,color:"#BFA5D8"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>£26.42/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link audios · capture every sign","Early access drops — 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:f.includes("✦")?"#B76E79":"#6a2848",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?700:400}}>
-                  <span style={{position:"absolute",left:0,color:"#B76E79"}}>·</span>{f}
+                <div key={i} style={{fontSize:12,color:f.includes("✦")?"#2CB7A7":"#167A6B",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?700:400}}>
+                  <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(183,110,121,0.4)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            <button onClick={()=>goStripe("goddess")} className="cta-shake" style={{width:"100%",padding:"14px",background:"linear-gradient(135deg,#f0cdb8,#BFA5D8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(44,183,167,0.4)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>
               {TIERS.goddess.cta(isAnnual)}<ArrowIcon/>
             </button>
           </div>
 
           {/* LIFETIME */}
-          <div style={{background:"#000",border:"1.5px solid #e8b87066",borderRadius:16,padding:"18px"}}>
+          <div style={{background:"#000",border:"1.5px solid #E8A03066",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:16,fontWeight:400,color:"#f5e0a0",marginBottom:2}}>Lifetime Access</div>
-                <div style={{fontSize:11,color:"#c8a870",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
+                <div style={{fontSize:16,fontWeight:400,color:"#F5E0A0",marginBottom:2}}>Lifetime Access</div>
+                <div style={{fontSize:11,color:"#E8A030",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#f5e0a0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
-                <div style={{fontSize:11,color:"#c8a870"}}>one time</div>
+                <div style={{fontSize:26,fontWeight:400,color:"#F5E0A0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
+                <div style={{fontSize:11,color:"#E8A030"}}>one time</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#e8dcc8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#e8b870"}}>·</span>{f}
+                  <span style={{position:"absolute",left:0,color:"#E8A030"}}>·</span>{f}
                 </div>
               ))}
             </div>
-            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#B76E79)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(232,184,112,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
+            <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#F5E0A0,#E8A030,#BFA5D8,#2CB7A7)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(232,184,112,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
-          <button onClick={onDemo} style={{background:"none",border:"none",color:"#B76E79",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
+          <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
           <div style={{textAlign:"center",fontSize:11,color:"#a0909a",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
         </div>
       </div>
@@ -355,9 +355,9 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(232,184,112,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#e8b870", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 40%,#d4a090 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(183,110,121,0.5)",  nameColor: "#f2ece4", muteColor: "#B76E79", priceColor: "#e8b870", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#B76E79", ctaBg: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(232,184,112,0.35)", nameColor: "#f5e0a0", muteColor: "#c8a870", priceColor: "#f5e0a0", periodColor: "#c8a870", featureColor: "#e8dcc8", dot: "#e8b870", ctaBg: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(232,184,112,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#E8A030", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 40%,#BFA5D8 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#E8A030", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(232,184,112,0.35)", nameColor: "#F5E0A0", muteColor: "#E8A030", priceColor: "#F5E0A0", periodColor: "#E8A030", featureColor: "#e8dcc8", dot: "#E8A030", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000" },
   ];
 
   return (
@@ -381,7 +381,7 @@ function PricingSection({ onJoin }) {
                 fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 8,
                 transition: "all 0.2s",
               }}>
-                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ fontSize: 10, color: billing === b ? "#B76E79" : "#B76E79", letterSpacing: "0.1em" }}>SAVE 20%</span></>}
+                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ fontSize: 10, color: billing === b ? "#2CB7A7" : "#2CB7A7", letterSpacing: "0.1em" }}>SAVE 20%</span></>}
               </button>
             ))}
           </div>
@@ -389,8 +389,8 @@ function PricingSection({ onJoin }) {
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 28 : 16, overflow: "visible" }}>
           {cards.map(c => (
-            <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "28px 24px 28px" : "40px 24px 28px") : "28px 24px", marginTop: isMobile ? (c.popular ? 26 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(183,110,121,0.2)" : "none" }}>
-              {c.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)", color: "#000", fontSize: 9, fontWeight: 400, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.18em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 5 }}>Most popular</div>}
+            <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "28px 24px 28px" : "40px 24px 28px") : "28px 24px", marginTop: isMobile ? (c.popular ? 26 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
+              {c.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)", color: "#000", fontSize: 9, fontWeight: 400, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.18em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 5 }}>Most popular</div>}
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 36, fontWeight: 400, color: c.priceColor, fontFamily: "'Jost',sans-serif" }}>{c.price}</span>
@@ -426,38 +426,38 @@ function PricingSection({ onJoin }) {
 
 
 const MARQUEE_ITEMS = [
-  {t:"He texts me first. Obviously.",c:"#d4789a"},{t:"Money finds me first.",c:"#c8a870"},{t:"Gorgeous is my default.",c:"#d4a090"},
-  {t:"My DNA is shifting. Right now.",c:"#e8b870"},{t:"My highest timeline. Activated.",c:"#c8a870"},{t:"He's obsessed. Of course he is.",c:"#d4789a"},
-  {t:"My skin is porcelain. Always.",c:"#d4a090"},{t:"I shift while I sleep.",c:"#d4a090"},{t:"Money arrives unexpectedly.",c:"#c8a870"},
-  {t:"My bloodline is being rewritten.",c:"#e8b870"},{t:"He comes back. Every time.",c:"#d4789a"},{t:"My waist is always snatched.",c:"#d4a090"},
-  {t:"£10,000 months are my baseline.",c:"#c8a870"},{t:"I receive. Constantly. Effortlessly.",c:"#d4789a"},{t:"My self-concept is permanent now.",c:"#e8b870"},
-  {t:"He can't stop thinking about me.",c:"#d4789a"},{t:"I am radiant without trying.",c:"#d4a090"},{t:"My skin glows. Everyone sees it.",c:"#d4a090"},
-  {t:"He chose me. Again.",c:"#d4789a"},{t:"Abundance is my default state.",c:"#c8a870"},{t:"My beauty is effortless.",c:"#d4a090"},
-  {t:"He's already mine.",c:"#d4789a"},{t:"Money loves me. Of course it does.",c:"#c8a870"},{t:"I am the woman he keeps coming back to.",c:"#d4789a"},
-  {t:"My cells hold my new identity.",c:"#e8b870"},{t:"My glow is undeniable.",c:"#d4a090"},{t:"Six figures is just the start.",c:"#c8a870"},
-  {t:"He finds his way back. Every time.",c:"#d4789a"},{t:"My subconscious knows. It delivers.",c:"#e8b870"},{t:"I am paid just for existing.",c:"#c8a870"},
-  {t:"My face is symmetrical and clear.",c:"#d4a090"},{t:"Of course it worked out. It always does.",c:"#c8a870"},{t:"He's devoted. Obviously.",c:"#d4789a"},
-  {t:"My identity upgrades in my sleep.",c:"#e8b870"},{t:"I am magnetic. Naturally.",c:"#d4a090"},{t:"My wealth expands while I sleep.",c:"#c8a870"},
-  {t:"He reaches out first. Always.",c:"#d4789a"},{t:"I embody my dream self. Naturally.",c:"#e8b870"},{t:"My energy is intoxicating.",c:"#d4a090"},
-  {t:"My income is limitless.",c:"#c8a870"},{t:"I am the upgraded version. Now.",c:"#e8b870"},{t:"He misses me and he's saying it.",c:"#d4789a"},
-  {t:"My bank account grows daily.",c:"#c8a870"},{t:"My nervous system knows who I am.",c:"#e8b870"},{t:"I look better every single day.",c:"#d4a090"},
-  {t:"Love finds me. It always does.",c:"#d4789a"},{t:"I am always in the right place.",c:"#c8a870"},{t:"My body reflects my beliefs.",c:"#d4a090"},
-  {t:"My SP is devoted. Obviously.",c:"#d4789a"},{t:"The installation is complete.",c:"#e8b870"},{t:"I receive in my sleep. Obviously.",c:"#d4a090"},
-  {t:"I am stunning. It's obvious.",c:"#d4a090"},{t:"My financial reality is effortless.",c:"#c8a870"},{t:"He can't get me out of his head.",c:"#d4789a"},
-  {t:"My highest self is my only self.",c:"#e8b870"},{t:"People notice. They can't help it.",c:"#d4a090"},{t:"My lineage shifts with me.",c:"#e8b870"},
-  {t:"I am a money magnet. Obviously.",c:"#c8a870"},{t:"He's on his way back. Of course.",c:"#d4789a"},{t:"I wake up transformed.",c:"#d4a090"},
-  {t:"My life is effortless luxury.",c:"#c8a870"},{t:"My subconscious is now on my side.",c:"#e8b870"},{t:"My skin is flawless. Obviously.",c:"#d4a090"},
-  {t:"Everything works out for me. Always.",c:"#c8a870"},{t:"He's never leaving. I'm that girl.",c:"#d4789a"},{t:"My DNA reflects my desires.",c:"#e8b870"},
-  {t:"I am chosen. Every single time.",c:"#d4789a"},{t:"Thirty days changes everything.",c:"#d4a090"},{t:"My frequency is locked in.",c:"#e8b870"},
-  {t:"I am the most beautiful version of me.",c:"#d4a090"},{t:"The universe is obsessed with me.",c:"#c8a870"},{t:"My parallel reality is now.",c:"#e8b870"},
-  {t:"He's constantly thinking of me.",c:"#d4789a"},{t:"My love life is effortless.",c:"#d4789a"},{t:"I am on the frequency of receiving.",c:"#c8a870"},
-  {t:"Every listen deepens the install.",c:"#d4a090"},{t:"I am becoming her daily.",c:"#e8b870"},{t:"My reality bends to my self-concept.",c:"#e8b870"},
-  {t:"Unexpected income is normal for me.",c:"#c8a870"},{t:"My sleep is doing the work.",c:"#d4a090"},{t:"I am irresistible. Obviously.",c:"#d4a090"},
-  {t:"He comes back. Of course he does.",c:"#d4789a"},{t:"I exist on the frequency of abundance.",c:"#c8a870"},{t:"My cells shift with every listen.",c:"#e8b870"},
-  {t:"Beauty is who I am.",c:"#d4a090"},{t:"Life is happening for me. Always.",c:"#c8a870"},{t:"My manifestations arrive fast.",c:"#c8a870"},
-  {t:"My theta state holds my desires.",c:"#d4a090"},{t:"The new me is permanent now.",c:"#e8b870"},{t:"I attract what I want. Effortlessly.",c:"#c8a870"},
-  {t:"My aura is undeniable.",c:"#d4a090"},{t:"Money comes from everywhere.",c:"#c8a870"},{t:"The shift is already done.",c:"#e8b870"},
-  {t:"I am reprogramming daily.",c:"#d4a090"},{t:"He's obsessed with who I am.",c:"#d4789a"},{t:"Every night I become her more.",c:"#d4a090"},
+  {t:"He texts me first. Obviously.",c:"#2CB7A7"},{t:"Money finds me first.",c:"#E8A030"},{t:"Gorgeous is my default.",c:"#BFA5D8"},
+  {t:"My DNA is shifting. Right now.",c:"#E8A030"},{t:"My highest timeline. Activated.",c:"#E8A030"},{t:"He's obsessed. Of course he is.",c:"#2CB7A7"},
+  {t:"My skin is porcelain. Always.",c:"#BFA5D8"},{t:"I shift while I sleep.",c:"#BFA5D8"},{t:"Money arrives unexpectedly.",c:"#E8A030"},
+  {t:"My bloodline is being rewritten.",c:"#E8A030"},{t:"He comes back. Every time.",c:"#2CB7A7"},{t:"My waist is always snatched.",c:"#BFA5D8"},
+  {t:"£10,000 months are my baseline.",c:"#E8A030"},{t:"I receive. Constantly. Effortlessly.",c:"#2CB7A7"},{t:"My self-concept is permanent now.",c:"#E8A030"},
+  {t:"He can't stop thinking about me.",c:"#2CB7A7"},{t:"I am radiant without trying.",c:"#BFA5D8"},{t:"My skin glows. Everyone sees it.",c:"#BFA5D8"},
+  {t:"He chose me. Again.",c:"#2CB7A7"},{t:"Abundance is my default state.",c:"#E8A030"},{t:"My beauty is effortless.",c:"#BFA5D8"},
+  {t:"He's already mine.",c:"#2CB7A7"},{t:"Money loves me. Of course it does.",c:"#E8A030"},{t:"I am the woman he keeps coming back to.",c:"#2CB7A7"},
+  {t:"My cells hold my new identity.",c:"#E8A030"},{t:"My glow is undeniable.",c:"#BFA5D8"},{t:"Six figures is just the start.",c:"#E8A030"},
+  {t:"He finds his way back. Every time.",c:"#2CB7A7"},{t:"My subconscious knows. It delivers.",c:"#E8A030"},{t:"I am paid just for existing.",c:"#E8A030"},
+  {t:"My face is symmetrical and clear.",c:"#BFA5D8"},{t:"Of course it worked out. It always does.",c:"#E8A030"},{t:"He's devoted. Obviously.",c:"#2CB7A7"},
+  {t:"My identity upgrades in my sleep.",c:"#E8A030"},{t:"I am magnetic. Naturally.",c:"#BFA5D8"},{t:"My wealth expands while I sleep.",c:"#E8A030"},
+  {t:"He reaches out first. Always.",c:"#2CB7A7"},{t:"I embody my dream self. Naturally.",c:"#E8A030"},{t:"My energy is intoxicating.",c:"#BFA5D8"},
+  {t:"My income is limitless.",c:"#E8A030"},{t:"I am the upgraded version. Now.",c:"#E8A030"},{t:"He misses me and he's saying it.",c:"#2CB7A7"},
+  {t:"My bank account grows daily.",c:"#E8A030"},{t:"My nervous system knows who I am.",c:"#E8A030"},{t:"I look better every single day.",c:"#BFA5D8"},
+  {t:"Love finds me. It always does.",c:"#2CB7A7"},{t:"I am always in the right place.",c:"#E8A030"},{t:"My body reflects my beliefs.",c:"#BFA5D8"},
+  {t:"My SP is devoted. Obviously.",c:"#2CB7A7"},{t:"The installation is complete.",c:"#E8A030"},{t:"I receive in my sleep. Obviously.",c:"#BFA5D8"},
+  {t:"I am stunning. It's obvious.",c:"#BFA5D8"},{t:"My financial reality is effortless.",c:"#E8A030"},{t:"He can't get me out of his head.",c:"#2CB7A7"},
+  {t:"My highest self is my only self.",c:"#E8A030"},{t:"People notice. They can't help it.",c:"#BFA5D8"},{t:"My lineage shifts with me.",c:"#E8A030"},
+  {t:"I am a money magnet. Obviously.",c:"#E8A030"},{t:"He's on his way back. Of course.",c:"#2CB7A7"},{t:"I wake up transformed.",c:"#BFA5D8"},
+  {t:"My life is effortless luxury.",c:"#E8A030"},{t:"My subconscious is now on my side.",c:"#E8A030"},{t:"My skin is flawless. Obviously.",c:"#BFA5D8"},
+  {t:"Everything works out for me. Always.",c:"#E8A030"},{t:"He's never leaving. I'm that girl.",c:"#2CB7A7"},{t:"My DNA reflects my desires.",c:"#E8A030"},
+  {t:"I am chosen. Every single time.",c:"#2CB7A7"},{t:"Thirty days changes everything.",c:"#BFA5D8"},{t:"My frequency is locked in.",c:"#E8A030"},
+  {t:"I am the most beautiful version of me.",c:"#BFA5D8"},{t:"The universe is obsessed with me.",c:"#E8A030"},{t:"My parallel reality is now.",c:"#E8A030"},
+  {t:"He's constantly thinking of me.",c:"#2CB7A7"},{t:"My love life is effortless.",c:"#2CB7A7"},{t:"I am on the frequency of receiving.",c:"#E8A030"},
+  {t:"Every listen deepens the install.",c:"#BFA5D8"},{t:"I am becoming her daily.",c:"#E8A030"},{t:"My reality bends to my self-concept.",c:"#E8A030"},
+  {t:"Unexpected income is normal for me.",c:"#E8A030"},{t:"My sleep is doing the work.",c:"#BFA5D8"},{t:"I am irresistible. Obviously.",c:"#BFA5D8"},
+  {t:"He comes back. Of course he does.",c:"#2CB7A7"},{t:"I exist on the frequency of abundance.",c:"#E8A030"},{t:"My cells shift with every listen.",c:"#E8A030"},
+  {t:"Beauty is who I am.",c:"#BFA5D8"},{t:"Life is happening for me. Always.",c:"#E8A030"},{t:"My manifestations arrive fast.",c:"#E8A030"},
+  {t:"My theta state holds my desires.",c:"#BFA5D8"},{t:"The new me is permanent now.",c:"#E8A030"},{t:"I attract what I want. Effortlessly.",c:"#E8A030"},
+  {t:"My aura is undeniable.",c:"#BFA5D8"},{t:"Money comes from everywhere.",c:"#E8A030"},{t:"The shift is already done.",c:"#E8A030"},
+  {t:"I am reprogramming daily.",c:"#BFA5D8"},{t:"He's obsessed with who I am.",c:"#2CB7A7"},{t:"Every night I become her more.",c:"#BFA5D8"},
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
@@ -470,18 +470,18 @@ function AppPreviewSection({ isMobile }) {
     if (view === "proof") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.15)" }}>
         <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
-          <div style={{ fontSize:13, color:theme==="dark"?"#e8b870":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, color:theme==="dark"?"#E8A030":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
-              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.08)":"rgba(183,110,121,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, color:theme==="dark"?"#e8b870":"#B76E79", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
+              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.08)":"rgba(44,183,167,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+                <div style={{ fontSize:22, color:theme==="dark"?"#E8A030":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
                 <div style={{ fontSize:9, color:theme==="dark"?"#9a8878":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.14)":"rgba(183,110,121,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.14)":"rgba(44,183,167,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(183,110,121,0.12)", color:theme==="dark"?"#e8b870":"#B76E79", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
               <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
             <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
@@ -492,9 +492,9 @@ function AppPreviewSection({ isMobile }) {
               ))}
             </div>
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.1)":"rgba(183,110,121,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.1)":"rgba(44,183,167,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.12)":"rgba(183,110,121,0.1)", color:theme==="dark"?"#e8b870":"#B76E79", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#E8A030":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
               <span style={{ fontSize:9, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
             </div>
             <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
@@ -581,7 +581,7 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <span style={{ fontSize:11, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#e8b870":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#E8A030":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
         </button>
         <span style={{ fontSize:11, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>Light</span>
@@ -620,7 +620,7 @@ function MaxxingCarousel({ cats }) {
   const next2 = cats[(idx+2)%cats.length];
   const next3 = cats[(idx+3)%cats.length];
 
-  const OMBRE = "linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)";
+  const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)";
   const bgs = [OMBRE, OMBRE, OMBRE, OMBRE, OMBRE, OMBRE];
   const bg = bgs[idx % bgs.length];
 
@@ -662,7 +662,7 @@ function MaxxingCarousel({ cats }) {
         {cats.map((_,i) => (
           <div key={i}
             onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
-            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#d4a090":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
+            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#BFA5D8":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
         ))}
       </div>
     </div>
@@ -689,7 +689,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
     "Beautymaxxing":    "linear-gradient(135deg,#f8d0e8 0%,#e898c4 40%,#d4689a 100%)",
     "Lovemaxxing":      "linear-gradient(135deg,#f0d0dc 0%,#e098b0 40%,#c4607a 100%)",
     "DNAmaxxing":       "linear-gradient(135deg,#e0d0f0 0%,#b898d8 40%,#9068b8 100%)",
-    "Lifemaxxing":      "linear-gradient(135deg,#fce4c0 0%,#e8b870 40%,#c9963a 100%)",
+    "Lifemaxxing":      "linear-gradient(135deg,#fce4c0 0%,#E8A030 40%,#c9963a 100%)",
     "Bodymaxxing":      "linear-gradient(135deg,#d0e8d4 0%,#a0c8a8 40%,#6a9870 100%)",
     "Selfmaxxing":      "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 40%,#9b87c4 100%)",
     "Erosmaxxing":      "linear-gradient(135deg,#f0c8d8 0%,#d88098 40%,#b85068 100%)",
@@ -790,12 +790,12 @@ function FAQSection() {
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
-          <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(183,110,121,0.35)":"rgba(183,110,121,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(183,110,121,0.12)":"none" }}>
+          <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(44,183,167,0.35)":"rgba(44,183,167,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(44,183,167,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
               <span style={{ fontSize:15,fontWeight:400,color:"#1a0a04",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
-              <span style={{ fontSize:20,color:"#B76E79",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
+              <span style={{ fontSize:20,color:"#2CB7A7",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
-            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(183,110,121,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#2a1a0a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
+            {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(44,183,167,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#2a1a0a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
         ))}
       </div>
@@ -911,10 +911,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
   const cats = [
     { label: "Lovemaxxing", tagline: "He's obsessed. Of course he is.", color: T.rose },
-    { label: "Moneymaxxing", tagline: "Money finds me first. Obviously.", color: "#B76E79" },
+    { label: "Moneymaxxing", tagline: "Money finds me first. Obviously.", color: "#2CB7A7" },
     { label: "Beautymaxxing", tagline: "Gorgeous is my default.", color: T.champSoft },
     { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: "#e8e0d0" },
-    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#e8b870" },
+    { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#E8A030" },
     { label: "Sleep Shifting", tagline: "I shift while I sleep.", color: "#000000" },
   ];
 
@@ -952,11 +952,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#f5e0a0 0%,#e8b870 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0 0%,#E8A030 45%,#c9963a 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 15, fontWeight: 400, color: "#000", letterSpacing: isMobile ? "0.04em" : "0.08em", whiteSpace: "nowrap" }}>
             COMING SOON
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#e8b870", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#E8A030", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join Waitlist
           </button>
         </div>
@@ -966,8 +966,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#E8A030" strokeWidth="4" strokeLinecap="round"/>
             </svg>
             <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(11px,3.2vw,14px)", fontWeight: 300, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -1138,13 +1138,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         {/* SPOTIFY-STYLE PLAYER */}
         <div style={{ background:"#000", padding: isMobile?"16px 18px 24px":"20px 24px 32px" }}>
-          <div style={{ background: "#0a0a0a", border: "1px solid rgba(232,168,96,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
+          <div style={{ background: "#0a0a0a", border: "1px solid rgba(232,160,48,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-              <div style={{ width:56, height:56, borderRadius:10, background:"#000", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(232,168,96,0.2)", overflow:"hidden" }}>
+              <div style={{ width:56, height:56, borderRadius:10, background:"#000", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(232,160,48,0.2)", overflow:"hidden" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:2, height:36 }}>
                   {[6,14,22,18,28,12,24,20,16,10,26,8,22,18,14].map((h,i)=>(
-                    <div key={i} style={{ width:2.5, borderRadius:2, background: playing ? `linear-gradient(to top, #e8a860, #fce4c0)` : "rgba(232,168,96,0.3)", height: playing ? h : Math.max(4, h*0.4), transition:"height 0.3s" }}/>
+                    <div key={i} style={{ width:2.5, borderRadius:2, background: playing ? `linear-gradient(to top, #e8a860, #fce4c0)` : "rgba(232,160,48,0.3)", height: playing ? h : Math.max(4, h*0.4), transition:"height 0.3s" }}/>
                   ))}
                 </div>
               </div>
@@ -1154,7 +1154,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <div style={{ fontSize: 12, color: "#b09888", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
               </div>
               {playing && (
-                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(232,168,96,0.12)", border: "1px solid rgba(232,168,96,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(232,160,48,0.12)", border: "1px solid rgba(232,160,48,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#e8a860", animation: "pulse 1.2s ease-in-out infinite" }}/>
                   <span style={{ fontSize: 11, color: "#e8a860", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
                 </div>
@@ -1163,8 +1163,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Progress bar */}
             <div style={{ marginBottom: 12 }}>
               <div style={{ height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, position: "relative" }}>
-                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#e8b870,#e8a860)", borderRadius:2, position:"relative" }}>
-                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#f5e0a0", opacity: playing ? 1 : 0 }}/>
+                <div style={{ width:`${progress}%`, height:"100%", background:"linear-gradient(90deg,#E8A030,#e8a860)", borderRadius:2, position:"relative" }}>
+                  <div style={{ position:"absolute", right:-4, top:"50%", transform:"translateY(-50%)", width:10, height:10, borderRadius:"50%", background:"#F5E0A0", opacity: playing ? 1 : 0 }}/>
                 </div>
               </div>
               <div style={{ display:"flex", justifyContent:"space-between", marginTop:6 }}>
@@ -1180,7 +1180,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <button onClick={prevTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8a860"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#e8a860"/></svg>
               </button>
-              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#e8b870,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,168,96,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
+              <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#E8A030,#e8a860)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(232,160,48,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
                 {playing
                   ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
                   : <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
@@ -1196,7 +1196,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Track dots */}
             <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:12 }}>
               {PLAYLIST.map((_,i) => (
-                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#e8a860":"rgba(232,168,96,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
+                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#e8a860":"rgba(232,160,48,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
               ))}
             </div>
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#786860", fontFamily:"'Jost',sans-serif" }}>
@@ -1209,8 +1209,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
         <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
-          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#B76E79" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#e8b870" strokeWidth="4" strokeLinecap="round"/>
+          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="4" strokeLinecap="round"/>
+          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#E8A030" strokeWidth="4" strokeLinecap="round"/>
         </svg>
       </div>
 
@@ -1220,26 +1220,26 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           Self Hypnosis Goddess
         </div>
         <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
-        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,168,96,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
+        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(232,160,48,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
       </div>
 
       {/* DELULU IS THE SOLULU — own box, right after brand block */}
       <div style={{ background:"#000", padding: isMobile?"32px 24px 48px":"20px 48px 48px", textAlign:"center" }}>
-        <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(90deg,#f5e0a0,#e8b870,#d4a090,#c4789a,#B76E79)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
+        <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(90deg,#F5E0A0,#E8A030,#BFA5D8,#9B8FD4,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
           Delulu is the solulu.
         </div>
       </div>
 
       {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"0 24px 56px":"0 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"2px solid #e8b870", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
+        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"2px solid #E8A030", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview the App
         </button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
-          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#d4a090,#c4789a,#B76E79)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
+          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0,#E8A030,#BFA5D8,#9B8FD4,#2CB7A7)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
             Join Now ✦
           </button>
-          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1px solid rgba(232,168,96,0.5)", borderRadius:30, color:"#e8a860", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
+          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1px solid rgba(232,160,48,0.5)", borderRadius:30, color:"#e8a860", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
             Lifetime Access
           </button>
         </div>
@@ -1248,7 +1248,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* PURPOSE — subconscious creates your reality */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#B76E79", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>The premise</div>
+          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>The premise</div>
           <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
             Shift into the state of your dream reality.
           </h2>
@@ -1283,27 +1283,27 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <path d="M4 40 Q13 22 22 40 T40 40 T58 40 T76 40 T94 40 T112 40 T130 40 T148 40 T166 40 T184 40 T202 40 T216 40"
                   fill="none" stroke="#e8a860" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
                 <path d="M4 40 Q11 55 18 40 T32 40 T46 40 T60 40 T74 40 T88 40 T102 40 T116 40 T130 40 T144 40 T158 40 T172 40 T186 40 T200 40 T214 40"
-                  fill="none" stroke="#B76E79" strokeWidth="2" opacity="0.6" strokeLinecap="round"/>
+                  fill="none" stroke="#2CB7A7" strokeWidth="2" opacity="0.6" strokeLinecap="round"/>
               </svg>
             </div>
-            <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#B76E79)" }}/>
+            <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#2CB7A7)" }}/>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
               <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#e8a860", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
               <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
                 <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#e8a860" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
-                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#B76E79" strokeWidth="2.6" opacity="0.55" strokeLinecap="round" transform="translate(0,0)"/>
+                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2CB7A7" strokeWidth="2.6" opacity="0.55" strokeLinecap="round" transform="translate(0,0)"/>
               </svg>
             </div>
           </div>
 
           {/* Brainwave frequency reference strip — real smooth waves, black bg, ombre colors */}
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(232,168,96,0.2)", borderRadius:14, overflow:"hidden" }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(232,160,48,0.2)", borderRadius:14, overflow:"hidden" }}>
             {[
-              { name:"Gamma", hz:"30–100Hz", tag:"Insight, peak experiences", cycles:11, color:"#f5e0a0" },
-              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#e8b870" },
-              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", cycles:5, color:"#d4a090" },
-              { name:"Theta", hz:"4–8Hz",    tag:"Trance — where reprogramming happens", cycles:3, color:"#c4789a" },
-              { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep, restoration", cycles:1.5, color:"#B76E79" },
+              { name:"Gamma", hz:"30–100Hz", tag:"Insight, peak experiences", cycles:11, color:"#F5E0A0" },
+              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#E8A030" },
+              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", cycles:5, color:"#BFA5D8" },
+              { name:"Theta", hz:"4–8Hz",    tag:"Trance — where reprogramming happens", cycles:3, color:"#9B8FD4" },
+              { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep, restoration", cycles:1.5, color:"#2CB7A7" },
             ].map((w,i)=>{
               const width = 100, cx = width/2, amp = 9;
               const pts = Array.from({length:81},(_,n)=>{
@@ -1312,7 +1312,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 return `${n===0?'M':'L'}${x.toFixed(1)} ${y.toFixed(1)}`;
               }).join(' ');
               return (
-                <div key={i} style={{ padding:"18px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(232,168,96,0.06)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(232,168,96,0.15)" : "none" }}>
+                <div key={i} style={{ padding:"18px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(232,160,48,0.06)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(232,160,48,0.15)" : "none" }}>
                   <div style={{ fontSize:13, color:w.color, fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2 }}>{w.name}</div>
                   <div style={{ fontSize:10, color:"#9a8878", marginBottom:10 }}>{w.hz}</div>
                   <svg width="100%" height="48" viewBox="0 0 100 48" style={{ marginBottom:10, display:"block" }}>
@@ -1379,18 +1379,18 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
 
         <div style={{ maxWidth:840, margin:"0 auto", position:"relative" }}>
-          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#fce4c0,#f5d4a0,#e8b870,#d4a090,#c4789a,#B76E79)", opacity:0.4 }}/>}
+          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#fce4c0,#f5d4a0,#E8A030,#BFA5D8,#9B8FD4,#2CB7A7)", opacity:0.4 }}/>}
 
           {[
             { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", accent:"#f5d4a0",
               icon: <path d="M30 8 L36 24 L52 30 L36 36 L30 52 L24 36 L8 30 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/> },
-            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#e8b870",
+            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#E8A030",
               icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M25 20 L41 30 L25 40 Z" fill="currentColor"/></> },
-            { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#d4a090",
+            { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#BFA5D8",
               icon: <><circle cx="30" cy="30" r="6" fill="currentColor"/><circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" strokeWidth="1.8" opacity="0.6"/><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" strokeWidth="1.6" opacity="0.35"/></> },
-            { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", accent:"#c4789a",
+            { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", accent:"#9B8FD4",
               icon: <><rect x="10" y="20" width="40" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M22 20 L25 14 L35 14 L38 20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/><circle cx="30" cy="34" r="8" fill="none" stroke="currentColor" strokeWidth="2.2"/></> },
-            { n:"05", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", accent:"#B76E79",
+            { n:"05", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", accent:"#2CB7A7",
               icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M20 30 L27 37 L41 22" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></> },
           ].map(({n,icon,title,body,accent},i)=>(
             <div key={i} style={{ display:"flex", gap: isMobile?18:32, alignItems:"flex-start", marginBottom: i===4?0:(isMobile?32:40), position:"relative" }}>
@@ -1429,8 +1429,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </p>
 
             {/* THREE FORMATS */}
-            <div style={{ background: "rgba(232,168,96,0.06)", border: "1px solid rgba(232,168,96,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
-              <div style={{ fontSize: 12, color: "#e8b870", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
+            <div style={{ background: "rgba(232,160,48,0.06)", border: "1px solid rgba(232,160,48,0.15)", borderRadius: 14, padding: "18px 24px", marginBottom: 28, maxWidth: 560, margin: "0 auto 28px" }}>
+              <div style={{ fontSize: 12, color: "#E8A030", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>Six formats — each does something different</div>
               {[
                 { icon: "🎵", label: "Melodic House", body: "Reshma's voice layered beneath original melodic house music. You listen like you would a song — and it rewires you beneath the surface." },
                 { icon: "🌊", label: "Melodic Calm", body: "Slower, softer melodic layers for winding down. The same encoding — delivered at the pace your nervous system needs at night." },
@@ -1439,7 +1439,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 { icon: "🎼", label: "Binaural Beats / Solfeggio Frequency", body: "Two slightly different tones, one per ear, syncing both hemispheres into theta — layered with Solfeggio frequencies tuned to specific effects. See the full frequency table below." },
                 { icon: "✋", label: "Reiki Encoded", body: "Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio you sleep to." },
               ].map((f,i)=>(
-                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", paddingBottom: i<5?16:0, marginBottom: i<5?16:0, borderBottom: i<5?"1px solid rgba(183,110,121,0.12)":"none" }}>
+                <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start", paddingBottom: i<5?16:0, marginBottom: i<5?16:0, borderBottom: i<5?"1px solid rgba(44,183,167,0.12)":"none" }}>
                   <span style={{ fontSize: 22, flexShrink: 0, marginTop: 1 }}>{f.icon}</span>
                   <div>
                     <div style={{ fontSize: 16, fontWeight: 700, color: "#000000", marginBottom: 5 }}>{f.label}</div>
@@ -1451,11 +1451,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* FREQUENCY TABLE — Solfeggio + binaural reference */}
             <div style={{ maxWidth: 680, margin: "0 auto" }}>
-              <div style={{ fontSize: 12, color: "#e8b870", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
+              <div style={{ fontSize: 12, color: "#E8A030", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, textAlign:"center" }}>The frequencies, explained</div>
               <p style={{ fontSize: isMobile?14:15, color:"#3a2010", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
                 Every track is tuned to a specific frequency — Solfeggio tones layered under the music, plus binaural beats for hemi-sync. Here's what each one is associated with:
               </p>
-              <div style={{ background:"#fff", borderRadius:14, overflow:"hidden", border:"1px solid rgba(183,110,121,0.2)" }}>
+              <div style={{ background:"#fff", borderRadius:14, overflow:"hidden", border:"1px solid rgba(44,183,167,0.2)" }}>
                 {[
                   { hz:"174hz", name:"Foundation", assoc:"Pain relief, safety, grounding" },
                   { hz:"285hz", name:"Restoration", assoc:"Tissue and energy field repair" },
@@ -1468,8 +1468,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   { hz:"852hz", name:"Intuition", assoc:"Returning to spiritual order" },
                   { hz:"963hz", name:"Activation", assoc:"Pineal gland activation, higher connection" },
                 ].map((row,i)=>(
-                  <div key={i} style={{ display:"flex", alignItems:"center", gap:14, padding: isMobile?"10px 14px":"12px 20px", borderBottom: i<9?"1px solid rgba(183,110,121,0.1)":"none" }}>
-                    <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#B76E79", width: isMobile?52:64, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
+                  <div key={i} style={{ display:"flex", alignItems:"center", gap:14, padding: isMobile?"10px 14px":"12px 20px", borderBottom: i<9?"1px solid rgba(44,183,167,0.1)":"none" }}>
+                    <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#2CB7A7", width: isMobile?52:64, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
                     <div style={{ fontSize: isMobile?13:14, fontWeight:600, color:"#1a0a04", width: isMobile?90:120, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
                     <div style={{ fontSize: isMobile?12:13, color:"#5a4a40", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                   </div>
@@ -1487,7 +1487,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize: 12, color: "#e8b870", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
+          <div style={{ fontSize: 12, color: "#E8A030", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
             The Hawkins Scale.
           </h2>
@@ -1499,7 +1499,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               {n:"Enlightenment",v:700,c:"#ffffff"},
               {n:"Peace",v:600,c:"#fdf0e8"},
               {n:"Joy",v:540,c:"#f5d090"},
-              {n:"Love",v:500,c:"#e8b870"},
+              {n:"Love",v:500,c:"#E8A030"},
               {n:"Reason",v:400,c:"#9b59b6"},
               {n:"Acceptance",v:350,c:"#2980b9"},
               {n:"Willingness",v:310,c:"#3498db"},
@@ -1539,19 +1539,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:20 }}>The Library.</div>
-            <div style={{ fontSize: 14, fontWeight: 500, color: "#B76E79", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "#2CB7A7", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
             <h2 style={{ fontSize: "clamp(28px,4.5vw,44px)", color: "#000000", fontWeight: 400, marginBottom: 12, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>Whatever it is, it's covered.</h2>
             <p style={{ fontSize: 15, color: "#5a4a40", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap", fontFamily:"'Jost',sans-serif" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 16 }}>
             {[
-              { name: "Lovemaxxing", pain: "Him, obsessed. You, unbothered.", accent: "#B76E79",
+              { name: "Lovemaxxing", pain: "Him, obsessed. You, unbothered.", accent: "#2CB7A7",
                 icon: <path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinejoin="round"/> },
               { name: "Beautymaxxing", pain: "The face in the mirror, finally the one you manifested", accent: "#b8547a",
                 icon: <><path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/></> },
-              { name: "Facemaxxing", pain: "Skin so good they ask what you use", accent: "#c4789a",
+              { name: "Facemaxxing", pain: "Skin so good they ask what you use", accent: "#9B8FD4",
                 icon: <><ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" strokeWidth="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
-              { name: "Bodymaxxing", pain: "The body that makes a room stop", accent: "#B76E79",
+              { name: "Bodymaxxing", pain: "The body that makes a room stop", accent: "#2CB7A7",
                 icon: <><circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></> },
               { name: "Moneymaxxing", pain: "The next zero on your bank statement", accent: "#c9963a",
                 icon: <><circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
@@ -1559,23 +1559,23 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" strokeWidth="3"/></> },
               { name: "DNAmaxxing", pain: "Ageless. Radiant. Undeniable.", accent: "#8a3050",
                 icon: <><path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(-10,0)"/><path d="M18 18 L42 18 M16 30 L44 30 M18 42 L42 42" stroke="currentColor" strokeWidth="1.5" opacity="0.5"/></> },
-              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#e8b870",
+              { name: "Selfmaxxing", pain: "The woman you were always meant to be", accent: "#E8A030",
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/></> },
               { name: "Erosmaxxing", pain: "Magnetic enough to stop a room", accent: "#a8506a",
                 icon: <path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/> },
               { name: "Lifemaxxing", pain: "Every area of your life, upgrading at once", accent: "#e0a868",
                 icon: <><circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30 M16 16 L12 12 M44 16 L48 12 M16 44 L12 48 M44 44 L48 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
-              { name: "Luckygirlmaxxing", pain: "Everything just works out for you now", accent: "#e8b870",
+              { name: "Luckygirlmaxxing", pain: "Everything just works out for you now", accent: "#E8A030",
                 icon: <><path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></> },
               { name: "Sovereignmaxxing", pain: "Answering to absolutely no one", accent: "#6a2840",
                 icon: <path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/> },
-              { name: "Skinnymaxxing", pain: "The number on the scale, finally moving", accent: "#B76E79",
+              { name: "Skinnymaxxing", pain: "The number on the scale, finally moving", accent: "#2CB7A7",
                 icon: <><path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></> },
               { name: "Singlemaxxing", pain: "Too full of yourself to settle", accent: "#a8506a",
                 icon: <><circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 34 L30 48" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/></> },
-              { name: "Wellnessmaxxing", pain: "Your body and mind, finally in sync", accent: "#c4789a",
+              { name: "Wellnessmaxxing", pain: "Your body and mind, finally in sync", accent: "#9B8FD4",
                 icon: <><path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 26 L27 26 L29 20 L32 32 L34 26 L38 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/></> },
-              { name: "Sleepmaxxing", pain: "Manifesting while you're unconscious", accent: "#f5e0a0",
+              { name: "Sleepmaxxing", pain: "Manifesting while you're unconscious", accent: "#F5E0A0",
                 icon: <path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/> },
               { name: "Studymaxxing", pain: "The grades everyone said were out of reach", accent: "#c9963a",
                 icon: <><path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M22 26 L22 36 Q30 40 38 36 L38 26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
@@ -1583,9 +1583,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
               { name: "Peacemaxxing", pain: "Nothing rattles you anymore", accent: "#8a6aa8",
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/></> },
-              { name: "Confidencemaxxing", pain: "Walk in like you already own the room", accent: "#B76E79",
+              { name: "Confidencemaxxing", pain: "Walk in like you already own the room", accent: "#2CB7A7",
                 icon: <><path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/></> },
-              { name: "Stylemaxxing", pain: "Dressed like the girl who already made it", accent: "#d4a090",
+              { name: "Stylemaxxing", pain: "Dressed like the girl who already made it", accent: "#BFA5D8",
                 icon: <><path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/></> },
               { name: "Healmaxxing", pain: "Physical pain, emotional pain — gone, not just managed", accent: "#a8506a",
                 icon: <><path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M22 20 Q24 24 22 28 Q26 30 26 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/><path d="M38 20 Q36 24 38 28 Q34 30 34 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/></> },
@@ -1623,7 +1623,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </p>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8A030 22%,#BFA5D8 48%,#9B8FD4 72%,#2CB7A7 100%)" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#2a0f18", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
@@ -1646,14 +1646,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Moneymaxxing" },
               { quote: "I used to check my phone every five minutes waiting for him to text. Now I forget to check, and that's exactly when he does.", name: "Amara, 30", cat: "Lovemaxxing" },
             ].map((t, i) => (
-              <div key={i} style={{ background:"#fff", border:"1px solid rgba(183,110,121,0.25)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(183,110,121,0.12)" }}>
+              <div key={i} style={{ background:"#fff", border:"1px solid rgba(44,183,167,0.25)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(44,183,167,0.12)" }}>
                 <div style={{ width:32, height:24, opacity:0.25 }}>
-                  <svg viewBox="0 0 32 24" fill="#B76E79"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
+                  <svg viewBox="0 0 32 24" fill="#2CB7A7"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
                 <p style={{ fontSize:isMobile?16:18, color:"#1a1410", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                   <span style={{ fontSize:12, fontWeight:400, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
-                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(183,110,121,0.12)", border:"1px solid rgba(183,110,121,0.3)", borderRadius:20, color:"#B76E79", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
+                  <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(44,183,167,0.12)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20, color:"#2CB7A7", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
             ))}
@@ -1676,12 +1676,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </h2>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(6,1fr)", gap: isMobile?6:10, marginBottom:32 }}>
             {[
-              { g:"linear-gradient(135deg,#f5e0a0,#e8b870)" },
-              { g:"linear-gradient(135deg,#e8b870,#d4a090)" },
-              { g:"linear-gradient(135deg,#d4a090,#c4789a)" },
-              { g:"linear-gradient(135deg,#c4789a,#B76E79)" },
-              { g:"linear-gradient(135deg,#f5e0a0,#c4789a)" },
-              { g:"linear-gradient(135deg,#B76E79,#e8b870)" },
+              { g:"linear-gradient(135deg,#F5E0A0,#E8A030)" },
+              { g:"linear-gradient(135deg,#E8A030,#BFA5D8)" },
+              { g:"linear-gradient(135deg,#BFA5D8,#9B8FD4)" },
+              { g:"linear-gradient(135deg,#9B8FD4,#2CB7A7)" },
+              { g:"linear-gradient(135deg,#F5E0A0,#9B8FD4)" },
+              { g:"linear-gradient(135deg,#2CB7A7,#E8A030)" },
             ].map((tile,i)=>(
               <a key={i} href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
                 style={{ display:"block", aspectRatio:"1", borderRadius:8, background:tile.g, position:"relative", overflow:"hidden", opacity:0.9, transition:"opacity 0.2s" }}
@@ -1693,7 +1693,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ))}
           </div>
           <a href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
-            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(232,168,96,0.4)", borderRadius:30, color:"#e8a860", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
+            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(232,160,48,0.4)", borderRadius:30, color:"#e8a860", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
             Follow on Instagram
           </a>
         </div>
@@ -1734,8 +1734,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* SHOP MODAL — embedded Beacons, stays on-site */}
       {shopOpen && (
         <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(232,168,96,0.3)" }}>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(232,168,96,0.2)", flexShrink:0 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(232,160,48,0.3)" }}>
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(232,160,48,0.2)", flexShrink:0 }}>
               <span className="wm wm-shimmer" style={{ fontSize:16 }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
                 <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#8a7868", textDecoration:"none" }}>Open in new tab ↗</a>
@@ -1750,13 +1750,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* WAITLIST MODAL */}
       {waitlistOpen && (
         <div onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.75)", zIndex:900, display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ background:"#000", border:"1.5px solid #e8b87055", borderRadius:20, padding:"36px 28px", maxWidth:400, width:"100%", textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ background:"#000", border:"1.5px solid #E8A03055", borderRadius:20, padding:"36px 28px", maxWidth:400, width:"100%", textAlign:"center" }}>
             {waitlistStatus === "done" ? (
               <>
                 <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
                 <div style={{ fontSize:20, fontWeight:400, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
                 <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
-                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
+                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0,#E8A030,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
               </>
             ) : (
               <>
@@ -1769,10 +1769,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                     value={waitlistEmail}
                     onChange={e=>{setWaitlistEmail(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
                     placeholder="your@email.com"
-                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#B76E79":"#2a2a2a"}`, borderRadius:12, color:"#2a1a0a", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#2a1a0a", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
                   {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#e8a860", marginBottom:12 }}>Please enter a valid email.</div>}
-                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#f5e0a0,#e8b870,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
+                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0,#E8A030,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
                 </form>
