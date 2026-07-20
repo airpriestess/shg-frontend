@@ -1010,16 +1010,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ["About Reshma", ()=>{ onLegal?.("about"); setMenuOpen(false); }],
               ["YouTube",       ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(255,255,255,0.08)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:400,letterSpacing:"0.04em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }>{l}</button>
             ))}
           </div>
 
           {/* Bottom — join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"#000",border:"none",borderRadius:12,color:"#2CB7A7",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }>
               Join Now ✦
             </button>
-            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(0,0,0,0.25)",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#f2ece4",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Sign in
             </button>
           </div>
@@ -1361,7 +1361,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   <svg width="100%" height="48" viewBox="0 0 100 48" style={{ marginBottom:10, display:"block" }}>
                     <path d={pts} fill="none" stroke={w.color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <div style={{ fontSize:10, color:"#e8e0d8", lineHeight:1.4 }}>{w.tag}</div>
+                  <div style={{ fontSize:10, color:"#ddd0c8", lineHeight:1.4 }}>{w.tag}</div>
                 </div>
               );
             })}
@@ -1573,10 +1573,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#1A7FC8" },
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
-                    <div style={{ fontSize: isMobile?11:13, fontWeight:600, color:row.color, width: isMobile?44:64, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
+                    <div style={{ fontSize: isMobile?11:13, fontWeight:600, color:row.color, width: isMobile?44:64, flexShrink:0, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>{row.hz}</div>
                     <div style={{ flex:1 }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
-                        <div style={{ fontSize: isMobile?12:14, fontWeight:500, color:"#0a0a0a", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
+                        <div style={{ fontSize: isMobile?12:14, fontWeight:500, color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{row.name}</div>
                         <div style={{ fontSize: isMobile?11:12, color:"#6a6a6a", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
                       <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
