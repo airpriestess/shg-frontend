@@ -1148,7 +1148,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
                 <svg viewBox="0 0 100 102" width={isMobile?34:64} height={isMobile?34:64}>
-                  <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#2CB7A7"/><stop offset="45%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                  <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
                   <circle cx="35" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
                   <circle cx="65" cy="35" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
                   <circle cx="35" cy="65" r="16" fill="none" stroke="url(#artlg)" strokeWidth="4.5"/>
