@@ -93,7 +93,7 @@ const CAT_ICONS = {
   Lovemaxxing: { accent:"#c4789a", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
   Beautymaxxing: { accent:"#f5e0a0", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
   Facemaxxing: { accent:"#e8c088", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Bodymaxxing: { accent:"#e8a860", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Bodymaxxing: { accent:"#e8b870", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#e8a860", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Moneymaxxing: { accent:"#e8b870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Businessmaxxing: { accent:"#e8b870", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
@@ -695,15 +695,15 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #e8a860":"2px solid transparent",color:tab===n.id?"#e8a860":n.id==="proof"?"#e8a860":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#e8a860"}
-              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#e8a860":C.mu;}}>
+              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #B76E79":"2px solid transparent",color:tab===n.id?"#B76E79":n.id==="proof"?"#B76E79":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              onMouseEnter={e=>e.currentTarget.style.color="#B76E79"}
+              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#B76E79":C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
           <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:13,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
-            onMouseEnter={e=>e.currentTarget.style.color="#e8a860"}
+            onMouseEnter={e=>e.currentTarget.style.color="#B76E79"}
             onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
             <Ico.Book c={C.mu}/> Listening Guide
           </button>
@@ -801,8 +801,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
-              <n.I a={tab===n.id} c={tab===n.id?"#e8a860":C.dim}/>
-              <span style={{ fontSize:9,fontWeight:400,color:tab===n.id?"#e8a860":C.dim }}>{n.label}</span>
+              <n.I a={tab===n.id} c={tab===n.id?"#B76E79":C.dim}/>
+              <span style={{ fontSize:9,fontWeight:400,color:tab===n.id?"#B76E79":C.dim }}>{n.label}</span>
             </button>
           ))}
         </div>
