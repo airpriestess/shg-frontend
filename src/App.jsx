@@ -686,7 +686,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   const CAT_COLOURS = {
     // Carousel only — full palette including warm pink + hot blue accent tiles
     "Moneymaxxing":     "linear-gradient(135deg,#0A4A8A,#1A7FC8,#2CB7A7)",  // navy → deep blue → turquoise
-    "Luckygirlmaxxing": "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
+    "Luckygirlmaxxing": "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",  // full Lucky Girl ombre
     "Beautymaxxing":    "linear-gradient(135deg,#F2C4CE,#E8909A)",        // blush → soft rose
     "Lovemaxxing":      "linear-gradient(135deg,#F0B8C8,#E07898)",        // pale blush → warm rose
     "DNAmaxxing":       "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // hot blue → teal
@@ -783,11 +783,11 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ background:"#14101e", padding:"0 0 0 0" }}>
+    <div style={{ background:"#fdf6ee", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#f2ece4",lineHeight:1.2 }}>FAQs</h2>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#0a0a0a",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
@@ -1033,8 +1033,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ height: `calc(100vh - ${isMobile?"98px":"102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile?480:560, display:"flex", flexDirection:"column", background:"#000" }}>
           <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center" }}>
             <IdentityCarousel cats={[
-              { label:"Moneymaxxing",       tagline:"I manifest billions. Obviously." },
               { label:"Luckygirlmaxxing",   tagline:"Lucky girl? That's just who I am." },
+              { label:"Luckygirlmaxxing",   tagline:"Everything always works out for me." },
               { label:"Lifemaxxing",        tagline:"My highest self is my only self." },
               { label:"Beautymaxxing",      tagline:"Gorgeous is my default." },
               { label:"Lovemaxxing",        tagline:"He only has eyes for me." },
@@ -1278,16 +1278,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ background:"#0a1614", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>The premise</div>
-          <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
+          <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
             Shift into the state of your dream reality.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#3a3a3a", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             I help you stay delusional at all times.
           </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#3a3a3a", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             If you are feeling the gap between who you are and who you want to be, I help you close the gap. These hypnosis and subliminal tracks reprogram your mind at a subconscious level — directly, while you listen.
           </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#3a3a3a", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life.
           </p>
           <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
@@ -1311,7 +1311,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* HEMI-SYNC — how the audio actually works */}
-      <div style={{ background:"#0c1020", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
+      <div style={{ background:"#f5ede0", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:780, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
           <h2 style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(34px,4vw,48px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.3, marginBottom:32 }}>
@@ -1387,7 +1387,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* SEGMENT 3 — What's inside, cream */}
-      <div style={{ background:"#16120a", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
+      <div style={{ background:"#fdf6ee", padding: isMobile?"48px 24px":"64px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,6vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:28 }}>
             Inside the Library.
@@ -1429,7 +1429,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
-      <div style={{ background:"#14101e", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
+      <div style={{ background:"#0a0a0a", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
         <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
           <div style={{ fontSize:11, color:"#2AA89A", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
           <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0 }}>Five steps.</div>
@@ -1564,13 +1564,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
-      <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#0a1614", width:"100%" }}>
+      <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#fdf6ee", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
           <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#0a0a0a", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
             The Hawkins Scale.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#ddd0c8", lineHeight:1.85, maxWidth:600, margin:"0 auto 40px" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#3a3a3a", lineHeight:1.85, maxWidth:600, margin:"0 auto 40px" }}>
             Every intention you log in ProofOS gets tagged against this 17-level emotional scale — where you are when you set it, and where you land when it manifests. Watch your baseline climb as the shift takes hold. It's not just proof that something happened — it's proof your energy actually changed.
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
@@ -1730,11 +1730,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(160deg,#080808 0%,#0c1a18 50%,#080808 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#f5ede0" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#e8e0d8", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#f2ece4", letterSpacing:"-0.01em", lineHeight:1 }}>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#7a7a7a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#0a0a0a", letterSpacing:"-0.01em", lineHeight:1 }}>
               Wall of Love
             </h2>
           </div>
