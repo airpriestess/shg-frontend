@@ -974,7 +974,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
               <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
             </svg>
-            <span style={{ fontFamily:"'Jost',sans-serif", fontSize: "clamp(11px,3.2vw,14px)", fontWeight: 300, letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+            <span style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:500, fontSize: "clamp(14px,3.2vw,20px)", letterSpacing: "0.01em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
 
@@ -994,7 +994,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ position:"fixed",inset:0,zIndex:999,background:"#000",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar — logo + close */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
-            <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Jost',sans-serif", fontSize:16, fontWeight:300, letterSpacing:"0.02em", color:"#f2ece4", cursor:"pointer" }}>Self Hypnosis Goddess</span>
+            <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:500, fontSize:22, letterSpacing:"0.01em", color:"#f2ece4", cursor:"pointer" }}>Self Hypnosis Goddess</span>
             <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#f2ece4",WebkitTapHighlightColor:"transparent" }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
             </button>
