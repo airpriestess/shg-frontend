@@ -957,7 +957,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 11, fontWeight: 300, color: "#000", letterSpacing: isMobile ? "0.1em" : "0.18em", whiteSpace: "nowrap" }}>
             COMING SOON
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "#000", border: "none", borderRadius: 20, color: "#f2ece4", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.5)", borderRadius: 20, color: "#fff", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join Waitlist
           </button>
         </div>
@@ -1762,7 +1762,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?16:19, color: "#e8e0d8", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             Join the waitlist and be the first to know when the audio library opens.
           </p>
-          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#2CB7A7", fontSize: 19, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "none", border: "2px solid #2CB7A7", borderRadius: 40, color: "#2CB7A7", fontSize: 19, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Join Waitlist
           </button>
           <div style={{ marginTop: 14, fontSize: 13, color: "#e8e0d8", fontWeight:400, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
@@ -1809,7 +1809,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
                 <div style={{ fontSize:20, fontWeight:400, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
                 <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
-                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#c9963a)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
+                <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
               </>
             ) : (
               <>
