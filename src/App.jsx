@@ -684,33 +684,33 @@ function IdentityCarousel({ cats, fullscreen=false }) {
 
   // Category-specific colours
   const CAT_COLOURS = {
-    // Lucky Girl palette — gold / slate-blue / teal / lavender only, no pink/rose
-    "Moneymaxxing":     "linear-gradient(135deg,#C8960A 0%,#B8820A 40%,#5B8DB8 100%)",
-    "Luckygirlmaxxing": "linear-gradient(135deg,#2AA89A 0%,#167A6B 50%,#0E5A50 100%)",
-    "Beautymaxxing":    "linear-gradient(135deg,#8B7FC8 0%,#6B5FA8 50%,#4B3F88 100%)",
-    "Lovemaxxing":      "linear-gradient(135deg,#5B8DB8 0%,#3B6D98 50%,#1B4D78 100%)",
-    "DNAmaxxing":       "linear-gradient(135deg,#7B6FC0 0%,#5B4FA0 50%,#3B2F80 100%)",
-    "Lifemaxxing":      "linear-gradient(135deg,#C8960A 0%,#A87800 50%,#886000 100%)",
-    "Bodymaxxing":      "linear-gradient(135deg,#2AA89A 0%,#1A8880 50%,#0A6860 100%)",
-    "Selfmaxxing":      "linear-gradient(135deg,#8B7FC8 0%,#7B6FB8 50%,#5B4F98 100%)",
-    "Erosmaxxing":      "linear-gradient(135deg,#5B8DB8 0%,#8B7FC8 50%,#2AA89A 100%)",
-    "Businessmaxxing":  "linear-gradient(135deg,#1E5FA0 0%,#5B8DB8 50%,#8BB8D8 100%)",
-    "Singlemaxxing":    "linear-gradient(135deg,#6B5FA8 0%,#8B7FC8 50%,#A89FD8 100%)",
-    "Skinnymaxxing":    "linear-gradient(135deg,#167A6B 0%,#2AA89A 50%,#4AC8B8 100%)",
-    "Sleepmaxxing":     "linear-gradient(135deg,#1B3A6B 0%,#3B5DB8 50%,#5B8DB8 100%)",
-    "Facemaxxing":      "linear-gradient(135deg,#B8820A 0%,#C8960A 50%,#D8AA20 100%)",
-    "Careermaxxing":    "linear-gradient(135deg,#2B5A98 0%,#5B8DB8 50%,#8BB8D8 100%)",
-    "Wellnessmaxxing":  "linear-gradient(135deg,#0A6860 0%,#167A6B 50%,#2AA89A 100%)",
-    "Confidencemaxxing":"linear-gradient(135deg,#C8960A 0%,#8B7FC8 50%,#5B8DB8 100%)",
-    "Stylemaxxing":     "linear-gradient(135deg,#B8820A 0%,#8B6B00 50%,#5B4800 100%)",
-    "Healmaxxing":      "linear-gradient(135deg,#7B6FC0 0%,#9B8FD0 50%,#BBB0E0 100%)",
-    "Peacemaxxing":     "linear-gradient(135deg,#2AA89A 0%,#5B8DB8 50%,#8B7FC8 100%)",
-    "Friendmaxxing":    "linear-gradient(135deg,#5B8DB8 0%,#2AA89A 50%,#167A6B 100%)",
-    "Studymaxxing":     "linear-gradient(135deg,#3B5DB8 0%,#5B8DB8 50%,#8BB8D8 100%)",
-    "Intuitionmaxxing": "linear-gradient(135deg,#8B7FC8 0%,#6B5FA8 50%,#4B3F88 100%)",
-    "Sovereignmaxxing": "linear-gradient(135deg,#C8960A 0%,#B8820A 40%,#8B7FC8 100%)",
+    // Each tile: ONE clean two-stop ombre — turquoise/teal/gold/lilac family only
+    "Moneymaxxing":     "linear-gradient(135deg,#C8960A,#E8B870)",
+    "Luckygirlmaxxing": "linear-gradient(135deg,#2CB7A7,#167A6B)",
+    "Beautymaxxing":    "linear-gradient(135deg,#8B7FC8,#5B4FA8)",
+    "Lovemaxxing":      "linear-gradient(135deg,#5B8DB8,#2CB7A7)",
+    "DNAmaxxing":       "linear-gradient(135deg,#6B5FA8,#8B7FC8)",
+    "Lifemaxxing":      "linear-gradient(135deg,#E8B870,#C8960A)",
+    "Bodymaxxing":      "linear-gradient(135deg,#167A6B,#2CB7A7)",
+    "Selfmaxxing":      "linear-gradient(135deg,#8B7FC8,#2CB7A7)",
+    "Erosmaxxing":      "linear-gradient(135deg,#2CB7A7,#5B8DB8)",
+    "Businessmaxxing":  "linear-gradient(135deg,#5B8DB8,#C8960A)",
+    "Singlemaxxing":    "linear-gradient(135deg,#8B7FC8,#2CB7A7)",
+    "Skinnymaxxing":    "linear-gradient(135deg,#2CB7A7,#167A6B)",
+    "Sleepmaxxing":     "linear-gradient(135deg,#5B8DB8,#6B5FA8)",
+    "Facemaxxing":      "linear-gradient(135deg,#C8960A,#E8B870)",
+    "Careermaxxing":    "linear-gradient(135deg,#5B8DB8,#2CB7A7)",
+    "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#8B7FC8)",
+    "Confidencemaxxing":"linear-gradient(135deg,#C8960A,#8B7FC8)",
+    "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#C8960A)",
+    "Healmaxxing":      "linear-gradient(135deg,#8B7FC8,#5B8DB8)",
+    "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#8B7FC8)",
+    "Friendmaxxing":    "linear-gradient(135deg,#5B8DB8,#2CB7A7)",
+    "Studymaxxing":     "linear-gradient(135deg,#5B8DB8,#8B7FC8)",
+    "Intuitionmaxxing": "linear-gradient(135deg,#8B7FC8,#2CB7A7)",
+    "Sovereignmaxxing": "linear-gradient(135deg,#C8960A,#2CB7A7)",
   };
-  const FALLBACK = "linear-gradient(135deg,#5B8DB8 0%,#8B7FC8 50%,#2AA89A 100%)";
+  const FALLBACK = "linear-gradient(135deg,#2CB7A7,#8B7FC8)";
   const bg = CAT_COLOURS[current.label] || FALLBACK;
 
   return (
@@ -953,7 +953,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#167A6B 0%,#2AA89A 30%,#5B8DB8 60%,#8B7FC8 80%,#C8960A 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#2CB7A7 0%,#8B7FC8 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 15, fontWeight: 400, color: "#000", letterSpacing: isMobile ? "0.04em" : "0.08em", whiteSpace: "nowrap" }}>
             COMING SOON
           </span>
