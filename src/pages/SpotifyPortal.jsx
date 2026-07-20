@@ -339,16 +339,36 @@ const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 const INIT_THREADS = [
   { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"Lovemaxxing",
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
-    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot — the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note — the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun" },
+    createdAt:"6 Jun 2026",
+    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot — the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note — the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
   { id:2, desire:"£5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Money",
     feelBefore:"Tight and worried about money.", feelAfter:"",
+    createdAt:"22 Jun 2026",
     signs:[ {text:"Got a random refund £180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found £20 in my coat pocket",date:"1 Jul"} ] },
   { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Money",
     feelBefore:"Doubtful but hopeful.", feelAfter:"",
+    createdAt:"21 Jun 2026",
     signs:[ {text:"Two new enquiries the same day",date:"30 Jun"} ] },
   { id:4, desire:"Skin visibly glowing",  days:3,  done:false, track:"Gorgeous Is My Default",category:"Beauty",
     feelBefore:"Self-conscious without makeup.", feelAfter:"",
+    createdAt:"29 Jun 2026",
     signs:[ {text:"Colleague asked what I changed",date:"2 Jul"} ] },
+  { id:5, desire:"Fully paid trip to Bali", days:31, done:true, track:"Lucky Girl Summer", category:"Luckygirlmaxxing",
+    feelBefore:"Convinced holidays like this only happened to other people.", feelAfter:"Still processing that this actually happened to me.",
+    createdAt:"14 Feb 2026",
+    signs:[ {text:"Friend mentioned a trip out of nowhere",date:"2 Mar"}, {text:"Won a giveaway I forgot I entered",date:"9 Mar"}, {text:"Screenshot — flights confirmed, fully paid",date:"17 Mar",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"17 Mar 2026" },
+  { id:6, desire:"Got the promotion",     days:22, done:true,  track:"The Promotion Is Already Mine", category:"Careermaxxing",
+    feelBefore:"Overworked and overlooked. Tired of proving myself.", feelAfter:"Relief. Like I could finally exhale.",
+    createdAt:"3 Nov 2025",
+    signs:[ {text:"Manager asked to lead the project I wanted",date:"14 Nov"}, {text:"Offer letter arrived",date:"25 Nov"} ], manifestedAt:"25 Nov 2025" },
+  { id:7, desire:"Won £850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Money",
+    feelBefore:"Skeptical this stuff even works.", feelAfter:"Shocked. Genuinely shocked.",
+    createdAt:"8 Sep 2025",
+    signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot — the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
+  { id:8, desire:"Best friend reached out first", days:45, done:true, track:"Friendmaxxing Guide", category:"Friendmaxxing",
+    feelBefore:"Grieving a friendship I thought was over.", feelAfter:"Full circle. Grateful.",
+    createdAt:"19 Jan 2026",
+    signs:[ {text:"Saw an old photo of us randomly",date:"14 Feb"}, {text:"She texted — 'I miss you'",date:"5 Mar"} ], manifestedAt:"5 Mar 2026" },
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
@@ -1447,7 +1467,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
   const confirmFinish = (id) => {
     const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(" — ");
-    setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"})}:t));
+    setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
   };
   const undoMarkDone = (id) => setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
@@ -1614,7 +1634,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : view==="wall" ? (
         /* ═══ PROOF WALL — your wins, forever ═══ */
         <div>
-          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>✓ Your proof wall</div>
+          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
+          <div style={{ fontSize:12,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
@@ -1626,7 +1647,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
                   <span style={{ fontSize:9,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:CAT_COLOR[d.category]||"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
                   <div style={{ fontSize:13,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
-                  <div style={{ fontSize:10,color:C.cr,fontWeight:400,marginTop:4 }}>{d.days}d · {d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""} · {d.manifestedAt||""}</div>
+                  <div style={{ fontSize:10,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
+                  <div style={{ fontSize:10,color:"#000",fontWeight:600,marginTop:5,opacity:0.75 }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
                   {d.feelAfter && <div style={{ fontSize:10,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:9,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
