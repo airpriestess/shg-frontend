@@ -1143,12 +1143,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ background: "#0a0a0a", border: "1px solid rgba(42,168,154,0.35)", borderRadius: 18, padding: isMobile ? "18px" : "22px 26px", maxWidth: 520, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
             {/* Top row — track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-              <div style={{ width:56, height:56, borderRadius:10, background:"#000", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.2)", overflow:"hidden" }}>
-                <div style={{ display:"flex", alignItems:"center", gap:2, height:36 }}>
-                  {[6,14,22,18,28,12,24,20,16,10,26,8,22,18,14].map((h,i)=>(
-                    <div key={i} style={{ width:2.5, borderRadius:2, background: playing ? `linear-gradient(to top, #e8a860, #fce4c0)` : "rgba(42,168,154,0.3)", height: playing ? h : Math.max(4, h*0.4), transition:"height 0.3s" }}/>
-                  ))}
-                </div>
+              <div style={{ width:56, height:56, borderRadius:10, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
+                <svg viewBox="0 0 100 100" width={38} height={38}>
+                  <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="45%" stopColor="#5B8DB8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                  <path d="M50 18 A32 32 0 0 0 50 82" fill="none" stroke="url(#artlg)" strokeWidth="4.5" strokeLinecap="round"/>
+                  <path d="M50 18 A32 32 0 0 1 50 82" fill="none" stroke="url(#artlg)" strokeWidth="4.5" strokeLinecap="round"/>
+                </svg>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 16 : 17, fontWeight: 400, color: "#f2ece4", marginBottom: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
