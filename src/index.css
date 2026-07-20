@@ -19,7 +19,7 @@ input,textarea{
   outline:none;transition:border-color 0.2s,box-shadow 0.2s;
 }
 input::placeholder,textarea::placeholder{color:#3a3430;}
-input:focus,textarea:focus{border-color:#B76E7966;box-shadow:0 0 0 3px rgba(183,110,121,0.08);}
+input:focus,textarea:focus{border-color:#2CB7A766;box-shadow:0 0 0 3px rgba(44,183,167,0.08);}
 select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:10px;padding:10px 14px;outline:none;}
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
@@ -77,8 +77,8 @@ select{background:#000000;border:1px solid #1c1828;color:#f2ece4;border-radius:1
   84%{transform:translate3d(0,0,0) scale(1);}
 }
 @keyframes ctaGlow{
-  0%,100%{box-shadow:0 0 20px rgba(183,110,121,0.35),0 4px 20px rgba(0,0,0,0.4);}
-  50%{box-shadow:0 0 40px rgba(212,160,144,0.7),0 0 60px rgba(183,110,121,0.4),0 4px 20px rgba(0,0,0,0.4);}
+  0%,100%{box-shadow:0 0 20px rgba(44,183,167,0.35),0 4px 20px rgba(0,0,0,0.4);}
+  50%{box-shadow:0 0 40px rgba(191,165,216,0.7),0 0 60px rgba(44,183,167,0.4),0 4px 20px rgba(0,0,0,0.4);}
 }
 @keyframes ctaPulse{
   0%,100%{transform:scale(1);}
