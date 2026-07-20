@@ -154,7 +154,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
       transition: "border-color 0.2s",
       opacity: a.isLocked && !canPlay ? 0.65 : 1,
     }}
-      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#b09888")}
+      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#ddd0c8")}
       onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1e1c0a")}
     >
       {/* Row 1 — title + access badge */}

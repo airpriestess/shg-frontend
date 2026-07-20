@@ -1,9 +1,9 @@
 /* ProofWallScreenshot — phone showing ProofOS tracker */
 
-const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(44,183,167,0.10)", cr:"#C8960A", mu:"#c8a870", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
+const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(44,183,167,0.10)", cr:"#C8960A", mu:"#2CB7A7", dim:"#8a7050", nav:"rgba(0,0,0,0.97)" };
 const LIGHT = { bg:"#fdf8f2", bg2:"#ffffff", bg3:"rgba(44,183,167,0.10)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", nav:"rgba(253,248,242,0.97)" };
-const R="#C8960A", P="#c9963a";
-const OMBRE="linear-gradient(135deg,#fce4c0 0%,#C8960A 50%,#c9963a 100%)";
+const R="#C8960A", P="#2CB7A7";
+const OMBRE="linear-gradient(135deg,#fce4c0 0%,#C8960A 50%,#2CB7A7 100%)";
 
 const THREADS = [
   { desire:"He texts me first", cat:"Lovemaxxing", catColor:"#d4789a", catBg:"rgba(212,120,154,0.12)", days:14, done:true, signs:3, track:"He Finds His Way Back" },

@@ -787,13 +787,13 @@ function FAQSection() {
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
-        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#1a0a04",lineHeight:1.2 }}>FAQs</h2>
+        <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#f2ece4",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
           <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(44,183,167,0.35)":"rgba(44,183,167,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(44,183,167,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
-              <span style={{ fontSize:15,fontWeight:400,color:"#1a0a04",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
+              <span style={{ fontSize:15,fontWeight:400,color:"#f2ece4",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#2CB7A7",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
             {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(44,183,167,0.15)",marginBottom:16 }}/><p style={{ fontSize:14,color:"#2a1a0a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
@@ -1574,7 +1574,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
             {[
               {n:"Enlightenment",v:700,c:"#ffffff"},
-              {n:"Peace",v:600,c:"#fdf0e8"},
+              {n:"Peace",v:600,c:"#000000"},
               {n:"Joy",v:540,c:"#f5d090"},
               {n:"Love",v:500,c:"#C8960A"},
               {n:"Reason",v:400,c:"#9b59b6"},
@@ -1615,7 +1615,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "linear-gradient(160deg,#f5ede0 0%,#ece0cc 50%,#e8d4b4 100%)", width: "100%" }}>
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
-            <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#1a0a04", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:20 }}>The Library.</div>
+            <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:20 }}>The Library.</div>
             <div style={{ fontSize: 14, fontWeight: 500, color: "#2CB7A7", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
             <h2 style={{ fontSize: "clamp(28px,4.5vw,44px)", color: "#000000", fontWeight: 400, marginBottom: 12, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>Whatever it is, it's covered.</h2>
             <p style={{ fontSize: 19, color: "#e8e0d8", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap", fontFamily:"'Jost',sans-serif" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
@@ -1630,9 +1630,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" strokeWidth="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
               { name: "Bodymaxxing", pain: "The body that makes a room stop", accent: "#2CB7A7",
                 icon: <><circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></> },
-              { name: "Moneymaxxing", pain: "The next zero on your bank statement", accent: "#c9963a",
+              { name: "Moneymaxxing", pain: "The next zero on your bank statement", accent: "#2CB7A7",
                 icon: <><circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
-              { name: "Businessmaxxing", pain: "The empire everyone said was unrealistic", accent: "#c9963a",
+              { name: "Businessmaxxing", pain: "The empire everyone said was unrealistic", accent: "#2CB7A7",
                 icon: <><rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" strokeWidth="3"/></> },
               { name: "DNAmaxxing", pain: "Ageless. Radiant. Undeniable.", accent: "#8a3050",
                 icon: <><path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" transform="translate(-10,0)"/><path d="M18 18 L42 18 M16 30 L44 30 M18 42 L42 42" stroke="currentColor" strokeWidth="1.5" opacity="0.5"/></> },
@@ -1640,7 +1640,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/></> },
               { name: "Erosmaxxing", pain: "Magnetic enough to stop a room", accent: "#a8506a",
                 icon: <path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/> },
-              { name: "Lifemaxxing", pain: "Every area of your life, upgrading at once", accent: "#e0a868",
+              { name: "Lifemaxxing", pain: "Every area of your life, upgrading at once", accent: "#2CB7A7",
                 icon: <><circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30 M16 16 L12 12 M44 16 L48 12 M16 44 L12 48 M44 44 L48 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
               { name: "Luckygirlmaxxing", pain: "Everything just works out for you now", accent: "#C8960A",
                 icon: <><path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></> },
@@ -1654,7 +1654,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" strokeWidth="3"/><path d="M22 26 L27 26 L29 20 L32 32 L34 26 L38 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/></> },
               { name: "Sleepmaxxing", pain: "Manifesting while you're unconscious", accent: "#F5E0A0",
                 icon: <path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/> },
-              { name: "Studymaxxing", pain: "The grades everyone said were out of reach", accent: "#c9963a",
+              { name: "Studymaxxing", pain: "The grades everyone said were out of reach", accent: "#2CB7A7",
                 icon: <><path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M22 26 L22 36 Q30 40 38 36 L38 26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
               { name: "Friendmaxxing", pain: "A circle that actually deserves you", accent: "#d4917a",
                 icon: <><circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></> },
@@ -1666,15 +1666,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/></> },
               { name: "Healmaxxing", pain: "Physical pain, emotional pain — gone, not just managed", accent: "#a8506a",
                 icon: <><path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M22 20 Q24 24 22 28 Q26 30 26 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/><path d="M38 20 Q36 24 38 28 Q34 30 34 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/></> },
-              { name: "Careermaxxing", pain: "The promotion you keep almost getting", accent: "#c9963a",
+              { name: "Careermaxxing", pain: "The promotion you keep almost getting", accent: "#2CB7A7",
                 icon: <><path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></> },
               { name: "Intuitionmaxxing", pain: "The gut feeling you keep talking yourself out of", accent: "#8a6aa8",
                 icon: <><circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></> },
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing: "-0.01em", fontSize: isMobile ? 22 : 26, fontWeight: 700, color: "#000000", marginBottom: 6 }}>{cat.name}</div>
-                <div style={{ fontSize: isMobile ? 13 : 14, color: "#e8e0d8", lineHeight: 1.45 }}>{cat.pain}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing: "-0.01em", fontSize: isMobile ? 22 : 26, fontWeight: 700, color: "#0a0a0a", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontSize: isMobile ? 13 : 14, color: "#4a4a4a", lineHeight: 1.45 }}>{cat.pain}</div>
               </div>
             ))}
           </div>
@@ -1834,13 +1834,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </svg>
         </div>
         <span style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:500, fontSize:26, display:"block", marginBottom:8, background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Self Hypnosis Goddess</span>
-        <div style={{ fontSize: 13, color: "#8a7868", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
+        <div style={{ fontSize: 13, color: "#e8e0d8", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
           Self Hypnosis Goddess is a self-hypnosis and manifestation audio product. It is not therapy, medical treatment, or a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact a licensed professional or emergency services.
         </div>
         <div style={{ display:"flex", gap:20, justifyContent:"center", marginBottom:14, flexWrap:"wrap" }}>
           {[["About Reshma","about"],["Terms of Service","tos"],["Privacy Policy","privacy"],["Refund Policy","refunds"]].map(([l,s])=>(
-            <button key={s} onClick={()=>onLegal?.(s)} style={{ background:"none", border:"none", color:"#7a6858", fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif", textDecoration:"underline", textUnderlineOffset:3 }}>{l}</button>
+            <button key={s} onClick={()=>onLegal?.(s)} style={{ background:"none", border:"none", color:"#e8e0d8", fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif", textDecoration:"underline", textUnderlineOffset:3 }}>{l}</button>
           ))}
         </div>
         <div style={{ fontSize: 12, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
@@ -1853,7 +1853,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(42,168,154,0.2)", flexShrink:0 }}>
               <span className="wm wm-shimmer" style={{ fontSize:16 }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
-                <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#8a7868", textDecoration:"none" }}>Open in new tab ↗</a>
+                <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#e8e0d8", textDecoration:"none" }}>Open in new tab ↗</a>
                 <button onClick={()=>setShopOpen(false)} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:22, cursor:"pointer", lineHeight:1, padding:4 }}>×</button>
               </div>
             </div>
@@ -1887,7 +1887,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                     style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#2a1a0a", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
                   {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2AA89A", marginBottom:12 }}>Please enter a valid email.</div>}
-                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#c9963a)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
+                  <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0,#C8960A,#2CB7A7)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
                 </form>
