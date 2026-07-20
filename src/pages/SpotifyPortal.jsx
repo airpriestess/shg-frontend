@@ -21,8 +21,8 @@ const HAWKINS = [
   {n:"Willingness", v:310, c:"#3498db"}, // sky blue
   {n:"Acceptance",  v:350, c:"#2980b9"}, // deeper blue
   {n:"Reason",      v:400, c:"#9b59b6"}, // purple
-  {n:"Love",        v:500, c:"#C8860A"}, // gold — SHG brand
-  {n:"Joy",         v:540, c:"#f5d090"}, // champagne
+  {n:"Love",        v:500, c:"#F0B8C8"},
+  {n:"Joy",         v:540, c:"#2CB7A7"},
   {n:"Peace",       v:600, c:"#fdf0e8"}, // cream-white
   {n:"Enlightenment",v:700,c:"#ffffff"}, // pure white
 ];
@@ -62,8 +62,8 @@ const THEMES = {
   light: { bg:"#fdf8f2", bg2:"#fffcf8", bg3:"rgba(44,183,167,0.12)", bg4:"rgba(44,183,167,0.22)", nav:"rgba(253,248,242,0.97)", cr:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.18)", inputBg:"rgba(180,104,48,0.08)", inputCr:"#1a1008" },
 };
 
-const R = "#C8860A", P = "#5B8DB8";
-const OMBRE = "linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)";
+const R = "#2CB7A7", P = "#BFA5D8";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 // Per-tab subtle wash — black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
@@ -78,46 +78,46 @@ const TAB_WASH = {
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
 const IMGS = {
-  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
-  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#fce4c0,#C8960A" },
+  "Spoilt Goddess":           { url:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "He Finds His Way Back":    { url:"https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "Money Finds Me First":     { url:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "While I Sleep I Manifest": { url:"https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "Gorgeous Is My Default":   { url:"https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "DNA Activation Ceremony":  { url:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "Lucky Girl Summer":        { url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "10 Years Into One Hour":   { url:"https://images.unsplash.com/photo-1496715976403-f5c7c1a1d064?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
+  "Highest Timeline":         { url:"https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop&auto=format", g:"#F5E0A0,#2CB7A7" },
 };
 
 const CAT_ICONS = {
   Lovemaxxing: { accent:"#167A6B", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
-  Beautymaxxing: { accent:"#C8960A", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
+  Beautymaxxing: { accent:"#2CB7A7", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
   Facemaxxing: { accent:"#e8c088", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Bodymaxxing: { accent:"#C8860A", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Skinnymaxxing: { accent:"#C8960A", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Moneymaxxing: { accent:"#C8860A", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Businessmaxxing: { accent:"#C8860A", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
-  Careermaxxing: { accent:"#C8860A", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
+  Bodymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Skinnymaxxing: { accent:"#2CB7A7", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+  Moneymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Businessmaxxing: { accent:"#2CB7A7", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Careermaxxing: { accent:"#2CB7A7", icon:'<path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#5B8DB8", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
-  Selfmaxxing: { accent:"#C8860A", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
+  Selfmaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
   Erosmaxxing: { accent:"#167A6B", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
-  Singlemaxxing: { accent:"#C8860A", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
+  Singlemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
   Wellnessmaxxing: { accent:"#e0c090", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
-  Sleepmaxxing: { accent:"#C8960A", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
-  Studymaxxing: { accent:"#C8860A", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
-  Friendmaxxing: { accent:"#C8860A", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Sleepmaxxing: { accent:"#2CB7A7", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
+  Studymaxxing: { accent:"#2CB7A7", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
+  Friendmaxxing: { accent:"#2CB7A7", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Peacemaxxing: { accent:"#c8a870", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
-  Confidencemaxxing: { accent:"#C8960A", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
+  Confidencemaxxing: { accent:"#2CB7A7", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
   Stylemaxxing: { accent:"#e0c090", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
   Healmaxxing: { accent:"#167A6B", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#c8a870", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Lifemaxxing: { accent:"#e0a868", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Luckygirlmaxxing: { accent:"#C8860A", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
-  Sovereignmaxxing: { accent:"#C8860A", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
+  Luckygirlmaxxing: { accent:"#2CB7A7", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
+  Sovereignmaxxing: { accent:"#2CB7A7", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
 };
 
 function Thumb({ title, cat, size=48, radius=4 }) {
-  const c = CAT_ICONS[cat] || { accent:"#C8960A", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
+  const c = CAT_ICONS[cat] || { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
   return (
     <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:"#000", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
       <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: c.icon }} />
@@ -372,8 +372,8 @@ const INIT_THREADS = [
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
-const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#C8960A,#C8860A)", "Money":"linear-gradient(135deg,#C8860A,#5B8DB8)", "Beauty":"linear-gradient(135deg,#C8960A,#C8860A)", "Identity":"linear-gradient(135deg,#C8860A,#167A6B)", "DNA":"linear-gradient(135deg,#5B8DB8,#167A6B)", "Sleep":"linear-gradient(135deg,#167A6B,#2CB7A7)" };
-const CAT_COLOR = { "Lovemaxxing":"#C8860A", "Money":"#C8860A", "Beauty":"#C8860A", "Identity":"#167A6B", "DNA":"#167A6B", "Sleep":"#2CB7A7", "Beautymaxxing":"#C8860A", "Facemaxxing":"#5B8DB8", "Bodymaxxing":"#C8860A", "Moneymaxxing":"#C8860A", "Businessmaxxing":"#5B8DB8", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#167A6B", "Erosmaxxing":"#2CB7A7", "Lifemaxxing":"#C8860A", "Luckygirlmaxxing":"#C8860A", "Sovereignmaxxing":"#2CB7A7" };
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F0B8C8,#E8909A)", "Money":"linear-gradient(135deg,#1A7FC8,#2CB7A7)", "Beauty":"linear-gradient(135deg,#F2C4CE,#E8909A)", "Identity":"linear-gradient(135deg,#BFA5D8,#2CB7A7)", "DNA":"linear-gradient(135deg,#5B8DB8,#167A6B)", "Sleep":"linear-gradient(135deg,#1A4A8A,#2CB7A7)" };
+const CAT_COLOR = { "Lovemaxxing":"#F0B8C8", "Money":"#2CB7A7", "Beauty":"#F2C4CE", "Identity":"#BFA5D8", "DNA":"#167A6B", "Sleep":"#2CB7A7", "Beautymaxxing":"#F2C4CE", "Facemaxxing":"#5B8DB8", "Bodymaxxing":"#2CB7A7", "Moneymaxxing":"#2CB7A7", "Businessmaxxing":"#5B8DB8", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#F0B8C8", "Lifemaxxing":"#2CB7A7", "Luckygirlmaxxing":"#2CB7A7", "Sovereignmaxxing":"#BFA5D8" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -660,10 +660,10 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <>
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
-            <div style={{ fontSize:11,color:"#C8860A",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:11,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
               Select your state on the Hawkins scale.{" "}
-              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#C8860A",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
+              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#2CB7A7",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
             </div>
             <div style={{ fontSize:9,color:"#2ecc71",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
             <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
@@ -709,7 +709,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       )}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)",textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
             <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
@@ -725,7 +725,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
             <svg viewBox="0 0 100 100" width="22" height="22" style={{flexShrink:0}}>
               <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#C8860A" strokeWidth="5" strokeLinecap="round"/>
+              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
             </svg>
             <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:16,color:C.text}}>
               Self Hypnosis Goddess
@@ -797,7 +797,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)",textAlign:"center" }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
             <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
@@ -882,13 +882,13 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:32,fontWeight:400,color:"#f5f0e8",marginBottom:6 }}>{track.title}</div>
               <div style={{ fontSize:14,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
-              <div style={{ fontSize:12,color:"#C8860A",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
+              <div style={{ fontSize:12,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
               <div style={{ fontSize:19,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
-              <div style={{ fontSize:12,color:"#C8860A",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
+              <div style={{ fontSize:12,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#C8860A",fontSize:15,marginTop:2 }}>✦</span>
+                    <span style={{ color:"#2CB7A7",fontSize:15,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:16,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
                   </div>
                 ))}
@@ -927,7 +927,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
           </button>
           <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
-          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:14,color:isLooping?"#C8860A":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:14,color:isLooping?"#2CB7A7":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
           <span style={{ fontSize:11,color:C.dim,width:32,textAlign:"right" }}>—</span>
@@ -956,10 +956,10 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         <span style={{ fontSize:12,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
         <div style={{ display:"flex",gap:10 }}>
           <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="About this track" title="About this track">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#C8860A":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#C8860A":C.cr}/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#2CB7A7":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#2CB7A7":C.cr}/></svg>
           </button>
           <button onClick={()=>setView(v=>v==="script"?"cover":"script")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#C8860A":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#2CB7A7":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
           </button>
         </div>
       </div>
@@ -969,13 +969,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           <div style={{ fontSize:13,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
           {(() => { const d = getDesc(track); return (
             <div style={{ width:"100%",paddingBottom:40 }}>
-              <div style={{ fontSize:11,color:"#C8860A",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+              <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
               <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
-              <div style={{ fontSize:11,color:"#C8860A",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+              <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#C8860A",fontSize:14,marginTop:2 }}>✦</span>
+                    <span style={{ color:"#2CB7A7",fontSize:14,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:15,lineHeight:1.6,color:C.cr }}>{b}</span>
                   </div>
                 ))}
@@ -1030,7 +1030,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
         </button>
         <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="24" height="24" viewBox="0 0 24 24" fill={C.cr}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.cr}/></svg></button>
-        <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#C8860A":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+        <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#2CB7A7":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
       </div>
     </div>
   );
@@ -1048,7 +1048,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ fontSize:11,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
           <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
             {isPreview?"Goddess":firstName}
-            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#fce4c0,#C8960A)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
+            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
               {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
             </span>
           </span>
@@ -1060,7 +1060,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* UPGRADE BANNER */}
       {userTier==="audio"&&!isPreview&&(
-        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
+        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
             <div style={{ fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
             <div style={{ fontSize:14,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics — 10% off</div>
@@ -1080,7 +1080,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             <div style={{ fontSize:14, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:11, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
           </span>
-          <span style={{ fontSize:18, color:"#C8860A" }}>›</span>
+          <span style={{ fontSize:18, color:"#2CB7A7" }}>›</span>
         </button>
       </div>
 
@@ -1099,7 +1099,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
           {FEATURED_CATS.map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#C8960A",icon:''};
+            const c=CAT_ICONS[cat]||{accent:"#2CB7A7",icon:''};
             const n=TRACKS.filter(t=>t.cat===cat).length;
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:`linear-gradient(135deg,${isDark?"#0a0a0a":C.bg2} 0%,${c.accent}20 100%)`,border:`1px solid ${c.accent}33`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
@@ -1134,7 +1134,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
           {Object.keys(CAT_ICONS).map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#C8960A",icon:''};
+            const c=CAT_ICONS[cat]||{accent:"#2CB7A7",icon:''};
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
                 <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,${isDark?"#111":C.bg2} 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
@@ -1165,7 +1165,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:11, fontWeight:400, color:"#C8860A", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
+          <span style={{ fontSize:11, fontWeight:400, color:"#2CB7A7", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
@@ -1193,7 +1193,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#C8960A","Money":"#C8860A","Beauty":"#C8860A","Identity":"#C8960A","DNA":"#C8960A","Sleep":"#C8860A"})[name]||"#C8960A",n]),
+              .map(([name,n])=>[name,({"Lovemaxxing":"#2CB7A7","Money":"#2CB7A7","Beauty":"#2CB7A7","Identity":"#2CB7A7","DNA":"#2CB7A7","Sleep":"#2CB7A7"})[name]||"#2CB7A7",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
           onDrillDown={isPreview?null:onDrillDown}
@@ -1208,7 +1208,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:12, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
           </span>
-          <span style={{ fontSize:20, color:"#C8860A", flexShrink:0 }}>›</span>
+          <span style={{ fontSize:20, color:"#2CB7A7", flexShrink:0 }}>›</span>
         </button>
       </div>
     </div>
@@ -1337,7 +1337,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                     ) : c==="Liked" ? (
                       <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:R, fontSize:11 }}>♡</div>
                     ) : (
-                      <div style={{ width:10, height:10, borderRadius:"50%", background:"linear-gradient(135deg,#C8960A,#C8860A,#5B8DB8,#167A6B,#2CB7A7)", flexShrink:0 }}/>
+                      <div style={{ width:10, height:10, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0,#BFA5D8,#2CB7A7)", flexShrink:0 }}/>
                     )}
                     <span>{c==="All"?"All categories":(c==="Liked"?"Liked":label)}</span>
                   </div>
@@ -1408,10 +1408,10 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:11, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#C8960A", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:22, color:"#2CB7A7", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:11, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
-      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
         Unlock {feature} — upgrade now ✦
       </button>
       <div style={{ fontSize:11, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
@@ -1442,12 +1442,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   if (isPreview) return (
     <div style={{ padding:"40px 20px",textAlign:"center",background:PAGE_BG,minHeight:"100%" }}>
-      <div style={{ fontSize:36,marginBottom:16,color:"#C8860A" }}>✦</div>
+      <div style={{ fontSize:36,marginBottom:16,color:"#2CB7A7" }}>✦</div>
       <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:28,fontWeight:400,color:PC.text,marginBottom:10 }}>ProofOS</div>
       <div style={{ fontSize:14,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
       </div>
-      <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)",border:"none",borderRadius:12,color:"#000",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         Upgrade to Goddess — £33/mo
       </button>
     </div>
@@ -1534,7 +1534,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`],["threads","Active"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)":"none",
+            background:view===k?"linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)":"none",
             border:`1px solid ${view===k?"transparent":"#2CB7A7"}`,
             color:view===k?"#000":"#2CB7A7", fontSize:12,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
@@ -1544,7 +1544,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
-            <div style={{ fontSize:12,color:"#C8860A",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
+            <div style={{ fontSize:12,color:"#2CB7A7",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
             <div style={{ fontSize:13,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
               <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever — no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
@@ -1570,7 +1570,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
-            <div style={{ fontSize:11, color:"#C8860A", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
+            <div style={{ fontSize:11, color:"#2CB7A7", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
               ✦ You've got {activeThreads.filter(t=>!t.done).length} active intentions. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
@@ -1783,7 +1783,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ flex:1,minWidth:0 }}>
               {editId===d.id
                 ? <div style={{ display:"flex",gap:6,marginBottom:4 }}>
-                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #C8960A",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #2CB7A7",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                     <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
                   </div>
                 : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:15,fontWeight:400,marginBottom:4,color:PC.text,cursor:"pointer" }}>{d.desire} <span style={{ fontSize:11,opacity:0.45 }}>✎</span></div>}
@@ -1799,7 +1799,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               {d.done
                 ? <>
                     <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
                       <span style={{ fontSize:11,fontWeight:400,color:PC.text }}>Manifested</span>
                     </label>
                     <span style={{ fontSize:9,color:PC.dim,fontWeight:400 }}>tap to undo</span>
@@ -1836,7 +1836,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ fontSize:10,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
               <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
-                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#C8960A",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
+                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#2CB7A7",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
                 <span style={{ fontSize:12,color:C.cr,lineHeight:1.5,flex:1 }}>
                   {sg.text}
                   {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}
