@@ -1626,11 +1626,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </p>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)" }}>
+      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#000" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#2a0f18", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#000000", letterSpacing:"-0.01em", lineHeight:1 }}>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#9a8878", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#f2ece4", letterSpacing:"-0.01em", lineHeight:1 }}>
               Wall of Love
             </h2>
           </div>
@@ -1649,13 +1649,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Moneymaxxing" },
               { quote: "I used to check my phone every five minutes waiting for him to text. Now I forget to check, and that's exactly when he does.", name: "Amara, 30", cat: "Lovemaxxing" },
             ].map((t, i) => (
-              <div key={i} style={{ background:"#fff", border:"1px solid rgba(44,183,167,0.25)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(44,183,167,0.12)" }}>
+              <div key={i} style={{ background:"#0a0a0a", border:"1px solid rgba(42,168,154,0.2)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(44,183,167,0.12)" }}>
                 <div style={{ width:32, height:24, opacity:0.25 }}>
                   <svg viewBox="0 0 32 24" fill="#2CB7A7"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
-                <p style={{ fontSize:isMobile?16:18, color:"#1a1410", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
+                <p style={{ fontSize:isMobile?16:18, color:"#f2ece4", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <span style={{ fontSize:12, fontWeight:400, color:"#000000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
+                  <span style={{ fontSize:12, fontWeight:400, color:"#9a8878", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"rgba(44,183,167,0.12)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20, color:"#2CB7A7", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
@@ -1703,19 +1703,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* FINAL CTA */}
-      <div style={{ background: "linear-gradient(135deg,#e8d0f0 0%,#c4a8d8 35%,#9b87c4 65%,#7a6aaa 100%)", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
+      <div style={{ background: "#000", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <div style={{ fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: "#000000", fontFamily: "'Jost',sans-serif", fontWeight:600, marginBottom: 16 }}>Coming soon</div>
-          <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,58px)", color: "#000", lineHeight: 1.1, marginBottom: 20, fontWeight: 400 }}>
+          <div style={{ fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: "#9a8878", fontFamily: "'Jost',sans-serif", fontWeight:400, marginBottom: 16 }}>Coming soon</div>
+          <h2 className="wm" style={{ fontSize: "clamp(32px,5vw,58px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20, fontWeight: 400 }}>
             Let's stay<br/>connected.
           </h2>
-          <p style={{ fontSize: isMobile?15:17, color: "#1a1218", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?15:17, color: "#9a8878", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             Join the waitlist and be the first to know when the audio library opens.
           </p>
-          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#2AA89A", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "16px 48px", background: "#000", border: "none", borderRadius: 40, color: "#2CB7A7", fontSize: 15, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Join Waitlist
           </button>
-          <div style={{ marginTop: 14, fontSize: 13, color: "#1a1218", fontWeight:500, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
+          <div style={{ marginTop: 14, fontSize: 13, color: "#9a8878", fontWeight:400, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
         </div>
       </div>
 
