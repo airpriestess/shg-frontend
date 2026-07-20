@@ -1211,8 +1211,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
         <svg viewBox="0 0 100 100" width={isMobile?44:56} height={isMobile?44:56}>
-          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#C8960A" strokeWidth="4" strokeLinecap="round"/>
+          <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#C8960A"/><stop offset="25%" stopColor="#B8820A"/><stop offset="55%" stopColor="#5B8DB8"/><stop offset="80%" stopColor="#2AA89A"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="url(#herolg)" strokeWidth="4" strokeLinecap="round"/>
+          <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="url(#herolg)" strokeWidth="4" strokeLinecap="round"/>
         </svg>
       </div>
 
@@ -1221,8 +1222,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#ffffff", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0em", marginBottom:16 }}>
           Self Hypnosis Goddess
         </div>
-        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10 }}>Audio Library</div>
-        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(42,168,154,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>+ ProofOS ✦</div>
+        <div style={{ fontSize: isMobile?26:36, letterSpacing:"0.12em", textTransform:"uppercase", background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:10, display:"inline-block" }}>Audio Library</div>
+        <div style={{ fontSize: isMobile?14:16, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block" }}>+ ProofOS ✦</div>
       </div>
 
       {/* DELULU IS THE SOLULU — own box, right after brand block */}
@@ -1234,7 +1235,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"0 24px 56px":"0 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"2px solid #C8960A", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
+        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"2px solid #2AA89A", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview the App
         </button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
@@ -1280,7 +1281,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           {/* Before / after — real smooth sine waves, not heat-map blobs */}
           <div style={{ display:"flex", flexDirection: isMobile?"column":"row", gap: isMobile?24:0, alignItems:"center", justifyContent:"center", marginBottom:36 }}>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Before — beta wave state <span style={{opacity:0.6}}>(unsynced)</span></div>
+              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500, display:"inline-block" }}>Before — beta wave state <span style={{opacity:0.6}}>(unsynced)</span></div>
               <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
                 <path d="M4 40 Q13 22 22 40 T40 40 T58 40 T76 40 T94 40 T112 40 T130 40 T148 40 T166 40 T184 40 T202 40 T216 40"
                   fill="none" stroke="#2AA89A" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
@@ -1290,7 +1291,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </div>
             <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#e8a860,#2CB7A7)" }}/>
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
+              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500, display:"inline-block" }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
               <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
                 <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2AA89A" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
                 <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2CB7A7" strokeWidth="2.6" opacity="0.55" strokeLinecap="round" transform="translate(0,0)"/>
@@ -1315,8 +1316,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               }).join(' ');
               return (
                 <div key={i} style={{ padding:"18px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(42,168,154,0.06)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(42,168,154,0.15)" : "none" }}>
-                  <div style={{ fontSize:13, color:w.color, fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2 }}>{w.name}</div>
-                  <div style={{ fontSize:10, color:"#9a8878", marginBottom:10 }}>{w.hz}</div>
+                  <div style={{ fontSize:13, background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2, display:"inline-block" }}>{w.name}</div>
+                  <div style={{ fontSize:10, background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:10, display:"inline-block" }}>{w.hz}</div>
                   <svg width="100%" height="48" viewBox="0 0 100 48" style={{ marginBottom:10, display:"block" }}>
                     <path d={pts} fill="none" stroke={w.color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -1326,7 +1327,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             })}
           </div>
 
-          <div style={{ fontSize: isMobile?"clamp(28px,9vw,42px)":"clamp(38px,5vw,58px)", color:"#2AA89A", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, letterSpacing:"-0.01em", textAlign:"center", marginBottom:36, lineHeight:1.2 }}>
+          <div style={{ fontSize: isMobile?"clamp(28px,9vw,42px)":"clamp(38px,5vw,58px)", background:"linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, letterSpacing:"-0.01em", textAlign:"center", marginBottom:36, lineHeight:1.2, display:"inline-block" }}>
             Theta is the secret door.
           </div>
 
