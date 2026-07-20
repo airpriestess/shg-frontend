@@ -355,9 +355,9 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#C8960A", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#C8960A", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 40%,#5B8DB8 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#C8960A", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#C8960A", priceColor: "#F5E0A0", periodColor: "#C8960A", featureColor: "#e8dcc8", dot: "#C8960A", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: "#9a8878", priceColor: "#2CB7A7", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: "#9a8878", featureColor: "#c8bcb0", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: "#e8dcc8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
   ];
 
   return (
@@ -786,7 +786,7 @@ function FAQSection() {
     <div style={{ background:"linear-gradient(160deg,#cdeae6 0%,#a8d8d2 50%,#7ec3ba 100%)", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
-        <div style={{ fontSize:11,color:"#b46830",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
+        <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
         <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#1a0a04",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
@@ -1392,12 +1392,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
 
         <div style={{ maxWidth:840, margin:"0 auto", position:"relative" }}>
-          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#fce4c0,#f5d4a0,#C8960A,#5B8DB8,#9B8FD4,#2CB7A7)", opacity:0.4 }}/>}
+          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#F5E0A0,#BFA5D8,#2CB7A7,#167A6B)", opacity:0.4 }}/>}
 
           {[
-            { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", accent:"#f5d4a0",
+            { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", accent:"#F5E0A0",
               icon: <path d="M30 8 L36 24 L52 30 L36 36 L30 52 L24 36 L8 30 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/> },
-            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#C8960A",
+            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#BFA5D8",
               icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M25 20 L41 30 L25 40 Z" fill="currentColor"/></> },
             { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#5B8DB8",
               icon: <><circle cx="30" cy="30" r="6" fill="currentColor"/><circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" strokeWidth="1.8" opacity="0.6"/><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" strokeWidth="1.6" opacity="0.35"/></> },
@@ -1468,7 +1468,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <p style={{ fontSize: isMobile?14:15, color:"#9a8878", lineHeight:1.75, textAlign:"center", marginBottom:20, maxWidth:560, margin:"0 auto 20px" }}>
                 Every track is tuned to a specific frequency — Solfeggio tones layered under the music, plus binaural beats for hemi-sync. Here's what each one is associated with:
               </p>
-              <div style={{ background:"#fff", borderRadius:14, overflow:"hidden", border:"1px solid rgba(44,183,167,0.2)" }}>
+              <div style={{ background:"#0a0a0a", borderRadius:14, overflow:"hidden", border:"1px solid rgba(44,183,167,0.15)" }}>
                 {[
                   { hz:"174hz", name:"Foundation", assoc:"Pain relief, safety, grounding" },
                   { hz:"285hz", name:"Restoration", assoc:"Tissue and energy field repair" },
@@ -1483,12 +1483,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap:14, padding: isMobile?"10px 14px":"12px 20px", borderBottom: i<9?"1px solid rgba(44,183,167,0.1)":"none" }}>
                     <div style={{ fontSize: isMobile?13:14, fontWeight:700, color:"#2CB7A7", width: isMobile?52:64, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
-                    <div style={{ fontSize: isMobile?13:14, fontWeight:600, color:"#1a0a04", width: isMobile?90:120, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
-                    <div style={{ fontSize: isMobile?12:13, color:"#5a4a40", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                    <div style={{ fontSize: isMobile?13:14, fontWeight:600, color:"#f2ece4", width: isMobile?90:120, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
+                    <div style={{ fontSize: isMobile?12:13, color:"#9a8878", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize:11, color:"#8a7060", textAlign:"center", marginTop:14, lineHeight:1.5 }}>
+              <p style={{ fontSize:11, color:"#786860", textAlign:"center", marginTop:14, lineHeight:1.5 }}>
                 Plus binaural beats layered underneath, syncing both hemispheres into theta for the hemi-sync effect explained above.
               </p>
             </div>
@@ -1500,7 +1500,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize: 12, color: "#C8960A", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
+          <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
             The Hawkins Scale.
           </h2>
