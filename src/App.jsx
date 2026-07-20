@@ -1275,22 +1275,22 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* PURPOSE — subconscious creates your reality */}
-      <div style={{ background:"#0a1614", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
+      <div style={{ background:"#fdf6ee", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:680, margin:"0 auto" }}>
           <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>The premise</div>
-          <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
+          <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,56px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.15, marginBottom:22 }}>
             Shift into the state of your dream reality.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#2a2a2a", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             I help you stay delusional at all times.
           </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#2a2a2a", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             If you are feeling the gap between who you are and who you want to be, I help you close the gap. These hypnosis and subliminal tracks reprogram your mind at a subconscious level — directly, while you listen.
           </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#2a2a2a", lineHeight:1.85, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             Your subconscious creates your reality — not your willpower, not your vision board, not another list of affirmations you say once and forget. What runs on repeat below conscious awareness is what actually builds your life.
           </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#2a2a2a", lineHeight:1.85, fontFamily:"'Jost',sans-serif" }}>
             Here's the part most people miss: your current self and your future self are not the same identity. She has different beliefs. She takes different actions. She makes different decisions, for different reasons, from a completely different set of assumptions about what's possible for her. You cannot think your way into her reality using your current self's beliefs — that's not a small gap, it's a different identity entirely. And you can't fully know what she does, or how she moves through the world, until you actually become her. That's the reprogramming. Not adding new thoughts on top of the old ones — replacing the identity underneath them, so the actions that were always out of reach for you become the only actions she knows how to take.
           </p>
         </div>
