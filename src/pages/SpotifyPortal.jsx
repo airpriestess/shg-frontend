@@ -1800,13 +1800,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 ? <>
                     <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
                       <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(232,184,112,0.9)" }}>✓</span>
-                      <span style={{ fontSize:11,fontWeight:400,color:"#000" }}>Manifested</span>
+                      <span style={{ fontSize:11,fontWeight:400,color:PC.text }}>Manifested</span>
                     </label>
                     <span style={{ fontSize:9,color:PC.dim,fontWeight:400 }}>tap to undo</span>
                   </>
                 : <label onClick={()=>startFinish(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                    <span style={{ width:21,height:21,borderRadius:6,background:"#fff",border:"2px solid #000",boxShadow:"0 0 10px rgba(232,184,112,0.55)" }}/>
-                    <span style={{ fontSize:11,fontWeight:400,color:"#000" }}>Manifested</span>
+                    <span style={{ width:21,height:21,borderRadius:6,background:PC.card,border:`2px solid ${PC.border}`,boxShadow:"0 0 10px rgba(232,184,112,0.35)" }}/>
+                    <span style={{ fontSize:11,fontWeight:400,color:PC.text }}>Manifested</span>
                   </label>
               }
             </div>
@@ -1814,19 +1814,19 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
           {/* Marking manifested — capture feelAfter */}
           {finishing===d.id && (
-            <div style={{ marginTop:10,background:"rgba(200,236,200,0.5)",borderRadius:10,padding:"10px 12px" }}>
-              <div style={{ fontSize:11,color:"#B76E79",fontWeight:400,marginBottom:6 }}>IT ARRIVED ✓ — how are you feeling now?</div>
-              <div style={{ display:"flex", gap:5, overflowX:"auto", marginBottom:8, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
+            <div style={{ marginTop:10,background:PC.card,border:`1px solid #2ecc7155`,borderRadius:10,padding:"12px 14px" }}>
+              <div style={{ fontSize:12,color:"#2ecc71",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ display:"flex", gap:6, overflowX:"auto", marginBottom:10, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
                 {HAWKINS.slice().reverse().map(h=>(
                   <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
-                    style={{ flexShrink:0, padding:"5px 10px", borderRadius:14, background:feelAfterLevel===h.n?h.c:"transparent", border:`1px solid ${h.c}`, color:feelAfterLevel===h.n?"#fff":h.c, fontSize:10.5, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>{h.n}</button>
+                    style={{ flexShrink:0, padding:"6px 11px", borderRadius:14, background:feelAfterLevel===h.n?h.c:"transparent", border:`1.5px solid ${h.c}`, color:feelAfterLevel===h.n?"#000":h.c, fontSize:12, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>{h.n}</button>
                 ))}
               </div>
               <div style={{ display:"flex",gap:6 }}>
                 <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment, in your own words"
                   onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
-                  style={{ flex:1,background:"#fff",border:"1px solid rgba(26,112,48,0.3)",color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"9px 14px",background:"#B76E79",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
+                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"10px 12px",fontSize:13,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"#B76E79",border:"none",borderRadius:8,color:"#fff",fontSize:12,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
               </div>
             </div>
           )}
