@@ -316,6 +316,24 @@ const TRACKS = [
 ];
 const FORMATS = ["All","Subliminal","Hypnosis","Melodic Hypnosis","Melodic Subliminal","Calm Hypnosis","Calm Subliminal"];
 
+// Suggests the best-matching track for a saved intention: category match is required,
+// then ranks by keyword overlap between the intention text and the track title.
+const STOPWORDS = new Set(["i","a","the","to","my","me","am","is","are","that","this","of","in","on","for","and","with","it","be","have","has"]);
+function suggestTrack(desireText, category) {
+  const candidates = TRACKS.filter(t => t.cat === category);
+  if (candidates.length === 0) return null;
+  const words = (desireText||"").toLowerCase().match(/[a-z']+/g) || [];
+  const keywords = words.filter(w => w.length > 2 && !STOPWORDS.has(w));
+  if (keywords.length === 0) return candidates[0];
+  let best = candidates[0], bestScore = -1;
+  for (const t of candidates) {
+    const titleWords = t.title.toLowerCase().match(/[a-z']+/g) || [];
+    const score = keywords.reduce((acc,kw) => acc + (titleWords.some(tw => tw.includes(kw) || kw.includes(tw)) ? 1 : 0), 0);
+    if (score > bestScore) { bestScore = score; best = t; }
+  }
+  return best;
+}
+
 const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 
 const INIT_THREADS = [
@@ -1423,6 +1441,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
   const [bucketText, setBucketText] = useState("");
   const [promotingId, setPromotingId] = useState(null);
+  const [trackPickerOpen, setTrackPickerOpen] = useState(false);
+  const [promoCatOpen, setPromoCatOpen] = useState(null);
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
   const confirmFinish = (id) => {
@@ -1491,9 +1511,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       </div>
 
       {/* View toggle: Bucket List | Active | Proof Wall */}
-      <div style={{ display:"flex",gap:6,marginBottom:14 }}>
+      <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`],["threads","Active"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
-          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"10px 6px",borderRadius:10,background:view===k?"#000":PC.card,border:"none",color:view===k?"#f2ece4":PC.text,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
+            background:view===k?"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)":"none",
+            border:`1px solid ${view===k?"transparent":"#B76E79"}`,
+            color:view===k?"#000":"#B76E79", fontSize:12,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
       </div>
 
@@ -1528,22 +1551,38 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           ) : (
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
               {bucketItems.map(item=>(
-                <div key={item.id} style={{ background:PC.card, borderRadius:12, padding:"14px 16px" }}>
-                  <div style={{ fontSize:14, color:PC.text, marginBottom:10, lineHeight:1.5 }}>{item.desire}</div>
+                <div key={item.id} style={{ background:PC.card, borderRadius:12, padding:"15px 16px" }}>
+                  <div style={{ fontSize:15, color:PC.text, marginBottom:11, lineHeight:1.5 }}>{item.desire}</div>
                   {promotingId===item.id ? (
-                    <div style={{ marginBottom:10 }}>
-                      <div style={{ fontSize:10, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:6 }}>Choose a category to promote this</div>
-                      <div style={{ display:"flex", flexWrap:"wrap", gap:6 }}>
-                        {Object.keys(CAT_ICONS).slice(0,8).map(c=>(
-                          <button key={c} onClick={()=>{
-                            const suggested = suggestTrack(item.desire, c);
-                            setThreads(ts => ts.map(t => t.id===item.id ? {...t, isBucket:false, category:c, track:suggested?.title||""} : t));
-                            setPromotingId(null);
-                          }} style={{ padding:"5px 10px", borderRadius:16, background:`${CAT_ICONS[c].accent}1c`, border:`1px solid ${CAT_ICONS[c].accent}55`, color:CAT_ICONS[c].accent, fontSize:11, cursor:"pointer", fontFamily:"'Jost',sans-serif", display:"flex", alignItems:"center", gap:5 }}>
-                            <div style={{width:6,height:6,borderRadius:"50%",background:CAT_ICONS[c].accent}}/>{c}
-                          </button>
-                        ))}
+                    <div style={{ marginBottom:11, position:"relative" }}>
+                      <div style={{ fontSize:11, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:7 }}>Choose a category to promote this</div>
+                      <div onClick={()=>setPromoCatOpen(o=>o===item.id?null:item.id)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:14,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+                        <span>— Select a category —</span>
+                        <span style={{ fontSize:11, color:PC.mu, transform:promoCatOpen===item.id?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
                       </div>
+                      {promoCatOpen===item.id && (
+                        <>
+                        <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+                        <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                          {Object.keys(CAT_ICONS).map(c=>{
+                            const catColor = CAT_ICONS[c].accent;
+                            return (
+                              <div key={c} onClick={()=>{
+                                const suggested = suggestTrack(item.desire, c);
+                                setThreads(ts => ts.map(t => t.id===item.id ? {...t, isBucket:false, category:c, track:suggested?.title||""} : t));
+                                setPromotingId(null);
+                                setPromoCatOpen(null);
+                              }} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer", borderBottom:`1px solid ${PC.border}` }}
+                                onMouseEnter={e=>e.currentTarget.style.background=`${catColor}14`}
+                                onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+                                <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
+                                <span style={{ fontSize:13, color:PC.text }}>{c}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        </>
+                      )}
                     </div>
                   ) : (
                     <div style={{ display:"flex", gap:8 }}>
@@ -1606,63 +1645,74 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       </button>
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
-          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
+          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
           <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
-          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:14,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
           <input value={newBelief} onChange={e=>setNewBelief(e.target.value)} placeholder="What do you actually believe about this right now? e.g. 'It's never worked out for me before'"
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
-          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
-          <select value={linkedTrack} onChange={e=>setLinked(e.target.value)}
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"10px 12px",fontSize:13,marginBottom:10,fontFamily:"'Jost',sans-serif",outline:"none",boxSizing:"border-box" }}>
-            <option value="">— Select a track —</option>
-            {TRACKS.map(t=><option key={t.id} value={t.title}>{t.title} · {t.cat}</option>)}
-          </select>
-          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
-          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:14 }}>
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:14,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
+          <div style={{ position:"relative", marginBottom:11 }}>
+            <div onClick={()=>setTrackPickerOpen(o=>!o)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:14,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+              <span>{linkedTrack || "— Select a track —"}</span>
+              <span style={{ fontSize:11, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+            </div>
+            {trackPickerOpen && (
+              <>
+              <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {TRACKS.map(t=>{
+                  const catColor = CAT_ICONS[t.cat]?.accent || R;
+                  return (
+                    <div key={t.id} onClick={()=>{setLinked(t.title); setTrackPickerOpen(false);}}
+                      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer",
+                        background:linkedTrack===t.title?`${catColor}1c`:"transparent", borderBottom:`1px solid ${PC.border}` }}
+                      onMouseEnter={e=>{if(linkedTrack!==t.title)e.currentTarget.style.background=`${catColor}14`;}}
+                      onMouseLeave={e=>{if(linkedTrack!==t.title)e.currentTarget.style.background="transparent";}}>
+                      <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
+                      <div style={{ flex:1, minWidth:0 }}>
+                        <div style={{ fontSize:13, color:PC.text, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{t.title}</div>
+                        <div style={{ fontSize:11, color:PC.mu }}>{t.cat}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              </>
+            )}
+          </div>
+          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:15 }}>
             {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Careermaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>{
               const catColor = CAT_ICONS[c]?.accent || R;
               const active = newCat===c;
               return (
                 <button key={c} onClick={()=>setNewCat(c)}
-                  style={{ display:"flex", alignItems:"center", gap:6, padding:"6px 12px", borderRadius:20,
+                  style={{ display:"flex", alignItems:"center", gap:6, padding:"7px 13px", borderRadius:20,
                     background:active?`${catColor}22`:PC.inputBg, border:`1px solid ${active?catColor:PC.border}`,
-                    color:active?catColor:PC.text, fontSize:12, fontFamily:"'Jost',sans-serif", cursor:"pointer" }}>
+                    color:active?catColor:PC.text, fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer" }}>
                   <div style={{ width:8, height:8, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
                   {c}
                 </button>
               );
             })}
           </div>
-          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</div>
-          <div style={{ fontSize:9,color:"#2ecc71",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive ✦</div>
-          <div style={{ overflowY:"auto",marginBottom:8,maxHeight:150,border:`1px solid ${PC.border}`,borderRadius:10 }}>
-            {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>How am I feeling right now?</div>
+          <div style={{ overflowY:"auto",marginBottom:10,maxHeight:220,border:`1px solid ${PC.border}`,borderRadius:10 }}>
+            {HAWKINS.slice().reverse().map(h=>(
               <div key={h.n} onClick={()=>setFeel(h.n)}
-                style={{ display:"flex",alignItems:"center",gap:10,padding:"8px 12px",cursor:"pointer",
-                  background:newFeel===h.n?`${h.c}22`:"transparent" }}>
-                <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>
-                <span style={{ fontSize:13,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:11,color:PC.mu }}>{h.v}</span>
-              </div>
-            ))}
-          </div>
-          <div style={{ fontSize:9,color:"#e67e22",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive</div>
-          <div style={{ overflowY:"auto",marginBottom:6,maxHeight:130,border:`1px solid ${PC.border}`,borderRadius:10 }}>
-            {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
-              <div key={h.n} onClick={()=>setFeel(h.n)}
-                style={{ display:"flex",alignItems:"center",gap:10,padding:"8px 12px",cursor:"pointer",
-                  background:newFeel===h.n?`${h.c}33`:"transparent" }}>
-                <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                <span style={{ fontSize:13,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:11,color:PC.mu }}>{h.v}</span>
+                style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
+                  background:newFeel===h.n?`${h.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}>
+                <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>
+                <span style={{ fontSize:14,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:12,color:PC.mu }}>{h.v}</span>
               </div>
             ))}
           </div>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
-            <div style={{ display:"flex",alignItems:"center",gap:8,padding:"8px 12px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:10 }}>
-              <div style={{ width:10,height:10,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-              <span style={{ fontSize:11,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
+            <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
+              <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+              <span style={{ fontSize:12,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
             </div>
           ) : null; })()}
           <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
@@ -1702,7 +1752,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                     <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #e8a860",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                     <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
                   </div>
-                : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:15,fontWeight:400,marginBottom:4,color:"#000",cursor:"pointer" }}>{d.desire} <span style={{ fontSize:11,opacity:0.45 }}>✎</span></div>}
+                : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:15,fontWeight:400,marginBottom:4,color:PC.text,cursor:"pointer" }}>{d.desire} <span style={{ fontSize:11,opacity:0.45 }}>✎</span></div>}
               <div style={{ display:"flex",alignItems:"center",gap:6,flexWrap:"wrap" }}>
                 {d.category && <span style={{ fontSize:10,padding:"2px 9px",background:CAT_GRAD[d.category]||CAT_GRAD.Identity,color:"#000",borderRadius:20,fontWeight:400 }}>{d.category}</span>}
                 {d.track && <span style={{ fontSize:11,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
