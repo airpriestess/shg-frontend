@@ -1,7 +1,7 @@
 /* KnowledgeGuide — comprehensive listening guide covering every question */
 import { useState } from "react";
 
-const OMBRE = "linear-gradient(135deg,#C8960A 0%,#C8860A 22%,#5B8DB8 48%,#167A6B 72%,#2CB7A7 100%)";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const SECTIONS = [
   { k:"formula", icon:"◈", title:"The formula in every SHG audio",
@@ -159,7 +159,7 @@ export default function KnowledgeGuide({ onClose, C }) {
   const bg = isDark ? "#0a0a0a" : "#fdf8f2";
   const bg2 = isDark ? "#111111" : "#ffffff";
   const cr = isDark ? "#f2ece4" : "#1a1008";
-  const mu = isDark ? "#e8e0d8" : "#8a6840";
+  const mu = isDark ? "#c8bfb8" : "#3a3028";
   const border = isDark ? "rgba(44,183,167,0.15)" : "rgba(180,104,48,0.18)";
 
   const visibleSections = SECTIONS.filter(s =>
@@ -180,7 +180,7 @@ export default function KnowledgeGuide({ onClose, C }) {
             <div>
               <div style={{ fontSize:12, color:"#2CB7A7", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook ✦</div>
               <div style={{ fontSize:18, color:cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Everything you need to know</div>
-              <div style={{ fontSize:14, color:mu, marginTop:4 }}>{SECTIONS.length} questions answered</div>
+              <div style={{ fontSize:14, color:cr, marginTop:4, opacity:0.6 }}>{SECTIONS.length} questions answered</div>
             </div>
             <button onClick={onClose} style={{ background:"none", border:"none", fontSize:20, cursor:"pointer", color:mu, padding:4 }}>✕</button>
           </div>
@@ -190,7 +190,7 @@ export default function KnowledgeGuide({ onClose, C }) {
             {CATEGORIES.map(c=>(
               <button key={c.label} onClick={()=>{setCat(c.label);setOpen(null);}}
                 style={{ flexShrink:0, padding:"6px 14px", borderRadius:20, border:`1px solid ${cat===c.label?"#2CB7A7":border}`,
-                  background:cat===c.label?"#2CB7A7":"none", color:cat===c.label?"#000":mu,
+                  background:cat===c.label?"#2CB7A7":"none", color:cat===c.label?"#000":cr,
                   fontSize:13, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
                 {c.label}
               </button>
@@ -215,7 +215,7 @@ export default function KnowledgeGuide({ onClose, C }) {
                   transform:open===s.k?"rotate(180deg)":"none" }}>⌄</span>
               </button>
               {open===s.k && (
-                <div style={{ padding:"0 14px 16px 52px", fontSize:15, lineHeight:1.85, color:mu,
+                <div style={{ padding:"0 14px 16px 52px", fontSize:15, lineHeight:1.85, color:cr,
                   whiteSpace:"pre-line" }}>{s.body}</div>
               )}
             </div>

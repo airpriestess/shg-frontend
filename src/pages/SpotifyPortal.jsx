@@ -62,7 +62,7 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#7a9a98", dim:"#e8e0d8", border:"rgba(44,183,167,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#c8bfb8", dim:"#e8e0d8", border:"rgba(44,183,167,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
   light: { bg:"#f8fbfb", bg2:"#f0f8f7", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.15)", nav:"rgba(248,251,251,0.97)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(44,183,167,0.2)", inputBg:"rgba(44,183,167,0.06)", inputCr:"#0a0a0a" },
 };
 
@@ -1496,7 +1496,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const PC = isDark
     ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.14)", inputBg:"#1a1a1a" }
-    : { card:"#fffcf8", cardSolid:"#fffcf8", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(180,104,48,0.16)", inputBg:"rgba(180,104,48,0.06)" };
+    : { card:"#fffcf8", cardSolid:"#fffcf8", text:"#1a1008", mu:"#3a3028", dim:"#5a4a38", border:"rgba(180,104,48,0.16)", inputBg:"rgba(180,104,48,0.06)" };
   const PAGE_BG = isDark ? "#080808" : "#fdf8f2";
 
   if (isPreview) return (
