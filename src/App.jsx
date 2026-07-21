@@ -1310,93 +1310,101 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </svg>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
-      {/* HEMI-SYNC — how the audio actually works */}
-      <div style={{ background:"#000", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
-        <div style={{ maxWidth:780, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
-          <h2 style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(34px,4vw,48px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.3, marginBottom:32 }}>
-            Hemi-sync.<br/>Two hemispheres, one frequency.
+      {/* HEMI-SYNC — rebuilt as visual equation */}
+      <div style={{ background:"#000", padding: isMobile?"56px 20px":"88px 48px", textAlign:"center" }}>
+        <div style={{ maxWidth:820, margin:"0 auto" }}>
+
+          {/* Label */}
+          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
+
+          {/* Heading */}
+          <h2 style={{ fontSize: isMobile?"clamp(28px,7vw,38px)":"clamp(36px,4vw,52px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.2, marginBottom:48 }}>
+            Theta is the secret door.<br/>
+            <span style={{ fontSize: isMobile?"clamp(18px,4.5vw,24px)":"clamp(20px,2.5vw,28px)", color:"#c8bcb0", fontWeight:300 }}>And SHG gets you there on demand.</span>
           </h2>
 
-          {/* Before / after — real smooth sine waves, not heat-map blobs */}
-          <div style={{ display:"flex", flexDirection: isMobile?"column":"row", gap: isMobile?24:0, alignItems:"center", justifyContent:"center", marginBottom:36 }}>
-            <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500, display:"inline-block" }}>Before — beta wave state <span style={{opacity:0.6}}>(unsynced)</span></div>
-              <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                <path d="M4 40 Q13 22 22 40 T40 40 T58 40 T76 40 T94 40 T112 40 T130 40 T148 40 T166 40 T184 40 T202 40 T216 40"
-                  fill="none" stroke="#2CB7A7" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
-                <path d="M4 40 Q11 55 18 40 T32 40 T46 40 T60 40 T74 40 T88 40 T102 40 T116 40 T130 40 T144 40 T158 40 T172 40 T186 40 T200 40 T214 40"
-                  fill="none" stroke="#2CB7A7" strokeWidth="2" opacity="0.6" strokeLinecap="round"/>
+          {/* THE EQUATION — 3 boxes with arrows */}
+          <div style={{ display:"flex", flexDirection: isMobile?"column":"row", alignItems:"center", justifyContent:"center", gap: isMobile?8:0, marginBottom:52 }}>
+
+            {/* Box 1 — Beta / awake / stuck */}
+            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(232,224,216,0.12)", borderRadius:16, textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#c8bcb0", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your current state</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Beta</div>
+              <div style={{ fontSize:12, color:"rgba(200,188,176,0.6)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>12–30Hz · wide awake</div>
+              {/* Tight chaotic wave */}
+              <svg width="100%" height="40" viewBox="0 0 200 40" style={{ marginBottom:14, display:"block" }}>
+                <path d="M4 20 Q11 8 18 20 T32 20 T46 20 T60 20 T74 20 T88 20 T102 20 T116 20 T130 20 T144 20 T158 20 T172 20 T186 20 T196 20"
+                  fill="none" stroke="rgba(200,188,176,0.4)" strokeWidth="1.8" strokeLinecap="round"/>
               </svg>
+              <div style={{ fontSize: isMobile?13:14, color:"rgba(200,188,176,0.7)", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+                Trying to manifest here is wasted energy. Your conscious mind argues with every new belief you try to install.
+              </div>
             </div>
-            <div style={{ width: isMobile?32:1, height: isMobile?1:80, background:"linear-gradient(90deg,#E8B870,#2CB7A7)" }}/>
-            <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500, display:"inline-block" }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
-              <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2CB7A7" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
-                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2CB7A7" strokeWidth="2.6" opacity="0.55" strokeLinecap="round" transform="translate(0,0)"/>
+
+            {/* Arrow */}
+            <div style={{ padding: isMobile?"4px 0":"0 16px", fontSize: isMobile?28:36, color:"#E8B870", opacity:0.7, flexShrink:0, transform: isMobile?"rotate(90deg)":"none" }}>→</div>
+
+            {/* Box 2 — SHG does this */}
+            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:LG, borderRadius:16, textAlign:"center", position:"relative" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.6)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>SHG shifts you here</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Theta</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>4–8Hz · the open state</div>
+              {/* Slow beautiful wave */}
+              <svg width="100%" height="40" viewBox="0 0 200 40" style={{ marginBottom:14, display:"block" }}>
+                <path d="M4 20 Q54 4 104 20 T204 20"
+                  fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="2.2" strokeLinecap="round"/>
               </svg>
+              <div style={{ fontSize: isMobile?13:14, color:"rgba(0,0,0,0.75)", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+                The subconscious is directly accessible. New beliefs install without resistance. This is where change actually happens.
+              </div>
+            </div>
+
+            {/* Arrow */}
+            <div style={{ padding: isMobile?"4px 0":"0 16px", fontSize: isMobile?28:36, color:"#E8B870", opacity:0.7, flexShrink:0, transform: isMobile?"rotate(90deg)":"none" }}>→</div>
+
+            {/* Box 3 — Result */}
+            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.25)", borderRadius:16, textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your new reality</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Identity</div>
+              <div style={{ fontSize:12, color:"rgba(44,183,167,0.7)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>reprogrammed</div>
+              {/* Rising wave */}
+              <svg width="100%" height="40" viewBox="0 0 200 40" style={{ marginBottom:14, display:"block" }}>
+                <path d="M4 28 Q30 20 60 16 Q90 12 130 10 Q160 8 196 6"
+                  fill="none" stroke="#2CB7A7" strokeWidth="2.2" strokeLinecap="round" opacity="0.8"/>
+              </svg>
+              <div style={{ fontSize: isMobile?13:14, color:"#e8e0d8", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+                Your beliefs change. Your thoughts change. Your actions change. Your reality changes. All you did was press play.
+              </div>
             </div>
           </div>
 
-          {/* Brainwave frequency reference strip — real smooth waves, black bg, ombre colors */}
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"repeat(5,1fr)", gap: isMobile?1:0, marginBottom:36, background:"#000", border:"1px solid rgba(42,168,154,0.2)", borderRadius:14, overflow:"hidden" }}>
-            {[
-              { name:"Gamma", hz:"30–100Hz", tag:"Insight, peak experiences", cycles:11, color:"#F5E0A0" },
-              { name:"Beta",  hz:"12–30Hz",  tag:"Alert — where beliefs get argued with", cycles:7, color:"#2CB7A7" },
-              { name:"Alpha", hz:"8–12Hz",   tag:"Relaxed focus", cycles:5, color:"#5B8DB8" },
-              { name:"Theta", hz:"4–8Hz",    tag:"Trance — where reprogramming happens", cycles:3, color:"#9B8FD4" },
-              { name:"Delta", hz:"0.5–4Hz",  tag:"Deep sleep, restoration", cycles:1.5, color:"#2CB7A7" },
-            ].map((w,i)=>{
-              const width = 100, cx = width/2, amp = 9;
-              const pts = Array.from({length:81},(_,n)=>{
-                const x = (n/80)*width;
-                const y = 24 + amp*Math.sin((n/80)*Math.PI*2*w.cycles);
-                return `${n===0?'M':'L'}${x.toFixed(1)} ${y.toFixed(1)}`;
-              }).join(' ');
-              return (
-                <div key={i} style={{ padding:"18px 12px", background: (w.name==="Beta"||w.name==="Theta") ? "rgba(42,168,154,0.06)" : "transparent", borderRight: !isMobile && i<4 ? "1px solid rgba(42,168,154,0.15)" : "none" }}>
-                  <div style={{ fontSize:13, background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:600, marginBottom:2, display:"inline-block" }}>{w.name}</div>
-                  <div style={{ fontSize:10, background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:10, display:"inline-block" }}>{w.hz}</div>
-                  <svg width="100%" height="48" viewBox="0 0 100 48" style={{ marginBottom:10, display:"block" }}>
-                    <path d={pts} fill="none" stroke={w.color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  <div style={{ fontSize:10, color:"#ddd0c8", lineHeight:1.4 }}>{w.tag}</div>
+          {/* HOW SHG GETS YOU TO THETA — 3 method boxes */}
+          <div style={{ marginBottom:52 }}>
+            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>How SHG shifts you into theta</div>
+            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:12 }}>
+              {[
+                { label:"Binaural Beats", desc:"Two slightly different frequencies — one per ear. Your brain generates the difference as a third frequency, entraining to Theta within minutes.", color:"#F5E0A0", icon:"🎧" },
+                { label:"EMDR Bilateral Audio", desc:"Left-right audio stimulation syncs your two brain hemispheres. What Silva trained manually for years happens automatically in the sound.", color:"#BFA5D8", icon:"↔" },
+                { label:"Vocal Hypnosis", desc:"New beliefs delivered directly to your subconscious while the critical mind is bypassed. One suggestion in Theta is worth thousands in Beta.", color:"#2CB7A7", icon:"✦" },
+              ].map((m,i)=>(
+                <div key={i} style={{ padding:"20px 18px", background:"rgba(255,255,255,0.03)", border:`1px solid ${m.color}25`, borderRadius:14, textAlign:"left" }}>
+                  <div style={{ fontSize:22, marginBottom:10 }}>{m.icon}</div>
+                  <div style={{ fontSize:14, fontWeight:500, color:m.color, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{m.label}</div>
+                  <div style={{ fontSize: isMobile?13:14, color:"#c8bcb0", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{m.desc}</div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
 
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:32 }}>
-            <img src="/secret_door.svg" alt="The secret door — theta state" style={{ width: isMobile?240:320, height:"auto", opacity:0.92 }}/>
+          {/* BRAIN VISUAL */}
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:48 }}>
+            <img src="/brain_hemisync.svg" alt="Left and right hemispheres syncing into theta" style={{ width: isMobile?"100%":680, maxWidth:"100%", height:"auto", opacity:0.95 }}/>
           </div>
-
-          <div style={{ fontSize: isMobile?"clamp(28px,9vw,42px)":"clamp(38px,5vw,58px)", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, letterSpacing:"-0.01em", textAlign:"center", marginBottom:36, lineHeight:1.2, display:"inline-block" }}>
-            Theta is the secret door.
-          </div>
-
-          {/* BRAIN HEMI-SYNC VISUAL */}
-          <div style={{ display:"flex", justifyContent:"center", margin: isMobile?"24px 0 28px":"36px 0 40px" }}>
-            <img src="/brain_hemisync.svg" alt="Left and right hemispheres syncing into theta" style={{ width: isMobile?"100%":700, maxWidth:"100%", height:"auto", opacity:0.95 }}/>
-          </div>
-
-          <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
-            It's impossible to actually reprogram your beliefs while you're in beta state — your normal, wide-awake conscious mind. Beta is where you argue, filter, and resist anything new. That's why we need to get you into theta state instead — the state where reprogramming actually happens.
-          </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
-            We get you there three ways at once: binaural beats, EMDR's bilateral audio stimulation, and my own vocal auto-suggestion recorded directly into every self-hypnosis and subliminal track. Left and right hemispheres normally fire at different rates — one scattered, one quiet. All three bring both hemispheres into the same frequency together, syncing your whole brain into theta.
-          </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
-            Theta is where the reprogramming begins. In theta, you access the subconscious mind directly — the part responsible for roughly 95% of your reality and everything you believe about yourself. Trying to install a new belief in beta means fighting your own conscious mind the whole way. In theta, there's nothing to fight.
-          </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#2CB7A7", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:400 }}>
-            That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. First, we change your assumption — not just a passing thought, but the hard-coded belief you've carried your whole life. Then your thoughts change. Then your feelings change. Then your actions change. Then your opportunities change. Then your reality changes. And all you did was press play.
-          </p>
 
           {/* BRUCE LIPTON CALLOUT */}
-          <div style={{ maxWidth:640, margin: isMobile?"28px auto":"36px auto", padding: isMobile?"20px":"24px 32px", background:"rgba(191,165,216,0.06)", border:"1px solid rgba(191,165,216,0.2)", borderRadius:16, textAlign:"left" }}>
+          <div style={{ maxWidth:640, margin:"0 auto 40px", padding: isMobile?"20px":"24px 32px", background:"rgba(191,165,216,0.06)", border:"1px solid rgba(191,165,216,0.2)", borderRadius:16, textAlign:"left" }}>
             <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The science — Bruce Lipton, Biology of Belief</div>
-            <p style={{ fontSize: isMobile?15:17, color:"#e8e0d8", lineHeight:1.8, margin:0, fontFamily:"'Jost',sans-serif" }}>Children under 7 live almost entirely in theta — which is why everything they observe downloads directly as belief, without the conscious mind arguing back. That's how you got your original programming. The same window reopens every night as you drift to sleep, and again as you rise. That is when SHG works best.</p>
+            <p style={{ fontSize: isMobile?15:17, color:"#e8e0d8", lineHeight:1.8, margin:0, fontFamily:"'Jost',sans-serif" }}>Children under 7 live almost entirely in theta — which is why everything they observe downloads directly as belief, without the conscious mind arguing back. That's how you got your original programming. The same window reopens every night as you drift to sleep, and again as you rise.</p>
           </div>
 
           {/* WHEN TO LISTEN */}
@@ -1404,17 +1412,18 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>When to listen</div>
             <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:12 }}>
               {[
-                { time:"As you fall asleep", desc:"Your brain crosses naturally from alpha into theta. Put the track on. Let it install while your conscious mind switches off.", color:"#BFA5D8" },
-                { time:"As you wake up", desc:"You rise back through theta before beta kicks in. Lie still. Don't check your phone. Press play instead.", color:"#F5E0A0" },
-                { time:"Any time", desc:"At the gym, on your walk, during your commute. Repetition builds the groove. You don't have to be in theta for it to accumulate.", color:"#2CB7A7" },
+                { time:"As you fall asleep", desc:"The most powerful window. Your brain crosses naturally from alpha into theta. Put the track on. Let it install while your conscious mind switches off.", color:"#BFA5D8" },
+                { time:"As you wake up", desc:"The second window. You rise back through theta before beta kicks in. Lie still. Don't check your phone. Press play instead.", color:"#F5E0A0" },
+                { time:"On demand — any time", desc:"SHG gets you to theta without waiting. At the gym, on your walk, during your commute. Repetition accumulates. You don't have to wait for the windows.", color:"#2CB7A7" },
               ].map((t,i)=>(
                 <div key={i} style={{ padding:"18px 16px", background:"rgba(255,255,255,0.03)", border:`1px solid ${t.color}30`, borderRadius:14 }}>
                   <div style={{ fontSize:13, fontWeight:500, color:t.color, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{t.time}</div>
-                  <div style={{ fontSize: isMobile?13:14, color:"#ddd0c8", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{t.desc}</div>
+                  <div style={{ fontSize: isMobile?13:14, color:"#c8bcb0", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{t.desc}</div>
                 </div>
               ))}
             </div>
           </div>
+
         </div>
       </div>
 
