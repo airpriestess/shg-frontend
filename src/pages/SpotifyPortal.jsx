@@ -785,7 +785,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             </button>
           </div>
           <button onClick={()=>setProfileOpen(true)} style={{ margin:"0 16px 8px",padding:"8px 12px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.cr,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",alignItems:"center",gap:10 }}>
-            <div style={{ width:24,height:24,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000" }>R</div>
+            <div style={{
+              width:24,height:24,borderRadius:"50%",
+              background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",
+              display:"flex",alignItems:"center",justifyContent:"center",
+              fontSize:13,fontWeight:400,color:"#000"
+            }}>R</div>
             Profile & Settings
           </button>
         </div>
