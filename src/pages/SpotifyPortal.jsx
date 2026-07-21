@@ -580,7 +580,24 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         {/* Header */}
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
-            <div style={{ width:56,height:56,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,fontWeight:400,color:"#000",flexShrink:0 }}>R</div>
+            <div style={{ width:56,height:56,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center" }}>
+              <svg viewBox="0 0 100 102" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="profavlg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#F5E0A0"/>
+                    <stop offset="20%" stopColor="#E8B870"/>
+                    <stop offset="52%" stopColor="#BFA5D8"/>
+                    <stop offset="78%" stopColor="#2CB7A7"/>
+                    <stop offset="100%" stopColor="#167A6B"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="35" cy="35" r="18" fill="none" stroke="url(#profavlg)" strokeWidth="3.5"/>
+                <circle cx="65" cy="35" r="18" fill="none" stroke="url(#profavlg)" strokeWidth="3.5"/>
+                <circle cx="35" cy="65" r="18" fill="none" stroke="url(#profavlg)" strokeWidth="3.5"/>
+                <circle cx="65" cy="65" r="18" fill="none" stroke="url(#profavlg)" strokeWidth="3.5"/>
+                <line x1="50" y1="80" x2="50" y2="96" stroke="url(#profavlg)" strokeWidth="3.5" strokeLinecap="round"/>
+              </svg>
+            </div>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
               <div style={{ fontSize:14,color:C.mu }}>Goddess Tier</div>
