@@ -51,9 +51,9 @@ const AUDIO_URLS = {
   "Spoilt Goddess":                        BASE + "SPOILT%20INSTAGRAM%2013.04.2026.WAV",
   "Money Finds Me First":                  BASE + "29.06.2026-6.mp3",
   "10 Years Into One Hour":                BASE + "COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3",
-  "I'm a Living Breathing Masterpiece":   BASE + "preview",
-  "My Desires Are Obsessed With Me":       BASE + "preview%20(1)",
-  "Seduced Focus":                         BASE + "preview%20(2)",
+  "I'm a Living Breathing Masterpiece":   BASE + "preview.mp3",
+  "My Desires Are Obsessed With Me":       BASE + "preview%20(1).mp3",
+  "Seduced Focus":                         BASE + "preview%20(2).mp3",
   "While I Sleep I Manifest":              BASE + "29.06.2026-6.mp3",
 };
 

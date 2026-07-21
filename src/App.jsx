@@ -863,9 +863,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
   // ── HERO PLAYLIST ─────────────────────────────────────────────────────────
   const PLAYLIST = [
     { title: "Spoilt Goddess",                               sub: "Selfmaxxing",       freq: "Hypnosis · Melodic House · 528hz · EMDR",  url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
-    { title: "I'm a Living Breathing Masterpiece",           sub: "Beautymaxxing",     freq: "Hypnosis · 528hz · EMDR",                   url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview" },
-    { title: "My Desires Are Obsessed With Me",              sub: "Desiresmaxxing",    freq: "Hypnosis · Subliminal · EMDR",               url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview%20(1)" },
-    { title: "Seduced Focus",                                sub: "Manifestation",     freq: "Hypnosis · Binaural · EMDR",                 url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview%20(2)" },
+    { title: "I'm a Living Breathing Masterpiece",           sub: "Beautymaxxing",     freq: "Hypnosis · 528hz · EMDR",                   url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview.mp3" },
+    { title: "My Desires Are Obsessed With Me",              sub: "Desiresmaxxing",    freq: "Hypnosis · Subliminal · EMDR",               url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview%20(1).mp3" },
+    { title: "Seduced Focus",                                sub: "Manifestation",     freq: "Hypnosis · Binaural · EMDR",                 url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview%20(2).mp3" },
     { title: "While I Sleep I Manifest",                     sub: "Sleepmaxxing",      freq: "Subliminal · Sleep · EMDR",                  url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
     { title: "10 Years Into One Hour",                       sub: "EMDR Reset",        freq: "EMDR · Theta · 432hz",                       url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3" },
   ];
