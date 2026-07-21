@@ -327,7 +327,7 @@ function CheckoutModal({ onClose, onDemo }) {
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:"#e8dcc8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
+                <div key={i} style={{fontSize:12,color:"#e8e0d8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
               ))}
@@ -357,7 +357,7 @@ function PricingSection({ onJoin }) {
   const cards = [
     { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: "#e8e0d8", priceColor: "#2CB7A7", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
     { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: "#e8dcc8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: "#e8e0d8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
   ];
 
   return (
@@ -1158,13 +1158,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#f2ece4", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
-                <div style={{ fontSize: isMobile?12:16, color: "#2AA89A", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: isMobile?12:16, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
                 <div style={{ fontSize: 12, color: "#ddd0c8", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
               </div>
               {playing && (
                 <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(42,168,154,0.12)", border: "1px solid rgba(42,168,154,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2AA89A", animation: "pulse 1.2s ease-in-out infinite" }}/>
-                  <span style={{ fontSize: 11, color: "#2AA89A", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2CB7A7", animation: "pulse 1.2s ease-in-out infinite" }}/>
+                  <span style={{ fontSize: 11, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
                 </div>
               )}
             </div>
@@ -1184,10 +1184,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Controls */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"4px 4px 0", overflow:"visible" }}>
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, opacity:0.45, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2AA89A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2CB7A7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
               </button>
               <button onClick={prevTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#2AA89A"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#2AA89A"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#2CB7A7"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#2CB7A7"/></svg>
               </button>
               <button onClick={togglePlay} style={{ width:46, height:46, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(42,168,154,0.45)", flexShrink:0, lineHeight:0, overflow:"visible" }}>
                 {playing
@@ -1196,16 +1196,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 }
               </button>
               <button onClick={nextTrack} style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#2AA89A"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="#2AA89A"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#2CB7A7"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="#2CB7A7"/></svg>
               </button>
               <button style={{ background:"none", border:"none", cursor:"pointer", padding:8, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2AA89A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2CB7A7" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
               </button>
             </div>
             {/* Track dots */}
             <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:12 }}>
               {PLAYLIST.map((_,i) => (
-                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#2AA89A":"rgba(42,168,154,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
+                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#2CB7A7":"rgba(42,168,154,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
               ))}
             </div>
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#ddd0c8", fontFamily:"'Jost',sans-serif" }}>
@@ -1313,7 +1313,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HEMI-SYNC — how the audio actually works */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"88px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:780, margin:"0 auto" }}>
-          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
+          <div style={{ fontSize: isMobile?11:12, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:18 }}>How the audio actually works</div>
           <h2 style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(34px,4vw,48px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.3, marginBottom:32 }}>
             Hemi-sync.<br/>Two hemispheres, one frequency.
           </h2>
@@ -1324,7 +1324,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500, display:"inline-block" }}>Before — beta wave state <span style={{opacity:0.6}}>(unsynced)</span></div>
               <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
                 <path d="M4 40 Q13 22 22 40 T40 40 T58 40 T76 40 T94 40 T112 40 T130 40 T148 40 T166 40 T184 40 T202 40 T216 40"
-                  fill="none" stroke="#2AA89A" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
+                  fill="none" stroke="#2CB7A7" strokeWidth="2" opacity="0.8" strokeLinecap="round"/>
                 <path d="M4 40 Q11 55 18 40 T32 40 T46 40 T60 40 T74 40 T88 40 T102 40 T116 40 T130 40 T144 40 T158 40 T172 40 T186 40 T200 40 T214 40"
                   fill="none" stroke="#2CB7A7" strokeWidth="2" opacity="0.6" strokeLinecap="round"/>
               </svg>
@@ -1333,7 +1333,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ flex:1, padding: isMobile?"20px":"28px", textAlign:"center" }}>
               <div style={{ fontSize:11, letterSpacing:"0.15em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500, display:"inline-block" }}>After — theta wave state <span style={{opacity:0.7}}>(synced)</span></div>
               <svg width="100%" height="80" viewBox="0 0 220 80" style={{ maxWidth:220, margin:"0 auto", display:"block" }}>
-                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2AA89A" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
+                <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2CB7A7" strokeWidth="2.6" opacity="0.9" strokeLinecap="round"/>
                 <path d="M4 40 Q59 8 114 40 T224 40" fill="none" stroke="#2CB7A7" strokeWidth="2.6" opacity="0.55" strokeLinecap="round" transform="translate(0,0)"/>
               </svg>
             </div>
@@ -1389,7 +1389,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.85, maxWidth:640, margin:"0 auto 18px" }}>
             Theta is where the reprogramming begins. In theta, you access the subconscious mind directly — the part responsible for roughly 95% of your reality and everything you believe about yourself. Trying to install a new belief in beta means fighting your own conscious mind the whole way. In theta, there's nothing to fight.
           </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#2AA89A", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:400 }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#2CB7A7", lineHeight:1.85, maxWidth:640, margin:"0 auto", fontWeight:400 }}>
             That's how your identity and your reality shift — without willpower, without forcing it, without doing anything except listening. First, we change your assumption — not just a passing thought, but the hard-coded belief you've carried your whole life. Then your thoughts change. Then your feelings change. Then your actions change. Then your opportunities change. Then your reality changes. And all you did was press play.
           </p>
 
@@ -1463,7 +1463,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
       <div style={{ background:"#0a0a0a", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
         <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
-          <div style={{ fontSize:11, color:"#2AA89A", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
+          <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
           <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0 }}>Five steps.</div>
         </div>
 
@@ -1569,7 +1569,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   { hz:"432hz", name:"Harmony",        assoc:"Natural tuning · calm · coherence",            pct:54,  color:"#2CB7A7" },
                   { hz:"417hz", name:"Change",         assoc:"Undoing situations · facilitating change",     pct:46,  color:"#167A6B" },
                   { hz:"396hz", name:"Liberation",     assoc:"Releasing fear and guilt",                     pct:38,  color:"#167A6B" },
-                  { hz:"285hz", name:"Restoration",    assoc:"Tissue and energy field repair",               pct:28,  color:"#2AA89A" },
+                  { hz:"285hz", name:"Restoration",    assoc:"Tissue and energy field repair",               pct:28,  color:"#2CB7A7" },
                   { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#1A7FC8" },
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
@@ -1744,7 +1744,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* PROOFOS INTRO — brief 2 sentence version */}
       <div id="proofos" style={{ padding: isMobile?"32px 18px":"48px 24px", textAlign:"center", maxWidth:680, margin:"0 auto" }}>
         <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#ddd0c8", lineHeight:1.85 }}>
-          Every track links to a desire. Every sign you receive gets logged in <span style={{ color:"#2AA89A" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
+          Every track links to a desire. Every sign you receive gets logged in <span style={{ color:"#2CB7A7" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
       </div>
       
@@ -1809,7 +1809,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* INSTAGRAM */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:900, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2AA89A", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
+          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:isMobile?"clamp(32px,9vw,44px)":"clamp(40px,5vw,56px)", color:"#f2ece4", marginBottom:32, fontWeight:400 }}>
             @selfhypnosisgoddess
           </h2>
@@ -1832,7 +1832,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ))}
           </div>
           <a href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
-            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(42,168,154,0.4)", borderRadius:30, color:"#2AA89A", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
+            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(42,168,154,0.4)", borderRadius:30, color:"#2CB7A7", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
             Follow on Instagram
           </a>
         </div>
@@ -1918,9 +1918,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                     value={waitlistEmail}
                     onChange={e=>{setWaitlistEmail(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
                     placeholder="your@email.com"
-                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#2a1a0a", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#e8e0d8", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
-                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2AA89A", marginBottom:12 }}>Please enter a valid email.</div>}
+                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2CB7A7", marginBottom:12 }}>Please enter a valid email.</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
