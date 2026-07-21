@@ -249,7 +249,7 @@ function CheckoutModal({ onClose, onDemo }) {
         <div style={{background:"linear-gradient(135deg,rgba(191,165,216,0.08),rgba(44,183,167,0.08))",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
           <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#2CB7A7",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
           <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,5vw,34px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4}}>Choose your membership.</h3>
-          <p style={{fontSize:13,color:"#6a4858",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
+          <p style={{fontSize:13,color:"#2a2a2a",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
           {/* MONTHLY / ANNUAL TOGGLE */}
           <div style={{display:"flex",background:"rgba(0,0,0,0.06)",borderRadius:50,padding:3,width:"fit-content"}}>
@@ -258,7 +258,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 padding:"8px 20px",borderRadius:50,border:"none",cursor:"pointer",
                 fontSize:12,fontWeight:400,letterSpacing:"0.06em",textTransform:"uppercase",
                 background:billing===b?"#fff":"transparent",
-                color:billing===b?"#8a2050":"#a09098",
+                color:billing===b?"#2CB7A7":"#888888",
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
@@ -497,7 +497,7 @@ function AppPreviewSection({ isMobile }) {
             <div style={{ fontSize:11, color:"#e8e0d8", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>♪ a Lovemaxxing track</div>
             <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
               {["Day 1: Started listening to a Lovemaxxing track.","Day 2: He texted first — \"thinking about you.\"","Day 3: He asked to see me this weekend, unprompted.","Day 4: He texted first again, no gap, no waiting.","Day 5: He planned the whole date — time, place, all of it."].map((line,i)=>(
-                <div key={i} style={{ fontSize:11, color:theme==="dark"?"#ddd0c8":"#4a3828", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{line}</div>
+                <div key={i} style={{ fontSize:11, color:theme==="dark"?"#ddd0c8":"#3a3a3a", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{line}</div>
               ))}
             </div>
           </div>
@@ -660,7 +660,7 @@ function MaxxingCarousel({ cats }) {
           <div key={i}
             onClick={() => { setFlash(true); setTimeout(()=>{setIdx((idx+i+1)%cats.length);setFlash(false);},200); }}
             style={{ flex:1, padding:"16px 18px", cursor:"pointer", borderRight:i<2?"1px solid #1c1828":"none", transition:"background 0.2s" }}
-            onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
+            onMouseEnter={e=>e.currentTarget.style.background="#0a0a0a"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
             <div style={{ fontSize:9, color:"#f2ece4", fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
             <div style={{ fontSize:12, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{cat.tagline}</div>
@@ -694,32 +694,32 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   // Category-specific colours
   const CAT_COLOURS = {
     // Carousel only — full palette including warm pink + hot blue accent tiles
-    "Moneymaxxing":     "linear-gradient(135deg,#0A4A8A,#1A7FC8,#2CB7A7)",  // navy → deep blue → turquoise
+    "Moneymaxxing":     "linear-gradient(135deg,#0A4A8A,#2CB7A7,#2CB7A7)",  // navy → deep blue → turquoise
     "Luckygirlmaxxing": "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",  // full Lucky Girl ombre
     "Beautymaxxing":    "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // blush → soft rose
     "Lovemaxxing":      "linear-gradient(135deg,#F5E0A0,#E07898)",        // pale blush → warm rose
-    "DNAmaxxing":       "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // hot blue → teal
+    "DNAmaxxing":       "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // hot blue → teal
     "Lifemaxxing":      "linear-gradient(135deg,#E8B870,#E8B870)",        // amber gold
     "Bodymaxxing":      "linear-gradient(135deg,#167A6B,#2CB7A7)",        // deep teal
-    "Selfmaxxing":      "linear-gradient(135deg,#8B7FC8,#2CB7A7)",        // lilac → teal
+    "Selfmaxxing":      "linear-gradient(135deg,#BFA5D8,#2CB7A7)",        // lilac → teal
     "Erosmaxxing":      "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // warm rose → blush
-    "Businessmaxxing":  "linear-gradient(135deg,#1A7FC8,#E8B870)",        // hot blue → gold
+    "Businessmaxxing":  "linear-gradient(135deg,#2CB7A7,#E8B870)",        // hot blue → gold
     "Singlemaxxing":    "linear-gradient(135deg,#F5E0A0,#D4889A)",        // blush → dusty rose
     "Skinnymaxxing":    "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
-    "Sleepmaxxing":     "linear-gradient(135deg,#1A4A8A,#1A7FC8)",        // deep blue → hot blue
+    "Sleepmaxxing":     "linear-gradient(135deg,#1A4A8A,#2CB7A7)",        // deep blue → hot blue
     "Facemaxxing":      "linear-gradient(135deg,#E8B870,#F5E0A0)",        // gold → blush
     "Desiresmaxxing":    "linear-gradient(135deg,#E8B870,#BFA5D8)",        // hot blue → lilac
-    "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#8B7FC8)",        // teal → lilac
+    "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#BFA5D8)",        // teal → lilac
     "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0,#E8B870)",        // blush → gold
     "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#F5E0A0)",        // gold → soft pink
     "Healmaxxing":      "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // pale pink → warm rose
-    "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#1A7FC8)",        // teal → hot blue
-    "Friendmaxxing":    "linear-gradient(135deg,#1A7FC8,#2CB7A7)",        // hot blue → teal
-    "Studymaxxing":     "linear-gradient(135deg,#1A7FC8,#8B7FC8)",        // hot blue → lilac
+    "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // teal → hot blue
+    "Friendmaxxing":    "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // hot blue → teal
+    "Studymaxxing":     "linear-gradient(135deg,#2CB7A7,#BFA5D8)",        // hot blue → lilac
     "Intuitionmaxxing": "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // warm rose → blush
-    "Sovereignmaxxing": "linear-gradient(135deg,#E8B870,#1A7FC8)",        // gold → hot blue
+    "Sovereignmaxxing": "linear-gradient(135deg,#E8B870,#2CB7A7)",        // gold → hot blue
   };
-  const FALLBACK = "linear-gradient(135deg,#1A7FC8,#2CB7A7)";
+  const FALLBACK = "linear-gradient(135deg,#2CB7A7,#2CB7A7)";
   const bg = CAT_COLOURS[current.label] || FALLBACK;
 
   return (
@@ -750,7 +750,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
           <div key={i}
             onClick={() => { setFlash(true); setTimeout(()=>{setIdx((idx+i+1)%cats.length);setFlash(false);},200); }}
             style={{ flex:1, padding:"16px 18px", cursor:"pointer", borderRight:i<2?"1px solid #1c1828":"none", transition:"background 0.2s" }}
-            onMouseEnter={e=>e.currentTarget.style.background="#0c0814"}
+            onMouseEnter={e=>e.currentTarget.style.background="#0a0a0a"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
             <div style={{ fontSize:9, color:"#f2ece4", fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:5, fontFamily:"'Jost',sans-serif" }}>{cat.label}</div>
             <div style={{ fontSize:12, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{cat.tagline}</div>
@@ -761,7 +761,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
         {cats.map((_,i) => (
           <div key={i}
             onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
-            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#9b87c4":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
+            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#BFA5D8":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
         ))}
       </div>
     </div>
@@ -962,11 +962,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#2CB7A7 0%,#8B7FC8 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 11, fontWeight: 300, color: "#000", letterSpacing: isMobile ? "0.1em" : "0.18em", whiteSpace: "nowrap" }}>
             COMING SOON
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.5)", borderRadius: 20, color: "#fff", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "rgba(0,0,0,0.35)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join Waitlist
           </button>
         </div>
@@ -1146,8 +1146,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,5.2vw,84px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:14, whiteSpace: isMobile?"normal":"nowrap", padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind</div>
-          <div style={{ fontSize: isMobile?13:15, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:24 }}>Manifest your dream reality</div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,5.2vw,84px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:14, whiteSpace: isMobile?"normal":"nowrap", padding: isMobile?"0 16px":"0 20px", width:"100%" }}>The audio your subconscious has been waiting for.</div>
+          <div style={{ fontSize: isMobile?13:15, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:24 }}>Hypnosis · Subliminals · EMDR · Binaural Beats · Melodic House</div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
@@ -1636,7 +1636,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   { hz:"417hz", name:"Change",         assoc:"Undoing situations · facilitating change",     pct:46,  color:"#167A6B" },
                   { hz:"396hz", name:"Liberation",     assoc:"Releasing fear and guilt",                     pct:38,  color:"#167A6B" },
                   { hz:"285hz", name:"Restoration",    assoc:"Tissue and energy field repair",               pct:28,  color:"#2CB7A7" },
-                  { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#1A7FC8" },
+                  { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#2CB7A7" },
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
                     <div style={{ fontSize: isMobile?11:13, fontWeight:600, color:row.color, width: isMobile?44:64, flexShrink:0, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>{row.hz}</div>
