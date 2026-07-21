@@ -1370,7 +1370,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <div style={{ padding: isMobile?"4px 0":"0 16px", fontSize: isMobile?28:36, color:"#E8B870", opacity:0.7, flexShrink:0, transform: isMobile?"rotate(90deg)":"none" }}>→</div>
 
             {/* Box 2 — SHG does this */}
-            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:LG, borderRadius:16, textAlign:"center", position:"relative" }}>
+            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, textAlign:"center", position:"relative" }}>
               <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.6)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>SHG shifts you here</div>
               <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Theta</div>
               <div style={{ fontSize:12, color:"rgba(0,0,0,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>4–8Hz · the open state</div>
