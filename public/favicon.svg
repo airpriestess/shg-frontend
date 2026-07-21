@@ -1,5 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="50" fill="#000000"/>
-  <path d="M50 22 A26 26 0 0 0 50 74" fill="none" stroke="#B76E79" stroke-width="4" stroke-linecap="round"/>
-  <path d="M50 22 A26 26 0 0 1 50 74" fill="none" stroke="#e8b870" stroke-width="4" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E0A0"/>
+      <stop offset="20%" stop-color="#E8B870"/>
+      <stop offset="52%" stop-color="#BFA5D8"/>
+      <stop offset="78%" stop-color="#2CB7A7"/>
+      <stop offset="100%" stop-color="#167A6B"/>
+    </linearGradient>
+    <clipPath id="circle-clip">
+      <circle cx="50" cy="50" r="50"/>
+    </clipPath>
+  </defs>
+  <!-- Black circle background -->
+  <circle cx="50" cy="50" r="50" fill="#000"/>
+  <!-- Four-circle clover mark, scaled and centred -->
+  <g clip-path="url(#circle-clip)" transform="translate(5, 4) scale(0.88)">
+    <circle cx="35" cy="35" r="18" fill="none" stroke="url(#lg)" stroke-width="4"/>
+    <circle cx="65" cy="35" r="18" fill="none" stroke="url(#lg)" stroke-width="4"/>
+    <circle cx="35" cy="65" r="18" fill="none" stroke="url(#lg)" stroke-width="4"/>
+    <circle cx="65" cy="65" r="18" fill="none" stroke="url(#lg)" stroke-width="4"/>
+    <line x1="50" y1="80" x2="50" y2="96" stroke="url(#lg)" stroke-width="4" stroke-linecap="round"/>
+  </g>
 </svg>
