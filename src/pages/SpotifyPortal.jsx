@@ -48,9 +48,13 @@ const dominant = (log,days) => {
 // ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
 const BASE = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/";
 const AUDIO_URLS = {
-  "Spoilt Goddess":           BASE + "SPOILT%20INSTAGRAM%2013.04.2026.WAV",
-  "Money Finds Me First":     BASE + "29.06.2026-6.mp3",
-  "10 Years Into One Hour":   BASE + "COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3",
+  "Spoilt Goddess":                        BASE + "SPOILT%20INSTAGRAM%2013.04.2026.WAV",
+  "Money Finds Me First":                  BASE + "29.06.2026-6.mp3",
+  "10 Years Into One Hour":                BASE + "COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3",
+  "I'm a Living Breathing Masterpiece":   BASE + "preview",
+  "My Desires Are Obsessed With Me":       BASE + "preview%20(1)",
+  "Seduced Focus":                         BASE + "preview%20(2)",
+  "While I Sleep I Manifest":              BASE + "29.06.2026-6.mp3",
 };
 
 // ── BEACONS STORE ────────────────────────────────────────────────────────────
@@ -449,12 +453,13 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 
   // ── AUDIO PLAYBACK ───────────────────────────────────────────────────────
   const play = (t) => {
+    const hasUrl = !!AUDIO_URLS[t.title];
     if (track.id === t.id) {
-      if (!isPreview) setPlay(p => !p);
+      if (hasUrl) setPlay(p => !p);
       return;
     }
     setTrack(t);
-    if (!isPreview) { setPlay(true); setListenCount(n=>n+1); }
+    if (hasUrl) { setPlay(true); if (!isPreview) setListenCount(n=>n+1); }
     setProg(0);
   };
 
@@ -1266,7 +1271,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
-        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
@@ -1392,7 +1397,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       )}
       <div style={{ padding:"0 16px" }}>
         {shown.map(t=>(
-          <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:isPreview?"not-allowed":"pointer" }}>
+          <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
               <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
               {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
@@ -1966,7 +1971,7 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
   const isP = current?.id===t.id;
   return (
     <div style={{ flexShrink:0,width:140 }}>
-      <div onClick={()=>{play(t); openPlayer?.();}} style={{ position:"relative",marginBottom:8,cursor:isPreview?"not-allowed":"pointer" }}>
+      <div onClick={()=>{play(t); openPlayer?.();}} style={{ position:"relative",marginBottom:8,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
         {isPreview&&(
           <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
@@ -1983,7 +1988,7 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
           </button>
         )}
       </div>
-      <div onClick={()=>{play(t); openPlayer?.();}} style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:isPreview?"not-allowed":"pointer" }}>{t.title}</div>
+      <div onClick={()=>{play(t); openPlayer?.();}} style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>{t.title}</div>
       <div style={{ fontSize:14,color:C.mu }}>{t.cat} · {t.dur}</div>
     </div>
   );
