@@ -23,14 +23,24 @@ export default function About({ onBack }) {
 
         <div style={{ fontSize:11, color:GOLD, letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:16, textAlign:"center" }}>About</div>
 
-        {/* Photo placeholder — swap this div for a real <img> once a photo is supplied */}
-        <div style={{ width: isMobile?140:180, height: isMobile?140:180, borderRadius:"50%", margin:"0 auto 28px", background:OMBRE, display:"flex", alignItems:"center", justifyContent:"center", position:"relative" }}>
-          <div style={{ width:"92%", height:"92%", borderRadius:"50%", background:"#000", display:"flex", alignItems:"center", justifyContent:"center" }}>
-            <svg width="24" height="24" viewBox="0 0 100 100">
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
-            </svg>
-          </div>
+        {/* Logo mark */}
+        <div style={{ margin:"0 auto 28px", display:"flex", justifyContent:"center" }}>
+          <svg viewBox="0 0 100 102" width={isMobile?120:160} height={isMobile?120:160} fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="aboutlg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#F5E0A0"/>
+                <stop offset="20%" stopColor="#E8B870"/>
+                <stop offset="52%" stopColor="#BFA5D8"/>
+                <stop offset="78%" stopColor="#2CB7A7"/>
+                <stop offset="100%" stopColor="#167A6B"/>
+              </linearGradient>
+            </defs>
+            <circle cx="35" cy="35" r="18" fill="none" stroke="url(#aboutlg)" strokeWidth="3.5"/>
+            <circle cx="65" cy="35" r="18" fill="none" stroke="url(#aboutlg)" strokeWidth="3.5"/>
+            <circle cx="35" cy="65" r="18" fill="none" stroke="url(#aboutlg)" strokeWidth="3.5"/>
+            <circle cx="65" cy="65" r="18" fill="none" stroke="url(#aboutlg)" strokeWidth="3.5"/>
+            <line x1="50" y1="80" x2="50" y2="96" stroke="url(#aboutlg)" strokeWidth="3.5" strokeLinecap="round"/>
+          </svg>
         </div>
 
         <h1 style={{ fontSize: isMobile?"clamp(32px,9vw,42px)":"clamp(40px,4.5vw,54px)", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:CR, marginBottom:6, lineHeight:1.15, textAlign:"center", fontWeight:400 }}>
