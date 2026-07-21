@@ -785,7 +785,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             </button>
           </div>
           <button onClick={()=>setProfileOpen(true)} style={{ margin:"0 16px 8px",padding:"8px 12px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.cr,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",alignItems:"center",gap:10 }}>
-            <div style={{ width:24,height:24,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000" }}>R</div>
+            <div style={{ width:24,height:24,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000" }>R</div>
             Profile & Settings
           </button>
         </div>
@@ -1106,6 +1106,24 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* PUSH PROMPT */}
       {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} C={C} onDismiss={onDismissPush}/>}
+
+      {/* PROOFOS TEASER — home tab */}
+      <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
+        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
+          <div style={{ fontSize:13,fontWeight:400,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase" }}>ProofOS ✦</div>
+          <span style={{ fontSize:15,color:"#F5E0A0" }}>›</span>
+        </div>
+        <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
+        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
+          {[["Bucket List","Write it down. All of it. No limit.","#F5E0A0"],["Active","What you're focusing on right now with audio.","#BFA5D8"],["Proof Wall","Every manifestation. Dated. Permanent.","#2CB7A7"]].map(([name,desc,color])=>(
+            <div key={name} style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
+              <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
+              <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore ProofOS →</div>
+      </div>
 
       {/* KNOWLEDGE GUIDE — all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
@@ -1849,7 +1867,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
           {/* Marking manifested — capture feelAfter */}
           {finishing===d.id && (
-            <div style={{ marginTop:10,background:PC.card,border:`1px solid #2ecc7155`,borderRadius:10,padding:"12px 14px" }}>
+            <div style={{ marginTop:10,background:PC.card,border:`1px solid ${PC.border}`,borderRadius:10,padding:"12px 14px" }}>
               <div style={{ fontSize:14,color:"#2CB7A7",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
               <div style={{ display:"flex", gap:6, overflowX:"auto", marginBottom:10, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
                 {HAWKINS.slice().reverse().map(h=>(
@@ -1896,7 +1914,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
           {/* Progress + delete */}
           <div style={{ marginTop:10,height:3,background:"rgba(0,0,0,0.1)",borderRadius:2 }}>
-            <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"#000",borderRadius:2 }}/>
+            <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",borderRadius:2 }}/>
           </div>
           <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove thread</button>
         </div>
