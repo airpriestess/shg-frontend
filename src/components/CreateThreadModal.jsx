@@ -3,7 +3,7 @@ import { T } from "../design/tokens.js";
 import { Btn, Modal, FormField, Label } from "./UI.jsx";
 import { AUDIOS } from "../data/sample.js";
 
-const CATEGORIES = ["Money", "Beauty", "Body", "Love", "Career", "Home", "Protection", "Identity", "Health", "Custom"];
+const CATEGORIES = ["Money", "Beauty", "Body", "Love", "Desires", "Home", "Protection", "Identity", "Health", "Custom"];
 const LISTENING_MODES = ["Morning", "Day", "Night", "Sleep", "Loop", "Custom"];
 const EXAMPLES = [
   "I receive £5,000 from an unexpected source.",

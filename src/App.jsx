@@ -699,7 +699,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
     "Skinnymaxxing":    "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
     "Sleepmaxxing":     "linear-gradient(135deg,#1A4A8A,#1A7FC8)",        // deep blue → hot blue
     "Facemaxxing":      "linear-gradient(135deg,#C8960A,#F2C4CE)",        // gold → blush
-    "Careermaxxing":    "linear-gradient(135deg,#1A7FC8,#8B7FC8)",        // hot blue → lilac
+    "Desiresmaxxing":    "linear-gradient(135deg,#E8B870,#BFA5D8)",        // hot blue → lilac
     "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#8B7FC8)",        // teal → lilac
     "Confidencemaxxing":"linear-gradient(135deg,#F2C4CE,#C8960A)",        // blush → gold
     "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#F0B8C8)",        // gold → soft pink
@@ -774,7 +774,7 @@ const FAQS = [
   {q:"How do I know how to listen — what do I actually do?",a:"Every account includes access to the in-app Guide — a full walkthrough covering exactly how to use the vault: which format to pick and when, best times of day to listen, how often, what headphones setup works best, how the different elements (hypnosis, subliminal, binaural, music) combine, and how to use ProofOS to track what happens. It answers every question about the process in one place, so you're never guessing. You'll find it inside the portal from your first login."},
   {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
   {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
-  {q:"What categories are in the vault?",a:"A growing library — right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Moneymaxxing, Businessmaxxing, Careermaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
+  {q:"What categories are in the vault?",a:"A growing library — right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Moneymaxxing, Businessmaxxing, Desiresmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
   {q:"What are subliminals?",a:"Affirmations recorded below the threshold of conscious hearing, layered underneath the music and spoken hypnosis. Your conscious mind doesn't register them as words — but your subconscious does. They bypass the part of you that would normally argue back with a new belief."},
   {q:"How do the different elements combine in one track?",a:"Each audio layers four things at once: spoken hypnosis (guiding you into the state), subliminal affirmations (below hearing threshold), binaural beats (two slightly different frequencies, one per ear, syncing both brain hemispheres into theta), and original melodic house music (so it's something you actually want to listen to, not just tolerate). All four play simultaneously, not in sequence."},
   {q:"Who is Reshma Oracle?",a:"The person recording every track in this vault. No agency, no outsourced voice work — every hypnosis session, every affirmation, every frequency choice is hers. Self Hypnosis Goddess exists because she noticed everyone in this space consumes content and no one actually installs a new identity — so she built something designed for daily repetition, not one-off inspiration."},
@@ -1110,9 +1110,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Friendmaxxing",      tagline:"My circle finally deserves me." },
               { label:"Moneymaxxing",       tagline:"Six figures. Then seven. Then I stopped counting." },
               { label:"Erosmaxxing",        tagline:"I am irresistible. I know it. He knows it." },
-              { label:"Careermaxxing",      tagline:"My work speaks and the room listens." },
+              { label:"Desiresmaxxing",      tagline:"My desires are already done deals." },
               { label:"Bodymaxxing",        tagline:"Strong, lean, undeniable." },
-              { label:"Careermaxxing",      tagline:"I stopped waiting to be picked." },
+              { label:"Desiresmaxxing",      tagline:"Everything I want is rushing toward me." },
               { label:"Healmaxxing",        tagline:"What used to hurt doesn't run me anymore." },
               { label:"Lovemaxxing",        tagline:"He chooses me. Every single day." },
               { label:"Singlemaxxing",      tagline:"I'm dating myself first. Everyone else can wait." },
@@ -1126,7 +1126,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Studymaxxing",       tagline:"I know it before I've even revised it." },
               { label:"Singlemaxxing",      tagline:"Peace found me when I stopped looking for it." },
               { label:"Erosmaxxing",        tagline:"He can't stop thinking about last night." },
-              { label:"Careermaxxing",      tagline:"Promoted. Obviously." },
+              { label:"Desiresmaxxing",      tagline:"Desired. Received. Obviously." },
               { label:"Selfmaxxing",        tagline:"I am the version of me I used to pray for." },
               { label:"Moneymaxxing",       tagline:"I open my banking app and smile. Every time." },
               { label:"Erosmaxxing",        tagline:"I know exactly what I want in the bedroom." },
@@ -1700,7 +1700,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 icon: <><path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/></> },
               { name: "Healmaxxing", pain: "Physical pain, emotional pain — gone, not just managed", accent: "#a8506a",
                 icon: <><path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M22 20 Q24 24 22 28 Q26 30 26 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/><path d="M38 20 Q36 24 38 28 Q34 30 34 34" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.6" strokeLinecap="round"/></> },
-              { name: "Careermaxxing", pain: "The promotion you keep almost getting", accent: "#2CB7A7",
+              { name: "Desiresmaxxing", pain: "The desires that feel just out of reach", accent: "#2CB7A7",
                 icon: <><path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></> },
               { name: "Intuitionmaxxing", pain: "The gut feeling you keep talking yourself out of", accent: "#8a6aa8",
                 icon: <><circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></> },
@@ -1741,10 +1741,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </svg>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
-      {/* PROOFOS INTRO — brief 2 sentence version */}
-      <div id="proofos" style={{ padding: isMobile?"32px 18px":"48px 24px", textAlign:"center", maxWidth:680, margin:"0 auto" }}>
-        <p style={{ fontSize:"clamp(15px,1.85vw,17px)", color:"#ddd0c8", lineHeight:1.85 }}>
-          Every track links to a desire. Every sign you receive gets logged in <span style={{ color:"#2CB7A7" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
+      {/* PROOFOS INTRO — MASSIVE STATEMENT */}
+      <div id="proofos" style={{ padding: isMobile?"48px 20px":"80px 24px", textAlign:"center", maxWidth:820, margin:"0 auto" }}>
+        <p style={{ fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(36px,4.5vw,58px)", color:"#f2ece4", lineHeight:1.3, fontWeight:400, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", margin:0 }}>
+          Every track links to a desire. Every sign you receive gets logged in <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
       </div>
       
@@ -1777,7 +1777,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { quote: "I look the same and feel completely different about my face. The glow is internal first.", name: "Maya, 26", cat: "Beautymaxxing" },
               { quote: "I've tried every subliminal channel. This is the only one where I actually feel it working in real time.", name: "Jade, 31", cat: "Selfmaxxing" },
               { quote: "I genuinely thought he was about to break up with me. I kept listening anyway. He proposed three weeks later.", name: "Ellie, 30", cat: "Lovemaxxing" },
-              { quote: "I was convinced I was about to lose my job. Instead I got a promotion I hadn't even applied for.", name: "Freya, 27", cat: "Careermaxxing" },
+              { quote: "I wrote down five desires. Within 30 days all five had either arrived or were clearly on their way.", name: "Freya, 27", cat: "Desiresmaxxing" },
               { quote: "I was so sure my business was about to crash. A client came out of nowhere and it turned everything around.", name: "Nadia, 34", cat: "Businessmaxxing" },
               { quote: "People offer to buy me a coffee or a drink now — genuinely, 90% of the time I go out. It never used to happen.", name: "Bella, 28", cat: "Erosmaxxing" },
               { quote: "I found €50 on the street one day, out of nowhere, while I had Money Finds Me First on repeat. Then it happened again. Then again. It just keeps happening.", name: "Camille, 25", cat: "Luckygirlmaxxing" },

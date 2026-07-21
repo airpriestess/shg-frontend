@@ -62,10 +62,10 @@ const WALL = [
   },
   {
     desire: "Promoted to the role I actually wanted, not the one I settled for.",
-    category: "Careermaxxing", days: 18, signs: 3,
-    track: "a Careermaxxing track", feel: "I stopped shrinking myself in meetings. People noticed before I said anything.",
+    category: "Desiresmaxxing", days: 18, signs: 3,
+    track: "a Desiresmaxxing track", feel: "I stopped shrinking myself in meetings. People noticed before I said anything.",
     log: [
-      "Day 1: Old belief — \"I have to overwork just to be seen as good enough.\" Started listening to a Careermaxxing track.",
+      "Day 1: Old belief — \"I have to overwork just to be seen as good enough.\" Started listening to a Desiresmaxxing track.",
       "Day 6: My manager asked me to lead the project I'd been quietly wanting.",
       "Day 18: Offered the promotion. They said it was 'obvious' I was ready.",
     ]
