@@ -1642,22 +1642,22 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
             {[
               {n:"Enlightenment",v:700,c:"#ffffff"},
-              {n:"Peace",v:600,c:"#000000"},
-              {n:"Joy",v:540,c:"#f5d090"},
-              {n:"Love",v:500,c:"#2CB7A7"},
-              {n:"Reason",v:400,c:"#9b59b6"},
-              {n:"Acceptance",v:350,c:"#2980b9"},
-              {n:"Willingness",v:310,c:"#3498db"},
-              {n:"Neutrality",v:250,c:"#1abc9c"},
-              {n:"Courage",v:200,c:"#2CB7A7"},
-              {n:"Pride",v:175,c:"#f1c40f"},
-              {n:"Anger",v:150,c:"#e67e22"},
-              {n:"Desire",v:125,c:"#c0392b"},
-              {n:"Fear",v:100,c:"#7b3f00"},
-              {n:"Grief",v:75,c:"#4a3060"},
-              {n:"Apathy",v:50,c:"#6b6b6b"},
-              {n:"Guilt",v:30,c:"#5a0f0f"},
-              {n:"Shame",v:20,c:"#2a0a0a"},
+              {n:"Peace",       v:600,c:"#F5E0A0"},
+              {n:"Joy",         v:540,c:"#E8B870"},
+              {n:"Love",        v:500,c:"#F0B8C8"},
+              {n:"Reason",      v:400,c:"#BFA5D8"},
+              {n:"Acceptance",  v:350,c:"#BFA5D8"},
+              {n:"Willingness", v:310,c:"#9B8FD4"},
+              {n:"Neutrality",  v:250,c:"#2CB7A7"},
+              {n:"Courage",     v:200,c:"#2CB7A7"},
+              {n:"Pride",       v:175,c:"#E8B870"},
+              {n:"Anger",       v:150,c:"#e67e22"},
+              {n:"Desire",      v:125,c:"#c0392b"},
+              {n:"Fear",        v:100,c:"#7b3f00"},
+              {n:"Grief",       v:75, c:"#4a3060"},
+              {n:"Apathy",      v:50, c:"#6b6b6b"},
+              {n:"Guilt",       v:30, c:"#5a0f0f"},
+              {n:"Shame",       v:20, c:"#2a0a0a"},
             ].map((h,i)=>(
               <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"6px 4px" }}>
                 <div style={{ width:10, height:10, borderRadius:"50%", background:h.c, flexShrink:0, boxShadow:h.v>=200?`0 0 6px ${h.c}88`:"none" }}/>
@@ -1669,7 +1669,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </div>
             ))}
           </div>
-          <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"8px 18px", background:"rgba(44,183,167,0.1)", border:"1px solid rgba(46,204,113,0.3)", borderRadius:20 }}>
+          <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"8px 18px", background:"rgba(44,183,167,0.1)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20 }}>
             <div style={{ width:8, height:8, borderRadius:"50%", background:"#2CB7A7" }}/>
             <span style={{ fontSize:12, color:"#ddd0c8" }}>200 — Courage — is the line. Below it, you're contracting. Above it, you're expanding.</span>
           </div>
