@@ -1245,62 +1245,32 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* FORMULA — clear equation, big and readable */}
-      <div style={{ background:"#000", padding: isMobile?"8px 20px 36px":"12px 48px 48px" }}>
-        <div style={{ maxWidth:760, margin:"0 auto" }}>
-
-          {/* Desktop: single row. Mobile: two rows — ingredients top, result bottom */}
-          {isMobile ? (
-            <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-              {/* Row 1: ingredients */}
-              <div style={{ display:"flex", alignItems:"center", gap:10, flexWrap:"wrap", justifyContent:"center" }}>
-                {[
-                  { label:"Hypnosis",      c:"#F5E0A0" },
-                  { label:"Subliminals",   c:"#E8B870" },
-                  { label:"EMDR",          c:"#BFA5D8" },
-                  { label:"Binaural",      c:"#2CB7A7" },
-                ].map((item, i, arr) => (
-                  <div key={i} style={{ display:"flex", alignItems:"center", gap:10 }}>
-                    <div style={{ padding:"10px 16px", background:"rgba(255,255,255,0.04)", border:`1px solid ${item.c}40`, borderRadius:10, textAlign:"center" }}>
-                      <div style={{ fontSize:13, fontWeight:500, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em", textTransform:"uppercase" }}>{item.label}</div>
-                    </div>
-                    {i < arr.length - 1 && <span style={{ fontSize:20, color:"rgba(232,224,216,0.3)", fontFamily:"'Jost',sans-serif" }}>+</span>}
-                  </div>
-                ))}
-              </div>
-              {/* Row 2: = result */}
-              <div style={{ display:"flex", alignItems:"center", gap:14 }}>
-                <span style={{ fontSize:28, color:"rgba(232,224,216,0.4)", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>=</span>
-                <div style={{ padding:"14px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:12 }}>
-                  <div style={{ fontSize:18, fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>Theta. On demand.</div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:14 }}>
-              {[
-                { label:"Hypnosis",      c:"#F5E0A0" },
-                { label:"Subliminals",   c:"#E8B870" },
-                { label:"EMDR",          c:"#BFA5D8" },
-                { label:"Binaural Beats",c:"#2CB7A7" },
-              ].map((item, i, arr) => (
-                <div key={i} style={{ display:"flex", alignItems:"center", gap:14 }}>
-                  <div style={{ padding:"14px 22px", background:"rgba(255,255,255,0.04)", border:`1px solid ${item.c}40`, borderRadius:12, textAlign:"center" }}>
-                    <div style={{ fontSize:14, fontWeight:500, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textTransform:"uppercase" }}>{item.label}</div>
-                  </div>
-                  {i < arr.length - 1 && <span style={{ fontSize:28, color:"rgba(232,224,216,0.3)", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>+</span>}
-                </div>
-              ))}
-              <span style={{ fontSize:32, color:"rgba(232,224,216,0.4)", fontFamily:"'Jost',sans-serif", fontWeight:300, margin:"0 4px" }}>=</span>
-              <div style={{ padding:"14px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:12 }}>
-                <div style={{ fontSize:18, fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>Theta. On demand.</div>
-              </div>
-            </div>
-          )}
+      {/* FORMULA — one massive equation line */}
+      <div style={{ background:"#000", padding: isMobile?"8px 16px 40px":"12px 48px 52px", textAlign:"center" }}>
+        <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(28px,3.2vw,42px)", fontWeight:500, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em", lineHeight:1.3, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 14px" }}>
+          {[
+            { t:"Hypnosis",        c:"#F5E0A0" },
+            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"Subliminals",     c:"#E8B870" },
+            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"Melodic House",   c:"#BFA5D8" },
+            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"EMDR",            c:"#2CB7A7" },
+            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"Binaural Beats",  c:"#2CB7A7" },
+            { t:"=",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"Theta on demand.", c:"#fff", result:true },
+          ].map((item,i)=>(
+            item.op
+              ? <span key={i} style={{ color:item.c, fontWeight:300 }}>{item.t}</span>
+              : item.result
+              ? <span key={i} style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:600 }}>{item.t}</span>
+              : <span key={i} style={{ color:item.c }}>{item.t}</span>
+          ))}
         </div>
       </div>
 
-      {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
+            {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"0 24px 56px":"0 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"1.5px solid #2CB7A7", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview the App
