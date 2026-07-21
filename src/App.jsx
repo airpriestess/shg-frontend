@@ -203,7 +203,7 @@ const TIERS = {
     name: "Audio Tier", emoji: "🔊",
     monthly: "£19", annual: "£182", annualNote: "£15.17/mo · ~$19/mo billed annually",
     usd: "~$24/mo", usdAnnual: "~$229/yr",
-    features: ["Full exclusive audio vault","All 6 formats — Melodic House, Subliminal, EMDR, Calm, 528hz, Reiki","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
+    features: ["Full exclusive audio vault","All 6 formats — Melodic House, Voice Only, Sleep & Rest, Subliminal, EMDR, Binaural","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
     cta: (annual)=> annual ? "Join Audio — £182/year" : "Join Audio — £19/month",
   },
   goddess: {
@@ -1245,6 +1245,31 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
+      {/* FORMULA STRIP — what you get, immediately */}
+      <div style={{ background:"#000", padding: isMobile?"0 24px 24px":"0 48px 32px", display:"flex", justifyContent:"center" }}>
+        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", alignItems:"center", gap: isMobile?6:10 }}>
+          {[
+            { t:"Hypnosis",       c:"#F5E0A0" },
+            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
+            { t:"Subliminals",    c:"#E8B870" },
+            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
+            { t:"Melodic House",  c:"#BFA5D8" },
+            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
+            { t:"EMDR",           c:"#2CB7A7" },
+            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
+            { t:"Binaural Beats", c:"#2CB7A7" },
+            { t:"=",              c:"rgba(232,224,216,0.3)", op:true },
+            { t:"Theta on demand.",c:"#ffffff", bold:true },
+          ].map((item,i)=>(
+            item.op
+              ? <span key={i} style={{ fontSize: isMobile?16:20, color:item.c, fontFamily:"'Jost',sans-serif" }}>{item.t}</span>
+              : item.bold
+              ? <span key={i} style={{ fontSize: isMobile?13:15, fontWeight:500, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>{item.t}</span>
+              : <span key={i} style={{ fontSize: isMobile?10:11, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.14em", textTransform:"uppercase", padding: isMobile?"4px 10px":"5px 14px", background:"rgba(255,255,255,0.04)", borderRadius:20, border:`1px solid ${item.c}30` }}>{item.t}</span>
+          ))}
+        </div>
+      </div>
+
       {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"0 24px 56px":"0 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"1.5px solid #2CB7A7", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
@@ -1546,12 +1571,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ fontSize: isMobile?"clamp(22px,6vw,28px)":"clamp(26px,3vw,34px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.01em", lineHeight:1.2 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
-                  { label:"Melodic House",  sub:"Reshma's voice beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
-                  { label:"Sleep & Rest",   sub:"Calm background music — ambient, soft, and continuous. Designed for sleep, rest, or anytime you need to switch off without switching it off.", color:"#E8B870", dot:"#E8B870" },
-                  { label:"Subliminal",     sub:"No audible voice. Affirmations encoded beneath the frequency. Works while you sleep, rest, or go about your day.", color:"#BFA5D8", dot:"#BFA5D8" },
-                  { label:"EMDR Hypnosis",  sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#2CB7A7", dot:"#2CB7A7" },
-                  { label:"Binaural Beats", sub:"Two different tones, one per ear, syncing both hemispheres into theta — layered with Solfeggio frequencies.", color:"#167A6B", dot:"#167A6B" },
-                  { label:"Reiki Encoded",  sub:"Tracks channelled with Reiki energy during recording. Frequency healing layered directly into the audio.", color:"#9B8FD4", dot:"#9B8FD4" },
+                  { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
+                  { label:"Voice Only",       sub:"Pure vocal hypnosis — no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive.", color:"#E8B870", dot:"#E8B870" },
+                  { label:"Sleep & Rest",     sub:"Calm ambient music with subliminals — continuous, soft, designed to play all night while your subconscious installs the new belief.", color:"#BFA5D8", dot:"#BFA5D8" },
+                  { label:"Subliminal",       sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day.", color:"#2CB7A7", dot:"#2CB7A7" },
+                  { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
+                  { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#9B8FD4", dot:"#9B8FD4" },
                 ].map((f,i)=>(
                   <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"18px 20px", background:"#f8f8f8", borderRadius:14, borderLeft:`3px solid ${f.dot}` }}>
                     <div style={{ width:8, height:8, borderRadius:"50%", background:f.dot, flexShrink:0, marginTop:6 }}/>
