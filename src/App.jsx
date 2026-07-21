@@ -399,7 +399,7 @@ function PricingSection({ onJoin }) {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 28 : 16, overflow: "visible" }}>
           {cards.map(c => (
             <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "36px 20px 28px" : "40px 24px 28px") : "28px 20px", marginTop: isMobile ? (c.popular ? 20 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
-              {c.popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#C8960A 22%,#5B8DB8 48%,#9B8FD4 72%,#2CB7A7 100%)", color: "#000", fontSize: 9, fontWeight: 400, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.18em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 5 }}>Most popular</div>}
+              {c.popular && <div style={{ position: "absolute", top: -16, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontSize: 10, fontWeight: 500, padding: "5px 18px", borderRadius: 20, letterSpacing: "0.14em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 10 }}>✦ Most Popular</div>}
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 36, fontWeight: 400, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Jost',sans-serif", display: "inline-block" }}>{c.price}</span>
@@ -1941,7 +1941,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <circle cx="65" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
                 <line x1="50" y1="80" x2="50" y2="96" stroke="#f2ece4" strokeWidth="3.5" strokeLinecap="round"/>
               </svg>
-              <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:400, fontSize:18, color:"#f2ece4", letterSpacing:"0.04em" }}>Self Hypnosis Goddess</span>
+              <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:400, fontSize:18, color:"#f2ece4", letterSpacing:"0.02em" }}>Self Hypnosis Goddess</span>
             </div>
         <div style={{ fontSize: 13, color: "#e8e0d8", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
