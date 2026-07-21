@@ -100,18 +100,55 @@ const SECTIONS = [
   { k:"spotting-signs", icon:"✦", title:"How to spot a sign or synchronicity worth logging", isNew:true,
     body:"A sign is anything that feels like a nudge toward your intention — even a small one. You don't need to wait for the full manifestation to log something.\n\nWhat counts: a coincidence that's slightly too on-the-nose to ignore, a conversation that circles back to your exact desire, a number or name showing up repeatedly, a feeling of \"that's strange\" when something lines up with what you asked for, a small version of the thing itself arriving before the whole thing does.\n\nDon't overthink it — if it made you pause, log it. The habit of noticing and logging is what trains you to actually see the evidence building, instead of missing it because you weren't looking. Signs add up. That's the entire mechanism behind the Proof Wall." },
 
+
+  { k:"headphones", icon:"🎧", title:"Do I need headphones?",
+    body:"For binaural beats and EMDR tracks: yes, headphones are required. Both effects depend on each ear receiving a different signal — one earbud removes the bilateral effect entirely.\n\nFor subliminal and melodic house tracks without binaural: speakers work fine. The subliminals are embedded in the audio itself and don't rely on stereo separation.\n\nA simple rule: if the track is labelled Binaural or EMDR, put both headphones in. For everything else, do whatever's comfortable." },
+
+  { k:"focus", icon:"◐", title:"Do I need to focus or pay attention while listening?",
+    body:"No. You don't need to concentrate, follow the words, or try to believe anything. The audio does the work whether or not your conscious mind is engaged.\n\nIn fact, trying too hard to listen keeps you in beta — the alert, analytical state — which is exactly what you want to move out of. The most receptive sessions are the ones where you've half-forgotten you're listening. Let your mind wander. Let yourself drift. That's theta." },
+
+  { k:"fell-asleep", icon:"◑", title:"What if I fall asleep while listening?",
+    body:"Good. That's the protocol.\n\nWhen you cross from theta into delta (deep sleep), your conscious mind switches off completely — and the subliminals keep running. Your subconscious doesn't sleep. It processes everything it hears all night. Falling asleep while listening is not a waste of the session, it's the deepest version of it.\n\nIf you consistently fall asleep before the track ends, loop it. Let it play all night. That's not too much. That's the accelerated protocol." },
+
+  { k:"believe", icon:"✦", title:"Do I need to believe it will work?",
+    body:"No. That's the entire point of subliminals and hypnosis — they bypass the part of your mind that decides what to believe.\n\nAffirmations fail for most people because the conscious mind rejects them the moment they're said out loud. 'I am rich' while checking a negative balance — the critical faculty laughs and the affirmation bounces off.\n\nWith SHG, the installation happens below that layer. You don't need to agree with the statement for your subconscious to receive it. You don't need to feel it yet. The only requirement is pressing play." },
+
+  { k:"therapy", icon:"◊", title:"Can I use this alongside therapy or medication?",
+    body:"Yes — and it's designed to complement both, not replace them.\n\nSHG operates at the identity and belief level. Therapy operates at the processing and insight level. Medication supports neurochemistry. None of these conflict with each other. If anything, the audio accelerates therapy by doing the subconscious installation between sessions that therapy often can't reach in the session itself.\n\nIf you're under the care of a mental health professional, keep going. SHG is not a substitute for professional mental health support. It's an additional layer — and for many people, a significant one." },
+
+  { k:"emotional", icon:"↑", title:"What if listening makes me emotional?",
+    body:"That's completely normal — and usually a good sign.\n\nWhen a track lands in a place that carries an old wound, it can bring up grief, anger, or unexpected sadness. This is not the audio hurting you. This is it hitting a real block — the old belief that needs to dissolve before the new one can land.\n\nLet it come up. Don't stop the track. Cry if you need to. The emotion is the old identity releasing. What comes after it — usually within the same session or the day after — is often a noticeable lightness, and a faster movement toward the desire.\n\nIf you're finding certain tracks consistently activating in a way that feels too much, try the subliminal-only version of the same category first. Less direct, same installation." },
+
+  { k:"visualization", icon:"✧", title:"Can I do visualisation while listening?",
+    body:"Yes — and it amplifies the installation significantly.\n\nThe ideal sequence: press play, close your eyes, let the audio carry you into theta, and once you feel relaxed (usually 5–10 minutes in), bring up the end result of your desire as an image or a feeling. Don't watch it like a movie — be inside it. Feel it as if it's already done.\n\nYou don't need to maintain the visualisation for the whole session. Even 2–3 minutes of clear, felt end-result imagery while in theta is far more effective than the same visualisation attempted in beta while sitting at a desk.\n\nIf your mind wanders from the image, let it. The subliminals and audio are still working. The visualisation is an add-on, not a requirement." },
+
+  { k:"one-method", icon:"◈", title:"Should I stick to one method or combine everything?",
+    body:"SHG is designed to be a complete system on its own. You don't need to add anything else for it to work.\n\nIf you want to layer in other practices — journalling, scripting, visualisation, affirmations — go ahead. They don't conflict. But if you're already doing SHG daily and trying to do five other methods alongside it, you may be overcomplicating something that works better when you trust it and leave it alone.\n\nThe most effective approach for most people: one track per desire, daily, consistently. Everything else is optional." },
+
+  { k:"tell-anyone", icon:"◉", title:"Should I tell anyone what I'm manifesting?",
+    body:"No.\n\nThis is not superstition — it's psychology. The moment you verbalise a desire to someone else, your brain starts managing their reaction to it instead of moving toward the outcome. If they doubt you, you absorb that doubt. If they ask questions, you go into explanation mode. If they dismiss it, you spend energy defending something that didn't need defending.\n\nThe more uncertain you feel about a desire — the bigger the identity gap between who you are now and who you'd have to be to have it — the more important it is to keep it private. Silence is protection. It keeps your belief intact.\n\nThe rule: the more delusional the desire feels, the fewer people who should know about it. Your most audacious intentions are the ones to hold closest. Only share a desire once it's manifested — and then only with people who can celebrate it without needing to understand how it happened.\n\nTell the Proof Wall. Not the group chat." },
+
+  { k:"not-working", icon:"↑", title:"What if nothing is happening after a week?",
+    body:"First question: are you listening every day? Not most days — every day. A week of daily listening is genuinely the minimum before drawing conclusions.\n\nSecond question: are you logging signs? If you're not logging, you're not noticing. Signs arrive before the full manifestation and they're easy to dismiss as coincidence. Start logging everything that pauses you, even slightly.\n\nThird question: what does your dominant emotional state look like? If you're logging signs from Fear or Desire (below 200), the audio is lifting you but the contractive energy is slowing the movement. That's not a reason to stop — it's a reason to keep going.\n\nFourth question: are you attached to the outcome arriving in a specific way or by a specific time? Attachment keeps the energy locked in your hands. The shift from wanting to knowing is the real movement. Listen daily. Log honestly. Let go of the timeline." },
+
+  { k:"multiple-desires", icon:"⇄", title:"Should I focus on one desire or work on several?",
+    body:"Both work. Here is the practical framework:\n\nIf you're new, start with one. Your most burning desire — the one you feel the most about. Give it everything for 30 days. Build the habit. Build the evidence. Then add more.\n\nIf you have multiple desires across different categories — love, money, appearance — they don't compete with each other. Your subconscious is not single-threaded. You can listen to one track in the morning and another at night and both install separately.\n\nThe mistake to avoid: rotating through 10 different tracks with no consistency on any of them. Pick 2–3 at most for any given month, rotate the listening windows (morning/night), and give each track enough repetitions to land." },
+
+  { k:"proofos-not-journal", icon:"◈", title:"Is ProofOS a journal?",
+    body:"No — and that's intentional.\n\nA journal is for processing. ProofOS is for evidence. The difference is significant.\n\nJournalling is valuable but it's not what ProofOS is for. ProofOS is a structured record of: what you want, the signs that it's coming, and the proof when it arrives. It's a receipts system, not a feelings system.\n\nYou don't write about your day in ProofOS. You don't process your emotions in ProofOS (that's what the Hawkins log is for — brief, honest, one-line). You log intentions, you log signs, you log manifestations. Short, specific, dated.\n\nThe reason ProofOS isn't a journal is because journals become something to maintain. A record of receipts becomes something you can't stop adding to — because you keep getting evidence." },
+
   { k:"knowing-manifested", icon:"↑", title:"How to know when something has actually manifested",
     body:"Mark an intention as manifested when the actual outcome has happened — not a sign pointing toward it, the real thing. If your intention was \"he texts me first,\" the manifestation is the text arriving, not the dream about him or the feeling that it's close.\n\nIt's fine to have multiple signs logged under an intention for weeks before it manifests — that's normal and expected. The signs are the trail, the manifestation is the destination. When you mark something manifested, you're also asked how you feel now — this is what lets you see your own before/after, side by side, permanently, on your Proof Wall." },
 
 ];
 
 const CATEGORIES = [
-  { label:"Getting started", keys:["formula","when","how-long-session","how-often","state"] },
-  { label:"Tracks and intentions", keys:["how-many-tracks","multiple-intentions","same-track-multiple","stop"] },
-  { label:"Results", keys:["results","working","signs"] },
-  { label:"The method", keys:["sats","combine","brainwaves","hyp-vs-sub","emdr","binaural","reiki","frequencies","frequencies-types"] },
-  { label:"Track formats", keys:["subliminals-what","subliminals-all","music-only","vocals-only","hypno-vs-sub-versions"] },
-  { label:"The scale", keys:["hawkins","hawkins-how"] },
+  { label:"Getting started", keys:["formula","when","how-long-session","how-often","headphones","focus","fell-asleep","believe","state"] },
+  { label:"The mechanism", keys:["brainwaves","sats","emdr","subliminals-what","subliminals-all","visualization","one-method","therapy","emotional"] },
+  { label:"Tracks & listening", keys:["how-many-tracks","multiple-intentions","same-track-multiple","multiple-desires","stop","hyp-vs-sub","music-only","vocals-only","hypno-vs-sub-versions","frequencies","frequencies-types","reiki"] },
+  { label:"ProofOS", keys:["bucket-vs-active","how-to-write-intention","choosing-your-emotion","spotting-signs","signs","knowing-manifested","proof-wall-forever","proofos-not-journal"] },
+  { label:"Results & troubleshooting", keys:["results","working","not-working","tell-anyone"] },
+  { label:"The Hawkins Scale", keys:["hawkins","hawkins-how"] },
 ];
 
 export default function KnowledgeGuide({ onClose, C }) {
