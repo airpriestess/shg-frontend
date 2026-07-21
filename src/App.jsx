@@ -1397,12 +1397,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your new reality</div>
               <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Identity</div>
               <div style={{ fontSize:12, color:"rgba(44,183,167,0.7)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>reprogrammed</div>
-              {/* Theta wave — synced, beautiful, same as middle box */}
+              {/* Theta wave — Lucky Girl gradient */}
               <svg width="100%" height="40" viewBox="0 0 200 40" style={{ marginBottom:14, display:"block" }}>
+                <defs>
+                  <linearGradient id="idlg" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#F5E0A0"/>
+                    <stop offset="30%" stopColor="#E8B870"/>
+                    <stop offset="60%" stopColor="#BFA5D8"/>
+                    <stop offset="100%" stopColor="#2CB7A7"/>
+                  </linearGradient>
+                </defs>
                 <path d="M4 20 Q54 4 104 20 T204 20"
-                  fill="none" stroke="#2CB7A7" strokeWidth="2.2" strokeLinecap="round" opacity="0.85"/>
+                  fill="none" stroke="url(#idlg)" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
                 <path d="M4 20 Q54 4 104 20 T204 20"
-                  fill="none" stroke="#2CB7A7" strokeWidth="6" strokeLinecap="round" opacity="0.08"/>
+                  fill="none" stroke="url(#idlg)" strokeWidth="8" strokeLinecap="round" opacity="0.1"/>
               </svg>
               <div style={{ fontSize: isMobile?13:14, color:"#e8e0d8", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Your beliefs change. Your thoughts change. Your actions change. Your reality changes. All you did was press play.
