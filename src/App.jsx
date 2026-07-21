@@ -1245,9 +1245,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* FORMULA — one massive equation line */}
-      <div style={{ background:"#000", padding: isMobile?"8px 16px 40px":"12px 48px 52px", textAlign:"center" }}>
-        <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(28px,3.2vw,42px)", fontWeight:500, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em", lineHeight:1.3, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 14px" }}>
+      {/* FORMULA — one massive equation line in LG-bordered box */}
+      <div style={{ background:"#000", padding: isMobile?"8px 20px 40px":"12px 48px 52px", textAlign:"center" }}>
+        {/* Lucky Girl gradient border via padding trick */}
+        <div style={{ display:"inline-block", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, padding:"2px" }}>
+          <div style={{ background:"#000", borderRadius:14, padding: isMobile?"20px 20px":"28px 48px" }}>
+        <div style={{ fontSize: isMobile?"clamp(18px,4.8vw,26px)":"clamp(24px,2.8vw,38px)", fontWeight:500, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em", lineHeight:1.3, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 14px" }}>
           {[
             { t:"Hypnosis",        c:"#F5E0A0" },
             { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
@@ -1267,6 +1270,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ? <span key={i} style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:600 }}>{item.t}</span>
               : <span key={i} style={{ color:item.c }}>{item.t}</span>
           ))}
+        </div>
+          </div>
         </div>
       </div>
 
