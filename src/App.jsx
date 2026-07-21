@@ -1573,7 +1573,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 {[
                   { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
                   { label:"Voice Only",       sub:"Pure vocal hypnosis — no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive.", color:"#E8B870", dot:"#E8B870" },
-                  { label:"Sleep & Rest",     sub:"Calm ambient music with subliminals — continuous, soft, designed to play all night while your subconscious installs the new belief.", color:"#BFA5D8", dot:"#BFA5D8" },
+                  { label:"Sleep & Rest",     sub:"Calm audio for winding down or sleeping — ambient, white noise, or soft sound. Subliminals layered throughout. Designed to run all night.", color:"#BFA5D8", dot:"#BFA5D8" },
                   { label:"Subliminal",       sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day.", color:"#2CB7A7", dot:"#2CB7A7" },
                   { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
                   { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#9B8FD4", dot:"#9B8FD4" },
