@@ -200,6 +200,9 @@ function getDesc(track) {
 }
 
 const TRACKS = [
+  { id:101, title:"I'm a Living Breathing Masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beautymaxxing",  format:"Melodic House", freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:102, title:"My Desires Are Obsessed With Me",    artist:"Reshma Oracle", dur:"20:00", cat:"Desiresmaxxing", format:"Melodic House", freq:"EMDR",    tier:"audio", isNew:true, hasAudio:true },
+  { id:103, title:"Seduced Focus",                      artist:"Reshma Oracle", dur:"20:00", cat:"Selfmaxxing",    format:"Melodic House", freq:"Binaural", tier:"audio", isNew:true, hasAudio:true },
   { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Selfmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to earn good things happening to you, into feeling like you're already the woman everyone wants to spoil.",
       benefits:["Stop over-giving to feel worthy of receiving","Let people show up for you without guilt","Feel deserving of ease, not just effort"] } },
@@ -308,9 +311,7 @@ const TRACKS = [
   { id:98, title:"I am my own favourite person", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:99, title:"Good things chase me down", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:100, title:"Money comes to me for being exactly who I am", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:101, title:"I'm a Living Breathing Masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beautymaxxing",  format:"Melodic House", freq:"528hz",    tier:"audio", isNew:true,  hasAudio:true },
-  { id:102, title:"My Desires Are Obsessed With Me",    artist:"Reshma Oracle", dur:"20:00", cat:"Desiresmaxxing", format:"Melodic House", freq:"EMDR",     tier:"audio", isNew:true,  hasAudio:true },
-  { id:103, title:"Seduced Focus",                      artist:"Reshma Oracle", dur:"20:00", cat:"Selfmaxxing",    format:"Melodic House", freq:"Binaural",  tier:"audio", isNew:true,  hasAudio:true },
+
   { id:104, title:"Everything works out in my favour without exception", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:105, title:"He is obsessed with coming home to me", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:106, title:"My business is scaling while I sleep", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
