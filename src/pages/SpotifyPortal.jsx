@@ -23,7 +23,7 @@ const HAWKINS = [
   {n:"Reason",      v:400, c:"#9b59b6"}, // purple
   {n:"Love",        v:500, c:"#F0B8C8"},
   {n:"Joy",         v:540, c:"#F5E0A0"},
-  {n:"Peace",       v:600, c:"#000000"}, // cream-white
+  {n:"Peace",       v:600, c:"#F5E0A0"}, // champagne — brightest on scale
   {n:"Enlightenment",v:700,c:"#ffffff"}, // pure white
 ];
 const dominant = (log,days) => {
@@ -686,7 +686,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                     background:quickFeel===h.n?`${h.c}33`:"transparent",
                     border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                  <span style={{ fontSize:15,color:h.v>=600?"#1a1008":h.v<=30?"#e8e0d8":h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:15,color:h.v>=600?"#F5E0A0":h.v<=30?"#e8e0d8":h.c,flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
