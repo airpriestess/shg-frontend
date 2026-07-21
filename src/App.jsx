@@ -1642,7 +1642,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
             {[
               {n:"Enlightenment",v:700,c:"#ffffff"},
-              {n:"Peace",       v:600,c:"#F5E0A0"},
+              {n:"Peace",       v:600,c:"#FFD700"},
               {n:"Joy",         v:540,c:"#E8B870"},
               {n:"Love",        v:500,c:"#F0B8C8"},
               {n:"Reason",      v:400,c:"#BFA5D8"},
@@ -1660,9 +1660,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               {n:"Shame",       v:20, c:"#2a0a0a"},
             ].map((h,i)=>(
               <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"6px 4px" }}>
-                <div style={{ width:10, height:10, borderRadius:"50%", background:h.c, flexShrink:0, boxShadow:h.v>=200?`0 0 6px ${h.c}88`:"none" }}/>
+                <div style={{ width:10, height:10, borderRadius:"50%", background:h.c, flexShrink:0, boxShadow:h.v>=600?`0 0 10px ${h.c}, 0 0 20px ${h.c}66`:h.v>=200?`0 0 6px ${h.c}88`:"none" }}/>
                 <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
-                  <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:h.c, opacity: h.v>=200?0.9:0.6 }}/>
+                  <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:h.c, opacity:h.v>=600?1:h.v>=200?0.85:0.55, boxShadow:h.v>=600?`0 0 8px ${h.c}`:"none" }}/>
                 </div>
                 <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":"#e8e0d8", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
                 <span style={{ fontSize:11, color:"#e8e0d8", width:32, textAlign:"right" }}>{h.v}</span>
