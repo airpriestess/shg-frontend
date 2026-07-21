@@ -1245,28 +1245,58 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* FORMULA STRIP — what you get, immediately */}
-      <div style={{ background:"#000", padding: isMobile?"0 24px 24px":"0 48px 32px", display:"flex", justifyContent:"center" }}>
-        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", alignItems:"center", gap: isMobile?6:10 }}>
-          {[
-            { t:"Hypnosis",       c:"#F5E0A0" },
-            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
-            { t:"Subliminals",    c:"#E8B870" },
-            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
-            { t:"Melodic House",  c:"#BFA5D8" },
-            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
-            { t:"EMDR",           c:"#2CB7A7" },
-            { t:"+",              c:"rgba(232,224,216,0.3)", op:true },
-            { t:"Binaural Beats", c:"#2CB7A7" },
-            { t:"=",              c:"rgba(232,224,216,0.3)", op:true },
-            { t:"Theta on demand.",c:"#ffffff", bold:true },
-          ].map((item,i)=>(
-            item.op
-              ? <span key={i} style={{ fontSize: isMobile?16:20, color:item.c, fontFamily:"'Jost',sans-serif" }}>{item.t}</span>
-              : item.bold
-              ? <span key={i} style={{ fontSize: isMobile?13:15, fontWeight:500, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>{item.t}</span>
-              : <span key={i} style={{ fontSize: isMobile?10:11, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.14em", textTransform:"uppercase", padding: isMobile?"4px 10px":"5px 14px", background:"rgba(255,255,255,0.04)", borderRadius:20, border:`1px solid ${item.c}30` }}>{item.t}</span>
-          ))}
+      {/* FORMULA — clear equation, big and readable */}
+      <div style={{ background:"#000", padding: isMobile?"8px 20px 36px":"12px 48px 48px" }}>
+        <div style={{ maxWidth:760, margin:"0 auto" }}>
+
+          {/* Desktop: single row. Mobile: two rows — ingredients top, result bottom */}
+          {isMobile ? (
+            <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
+              {/* Row 1: ingredients */}
+              <div style={{ display:"flex", alignItems:"center", gap:10, flexWrap:"wrap", justifyContent:"center" }}>
+                {[
+                  { label:"Hypnosis",      c:"#F5E0A0" },
+                  { label:"Subliminals",   c:"#E8B870" },
+                  { label:"EMDR",          c:"#BFA5D8" },
+                  { label:"Binaural",      c:"#2CB7A7" },
+                ].map((item, i, arr) => (
+                  <div key={i} style={{ display:"flex", alignItems:"center", gap:10 }}>
+                    <div style={{ padding:"10px 16px", background:"rgba(255,255,255,0.04)", border:`1px solid ${item.c}40`, borderRadius:10, textAlign:"center" }}>
+                      <div style={{ fontSize:13, fontWeight:500, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em", textTransform:"uppercase" }}>{item.label}</div>
+                    </div>
+                    {i < arr.length - 1 && <span style={{ fontSize:20, color:"rgba(232,224,216,0.3)", fontFamily:"'Jost',sans-serif" }}>+</span>}
+                  </div>
+                ))}
+              </div>
+              {/* Row 2: = result */}
+              <div style={{ display:"flex", alignItems:"center", gap:14 }}>
+                <span style={{ fontSize:28, color:"rgba(232,224,216,0.4)", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>=</span>
+                <div style={{ padding:"14px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:12 }}>
+                  <div style={{ fontSize:18, fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>Theta. On demand.</div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:14 }}>
+              {[
+                { label:"Hypnosis",      c:"#F5E0A0" },
+                { label:"Subliminals",   c:"#E8B870" },
+                { label:"EMDR",          c:"#BFA5D8" },
+                { label:"Binaural Beats",c:"#2CB7A7" },
+              ].map((item, i, arr) => (
+                <div key={i} style={{ display:"flex", alignItems:"center", gap:14 }}>
+                  <div style={{ padding:"14px 22px", background:"rgba(255,255,255,0.04)", border:`1px solid ${item.c}40`, borderRadius:12, textAlign:"center" }}>
+                    <div style={{ fontSize:14, fontWeight:500, color:item.c, fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em", textTransform:"uppercase" }}>{item.label}</div>
+                  </div>
+                  {i < arr.length - 1 && <span style={{ fontSize:28, color:"rgba(232,224,216,0.3)", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>+</span>}
+                </div>
+              ))}
+              <span style={{ fontSize:32, color:"rgba(232,224,216,0.4)", fontFamily:"'Jost',sans-serif", fontWeight:300, margin:"0 4px" }}>=</span>
+              <div style={{ padding:"14px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:12 }}>
+                <div style={{ fontSize:18, fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>Theta. On demand.</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
