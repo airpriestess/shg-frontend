@@ -141,9 +141,9 @@ export default function KnowledgeGuide({ onClose, C }) {
           borderBottom:`1px solid ${border}`, zIndex:2 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
             <div>
-              <div style={{ fontSize:10, color:"#2CB7A7", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook ✦</div>
+              <div style={{ fontSize:12, color:"#2CB7A7", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook ✦</div>
               <div style={{ fontSize:18, color:cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Everything you need to know</div>
-              <div style={{ fontSize:12, color:mu, marginTop:4 }}>{SECTIONS.length} questions answered</div>
+              <div style={{ fontSize:14, color:mu, marginTop:4 }}>{SECTIONS.length} questions answered</div>
             </div>
             <button onClick={onClose} style={{ background:"none", border:"none", fontSize:20, cursor:"pointer", color:mu, padding:4 }}>✕</button>
           </div>
@@ -154,7 +154,7 @@ export default function KnowledgeGuide({ onClose, C }) {
               <button key={c.label} onClick={()=>{setCat(c.label);setOpen(null);}}
                 style={{ flexShrink:0, padding:"6px 14px", borderRadius:20, border:`1px solid ${cat===c.label?"#2CB7A7":border}`,
                   background:cat===c.label?"#2CB7A7":"none", color:cat===c.label?"#000":mu,
-                  fontSize:11, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
+                  fontSize:13, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
                 {c.label}
               </button>
             ))}
@@ -171,14 +171,14 @@ export default function KnowledgeGuide({ onClose, C }) {
                   display:"flex", alignItems:"center", justifyContent:"space-between", gap:10, fontFamily:"'Jost',sans-serif" }}>
                 <span style={{ display:"flex", alignItems:"center", gap:10, flex:1, textAlign:"left" }}>
                   <span style={{ width:28, height:28, borderRadius:7, background:OMBRE, display:"flex",
-                    alignItems:"center", justifyContent:"center", fontSize:12, color:"#000", flexShrink:0 }}>{s.icon}</span>
-                  <span style={{ fontSize:13, color:cr, lineHeight:1.3 }}>{s.title}</span>
+                    alignItems:"center", justifyContent:"center", fontSize:14, color:"#000", flexShrink:0 }}>{s.icon}</span>
+                  <span style={{ fontSize:15, color:cr, lineHeight:1.3 }}>{s.title}</span>
                 </span>
-                <span style={{ fontSize:14, color:mu, flexShrink:0, transition:"transform 0.2s",
+                <span style={{ fontSize:16, color:mu, flexShrink:0, transition:"transform 0.2s",
                   transform:open===s.k?"rotate(180deg)":"none" }}>⌄</span>
               </button>
               {open===s.k && (
-                <div style={{ padding:"0 14px 16px 52px", fontSize:13, lineHeight:1.85, color:mu,
+                <div style={{ padding:"0 14px 16px 52px", fontSize:15, lineHeight:1.85, color:mu,
                   whiteSpace:"pre-line" }}>{s.body}</div>
               )}
             </div>
@@ -186,7 +186,7 @@ export default function KnowledgeGuide({ onClose, C }) {
 
           {/* Footer CTA */}
           <div style={{ marginTop:12, padding:"12px 14px", background:OMBRE, borderRadius:12,
-            fontSize:12, color:"#000", textAlign:"center" }}>
+            fontSize:14, color:"#000", textAlign:"center" }}>
             Come back to this any time — tap Guidebook on your home screen.
           </div>
         </div>

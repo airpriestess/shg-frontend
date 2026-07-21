@@ -59,7 +59,7 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
   dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#7a9a98", dim:"#e8e0d8", border:"rgba(44,183,167,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
-  light: { bg:"#f8fbfb", bg2:"#f0f8f7", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.15)", nav:"rgba(248,251,251,0.97)", cr:"#0a1a18", mu:"#4a8a80", dim:"#2CB7A7", border:"rgba(44,183,167,0.2)", inputBg:"rgba(44,183,167,0.06)", inputCr:"#0a1a18" },
+  light: { bg:"#f8fbfb", bg2:"#f0f8f7", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.15)", nav:"rgba(248,251,251,0.97)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(44,183,167,0.2)", inputBg:"rgba(44,183,167,0.06)", inputCr:"#0a0a0a" },
 };
 
 const R = "#2CB7A7", P = "#BFA5D8";
@@ -544,31 +544,31 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
     <>
       <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.6)" }} onClick={()=>setBillingOpen(false)}/>
       <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:999,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
-        <div style={{ fontSize:11,color:C.mu,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
+        <div style={{ fontSize:13,color:C.mu,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
         <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
           <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
-            <span style={{ fontSize:12,color:C.mu }}>Current plan</span>
-            <span style={{ fontSize:13,color:userTier==="goddess"?R:C.cr }}>{userTier==="goddess"?"Goddess Tier ✦":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
+            <span style={{ fontSize:14,color:C.mu }}>Current plan</span>
+            <span style={{ fontSize:15,color:userTier==="goddess"?R:C.cr }}>{userTier==="goddess"?"Goddess Tier ✦":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
-            <span style={{ fontSize:12,color:C.mu }}>Monthly rate</span>
-            <span style={{ fontSize:13,color:C.cr }}>{userTier==="goddess"?"£33/mo":userTier==="lifetime"?"£500 one-time":"£19/mo"}</span>
+            <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
+            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"£33/mo":userTier==="lifetime"?"£500 one-time":"£19/mo"}</span>
           </div>
         </div>
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
-            <div style={{ fontSize:12,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
-            <div style={{ fontSize:11,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
-            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
           </div>
         )}
-        <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>
+        <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>
           {portalLoading ? "Opening..." : "Manage billing, cancel or change plan →"}
         </button>
-        <div style={{ fontSize:10,color:C.dim,textAlign:"center",marginBottom:12 }}>Managed securely by Stripe · your card is already saved</div>
-        <button onClick={()=>setBillingOpen(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+        <div style={{ fontSize:12,color:C.dim,textAlign:"center",marginBottom:12 }}>Managed securely by Stripe · your card is already saved</div>
+        <button onClick={()=>setBillingOpen(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
       </div>
     </>
   );
@@ -582,9 +582,9 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
             <div style={{ width:56,height:56,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,fontWeight:400,color:"#000",flexShrink:0 }}>R</div>
             <div>
-              <div style={{ fontSize:16,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
-              <div style={{ fontSize:12,color:C.mu }}>Goddess Tier</div>
-              <div style={{ fontSize:11,color:R,fontWeight:400,marginTop:2 }}>reshma@reshmaoracle.com</div>
+              <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
+              <div style={{ fontSize:14,color:C.mu }}>Goddess Tier</div>
+              <div style={{ fontSize:13,color:R,fontWeight:400,marginTop:2 }}>reshma@reshmaoracle.com</div>
             </div>
           </div>
           {/* Stats row */}
@@ -592,7 +592,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Intentions",C.cr]].map(([v,l,c],i)=>(
               <div key={i} style={{ background:C.bg3,borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
                 <div style={{ fontSize:18,fontWeight:400,color:c }}>{v}</div>
-                <div style={{ fontSize:10,color:C.mu }}>{l}</div>
+                <div style={{ fontSize:12,color:C.mu }}>{l}</div>
               </div>
             ))}
           </div>
@@ -609,7 +609,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
             { icon:<Ico.Cog c={C.mu}/>, label:"Manage subscription", action:()=>{setProfileOpen(false);setBillingOpen(true);} },
             { icon:isDark?<Ico.Cog c={C.mu}/>:<Ico.Cog c={C.mu}/>, label:`Switch to ${isDark?"light":"dark"} mode`, action:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);} },
           ].map((item,i)=>(
-            <button key={i} onClick={item.action} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.cr,fontSize:14,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"background 0.1s" }}
+            <button key={i} onClick={item.action} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.cr,fontSize:16,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"background 0.1s" }}
               onMouseEnter={e=>e.currentTarget.style.background=C.bg3}
               onMouseLeave={e=>e.currentTarget.style.background="none"}>
               {item.icon} {item.label}
@@ -617,11 +617,11 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 20px" }}/>
           <PushNotificationToggle userId={userId} C={C}/>
-          <button onClick={onSignOut} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          <button onClick={onSignOut} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:16,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             Sign out
           </button>
         </div>
-        <button onClick={()=>setProfileOpen(false)} style={{ padding:"16px",background:"none",border:`1px solid ${C.border}`,margin:"12px 16px",borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+        <button onClick={()=>setProfileOpen(false)} style={{ padding:"16px",background:"none",border:`1px solid ${C.border}`,margin:"12px 16px",borderRadius:10,color:C.mu,fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
       </div>
     </>
   );
@@ -660,12 +660,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <>
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
-            <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
-            <div style={{ fontSize:11,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
+            <div style={{ fontSize:13,color:"#2CB7A7",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
               Select your state on the Hawkins scale.{" "}
               <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#2CB7A7",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
             </div>
-            <div style={{ fontSize:9,color:"#2CB7A7",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
+            <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
             <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
               {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
@@ -673,12 +673,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                     background:quickFeel===h.n?`${h.c}22`:"transparent",
                     border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 6px ${h.c}99` }}/>
-                  <span style={{ fontSize:13,color:h.c,flex:1 }}>{h.n}</span>
-                  <span style={{ fontSize:11,color:C.mu }}>{h.v}</span>
+                  <span style={{ fontSize:15,color:h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
             </div>
-            <div style={{ fontSize:9,color:"rgba(191,165,216,0.8)",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive · Drains</div>
+            <div style={{ fontSize:11,color:"rgba(191,165,216,0.8)",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive · Drains</div>
             <div style={{ overflowY:"auto",maxHeight:170,marginBottom:12 }}>
               {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
@@ -686,8 +686,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                     background:quickFeel===h.n?`${h.c}33`:"transparent",
                     border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                  <span style={{ fontSize:13,color:h.v>=600?"#1a1008":h.v<=30?"#e8e0d8":h.c,flex:1 }}>{h.n}</span>
-                  <span style={{ fontSize:11,color:C.mu }}>{h.v}</span>
+                  <span style={{ fontSize:15,color:h.v>=600?"#1a1008":h.v<=30?"#e8e0d8":h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
             </div>
@@ -697,24 +697,24 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
                 <div style={{ padding:"10px 14px",borderRadius:10,marginBottom:12,display:"flex",alignItems:"center",gap:10,background:`${h.c}22`,border:`1px solid ${h.c}66` }}>
                   <div style={{ width:14,height:14,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 8px ${h.c}` }}/>
                   <div>
-                    <div style={{ fontSize:13,color:C.cr }}>{h.n} · {h.v}</div>
-                    <div style={{ fontSize:11,color:C.mu }}>{h.v>=200?"Expansive energy — you're creating from above the line":"Contractive energy — the audio will help lift you"}</div>
+                    <div style={{ fontSize:15,color:C.cr }}>{h.n} · {h.v}</div>
+                    <div style={{ fontSize:13,color:C.mu }}>{h.v>=200?"Expansive energy — you're creating from above the line":"Contractive energy — the audio will help lift you"}</div>
                   </div>
                 </div>
               ) : null;
             })()}
-            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>Close</button>
+            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>Close</button>
           </div>
         </>
       )}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",textAlign:"center" }}>
-            <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
-            <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
-            <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
-            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
+            <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
         </div>
       )}
@@ -727,29 +727,29 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
               <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
               <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
             </svg>
-            <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:16,color:C.text}}>
+            <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:18,color:C.text}}>
               Self Hypnosis Goddess
             </span>
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #BFA5D8":"2px solid transparent",color:tab===n.id?"#E8B870":n.id==="proof"?"#2CB7A7":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #BFA5D8":"2px solid transparent",color:tab===n.id?"#E8B870":n.id==="proof"?"#2CB7A7":C.mu,fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
               onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#2CB7A7":C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
-          <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:13,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
+          <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:15,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
             onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
             onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
             <Ico.Book c={C.mu}/> Listening Guide
           </button>
           <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
-          <div style={{ padding:"0 20px 6px",fontSize:11,fontWeight:400,color:C.dim,letterSpacing:"0.12em",textTransform:"uppercase" }}>Recently played</div>
+          <div style={{ padding:"0 20px 6px",fontSize:13,fontWeight:400,color:C.dim,letterSpacing:"0.12em",textTransform:"uppercase" }}>Recently played</div>
           {TRACKS.slice(0,5).map(t=>(
             <button key={t.id} onClick={()=>{play(t); setShowDesc(true);}}
-              style={{ display:"flex",alignItems:"center",gap:10,padding:"5px 20px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:12,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
+              style={{ display:"flex",alignItems:"center",gap:10,padding:"5px 20px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:14,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
               onMouseEnter={e=>e.currentTarget.style.color=C.cr}
               onMouseLeave={e=>{if(track.id!==t.id)e.currentTarget.style.color=C.mu;}}>
               <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={28} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
@@ -758,12 +758,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           ))}
           <div style={{ flex:1 }}/>
           <div style={{ padding:"8px 16px",display:"flex",gap:8 }}>
-            <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ flex:1,padding:"7px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:11,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ flex:1,padding:"7px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {isDark?"☀ Light":"☾ Dark"}
             </button>
           </div>
-          <button onClick={()=>setProfileOpen(true)} style={{ margin:"0 16px 8px",padding:"8px 12px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.cr,fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",alignItems:"center",gap:10 }}>
-            <div style={{ width:24,height:24,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:400,color:"#000" }}>R</div>
+          <button onClick={()=>setProfileOpen(true)} style={{ margin:"0 16px 8px",padding:"8px 12px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.cr,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",alignItems:"center",gap:10 }}>
+            <div style={{ width:24,height:24,borderRadius:"50%",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000" }}>R</div>
             Profile & Settings
           </button>
         </div>
@@ -771,12 +771,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20 }}>
           <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
             <div style={{ maxWidth:360,position:"relative" }}>
-              <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:14,color:C.dim }}>⌕</span>
+              <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:16,color:C.dim }}>⌕</span>
               <input
                 value={searchQ}
                 onChange={e=>{setQ(e.target.value); setTab("search");}}
                 placeholder="What do you want to play?"
-                style={{ width:"100%",padding:"11px 14px 11px 36px",borderRadius:24,background:C.bg3,border:`1px solid ${C.border}`,color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",outline:"none" }}
+                style={{ width:"100%",padding:"11px 14px 11px 36px",borderRadius:24,background:C.bg3,border:`1px solid ${C.border}`,color:C.cr,fontSize:16,fontFamily:"'Jost',sans-serif",outline:"none" }}
               />
             </div>
           </div>
@@ -798,16 +798,16 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",textAlign:"center" }}>
-            <div style={{ fontSize:11,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
-            <div style={{ fontSize:13,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
-            <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
-            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
+            <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
         </div>
       )}
       <div style={{ height:52,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <span style={{ fontSize:13,fontWeight:400,color:C.cr }}>9:41</span>
+        <span style={{ fontSize:15,fontWeight:400,color:C.cr }}>9:41</span>
         <svg viewBox="0 0 100 102" width={22} height={22}>
           <defs><linearGradient id="portallg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
           <circle cx="35" cy="35" r="18" fill="none" stroke="url(#portallg)" strokeWidth="5"/>
@@ -817,12 +817,12 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           <line x1="50" y1="80" x2="50" y2="96" stroke="url(#portallg)" strokeWidth="5" strokeLinecap="round"/>
         </svg>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
-          <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
+          <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{
             width:34,height:34,borderRadius:"50%",
             background:OMBRE,border:"none",
             display:"flex",alignItems:"center",justifyContent:"center",
-            fontSize:14,fontWeight:400,color:"#000",
+            fontSize:16,fontWeight:400,color:"#000",
             cursor:"pointer",WebkitTapHighlightColor:"transparent"
           }}>R</button>
         </div>
@@ -834,8 +834,8 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
         <div onClick={()=>setFullP(true)} style={{ position:"absolute",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:13,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:C.cr }}>{track.title}</div>
-            <div style={{ fontSize:11,color:C.mu }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
+            <div style={{ fontSize:15,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:C.cr }}>{track.title}</div>
+            <div style={{ fontSize:13,color:C.mu }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
           </div>
           <button onClick={e=>{e.stopPropagation();toggleLike(track.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
           <button onClick={e=>{e.stopPropagation();setPlay(p=>!p);}} style={{ width:36,height:36,borderRadius:"50%",background:C.cr,border:"none",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:0,flexShrink:0 }}>
@@ -853,7 +853,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
               <n.I a={tab===n.id} c={tab===n.id?"#E8B870":C.dim}/>
-              <span style={{ fontSize:9,fontWeight:400,color:tab===n.id?"#E8B870":C.dim }}>{n.label}</span>
+              <span style={{ fontSize:11,fontWeight:400,color:tab===n.id?"#E8B870":C.dim }}>{n.label}</span>
             </button>
           ))}
         </div>
@@ -866,7 +866,7 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
 function PreviewBanner({ onSignOut, C }) {
   return (
     <div style={{ background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",padding:"9px 16px",textAlign:"center",flexShrink:0 }}>
-      <span style={{ fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>
+      <span style={{ fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>
         🔒 Preview mode — <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
       </span>
     </div>
@@ -881,10 +881,10 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
     {showDesc && (
       <div style={{ position:"fixed",inset:0,zIndex:1000,background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif" }}>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"24px 48px" }}>
-          <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.cr,display:"flex",alignItems:"center",gap:8,fontSize:13,fontFamily:"'Jost',sans-serif" }}>
+          <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.cr,display:"flex",alignItems:"center",gap:8,fontSize:15,fontFamily:"'Jost',sans-serif" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg> Back
           </button>
-          <span style={{ fontSize:12,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
+          <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
           <div style={{ width:60 }}/>
         </div>
         <div style={{ flex:1,overflowY:"auto",display:"flex",justifyContent:"center",padding:"20px 48px 60px" }}>
@@ -894,15 +894,15 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             </div>
             <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:32,fontWeight:400,color:"#f5f0e8",marginBottom:6 }}>{track.title}</div>
-              <div style={{ fontSize:14,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
-              <div style={{ fontSize:12,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
+              <div style={{ fontSize:16,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
+              <div style={{ fontSize:14,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
               <div style={{ fontSize:19,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
-              <div style={{ fontSize:12,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
+              <div style={{ fontSize:14,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#E8B870",fontSize:15,marginTop:2 }}>✦</span>
-                    <span style={{ fontSize:16,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
+                    <span style={{ color:"#E8B870",fontSize:17,marginTop:2 }}>✦</span>
+                    <span style={{ fontSize:18,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
                   </div>
                 ))}
               </div>
@@ -910,8 +910,8 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                 <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
                   <span style={{ fontSize:20 }}>📖</span>
                   <div>
-                    <div style={{ fontSize:10,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:14,color:"#f5f0e8",fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                    <div style={{ fontSize:16,color:"#f5f0e8",fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
                   </div>
                 </a>
               )}
@@ -924,8 +924,8 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
         <div onClick={()=>setShowDesc(true)} style={{ cursor:"pointer" }}><Thumb title={track.title} cat={track.cat} size={52} radius={4}/></div>
         <div style={{ minWidth:0, cursor:"pointer" }} onClick={()=>setShowDesc(true)}>
-          <div style={{ fontSize:13,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:C.cr }}>{track.title}</div>
-          <div style={{ fontSize:11,color:C.mu }}>Reshma Oracle</div>
+          <div style={{ fontSize:15,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:C.cr }}>{track.title}</div>
+          <div style={{ fontSize:13,color:C.mu }}>Reshma Oracle</div>
         </div>
         <button onClick={()=>setShowDesc(true)} style={{ background:"none",border:"none",lineHeight:0,padding:6,cursor:"pointer" }} title="About this track">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.mu} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={C.mu}/></svg>
@@ -934,24 +934,24 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
       </div>
       <div style={{ flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:6 }}>
         <div style={{ display:"flex",alignItems:"center",gap:20 }}>
-          <span style={{ fontSize:14,color:C.dim,cursor:"pointer" }}>⇄</span>
+          <span style={{ fontSize:16,color:C.dim,cursor:"pointer" }}>⇄</span>
           <button onClick={prevTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
           <button onClick={()=>setPlay(p=>!p)} style={{ width:36,height:36,borderRadius:"50%",background:OMBRE,border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",backgroundSize:"200%",backgroundPosition:"left",boxShadow:"0 2px 12px rgba(212,160,144,0.5)" }}>
             {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
           </button>
           <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
-          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:14,color:isLooping?"#2CB7A7":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#2CB7A7":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
-          <span style={{ fontSize:11,color:C.dim,width:32,textAlign:"right" }}>—</span>
+          <span style={{ fontSize:13,color:C.dim,width:32,textAlign:"right" }}>—</span>
           <div style={{ flex:1,height:4,background:C.border,borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
             <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",transition:"width 0.3s" }}/>
           </div>
-          <span style={{ fontSize:11,color:C.dim,width:32 }}>{track.dur}</span>
+          <span style={{ fontSize:13,color:C.dim,width:32 }}>{track.dur}</span>
         </div>
       </div>
       <div style={{ width:160,display:"flex",alignItems:"center",gap:8,justifyContent:"flex-end",flexShrink:0 }}>
-        <span style={{ fontSize:14,color:C.dim }}>🔊</span>
+        <span style={{ fontSize:16,color:C.dim }}>🔊</span>
         <div style={{ width:80,height:4,background:C.border,borderRadius:2 }}><div style={{ width:"70%",height:"100%",background:C.cr,borderRadius:2 }}/></div>
       </div>
     </div>
@@ -966,7 +966,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
     <div style={{ position:"absolute",inset:0,background:C.bg,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:52,marginBottom:24 }}>
         <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <span style={{ fontSize:12,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
+        <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
         <div style={{ display:"flex",gap:10 }}>
           <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="About this track" title="About this track">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#2CB7A7":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#2CB7A7":C.cr}/></svg>
@@ -979,17 +979,17 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       {view==="desc" ? (
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
-          <div style={{ fontSize:13,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
+          <div style={{ fontSize:15,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
           {(() => { const d = getDesc(track); return (
             <div style={{ width:"100%",paddingBottom:40 }}>
-              <div style={{ fontSize:11,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+              <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
               <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
-              <div style={{ fontSize:11,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+              <div style={{ fontSize:13,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#E8B870",fontSize:14,marginTop:2 }}>✦</span>
-                    <span style={{ fontSize:15,lineHeight:1.6,color:C.cr }}>{b}</span>
+                    <span style={{ color:"#E8B870",fontSize:16,marginTop:2 }}>✦</span>
+                    <span style={{ fontSize:17,lineHeight:1.6,color:C.cr }}>{b}</span>
                   </div>
                 ))}
               </div>
@@ -997,8 +997,8 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                 <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
                   <span style={{ fontSize:18 }}>📖</span>
                   <div style={{ flex:1 }}>
-                    <div style={{ fontSize:10,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:13,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                    <div style={{ fontSize:15,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
                   </div>
                 </a>
               )}
@@ -1008,7 +1008,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       ) : view==="script" ? (
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
-          <div style={{ fontSize:13,color:C.mu,marginBottom:24 }}>Read along</div>
+          <div style={{ fontSize:15,color:C.mu,marginBottom:24 }}>Read along</div>
           <div style={{ width:"100%",fontSize:19,lineHeight:1.9,color:C.cr,fontWeight:400,textAlign:"center",whiteSpace:"pre-line",paddingBottom:40 }}>
             {track.script || "Script coming soon — this affirmation script hasn't been added yet."}
           </div>
@@ -1016,11 +1016,11 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       ) : (
       <>
       <Thumb title={track.title} cat={track.cat} size={270} radius={14}/>
-      {!hasAudio && <div style={{ marginTop:8,fontSize:11,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
+      {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",marginTop:24,marginBottom:20 }}>
         <div>
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{track.title}</div>
-          <div style={{ fontSize:14,color:C.mu }}>Reshma Oracle</div>
+          <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
         </div>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
       </div>
@@ -1034,7 +1034,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
       </div>
       <div style={{ display:"flex",justifyContent:"space-between",width:"100%",marginBottom:32 }}>
-        <span style={{ fontSize:11,color:C.dim }}>—</span><span style={{ fontSize:11,color:C.dim }}>{track.dur}</span>
+        <span style={{ fontSize:13,color:C.dim }}>—</span><span style={{ fontSize:13,color:C.dim }}>{track.dur}</span>
       </div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%" }}>
         <span style={{ fontSize:18,color:C.dim,cursor:"pointer" }}>⇄</span>
@@ -1058,10 +1058,10 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* HEADER */}
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 6px" }}>
         <div>
-          <div style={{ fontSize:11,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
+          <div style={{ fontSize:13,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
           <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
             {isPreview?"Goddess":firstName}
-            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
+            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
               {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
             </span>
           </span>
@@ -1075,8 +1075,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {userTier==="audio"&&!isPreview&&(
         <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
-            <div style={{ fontSize:10,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
-            <div style={{ fontSize:14,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics — 10% off</div>
+            <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
+            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics — 10% off</div>
           </div>
           <div style={{ fontSize:18,color:"#000",flexShrink:0 }}>→</div>
         </div>
@@ -1090,8 +1090,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(44,183,167,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:14, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
-            <div style={{ fontSize:11, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
+            <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
           </span>
           <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
         </button>
@@ -1107,8 +1107,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* MADE FOR YOU */}
       <div style={{ padding:"0 16px 8px" }}>
         <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12 }}>
-          <span style={{ fontSize:16,fontWeight:400,color:C.cr }}>Made for you</span>
-          <button onClick={()=>setTab("library")} style={{ fontSize:12,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>See all</button>
+          <span style={{ fontSize:18,fontWeight:400,color:C.cr }}>Made for you</span>
+          <button onClick={()=>setTab("library")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>See all</button>
         </div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
           {FEATURED_CATS.map(cat=>{
@@ -1120,8 +1120,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
                   <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
                 </div>
                 <div>
-                  <div style={{ fontSize:12,fontWeight:400,color:C.cr,lineHeight:1.2 }}>{cat.replace("maxxing","")}</div>
-                  <div style={{ fontSize:10,color:C.mu,marginTop:2 }}>{n} tracks</div>
+                  <div style={{ fontSize:14,fontWeight:400,color:C.cr,lineHeight:1.2 }}>{cat.replace("maxxing","")}</div>
+                  <div style={{ fontSize:12,color:C.mu,marginTop:2 }}>{n} tracks</div>
                 </div>
               </button>
             );
@@ -1132,7 +1132,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* YOUR FAVOURITES */}
       <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
-          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:12,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track — it lives here.</div>
+          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track — it lives here.</div>
           :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
 
@@ -1153,7 +1153,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
                 <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,${isDark?"#111":C.bg2} 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
                   <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
                 </div>
-                <div style={{ fontSize:10,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
+                <div style={{ fontSize:12,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
               </button>
             );
           })}
@@ -1178,18 +1178,18 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:11, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
+          <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
             <div key={i} style={{ background:C.card2, borderRadius:12, padding:"16px 10px", textAlign:"center" }}>
-              <div style={{ fontSize:11, color:C.mu, fontWeight:400, letterSpacing:"0.05em", textTransform:"uppercase", marginBottom:8 }}>{l}</div>
+              <div style={{ fontSize:13, color:C.mu, fontWeight:400, letterSpacing:"0.05em", textTransform:"uppercase", marginBottom:8 }}>{l}</div>
               <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||"—"}</div>
-              <div style={{ fontSize:13, color:C.mu, fontWeight:400, marginTop:4 }}>{d?.v||""}</div>
+              <div style={{ fontSize:15, color:C.mu, fontWeight:400, marginTop:4 }}>{d?.v||""}</div>
             </div>
           ))}
         </div>
-        <div style={{ fontSize:12, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
+        <div style={{ fontSize:14, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
           {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
@@ -1218,8 +1218,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(44,183,167,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:15, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
-            <div style={{ fontSize:12, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
+            <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
+            <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
           </span>
           <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
         </button>
@@ -1243,8 +1243,8 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
       <div style={{ display:"flex",alignItems:"center",gap:10,background:C.inputBg,borderRadius:10,padding:"10px 14px",marginBottom:16 }}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.dim} strokeWidth="2.5" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input value={searchQ} onChange={e=>setQ(e.target.value)} placeholder="Tracks, categories, desires…"
-          style={{ border:"none",background:"transparent",flex:1,fontSize:14,color:C.inputCr,outline:"none",fontFamily:"'Jost',sans-serif"}}/>
-        {searchQ && <button onClick={()=>setQ("")} style={{ background:"none",border:"none",color:C.dim,fontSize:16,cursor:"pointer",lineHeight:1 }}>✕</button>}
+          style={{ border:"none",background:"transparent",flex:1,fontSize:16,color:C.inputCr,outline:"none",fontFamily:"'Jost',sans-serif"}}/>
+        {searchQ && <button onClick={()=>setQ("")} style={{ background:"none",border:"none",color:C.dim,fontSize:18,cursor:"pointer",lineHeight:1 }}>✕</button>}
       </div>
       {res.map(t=>{
         const isP = cur?.id===t.id;
@@ -1255,10 +1255,10 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:13,fontWeight:400,color:isP?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
-            <div style={{ fontSize:11,color:C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
+            <div style={{ fontSize:15,fontWeight:400,color:isP?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+            <div style={{ fontSize:13,color:C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
           </div>
-          {t.isNew&&<span style={{ fontSize:9,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
+          {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (
             <>
               <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0,flexShrink:0 }}><Ico.Heart on={liked.has(t.id)}/></button>
@@ -1301,7 +1301,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
-        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:12,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
@@ -1311,12 +1311,12 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             style={{
               width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
               background:"#000", border:`1px solid ${R}66`, borderRadius:12,
-              padding:"14px 16px", fontSize:14, fontWeight:400, color:R,
+              padding:"14px 16px", fontSize:16, fontWeight:400, color:R,
               fontFamily:"'Jost',sans-serif", cursor:"pointer"
             }}
           >
             <span>{catLabel}</span>
-            <span style={{ fontSize:11, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+            <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
           {catOpen && dropRect && (
             <>
@@ -1337,7 +1337,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                 return (
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
-                      padding:"11px 16px", fontSize:14, fontWeight:400, display:"flex", alignItems:"center", gap:10,
+                      padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
                       color:active?catColor:"#f2ece4", background:active?`${catColor}1c`:"#0a0a0a",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
                       borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?`3px solid ${catColor}`:"3px solid transparent"
@@ -1348,7 +1348,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                     {(c!=="All"&&c!=="Liked") ? (
                       <div style={{ width:10, height:10, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 5px ${catColor}99` }}/>
                     ) : c==="Liked" ? (
-                      <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:R, fontSize:11 }}>♡</div>
+                      <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:R, fontSize:13 }}>♡</div>
                     ) : (
                       <div style={{ width:10, height:10, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0,#BFA5D8,#2CB7A7)", flexShrink:0 }}/>
                     )}
@@ -1364,13 +1364,13 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
-          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?R:"none",border:`1px solid ${libFormat===fm?R:C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
+          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?R:"none",border:`1px solid ${libFormat===fm?R:C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
         ))}
       </div>
       {shown.length===0 && cat==="Liked" && (
         <div style={{ padding:"40px 20px",textAlign:"center",color:C.mu }}>
           <div style={{ fontSize:32,marginBottom:12 }}>♡</div>
-          <div style={{ fontSize:14 }}>Tap the heart on any track to save it here.</div>
+          <div style={{ fontSize:16 }}>Tap the heart on any track to save it here.</div>
         </div>
       )}
       <div style={{ padding:"0 16px" }}>
@@ -1386,10 +1386,10 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:14,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
-                {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:9,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
+              <div style={{ fontSize:16,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+                {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:11,color:isDark?"#e8e0d8":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
@@ -1414,20 +1414,20 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
     <div style={{ padding:"48px 24px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:14, minHeight:400, justifyContent:"center" }}>
       <div style={{ width:72, height:72, borderRadius:22, background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.25)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:30 }}>🔒</div>
       <div style={{ fontSize:18, color:C.cr }}>{feature} is a Goddess Tier feature</div>
-      <div style={{ fontSize:13, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
+      <div style={{ fontSize:15, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
         {feature === "ProofOS"
           ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
           : "Track your dominant emotional state, listening streaks, and the evidence building over time."}
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
-        <div style={{ fontSize:11, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#2CB7A7", marginBottom:4 }}>£33<span style={{ fontSize:13, color:C.mu }}>/month</span></div>
-        <div style={{ fontSize:11, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
+        <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
+        <div style={{ fontSize:22, color:"#2CB7A7", marginBottom:4 }}>£33<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
-      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
         Unlock {feature} — upgrade now ✦
       </button>
-      <div style={{ fontSize:11, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
+      <div style={{ fontSize:13, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
     </div>
   );
 }
@@ -1457,10 +1457,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     <div style={{ padding:"40px 20px",textAlign:"center",background:PAGE_BG,minHeight:"100%" }}>
       <div style={{ fontSize:36,marginBottom:16,color:"#2CB7A7" }}>✦</div>
       <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:28,fontWeight:400,color:PC.text,marginBottom:10 }}>ProofOS</div>
-      <div style={{ fontSize:14,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
+      <div style={{ fontSize:16,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
       </div>
-      <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:14,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         Upgrade to Goddess — £33/mo
       </button>
     </div>
@@ -1521,15 +1521,15 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   return (
     <div style={{ padding:"16px 16px 24px", background:PAGE_BG, minHeight:"100%" }}>
       <div style={{ fontSize:22,fontWeight:400,marginBottom:2,color:PC.text }}>ProofOS <span style={{ color:"#000" }}>✦</span></div>
-      <div style={{ fontSize:13,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
+      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
       {/* Filter banner — shown when drilled in from Analytics */}
       {proofFilter!=="all" && (
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",background:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14 }}>
-          <span style={{ fontSize:12,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
+          <span style={{ fontSize:14,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
             {proofFilter==="manifested" ? `Showing ${manifested.length} manifested ✓` : `Showing ${inProgress.length} in progress`}
           </span>
-          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#e8e0d8",fontSize:11,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
+          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#e8e0d8",fontSize:13,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
         </div>
       )}
 
@@ -1538,7 +1538,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         {[[threads.length,"Intentions"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
           <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
             <div style={{ fontSize:22,fontWeight:400,color:PC.text }}>{v}</div>
-            <div style={{ fontSize:10,color:PC.mu,fontWeight:400 }}>{l}</div>
+            <div style={{ fontSize:12,color:PC.mu,fontWeight:400 }}>{l}</div>
           </div>
         ))}
       </div>
@@ -1549,7 +1549,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
             background:view===k?"linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)":"none",
             border:`1px solid ${view===k?"transparent":"#2CB7A7"}`,
-            color:view===k?"#000":"#2CB7A7", fontSize:12,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+            color:view===k?"#000":"#2CB7A7", fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
       </div>
 
@@ -1557,33 +1557,33 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
-            <div style={{ fontSize:12,color:"#2CB7A7",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
-            <div style={{ fontSize:13,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
+            <div style={{ fontSize:14,color:"#2CB7A7",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
+            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
               <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever — no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
-            <div style={{ fontSize:13,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
+            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
               <b style={{fontWeight:600}}>Active</b> is different — it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5–10 at a time, so your energy stays focused instead of spread thin.
             </div>
-            <div style={{ fontSize:13,color:PC.text,lineHeight:1.75 }}>
+            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75 }}>
               Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active — pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own — <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
             </div>
           </div>
 
           <div style={{ background:PC.card,borderRadius:14,padding:14,marginBottom:14 }}>
-            <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>Add to your bucket list</div>
+            <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>Add to your bucket list</div>
             <div style={{ display:"flex", gap:8 }}>
               <input value={bucketText} onChange={e=>setBucketText(e.target.value)} placeholder="A holiday to... A new car... Whatever it is"
-                style={{ flex:1, padding:"11px 13px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:14, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
+                style={{ flex:1, padding:"11px 13px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:16, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
               <button onClick={()=>{
                 if(!bucketText.trim()) return;
                 setThreads([{id:Date.now(),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
                 setBucketText("");
-              }} style={{ padding:"11px 18px", background:isDark?"#000":"#f2ece4", border:"none", borderRadius:8, color:"#f2ece4", fontSize:13, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
+              }} style={{ padding:"11px 18px", background:isDark?"#000":"#f2ece4", border:"none", borderRadius:8, color:"#f2ece4", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
             </div>
           </div>
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
-            <div style={{ fontSize:11, color:"#2CB7A7", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
+            <div style={{ fontSize:13, color:"#2CB7A7", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
               ✦ You've got {activeThreads.filter(t=>!t.done).length} active intentions. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
@@ -1591,19 +1591,19 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {bucketItems.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
-              <div style={{ fontSize:13,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest — big or small.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest — big or small.</div>
             </div>
           ) : (
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
               {bucketItems.map(item=>(
                 <div key={item.id} style={{ background:PC.card, borderRadius:12, padding:"15px 16px" }}>
-                  <div style={{ fontSize:15, color:PC.text, marginBottom:11, lineHeight:1.5 }}>{item.desire}</div>
+                  <div style={{ fontSize:17, color:PC.text, marginBottom:11, lineHeight:1.5 }}>{item.desire}</div>
                   {promotingId===item.id ? (
                     <div style={{ marginBottom:11, position:"relative" }}>
-                      <div style={{ fontSize:11, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:7 }}>Choose a category to promote this</div>
-                      <div onClick={()=>setPromoCatOpen(o=>o===item.id?null:item.id)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:14,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+                      <div style={{ fontSize:13, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:7 }}>Choose a category to promote this</div>
+                      <div onClick={()=>setPromoCatOpen(o=>o===item.id?null:item.id)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
                         <span>— Select a category —</span>
-                        <span style={{ fontSize:11, color:PC.mu, transform:promoCatOpen===item.id?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                        <span style={{ fontSize:13, color:PC.mu, transform:promoCatOpen===item.id?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
                       </div>
                       {promoCatOpen===item.id && (
                         <>
@@ -1621,7 +1621,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                                 onMouseEnter={e=>e.currentTarget.style.background=`${catColor}14`}
                                 onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
                                 <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
-                                <span style={{ fontSize:13, color:PC.text }}>{c}</span>
+                                <span style={{ fontSize:15, color:PC.text }}>{c}</span>
                               </div>
                             );
                           })}
@@ -1631,10 +1631,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                     </div>
                   ) : (
                     <div style={{ display:"flex", gap:8 }}>
-                      <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                      <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         Focus on this now
                       </button>
-                      <button onClick={()=>setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t))} style={{ flex:1, padding:"8px 12px", background:`${R}18`, border:`1px solid ${R}44`, borderRadius:8, color:R, fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                      <button onClick={()=>setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t))} style={{ flex:1, padding:"8px 12px", background:`${R}18`, border:`1px solid ${R}44`, borderRadius:8, color:R, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         ✓ Already manifested
                       </button>
                     </div>
@@ -1647,30 +1647,30 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : view==="wall" ? (
         /* ═══ PROOF WALL — your wins, forever ═══ */
         <div>
-          <div style={{ fontSize:11,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
-          <div style={{ fontSize:12,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
+          <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
+          <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
-              <div style={{ fontSize:13,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here — and stays here for life.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here — and stays here for life.</div>
             </div>
           ) : (
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
               {manifested.map(d=>(
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
-                  <span style={{ fontSize:9,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:CAT_COLOR[d.category]||"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
-                  <div style={{ fontSize:13,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
-                  <div style={{ fontSize:10,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
-                  <div style={{ fontSize:10,color:"#000",fontWeight:600,marginTop:5,opacity:0.75 }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
-                  {d.feelAfter && <div style={{ fontSize:10,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
-                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:9,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
+                  <span style={{ fontSize:11,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:CAT_COLOR[d.category]||"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
+                  <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
+                  <div style={{ fontSize:12,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5,opacity:0.75 }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
+                  {d.feelAfter && <div style={{ fontSize:12,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
+                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
               ))}
               <div style={{ background:PC.card,border:`1px dashed ${PC.border}`,borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
-                <span style={{ fontSize:11,color:PC.mu,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
+                <span style={{ fontSize:13,color:PC.mu,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
               </div>
               <div style={{ gridColumn:"1/-1" }}>
-              <div style={{ fontSize:11,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
+              <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
               <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
                 {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
                   <div key={s.key} style={{ background:"rgba(255,255,255,0.85)",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
@@ -1687,22 +1687,22 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : (
       <>
       {/* ADD NEW THREAD */}
-      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#f2ece4"),border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:13,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#f2ece4"),border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         {adding?"✕ Cancel":"+ New Intention"}
       </button>
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
-          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
           <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:14,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
-          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
           <input value={newBelief} onChange={e=>setNewBelief(e.target.value)} placeholder="What do you actually believe about this right now? e.g. 'It's never worked out for me before'"
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:14,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
-          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
           <div style={{ position:"relative", marginBottom:11 }}>
-            <div onClick={()=>setTrackPickerOpen(o=>!o)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:14,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+            <div onClick={()=>setTrackPickerOpen(o=>!o)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
               <span>{linkedTrack || "— Select a track —"}</span>
-              <span style={{ fontSize:11, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+              <span style={{ fontSize:13, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
             </div>
             {trackPickerOpen && (
               <>
@@ -1718,8 +1718,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       onMouseLeave={e=>{if(linkedTrack!==t.title)e.currentTarget.style.background="transparent";}}>
                       <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
                       <div style={{ flex:1, minWidth:0 }}>
-                        <div style={{ fontSize:13, color:PC.text, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{t.title}</div>
-                        <div style={{ fontSize:11, color:PC.mu }}>{t.cat}</div>
+                        <div style={{ fontSize:15, color:PC.text, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{t.title}</div>
+                        <div style={{ fontSize:13, color:PC.mu }}>{t.cat}</div>
                       </div>
                     </div>
                   );
@@ -1728,7 +1728,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               </>
             )}
           </div>
-          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
           <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:15 }}>
             {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Careermaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>{
               const catColor = CAT_ICONS[c]?.accent || R;
@@ -1737,33 +1737,33 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <button key={c} onClick={()=>setNewCat(c)}
                   style={{ display:"flex", alignItems:"center", gap:6, padding:"7px 13px", borderRadius:20,
                     background:active?`${catColor}22`:PC.inputBg, border:`1px solid ${active?catColor:PC.border}`,
-                    color:active?catColor:PC.text, fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer" }}>
+                    color:active?catColor:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", cursor:"pointer" }}>
                   <div style={{ width:8, height:8, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
                   {c}
                 </button>
               );
             })}
           </div>
-          <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>How am I feeling right now?</div>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>How am I feeling right now?</div>
           <div style={{ overflowY:"auto",marginBottom:10,maxHeight:220,border:`1px solid ${PC.border}`,borderRadius:10 }}>
             {HAWKINS.slice().reverse().map(h=>(
               <div key={h.n} onClick={()=>setFeel(h.n)}
                 style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
                   background:newFeel===h.n?`${h.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}>
                 <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>
-                <span style={{ fontSize:14,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:12,color:PC.mu }}>{h.v}</span>
+                <span style={{ fontSize:16,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:14,color:PC.mu }}>{h.v}</span>
               </div>
             ))}
           </div>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
               <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-              <span style={{ fontSize:12,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
+              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
             </div>
           ) : null; })()}
           <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
-            style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:13, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
+            style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
           <button onClick={()=>{
             if(!newD.trim()) return;
             if(userTier === "audio" && !isPreview) {
@@ -1773,11 +1773,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Moneymaxxing"); setNewBelief(""); setAdding(false);
-          }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:"#f2ece4",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
           {userTier === "audio" && !isPreview && (
-            <div style={{ fontSize:11,color:"#e8e0d8",marginTop:8,lineHeight:1.5 }}>
+            <div style={{ fontSize:13,color:"#e8e0d8",marginTop:8,lineHeight:1.5 }}>
               You're on Audio Tier. Log your desire — then upgrade to Goddess to save it to your Proof Thread and track every sign.
             </div>
           )}
@@ -1787,7 +1787,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {/* THREAD LIST */}
       {displayedThreads.length===0 && proofFilter!=="all" && (
         <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center",marginBottom:10 }}>
-          <div style={{ fontSize:13,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} intentions yet.</div>
+          <div style={{ fontSize:15,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} intentions yet.</div>
         </div>
       )}
       {displayedThreads.map(d=>(
@@ -1796,30 +1796,30 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ flex:1,minWidth:0 }}>
               {editId===d.id
                 ? <div style={{ display:"flex",gap:6,marginBottom:4 }}>
-                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #2CB7A7",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:14,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                    <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
+                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #2CB7A7",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:16,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                    <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
                   </div>
-                : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:15,fontWeight:400,marginBottom:4,color:PC.text,cursor:"pointer" }}>{d.desire} <span style={{ fontSize:11,opacity:0.45 }}>✎</span></div>}
+                : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:17,fontWeight:400,marginBottom:4,color:PC.text,cursor:"pointer" }}>{d.desire} <span style={{ fontSize:13,opacity:0.45 }}>✎</span></div>}
               <div style={{ display:"flex",alignItems:"center",gap:6,flexWrap:"wrap" }}>
-                {d.category && <span style={{ fontSize:10,padding:"2px 9px",background:CAT_GRAD[d.category]||CAT_GRAD.Identity,color:"#000",borderRadius:20,fontWeight:400 }}>{d.category}</span>}
-                {d.track && <span style={{ fontSize:11,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
+                {d.category && <span style={{ fontSize:12,padding:"2px 9px",background:CAT_GRAD[d.category]||CAT_GRAD.Identity,color:"#000",borderRadius:20,fontWeight:400 }}>{d.category}</span>}
+                {d.track && <span style={{ fontSize:13,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
               </div>
-              {d.feelBefore && <div style={{ fontSize:11,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
-              {d.done && d.feelAfter && <div style={{ fontSize:11,color:"#2CB7A7",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
+              {d.feelBefore && <div style={{ fontSize:13,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
+              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#2CB7A7",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
             <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
-              <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:12,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>
+              <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:14,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>
               {d.done
                 ? <>
                     <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
-                      <span style={{ fontSize:11,fontWeight:400,color:PC.text }}>Manifested</span>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
+                      <span style={{ fontSize:13,fontWeight:400,color:PC.text }}>Manifested</span>
                     </label>
-                    <span style={{ fontSize:9,color:PC.dim,fontWeight:400 }}>tap to undo</span>
+                    <span style={{ fontSize:11,color:PC.dim,fontWeight:400 }}>tap to undo</span>
                   </>
                 : <label onClick={()=>startFinish(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
                     <span style={{ width:21,height:21,borderRadius:6,background:PC.card,border:`2px solid ${PC.border}`,boxShadow:"0 0 10px rgba(44,183,167,0.35)" }}/>
-                    <span style={{ fontSize:11,fontWeight:400,color:PC.text }}>Manifested</span>
+                    <span style={{ fontSize:13,fontWeight:400,color:PC.text }}>Manifested</span>
                   </label>
               }
             </div>
@@ -1828,46 +1828,46 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {/* Marking manifested — capture feelAfter */}
           {finishing===d.id && (
             <div style={{ marginTop:10,background:PC.card,border:`1px solid #2ecc7155`,borderRadius:10,padding:"12px 14px" }}>
-              <div style={{ fontSize:12,color:"#2CB7A7",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ fontSize:14,color:"#2CB7A7",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
               <div style={{ display:"flex", gap:6, overflowX:"auto", marginBottom:10, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
                 {HAWKINS.slice().reverse().map(h=>(
                   <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
-                    style={{ flexShrink:0, padding:"6px 11px", borderRadius:14, background:feelAfterLevel===h.n?h.c:"transparent", border:`1.5px solid ${h.c}`, color:feelAfterLevel===h.n?"#000":h.c, fontSize:12, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>{h.n}</button>
+                    style={{ flexShrink:0, padding:"6px 11px", borderRadius:14, background:feelAfterLevel===h.n?h.c:"transparent", border:`1.5px solid ${h.c}`, color:feelAfterLevel===h.n?"#000":h.c, fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>{h.n}</button>
                 ))}
               </div>
               <div style={{ display:"flex",gap:6 }}>
                 <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment, in your own words"
                   onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
-                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"10px 12px",fontSize:13,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"#2CB7A7",border:"none",borderRadius:8,color:"#fff",fontSize:12,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
+                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"10px 12px",fontSize:15,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"#2CB7A7",border:"none",borderRadius:8,color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
               </div>
             </div>
           )}
 
           {/* ═══ SIGNS & SYNCHRONICITY LOG — the heart of ProofOS ═══ */}
           <div style={{ marginTop:12,paddingTop:10,borderTop:`1px solid ${PC.border}` }}>
-            <div style={{ fontSize:10,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
+            <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
               <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
-                <span style={{ fontSize:11,color:CAT_COLOR[d.category]||"#2CB7A7",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
-                <span style={{ fontSize:12,color:C.cr,lineHeight:1.5,flex:1 }}>
+                <span style={{ fontSize:13,color:CAT_COLOR[d.category]||"#2CB7A7",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
+                <span style={{ fontSize:14,color:C.cr,lineHeight:1.5,flex:1 }}>
                   {sg.text}
                   {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}
                   {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
                 </span>
-                <span style={{ fontSize:10,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
+                <span style={{ fontSize:12,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
               </div>
             ))}
             {!d.done && (
               <div style={{ display:"flex",gap:6,marginTop:8 }}>
                 <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
-                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"9px 10px",fontSize:12,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:8,color:"#f2ece4",fontSize:11,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
-                <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:13,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
+                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"9px 10px",fontSize:14,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:8,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
+                <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
                   <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
                 </label>
-                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#b03030":"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:13,cursor:"pointer",color:recId===d.id?"#fff":"#000" }}>{recId===d.id?"⏹":"🎤"}</button>
+                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#b03030":"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":"#000" }}>{recId===d.id?"⏹":"🎤"}</button>
               </div>
             )}
           </div>
@@ -1876,7 +1876,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ marginTop:10,height:3,background:"rgba(0,0,0,0.1)",borderRadius:2 }}>
             <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"#000",borderRadius:2 }}/>
           </div>
-          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:10,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove thread</button>
+          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove thread</button>
         </div>
       ))}
       </>
@@ -1902,7 +1902,7 @@ function ShopTab({ C }) {
   return (
     <div style={{ padding:"16px 16px 40px" }}>
       <div style={{ fontSize:20,fontWeight:400,color:C.cr,marginBottom:4 }}>Shop</div>
-      <div style={{ fontSize:13,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
+      <div style={{ fontSize:15,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
         {products.map((p,i)=>(
           <div key={i} onClick={()=>window.open(BEACONS,"_blank")}
@@ -1913,18 +1913,18 @@ function ShopTab({ C }) {
               <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
             </div>
             <div style={{ padding:"10px 12px" }}>
-              <div style={{ fontSize:12,fontWeight:400,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
-              <div style={{ fontSize:11,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
+              <div style={{ fontSize:14,fontWeight:400,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
+              <div style={{ fontSize:13,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
               <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-                <span style={{ fontSize:15,fontWeight:400,color:R }}>{p.price}</span>
-                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:10,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>{p.stripe?"Buy now · Stripe":"Buy on Beacons"}<ArrowIcon size={10}/></span>
+                <span style={{ fontSize:17,fontWeight:400,color:R }}>{p.price}</span>
+                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>{p.stripe?"Buy now · Stripe":"Buy on Beacons"}<ArrowIcon size={10}/></span>
               </div>
             </div>
           </div>
         ))}
       </div>
       <div style={{ marginTop:14,padding:"12px 14px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:10,textAlign:"center" }}>
-        <div style={{ fontSize:12,color:C.mu }}>All products are delivered instantly via Beacons.ai · One-time payment · No subscription required</div>
+        <div style={{ fontSize:14,color:C.mu }}>All products are delivered instantly via Beacons.ai · One-time payment · No subscription required</div>
       </div>
     </div>
   );
@@ -1936,7 +1936,7 @@ function Sec({ title, children, C, onShowAll }) {
     <div style={{ marginBottom:24 }}>
       <div style={{ padding:"0 16px 10px",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
         <span style={{ fontSize:18,fontWeight:400,color:C.cr }}>{title}</span>
-        {onShowAll && <button onClick={onShowAll} style={{ fontSize:12,fontWeight:400,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",padding:"6px 4px" }}>Show all</button>}
+        {onShowAll && <button onClick={onShowAll} style={{ fontSize:14,fontWeight:400,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",padding:"6px 4px" }}>Show all</button>}
       </div>
       {children}
     </div>
@@ -1959,15 +1959,15 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
             <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:"#2CB7A7",borderRadius:1 }}/>)}</div>
           </div>
         )}
-        {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:9,fontWeight:400 }}>NEW</div>}
+        {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
         {!isPreview && (
           <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"rgba(0,0,0,0.55)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
             <Ico.Heart on={liked?.has(t.id)}/>
           </button>
         )}
       </div>
-      <div onClick={()=>{play(t); openPlayer?.();}} style={{ fontSize:14,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:isPreview?"not-allowed":"pointer" }}>{t.title}</div>
-      <div style={{ fontSize:12,color:C.mu }}>{t.cat} · {t.dur}</div>
+      <div onClick={()=>{play(t); openPlayer?.();}} style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:isPreview?"not-allowed":"pointer" }}>{t.title}</div>
+      <div style={{ fontSize:14,color:C.mu }}>{t.cat} · {t.dur}</div>
     </div>
   );
 }
