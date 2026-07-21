@@ -1259,7 +1259,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         {/* Lucky Girl gradient border via padding trick */}
         <div style={{ display:"inline-block", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, padding:"2px" }}>
           <div style={{ background:"#000", borderRadius:14, padding: isMobile?"20px 20px":"28px 48px" }}>
-        <div style={{ fontSize: isMobile?"clamp(18px,4.8vw,26px)":"clamp(24px,2.8vw,38px)", fontWeight:500, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em", lineHeight:1.3, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 14px" }}>
+        <div style={{ fontSize: isMobile?"clamp(18px,4.8vw,26px)":"clamp(24px,2.8vw,38px)", fontWeight:400, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em", lineHeight:1.3, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 14px" }}>
           {[
             { t:"Hypnosis",        c:"#F5E0A0" },
             { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
@@ -1276,7 +1276,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             item.op
               ? <span key={i} style={{ color:item.c, fontWeight:300 }}>{item.t}</span>
               : item.result
-              ? <span key={i} style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:600 }}>{item.t}</span>
+              ? <span key={i} style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:400 }}>{item.t}</span>
               : <span key={i} style={{ color:item.c }}>{item.t}</span>
           ))}
         </div>
