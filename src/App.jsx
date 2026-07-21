@@ -1462,7 +1462,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               {[
                 { time:"As you fall asleep", desc:"The most powerful window. Your brain crosses naturally from alpha into theta. Put the track on. Let it install while your conscious mind switches off.", color:"#BFA5D8" },
                 { time:"As you wake up", desc:"The second window. You rise back through theta before beta kicks in. Lie still. Don't check your phone. Press play instead.", color:"#F5E0A0" },
-                { time:"On demand — any time", desc:"SHG gets you to theta without waiting. At the gym, on your walk, during your commute. Repetition accumulates. You don't have to wait for the windows.", color:"#2CB7A7" },
+                { time:"On demand — any time", desc:"SHG gets you to theta without waiting. At the gym, on your hot girl walk, commuting. Repetition accumulates. You don't have to wait for the windows.", color:"#2CB7A7" },
               ].map((t,i)=>(
                 <div key={i} style={{ padding:"18px 16px", background:"rgba(255,255,255,0.03)", border:`1px solid ${t.color}30`, borderRadius:14 }}>
                   <div style={{ fontSize:13, fontWeight:500, color:t.color, marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{t.time}</div>
