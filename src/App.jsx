@@ -1358,8 +1358,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* Heading */}
           <h2 style={{ fontSize: isMobile?"clamp(28px,7vw,38px)":"clamp(36px,4vw,52px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.2, marginBottom:48 }}>
-            Theta is the secret door.<br/>
-            <span style={{ fontSize: isMobile?"clamp(18px,4.5vw,24px)":"clamp(20px,2.5vw,28px)", color:"#c8bcb0", fontWeight:300 }}>And SHG gets you there on demand.</span>
+            You've been looking for this.<br/>
+            <span style={{ fontSize: isMobile?"clamp(18px,4.5vw,24px)":"clamp(20px,2.5vw,28px)", color:"#c8bcb0", fontWeight:300 }}>Stop spending another year trying to change on willpower alone.</span>
           </h2>
 
           {/* THE EQUATION — 3 boxes with arrows */}
@@ -1376,7 +1376,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   fill="none" stroke="rgba(200,188,176,0.4)" strokeWidth="1.8" strokeLinecap="round"/>
               </svg>
               <div style={{ fontSize: isMobile?13:14, color:"rgba(200,188,176,0.7)", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
-                Trying to manifest here is wasted energy. Your conscious mind argues with every new belief you try to install.
+                Every attempt to change yourself from here — therapy, affirmations, sheer force of will — hits the same wall. This is not the level where the beliefs live.
               </div>
             </div>
 
@@ -1437,12 +1437,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* HOW SHG GETS YOU TO THETA — 3 method boxes */}
           <div style={{ marginBottom:52 }}>
-            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>How SHG shifts you into theta</div>
+            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>What's inside every track</div>
             <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:12 }}>
               {[
-                { label:"Binaural Beats", desc:"Two slightly different frequencies — one per ear. Your brain generates the difference as a third frequency, entraining to Theta within minutes.", color:"#F5E0A0", icon:"🎧" },
-                { label:"EMDR Bilateral Audio", desc:"Left-right audio stimulation syncs your two brain hemispheres. What Silva trained manually for years happens automatically in the sound.", color:"#BFA5D8", icon:"↔" },
-                { label:"Vocal Hypnosis", desc:"New beliefs delivered directly to your subconscious while the critical mind is bypassed. One suggestion in Theta is worth thousands in Beta.", color:"#2CB7A7", icon:"✦" },
+                { label:"Binaural Beats", desc:"Two tones, one per ear. Your brain creates the difference between them — and entrains to Theta within minutes. No effort. No practice. Just press play.", color:"#F5E0A0", icon:"🎧" },
+                { label:"EMDR Bilateral Audio", desc:"Left-right audio stimulation syncs both hemispheres into the same state. Every track carries this — it's what makes the reprogramming go deeper than anything you've tried before.", color:"#BFA5D8", icon:"↔" },
+                { label:"Vocal Hypnosis + Subliminals", desc:"New beliefs delivered straight to the subconscious while the critical mind is bypassed. Every track includes subliminals — so the reprogramming continues even when you're not consciously listening.", color:"#2CB7A7", icon:"✦" },
               ].map((m,i)=>(
                 <div key={i} style={{ padding:"20px 18px", background:"rgba(255,255,255,0.03)", border:`1px solid ${m.color}25`, borderRadius:14, textAlign:"left" }}>
                   <div style={{ fontSize:22, marginBottom:10 }}>{m.icon}</div>
@@ -1458,10 +1458,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <img src="/brain_hemisync.svg" alt="Left and right hemispheres syncing into theta" style={{ width: isMobile?"100%":680, maxWidth:"100%", height:"auto", opacity:0.95 }}/>
           </div>
 
-          {/* BRUCE LIPTON CALLOUT */}
-          <div style={{ maxWidth:640, margin:"0 auto 40px", padding: isMobile?"20px":"24px 32px", background:"rgba(191,165,216,0.06)", border:"1px solid rgba(191,165,216,0.2)", borderRadius:16, textAlign:"left" }}>
-            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The science — Bruce Lipton, Biology of Belief</div>
-            <p style={{ fontSize: isMobile?15:17, color:"#e8e0d8", lineHeight:1.8, margin:0, fontFamily:"'Jost',sans-serif" }}>Children under 7 live almost entirely in theta — which is why everything they observe downloads directly as belief, without the conscious mind arguing back. That's how you got your original programming. The same window reopens every night as you drift to sleep, and again as you rise.</p>
+          {/* WHY THIS EXISTS callout */}
+          <div style={{ maxWidth:640, margin:"0 auto 40px", padding: isMobile?"20px":"28px 36px", background:"rgba(191,165,216,0.06)", border:"1px solid rgba(191,165,216,0.2)", borderRadius:16, textAlign:"left" }}>
+            <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, margin:"0 0 14px", fontFamily:"'Jost',sans-serif" }}>You have spent years trying to think your way into a different life. Affirmations you said into the mirror. Books you read. Habits you started and dropped. Therapy that helped but didn't change the thing underneath.</p>
+            <p style={{ fontSize: isMobile?16:19, color:"#BFA5D8", lineHeight:1.85, margin:0, fontFamily:"'Jost',sans-serif" }}>The reason none of it stuck is not a character flaw. You were trying to rewrite the program from the wrong level. The beliefs that run your life live in the subconscious — and the subconscious only opens in one state. Theta. That's the whole solution. I built an audio system that gets you there every single time you press play.</p>
           </div>
 
           {/* WHEN TO LISTEN */}
