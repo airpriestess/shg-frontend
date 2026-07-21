@@ -1392,10 +1392,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your new reality</div>
               <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Identity</div>
               <div style={{ fontSize:12, color:"rgba(44,183,167,0.7)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>reprogrammed</div>
-              {/* Rising wave */}
+              {/* Theta wave — synced, beautiful, same as middle box */}
               <svg width="100%" height="40" viewBox="0 0 200 40" style={{ marginBottom:14, display:"block" }}>
-                <path d="M4 28 Q30 20 60 16 Q90 12 130 10 Q160 8 196 6"
-                  fill="none" stroke="#2CB7A7" strokeWidth="2.2" strokeLinecap="round" opacity="0.8"/>
+                <path d="M4 20 Q54 4 104 20 T204 20"
+                  fill="none" stroke="#2CB7A7" strokeWidth="2.2" strokeLinecap="round" opacity="0.85"/>
+                <path d="M4 20 Q54 4 104 20 T204 20"
+                  fill="none" stroke="#2CB7A7" strokeWidth="6" strokeLinecap="round" opacity="0.08"/>
               </svg>
               <div style={{ fontSize: isMobile?13:14, color:"#e8e0d8", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Your beliefs change. Your thoughts change. Your actions change. Your reality changes. All you did was press play.
