@@ -1374,17 +1374,26 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Arrow */}
             <div style={{ padding: isMobile?"4px 0":"0 16px", fontSize: isMobile?28:36, color:"#E8B870", opacity:0.7, flexShrink:0, transform: isMobile?"rotate(90deg)":"none" }}>→</div>
 
-            {/* Box 2 — SHG does this */}
-            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, textAlign:"center", position:"relative" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.6)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>SHG shifts you here</div>
-              <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Theta</div>
-              <div style={{ fontSize:12, color:"rgba(0,0,0,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>4–8Hz · the open state</div>
-              {/* Slow beautiful wave */}
+            {/* Box 2 — Theta: dark, gradient beginning to emerge */}
+            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:"rgba(245,224,160,0.06)", border:"1px solid rgba(245,224,160,0.2)", borderRadius:16, textAlign:"center", position:"relative" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#E8B870", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>SHG shifts you here</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Theta</div>
+              <div style={{ fontSize:12, color:"rgba(232,184,112,0.7)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>4–8Hz · the open state</div>
+              {/* Wave — gradient starting to emerge */}
               <svg width="100%" height="40" viewBox="0 0 200 40" style={{ marginBottom:14, display:"block" }}>
+                <defs>
+                  <linearGradient id="thetalg" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(200,188,176,0.5)"/>
+                    <stop offset="50%" stopColor="#E8B870"/>
+                    <stop offset="100%" stopColor="#BFA5D8"/>
+                  </linearGradient>
+                </defs>
                 <path d="M4 20 Q54 4 104 20 T204 20"
-                  fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="2.2" strokeLinecap="round"/>
+                  fill="none" stroke="url(#thetalg)" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
+                <path d="M4 20 Q54 4 104 20 T204 20"
+                  fill="none" stroke="url(#thetalg)" strokeWidth="8" strokeLinecap="round" opacity="0.1"/>
               </svg>
-              <div style={{ fontSize: isMobile?13:14, color:"rgba(0,0,0,0.75)", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+              <div style={{ fontSize: isMobile?13:14, color:"#c8bcb0", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 The subconscious is directly accessible. New beliefs install without resistance. This is where change actually happens.
               </div>
             </div>
@@ -1392,27 +1401,26 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Arrow */}
             <div style={{ padding: isMobile?"4px 0":"0 16px", fontSize: isMobile?28:36, color:"#E8B870", opacity:0.7, flexShrink:0, transform: isMobile?"rotate(90deg)":"none" }}>→</div>
 
-            {/* Box 3 — Result */}
-            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.25)", borderRadius:16, textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your new reality</div>
-              <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Identity</div>
-              <div style={{ fontSize:12, color:"rgba(44,183,167,0.7)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>reprogrammed</div>
-              {/* Theta wave — Lucky Girl gradient */}
+            {/* Box 3 — Identity: full Lucky Girl gradient, glowing, transformed */}
+            <div style={{ flex:1, padding: isMobile?"20px 18px":"28px 24px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, textAlign:"center", boxShadow:"0 0 40px rgba(191,165,216,0.25), 0 0 80px rgba(44,183,167,0.15)" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.6)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your new reality</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Identity</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.55)", marginBottom:16, fontFamily:"'Jost',sans-serif", letterSpacing:"0.05em" }}>reprogrammed ✦</div>
+              {/* Full LG wave — bright, glowing */}
               <svg width="100%" height="40" viewBox="0 0 200 40" style={{ marginBottom:14, display:"block" }}>
                 <defs>
-                  <linearGradient id="idlg" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#F5E0A0"/>
-                    <stop offset="30%" stopColor="#E8B870"/>
-                    <stop offset="60%" stopColor="#BFA5D8"/>
-                    <stop offset="100%" stopColor="#2CB7A7"/>
+                  <linearGradient id="idlg2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#fff"/>
+                    <stop offset="50%" stopColor="rgba(255,255,255,0.6)"/>
+                    <stop offset="100%" stopColor="rgba(0,0,0,0.3)"/>
                   </linearGradient>
                 </defs>
                 <path d="M4 20 Q54 4 104 20 T204 20"
-                  fill="none" stroke="url(#idlg)" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
+                  fill="none" stroke="url(#idlg2)" strokeWidth="2.5" strokeLinecap="round" opacity="0.9"/>
                 <path d="M4 20 Q54 4 104 20 T204 20"
-                  fill="none" stroke="url(#idlg)" strokeWidth="8" strokeLinecap="round" opacity="0.1"/>
+                  fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="10" strokeLinecap="round" opacity="0.15"/>
               </svg>
-              <div style={{ fontSize: isMobile?13:14, color:"#e8e0d8", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+              <div style={{ fontSize: isMobile?13:14, color:"rgba(0,0,0,0.75)", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Your beliefs change. Your thoughts change. Your actions change. Your reality changes. All you did was press play.
               </div>
             </div>
