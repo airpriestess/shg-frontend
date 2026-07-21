@@ -69,7 +69,16 @@ export default function App() {
       {screen === "portal" && (
         authCtx.loading
           ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:22,color:"#2CB7A7",opacity:0.7}}>Self Hypnosis Goddess</div>
+              <div style={{display:"flex",alignItems:"center",gap:8}}>
+                <svg viewBox="0 0 100 102" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="35" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                  <circle cx="65" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                  <circle cx="35" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                  <circle cx="65" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                  <line x1="50" y1="80" x2="50" y2="96" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" opacity="0.8"/>
+                </svg>
+                <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
+              </div>
             </div>
           : <ErrorBoundary><SpotifyPortal onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
       )}
@@ -112,7 +121,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
       {/* TOP NAV */}
       <header style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.96)", borderBottom: "1px solid #1c1828", flexShrink: 0, zIndex: 50 }}>
         <button onClick={onSignOut} style={{ background: "none", border: "none", cursor: "pointer" }} title="Back to homepage">
-          <span className="wm wm-shimmer" style={{ fontSize: 22, fontWeight: 500, cursor: "pointer", letterSpacing: "0.02em" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
+          <span style={{ fontFamily:"'Jost',sans-serif", fontSize: 16, fontWeight: 400, cursor: "pointer", letterSpacing: "0.06em", color:"#f2ece4", textTransform:"uppercase" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
         </button>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           {userTier === "goddess" || userTier === "lifetime"
@@ -1924,7 +1933,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             <line x1="50" y1="80" x2="50" y2="96" stroke="url(#footerlg)" strokeWidth="3.5" strokeLinecap="round"/>
           </svg>
         </div>
-        <span style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:500, fontSize:26, display:"block", marginBottom:8, background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Self Hypnosis Goddess</span>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:8}}>
+              <svg viewBox="0 0 100 102" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="35" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
+                <circle cx="65" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
+                <circle cx="35" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
+                <circle cx="65" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
+                <line x1="50" y1="80" x2="50" y2="96" stroke="#f2ece4" strokeWidth="3.5" strokeLinecap="round"/>
+              </svg>
+              <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:400, fontSize:18, color:"#f2ece4", letterSpacing:"0.06em", textTransform:"uppercase" }}>Self Hypnosis Goddess</span>
+            </div>
         <div style={{ fontSize: 13, color: "#e8e0d8", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
           Self Hypnosis Goddess is a self-hypnosis and manifestation audio product. It is not therapy, medical treatment, or a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact a licensed professional or emergency services.
@@ -1942,7 +1960,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(42,168,154,0.3)" }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(42,168,154,0.2)", flexShrink:0 }}>
-              <span className="wm wm-shimmer" style={{ fontSize:16 }}>Shop</span>
+              <span style={{ fontFamily:"'Jost',sans-serif", fontSize:13, color:"#c8bcb0", letterSpacing:"0.1em", textTransform:"uppercase" }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
                 <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#e8e0d8", textDecoration:"none" }}>Open in new tab ↗</a>
                 <button onClick={()=>setShopOpen(false)} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:22, cursor:"pointer", lineHeight:1, padding:4 }}>×</button>
