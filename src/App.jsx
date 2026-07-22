@@ -1344,7 +1344,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Box 1 — Beta */}
             <div style={{ padding: isMobile?"20px 18px":"24px 20px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:16, textAlign:"left" }}>
               <div style={{ fontSize: isMobile?24:30, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Beta</div>
-              <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#c8bfb8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>13–40 Hz · where you live</div>
+              <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#c8bfb8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>13–40 Hz · your waking state</div>
               <p style={{ fontSize: isMobile?14:15, color:"#c8bfb8", lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>Every attempt to change yourself from here — therapy, affirmations, sheer force of will — hits the same wall. This is not the level where the beliefs live.</p>
             </div>
             {/* Box 2 — Theta */}
