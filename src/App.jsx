@@ -962,11 +962,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#2CB7A7 0%,#8B7FC8 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 11, fontWeight: 300, color: "#000", letterSpacing: isMobile ? "0.1em" : "0.18em", whiteSpace: "nowrap" }}>
             COMING SOON
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "rgba(0,0,0,0.35)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 14px":"7px 18px", background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.35)", borderRadius: 20, color: "#fff", fontSize: isMobile ? 12 : 13, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join Waitlist
           </button>
         </div>
