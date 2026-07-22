@@ -1,5 +1,5 @@
 /* Science — Why this works, how it works, how I built it */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const LG  = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const LG2 = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
@@ -51,15 +51,19 @@ const FORMULA_PARTS = [
 
 export default function Science({ onBack }) {
   const [isMobile, setIsMobile] = useState(typeof window!=="undefined"&&window.innerWidth<=768);
+  const topRef = useRef(null);
   useEffect(()=>{
-    window.scrollTo(0,0);
+    if(topRef.current) topRef.current.scrollIntoView({behavior:"instant"});
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo({top:0,left:0,behavior:"instant"});
     const h=()=>setIsMobile(window.innerWidth<=768);
     window.addEventListener("resize",h);
     return ()=>window.removeEventListener("resize",h);
   },[]);
 
   return (
-    <div style={{minHeight:"100vh",background:"#000",color:CR,fontFamily:"'Jost',sans-serif"}}>
+    <div ref={topRef} style={{minHeight:"100vh",background:"#000",color:CR,fontFamily:"'Jost',sans-serif"}}>
 
       {/* NAV */}
       <div style={{position:"sticky",top:0,background:"rgba(0,0,0,0.97)",borderBottom:"1px solid rgba(44,183,167,0.12)",padding:"14px 24px",display:"flex",alignItems:"center",justifyContent:"space-between",zIndex:100}}>
