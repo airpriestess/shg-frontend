@@ -27,6 +27,18 @@ import { useAuth } from "./contexts/AuthContext.jsx";
 
 const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3";
 
+
+function ShopRedirect() {
+  useEffect(() => {
+    window.location.replace("https://beacons.ai/reshmaoracle");
+  }, []);
+  return (
+    <div style={{ minHeight:"100vh", background:"#000", display:"flex", alignItems:"center", justifyContent:"center" }}>
+      <span style={{ fontFamily:"'Jost',sans-serif", color:"#fdf0e8", fontSize:16, opacity:0.5 }}>Redirecting to shop…</span>
+    </div>
+  );
+}
+
 export default function App() {
   const authCtx = useAuth();
   const { isAuthenticated, profile } = authCtx;
@@ -65,6 +77,7 @@ export default function App() {
       <style>{CSS}</style>
 <Routes>
         <Route path="/" element={<><Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>{checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}</>} />
+        <Route path="/shop" element={<ShopRedirect/>} />
         <Route path="/about"   element={<About   onBack={()=>navigate("/")}/>} />
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
