@@ -103,11 +103,11 @@ export default function Science({ onBack }) {
           <P>This is not a playlist. Every SHG track layers five elements simultaneously. Each one targets a different layer of the mechanism. Together they create a condition that no single approach can produce alone.</P>
 
           {/* Formula box */}
-          <div style={{padding:isMobile?"20px 16px":"28px 36px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:16,background:"rgba(0,0,0,0.6)",margin:"32px 0",overflowX:"auto"}}>
+          <div style={{padding:isMobile?"28px 20px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"rgba(0,0,0,0.6)",margin:"32px 0",overflowX:"auto"}}>
             <div style={{display:"flex",alignItems:"center",flexWrap:"nowrap",gap:isMobile?8:14,justifyContent:"center",whiteSpace:"nowrap"}}>
               {FORMULA_PARTS.map((p,i)=>(
                 <span key={i} style={{
-                  fontSize:isMobile?"clamp(13px,3.5vw,17px)":"clamp(15px,1.6vw,22px)",
+                  fontSize:isMobile?"clamp(16px,4.5vw,22px)":"clamp(20px,2.2vw,32px)",
                   fontWeight:400,
                   fontFamily:"'Jost',sans-serif",
                   color:p.result?"#fff":p.color,
@@ -442,14 +442,14 @@ export default function Science({ onBack }) {
           </div>
 
           {/* Formula conclusion */}
-          <div style={{padding:isMobile?"24px 18px":"32px 40px",background:LG,borderRadius:18,textAlign:"center",marginTop:40}}>
-            <div style={{fontSize:isMobile?14:17,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",lineHeight:1.7,marginBottom:10}}>
+          <div style={{padding:isMobile?"36px 20px":"56px 56px",background:LG,borderRadius:20,textAlign:"center",marginTop:48}}>
+            <div style={{fontSize:isMobile?15:20,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",lineHeight:1.7,marginBottom:14}}>
               Hypnosis + Subliminals + Melodic House + EMDR + Binaural Beats
             </div>
-            <div style={{fontSize:isMobile?22:30,fontWeight:400,color:"#000",fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic"}}>
+            <div style={{fontSize:isMobile?28:46,fontWeight:400,color:"#000",fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic"}}>
               = Theta on demand. Identity installed.
             </div>
-            <div style={{fontSize:13,color:"rgba(0,0,0,0.55)",fontFamily:"'Jost',sans-serif",marginTop:12,letterSpacing:"0.06em"}}>This is the formula. This is Self Hypnosis Goddess.</div>
+            <div style={{fontSize:15,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",marginTop:16,letterSpacing:"0.06em"}}>This is the formula. This is Self Hypnosis Goddess.</div>
           </div>
         </section>
 
