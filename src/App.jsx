@@ -1626,6 +1626,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
+
       {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
       <div style={{ background:"#0a0a0a", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
         <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
