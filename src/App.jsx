@@ -1419,15 +1419,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The heart-brain</div>
 
           {/* Labels above */}
-          <div style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr", alignItems:"center", maxWidth:620, margin:"0 auto 20px", gap:16 }}>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr", alignItems:"center", maxWidth:620, margin:"0 auto 20px", gap:isMobile?8:16 }}>
             <div style={{ textAlign:"right" }}>
-              <div style={{ fontSize: isMobile?15:17, fontWeight:500, color:"#F5E0A0", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Heart Brain</div>
-              <div style={{ fontSize: isMobile?12:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>40,000 neurons.<br/>Broadcasts your emotional state.</div>
+              <div style={{ fontSize: isMobile?13:17, fontWeight:500, color:"#F5E0A0", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Heart Brain</div>
+              <div style={{ fontSize: isMobile?11:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>40,000 neurons.<br/>Broadcasts your<br/>emotional state.</div>
             </div>
-            <div style={{ fontSize:20, color:"rgba(44,183,167,0.4)", flexShrink:0 }}>⟷</div>
+            <div style={{ fontSize:isMobile?16:20, color:"rgba(44,183,167,0.4)", flexShrink:0, textAlign:"center" }}>⟷</div>
             <div style={{ textAlign:"left" }}>
-              <div style={{ fontSize: isMobile?15:17, fontWeight:500, color:"#BFA5D8", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Cranial Brain</div>
-              <div style={{ fontSize: isMobile?12:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>Receives the signal.<br/>Installs belief accordingly.</div>
+              <div style={{ fontSize: isMobile?13:17, fontWeight:500, color:"#BFA5D8", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Cranial Brain</div>
+              <div style={{ fontSize: isMobile?11:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>Receives the signal.<br/>Installs belief<br/>accordingly.</div>
             </div>
           </div>
 
