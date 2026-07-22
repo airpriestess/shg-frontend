@@ -81,11 +81,11 @@ export default function Science({ onBack }) {
           {/* Logo mark — large, black stroke on gradient bg */}
           <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
             <svg viewBox="0 0 100 102" width={isMobile?72:96} height={isMobile?72:96} fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="4"/>
-              <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="4"/>
-              <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="4"/>
-              <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="4"/>
-              <line x1="50" y1="80" x2="50" y2="96" stroke="#000" strokeWidth="4" strokeLinecap="round"/>
+              <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <line x1="50" y1="80" x2="50" y2="96" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </div>
 

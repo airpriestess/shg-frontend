@@ -597,10 +597,10 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                     <stop offset="100%" stopColor="#167A6B"/>
                   </linearGradient>
                 </defs>
-                <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="4"/>
-                <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="4"/>
-                <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="4"/>
-                <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="4"/>
+                <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
+                <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
+                <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
+                <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
               </svg>
             </div>
             <div>
@@ -750,10 +750,10 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
             <svg viewBox="0 0 100 100" width="28" height="28" fill="none" style={{flexShrink:0}} xmlns="http://www.w3.org/2000/svg">
               <defs><linearGradient id="lg_leftnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-              <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
-              <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
-              <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
-              <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
+              <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
+              <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
+              <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
+              <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
             </svg>
             <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:18,color:C.text}}>
               Self Hypnosis Goddess
@@ -843,10 +843,10 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <span style={{ fontSize:15,fontWeight:400,color:C.cr }}>9:41</span>
         <svg viewBox="0 0 100 100" width={22} height={22} fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="lg_nav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="6"/>
-          <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="6"/>
-          <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="6"/>
-          <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="6"/>
+          <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
+          <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
+          <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
+          <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
         </svg>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>

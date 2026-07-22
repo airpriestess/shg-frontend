@@ -89,11 +89,11 @@ export default function App() {
             ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <div style={{display:"flex",alignItems:"center",gap:8}}>
                   <svg viewBox="0 0 100 102" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="35" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                    <circle cx="65" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                    <circle cx="35" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                    <circle cx="65" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                    <line x1="50" y1="80" x2="50" y2="96" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" opacity="0.8"/>
+                    <circle cx="35" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="2" opacity="0.8"/>
+                    <circle cx="65" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="2" opacity="0.8"/>
+                    <circle cx="35" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="2" opacity="0.8"/>
+                    <circle cx="65" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="2" opacity="0.8"/>
+                    <line x1="50" y1="80" x2="50" y2="96" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity="0.8"/>
                   </svg>
                   <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
                 </div>
@@ -997,11 +997,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
               <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-              <circle cx="35" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <circle cx="65" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <circle cx="35" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="4"/>
-              <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" strokeWidth="4" strokeLinecap="round"/>
+              <circle cx="35" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
+              <circle cx="65" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
+              <circle cx="35" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
+              <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
+              <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" strokeWidth="2" strokeLinecap="round"/>
             </svg>
             <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: "clamp(11px,3.2vw,14px)", letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
@@ -1203,10 +1203,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
               <svg viewBox="0 0 100 102" width={28} height={28} style={{ opacity: playing ? 1 : 0.35, transition:"opacity 0.4s" }}>
                 <defs><linearGradient id="playlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-                <circle cx="35" cy="35" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
-                <circle cx="65" cy="35" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
-                <circle cx="35" cy="65" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
-                <circle cx="65" cy="65" r="16" fill="none" stroke="url(#playlg)" strokeWidth="5"/>
+                <circle cx="35" cy="35" r="16" fill="none" stroke="url(#playlg)" strokeWidth="2"/>
+                <circle cx="65" cy="35" r="16" fill="none" stroke="url(#playlg)" strokeWidth="2"/>
+                <circle cx="35" cy="65" r="16" fill="none" stroke="url(#playlg)" strokeWidth="2"/>
+                <circle cx="65" cy="65" r="16" fill="none" stroke="url(#playlg)" strokeWidth="2"/>
                 <line x1="50" y1="79" x2="50" y2="95" stroke="url(#playlg)" strokeWidth="5" strokeLinecap="round"/>
               </svg>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
@@ -1247,13 +1247,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <svg viewBox="0 0 100 102" width={isMobile?44:56} height={isMobile?44:56}>
+        <svg viewBox="0 0 100 102" width={isMobile?64:80} height={isMobile?64:80}>
           <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#herolg)" strokeWidth="3.5"/>
-          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#herolg)" strokeWidth="3.5" strokeLinecap="round"/>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#herolg)" strokeWidth="2" strokeLinecap="round"/>
         </svg>
       </div>
 
@@ -1603,11 +1603,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
         <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
           <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="2" strokeLinecap="round"/>
         </svg>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
@@ -1835,11 +1835,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
         <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
           <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="2" strokeLinecap="round"/>
         </svg>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
@@ -1855,11 +1855,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
         <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
           <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="5"/>
-          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="5" strokeLinecap="round"/>
+          <circle cx="35" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="65" cy="35" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="35" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <circle cx="65" cy="65" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
+          <line x1="50" y1="80" x2="50" y2="96" stroke="url(#divlg)" strokeWidth="2" strokeLinecap="round"/>
         </svg>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
@@ -1962,20 +1962,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ display:"flex", justifyContent:"center", marginBottom:16 }}>
           <svg viewBox="0 0 100 102" width={40} height={40}>
             <defs><linearGradient id="footerlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-            <circle cx="35" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
-            <circle cx="65" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
-            <circle cx="35" cy="65" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
-            <circle cx="65" cy="65" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="3.5"/>
-            <line x1="50" y1="80" x2="50" y2="96" stroke="url(#footerlg)" strokeWidth="3.5" strokeLinecap="round"/>
+            <circle cx="35" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
+            <circle cx="65" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
+            <circle cx="35" cy="65" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
+            <circle cx="65" cy="65" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
+            <line x1="50" y1="80" x2="50" y2="96" stroke="url(#footerlg)" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </div>
         <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:8}}>
               <svg viewBox="0 0 100 102" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="35" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
-                <circle cx="65" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
-                <circle cx="35" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
-                <circle cx="65" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="3.5"/>
-                <line x1="50" y1="80" x2="50" y2="96" stroke="#f2ece4" strokeWidth="3.5" strokeLinecap="round"/>
+                <circle cx="35" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
+                <circle cx="65" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
+                <circle cx="35" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
+                <circle cx="65" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
+                <line x1="50" y1="80" x2="50" y2="96" stroke="#f2ece4" strokeWidth="2" strokeLinecap="round"/>
               </svg>
               <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:400, fontSize:18, color:"#f2ece4", letterSpacing:"0.02em" }}>Self Hypnosis Goddess</span>
             </div>
