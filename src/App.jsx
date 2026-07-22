@@ -1294,10 +1294,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"0 24px 56px":"0 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"1.5px solid #2CB7A7", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
+        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview the App
         </button>
-        <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the full science →</button>
+        <button onClick={()=>onLegal?.("science")} style={{ background:"none", border:"none", color:"rgba(253,240,232,0.5)", fontSize: isMobile?13:14, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.08em", textDecoration:"underline", textUnderlineOffset:4, padding:"4px 0" }}>Read the science behind this →</button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
             Join Now ✦
