@@ -1371,55 +1371,110 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth:720, margin:"0 auto", textAlign:"center" }}>
           <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:28, fontFamily:"'Jost',sans-serif" }}>The heart and the brain</div>
 
-          {/* Heart-Brain illustration */}
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:40 }}>
-            <svg viewBox="0 0 320 220" width={isMobile?"100%":560} height={isMobile?220:385} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
+          {/* Heart-Brain illustration — feminine, flowing, luxurious */}
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:48 }}>
+            <svg viewBox="0 0 480 320" width={isMobile?"100%":580} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
               <defs>
                 <linearGradient id="hblg" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#F5E0A0"/>
-                  <stop offset="20%" stopColor="#E8B870"/>
+                  <stop offset="25%" stopColor="#E8B870"/>
                   <stop offset="52%" stopColor="#BFA5D8"/>
                   <stop offset="78%" stopColor="#2CB7A7"/>
                   <stop offset="100%" stopColor="#167A6B"/>
                 </linearGradient>
                 <linearGradient id="hblg2" x1="100%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#F5E0A0"/>
-                  <stop offset="20%" stopColor="#E8B870"/>
-                  <stop offset="52%" stopColor="#BFA5D8"/>
-                  <stop offset="78%" stopColor="#2CB7A7"/>
-                  <stop offset="100%" stopColor="#167A6B"/>
+                  <stop offset="30%" stopColor="#E8B870"/>
+                  <stop offset="60%" stopColor="#BFA5D8"/>
+                  <stop offset="100%" stopColor="#2CB7A7"/>
                 </linearGradient>
-                <filter id="hbglow">
+                <linearGradient id="hbwave" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#F5E0A0" stopOpacity="0.2"/>
+                  <stop offset="30%" stopColor="#E8B870" stopOpacity="0.8"/>
+                  <stop offset="55%" stopColor="#BFA5D8" stopOpacity="0.9"/>
+                  <stop offset="80%" stopColor="#2CB7A7" stopOpacity="0.8"/>
+                  <stop offset="100%" stopColor="#167A6B" stopOpacity="0.2"/>
+                </linearGradient>
+                <radialGradient id="heartglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#E8B870" stopOpacity="0.25"/>
+                  <stop offset="100%" stopColor="#E8B870" stopOpacity="0"/>
+                </radialGradient>
+                <radialGradient id="brainglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#BFA5D8" stopOpacity="0.25"/>
+                  <stop offset="100%" stopColor="#BFA5D8" stopOpacity="0"/>
+                </radialGradient>
+                <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="6" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="subtleglow" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="3" result="blur"/>
                   <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
               </defs>
-              {/* HEART */}
-              <g transform="translate(68,110)" filter="url(#hbglow)">
-                <path d="M0,-38 C0,-38 -10,-55 -30,-55 C-52,-55 -62,-36 -62,-20 C-62,8 -38,30 0,58 C38,30 62,8 62,-20 C62,-36 52,-55 30,-55 C10,-55 0,-38 0,-38 Z" fill="none" stroke="url(#hblg)" strokeWidth="3.5" strokeLinejoin="round"/>
-                <polyline points="-38,0 -24,0 -18,-18 -10,22 -2,-8 6,8 14,-4 22,0 38,0" fill="none" stroke="url(#hblg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.85"/>
+
+              {/* ── Ambient glow behind heart ── */}
+              <ellipse cx="130" cy="148" rx="80" ry="72" fill="url(#heartglow)"/>
+              {/* ── Ambient glow behind brain ── */}
+              <ellipse cx="350" cy="148" rx="80" ry="72" fill="url(#brainglow)"/>
+
+              {/* ── HEART — soft, curved, feminine ── */}
+              <g transform="translate(130,148)" filter="url(#softglow)">
+                {/* outer heart — thin gradient stroke, no fill */}
+                <path d="M0,-52 C4,-62 14,-76 32,-76 C54,-76 70,-56 70,-36 C70,-4 44,22 0,56 C-44,22 -70,-4 -70,-36 C-70,-56 -54,-76 -32,-76 C-14,-76 -4,-62 0,-52 Z"
+                  fill="none" stroke="url(#hblg)" strokeWidth="2" strokeLinejoin="round" opacity="0.95"/>
+                {/* inner glow heart slightly smaller */}
+                <path d="M0,-44 C4,-54 12,-66 28,-66 C47,-66 60,-49 60,-32 C60,-4 38,18 0,48 C-38,18 -60,-4 -60,-32 C-60,-49 -47,-66 -28,-66 C-12,-66 -4,-54 0,-44 Z"
+                  fill="none" stroke="url(#hblg)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.3"/>
+                {/* soft flowing pulse — not sharp ECG, gentle wave */}
+                <path d="M-46,0 C-38,0 -34,-2 -28,-16 C-22,-30 -18,20 -12,-4 C-8,-18 -4,8 0,0 C4,-8 8,14 12,0 C16,-14 22,16 28,-4 C32,-16 38,2 46,0"
+                  fill="none" stroke="url(#hblg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
               </g>
-              {/* ARC */}
-              <path d="M130,110 C165,60 185,60 210,80" fill="none" stroke="url(#hblg)" strokeWidth="2" strokeDasharray="5 4" opacity="0.7"/>
-              <circle cx="148" cy="88" r="3" fill="#E8B870" opacity="0.9"/>
-              <circle cx="168" cy="72" r="2.5" fill="#BFA5D8" opacity="0.85"/>
-              <circle cx="190" cy="72" r="2" fill="#2CB7A7" opacity="0.8"/>
-              {/* BRAIN */}
-              <g transform="translate(248,98)" filter="url(#hbglow)">
-                <path d="M0,-52 C18,-58 40,-50 46,-32 C54,-12 44,6 34,16 C42,28 40,46 26,52 C14,58 0,50 0,50 C0,50 -14,58 -26,52 C-40,46 -42,28 -34,16 C-44,6 -54,-12 -46,-32 C-40,-50 -18,-58 0,-52 Z" fill="none" stroke="url(#hblg2)" strokeWidth="3.5" strokeLinejoin="round"/>
-                <path d="M0,-28 C8,-22 12,-10 8,0" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
-                <path d="M-6,-18 C-14,-10 -14,4 -6,12" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
-                <path d="M10,8 C18,14 18,28 10,34" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
-                <path d="M-10,10 C-20,18 -18,32 -10,36" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
+
+              {/* ── Flowing energy connection — soft S-curve, not straight ── */}
+              <path d="M200,130 C228,90 252,90 280,108 C308,126 322,126 348,110"
+                fill="none" stroke="url(#hblg)" strokeWidth="1.5" strokeDasharray="3 5" opacity="0.5"/>
+              {/* Flowing particles — soft dots along the curve */}
+              <circle cx="212" cy="117" r="2.5" fill="#F5E0A0" opacity="0.7"/>
+              <circle cx="234" cy="100" r="2" fill="#E8B870" opacity="0.65"/>
+              <circle cx="260" cy="95" r="2.5" fill="#BFA5D8" opacity="0.7"/>
+              <circle cx="288" cy="104" r="2" fill="#2CB7A7" opacity="0.65"/>
+              <circle cx="316" cy="109" r="2.5" fill="#167A6B" opacity="0.6"/>
+              {/* Second subtle arc */}
+              <path d="M200,158 C228,196 252,196 280,178 C308,160 322,160 348,174"
+                fill="none" stroke="url(#hblg2)" strokeWidth="0.8" strokeDasharray="2 6" opacity="0.3"/>
+
+              {/* ── BRAIN — soft organic curves, feminine ── */}
+              <g transform="translate(350,148)" filter="url(#softglow)">
+                {/* outer brain — gentle organic shape */}
+                <path d="M0,-62 C20,-70 46,-62 54,-44 C64,-22 56,0 44,14 C54,28 52,52 36,60 C22,66 8,56 0,48 C-8,56 -22,66 -36,60 C-52,52 -54,28 -44,14 C-56,0 -64,-22 -54,-44 C-46,-62 -20,-70 0,-62 Z"
+                  fill="none" stroke="url(#hblg2)" strokeWidth="2" strokeLinejoin="round" opacity="0.95"/>
+                {/* inner glow */}
+                <path d="M0,-52 C16,-58 38,-52 44,-36 C52,-18 46,0 36,12 C44,24 42,44 28,50 C16,56 4,48 0,40 C-4,48 -16,56 -28,50 C-42,44 -44,24 -36,12 C-46,0 -52,-18 -44,-36 C-38,-52 -16,-58 0,-52 Z"
+                  fill="none" stroke="url(#hblg2)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.3"/>
+                {/* soft fold lines — curved, feminine */}
+                <path d="M0,-32 C10,-20 10,-6 4,8" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
+                <path d="M-6,-22 C-16,-10 -14,6 -4,16" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
+                <path d="M12,10 C20,20 18,36 8,42" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
+                <path d="M-12,12 C-22,22 -18,36 -8,40" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
               </g>
-              {/* WAVE */}
-              <g transform="translate(0,185)">
-                <line x1="10" y1="0" x2="310" y2="0" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-                <polyline points="10,0 40,0 52,-22 60,28 68,-10 76,12 84,0 110,0 130,-30 140,34 150,-12 160,14 170,0 190,0 206,-22 214,28 222,-10 230,12 238,0 260,0 280,-18 288,22 294,0 310,0" fill="none" stroke="url(#hblg)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
+
+              {/* ── Flowing coherent wave below — smooth, not jagged ── */}
+              <g transform="translate(0,248)">
+                {/* soft background line */}
+                <line x1="40" y1="0" x2="440" y2="0" stroke="rgba(255,255,255,0.04)" strokeWidth="1"/>
+                {/* smooth flowing sine wave — not sharp ECG */}
+                <path d="M40,0 C70,-28 100,28 130,0 C160,-28 190,28 220,0 C250,-28 280,28 310,0 C340,-28 370,28 400,0 C420,-16 432,-8 440,0"
+                  fill="none" stroke="url(#hbwave)" strokeWidth="2" strokeLinecap="round"/>
+                {/* second softer wave slightly offset */}
+                <path d="M40,0 C70,18 100,-18 130,0 C160,18 190,-18 220,0 C250,18 280,-18 310,0 C340,18 370,-18 400,0 C420,10 432,5 440,0"
+                  fill="none" stroke="url(#hbwave)" strokeWidth="0.8" strokeLinecap="round" opacity="0.4"/>
               </g>
-              <text x="68" y="186" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="1.5">HEART</text>
-              <text x="248" y="186" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="1.5">BRAIN</text>
-              <text x="160" y="215" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#BFA5D8" letterSpacing="2">COHERENT RHYTHM</text>
+
+              {/* ── Labels — elegant, spaced ── */}
+              <text x="130" y="248" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="9" fill="#c8bfb8" letterSpacing="3" opacity="0.7">HEART</text>
+              <text x="350" y="248" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="9" fill="#c8bfb8" letterSpacing="3" opacity="0.7">BRAIN</text>
+              <text x="240" y="290" textAnchor="middle" fontFamily="'Cormorant Garamond',serif" fontSize="11" fill="#BFA5D8" letterSpacing="3" fontStyle="italic" opacity="0.8">coherent rhythm</text>
             </svg>
           </div>
 
