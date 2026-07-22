@@ -8,7 +8,7 @@ import VaultSettings from "./pages/VaultSettings.jsx";
 import ProofWall from "./pages/ProofWall.jsx";
 import ListeningGuide from "./pages/ListeningGuide.jsx";
 import SpotifyPortal from "./pages/SpotifyPortal.jsx";
-import { TermsOfService, PrivacyPolicy, RefundPolicy } from "./pages/Legal.jsx";
+import Legal from "./pages/Legal.jsx";
 import About from "./pages/About.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
@@ -29,6 +29,7 @@ export default function App() {
   const authCtx = useAuth();
   const { isAuthenticated, profile } = authCtx;
   const [screen, setScreen] = useState("landing");
+  const [legalPage, setLegalPage] = useState("tos");
   const [userTier, setUserTier] = useState("goddess");
   const [checkoutModal, setCheckoutModal] = useState(false);
   const [checkoutStep, setCheckoutStep] = useState("tiers"); // tiers | upsell-goddess | upsell-lifetime
