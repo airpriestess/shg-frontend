@@ -1474,7 +1474,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               {/* ── Labels — elegant, spaced ── */}
               <text x="130" y="248" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="9" fill="#c8bfb8" letterSpacing="3" opacity="0.7">HEART</text>
               <text x="350" y="248" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="9" fill="#c8bfb8" letterSpacing="3" opacity="0.7">BRAIN</text>
-              <text x="240" y="290" textAnchor="middle" fontFamily="'Cormorant Garamond',serif" fontSize="11" fill="#BFA5D8" letterSpacing="3" fontStyle="italic" opacity="0.8">coherent rhythm</text>
+              <text x="240" y="290" textAnchor="middle" fontFamily="'Cormorant Garamond',serif" fontSize="13" fill="#BFA5D8" letterSpacing="4" fontStyle="italic" opacity="1">coherent rhythm</text>
             </svg>
           </div>
 
