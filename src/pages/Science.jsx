@@ -70,12 +70,97 @@ export default function Science({ onBack }) {
       <div style={{maxWidth:840,margin:"0 auto",padding:isMobile?"0 18px 80px":"0 24px 100px"}}>
 
         {/* ═══ HERO ═══ */}
-        <div style={{padding:isMobile?"56px 0 48px":"88px 0 72px",textAlign:"center"}}>
-          <Lbl>Why this works · How it works · Why I built it</Lbl>
-          <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?"clamp(36px,10vw,52px)":"clamp(44px,6vw,64px)",color:CR,fontWeight:400,marginBottom:20,lineHeight:1.1}}>
-            The formula I spent years looking for.
+        <div style={{padding:isMobile?"48px 0 56px":"80px 0 72px",textAlign:"center"}}>
+
+          {/* Logo mark */}
+          <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
+            <svg viewBox="0 0 100 102" width={isMobile?52:64} height={isMobile?52:64} fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="hlg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F5E0A0"/>
+                  <stop offset="20%" stopColor="#E8B870"/>
+                  <stop offset="52%" stopColor="#BFA5D8"/>
+                  <stop offset="78%" stopColor="#2CB7A7"/>
+                  <stop offset="100%" stopColor="#167A6B"/>
+                </linearGradient>
+              </defs>
+              <circle cx="35" cy="35" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
+              <circle cx="65" cy="35" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
+              <circle cx="35" cy="65" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
+              <circle cx="65" cy="65" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
+              <line x1="50" y1="80" x2="50" y2="96" stroke="url(#hlg)" strokeWidth="4" strokeLinecap="round"/>
+            </svg>
+          </div>
+
+          {/* Wordmark */}
+          <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(13px,3.5vw,16px)":"clamp(14px,1.4vw,17px)",color:CR,letterSpacing:"0.12em",marginBottom:32}}>Self Hypnosis Goddess</div>
+
+          {/* Big headline */}
+          <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?"clamp(36px,10vw,52px)":"clamp(48px,6vw,72px)",fontWeight:400,lineHeight:1.05,marginBottom:16,background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>
+            The science behind the shift.
           </h1>
-          <P>This page is the complete explanation — the neuroscience, the heart intelligence, the mechanism behind every track, and why I built SHG the way I did. This is not surface-level. This is the whole picture.</P>
+          <div style={{fontSize:isMobile?15:18,color:MU,marginBottom:56,fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
+
+          {/* Three concept cards */}
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr 1fr",gap:16,marginBottom:0}}>
+            {[
+              {
+                icon:(
+                  <svg viewBox="0 0 60 60" width={44} height={44} fill="none">
+                    <defs><linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="100%" stopColor="#E8B870"/></linearGradient></defs>
+                    {/* Brain wave */}
+                    <path d="M4,30 C12,14 20,46 28,30 C36,14 44,46 52,30 C54,26 56,28 58,30" fill="none" stroke="url(#c1)" strokeWidth="2.5" strokeLinecap="round"/>
+                    <circle cx="30" cy="30" r="22" fill="none" stroke="#E8B870" strokeWidth="1" opacity="0.2"/>
+                  </svg>
+                ),
+                title:"Theta State",
+                body:"The only brainwave state where new beliefs install without resistance. SHG gets you there on demand."
+              },
+              {
+                icon:(
+                  <svg viewBox="0 0 60 60" width={44} height={44} fill="none">
+                    <defs><linearGradient id="c2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#E8B870"/><stop offset="100%" stopColor="#BFA5D8"/></linearGradient></defs>
+                    {/* Heart */}
+                    <path d="M30,48 C10,34 6,20 10,12 C14,4 22,4 26,10 C28,14 30,16 30,16 C30,16 32,14 34,10 C38,4 46,4 50,12 C54,20 50,34 30,48 Z" fill="none" stroke="url(#c2)" strokeWidth="2.5" strokeLinejoin="round"/>
+                    {/* pulse */}
+                    <path d="M16,28 C20,28 22,20 26,36 C28,24 30,30 32,26 C34,22 36,32 40,28" fill="none" stroke="#BFA5D8" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
+                  </svg>
+                ),
+                title:"Heart Coherence",
+                body:"The heart has its own brain — 40,000 neurons. When it's coherent, the cranial brain opens. The installation goes deeper."
+              },
+              {
+                icon:(
+                  <svg viewBox="0 0 60 60" width={44} height={44} fill="none">
+                    <defs><linearGradient id="c3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#2CB7A7"/></linearGradient></defs>
+                    {/* L/R arrows for EMDR */}
+                    <circle cx="18" cy="30" r="12" fill="none" stroke="url(#c3)" strokeWidth="2"/>
+                    <circle cx="42" cy="30" r="12" fill="none" stroke="url(#c3)" strokeWidth="2"/>
+                    <path d="M30,22 L38,30 L30,38" fill="none" stroke="#2CB7A7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M30,22 L22,30 L30,38" fill="none" stroke="#BFA5D8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                ),
+                title:"Bilateral Sync",
+                body:"EMDR audio synchronises both brain hemispheres. Defences drop. Both sides process together. The new identity lands."
+              },
+            ].map((card,i)=>(
+              <div key={i} style={{
+                padding:isMobile?"24px 20px":"32px 24px",
+                background:"rgba(255,255,255,0.03)",
+                border:"1px solid rgba(232,184,112,0.18)",
+                borderRadius:18,
+                textAlign:"center",
+                display:"flex",
+                flexDirection:"column",
+                alignItems:"center",
+                gap:14,
+              }}>
+                {card.icon}
+                <div style={{fontSize:isMobile?17:20,fontWeight:500,color:CR,fontFamily:"'Jost',sans-serif"}}>{card.title}</div>
+                <div style={{fontSize:14,color:MU,lineHeight:1.7,fontFamily:"'Jost',sans-serif"}}>{card.body}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ═══ ORIGIN — WHY I BUILT THIS ═══ */}
