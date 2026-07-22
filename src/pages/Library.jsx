@@ -236,7 +236,7 @@ export default function Library({ onBack }) {
             <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
             <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
             <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-            <line x1="50" y1="80" x2="50" y2="97" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
+            
           </svg>
         </div>
         <div style={{ fontSize:12, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Self Hypnosis Goddess</div>

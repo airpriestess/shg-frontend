@@ -44,7 +44,7 @@ export default function About({ onBack }) {
             <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
             <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
             <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-            <line x1="50" y1="80" x2="50" y2="97" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
+            
           </svg>
         </div>
         <div style={{ fontFamily:"'Jost',sans-serif", fontSize:13, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.55)", marginBottom:18 }}>Self Hypnosis Goddess</div>
