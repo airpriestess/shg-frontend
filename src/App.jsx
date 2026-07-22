@@ -1516,7 +1516,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             SHG tracks shift the emotional state first — through music, frequency, and binaural entrainment — so that by the time the hypnosis and subliminals arrive, the heart-brain is already broadcasting coherence. The cranial brain follows. The door opens. The installation goes in.
           </p>
 
-          <button onClick={()=>setScreen("science")} style={{ marginTop:16, background:"none", border:"1px solid rgba(44,183,167,0.4)", borderRadius:30, padding:"10px 28px", color:"#2CB7A7", fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.08em" }}>Read the full science →</button>
+          <button onClick={()=>onLegal?.("science")} style={{ marginTop:16, background:"none", border:"1px solid rgba(44,183,167,0.4)", borderRadius:30, padding:"10px 28px", color:"#2CB7A7", fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.08em" }}>Read the full science →</button>
 
         </div>
       </div>
