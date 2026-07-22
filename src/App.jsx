@@ -1146,7 +1146,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,5.2vw,84px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:14, whiteSpace: isMobile?"normal":"nowrap", padding: isMobile?"0 16px":"0 20px", width:"100%" }}>The audio your subconscious has been waiting for.</div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,5.2vw,84px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:14, whiteSpace: isMobile?"normal":"nowrap", padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind</div>
           <div style={{ fontSize: isMobile?13:15, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:24 }}>Hypnosis · Subliminals · EMDR · Binaural Beats · Melodic House</div>
         </div>
 
