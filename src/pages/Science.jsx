@@ -13,9 +13,9 @@ const MU    = "#c8bfb8";
 const DIM   = "#666666";
 
 // Reusable components
-const Lbl = ({c,children})=><div style={{fontSize:10,letterSpacing:"0.22em",textTransform:"uppercase",color:c||TEAL,marginBottom:14,fontFamily:"'Jost',sans-serif",fontWeight:500}}>{children}</div>;
-const H2  = ({children})=><h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(32px,4.5vw,52px)",color:CR,fontWeight:400,marginBottom:18,lineHeight:1.1}}>{children}</h2>;
-const H3  = ({c,children})=><h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(17px,2vw,22px)",color:c||CR,fontWeight:500,marginBottom:12,lineHeight:1.3}}>{children}</h3>;
+const Lbl = ({c,children})=><div style={{fontSize:10,letterSpacing:"0.22em",textTransform:"uppercase",color:c||TEAL,marginBottom:14,fontFamily:"'Jost',sans-serif",fontWeight:500,textAlign:"center"}}>{children}</div>;
+const H2  = ({children})=><h2 style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:"clamp(28px,4.5vw,48px)",color:CR,fontWeight:400,marginBottom:18,lineHeight:1.15,textAlign:"center"}}>{children}</h2>;
+const H3  = ({c,children})=><h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(17px,2vw,22px)",color:c||CR,fontWeight:500,marginBottom:12,lineHeight:1.3,textAlign:"center"}}>{children}</h3>;
 const P   = ({c,children})=><p style={{fontSize:18,color:c||MU,lineHeight:1.9,marginBottom:20,fontFamily:"'Jost',sans-serif"}}>{children}</p>;
 const Div = ()=><div style={{height:1,background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.25),transparent)",margin:"56px 0"}}/>;
 const Box = ({children,c,glow})=>(
@@ -24,7 +24,7 @@ const Box = ({children,c,glow})=>(
   </div>
 );
 const GradText = ({size,children,weight})=>(
-  <span style={{background:LG2,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text",fontSize:size||16,fontWeight:weight||400,fontFamily:"'Jost',sans-serif"}}>{children}</span>
+  <span style={{color:CR,fontSize:size||16,fontWeight:weight||400,fontFamily:"'Jost',sans-serif"}}>{children}</span>
 );
 
 const WAVES = [
@@ -93,7 +93,7 @@ export default function Science({ onBack }) {
           <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(14px,4vw,18px)":"clamp(16px,1.6vw,20px)",color:"#000",letterSpacing:"0.16em",marginBottom:24,opacity:0.75}}>Self Hypnosis Goddess</div>
 
           {/* Big headline — black on gradient */}
-          <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?"clamp(38px,10vw,56px)":"clamp(52px,6vw,80px)",fontWeight:400,lineHeight:1.05,marginBottom:16,color:"#000"}}>
+          <h1 style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:isMobile?"clamp(32px,8vw,52px)":"clamp(44px,5vw,68px)",fontWeight:400,lineHeight:1.1,marginBottom:16,color:"#000"}}>
             The science behind the shift.
           </h1>
           <div style={{fontSize:isMobile?16:20,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
@@ -172,7 +172,7 @@ export default function Science({ onBack }) {
           <P>None of it touched the thing underneath. The belief that ran the program — about what I deserved in love, about my relationship with money, about what my body could be — stayed exactly where it was. Because I was trying to change it from the wrong level.</P>
           <P>The beliefs that run your life don't live in your conscious thoughts. They were installed before you were 7 years old, in a brainwave state where there was no critical mind to filter them. They live in the subconscious. And the subconscious only opens in one state.</P>
           <div style={{padding:isMobile?"24px 20px":"32px 40px",background:"rgba(44,183,167,0.06)",border:"1px solid rgba(44,183,167,0.2)",borderRadius:16,margin:"28px 0",textAlign:"center"}}>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?"clamp(24px,6vw,32px)":"clamp(28px,3.5vw,38px)",color:CR,lineHeight:1.3,marginBottom:12}}>
+            <div style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:isMobile?"clamp(20px,5vw,26px)":"clamp(22px,2.8vw,30px)",color:CR,lineHeight:1.5,marginBottom:12}}>
               "I didn't find a system that worked the way I knew it needed to work. So I built one."
             </div>
             <div style={{fontSize:13,color:TEAL,letterSpacing:"0.1em"}}>— Reshma Oracle</div>
@@ -532,7 +532,7 @@ export default function Science({ onBack }) {
             <div style={{fontSize:isMobile?15:20,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",lineHeight:1.7,marginBottom:14}}>
               Hypnosis + Subliminals + Melodic House + EMDR + Binaural Beats
             </div>
-            <div style={{fontSize:isMobile?28:46,fontWeight:400,color:"#000",fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic"}}>
+            <div style={{fontSize:isMobile?26:42,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal",lineHeight:1.2}}>
               = Theta on demand. Identity installed.
             </div>
             <div style={{fontSize:15,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",marginTop:16,letterSpacing:"0.06em"}}>This is the formula. This is Self Hypnosis Goddess.</div>

@@ -255,7 +255,7 @@ function CheckoutModal({ onClose, onDemo }) {
         {/* HEADER */}
         <div style={{background:"linear-gradient(135deg,rgba(191,165,216,0.08),rgba(44,183,167,0.08))",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
           <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#2CB7A7",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
-          <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(24px,5vw,34px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4}}>Choose your membership.</h3>
+          <h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(22px,4vw,30px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4,textAlign:"center"}}>Choose your membership.</h3>
           <p style={{fontSize:13,color:"#2a2a2a",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
           {/* MONTHLY / ANNUAL TOGGLE */}
@@ -1319,7 +1319,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How the audio actually works</div>
 
           {/* Heading */}
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(40px,4.5vw,58px)", color:"#f2ece4", fontWeight:400, marginBottom:28, lineHeight:1.1 }}>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:28, lineHeight:1.15, textAlign:"center" }}>
             You've been looking for this.
           </h2>
           <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:580, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif" }}>
@@ -1664,7 +1664,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
           <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(32px,4vw,46px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15, textAlign:"center" }}>
             The Hawkins Scale.
           </h2>
           <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
@@ -1775,7 +1775,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ].map((cat, i) => (
               <div key={i} style={{ background: "#fff", border: `1px solid ${cat.accent}33`, borderRadius: 16, padding: isMobile ? "18px 12px" : "24px 18px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", transition: "transform 0.2s" }}>
                 <svg width={isMobile ? 34 : 40} height={isMobile ? 34 : 40} viewBox="0 0 60 60" style={{ color: cat.accent, marginBottom: 12 }}>{cat.icon}</svg>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle:"italic", letterSpacing: "-0.01em", fontSize: isMobile ? 20 : 24, fontWeight: 500, color: "#0a0a0a", marginBottom: 6 }}>{cat.name}</div>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontStyle:"normal", letterSpacing: "0em", fontSize: isMobile ? 18 : 22, fontWeight: 400, color: "#0a0a0a", marginBottom: 6 }}>{cat.name}</div>
                 <div style={{ fontSize: isMobile ? 13 : 15, color: "#1a1a1a", lineHeight: 1.5 }}>{cat.pain}</div>
               </div>
             ))}
@@ -1834,7 +1834,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#7a7a7a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:isMobile?"clamp(40px,10vw,56px)":"clamp(48px,6vw,72px)", fontWeight:400, color:"#0a0a0a", letterSpacing:"-0.01em", lineHeight:1 }}>
+            <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize:isMobile?"clamp(32px,8vw,48px)":"clamp(40px,5vw,60px)", fontWeight:400, color:"#0a0a0a", letterSpacing:"0em", lineHeight:1.1, textAlign:"center" }}>
               Wall of Love
             </h2>
           </div>
@@ -1878,7 +1878,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:900, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:isMobile?"clamp(32px,9vw,44px)":"clamp(40px,5vw,56px)", color:"#f2ece4", marginBottom:32, fontWeight:400 }}>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize:isMobile?"clamp(28px,7vw,40px)":"clamp(36px,4vw,50px)", color:"#f2ece4", marginBottom:32, fontWeight:400, textAlign:"center" }}>
             @selfhypnosisgoddess
           </h2>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(6,1fr)", gap: isMobile?6:10, marginBottom:32 }}>
