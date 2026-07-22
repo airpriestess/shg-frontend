@@ -251,36 +251,36 @@ export default function Library({ onBack }) {
       {/* INTRO */}
       <div style={{ background:BLACK, padding: isMobile?"48px 20px":"64px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-          <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.7)", lineHeight:1.85, marginBottom:20 }}>
+          <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85, marginBottom:20 }}>
             You don't have to use all of them. You use the one that matches where your gap is right now. The desire you keep circling back to. The thing that feels just slightly out of reach no matter what you do.
           </p>
-          <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.7)", lineHeight:1.85 }}>
+          <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85 }}>
             Find your category. Press play. Let the theta state do what your conscious mind has been trying to do for years.
           </p>
         </div>
       </div>
 
       {/* CATEGORIES GRID */}
-      <div style={{ background:"#050505", padding: isMobile?"32px 16px 80px":"48px 32px 96px" }}>
+      <div style={{ background:"#080808", padding: isMobile?"32px 16px 80px":"48px 32px 96px" }}>
         <div style={{ maxWidth:1100, margin:"0 auto" }}>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr": "1fr 1fr", gap:16 }}>
             {CATEGORIES.map((cat, i) => (
               <div key={i}
                 onClick={() => setActive(active === i ? null : i)}
-                style={{ background: active===i ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.02)", border:`1px solid ${active===i ? cat.accent+"60" : "rgba(255,255,255,0.07)"}`, borderRadius:20, overflow:"hidden", cursor:"pointer", transition:"border-color 0.2s, background 0.2s" }}>
+                style={{ background: active===i ? (i%3===1?"#e8e0d6":i%3===2?"rgba(245,224,160,0.15)":"rgba(255,255,255,0.06)") : (i%3===0?"#111":i%3===1?"#fdf0e8":"#0d1a17"), border:`1px solid ${active===i ? cat.accent : (i%3===0?"rgba(255,255,255,0.1)":i%3===1?"rgba(0,0,0,0.12)":"rgba(44,183,167,0.2)")}`, borderRadius:20, overflow:"hidden", cursor:"pointer", transition:"border-color 0.2s, background 0.2s" }}>
 
                 {/* Card header */}
                 <div style={{ padding: isMobile?"20px 20px 16px":"24px 28px 20px" }}>
                   <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:12 }}>
                     <div>
-                      <div style={{ fontSize: isMobile?11:11, letterSpacing:"0.2em", textTransform:"uppercase", color:cat.accent, marginBottom:8, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Category {String(i+1).padStart(2,"0")}</div>
-                      <h2 style={{ fontSize: isMobile?22:26, fontWeight:400, color:CREAM, fontFamily:"'Jost',sans-serif", margin:0, lineHeight:1.1 }}>{cat.name}</h2>
+                      <div style={{ fontSize: isMobile?11:11, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1 ? "#8a6050" : cat.accent, marginBottom:8, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Category {String(i+1).padStart(2,"0")}</div>
+                      <h2 style={{ fontSize: isMobile?22:26, fontWeight:400, color: i%3===1 ? "#0a0a0a" : CREAM, fontFamily:"'Jost',sans-serif", margin:0, lineHeight:1.1 }}>{cat.name}</h2>
                     </div>
-                    <div style={{ width:32, height:32, borderRadius:"50%", border:`1px solid ${cat.accent}40`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:4, transition:"transform 0.2s", transform: active===i?"rotate(45deg)":"none" }}>
+                    <div style={{ width:32, height:32, borderRadius:"50%", border:`1px solid ${i%3===1?cat.accent+"80":cat.accent+"40"}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:4, transition:"transform 0.2s", transform: active===i?"rotate(45deg)":"none" }}>
                       <span style={{ color:cat.accent, fontSize:18, lineHeight:1 }}>+</span>
                     </div>
                   </div>
-                  <p style={{ fontSize: isMobile?14:15, color:"rgba(253,240,232,0.55)", lineHeight:1.6, fontFamily:"'Jost',sans-serif", margin:0, fontStyle:"italic" }}>"{cat.tagline}"</p>
+                  <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.55)" : "rgba(253,240,232,0.65)", lineHeight:1.6, fontFamily:"'Jost',sans-serif", margin:0, fontStyle:"italic" }}>"{cat.tagline}"</p>
                 </div>
 
                 {/* Expanded content */}
@@ -288,18 +288,18 @@ export default function Library({ onBack }) {
                   <div style={{ borderTop:`1px solid rgba(255,255,255,0.06)` }}>
                     {/* Pain */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
-                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The pain point</div>
-                      <p style={{ fontSize: isMobile?14:15, color:"rgba(253,240,232,0.7)", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.pain}</p>
+                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The pain point</div>
+                      <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.7)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.pain}</p>
                     </div>
                     {/* What it does */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
-                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>What the audio does</div>
-                      <p style={{ fontSize: isMobile?14:15, color:"rgba(253,240,232,0.7)", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.what}</p>
+                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>What the audio does</div>
+                      <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.7)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.what}</p>
                     </div>
                     {/* The shift */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", background:`linear-gradient(135deg,${cat.accent}12 0%,transparent 100%)` }}>
                       <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:cat.accent, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The shift</div>
-                      <p style={{ fontSize: isMobile?15:17, color:CREAM, lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.shift}</p>
+                      <p style={{ fontSize: isMobile?15:17, color: i%3===1 ? "#0a0a0a" : CREAM, lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.shift}</p>
                     </div>
                   </div>
                 )}
@@ -315,7 +315,7 @@ export default function Library({ onBack }) {
         <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(26px,7vw,38px)":"clamp(32px,4vw,48px)", color:CREAM, fontWeight:400, marginBottom:16, lineHeight:1.2 }}>
           Pick the category that's been living rent-free in your head.
         </h2>
-        <p style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.5)", maxWidth:480, margin:"0 auto 40px", lineHeight:1.7 }}>
+        <p style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.75)", maxWidth:480, margin:"0 auto 40px", lineHeight:1.7 }}>
           That's your gap. That's where you start. Everything else follows.
         </p>
         <button onClick={onBack} style={{ background:LG, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:BLACK, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
