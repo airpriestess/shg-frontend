@@ -1526,6 +1526,37 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </svg>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
+
+      {/* HEART COHERENCE */}
+      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background:"#000", width:"100%" }}>
+        <div style={{ maxWidth:720, margin:"0 auto", textAlign:"center" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>The heart and the brain</div>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,42px)":"clamp(38px,4.5vw,56px)", color:"#f2ece4", fontWeight:400, marginBottom:24, lineHeight:1.15 }}>
+            Your heart sends more signals to your brain than your brain sends to your heart.
+          </h2>
+          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:620, margin:"0 auto 32px", fontFamily:"'Jost',sans-serif" }}>
+            Most people try to change how they feel by thinking differently. But the heart is the one driving the signal. When your emotional state genuinely shifts — not just positive-framed, but actually elevated — your heart rhythm changes. That change sends a coherent signal to the brain. And in coherence, the brain becomes receptive, open, and ready to install new beliefs at the deepest level.
+          </p>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:16, maxWidth:680, margin:"0 auto 36px" }}>
+            {[
+              { state:"Contracted", heart:"Chaotic heart rhythm", brain:"Stress response active. Beliefs locked in place.", icon:"↓" },
+              { state:"Elevated", heart:"Smooth, coherent rhythm", brain:"Receptive. Open. Subconscious accessible.", icon:"✦" },
+              { state:"Theta + coherence", heart:"Heart and brain in full sync", brain:"The installation goes deepest. This is the window.", icon:"↑" },
+            ].map((row,i) => (
+              <div key={i} style={{ background: i===2?"rgba(44,183,167,0.08)":"rgba(255,255,255,0.03)", border: i===2?"1px solid rgba(44,183,167,0.3)":"1px solid rgba(255,255,255,0.06)", borderRadius:14, padding:"20px 16px", textAlign:"center" }}>
+                <div style={{ fontSize:22, marginBottom:10, color: i===2?"#2CB7A7":"#BFA5D8" }}>{row.icon}</div>
+                <div style={{ fontSize:11, letterSpacing:"0.14em", textTransform:"uppercase", color: i===2?"#2CB7A7":"#BFA5D8", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>{row.state}</div>
+                <div style={{ fontSize:13, color:"#f2ece4", lineHeight:1.6, fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{row.heart}</div>
+                <div style={{ fontSize:12, color:"#c8bfb8", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>{row.brain}</div>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: isMobile?15:17, color:"#BFA5D8", lineHeight:1.85, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif" }}>
+            The SHG tracks do both at once. The melodic house, binaural beats, and EMDR guide your brain into theta. The vocal hypnosis and subliminals elevate your emotional state. When theta and coherence arrive together — the subconscious opens completely. That is the mechanism. That is why this works when nothing else has.
+          </p>
+        </div>
+      </div>
+
       {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
       <div style={{ background:"#0a0a0a", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
         <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
@@ -1668,8 +1699,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,40px)":"clamp(38px,4.5vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15 }}>
             The Hawkins Scale.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, maxWidth:600, margin:"0 auto 40px" }}>
-            Every intention you log in ProofOS gets tagged against this 17-level emotional scale — where you are when you set it, and where you land when it manifests. Watch your baseline climb as the shift takes hold. It's not just proof that something happened — it's proof your energy actually changed.
+          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
+            Your emotional state is not a feeling — it's a frequency. And your heart broadcasts it. Every intention you log in ProofOS gets tagged against this 17-level scale. As you listen, your baseline climbs. Your heart rhythm shifts. Your brain follows. Watch the evidence build — not just in what arrives, but in where you are when it does.
+          </p>
+          <p style={{ fontSize: isMobile?14:16, color:"#2CB7A7", lineHeight:1.7, maxWidth:520, margin:"0 auto 32px", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
+            SHG doesn't just install beliefs. It shifts the state you broadcast from.
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
             {[
