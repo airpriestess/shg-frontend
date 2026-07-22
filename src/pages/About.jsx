@@ -71,7 +71,7 @@ export default function About({ onBack }) {
               <div style={{ width:32, height:1, background:"#444", margin:"8px 0" }}/>
               {[
                 "Trying to think her way into a different life",
-                "Repeating affirmations that didn't land",
+                "Repeating affirmations that never stuck",
                 "Reading every book, starting every habit",
                 "Feeling the gap but not knowing how to close it",
                 "Believing change was possible — for other people",
@@ -119,13 +119,13 @@ export default function About({ onBack }) {
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(36px,4vw,52px)", color:CREAM, lineHeight:1.25, fontWeight:400, marginBottom:32 }}>
             There is a version of you that already exists.
           </h2>
-          <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.65)", lineHeight:1.8, marginBottom:24 }}>
+          <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.8, marginBottom:24 }}>
             You feel her in the ache. In the wanting. In the quiet knowing that something is supposed to be different. That feeling is not a flaw. It is gravity — two versions of you pulling toward each other.
           </p>
-          <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.65)", lineHeight:1.8, marginBottom:24 }}>
+          <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.8, marginBottom:24 }}>
             The gap between who you are and who you know you're becoming — that ache in the middle — is the universe trying to collapse the distance. The current self. The dream self. And the pull between them.
           </p>
-          <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.65)", lineHeight:1.8 }}>
+          <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.8 }}>
             You close it through feeling. Through embodiment. Through getting your nervous system to believe in what your mind already knows is true.
           </p>
         </div>
@@ -156,7 +156,7 @@ export default function About({ onBack }) {
               }}>
                 <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color: highlight ? "rgba(0,0,0,0.45)" : MU, marginBottom:10 }}>{year}</div>
                 <div style={{ fontSize: isMobile?18:20, fontWeight:500, color: highlight ? BLACK : CREAM, marginBottom:14, letterSpacing:"0.01em" }}>{label}</div>
-                <p style={{ fontSize:14, color: highlight ? "rgba(0,0,0,0.7)" : "rgba(253,240,232,0.6)", lineHeight:1.7, margin:0 }}>{body}</p>
+                <p style={{ fontSize:14, color: highlight ? "rgba(0,0,0,0.75)" : "#fdf0e8", lineHeight:1.7, margin:0 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -170,11 +170,11 @@ export default function About({ onBack }) {
           <blockquote style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(22px,6vw,32px)":"clamp(26px,3vw,38px)", color:CREAM, lineHeight:1.5, fontWeight:400, margin:"0 0 32px", textAlign:"center" }}>
             "I didn't find a system that worked the way I knew it needed to work. So I built one."
           </blockquote>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(253,240,232,0.6)", lineHeight:1.8, marginBottom:20, textAlign:"center" }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#fdf0e8", lineHeight:1.8, marginBottom:20, textAlign:"center" }}>
             This is not about affirmations. It is not about mindset. It is not about trying harder.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(253,240,232,0.6)", lineHeight:1.8, textAlign:"center" }}>
-            It is about getting your nervous system to stop running the old identity — and giving the new one somewhere to land.
+          <p style={{ fontSize: isMobile?16:17, color:"#fdf0e8", lineHeight:1.8, textAlign:"center" }}>
+            It is about getting your nervous system to stop running the old identity — and giving the new one room to take root.
           </p>
         </div>
       </div>
