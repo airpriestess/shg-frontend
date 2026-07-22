@@ -1293,6 +1293,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"none", border:"1.5px solid #2CB7A7", borderRadius:40, color:"#f2ece4", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview the App
         </button>
+        <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(22px,7vw,28px)":"clamp(26px,3vw,34px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the full science →</button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
             Join Now ✦
@@ -1516,7 +1517,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             SHG tracks shift the emotional state first — through music, frequency, and binaural entrainment — so that by the time the hypnosis and subliminals arrive, the heart-brain is already broadcasting coherence. The cranial brain follows. The door opens. The installation goes in.
           </p>
 
-          <button onClick={()=>onLegal?.("science")} style={{ marginTop:8, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:40, padding: isMobile?"16px 36px":"20px 52px", color:"#000", fontSize: isMobile?"clamp(18px,5vw,22px)":"clamp(22px,2.5vw,28px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the full science →</button>
 
         </div>
       </div>
