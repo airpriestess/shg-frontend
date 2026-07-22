@@ -1368,13 +1368,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       </div>
 
       {/* HEART COHERENCE */}
-      <div style={{ padding: isMobile?"48px 18px":"80px 24px", background:"#000", width:"100%" }}>
-        <div style={{ maxWidth:720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:28, fontFamily:"'Jost',sans-serif" }}>The heart and the brain</div>
+      <div style={{ padding: isMobile?"56px 18px 64px":"88px 24px 96px", background:"#000", width:"100%" }}>
+        <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
 
-          {/* Heart-Brain illustration — feminine, flowing, luxurious */}
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:48 }}>
-            <svg viewBox="0 0 480 360" width={isMobile?"100%":640} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
+          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The heart-brain</div>
+
+          {/* ── Heart-Brain SVG illustration ── */}
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:56 }}>
+            <svg viewBox="0 0 500 340" width={isMobile?"100%":620} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
               <defs>
                 <linearGradient id="hblg" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#F5E0A0"/>
@@ -1390,118 +1391,113 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   <stop offset="100%" stopColor="#2CB7A7"/>
                 </linearGradient>
                 <linearGradient id="hbwave" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#F5E0A0" stopOpacity="0.2"/>
-                  <stop offset="30%" stopColor="#E8B870" stopOpacity="0.8"/>
+                  <stop offset="0%" stopColor="#F5E0A0" stopOpacity="0.15"/>
+                  <stop offset="25%" stopColor="#E8B870" stopOpacity="0.9"/>
                   <stop offset="55%" stopColor="#BFA5D8" stopOpacity="0.9"/>
-                  <stop offset="80%" stopColor="#2CB7A7" stopOpacity="0.8"/>
-                  <stop offset="100%" stopColor="#167A6B" stopOpacity="0.2"/>
+                  <stop offset="80%" stopColor="#2CB7A7" stopOpacity="0.9"/>
+                  <stop offset="100%" stopColor="#167A6B" stopOpacity="0.15"/>
                 </linearGradient>
-                <radialGradient id="heartglow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#E8B870" stopOpacity="0.25"/>
+                <radialGradient id="hglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#E8B870" stopOpacity="0.2"/>
                   <stop offset="100%" stopColor="#E8B870" stopOpacity="0"/>
                 </radialGradient>
-                <radialGradient id="brainglow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#BFA5D8" stopOpacity="0.25"/>
+                <radialGradient id="bglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#BFA5D8" stopOpacity="0.2"/>
                   <stop offset="100%" stopColor="#BFA5D8" stopOpacity="0"/>
                 </radialGradient>
-                <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="6" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-                <filter id="subtleglow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="5" result="blur"/>
                   <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
               </defs>
 
-              {/* ── Ambient glow behind heart ── */}
-              <ellipse cx="130" cy="148" rx="80" ry="72" fill="url(#heartglow)"/>
-              {/* ── Ambient glow behind brain ── */}
-              <ellipse cx="350" cy="148" rx="80" ry="72" fill="url(#brainglow)"/>
+              {/* Ambient glows */}
+              <ellipse cx="140" cy="150" rx="90" ry="80" fill="url(#hglow)"/>
+              <ellipse cx="360" cy="150" rx="90" ry="80" fill="url(#bglow)"/>
 
-              {/* ── HEART — soft, curved, feminine ── */}
-              <g transform="translate(130,148)" filter="url(#softglow)">
-                {/* outer heart — thin gradient stroke, no fill */}
-                <path d="M0,-52 C4,-62 14,-76 32,-76 C54,-76 70,-56 70,-36 C70,-4 44,22 0,56 C-44,22 -70,-4 -70,-36 C-70,-56 -54,-76 -32,-76 C-14,-76 -4,-62 0,-52 Z"
-                  fill="none" stroke="url(#hblg)" strokeWidth="2" strokeLinejoin="round" opacity="0.95"/>
-                {/* inner glow heart slightly smaller */}
-                <path d="M0,-44 C4,-54 12,-66 28,-66 C47,-66 60,-49 60,-32 C60,-4 38,18 0,48 C-38,18 -60,-4 -60,-32 C-60,-49 -47,-66 -28,-66 C-12,-66 -4,-54 0,-44 Z"
-                  fill="none" stroke="url(#hblg)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.3"/>
-                {/* soft flowing pulse — not sharp ECG, gentle wave */}
-                <path d="M-46,0 C-38,0 -34,-2 -28,-16 C-22,-30 -18,20 -12,-4 C-8,-18 -4,8 0,0 C4,-8 8,14 12,0 C16,-14 22,16 28,-4 C32,-16 38,2 46,0"
-                  fill="none" stroke="url(#hblg)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
+              {/* ── HEART ── */}
+              <g transform="translate(140,150)" filter="url(#glow)">
+                <path d="M0,-56 C4,-68 16,-84 36,-84 C60,-84 76,-62 76,-40 C76,-8 48,20 0,62 C-48,20 -76,-8 -76,-40 C-76,-62 -60,-84 -36,-84 C-16,-84 -4,-68 0,-56 Z"
+                  fill="none" stroke="url(#hblg)" strokeWidth="2.5" strokeLinejoin="round"/>
+                {/* inner echo */}
+                <path d="M0,-44 C4,-54 12,-68 28,-68 C48,-68 62,-50 62,-32 C62,-4 40,16 0,50 C-40,16 -62,-4 -62,-32 C-62,-50 -48,-68 -28,-68 C-12,-68 -4,-54 0,-44 Z"
+                  fill="none" stroke="url(#hblg)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.25"/>
+                {/* soft flowing pulse */}
+                <path d="M-50,0 C-42,0 -36,-2 -28,-20 C-20,-38 -14,28 -8,-6 C-4,-24 0,10 4,-2 C8,-14 12,20 18,-2 C22,-18 28,2 34,-4 C40,-10 46,2 50,0"
+                  fill="none" stroke="url(#hblg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
               </g>
 
-              {/* ── Flowing energy connection — soft S-curve, not straight ── */}
-              <path d="M200,130 C228,90 252,90 280,108 C308,126 322,126 348,110"
-                fill="none" stroke="url(#hblg)" strokeWidth="1.5" strokeDasharray="3 5" opacity="0.5"/>
-              {/* Flowing particles — soft dots along the curve */}
-              <circle cx="212" cy="117" r="2.5" fill="#F5E0A0" opacity="0.7"/>
-              <circle cx="234" cy="100" r="2" fill="#E8B870" opacity="0.65"/>
-              <circle cx="260" cy="95" r="2.5" fill="#BFA5D8" opacity="0.7"/>
-              <circle cx="288" cy="104" r="2" fill="#2CB7A7" opacity="0.65"/>
-              <circle cx="316" cy="109" r="2.5" fill="#167A6B" opacity="0.6"/>
-              {/* Second subtle arc */}
-              <path d="M200,158 C228,196 252,196 280,178 C308,160 322,160 348,174"
-                fill="none" stroke="url(#hblg2)" strokeWidth="0.8" strokeDasharray="2 6" opacity="0.3"/>
+              {/* ── FLOWING CONNECTION — two elegant curves ── */}
+              <path d="M216,120 C248,72 278,72 312,98 C338,118 348,120 368,108"
+                fill="none" stroke="url(#hblg)" strokeWidth="1.5" strokeDasharray="4 6" opacity="0.55"/>
+              <path d="M216,178 C248,224 278,224 312,198 C338,178 348,176 368,188"
+                fill="none" stroke="url(#hblg2)" strokeWidth="1" strokeDasharray="3 7" opacity="0.3"/>
+              {/* signal dots */}
+              <circle cx="230" cy="107" r="3" fill="#F5E0A0" opacity="0.85"/>
+              <circle cx="258" cy="84" r="2.5" fill="#E8B870" opacity="0.8"/>
+              <circle cx="290" cy="80" r="3" fill="#BFA5D8" opacity="0.85"/>
+              <circle cx="324" cy="96" r="2.5" fill="#2CB7A7" opacity="0.8"/>
+              <circle cx="352" cy="108" r="3" fill="#167A6B" opacity="0.75"/>
 
-              {/* ── BRAIN — soft organic curves, feminine ── */}
-              <g transform="translate(350,148)" filter="url(#softglow)">
-                {/* outer brain — gentle organic shape */}
-                <path d="M0,-62 C20,-70 46,-62 54,-44 C64,-22 56,0 44,14 C54,28 52,52 36,60 C22,66 8,56 0,48 C-8,56 -22,66 -36,60 C-52,52 -54,28 -44,14 C-56,0 -64,-22 -54,-44 C-46,-62 -20,-70 0,-62 Z"
-                  fill="none" stroke="url(#hblg2)" strokeWidth="2" strokeLinejoin="round" opacity="0.95"/>
-                {/* inner glow */}
-                <path d="M0,-52 C16,-58 38,-52 44,-36 C52,-18 46,0 36,12 C44,24 42,44 28,50 C16,56 4,48 0,40 C-4,48 -16,56 -28,50 C-42,44 -44,24 -36,12 C-46,0 -52,-18 -44,-36 C-38,-52 -16,-58 0,-52 Z"
-                  fill="none" stroke="url(#hblg2)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.3"/>
-                {/* soft fold lines — curved, feminine */}
-                <path d="M0,-32 C10,-20 10,-6 4,8" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
-                <path d="M-6,-22 C-16,-10 -14,6 -4,16" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
-                <path d="M12,10 C20,20 18,36 8,42" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
-                <path d="M-12,12 C-22,22 -18,36 -8,40" fill="none" stroke="url(#hblg2)" strokeWidth="1.5" opacity="0.45" strokeLinecap="round"/>
+              {/* ── BRAIN ── */}
+              <g transform="translate(360,150)" filter="url(#glow)">
+                <path d="M0,-64 C22,-72 50,-62 58,-42 C68,-18 56,6 42,20 C54,34 52,58 34,66 C20,72 6,60 0,52 C-6,60 -20,72 -34,66 C-52,58 -54,34 -42,20 C-56,6 -68,-18 -58,-42 C-50,-62 -22,-72 0,-64 Z"
+                  fill="none" stroke="url(#hblg2)" strokeWidth="2.5" strokeLinejoin="round"/>
+                {/* inner echo */}
+                <path d="M0,-50 C16,-58 38,-50 46,-34 C54,-14 44,4 32,16 C42,26 40,46 26,52 C14,58 2,48 0,40 C-2,48 -14,58 -26,52 C-40,46 -42,26 -32,16 C-44,4 -54,-14 -46,-34 C-38,-50 -16,-58 0,-50 Z"
+                  fill="none" stroke="url(#hblg2)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.25"/>
+                {/* soft folds */}
+                <path d="M0,-34 C12,-22 12,-6 4,10" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
+                <path d="M-8,-24 C-18,-12 -16,6 -4,16" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
+                <path d="M14,10 C22,22 20,38 8,46" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
+                <path d="M-14,12 C-24,24 -20,38 -8,44" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
               </g>
 
-              {/* ── Flowing coherent wave below — smooth, not jagged ── */}
-              <g transform="translate(0,262)">
-                {/* soft background line */}
-                <line x1="40" y1="0" x2="440" y2="0" stroke="rgba(255,255,255,0.04)" strokeWidth="1"/>
-                {/* smooth flowing sine wave — not sharp ECG */}
-                <path d="M40,0 C70,-28 100,28 130,0 C160,-28 190,28 220,0 C250,-28 280,28 310,0 C340,-28 370,28 400,0 C420,-16 432,-8 440,0"
-                  fill="none" stroke="url(#hbwave)" strokeWidth="2" strokeLinecap="round"/>
-                {/* second softer wave slightly offset */}
-                <path d="M40,0 C70,18 100,-18 130,0 C160,18 190,-18 220,0 C250,18 280,-18 310,0 C340,18 370,-18 400,0 C420,10 432,5 440,0"
-                  fill="none" stroke="url(#hbwave)" strokeWidth="0.8" strokeLinecap="round" opacity="0.4"/>
+              {/* ── COHERENT WAVE ── */}
+              <g transform="translate(0,266)">
+                <path d="M50,0 C80,-32 110,32 140,0 C170,-32 200,32 230,0 C260,-32 290,32 320,0 C350,-32 380,32 410,0 C430,-20 442,-10 450,0"
+                  fill="none" stroke="url(#hbwave)" strokeWidth="2.5" strokeLinecap="round"/>
+                <path d="M50,0 C80,22 110,-22 140,0 C170,22 200,-22 230,0 C260,22 290,-22 320,0 C350,22 380,-22 410,0 C430,14 442,6 450,0"
+                  fill="none" stroke="url(#hbwave)" strokeWidth="1" strokeLinecap="round" opacity="0.35"/>
               </g>
 
-              {/* ── Labels — elegant, spaced ── */}
-              <text x="130" y="262" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="4" opacity="0.8">HEART</text>
-              <text x="350" y="262" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="4" opacity="0.8">BRAIN</text>
-              <text x="240" y="320" textAnchor="middle" fontFamily="'Cormorant Garamond',serif" fontSize="22" fill="#BFA5D8" letterSpacing="5" fontStyle="italic">coherent rhythm</text>
+              {/* ── LABELS — Jost, bold, fully visible ── */}
+              <text x="140" y="264" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="11" fontWeight="500" fill="#c8bfb8" letterSpacing="4">HEART BRAIN</text>
+              <text x="360" y="264" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="11" fontWeight="500" fill="#c8bfb8" letterSpacing="4">CRANIAL BRAIN</text>
+              <text x="250" y="322" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="15" fontWeight="400" fill="#2CB7A7" letterSpacing="3">coherent rhythm</text>
             </svg>
           </div>
 
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,42px)":"clamp(38px,4.5vw,56px)", color:"#f2ece4", fontWeight:400, marginBottom:24, lineHeight:1.15 }}>
-            Your heart sends more signals to your brain than your brain sends to your heart.
+          {/* ── HEADING ── */}
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#f2ece4", fontWeight:300, marginBottom:20, lineHeight:1.2, letterSpacing:"-0.02em" }}>
+            The heart has its own brain.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:620, margin:"0 auto 32px", fontFamily:"'Jost',sans-serif" }}>
-            Most people try to change how they feel by thinking differently. But the heart is the one driving the signal. When your emotional state genuinely shifts — not just positive-framed, but actually elevated — your heart rhythm changes. That change sends a coherent signal to the brain. And in coherence, the brain becomes receptive, open, and ready to install new beliefs at the deepest level.
+          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:640, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif" }}>
+            The heart contains over 40,000 neurons — its own nervous system, capable of sensing, processing information, and making decisions independently of the mind. Scientists call it the heart-brain. It communicates with the cranial brain constantly, and the direction of that signal is mostly downward — from heart to head, not the other way around.
           </p>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:16, maxWidth:680, margin:"0 auto 36px" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:640, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif" }}>
+            The heart's electromagnetic field is 60 times stronger than the brain's. It extends several feet outside the body. The emotional state you carry changes the quality of that field — and that field directly influences what the brain accepts, processes, and installs as belief.
+          </p>
+
+          {/* Three state cards */}
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:14, marginBottom:40 }}>
             {[
-              { state:"Contracted", heart:"Chaotic heart rhythm", brain:"Stress response active. Beliefs locked in place.", icon:"↓" },
-              { state:"Elevated", heart:"Smooth, coherent rhythm", brain:"Receptive. Open. Subconscious accessible.", icon:"✦" },
-              { state:"Theta + coherence", heart:"Heart and brain in full sync", brain:"The installation goes deepest. This is the window.", icon:"↑" },
-            ].map((row,i) => (
-              <div key={i} style={{ background: i===2?"rgba(44,183,167,0.08)":"rgba(255,255,255,0.03)", border: i===2?"1px solid rgba(44,183,167,0.3)":"1px solid rgba(255,255,255,0.06)", borderRadius:14, padding:"20px 16px", textAlign:"center" }}>
-                <div style={{ fontSize:22, marginBottom:10, color: i===2?"#2CB7A7":"#BFA5D8" }}>{row.icon}</div>
-                <div style={{ fontSize:11, letterSpacing:"0.14em", textTransform:"uppercase", color: i===2?"#2CB7A7":"#BFA5D8", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>{row.state}</div>
-                <div style={{ fontSize:13, color:"#f2ece4", lineHeight:1.6, fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{row.heart}</div>
-                <div style={{ fontSize:12, color:"#c8bfb8", lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>{row.brain}</div>
+              { state:"Contracted state", signal:"Chaotic field signal", result:"Brain locks down. Old beliefs reinforced. Nothing new installs.", color:"#BFA5D8" },
+              { state:"Elevated state", signal:"Coherent field signal", result:"Brain opens. Cognitive function improves. New identity can land.", color:"#E8B870" },
+              { state:"Theta + coherence", signal:"Heart and brain in sync", result:"Full receptivity. Subconscious wide open. This is the SHG window.", color:"#2CB7A7" },
+            ].map((row,i)=>(
+              <div key={i} style={{ background: i===2?"rgba(44,183,167,0.07)":"rgba(255,255,255,0.03)", border:`1px solid ${row.color}28`, borderRadius:14, padding: isMobile?"18px 14px":"22px 18px", textAlign:"left" }}>
+                <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:row.color, marginBottom:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{row.state}</div>
+                <div style={{ fontSize:14, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif", marginBottom:8, fontWeight:400 }}>{row.signal}</div>
+                <div style={{ fontSize:13, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{row.result}</div>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: isMobile?15:17, color:"#BFA5D8", lineHeight:1.85, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif" }}>
-            The SHG tracks do both at once. The melodic house, binaural beats, and EMDR guide your brain into theta. The vocal hypnosis and subliminals elevate your emotional state. When theta and coherence arrive together — the subconscious opens completely. That is the mechanism. That is why this works when nothing else has.
+
+          <p style={{ fontSize: isMobile?15:17, color:"#2CB7A7", lineHeight:1.85, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>
+            SHG tracks shift the emotional state first — through music, frequency, and binaural entrainment — so that by the time the hypnosis and subliminals arrive, the heart-brain is already broadcasting coherence. The cranial brain follows. The door opens. The installation goes in.
           </p>
+
         </div>
       </div>
 
