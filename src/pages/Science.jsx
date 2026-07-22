@@ -190,20 +190,28 @@ export default function Science({ onBack }) {
           <P>This is not a playlist. Every SHG track layers five elements simultaneously. Each one targets a different layer of the mechanism. Together they create a condition that no single approach can produce alone.</P>
 
           {/* Formula box */}
-          <div style={{padding:isMobile?"28px 20px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"rgba(0,0,0,0.6)",margin:"32px 0"}}>
-            <div style={{display:"flex",alignItems:"center",flexWrap:"wrap",gap:isMobile?"6px 4px":"8px 0",justifyContent:"center"}}>
-              {FORMULA_PARTS.map((p,i)=>(
+          <div style={{padding:isMobile?"20px 16px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"rgba(0,0,0,0.6)",margin:"32px 0",overflowX:"hidden"}}>
+            <div style={{display:"flex",alignItems:"center",flexWrap:"wrap",gap:"6px 6px",justifyContent:"center",marginBottom:isMobile?16:0}}>
+              {FORMULA_PARTS.filter(p=>p.term!=="Theta on demand.").map((p,i)=>(
                 <span key={i} style={{
-                  fontSize:isMobile?"clamp(18px,5vw,24px)":"clamp(22px,2.4vw,34px)",
+                  fontSize:isMobile?"clamp(13px,4vw,18px)":"clamp(22px,2.4vw,34px)",
                   fontWeight:400,
                   fontFamily:"'Jost',sans-serif",
-                  color:p.result?"#fff":p.color,
-                  background:p.result?LG:undefined,
-                  WebkitBackgroundClip:p.result?"text":undefined,
-                  WebkitTextFillColor:p.result?"transparent":undefined,
-                  backgroundClip:p.result?"text":undefined,
+                  color:p.color,
+                  whiteSpace:"nowrap",
                 }}>{p.term}</span>
               ))}
+            </div>
+            <div style={{textAlign:"center",marginTop:isMobile?8:16}}>
+              <span style={{
+                fontSize:isMobile?"clamp(16px,5vw,22px)":"clamp(22px,2.4vw,34px)",
+                fontWeight:400,
+                fontFamily:"'Jost',sans-serif",
+                background:LG,
+                WebkitBackgroundClip:"text",
+                WebkitTextFillColor:"transparent",
+                backgroundClip:"text",
+              }}>= Theta on demand.</span>
             </div>
           </div>
 
