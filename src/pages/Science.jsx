@@ -16,7 +16,7 @@ const DIM   = "#666666";
 const Lbl = ({c,children})=><div style={{fontSize:10,letterSpacing:"0.22em",textTransform:"uppercase",color:c||TEAL,marginBottom:14,fontFamily:"'Jost',sans-serif",fontWeight:500,textAlign:"center"}}>{children}</div>;
 const H2  = ({children})=><h2 style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:"clamp(28px,4.5vw,48px)",color:CR,fontWeight:400,marginBottom:18,lineHeight:1.15,textAlign:"center"}}>{children}</h2>;
 const H3  = ({c,children})=><h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(17px,2vw,22px)",color:c||CR,fontWeight:500,marginBottom:12,lineHeight:1.3,textAlign:"center"}}>{children}</h3>;
-const P   = ({c,children})=><p style={{fontSize:18,color:c||MU,lineHeight:1.9,marginBottom:20,fontFamily:"'Jost',sans-serif"}}>{children}</p>;
+const P   = ({c,children})=><p style={{fontSize:18,color:c||MU,lineHeight:1.9,marginBottom:20,fontFamily:"'Jost',sans-serif",textAlign:"left"}}>{children}</p>;
 const Div = ()=><div style={{height:1,background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.25),transparent)",margin:"56px 0"}}/>;
 const Box = ({children,c,glow})=>(
   <div style={{padding:"22px 20px",background:glow?`${c||TEAL}08`:"rgba(255,255,255,0.03)",border:`1px solid ${c||TEAL}22`,borderRadius:14,marginBottom:0,boxShadow:glow?`0 0 30px ${c||TEAL}18`:"none"}}>
@@ -165,7 +165,7 @@ export default function Science({ onBack }) {
         </div>
 
         {/* ═══ ORIGIN — WHY I BUILT THIS ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={LAV}>The origin</Lbl>
           <H2>Why I built this</H2>
           <P>I spent years doing everything right on the surface. Reading the books. Going to therapy. Journalling. Meditating. Saying affirmations in the mirror that I didn't believe and could feel myself not believing as I said them.</P>
@@ -183,7 +183,7 @@ export default function Science({ onBack }) {
         <Div/>
 
         {/* ═══ THE FORMULA — annotated ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl>The formula</Lbl>
           <H2>Every track is built from this.</H2>
           <P>This is not a playlist. Every SHG track layers five elements simultaneously. Each one targets a different layer of the mechanism. Together they create a condition that no single approach can produce alone.</P>
@@ -233,7 +233,7 @@ export default function Science({ onBack }) {
         <Div/>
 
         {/* ═══ BRAINWAVE STATES ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl>Section 01</Lbl>
           <H2>Brainwave states — where change actually lives</H2>
           <P>Your brain produces electrical activity that oscillates at different speeds depending on what you're doing and feeling. These frequencies determine what your mind is capable of in that moment — including whether new beliefs can install or bounce off.</P>
@@ -296,7 +296,7 @@ export default function Science({ onBack }) {
         <Div/>
 
         {/* ═══ HEART-BRAIN ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={LAV}>Section 02</Lbl>
           <H2>The heart-brain — it was never just the mind</H2>
 
@@ -387,7 +387,7 @@ export default function Science({ onBack }) {
         <Div/>
 
         {/* ═══ HEART COHERENCE ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={TEAL}>Section 03</Lbl>
           <H2>Heart coherence — the state that opens the door</H2>
           <P>Heart rate variability (HRV) — the variation in time between heartbeats — is the measure of your heart's rhythmic pattern. An erratic, disordered pattern reflects a contracted emotional state. A smooth, rhythmic pattern reflects coherence.</P>
@@ -426,7 +426,7 @@ export default function Science({ onBack }) {
         <Div/>
 
         {/* ═══ SUBLIMINALS ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={GOLD}>Section 04</Lbl>
           <H2>Why subliminals work where affirmations don't</H2>
           <P>An affirmation is a conscious statement. It is heard, evaluated by the critical faculty, and checked against existing belief. If it contradicts what you already believe — which it usually does, or you wouldn't need to say it — it is rejected. Every time.</P>
@@ -455,7 +455,7 @@ export default function Science({ onBack }) {
         <Div/>
 
         {/* ═══ EMDR ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={LAV}>Section 05</Lbl>
           <H2>EMDR — why both hemispheres matter</H2>
           <P>EMDR (Eye Movement Desensitisation and Reprocessing) was originally developed for trauma. The bilateral stimulation — alternating left-right input — was found to allow the brain to process difficult material without the usual emotional resistance. Both hemispheres synchronise. Defences drop. Processing deepens.</P>
@@ -503,7 +503,7 @@ export default function Science({ onBack }) {
         <Div/>
 
         {/* ═══ THE FULL SYSTEM ═══ */}
-        <section style={{marginBottom:64}}>
+        <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl>Section 06</Lbl>
           <H2>How it all combines — the complete system</H2>
           <P>No single element does what all five do together. The music raises coherence. The binaural beats open theta. The EMDR synchronises both hemispheres. The hypnosis delivers the identity. The subliminals embed it below conscious awareness. In sequence, in one track, simultaneously.</P>
