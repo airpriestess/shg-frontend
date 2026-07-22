@@ -1373,7 +1373,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* Heart-Brain illustration — feminine, flowing, luxurious */}
           <div style={{ display:"flex", justifyContent:"center", marginBottom:48 }}>
-            <svg viewBox="0 0 480 320" width={isMobile?"100%":580} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
+            <svg viewBox="0 0 480 360" width={isMobile?"100%":640} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
               <defs>
                 <linearGradient id="hblg" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#F5E0A0"/>
@@ -1460,7 +1460,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </g>
 
               {/* ── Flowing coherent wave below — smooth, not jagged ── */}
-              <g transform="translate(0,248)">
+              <g transform="translate(0,262)">
                 {/* soft background line */}
                 <line x1="40" y1="0" x2="440" y2="0" stroke="rgba(255,255,255,0.04)" strokeWidth="1"/>
                 {/* smooth flowing sine wave — not sharp ECG */}
@@ -1472,9 +1472,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </g>
 
               {/* ── Labels — elegant, spaced ── */}
-              <text x="130" y="248" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="9" fill="#c8bfb8" letterSpacing="3" opacity="0.7">HEART</text>
-              <text x="350" y="248" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="9" fill="#c8bfb8" letterSpacing="3" opacity="0.7">BRAIN</text>
-              <text x="240" y="290" textAnchor="middle" fontFamily="'Cormorant Garamond',serif" fontSize="13" fill="#BFA5D8" letterSpacing="4" fontStyle="italic" opacity="1">coherent rhythm</text>
+              <text x="130" y="262" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="4" opacity="0.8">HEART</text>
+              <text x="350" y="262" textAnchor="middle" fontFamily="'Jost',sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="4" opacity="0.8">BRAIN</text>
+              <text x="240" y="320" textAnchor="middle" fontFamily="'Cormorant Garamond',serif" fontSize="22" fill="#BFA5D8" letterSpacing="5" fontStyle="italic">coherent rhythm</text>
             </svg>
           </div>
 
