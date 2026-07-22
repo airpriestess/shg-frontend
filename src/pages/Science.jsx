@@ -1,5 +1,6 @@
 /* Science — Why this works, how it works, how I built it */
 import { useState, useEffect, useRef } from "react";
+import HamburgerMenu from "../components/HamburgerMenu.jsx";
 
 const LG  = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const LG2 = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";

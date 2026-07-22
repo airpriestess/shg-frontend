@@ -1,5 +1,6 @@
 /* About — Reshma Oracle */
 import { useState, useEffect, useRef } from "react";
+import HamburgerMenu from "../components/HamburgerMenu.jsx";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const CREAM = "#fdf0e8";
@@ -31,7 +32,7 @@ export default function About({ onBack }) {
           ← Back
         </button>
         <span style={{ fontSize:12, color:MU, letterSpacing:"0.18em", textTransform:"uppercase" }}>About Reshma · reshmaoracle.com</span>
-        <div style={{ width:60 }}/>
+        <HamburgerMenu/>
       </div>
 
       {/* ── HERO ── */}

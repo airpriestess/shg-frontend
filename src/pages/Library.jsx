@@ -1,5 +1,6 @@
 /* Library — The 24 Categories */
 import { useState, useEffect, useRef } from "react";
+import HamburgerMenu from "../components/HamburgerMenu.jsx";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const BLACK = "#000000";
@@ -223,7 +224,7 @@ export default function Library({ onBack }) {
       <div style={{ position:"sticky", top:0, zIndex:50, background:"rgba(0,0,0,0.94)", backdropFilter:"blur(12px)", borderBottom:"1px solid rgba(255,255,255,0.06)", padding:"0 24px", height:52, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
         <button onClick={onBack} style={{ background:"none", border:"none", color:MU, fontSize:13, cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>← Back</button>
         <span style={{ fontSize:12, color:MU, letterSpacing:"0.18em", textTransform:"uppercase" }}>The Library · reshmaoracle.com</span>
-        <div style={{ width:60 }}/>
+        <HamburgerMenu/>
       </div>
 
       {/* HERO */}
