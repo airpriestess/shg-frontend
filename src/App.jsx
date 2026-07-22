@@ -9,6 +9,7 @@ import ProofWall from "./pages/ProofWall.jsx";
 import ListeningGuide from "./pages/ListeningGuide.jsx";
 import SpotifyPortal from "./pages/SpotifyPortal.jsx";
 import Legal from "./pages/Legal.jsx";
+import Science from "./pages/Science.jsx";
 import About from "./pages/About.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
@@ -64,6 +65,7 @@ export default function App() {
       {screen === "privacy" && <PrivacyPolicy     onBack={()=>setScreen("landing")}/> }
       {screen === "refunds" && <RefundPolicy      onBack={()=>setScreen("landing")}/> }
       {screen === "about"   && <About             onBack={()=>setScreen("landing")}/> }
+      {screen === "science"  && <Science            onBack={()=>setScreen("landing")}/> }
       {screen === "landing" && <Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => setScreen("auth")} onLegal={(p)=>setScreen(p)}/>}
     {checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}
       {screen === "auth" && <AuthGate onSuccess={() => goPortal()} />}
@@ -1018,6 +1020,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ["Preview App",  ()=>{ onDemo?.(); setMenuOpen(false); }],
               ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
               ["About Reshma", ()=>{ onLegal?.("about"); setMenuOpen(false); }],
+              ["The Science",  ()=>{ onLegal?.("science"); setMenuOpen(false); }],
               ["YouTube",       ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
@@ -1512,6 +1515,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <p style={{ fontSize: isMobile?15:17, color:"#2CB7A7", lineHeight:1.85, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>
             SHG tracks shift the emotional state first — through music, frequency, and binaural entrainment — so that by the time the hypnosis and subliminals arrive, the heart-brain is already broadcasting coherence. The cranial brain follows. The door opens. The installation goes in.
           </p>
+
+          <button onClick={()=>setScreen("science")} style={{ marginTop:16, background:"none", border:"1px solid rgba(44,183,167,0.4)", borderRadius:30, padding:"10px 28px", color:"#2CB7A7", fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.08em" }}>Read the full science →</button>
 
         </div>
       </div>
