@@ -14,9 +14,9 @@ const DIM   = "#666666";
 
 // Reusable components
 const Lbl = ({c,children})=><div style={{fontSize:10,letterSpacing:"0.22em",textTransform:"uppercase",color:c||TEAL,marginBottom:14,fontFamily:"'Jost',sans-serif",fontWeight:500}}>{children}</div>;
-const H2  = ({children})=><h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(28px,4vw,44px)",color:CR,fontWeight:400,marginBottom:16,lineHeight:1.15}}>{children}</h2>;
-const H3  = ({c,children})=><h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(15px,1.8vw,18px)",color:c||CR,fontWeight:500,marginBottom:10,lineHeight:1.3}}>{children}</h3>;
-const P   = ({c,children})=><p style={{fontSize:16,color:c||MU,lineHeight:1.9,marginBottom:18,fontFamily:"'Jost',sans-serif"}}>{children}</p>;
+const H2  = ({children})=><h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(32px,4.5vw,52px)",color:CR,fontWeight:400,marginBottom:18,lineHeight:1.1}}>{children}</h2>;
+const H3  = ({c,children})=><h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(17px,2vw,22px)",color:c||CR,fontWeight:500,marginBottom:12,lineHeight:1.3}}>{children}</h3>;
+const P   = ({c,children})=><p style={{fontSize:18,color:c||MU,lineHeight:1.9,marginBottom:20,fontFamily:"'Jost',sans-serif"}}>{children}</p>;
 const Div = ()=><div style={{height:1,background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.25),transparent)",margin:"56px 0"}}/>;
 const Box = ({children,c,glow})=>(
   <div style={{padding:"22px 20px",background:glow?`${c||TEAL}08`:"rgba(255,255,255,0.03)",border:`1px solid ${c||TEAL}22`,borderRadius:14,marginBottom:0,boxShadow:glow?`0 0 30px ${c||TEAL}18`:"none"}}>
@@ -52,6 +52,7 @@ const FORMULA_PARTS = [
 export default function Science({ onBack }) {
   const [isMobile, setIsMobile] = useState(typeof window!=="undefined"&&window.innerWidth<=768);
   useEffect(()=>{
+    window.scrollTo(0,0);
     const h=()=>setIsMobile(window.innerWidth<=768);
     window.addEventListener("resize",h);
     return ()=>window.removeEventListener("resize",h);
@@ -157,7 +158,7 @@ export default function Science({ onBack }) {
               }}>
                 {card.icon}
                 <div style={{fontSize:isMobile?17:20,fontWeight:500,color:CR,fontFamily:"'Jost',sans-serif"}}>{card.title}</div>
-                <div style={{fontSize:14,color:MU,lineHeight:1.7,fontFamily:"'Jost',sans-serif"}}>{card.body}</div>
+                <div style={{fontSize:16,color:MU,lineHeight:1.7,fontFamily:"'Jost',sans-serif"}}>{card.body}</div>
               </div>
             ))}
           </div>
@@ -188,11 +189,11 @@ export default function Science({ onBack }) {
           <P>This is not a playlist. Every SHG track layers five elements simultaneously. Each one targets a different layer of the mechanism. Together they create a condition that no single approach can produce alone.</P>
 
           {/* Formula box */}
-          <div style={{padding:isMobile?"28px 20px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"rgba(0,0,0,0.6)",margin:"32px 0",overflowX:"auto"}}>
-            <div style={{display:"flex",alignItems:"center",flexWrap:"nowrap",gap:isMobile?8:14,justifyContent:"center",whiteSpace:"nowrap"}}>
+          <div style={{padding:isMobile?"28px 20px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"rgba(0,0,0,0.6)",margin:"32px 0"}}>
+            <div style={{display:"flex",alignItems:"center",flexWrap:"wrap",gap:isMobile?"6px 4px":"8px 0",justifyContent:"center"}}>
               {FORMULA_PARTS.map((p,i)=>(
                 <span key={i} style={{
-                  fontSize:isMobile?"clamp(16px,4.5vw,22px)":"clamp(20px,2.2vw,32px)",
+                  fontSize:isMobile?"clamp(18px,5vw,24px)":"clamp(22px,2.4vw,34px)",
                   fontWeight:400,
                   fontFamily:"'Jost',sans-serif",
                   color:p.result?"#fff":p.color,
