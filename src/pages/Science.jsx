@@ -71,39 +71,35 @@ export default function Science({ onBack }) {
       <div style={{maxWidth:840,margin:"0 auto",padding:isMobile?"0 18px 80px":"0 24px 100px"}}>
 
         {/* ═══ HERO ═══ */}
-        <div style={{padding:isMobile?"48px 0 56px":"80px 0 72px",textAlign:"center"}}>
+        {/* Full-bleed LG gradient hero banner */}
+        <div style={{width:"100vw",position:"relative",left:"50%",transform:"translateX(-50%)",background:LG,padding:isMobile?"48px 20px 52px":"72px 24px 80px",textAlign:"center",marginBottom:64}}>
 
-          {/* Logo mark */}
+          {/* Logo mark — large, black stroke on gradient bg */}
           <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
-            <svg viewBox="0 0 100 102" width={isMobile?52:64} height={isMobile?52:64} fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="hlg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F5E0A0"/>
-                  <stop offset="20%" stopColor="#E8B870"/>
-                  <stop offset="52%" stopColor="#BFA5D8"/>
-                  <stop offset="78%" stopColor="#2CB7A7"/>
-                  <stop offset="100%" stopColor="#167A6B"/>
-                </linearGradient>
-              </defs>
-              <circle cx="35" cy="35" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
-              <circle cx="65" cy="35" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
-              <circle cx="35" cy="65" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
-              <circle cx="65" cy="65" r="18" fill="none" stroke="url(#hlg)" strokeWidth="4"/>
-              <line x1="50" y1="80" x2="50" y2="96" stroke="url(#hlg)" strokeWidth="4" strokeLinecap="round"/>
+            <svg viewBox="0 0 100 102" width={isMobile?72:96} height={isMobile?72:96} fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="4"/>
+              <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="4"/>
+              <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="4"/>
+              <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="4"/>
+              <line x1="50" y1="80" x2="50" y2="96" stroke="#000" strokeWidth="4" strokeLinecap="round"/>
             </svg>
           </div>
 
           {/* Wordmark */}
-          <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(13px,3.5vw,16px)":"clamp(14px,1.4vw,17px)",color:CR,letterSpacing:"0.12em",marginBottom:32}}>Self Hypnosis Goddess</div>
+          <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(14px,4vw,18px)":"clamp(16px,1.6vw,20px)",color:"#000",letterSpacing:"0.16em",marginBottom:24,opacity:0.75}}>Self Hypnosis Goddess</div>
 
-          {/* Big headline */}
-          <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?"clamp(36px,10vw,52px)":"clamp(48px,6vw,72px)",fontWeight:400,lineHeight:1.05,marginBottom:16,background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>
+          {/* Big headline — black on gradient */}
+          <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:isMobile?"clamp(38px,10vw,56px)":"clamp(52px,6vw,80px)",fontWeight:400,lineHeight:1.05,marginBottom:16,color:"#000"}}>
             The science behind the shift.
           </h1>
-          <div style={{fontSize:isMobile?15:18,color:MU,marginBottom:56,fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
+          <div style={{fontSize:isMobile?16:20,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
+        </div>
 
-          {/* Three concept cards */}
-          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr 1fr",gap:16,marginBottom:0}}>
+        {/* Three concept cards — sit below the gradient hero */}
+        <div style={{marginBottom:64}}>
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr 1fr",gap:16}}>
+
+  
             {[
               {
                 icon:(
