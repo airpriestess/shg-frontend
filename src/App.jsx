@@ -1361,6 +1361,27 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </div>
           </div>
 
+          {/* 5-state frequency breakdown */}
+          <div style={{ marginBottom:40 }}>
+            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>All five brainwave states</div>
+            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr 1fr 1fr", gap:10, marginBottom:16 }}>
+              {[
+                { name:"Delta", hz:"0.5–4 Hz", color:"#167A6B", desc:"Deep sleep. Your body repairs. Subliminals keep working here even when you're fully unconscious.", tag:"Deep sleep" },
+                { name:"Theta", hz:"4–8 Hz",  color:"#2CB7A7", desc:"The only state where the subconscious opens and accepts new beliefs without the critical mind blocking them. SHG targets this on demand.", tag:"Target state", highlight:true },
+                { name:"Alpha", hz:"8–14 Hz", color:"#BFA5D8", desc:"Relaxed, calm, receptive. The bridge between the conscious and subconscious. Great for daytime listening.", tag:"Relaxed" },
+                { name:"Beta",  hz:"14–40 Hz",color:"#c8bfb8", desc:"Your current waking state. Analytical and sceptical. Affirmations bounce off here — the critical mind filters everything.", tag:"Waking state" },
+                { name:"Gamma", hz:"40+ Hz",  color:"#E8B870", desc:"Peak coherence. Observed in advanced meditators. Emerges naturally the more time you spend in theta.", tag:"Peak state" },
+              ].map((s,i)=>(
+                <div key={i} style={{ padding:"18px 14px", background: s.highlight?"rgba(44,183,167,0.08)":"rgba(255,255,255,0.02)", border:`1px solid ${s.highlight?"rgba(44,183,167,0.3)":"rgba(255,255,255,0.06)"}`, borderRadius:14, textAlign:"left", position:"relative" }}>
+                  {s.highlight && <div style={{ position:"absolute", top:10, right:10, fontSize:9, letterSpacing:"0.14em", textTransform:"uppercase", background:"#2CB7A7", color:"#000", padding:"2px 7px", borderRadius:20, fontFamily:"'Jost',sans-serif" }}>SHG targets this</div>}
+                  <div style={{ fontSize: isMobile?18:20, fontWeight:400, color:s.color, fontFamily:"'Jost',sans-serif", marginBottom:4 }}>{s.name}</div>
+                  <div style={{ fontSize:10, color:"rgba(255,255,255,0.3)", fontFamily:"monospace", letterSpacing:"0.06em", marginBottom:12 }}>{s.hz}</div>
+                  <p style={{ fontSize:13, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif", margin:0 }}>{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Method boxes */}
           <div style={{ marginBottom:40 }}>
             <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>What's inside every track</div>
