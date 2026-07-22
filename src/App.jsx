@@ -12,6 +12,7 @@ import SpotifyPortal from "./pages/SpotifyPortal.jsx";
 import Legal from "./pages/Legal.jsx";
 import Science from "./pages/Science.jsx";
 import About from "./pages/About.jsx";
+import Library from "./pages/Library.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
@@ -79,6 +80,7 @@ export default function App() {
         <Route path="/" element={<><Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>{checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}</>} />
         <Route path="/shop" element={<ShopRedirect/>} />
         <Route path="/about"   element={<About   onBack={()=>navigate("/")}/>} />
+        <Route path="/library" element={<Library onBack={()=>navigate("/")}/>} />
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
@@ -1038,6 +1040,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
               ["About Reshma", ()=>{ onLegal?.("about"); setMenuOpen(false); }],
               ["The Science",  ()=>{ onLegal?.("science"); setMenuOpen(false); }],
+              ["The Library",  ()=>{ onLegal?.("library"); setMenuOpen(false); }],
               ["YouTube",       ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
@@ -1813,6 +1816,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 <div style={{ fontSize: isMobile ? 13 : 15, color: "#1a1a1a", lineHeight: 1.5 }}>{cat.pain}</div>
               </div>
             ))}
+          </div>
+          <div style={{ textAlign:"center", marginTop:40 }}>
+            <button onClick={()=>onLegal?.("library")} style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:40, padding: isMobile?"16px 40px":"18px 52px", color:"#000", fontSize: isMobile?15:17, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
+              Explore all 24 categories →
+            </button>
           </div>
         </div>
       </div>
