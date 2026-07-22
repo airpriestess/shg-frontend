@@ -31,7 +31,7 @@ const WAVES = [
   {s:"Delta",hz:"0.5–4 Hz",c:DTEAL,h:28,desc:"Deep sleep. Cellular repair. Consciousness offline. Subliminals continue working here."},
   {s:"Theta",hz:"4–8 Hz", c:TEAL, h:70,desc:"The installation window. Critical resistance drops. New identity goes in. SHG targets this state in every track.",active:true},
   {s:"Alpha",hz:"8–14 Hz",c:LAV,  h:50,desc:"Relaxed awareness. The bridge. Receptive but not fully open. Good daytime listening state."},
-  {s:"Beta", hz:"14–40 Hz",c:"#666",h:38,desc:"Alert, analytical, sceptical. Where affirmations bounce off. Where you spend most of your day."},
+  {s:"Beta", hz:"14–40 Hz",c:"#666",h:38,desc:"Your current waking state. Alert, analytical, sceptical. The critical mind is fully active here — which is exactly why affirmations bounce off. You can't argue your way past a belief from the same level it was installed."},
   {s:"Gamma",hz:"40+ Hz", c:DIM,  h:20,desc:"Peak coherence. Observed in advanced meditators. Emerges naturally from deep theta practice."},
 ];
 
@@ -266,8 +266,8 @@ export default function Science({ onBack }) {
           </div>
 
           {/* Wave cards */}
-          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr 1fr",gap:10}}>
-            {WAVES.filter(w=>["Theta","Alpha","Beta"].includes(w.s)).map((w,i)=>(
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:10}}>
+            {WAVES.map((w,i)=>(
               <Box key={i} c={w.c} glow={w.active}>
                 <div style={{display:"flex",alignItems:"baseline",gap:8,marginBottom:10}}>
                   <span style={{fontSize:18,fontWeight:500,color:w.c,fontFamily:"'Jost',sans-serif"}}>{w.s}</span>
