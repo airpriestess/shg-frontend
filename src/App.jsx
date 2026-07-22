@@ -1373,8 +1373,21 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The heart-brain</div>
 
+          {/* Labels above */}
+          <div style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr", alignItems:"center", maxWidth:620, margin:"0 auto 20px", gap:16 }}>
+            <div style={{ textAlign:"right" }}>
+              <div style={{ fontSize: isMobile?15:17, fontWeight:500, color:"#F5E0A0", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Heart Brain</div>
+              <div style={{ fontSize: isMobile?12:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>40,000 neurons.<br/>Broadcasts your emotional state.</div>
+            </div>
+            <div style={{ fontSize:20, color:"rgba(44,183,167,0.4)", flexShrink:0 }}>⟷</div>
+            <div style={{ textAlign:"left" }}>
+              <div style={{ fontSize: isMobile?15:17, fontWeight:500, color:"#BFA5D8", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Cranial Brain</div>
+              <div style={{ fontSize: isMobile?12:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>Receives the signal.<br/>Installs belief accordingly.</div>
+            </div>
+          </div>
+
           {/* ── Heart-Brain SVG illustration ── */}
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:56 }}>
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:16 }}>
             <svg viewBox="0 0 500 340" width={isMobile?"100%":620} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
               <defs>
                 <linearGradient id="hblg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1461,11 +1474,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   fill="none" stroke="url(#hbwave)" strokeWidth="1" strokeLinecap="round" opacity="0.35"/>
               </g>
 
-              {/* ── LABELS — Jost, bold, fully visible ── */}
-              <text x="140" y="264" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="11" fontWeight="500" fill="#c8bfb8" letterSpacing="4">HEART BRAIN</text>
-              <text x="360" y="264" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="11" fontWeight="500" fill="#c8bfb8" letterSpacing="4">CRANIAL BRAIN</text>
-              <text x="250" y="322" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="15" fontWeight="400" fill="#2CB7A7" letterSpacing="3">coherent rhythm</text>
+
             </svg>
+          </div>
+
+          <div style={{ textAlign:"center", marginBottom:40 }}>
+            <div style={{ fontSize: isMobile?13:15, letterSpacing:"0.2em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Coherent Rhythm</div>
+            <div style={{ fontSize: isMobile?12:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", marginTop:6, lineHeight:1.6 }}>When heart and brain synchronise — the subconscious opens.</div>
           </div>
 
           {/* ── HEADING ── */}
