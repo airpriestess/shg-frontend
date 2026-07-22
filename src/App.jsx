@@ -1530,7 +1530,76 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HEART COHERENCE */}
       <div style={{ padding: isMobile?"48px 18px":"80px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth:720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>The heart and the brain</div>
+          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:28, fontFamily:"'Jost',sans-serif" }}>The heart and the brain</div>
+
+          {/* Heart-Brain illustration */}
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:36 }}>
+            <svg viewBox="0 0 320 220" width={isMobile?260:320} height={isMobile?179:220} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible"}}>
+              <defs>
+                <linearGradient id="hblg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F5E0A0"/>
+                  <stop offset="20%" stopColor="#E8B870"/>
+                  <stop offset="52%" stopColor="#BFA5D8"/>
+                  <stop offset="78%" stopColor="#2CB7A7"/>
+                  <stop offset="100%" stopColor="#167A6B"/>
+                </linearGradient>
+                <linearGradient id="hblg2" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#F5E0A0"/>
+                  <stop offset="20%" stopColor="#E8B870"/>
+                  <stop offset="52%" stopColor="#BFA5D8"/>
+                  <stop offset="78%" stopColor="#2CB7A7"/>
+                  <stop offset="100%" stopColor="#167A6B"/>
+                </linearGradient>
+                <filter id="hbglow">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              {/* ── HEART (left) ── */}
+              <g transform="translate(68,110)" filter="url(#hbglow)">
+                <path d="M0,-38 C0,-38 -10,-55 -30,-55 C-52,-55 -62,-36 -62,-20 C-62,8 -38,30 0,58 C38,30 62,8 62,-20 C62,-36 52,-55 30,-55 C10,-55 0,-38 0,-38 Z"
+                  fill="none" stroke="url(#hblg)" strokeWidth="3.5" strokeLinejoin="round"/>
+                {/* inner pulse line across heart */}
+                <polyline points="-38,0 -24,0 -18,-18 -10,22 -2,-8 6,8 14,-4 22,0 38,0"
+                  fill="none" stroke="url(#hblg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.85"/>
+              </g>
+
+              {/* ── CONNECTION ARC — heart to brain ── */}
+              <path d="M130,110 C165,60 185,60 210,80"
+                fill="none" stroke="url(#hblg)" strokeWidth="2" strokeDasharray="5 4" opacity="0.7"/>
+              {/* signal dots travelling along the arc */}
+              <circle cx="148" cy="88" r="3" fill="#E8B870" opacity="0.9"/>
+              <circle cx="168" cy="72" r="2.5" fill="#BFA5D8" opacity="0.85"/>
+              <circle cx="190" cy="72" r="2" fill="#2CB7A7" opacity="0.8"/>
+
+              {/* ── BRAIN (right) — simplified outline ── */}
+              <g transform="translate(248,98)" filter="url(#hbglow)">
+                {/* outer brain silhouette */}
+                <path d="M0,-52 C18,-58 40,-50 46,-32 C54,-12 44,6 34,16 C42,28 40,46 26,52 C14,58 0,50 0,50 C0,50 -14,58 -26,52 C-40,46 -42,28 -34,16 C-44,6 -54,-12 -46,-32 C-40,-50 -18,-58 0,-52 Z"
+                  fill="none" stroke="url(#hblg2)" strokeWidth="3.5" strokeLinejoin="round"/>
+                {/* brain fold lines */}
+                <path d="M0,-28 C8,-22 12,-10 8,0" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
+                <path d="M-6,-18 C-14,-10 -14,4 -6,12" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
+                <path d="M10,8 C18,14 18,28 10,34" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
+                <path d="M-10,10 C-20,18 -18,32 -10,36" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.6" strokeLinecap="round"/>
+              </g>
+
+              {/* ── WAVE below — coherent heart rhythm ── */}
+              <g transform="translate(0,185)">
+                <line x1="10" y1="0" x2="310" y2="0" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
+                <polyline
+                  points="10,0 40,0 52,-22 60,28 68,-10 76,12 84,0 110,0 130,-30 140,34 150,-12 160,14 170,0 190,0 206,-22 214,28 222,-10 230,12 238,0 260,0 280,-18 288,22 294,0 310,0"
+                  fill="none" stroke="url(#hblg)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
+              </g>
+
+              {/* ── labels ── */}
+              <text x="68" y="186" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="1.5">HEART</text>
+              <text x="248" y="186" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#c8bfb8" letterSpacing="1.5">BRAIN</text>
+              <text x="160" y="215" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#BFA5D8" letterSpacing="2">COHERENT RHYTHM</text>
+            </svg>
+          </div>
+
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(30px,8vw,42px)":"clamp(38px,4.5vw,56px)", color:"#f2ece4", fontWeight:400, marginBottom:24, lineHeight:1.15 }}>
             Your heart sends more signals to your brain than your brain sends to your heart.
           </h2>
