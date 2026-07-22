@@ -748,9 +748,12 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         {/* Sidebar */}
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",flexShrink:0,borderRight:`1px solid ${C.border}` }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
-            <svg viewBox="0 0 100 100" width="22" height="22" style={{flexShrink:0}}>
-              <path d="M50 20 A30 30 0 0 0 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
-              <path d="M50 20 A30 30 0 0 1 50 80" fill="none" stroke="#2CB7A7" strokeWidth="5" strokeLinecap="round"/>
+            <svg viewBox="0 0 100 100" width="28" height="28" fill="none" style={{flexShrink:0}} xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="lg_leftnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+              <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
+              <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
+              <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
+              <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="6"/>
             </svg>
             <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:18,color:C.text}}>
               Self Hypnosis Goddess
