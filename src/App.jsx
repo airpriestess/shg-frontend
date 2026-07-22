@@ -1247,7 +1247,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <svg viewBox="0 0 100 102" width={isMobile?64:80} height={isMobile?64:80}>
+        <svg viewBox="0 0 100 102" width={isMobile?100:140} height={isMobile?100:140}>
           <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
           <circle cx="35" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
           <circle cx="65" cy="35" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
@@ -1263,7 +1263,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           Self Hypnosis Goddess
         </div>
         <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
-          <div style={{ fontSize: isMobile?24:36, letterSpacing:"0.12em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>Audio Library</div>
+          <div style={{ fontSize: isMobile?24:36, letterSpacing:"0.12em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>Self Hypnosis Goddess</div>
           <div style={{ fontSize: isMobile?13:16, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>+ ProofOS ✦</div>
         </div>
       </div>
