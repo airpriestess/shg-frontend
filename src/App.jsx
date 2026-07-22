@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { CSS, T } from "./design/tokens.js";
 import { Btn, Card, Rings, WaveForm, Pill, Modal, FormField, Label, ProgressBar, ArrowIcon, ExternalArrowIcon } from "./components/UI.jsx";
 import AudioVault from "./pages/AudioVault.jsx";
@@ -29,7 +30,8 @@ const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/obje
 export default function App() {
   const authCtx = useAuth();
   const { isAuthenticated, profile } = authCtx;
-  const [screen, setScreen] = useState("landing");
+  const navigate = useNavigate();
+  const location = useLocation();
   const [legalPage, setLegalPage] = useState("tos");
   const [userTier, setUserTier] = useState("goddess");
   const [checkoutModal, setCheckoutModal] = useState(false);
@@ -45,7 +47,7 @@ export default function App() {
 
   const goPortal = async (tier) => {
     if (tier) setUserTier(tier);
-    setScreen("portal");
+    navigate("/portal");
     setPortalTab("dashboard");
     // Request notification permission and schedule reminders
     try {
@@ -56,35 +58,37 @@ export default function App() {
   const openCreateThread = (audioId) => { setPreselectedAudioId(audioId || null); setCreateThreadModal(true); };
   const openAddProof = (type, threadId) => { setAddProofType(type); setAddProofThreadId(threadId || null); };
   const playAudio = (a) => { setCurrentAudio(a); setPlayingId(a.id); };
-  const navigate = (tab) => setPortalTab(tab);
+  const goTab = (tab) => setPortalTab(tab);
 
   return (
     <>
       <style>{CSS}</style>
-      {screen === "tos"     && <TermsOfService   onBack={()=>setScreen("landing")}/> }
-      {screen === "privacy" && <PrivacyPolicy     onBack={()=>setScreen("landing")}/> }
-      {screen === "refunds" && <RefundPolicy      onBack={()=>setScreen("landing")}/> }
-      {screen === "about"   && <About             onBack={()=>setScreen("landing")}/> }
-      {screen === "science"  && <Science            onBack={()=>setScreen("landing")}/> }
-      {screen === "landing" && <Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => setScreen("auth")} onLegal={(p)=>setScreen(p)}/>}
-    {checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}
-      {screen === "auth" && <AuthGate onSuccess={() => goPortal()} />}
-      {screen === "portal" && (
-        authCtx.loading
-          ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <div style={{display:"flex",alignItems:"center",gap:8}}>
-                <svg viewBox="0 0 100 102" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="35" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                  <circle cx="65" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                  <circle cx="35" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                  <circle cx="65" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
-                  <line x1="50" y1="80" x2="50" y2="96" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" opacity="0.8"/>
-                </svg>
-                <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
+<Routes>
+        <Route path="/" element={<><Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>{checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}</>} />
+        <Route path="/about"   element={<About   onBack={()=>navigate("/")}/>} />
+        <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
+        <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
+        <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
+        <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
+        <Route path="/auth"    element={<AuthGate onSuccess={() => goPortal()} />} />
+        <Route path="/portal"  element={
+          authCtx.loading
+            ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                <div style={{display:"flex",alignItems:"center",gap:8}}>
+                  <svg viewBox="0 0 100 102" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="35" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                    <circle cx="65" cy="35" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                    <circle cx="35" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                    <circle cx="65" cy="65" r="18" fill="none" stroke="#fff" strokeWidth="3.5" opacity="0.8"/>
+                    <line x1="50" y1="80" x2="50" y2="96" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" opacity="0.8"/>
+                  </svg>
+                  <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
+                </div>
               </div>
-            </div>
-          : <ErrorBoundary><SpotifyPortal onHome={() => setScreen("landing")} onSignOut={() => { authCtx.signOut(); setScreen("landing"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
-      )}
+            : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
+        } />
+        <Route path="*" element={<Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>} />
+      </Routes>
       <CreateThreadModal open={createThreadModal} onClose={() => setCreateThreadModal(false)} preselectedAudioId={preselectedAudioId} />
       <PhotoProofModal
         open={addProofType === "Photo Proof"}
