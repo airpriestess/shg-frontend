@@ -400,7 +400,7 @@ const Ico = {
 };
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
-export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
+export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
   const { session } = useAuth();
   const userId = session?.user?.id;
   const [pushDismissed, setPushDismissed] = useState(false);
@@ -640,6 +640,9 @@ export default function SpotifyPortal({ onSignOut, isPreview=false, forceMode=nu
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 20px" }}/>
           <PushNotificationToggle userId={userId} C={C}/>
+          <button onClick={onHome} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:16,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            ← Back to site
+          </button>
           <button onClick={onSignOut} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:16,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             Sign out
           </button>
