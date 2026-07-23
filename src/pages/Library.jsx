@@ -269,20 +269,20 @@ export default function Library({ onBack }) {
             {CATEGORIES.map((cat, i) => (
               <div key={i}
                 onClick={() => setActive(active === i ? null : i)}
-                style={{ background: active===i ? (i%3===1?"#e8e0d6":i%3===2?"rgba(245,224,160,0.15)":"rgba(255,255,255,0.06)") : (i%3===0?"#111":i%3===1?"#fdf0e8":"#0d1a17"), border:`1px solid ${active===i ? cat.accent : (i%3===0?"rgba(255,255,255,0.1)":i%3===1?"rgba(0,0,0,0.12)":"rgba(44,183,167,0.2)")}`, borderRadius:20, overflow:"hidden", cursor:"pointer", transition:"border-color 0.2s, background 0.2s" }}>
+                style={{ background: active===i ? (i%3===1?"#e8e0d6":i%3===2?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)":"rgba(255,255,255,0.06)") : (i%3===0?"#111":i%3===1?"#fdf0e8":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)"), border:`1px solid ${active===i ? cat.accent : (i%3===0?"rgba(255,255,255,0.1)":i%3===1?"rgba(0,0,0,0.12)":"rgba(0,0,0,0.15)")}`, borderRadius:20, overflow:"hidden", cursor:"pointer", transition:"border-color 0.2s, background 0.2s" }}>
 
                 {/* Card header */}
                 <div style={{ padding: isMobile?"20px 20px 16px":"24px 28px 20px" }}>
                   <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:12 }}>
                     <div>
-                      <div style={{ fontSize: isMobile?11:11, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1 ? "#8a6050" : cat.accent, marginBottom:8, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Category {String(i+1).padStart(2,"0")}</div>
-                      <h2 style={{ fontSize: isMobile?22:26, fontWeight:400, color: i%3===1 ? "#0a0a0a" : CREAM, fontFamily:"'Jost',sans-serif", margin:0, lineHeight:1.1 }}>{cat.name}</h2>
+                      <div style={{ fontSize: isMobile?11:11, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "rgba(0,0,0,0.5)" : cat.accent, marginBottom:8, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Category {String(i+1).padStart(2,"0")}</div>
+                      <h2 style={{ fontSize: isMobile?22:26, fontWeight:400, color: i%3===1||i%3===2 ? "#0a0a0a" : CREAM, fontFamily:"'Jost',sans-serif", margin:0, lineHeight:1.1 }}>{cat.name}</h2>
                     </div>
                     <div style={{ width:32, height:32, borderRadius:"50%", border:`1px solid ${i%3===1?cat.accent+"80":cat.accent+"40"}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:4, transition:"transform 0.2s", transform: active===i?"rotate(45deg)":"none" }}>
                       <span style={{ color:cat.accent, fontSize:18, lineHeight:1 }}>+</span>
                     </div>
                   </div>
-                  <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.55)" : "rgba(253,240,232,0.65)", lineHeight:1.6, fontFamily:"'Jost',sans-serif", margin:0, fontStyle:"italic" }}>"{cat.tagline}"</p>
+                  <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "rgba(0,0,0,0.6)" : "rgba(253,240,232,0.65)", lineHeight:1.6, fontFamily:"'Jost',sans-serif", margin:0, fontStyle:"italic" }}>"{cat.tagline}"</p>
                 </div>
 
                 {/* Expanded content */}
@@ -290,18 +290,18 @@ export default function Library({ onBack }) {
                   <div style={{ borderTop:`1px solid rgba(255,255,255,0.06)` }}>
                     {/* Pain */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
-                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The pain point</div>
+                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The pain point</div>
                       <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.7)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.pain}</p>
                     </div>
                     {/* What it does */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
-                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>What the audio does</div>
+                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>What the audio does</div>
                       <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.7)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.what}</p>
                     </div>
                     {/* The shift */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", background:`linear-gradient(135deg,${cat.accent}12 0%,transparent 100%)` }}>
                       <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:cat.accent, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The shift</div>
-                      <p style={{ fontSize: isMobile?15:17, color: i%3===1 ? "#0a0a0a" : CREAM, lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.shift}</p>
+                      <p style={{ fontSize: isMobile?15:17, color: i%3===1||i%3===2 ? "#0a0a0a" : CREAM, lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.shift}</p>
                     </div>
                   </div>
                 )}
