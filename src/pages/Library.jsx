@@ -291,12 +291,12 @@ export default function Library({ onBack }) {
                     {/* Pain */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
                       <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The pain point</div>
-                      <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.7)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.pain}</p>
+                      <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "rgba(0,0,0,0.75)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.pain}</p>
                     </div>
                     {/* What it does */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
                       <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>What the audio does</div>
-                      <p style={{ fontSize: isMobile?14:15, color: i%3===1 ? "rgba(0,0,0,0.7)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.what}</p>
+                      <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "rgba(0,0,0,0.75)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.what}</p>
                     </div>
                     {/* The shift */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", background:`linear-gradient(135deg,${cat.accent}12 0%,transparent 100%)` }}>
