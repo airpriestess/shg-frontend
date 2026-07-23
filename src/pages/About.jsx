@@ -1,5 +1,6 @@
 /* About — Reshma Oracle */
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
@@ -10,6 +11,7 @@ const TEAL  = "#2CB7A7";
 const MU    = "#a09080";
 
 export default function About({ onBack }) {
+  const navigate = useNavigate();
   const topRef = useRef(null);
   const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth <= 768);
 
@@ -217,7 +219,7 @@ export default function About({ onBack }) {
         <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(36px,4vw,52px)", color:CREAM, lineHeight:1.2, fontWeight:400, marginBottom:40 }}>
           Press play. Feel the shift.
         </h2>
-        <button onClick={onBack} style={{ background:LG, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:BLACK, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
+        <button onClick={()=>{ navigate("/"); setTimeout(()=>{ const el=document.getElementById("pricing"); if(el) el.scrollIntoView({behavior:"smooth"}); },300); }} style={{ background:LG, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:BLACK, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
           Join Self Hypnosis Goddess →
         </button>
       </div>

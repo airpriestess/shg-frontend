@@ -1,5 +1,6 @@
 /* Library — The 24 Categories */
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
@@ -204,6 +205,7 @@ const CATEGORIES = [
 ];
 
 export default function Library({ onBack }) {
+  const navigate = useNavigate();
   const topRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [active, setActive] = useState(null);
@@ -318,7 +320,7 @@ export default function Library({ onBack }) {
         <p style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.75)", maxWidth:480, margin:"0 auto 40px", lineHeight:1.7 }}>
           That's your gap. That's where you start. Everything else follows.
         </p>
-        <button onClick={onBack} style={{ background:LG, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:BLACK, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
+        <button onClick={()=>{ navigate("/"); setTimeout(()=>{ const el=document.getElementById("pricing"); if(el) el.scrollIntoView({behavior:"smooth"}); },300); }} style={{ background:LG, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:BLACK, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
           Join Self Hypnosis Goddess →
         </button>
       </div>
