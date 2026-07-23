@@ -1,0 +1,11 @@
+.ds-sync/
+ds-bundle/
+.design-sync/.cache/
+.design-sync/learnings/
+.design-sync/node_modules
+.design-sync/previews/.tmp
+.design-sync/ds-styles.css
+.design-sync/ds-entry.jsx
+node_modules/shg-frontend
+node_modules/@types/react
+node_modules/csstype

@@ -1,0 +1,21 @@
+{
+  "projectId": "acb0f474-0d15-45fc-b955-07b9c1d49a87",
+  "shape": "package",
+  "pkg": "shg-frontend",
+  "globalName": "SHG",
+  "srcDir": "src",
+  "buildCmd": "node .design-sync/prep.mjs",
+  "cssEntry": ".design-sync/ds-styles.css",
+  "extraEntries": [
+    "./.design-sync/preview-support.jsx",
+    "./.design-sync/ds-entry.jsx"
+  ],
+  "provider": {
+    "component": "SHGPreviewProvider"
+  },
+  "componentSrcMap": {
+    "App": null,
+    "AuthProvider": null,
+    "SHGPreviewProvider": null
+  }
+}
