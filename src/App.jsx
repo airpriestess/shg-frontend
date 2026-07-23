@@ -1271,19 +1271,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      {/* DELULU IS THE SOLULU — own box, right after brand block */}
-      <div style={{ background:"#000", padding: isMobile?"32px 24px 48px":"20px 48px 48px", textAlign:"center" }}>
+      {/* DELULU IS THE SOLULU — cream background to break up black */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"48px 24px 56px":"56px 48px 64px", textAlign:"center" }}>
         <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
           Delulu is the solulu.
         </div>
       </div>
 
-      {/* FORMULA — one massive equation line in LG-bordered box */}
-      <div style={{ background:"#000", padding: isMobile?"8px 20px 40px":"12px 48px 52px", textAlign:"center" }}>
+      {/* FORMULA — cream background, equation wraps on mobile */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"0 20px 56px":"12px 48px 64px", textAlign:"center" }}>
         {/* Lucky Girl gradient border via padding trick */}
         <div style={{ display:"inline-block", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, padding:"2px" }}>
           <div style={{ background:"#000", borderRadius:14, padding: isMobile?"20px 20px":"28px 48px" }}>
-        <div style={{ fontSize: isMobile?"clamp(15px,3.8vw,20px)":"clamp(16px,1.6vw,22px)", fontWeight:400, fontFamily:"'Jost',sans-serif", letterSpacing:"0em", lineHeight:1.3, display:"flex", flexWrap:"nowrap", alignItems:"center", justifyContent:"center", gap: isMobile?"6px 4px":"0 10px", whiteSpace:"nowrap" }}>
+        <div style={{ fontSize: isMobile?"clamp(12px,3.2vw,16px)":"clamp(16px,1.6vw,22px)", fontWeight:400, fontFamily:"'Jost',sans-serif", letterSpacing:"0em", lineHeight:1.5, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"6px 6px":"0 10px" }}>
           {[
             { t:"Hypnosis",        c:"#F5E0A0" },
             { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
