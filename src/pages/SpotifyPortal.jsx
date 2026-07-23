@@ -1546,6 +1546,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
     setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date}]}:t));
   };
+  const deleteSign = (threadId, signIdx) => {
+    setThreads(ts=>ts.map(t=>t.id===threadId?{...t,signs:(t.signs||[]).filter((_,i)=>i!==signIdx)}:t));
+  };
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
   const saveEdit = (id) => { if(editText.trim()) setThreads(ts=>ts.map(t=>t.id===id?{...t,desire:editText.trim()}:t)); setEditId(null); };
@@ -1657,8 +1660,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       </div>
                       {promoCatOpen===item.id && (
                         <>
-                        <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-                        <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                        <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
+                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                           {Object.keys(CAT_ICONS).map(c=>{
                             const catColor = CAT_ICONS[c].accent;
                             return (
@@ -1757,7 +1760,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {trackPickerOpen && (
               <>
               <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"fixed", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {TRACKS.map(t=>{
                   const catColor = CAT_ICONS[t.cat]?.accent || R;
                   return (
@@ -1906,13 +1909,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
                 </span>
                 <span style={{ fontSize:12,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
+                <button onClick={()=>deleteSign(d.id,si)} style={{ background:"none",border:"none",color:"rgba(255,255,255,0.25)",cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2 }} title="Remove sign">✕</button>
               </div>
             ))}
             {!d.done && (
               <div style={{ display:"flex",gap:6,marginTop:8 }}>
                 <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
-                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:"#000",borderRadius:8,padding:"9px 10px",fontSize:14,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"9px 10px",fontSize:14,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                 <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:8,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
                 <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
                   <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
