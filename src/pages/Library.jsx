@@ -276,10 +276,11 @@ export default function Library({ onBack }) {
                   <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:12 }}>
                     <div>
                       <div style={{ fontSize: isMobile?11:11, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "rgba(0,0,0,0.5)" : cat.accent, marginBottom:8, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Category {String(i+1).padStart(2,"0")}</div>
+                    {active !== i && <div style={{ fontSize:11, letterSpacing:"0.14em", textTransform:"uppercase", color: i%3===0 ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Tap to explore</div>}
                       <h2 style={{ fontSize: isMobile?22:26, fontWeight:400, color: i%3===1||i%3===2 ? "#0a0a0a" : CREAM, fontFamily:"'Jost',sans-serif", margin:0, lineHeight:1.1 }}>{cat.name}</h2>
                     </div>
-                    <div style={{ width:32, height:32, borderRadius:"50%", border:`1px solid ${i%3===1?cat.accent+"80":cat.accent+"40"}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:4, transition:"transform 0.2s", transform: active===i?"rotate(45deg)":"none" }}>
-                      <span style={{ color:cat.accent, fontSize:18, lineHeight:1 }}>+</span>
+                    <div style={{ width:36, height:36, borderRadius:"50%", background: i%3===0 ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, marginTop:4, transition:"transform 0.2s", transform: active===i?"rotate(45deg)":"none", border: i%3===0?"1px solid rgba(255,255,255,0.2)":"1px solid rgba(0,0,0,0.15)" }}>
+                      <span style={{ color: i%3===0 ? "#fff" : "#000", fontSize:20, lineHeight:1, fontWeight:300 }}>+</span>
                     </div>
                   </div>
                   <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "rgba(0,0,0,0.6)" : "rgba(253,240,232,0.65)", lineHeight:1.6, fontFamily:"'Jost',sans-serif", margin:0, fontStyle:"italic" }}>"{cat.tagline}"</p>
