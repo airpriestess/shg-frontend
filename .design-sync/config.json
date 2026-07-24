@@ -17,5 +17,38 @@
     "App": null,
     "AuthProvider": null,
     "SHGPreviewProvider": null
-  }
+  },
+  "libOverrides": {
+    "source-kit.mjs": "exclude app-bootstrap (createRoot/render) files from synth entry"
+  },
+  "overrides": {
+    "Modal": {
+      "cardMode": "single",
+      "viewport": "560x720",
+      "primaryStory": "LogASign"
+    },
+    "CreateThreadModal": {
+      "cardMode": "single",
+      "viewport": "560x940"
+    },
+    "PhotoProofModal": {
+      "cardMode": "single",
+      "viewport": "560x900"
+    },
+    "VoiceProofModal": {
+      "cardMode": "single",
+      "viewport": "560x760"
+    },
+    "KnowledgeGuide": {
+      "cardMode": "single",
+      "viewport": "600x760"
+    },
+    "Science": {
+      "cardMode": "column"
+    }
+  },
+  "extraFonts": [
+    ".design-sync/fonts.css"
+  ],
+  "readmeHeader": ".design-sync/conventions.md"
 }

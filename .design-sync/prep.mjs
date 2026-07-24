@@ -13,8 +13,23 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repo = join(here, '..');
 const srcDir = join(repo, 'src');
 
-// 1. styles
-writeFileSync(join(here, 'ds-styles.css'), CSS.trimStart(), 'utf8');
+// 1. styles — strip the remote Google Fonts @import; the same families are
+//    self-hosted via cfg.extraFonts (.design-sync/fonts.css + fonts/). This
+//    keeps the shipped DS self-contained and stops the render harness (whose
+//    chromium has no proxy) from hanging on a blocking remote stylesheet.
+const styles = CSS.trimStart().replace(
+  /@import\s+url\(['"]?https:\/\/fonts\.googleapis\.com[^)]*\)\s*;?\s*\n?/g,
+  '',
+);
+// design-sync stylesheet corrections (see NOTES.md → "Sync-time corrections").
+// WaveForm sets bar HEIGHTS inline but no width, so its flex children collapse
+// to 0px and the waveform is invisible everywhere. Give the bars a width so the
+// component renders as intended in every design built with it.
+const CORRECTIONS = `
+/* ── design-sync corrections ── */
+.wave span{width:3px;border-radius:2px;flex-shrink:0;}
+`;
+writeFileSync(join(here, 'ds-styles.css'), styles + CORRECTIONS, 'utf8');
 
 // 2. default-export barrel
 const SKIP = new Set(['App']); // App renders the whole site; excluded as a card
