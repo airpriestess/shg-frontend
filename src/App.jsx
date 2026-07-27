@@ -1340,10 +1340,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ maxWidth:900, margin:"0 auto" }}>
 
           {/* Label + Heading */}
-          <div style={{ textAlign:"center", marginBottom: isMobile?16:24 }}>
-            <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#B76E79", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Manifest your dream reality through self-hypnosis and subliminals</div>
-            <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(52px,5.5vw,72px)", fontWeight:400, color:"#0a0806", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>How it works.</div>
-            <div style={{ fontSize: isMobile?15:18, color:"rgba(10,8,6,0.45)", fontFamily:"'Jost',sans-serif", maxWidth:520, margin:"0 auto 56px" }}>From beta to theta to a brand new identity — and then proof that it's working.</div>
+          <div style={{ textAlign:"center", marginBottom: isMobile?48:72 }}>
+            <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#0a0806", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:16 }}>Manifest your dream reality<br/>through self-hypnosis<br/>and subliminals.</div>
+            <div style={{ fontSize: isMobile?15:18, color:"rgba(10,8,6,0.45)", fontFamily:"'Jost',sans-serif", maxWidth:480, margin:"0 auto 32px" }}>From beta to theta to a brand new identity.</div>
+            <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#B76E79", fontFamily:"'Jost',sans-serif" }}>How it works ↓</div>
           </div>
 
           {/* Step boxes — Ali Abdaal curriculum style */}
