@@ -873,10 +873,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnnual, setMenuAnnual] = useState(false);
   const location = useLocation();
-  const [waitlistOpen, setWaitlistOpen] = useState(() => !!location.state?.openWaitlist);
+  const [waitlistOpen, setWaitlistOpen] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("waitlist") === "1";
+  });
   useEffect(() => {
-    if (location.state?.openWaitlist) {
-      window.history.replaceState({}, document.title);
+    if (new URLSearchParams(window.location.search).get("waitlist") === "1") {
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
   const [shopOpen, setShopOpen] = useState(false);
