@@ -1357,7 +1357,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <div style={{ fontSize:14, color:"rgba(255,255,255,0.65)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
             </div>
 
-            <div style={{ fontSize: isMobile?28:34, color:"rgba(255,255,255,0.3)", textAlign:"center", padding: isMobile?"8px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
+            <div style={{ fontSize: isMobile?28:34, color:"#000", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:700 }}>{isMobile?"↓":"→"}</div>
 
             {/* THETA — green/teal, bold, clearly transitioning */}
             <div style={{ background:"linear-gradient(135deg,#0d3b35 0%,#134f47 50%,#1a6b60 100%)", border:"2px solid #2CB7A7", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center" }}>
@@ -1367,7 +1367,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <div style={{ fontSize:14, color:"rgba(255,255,255,0.75)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>The subconscious opens. New beliefs install without resistance.</div>
             </div>
 
-            <div style={{ fontSize: isMobile?28:34, color:"rgba(255,255,255,0.3)", textAlign:"center", padding: isMobile?"8px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
+            <div style={{ fontSize: isMobile?28:34, color:"#000", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:700 }}>{isMobile?"↓":"→"}</div>
 
             {/* IDENTITY — full LG gradient, maximum brightness, thick bold text */}
             <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center", boxShadow:"0 16px 64px rgba(44,183,167,0.45), 0 4px 20px rgba(245,224,160,0.3)" }}>
@@ -1377,6 +1377,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <div style={{ fontSize:15, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.65, fontWeight:600 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
             </div>
 
+          </div>
+
+          {/* HOW IT WORKS divider */}
+          <div style={{ textAlign:"center", margin: isMobile?"48px 0 40px":"72px 0 56px" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Step by step</div>
+            <div style={{ fontSize: isMobile?"clamp(28px,7vw,40px)":"clamp(36px,4vw,52px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0 }}>How it works.</div>
           </div>
 
           {/* Numbered steps — white boxes, black text, icons, arrows */}
