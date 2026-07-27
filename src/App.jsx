@@ -1441,8 +1441,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
                         {/* SIX FORMATS — clean white card, 2-col grid, no overlapping visuals */}
             <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:10, textAlign:"center" }}>Six formats</div>
-              <div style={{ fontSize: isMobile?"clamp(22px,6vw,28px)":"clamp(26px,3vw,34px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.01em", lineHeight:1.2 }}>Each does something different.</div>
+              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Six formats</div>
+              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:500, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
                   { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
@@ -1452,11 +1452,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
                   { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#BFA5D8", dot:"#BFA5D8" },
                 ].map((f,i)=>(
-                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"18px 20px", background:"#f8f8f8", borderRadius:14, borderLeft:`3px solid ${f.dot}` }}>
+                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#fff", borderRadius:14, borderLeft:`4px solid ${f.dot}`, boxShadow:"0 2px 12px rgba(0,0,0,0.04)" }}>
                     <div style={{ width:8, height:8, borderRadius:"50%", background:f.dot, flexShrink:0, marginTop:6 }}/>
                     <div>
-                      <div style={{ fontSize: isMobile?15:17, fontWeight:500, color:"#0a0a0a", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
-                      <div style={{ fontSize: isMobile?14:16, color:"#4a4a4a", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
+                      <div style={{ fontSize: isMobile?17:20, fontWeight:600, color:"#000", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
+                      <div style={{ fontSize: isMobile?14:16, color:"#333", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
                     </div>
                   </div>
                 ))}
@@ -1465,8 +1465,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
             {/* FREQUENCIES — white card, clean horizontal bars */}
             <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:10, textAlign:"center" }}>Solfeggio Frequencies</div>
-              <div style={{ fontSize: isMobile?"clamp(22px,6vw,28px)":"clamp(26px,3vw,34px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.01em", lineHeight:1.2 }}>Every track is tuned to a frequency.</div>
+              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Solfeggio Frequencies</div>
+              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:500, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
               <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
                 {[
                   { hz:"963hz", name:"Activation",    assoc:"Pineal gland activation · higher connection",  pct:100, color:"#F5E0A0" },
@@ -1481,11 +1481,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#2CB7A7" },
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
-                    <div style={{ fontSize: isMobile?11:13, fontWeight:600, color:row.color, width: isMobile?44:64, flexShrink:0, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>{row.hz}</div>
+                    <div style={{ fontSize: isMobile?13:16, fontWeight:700, color:"#000", width: isMobile?52:72, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
                     <div style={{ flex:1 }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
-                        <div style={{ fontSize: isMobile?12:14, fontWeight:500, color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{row.name}</div>
-                        <div style={{ fontSize: isMobile?11:12, color:"#6a6a6a", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                        <div style={{ fontSize: isMobile?14:17, fontWeight:600, color:"#000", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
+                        <div style={{ fontSize: isMobile?12:14, color:"#333", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
                       <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
                         <div style={{ width:`${row.pct}%`, height:"100%", background:row.color, borderRadius:3 }}/>
@@ -1506,14 +1506,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(32px,4vw,46px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15, textAlign:"center" }}>
+          <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20 }}>Your emotional state, measured</div>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#f2ece4", fontWeight:400, marginBottom:24, lineHeight:1.05, textAlign:"center" }}>
             The Hawkins Scale.
           </h2>
           <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
             Your emotional state is not a feeling — it's a frequency. And your heart broadcasts it. Every intention you log in ProofOS gets tagged against this 17-level scale. As you listen, your baseline climbs. Your heart rhythm shifts. Your brain follows. Watch the evidence build — not just in what arrives, but in where you are when it does.
           </p>
-          <p style={{ fontSize: isMobile?14:16, color:"#2CB7A7", lineHeight:1.7, maxWidth:520, margin:"0 auto 32px", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
+          <p style={{ fontSize: isMobile?"clamp(22px,5.5vw,28px)":"clamp(26px,2.8vw,36px)", color:"#f2ece4", lineHeight:1.4, maxWidth:580, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em" }}>
             SHG doesn't just install beliefs. It shifts the state you broadcast from.
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
