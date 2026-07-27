@@ -10,17 +10,17 @@ import { supabase } from "../lib/supabase.js";
 const HAWKINS = [
   {n:"Shame",       v:20,  c:"#2a0a0a"}, // near black-red
   {n:"Guilt",       v:30,  c:"#5a0f0f"}, // deep crimson
-  {n:"Apathy",      v:50,  c:"#6b6b6b"}, // flat grey
-  {n:"Grief",       v:75,  c:"#4a3060"}, // deep purple-grey
-  {n:"Fear",        v:100, c:"#7b3f00"}, // dark amber-brown
+  {n:"Apathy",      v:50,  c:"#888888"}, // flat grey
+  {n:"Grief",       v:75,  c:"#BFA5D8"}, // deep purple-grey
+  {n:"Fear",        v:100, c:"#167A6B"}, // dark amber-brown
   {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
-  {n:"Anger",       v:150, c:"#e67e22"}, // orange
+  {n:"Anger",       v:150, c:"#E8B870"}, // orange
   {n:"Pride",       v:175, c:"#f1c40f"}, // yellow
   {n:"Courage",     v:200, c:"#2CB7A7"}, // green — the line
-  {n:"Neutrality",  v:250, c:"#1abc9c"}, // teal-green
-  {n:"Willingness", v:310, c:"#3498db"}, // sky blue
-  {n:"Acceptance",  v:350, c:"#2980b9"}, // deeper blue
-  {n:"Reason",      v:400, c:"#9b59b6"}, // purple
+  {n:"Neutrality",  v:250, c:"#167A6B"}, // teal-green
+  {n:"Willingness", v:310, c:"#2CB7A7"}, // sky blue
+  {n:"Acceptance",  v:350, c:"#2CB7A7"}, // deeper blue
+  {n:"Reason",      v:400, c:"#BFA5D8"}, // purple
   {n:"Love",        v:500, c:"#F5E0A0"},
   {n:"Joy",         v:540, c:"#F5E0A0"},
   {n:"Peace",       v:600, c:"#F5E0A0"}, // champagne — brightest on scale
@@ -62,8 +62,8 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#c8bfb8", dim:"#e8e0d8", border:"rgba(44,183,167,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
-  light: { bg:"#f8fbfb", bg2:"#f0f8f7", bg3:"rgba(44,183,167,0.08)", bg4:"rgba(44,183,167,0.15)", nav:"rgba(248,251,251,0.97)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(44,183,167,0.2)", inputBg:"rgba(44,183,167,0.06)", inputCr:"#0a0a0a" },
+  dark:  { bg:"#080808", bg2:"#111", bg3:"rgba(232,184,112,0.08)", bg4:"rgba(232,184,112,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#c8bfb8", dim:"#e8e0d8", border:"rgba(232,184,112,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
+  light: { bg:"#fdf8f2", bg2:"#fffdf9", bg3:"rgba(232,184,112,0.08)", bg4:"rgba(232,184,112,0.12)", nav:"rgba(253,248,242,0.97)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(232,184,112,0.2)", inputBg:"rgba(232,184,112,0.06)", inputCr:"#0a0a0a" },
 };
 
 const R = "#2CB7A7", P = "#BFA5D8";
@@ -73,11 +73,11 @@ const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
 // Light theme: cream fading to a soft champagne pastel.
 const TAB_WASH = {
-  home:    { dark: "linear-gradient(180deg,#080808 0%,#0a1210 55%,#080808 100%)",  light: "#f8fbfb" },
-  search:  { dark: "linear-gradient(180deg,#080808 0%,#0a1214 55%,#080808 100%)",  light: "#f8fbfb" },
-  library: { dark: "linear-gradient(180deg,#080808 0%,#0a1410 55%,#080808 100%)",  light: "#f8fbfb" },
-  proof:   { dark: "linear-gradient(180deg,#080808 0%,#0c1a18 55%,#080808 100%)",  light: "#f8fbfb" },
-  shop:    { dark: "linear-gradient(180deg,#080808 0%,#0a1010 55%,#080808 100%)",  light: "#f8fbfb" },
+  home:    { dark: "#080808", light: "#fdf8f2" },
+  search:  { dark: "#080808", light: "#fdf8f2" },
+  library: { dark: "#080808", light: "#fdf8f2" },
+  proof:   { dark: "#080808", light: "#fdf8f2" },
+  shop:    { dark: "#080808", light: "#fdf8f2" },
 };
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
@@ -106,13 +106,13 @@ const CAT_ICONS = {
   Selfmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
   Erosmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/>' },
   Singlemaxxing: { accent:"#F5E0A0", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
-  Wellnessmaxxing: { accent:"#e0c090", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Wellnessmaxxing: { accent:"#E8B870", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Sleepmaxxing: { accent:"#2CB7A7", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
   Studymaxxing: { accent:"#2CB7A7", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
   Friendmaxxing: { accent:"#2CB7A7", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Peacemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
   Confidencemaxxing: { accent:"#E8B870", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
-  Stylemaxxing: { accent:"#e0c090", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
+  Stylemaxxing: { accent:"#E8B870", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
   Healmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Lifemaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
@@ -685,7 +685,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <>
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
-            <div style={{ fontSize:13,color:"#2CB7A7",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
               Select your state on the Hawkins scale.{" "}
               <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#2CB7A7",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
@@ -761,7 +761,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #BFA5D8":"2px solid transparent",color:tab===n.id?"#E8B870":n.id==="proof"?"#2CB7A7":C.mu,fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?"#E8B870":n.id==="proof"?"#2CB7A7":C.mu,fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
               onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#2CB7A7":C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
@@ -925,16 +925,16 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
               <Thumb title={track.title} cat={track.cat} size={260} radius={16}/>
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:32,fontWeight:400,color:"#f5f0e8",marginBottom:6 }}>{track.title}</div>
+              <div style={{ fontSize:32,fontWeight:400,color:"#fdf8f2",marginBottom:6 }}>{track.title}</div>
               <div style={{ fontSize:16,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
               <div style={{ fontSize:14,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
-              <div style={{ fontSize:19,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
+              <div style={{ fontSize:19,lineHeight:1.75,color:"#fdf8f2",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
               <div style={{ fontSize:14,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
                     <span style={{ color:"#E8B870",fontSize:17,marginTop:2 }}>✦</span>
-                    <span style={{ fontSize:18,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
+                    <span style={{ fontSize:18,lineHeight:1.65,color:"#fdf8f2" }}>{b}</span>
                   </div>
                 ))}
               </div>
@@ -943,7 +943,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                   <span style={{ fontSize:20 }}>📖</span>
                   <div>
                     <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:16,color:"#f5f0e8",fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    <div style={{ fontSize:16,color:"#fdf8f2",fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
                   </div>
                 </a>
               )}
@@ -1059,7 +1059,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       </>
       )}
       <div style={{ width:"100%",marginBottom:8 }}>
-        <div style={{ height:4,background:"#4a4a4a",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
+        <div style={{ height:4,background:"#888888",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
           <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",position:"relative",transition:"width 0.3s" }}>
             <div style={{ position:"absolute",right:-6,top:"50%",transform:"translateY(-50%)",width:13,height:13,borderRadius:"50%",background:C.cr }}/>
           </div>
@@ -1437,10 +1437,10 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:16,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+              <div style={{ fontSize:16,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#000000"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#167A6B" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
@@ -1498,7 +1498,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
   // ProofOS — always LG gradient background, white cards, black text
-  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#444444", dim:"#222222", border:"rgba(0,0,0,0.08)", inputBg:"rgba(255,255,255,0.9)" };
+  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#888888", dim:"#111", border:"rgba(0,0,0,0.08)", inputBg:"rgba(255,255,255,0.9)" };
   const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
   if (isPreview) return (
@@ -1659,7 +1659,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       {promoCatOpen===item.id && (
                         <>
                         <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
-                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fdf8f2", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                           {Object.keys(CAT_ICONS).map(c=>{
                             const catColor = CAT_ICONS[c].accent;
                             return (
@@ -1758,7 +1758,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {trackPickerOpen && (
               <>
               <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"fixed", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fffcf8", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"fixed", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fdf8f2", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {TRACKS.map(t=>{
                   const catColor = CAT_ICONS[t.cat]?.accent || R;
                   return (
