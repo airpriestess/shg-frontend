@@ -1351,7 +1351,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
-        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:"#000",background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
@@ -1360,8 +1360,8 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             onClick={openDropdown}
             style={{
               width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
-              background:"#000", border:`1px solid ${R}66`, borderRadius:12,
-              padding:"14px 16px", fontSize:16, fontWeight:400, color:R,
+              background:"#000", border:"1px solid rgba(232,184,112,0.4)", borderRadius:12,
+              padding:"14px 16px", fontSize:16, fontWeight:400, color:"#E8B870",
               fontFamily:"'Jost',sans-serif", cursor:"pointer"
             }}
           >
@@ -1372,10 +1372,11 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <>
             <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"transparent" }}/>
             <div style={{
-              position:"fixed",
-              top: dropRect.bottom + 6,
-              left: dropRect.left,
-              width: dropRect.width,
+              position:"absolute",
+              top:"100%",
+              left:0,
+              right:0,
+              marginTop:6,
               zIndex:9999,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
               maxHeight:320, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
@@ -1414,7 +1415,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
-          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?R:"none",border:`1px solid ${libFormat===fm?R:C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
+          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
         ))}
       </div>
       {shown.length===0 && cat==="Liked" && (
@@ -1496,15 +1497,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterInput, setFeelAfterInput] = useState("");
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
-  // ProofOS now respects the real app theme instead of being locked to the gold ombre
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
-  const PC = isDark
-    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.14)", inputBg:"#1a1a1a" }
-    : { card:"#fffcf8", cardSolid:"#fffcf8", text:"#1a1008", mu:"#3a3028", dim:"#5a4a38", border:"rgba(180,104,48,0.16)", inputBg:"rgba(180,104,48,0.06)" };
-  const PAGE_BG = isDark ? "#080808" : "#fdf8f2";
+  // ProofOS — always LG gradient background, white cards, black text
+  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#444444", dim:"#222222", border:"rgba(0,0,0,0.08)", inputBg:"rgba(255,255,255,0.9)" };
+  const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
   if (isPreview) return (
-    <div style={{ padding:"40px 20px",textAlign:"center",background:PAGE_BG,minHeight:"100%" }}>
+    <div style={{ padding:"40px 20px",textAlign:"center",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",minHeight:"100%" }}>
       <div style={{ fontSize:36,marginBottom:16,color:"#2CB7A7" }}>✦</div>
       <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:28,fontWeight:400,color:PC.text,marginBottom:10 }}>ProofOS</div>
       <div style={{ fontSize:16,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
@@ -1572,8 +1570,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   };
 
   return (
-    <div style={{ padding:"16px 16px 24px", background:PAGE_BG, minHeight:"100%" }}>
-      <div style={{ fontSize:22,fontWeight:400,marginBottom:2,color:PC.text }}>ProofOS <span style={{ color:"#000" }}>✦</span></div>
+    <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
+      <div style={{ fontSize:22,fontWeight:400,marginBottom:2,color:"#000",fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
       <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
       {/* Filter banner — shown when drilled in from Analytics */}
@@ -1600,9 +1598,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`],["threads","Active"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?"linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)":"none",
-            border:`1px solid ${view===k?"transparent":"#2CB7A7"}`,
-            color:view===k?"#000":"#2CB7A7", fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+            background:view===k?"#000":"rgba(255,255,255,0.6)",
+            border:"none",
+            color:view===k?"#fff":"#000", fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
       </div>
 
