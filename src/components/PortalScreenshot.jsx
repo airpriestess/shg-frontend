@@ -1,8 +1,8 @@
 /* PortalScreenshot — mobile phone mockup, matches real dashboard exactly */
 
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#c8bfb8", dim:"#e8e0d8", border:"rgba(44,183,167,0.15)" },
-  light: { bg:"#f8fbfb", bg2:"#f0f8f7", bg3:"rgba(44,183,167,0.08)", nav:"rgba(248,251,251,0.97)", cr:"#0a0a0a", mu:"#3a3028", dim:"#2a2a2a", border:"rgba(44,183,167,0.2)" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,184,112,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#c8bfb8", dim:"#e8e0d8", border:"rgba(232,184,112,0.12)" },
+  light: { bg:"#f8fbfb", bg2:"#f0f8f7", bg3:"rgba(232,184,112,0.08)", nav:"rgba(248,251,251,0.97)", cr:"#0a0a0a", mu:"#3a3028", dim:"#2a2a2a", border:"rgba(232,184,112,0.15)" },
 };
 
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
@@ -35,11 +35,10 @@ const TRACKS = [
 const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Desiresmaxxing"];
 
 function Thumb({ cat, size, radius=4 }) {
-  const c = CAT[cat] || { accent: TEAL };
   return (
     <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0,
-      background:`linear-gradient(135deg,${c.accent}40 0%,${c.accent}18 50%,#000 100%)`,
-      border:`1px solid ${c.accent}40`,
+      background:"#111",
+      border:"1px solid rgba(255,255,255,0.08)",
       display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
       {/* Clover logo mark */}
       <svg viewBox="0 0 100 102" width={size*0.44} height={size*0.44} fill="none">
@@ -76,12 +75,12 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
   return (
     <div style={{ width, height:h, background:C.bg, borderRadius:r24, overflow:"hidden",
       fontFamily:"'Jost',sans-serif", color:C.cr, position:"relative", flexShrink:0,
-      boxShadow:`0 ${Math.round(24*s)}px ${Math.round(60*s)}px rgba(44,183,167,0.25), 0 0 0 ${Math.round(6*s)}px rgba(44,183,167,0.3)` }}>
+      boxShadow:`0 ${Math.round(24*s)}px ${Math.round(60*s)}px rgba(0,0,0,0.6)` }}>
 
       {/* STATUS BAR */}
       <div style={{ height:Math.round(38*s), display:"flex", alignItems:"flex-end",
         justifyContent:"space-between", padding:`0 ${pad}px ${Math.round(6*s)}px` }}>
-        <span style={{ fontSize:f.sm, color:TEAL }}>9:41</span>
+        <span style={{ fontSize:f.sm, color:C.cr }}>9:41</span>
         <span style={{ fontSize:f.xs, color:C.mu }}>●● 100%</span>
       </div>
       <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)",
@@ -121,7 +120,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         {TRACKS.slice(0,4).map((t,i)=>(
           <div key={i} style={{ flexShrink:0 }}>
             <Thumb cat={t.cat} size={thumbCard} radius={Math.round(6*s)}/>
-            <div style={{ fontSize:f.xs, color:i===0?TEAL:C.cr, marginTop:Math.round(3*s),
+            <div style={{ fontSize:f.xs, color:C.cr, marginTop:Math.round(3*s),
               width:thumbCard, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{t.title}</div>
             <div style={{ fontSize:f.xs-1, color:C.mu }}>Reshma Oracle</div>
           </div>
@@ -183,9 +182,9 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
           <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center",
             justifyContent:"center", gap:Math.round(2*s), paddingBottom:Math.round(4*s) }}>
             <div style={{ width:Math.round(4*s), height:Math.round(4*s), borderRadius:"50%",
-              background: n.active ? TEAL : "transparent",
+              background: n.active ? "#E8B870" : "transparent",
               border: n.active ? "none" : `1px solid ${C.border}` }}/>
-            <span style={{ fontSize:Math.max(5,Math.round(8*s)), color:n.active?TEAL:C.mu,
+            <span style={{ fontSize:Math.max(5,Math.round(8*s)), color:n.active?"#E8B870":C.mu,
               whiteSpace:"nowrap" }}>{n.label}</span>
           </div>
         ))}
