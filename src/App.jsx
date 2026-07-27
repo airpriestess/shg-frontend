@@ -1335,72 +1335,70 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-      {/* HOW IT WORKS — numbered list, black bg, cream text */}
-      <div style={{ background:"#000", width:"100%", padding: isMobile?"72px 24px 88px":"104px 120px 120px" }}>
+      {/* HOW IT WORKS — LG gradient background getting darker, white boxes */}
+      <div style={{ background:"linear-gradient(180deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 50%,#2CB7A7 78%,#167A6B 100%)", width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
         <div style={{ maxWidth:720, margin:"0 auto" }}>
 
-          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The method</div>
-          <div style={{ fontSize: isMobile?"clamp(36px,9vw,56px)":"clamp(48px,5vw,68px)", fontWeight:300, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>Manifest your dream reality<br/>through self-hypnosis<br/>and subliminals.</div>
-          <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.4)", fontFamily:"'Jost',sans-serif", marginBottom: isMobile?56:80 }}>Here is exactly what happens when you press play.</div>
+          {/* Heading — dark text on light gradient top */}
+          <div style={{ marginBottom: isMobile?48:72, textAlign:"center" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>The method</div>
+            <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12 }}>Manifest your dream reality<br/>through self-hypnosis<br/>and subliminals.</div>
+            <div style={{ fontSize: isMobile?15:17, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif" }}>Here is exactly what happens when you press play.</div>
+          </div>
 
-          {/* BETA → THETA → IDENTITY visual */}
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?64:96 }}>
-            {/* BETA */}
-            <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding: isMobile?"28px 20px":"40px 32px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.3)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
-              <div style={{ fontSize: isMobile?36:48, fontWeight:300, color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Beta</div>
-              <div style={{ fontSize:13, color:"rgba(242,236,228,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>13–40 Hz</div>
-              <div style={{ fontSize: isMobile?13:14, color:"rgba(242,236,228,0.45)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>Your waking state. The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
+          {/* Beta → Theta → Identity boxes */}
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?48:72 }}>
+            <div style={{ background:"rgba(255,255,255,0.85)", borderRadius:20, padding: isMobile?"24px 16px":"32px 24px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:300, color:"#0a0806", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Beta</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>13–40 Hz</div>
+              <div style={{ fontSize:13, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6 }}>The critical mind is active. Nothing installs here.</div>
             </div>
-            {/* Arrow */}
-            <div style={{ fontSize: isMobile?24:32, color:"rgba(232,184,112,0.4)", textAlign:"center", padding: isMobile?"4px 0":"0 20px" }}>{isMobile?"↓":"→"}</div>
-            {/* THETA */}
-            <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20, padding: isMobile?"28px 20px":"40px 32px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
-              <div style={{ fontSize: isMobile?36:48, fontWeight:300, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Theta</div>
-              <div style={{ fontSize:13, color:"rgba(44,183,167,0.6)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>4–8 Hz</div>
-              <div style={{ fontSize: isMobile?13:14, color:"rgba(242,236,228,0.45)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>The subconscious opens. The critical mind steps back. New beliefs install without resistance.</div>
+            <div style={{ fontSize: isMobile?24:28, color:"rgba(0,0,0,0.3)", textAlign:"center", padding: isMobile?"4px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
+            <div style={{ background:"rgba(255,255,255,0.85)", borderRadius:20, padding: isMobile?"24px 16px":"32px 24px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:300, color:"#0a0806", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Theta</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>4–8 Hz</div>
+              <div style={{ fontSize:13, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6 }}>The subconscious opens. New beliefs install without resistance.</div>
             </div>
-            {/* Arrow */}
-            <div style={{ fontSize: isMobile?24:32, color:"rgba(232,184,112,0.4)", textAlign:"center", padding: isMobile?"4px 0":"0 20px" }}>{isMobile?"↓":"→"}</div>
-            {/* IDENTITY */}
-            <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:20, padding: isMobile?"28px 20px":"40px 32px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The result</div>
-              <div style={{ fontSize: isMobile?36:48, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Identity</div>
-              <div style={{ fontSize:13, color:"rgba(0,0,0,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>Installed.</div>
-              <div style={{ fontSize: isMobile?13:14, color:"rgba(0,0,0,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
+            <div style={{ fontSize: isMobile?24:28, color:"rgba(0,0,0,0.3)", textAlign:"center", padding: isMobile?"4px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
+            <div style={{ background:"rgba(255,255,255,0.85)", borderRadius:20, padding: isMobile?"24px 16px":"32px 24px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>The result</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:300, color:"#0a0806", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Identity</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>Installed.</div>
+              <div style={{ fontSize:13, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6 }}>Your new self-concept runs. Reality follows automatically.</div>
             </div>
           </div>
 
-          {/* Numbered steps */}
-          {[
-            { n:1, title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play.", color:"#F5E0A0" },
-            { n:2, title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens.", color:"#E8B870" },
-            { n:3, title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming.", color:"#E8B870" },
-            { n:4, title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering.", color:"#BFA5D8" },
-            { n:5, title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session.", color:"#BFA5D8" },
-            { n:6, title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts.", color:"#2CB7A7" },
-            { n:7, title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — so things start to change. This can happen in seconds. Or days. Every session goes deeper.", color:"#2CB7A7" },
-            { n:8, title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", color:"#2CB7A7", badge:true },
-          ].map((s,i)=>(
-            <div key={i} style={{ display:"flex", gap: isMobile?20:40, paddingBottom: isMobile?40:52, borderBottom: i<7 ? "1px solid rgba(255,255,255,0.07)" : "none", marginBottom: i<7 ? (isMobile?40:52) : 0 }}>
-              {/* Number — big, gradient colour, always bright */}
-              <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:s.color, fontFamily:"'Jost',sans-serif", lineHeight:0.9, flexShrink:0, width: isMobile?44:68, opacity:1 }}>{s.n}</div>
-              {/* Content */}
-              <div style={{ flex:1, paddingTop: isMobile?8:14 }}>
-                <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:10, marginBottom:12 }}>
-                  <div style={{ fontSize: isMobile?"clamp(22px,5.5vw,28px)":"clamp(26px,2.6vw,34px)", fontWeight:500, color:"#ffffff", fontFamily:"'Jost',sans-serif", lineHeight:1.15, letterSpacing:"-0.01em" }}>{s.title}</div>
-                  {s.badge && <span style={{ flexShrink:0, background:"rgba(245,224,160,0.12)", border:"1px solid rgba(245,224,160,0.4)", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#F5E0A0", fontFamily:"'Jost',sans-serif" }}>Goddess ✦</span>}
+          {/* Numbered steps — white boxes on gradient background */}
+          <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+            {[
+              { n:1, title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play." },
+              { n:2, title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens." },
+              { n:3, title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming." },
+              { n:4, title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering." },
+              { n:5, title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session." },
+              { n:6, title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts." },
+              { n:7, title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — things start to change. This can happen in seconds. Or days. Every session goes deeper." },
+              { n:8, title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
+            ].map((s,i)=>(
+              <div key={i} style={{ background:"rgba(255,255,255,0.92)", borderRadius:18, padding: isMobile?"22px 20px":"28px 36px", display:"flex", gap: isMobile?16:28, alignItems:"flex-start" }}>
+                <div style={{ fontSize: isMobile?36:52, fontWeight:300, color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?36:56 }}>{s.n}</div>
+                <div style={{ flex:1, paddingTop: isMobile?4:8 }}>
+                  <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:8, marginBottom:8 }}>
+                    <div style={{ fontSize: isMobile?"clamp(18px,4.5vw,22px)":"clamp(20px,2vw,26px)", fontWeight:600, color:"#0a0806", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{s.title}</div>
+                    {s.badge && <span style={{ background:"rgba(22,122,107,0.1)", border:"1px solid rgba(22,122,107,0.3)", borderRadius:20, padding:"3px 10px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#167A6B", fontFamily:"'Jost',sans-serif", flexShrink:0 }}>Goddess ✦</span>}
+                  </div>
+                  <div style={{ fontSize: isMobile?14:16, color:"rgba(0,0,0,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.75 }}>{s.body}</div>
+                  {s.badge && (
+                    <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ marginTop:14, background:"none", border:"1px solid rgba(22,122,107,0.4)", borderRadius:20, padding:"8px 20px", color:"#167A6B", fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.06em" }}>
+                      See the Proof Wall ↓
+                    </button>
+                  )}
                 </div>
-                <div style={{ fontSize: isMobile?15:18, color:"rgba(255,255,255,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.8 }}>{s.body}</div>
-                {s.badge && (
-                  <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ marginTop:20, background:"none", border:"1px solid rgba(44,183,167,0.5)", borderRadius:20, padding:"10px 24px", color:"#2CB7A7", fontSize:14, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.06em" }}>
-                    See the Proof Wall ↓
-                  </button>
-                )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
         </div>
       </div>
