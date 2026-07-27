@@ -493,7 +493,7 @@ const MARQUEE_ITEMS = [
 ];
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const [view,  setView]  = useState("dashboard");
 
   /* ── Desktop panel content (changes per tab) ── */
@@ -535,8 +535,10 @@ function AppPreviewSection({ isMobile }) {
       </div>
     );
     if (view === "analytics") return (
-      <div style={{ width:560, borderRadius:16, overflow:"visible", boxShadow:"0 18px 50px rgba(0,0,0,0.55)" }}>
-        <AnalyticsBoard theme={theme}/>
+      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(44,183,167,0.15)" }}>
+        <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px", maxHeight:480, overflowY:"auto" }}>
+          <AnalyticsBoard theme={theme}/>
+        </div>
       </div>
     );
     return null;
@@ -613,8 +615,8 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#2CB7A7":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
-          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
+          style={{ width:44, height:24, borderRadius:12, background:theme==="dark"?"#2CB7A7":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="dark"?23:3, transition:"left 0.25s" }}/>
         </button>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
