@@ -1170,8 +1170,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,5.2vw,84px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:14, whiteSpace: isMobile?"normal":"nowrap", padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind</div>
-          <div style={{ fontSize: isMobile?13:15, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.25em", textTransform:"uppercase", marginBottom:24 }}>Hypnosis · Subliminals · EMDR · Binaural Beats · Melodic House</div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:12, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Manifest your dream reality.</div>
+          <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.6, marginBottom:8, padding: isMobile?"0 20px":"0 20px", maxWidth:620, margin:"0 auto 8px" }}>The audio membership that reprograms your subconscious while you sleep.</div>
+          <div style={{ fontSize: isMobile?12:13, color:"rgba(242,236,228,0.35)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:24 }}>Hypnosis · Subliminals · EMDR · Binaural Beats · Melodic House</div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
@@ -1403,11 +1404,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </div>
           </div>
 
-          {/* Purple callout */}
-          <div style={{ maxWidth:640, margin:"0 auto 0", padding: isMobile?"20px":"28px 36px", background:"rgba(191,165,216,0.06)", border:"1px solid rgba(191,165,216,0.2)", borderRadius:16, textAlign:"left" }}>
-            <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, margin:"0 0 14px", fontFamily:"'Jost',sans-serif" }}>You have spent years trying to think your way into a different life. Affirmations you said into the mirror. Books you read. Habits you started and dropped. Therapy that helped but didn't change the thing underneath.</p>
-            <p style={{ fontSize: isMobile?16:19, color:"#BFA5D8", lineHeight:1.85, margin:0, fontFamily:"'Jost',sans-serif" }}>The reason none of it stuck is not a character flaw. You were trying to rewrite the program from the wrong level. The beliefs that run your life live in the subconscious — and the subconscious only opens in one state. Theta. That's the whole solution. I built an audio system that gets you there every single time you press play.</p>
-          </div>
+
 
         </div>
       </div>
