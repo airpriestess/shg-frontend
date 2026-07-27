@@ -1769,7 +1769,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </svg>
         </div>
         <div style={{ marginBottom:16 }}>
-          <span className="wm" style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:32, color:"#f2ece4", letterSpacing:"0.01em" }}>Self Hypnosis Goddess</span>
+          <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:22, color:"#f2ece4", letterSpacing:"0.02em" }}>Self Hypnosis Goddess</span>
         </div>
         <div style={{ fontSize: 13, color: "#e8e0d8", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
