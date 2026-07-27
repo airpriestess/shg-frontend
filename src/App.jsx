@@ -1405,7 +1405,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   <div style={{ flex:1, paddingTop: isMobile?8:14 }}>
                     <div style={{ display:"flex", alignItems:"flex-start", flexWrap:"wrap", gap:10, marginBottom:16 }}>
                       <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(28px,3vw,40px)", fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.1, letterSpacing:"-0.01em" }}>{s.title}</div>
-                      {s.badge && <span style={{ background:"rgba(22,122,107,0.1)", border:"1px solid rgba(22,122,107,0.4)", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#167A6B", fontFamily:"'Jost',sans-serif", flexShrink:0, marginTop:4 }}>Goddess ✦</span>}
+                      {s.badge && <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:20, padding:"6px 16px", fontSize:11, letterSpacing:"0.14em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", flexShrink:0, marginTop:4, fontWeight:500 }}>Goddess Tier ✦</span>}
                     </div>
                     <div style={{ fontSize: isMobile?15:18, color:"#222", fontFamily:"'Jost',sans-serif", lineHeight:1.85 }}>{s.body}</div>
                   </div>
