@@ -1333,15 +1333,56 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
       {/* MANIFEST YOUR DREAM REALITY — cream section, after CTAs */}
       <div style={{ background:"#fdf0e8", padding: isMobile?"64px 24px 72px":"88px 60px 96px", width:"100%", textAlign:"center" }}>
-        <div style={{ maxWidth:680, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.24em", textTransform:"uppercase", color:"#B76E79", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>What this actually is</div>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(40px,4.5vw,64px)", color:"#0a0806", lineHeight:1.05, letterSpacing:"-0.01em", marginBottom:24 }}>Manifest your dream reality.</h2>
-          <p style={{ fontSize: isMobile?16:19, color:"rgba(10,8,6,0.65)", lineHeight:1.8, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>
-            You have spent years trying to think your way into a different life. Affirmations. Journalling. Vision boards. Therapy. Things that helped — but never shifted the thing underneath.
-          </p>
-          <p style={{ fontSize: isMobile?16:19, color:"rgba(10,8,6,0.75)", lineHeight:1.8, marginBottom:0, fontFamily:"'Jost',sans-serif" }}>
-            The reason none of it stuck is not a character flaw. You were trying to rewrite the program from the wrong level. The beliefs that run your life live in the subconscious — and the subconscious only opens in one state. <strong>Theta.</strong> That's the whole solution. I built an audio system that gets you there every time you press play.
-          </p>
+        <div style={{ maxWidth:720, margin:"0 auto" }}>
+
+          <div style={{ fontSize:11, letterSpacing:"0.24em", textTransform:"uppercase", color:"#B76E79", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The method</div>
+
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(28px,7vw,44px)":"clamp(36px,4vw,56px)", color:"#0a0806", lineHeight:1.1, letterSpacing:"-0.01em", marginBottom:40 }}>Manifest your dream reality<br/>through self-hypnosis and subliminals.</h2>
+
+          {/* EQUATION 1 */}
+          <div style={{ background:"#000", borderRadius:16, padding: isMobile?"24px 20px":"32px 40px", marginBottom:16, textAlign:"center" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How you enter theta state</div>
+            <div style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 12px", fontSize: isMobile?"clamp(12px,3.5vw,15px)":"clamp(14px,1.4vw,17px)", fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#f2ece4" }}>
+              <span style={{ color:"#E8B870" }}>Vocal Hypnosis</span>
+              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
+              <span style={{ color:"#BFA5D8" }}>Binaural Beats</span>
+              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
+              <span style={{ color:"#2CB7A7" }}>EMDR Audio</span>
+              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
+              <span style={{ color:"#E8B870" }}>Melodic House</span>
+              <span style={{ color:"rgba(242,236,228,0.4)" }}>=</span>
+              <span style={{ background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>Theta State on Demand</span>
+            </div>
+          </div>
+
+          {/* EQUATION 2 */}
+          <div style={{ background:"#000", borderRadius:16, padding: isMobile?"24px 20px":"32px 40px", marginBottom:16, textAlign:"center" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>What happens in theta</div>
+            <div style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 12px", fontSize: isMobile?"clamp(12px,3.5vw,15px)":"clamp(14px,1.4vw,17px)", fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#f2ece4" }}>
+              <span style={{ color:"#BFA5D8" }}>Subconscious Opens</span>
+              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
+              <span style={{ color:"#E8B870" }}>Subliminals Install</span>
+              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
+              <span style={{ color:"#2CB7A7" }}>Old Assumption Deleted</span>
+              <span style={{ color:"rgba(242,236,228,0.4)" }}>=</span>
+              <span style={{ background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>New Identity Installed</span>
+            </div>
+          </div>
+
+          {/* EQUATION 3 */}
+          <div style={{ background:"#000", borderRadius:16, padding: isMobile?"24px 20px":"32px 40px", marginBottom:0, textAlign:"center" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>The result</div>
+            <div style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 12px", fontSize: isMobile?"clamp(12px,3.5vw,15px)":"clamp(14px,1.4vw,17px)", fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#f2ece4" }}>
+              <span style={{ color:"#E8B870" }}>New Identity</span>
+              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
+              <span style={{ color:"#BFA5D8" }}>Consistent State</span>
+              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
+              <span style={{ color:"#2CB7A7" }}>Daily Proof Logged</span>
+              <span style={{ color:"rgba(242,236,228,0.4)" }}>=</span>
+              <span style={{ background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>Dream Reality Manifested</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
