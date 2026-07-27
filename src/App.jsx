@@ -1324,8 +1324,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         </div>
       </div>
 
-      
-
+      {/* MANIFEST YOUR DREAM REALITY — cream section, after CTAs */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"64px 24px 72px":"88px 60px 96px", width:"100%", textAlign:"center" }}>
+        <div style={{ maxWidth:680, margin:"0 auto" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.24em", textTransform:"uppercase", color:"#B76E79", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>What this actually is</div>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(40px,4.5vw,64px)", color:"#0a0806", lineHeight:1.05, letterSpacing:"-0.01em", marginBottom:24 }}>Manifest your dream reality.</h2>
+          <p style={{ fontSize: isMobile?16:19, color:"rgba(10,8,6,0.65)", lineHeight:1.8, marginBottom:20, fontFamily:"'Jost',sans-serif" }}>
+            You have spent years trying to think your way into a different life. Affirmations. Journalling. Vision boards. Therapy. Things that helped — but never shifted the thing underneath.
+          </p>
+          <p style={{ fontSize: isMobile?16:19, color:"rgba(10,8,6,0.75)", lineHeight:1.8, marginBottom:0, fontFamily:"'Jost',sans-serif" }}>
+            The reason none of it stuck is not a character flaw. You were trying to rewrite the program from the wrong level. The beliefs that run your life live in the subconscious — and the subconscious only opens in one state. <strong>Theta.</strong> That's the whole solution. I built an audio system that gets you there every time you press play.
+          </p>
+        </div>
+      </div>
 
       {/* HEMI-SYNC + HEART COHERENCE */}
       <div style={{ background:"#000", padding: isMobile?"48px 18px 0":"80px 24px 0", width:"100%" }}>
