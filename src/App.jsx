@@ -133,7 +133,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
   const NAV = [
     { id: "dashboard", icon: "◎", label: "Dashboard" },
     { id: "audio-vault", icon: "🎧", label: "Audio Vault" },
-    { id: "proof-threads", icon: "🧵", label: "Proof Threads" },
+    { id: "proof-threads", icon: "🧵", label: "ProofOSs" },
     { id: "proof-wall", icon: "📷", label: "Proof Wall" },
     { id: "listening-guide", icon: "📖", label: "Listening Guide" },
     { id: "vault-settings", icon: "⚙", label: "Vault Settings" },
@@ -209,7 +209,7 @@ function ArchivePage() {
   return (
     <div style={{ padding: "28px 24px", overflowY: "auto", height: "100%", width: "100%" }} className="fade mob-pb">
       <h1 style={{ fontSize: 28, fontWeight: 700, color: "#000000", marginBottom: 8 }}>Manifested Archive</h1>
-      <p style={{ fontSize: 19, color: "#000000", marginBottom: 24 }}>Every completed Proof Thread lives here. Your permanent record of proof.</p>
+      <p style={{ fontSize: 19, color: "#000000", marginBottom: 24 }}>Every completed ProofOS lives here. Your permanent record of proof.</p>
       <div style={{ textAlign: "center", padding: "60px 24px" }}>
         <div style={{ fontSize: 40, marginBottom: 16, opacity: 0.4 }}>✦</div>
         <div style={{ fontSize: 18, color: "#000000" }}>Manifested threads will appear here.</div>
@@ -1422,7 +1422,22 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-                  {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
+                  {/* PROOFOS INTRO */}
+      <div id="proofos" style={{ background:"#000", padding: isMobile?"64px 24px 56px":"88px 80px 72px", width:"100%", textAlign:"center" }}>
+        <div style={{ maxWidth:680, margin:"0 auto" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Goddess tier ✦</div>
+          <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:24 }}>ProofOS.</div>
+          <div style={{ fontSize: isMobile?16:20, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:16 }}>
+            Every desire you set gets its own thread. Every sign, synchronicity, and shift gets logged — with a date, a photo, a voice note.
+          </div>
+          <div style={{ fontSize: isMobile?16:20, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:40 }}>
+            As your reality shifts, the evidence stacks. That evidence is what keeps you in the state that makes more things arrive.
+          </div>
+          <div style={{ fontSize: isMobile?15:17, color:"rgba(242,236,228,0.5)", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>And then it goes to the Proof Wall. ↓</div>
+        </div>
+      </div>
+
+      {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
       <LandingProofWall isMobile={isMobile}/>
 
 
