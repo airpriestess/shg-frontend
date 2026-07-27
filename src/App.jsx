@@ -1382,7 +1382,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-            {/* MELODIC HOUSE USP — cream background, locked palette */}
+            {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
+      <LandingProofWall isMobile={isMobile}/>
+
+
+      {/* MELODIC HOUSE USP — cream background, locked palette */}
       <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#fdf6ee", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
@@ -1514,9 +1518,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </div>
         </div>
       </div>
-
-      {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
-      <LandingProofWall isMobile={isMobile}/>
 
       {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
       <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "linear-gradient(160deg,#f5ede0 0%,#ece0cc 50%,#e8d4b4 100%)", width: "100%" }}>
