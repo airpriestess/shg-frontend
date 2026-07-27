@@ -1335,332 +1335,40 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-      {/* MANIFEST YOUR DREAM REALITY — cream section, after CTAs */}
-      <div style={{ background:"#fdf0e8", padding: isMobile?"64px 24px 72px":"88px 60px 96px", width:"100%", textAlign:"center" }}>
-        <div style={{ maxWidth:720, margin:"0 auto" }}>
+      {/* HOW IT WORKS — 7 steps, massive, cream bg */}
+      <div style={{ background:"#fdf0e8", padding: isMobile?"64px 20px 80px":"96px 60px 112px", width:"100%" }}>
+        <div style={{ maxWidth:760, margin:"0 auto" }}>
 
-          <div style={{ fontSize:11, letterSpacing:"0.24em", textTransform:"uppercase", color:"#B76E79", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The method</div>
+          <div style={{ fontSize:11, letterSpacing:"0.24em", textTransform:"uppercase", color:"#B76E79", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>The method</div>
 
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(28px,7vw,44px)":"clamp(36px,4vw,56px)", color:"#0a0806", lineHeight:1.1, letterSpacing:"-0.01em", marginBottom:40 }}>Manifest your dream reality<br/>through self-hypnosis and subliminals.</h2>
-
-          {/* EQUATION 1 */}
-          <div style={{ background:"#000", borderRadius:16, padding: isMobile?"24px 20px":"32px 40px", marginBottom:16, textAlign:"center" }}>
-            <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How you enter theta state</div>
-            <div style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 12px", fontSize: isMobile?"clamp(12px,3.5vw,15px)":"clamp(14px,1.4vw,17px)", fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#f2ece4" }}>
-              <span style={{ color:"#E8B870" }}>Vocal Hypnosis</span>
-              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
-              <span style={{ color:"#BFA5D8" }}>Binaural Beats</span>
-              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
-              <span style={{ color:"#2CB7A7" }}>EMDR Audio</span>
-              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
-              <span style={{ color:"#E8B870" }}>Melodic House</span>
-              <span style={{ color:"rgba(242,236,228,0.4)" }}>=</span>
-              <span style={{ background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>Theta State on Demand</span>
-            </div>
-          </div>
-
-          {/* EQUATION 2 */}
-          <div style={{ background:"#000", borderRadius:16, padding: isMobile?"24px 20px":"32px 40px", marginBottom:16, textAlign:"center" }}>
-            <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>What happens in theta</div>
-            <div style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 12px", fontSize: isMobile?"clamp(12px,3.5vw,15px)":"clamp(14px,1.4vw,17px)", fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#f2ece4" }}>
-              <span style={{ color:"#BFA5D8" }}>Subconscious Opens</span>
-              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
-              <span style={{ color:"#E8B870" }}>Subliminals Install</span>
-              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
-              <span style={{ color:"#2CB7A7" }}>Old Assumption Deleted</span>
-              <span style={{ color:"rgba(242,236,228,0.4)" }}>=</span>
-              <span style={{ background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>New Identity Installed</span>
-            </div>
-          </div>
-
-          {/* EQUATION 3 */}
-          <div style={{ background:"#000", borderRadius:16, padding: isMobile?"24px 20px":"32px 40px", marginBottom:0, textAlign:"center" }}>
-            <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>The result</div>
-            <div style={{ display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"8px 6px":"0 12px", fontSize: isMobile?"clamp(12px,3.5vw,15px)":"clamp(14px,1.4vw,17px)", fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#f2ece4" }}>
-              <span style={{ color:"#E8B870" }}>New Identity</span>
-              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
-              <span style={{ color:"#BFA5D8" }}>Consistent State</span>
-              <span style={{ color:"rgba(242,236,228,0.25)" }}>+</span>
-              <span style={{ color:"#2CB7A7" }}>Daily Proof Logged</span>
-              <span style={{ color:"rgba(242,236,228,0.4)" }}>=</span>
-              <span style={{ background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>Dream Reality Manifested</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* HEMI-SYNC + HEART COHERENCE */}
-      <div style={{ background:"#000", padding: isMobile?"48px 18px 0":"80px 24px 0", width:"100%" }}>
-        <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
-
-          {/* Overline */}
-          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How the audio actually works</div>
-
-          {/* Heading */}
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:28, lineHeight:1.15, textAlign:"center" }}>
-            You've been looking for this.
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:400, fontSize: isMobile?"clamp(36px,9vw,56px)":"clamp(52px,5.5vw,80px)", color:"#0a0806", lineHeight:1.0, letterSpacing:"-0.02em", marginBottom: isMobile?48:72, textAlign:"center" }}>
+            How it works.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:580, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif" }}>
-            Stop spending another year trying to change on willpower alone.
-          </p>
-
-          {/* Beta / Theta / Identity boxes */}
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:14, marginBottom:40 }}>
-            {/* Box 1 — Beta */}
-            <div style={{ padding: isMobile?"20px 18px":"24px 20px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:16, textAlign:"left" }}>
-              <div style={{ fontSize: isMobile?24:30, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Beta</div>
-              <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#c8bfb8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>13–40 Hz · your waking state</div>
-              <p style={{ fontSize: isMobile?14:15, color:"#c8bfb8", lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>Every attempt to change yourself from here — therapy, affirmations, sheer force of will — hits the same wall. This is not the level where the beliefs live.</p>
-            </div>
-            {/* Box 2 — Theta */}
-            <div style={{ padding: isMobile?"20px 18px":"24px 20px", background:"rgba(44,183,167,0.06)", border:"1px solid rgba(44,183,167,0.25)", borderRadius:16, textAlign:"left" }}>
-              <div style={{ fontSize: isMobile?24:30, fontWeight:400, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Theta</div>
-              <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>4–8 Hz · the reprogramming state</div>
-              <p style={{ fontSize: isMobile?14:15, color:"#c8bfb8", lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>The subconscious opens here. New beliefs install without resistance. You enter this state naturally twice a day — falling asleep and waking up. SHG gets you there on demand.</p>
-            </div>
-            {/* Box 3 — Identity */}
-            <div style={{ padding: isMobile?"20px 18px":"24px 20px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, textAlign:"left" }}>
-              <div style={{ fontSize: isMobile?24:30, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Identity</div>
-              <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"rgba(0,0,0,0.6)", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>The installation target</div>
-              <p style={{ fontSize: isMobile?14:15, color:"#000", lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>Not habits. Not affirmations. The subconscious belief that runs the program. Change the identity — the behaviours, the results, the reality follow automatically.</p>
-            </div>
-          </div>
-
-          {/* 5-state frequency breakdown */}
-          <div style={{ marginBottom:40 }}>
-            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>All five brainwave states</div>
-            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr 1fr 1fr", gap:10, marginBottom:16 }}>
-              {[
-                { name:"Delta", hz:"0.5–4 Hz", color:"#167A6B", desc:"Deep sleep. Your body repairs. Subliminals keep working here even when you're fully unconscious.", tag:"Deep sleep" },
-                { name:"Theta", hz:"4–8 Hz",  color:"#2CB7A7", desc:"The only state where the subconscious opens and accepts new beliefs without the critical mind blocking them. SHG targets this on demand.", tag:"Target state", highlight:true },
-                { name:"Alpha", hz:"8–14 Hz", color:"#BFA5D8", desc:"Relaxed, calm, receptive. The bridge between the conscious and subconscious. Great for daytime listening.", tag:"Relaxed" },
-                { name:"Beta",  hz:"14–40 Hz",color:"#c8bfb8", desc:"Your current waking state. Analytical and sceptical. Affirmations bounce off here — the critical mind filters everything.", tag:"Waking state" },
-                { name:"Gamma", hz:"40+ Hz",  color:"#E8B870", desc:"Peak coherence. Observed in advanced meditators. Emerges naturally the more time you spend in theta.", tag:"Peak state" },
-              ].map((s,i)=>(
-                <div key={i} style={{ padding:"18px 14px", background: s.highlight?"rgba(44,183,167,0.08)":"rgba(255,255,255,0.02)", border:`1px solid ${s.highlight?"rgba(44,183,167,0.3)":"rgba(255,255,255,0.06)"}`, borderRadius:14, textAlign:"left" }}>
-                  <div style={{ fontSize: isMobile?18:20, fontWeight:400, color:s.color, fontFamily:"'Jost',sans-serif", marginBottom:4 }}>{s.name}</div>
-                  <div style={{ fontSize:10, color:"rgba(255,255,255,0.3)", fontFamily:"monospace", letterSpacing:"0.06em", marginBottom:s.highlight?8:12 }}>{s.hz}</div>
-                  {s.highlight && <div style={{ display:"inline-block", fontSize:9, letterSpacing:"0.14em", textTransform:"uppercase", background:"#2CB7A7", color:"#000", padding:"2px 8px", borderRadius:20, fontFamily:"'Jost',sans-serif", marginBottom:10 }}>SHG targets this</div>}
-                  <p style={{ fontSize:13, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif", margin:0 }}>{s.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Method boxes */}
-          <div style={{ marginBottom:40 }}>
-            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>What's inside every track</div>
-            <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:14 }}>
-              {[
-                { label:"Binaural Beats", desc:"Two tones, one per ear. Your brain creates the difference between them and entrains to theta within minutes. No effort. No practice. Just press play.", color:"#F5E0A0", icon:"🎧" },
-                { label:"EMDR Bilateral Audio", desc:"Left-right audio stimulation syncs both hemispheres into the same state. Every track carries this — it's what makes the reprogramming go deeper than anything you've tried before.", color:"#BFA5D8", icon:"↔" },
-                { label:"Vocal Hypnosis + Subliminals", desc:"New beliefs delivered straight to the subconscious while the critical mind is bypassed. Subliminals run beneath the music — the reprogramming continues even when you're not consciously listening.", color:"#2CB7A7", icon:"✦" },
-              ].map((m,i)=>(
-                <div key={i} style={{ padding:"20px 18px", background:"rgba(255,255,255,0.03)", border:`1px solid ${m.color}30`, borderRadius:14, textAlign:"left" }}>
-                  <div style={{ fontSize:20, marginBottom:10 }}>{m.icon}</div>
-                  <div style={{ fontSize:13, fontWeight:500, color:m.color, marginBottom:8, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{m.label}</div>
-                  <div style={{ fontSize: isMobile?13:14, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{m.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-
-
-        </div>
-      </div>
-
-      {/* HEART COHERENCE */}
-      <div style={{ padding: isMobile?"56px 18px 64px":"88px 24px 96px", background:"#000", width:"100%" }}>
-        <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
-
-          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The heart-brain</div>
-
-          {/* Labels above */}
-          <div style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr", alignItems:"center", maxWidth:620, margin:"0 auto 20px", gap:isMobile?8:16 }}>
-            <div style={{ textAlign:"right" }}>
-              <div style={{ fontSize: isMobile?13:17, fontWeight:500, color:"#F5E0A0", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Heart Brain</div>
-              <div style={{ fontSize: isMobile?11:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>40,000 neurons.<br/>Broadcasts your<br/>emotional state.</div>
-            </div>
-            <div style={{ fontSize:isMobile?16:20, color:"rgba(44,183,167,0.4)", flexShrink:0, textAlign:"center" }}>⟷</div>
-            <div style={{ textAlign:"left" }}>
-              <div style={{ fontSize: isMobile?13:17, fontWeight:500, color:"#BFA5D8", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Cranial Brain</div>
-              <div style={{ fontSize: isMobile?11:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>Receives the signal.<br/>Installs belief<br/>accordingly.</div>
-            </div>
-          </div>
-
-          {/* ── Heart-Brain SVG illustration ── */}
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:16 }}>
-            <svg viewBox="0 0 500 340" width={isMobile?"100%":620} xmlns="http://www.w3.org/2000/svg" style={{overflow:"visible", maxWidth:"100%"}}>
-              <defs>
-                <linearGradient id="hblg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F5E0A0"/>
-                  <stop offset="25%" stopColor="#E8B870"/>
-                  <stop offset="52%" stopColor="#BFA5D8"/>
-                  <stop offset="78%" stopColor="#2CB7A7"/>
-                  <stop offset="100%" stopColor="#167A6B"/>
-                </linearGradient>
-                <linearGradient id="hblg2" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#F5E0A0"/>
-                  <stop offset="30%" stopColor="#E8B870"/>
-                  <stop offset="60%" stopColor="#BFA5D8"/>
-                  <stop offset="100%" stopColor="#2CB7A7"/>
-                </linearGradient>
-                <linearGradient id="hbwave" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#F5E0A0" stopOpacity="0.15"/>
-                  <stop offset="25%" stopColor="#E8B870" stopOpacity="0.9"/>
-                  <stop offset="55%" stopColor="#BFA5D8" stopOpacity="0.9"/>
-                  <stop offset="80%" stopColor="#2CB7A7" stopOpacity="0.9"/>
-                  <stop offset="100%" stopColor="#167A6B" stopOpacity="0.15"/>
-                </linearGradient>
-                <radialGradient id="hglow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#E8B870" stopOpacity="0.2"/>
-                  <stop offset="100%" stopColor="#E8B870" stopOpacity="0"/>
-                </radialGradient>
-                <radialGradient id="bglow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#BFA5D8" stopOpacity="0.2"/>
-                  <stop offset="100%" stopColor="#BFA5D8" stopOpacity="0"/>
-                </radialGradient>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="5" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-
-              {/* Ambient glows */}
-              <ellipse cx="140" cy="150" rx="90" ry="80" fill="url(#hglow)"/>
-              <ellipse cx="360" cy="150" rx="90" ry="80" fill="url(#bglow)"/>
-
-              {/* ── HEART ── */}
-              <g transform="translate(140,150)" filter="url(#glow)">
-                <path d="M0,-56 C4,-68 16,-84 36,-84 C60,-84 76,-62 76,-40 C76,-8 48,20 0,62 C-48,20 -76,-8 -76,-40 C-76,-62 -60,-84 -36,-84 C-16,-84 -4,-68 0,-56 Z"
-                  fill="none" stroke="url(#hblg)" strokeWidth="2.5" strokeLinejoin="round"/>
-                {/* inner echo */}
-                <path d="M0,-44 C4,-54 12,-68 28,-68 C48,-68 62,-50 62,-32 C62,-4 40,16 0,50 C-40,16 -62,-4 -62,-32 C-62,-50 -48,-68 -28,-68 C-12,-68 -4,-54 0,-44 Z"
-                  fill="none" stroke="url(#hblg)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.25"/>
-                {/* soft flowing pulse */}
-                <path d="M-50,0 C-42,0 -36,-2 -28,-20 C-20,-38 -14,28 -8,-6 C-4,-24 0,10 4,-2 C8,-14 12,20 18,-2 C22,-18 28,2 34,-4 C40,-10 46,2 50,0"
-                  fill="none" stroke="url(#hblg)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.8"/>
-              </g>
-
-              {/* ── FLOWING CONNECTION — two elegant curves ── */}
-              <path d="M216,120 C248,72 278,72 312,98 C338,118 348,120 368,108"
-                fill="none" stroke="url(#hblg)" strokeWidth="1.5" strokeDasharray="4 6" opacity="0.55"/>
-              <path d="M216,178 C248,224 278,224 312,198 C338,178 348,176 368,188"
-                fill="none" stroke="url(#hblg2)" strokeWidth="1" strokeDasharray="3 7" opacity="0.3"/>
-              {/* signal dots */}
-              <circle cx="230" cy="107" r="3" fill="#F5E0A0" opacity="0.85"/>
-              <circle cx="258" cy="84" r="2.5" fill="#E8B870" opacity="0.8"/>
-              <circle cx="290" cy="80" r="3" fill="#BFA5D8" opacity="0.85"/>
-              <circle cx="324" cy="96" r="2.5" fill="#2CB7A7" opacity="0.8"/>
-              <circle cx="352" cy="108" r="3" fill="#167A6B" opacity="0.75"/>
-
-              {/* ── BRAIN ── */}
-              <g transform="translate(360,150)" filter="url(#glow)">
-                <path d="M0,-64 C22,-72 50,-62 58,-42 C68,-18 56,6 42,20 C54,34 52,58 34,66 C20,72 6,60 0,52 C-6,60 -20,72 -34,66 C-52,58 -54,34 -42,20 C-56,6 -68,-18 -58,-42 C-50,-62 -22,-72 0,-64 Z"
-                  fill="none" stroke="url(#hblg2)" strokeWidth="2.5" strokeLinejoin="round"/>
-                {/* inner echo */}
-                <path d="M0,-50 C16,-58 38,-50 46,-34 C54,-14 44,4 32,16 C42,26 40,46 26,52 C14,58 2,48 0,40 C-2,48 -14,58 -26,52 C-40,46 -42,26 -32,16 C-44,4 -54,-14 -46,-34 C-38,-50 -16,-58 0,-50 Z"
-                  fill="none" stroke="url(#hblg2)" strokeWidth="0.8" strokeLinejoin="round" opacity="0.25"/>
-                {/* soft folds */}
-                <path d="M0,-34 C12,-22 12,-6 4,10" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
-                <path d="M-8,-24 C-18,-12 -16,6 -4,16" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
-                <path d="M14,10 C22,22 20,38 8,46" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
-                <path d="M-14,12 C-24,24 -20,38 -8,44" fill="none" stroke="url(#hblg2)" strokeWidth="1.8" opacity="0.5" strokeLinecap="round"/>
-              </g>
-
-              {/* ── COHERENT WAVE ── */}
-              <g transform="translate(0,266)">
-                <path d="M50,0 C80,-32 110,32 140,0 C170,-32 200,32 230,0 C260,-32 290,32 320,0 C350,-32 380,32 410,0 C430,-20 442,-10 450,0"
-                  fill="none" stroke="url(#hbwave)" strokeWidth="2.5" strokeLinecap="round"/>
-                <path d="M50,0 C80,22 110,-22 140,0 C170,22 200,-22 230,0 C260,22 290,-22 320,0 C350,22 380,-22 410,0 C430,14 442,6 450,0"
-                  fill="none" stroke="url(#hbwave)" strokeWidth="1" strokeLinecap="round" opacity="0.35"/>
-              </g>
-
-
-            </svg>
-          </div>
-
-          <div style={{ textAlign:"center", marginBottom:40 }}>
-            <div style={{ fontSize: isMobile?13:15, letterSpacing:"0.2em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Coherent Rhythm</div>
-            <div style={{ fontSize: isMobile?12:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", marginTop:6, lineHeight:1.6 }}>When heart and brain synchronise — the subconscious opens.</div>
-          </div>
-
-          {/* ── HEADING ── */}
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#f2ece4", fontWeight:300, marginBottom:20, lineHeight:1.2, letterSpacing:"-0.02em" }}>
-            The heart has its own brain.
-          </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:640, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif" }}>
-            The heart contains over 40,000 neurons — its own nervous system, capable of sensing, processing information, and making decisions independently of the mind. Scientists call it the heart-brain. It communicates with the cranial brain constantly, and the direction of that signal is mostly downward — from heart to head, not the other way around.
-          </p>
-          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:640, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif" }}>
-            The heart's electromagnetic field is 60 times stronger than the brain's. It extends several feet outside the body. The emotional state you carry changes the quality of that field — and that field directly influences what the brain accepts, processes, and installs as belief.
-          </p>
-
-          {/* Three state cards */}
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:14, marginBottom:40 }}>
-            {[
-              { state:"Contracted state", signal:"Chaotic field signal", result:"Brain locks down. Old beliefs reinforced. Nothing new installs.", color:"#BFA5D8" },
-              { state:"Elevated state", signal:"Coherent field signal", result:"Brain opens. Cognitive function improves. New identity can land.", color:"#E8B870" },
-              { state:"Theta + coherence", signal:"Heart and brain in sync", result:"Full receptivity. Subconscious wide open. This is the SHG window.", color:"#2CB7A7" },
-            ].map((row,i)=>(
-              <div key={i} style={{ background: i===2?"rgba(44,183,167,0.07)":"rgba(255,255,255,0.03)", border:`1px solid ${row.color}28`, borderRadius:14, padding: isMobile?"18px 14px":"22px 18px", textAlign:"left" }}>
-                <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:row.color, marginBottom:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{row.state}</div>
-                <div style={{ fontSize:14, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif", marginBottom:8, fontWeight:400 }}>{row.signal}</div>
-                <div style={{ fontSize:13, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{row.result}</div>
-              </div>
-            ))}
-          </div>
-
-          <p style={{ fontSize: isMobile?15:17, color:"#2CB7A7", lineHeight:1.85, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>
-            SHG tracks shift the emotional state first — through music, frequency, and binaural entrainment — so that by the time the hypnosis and subliminals arrive, the heart-brain is already broadcasting coherence. The cranial brain follows. The door opens. The installation goes in.
-          </p>
-
-
-        </div>
-      </div>
-
-      {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
-      <div style={{ background:"#0a0a0a", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
-        <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
-          <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
-          <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0 }}>Five steps.</div>
-        </div>
-
-        <div style={{ maxWidth:840, margin:"0 auto", position:"relative" }}>
-          {!isMobile && <div style={{ position:"absolute", left:39, top:36, bottom:36, width:1, background:"linear-gradient(180deg,#F5E0A0,#BFA5D8,#2CB7A7,#167A6B)", opacity:0.4 }}/>}
 
           {[
-            { n:"01", title:"Set your intention", body:"Choose your desire. Be specific. Log it in ProofOS.", accent:"#F5E0A0",
-              icon: <path d="M30 8 L36 24 L52 30 L36 36 L30 52 L24 36 L8 30 L24 24 Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/> },
-            { n:"02", title:"Press play", body:"Listen while you sleep, on your hot girl walk, at the gym. Daily.", accent:"#BFA5D8",
-              icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M25 20 L41 30 L25 40 Z" fill="currentColor"/></> },
-            { n:"03", title:"Let it install", body:"Your subconscious receives it. No effort. No forcing. Just repeat.", accent:"#2CB7A7",
-              icon: <><circle cx="30" cy="30" r="6" fill="currentColor"/><circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" strokeWidth="1.8" opacity="0.6"/><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" strokeWidth="1.6" opacity="0.35"/></> },
-            { n:"04", title:"Log every sign", body:"A text. A refund. A compliment. A coincidence. Screenshot it. Log it.", accent:"#BFA5D8",
-              icon: <><rect x="10" y="20" width="40" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M22 20 L25 14 L35 14 L38 20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/><circle cx="30" cy="34" r="8" fill="none" stroke="currentColor" strokeWidth="2.2"/></> },
-            { n:"05", title:"Mark it manifested", body:"When it arrives — close the thread. Your proof is permanent. Forever.", accent:"#2CB7A7",
-              icon: <><circle cx="30" cy="30" r="21" fill="none" stroke="currentColor" strokeWidth="2.2"/><path d="M20 30 L27 37 L41 22" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></> },
-          ].map(({n,icon,title,body,accent},i)=>(
-            <div key={i} style={{ display:"flex", gap: isMobile?18:32, alignItems:"flex-start", marginBottom: i===4?0:(isMobile?32:40), position:"relative" }}>
-              <div style={{ flexShrink:0, width: isMobile?60:78, height: isMobile?60:78, borderRadius:"50%", background:`${accent}18`, border:`1.5px solid ${accent}55`, display:"flex", alignItems:"center", justifyContent:"center", color:accent, position:"relative", zIndex:1 }}>
-                <svg width={isMobile?26:32} height={isMobile?26:32} viewBox="0 0 60 60">{icon}</svg>
-              </div>
-              <div style={{ flex:1, paddingTop: isMobile?4:10 }}>
-                <div style={{ display:"flex", alignItems:"baseline", gap:12, marginBottom:6 }}>
-                  <span style={{ fontSize: isMobile?12:13, color:accent, fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.1em" }}>{n}</span>
-                  <div style={{ fontSize: isMobile?"clamp(20px,6vw,26px)":"clamp(24px,2.6vw,32px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.15 }}>{title}</div>
-                </div>
-                <div style={{ fontSize: isMobile?15:18, color:"#e8e0d8", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.65, maxWidth:460 }}>{body}</div>
+            { n:"01", title:"Press play.", body:"That's genuinely it. No ritual, no preparation, no perfect conditions required." },
+            { n:"02", title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats do this automatically. One frequency in each ear creates a third — and your brain follows it down into the state where real change happens." },
+            { n:"03", title:"The deep mind opens.", body:"This is the moment. The critical mind — the part that argues, doubts, and filters — steps back. What's left is pure subconscious. Open. Receptive. This is where you're reprogramming." },
+            { n:"04", title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious — no barrier, no resistance. Your new identity, delivered while you're in the one state where it actually sticks." },
+            { n:"05", title:"Subliminals repeat underneath.", body:"Affirmations recorded below the level of conscious hearing. You can't make them out — but your subconscious can. They repeat your new identity hundreds of times per session, bypassing the part of your mind that would normally reject them." },
+            { n:"06", title:"Melodic house holds you in state.", body:"Some tracks keep the energy high. Some take you deeper. Either way, the music locks you in — you don't drift out, you don't lose the signal." },
+            { n:"07", title:"You wake up different.", body:"Your reality shifts when your beliefs and assumptions shift. That could happen in seconds. It could take days. It depends on how deep the old assumption runs — but it happens. Every time you press play, it goes deeper." },
+          ].map((s,i)=>(
+            <div key={i} style={{ display:"flex", gap: isMobile?20:40, paddingBottom: isMobile?40:56, marginBottom: isMobile?0:0, borderBottom: i<6?"1px solid rgba(0,0,0,0.08)":"none", marginTop: i===0?0:0 }}>
+              <div style={{ fontSize: isMobile?36:52, fontWeight:300, color:"rgba(183,110,121,0.25)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?48:72, paddingTop:4 }}>{s.n}</div>
+              <div style={{ flex:1 }}>
+                <div style={{ fontSize: isMobile?"clamp(22px,5.5vw,32px)":"clamp(28px,2.8vw,40px)", fontWeight:400, color:"#0a0806", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:14, letterSpacing:"-0.01em" }}>{s.title}</div>
+                <div style={{ fontSize: isMobile?15:18, color:"rgba(10,8,6,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.75 }}>{s.body}</div>
               </div>
             </div>
           ))}
+
         </div>
       </div>
 
-      
-      {/* ─── Section divider ─── */}
+
+
+            {/* ─── Section divider ─── */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
         <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
