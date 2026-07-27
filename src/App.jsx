@@ -1370,32 +1370,36 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </div>
           </div>
 
-          {/* Numbered steps — white boxes on gradient background */}
-          <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+          {/* Numbered steps — white boxes, black text, icons, arrows */}
+          <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
             {[
-              { n:1, title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play." },
-              { n:2, title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens." },
-              { n:3, title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming." },
-              { n:4, title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering." },
-              { n:5, title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session." },
-              { n:6, title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts." },
-              { n:7, title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — things start to change. This can happen in seconds. Or days. Every session goes deeper." },
-              { n:8, title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
+              { n:"01", icon:"▶", title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play." },
+              { n:"02", icon:"🌊", title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens." },
+              { n:"03", icon:"◎", title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming." },
+              { n:"04", icon:"🎙", title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering." },
+              { n:"05", icon:"∞", title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session." },
+              { n:"06", icon:"♪", title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts." },
+              { n:"07", icon:"✨", title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — things start to change. This can happen in seconds. Or days. Every session goes deeper." },
+              { n:"08", icon:"✦", title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
             ].map((s,i)=>(
-              <div key={i} style={{ background:"rgba(255,255,255,0.92)", borderRadius:18, padding: isMobile?"22px 20px":"28px 36px", display:"flex", gap: isMobile?16:28, alignItems:"flex-start" }}>
-                <div style={{ fontSize: isMobile?36:52, fontWeight:300, color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?36:56 }}>{s.n}</div>
-                <div style={{ flex:1, paddingTop: isMobile?4:8 }}>
-                  <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:8, marginBottom:8 }}>
-                    <div style={{ fontSize: isMobile?"clamp(18px,4.5vw,22px)":"clamp(20px,2vw,26px)", fontWeight:600, color:"#0a0806", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{s.title}</div>
-                    {s.badge && <span style={{ background:"rgba(22,122,107,0.1)", border:"1px solid rgba(22,122,107,0.3)", borderRadius:20, padding:"3px 10px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#167A6B", fontFamily:"'Jost',sans-serif", flexShrink:0 }}>Goddess ✦</span>}
+              <div key={i}>
+                <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"24px 20px":"32px 40px", display:"flex", gap: isMobile?16:28, alignItems:"center" }}>
+                  {/* Icon + Number */}
+                  <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:4, flexShrink:0 }}>
+                    <div style={{ fontSize: isMobile?28:36, lineHeight:1 }}>{s.icon}</div>
+                    <div style={{ fontSize: isMobile?18:22, fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1 }}>{s.n}</div>
                   </div>
-                  <div style={{ fontSize: isMobile?14:16, color:"rgba(0,0,0,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.75 }}>{s.body}</div>
-                  {s.badge && (
-                    <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ marginTop:14, background:"none", border:"1px solid rgba(22,122,107,0.4)", borderRadius:20, padding:"8px 20px", color:"#167A6B", fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.06em" }}>
-                      See the Proof Wall ↓
-                    </button>
-                  )}
+                  {/* Text */}
+                  <div style={{ flex:1 }}>
+                    <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:8, marginBottom:8 }}>
+                      <div style={{ fontSize: isMobile?"clamp(18px,4.5vw,24px)":"clamp(20px,2vw,28px)", fontWeight:700, color:"#000000", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{s.title}</div>
+                      {s.badge && <span style={{ background:"rgba(22,122,107,0.1)", border:"1px solid rgba(22,122,107,0.4)", borderRadius:20, padding:"3px 10px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#167A6B", fontFamily:"'Jost',sans-serif", flexShrink:0 }}>Goddess ✦</span>}
+                    </div>
+                    <div style={{ fontSize: isMobile?14:17, color:"#333", fontFamily:"'Jost',sans-serif", lineHeight:1.75 }}>{s.body}</div>
+                  </div>
                 </div>
+                {/* Arrow between boxes */}
+                {i < 7 && <div style={{ textAlign:"center", padding:"8px 0", fontSize: isMobile?20:24, color:"rgba(0,0,0,0.25)" }}>↓</div>}
               </div>
             ))}
           </div>
@@ -1407,8 +1411,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <LandingProofWall isMobile={isMobile}/>
 
 
-      {/* MELODIC HOUSE USP — cream background, locked palette */}
-      <div style={{ padding: isMobile ? "48px 18px" : "70px clamp(16px,4vw,24px)", background: "#fdf6ee", width: "100%" }}>
+      {/* MELODIC HOUSE USP — LG gradient background */}
+      <div style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
