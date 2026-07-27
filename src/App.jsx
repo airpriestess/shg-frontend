@@ -996,10 +996,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 13, fontWeight: 500, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
+          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
             Of course, obviously. ✦
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"7px 18px":"6px 18px", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 20, color: "#000", fontSize: isMobile ? 13 : 12, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"6px 18px", background: "rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.2)", borderRadius: 20, color: "#000", fontSize: isMobile ? 14 : 12, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join the waitlist →
           </button>
         </div>
