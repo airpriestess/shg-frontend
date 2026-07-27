@@ -873,6 +873,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnnual, setMenuAnnual] = useState(false);
   const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    if (location.state?.openWaitlist) {
+      setWaitlistOpen(true);
+      window.history.replaceState({}, "");
+    }
+  }, [location]);
   const [shopOpen, setShopOpen] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [waitlistStatus, setWaitlistStatus] = useState("idle"); // idle | saving | done | error
