@@ -146,12 +146,12 @@ export default function LandingProofWall({ isMobile }) {
 
         {/* Heading */}
         <div style={{ textAlign:"center", marginBottom:32 }}>
-          <div style={{ fontSize:13, color:"#2CB7A7", fontWeight:500, letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, color:"#E8B870", fontWeight:500, letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16 }}>ProofOS ✦</div>
           <div style={{ fontSize: isMobile?"clamp(44px,13vw,64px)":"clamp(56px,8vw,80px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:0.95, marginBottom:20 }}>
-            The Proof Thread.
+            The Proof Wall.
           </div>
           <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.8, maxWidth:480, margin:"0 auto 14px", fontWeight:400 }}>
-            Track every manifestation in one place — for the rest of your life. Never lose your desires in a dusty journal again.
+            Every desire. Every sign. Every moment it arrived. Logged, dated, permanent — your Proof Wall builds itself while you listen.
           </p>
           <p style={{ fontSize: isMobile?14:16, color:"#ddd0c8", lineHeight:1.75, maxWidth:520, margin:"0 auto" }}>
             Every thread starts with your old assumption — the belief you're actually working against — logged the moment you start listening. As the signs come in, you watch it shift into a new assumption in real time. That's the proof: not just that something manifested, but that the belief underneath it changed first.
@@ -160,9 +160,9 @@ export default function LandingProofWall({ isMobile }) {
 
         {/* Stats */}
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8, marginBottom:20 }}>
-          {[["6","Intentions"],["6","Manifested"],["18","Signs logged"]].map(([v,l],i)=>(
-            <div key={i} style={{ background:"rgba(255,255,255,0.06)", borderRadius:12, padding:"14px 6px", textAlign:"center" }}>
-              <div style={{ fontSize:24, fontWeight:400, color:"#f2ece4" }}>{v}</div>
+          {[["6","Intentions set","#F5E0A0"],["6","Manifested","#BFA5D8"],["18","Signs logged","#2CB7A7"]].map(([v,l,col],i)=>(
+            <div key={i} style={{ background:"rgba(255,255,255,0.05)", borderRadius:12, padding:"14px 6px", textAlign:"center", border:`1px solid ${col}33` }}>
+              <div style={{ fontSize:28, fontWeight:400, background:`linear-gradient(135deg,${col},#E8B870)`, WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>{v}</div>
               <div style={{ fontSize:10, color:"#e8e0d8", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase", marginTop:4 }}>{l}</div>
             </div>
           ))}
@@ -189,14 +189,22 @@ export default function LandingProofWall({ isMobile }) {
         </div>
 
         {/* Captured proof */}
-        <div style={{ fontSize:12, fontWeight:400, color:"#f2ece4", letterSpacing:"0.15em", textTransform:"uppercase", margin:"20px 0 10px" }}>All captured proof</div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))", gap:8 }}>
-          {MEDIA.map((m,i)=>(
-            <div key={i} style={{ background:"#ffffff", borderRadius:10, padding:8 }}>
-              <div style={{ width:"100%", height:72, display:"flex", alignItems:"center", justifyContent:"center", borderRadius:7, background:"#f8f8f8" }}>
-                <span style={{ fontSize:28 }}>{m.icon}</span>
-              </div>
-              <div style={{ fontSize:10, fontWeight:400, color:"#000", marginTop:6, lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{m.label}</div>
+        <div style={{ fontSize:12, fontWeight:400, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase", margin:"20px 0 10px" }}>Captured proof</div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:8 }}>
+          {[
+            { img:"https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=200&h=180&fit=crop&auto=format", label:"Screenshot · 19 Jun" },
+            { img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=200&h=180&fit=crop&auto=format", label:"£1,800 · 28 Jun" },
+            { img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&h=180&fit=crop&auto=format", label:"Photo · 20 Jun" },
+            { img:null, label:"🎤  Voice note · 1 Jul", icon:true },
+          ].map((m,i)=>(
+            <div key={i} style={{ background:"#111", borderRadius:10, overflow:"hidden", border:"1px solid rgba(232,184,112,0.15)" }}>
+              {m.icon
+                ? <div style={{ width:"100%", height:72, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(245,224,160,0.08)" }}>
+                    <span style={{ fontSize:26 }}>🎤</span>
+                  </div>
+                : <img src={m.img} alt={m.label} style={{ width:"100%", height:72, objectFit:"cover", display:"block" }}/>
+              }
+              <div style={{ fontSize:9, fontWeight:400, color:"#e8e0d8", padding:"6px 8px", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{m.label}</div>
             </div>
           ))}
         </div>
