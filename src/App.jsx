@@ -1343,6 +1343,36 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ fontSize: isMobile?"clamp(36px,9vw,56px)":"clamp(48px,5vw,68px)", fontWeight:300, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>Manifest your dream reality<br/>through self-hypnosis<br/>and subliminals.</div>
           <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.4)", fontFamily:"'Jost',sans-serif", marginBottom: isMobile?56:80 }}>Here is exactly what happens when you press play.</div>
 
+          {/* BETA → THETA → IDENTITY visual */}
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?64:96 }}>
+            {/* BETA */}
+            <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding: isMobile?"28px 20px":"40px 32px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(242,236,228,0.3)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
+              <div style={{ fontSize: isMobile?36:48, fontWeight:300, color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Beta</div>
+              <div style={{ fontSize:13, color:"rgba(242,236,228,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>13–40 Hz</div>
+              <div style={{ fontSize: isMobile?13:14, color:"rgba(242,236,228,0.45)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>Your waking state. The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
+            </div>
+            {/* Arrow */}
+            <div style={{ fontSize: isMobile?24:32, color:"rgba(232,184,112,0.4)", textAlign:"center", padding: isMobile?"4px 0":"0 20px" }}>{isMobile?"↓":"→"}</div>
+            {/* THETA */}
+            <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20, padding: isMobile?"28px 20px":"40px 32px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
+              <div style={{ fontSize: isMobile?36:48, fontWeight:300, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Theta</div>
+              <div style={{ fontSize:13, color:"rgba(44,183,167,0.6)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>4–8 Hz</div>
+              <div style={{ fontSize: isMobile?13:14, color:"rgba(242,236,228,0.45)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>The subconscious opens. The critical mind steps back. New beliefs install without resistance.</div>
+            </div>
+            {/* Arrow */}
+            <div style={{ fontSize: isMobile?24:32, color:"rgba(232,184,112,0.4)", textAlign:"center", padding: isMobile?"4px 0":"0 20px" }}>{isMobile?"↓":"→"}</div>
+            {/* IDENTITY */}
+            <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:20, padding: isMobile?"28px 20px":"40px 32px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The result</div>
+              <div style={{ fontSize: isMobile?36:48, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Identity</div>
+              <div style={{ fontSize:13, color:"rgba(0,0,0,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>Installed.</div>
+              <div style={{ fontSize: isMobile?13:14, color:"rgba(0,0,0,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
+            </div>
+          </div>
+
+          {/* Numbered steps */}
           {[
             { n:1, title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play.", color:"#F5E0A0" },
             { n:2, title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens.", color:"#EDD090" },
