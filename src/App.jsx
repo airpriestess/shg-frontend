@@ -500,20 +500,20 @@ function AppPreviewSection({ isMobile }) {
   function DesktopPanel() {
     if (view === "dashboard") return <DesktopMockup theme={theme} width={460}/>;
     if (view === "proof") return (
-      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(44,183,167,0.15)" }}>
+      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)" }}>
         <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
-          <div style={{ fontSize:13, color:theme==="dark"?"#2CB7A7":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, color:theme==="dark"?"#E8B870":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
-              <div key={i} style={{ background:theme==="dark"?"rgba(44,183,167,0.08)":"rgba(44,183,167,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, color:theme==="dark"?"#2CB7A7":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
+              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.1)":"rgba(232,184,112,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+                <div style={{ fontSize:22, color:theme==="dark"?"#E8B870":"#c4910a", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
                 <div style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.2)":"rgba(232,184,112,0.25)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#2CB7A7":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(183,110,121,0.18)":"rgba(183,110,121,0.12)", color:theme==="dark"?"#E8B870":"#B76E79", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
               <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
             <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
@@ -524,9 +524,9 @@ function AppPreviewSection({ isMobile }) {
               ))}
             </div>
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(44,183,167,0.1)":"rgba(44,183,167,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
+          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.12)":"rgba(232,184,112,0.18)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(44,183,167,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#2CB7A7":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(232,184,112,0.1)", color:theme==="dark"?"#E8B870":"#c4910a", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
               <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
             </div>
             <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
@@ -535,7 +535,7 @@ function AppPreviewSection({ isMobile }) {
       </div>
     );
     if (view === "analytics") return (
-      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(44,183,167,0.15)" }}>
+      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)" }}>
         <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px", maxHeight:480, overflowY:"auto" }}>
           <AnalyticsBoard theme={theme}/>
         </div>
@@ -573,7 +573,7 @@ function AppPreviewSection({ isMobile }) {
 
       {/* Heading */}
       <div style={{ textAlign:"center" }}>
-        <div style={{ fontSize:11, color:"#e8e0d8", letterSpacing:"0.22em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Live preview</div>
+        <div style={{ fontSize:11, color:"#E8B870", letterSpacing:"0.22em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Live preview</div>
         <div style={{ fontSize:isMobile?22:28, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em" }}>
           {isMobile ? "See inside the platform." : "Desktop and iPhone. No download needed."}
         </div>
@@ -600,12 +600,12 @@ function AppPreviewSection({ isMobile }) {
         <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:40, padding:"0 32px", maxWidth:1100, width:"100%" }}>
           {/* Desktop panel */}
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
-            <div style={{ fontSize:10, color:"#e8e0d8", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop · works in any browser</div>
+            <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop · works in any browser</div>
             <DesktopPanel/>
           </div>
           {/* iPhone */}
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
-            <div style={{ fontSize:10, color:"#e8e0d8", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>iPhone · Android</div>
+            <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>iPhone · Android</div>
             <PhoneShell w={210}/>
           </div>
         </div>
@@ -615,7 +615,7 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="dark"?"#2CB7A7":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          style={{ width:44, height:24, borderRadius:12, background:theme==="dark"?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="dark"?23:3, transition:"left 0.25s" }}/>
         </button>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Light</span>
