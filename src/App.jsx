@@ -1751,9 +1751,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* FOOTER */}
-      <div style={{ borderTop: T.border, padding: "48px 24px 28px", textAlign: "center" }}>
-        <div style={{ display:"flex", justifyContent:"center", marginBottom:16 }}>
-          <svg viewBox="0 0 100 102" width={40} height={40}>
+      <div style={{ borderTop: T.border, padding: "64px 24px 28px", textAlign: "center" }}>
+        <div style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
+          <svg viewBox="0 0 100 102" width={72} height={72}>
             <defs><linearGradient id="footerlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
             <circle cx="35" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
             <circle cx="65" cy="35" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
@@ -1762,16 +1762,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <line x1="50" y1="80" x2="50" y2="96" stroke="url(#footerlg)" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </div>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:8}}>
-              <svg viewBox="0 0 100 102" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="35" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
-                <circle cx="65" cy="35" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
-                <circle cx="35" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
-                <circle cx="65" cy="65" r="18" fill="none" stroke="#f2ece4" strokeWidth="2"/>
-                <line x1="50" y1="80" x2="50" y2="96" stroke="#f2ece4" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:400, fontSize:18, color:"#f2ece4", letterSpacing:"0.02em" }}>Self Hypnosis Goddess</span>
-            </div>
+        <div style={{ marginBottom:16 }}>
+          <span className="wm" style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:32, color:"#f2ece4", letterSpacing:"0.01em" }}>Self Hypnosis Goddess</span>
+        </div>
         <div style={{ fontSize: 13, color: "#e8e0d8", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
           Self Hypnosis Goddess is a self-hypnosis and manifestation audio product. It is not therapy, medical treatment, or a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact a licensed professional or emergency services.
