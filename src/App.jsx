@@ -1426,16 +1426,50 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
                   {/* PROOFOS INTRO */}
       <div id="proofos" style={{ background:"#000", padding: isMobile?"64px 24px 56px":"88px 80px 72px", width:"100%", textAlign:"center" }}>
-        <div style={{ maxWidth:680, margin:"0 auto" }}>
+        <div style={{ maxWidth:760, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>Goddess tier ✦</div>
           <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:24 }}>ProofOS.</div>
-          <div style={{ fontSize: isMobile?16:20, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:16 }}>
-            Every desire you set gets its own thread. Every sign, synchronicity, and shift gets logged — with a date, a photo, a voice note.
+          <div style={{ fontSize: isMobile?16:19, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:16, maxWidth:560, margin:"0 auto 16px" }}>
+            Every desire you set gets its own intention. Every sign, synchronicity, and shift gets logged — with a date, a photo, a voice note.
           </div>
-          <div style={{ fontSize: isMobile?16:20, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:40 }}>
+          <div style={{ fontSize: isMobile?16:19, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:64, maxWidth:560, margin:"0 auto 64px" }}>
             As your reality shifts, the evidence stacks. That evidence is what keeps you in the state that makes more things arrive.
           </div>
-          <div style={{ fontSize: isMobile?15:17, color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>And then it goes to the Proof Wall. ↓</div>
+
+          {/* ProofOS MECHANICS DIAGRAM */}
+          <div style={{ overflowX:"auto", paddingBottom:8 }}>
+            <div style={{ display:"flex", alignItems:"stretch", gap:0, minWidth: isMobile?560:0, justifyContent:"center" }}>
+              {[
+                { step:"01", label:"SET INTENTION", body:"Write the desire. State the old belief you're working against.", col:"#F5E0A0" },
+                { step:"02", label:"LISTEN", body:"Press play. Theta opens. The new identity installs.", col:"#E8B870" },
+                { step:"03", label:"SIGNS ARRIVE", body:"Synchronicities. Shifts. People changing. Money moving.", col:"#BFA5D8" },
+                { step:"04", label:"LOG IT", body:"Date it. Photo it. Voice note it. The evidence is real.", col:"#2CB7A7" },
+                { step:"05", label:"MARK MANIFESTED", body:"It arrived. You mark it done. Dated. Permanent.", col:"#167A6B" },
+              ].map((s,i)=>(
+                <div key={i} style={{ display:"flex", alignItems:"center" }}>
+                  <div style={{ background:"#0d0d0d", border:`1.5px solid ${s.col}44`, borderRadius:16, padding: isMobile?"20px 14px":"28px 20px", textAlign:"center", width: isMobile?100:130, flexShrink:0 }}>
+                    <div style={{ fontSize:10, fontWeight:500, background:`linear-gradient(135deg,${s.col},#E8B870)`, WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>{s.step}</div>
+                    <div style={{ fontSize: isMobile?10:11, fontWeight:700, color:"#f2ece4", letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif", lineHeight:1.3 }}>{s.label}</div>
+                    <div style={{ fontSize: isMobile?10:11, color:"#a09080", fontFamily:"'Jost',sans-serif", lineHeight:1.55 }}>{s.body}</div>
+                  </div>
+                  {i < 4 && (
+                    <div style={{ fontSize: isMobile?16:22, color:"#333", padding:"0 6px", flexShrink:0 }}>→</div>
+                  )}
+                </div>
+              ))}
+              {/* Final arrow + Proof Wall */}
+              <div style={{ display:"flex", alignItems:"center" }}>
+                <div style={{ fontSize: isMobile?16:22, color:"#333", padding:"0 6px", flexShrink:0 }}>→</div>
+                <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, padding: isMobile?"20px 14px":"28px 20px", textAlign:"center", width: isMobile?100:130, flexShrink:0 }}>
+                  <div style={{ fontSize:10, fontWeight:500, color:"rgba(0,0,0,0.5)", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>✦</div>
+                  <div style={{ fontSize: isMobile?10:11, fontWeight:700, color:"#000", letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif", lineHeight:1.3 }}>PROOF WALL</div>
+                  <div style={{ fontSize: isMobile?10:11, color:"rgba(0,0,0,0.65)", fontFamily:"'Jost',sans-serif", lineHeight:1.55 }}>Every win. Dated. Permanent. Yours.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ fontSize: isMobile?14:16, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", marginTop:40 }}>And then it goes to the Proof Wall. ↓</div>
         </div>
       </div>
 
