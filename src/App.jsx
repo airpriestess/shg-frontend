@@ -1289,6 +1289,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
+      {/* APP PREVIEW — dashboard mockup with dark/light toggle */}
+      <AppPreviewSection isMobile={isMobile} />
+
       {/* FORMULA */}
       <div style={{ background:"#000", padding: isMobile?"0 20px 56px":"12px 48px 64px", textAlign:"center" }}>
         {/* Lucky Girl gradient border via padding trick */}
