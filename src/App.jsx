@@ -872,11 +872,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
   const [billing, setBilling] = useState("monthly");
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnnual, setMenuAnnual] = useState(false);
-  const [waitlistOpen, setWaitlistOpen] = useState(false);
   const location = useLocation();
+  const [waitlistOpen, setWaitlistOpen] = useState(() => !!location.state?.openWaitlist);
   useEffect(() => {
     if (location.state?.openWaitlist) {
-      setTimeout(() => setWaitlistOpen(true), 100);
       window.history.replaceState({}, document.title);
     }
   }, []);
