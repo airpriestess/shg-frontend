@@ -1403,7 +1403,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <div key={i}>
                 <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"32px 24px":"48px 56px", display:"flex", gap: isMobile?20:40, alignItems:"flex-start" }}>
                   {/* Number — massive, left, faded */}
-                  <div style={{ fontSize: isMobile?52:80, fontWeight:300, color:"rgba(0,0,0,0.08)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?52:80, letterSpacing:"-0.02em" }}>{s.n}</div>
+                  <div style={{ fontSize: isMobile?52:80, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?52:80, letterSpacing:"-0.02em" }}>{s.n}</div>
                   {/* Text */}
                   <div style={{ flex:1, paddingTop: isMobile?8:14 }}>
                     <div style={{ display:"flex", alignItems:"flex-start", flexWrap:"wrap", gap:10, marginBottom:16 }}>
@@ -1414,7 +1414,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   </div>
                 </div>
                 {/* Thick black arrow */}
-                {i < 7 && <div style={{ textAlign:"center", padding: isMobile?"12px 0":"16px 0", fontSize: isMobile?32:44, color:"rgba(0,0,0,0.3)", fontWeight:700, lineHeight:1 }}>↓</div>}
+                {i < 7 && <div style={{ textAlign:"center", padding: isMobile?"12px 0":"16px 0", fontSize: isMobile?32:44, color:"#000", fontWeight:700, lineHeight:1 }}>↓</div>}
               </div>
             ))}
           </div>
