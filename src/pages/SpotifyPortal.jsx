@@ -16,10 +16,10 @@ const HAWKINS = [
   {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
   {n:"Anger",       v:150, c:"#E8B870"}, // orange
   {n:"Pride",       v:175, c:"#f1c40f"}, // yellow
-  {n:"Courage",     v:200, c:"#2CB7A7"}, // green — the line
+  {n:"Courage",     v:200, c:"#E8B870"}, // champagne — the line
   {n:"Neutrality",  v:250, c:"#167A6B"}, // teal-green
-  {n:"Willingness", v:310, c:"#2CB7A7"}, // sky blue
-  {n:"Acceptance",  v:350, c:"#2CB7A7"}, // deeper blue
+  {n:"Willingness", v:310, c:"#BFA5D8"}, // lilac
+  {n:"Acceptance",  v:350, c:"#2CB7A7"}, // teal — correct end of LG
   {n:"Reason",      v:400, c:"#BFA5D8"}, // purple
   {n:"Love",        v:500, c:"#F5E0A0"},
   {n:"Joy",         v:540, c:"#F5E0A0"},
@@ -66,7 +66,7 @@ const THEMES = {
   light: { bg:"#fdf8f2", bg2:"#fffdf9", bg3:"rgba(232,184,112,0.08)", bg4:"rgba(232,184,112,0.12)", nav:"rgba(253,248,242,0.97)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(232,184,112,0.2)", inputBg:"rgba(232,184,112,0.06)", inputCr:"#0a0a0a" },
 };
 
-const R = "#2CB7A7", P = "#BFA5D8";
+const R = "#E8B870", P = "#BFA5D8";
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 // Per-tab subtle wash — black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
@@ -100,7 +100,7 @@ const CAT_ICONS = {
   Bodymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#2CB7A7", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Moneymaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Businessmaxxing: { accent:"#2CB7A7", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
+  Businessmaxxing: { accent:"#E8B870", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Desiresmaxxing: { accent:"#E8B870", icon:'<path d="M32 14 C32 14 20 22 20 32 C20 38.6 25.4 44 32 44 C38.6 44 44 38.6 44 32 C44 22 32 14 32 14Z M26 30 L32 24 L38 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#2CB7A7", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
   Selfmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/>' },
@@ -108,20 +108,20 @@ const CAT_ICONS = {
   Singlemaxxing: { accent:"#F5E0A0", icon:'<circle cx="30" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34 L30 48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/>' },
   Wellnessmaxxing: { accent:"#E8B870", icon:'<path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Sleepmaxxing: { accent:"#2CB7A7", icon:'<path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/>' },
-  Studymaxxing: { accent:"#2CB7A7", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
-  Friendmaxxing: { accent:"#2CB7A7", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Peacemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
+  Studymaxxing: { accent:"#BFA5D8", icon:'<path d="M14 22 L30 14 L46 22 L30 30 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 22 L14 34 M46 22 L46 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
+  Friendmaxxing: { accent:"#BFA5D8", icon:'<circle cx="22" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="26" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Peacemaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
   Confidencemaxxing: { accent:"#E8B870", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
   Stylemaxxing: { accent:"#E8B870", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
   Healmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Lifemaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Luckygirlmaxxing: { accent:"#2CB7A7", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
+  Luckygirlmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Sovereignmaxxing: { accent:"#BFA5D8", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
 };
 
 function Thumb({ title, cat, size=48, radius=4 }) {
-  const c = CAT_ICONS[cat] || { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
+  const c = CAT_ICONS[cat] || { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
   return (
     <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:"#000", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
       <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: c.icon }} />
@@ -688,9 +688,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
               Select your state on the Hawkins scale.{" "}
-              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#2CB7A7",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
+              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#E8B870",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
             </div>
-            <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
+            <div style={{ fontSize:11,color:"#BFA5D8",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
             <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
               {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
@@ -762,14 +762,14 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
               style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?"#E8B870":C.mu,fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
-              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#2CB7A7":C.mu;}}>
+              onMouseEnter={e=>e.currentTarget.style.color="#E8B870"}
+              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
           <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:15,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
-            onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
+            onMouseEnter={e=>e.currentTarget.style.color="#E8B870"}
             onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
             <Ico.Book c={C.mu}/> Listening Guide
           </button>
@@ -1001,10 +1001,10 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
         <div style={{ display:"flex",gap:10 }}>
           <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="About this track" title="About this track">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#2CB7A7":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#2CB7A7":C.cr}/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#E8B870":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#E8B870":C.cr}/></svg>
           </button>
           <button onClick={()=>setView(v=>v==="script"?"cover":"script")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#2CB7A7":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#E8B870":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
           </button>
         </div>
       </div>
@@ -1162,7 +1162,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
           {FEATURED_CATS.map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#2CB7A7",icon:''};
+            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             const n=TRACKS.filter(t=>t.cat===cat).length;
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:`linear-gradient(135deg,${isDark?"#0a0a0a":C.bg2} 0%,${c.accent}20 100%)`,border:`1px solid ${c.accent}33`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
@@ -1197,7 +1197,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
           {Object.keys(CAT_ICONS).map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#2CB7A7",icon:''};
+            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
                 <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,${isDark?"#111":C.bg2} 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
@@ -1256,7 +1256,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#2CB7A7","Money":"#2CB7A7","Beauty":"#2CB7A7","Identity":"#2CB7A7","DNA":"#2CB7A7","Sleep":"#2CB7A7"})[name]||"#2CB7A7",n]),
+              .map(([name,n])=>[name,({"Lovemaxxing":"#B76E79","Money":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"})[name]||"#E8B870",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
           onDrillDown={isPreview?null:onDrillDown}
@@ -1432,7 +1432,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
               {!isPreview&&cur?.id===t.id&&playing&&(
                 <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
-                  <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:"#2CB7A7",borderRadius:1 }}/>)}</div>
+                  <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
                 </div>
               )}
             </div>
@@ -1472,7 +1472,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#2CB7A7", marginBottom:4 }}>£33<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>£33<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
@@ -1503,7 +1503,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   if (isPreview) return (
     <div style={{ padding:"40px 20px",textAlign:"center",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",minHeight:"100%" }}>
-      <div style={{ fontSize:36,marginBottom:16,color:"#2CB7A7" }}>✦</div>
+      <div style={{ fontSize:36,marginBottom:16,color:"#E8B870" }}>✦</div>
       <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:28,fontWeight:400,color:PC.text,marginBottom:10 }}>ProofOS</div>
       <div style={{ fontSize:16,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
@@ -1608,7 +1608,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
-            <div style={{ fontSize:14,color:"#2CB7A7",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
+            <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
               <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever — no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
@@ -1634,7 +1634,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
-            <div style={{ fontSize:13, color:"#2CB7A7", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
+            <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
               ✦ You've got {activeThreads.filter(t=>!t.done).length} active intentions. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
@@ -1856,7 +1856,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 {d.track && <span style={{ fontSize:13,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
               </div>
               {d.feelBefore && <div style={{ fontSize:13,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
-              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#2CB7A7",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
+              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#E8B870",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
             <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
               <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:14,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>
@@ -1879,7 +1879,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {/* Marking manifested — capture feelAfter */}
           {finishing===d.id && (
             <div style={{ marginTop:10,background:PC.card,border:`1px solid ${PC.border}`,borderRadius:10,padding:"12px 14px" }}>
-              <div style={{ fontSize:14,color:"#2CB7A7",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
               <div style={{ display:"flex", gap:6, overflowX:"auto", marginBottom:10, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
                 {HAWKINS.slice().reverse().map(h=>(
                   <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
@@ -1890,7 +1890,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment, in your own words"
                   onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
                   style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"10px 12px",fontSize:15,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"#2CB7A7",border:"none",borderRadius:8,color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
+                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:8,color:"#000",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
               </div>
             </div>
           )}
@@ -1900,7 +1900,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
               <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
-                <span style={{ fontSize:13,color:CAT_COLOR[d.category]||"#2CB7A7",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
+                <span style={{ fontSize:13,color:CAT_COLOR[d.category]||"#E8B870",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
                 <span style={{ fontSize:14,color:C.cr,lineHeight:1.5,flex:1 }}>
                   {sg.text}
                   {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}
@@ -2008,7 +2008,7 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
         )}
         {!isPreview&&isP&&playing&&(
           <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.45)" }}>
-            <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:"#2CB7A7",borderRadius:1 }}/>)}</div>
+            <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
           </div>
         )}
         {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
