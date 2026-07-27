@@ -40,6 +40,58 @@ function ShopRedirect() {
   );
 }
 
+/* ── PROOFOS BANNER ── auto-cycling full-width step ticker ─────────────────── */
+function ProofOSBanner({ isMobile }) {
+  const STEPS = [
+    { num:"01", label:"Set your intention", body:"Write the desire. State the old belief underneath it.", col:"#F5E0A0" },
+    { num:"02", label:"Press play", body:"Theta opens. Your subconscious accepts the new identity.", col:"#E8B870" },
+    { num:"03", label:"Signs arrive", body:"Synchronicities. Shifts. People change. Money moves.", col:"#BFA5D8" },
+    { num:"04", label:"Log every sign", body:"Date it. Photo it. Voice note it. The evidence is real.", col:"#2CB7A7" },
+    { num:"05", label:"Mark it manifested ✦", body:"It arrived. Dated. Permanent. Your Proof Wall builds.", col:"#167A6B" },
+  ];
+  const [idx, setIdx] = React.useState(0);
+  React.useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i+1) % STEPS.length), 2800);
+    return () => clearInterval(t);
+  }, []);
+  const s = STEPS[idx];
+  return (
+    <div id="proofos" style={{ background:"#000", width:"100%", paddingTop: isMobile?"48px":"64px", paddingBottom: isMobile?"48px":"64px" }}>
+      {/* Heading */}
+      <div style={{ textAlign:"center", marginBottom: isMobile?28:36, padding:"0 24px" }}>
+        <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>Goddess Tier ✦</div>
+        <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:14 }}>ProofOS.</div>
+        <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:480, margin:"0 auto" }}>
+          Every desire. Every sign. Every moment it arrived. Logged, dated, permanent.
+        </div>
+      </div>
+
+      {/* Full-width cycling banner */}
+      <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", width:"100%", padding: isMobile?"22px 24px":"28px 48px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:24, minHeight: isMobile?90:96 }}>
+        <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
+        <div style={{ flex:1, textAlign: isMobile?"left":"center" }}>
+          <div style={{ fontSize: isMobile?"clamp(18px,5vw,26px)":"clamp(22px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom:6 }}>{s.label}</div>
+          <div style={{ fontSize: isMobile?13:16, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
+        </div>
+        <div style={{ display:"flex", flexDirection:"column", gap:6, flexShrink:0 }}>
+          {STEPS.map((_,i)=>(
+            <div key={i} onClick={()=>setIdx(i)} style={{ width:6, height: i===idx?24:6, borderRadius:3, background: i===idx?"rgba(0,0,0,0.5)":"rgba(0,0,0,0.2)", cursor:"pointer", transition:"height 0.3s" }}/>
+          ))}
+        </div>
+      </div>
+
+      {/* Step pills */}
+      <div style={{ display:"flex", justifyContent:"center", gap: isMobile?6:12, marginTop:20, padding:"0 24px", flexWrap:"wrap" }}>
+        {STEPS.map((st,i)=>(
+          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 12px":"8px 18px", borderRadius:20, border:"none", background: i===idx?"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(255,255,255,0.06)", color: i===idx?"#000":"rgba(242,236,228,0.4)", fontSize: isMobile?11:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s" }}>
+            {st.num} {st.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const authCtx = useAuth();
   const { isAuthenticated, profile } = authCtx;
@@ -1425,53 +1477,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
                   {/* PROOFOS INTRO */}
-      <div id="proofos" style={{ background:"#000", padding: isMobile?"64px 24px 56px":"88px 80px 72px", width:"100%", textAlign:"center" }}>
-        <div style={{ maxWidth:760, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:20, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>Goddess tier ✦</div>
-          <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:24 }}>ProofOS.</div>
-          <div style={{ fontSize: isMobile?16:19, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:16, maxWidth:560, margin:"0 auto 16px" }}>
-            Every desire you set gets its own intention. Every sign, synchronicity, and shift gets logged — with a date, a photo, a voice note.
-          </div>
-          <div style={{ fontSize: isMobile?16:19, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.75, marginBottom:64, maxWidth:560, margin:"0 auto 64px" }}>
-            As your reality shifts, the evidence stacks. That evidence is what keeps you in the state that makes more things arrive.
-          </div>
-
-          {/* ProofOS MECHANICS DIAGRAM */}
-          <div style={{ overflowX:"auto", paddingBottom:8 }}>
-            <div style={{ display:"flex", alignItems:"stretch", gap:0, minWidth: isMobile?560:0, justifyContent:"center" }}>
-              {[
-                { step:"01", label:"SET INTENTION", body:"Write the desire. State the old belief you're working against.", col:"#F5E0A0" },
-                { step:"02", label:"LISTEN", body:"Press play. Theta opens. The new identity installs.", col:"#E8B870" },
-                { step:"03", label:"SIGNS ARRIVE", body:"Synchronicities. Shifts. People changing. Money moving.", col:"#BFA5D8" },
-                { step:"04", label:"LOG IT", body:"Date it. Photo it. Voice note it. The evidence is real.", col:"#2CB7A7" },
-                { step:"05", label:"MARK MANIFESTED", body:"It arrived. You mark it done. Dated. Permanent.", col:"#167A6B" },
-              ].map((s,i)=>(
-                <div key={i} style={{ display:"flex", alignItems:"center" }}>
-                  <div style={{ background:"#111", border:`1.5px solid ${s.col}66`, borderRadius:16, padding: isMobile?"20px 14px":"28px 20px", textAlign:"center", width: isMobile?100:130, flexShrink:0 }}>
-                    <div style={{ fontSize:10, fontWeight:500, background:`linear-gradient(135deg,${s.col},#E8B870)`, WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>{s.step}</div>
-                    <div style={{ fontSize: isMobile?10:11, fontWeight:700, color:"#f2ece4", letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif", lineHeight:1.3 }}>{s.label}</div>
-                    <div style={{ fontSize: isMobile?10:11, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.55 }}>{s.body}</div>
-                  </div>
-                  {i < 4 && (
-                    <div style={{ fontSize: isMobile?16:22, color:"#e8e0d8", padding:"0 6px", flexShrink:0 }}>→</div>
-                  )}
-                </div>
-              ))}
-              {/* Final arrow + Proof Wall */}
-              <div style={{ display:"flex", alignItems:"center" }}>
-                <div style={{ fontSize: isMobile?16:22, color:"#e8e0d8", padding:"0 6px", flexShrink:0 }}>→</div>
-                <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:16, padding: isMobile?"20px 14px":"28px 20px", textAlign:"center", width: isMobile?100:130, flexShrink:0 }}>
-                  <div style={{ fontSize:10, fontWeight:500, color:"rgba(0,0,0,0.5)", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>✦</div>
-                  <div style={{ fontSize: isMobile?10:11, fontWeight:700, color:"#000", letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10, fontFamily:"'Jost',sans-serif", lineHeight:1.3 }}>PROOF WALL</div>
-                  <div style={{ fontSize: isMobile?10:11, color:"rgba(0,0,0,0.65)", fontFamily:"'Jost',sans-serif", lineHeight:1.55 }}>Every win. Dated. Permanent. Yours.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ fontSize: isMobile?14:16, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", marginTop:40 }}>And then it goes to the Proof Wall. ↓</div>
-        </div>
-      </div>
+      <ProofOSBanner isMobile={isMobile}/>
 
       {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
       <LandingProofWall isMobile={isMobile}/>
