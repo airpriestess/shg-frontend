@@ -102,6 +102,7 @@ export default function App() {
               </div>
             : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
         } />
+        <Route path="/waitlist" element={<Landing forceWaitlist={true} onJoin={()=>setCheckoutModal(true)} onDemo={()=>goPortal("goddess")} onSignIn={()=>navigate("/auth")} onLegal={(p)=>navigate("/"+p)} />} />
         <Route path="*" element={<Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>} />
       </Routes>
       <CreateThreadModal open={createThreadModal} onClose={() => setCreateThreadModal(false)} preselectedAudioId={preselectedAudioId} />
@@ -864,7 +865,7 @@ const GPROOF = (m) => m
   ? { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }
   : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 };
 
-function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
+function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   const [proofTheme, setProofTheme] = useState("dark");
   const isMobile = useMobile();
   const [playing, setPlaying] = useState(false);
@@ -874,6 +875,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
   const [menuAnnual, setMenuAnnual] = useState(false);
   const location = useLocation();
   const [waitlistOpen, setWaitlistOpen] = useState(() => {
+    if (forceWaitlist) return true;
     const params = new URLSearchParams(window.location.search);
     return params.get("waitlist") === "1";
   });
