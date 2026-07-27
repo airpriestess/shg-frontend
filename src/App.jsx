@@ -1062,6 +1062,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HERO — full viewport carousel, then player */}
       <div style={{ marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))` }}>
 
+        {/* HERO HEADLINE — first thing visible */}
+        <div style={{ background:"#000", padding: isMobile?"48px 20px 16px":"72px 40px 20px", textAlign:"center" }}>
+          <div style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5vw,80px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:14 }}>Manifest your<br/>dream reality.</div>
+          <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.5)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.65, maxWidth:480, margin:"0 auto 10px" }}>The audio membership that reprograms your subconscious while you sleep.</div>
+          <div style={{ fontSize: isMobile?11:12, color:"rgba(242,236,228,0.25)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.22em", textTransform:"uppercase" }}>Hypnosis · Subliminals · EMDR · Binaural Beats · Melodic House</div>
+        </div>
+
         {/* FULL SCREEN CAROUSEL */}
         <div style={{ height: `calc(100vh - ${isMobile?"98px":"102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile?480:560, display:"flex", flexDirection:"column", background:"#000" }}>
           <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center" }}>
@@ -1166,13 +1173,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { label:"Skinnymaxxing",      tagline:"The weight came off like it was never mine to keep." },
                         ]} fullscreen={true} />
           </div>
-        </div>
-
-        {/* TWO LINES ABOVE PLAYER */}
-        <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:12, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Manifest your dream reality.</div>
-          <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.6)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.6, marginBottom:8, padding: isMobile?"0 20px":"0 20px", maxWidth:620, margin:"0 auto 8px" }}>The audio membership that reprograms your subconscious while you sleep.</div>
-          <div style={{ fontSize: isMobile?12:13, color:"rgba(242,236,228,0.35)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:24 }}>Hypnosis · Subliminals · EMDR · Binaural Beats · Melodic House</div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
