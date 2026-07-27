@@ -1348,26 +1348,35 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
           {/* Beta → Theta → Identity boxes */}
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?48:72 }}>
-            <div style={{ background:"rgba(255,255,255,0.85)", borderRadius:20, padding: isMobile?"24px 16px":"32px 24px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
-              <div style={{ fontSize: isMobile?28:36, fontWeight:300, color:"#0a0806", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Beta</div>
-              <div style={{ fontSize:12, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>13–40 Hz</div>
-              <div style={{ fontSize:13, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6 }}>The critical mind is active. Nothing installs here.</div>
+
+            {/* BETA — grey, muted */}
+            <div style={{ background:"rgba(60,60,60,0.5)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
+              <div style={{ fontSize: isMobile?32:44, fontWeight:300, color:"rgba(255,255,255,0.65)", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Beta</div>
+              <div style={{ fontSize:12, color:"rgba(255,255,255,0.3)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>13–40 Hz</div>
+              <div style={{ fontSize:13, color:"rgba(255,255,255,0.4)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
             </div>
-            <div style={{ fontSize: isMobile?24:28, color:"rgba(0,0,0,0.3)", textAlign:"center", padding: isMobile?"4px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
-            <div style={{ background:"rgba(255,255,255,0.85)", borderRadius:20, padding: isMobile?"24px 16px":"32px 24px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
-              <div style={{ fontSize: isMobile?28:36, fontWeight:300, color:"#0a0806", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Theta</div>
-              <div style={{ fontSize:12, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>4–8 Hz</div>
-              <div style={{ fontSize:13, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6 }}>The subconscious opens. New beliefs install without resistance.</div>
+
+            <div style={{ fontSize: isMobile?28:34, color:"rgba(255,255,255,0.25)", textAlign:"center", padding: isMobile?"8px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
+
+            {/* THETA — LG gradient coming through, semi-transparent */}
+            <div style={{ background:"linear-gradient(135deg,rgba(245,224,160,0.45) 0%,rgba(232,184,112,0.45) 30%,rgba(191,165,216,0.5) 65%,rgba(44,183,167,0.5) 100%)", border:"1px solid rgba(245,224,160,0.5)", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
+              <div style={{ fontSize: isMobile?32:44, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Theta</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>4–8 Hz</div>
+              <div style={{ fontSize:13, color:"rgba(0,0,0,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.65 }}>The subconscious opens. New beliefs install without resistance.</div>
             </div>
-            <div style={{ fontSize: isMobile?24:28, color:"rgba(0,0,0,0.3)", textAlign:"center", padding: isMobile?"4px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
-            <div style={{ background:"rgba(255,255,255,0.85)", borderRadius:20, padding: isMobile?"24px 16px":"32px 24px", textAlign:"center" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>The result</div>
-              <div style={{ fontSize: isMobile?28:36, fontWeight:300, color:"#0a0806", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Identity</div>
-              <div style={{ fontSize:12, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>Installed.</div>
-              <div style={{ fontSize:13, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6 }}>Your new self-concept runs. Reality follows automatically.</div>
+
+            <div style={{ fontSize: isMobile?28:34, color:"rgba(255,255,255,0.25)", textAlign:"center", padding: isMobile?"8px 0":"0 16px" }}>{isMobile?"↓":"→"}</div>
+
+            {/* IDENTITY — full LG gradient, bright, bold, wow */}
+            <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center", boxShadow:"0 12px 48px rgba(44,183,167,0.35)" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>The result</div>
+              <div style={{ fontSize: isMobile?32:44, fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Identity</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>Installed. ✦</div>
+              <div style={{ fontSize:13, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.65, fontWeight:500 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
             </div>
+
           </div>
 
           {/* Numbered steps — white boxes, black text, icons, arrows */}
