@@ -1385,32 +1385,33 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,60px)", fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0 }}>How it works.</div>
           </div>
 
-          {/* Numbered steps — no icons, clean, big text */}
+          {/* Numbered steps — massive titles, full copy, thick arrows */}
           <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
             {[
-              { n:"01", title:"PRESS PLAY.", body:"No ritual. No preparation. No perfect conditions. Just press play." },
-              { n:"02", title:"Your brain drops into theta.", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens. (4–8Hz)" },
-              { n:"03", title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming." },
-              { n:"04", title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering." },
-              { n:"05", title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session." },
-              { n:"06", title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts." },
-              { n:"07", title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — things start to change. This can happen in seconds. Or days. Every session goes deeper." },
-              { n:"08", title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
+              { n:"01", title:"PRESS PLAY.", body:"Choose a track from 24 categories based on what you want to manifest. Pick your intention. That's it. No ritual, no perfect timing, no preparation needed. Just press play." },
+              { n:"02", title:"THETA STATE.", body:"Your brain drops into theta (4–8Hz). Binaural beats — one frequency in each ear — create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
+              { n:"03", title:"YOUR SUBCONSCIOUS OPENS.", body:"The critical mind — the part that argues, doubts, and filters — steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming." },
+              { n:"04", title:"THE HYPNOSIS ACTIVATES.", body:"Reshma's voice speaks directly to your subconscious, putting you into hypnosis and opening your subconscious mind. Your new identity is delivered while the gatekeeper is offline. No resistance. No filtering. It goes straight in." },
+              { n:"05", title:"SUBLIMINALS LAYER UNDERNEATH.", body:"Affirmations recorded below conscious hearing. You can't make them out — but your subconscious can. Your new identity repeating hundreds of times per session while you listen." },
+              { n:"06", title:"MELODIC HOUSE HYPES YOU UP.", body:"The music holds you in state and keeps the energy high. Some tracks drive you. Some take you deep. Either way you stay locked in the frequency where identity shifts — and it feels incredible." },
+              { n:"07", title:"YOUR REALITY STARTS SHIFTING.", body:"Your beliefs and assumptions have changed. Your identity has shifted. Reality reflects your identity — so things start to change. This can happen in seconds. Or days. Every session goes deeper." },
+              { n:"08", title:"LOG EVERY SIGN IN PROOFOS.", body:"As your reality shifts you'll notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
             ].map((s,i)=>(
               <div key={i}>
-                <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"28px 24px":"40px 48px", display:"flex", gap: isMobile?20:36, alignItems:"flex-start" }}>
-                  {/* Number only — big, LG colour */}
-                  <div style={{ fontSize: isMobile?40:60, fontWeight:300, color:"rgba(0,0,0,0.12)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?44:68 }}>{s.n}</div>
+                <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"32px 24px":"48px 56px", display:"flex", gap: isMobile?20:40, alignItems:"flex-start" }}>
+                  {/* Number — massive, left, faded */}
+                  <div style={{ fontSize: isMobile?52:80, fontWeight:300, color:"rgba(0,0,0,0.08)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?52:80, letterSpacing:"-0.02em" }}>{s.n}</div>
                   {/* Text */}
-                  <div style={{ flex:1, paddingTop: isMobile?6:10 }}>
-                    <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:8, marginBottom:12 }}>
-                      <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,26px)":"clamp(24px,2.4vw,32px)", fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.15, letterSpacing:"-0.01em" }}>{s.title}</div>
-                      {s.badge && <span style={{ background:"rgba(22,122,107,0.1)", border:"1px solid rgba(22,122,107,0.4)", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#167A6B", fontFamily:"'Jost',sans-serif", flexShrink:0 }}>Goddess ✦</span>}
+                  <div style={{ flex:1, paddingTop: isMobile?8:14 }}>
+                    <div style={{ display:"flex", alignItems:"flex-start", flexWrap:"wrap", gap:10, marginBottom:16 }}>
+                      <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(28px,3vw,40px)", fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.1, letterSpacing:"-0.01em" }}>{s.title}</div>
+                      {s.badge && <span style={{ background:"rgba(22,122,107,0.1)", border:"1px solid rgba(22,122,107,0.4)", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#167A6B", fontFamily:"'Jost',sans-serif", flexShrink:0, marginTop:4 }}>Goddess ✦</span>}
                     </div>
-                    <div style={{ fontSize: isMobile?15:18, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.8 }}>{s.body}</div>
+                    <div style={{ fontSize: isMobile?15:18, color:"#222", fontFamily:"'Jost',sans-serif", lineHeight:1.85 }}>{s.body}</div>
                   </div>
                 </div>
-                {i < 7 && <div style={{ textAlign:"center", padding:"8px 0", fontSize: isMobile?22:28, color:"rgba(0,0,0,0.2)" }}>↓</div>}
+                {/* Thick black arrow */}
+                {i < 7 && <div style={{ textAlign:"center", padding: isMobile?"12px 0":"16px 0", fontSize: isMobile?32:44, color:"rgba(0,0,0,0.3)", fontWeight:700, lineHeight:1 }}>↓</div>}
               </div>
             ))}
           </div>
