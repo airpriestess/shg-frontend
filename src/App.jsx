@@ -1375,26 +1375,26 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Numbered steps */}
           {[
             { n:1, title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play.", color:"#F5E0A0" },
-            { n:2, title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens.", color:"#EDD090" },
+            { n:2, title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens.", color:"#E8B870" },
             { n:3, title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming.", color:"#E8B870" },
-            { n:4, title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering.", color:"#D4A0A8" },
+            { n:4, title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering.", color:"#BFA5D8" },
             { n:5, title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session.", color:"#BFA5D8" },
-            { n:6, title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts.", color:"#7ABAC0" },
+            { n:6, title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts.", color:"#2CB7A7" },
             { n:7, title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — so things start to change. This can happen in seconds. Or days. Every session goes deeper.", color:"#2CB7A7" },
-            { n:8, title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", color:"#167A6B", badge:true },
+            { n:8, title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", color:"#2CB7A7", badge:true },
           ].map((s,i)=>(
-            <div key={i} style={{ display:"flex", gap: isMobile?20:32, paddingBottom: isMobile?40:52, borderBottom: i<7 ? "1px solid rgba(255,255,255,0.06)" : "none", marginBottom: i<7 ? (isMobile?40:52) : 0 }}>
-              {/* Number */}
-              <div style={{ fontSize: isMobile?42:60, fontWeight:300, color:s.color, fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?40:60 }}>{s.n}</div>
+            <div key={i} style={{ display:"flex", gap: isMobile?20:40, paddingBottom: isMobile?40:52, borderBottom: i<7 ? "1px solid rgba(255,255,255,0.07)" : "none", marginBottom: i<7 ? (isMobile?40:52) : 0 }}>
+              {/* Number — big, gradient colour, always bright */}
+              <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:s.color, fontFamily:"'Jost',sans-serif", lineHeight:0.9, flexShrink:0, width: isMobile?44:68, opacity:1 }}>{s.n}</div>
               {/* Content */}
-              <div style={{ flex:1, paddingTop: isMobile?6:10 }}>
-                <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
-                  <div style={{ fontSize: isMobile?"clamp(20px,5vw,26px)":"clamp(24px,2.4vw,32px)", fontWeight:500, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{s.title}</div>
-                  {s.badge && <span style={{ flexShrink:0, background:"rgba(245,224,160,0.12)", border:"1px solid rgba(245,224,160,0.3)", borderRadius:20, padding:"4px 10px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#F5E0A0", fontFamily:"'Jost',sans-serif" }}>Goddess ✦</span>}
+              <div style={{ flex:1, paddingTop: isMobile?8:14 }}>
+                <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:10, marginBottom:12 }}>
+                  <div style={{ fontSize: isMobile?"clamp(22px,5.5vw,28px)":"clamp(26px,2.6vw,34px)", fontWeight:500, color:"#ffffff", fontFamily:"'Jost',sans-serif", lineHeight:1.15, letterSpacing:"-0.01em" }}>{s.title}</div>
+                  {s.badge && <span style={{ flexShrink:0, background:"rgba(245,224,160,0.12)", border:"1px solid rgba(245,224,160,0.4)", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#F5E0A0", fontFamily:"'Jost',sans-serif" }}>Goddess ✦</span>}
                 </div>
-                <div style={{ fontSize: isMobile?15:17, color:"rgba(242,236,228,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.8 }}>{s.body}</div>
+                <div style={{ fontSize: isMobile?15:18, color:"rgba(255,255,255,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.8 }}>{s.body}</div>
                 {s.badge && (
-                  <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ marginTop:16, background:"none", border:"1px solid rgba(22,122,107,0.5)", borderRadius:20, padding:"10px 24px", color:"#2CB7A7", fontSize:14, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.06em" }}>
+                  <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ marginTop:20, background:"none", border:"1px solid rgba(44,183,167,0.5)", borderRadius:20, padding:"10px 24px", color:"#2CB7A7", fontSize:14, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.06em" }}>
                     See the Proof Wall ↓
                   </button>
                 )}
