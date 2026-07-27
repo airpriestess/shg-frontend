@@ -163,7 +163,7 @@ export default function LandingProofWall({ isMobile }) {
           {[["6","Intentions set","#F5E0A0"],["6","Manifested","#BFA5D8"],["18","Signs logged","#2CB7A7"]].map(([v,l,col],i)=>(
             <div key={i} style={{ background:"rgba(255,255,255,0.05)", borderRadius:12, padding:"14px 6px", textAlign:"center", border:`1px solid ${col}33` }}>
               <div style={{ fontSize:28, fontWeight:400, background:`linear-gradient(135deg,${col},#E8B870)`, WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>{v}</div>
-              <div style={{ fontSize:10, color:"#e8e0d8", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase", marginTop:4 }}>{l}</div>
+              <div style={{ fontSize:10, fontWeight:500, background:`linear-gradient(135deg,${col},#E8B870)`, WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"0.12em", textTransform:"uppercase", marginTop:4, fontFamily:"'Jost',sans-serif" }}>{l}</div>
             </div>
           ))}
         </div>
