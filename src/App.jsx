@@ -1335,55 +1335,53 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-      {/* HOW IT WORKS — dark bg, LG gradient progression, icons, arrows */}
-      <div style={{ background:"#000", width:"100%", padding: isMobile?"72px 20px 88px":"104px 60px 120px" }}>
-        <div style={{ maxWidth:860, margin:"0 auto" }}>
+      {/* HOW IT WORKS — alternating black/cream, LG gradient icons, arrows */}
+      <div style={{ width:"100%" }}>
 
-          {/* Heading */}
-          <div style={{ textAlign:"center", marginBottom: isMobile?56:80 }}>
-            <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The method</div>
-            <div style={{ fontSize: isMobile?"clamp(36px,9vw,56px)":"clamp(52px,5.5vw,72px)", fontWeight:300, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>Manifest your dream reality<br/>through self-hypnosis<br/>and subliminals.</div>
-            <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.45)", fontFamily:"'Jost',sans-serif" }}>Here is exactly what happens when you press play.</div>
-          </div>
-
-          {/* Steps */}
-          {[
-            { n:"01", icon:"▶", title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play.", color:"#F5E0A0" },
-            { n:"02", icon:"〜", title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens.", color:"#EDD090" },
-            { n:"03", icon:"◎", title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming.", color:"#E8B870" },
-            { n:"04", icon:"♪", title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering.", color:"#D4A0A8" },
-            { n:"05", icon:"∞", title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session.", color:"#BFA5D8" },
-            { n:"06", icon:"♦", title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts.", color:"#7ABAC0" },
-            { n:"07", icon:"★", title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — so things start to change. This can happen in seconds. Or days. Every session goes deeper.", color:"#2CB7A7" },
-            { n:"08", icon:"✦", title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill.", color:"#167A6B", badge:true },
-          ].map((s,i)=>(
-            <div key={i}>
-              <div style={{ display:"flex", gap: isMobile?20:32, alignItems:"flex-start", background:`${s.color}10`, border:`1px solid ${s.color}35`, borderRadius:20, padding: isMobile?"28px 22px":"36px 40px", position:"relative" }}>
-                {/* Icon circle */}
-                <div style={{ width: isMobile?52:64, height: isMobile?52:64, borderRadius:"50%", background:`${s.color}20`, border:`1.5px solid ${s.color}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                  <span style={{ fontSize: isMobile?20:24, color:s.color }}>{s.icon}</span>
-                </div>
-                {/* Text */}
-                <div style={{ flex:1, paddingTop:6 }}>
-                  <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
-                    <span style={{ fontSize:13, color:`${s.color}80`, fontFamily:"'Jost',sans-serif", letterSpacing:"0.12em", fontWeight:400 }}>{s.n}</span>
-                    {s.badge && <span style={{ background:`${s.color}20`, border:`1px solid ${s.color}50`, borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:s.color, fontFamily:"'Jost',sans-serif" }}>Goddess ✦</span>}
-                  </div>
-                  <div style={{ fontSize: isMobile?"clamp(20px,5vw,26px)":"clamp(24px,2.4vw,32px)", fontWeight:500, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.2, marginBottom:12, letterSpacing:"-0.01em" }}>{s.title}</div>
-                  <div style={{ fontSize: isMobile?15:17, color:"rgba(242,236,228,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.8 }}>{s.body}</div>
-                  {s.badge && (
-                    <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ marginTop:16, background:"none", border:`1px solid ${s.color}50`, borderRadius:20, padding:"8px 20px", color:s.color, fontSize:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.06em" }}>
-                      See the Proof Wall ↓
-                    </button>
-                  )}
-                </div>
-              </div>
-              {/* Arrow */}
-              {i < 7 && <div style={{ textAlign:"center", padding:"10px 0", fontSize:20, color:"rgba(242,236,228,0.12)" }}>↓</div>}
-            </div>
-          ))}
-
+        {/* Section heading — black */}
+        <div style={{ background:"#000", padding: isMobile?"64px 20px 56px":"88px 60px 72px", textAlign:"center" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The method</div>
+          <div style={{ fontSize: isMobile?"clamp(36px,9vw,56px)":"clamp(52px,5.5vw,72px)", fontWeight:300, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>Manifest your dream reality<br/>through self-hypnosis<br/>and subliminals.</div>
+          <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.45)", fontFamily:"'Jost',sans-serif" }}>Here is exactly what happens when you press play.</div>
         </div>
+
+        {/* 8 steps — alternating black/cream */}
+        {[
+          { n:"01", icon:"▶", title:"Press play.", body:"No ritual. No preparation. No perfect conditions. Just press play.", color:"#F5E0A0", dark:true },
+          { n:"02", icon:"〜", title:"Your brain drops into theta (4–8Hz).", body:"Binaural beats — one frequency in each ear — create a third tone. Your brain follows it automatically into the state where real change happens.", color:"#EDD090", dark:false },
+          { n:"03", icon:"◎", title:"Your subconscious opens.", body:"The critical mind steps back completely. What's left is your subconscious — open, receptive, ready. This is where you're reprogramming.", color:"#E8B870", dark:true },
+          { n:"04", icon:"♪", title:"The hypnosis goes straight in.", body:"Reshma's voice speaks directly to your subconscious. Your new identity delivered while the gatekeeper is offline. No resistance. No filtering.", color:"#D4A0A8", dark:false },
+          { n:"05", icon:"∞", title:"Subliminals repeat underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out — your subconscious can. Your new identity repeating hundreds of times per session.", color:"#BFA5D8", dark:true },
+          { n:"06", icon:"♦", title:"Melodic house music hypes you up.", body:"The music holds you in state and keeps the energy high. You don't drift out. You stay locked in the frequency where identity shifts.", color:"#7ABAC0", dark:false },
+          { n:"07", icon:"★", title:"Your reality starts shifting.", body:"Your beliefs and assumptions have shifted. Reality reflects your identity — so things start to change. This can happen in seconds. Or days. Every session goes deeper.", color:"#2CB7A7", dark:true },
+          { n:"08", icon:"✦", title:"Log every sign in ProofOS.", body:"Notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill.", color:"#167A6B", dark:false, badge:true },
+        ].map((s,i)=>(
+          <div key={i}>
+            <div style={{ background: s.dark ? "#000" : "#fdf0e8", padding: isMobile?"40px 24px":"64px 120px", display:"flex", gap: isMobile?20:48, alignItems:"center" }}>
+              {/* Icon circle */}
+              <div style={{ width: isMobile?56:80, height: isMobile?56:80, borderRadius:"50%", background: s.dark ? `${s.color}15` : `${s.color}25`, border:`2px solid ${s.color}`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                <span style={{ fontSize: isMobile?22:28, color:s.color }}>{s.icon}</span>
+              </div>
+              {/* Text */}
+              <div style={{ flex:1 }}>
+                <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
+                  <span style={{ fontSize:13, color: s.dark ? `${s.color}70` : `${s.color}90`, fontFamily:"'Jost',sans-serif", letterSpacing:"0.12em" }}>{s.n}</span>
+                  {s.badge && <span style={{ background:`${s.color}20`, border:`1px solid ${s.color}60`, borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:s.color, fontFamily:"'Jost',sans-serif" }}>Goddess ✦</span>}
+                </div>
+                <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(26px,2.6vw,36px)", fontWeight:500, color: s.dark ? "#f2ece4" : "#0a0806", fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom:14, letterSpacing:"-0.01em" }}>{s.title}</div>
+                <div style={{ fontSize: isMobile?15:18, color: s.dark ? "rgba(242,236,228,0.55)" : "rgba(10,8,6,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.8, maxWidth:560 }}>{s.body}</div>
+                {s.badge && (
+                  <button onClick={()=>document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"})} style={{ marginTop:20, background:"none", border:`1px solid ${s.color}60`, borderRadius:20, padding:"10px 24px", color:s.color, fontSize:14, fontFamily:"'Jost',sans-serif", cursor:"pointer", letterSpacing:"0.06em" }}>
+                    See the Proof Wall ↓
+                  </button>
+                )}
+              </div>
+            </div>
+            {/* Arrow divider */}
+            {i < 7 && <div style={{ background: s.dark ? "#000" : "#fdf0e8", textAlign:"center", padding:"0 0 8px", fontSize:22, color: s.dark ? "rgba(242,236,228,0.1)" : "rgba(10,8,6,0.1)" }}>↓</div>}
+          </div>
+        ))}
+
       </div>
 
                   {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
