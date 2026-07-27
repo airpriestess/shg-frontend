@@ -876,10 +876,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
   const location = useLocation();
   useEffect(() => {
     if (location.state?.openWaitlist) {
-      setWaitlistOpen(true);
-      window.history.replaceState({}, "");
+      setTimeout(() => setWaitlistOpen(true), 100);
+      window.history.replaceState({}, document.title);
     }
-  }, [location]);
+  }, []);
   const [shopOpen, setShopOpen] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [waitlistStatus, setWaitlistStatus] = useState("idle"); // idle | saving | done | error
