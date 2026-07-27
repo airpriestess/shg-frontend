@@ -1721,37 +1721,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* INSTAGRAM */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
-        <div style={{ maxWidth:900, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize:isMobile?"clamp(28px,7vw,40px)":"clamp(36px,4vw,50px)", color:"#f2ece4", marginBottom:32, fontWeight:400, textAlign:"center" }}>
+        <div style={{ maxWidth:560, margin:"0 auto" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", marginBottom:20 }}>Follow along</div>
+          <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,5vw,64px)", fontWeight:300, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:32 }}>
             @selfhypnosisgoddess
-          </h2>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(6,1fr)", gap: isMobile?6:10, marginBottom:32 }}>
-            {[
-              { g:"linear-gradient(135deg,#F5E0A0,#E8B870)" },
-              { g:"linear-gradient(135deg,#E8B870,#2CB7A7)" },
-              { g:"linear-gradient(135deg,#2CB7A7,#BFA5D8)" },
-              { g:"linear-gradient(135deg,#BFA5D8,#2CB7A7)" },
-              { g:"linear-gradient(135deg,#F5E0A0,#BFA5D8)" },
-              { g:"linear-gradient(135deg,#2CB7A7,#E8B870)" },
-            ].map((tile,i)=>(
-              <a key={i} href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
-                style={{ display:"block", aspectRatio:"1", borderRadius:8, background:tile.g, position:"relative", overflow:"hidden", opacity:0.9, transition:"opacity 0.2s" }}
-                onMouseEnter={e=>e.currentTarget.style.opacity=1} onMouseLeave={e=>e.currentTarget.style.opacity=0.9}>
-                <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.6" opacity="0.55"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="#000"/></svg>
-                </div>
-              </a>
-            ))}
           </div>
           <a href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
-            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(42,168,154,0.4)", borderRadius:30, color:"#2CB7A7", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
-            Follow on Instagram
+            style={{ display:"inline-flex", alignItems:"center", gap:10, padding:"16px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:15, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", textDecoration:"none" }}>
+            Follow on Instagram ✦
           </a>
         </div>
       </div>
 
-      {/* FINAL CTA */}
+            {/* FINAL CTA */}
       <div style={{ background: "#000", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
           <div style={{ fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: "#e8e0d8", fontFamily: "'Jost',sans-serif", fontWeight:400, marginBottom: 16 }}>Coming soon</div>
