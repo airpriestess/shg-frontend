@@ -1063,7 +1063,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))` }}>
 
         {/* HERO HEADLINE — first thing visible */}
-        <div style={{ background:"#000", padding: isMobile?"48px 20px 16px":"72px 40px 20px", textAlign:"center" }}>
+        <div style={{ background:"#000", padding: isMobile?"32px 20px 16px":"48px 40px 20px", textAlign:"center" }}>
           <div style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5vw,80px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:14 }}>Manifest your<br/>dream reality.</div>
           <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.5)", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.65, maxWidth:480, margin:"0 auto 10px" }}>The audio membership that reprograms your subconscious while you sleep.</div>
           <div style={{ fontSize: isMobile?11:12, color:"rgba(242,236,228,0.25)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.22em", textTransform:"uppercase" }}>Hypnosis · Subliminals · EMDR · Binaural Beats · Melodic House</div>
