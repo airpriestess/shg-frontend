@@ -43,7 +43,7 @@ export default function AuthGate({ onSuccess }) {
   };
 
   const btnStyle = {
-    width: "100%", padding: "13px", background: `linear-gradient(90deg,${CH},${P},${R})`,
+    width: "100%", padding: "13px", background: "linear-gradient(90deg," + CH + "," + P + "," + R + ")",
     border: "none", borderRadius: 10, color: "#000", fontSize: 14, fontWeight: 700,
     fontFamily: "'Jost',sans-serif", cursor: loading ? "wait" : "pointer",
     opacity: loading ? 0.7 : 1, letterSpacing: "0.04em",
