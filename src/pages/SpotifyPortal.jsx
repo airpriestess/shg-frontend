@@ -63,7 +63,7 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
   dark:  { bg:"#080808", bg2:"#111", bg3:"rgba(232,184,112,0.08)", bg4:"rgba(232,184,112,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#c8bfb8", dim:"#e8e0d8", border:"rgba(232,184,112,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
-  light: { bg:"#fdf8f2", bg2:"#fffdf9", bg3:"rgba(232,184,112,0.08)", bg4:"rgba(232,184,112,0.12)", nav:"rgba(253,248,242,0.97)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(232,184,112,0.2)", inputBg:"rgba(232,184,112,0.06)", inputCr:"#0a0a0a" },
+  light: { bg:"#f5f0e8", bg2:"#ede8f0", bg3:"rgba(191,165,216,0.12)", bg4:"rgba(191,165,216,0.18)", nav:"rgba(245,224,160,0.92)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(191,165,216,0.35)", inputBg:"rgba(255,255,255,0.7)", inputCr:"#0a0a0a" },
 };
 
 const R = "#E8B870", P = "#BFA5D8";
@@ -73,12 +73,14 @@ const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
 // Light theme: cream fading to a soft champagne pastel.
 const TAB_WASH = {
-  home:    { dark: "#080808", light: "#fdf8f2" },
-  search:  { dark: "#080808", light: "#fdf8f2" },
-  library: { dark: "#080808", light: "#fdf8f2" },
-  proof:   { dark: "#080808", light: "#fdf8f2" },
-  shop:    { dark: "#080808", light: "#fdf8f2" },
+  home:    { dark: "#080808", light: "#fdf5e0" },  // champagne tint
+  search:  { dark: "#080808", light: "#f0ebf8" },  // lilac tint
+  library: { dark: "#080808", light: "#e8f5f3" },  // teal tint
+  proof:   { dark: "#080808", light: "#fdf5e0" },  // champagne tint
+  shop:    { dark: "#080808", light: "#f0ebf8" },  // lilac tint
 };
+// LG fade overlay for dark mode top wash
+const LG_FADE_LIGHT = "linear-gradient(180deg,rgba(245,224,160,0.18) 0%,rgba(191,165,216,0.08) 50%,transparent 100%)";
 // LG gradient top fade shown on every tab
 const LG_FADE = "linear-gradient(180deg,rgba(245,224,160,0.07) 0%,rgba(191,165,216,0.04) 40%,transparent 100%)";
 
@@ -803,7 +805,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </button>
         </div>
         {/* Main */}
-        <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20,backgroundImage:isDark?LG_FADE:"none" }}>
+        <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20,backgroundImage:isDark?LG_FADE:LG_FADE_LIGHT }}>
           <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
             <div style={{ maxWidth:360,position:"relative" }}>
               <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:16,color:C.dim }}>⌕</span>
