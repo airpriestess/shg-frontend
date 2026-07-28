@@ -1551,7 +1551,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* MELODIC HOUSE USP — LG gradient background */}
       <div style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
-        <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
+        <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 13, color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>What makes this different</div>
             <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5.5vw,72px)", lineHeight: 1.05, marginBottom: 20, color: "#0a0a0a", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
@@ -1592,7 +1592,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </div>
 
             {/* FREQUENCIES — white card, clean horizontal bars */}
-            <div style={{ background:"#ffffff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto", border:"none" }}>
+            <div style={{ background:"#ffffff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto", boxShadow:"0 4px 32px rgba(0,0,0,0.12)" }}>
               <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Solfeggio Frequencies</div>
               <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
               <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
