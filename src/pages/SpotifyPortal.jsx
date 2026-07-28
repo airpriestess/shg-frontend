@@ -1202,14 +1202,17 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <button onClick={()=>setTab("library")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>See all</button>
         </div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
-          {FEATURED_CATS.map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
+          {FEATURED_CATS.map((cat,fi)=>{
             const n=TRACKS.filter(t=>t.cat===cat).length;
+            const LG_C=["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][fi%5];
             return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:isDark?"#0a0a0a":C.bg2,border:`1px solid ${c.accent}`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
-                <div style={{ width:38,height:38,borderRadius:8,background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:c.accent }}>
-                  <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
-                </div>
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{
+                background:isDark?"#0a0a0a":"rgba(255,255,255,0.3)",
+                border:`1px solid ${LG_C}55`,borderRadius:12,padding:"14px 16px",
+                cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",
+                gap:12,fontFamily:"'Jost',sans-serif"
+              }}>
+                <div style={{ width:3,height:32,borderRadius:2,background:LG_C,flexShrink:0 }}/>
                 <div>
                   <div style={{ fontSize:14,fontWeight:400,color:C.cr,lineHeight:1.2 }}>{cat.replace("maxxing","")}</div>
                   <div style={{ fontSize:12,color:C.mu,marginTop:2 }}>{n} tracks</div>
@@ -1237,14 +1240,24 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* BY DESIRE */}
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
-          {Object.keys(CAT_ICONS).map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
+          {Object.keys(CAT_ICONS).map((cat,i)=>{
+            const LG_C=["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i%5];
             return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
-                <div style={{ width:80,height:80,borderRadius:14,background:"#111",border:`1.5px solid ${c.accent}`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
-                  <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{
+                flexShrink:0,background:"none",border:"none",padding:"4px 2px",cursor:"pointer",
+                display:"flex",flexDirection:"column",alignItems:"center",gap:0
+              }}>
+                <div style={{
+                  padding:"8px 14px",borderRadius:20,
+                  border:`1.5px solid ${LG_C}`,
+                  fontSize:12,fontWeight:400,
+                  color:isDark?LG_C:"#000",
+                  fontFamily:"'Jost',sans-serif",
+                  whiteSpace:"nowrap",letterSpacing:"0.03em",
+                  background:isDark?"transparent":"rgba(255,255,255,0.3)"
+                }}>
+                  {cat.replace("maxxing","")}
                 </div>
-                <div style={{ fontSize:12,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
               </button>
             );
           })}
@@ -1390,10 +1403,18 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const catOptions = ["All","Liked",...cats.filter(c=>c!=="All"&&c!=="Liked")];
   return (
     <div>
-      <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-        <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
-        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:"#000",background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
-      </div>
+      {/* LG gradient banner when a specific category is selected */}
+      {(cat!=="All"&&cat!=="Liked") ? (
+        <div style={{ textAlign:"center", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"20px 16px 18px" }}>
+          <button onClick={()=>setCat("All")} style={{ background:"none",border:"none",cursor:"pointer",fontSize:11,color:"rgba(0,0,0,0.45)",fontFamily:"'Jost',sans-serif",letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10,display:"block",width:"100%" }}>← All categories</button>
+          <div style={{ fontSize:24,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>{cat}</div>
+          <div style={{ fontSize:11,color:"rgba(0,0,0,0.45)",fontFamily:"'Jost',sans-serif",letterSpacing:"0.15em",textTransform:"uppercase",marginTop:6 }}>{TRACKS.filter(t=>t.cat===cat).length} tracks</div>
+        </div>
+      ) : (
+        <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+          <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
+        </div>
+      )}
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
           <button
