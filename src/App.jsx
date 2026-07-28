@@ -1503,9 +1503,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </p>
 
                         {/* SIX FORMATS — clean white card, 2-col grid, no overlapping visuals */}
-            <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px" }}>
-              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Six formats</div>
-              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:500, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
+            <div style={{ background:"#0a0a0a", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px", border:"1px solid rgba(232,184,112,0.15)" }}>
+              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Six formats</div>
+              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
                   { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
@@ -1515,11 +1515,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
                   { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#BFA5D8", dot:"#BFA5D8" },
                 ].map((f,i)=>(
-                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#fff", borderRadius:14, borderLeft:`4px solid ${f.dot}`, boxShadow:"0 2px 12px rgba(0,0,0,0.04)" }}>
+                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#0a0a0a", borderRadius:14, border:`1px solid ${f.dot}44`, borderLeft:`3px solid ${f.dot}`, boxShadow:`0 2px 16px ${f.dot}18` }}>
                     <div style={{ width:8, height:8, borderRadius:"50%", background:f.dot, flexShrink:0, marginTop:6 }}/>
                     <div>
-                      <div style={{ fontSize: isMobile?17:20, fontWeight:600, color:"#000", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
-                      <div style={{ fontSize: isMobile?14:16, color:"#333", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
+                      <div style={{ fontSize: isMobile?17:20, fontWeight:600, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
+                      <div style={{ fontSize: isMobile?14:16, color:"#c8bfb8", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
                     </div>
                   </div>
                 ))}
@@ -1527,9 +1527,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </div>
 
             {/* FREQUENCIES — white card, clean horizontal bars */}
-            <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto" }}>
-              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Solfeggio Frequencies</div>
-              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:500, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
+            <div style={{ background:"#0a0a0a", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto", border:"1px solid rgba(232,184,112,0.15)" }}>
+              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Solfeggio Frequencies</div>
+              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
               <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
                 {[
                   { hz:"963hz", name:"Activation",    assoc:"Pineal gland activation · higher connection",  pct:100, color:"#F5E0A0" },
@@ -1544,20 +1544,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#2CB7A7" },
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
-                    <div style={{ fontSize: isMobile?13:16, fontWeight:700, color:"#000", width: isMobile?52:72, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
+                    <div style={{ fontSize: isMobile?13:16, fontWeight:700, color:"#E8B870", width: isMobile?52:72, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
                     <div style={{ flex:1 }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
-                        <div style={{ fontSize: isMobile?14:17, fontWeight:600, color:"#000", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
-                        <div style={{ fontSize: isMobile?12:14, color:"#333", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                        <div style={{ fontSize: isMobile?14:17, fontWeight:600, color:"#f2ece4", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
+                        <div style={{ fontSize: isMobile?12:14, color:"#c8bfb8", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
-                      <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
+                      <div style={{ height:6, background:"rgba(255,255,255,0.08)", borderRadius:3, overflow:"hidden" }}>
                         <div style={{ width:`${row.pct}%`, height:"100%", background:row.color, borderRadius:3 }}/>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize:12, color:"#8a8a8a", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+              <p style={{ fontSize:12, color:"#c8bfb8", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Binaural beats layered beneath every track sync both hemispheres into theta — where the reprogramming begins.
               </p>
             </div>
@@ -1569,7 +1569,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20 }}>Your emotional state, measured</div>
+          <div style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>Your emotional state, measured</div>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#f2ece4", fontWeight:400, marginBottom:24, lineHeight:1.05, textAlign:"center" }}>
             The Hawkins Scale.
           </h2>
@@ -1582,7 +1582,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
             {[
               {n:"Enlightenment",v:700,c:"#ffffff"},
-              {n:"Peace",       v:600,c:"#FFD700"},
+              {n:"Peace",       v:600,c:"#F5E0A0"},
               {n:"Joy",         v:540,c:"#E8B870"},
               {n:"Love",        v:500,c:"#F5E0A0"},
               {n:"Reason",      v:400,c:"#BFA5D8"},
@@ -1591,17 +1591,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               {n:"Neutrality",  v:250,c:"#2CB7A7"},
               {n:"Courage",     v:200,c:"#2CB7A7"},
               {n:"Pride",       v:175,c:"#E8B870"},
-              {n:"Anger",       v:150,c:"#e67e22"},
-              {n:"Desire",      v:125,c:"#c0392b"},
+              {n:"Anger",       v:150,c:"#E8B870"},
+              {n:"Desire",      v:125,c:"#8a2030"},
               {n:"Fear",        v:100,c:"#7b3f00"},
-              {n:"Grief",       v:75, c:"#4a3060"},
+              {n:"Grief",       v:75, c:"#2a1840"},
               {n:"Apathy",      v:50, c:"#6b6b6b"},
               {n:"Guilt",       v:30, c:"#5a0f0f"},
               {n:"Shame",       v:20, c:"#2a0a0a"},
             ].map((h,i)=>(
               <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"6px 4px" }}>
                 <div style={{ width:10, height:10, borderRadius:"50%", background:h.c, flexShrink:0, boxShadow:h.v>=600?`0 0 10px ${h.c}, 0 0 20px ${h.c}66`:h.v>=200?`0 0 6px ${h.c}88`:"none" }}/>
-                <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
+                <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.08)", overflow:"hidden" }}>
                   <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:h.c, opacity:h.v>=600?1:h.v>=200?0.85:0.55, boxShadow:h.v>=600?`0 0 8px ${h.c}`:"none" }}/>
                 </div>
                 <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":"#e8e0d8", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
@@ -1609,21 +1609,21 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               </div>
             ))}
           </div>
-          <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"8px 18px", background:"rgba(44,183,167,0.1)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20 }}>
-            <div style={{ width:8, height:8, borderRadius:"50%", background:"#2CB7A7" }}/>
-            <span style={{ fontSize:12, color:"#ddd0c8" }}>200 — Courage — is the line. Below it, you're contracting. Above it, you're expanding.</span>
+          <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"8px 18px", background:"rgba(232,184,112,0.1)", border:"1px solid rgba(232,184,112,0.3)", borderRadius:20 }}>
+            <div style={{ width:8, height:8, borderRadius:"50%", background:"#E8B870" }}/>
+            <span style={{ fontSize:12, color:"#f2ece4" }}>200 — Courage — is the line. Below it, you're contracting. Above it, you're expanding.</span>
           </div>
         </div>
       </div>
 
       {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
-      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "linear-gradient(160deg,#f5ede0 0%,#ece0cc 50%,#e8d4b4 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "#000", width: "100%" }}>
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
-            <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:20 }}>The Library.</div>
-            <div style={{ fontSize: 14, fontWeight: 500, color: "#2CB7A7", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
-            <h2 style={{ fontSize: "clamp(28px,4.5vw,44px)", color: "#000000", fontWeight: 400, marginBottom: 12, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>Whatever it is, it's covered.</h2>
-            <p style={{ fontSize: 19, color: "#2a2a2a", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap", fontFamily:"'Jost',sans-serif" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
+            <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:20 }}>The Library.</div>
+            <div style={{ fontSize: 14, fontWeight: 500, letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>What's Inside</div>
+            <h2 style={{ fontSize: "clamp(28px,4.5vw,44px)", color: "#f2ece4", fontWeight: 400, marginBottom: 12, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>Whatever it is, it's covered.</h2>
+            <p style={{ fontSize: 19, color: "#c8bfb8", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap", fontFamily:"'Jost',sans-serif" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? 10 : 16 }}>
             {[
