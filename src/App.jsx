@@ -653,8 +653,8 @@ function AppPreviewSection({ isMobile }) {
     );
     if (view === "analytics") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)" }}>
-        <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px", maxHeight:480, overflowY:"auto" }}>
-          <AnalyticsBoard theme={theme}/>
+        <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"16px 16px", maxHeight:480, overflowY:"auto" }}>
+          <AnalyticsBoard theme={theme} compact={true}/>
         </div>
       </div>
     );
