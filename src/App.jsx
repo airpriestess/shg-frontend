@@ -534,7 +534,7 @@ function CheckoutModal({ onClose, onDemo }) {
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:"#e8e0d8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
+                <div key={i} style={{fontSize:12,color:theme==="dark"?"#e8e0d8":"#000000",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
               ))}
@@ -562,16 +562,16 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: "#e8e0d8", priceColor: "#2CB7A7", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: "#e8e0d8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: theme==="dark"?"#e8e0d8":"#000000", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: theme==="dark"?"#e8e0d8":"#000000", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
   ];
 
   return (
     <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%", scrollMarginTop: isMobile ? 24 : 0 }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 400, color: "#e8e0d8", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
+          <div style={{ fontSize: 11, fontWeight: 400, color: theme==="dark"?"#e8e0d8":"#000000", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
           <h2 style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(28px,8vw,40px)" : "clamp(32px,4vw,48px)", fontWeight: 400, color: "#f2ece4", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
             Full access. No download needed.
           </h2>
@@ -584,7 +584,7 @@ function PricingSection({ onJoin }) {
                 padding: "9px 24px", borderRadius: 50, border: "none", cursor: "pointer",
                 fontSize: 12, fontWeight: 400, letterSpacing: "0.06em",
                 background: billing === b ? "#f2ece4" : "transparent",
-                color: billing === b ? "#000" : "#e8e0d8",
+                color: billing === b ? "#000" : theme==="dark"?"#e8e0d8":"#000000",
                 fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 8,
                 transition: "all 0.2s",
               }}>
@@ -622,7 +622,7 @@ function PricingSection({ onJoin }) {
           ))}
         </div>
 
-        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: "#e8e0d8", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
+        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: theme==="dark"?"#e8e0d8":"#000000", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
           Monthly: cancel anytime · Annual: paid upfront · Stripe secure checkout<br />
           No app to download — works in any browser, iPhone, Android
         </div>
@@ -676,42 +676,42 @@ function AppPreviewSection({ isMobile }) {
     if (view === "dashboard") return <DesktopMockup theme={theme} width={460}/>;
     if (view === "proof") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)" }}>
-        <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
-          <div style={{ fontSize:13, color:theme==="dark"?"#E8B870":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+        <div style={{ background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"22px 24px 26px" }}>
+          <div style={{ fontSize:13, color:theme==="dark"?"#E8B870":"#000000", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
-              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.1)":"rgba(232,184,112,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, color:theme==="dark"?"#E8B870":"#c4910a", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
-                <div style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
+              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.1)":"rgba(255,255,255,0.3)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
+                <div style={{ fontSize:22, color:theme==="dark"?"#E8B870":"#000000", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
+                <div style={{ fontSize:9, color:theme==="dark"?theme==="dark"?"#e8e0d8":"#000000":"#000000", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.2)":"rgba(232,184,112,0.25)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
+          <div style={{ background:theme==="dark"?"#111":"rgba(255,255,255,0.35)", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.2)":"rgba(232,184,112,0.25)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
               <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(183,110,121,0.18)":"rgba(183,110,121,0.12)", color:theme==="dark"?"#E8B870":"#B76E79", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
-              <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
+              <span style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
-            <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
-            <div style={{ fontSize:11, color:"#e8e0d8", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>♪ a Lovemaxxing track</div>
+            <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#000000", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
+            <div style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>♪ a Lovemaxxing track</div>
             <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
               {["Day 1: Started listening to a Lovemaxxing track.","Day 2: He texted first — \"thinking about you.\"","Day 3: He asked to see me this weekend, unprompted.","Day 4: He texted first again, no gap, no waiting.","Day 5: He planned the whole date — time, place, all of it."].map((line,i)=>(
-                <div key={i} style={{ fontSize:11, color:theme==="dark"?"#ddd0c8":"#3a3a3a", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{line}</div>
+                <div key={i} style={{ fontSize:11, color:theme==="dark"?"#ddd0c8":"#000000", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{line}</div>
               ))}
             </div>
           </div>
-          <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.12)":"rgba(232,184,112,0.18)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
+          <div style={{ background:theme==="dark"?"#111":"rgba(255,255,255,0.35)", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.12)":"rgba(232,184,112,0.18)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(232,184,112,0.1)", color:theme==="dark"?"#E8B870":"#c4910a", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
-              <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(232,184,112,0.1)", color:theme==="dark"?"#E8B870":"#000000", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
             </div>
-            <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
+            <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#000000", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
           </div>
         </div>
       </div>
     );
     if (view === "analytics") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)" }}>
-        <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"16px 16px", maxHeight:480, overflowY:"auto" }}>
+        <div style={{ background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"16px 16px", maxHeight:480, overflowY:"auto" }}>
           <AnalyticsBoard theme={theme} compact={true}/>
         </div>
       </div>
@@ -734,7 +734,7 @@ function AppPreviewSection({ isMobile }) {
           {view==="dashboard" && <PortalScreenshot width={w - pad*2} theme={theme}/>}
           {view==="proof"     && <ProofWallScreenshot width={w - pad*2} theme={theme}/>}
           {view==="analytics" && (
-            <div style={{ width:w - pad*2, background:theme==="dark"?"#080808":"#fdf8f2", padding:"12px 8px" }}>
+            <div style={{ width:w - pad*2, background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"12px 8px" }}>
               <AnalyticsBoard theme={theme} compact/>
             </div>
           )}
@@ -788,12 +788,12 @@ function AppPreviewSection({ isMobile }) {
 
       {/* Dark / Light toggle */}
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-        <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Dark</span>
+        <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
           style={{ width:44, height:24, borderRadius:12, background:theme==="dark"?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="dark"?23:3, transition:"left 0.25s" }}/>
         </button>
-        <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Light</span>
+        <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
 
     </div>
@@ -1696,7 +1696,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#f2ece4", fontWeight:400, marginBottom:24, lineHeight:1.05, textAlign:"center" }}>
             The Hawkins Scale.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:theme==="dark"?"#e8e0d8":"#000000", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
             Your emotional state is not a feeling — it's a frequency. And your heart broadcasts it. Every intention you log in ProofOS gets tagged against this 17-level scale. As you listen, your baseline climbs. Your heart rhythm shifts. Your brain follows. Watch the evidence build — not just in what arrives, but in where you are when it does.
           </p>
           <p style={{ fontSize: isMobile?"clamp(22px,5.5vw,28px)":"clamp(26px,2.8vw,36px)", color:"#f2ece4", lineHeight:1.4, maxWidth:580, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em" }}>
@@ -1727,8 +1727,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.08)", overflow:"hidden" }}>
                   <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:h.c, opacity:h.v>=600?1:h.v>=200?0.85:0.55, boxShadow:h.v>=600?`0 0 8px ${h.c}`:"none" }}/>
                 </div>
-                <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":"#e8e0d8", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:11, color:"#e8e0d8", width:32, textAlign:"right" }}>{h.v}</span>
+                <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":theme==="dark"?"#e8e0d8":"#000000", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", width:32, textAlign:"right" }}>{h.v}</span>
               </div>
             ))}
           </div>
@@ -1866,13 +1866,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <h2 style={{ fontSize: "clamp(32px,5vw,58px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20, fontWeight: 400, fontFamily: "'Jost',sans-serif" }}>
             Thank you for being here.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color: "#e8e0d8", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color: theme==="dark"?"#e8e0d8":"#000000", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             You can join the waitlist and be the first to know when the audio library opens.
           </p>
           <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "22px 64px", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border: "none", borderRadius: 40, color: "#000", fontSize: isMobile?22:26, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em" }}>
             Join the waitlist →
           </button>
-          <div style={{ marginTop: 14, fontSize: 13, color: "#e8e0d8", fontWeight:400, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
+          <div style={{ marginTop: 14, fontSize: 13, color: theme==="dark"?"#e8e0d8":"#000000", fontWeight:400, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
         </div>
       </div>
 
@@ -1891,13 +1891,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ marginBottom:16 }}>
           <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:22, color:"#f2ece4", letterSpacing:"0.02em" }}>Self Hypnosis Goddess</span>
         </div>
-        <div style={{ fontSize: 13, color: "#e8e0d8", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
+        <div style={{ fontSize: 13, color: theme==="dark"?"#e8e0d8":"#000000", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
           Self Hypnosis Goddess is a self-hypnosis and manifestation audio product. It is not therapy, medical treatment, or a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact a licensed professional or emergency services.
         </div>
         <div style={{ display:"flex", gap:20, justifyContent:"center", marginBottom:14, flexWrap:"wrap" }}>
           {[["About Reshma","about"],["Terms of Service","tos"],["Privacy Policy","privacy"],["Refund Policy","refunds"]].map(([l,s])=>(
-            <button key={s} onClick={()=>onLegal?.(s)} style={{ background:"none", border:"none", color:"#e8e0d8", fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif", textDecoration:"underline", textUnderlineOffset:3 }}>{l}</button>
+            <button key={s} onClick={()=>onLegal?.(s)} style={{ background:"none", border:"none", color:theme==="dark"?"#e8e0d8":"#000000", fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif", textDecoration:"underline", textUnderlineOffset:3 }}>{l}</button>
           ))}
         </div>
         <div style={{ fontSize: 12, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
@@ -1910,7 +1910,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(42,168,154,0.2)", flexShrink:0 }}>
               <span style={{ fontFamily:"'Jost',sans-serif", fontSize:13, color:"#c8bcb0", letterSpacing:"0.1em", textTransform:"uppercase" }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
-                <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:"#e8e0d8", textDecoration:"none" }}>Open in new tab ↗</a>
+                <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:theme==="dark"?"#e8e0d8":"#000000", textDecoration:"none" }}>Open in new tab ↗</a>
                 <button onClick={()=>setShopOpen(false)} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:22, cursor:"pointer", lineHeight:1, padding:4 }}>×</button>
               </div>
             </div>
@@ -1941,7 +1941,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     value={waitlistEmail}
                     onChange={e=>{setWaitlistEmail(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
                     placeholder="your@email.com"
-                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#e8e0d8", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:theme==="dark"?"#e8e0d8":"#000000", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
                   {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2CB7A7", marginBottom:12 }}>Please enter a valid email.</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
