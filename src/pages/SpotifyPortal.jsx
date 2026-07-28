@@ -98,8 +98,8 @@ const IMGS = {
 };
 
 const CAT_ICONS = {
-  Lovemaxxing: { accent:"#F5E0A0", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
-  Beautymaxxing: { accent:"#F5E0A0", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
+  Lovemaxxing: { accent:"#E8B870", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
+  Beautymaxxing: { accent:"#BFA5D8", icon:'<path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 15.5 30 17 C31 15.5 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.9"/><path d="M30 46 L30 54 M25 50 Q30 48 35 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' },
   Facemaxxing: { accent:"#E8B870", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Bodymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#2CB7A7", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
@@ -1124,7 +1124,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* PROOFOS TEASER — home tab */}
       <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
-          <div style={{ fontSize:13,fontWeight:400,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase" }}>ProofOS ✦</div>
+          <div style={{ fontSize:13,fontWeight:400,background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",letterSpacing:"0.15em",textTransform:"uppercase",display:"inline-block" }}>ProofOS ✦</div>
           <span style={{ fontSize:15,color:"#F5E0A0" }}>›</span>
         </div>
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
@@ -1501,7 +1501,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
   // ProofOS — always LG gradient background, white cards, black text
-  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#888888", dim:"#111", border:"rgba(0,0,0,0.08)", inputBg:"rgba(255,255,255,0.9)" };
+  const isDark = false; // ProofOS always uses light card theme on LG bg
+  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"rgba(0,0,0,0.1)", inputBg:"rgba(255,255,255,0.9)" };
   const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
   if (isPreview) return (
@@ -1574,7 +1575,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   return (
     <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
-      <div style={{ fontSize:22,fontWeight:400,marginBottom:2,color:"#000",fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+      <div style={{ fontSize:22,fontWeight:400,marginBottom:2,background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
       <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
       {/* Filter banner — shown when drilled in from Analytics */}
@@ -1599,11 +1600,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
       {/* View toggle: Bucket List | Active | Proof Wall */}
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
-        {[["bucket",`Bucket List (${bucketItems.length})`],["threads","Active"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
+        {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?"#000":"rgba(255,255,255,0.6)",
+            background:view===k?col:"rgba(0,0,0,0.1)",
             border:"none",
-            color:view===k?"#fff":"#000", fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+            color:view===k?"#000":"rgba(0,0,0,0.45)", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
