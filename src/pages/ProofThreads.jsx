@@ -206,7 +206,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
             <div key={e.id} style={{ display: "flex", gap: 0 }}>
               {/* Timeline line */}
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 16, flexShrink: 0 }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: e.isFinal ? `linear-gradient(135deg, ${T.success}, ${T.gold})` : "#0f0b01", border: `2px solid ${e.isFinal ? T.success : "#ddd0c8"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0, zIndex: 1 }}>{TYPE_ICON[e.type] || "·"}</div>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: e.isFinal ? "linear-gradient(135deg, " + T.success + ", " + T.gold + ")" : "#0f0b01", border: `2px solid ${e.isFinal ? T.success : "#ddd0c8"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0, zIndex: 1 }}>{TYPE_ICON[e.type] || "·"}</div>
                 {idx < (t.entries || []).length - 1 && <div style={{ width: 1, flex: 1, background: "#1a1a1a", minHeight: 20, margin: "4px 0" }} />}
               </div>
               {/* Entry card */}
@@ -226,7 +226,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
                 )}
                 {e.type === "Voice Proof" && (
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8 }}>
-                    <button style={{ width: 30, height: 30, borderRadius: "50%", background: `linear-gradient(135deg, ${T.rose}, ${T.rose})`, border: "none", color: "#fff", fontSize: 11, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>▶</button>
+                    <button style={{ width: 30, height: 30, borderRadius: "50%", background: "linear-gradient(135deg, " + T.rose + ", " + T.rose + ")", border: "none", color: "#fff", fontSize: 11, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>▶</button>
                     <WaveForm playing={false} />
                     <span style={{ fontSize: 11, color: "#ddd0c8" }}>{e.durationSec}s</span>
                   </div>
