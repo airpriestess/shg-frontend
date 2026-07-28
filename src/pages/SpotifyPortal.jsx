@@ -1167,7 +1167,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             const n=TRACKS.filter(t=>t.cat===cat).length;
             return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:`linear-gradient(135deg,${isDark?"#0a0a0a":C.bg2} 0%,${c.accent}20 100%)`,border:`1px solid ${c.accent}33`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:isDark?"#0a0a0a":C.bg2,border:`1px solid ${c.accent}`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
                 <div style={{ width:38,height:38,borderRadius:8,background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:c.accent }}>
                   <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
                 </div>
@@ -1202,7 +1202,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
-                <div style={{ width:80,height:80,borderRadius:14,background:`linear-gradient(135deg,${isDark?"#111":C.bg2} 0%,${c.accent}55 100%)`,border:`1.5px solid ${c.accent}44`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
+                <div style={{ width:80,height:80,borderRadius:14,background:"#111",border:`1.5px solid ${c.accent}`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
                   <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
                 </div>
                 <div style={{ fontSize:12,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
