@@ -803,7 +803,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </button>
         </div>
         {/* Main */}
-        <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20,backgroundImage:isDark?LG_FADE:"none",backgroundAttachment:"local" }}>
+        <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20,backgroundImage:isDark?LG_FADE:"none" }}>
           <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
             <div style={{ maxWidth:360,position:"relative" }}>
               <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:16,color:C.dim }}>⌕</span>
@@ -1374,14 +1374,13 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <>
             <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"transparent" }}/>
             <div style={{
-              position:"absolute",
-              top:"100%",
-              left:0,
-              right:0,
-              marginTop:6,
-              zIndex:9999,
+              position:"fixed",
+              top: dropRect ? dropRect.bottom + 6 : 0,
+              left: dropRect ? dropRect.left : 0,
+              width: dropRect ? dropRect.width : "auto",
+              zIndex:99999,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
-              maxHeight:320, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
+              maxHeight:300, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
             }}>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
