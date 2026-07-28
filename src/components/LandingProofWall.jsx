@@ -1,4 +1,4 @@
-/* LandingProofWall — auto-scrolling carousel, alternating black/white/LG cards */
+/* LandingProofWall — scrollable carousel, one example per category */
 import { useEffect, useRef, useState } from "react";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
@@ -9,7 +9,7 @@ const WALL = [
     category: "Lovemaxxing", days: 5, signs: 5,
     track: "a Lovemaxxing track", feel: "He's not chasing me. He's remembering me.",
     log: [
-      "Day 1: Old belief — \"I've never been chosen. He'll never choose me first.\" Started listening.",
+      "Day 1: Old belief — \"I've never been chosen first.\" Started listening.",
       "Day 2: He texted first — \"thinking about you.\"",
       "Day 3: He asked to see me this weekend, unprompted.",
       "Day 4: He texted first again, no gap, no waiting.",
@@ -60,9 +60,19 @@ const WALL = [
     ]
   },
   {
+    desire: "I stopped shrinking myself to make other people comfortable.",
+    category: "Selfmaxxing", days: 12, signs: 3,
+    track: "a Selfmaxxing track", feel: "I used to over-explain every boundary. Now I just don't.",
+    log: [
+      "Day 1: Old belief — \"Putting myself first makes me selfish.\"",
+      "Day 5: Said no to something without the usual guilt spiral.",
+      "Day 12: A friend said 'you seem different — more you.'",
+    ]
+  },
+  {
     desire: "Promoted to the role I actually wanted.",
     category: "Desiresmaxxing", days: 18, signs: 3,
-    track: "a Desiresmaxxing track", feel: "I stopped shrinking myself in meetings. People noticed before I said anything.",
+    track: "a Desiresmaxxing track", feel: "I stopped shrinking in meetings. People noticed before I said anything.",
     log: [
       "Day 1: Old belief — \"I have to overwork just to be seen as good enough.\"",
       "Day 6: My manager asked me to lead the project I'd been quietly wanting.",
@@ -74,165 +84,349 @@ const WALL = [
     category: "Skinnymaxxing", days: 21, signs: 3,
     track: "a Skinnymaxxing track", feel: "It was never about willpower.",
     log: [
-      "Day 1: Old belief — \"I've tried so hard to lose the last 20 pounds and nothing works.\"",
+      "Day 1: Old belief — \"I've tried so hard and nothing works.\"",
       "Day 9: Cravings that used to run my evenings just... quieted down.",
       "Day 21: Down 6 pounds without changing my diet.",
     ]
   },
   {
-    desire: "I stopped shrinking myself to make other people comfortable.",
-    category: "Selfmaxxing", days: 12, signs: 3,
-    track: "a Selfmaxxing track", feel: "I used to over-explain every boundary. Now I just don't.",
+    desire: "My face actually looks younger than it did two years ago.",
+    category: "Facemaxxing", days: 14, signs: 4,
+    track: "a Facemaxxing track", feel: "I stopped checking for flaws. I started just... looking.",
     log: [
-      "Day 1: Old belief — \"Putting myself first makes me selfish.\"",
-      "Day 5: Said no to something without the usual guilt spiral.",
-      "Day 12: A friend said 'you seem different — more you.'",
+      "Day 1: Old belief — \"I've peaked. It's downhill from here.\"",
+      "Day 5: Noticed my jaw looks more defined.",
+      "Day 10: Someone asked if I'd had work done.",
+      "Day 14: My skin is doing something it hasn't done in years.",
+    ]
+  },
+  {
+    desire: "My body changed without me obsessing over it.",
+    category: "Bodymaxxing", days: 30, signs: 3,
+    track: "a Bodymaxxing track", feel: "My body started listening when I stopped fighting it.",
+    log: [
+      "Day 1: Old belief — \"My body works against me.\"",
+      "Day 12: Woke up craving movement instead of dreading it.",
+      "Day 30: Three people asked what I'd been doing. Nothing — that's the point.",
+    ]
+  },
+  {
+    desire: "I sleep through the night for the first time in years.",
+    category: "Sleepmaxxing", days: 6, signs: 2,
+    track: "a Sleepmaxxing track", feel: "I'm installing while I rest. That's the whole point.",
+    log: [
+      "Day 1: Old belief — \"My brain won't switch off and I can't help it.\"",
+      "Day 3: Fell asleep within 10 minutes. Woke up actually rested.",
+      "Day 6: My whole morning feels different when the night was good.",
+    ]
+  },
+  {
+    desire: "I healed something I'd been carrying for 12 years.",
+    category: "Healmaxxing", days: 28, signs: 5,
+    track: "a Healmaxxing track", feel: "I didn't have to relive it to release it.",
+    log: [
+      "Day 1: Old belief — \"Some things just don't heal.\"",
+      "Day 7: Noticed I wasn't bracing for it anymore.",
+      "Day 14: The memory came up and I felt... neutral.",
+      "Day 28: Talked about it to a friend without crying for the first time.",
+    ]
+  },
+  {
+    desire: "I feel genuinely at peace — not just coping.",
+    category: "Peacemaxxing", days: 10, signs: 3,
+    track: "a Peacemaxxing track", feel: "The baseline shifted. Calm became my default, not my goal.",
+    log: [
+      "Day 1: Old belief — \"I'll always be anxious. It's just who I am.\"",
+      "Day 4: Hard conversation happened. I stayed regulated the whole way through.",
+      "Day 10: Someone else's chaos didn't land in my body.",
+    ]
+  },
+  {
+    desire: "I passed the exam I'd failed twice before.",
+    category: "Studymaxxing", days: 21, signs: 3,
+    track: "a Studymaxxing track", feel: "The information started sticking instead of sliding off.",
+    log: [
+      "Day 1: Old belief — \"I don't have the kind of brain that retains things.\"",
+      "Day 9: Revised a topic once and remembered it days later.",
+      "Day 21: Sat the exam. Passed with distinction.",
+    ]
+  },
+  {
+    desire: "My friend group completely changed — for the better.",
+    category: "Friendmaxxing", days: 45, signs: 4,
+    track: "a Friendmaxxing track", feel: "I stopped settling for people who drained me.",
+    log: [
+      "Day 1: Old belief — \"Real friendships are rare and I'm lucky with what I have.\"",
+      "Day 14: Started declining invitations that felt obligatory.",
+      "Day 30: Met someone new who felt like actual alignment.",
+      "Day 45: My circle looks completely different. All chosen, all reciprocal.",
+    ]
+  },
+  {
+    desire: "I walk into rooms differently. People treat me differently.",
+    category: "Confidencemaxxing", days: 11, signs: 4,
+    track: "a Confidencemaxxing track", feel: "I stopped waiting to feel ready. I just walked in.",
+    log: [
+      "Day 1: Old belief — \"I'm confident sometimes but it always fades.\"",
+      "Day 3: Spoke up in a meeting I'd usually stay quiet in.",
+      "Day 7: Someone I barely know complimented my 'presence.'",
+      "Day 11: Realised I hadn't rehearsed anything in over a week.",
+    ]
+  },
+  {
+    desire: "My style finally feels like me instead of who I thought I should be.",
+    category: "Stylemaxxing", days: 14, signs: 3,
+    track: "a Stylemaxxing track", feel: "I stopped dressing to disappear. Now I dress to arrive.",
+    log: [
+      "Day 1: Old belief — \"I don't have the body or the budget for style.\"",
+      "Day 5: Wore something I'd been saving for 'when I'm thinner.' Wore it now.",
+      "Day 14: Three people asked where I'd been shopping. Same wardrobe, different identity.",
+    ]
+  },
+  {
+    desire: "My wellness became effortless instead of a constant fight.",
+    category: "Wellnessmaxxing", days: 16, signs: 3,
+    track: "a Wellnessmaxxing track", feel: "I stopped performing health and started feeling it.",
+    log: [
+      "Day 1: Old belief — \"I know what to do. I just can't make myself do it.\"",
+      "Day 6: Chose the water. The walk. Not because I forced it — it just happened.",
+      "Day 16: Energy baseline is higher. No supplement change. Just the identity shift.",
+    ]
+  },
+  {
+    desire: "My relationship deepened without me working for it.",
+    category: "Erosmaxxing", days: 19, signs: 4,
+    track: "an Erosmaxxing track", feel: "I stopped performing and started inhabiting.",
+    log: [
+      "Day 1: Old belief — \"Intimacy requires constant maintenance and I'm the one doing it.\"",
+      "Day 5: He initiated differently. More present, less routine.",
+      "Day 12: The dynamic shifted without a single conversation about it.",
+      "Day 19: He said I seem different. In the best way.",
+    ]
+  },
+  {
+    desire: "My body started healing from the inside — without forcing it.",
+    category: "DNAmaxxing", days: 33, signs: 5,
+    track: "a DNAmaxxing track", feel: "I stopped fighting my biology and started working with it.",
+    log: [
+      "Day 1: Old belief — \"Genetics determined this. I can't change it.\"",
+      "Day 8: Inflammation I'd had for years started reducing.",
+      "Day 14: Energy levels I haven't had since my 20s.",
+      "Day 33: My doctor said my bloodwork looked 'notably better.' Nothing changed but my mind.",
+    ]
+  },
+  {
+    desire: "I launched the business I'd been planning for three years.",
+    category: "Sovereignmaxxing", days: 22, signs: 3,
+    track: "a Sovereignmaxxing track", feel: "I stopped waiting for permission from myself.",
+    log: [
+      "Day 1: Old belief — \"I need more preparation before I'm ready.\"",
+      "Day 8: Stopped editing the plan and started executing.",
+      "Day 22: Live. First sale on day one.",
+    ]
+  },
+  {
+    desire: "My life started feeling like mine again.",
+    category: "Lifemaxxing", days: 40, signs: 5,
+    track: "a Lifemaxxing track", feel: "I stopped living someone else's version of success.",
+    log: [
+      "Day 1: Old belief — \"This is just what adult life feels like. You adapt.\"",
+      "Day 10: Said no to a commitment I'd been dreading for months.",
+      "Day 25: Booked something I'd been postponing for three years.",
+      "Day 40: Woke up and thought — this is actually my life.",
+    ]
+  },
+  {
+    desire: "I started trusting my gut — and it kept being right.",
+    category: "Intuitionmaxxing", days: 13, signs: 4,
+    track: "an Intuitionmaxxing track", feel: "The signal was always there. I just learned to stop second-guessing it.",
+    log: [
+      "Day 1: Old belief — \"I overthink everything and my gut always leads me wrong.\"",
+      "Day 4: Got a feeling about something. Followed it. It was right.",
+      "Day 9: Made a decision in under a minute. Usually takes me weeks.",
+      "Day 13: Four correct gut calls in two weeks. Stopped keeping count.",
+    ]
+  },
+  {
+    desire: "I'm single and it feels like a choice, not a situation.",
+    category: "Singlemaxxing", days: 17, signs: 3,
+    track: "a Singlemaxxing track", feel: "I stopped waiting for someone to make me feel whole.",
+    log: [
+      "Day 1: Old belief — \"Being single means something is wrong with me.\"",
+      "Day 6: Turned down someone I'd have said yes to out of loneliness. Didn't regret it.",
+      "Day 17: Genuinely prefer my own company some evenings. That's new.",
     ]
   },
 ];
 
-// Card style cycles: black → white → LG gradient → black → ...
+// Card style cycles: black → cream/white → LG gradient
 function getCardStyle(i) {
   const cycle = i % 3;
-  if (cycle === 0) return { bg: "#000", text: "#f2ece4", mu: "#e8e0d8", logBg: "#111", badgeBg: "rgba(255,255,255,0.1)", badgeColor: "#E8B870", feelColor: "#ddd0c8" };
-  if (cycle === 1) return { bg: "#ffffff", text: "#000", mu: "#444", logBg: "#f5f5f5", badgeBg: "#f0f0f0", badgeColor: "#000", feelColor: "#555" };
-  return { bg: LG, text: "#000", mu: "#000", logBg: "rgba(0,0,0,0.1)", badgeBg: "rgba(0,0,0,0.12)", badgeColor: "#000", feelColor: "#1a1a1a" };
+  if (cycle === 0) return { bg: "#000", text: "#f2ece4", mu: "#e8e0d8", logBg: "#111", badgeBg: "rgba(255,255,255,0.1)", badgeColor: "#E8B870", border: "rgba(232,184,112,0.15)" };
+  if (cycle === 1) return { bg: "#ffffff", text: "#000", mu: "#444", logBg: "#f5f5f5", badgeBg: "#f0f0f0", badgeColor: "#000", border: "rgba(0,0,0,0.08)" };
+  return { bg: LG, text: "#000", mu: "#000", logBg: "rgba(0,0,0,0.1)", badgeBg: "rgba(0,0,0,0.12)", badgeColor: "#000", border: "rgba(0,0,0,0.1)" };
 }
 
 export default function LandingProofWall({ isMobile }) {
   const trackRef = useRef(null);
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const CARD_W = isMobile ? 300 : 420;
   const GAP = 16;
   const total = WALL.length;
 
-  // Auto-advance every 3.5s
+  // Auto-advance every 6s — pause on touch/hover
   useEffect(() => {
+    if (paused) return;
     const id = setInterval(() => {
       setActive(a => {
         const next = (a + 1) % total;
         trackRef.current?.scrollTo({ left: next * (CARD_W + GAP), behavior: "smooth" });
         return next;
       });
-    }, 3500);
+    }, 6000);
     return () => clearInterval(id);
-  }, [total, CARD_W, GAP]);
+  }, [paused, total, CARD_W, GAP]);
 
-  // Sync dot on manual scroll
-  const onScroll = () => {
-    if (!trackRef.current) return;
-    const idx = Math.round(trackRef.current.scrollLeft / (CARD_W + GAP));
-    setActive(Math.min(Math.max(idx, 0), total - 1));
-  };
+  // Sync dot on manual scroll — debounced so it doesn't fight touch
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    let t;
+    const onScroll = () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const idx = Math.round(el.scrollLeft / (CARD_W + GAP));
+        setActive(Math.min(Math.max(idx, 0), total - 1));
+      }, 80);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => { el.removeEventListener("scroll", onScroll); clearTimeout(t); };
+  }, [CARD_W, GAP, total]);
 
-  const goTo = (i) => {
+  const goTo = i => {
     setActive(i);
     trackRef.current?.scrollTo({ left: i * (CARD_W + GAP), behavior: "smooth" });
   };
 
   return (
-    <div style={{ padding: isMobile ? "48px 0 56px" : "70px 0 80px", background: "#000", width: "100%" }}>
-
-      {/* Heading */}
-      <div style={{ textAlign: "center", marginBottom: 32, padding: "0 24px" }}>
-        <div style={{ fontSize: 13, color: "#E8B870", fontWeight: 500, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>ProofOS ✦</div>
-        <div style={{ fontSize: isMobile ? "clamp(44px,13vw,64px)" : "clamp(56px,6vw,80px)", color: "#f2ece4", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.95, marginBottom: 20 }}>
-          The Proof Wall.
-        </div>
-        <p style={{ fontSize: isMobile ? 16 : 19, color: "#f2ece4", lineHeight: 1.8, maxWidth: 480, margin: "0 auto", fontWeight: 400, fontFamily: "'Jost',sans-serif" }}>
-          Every desire. Every sign. Every moment it arrived. Logged, dated, permanent.
+    <div style={{ width: "100%", background: "#000", paddingTop: 60, paddingBottom: 60 }}>
+      {/* Header */}
+      <div style={{ textAlign: "center", marginBottom: 36, padding: "0 24px" }}>
+        <div style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#E8B870", marginBottom: 12, fontFamily: "'Jost',sans-serif" }}>ProofOS ✦</div>
+        <h2 style={{ fontSize: isMobile ? 26 : 36, fontWeight: 400, color: "#f2ece4", lineHeight: 1.2, fontFamily: "'Jost',sans-serif", marginBottom: 12 }}>
+          Real results. Every category.
+        </h2>
+        <p style={{ fontSize: isMobile ? 14 : 17, color: "#e8e0d8", lineHeight: 1.7, maxWidth: 480, margin: "0 auto", fontFamily: "'Jost',sans-serif", fontWeight: 300 }}>
+          One result per category — logged inside the app, exactly as it happened.
         </p>
       </div>
 
-      {/* Stats */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 28, padding: "0 24px", maxWidth: 640, margin: "0 auto 28px" }}>
-        {[["100","Intentions set","linear-gradient(135deg,#F5E0A0,#E8B870)"],["20","Manifested","linear-gradient(135deg,#BFA5D8,#2CB7A7)"],["200","Signs logged","linear-gradient(135deg,#2CB7A7,#167A6B)"]].map(([v,l,bg],i) => (
-          <div key={i} style={{ background: bg, borderRadius: 12, padding: "18px 8px", textAlign: "center" }}>
-            <div style={{ fontSize: 42, fontWeight: 300, color: "#000", fontFamily: "'Jost',sans-serif", lineHeight: 1 }}>{v}</div>
-            <div style={{ fontSize: 10, fontWeight: 600, color: "#000", letterSpacing: "0.14em", textTransform: "uppercase", marginTop: 8, fontFamily: "'Jost',sans-serif" }}>{l}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Carousel track */}
-      <div style={{ position: "relative" }}>
-        <div
-          ref={trackRef}
-          onScroll={onScroll}
-          style={{
-            display: "flex",
-            gap: GAP,
-            overflowX: "auto",
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            padding: isMobile ? `0 24px ${GAP}px` : `0 calc((100vw - ${CARD_W}px) / 2) ${GAP}px`,
-          }}
-        >
-          {WALL.map((d, i) => {
-            const s = getCardStyle(i);
-            return (
-              <div
-                key={i}
-                style={{
-                  flexShrink: 0,
-                  width: CARD_W,
-                  borderRadius: 20,
-                  padding: "28px 24px",
-                  background: s.bg,
-                  scrollSnapAlign: "center",
-                  boxShadow: "0 8px 40px rgba(0,0,0,0.4)",
-                }}
-              >
-                {/* Badge + days */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-                  <span style={{ fontSize: 11, padding: "4px 12px", background: s.badgeBg, color: s.badgeColor, borderRadius: 20, fontWeight: 500, fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>✓ {d.category}</span>
-                  <span style={{ fontSize: 11, color: s.mu, fontWeight: 400, fontFamily: "'Jost',sans-serif" }}>{d.days}d · {d.signs} signs</span>
-                </div>
-
-                {/* Desire */}
-                <div style={{ fontSize: 18, fontWeight: 400, color: s.text, marginBottom: 8, lineHeight: 1.4, fontFamily: "'Jost',sans-serif" }}>{d.desire}</div>
-                <div style={{ fontSize: 12, color: s.mu, marginBottom: 16, fontFamily: "'Jost',sans-serif" }}>♪ {d.track}</div>
-
-                {/* Log */}
-                <div style={{ background: s.logBg, borderRadius: 12, padding: "14px 16px", marginBottom: 14 }}>
-                  {d.log.map((line, li) => (
-                    <div key={li} style={{ fontSize: 13, color: s.text, lineHeight: 1.7, marginBottom: li === d.log.length - 1 ? 0 : 6, fontFamily: "'Jost',sans-serif" }}>{line}</div>
-                  ))}
-                </div>
-
-                {/* Feel */}
-                <div style={{ fontSize: 13, color: s.feelColor, lineHeight: 1.5, fontFamily: "'Jost',sans-serif", fontStyle: "italic" }}>"{d.feel}"</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Dot indicators */}
-      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 20 }}>
+      {/* Dot navigation */}
+      <div style={{ display: "flex", justifyContent: "center", gap: 6, marginBottom: 20, flexWrap: "wrap", padding: "0 24px" }}>
         {WALL.map((_, i) => (
           <button
             key={i}
-            onClick={() => goTo(i)}
+            onClick={() => { setPaused(true); goTo(i); }}
             style={{
-              width: i === active ? 24 : 8,
-              height: 8,
-              borderRadius: 4,
-              background: i === active ? LG : "rgba(255,255,255,0.25)",
+              width: active === i ? 20 : 6,
+              height: 6,
+              borderRadius: 3,
+              background: active === i ? "#E8B870" : "rgba(255,255,255,0.2)",
               border: "none",
               cursor: "pointer",
               padding: 0,
-              transition: "width 0.3s, background 0.3s",
+              transition: "width 0.25s, background 0.25s",
+              flexShrink: 0,
             }}
           />
         ))}
       </div>
 
-      <div style={{ textAlign: "center", marginTop: 20, fontSize: 13, color: "#e8e0d8", fontWeight: 400, fontFamily: "'Jost',sans-serif" }}>
-        Included in Goddess Tier ✦ · Your evidence, forever
+      {/* Scroll track */}
+      <div
+        ref={trackRef}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setTimeout(() => setPaused(false), 3000)}
+        style={{
+          display: "flex",
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          scrollBehavior: "smooth",
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          paddingLeft: isMobile ? 20 : 40,
+          paddingRight: isMobile ? 20 : 40,
+          gap: GAP,
+          paddingBottom: 4,
+        }}
+      >
+        {WALL.map((entry, i) => {
+          const S = getCardStyle(i);
+          return (
+            <div
+              key={i}
+              style={{
+                flexShrink: 0,
+                width: CARD_W,
+                background: S.bg,
+                borderRadius: 20,
+                padding: isMobile ? "22px 20px" : "28px 26px",
+                border: `1px solid ${S.border}`,
+                scrollSnapAlign: "start",
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+              }}
+            >
+              {/* Category + days */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{ fontSize: 10, fontWeight: 600, padding: "3px 10px", background: S.badgeBg, color: S.badgeColor, borderRadius: 20, letterSpacing: "0.14em", textTransform: "uppercase", fontFamily: "'Jost',sans-serif" }}>
+                  {entry.category}
+                </span>
+                <span style={{ fontSize: 10, color: S.mu, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em" }}>
+                  {entry.days} days · {entry.signs} signs
+                </span>
+              </div>
+
+              {/* Desire */}
+              <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 400, color: S.text, lineHeight: 1.45, fontFamily: "'Jost',sans-serif" }}>
+                "{entry.desire}"
+              </div>
+
+              {/* Log */}
+              <div style={{ background: S.logBg, borderRadius: 10, padding: "12px 14px", display: "flex", flexDirection: "column", gap: 7 }}>
+                {entry.log.map((line, j) => (
+                  <div key={j} style={{ fontSize: 12, color: S.text, lineHeight: 1.5, fontFamily: "'Jost',sans-serif", fontWeight: j === 0 ? 400 : 300 }}>
+                    {line}
+                  </div>
+                ))}
+              </div>
+
+              {/* Feel */}
+              <div style={{ fontSize: 13, color: S.mu, fontStyle: "italic", fontFamily: "'Jost',sans-serif", lineHeight: 1.5, borderTop: `1px solid ${S.border}`, paddingTop: 12 }}>
+                ✦ {entry.feel}
+              </div>
+
+              {/* Manifested badge */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ width: 18, height: 18, borderRadius: "50%", background: "linear-gradient(135deg,#F5E0A0,#2CB7A7)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, flexShrink: 0 }}>✓</div>
+                <span style={{ fontSize: 11, color: S.mu, fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>Manifested · tracked in ProofOS</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
+
+      {/* Pause/play hint on mobile */}
+      {isMobile && (
+        <p style={{ textAlign: "center", fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "'Jost',sans-serif", marginTop: 16, letterSpacing: "0.06em" }}>
+          Swipe to scroll · tap dot to jump · auto-advances every 6s
+        </p>
+      )}
     </div>
   );
 }
