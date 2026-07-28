@@ -96,59 +96,111 @@ function ProofOSBanner({ isMobile }) {
 function LibraryBanner({ isMobile, onLegal }) {
   const LGb = "linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)";
   const CATS = [
-    { name:"Lovemaxxing",       pain:"Him, obsessed. You, unbothered.",                     col:"#F5E0A0" },
-    { name:"Moneymaxxing",      pain:"The next zero on your bank statement.",                col:"#E8B870" },
-    { name:"Beautymaxxing",     pain:"The face in the mirror you always knew was in there.", col:"#BFA5D8" },
-    { name:"Businessmaxxing",   pain:"The empire everyone said was unrealistic.",            col:"#2CB7A7" },
-    { name:"DNAmaxxing",        pain:"Ageless. Radiant. Undeniable.",                        col:"#167A6B" },
-    { name:"Selfmaxxing",       pain:"The woman you were always meant to be.",               col:"#F5E0A0" },
-    { name:"Luckygirlmaxxing",  pain:"Everything just works out for you now.",               col:"#E8B870" },
-    { name:"Sleepmaxxing",      pain:"Manifesting while you are unconscious.",               col:"#BFA5D8" },
-    { name:"Skinnymaxxing",     pain:"The number on the scale, finally moving.",             col:"#2CB7A7" },
-    { name:"Desiresmaxxing",    pain:"The desires that feel just out of reach.",             col:"#167A6B" },
-    { name:"Sovereignmaxxing",  pain:"Answering to absolutely no one.",                      col:"#F5E0A0" },
-    { name:"Confidencemaxxing", pain:"Walk in like you already own the room.",               col:"#E8B870" },
-    { name:"Peacemaxxing",      pain:"Nothing rattles you anymore.",                         col:"#BFA5D8" },
-    { name:"Bodymaxxing",       pain:"The body that makes a room stop.",                     col:"#2CB7A7" },
-    { name:"Wellnessmaxxing",   pain:"Your body and mind, finally in sync.",                 col:"#167A6B" },
-    { name:"Healmaxxing",       pain:"Physical pain, emotional pain — gone.",                col:"#F5E0A0" },
-    { name:"Studymaxxing",      pain:"The grades everyone said were out of reach.",          col:"#E8B870" },
-    { name:"Intuitionmaxxing",  pain:"The gut feeling you keep talking yourself out of.",    col:"#BFA5D8" },
-    { name:"Friendmaxxing",     pain:"A circle that actually deserves you.",                 col:"#2CB7A7" },
-    { name:"Stylemaxxing",      pain:"Dressed like the girl who already made it.",           col:"#167A6B" },
-    { name:"Erosmaxxing",       pain:"Magnetic enough to stop a room.",                      col:"#F5E0A0" },
-    { name:"Singlemaxxing",     pain:"Too full of yourself to settle.",                      col:"#E8B870" },
-    { name:"Lifemaxxing",       pain:"Every area of your life, upgrading at once.",          col:"#BFA5D8" },
-    { name:"Facemaxxing",       pain:"Skin so good they ask what you use.",                  col:"#2CB7A7" },
+    { name:"Lovemaxxing",       affirmation:"He chooses me. Every time. Obviously.",              col:"#F5E0A0",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/></svg> },
+    { name:"Moneymaxxing",      affirmation:"Money finds me first. Of course it does.",            col:"#E8B870",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="17" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
+    { name:"Beautymaxxing",     affirmation:"Gorgeous is my default. Always has been.",           col:"#BFA5D8",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 16 30 17 C31 16 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.85"/></svg> },
+    { name:"Businessmaxxing",   affirmation:"The empire is already built in my mind.",             col:"#2CB7A7",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="24" width="32" height="20" rx="3" stroke="currentColor" strokeWidth="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" stroke="currentColor" strokeWidth="3"/></svg> },
+    { name:"DNAmaxxing",        affirmation:"My cells hold my new identity. It is done.",          col:"#167A6B",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M18 22 L42 22 M16 30 L44 30 M18 38 L42 38" stroke="currentColor" strokeWidth="1.5" opacity="0.5"/></svg> },
+    { name:"Selfmaxxing",       affirmation:"I am the upgraded version. She is here now.",         col:"#F5E0A0",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="18" stroke="currentColor" strokeWidth="2" opacity="0.4"/><circle cx="30" cy="30" r="8" fill="currentColor"/></svg> },
+    { name:"Luckygirlmaxxing",  affirmation:"Everything works out for me. It always does.",        col:"#E8B870",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/></svg> },
+    { name:"Sleepmaxxing",      affirmation:"I manifest while I sleep. Obviously.",                col:"#BFA5D8",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M38 16 A16 16 0 1 0 38 44 A12 12 0 0 1 38 16" fill="currentColor"/></svg> },
+    { name:"Skinnymaxxing",     affirmation:"My body reflects my beliefs. Effortlessly.",          col:"#2CB7A7",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" stroke="currentColor" strokeWidth="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/></svg> },
+    { name:"Desiresmaxxing",    affirmation:"My desires arrive. Constantly. Effortlessly.",        col:"#167A6B",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 44 L16 32 L24 32 L24 44 M28 44 L28 24 L36 24 L36 44 M40 44 L40 16 L48 16 L48 44" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+    { name:"Sovereignmaxxing",  affirmation:"I answer to no one. I choose everything.",            col:"#F5E0A0",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/></svg> },
+    { name:"Confidencemaxxing", affirmation:"I walk in like I already own the room.",              col:"#E8B870",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="20" r="8" stroke="currentColor" strokeWidth="2.5"/><path d="M16 46 Q16 34 30 34 Q44 34 44 46" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
+    { name:"Peacemaxxing",      affirmation:"Nothing rattles me. I am permanently calm.",          col:"#BFA5D8",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="16" stroke="currentColor" strokeWidth="2.5"/><path d="M30 14 L30 46 M16 38 L44 22" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
+    { name:"Bodymaxxing",       affirmation:"The body that makes a room stop. Mine.",              col:"#2CB7A7",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="6" stroke="currentColor" strokeWidth="2.5"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
+    { name:"Wellnessmaxxing",   affirmation:"My body and mind are finally in sync.",               col:"#167A6B",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" stroke="currentColor" strokeWidth="2.5"/><path d="M22 26 L27 26 L29 20 L32 32 L34 26 L38 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg> },
+    { name:"Healmaxxing",       affirmation:"Pain is leaving my body. For good.",                  col:"#F5E0A0",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 30 L28 30 L30 24 L32 36 L34 30 L38 30" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><rect x="12" y="16" width="36" height="28" rx="8" stroke="currentColor" strokeWidth="2.5"/></svg> },
+    { name:"Studymaxxing",      affirmation:"My mind absorbs everything. Effortlessly.",           col:"#E8B870",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 22 L30 14 L46 22 L30 30 Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M22 26 L22 36 Q30 40 38 36 L38 26" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
+    { name:"Intuitionmaxxing",  affirmation:"My gut is always right. I trust it completely.",      col:"#BFA5D8",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="16" stroke="currentColor" strokeWidth="2" opacity="0.35"/><circle cx="30" cy="30" r="9" stroke="currentColor" strokeWidth="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/></svg> },
+    { name:"Friendmaxxing",     affirmation:"My circle actually deserves me. Finally.",            col:"#2CB7A7",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="24" r="7" stroke="currentColor" strokeWidth="2.5"/><circle cx="38" cy="24" r="7" stroke="currentColor" strokeWidth="2.5"/><path d="M12 44 Q12 34 22 34 Q26 34 28 37 Q30 34 34 34 Q44 34 44 44" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
+    { name:"Stylemaxxing",      affirmation:"Dressed like the girl who already made it.",          col:"#167A6B",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/></svg> },
+    { name:"Erosmaxxing",       affirmation:"I am magnetic enough to stop a room.",                col:"#F5E0A0",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 46 C30 46 14 36 14 22 C14 15 20 12 25 15 C28 17 30 21 30 21 C30 21 32 17 35 15 C40 12 46 15 46 22 C46 36 30 46 30 46 Z" fill="currentColor" opacity="0.85"/></svg> },
+    { name:"Singlemaxxing",     affirmation:"Too full of myself to settle. Obviously.",            col:"#E8B870",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="22" r="10" stroke="currentColor" strokeWidth="2.5"/><path d="M30 32 L30 48" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><circle cx="30" cy="22" r="3" fill="currentColor"/></svg> },
+    { name:"Lifemaxxing",       affirmation:"Every area of my life is upgrading at once.",         col:"#BFA5D8",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
+    { name:"Facemaxxing",       affirmation:"My skin is porcelain. Everyone notices.",             col:"#2CB7A7",
+      icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="30" rx="16" ry="20" stroke="currentColor" strokeWidth="2.5"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
   ];
+
   const [idx, setIdx] = useState(0);
+  const intervalRef = useRef(null);
+
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => setIdx(i => (i + 1) % CATS.length), 2800);
+  };
+  const stopTimer = () => clearInterval(intervalRef.current);
+
   useEffect(() => {
-    const t = setInterval(() => setIdx(i => (i + 1) % CATS.length), 2600);
-    return () => clearInterval(t);
+    startTimer();
+    return () => stopTimer();
   }, []);
+
   const cat = CATS[idx];
+
   return (
     <div>
-      <div style={{ width:"100%", padding: isMobile?"22px 20px":"30px 48px", background:"#0a0a0a", borderTop:"1px solid rgba(232,184,112,0.15)", borderBottom:"1px solid rgba(232,184,112,0.15)", display:"flex", alignItems:"center", gap: isMobile?16:32 }}>
-        <div style={{ fontSize: isMobile?52:76, fontWeight:300, color:"rgba(255,255,255,0.06)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?52:76 }}>{String(idx+1).padStart(2,"0")}</div>
-        <div style={{ flex:1 }}>
-          <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(28px,3vw,40px)", fontWeight:400, color:cat.col, fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:6 }}>{cat.name}</div>
-          <div style={{ fontSize: isMobile?14:17, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{cat.pain}</div>
+      {/* Full-width cycling banner */}
+      <div
+        onMouseEnter={stopTimer}
+        onMouseLeave={startTimer}
+        onTouchStart={stopTimer}
+        onTouchEnd={startTimer}
+        style={{ width:"100%", padding: isMobile?"32px 24px":"48px 64px", background:"#000", display:"flex", alignItems:"center", justifyContent:"space-between", gap: isMobile?20:48, minHeight: isMobile?140:160, cursor:"pointer" }}
+      >
+        {/* Icon */}
+        <div style={{ flexShrink:0, width: isMobile?64:80, height: isMobile?64:80, color:cat.col, opacity:0.9, transition:"color 0.5s" }}>
+          {cat.icon}
         </div>
+
+        {/* Text */}
+        <div style={{ flex:1 }}>
+          <div style={{ fontSize: isMobile?11:12, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:cat.col, fontFamily:"'Jost',sans-serif", marginBottom:8, transition:"color 0.5s" }}>{cat.name}</div>
+          <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(24px,2.5vw,36px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{cat.affirmation}</div>
+        </div>
+
+        {/* Progress dots */}
         <div style={{ display:"flex", flexDirection:"column", gap:5, flexShrink:0 }}>
           {CATS.map((_,i) => (
-            <div key={i} onClick={()=>setIdx(i)} style={{ width:5, height: i===idx?20:5, borderRadius:3, background: i===idx?cat.col:"rgba(255,255,255,0.12)", cursor:"pointer", transition:"height 0.3s, background 0.3s" }}/>
+            <div key={i} onClick={()=>setIdx(i)} style={{ width:4, height: i===idx?18:4, borderRadius:2, background: i===idx?cat.col:"rgba(255,255,255,0.15)", cursor:"pointer", transition:"height 0.3s, background 0.4s" }}/>
           ))}
         </div>
       </div>
-      <div style={{ display:"flex", justifyContent:"center", gap:8, marginTop:20, padding:"0 20px", flexWrap:"wrap" }}>
+
+      {/* Category pills */}
+      <div style={{ display:"flex", justifyContent:"center", gap:8, padding: isMobile?"14px 16px":"16px 24px", flexWrap:"wrap", background:"#000", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
         {CATS.map((ct,i) => (
-          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"5px 11px":"6px 14px", borderRadius:20, border:"none", background: i===idx?ct.col:"rgba(255,255,255,0.05)", color: i===idx?"#000":"rgba(242,236,228,0.35)", fontSize: isMobile?11:12, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s", whiteSpace:"nowrap" }}>
+          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"5px 12px":"6px 16px", borderRadius:20, border:"none", background: i===idx?ct.col:"rgba(255,255,255,0.06)", color: i===idx?"#000":"rgba(242,236,228,0.4)", fontSize: isMobile?11:12, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s", whiteSpace:"nowrap" }}>
             {ct.name}
           </button>
         ))}
       </div>
-      <div style={{ textAlign:"center", marginTop:32 }}>
+
+      {/* CTA */}
+      <div style={{ textAlign:"center", padding:"28px 24px 0", background:"#000" }}>
         <button onClick={()=>onLegal&&onLegal("library")} style={{ background:LGb, border:"none", borderRadius:40, padding: isMobile?"16px 40px":"18px 52px", color:"#000", fontSize: isMobile?15:17, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer" }}>
           Explore the full library
         </button>
