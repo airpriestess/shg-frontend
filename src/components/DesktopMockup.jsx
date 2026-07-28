@@ -61,8 +61,8 @@ function Thumb({ cat, size }) {
   const r = Math.round(size * 0.12);
   return (
     <div style={{ width:size, height:size, borderRadius:r, flexShrink:0, overflow:"hidden",
-      background:`radial-gradient(circle at 32% 28%, ${c.accent}55, #000 78%)`, position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
-      <div style={{ position:"absolute", inset:0, background:`linear-gradient(155deg, ${c.accent}22 0%, transparent 55%)` }}/>
+      background:"radial-gradient(circle at 32% 28%," + c.accent + "55, #000 78%)", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
+      <div style={{ position:"absolute", inset:0, background:"linear-gradient(155deg," + c.accent + "22 0%, transparent 55%)" }}/>
       <svg width={Math.round(size*0.5)} height={Math.round(size*0.5)} viewBox="0 0 60 60"
         dangerouslySetInnerHTML={{ __html: c.icon }} style={{ position:"relative" }}/>
     </div>
@@ -172,7 +172,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
               {FEATURED_CATS.slice(0,9).map((cat,i)=>{
                 const c = CAT_ICONS[cat] || { accent:GOLD };
                 return (
-                  <div key={i} style={{ background:`linear-gradient(135deg,${C.bg} 0%,${c.accent}18 100%)`,
+                  <div key={i} style={{ background:"linear-gradient(135deg," + C.bg + " 0%," + c.accent + "18 100%)",
                     border:`1px solid ${c.accent}28`, borderRadius:r6,
                     padding:Math.round(5*s), display:"flex", alignItems:"center", gap:Math.round(5*s) }}>
                     <div style={{ width:Math.round(22*s), height:Math.round(22*s), borderRadius:Math.round(4*s),
