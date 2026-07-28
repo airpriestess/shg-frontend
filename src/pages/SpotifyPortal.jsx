@@ -79,6 +79,8 @@ const TAB_WASH = {
   proof:   { dark: "#080808", light: "#fdf8f2" },
   shop:    { dark: "#080808", light: "#fdf8f2" },
 };
+// LG gradient top fade shown on every tab
+const LG_FADE = "linear-gradient(180deg,rgba(245,224,160,0.07) 0%,rgba(191,165,216,0.04) 40%,transparent 100%)";
 
 // ── STOCK IMAGES ─────────────────────────────────────────────────────────────
 const IMGS = {
@@ -801,7 +803,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </button>
         </div>
         {/* Main */}
-        <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20 }}>
+        <div style={{ flex:1,overflowY:"auto",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||C.bg2,paddingBottom:20,backgroundImage:isDark?LG_FADE:"none",backgroundAttachment:"local" }}>
           <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
             <div style={{ maxWidth:360,position:"relative" }}>
               <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:16,color:C.dim }}>⌕</span>
