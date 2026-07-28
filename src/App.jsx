@@ -49,8 +49,8 @@ function ProofOSBanner({ isMobile }) {
     { num:"04", label:"Log every sign", body:"Date it. Photo it. Voice note it. The evidence is real.", col:"#2CB7A7" },
     { num:"05", label:"Mark it manifested ✦", body:"It arrived. Dated. Permanent. Your Proof Wall builds.", col:"#167A6B" },
   ];
-  const [idx, setIdx] = React.useState(0);
-  React.useEffect(() => {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
     const t = setInterval(() => setIdx(i => (i+1) % STEPS.length), 2800);
     return () => clearInterval(t);
   }, []);
