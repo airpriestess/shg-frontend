@@ -146,10 +146,10 @@ export default function LandingProofWall({ isMobile }) {
 
       {/* Stats */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 28, padding: "0 24px", maxWidth: 640, margin: "0 auto 28px" }}>
-        {[["100","Intentions set","#F5E0A0"],["20","Manifested","#BFA5D8"],["200","Signs logged","#2CB7A7"]].map(([v,l,col],i) => (
-          <div key={i} style={{ background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "18px 8px", textAlign: "center", border: `1px solid ${col}44` }}>
-            <div style={{ fontSize: 42, fontWeight: 300, background: `linear-gradient(135deg,${col} 0%,#E8B870 60%,${col} 100%)`, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Jost',sans-serif", lineHeight: 1 }}>{v}</div>
-            <div style={{ fontSize: 10, fontWeight: 500, color: col, letterSpacing: "0.12em", textTransform: "uppercase", marginTop: 8, fontFamily: "'Jost',sans-serif", opacity: 0.85 }}>{l}</div>
+        {[["100","Intentions set","linear-gradient(135deg,#F5E0A0,#E8B870)"],["20","Manifested","linear-gradient(135deg,#BFA5D8,#2CB7A7)"],["200","Signs logged","linear-gradient(135deg,#2CB7A7,#167A6B)"]].map(([v,l,bg],i) => (
+          <div key={i} style={{ background: bg, borderRadius: 12, padding: "18px 8px", textAlign: "center" }}>
+            <div style={{ fontSize: 42, fontWeight: 300, color: "#000", fontFamily: "'Jost',sans-serif", lineHeight: 1 }}>{v}</div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: "#000", letterSpacing: "0.14em", textTransform: "uppercase", marginTop: 8, fontFamily: "'Jost',sans-serif" }}>{l}</div>
           </div>
         ))}
       </div>
