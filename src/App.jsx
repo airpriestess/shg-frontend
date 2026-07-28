@@ -92,6 +92,71 @@ function ProofOSBanner({ isMobile }) {
   );
 }
 
+/* ── LIBRARY BANNER ────────────────────────────────────────────────────────── */
+function LibraryBanner({ isMobile, onLegal }) {
+  const LGb = "linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)";
+  const CATS = [
+    { name:"Lovemaxxing",       pain:"Him, obsessed. You, unbothered.",                     col:"#F5E0A0" },
+    { name:"Moneymaxxing",      pain:"The next zero on your bank statement.",                col:"#E8B870" },
+    { name:"Beautymaxxing",     pain:"The face in the mirror you always knew was in there.", col:"#BFA5D8" },
+    { name:"Businessmaxxing",   pain:"The empire everyone said was unrealistic.",            col:"#2CB7A7" },
+    { name:"DNAmaxxing",        pain:"Ageless. Radiant. Undeniable.",                        col:"#167A6B" },
+    { name:"Selfmaxxing",       pain:"The woman you were always meant to be.",               col:"#F5E0A0" },
+    { name:"Luckygirlmaxxing",  pain:"Everything just works out for you now.",               col:"#E8B870" },
+    { name:"Sleepmaxxing",      pain:"Manifesting while you are unconscious.",               col:"#BFA5D8" },
+    { name:"Skinnymaxxing",     pain:"The number on the scale, finally moving.",             col:"#2CB7A7" },
+    { name:"Desiresmaxxing",    pain:"The desires that feel just out of reach.",             col:"#167A6B" },
+    { name:"Sovereignmaxxing",  pain:"Answering to absolutely no one.",                      col:"#F5E0A0" },
+    { name:"Confidencemaxxing", pain:"Walk in like you already own the room.",               col:"#E8B870" },
+    { name:"Peacemaxxing",      pain:"Nothing rattles you anymore.",                         col:"#BFA5D8" },
+    { name:"Bodymaxxing",       pain:"The body that makes a room stop.",                     col:"#2CB7A7" },
+    { name:"Wellnessmaxxing",   pain:"Your body and mind, finally in sync.",                 col:"#167A6B" },
+    { name:"Healmaxxing",       pain:"Physical pain, emotional pain — gone.",                col:"#F5E0A0" },
+    { name:"Studymaxxing",      pain:"The grades everyone said were out of reach.",          col:"#E8B870" },
+    { name:"Intuitionmaxxing",  pain:"The gut feeling you keep talking yourself out of.",    col:"#BFA5D8" },
+    { name:"Friendmaxxing",     pain:"A circle that actually deserves you.",                 col:"#2CB7A7" },
+    { name:"Stylemaxxing",      pain:"Dressed like the girl who already made it.",           col:"#167A6B" },
+    { name:"Erosmaxxing",       pain:"Magnetic enough to stop a room.",                      col:"#F5E0A0" },
+    { name:"Singlemaxxing",     pain:"Too full of yourself to settle.",                      col:"#E8B870" },
+    { name:"Lifemaxxing",       pain:"Every area of your life, upgrading at once.",          col:"#BFA5D8" },
+    { name:"Facemaxxing",       pain:"Skin so good they ask what you use.",                  col:"#2CB7A7" },
+  ];
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i + 1) % CATS.length), 2600);
+    return () => clearInterval(t);
+  }, []);
+  const cat = CATS[idx];
+  return (
+    <div>
+      <div style={{ width:"100%", padding: isMobile?"22px 20px":"30px 48px", background:"#0a0a0a", borderTop:"1px solid rgba(232,184,112,0.15)", borderBottom:"1px solid rgba(232,184,112,0.15)", display:"flex", alignItems:"center", gap: isMobile?16:32 }}>
+        <div style={{ fontSize: isMobile?52:76, fontWeight:300, color:"rgba(255,255,255,0.06)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?52:76 }}>{String(idx+1).padStart(2,"0")}</div>
+        <div style={{ flex:1 }}>
+          <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(28px,3vw,40px)", fontWeight:400, color:cat.col, fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:6 }}>{cat.name}</div>
+          <div style={{ fontSize: isMobile?14:17, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{cat.pain}</div>
+        </div>
+        <div style={{ display:"flex", flexDirection:"column", gap:5, flexShrink:0 }}>
+          {CATS.map((_,i) => (
+            <div key={i} onClick={()=>setIdx(i)} style={{ width:5, height: i===idx?20:5, borderRadius:3, background: i===idx?cat.col:"rgba(255,255,255,0.12)", cursor:"pointer", transition:"height 0.3s, background 0.3s" }}/>
+          ))}
+        </div>
+      </div>
+      <div style={{ display:"flex", justifyContent:"center", gap:8, marginTop:20, padding:"0 20px", flexWrap:"wrap" }}>
+        {CATS.map((ct,i) => (
+          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"5px 11px":"6px 14px", borderRadius:20, border:"none", background: i===idx?ct.col:"rgba(255,255,255,0.05)", color: i===idx?"#000":"rgba(242,236,228,0.35)", fontSize: isMobile?11:12, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s", whiteSpace:"nowrap" }}>
+            {ct.name}
+          </button>
+        ))}
+      </div>
+      <div style={{ textAlign:"center", marginTop:32 }}>
+        <button onClick={()=>onLegal&&onLegal("library")} style={{ background:LGb, border:"none", borderRadius:40, padding: isMobile?"16px 40px":"18px 52px", color:"#000", fontSize: isMobile?15:17, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer" }}>
+          Explore the full library
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const authCtx = useAuth();
   const { isAuthenticated, profile } = authCtx;
@@ -1617,14 +1682,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
-      <div style={{ padding: isMobile ? "48px 18px" : "80px 24px", background: "#000", width: "100%" }}>
-        <div style={{ maxWidth: 1080, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
-            <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:16 }}>The Library.</div>
-            <div style={{ fontSize:14, fontWeight:500, letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:14, fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>24 Desire Categories</div>
-            <p style={{ fontSize: isMobile?15:18, color:"#c8bfb8", lineHeight:1.7, maxWidth:480, margin:"0 auto 28px", fontFamily:"'Jost',sans-serif" }}>Whatever it is, it's covered.</p>
-          </div>
+      <div style={{ padding: isMobile ? "56px 0 48px" : "88px 0 72px", background: "#000", width: "100%" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto", padding: "0 24px", textAlign: "center", marginBottom: isMobile?36:52 }}>
+          <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:20, fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>A growing library</div>
+          <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:24 }}>24 categories.<br/>All of them me.</div>
+          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:560, margin:"0 auto 16px", fontFamily:"'Jost',sans-serif" }}>
+            Every track in this library is recorded by me — Reshma. One voice. One vision. Built track by track, category by category, from scratch.
+          </p>
+          <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:560, margin:"0 auto", fontFamily:"'Jost',sans-serif" }}>
+            This is a new project and I am still building it. What you see here is growing — four new tracks every week, across every desire you've been sitting on.
+          </p>
         </div>
+
+        {/* Auto-cycling category banner */}
+        <LibraryBanner isMobile={isMobile} onLegal={onLegal}/>
       </div>
       {/* BOTTOM CAROUSEL — same ombre style as top, different affirmations */}
       <IdentityCarousel cats={[
