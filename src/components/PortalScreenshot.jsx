@@ -134,7 +134,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
           {FEATURED_CATS.slice(0,6).map((cat,i)=>{
             const c = CAT[cat] || { accent:TEAL };
             return (
-              <div key={i} style={{ background:`linear-gradient(135deg,${C.bg2} 0%,${c.accent}14 100%)`,
+              <div key={i} style={{ background:"linear-gradient(135deg," + C.bg2 + " 0%," + c.accent + "14 100%)",
                 border:`1px solid ${c.accent}28`, borderRadius:r8,
                 padding:Math.round(8*s), display:"flex", alignItems:"center", gap:Math.round(6*s) }}>
                 <div style={{ width:Math.round(8*s), height:Math.round(8*s), borderRadius:"50%",
