@@ -63,7 +63,7 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
   dark:  { bg:"#080808", bg2:"#111", bg3:"rgba(232,184,112,0.08)", bg4:"rgba(232,184,112,0.12)", nav:"#050505", cr:"#f2ece4", mu:"#c8bfb8", dim:"#e8e0d8", border:"rgba(232,184,112,0.15)", inputBg:"#1a1a1a", inputCr:"#f2ece4" },
-  light: { bg:"#f5f0e8", bg2:"#ede8f0", bg3:"rgba(191,165,216,0.12)", bg4:"rgba(191,165,216,0.18)", nav:"rgba(245,224,160,0.92)", cr:"#0a0a0a", mu:"#1a1a1a", dim:"#2a2a2a", border:"rgba(191,165,216,0.35)", inputBg:"rgba(255,255,255,0.7)", inputCr:"#0a0a0a" },
+  light: { bg:"#f5f0e8", bg2:"#ede8f0", bg3:"rgba(191,165,216,0.12)", bg4:"rgba(191,165,216,0.18)", nav:"rgba(245,224,160,0.92)", cr:"#000000", mu:"#000000", dim:"#000000", border:"rgba(191,165,216,0.4)", inputBg:"rgba(255,255,255,0.8)", inputCr:"#000000" },
 };
 
 const R = "#E8B870", P = "#BFA5D8";
@@ -765,7 +765,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?"#E8B870":C.mu,fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?"#E8B870":isDark?"#727272":"#000000",fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
               onMouseEnter={e=>e.currentTarget.style.color="#E8B870"}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
@@ -1443,7 +1443,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               <div style={{ fontSize:16,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#000000"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#167A6B" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#000000" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
