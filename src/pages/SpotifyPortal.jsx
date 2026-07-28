@@ -967,16 +967,16 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
               <Thumb title={track.title} cat={track.cat} size={260} radius={16}/>
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:32,fontWeight:400,color:"#fdf8f2",marginBottom:6 }}>{track.title}</div>
+              <div style={{ fontSize:32,fontWeight:400,color:C.cr,marginBottom:6 }}>{track.title}</div>
               <div style={{ fontSize:16,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
-              <div style={{ fontSize:14,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
-              <div style={{ fontSize:19,lineHeight:1.75,color:"#fdf8f2",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
-              <div style={{ fontSize:14,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
+              <div style={{ fontSize:14,color:isDark?"#E8B870":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
+              <div style={{ fontSize:19,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
+              <div style={{ fontSize:14,color:isDark?"#BFA5D8":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#E8B870",fontSize:17,marginTop:2 }}>✦</span>
-                    <span style={{ fontSize:18,lineHeight:1.65,color:"#fdf8f2" }}>{b}</span>
+                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:17,marginTop:2 }}>✦</span>
+                    <span style={{ fontSize:18,lineHeight:1.65,color:C.cr }}>{b}</span>
                   </div>
                 ))}
               </div>
@@ -985,7 +985,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                   <span style={{ fontSize:20 }}>📖</span>
                   <div>
                     <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:16,color:"#fdf8f2",fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    <div style={{ fontSize:16,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
                   </div>
                 </a>
               )}
@@ -1056,13 +1056,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           <div style={{ fontSize:15,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
           {(() => { const d = getDesc(track); return (
             <div style={{ width:"100%",paddingBottom:40 }}>
-              <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+              <div style={{ fontSize:13,color:isDark?"#E8B870":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
               <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
-              <div style={{ fontSize:13,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+              <div style={{ fontSize:13,color:isDark?"#BFA5D8":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#E8B870",fontSize:16,marginTop:2 }}>✦</span>
+                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:16,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:17,lineHeight:1.6,color:C.cr }}>{b}</span>
                   </div>
                 ))}
@@ -1701,7 +1701,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       {promoCatOpen===item.id && (
                         <>
                         <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
-                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fdf8f2", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                           {Object.keys(CAT_ICONS).map(c=>{
                             const catColor = CAT_ICONS[c].accent;
                             return (
@@ -1800,7 +1800,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {trackPickerOpen && (
               <>
               <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"fixed", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#fdf8f2", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"fixed", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {TRACKS.map(t=>{
                   const catColor = CAT_ICONS[t.cat]?.accent || R;
                   return (
