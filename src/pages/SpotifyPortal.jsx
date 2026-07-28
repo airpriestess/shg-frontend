@@ -10,7 +10,7 @@ import { supabase } from "../lib/supabase.js";
 const HAWKINS = [
   {n:"Shame",       v:20,  c:"#2a0a0a"}, // near black-red
   {n:"Guilt",       v:30,  c:"#5a0f0f"}, // deep crimson
-  {n:"Apathy",      v:50,  c:"#888888"}, // flat grey
+  {n:"Apathy",      v:50,  c:isDark?"#333333":"rgba(0,0,0,0.25)"}, // flat grey
   {n:"Grief",       v:75,  c:"#BFA5D8"}, // deep purple-grey
   {n:"Fear",        v:100, c:"#167A6B"}, // dark amber-brown
   {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
@@ -82,20 +82,19 @@ const THEMES = {
     accentChamp:"#F5E0A0",
     accentDeep: "#167A6B",
   },
-  // ── LIGHT MODE: full LG gradient wall to wall, black text ──────────────
+  // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
   light: {
     bg:      "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
     bg2:     "rgba(255,255,255,0.25)",  // frosted glass cards
     bg3:     "rgba(255,255,255,0.35)",  // raised cards
     bg4:     "rgba(255,255,255,0.45)",  // highest surface
     nav:     "rgba(245,224,160,0.55)",  // nav bar — champagne frosted
-    cr:      "#000000",   // all text black on LG gradient
-    mu:      "rgba(0,0,0,0.55)",
-    dim:     "rgba(0,0,0,0.35)",
+    cr:      "#000000",   // primary text — black
+    mu:      "#000000",   // muted text — also black (no grey in light mode)
+    dim:     "#000000",   // faint text — also black
     border:  "rgba(255,255,255,0.45)",
     inputBg: "rgba(255,255,255,0.55)",
     inputCr: "#000000",
-    // Accents on light mode are also black (gradient bg is already colourful)
     accentGold: "#000000",
     accentLav:  "#000000",
     accentTeal: "#000000",
@@ -754,7 +753,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                     background:quickFeel===h.n?`${h.c}33`:"transparent",
                     border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                  <span style={{ fontSize:15,color:h.v>=600?"#F5E0A0":h.v<=30?"#e8e0d8":h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:15,color:isDark?(h.v>=600?"#F5E0A0":h.v<=30?"#e8e0d8":h.c):"#000000",flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
@@ -1102,7 +1101,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       </>
       )}
       <div style={{ width:"100%",marginBottom:8 }}>
-        <div style={{ height:4,background:"#888888",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
+        <div style={{ height:4,background:isDark?"#333333":"rgba(0,0,0,0.2)",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
           <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",position:"relative",transition:"width 0.3s" }}>
             <div style={{ position:"absolute",right:-6,top:"50%",transform:"translateY(-50%)",width:13,height:13,borderRadius:"50%",background:C.cr }}/>
           </div>
