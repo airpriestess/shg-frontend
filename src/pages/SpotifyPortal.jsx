@@ -62,20 +62,19 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  // ── DARK MODE: pure black, LG colours on accents only ──────────────────
+  // ── DARK MODE: pure black, all text white/cream, LG accents on labels/icons ──
   dark: {
     bg:      "#000000",
     bg2:     "#0a0a0a",
     bg3:     "#111111",
     bg4:     "#161616",
     nav:     "#050505",
-    cr:      "#f2ece4",   // primary text — warm cream
-    mu:      "#b09888",   // muted text
-    dim:     "#786860",   // faint text
-    border:  "rgba(232,184,112,0.15)",  // gold-tinted border
+    cr:      "#f2ece4",              // primary text — warm white
+    mu:      "#f2ece4",              // secondary text — same white (no grey)
+    dim:     "rgba(242,236,228,0.55)", // faint text — soft white, not grey
+    border:  "rgba(232,184,112,0.15)",
     inputBg: "#1a1a1a",
     inputCr: "#f2ece4",
-    // LG accent colours for labels, icons, active tabs — never backgrounds
     accentGold: "#E8B870",
     accentLav:  "#BFA5D8",
     accentTeal: "#2CB7A7",
@@ -1540,7 +1539,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   // ProofOS — always LG gradient background, white cards, black text
   const isDark = false; // ProofOS always uses light card theme on LG bg
-  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"rgba(0,0,0,0.1)", inputBg:"rgba(255,255,255,0.9)" };
+  const PC = isDark
+    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#f2ece4", dim:"rgba(242,236,228,0.55)", border:"rgba(232,184,112,0.15)", inputBg:"#1a1a1a" }
+    : { card:"rgba(255,255,255,0.3)", cardSolid:"#ffffff", text:"#000000", mu:"#000000", dim:"rgba(0,0,0,0.55)", border:"rgba(255,255,255,0.45)", inputBg:"rgba(255,255,255,0.55)" };
   const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
   if (isPreview) return (
