@@ -1568,9 +1568,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </p>
 
                         {/* SIX FORMATS — clean white card, 2-col grid, no overlapping visuals */}
-            <div style={{ background:"#0a0a0a", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px", border:"1px solid rgba(232,184,112,0.15)" }}>
-              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Six formats</div>
-              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
+            <div style={{ background:"#ffffff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px", border:"none" }}>
+              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Six formats</div>
+              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
                   { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
@@ -1580,11 +1580,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
                   { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#BFA5D8", dot:"#BFA5D8" },
                 ].map((f,i)=>(
-                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#0a0a0a", borderRadius:14, border:`1px solid ${f.dot}44`, borderLeft:`3px solid ${f.dot}`, boxShadow:`0 2px 16px ${f.dot}18` }}>
+                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#ffffff", borderRadius:14, border:"1px solid rgba(0,0,0,0.06)", borderLeft:`3px solid ${f.dot}`, boxShadow:"0 2px 8px rgba(0,0,0,0.06)" }}>
                     <div style={{ width:8, height:8, borderRadius:"50%", background:f.dot, flexShrink:0, marginTop:6 }}/>
                     <div>
-                      <div style={{ fontSize: isMobile?17:20, fontWeight:600, color:"#f2ece4", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
-                      <div style={{ fontSize: isMobile?14:16, color:"#c8bfb8", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
+                      <div style={{ fontSize: isMobile?17:20, fontWeight:600, color:"#000", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
+                      <div style={{ fontSize: isMobile?14:16, color:"#444", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
                     </div>
                   </div>
                 ))}
@@ -1592,9 +1592,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </div>
 
             {/* FREQUENCIES — white card, clean horizontal bars */}
-            <div style={{ background:"#0a0a0a", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto", border:"1px solid rgba(232,184,112,0.15)" }}>
-              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#E8B870", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Solfeggio Frequencies</div>
-              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
+            <div style={{ background:"#ffffff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto", border:"none" }}>
+              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Solfeggio Frequencies</div>
+              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
               <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
                 {[
                   { hz:"963hz", name:"Activation",    assoc:"Pineal gland activation · higher connection",  pct:100, color:"#F5E0A0" },
@@ -1609,20 +1609,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#2CB7A7" },
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
-                    <div style={{ fontSize: isMobile?13:16, fontWeight:700, color:"#E8B870", width: isMobile?52:72, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
+                    <div style={{ fontSize: isMobile?13:16, fontWeight:700, color:"#000", width: isMobile?52:72, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
                     <div style={{ flex:1 }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
-                        <div style={{ fontSize: isMobile?14:17, fontWeight:600, color:"#f2ece4", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
-                        <div style={{ fontSize: isMobile?12:14, color:"#c8bfb8", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                        <div style={{ fontSize: isMobile?14:17, fontWeight:600, color:"#000", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
+                        <div style={{ fontSize: isMobile?12:14, color:"#555", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
-                      <div style={{ height:6, background:"rgba(255,255,255,0.08)", borderRadius:3, overflow:"hidden" }}>
+                      <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
                         <div style={{ width:`${row.pct}%`, height:"100%", background:row.color, borderRadius:3 }}/>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize:12, color:"#c8bfb8", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+              <p style={{ fontSize:12, color:"#555", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Binaural beats layered beneath every track sync both hemispheres into theta — where the reprogramming begins.
               </p>
             </div>
