@@ -1,47 +1,54 @@
-// Lucky Girl color system — replacing all rose/peach/champagne
-// Primary gradient: gold → lavender → teal-green → deep teal
-export const LG_GRAD = "linear-gradient(110deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)";
-export const LG_MID  = "#2CB7A7";   // teal-green — replaces #2CB7A7 rose
-export const LG_LAV  = "#5B8DB8";   // lavender   — replaces #5B8DB8 peach
-export const LG_GOLD = "#C8860A";   // rich gold  — replaces #C8860A champagne
-export const LG_DEEP = "#167A6B";   // deep teal  — accent dark
+// ─── SHG Design Tokens — Lucky Girl system ────────────────────────────────
+// Locked gradient: #F5E0A0 → #E8B870 → #BFA5D8 → #2CB7A7 → #167A6B
+// DO NOT substitute old values (#C8960A, #5B8DB8, #C8860A, #B8820A)
 
+// ── LOCKED LG GRADIENT ───────────────────────────────────────────────────
+export const LG_GRAD = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+export const LG_GRAD_JSX = "linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)"; // no % — esbuild safe
+
+// ── LG INDIVIDUAL STOPS ───────────────────────────────────────────────────
+export const LG_CHAMP = "#F5E0A0";  // champagne — lightest, warmest
+export const LG_GOLD  = "#E8B870";  // gold
+export const LG_LAV   = "#BFA5D8";  // lilac
+export const LG_TEAL  = "#2CB7A7";  // teal
+export const LG_DEEP  = "#167A6B";  // deep teal — darkest
+
+// ── THEME TOKENS ─────────────────────────────────────────────────────────
 export const T = {
-  bgRoot: "#000000",
-  bgSoft: "#050505",
-  surfaceBase: "#000000",
-  surfaceRaised: "#0a0a0a",
-  surfaceHigh: "#121212",
-  borderSoft: "#1e1e1e",
-  borderGlow: "#242424",
+  // ── Dark mode — pure black, LG accents only on labels/icons/tabs ──
+  bgRoot:       "#000000",
+  bgSoft:       "#050505",
+  surfaceBase:  "#000000",
+  surfaceRaised:"#0a0a0a",
+  surfaceHigh:  "#111111",
+  borderSoft:   "#1e1e1e",
+  borderGlow:   "rgba(232,184,112,0.15)",
 
-  // Text — warm cream white
+  // Text — warm cream (dark mode)
   textPrimary:   "#f2ece4",
   textSecondary: "#dcc8b8",
   textMuted:     "#b09888",
   textFaint:     "#786860",
 
-  // Lucky Girl accent colors — no more rose/peach
-  gold:      "#C8860A",   // rich gold
-  roseGold:  "#2CB7A7",   // was dusty rose, now teal-green
-  rose:      "#2CB7A7",   // was rose, now teal-green
-  champagne: "#C8860A",   // was pale champagne, now rich gold
-  champSoft: "#C8960A",   // warm amber-gold
-  success:   "#4a9a5a",
-  warning:   "#C8860A",
-  danger:    "#2CB7A7",
-  blood:     "#2CB7A7",
+  // LG accent colours — used on labels, icons, active states
+  gold:      "#E8B870",   // champagne gold
+  champ:     "#F5E0A0",   // lightest champagne
+  lav:       "#BFA5D8",   // lilac
+  teal:      "#2CB7A7",   // teal
+  deep:      "#167A6B",   // deep teal
 
-  // Lucky Girl gradient replaces old amber/rose ombre
-  grad:  "linear-gradient(110deg,#C8960A,#5B8DB8,#167A6B)",
-  gradV: "linear-gradient(135deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)",
+  // Gradients
+  grad:    "linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",
+  gradAngle: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
 
-  bgGrad:      "#000000",
+  // Card/surface
   cardBg:      "rgba(10,10,10,0.97)",
   premiumCard: "linear-gradient(135deg,rgba(14,14,14,0.98),rgba(8,8,8,0.98))",
-  border:      "1px solid #1e1e1e",
-  glow:        "0 0 40px rgba(44,183,167,0.12)",
-  glowChamp:   "0 0 30px rgba(44,183,167,0.14)",
+  inputBg:     "#1a1a1a",
+
+  // Glows — teal based, not gold
+  glow:      "0 0 40px rgba(44,183,167,0.12)",
+  glowGold:  "0 0 30px rgba(232,184,112,0.14)",
 };
 
 export const CSS = `
@@ -127,26 +134,12 @@ img{max-width:100%;}
   .steps-grid{grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr!important;}
 }
 
-/* ── MARQUEE FLASH ─────────────────── */
+/* ── MARQUEE / ANIMATIONS ─────────────────────────────── */
 @keyframes flash{0%,100%{opacity:1;color:inherit;}50%{opacity:0.5;}}
-@keyframes maxxFlash{
-  0%,85%,100%{opacity:1;transform:none;}
-  90%{opacity:0.3;transform:scaleX(0.97);}
-  95%{opacity:1;transform:none;}
-}
-@keyframes shake{
-  0%,100%{transform:none;}
-  10%,30%,50%,70%,90%{transform:translateX(-3px);}
-  20%,40%,60%,80%{transform:translateX(3px);}
-}
-@keyframes shimmerGold{
-  0%{background-position:200% center;}
-  100%{background-position:-200% center;}
-}
-@keyframes joinPulse{
-  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(44,183,167,0.4);}
-  50%{transform:scale(1.03);box-shadow:0 0 0 8px rgba(44,183,167,0);}
-}
+@keyframes maxxFlash{0%,85%,100%{opacity:1;transform:none;}90%{opacity:0.3;transform:scaleX(0.97);}95%{opacity:1;transform:none;}}
+@keyframes shake{0%,100%{transform:none;}10%,30%,50%,70%,90%{transform:translateX(-3px);}20%,40%,60%,80%{transform:translateX(3px);}}
+@keyframes shimmerGold{0%{background-position:200% center;}100%{background-position:-200% center;}}
+@keyframes joinPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(44,183,167,0.4);}50%{transform:scale(1.03);box-shadow:0 0 0 8px rgba(44,183,167,0);}}
 .maxx-item{animation:maxxFlash 3s ease-in-out infinite;}
 .maxx-item:nth-child(2n){animation-delay:0.4s;}
 .maxx-item:nth-child(3n){animation-delay:0.8s;}
@@ -158,35 +151,12 @@ img{max-width:100%;}
 
 /* ── NUCLEAR MOBILE OVERRIDE ────────────── */
 @media(max-width:680px){
-  body [style*="grid-template-columns"]{
-    display:flex!important;
-    flex-direction:column!important;
-    flex-wrap:nowrap!important;
-  }
-  body [style*="1.2fr 1.8fr"],[style*="1fr 36px"]{
-    display:none!important;
-  }
-  body > #root > * [style*="padding"]{
-    max-width:100vw!important;
-    overflow-x:hidden!important;
-  }
+  body [style*="grid-template-columns"]{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;}
+  body [style*="1.2fr 1.8fr"],[style*="1fr 36px"]{display:none!important;}
+  body > #root > * [style*="padding"]{max-width:100vw!important;overflow-x:hidden!important;}
   h1{font-size:clamp(32px,9vw,52px)!important;}
   .hero-ctas>button{width:100%!important;}
   html,body{overflow-x:hidden!important;max-width:100vw!important;}
-}
-
-/* ── WORDMARK — Lucky Girl gradient ───────────── */
-@keyframes wordmarkShimmer{
-  0%{background-position:0% center;}
-  50%{background-position:200% center;}
-  100%{background-position:0% center;}
-}
-.wm-shimmer{
-  background:linear-gradient(135deg,#C8960A 0%,#B8820A 25%,#5B8DB8 55%,#2AA89A 80%,#167A6B 100%)!important;
-  -webkit-background-clip:text!important;
-  background-clip:text!important;
-  -webkit-text-fill-color:transparent!important;
-  color:transparent!important;
 }
 
 /* ── SECTION COLOUR BANDS ─────────────── */
