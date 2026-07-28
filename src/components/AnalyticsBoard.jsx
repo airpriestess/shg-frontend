@@ -1,18 +1,18 @@
 /* AnalyticsBoard — portal + landing preview */
 import { ArrowIcon } from "./UI.jsx";
 
-const R = "#2CB7A7", P = "#5B8DB8";
+const R = "#E8B870", P = "#BFA5D8";
 const OMBRE = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const PALETTES = {
-  dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", track:"rgba(44,183,167,0.08)" },
-  light: { card:"#fdf8f2", card2:"rgba(44,183,167,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(44,183,167,0.18)", track:"rgba(44,183,167,0.12)" },
+  dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(232,184,112,0.15)", track:"rgba(232,184,112,0.08)" },
+  light: { card:"#fdf8f2", card2:"rgba(232,184,112,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(232,184,112,0.18)", track:"rgba(232,184,112,0.12)" },
 };
 
 export const DEMO_ANALYTICS = {
   manifested: 3, inProgress: 4, signs: 11, listens: 27, streakDays: 14,
   week: [2,4,3,6,5,4,3],
-  topCats: [ ["Money","#2CB7A7",5], ["SP & Love","#5B8DB8",4], ["Identity","#2CB7A7",2] ],
+  topCats: [ ["Money","#E8B870",5], ["SP & Love","#BFA5D8",4], ["Identity","#F5E0A0",2] ],
 };
 
 export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof, onDrillDown }) {
@@ -27,7 +27,7 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
   const BLACK = "#000000";
 
   return (
-    <div style={{ background:C.card, borderRadius:16, padding:compact?"12px 14px":"20px 18px", border:`1px solid ${C.border}`, fontFamily:"'Jost',sans-serif" }}>
+    <div style={{ background:C.card, borderRadius:16, padding:compact?"12px 14px":"20px 18px", border:`1px solid ${C.border}`, fontFamily:"'Jost',sans-serif", width:"100%", boxSizing:"border-box" }}>
       <style>{`
         @keyframes abGrow { from { transform:scaleY(0); } to { transform:scaleY(1); } }
         @keyframes abPulse { 0%,100% { filter:brightness(1); } 50% { filter:brightness(1.3); box-shadow:0 0 14px rgba(44,183,167,0.95); } }
@@ -37,10 +37,10 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
 
       {/* Header */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:14 }}>
-        <span style={{ fontSize:14*fs, fontWeight:400, color:"#2CB7A7", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your analytics ✦</span>
+        <span style={{ fontSize:14*fs, fontWeight:400, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your analytics ✦</span>
         <span style={{ fontSize:12*fs, fontWeight:400, padding:"4px 12px", background:OMBRE, backgroundSize:"100%", borderRadius:20, color:BLACK, animation:"abFlash 2.2s ease-in-out infinite" }}>{streakDays}-day streak</span>
       </div>
-      <div style={{ fontSize:16*fs, fontWeight:400, color:C.text, marginBottom:14 }}>{manifested} of {total} intentions manifested <span style={{ color:"#2CB7A7" }}>✦</span></div>
+      <div style={{ fontSize:16*fs, fontWeight:400, color:C.text, marginBottom:14 }}>{manifested} of {total} intentions manifested <span style={{ color:"#E8B870" }}>✦</span></div>
 
       {/* Stat tiles */}
       <div style={{ display:"grid", gridTemplateColumns: compact ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>
