@@ -190,13 +190,19 @@ function LibraryBanner({ isMobile, onLegal }) {
         </div>
       </div>
 
-      {/* Category pills */}
+      {/* Category pills — alternate black and cream */}
       <div style={{ display:"flex", justifyContent:"center", gap:8, padding: isMobile?"14px 16px":"16px 24px", flexWrap:"wrap", background:"#000", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
-        {CATS.map((ct,i) => (
-          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"5px 12px":"6px 16px", borderRadius:20, border:"none", background: i===idx?ct.col:"rgba(255,255,255,0.06)", color: i===idx?"#000":"rgba(242,236,228,0.4)", fontSize: isMobile?11:12, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s", whiteSpace:"nowrap" }}>
-            {ct.name}
-          </button>
-        ))}
+        {CATS.map((ct,i) => {
+          const isActive = i === idx;
+          const isEven = i % 2 === 0;
+          const idleBg = isEven ? "#000" : "#f2ece4";
+          const idleColor = isEven ? "rgba(242,236,228,0.5)" : "rgba(0,0,0,0.5)";
+          return (
+            <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 14px":"7px 18px", borderRadius:20, border: isActive?"none":`1px solid ${isEven?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`, background: isActive?ct.col:idleBg, color: isActive?"#000":idleColor, fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: isActive?600:400, transition:"all 0.25s", whiteSpace:"nowrap" }}>
+              {ct.name}
+            </button>
+          );
+        })}
       </div>
 
       {/* CTA */}
