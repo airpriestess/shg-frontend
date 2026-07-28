@@ -300,7 +300,7 @@ export default function Library({ onBack }) {
                       <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "rgba(0,0,0,0.75)" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.what}</p>
                     </div>
                     {/* The shift */}
-                    <div style={{ padding: isMobile?"20px 20px":"24px 28px", background:`linear-gradient(135deg,${cat.accent}12 0%,transparent 100%)` }}>
+                    <div style={{ padding: isMobile?"20px 20px":"24px 28px", background:"linear-gradient(135deg," + cat.accent + "12 0%,transparent 100%)" }}>
                       <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:cat.accent, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The shift</div>
                       <p style={{ fontSize: isMobile?15:17, color: i%3===1||i%3===2 ? "#0a0a0a" : CREAM, lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.shift}</p>
                     </div>
