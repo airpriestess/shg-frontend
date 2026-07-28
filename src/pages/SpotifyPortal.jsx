@@ -606,7 +606,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
-            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:"linear-gradient(135deg," + OMBRE + ")",border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
           </div>
