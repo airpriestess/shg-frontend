@@ -73,7 +73,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
   const thumbCard = Math.round(78*s);
 
   return (
-    <div style={{ width, height:h, background:C.bg, borderRadius:r24, overflow:"hidden",
+    <div style={{ width, height:h, background:C.bg, backgroundImage:"linear-gradient(180deg,rgba(245,224,160,0.07) 0%,rgba(191,165,216,0.04) 40%,transparent 100%)", borderRadius:r24, overflow:"hidden",
       fontFamily:"'Jost',sans-serif", color:C.cr, position:"relative", flexShrink:0,
       boxShadow:`0 ${Math.round(24*s)}px ${Math.round(60*s)}px rgba(0,0,0,0.6)` }}>
 
@@ -84,7 +84,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         <span style={{ fontSize:f.xs, color:C.mu }}>●● 100%</span>
       </div>
       <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)",
-        width:Math.round(90*s), height:Math.round(26*s), background:C.bg,
+        width:Math.round(90*s), height:Math.round(26*s), background:C.bg, backgroundImage:"linear-gradient(180deg,rgba(245,224,160,0.07) 0%,rgba(191,165,216,0.04) 40%,transparent 100%)",
         borderRadius:`0 0 ${Math.round(12*s)}px ${Math.round(12*s)}px`, zIndex:50 }}/>
 
       {/* HEADER */}
