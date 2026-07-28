@@ -682,7 +682,7 @@ function AppPreviewSection({ isMobile }) {
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
               <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.1)":"rgba(255,255,255,0.3)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
                 <div style={{ fontSize:22, color:theme==="dark"?"#E8B870":"#000000", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
-                <div style={{ fontSize:9, color:theme==="dark"?theme==="dark"?"#e8e0d8":"#000000":"#000000", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
+                <div style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#000000", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
