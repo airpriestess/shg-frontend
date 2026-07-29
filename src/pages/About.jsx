@@ -80,6 +80,9 @@ export default function About({ onBack }) {
             I was struggling with my belief system. All of it.
           </h2>
           <p style={{ fontSize: isMobile?16:17, color:"rgba(242,236,228,0.8)", lineHeight:1.85, marginBottom:20 }}>
+            Bullied. Never chosen. Always looking for my place — in rooms, in jobs, in my own skin. The kind of early life that leaves a mark on how you see yourself, and how you think the world sees you back.
+          </p>
+          <p style={{ fontSize: isMobile?16:17, color:"rgba(242,236,228,0.8)", lineHeight:1.85, marginBottom:20 }}>
             Love. Beauty. Body. My relationship with myself. I couldn't find anything that helped me keep my consciousness consistently stable — not therapy, not tools, not habits. Something would work for a day and then collapse the next. Nothing stuck.
           </p>
           <p style={{ fontSize: isMobile?16:17, color:"rgba(242,236,228,0.8)", lineHeight:1.85 }}>
@@ -157,8 +160,11 @@ export default function About({ onBack }) {
           <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.65)", lineHeight:1.8, marginBottom:20 }}>
             I don't care how logical the world is. I choose to live in my magical version of it — and that is exactly how I am able to manifest the things I manifest.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.65)", lineHeight:1.8 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.65)", lineHeight:1.8, marginBottom:20 }}>
             SHG exists to help you stay in the magic. To keep your mind calibrated to what you want — not what you fear. Every audio, every track, every tool inside is built to do one thing: help you stay in your version of reality long enough for it to become the real one.
+          </p>
+          <p style={{ fontSize: isMobile?16:18, color:BLACK, lineHeight:1.7, fontWeight:500 }}>
+            I don't have to deal with the BS anymore. I'm the only boss in my life. That's what this is about — for me, and for you.
           </p>
         </div>
       </div>
