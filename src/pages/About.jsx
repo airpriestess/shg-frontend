@@ -41,8 +41,8 @@ export default function About({ onBack }) {
         {/* Photo */}
         <div style={{ display:"flex", justifyContent:"center", marginBottom:32 }}>
           <div style={{
-            width: isMobile?120:148,
-            height: isMobile?120:148,
+            width: isMobile?160:200,
+            height: isMobile?160:200,
             borderRadius:"50%",
             overflow:"hidden",
             border:"3px solid rgba(0,0,0,0.15)",
