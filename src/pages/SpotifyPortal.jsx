@@ -1412,7 +1412,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           </button>
           {catOpen && dropRect && (
             <>
-            <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"transparent" }}/>
+            <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"rgba(0,0,0,0.45)" }}/>
             <div style={{
               position:"fixed",
               top: dropRect ? dropRect.bottom + 6 : 0,
@@ -1614,7 +1614,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   return (
     <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
       <div style={{ fontSize:22,fontWeight:400,marginBottom:2,background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
-      <div style={{ fontSize:15,color:"#000000",marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
+      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
       {/* Filter banner — shown when drilled in from Analytics */}
       {proofFilter!=="all" && (
@@ -1640,9 +1640,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:"rgba(255,255,255,0.35)",
+            background:view===k?col:"rgba(0,0,0,0.1)",
             border:"none",
-            color:"#000", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+            color:view===k?"#000":"rgba(0,0,0,0.45)", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
@@ -1740,8 +1740,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : view==="wall" ? (
         /* ═══ PROOF WALL — your wins, forever ═══ */
         <div>
-          <div style={{ fontSize:13,color:"#000000",fontWeight:500,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
-          <div style={{ fontSize:14,color:"#000000",lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
+          <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
+          <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
@@ -1763,7 +1763,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <span style={{ fontSize:13,color:PC.mu,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
               </div>
               <div style={{ gridColumn:"1/-1" }}>
-              <div style={{ fontSize:13,fontWeight:500,color:"#000000",letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
+              <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
               <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
                 {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
                   <div key={s.key} style={{ background:"rgba(255,255,255,0.85)",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
@@ -1780,7 +1780,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : (
       <>
       {/* ADD NEW THREAD */}
-      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:"rgba(255,255,255,0.9)",border:"none",borderRadius:12,color:"#000000",fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#f2ece4"),border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         {adding?"✕ Cancel":"+ New Intention"}
       </button>
       {adding && (
@@ -1866,7 +1866,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Moneymaxxing"); setNewBelief(""); setAdding(false);
-          }} style={{ padding:"11px 22px",background:"rgba(255,255,255,0.9)",border:"none",borderRadius:10,color:"#000000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:"#f2ece4",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
           {userTier === "audio" && !isPreview && (
