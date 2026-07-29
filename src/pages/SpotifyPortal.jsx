@@ -1579,23 +1579,26 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     const text = (signInput[id]||"").trim();
     if(!text) return;
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
-    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date}]}:t));
+    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date,_sid:Date.now()+Math.random()}]}:t));
     setSignInput({...signInput,[id]:""});
   };
   const addMediaSign = (id, media) => {
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
-    setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date}]}:t));
+    setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date,_sid:Date.now()+Math.random()}]}:t));
   };
-  const deleteSign = (threadId, signIdx) => {
-    setThreads(ts=>ts.map(t=>t.id===threadId?{...t,signs:(t.signs||[]).filter((_,i)=>i!==signIdx)}:t));
+  const deleteSign = (threadId, signKey) => {
+    setThreads(ts=>ts.map(t=>t.id===threadId?{...t,signs:(t.signs||[]).filter(s=>(s._sid??s) !== signKey)}:t));
   };
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
   const saveEdit = (id) => { if(editText.trim()) setThreads(ts=>ts.map(t=>t.id===id?{...t,desire:editText.trim()}:t)); setEditId(null); };
   const [recId, setRecId] = useState(null);
+  const [recSecs, setRecSecs] = useState(0);
   const recRef = useRef(null);
+  const recTimerRef = useRef(null);
+  useEffect(()=>()=>clearInterval(recTimerRef.current), []);
   const toggleRec = async (id) => {
-    if (recId === id) { recRef.current?.stop(); return; }
+    if (recId === id) { recRef.current?.stop(); clearInterval(recTimerRef.current); return; }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
       const mr = new MediaRecorder(stream);
@@ -1606,14 +1609,18 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         addMediaSign(id,{audio:url,text:"Voice note"});
         stream.getTracks().forEach(t=>t.stop());
         setRecId(null);
+        setRecSecs(0);
+        clearInterval(recTimerRef.current);
       };
-      mr.start(); recRef.current = mr; setRecId(id);
+      mr.start(); recRef.current = mr; setRecId(id); setRecSecs(0);
+      recTimerRef.current = setInterval(()=>setRecSecs(s=>s+1), 1000);
     } catch { alert("Microphone access needed for voice notes."); }
   };
 
   return (
     <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
-      <div style={{ fontSize:22,fontWeight:400,marginBottom:2,background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
+      <style>{`@keyframes shgRecPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}@keyframes shgRecButtonPulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0.5);}50%{box-shadow:0 0 0 6px rgba(192,57,43,0);}}`}</style>
+      <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#B76E79",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
       <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
       {/* Filter banner — shown when drilled in from Analytics */}
@@ -1941,7 +1948,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ marginTop:12,paddingTop:10,borderTop:`1px solid ${PC.border}` }}>
             <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
-              <div key={si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
+              <div key={sg._sid??si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
                 <span style={{ fontSize:13,color:CAT_COLOR[d.category]||"#E8B870",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
                 <span style={{ fontSize:14,color:PC.text,lineHeight:1.5,flex:1 }}>
                   {sg.text}
@@ -1949,10 +1956,17 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
                 </span>
                 <span style={{ fontSize:12,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
-                <button onClick={()=>deleteSign(d.id,si)} style={{ background:"none",border:"none",color:"rgba(0,0,0,0.3)",cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2 }} title="Remove sign">✕</button>
+                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:"rgba(0,0,0,0.3)",cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2 }} title="Remove sign">✕</button>
               </div>
             ))}
             {!d.done && (
+              <>
+              {recId===d.id && (
+                <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:8,marginBottom:2 }}>
+                  <span style={{ width:8,height:8,borderRadius:"50%",background:"#c0392b",animation:"shgRecPulse 1s ease-in-out infinite" }}/>
+                  <span style={{ fontSize:12,color:"#c0392b",fontWeight:500,fontFamily:"'Jost',sans-serif" }}>Recording… {Math.floor(recSecs/60)}:{String(recSecs%60).padStart(2,"0")}</span>
+                </div>
+              )}
               <div style={{ display:"flex",gap:6,marginTop:8 }}>
                 <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
@@ -1961,8 +1975,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
                   <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
                 </label>
-                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#b03030":"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":"#000" }}>{recId===d.id?"⏹":"🎤"}</button>
+                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#c0392b":"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":"#000",animation:recId===d.id?"shgRecButtonPulse 1s ease-in-out infinite":"none" }}>{recId===d.id?"⏹":"🎤"}</button>
               </div>
+              </>
             )}
           </div>
 
