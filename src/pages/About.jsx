@@ -111,9 +111,9 @@ export default function About({ onBack }) {
       {/* ── THE BUILD — black, two-col on desktop ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
-          <p style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(242,236,228,0.35)", marginBottom:48, textAlign:"center" }}>Why this exists</p>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(52px,14vw,80px)":"clamp(72px,8vw,120px)", fontWeight:800, color:"#ffffff", lineHeight:0.92, letterSpacing:"-0.03em", marginBottom:56, textAlign:"center", textTransform:"uppercase" }}>Why this<br/>exists</h2>
 
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?20:24 }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
             {[
               {
                 accent:"#E8B870",
@@ -140,10 +140,10 @@ export default function About({ onBack }) {
                 body:"Creating the channel changed me before it changed anyone else. I looked back at where I was and I couldn't believe it. That's when I knew: I have to go deeper. And I need a place where every single manifestation gets tracked — hence ProofOS.",
               },
             ].map(({ accent, year, head, body }, i) => (
-              <div key={i} style={{ background:"#0a0a0a", borderRadius:16, padding:"32px 28px", border:`1px solid ${accent}22` }}>
-                <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:accent, marginBottom:12, opacity:0.8 }}>{year}</div>
-                <div style={{ fontSize: isMobile?17:19, fontWeight:500, color:CREAM, marginBottom:14, lineHeight:1.3 }}>{head}</div>
-                <p style={{ fontSize:14, color:"rgba(242,236,228,0.6)", lineHeight:1.75, margin:0 }}>{body}</p>
+              <div key={i} style={{ borderRadius:16, padding:"32px 28px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
+                <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:accent, marginBottom:12 }}>{year}</div>
+                <div style={{ fontSize: isMobile?17:19, fontWeight:500, color:"#ffffff", marginBottom:14, lineHeight:1.3 }}>{head}</div>
+                <p style={{ fontSize:14, color:"rgba(242,236,228,0.55)", lineHeight:1.75, margin:0 }}>{body}</p>
               </div>
             ))}
           </div>
