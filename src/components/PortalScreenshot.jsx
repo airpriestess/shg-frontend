@@ -20,6 +20,14 @@ const CAT = {
   DNAmaxxing:       { accent:"#167A6B" },
   Desiresmaxxing:   { accent:"#E8B870" },
   Skinnymaxxing:    { accent:"#2CB7A7" },
+  Bodymaxxing:      { accent:"#F5E0A0" },
+  Confidencemaxxing:{ accent:"#BFA5D8" },
+  Erosmaxxing:      { accent:"#167A6B" },
+  Facemaxxing:      { accent:"#E8B870" },
+  Healmaxxing:      { accent:"#2CB7A7" },
+  Lifemaxxing:      { accent:"#F5E0A0" },
+  Peacemaxxing:     { accent:"#BFA5D8" },
+  Sovereignmaxxing: { accent:"#167A6B" },
 };
 
 // Real tracks matching AUDIO_URLS in portal
@@ -27,12 +35,14 @@ const TRACKS = [
   { title:"I'm a Living Breathing Masterpiece", cat:"Beautymaxxing" },
   { title:"My Desires Are Obsessed With Me",    cat:"Desiresmaxxing" },
   { title:"Seduced Focus",                      cat:"Selfmaxxing" },
-  { title:"Money Finds Me First",               cat:"Moneymaxxing" },
   { title:"Spoilt Goddess",                     cat:"Selfmaxxing" },
-  { title:"10 Years Into One Hour",             cat:"Sleepmaxxing" },
+  { title:"He Finds His Way Back",              cat:"Lovemaxxing" },
+  { title:"Money Finds Me First",               cat:"Moneymaxxing" },
+  { title:"While I Sleep I Manifest",           cat:"Sleepmaxxing" },
+  { title:"10 Years Into One Hour",             cat:"Healmaxxing" },
 ];
 
-const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Desiresmaxxing"];
+const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Desiresmaxxing","Bodymaxxing","Confidencemaxxing","Erosmaxxing","Facemaxxing","Healmaxxing","Lifemaxxing","Peacemaxxing","Sovereignmaxxing","Sleepmaxxing"];
 
 function Thumb({ cat, size, radius=4 }) {
   return (
@@ -70,7 +80,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
     lg: Math.max(10, Math.round(16*s)),
   };
   const pad = Math.round(14*s), r24 = Math.round(24*s), r8 = Math.round(8*s);
-  const thumbCard = Math.round(78*s);
+  const thumbCard = Math.round(64*s);
 
   return (
     <div style={{ width, height:h, background:C.bg, backgroundImage:"linear-gradient(180deg,rgba(245,224,160,0.07) 0%,rgba(191,165,216,0.04) 40%,transparent 100%)", borderRadius:r24, overflow:"hidden",
@@ -117,7 +127,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
 
       {/* TRACK CARDS — horizontal scroll */}
       <div style={{ display:"flex", gap:Math.round(8*s), padding:`0 ${pad}px ${Math.round(10*s)}px`, overflowX:"hidden" }}>
-        {TRACKS.slice(0,4).map((t,i)=>(
+        {TRACKS.slice(0,8).map((t,i)=>(
           <div key={i} style={{ flexShrink:0 }}>
             <Thumb cat={t.cat} size={thumbCard} radius={Math.round(6*s)}/>
             <div style={{ fontSize:f.xs, color:C.cr, marginTop:Math.round(3*s),
@@ -130,16 +140,16 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
       {/* CATEGORIES 2×2 */}
       <div style={{ padding:`0 ${pad}px ${Math.round(8*s)}px` }}>
         <div style={{ fontSize:f.sm, color:C.cr, marginBottom:Math.round(6*s) }}>Browse categories</div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:Math.round(5*s) }}>
-          {FEATURED_CATS.slice(0,6).map((cat,i)=>{
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:Math.round(4*s) }}>
+          {FEATURED_CATS.slice(0,12).map((cat,i)=>{
             const c = CAT[cat] || { accent:TEAL };
             return (
               <div key={i} style={{ background:"linear-gradient(135deg," + C.bg2 + " 0%," + c.accent + "14 100%)",
                 border:`1px solid ${c.accent}28`, borderRadius:r8,
-                padding:Math.round(8*s), display:"flex", alignItems:"center", gap:Math.round(6*s) }}>
-                <div style={{ width:Math.round(8*s), height:Math.round(8*s), borderRadius:"50%",
+                padding:Math.round(6*s), display:"flex", alignItems:"center", gap:Math.round(5*s) }}>
+                <div style={{ width:Math.round(6*s), height:Math.round(6*s), borderRadius:"50%",
                   background:c.accent, flexShrink:0 }}/>
-                <div style={{ fontSize:f.xs, color:C.cr, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>
+                <div style={{ fontSize:f.xs-1, color:C.cr, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>
                   {cat.replace("maxxing","").replace("girlmaxxing","girl")}
                 </div>
               </div>
