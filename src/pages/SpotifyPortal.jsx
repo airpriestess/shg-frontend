@@ -10,7 +10,7 @@ import { supabase } from "../lib/supabase.js";
 const HAWKINS = [
   {n:"Shame",       v:20,  c:"#2a0a0a"}, // near black-red
   {n:"Guilt",       v:30,  c:"#5a0f0f"}, // deep crimson
-  {n:"Apathy",      v:50,  c:isDark?"#333333":"rgba(0,0,0,0.25)"}, // flat grey
+  {n:"Apathy",      v:50,  c:"#333333"}, // flat grey
   {n:"Grief",       v:75,  c:"#BFA5D8"}, // deep purple-grey
   {n:"Fear",        v:100, c:"#167A6B"}, // dark amber-brown
   {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
@@ -62,19 +62,20 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  // ── DARK MODE: pure black, all text white/cream, LG accents on labels/icons ──
+  // ── DARK MODE: pure black, LG colours on accents only ──────────────────
   dark: {
     bg:      "#000000",
     bg2:     "#0a0a0a",
     bg3:     "#111111",
     bg4:     "#161616",
     nav:     "#050505",
-    cr:      "#f2ece4",              // primary text — warm white
-    mu:      "#f2ece4",              // secondary text — same white (no grey)
-    dim:     "rgba(242,236,228,0.55)", // faint text — soft white, not grey
-    border:  "rgba(232,184,112,0.15)",
+    cr:      "#f2ece4",   // primary text — warm cream
+    mu:      "#b09888",   // muted text
+    dim:     "#786860",   // faint text
+    border:  "rgba(232,184,112,0.15)",  // gold-tinted border
     inputBg: "#1a1a1a",
     inputCr: "#f2ece4",
+    // LG accent colours for labels, icons, active tabs — never backgrounds
     accentGold: "#E8B870",
     accentLav:  "#BFA5D8",
     accentTeal: "#2CB7A7",
@@ -606,7 +607,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
-            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:"linear-gradient(135deg," + OMBRE + ")",border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
           </div>
@@ -1202,17 +1203,14 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <button onClick={()=>setTab("library")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>See all</button>
         </div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
-          {FEATURED_CATS.map((cat,fi)=>{
+          {FEATURED_CATS.map(cat=>{
+            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             const n=TRACKS.filter(t=>t.cat===cat).length;
-            const LG_C=["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][fi%5];
             return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{
-                background:isDark?"#0a0a0a":"rgba(255,255,255,0.3)",
-                border:`1px solid ${LG_C}55`,borderRadius:12,padding:"14px 16px",
-                cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",
-                gap:12,fontFamily:"'Jost',sans-serif"
-              }}>
-                <div style={{ width:3,height:32,borderRadius:2,background:LG_C,flexShrink:0 }}/>
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:isDark?"#0a0a0a":C.bg2,border:`1px solid ${c.accent}`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
+                <div style={{ width:38,height:38,borderRadius:8,background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:c.accent }}>
+                  <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
+                </div>
                 <div>
                   <div style={{ fontSize:14,fontWeight:400,color:C.cr,lineHeight:1.2 }}>{cat.replace("maxxing","")}</div>
                   <div style={{ fontSize:12,color:C.mu,marginTop:2 }}>{n} tracks</div>
@@ -1240,24 +1238,14 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* BY DESIRE */}
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
-          {Object.keys(CAT_ICONS).map((cat,i)=>{
-            const LG_C=["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i%5];
+          {Object.keys(CAT_ICONS).map(cat=>{
+            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{
-                flexShrink:0,background:"none",border:"none",padding:"4px 2px",cursor:"pointer",
-                display:"flex",flexDirection:"column",alignItems:"center",gap:0
-              }}>
-                <div style={{
-                  padding:"8px 14px",borderRadius:20,
-                  border:`1.5px solid ${LG_C}`,
-                  fontSize:12,fontWeight:400,
-                  color:isDark?LG_C:"#000",
-                  fontFamily:"'Jost',sans-serif",
-                  whiteSpace:"nowrap",letterSpacing:"0.03em",
-                  background:isDark?"transparent":"rgba(255,255,255,0.3)"
-                }}>
-                  {cat.replace("maxxing","")}
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
+                <div style={{ width:80,height:80,borderRadius:14,background:"#111",border:`1.5px solid ${c.accent}`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
+                  <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
                 </div>
+                <div style={{ fontSize:12,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
               </button>
             );
           })}
@@ -1403,18 +1391,10 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const catOptions = ["All","Liked",...cats.filter(c=>c!=="All"&&c!=="Liked")];
   return (
     <div>
-      {/* LG gradient banner when a specific category is selected */}
-      {(cat!=="All"&&cat!=="Liked") ? (
-        <div style={{ textAlign:"center", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"20px 16px 18px" }}>
-          <button onClick={()=>setCat("All")} style={{ background:"none",border:"none",cursor:"pointer",fontSize:11,color:"rgba(0,0,0,0.45)",fontFamily:"'Jost',sans-serif",letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10,display:"block",width:"100%" }}>← All categories</button>
-          <div style={{ fontSize:24,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>{cat}</div>
-          <div style={{ fontSize:11,color:"rgba(0,0,0,0.45)",fontFamily:"'Jost',sans-serif",letterSpacing:"0.15em",textTransform:"uppercase",marginTop:6 }}>{TRACKS.filter(t=>t.cat===cat).length} tracks</div>
-        </div>
-      ) : (
-        <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-          <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
-        </div>
-      )}
+      <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+        <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:"#000",background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
+      </div>
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
           <button
@@ -1560,9 +1540,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   // ProofOS — always LG gradient background, white cards, black text
   const isDark = false; // ProofOS always uses light card theme on LG bg
-  const PC = isDark
-    ? { card:"#111111", cardSolid:"#111111", text:"#f2ece4", mu:"#f2ece4", dim:"rgba(242,236,228,0.55)", border:"rgba(232,184,112,0.15)", inputBg:"#1a1a1a" }
-    : { card:"rgba(255,255,255,0.3)", cardSolid:"#ffffff", text:"#000000", mu:"#000000", dim:"rgba(0,0,0,0.55)", border:"rgba(255,255,255,0.45)", inputBg:"rgba(255,255,255,0.55)" };
+  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"rgba(0,0,0,0.1)", inputBg:"rgba(255,255,255,0.9)" };
   const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
   if (isPreview) return (
