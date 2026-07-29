@@ -360,7 +360,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#2CB7A7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
                 <div style={{ fontSize: 12, color: "#ddd0c8" }}>{(currentAudio.audioFormats || []).join(' · ')}{currentAudio.frequency ? ` · ${currentAudio.frequency}` : ''}</div>
               </div>
-              <button onClick={onStopPlay} style={{ width: 38, height: 38, borderRadius: "50%", background: "linear-gradient(135deg, " + T.blood + ", " + T.rose + ")", border: "none", color: "#fff", fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>⏸</button>
+              <button onClick={onStopPlay} style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg, ${T.blood}, ${T.rose})`, border: "none", color: "#fff", fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>⏸</button>
             </div>
           )}
         </main>
@@ -430,6 +430,7 @@ const TIERS = {
 };
 
 function CheckoutModal({ onClose, onDemo }) {
+  const theme = "dark";
   const [billing, setBilling] = useState("monthly");
   const isAnnual = billing === "annual";
   const goStripe = (tier) => {
@@ -554,6 +555,7 @@ function CheckoutModal({ onClose, onDemo }) {
 /* ── PRICING SECTION — lives on the page itself, not just inside the modal ──── */
 function PricingSection({ onJoin }) {
   const isMobile = useMobile();
+  const theme = "dark";
   const [billing, setBilling] = useState("monthly");
   const isAnnual = billing === "annual";
   const goStripe = (tier) => {
@@ -596,7 +598,7 @@ function PricingSection({ onJoin }) {
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 52 : 16, overflow: "visible", paddingTop: isMobile ? 8 : 0 }}>
           {cards.map(c => (
-            <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "48px 20px 28px" : "40px 24px 28px") : "28px 20px", marginTop: isMobile ? (c.popular ? 36 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
+            <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "48px 20px 28px" : "40px 24px 28px") : "28px 20px", marginTop: isMobile ? (c.popular ? 64 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
               {c.popular && <div style={{ position: "absolute", top: -20, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontSize: 10, fontWeight: 500, padding: "6px 20px", borderRadius: 20, letterSpacing: "0.14em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 10 }}>✦ Most Popular</div>}
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
@@ -682,7 +684,7 @@ function AppPreviewSection({ isMobile }) {
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
               <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.1)":"rgba(255,255,255,0.3)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
                 <div style={{ fontSize:22, color:theme==="dark"?"#E8B870":"#000000", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
-                <div style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#000000", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
+                <div style={{ fontSize:9, color:theme==="dark"?theme==="dark"?"#e8e0d8":"#000000":"#000000", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
@@ -1044,6 +1046,7 @@ const GPROOF = (m) => m
 
 function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   const [proofTheme, setProofTheme] = useState("dark");
+  const theme = "dark";
   const isMobile = useMobile();
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
