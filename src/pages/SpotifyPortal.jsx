@@ -1478,7 +1478,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:16,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#000000"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+              <div style={{ fontSize:16,fontWeight:400,color:isDark?"#f2ece4":"#000000",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
               <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#000000" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
