@@ -7,9 +7,9 @@ const THEMES = {
     cr:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", scrubBg:"#2a2a2a",
   },
   light: {
-    browser:"#ede8e0", browserBorder:"#d8d0c4", urlBar:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", urlText:"#8a7860",
+    browser:"#ede8e0", browserBorder:"#d8d0c4", urlBar:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", urlText:"#000000",
     bg:"#faf7f2", bg2:"#ffffff", bg3:"rgba(44,183,167,0.10)", nav:"rgba(250,247,242,0.97)",
-    cr:"#1a1410", mu:"#e8e0d8", dim:"#a89888", border:"rgba(200,168,120,0.2)", scrubBg:"#e0d8cc",
+    cr:"#1a1410", mu:"#1a1410", dim:"#3a342c", border:"rgba(200,168,120,0.2)", scrubBg:"#e0d8cc",
   },
 };
 
