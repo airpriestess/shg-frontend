@@ -800,6 +800,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:18,color:C.text}}>
               Self Hypnosis Goddess
             </span>
+            <span style={{ fontSize:9,fontWeight:600,letterSpacing:"0.1em",color:"#E8B870",border:"1px solid rgba(232,184,112,0.4)",borderRadius:20,padding:"2px 7px",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>BETA</span>
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
@@ -870,6 +871,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
+      <BetaBanner C={C} isDark={isDark}/>
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",textAlign:"center" }}>
@@ -942,6 +944,16 @@ function PreviewBanner({ onSignOut, C }) {
     <div style={{ background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",padding:"9px 16px",textAlign:"center",flexShrink:0 }}>
       <span style={{ fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>
         🔒 Preview mode — <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
+      </span>
+    </div>
+  );
+}
+
+function BetaBanner({ C, isDark }) {
+  return (
+    <div style={{ background:isDark?"#0a0a0a":"rgba(0,0,0,0.06)",borderBottom:`1px solid ${C.border}`,padding:"6px 16px",textAlign:"center",flexShrink:0 }}>
+      <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif" }}>
+        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span> — the app is still being built. Some tracks and features may not work yet.
       </span>
     </div>
   );
