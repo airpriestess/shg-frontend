@@ -9,7 +9,7 @@ const CATEGORIES = {
   money: { name: "RichGirlMaxxing", color: "#E8B870", label: "RichGirl block" },
   love:  { name: "Lovemaxxing",  color: "#BFA5D8", label: "Love block"  },
   beauty:{ name: "Beautymaxxing",color: "#F5E0A0", label: "Beauty block"},
-  self:  { name: "Selfmaxxing",  color: "#2CB7A7", label: "Self block"  }
+  self:  { name: "Selfmaxxing",  color: "#000", label: "Self block"  }
 };
 
 const QUESTIONS = {
@@ -381,19 +381,19 @@ export default function BlocksQuiz() {
           </div>
           <div style={{ maxWidth: 560, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" }}>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.1, color: "#f2ece4", marginBottom: 36, letterSpacing: "-.01em" }}>{result.block}</h2>
-            <div style={{ background: "#0a0a0a", border: "1px solid #1a1a1a", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
-              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#9a8e88", marginBottom: 12 }}>The assumption running your life</div>
-              <div style={{ fontSize: 16, color: "#b09888", fontStyle: "italic", lineHeight: 1.7 }}>{result.old}</div>
+            <div style={{ background: "rgba(0,0,0,0.75)", border: "none", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
+              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#000", marginBottom: 12 }}>The assumption running your life</div>
+              <div style={{ fontSize: 16, color: "#000", fontStyle: "italic", lineHeight: 1.7 }}>{result.old}</div>
             </div>
             <div style={{ borderRadius: 16, padding: 32, marginBottom: 16, textAlign: "center", background: LG }}>
               <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", marginBottom: 14 }}>Your new assumption</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(22px,4vw,32px)", color: "#000", fontWeight: 400, lineHeight: 1.35 }}>{result.new}</div>
             </div>
-            <div style={{ border: "1px solid #1a1a1a", borderRadius: 16, padding: 28, marginBottom: 32, textAlign: "left" }}>
-              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 12, display: "inline-block" }}>Your install ritual</div>
-              <div style={{ fontSize: 15, color: "#b09888", lineHeight: 1.8 }}>{RITUAL}</div>
+            <div style={{ background: "rgba(255,255,255,0.85)", border: "none", borderRadius: 16, padding: 28, marginBottom: 32, textAlign: "left" }}>
+              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "#000", marginBottom: 12, display: "inline-block" }}>Your install ritual</div>
+              <div style={{ fontSize: 16, color: "#000", lineHeight: 1.8 }}>{RITUAL}</div>
             </div>
-            <p style={{ fontSize: 14, color: "#c8beb8", marginBottom: 20, lineHeight: 1.7 }}>This is exactly what your SHG audio installs — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
+            <p style={{ fontSize: 14, color: "#000", marginBottom: 20, lineHeight: 1.7 }}>This is exactly what your SHG audio installs — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
             <div style={{ background: "rgba(0,0,0,0.08)", border: "2px dashed rgba(0,0,0,0.2)", borderRadius: 20, padding: "36px 28px", textAlign: "center", marginBottom: 20 }}>
               <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: 12 }}>✦ Coming soon ✦</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(24px,4vw,36px)", color: "#000", fontWeight: 400, lineHeight: 1.2, marginBottom: 12 }}>RichGirl Maxxing</div>
