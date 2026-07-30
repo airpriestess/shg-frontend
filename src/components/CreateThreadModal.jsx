@@ -3,7 +3,7 @@ import { T } from "../design/tokens.js";
 import { Btn, Modal, FormField, Label } from "./UI.jsx";
 import { AUDIOS } from "../data/sample.js";
 
-const CATEGORIES = ["Money", "Beauty", "Body", "Love", "Desires", "Home", "Protection", "Identity", "Health", "Custom"];
+const CATEGORIES = ["Rich Girl", "Beauty", "Body", "Love", "Desires", "Home", "Protection", "Identity", "Health", "Custom"];
 const LISTENING_MODES = ["Morning", "Day", "Night", "Sleep", "Loop", "Custom"];
 const EXAMPLES = [
   "I receive £5,000 from an unexpected source.",
@@ -16,7 +16,7 @@ const EXAMPLES = [
 
 export default function CreateThreadModal({ open, onClose, preselectedAudioId }) {
   const [form, setForm] = useState({
-    intentionTitle: "", intentionDetails: "", desiredCategory: "Money",
+    intentionTitle: "", intentionDetails: "", desiredCategory: "Rich Girl",
     linkedAudioId: preselectedAudioId || 1, listeningMode: "Night",
     firstListenDate: new Date().toISOString().split("T")[0],
     emotionalCertaintyScore: 7, bodySignalAfterListening: "", optionalVisualizationNote: "",
