@@ -394,7 +394,12 @@ export default function BlocksQuiz() {
               <div style={{ fontSize: 15, color: "#b09888", lineHeight: 1.8 }}>{RITUAL}</div>
             </div>
             <p style={{ fontSize: 14, color: "#c8beb8", marginBottom: 20, lineHeight: 1.7 }}>This is exactly what your SHG audio installs — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
-            <a href="/" style={{ display: "inline-block", border: "1px solid #2CB7A7", borderRadius: 30, padding: "16px 36px", color: "#2CB7A7", fontFamily: "'Jost', sans-serif", fontSize: 15, letterSpacing: ".04em", cursor: "pointer", background: "none", textDecoration: "none" }}>Explore Self Hypnosis Goddess</a>
+            <div style={{ background: "rgba(0,0,0,0.08)", border: "2px dashed rgba(0,0,0,0.2)", borderRadius: 20, padding: "36px 28px", textAlign: "center", marginBottom: 20 }}>
+              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: 12 }}>✦ Coming soon ✦</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(24px,4vw,36px)", color: "#000", fontWeight: 400, lineHeight: 1.2, marginBottom: 12 }}>RichGirl Maxxing</div>
+              <div style={{ fontSize: 15, color: "rgba(0,0,0,0.6)", lineHeight: 1.7 }}>The workbook, audio, and 21-day practice for this specific block. Coming very soon.</div>
+            </div>
+            <a href="/" style={{ display: "inline-block", border: "2px solid #000", borderRadius: 40, padding: "18px 40px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>Explore Self Hypnosis Goddess</a>
           </div>
         </>
       )}
