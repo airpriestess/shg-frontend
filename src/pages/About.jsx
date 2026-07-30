@@ -29,10 +29,10 @@ export default function About({ onBack }) {
 
       {/* ── NAV ── */}
       <div style={{ position:"sticky", top:0, zIndex:50, background:"rgba(0,0,0,0.92)", backdropFilter:"blur(12px)", borderBottom:"1px solid rgba(255,255,255,0.06)", padding:"0 24px", height:52, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <button onClick={onBack} style={{ background:"none", border:"none", color:"rgba(242,236,228,0.5)", fontSize:13, cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>
+        <button onClick={onBack} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:13, cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>
           ← Back
         </button>
-        <span style={{ fontSize:12, color:"rgba(242,236,228,0.4)", letterSpacing:"0.18em", textTransform:"uppercase" }}>reshmaoracle.com</span>
+        <span style={{ fontSize:12, color:"#f2ece4", letterSpacing:"0.18em", textTransform:"uppercase" }}>reshmaoracle.com</span>
         <HamburgerMenu/>
       </div>
 
@@ -62,11 +62,11 @@ export default function About({ onBack }) {
           </div>
         </div>
 
-        <div style={{ fontFamily:"'Jost',sans-serif", fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.5)", marginBottom:16 }}>Self Hypnosis Goddess</div>
+        <div style={{ fontFamily:"'Jost',sans-serif", fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", marginBottom:16 }}>Self Hypnosis Goddess</div>
         <h1 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(44px,4.5vw,60px)", color:BLACK, margin:"0 0 20px", lineHeight:1.15, fontWeight:400 }}>
           I built what I couldn't find.
         </h1>
-        <p style={{ fontSize: isMobile?16:18, color:"rgba(0,0,0,0.65)", maxWidth:500, margin:"0 auto", lineHeight:1.7, fontWeight:400 }}>
+        <p style={{ fontSize: isMobile?16:18, color:"#000", maxWidth:500, margin:"0 auto", lineHeight:1.7, fontWeight:400 }}>
           Ten years of searching for something that actually worked. This is what came from the other side.
         </p>
       </div>
@@ -77,13 +77,13 @@ export default function About({ onBack }) {
                     <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
             I was struggling with my belief system. All of it.
           </h2>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(242,236,228,0.8)", lineHeight:1.85, marginBottom:20 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
             Bullied. Never chosen. Always looking for my place — in rooms, in jobs, in my own skin. The kind of early life that leaves a mark on how you see yourself, and how you think the world sees you back.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(242,236,228,0.8)", lineHeight:1.85, marginBottom:20 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
             Love. Beauty. Body. My relationship with myself. I couldn't find anything that helped me keep my consciousness consistently stable — not therapy, not tools, not habits. Something would work for a day and then collapse the next. Nothing stuck.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(242,236,228,0.8)", lineHeight:1.85 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85 }}>
             This went on for ten years.
           </p>
         </div>
@@ -95,10 +95,10 @@ export default function About({ onBack }) {
                     <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:BLACK, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
             Then I found manifestation. Then I found self-hypnosis. Then everything changed.
           </h2>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.7)", lineHeight:1.85, marginBottom:20 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.85, marginBottom:20 }}>
             I realised I could train my brain every single day — for how I wanted to think, feel, and act. Not hope. Not try. Train. And the results started shifting in ways that felt genuinely crazy. Manifestations I couldn't explain. Messages from people I'd never met. Things arriving before I felt ready for them.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.7)", lineHeight:1.85 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.85 }}>
             I started creating audios for myself. That was it — nothing more than that. Just for me.
           </p>
         </div>
@@ -140,7 +140,7 @@ export default function About({ onBack }) {
               <div key={i} style={{ borderRadius:16, padding:"32px 28px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
                 <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:accent, marginBottom:12 }}>{year}</div>
                 <div style={{ fontSize: isMobile?17:19, fontWeight:500, color:"#ffffff", marginBottom:14, lineHeight:1.3 }}>{head}</div>
-                <p style={{ fontSize:14, color:"rgba(242,236,228,0.55)", lineHeight:1.75, margin:0 }}>{body}</p>
+                <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -154,10 +154,10 @@ export default function About({ onBack }) {
           <blockquote style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(24px,6.5vw,34px)":"clamp(28px,3vw,40px)", color:BLACK, lineHeight:1.4, fontWeight:400, margin:"0 0 32px" }}>
             "I am delusional about everything.<br/>And I am proud of it."
           </blockquote>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.65)", lineHeight:1.8, marginBottom:20 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.8, marginBottom:20 }}>
             I don't care how logical the world is. I choose to live in my magical version of it — and that is exactly how I am able to manifest the things I manifest.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.65)", lineHeight:1.8, marginBottom:20 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.8, marginBottom:20 }}>
             SHG exists to help you stay in the magic. To keep your mind calibrated to what you want — not what you fear. Every audio, every track, every tool inside is built to do one thing: help you stay in your version of reality long enough for it to become the real one.
           </p>
           <p style={{ fontSize: isMobile?16:18, color:BLACK, lineHeight:1.7, fontWeight:500 }}>
@@ -173,7 +173,7 @@ export default function About({ onBack }) {
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(24px,6vw,34px)":"clamp(28px,2.8vw,40px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:20 }}>
             Every audio in this library is my voice. Written and recorded by me.
           </h2>
-          <p style={{ fontSize: isMobile?15:16, color:"rgba(242,236,228,0.6)", lineHeight:1.8, marginBottom:40 }}>
+          <p style={{ fontSize: isMobile?15:16, color:"#f2ece4", lineHeight:1.8, marginBottom:40 }}>
             Full voice hypnosis. Subliminals. 528hz. EMDR. Binaural beats. Melodic house. Theta induction. Every format I've found that actually works — layered into tracks you can loop while you sleep, work, or exist.
           </p>
 
@@ -184,7 +184,7 @@ export default function About({ onBack }) {
                 borderRadius:40,
                 background: i % 4 === 0 ? LG : "transparent",
                 border: i % 4 === 0 ? "none" : "1px solid rgba(242,236,228,0.15)",
-                color: i % 4 === 0 ? BLACK : "rgba(242,236,228,0.6)",
+                color: i % 4 === 0 ? BLACK : "#f2ece4",
                 fontSize:13,
                 letterSpacing:"0.02em",
               }}>{t}</div>
