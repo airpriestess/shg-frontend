@@ -183,124 +183,19 @@ export default function LuckyGirl() {
       )}
 
 
-      {/* INTRO — full Lucky Girl definition, workbook style */}
+      {/* INTRO — image only, minimal */}
       {phase === "intro" && (
-        <div style={{ background: "#000", minHeight: "calc(100vh - 54px)", padding: "56px 24px 80px" }}>
-          <div style={{ maxWidth: 680, margin: "0 auto" }}>
-
-            {/* Heading */}
-            <div style={{ textAlign: "center", marginBottom: 32 }}>
-              <svg width="48" height="48" viewBox="0 0 28 28" fill="none" style={{ marginBottom: 20 }}>
-                <defs><linearGradient id="lgintro" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="22%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-                <circle cx="10" cy="10" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
-                <circle cx="18" cy="10" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
-                <circle cx="10" cy="18" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
-                <circle cx="18" cy="18" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
-                <line x1="14" y1="22" x2="14" y2="27" stroke="url(#lgintro)" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#E8B870", marginBottom: 16 }}>Self Hypnosis Goddess</div>
-              <img src="/wb_cover.png" alt="Lucky Girl Universe" style={{ width: "min(340px, 90%)", margin: "0 auto", display: "block", opacity: 0.9 }}/>
-            </div>
-            <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(32px,6vw,56px)", color: "#f2ece4", textAlign: "center", marginBottom: 48, letterSpacing: "-.02em", lineHeight: 1.05 }}>Two women. Same world.<br/>Different operating system.</h2>
-
-            {/* Definition box */}
-            <div style={{ border: "1px solid #2a2a2a", borderRadius: 16, padding: "28px 28px", marginBottom: 28 }}>
-              <p style={{ fontSize: 16, color: "#f2ece4", lineHeight: 1.9, marginBottom: 20 }}>
-                LuckyGirlMaxxing is the deliberate practice of choosing, rehearsing and repeating the identity of a woman life supports — until that identity becomes so familiar to her subconscious mind that reality has no real choice but to keep confirming it. It is not superstition and it is not passive wishing. It is identity architecture: a chosen assumption, held steadily enough and long enough, that it reshapes what she expects, what she notices, and what she is willing to do next.
-              </p>
-              <div style={{ fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "#6a6058", marginBottom: 10 }}>noun</div>
-              <p style={{ fontSize: 18, color: "#E8B870", lineHeight: 1.6, marginBottom: 16, fontWeight: 400 }}>
-                A woman whose subconscious mind is so convinced life supports her that reality repeatedly confirms it.
-              </p>
-              <div style={{ fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "#6a6058", marginBottom: 8 }}>verb — To Lucky Girl.</div>
-              <p style={{ fontSize: 18, color: "#2CB7A7", lineHeight: 1.6, fontWeight: 400 }}>
-                The act of assuming favourable outcomes until they become ordinary.
-              </p>
-            </div>
-
-            {/* Equation */}
-            <div style={{ border: "1px solid #2a2a2a", borderRadius: 16, padding: "22px 28px", marginBottom: 28, textAlign: "center" }}>
-              <div style={{ fontSize: "clamp(14px,2.5vw,18px)", fontWeight: 500, letterSpacing: ".08em", color: "#f2ece4", marginBottom: 24 }}>
-                <span style={{ color: "#E8B870" }}>ASSUMPTION</span>
-                {" × "}
-                <span style={{ color: "#BFA5D8" }}>REPETITION</span>
-                {" = "}
-                <span style={{ color: "#2CB7A7" }}>IDENTITY</span>
-              </div>
-              {/* Assumption chain diagram - from workbook */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
-                {[
-                  { label: "ASSUMPTION", color: "#E8B870" },
-                  { label: "FAMILIARITY", color: "#BFA5D8" },
-                  { label: "EXPECTATION", color: "#2CB7A7" },
-                  { label: "REALITY", color: "#F5E0A0", icon: true }
-                ].map((item, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ textAlign: "center" }}>
-                      {item.icon ? (
-                        <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
-                          <defs><linearGradient id={"rg"+i} x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="50%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#2CB7A7"/></linearGradient></defs>
-                          <circle cx="10" cy="10" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
-                          <circle cx="18" cy="10" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
-                          <circle cx="10" cy="18" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
-                          <circle cx="18" cy="18" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
-                        </svg>
-                      ) : (
-                        <div style={{ width: 32, height: 32, borderRadius: "50%", border: "1.5px solid " + item.color, display: "flex", alignItems: "center", justifyContent: "center" }}/>
-                      )}
-                      <div style={{ fontSize: 9, letterSpacing: ".1em", color: item.color, marginTop: 6, textTransform: "uppercase" }}>{item.label}</div>
-                    </div>
-                    {i < 3 && <div style={{ color: "#3a3a3a", fontSize: 18, marginBottom: 14 }}>→</div>}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* She expects */}
-            <div style={{ border: "1px solid #2a2a2a", borderRadius: 16, padding: "22px 28px", marginBottom: 28 }}>
-              <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#E8B870", marginBottom: 16 }}>She expects, as a matter of course</div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px" }}>
-                {["She expects upgrades.", "She expects abundance.", "She expects devotion.", "She expects beauty.", "She expects ease.", "She expects to be chosen."].map((t, i) => (
-                  <div key={i} style={{ fontSize: 16, color: "#f2ece4", lineHeight: 1.8 }}>✓ {t}</div>
-                ))}
-              </div>
-            </div>
-
-            {/* Two universes */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 40 }}>
-              <div style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 16, padding: "24px 20px" }}>
-                <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#f2ece4", marginBottom: 16 }}>Her unlucky universe</div>
-                {["Nobody chooses me.", "Money avoids me.", "Things never work out.", "I am always too late.", "I never win.", "People forget me."].map((t, i) => (
-                  <div key={i} style={{ fontSize: 15, color: "#f2ece4", lineHeight: 2, fontWeight: 300 }}>"{t}"</div>
-                ))}
-                <img src="/wb_unlucky_universe.png" alt="Her Unlucky Universe" style={{ width: "100%", borderRadius: 8, marginTop: 16, opacity: 0.85 }}/>
-              </div>
-              <div style={{ background: LG, borderRadius: 16, padding: "24px 20px" }}>
-                <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Her lucky universe</div>
-                {['"I always get upgraded."', '"Money finds me."', '"The universe rushes to meet me."', '"I arrive at the perfect time."', '"Opportunities chase me."', '"People adore helping me."'].map((t, i) => (
-                  <div key={i} style={{ fontSize: 15, color: "#000", lineHeight: 2, fontWeight: 300 }}>{t}</div>
-                ))}
-                <img src="/wb_lucky_universe.png" alt="Her Lucky Universe" style={{ width: "100%", borderRadius: 8, marginTop: 16 }}/>
-              </div>
-            </div>
-
-            {/* Bottom line */}
-            <p style={{ fontSize: 18, color: "#f2ece4", textAlign: "center", lineHeight: 1.7, marginBottom: 12 }}>
-              Lucky Girl is a state of consciousness. Life doesn't happen to her — it happens for her. Always.
-            </p>
-            <p style={{ fontSize: 15, color: "#E8B870", textAlign: "center", marginBottom: 40 }}>
-              This quiz finds what's keeping you out of it.
-            </p>
-
-            <div style={{ textAlign: "center" }}>
-              <button
-                onClick={() => { setPhase("quiz"); window.scrollTo(0, 0); }}
-                style={{ border: "none", borderRadius: 40, padding: "22px 56px", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG }}>
-                Find my block
-              </button>
-            </div>
-
-          </div>
+        <div style={{ background: "#000", minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px 64px" }}>
+          <img src="/wb_cover.png" alt="Lucky Girl Maxxing" style={{ width: "min(380px, 90vw)", marginBottom: 40, display: "block" }}/>
+          <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(24px,5vw,40px)", color: "#f2ece4", textAlign: "center", marginBottom: 16, letterSpacing: "-.01em", lineHeight: 1.1 }}>Two women. Same world.<br/>Different operating system.</h2>
+          <p style={{ fontSize: 17, color: "#f2ece4", textAlign: "center", maxWidth: 420, lineHeight: 1.7, marginBottom: 40 }}>
+            Lucky Girl is a state of consciousness. This quiz finds what's keeping you out of it.
+          </p>
+          <button
+            onClick={() => { setPhase("quiz"); window.scrollTo(0, 0); }}
+            style={{ border: "none", borderRadius: 40, padding: "22px 56px", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG }}>
+            Find my block
+          </button>
         </div>
       )}
 
