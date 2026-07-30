@@ -56,7 +56,7 @@ const QUESTIONS = [
 ];
 
 const RESULTS = {
-  money:    { block: "The Scarcity Loop",           old: '"Good things don\'t last for people like me. Money is temporary. I have to work hard for every pound I receive."',                                                            new: "Money finds me first. Of course it does." },
+  money:    { block: "The RichGirl Block",           old: '"Good things don\'t last for people like me. Money is temporary. I have to work hard for every pound I receive."',                                                            new: "I am the woman money finds. Of course I am." },
   love:     { block: "The Earning Loop",             old: '"I have to earn love through what I do. I\'m lovable when I\'m useful. Being chosen freely feels too good to be true."',                                                     new: "He chooses me. Every time. Obviously." },
   body:     { block: "The Conditional Beauty Block", old: '"I have to fix myself before I\'m allowed to feel beautiful. Gorgeous is something I\'m working towards, not something I already am."',                                      new: "Gorgeous is my default. Always has been." },
   identity: { block: "The Not-Yet Trap",             old: '"I have to become a different version of myself before I\'m allowed to have the life I want. The person I am now isn\'t quite the person who gets to have that."',           new: "I am the upgraded version. She is here now." }
