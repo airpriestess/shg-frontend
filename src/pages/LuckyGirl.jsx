@@ -186,7 +186,14 @@ export default function LuckyGirl() {
       {/* INTRO — image only, minimal */}
       {phase === "intro" && (
         <div style={{ background: "#000", minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px 64px" }}>
-          <img src="/wb_cover.png" alt="Lucky Girl Maxxing" style={{ width: "min(380px, 90vw)", marginBottom: 40, display: "block" }}/>
+          <svg width="72" height="72" viewBox="0 0 28 28" fill="none" style={{ marginBottom: 32, display: "block", margin: "0 auto 32px" }}>
+            <defs><linearGradient id="lgintro2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="22%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+            <circle cx="10" cy="10" r="7" stroke="url(#lgintro2)" strokeWidth="1" fill="none"/>
+            <circle cx="18" cy="10" r="7" stroke="url(#lgintro2)" strokeWidth="1" fill="none"/>
+            <circle cx="10" cy="18" r="7" stroke="url(#lgintro2)" strokeWidth="1" fill="none"/>
+            <circle cx="18" cy="18" r="7" stroke="url(#lgintro2)" strokeWidth="1" fill="none"/>
+            <line x1="14" y1="22" x2="14" y2="27" stroke="url(#lgintro2)" strokeWidth="1" strokeLinecap="round"/>
+          </svg>
           <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(24px,5vw,40px)", color: "#f2ece4", textAlign: "center", marginBottom: 16, letterSpacing: "-.01em", lineHeight: 1.1 }}>Two women. Same world.<br/>Different operating system.</h2>
           <p style={{ fontSize: 17, color: "#f2ece4", textAlign: "center", maxWidth: 420, lineHeight: 1.7, marginBottom: 40 }}>
             Lucky Girl is a state of consciousness. This quiz finds what's keeping you out of it.
