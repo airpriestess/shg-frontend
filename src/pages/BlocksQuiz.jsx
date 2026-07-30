@@ -318,7 +318,7 @@ export default function BlocksQuiz() {
     } catch (_) {}
   }
 
-  const base = { background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" };
+  const base = { background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" };
   const inputStyle = { width: "100%", background: "rgba(255,255,255,0.9)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 14, padding: "20px 22px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" };
   const btnStyle = { width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG, display: "block" };
   const optStyle = { background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14, padding: "22px 24px", color: "#dcc8b8", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer", lineHeight: 1.6, width: "100%", marginBottom: 10 };
@@ -353,18 +353,18 @@ export default function BlocksQuiz() {
         <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px" }}>
           <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 }}>
             {qs.map((_, i) => (
-              <div key={i} style={{ height: 2, borderRadius: 2, background: i < step ? "#E8B870" : "#1a1a1a", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
+              <div key={i} style={{ height: 2, borderRadius: 2, background: i < step ? "#000" : "rgba(0,0,0,0.2)", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
             ))}
           </div>
-          <div style={{ fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: "#6a6058", textAlign: "center", marginBottom: 24 }}>{step + 1} of {qs.length}</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,38px)", fontWeight: 400, textAlign: "center", marginBottom: 40, color: "#f2ece4", lineHeight: 1.35 }}>
+          <div style={{ fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", textAlign: "center", marginBottom: 24 }}>{step + 1} of {qs.length}</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,38px)", fontWeight: 400, textAlign: "center", marginBottom: 40, color: "#000", lineHeight: 1.35 }}>
             {qs[step].q}
           </div>
           <div>
             {qs[step].opts.map((opt, i) => (
               <button key={i} style={optStyle} onClick={() => pickAnswer(opt.c)}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = cat.color; e.currentTarget.style.background = "#0d0d0d"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "#1c1c1c"; e.currentTarget.style.background = "#080808"; }}>
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(0,0,0,0.15)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; }}>
                 {opt.t}
               </button>
             ))}
