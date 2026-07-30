@@ -110,40 +110,19 @@ export default function About({ onBack }) {
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(38px,10vw,56px)":"clamp(52px,5.5vw,80px)", fontWeight:400, color:"#ffffff", lineHeight:1.05, letterSpacing:"-0.02em", marginBottom:56, textAlign:"center" }}>Why this<br/>exists</h2>
 
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
-            {[
-              {
-                accent:"#E8B870",
-                year:"The thing you already know",
-                head:"You’ve tried the affirmations. They didn’t stick.",
-                body:"You’ve said the words. You’ve done the journaling. You’ve watched the videos. And then you woke up the next morning feeling exactly the same. Not because you’re broken — because you were trying to change a belief with another belief. That’s not how the subconscious works.",
-              },
-              {
-                accent:"#BFA5D8",
-                year:"What’s actually missing",
-                head:"Your subconscious never got the memo.",
-                body:"Change doesn’t happen at the level of conscious thought. It happens in theta state — 4 to 8Hz — the window your brain enters just before sleep. That’s when the subconscious stops arguing and starts accepting. Almost nothing on the market is built for that window. SHG is built for nothing else.",
-              },
-              {
-                accent:"#2CB7A7",
-                year:"Why I built it",
-                head:"I started this journey for myself, and then I realised — holy shit, everyone needs help with this.",
-                body:"I spent years running live meditations and writing hypnosis scripts. The results were real — but only while I was in the room. The moment the session ended, so did the shift. I needed something that stayed. Something with a real voice, real EMDR, real binaural layering — not AI, not generic. So I built it for myself first. And then I realised what I'd built wasn't just for me.",
-              },
-              {
-                accent:"#F5E0A0",
-                year:"What it means for you",
-                head:"You get the version of you that already has it.",
-                body:"Every track in this library is designed to install one thing: the assumption that what you want is already yours. Not one day. Not when you’ve earned it. Now. Your subconscious doesn’t know the difference between real and vividly imagined — and SHG uses that window every single night.",
-              },
-              
-            ].map(({ accent, year, head, body }, i) => (
-              <div key={i} style={{ borderRadius:16, padding:"32px 28px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
-                <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:accent, marginBottom:12 }}>{year}</div>
-                <div style={{ fontSize: isMobile?17:19, fontWeight:500, color:"#ffffff", marginBottom:14, lineHeight:1.3 }}>{head}</div>
-                <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
-              </div>
-            ))}
+          <div style={{ maxWidth:680, margin:"0 auto", textAlign: isMobile?"left":"center" }}>
+            <p style={{ fontSize: isMobile?16:18, color:"#f2ece4", lineHeight:1.9, marginBottom:24 }}>
+              I started creating audios for myself. That was it — nothing more than that. Just for me. I'd spent years running live meditations and writing hypnosis scripts, and the results were real — but only while I was in the room. The moment the session ended, so did the shift. I needed something that stayed with me after I closed my eyes and got on with my day.
+            </p>
+            <p style={{ fontSize: isMobile?16:18, color:"#f2ece4", lineHeight:1.9, marginBottom:24 }}>
+              So I built something with a real voice, real EMDR, real binaural layering — not AI, not generic, not something I outsourced. I recorded it the way I'd wanted something recorded for me for years and could never find. I built it for myself first, because I needed it to exist.
+            </p>
+            <p style={{ fontSize: isMobile?16:18, color:"#f2ece4", lineHeight:1.9, marginBottom:24 }}>
+              And then I realised — holy shit, everyone needs help with this. I started this journey for myself. I didn't set out to build a company or a platform. I was just trying to fix the thing that had followed me my whole life — the belief system that never let me feel chosen, never let me feel settled in my own skin, no matter what I tried. Therapy, tools, habits — something would work for a day and collapse the next. Nothing stuck, until I started training my brain instead of just talking to it.
+            </p>
+            <p style={{ fontSize: isMobile?16:18, color:"#f2ece4", lineHeight:1.9, marginBottom:0 }}>
+              What I'd built wasn't just for me anymore. Almost nothing on the market is built for the theta state — the window your brain enters just before sleep, when the subconscious stops arguing and starts accepting. That's the window every track in this library is built for. Not one day. Not when you've earned it. Now.
+            </p>
           </div>
         </div>
       </div>
@@ -169,15 +148,21 @@ export default function About({ onBack }) {
       {/* ── WHAT I MAKE — black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto", textAlign:"center" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(34px,9vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#ffffff", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:20 }}>What is Goddess so special?</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(34px,9vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#ffffff", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:20 }}>What is Self Hypnosis Goddess so special?</h2>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(24px,6vw,34px)":"clamp(28px,2.8vw,40px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:20 }}>
             Because I understand your pain. I live in your head.
           </h2>
           <p style={{ fontSize: isMobile?15:16, color:"#f2ece4", lineHeight:1.8, marginBottom:24 }}>
             There is nothing like this on the market. You can go and try and research — you'll never find anything close to what I'm building with the manifestation tracker.
           </p>
+          <p style={{ fontSize: isMobile?15:16, color:"#f2ece4", lineHeight:1.8, marginBottom:24 }}>
+            My voice takes you into the magic. Once you trust it, I teleport you into a delusional, magical space where anything and everything is possible. Every track is layered — full voice hypnosis, subliminals, 528hz, EMDR, binaural beats, melodic house, theta induction — not one format doing all the work, but every format I've found that actually works, stacked into something you can loop while you sleep, work, or exist.
+          </p>
+          <p style={{ fontSize: isMobile?15:16, color:"#f2ece4", lineHeight:1.8, marginBottom:24 }}>
+            And it doesn't stop at the audio. ProofOS tracks every desire, every sign, every win — logged against the Hawkins scale, so you can watch your own emotional state climb in real time, not just hope it's working. Across 24 categories. Every manifestation, dated, permanent, yours for life.
+          </p>
           <p style={{ fontSize: isMobile?15:16, color:"#f2ece4", lineHeight:1.8, marginBottom:40 }}>
-            My voice takes you into the magic. Once you trust it, I teleport you into a delusional, magical space where anything and everything is possible.
+            This isn't a meditation app with my voice slapped on top. I built the formula, I wrote every script, I recorded every track. Nothing here is generic, and nothing here is AI. It's mine, and now it's yours too.
           </p>
 
           <div style={{ display:"flex", flexWrap:"wrap", gap:10, justifyContent:"center" }}>
