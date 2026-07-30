@@ -32,7 +32,7 @@ export default function HamburgerMenu({ onSignIn }) {
 
       {/* Full-screen menu */}
       {open && (
-        <div style={{ position:"fixed",inset:0,zIndex:999,background:"#000",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
+        <div style={{ position:"fixed",inset:0,zIndex:999,backgroundColor:"#000000",opacity:1,isolation:"isolate",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:"calc(98px + env(safe-area-inset-top,0px))",paddingTop:"env(safe-area-inset-top,0px)" }}>
             <span onClick={()=>go(()=>navigate("/"))} style={{ fontFamily:"'Jost',sans-serif",fontWeight:300,fontSize:18,letterSpacing:"0.02em",color:"#f2ece4",cursor:"pointer" }}>
