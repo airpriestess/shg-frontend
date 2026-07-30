@@ -11,7 +11,7 @@ const QUESTIONS = [
     { t: "I hope the person next to me doesn't think I don't belong here", c: "love" },
     { t: "I wish I'd worn something better", c: "body" }
   ]},
-  { q: "£3,000 lands in your account unexpectedly. You feel...", opts: [
+  { q: "£10,000 arrives unexpectedly. You feel...", opts: [
     { t: "Relieved — but already nervous about it running out", c: "money" },
     { t: "Shocked — I didn't do anything to deserve this", c: "identity" },
     { t: "Happy — then immediately thinking about who else needs some", c: "love" },
@@ -27,7 +27,7 @@ const QUESTIONS = [
     { t: "Like I'm still one dress size, one treatment, one fix away", c: "body" },
     { t: "Beautiful — then second-guessing it the second I leave the door", c: "body" },
     { t: "Excited — then wondering if I actually belong in the room", c: "identity" },
-    { t: "Ready — but quietly bracing for something to go wrong", c: "money" }
+    { t: "Ready — but quietly waiting for something to go wrong", c: "money" }
   ]},
   { q: "Life just gave you exactly what you asked for. Your first thought is...", opts: [
     { t: "Something's about to go wrong — it's always too good to be true", c: "money" },
