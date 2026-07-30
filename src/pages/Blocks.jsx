@@ -41,7 +41,7 @@ export default function Blocks() {
           <LogoMark/>
           <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Self Hypnosis Goddess</span>
         </div>
-        <button onClick={() => navigate("/")} style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#7a6e68", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
+        <button onClick={() => navigate("/")} style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#c8beb8", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
           ← Back
         </button>
       </nav>
@@ -53,7 +53,7 @@ export default function Blocks() {
         <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#f2ece4", marginBottom: 20, letterSpacing: "-.02em" }}>
           Which area of your life<br/>feels stuck?
         </h1>
-        <p style={{ fontSize: 17, color: "#7a6e68", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
+        <p style={{ fontSize: 17, color: "#c8beb8", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
           Choose a category. 8 questions. Your invisible block — named, and replaced.
         </p>
       </div>
@@ -71,7 +71,7 @@ export default function Blocks() {
             <div style={{ fontSize: 14, letterSpacing: ".1em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 10, fontWeight: 400 }}>
               {cat.name}
             </div>
-            <div style={{ fontSize: 13, color: "#5a5048", lineHeight: 1.7 }}>{cat.desc}</div>
+            <div style={{ fontSize: 13, color: "#9a8e88", lineHeight: 1.7 }}>{cat.desc}</div>
           </div>
         ))}
       </div>
