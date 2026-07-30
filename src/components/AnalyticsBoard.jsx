@@ -12,7 +12,7 @@ const PALETTES = {
 export const DEMO_ANALYTICS = {
   manifested: 3, inProgress: 4, signs: 11, listens: 27, streakDays: 14,
   week: [2,4,3,6,5,4,3],
-  topCats: [ ["Money","#E8B870",5], ["SP & Love","#BFA5D8",4], ["Identity","#F5E0A0",2] ],
+  topCats: [ ["Rich Girl","#E8B870",5], ["SP & Love","#BFA5D8",4], ["Identity","#F5E0A0",2] ],
 };
 
 export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof, onDrillDown }) {
