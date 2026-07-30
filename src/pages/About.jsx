@@ -84,7 +84,7 @@ export default function About({ onBack }) {
             Love. Beauty. Body. My relationship with myself. I couldn't find anything that helped me keep my consciousness consistently stable — not therapy, not tools, not habits. Something would work for a day and then collapse the next. Nothing stuck.
           </p>
           <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85 }}>
-            This went on for ten years.
+            This went on for my whole life.
           </p>
         </div>
       </div>
