@@ -140,9 +140,9 @@ export default function LuckyGirl() {
     outline: "none", marginBottom: 14, display: "block"
   };
   const optStyle = {
-    background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14,
-    padding: "22px 24px", color: "#f2ece4", fontFamily: "'Jost', sans-serif",
-    fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer",
+    background: "#fff", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 14,
+    padding: "22px 24px", color: "#000", fontFamily: "'Jost', sans-serif",
+    fontSize: 16, fontWeight: 400, textAlign: "left", cursor: "pointer",
     lineHeight: 1.6, width: "100%", marginBottom: 10, display: "block"
   };
 
@@ -177,21 +177,21 @@ export default function LuckyGirl() {
 
       {/* QUIZ — black background */}
       {phase === "quiz" && (
-        <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px" }}>
+        <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px", background: "#000" }}>
           <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 }}>
             {QUESTIONS.map((_, i) => (
               <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "#E8B870" : "#1a1a1a", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
             ))}
           </div>
-          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#6a6058", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,38px)", fontWeight: 400, textAlign: "center", marginBottom: 40, color: "#f2ece4", lineHeight: 1.35 }}>
+          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#f2ece4", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,38px)", fontWeight: 400, textAlign: "center", marginBottom: 40, color: "#fff", lineHeight: 1.35 }}>
             {QUESTIONS[step].q}
           </div>
           <div>
             {QUESTIONS[step].opts.map((opt, i) => (
               <button key={i} style={optStyle} onClick={() => pickAnswer(opt.c)}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "#E8B870"; e.currentTarget.style.background = "#0d0d0d"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "#1c1c1c"; e.currentTarget.style.background = "#080808"; }}>
+                onMouseEnter={e => { e.currentTarget.style.background = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)"; e.currentTarget.style.color = "#000"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = "#000"; }}>
                 {opt.t}
               </button>
             ))}
