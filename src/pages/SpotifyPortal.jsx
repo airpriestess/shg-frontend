@@ -141,7 +141,7 @@ const CAT_ICONS = {
   Facemaxxing: { accent:"#E8B870", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Bodymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#2CB7A7", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Moneymaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Richgirlmaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Businessmaxxing: { accent:"#E8B870", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Desiresmaxxing: { accent:"#E8B870", icon:'<path d="M32 14 C32 14 20 22 20 32 C20 38.6 25.4 44 32 44 C38.6 44 44 38.6 44 32 C44 22 32 14 32 14Z M26 30 L32 24 L38 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#2CB7A7", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
@@ -177,10 +177,10 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 // per category so it's honest content, not generic filler repeated everywhere.
 // Guide names per category, shown as "Related guide" in each track's description.
 // SHOP_URL is the general storefront for now — swap in real per-product URLs here
-// once individual guide listings exist (e.g. GUIDE_URLS["Moneymaxxing"] = "https://...").
+// once individual guide listings exist (e.g. GUIDE_URLS["Richgirlmaxxing"] = "https://...").
 const SHOP_URL = "https://beacons.ai/reshmaoracle";
 const CAT_GUIDE = {
-  Lovemaxxing:"Lovemaxxing Guide", Selfmaxxing:"Selfmaxxing Guide", Moneymaxxing:"Moneymaxxing Guide",
+  Lovemaxxing:"Lovemaxxing Guide", Selfmaxxing:"Selfmaxxing Guide", Richgirlmaxxing:"Richgirlmaxxing Guide",
   Sleepmaxxing:"Sleepmaxxing Guide", Beautymaxxing:"Beautymaxxing Guide", DNAmaxxing:"DNAmaxxing Guide",
   Luckygirlmaxxing:"Luckygirlmaxxing Guide", Healmaxxing:"Healmaxxing Guide", Sovereignmaxxing:"Sovereignmaxxing Guide",
   Lifemaxxing:"Lifemaxxing Guide", Erosmaxxing:"Erosmaxxing Guide", Bodymaxxing:"Bodymaxxing Guide",
@@ -194,7 +194,7 @@ const CAT_DESC = {
     benefits:["Stop checking your phone for reassurance","Release anxious attachment patterns","Feel chosen without needing constant proof"] },
   Selfmaxxing: { shift:"This shifts you from shrinking to fit into rooms, into taking up the space you were always allowed to take.",
     benefits:["Stop over-explaining your boundaries","Build quiet, unshakeable self-trust","Feel like yourself even under pressure"] },
-  Moneymaxxing: { shift:"This shifts you from feeling like money is something you have to fight for, into feeling like it's already looking for you.",
+  Richgirlmaxxing: { shift:"This shifts you from feeling like money is something you have to fight for, into feeling like it's already looking for you.",
     benefits:["Loosen the grip of financial anxiety","Notice unexpected income without shock","Build the identity of someone money flows toward"] },
   Sleepmaxxing: { shift:"This shifts you from feeling like manifestation takes constant conscious effort, into feeling like your reality rebuilds itself while you're unconscious.",
     benefits:["Turn sleep into productive reprogramming time","Reduce pressure to 'do the work' every waking hour","Wake up already closer to who you're becoming"] },
@@ -251,7 +251,7 @@ const TRACKS = [
   { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false,
     desc:{ shift:"This shifts you from feeling like you have to chase, check your phone, or wonder if he still thinks about you — into feeling secure that he's already finding his way back.",
       benefits:["Stop the anxious phone-checking loop","Release the need to initiate contact first","Feel settled in the outcome instead of controlling it"] } },
-  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Moneymaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
+  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Richgirlmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to hustle for every pound, into feeling like money is already looking for you.",
       benefits:["Loosen the grip of financial anxiety","Notice unexpected income without shock","Build the identity of someone money flows toward"] } },
   { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleepmaxxing", format:"Sleep & Rest",  tier:"audio",   isNew:false, hasAudio:false,
@@ -267,7 +267,7 @@ const TRACKS = [
   { id:12, title:"My mornings open like a film I star in", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:13, title:"Youth keeps renewing its lease in my body", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:14, title:"His eyes follow me around the room", artist:"Reshma Oracle", dur:"15:00", cat:"Erosmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:15, title:"I make rich decisions on instinct", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:15, title:"I make rich decisions on instinct", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:16, title:"I chose me first and he followed", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:17, title:"I take up space like it was saved for me", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:18, title:"Every season of my life outdoes the last", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
@@ -276,7 +276,7 @@ const TRACKS = [
   { id:21, title:"My body and I are in perfect agreement", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:22, title:"Barefaced is my boldest look", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:23, title:"My skin is clear calm and committed", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:24, title:"Every day is a payday somewhere in my life", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:24, title:"Every day is a payday somewhere in my life", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:25, title:"Peace is my personality now", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:26, title:"His actions and his words tell the same story", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:27, title:"The right audience found me and keeps growing", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
@@ -286,7 +286,7 @@ const TRACKS = [
   { id:31, title:"My body is the outfit and everything else is accessories", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:32, title:"Love and money arrived holding hands", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:33, title:"Every area of my life said yes at the same time", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:34, title:"Another zero joined my account balance", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:34, title:"Another zero joined my account balance", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:35, title:"He plans our future in present tense", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:36, title:"I negotiate like a woman with options", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:37, title:"Life keeps slipping gifts into my pockets", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
@@ -299,18 +299,18 @@ const TRACKS = [
   { id:44, title:"My calendar fills with dream clients", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:45, title:"I am the centre of his world and he built it that way", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:46, title:"Strength looks stunning on me", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:47, title:"My standards raised and money rose to meet them", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:47, title:"My standards raised and money rose to meet them", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:48, title:"Compliments follow me like perfume", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:49, title:"My cells drink light like champagne", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:50, title:"I live in the home I once screenshotted", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:50, title:"I live in the home I once screenshotted", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:51, title:"He looks at me like I hung the moon", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:52, title:"First class is my natural habitat", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:52, title:"First class is my natural habitat", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:53, title:"My empire pays me in freedom", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:54, title:"I am the muse and the masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:55, title:"My body sculpts itself while I rest", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:56, title:"My face is my fortune and it keeps appreciating", artist:"Reshma Oracle", dur:"20:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:57, title:"Every cell in me is tuned to gorgeous", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:58, title:"Wealth is written into my name", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:58, title:"Wealth is written into my name", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:59, title:"He looks at me like I hung the moon", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:60, title:"My inner world is a luxury residence", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:61, title:"I fall asleep loved and wake up chosen", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
@@ -320,11 +320,11 @@ const TRACKS = [
   { id:65, title:"I am the CEO of a business that adores me", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:66, title:"The best outcomes are reserved under my name", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:67, title:"I am the woman I answer to", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:68, title:"I am on the payroll of the universe", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:68, title:"I am on the payroll of the universe", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:69, title:"Golden hour follows me around", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:70, title:"My curves arrived exactly as ordered", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:71, title:"I am his peace and his favourite place", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:72, title:"Money multiplies the moment it reaches my hands", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:72, title:"Money multiplies the moment it reaches my hands", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:73, title:"Vitality pours through every cell of me", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:74, title:"My body speaks a language everyone wants to learn", artist:"Reshma Oracle", dur:"15:00", cat:"Erosmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:75, title:"My body moves like it knows it is admired", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
@@ -334,8 +334,8 @@ const TRACKS = [
   { id:79, title:"I am the name they put on the waitlist for", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:80, title:"I wake up inside the life I used to dream about", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:81, title:"The universe treats me like its favourite", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:82, title:"Money is calm and safe in my life now", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:83, title:"A large sum is already on its way to me", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:82, title:"Money is calm and safe in my life now", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:83, title:"A large sum is already on its way to me", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:84, title:"My face looks lifted sculpted and snatched", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:85, title:"He wants forever and he says so out loud", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:86, title:"My phone lights up and it is always him", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
@@ -344,11 +344,11 @@ const TRACKS = [
   { id:89, title:"I won the genetic lottery and it shows", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:90, title:"Every light turns green when I arrive", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:91, title:"Every room notices the moment I walk in", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:92, title:"I am the rich woman I decided to become", artist:"Reshma Oracle", dur:"20:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:92, title:"I am the rich woman I decided to become", artist:"Reshma Oracle", dur:"20:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:93, title:"I wake up prettier than the day before", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:94, title:"He cannot get me out of his head", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:95, title:"I glow up and he falls deeper", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
-  { id:96, title:"Unexpected money keeps finding me", artist:"Reshma Oracle", dur:"15:00", cat:"Moneymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:96, title:"Unexpected money keeps finding me", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:97, title:"My hair is thick and my glow is loud", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:98, title:"I am my own favourite person", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:99, title:"Good things chase me down", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
@@ -388,11 +388,11 @@ const INIT_THREADS = [
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
     createdAt:"6 Jun 2026",
     signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot — the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note — the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
-  { id:2, desire:"£5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Money",
+  { id:2, desire:"£5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Rich Girl",
     feelBefore:"Tight and worried about money.", feelAfter:"",
     createdAt:"22 Jun 2026",
     signs:[ {text:"Got a random refund £180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found £20 in my coat pocket",date:"1 Jul"} ] },
-  { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Money",
+  { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Rich Girl",
     feelBefore:"Doubtful but hopeful.", feelAfter:"",
     createdAt:"21 Jun 2026",
     signs:[ {text:"Two new enquiries the same day",date:"30 Jun"} ] },
@@ -408,7 +408,7 @@ const INIT_THREADS = [
     feelBefore:"Overworked and overlooked. Tired of proving myself.", feelAfter:"Relief. Like I could finally exhale.",
     createdAt:"3 Nov 2025",
     signs:[ {text:"Manager asked to lead the project I wanted",date:"14 Nov"}, {text:"Offer letter arrived",date:"25 Nov"} ], manifestedAt:"25 Nov 2025" },
-  { id:7, desire:"Won £850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Money",
+  { id:7, desire:"Won £850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Rich Girl",
     feelBefore:"Skeptical this stuff even works.", feelAfter:"Shocked. Genuinely shocked.",
     createdAt:"8 Sep 2025",
     signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot — the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
@@ -419,8 +419,8 @@ const INIT_THREADS = [
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
-const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Money":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beauty":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Identity":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNA":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sleep":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lovemaxxing2":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Desiresmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beautymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Facemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Bodymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Moneymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Businessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNAmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Selfmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Erosmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lifemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Luckygirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sovereignmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Healmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Peacemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Wellnessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Skinnymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Singlemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Friendmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" };
-const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Money":"#E8B870", "Beauty":"#F5E0A0", "Identity":"#BFA5D8", "DNA":"#167A6B", "Sleep":"#2CB7A7", "Beautymaxxing":"#F5E0A0", "Facemaxxing":"#E8B870", "Bodymaxxing":"#2CB7A7", "Moneymaxxing":"#E8B870", "Businessmaxxing":"#2CB7A7", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#F5E0A0", "Lifemaxxing":"#E8B870", "Luckygirlmaxxing":"#2CB7A7", "Sovereignmaxxing":"#BFA5D8", "Healmaxxing":"#F5E0A0", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#2CB7A7", "Confidencemaxxing":"#E8B870", "Skinnymaxxing":"#2CB7A7", "Singlemaxxing":"#F5E0A0" };
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Rich Girl":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beauty":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Identity":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNA":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sleep":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lovemaxxing2":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Desiresmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beautymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Facemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Bodymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Richgirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Businessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNAmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Selfmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Erosmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lifemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Luckygirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sovereignmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Healmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Peacemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Wellnessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Skinnymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Singlemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Friendmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" };
+const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Rich Girl":"#E8B870", "Beauty":"#F5E0A0", "Identity":"#BFA5D8", "DNA":"#167A6B", "Sleep":"#2CB7A7", "Beautymaxxing":"#F5E0A0", "Facemaxxing":"#E8B870", "Bodymaxxing":"#2CB7A7", "Richgirlmaxxing":"#E8B870", "Businessmaxxing":"#2CB7A7", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#F5E0A0", "Lifemaxxing":"#E8B870", "Luckygirlmaxxing":"#2CB7A7", "Sovereignmaxxing":"#BFA5D8", "Healmaxxing":"#F5E0A0", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#2CB7A7", "Confidencemaxxing":"#E8B870", "Skinnymaxxing":"#2CB7A7", "Singlemaxxing":"#F5E0A0" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -1140,7 +1140,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
 function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, pushDismissed, onDismissPush, openPlayer }) {
 
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
   return (
     <div style={{ paddingBottom:80 }}>
       {/* HEADER */}
@@ -1312,7 +1312,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#167A6B","Money":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"})[name]||"#E8B870",n]),
+              .map(([name,n])=>[name,({"Lovemaxxing":"#167A6B","Rich Girl":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"})[name]||"#E8B870",n]),
           }}
           onViewProof={isPreview?null:()=>setTab("proof")}
           onDrillDown={isPreview?null:onDrillDown}
@@ -1383,7 +1383,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C, openPlayer }) {
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
-  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Moneymaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
+  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   const [catOpen, setCatOpen] = useState(false);
@@ -1542,7 +1542,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
 function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter }) {
   const [newD, setD]       = useState("");
   const [newBelief, setNewBelief] = useState("");
-  const [newCat, setNewCat]   = useState("Moneymaxxing");
+  const [newCat, setNewCat]   = useState("Richgirlmaxxing");
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
   const [newFeel, setFeel] = useState("");
   const [newFeelText, setFeelText] = useState("");
@@ -1845,7 +1845,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
           <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:15 }}>
-            {["Lovemaxxing","Moneymaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>{
+            {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>{
               const catColor = CAT_ICONS[c]?.accent || R;
               const active = newCat===c;
               return (
@@ -1887,7 +1887,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
-            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Moneymaxxing"); setNewBelief(""); setAdding(false);
+            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
           }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:"#f2ece4",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
@@ -2013,7 +2013,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 function ShopTab({ C }) {
   const products = [
     { name:"Lovemaxxing Guide",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
-    { name:"Moneymaxxing Guide",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Moneymaxxing" },
+    { name:"Richgirlmaxxing Guide",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing" },
     { name:"Luckygirlmaxxing Guide", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
     { name:"Sovereignmaxxing Guide", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
     { name:"Confidencemaxxing Guide",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
