@@ -46,14 +46,14 @@ export default function Blocks() {
         </button>
       </nav>
 
-      <div style={{ textAlign: "center", padding: "64px 24px 40px" }}>
+      <div style={{ textAlign: "center", padding: "64px 24px 40px", background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" }}>
         <div style={{ display: "inline-block", fontSize: 10, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>
           ✦ Pick your block ✦
         </div>
-        <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#f2ece4", marginBottom: 20, letterSpacing: "-.02em" }}>
+        <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#000", marginBottom: 20, letterSpacing: "-.02em" }}>
           Which area of your life<br/>feels stuck?
         </h1>
-        <p style={{ fontSize: 17, color: "#c8beb8", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
+        <p style={{ fontSize: 17, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
           Choose a category. 8 questions. Your invisible block — named, and replaced.
         </p>
       </div>
