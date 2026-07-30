@@ -18,10 +18,8 @@ import LuckyGirl from "./pages/LuckyGirl.jsx";
 import RichGirl from "./pages/RichGirl.jsx";
 import Blocks from "./pages/Blocks.jsx";
 import BlocksQuiz from "./pages/BlocksQuiz.jsx";
-import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LandingProofWall from "./components/LandingProofWall.jsx";
-import ProofWallScreenshot from "./components/ProofWallScreenshot.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
@@ -278,7 +276,7 @@ export default function App() {
                   <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
                 </div>
               </div>
-            : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} isPreview={new URLSearchParams(window.location.search).get("preview")==="1" ? true : undefined} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
+            : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} isPreview={new URLSearchParams(window.location.search).get("preview")==="1" ? true : undefined} initialTab={new URLSearchParams(window.location.search).get("tab") || "home"} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
         } />
         <Route path="/waitlist" element={<Landing forceWaitlist={true} onJoin={()=>setCheckoutModal(true)} onDemo={()=>goPortal("goddess")} onSignIn={()=>navigate("/auth")} onLegal={(p)=>navigate("/"+p)} />} />
         <Route path="*" element={<Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>} />
@@ -689,45 +687,23 @@ function AppPreviewSection({ isMobile }) {
       </div>
     );
     if (view === "proof") return (
-      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)" }}>
-        <div style={{ background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"22px 24px 26px" }}>
-          <div style={{ fontSize:13, color:theme==="dark"?"#E8B870":"#000000", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
-            {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
-              <div key={i} style={{ background:theme==="dark"?"rgba(232,184,112,0.1)":"rgba(255,255,255,0.3)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, color:theme==="dark"?"#E8B870":"#000000", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
-                <div style={{ fontSize:9, color:theme==="dark"?theme==="dark"?"#e8e0d8":"#000000":"#000000", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
-              </div>
-            ))}
-          </div>
-          <div style={{ background:theme==="dark"?"#111":"rgba(255,255,255,0.35)", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.2)":"rgba(232,184,112,0.25)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(183,110,121,0.18)":"rgba(183,110,121,0.12)", color:theme==="dark"?"#E8B870":"#B76E79", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
-              <span style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
-            </div>
-            <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#000000", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
-            <div style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>♪ a Lovemaxxing track</div>
-            <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
-              {["Day 1: Started listening to a Lovemaxxing track.","Day 2: He texted first — \"thinking about you.\"","Day 3: He asked to see me this weekend, unprompted.","Day 4: He texted first again, no gap, no waiting.","Day 5: He planned the whole date — time, place, all of it."].map((line,i)=>(
-                <div key={i} style={{ fontSize:11, color:theme==="dark"?"#ddd0c8":"#000000", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>{line}</div>
-              ))}
-            </div>
-          </div>
-          <div style={{ background:theme==="dark"?"#111":"rgba(255,255,255,0.35)", border:`1px solid ${theme==="dark"?"rgba(232,184,112,0.12)":"rgba(232,184,112,0.18)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(232,184,112,0.14)":"rgba(232,184,112,0.1)", color:theme==="dark"?"#E8B870":"#000000", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
-              <span style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
-            </div>
-            <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#000000", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
-          </div>
-        </div>
+      <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
+        <iframe
+          src="/portal?preview=1&theme=dark&tab=proof"
+          title="Self Hypnosis Goddess ProofOS preview"
+          style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
+          loading="lazy"
+        />
       </div>
     );
     if (view === "analytics") return (
-      <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)" }}>
-        <div style={{ background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"16px 16px", maxHeight:480, overflowY:"auto" }}>
-          <AnalyticsBoard theme={theme} compact={true}/>
-        </div>
+      <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)", background:"#000" }}>
+        <iframe
+          src="/portal?preview=1&theme=dark&tab=analytics"
+          title="Self Hypnosis Goddess Analytics preview"
+          style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
+          loading="lazy"
+        />
       </div>
     );
     return null;
@@ -755,10 +731,24 @@ function AppPreviewSection({ isMobile }) {
               />
             </div>
           )}
-          {view==="proof"     && <ProofWallScreenshot width={w - pad*2} theme={theme}/>}
+          {view==="proof" && (
+            <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
+              <iframe
+                src="/portal?preview=1&theme=dark&tab=proof"
+                title="Self Hypnosis Goddess mobile ProofOS preview"
+                style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
+                loading="lazy"
+              />
+            </div>
+          )}
           {view==="analytics" && (
-            <div style={{ width:w - pad*2, background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"12px 8px" }}>
-              <AnalyticsBoard theme={theme} compact/>
+            <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
+              <iframe
+                src="/portal?preview=1&theme=dark&tab=analytics"
+                title="Self Hypnosis Goddess mobile Analytics preview"
+                style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
+                loading="lazy"
+              />
             </div>
           )}
         </div>
