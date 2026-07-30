@@ -48,7 +48,7 @@ const QUESTIONS = [
     { t: "I'm waiting until I look like the version of me who deserves it", c: "body" }
   ]},
   { q: "In your Lucky Girl era, every day feels lucky — right place, right time. The area where that's still hardest to believe is...", opts: [
-    { t: "Money — it still feels like something I have to chase", c: "money" },
+    { t: "Money — I never get the lucky break, it always goes to someone else", c: "money" },
     { t: "Love — being chosen freely still feels too good to be true", c: "love" },
     { t: "My body — I can't feel lucky in a body I'm still fighting", c: "body" },
     { t: "My identity — I don't fully feel like her yet", c: "identity" }
