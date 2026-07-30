@@ -332,7 +332,7 @@ export default function BlocksQuiz() {
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 28px", borderBottom: "1px solid #111" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <LogoMark/>
-          <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Reshma Oracle</span>
+          <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Self Hypnosis Goddess</span>
         </div>
         <button onClick={() => navigate("/blocks")} style={{ background: "none", border: "none", color: "#5a5048", fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", cursor: "pointer" }}>← All blocks</button>
       </nav>
