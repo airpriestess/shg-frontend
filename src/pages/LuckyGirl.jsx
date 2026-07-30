@@ -125,6 +125,13 @@ export default function LuckyGirl() {
         body: JSON.stringify({ name: n, email: e, result_category: cat, source: "luckygirl" })
       });
     } catch (_) {}
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/28404567/46bqizc/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: n, email: e, result_category: cat, source: "luckygirl" })
+      });
+    } catch (_) {}
   }
 
   const inputStyle = {
