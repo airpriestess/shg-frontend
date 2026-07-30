@@ -45,28 +45,28 @@ export default function Blocks() {
         <div style={{ display: "inline-block", fontSize: 10, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>
           ✦ Pick your block ✦
         </div>
-        <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(30px,5.5vw,56px)", lineHeight: 1.1, color: "#f2ece4", marginBottom: 16, letterSpacing: "-.01em" }}>
+        <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#f2ece4", marginBottom: 20, letterSpacing: "-.02em" }}>
           Which area of your life<br/>feels stuck?
         </h1>
-        <p style={{ fontSize: 15, color: "#7a6e68", lineHeight: 1.7, maxWidth: 380, margin: "0 auto" }}>
+        <p style={{ fontSize: 17, color: "#7a6e68", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
           Choose a category. 8 questions. Your invisible block — named, and replaced.
         </p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 12, maxWidth: 520, margin: "0 auto 80px", padding: "0 24px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 16, maxWidth: 600, margin: "0 auto 80px", padding: "0 24px" }}>
         {CATEGORIES.map(cat => (
           <div
             key={cat.key}
             onClick={() => navigate(cat.url)}
-            style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 16, padding: "28px 20px", textAlign: "center", cursor: "pointer", transition: "border-color .2s, background .2s" }}
+            style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 20, padding: "40px 24px", textAlign: "center", cursor: "pointer", transition: "border-color .2s, background .2s" }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = cat.color; e.currentTarget.style.background = "#0d0d0d"; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = "#1a1a1a"; e.currentTarget.style.background = "#080808"; }}
           >
-            <div style={{ fontSize: 22, color: cat.color, marginBottom: 12 }}>✦</div>
-            <div style={{ fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 8, fontWeight: 400 }}>
+            <div style={{ fontSize: 28, color: cat.color, marginBottom: 16 }}>✦</div>
+            <div style={{ fontSize: 14, letterSpacing: ".1em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 10, fontWeight: 400 }}>
               {cat.name}
             </div>
-            <div style={{ fontSize: 12, color: "#5a5048", lineHeight: 1.6 }}>{cat.desc}</div>
+            <div style={{ fontSize: 13, color: "#5a5048", lineHeight: 1.7 }}>{cat.desc}</div>
           </div>
         ))}
       </div>
