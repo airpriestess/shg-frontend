@@ -199,6 +199,7 @@ export default function LuckyGirl() {
                 <line x1="14" y1="22" x2="14" y2="27" stroke="url(#lgintro)" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
               <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#E8B870", marginBottom: 16 }}>Self Hypnosis Goddess</div>
+              <img src="/wb_cover.png" alt="Lucky Girl Universe" style={{ width: "min(340px, 90%)", margin: "0 auto", display: "block", opacity: 0.9 }}/>
             </div>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(32px,6vw,56px)", color: "#f2ece4", textAlign: "center", marginBottom: 48, letterSpacing: "-.02em", lineHeight: 1.05 }}>Two women. Same world.<br/>Different operating system.</h2>
 
@@ -272,12 +273,14 @@ export default function LuckyGirl() {
                 {['"Nobody chooses me."', '"Money avoids me."', '"Things never work out."', '"I'm always too late."', '"I never win."', '"People forget me."'].map((t, i) => (
                   <div key={i} style={{ fontSize: 15, color: "#f2ece4", lineHeight: 2, fontWeight: 300 }}>{t}</div>
                 ))}
+                <img src="/wb_unlucky_universe.png" alt="Her Unlucky Universe" style={{ width: "100%", borderRadius: 8, marginTop: 16, opacity: 0.85 }}/>
               </div>
               <div style={{ background: LG, borderRadius: 16, padding: "24px 20px" }}>
                 <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Her lucky universe</div>
                 {['"I always get upgraded."', '"Money finds me."', '"The universe rushes to meet me."', '"I arrive at the perfect time."', '"Opportunities chase me."', '"People adore helping me."'].map((t, i) => (
                   <div key={i} style={{ fontSize: 15, color: "#000", lineHeight: 2, fontWeight: 300 }}>{t}</div>
                 ))}
+                <img src="/wb_lucky_universe.png" alt="Her Lucky Universe" style={{ width: "100%", borderRadius: 8, marginTop: 16 }}/>
               </div>
             </div>
 
