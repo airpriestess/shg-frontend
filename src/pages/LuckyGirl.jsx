@@ -4,7 +4,6 @@ const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78
 const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
 const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MzA0MDAsImV4cCI6MjAyNTQwNjQwMH0.example";
 
-// Mixed questions across all 4 categories — diagnoses the primary block
 const QUESTIONS = [
   { q: "When you picture your dream life arriving, the first feeling that shows up is...", opts: [
     { t: "Excitement, then a quiet 'but is this really for me?'", c: "identity" },
@@ -57,72 +56,19 @@ const QUESTIONS = [
 ];
 
 const RESULTS = {
-  money: {
-    block: "The Scarcity Loop",
-    old: '"Good things don\'t last for people like me. Money is temporary. I have to work hard for every pound I receive."',
-    new: "Money finds me first. Of course it does.",
-    track: "Money Finds Me First"
-  },
-  love: {
-    block: "The Earning Loop",
-    old: '"I have to earn love through what I do. I\'m lovable when I\'m useful. Being chosen freely feels too good to be true."',
-    new: "He chooses me. Every time. Obviously.",
-    track: "He Finds Me"
-  },
-  body: {
-    block: "The Conditional Beauty Block",
-    old: '"I have to fix myself before I\'m allowed to feel beautiful. Gorgeous is something I\'m working towards, not something I already am."',
-    new: "Gorgeous is my default. Always has been.",
-    track: "Beautymaxxing"
-  },
-  identity: {
-    block: "The Not-Yet Trap",
-    old: '"I have to become a different version of myself before I\'m allowed to have the life I want. The person I am now isn\'t quite the person who gets to have that."',
-    new: "I am the upgraded version. She is here now.",
-    track: "Lucky Girl"
-  }
+  money:    { block: "The Scarcity Loop",           old: '"Good things don\'t last for people like me. Money is temporary. I have to work hard for every pound I receive."',                                                            new: "Money finds me first. Of course it does." },
+  love:     { block: "The Earning Loop",             old: '"I have to earn love through what I do. I\'m lovable when I\'m useful. Being chosen freely feels too good to be true."',                                                     new: "He chooses me. Every time. Obviously." },
+  body:     { block: "The Conditional Beauty Block", old: '"I have to fix myself before I\'m allowed to feel beautiful. Gorgeous is something I\'m working towards, not something I already am."',                                      new: "Gorgeous is my default. Always has been." },
+  identity: { block: "The Not-Yet Trap",             old: '"I have to become a different version of myself before I\'m allowed to have the life I want. The person I am now isn\'t quite the person who gets to have that."',           new: "I am the upgraded version. She is here now." }
 };
 
 const RITUAL = "Say your new assumption aloud right before sleep — that's the theta window, when your subconscious stops arguing with it. Two minutes. Every night. 21 nights. That's the install window.";
-
-const s = {
-  page: { background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" },
-  nav: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 28px", borderBottom: "1px solid #111" },
-  navLeft: { display: "flex", alignItems: "center", gap: 10 },
-  navName: { fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" },
-  hero: { textAlign: "center", padding: "64px 24px 48px" },
-  tag: { display: "inline-block", fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 32, background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" },
-  heading: { fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(42px,8vw,80px)", lineHeight: 1.05, color: "#f2ece4", marginBottom: 12, letterSpacing: "-.02em" },
-  sub: { fontSize: 17, color: "#c8beb8", lineHeight: 1.7, maxWidth: 440, margin: "24px auto 48px" },
-  emailWrap: { maxWidth: 480, margin: "0 auto", padding: "0 24px" },
-  input: { width: "100%", background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 14, padding: "20px 22px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" },
-  ctaBtn: { width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG, display: "block" },
-  wrap: { maxWidth: 520, margin: "0 auto", padding: "48px 24px 80px" },
-  progRow: { display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 },
-  progBar: (done) => ({ height: 2, borderRadius: 2, background: done ? "#E8B870" : "#1a1a1a", flex: 1, maxWidth: 40, transition: "background .3s" }),
-  counter: { fontSize: 10, letterSpacing: ".2em", textTransform: "uppercase", color: "#6a6058", textAlign: "center", marginBottom: 20 },
-  qText: { fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,38px)", fontWeight: 400, textAlign: "center", marginBottom: 40, color: "#f2ece4", lineHeight: 1.35 },
-  opts: { display: "flex", flexDirection: "column", gap: 10 },
-  opt: { background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14, padding: "22px 24px", color: "#dcc8b8", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer", lineHeight: 1.6 },
-  resultWrap: { maxWidth: 520, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" },
-  oldCard: { background: "#0a0a0a", border: "1px solid #1a1a1a", borderRadius: 14, padding: 24, marginBottom: 16, textAlign: "left" },
-  oldLabel: { fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#9a8e88", marginBottom: 10 },
-  oldText: { fontSize: 15, color: "#b09888", fontStyle: "italic", lineHeight: 1.7 },
-  newCard: { borderRadius: 14, padding: 28, marginBottom: 16, textAlign: "center", background: LG },
-  newLabel: { fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", marginBottom: 12 },
-  newText: { fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(20px,3.5vw,28px)", color: "#000", fontWeight: 400, lineHeight: 1.4 },
-  ritualCard: { border: "1px solid #1a1a1a", borderRadius: 14, padding: 22, marginBottom: 28, textAlign: "left" },
-  ritualLabel: { fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 10, display: "inline-block" },
-  ritualText: { fontSize: 14, color: "#b09888", lineHeight: 1.8 },
-  finalNote: { fontSize: 13, color: "#c8beb8", marginBottom: 16, lineHeight: 1.6 },
-  outlineBtn: { display: "inline-block", border: "1px solid #2CB7A7", borderRadius: 30, padding: "13px 28px", color: "#2CB7A7", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".04em", cursor: "pointer", background: "none", textDecoration: "none" }
-};
 
 function LogoMark() {
   return (
     <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
       <defs>
-        <linearGradient id="lgm2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="lgmlg" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#F5E0A0"/>
           <stop offset="22%" stopColor="#E8B870"/>
           <stop offset="52%" stopColor="#BFA5D8"/>
@@ -130,10 +76,10 @@ function LogoMark() {
           <stop offset="100%" stopColor="#167A6B"/>
         </linearGradient>
       </defs>
-      <circle cx="10" cy="10" r="7" stroke="url(#lgm2)" strokeWidth="1.5" fill="none"/>
-      <circle cx="18" cy="10" r="7" stroke="url(#lgm2)" strokeWidth="1.5" fill="none"/>
-      <circle cx="10" cy="18" r="7" stroke="url(#lgm2)" strokeWidth="1.5" fill="none"/>
-      <circle cx="18" cy="18" r="7" stroke="url(#lgm2)" strokeWidth="1.5" fill="none"/>
+      <circle cx="10" cy="10" r="7" stroke="url(#lgmlg)" strokeWidth="1.5" fill="none"/>
+      <circle cx="18" cy="10" r="7" stroke="url(#lgmlg)" strokeWidth="1.5" fill="none"/>
+      <circle cx="10" cy="18" r="7" stroke="url(#lgmlg)" strokeWidth="1.5" fill="none"/>
+      <circle cx="18" cy="18" r="7" stroke="url(#lgmlg)" strokeWidth="1.5" fill="none"/>
     </svg>
   );
 }
@@ -183,48 +129,73 @@ export default function LuckyGirl() {
     } catch (_) {}
   }
 
+  const inputStyle = {
+    width: "100%", background: "rgba(0,0,0,0.25)", border: "1px solid rgba(0,0,0,0.3)",
+    borderRadius: 14, padding: "20px 22px", color: "#000",
+    fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400,
+    outline: "none", marginBottom: 14, display: "block"
+  };
+  const inputStyleDark = {
+    width: "100%", background: "#0a0a0a", border: "1px solid #1e1e1e",
+    borderRadius: 14, padding: "20px 22px", color: "#f2ece4",
+    fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300,
+    outline: "none", marginBottom: 14, display: "block"
+  };
+  const optStyle = {
+    background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14,
+    padding: "22px 24px", color: "#f2ece4", fontFamily: "'Jost', sans-serif",
+    fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer",
+    lineHeight: 1.6, width: "100%", marginBottom: 10, display: "block"
+  };
+
   return (
-    <div style={s.page}>
+    <div style={{ background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" }}>
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
-      <nav style={s.nav}>
-        <div style={s.navLeft}>
-          <LogoMark/>
-          <span style={s.navName}>Self Hypnosis Goddess</span>
-        </div>
-        {phase !== "landing" && (
-          <button
-            onClick={() => { setPhase("landing"); setStep(0); setScores({}); setResult(null); window.scrollTo(0,0); }}
-            style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#c8beb8", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
-            ← Back
-          </button>
-        )}
+
+      {/* NAV */}
+      <nav style={{ display: "flex", alignItems: "center", padding: "18px 28px", borderBottom: "1px solid #111", gap: 10 }}>
+        <LogoMark/>
+        <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Self Hypnosis Goddess</span>
       </nav>
 
+      {/* LANDING — full LG gradient background */}
       {phase === "landing" && (
-        <div style={s.hero}>
-          <div style={s.tag}>✦ Free diagnostic ✦</div>
-          <h1 style={s.heading}>What's blocking your<br/>Lucky Girl era?</h1>
-          <p style={s.sub}>8 questions. Your invisible block — named, and replaced.</p>
-          <div style={s.emailWrap}>
-            <input style={s.input} placeholder="First name" value={name} onChange={e => setName(e.target.value)}/>
-            <input style={s.input} placeholder="Email address" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
-            {emailError && <p style={{ color: "#BFA5D8", fontSize: 13, marginBottom: 8 }}>{emailError}</p>}
-            <button style={s.ctaBtn} onClick={submitEmail}>Find my block</button>
+        <div style={{ background: LG, minHeight: "calc(100vh - 61px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "64px 24px 80px", textAlign: "center" }}>
+          <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, color: "rgba(0,0,0,0.5)" }}>
+            ✦ Free diagnostic ✦
+          </div>
+          <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,80px)", lineHeight: 1.05, color: "#000", marginBottom: 16, letterSpacing: "-.02em", maxWidth: 700 }}>
+            What's blocking your Lucky Girl era?
+          </h1>
+          <p style={{ fontSize: 18, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, maxWidth: 440, margin: "0 auto 48px" }}>
+            8 questions. Your invisible block — named, and replaced.
+          </p>
+          <div style={{ maxWidth: 480, width: "100%" }}>
+            <input style={inputStyle} placeholder="First name" value={name} onChange={e => setName(e.target.value)}/>
+            <input style={inputStyle} placeholder="Email address" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+            {emailError && <p style={{ color: "#000", fontSize: 13, marginBottom: 10, opacity: 0.7 }}>{emailError}</p>}
+            <button style={{ width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#fff", background: "#000", display: "block" }}
+              onClick={submitEmail}>Find my block</button>
           </div>
         </div>
       )}
 
+      {/* QUIZ — black background */}
       {phase === "quiz" && (
-        <div style={s.wrap}>
-          <div style={s.progRow}>
-            {QUESTIONS.map((_, i) => <div key={i} style={s.progBar(i < step)}/>)}
+        <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px" }}>
+          <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 }}>
+            {QUESTIONS.map((_, i) => (
+              <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "#E8B870" : "#1a1a1a", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
+            ))}
           </div>
-          <div style={s.counter}>{step + 1} of {QUESTIONS.length}</div>
-          <div style={s.qText}>{QUESTIONS[step].q}</div>
-          <div style={s.opts}>
+          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#6a6058", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,38px)", fontWeight: 400, textAlign: "center", marginBottom: 40, color: "#f2ece4", lineHeight: 1.35 }}>
+            {QUESTIONS[step].q}
+          </div>
+          <div>
             {QUESTIONS[step].opts.map((opt, i) => (
-              <button key={i} style={s.opt} onClick={() => pickAnswer(opt.c)}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "#2CB7A7"; e.currentTarget.style.background = "#0d0d0d"; }}
+              <button key={i} style={optStyle} onClick={() => pickAnswer(opt.c)}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#E8B870"; e.currentTarget.style.background = "#0d0d0d"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "#1c1c1c"; e.currentTarget.style.background = "#080808"; }}>
                 {opt.t}
               </button>
@@ -233,27 +204,28 @@ export default function LuckyGirl() {
         </div>
       )}
 
+      {/* RESULT — LG gradient reveal */}
       {phase === "result" && result && (
         <>
-          <div style={{ padding: "48px 0 0", textAlign: "center" }}>
-            <div style={s.tag}>✦ Your Lucky Girl block ✦</div>
+          <div style={{ background: LG, padding: "64px 24px 48px", textAlign: "center" }}>
+            <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 16 }}>✦ Your Lucky Girl block ✦</div>
+            <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(32px,6vw,56px)", lineHeight: 1.1, color: "#000", letterSpacing: "-.01em" }}>{result.block}</h2>
           </div>
-          <div style={s.resultWrap}>
-            <h2 style={{ ...s.heading, fontSize: "clamp(24px,4vw,40px)", marginBottom: 32 }}>{result.block}</h2>
-            <div style={s.oldCard}>
-              <div style={s.oldLabel}>The assumption running your life</div>
-              <div style={s.oldText}>{result.old}</div>
+          <div style={{ maxWidth: 560, margin: "0 auto", padding: "40px 24px 80px", textAlign: "center" }}>
+            <div style={{ background: "#0a0a0a", border: "1px solid #1a1a1a", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
+              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#5a5048", marginBottom: 12 }}>The assumption running your life</div>
+              <div style={{ fontSize: 16, color: "#b09888", fontStyle: "italic", lineHeight: 1.7 }}>{result.old}</div>
             </div>
-            <div style={s.newCard}>
-              <div style={s.newLabel}>Your new assumption</div>
-              <div style={s.newText}>{result.new}</div>
+            <div style={{ borderRadius: 16, padding: 32, marginBottom: 16, textAlign: "center", background: LG }}>
+              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", marginBottom: 14 }}>Your new assumption</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(22px,4vw,32px)", color: "#000", fontWeight: 400, lineHeight: 1.35 }}>{result.new}</div>
             </div>
-            <div style={s.ritualCard}>
-              <div style={s.ritualLabel}>Your install ritual</div>
-              <div style={s.ritualText}>{RITUAL}</div>
+            <div style={{ border: "1px solid #1a1a1a", borderRadius: 16, padding: 28, marginBottom: 32, textAlign: "left" }}>
+              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 12, display: "inline-block" }}>Your install ritual</div>
+              <div style={{ fontSize: 15, color: "#c8beb8", lineHeight: 1.8 }}>{RITUAL}</div>
             </div>
-            <p style={s.finalNote}>This is exactly what your SHG audio installs — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
-            <a href="/" style={s.outlineBtn}>Explore Self Hypnosis Goddess</a>
+            <p style={{ fontSize: 14, color: "#c8beb8", marginBottom: 20, lineHeight: 1.7 }}>This is exactly what your SHG audio installs — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
+            <a href="/" style={{ display: "inline-block", border: "none", borderRadius: 40, padding: "18px 40px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", background: LG, textDecoration: "none" }}>Explore Self Hypnosis Goddess</a>
           </div>
         </>
       )}
