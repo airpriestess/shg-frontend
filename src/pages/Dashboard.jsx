@@ -3,7 +3,7 @@ import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
 import { PROOF_THREADS, AUDIOS, USER } from "../data/sample.js";
 
-const RG = "#2CB7A7"; // rose gold — single accent
+const RG = "#2CB7A7"; // Lucky Girl teal — single accent
 
 const STATUS_LABEL = {
   "Active": { label: "Active", color: "#d8c8a0" },
