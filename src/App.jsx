@@ -1664,17 +1664,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
               <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
                 {[
-                  { hz:"963hz", name:"Activation",    assoc:"Pineal gland activation · higher connection",  pct:100, color:"#F5E0A0" },
-                  { hz:"852hz", name:"Intuition",      assoc:"Returning to spiritual order",                 pct:90,  color:"#E8B870" },
-                  { hz:"741hz", name:"Expression",     assoc:"Awakening intuition · problem solving",        pct:80,  color:"#BFA5D8" },
-                  { hz:"639hz", name:"Connection",     assoc:"Relationships · harmonising with others",      pct:70,  color:"#BFA5D8" },
-                  { hz:"528hz", name:"Transformation", assoc:"The love frequency — repair · DNA · abundance",pct:62,  color:"#2CB7A7" },
-                  { hz:"432hz", name:"Harmony",        assoc:"Natural tuning · calm · coherence",            pct:54,  color:"#2CB7A7" },
-                  { hz:"417hz", name:"Change",         assoc:"Undoing situations · facilitating change",     pct:46,  color:"#167A6B" },
-                  { hz:"396hz", name:"Liberation",     assoc:"Releasing fear and guilt",                     pct:38,  color:"#167A6B" },
-                  { hz:"285hz", name:"Restoration",    assoc:"Tissue and energy field repair",               pct:28,  color:"#2CB7A7" },
-                  { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#2CB7A7" },
-                ].map((row,i)=>(
+                  { hz:"963hz", name:"Activation",    assoc:"Pineal gland activation · higher connection",  pct:100 },
+                  { hz:"852hz", name:"Intuition",      assoc:"Returning to spiritual order",                 pct:90 },
+                  { hz:"741hz", name:"Expression",     assoc:"Awakening intuition · problem solving",        pct:80 },
+                  { hz:"639hz", name:"Connection",     assoc:"Relationships · harmonising with others",      pct:70 },
+                  { hz:"528hz", name:"Transformation", assoc:"The love frequency — repair · DNA · abundance",pct:62 },
+                  { hz:"432hz", name:"Harmony",        assoc:"Natural tuning · calm · coherence",            pct:54 },
+                  { hz:"417hz", name:"Change",         assoc:"Undoing situations · facilitating change",     pct:46 },
+                  { hz:"396hz", name:"Liberation",     assoc:"Releasing fear and guilt",                     pct:38 },
+                  { hz:"285hz", name:"Restoration",    assoc:"Tissue and energy field repair",               pct:28 },
+                  { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18 },
+                ].map((row,i)=>{
+                  const LGb = "linear-gradient(90deg,#167A6B 0%,#2CB7A7 25%,#BFA5D8 50%,#E8B870 75%,#F5E0A0 100%)";
+                  return (
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
                     <div style={{ fontSize: isMobile?13:16, fontWeight:700, color:"#000", width: isMobile?52:72, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
                     <div style={{ flex:1 }}>
@@ -1683,11 +1685,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                         <div style={{ fontSize: isMobile?12:14, color:"#555", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
                       <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
-                        <div style={{ width:`${row.pct}%`, height:"100%", background:row.color, borderRadius:3 }}/>
+                        <div style={{ width:`${row.pct}%`, height:"100%", background:LGb, backgroundSize:"760px 100%", backgroundPosition:"left", borderRadius:3 }}/>
                       </div>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
               <p style={{ fontSize:12, color:"#555", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Binaural beats layered beneath every track sync both hemispheres into theta — where the reprogramming begins.
