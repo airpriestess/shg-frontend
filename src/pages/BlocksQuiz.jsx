@@ -334,7 +334,7 @@ export default function BlocksQuiz() {
           <LogoMark/>
           <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Self Hypnosis Goddess</span>
         </div>
-        <button onClick={() => navigate("/blocks")} style={{ background: "none", border: "none", color: "#5a5048", fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", cursor: "pointer" }}>← All blocks</button>
+        <button onClick={() => navigate("/blocks")} style={{ background: "none", border: "none", color: "#9a8e88", fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", cursor: "pointer" }}>← All blocks</button>
       </nav>
 
       {phase === "landing" && (
@@ -345,7 +345,7 @@ export default function BlocksQuiz() {
           <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#f2ece4", marginBottom: 16, letterSpacing: "-.02em" }}>
             What's blocking your<br/>{cat.name} era?
           </h1>
-          <p style={{ fontSize: 17, color: "#7a6e68", lineHeight: 1.7, maxWidth: 420, margin: "20px auto 48px" }}>
+          <p style={{ fontSize: 17, color: "#c8beb8", lineHeight: 1.7, maxWidth: 420, margin: "20px auto 48px" }}>
             8 questions. Your invisible block — named, and replaced.
           </p>
           <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 24px" }}>
@@ -390,7 +390,7 @@ export default function BlocksQuiz() {
           <div style={{ maxWidth: 560, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" }}>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.1, color: "#f2ece4", marginBottom: 36, letterSpacing: "-.01em" }}>{result.block}</h2>
             <div style={{ background: "#0a0a0a", border: "1px solid #1a1a1a", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
-              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#5a5048", marginBottom: 12 }}>The assumption running your life</div>
+              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#9a8e88", marginBottom: 12 }}>The assumption running your life</div>
               <div style={{ fontSize: 16, color: "#b09888", fontStyle: "italic", lineHeight: 1.7 }}>{result.old}</div>
             </div>
             <div style={{ borderRadius: 16, padding: 32, marginBottom: 16, textAlign: "center", background: LG }}>
@@ -401,7 +401,7 @@ export default function BlocksQuiz() {
               <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 12, display: "inline-block" }}>Your install ritual</div>
               <div style={{ fontSize: 15, color: "#b09888", lineHeight: 1.8 }}>{RITUAL}</div>
             </div>
-            <p style={{ fontSize: 14, color: "#7a6e68", marginBottom: 20, lineHeight: 1.7 }}>This is exactly what your SHG audio installs — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
+            <p style={{ fontSize: 14, color: "#c8beb8", marginBottom: 20, lineHeight: 1.7 }}>This is exactly what your SHG audio installs — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
             <a href="/" style={{ display: "inline-block", border: "1px solid #2CB7A7", borderRadius: 30, padding: "16px 36px", color: "#2CB7A7", fontFamily: "'Jost', sans-serif", fontSize: 15, letterSpacing: ".04em", cursor: "pointer", background: "none", textDecoration: "none" }}>Explore Self Hypnosis Goddess</a>
           </div>
         </>
