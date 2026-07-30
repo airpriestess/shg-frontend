@@ -113,28 +113,29 @@ export default function About({ onBack }) {
             {[
               {
                 accent:"#E8B870",
-                year:"2019 — 2024",
-                head:"Live meditations. Real scripts. Real rooms.",
-                body:"Before SHG existed, I was writing hypnosis scripts and running live meditations for people. It worked. But it only worked while I was there — in the room, on the call. The moment the session ended, it ended.",
+                year:"The thing you already know",
+                head:"You’ve tried the affirmations. They didn’t stick.",
+                body:"You’ve said the words. You’ve done the journaling. You’ve watched the videos. And then you woke up the next morning feeling exactly the same. Not because you’re broken — because you were trying to change a belief with another belief. That’s not how the subconscious works.",
               },
               {
                 accent:"#BFA5D8",
-                year:"The question",
-                head:"What if the track stayed in someone's system — forever?",
-                body:"That one question changed everything. Not dependent on a live session. Not a moment. Something that could rewire the subconscious repeatedly, daily, on their own time. That's when SHG was born.",
+                year:"What’s actually missing",
+                head:"Your subconscious never got the memo.",
+                body:"Change doesn’t happen at the level of conscious thought. It happens in theta state — 4 to 8Hz — the window your brain enters just before sleep. That’s when the subconscious stops arguing and starts accepting. Almost nothing on the market is built for that window. SHG is built for nothing else.",
               },
               {
                 accent:"#2CB7A7",
-                year:"The gap",
-                head:"I couldn't find anything real.",
-                body:"Everything out there felt fake or AI-generated. Nothing had genuine EMDR, genuine binaural beats, a real human voice that felt authentic. People kept telling me my voice was calm. That it actually felt like something. So I used it.",
+                year:"Why I built it",
+                head:"I needed it to exist, so I made it.",
+                body:"I spent years running live meditations and writing hypnosis scripts. The results were real — but only while I was in the room. The moment the session ended, so did the shift. I needed something that stayed. Something with a real voice, real EMDR, real binaural layering — not AI, not generic. So I built it for myself first.",
               },
               {
                 accent:"#F5E0A0",
-                year:"The proof",
-                head:"I watched myself shift in a year and a half.",
-                body:"Creating the channel changed me before it changed anyone else. I looked back at where I was and I couldn't believe it. That's when I knew: I have to go deeper. And I need a place where every single manifestation gets tracked — hence ProofOS.",
+                year:"What it means for you",
+                head:"You get the version of you that already has it.",
+                body:"Every track in this library is designed to install one thing: the assumption that what you want is already yours. Not one day. Not when you’ve earned it. Now. Your subconscious doesn’t know the difference between real and vividly imagined — and SHG uses that window every single night.",
               },
+              
             ].map(({ accent, year, head, body }, i) => (
               <div key={i} style={{ borderRadius:16, padding:"32px 28px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
                 <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:accent, marginBottom:12 }}>{year}</div>
