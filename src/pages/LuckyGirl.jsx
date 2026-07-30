@@ -147,10 +147,10 @@ export default function LuckyGirl() {
     outline: "none", marginBottom: 14, display: "block"
   };
   const optStyle = {
-    background: "rgba(255,255,255,0.85)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 14,
+    background: "rgba(255,255,255,0.85)", border: "2px solid transparent", borderRadius: 14,
     padding: "26px 28px", color: "#000", fontFamily: "'Jost', sans-serif",
     fontSize: 19, fontWeight: 400, textAlign: "left", cursor: "pointer",
-    lineHeight: 1.6, width: "100%", marginBottom: 12, display: "block"
+    lineHeight: 1.6, width: "100%", marginBottom: 12, display: "block", transition: "all 0.2s"
   };
 
   return (
