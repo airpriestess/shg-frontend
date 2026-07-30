@@ -224,7 +224,7 @@ export default function LuckyGirl() {
             ))}
           </div>
           <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#f2ece4", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5.5vw,44px)", fontWeight: 400, textAlign: "center", marginBottom: 44, color: "#fff", lineHeight: 1.3 }}>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontStyle: "normal", fontSize: "clamp(24px,4vw,36px)", fontWeight: 400, textAlign: "center", marginBottom: 44, color: "#fff", lineHeight: 1.4 }}>
             {QUESTIONS[step].q}
           </div>
           <div>
