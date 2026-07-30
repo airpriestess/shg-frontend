@@ -800,7 +800,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:18,color:C.text}}>
               Self Hypnosis Goddess
             </span>
-            <span style={{ fontSize:9,fontWeight:600,letterSpacing:"0.1em",color:"#E8B870",border:"1px solid rgba(232,184,112,0.4)",borderRadius:20,padding:"2px 7px",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>BETA</span>
+            <span style={{ fontSize:9,fontWeight:600,letterSpacing:"0.1em",color:isDark?"#E8B870":"#f2ece4",background:isDark?"transparent":"#000",border:`1px solid ${isDark?"rgba(232,184,112,0.4)":"rgba(0,0,0,0.4)"}`,borderRadius:20,padding:"2px 7px",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>BETA</span>
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
