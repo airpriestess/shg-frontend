@@ -47,7 +47,7 @@ const QUESTIONS = [
     { t: "I'm scared of losing the people I love if I change too much", c: "love" },
     { t: "I'm waiting until I look like the version of me who deserves it", c: "body" }
   ]},
-  { q: "In your Lucky Girl era, every day feels like life is conspiring for you. The area where that's hardest to believe right now is...", opts: [
+  { q: "In your Lucky Girl era, everything works in your favour. The area where that's still hardest to believe is...", opts: [
     { t: "Money — it still feels like something I have to chase", c: "money" },
     { t: "Love — being chosen freely still feels too good to be true", c: "love" },
     { t: "My body — I can't feel lucky in a body I'm still fighting", c: "body" },
