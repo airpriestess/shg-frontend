@@ -260,15 +260,18 @@ export default function LuckyGirl() {
               <div style={{ fontSize: 19, color: "#f2ece4", lineHeight: 1.85 }}>{RITUAL}</div>
             </div>
             <p style={{ fontSize: 18, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for — hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
-            <div style={{ background: LG, borderRadius: 20, padding: "36px 28px", marginBottom: 16, textAlign: "center" }}>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>✦ The next step ✦</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,40px)", color: "#000", fontWeight: 400, lineHeight: 1.2, marginBottom: 16 }}>Lucky Girl Maxxing</div>
-              <div style={{ fontSize: 16, color: "#000", lineHeight: 1.7, marginBottom: 8 }}>21 days to become the woman good things happen to.</div>
-              <div style={{ fontSize: 14, color: "rgba(0,0,0,0.7)", lineHeight: 1.7, marginBottom: 28, maxWidth: 400, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
-              <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer"
-                style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 48px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
-                Get the workbook — £37
-              </a>
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ background: LG, borderRadius: "20px 20px 0 0", padding: "28px 28px 20px", textAlign: "center" }}>
+                <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 12 }}>✦ The next step ✦</div>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,40px)", color: "#000", fontWeight: 400, lineHeight: 1.2, marginBottom: 10 }}>Lucky Girl Maxxing</div>
+                <div style={{ fontSize: 15, color: "#000", lineHeight: 1.6 }}>21 days to become the woman good things happen to.</div>
+              </div>
+              <iframe
+                src="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f"
+                title="Lucky Girl Maxxing Workbook"
+                style={{ width: "100%", height: 520, border: "none", borderRadius: "0 0 20px 20px", display: "block" }}
+                loading="lazy"
+              />
             </div>
             <div style={{ border: "1px solid #222", borderRadius: 16, padding: "24px 28px", textAlign: "center" }}>
               <div style={{ fontSize: 14, color: "#f2ece4", lineHeight: 1.7, marginBottom: 16 }}>Want the audio that rewires this assumption while you sleep?</div>
