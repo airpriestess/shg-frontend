@@ -63,7 +63,7 @@ export default function About({ onBack }) {
         </div>
 
         <div style={{ fontFamily:"'Jost',sans-serif", fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.5)", marginBottom:16 }}>Self Hypnosis Goddess</div>
-        <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(48px,5vw,68px)", color:BLACK, margin:"0 0 20px", lineHeight:1.1, fontWeight:400 }}>
+        <h1 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(44px,4.5vw,60px)", color:BLACK, margin:"0 0 20px", lineHeight:1.15, fontWeight:400 }}>
           I built what I couldn't find.
         </h1>
         <p style={{ fontSize: isMobile?16:18, color:"rgba(0,0,0,0.65)", maxWidth:500, margin:"0 auto", lineHeight:1.7, fontWeight:400 }}>
@@ -74,7 +74,7 @@ export default function About({ onBack }) {
       {/* ── THE STRUGGLE — black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-                    <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,7vw,40px)":"clamp(34px,3.5vw,50px)", color:CREAM, lineHeight:1.25, fontWeight:400, marginBottom:28 }}>
+                    <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
             I was struggling with my belief system. All of it.
           </h2>
           <p style={{ fontSize: isMobile?16:17, color:"rgba(242,236,228,0.8)", lineHeight:1.85, marginBottom:20 }}>
@@ -92,7 +92,7 @@ export default function About({ onBack }) {
       {/* ── THE TURN — cream ── */}
       <div style={{ background:CREAM, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-                    <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,7vw,40px)":"clamp(34px,3.5vw,50px)", color:BLACK, lineHeight:1.25, fontWeight:400, marginBottom:28 }}>
+                    <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:BLACK, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
             Then I found manifestation. Then I found self-hypnosis. Then everything changed.
           </h2>
           <p style={{ fontSize: isMobile?16:17, color:"rgba(0,0,0,0.7)", lineHeight:1.85, marginBottom:20 }}>
@@ -169,7 +169,7 @@ export default function About({ onBack }) {
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto", textAlign:"center" }}>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(44px,5vw,64px)", fontWeight:800, color:"#ffffff", lineHeight:1, letterSpacing:"-0.02em", textTransform:"uppercase", marginBottom:20 }}>What's inside</h2>
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(26px,7vw,38px)":"clamp(30px,3vw,44px)", color:CREAM, lineHeight:1.25, fontWeight:400, marginBottom:20 }}>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(24px,6vw,34px)":"clamp(28px,2.8vw,40px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:20 }}>
             Every audio in this library is my voice. Written and recorded by me.
           </h2>
           <p style={{ fontSize: isMobile?15:16, color:"rgba(242,236,228,0.6)", lineHeight:1.8, marginBottom:40 }}>
@@ -194,7 +194,7 @@ export default function About({ onBack }) {
 
       {/* ── CTA ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
-                <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(36px,4vw,52px)", color:BLACK, lineHeight:1.2, fontWeight:400, marginBottom:40 }}>
+                <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,7vw,40px)":"clamp(32px,3.5vw,48px)", color:BLACK, lineHeight:1.25, fontWeight:400, marginBottom:40 }}>
           Press play. Feel the shift.
         </h2>
         <button onClick={()=>{ navigate("/"); setTimeout(()=>{ const el=document.getElementById("pricing"); if(el) el.scrollIntoView({behavior:"smooth"}); },300); }} style={{ background:BLACK, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:CREAM, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
