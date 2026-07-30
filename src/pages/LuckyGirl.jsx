@@ -147,14 +147,14 @@ export default function LuckyGirl() {
     outline: "none", marginBottom: 14, display: "block"
   };
   const optStyle = {
-    background: "#fff", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 14,
+    background: "rgba(255,255,255,0.85)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 14,
     padding: "26px 28px", color: "#000", fontFamily: "'Jost', sans-serif",
     fontSize: 19, fontWeight: 400, textAlign: "left", cursor: "pointer",
     lineHeight: 1.6, width: "100%", marginBottom: 12, display: "block"
   };
 
   return (
-    <div style={{ background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh", overflowX: "hidden" }}>
+    <div style={{ background: LG, color: "#000", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
 
       {/* NAV */}
@@ -211,18 +211,18 @@ export default function LuckyGirl() {
         <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px", background: "#000" }}>
           <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 }}>
             {QUESTIONS.map((_, i) => (
-              <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "#E8B870" : "#1a1a1a", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
+              <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "#000" : "rgba(0,0,0,0.2)", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
             ))}
           </div>
-          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#f2ece4", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
-          <div style={{ fontFamily: "'Jost', sans-serif", fontStyle: "normal", fontSize: "clamp(24px,4vw,36px)", fontWeight: 400, textAlign: "center", marginBottom: 44, color: "#fff", lineHeight: 1.4 }}>
+          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontStyle: "normal", fontSize: "clamp(24px,4vw,36px)", fontWeight: 400, textAlign: "center", marginBottom: 44, color: "#000", lineHeight: 1.4 }}>
             {QUESTIONS[step].q}
           </div>
           <div>
             {QUESTIONS[step].opts.map((opt, i) => (
               <button key={i} style={optStyle} onClick={() => pickAnswer(opt.c)}
-                onMouseEnter={e => { e.currentTarget.style.background = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)"; e.currentTarget.style.color = "#000"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = "#000"; }}>
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(0,0,0,0.15)"; e.currentTarget.style.color = "#000"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; e.currentTarget.style.color = "#000"; }}>
                 {opt.t}
               </button>
             ))}
@@ -238,7 +238,7 @@ export default function LuckyGirl() {
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(44px,8vw,80px)", lineHeight: 1.0, color: "#000", letterSpacing: "-.02em" }}>{result.block}</h2>
           </div>
           <div style={{ maxWidth: 560, margin: "0 auto", padding: "40px 24px 80px", textAlign: "center" }}>
-            <div style={{ background: "#0a0a0a", border: "1px solid #222", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
+            <div style={{ background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
               <div style={{ fontSize: 12, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14 }}>The assumption running your life</div>
               <div style={{ fontSize: 20, color: "#f2ece4", fontStyle: "italic", lineHeight: 1.8 }}>{result.old}</div>
             </div>
