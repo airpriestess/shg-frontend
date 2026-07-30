@@ -30,7 +30,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
 
-  const cats = ["All", "Money", "Beauty", "Love", "Identity", "Sleep", "Body"];
+  const cats = ["All", "Rich Girl", "Beauty", "Love", "Identity", "Sleep", "Body"];
   const canPlay = a => !a.isLocked || userTier === "goddess" || userTier === "founder";
 
   // Deduplicate by id, then filter
