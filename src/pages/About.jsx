@@ -26,6 +26,7 @@ export default function About({ onBack }) {
 
   return (
     <div ref={topRef} style={{ minHeight:"100vh", background:BLACK, color:CREAM, fontFamily:"'Jost',sans-serif" }}>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
       {/* ── NAV ── */}
       <div style={{ position:"sticky", top:0, zIndex:50, background:"rgba(0,0,0,0.92)", backdropFilter:"blur(12px)", borderBottom:"1px solid rgba(255,255,255,0.06)", padding:"0 24px", height:52, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
