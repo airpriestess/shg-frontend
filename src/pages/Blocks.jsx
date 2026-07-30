@@ -36,9 +36,14 @@ export default function Blocks() {
     <div style={{ background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" }}>
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
 
-      <nav style={{ display: "flex", alignItems: "center", padding: "18px 28px", borderBottom: "1px solid #111", gap: 10 }}>
-        <LogoMark/>
-        <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Reshma Oracle</span>
+      <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 28px", borderBottom: "1px solid #111", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <LogoMark/>
+          <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Reshma Oracle</span>
+        </div>
+        <button onClick={() => navigate("/")} style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#7a6e68", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
+          ← Back
+        </button>
       </nav>
 
       <div style={{ textAlign: "center", padding: "64px 24px 40px" }}>
