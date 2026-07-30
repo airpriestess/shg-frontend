@@ -12,7 +12,7 @@ const TEAL  = "#2CB7A7";
 const CAT = {
   Lovemaxxing:      { accent:"#167A6B" },
   Beautymaxxing:    { accent:"#BFA5D8" },
-  Moneymaxxing:     { accent:"#E8B870" },
+  Richgirlmaxxing:     { accent:"#E8B870" },
   Sleepmaxxing:     { accent:"#2CB7A7" },
   Selfmaxxing:      { accent:"#BFA5D8" },
   Luckygirlmaxxing: { accent:"#2CB7A7" },
@@ -37,12 +37,12 @@ const TRACKS = [
   { title:"Seduced Focus",                      cat:"Selfmaxxing" },
   { title:"Spoilt Goddess",                     cat:"Selfmaxxing" },
   { title:"He Finds His Way Back",              cat:"Lovemaxxing" },
-  { title:"Money Finds Me First",               cat:"Moneymaxxing" },
+  { title:"Money Finds Me First",               cat:"Richgirlmaxxing" },
   { title:"While I Sleep I Manifest",           cat:"Sleepmaxxing" },
   { title:"10 Years Into One Hour",             cat:"Healmaxxing" },
 ];
 
-const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Desiresmaxxing","Bodymaxxing","Confidencemaxxing","Erosmaxxing","Facemaxxing","Healmaxxing","Lifemaxxing","Peacemaxxing","Sovereignmaxxing","Sleepmaxxing"];
+const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Desiresmaxxing","Bodymaxxing","Confidencemaxxing","Erosmaxxing","Facemaxxing","Healmaxxing","Lifemaxxing","Peacemaxxing","Sovereignmaxxing","Sleepmaxxing"];
 
 function Thumb({ cat, size, radius=4 }) {
   return (
