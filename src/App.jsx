@@ -17,11 +17,9 @@ import AssumptionQuiz from "./pages/AssumptionQuiz.jsx";
 import LuckyGirl from "./pages/LuckyGirl.jsx";
 import Blocks from "./pages/Blocks.jsx";
 import BlocksQuiz from "./pages/BlocksQuiz.jsx";
-import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LandingProofWall from "./components/LandingProofWall.jsx";
-import DesktopMockup from "./components/DesktopMockup.jsx";
 import ProofWallScreenshot from "./components/ProofWallScreenshot.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
@@ -278,7 +276,7 @@ export default function App() {
                   <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
                 </div>
               </div>
-            : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
+            : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} isPreview={new URLSearchParams(window.location.search).get("preview")==="1" ? true : undefined} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
         } />
         <Route path="/waitlist" element={<Landing forceWaitlist={true} onJoin={()=>setCheckoutModal(true)} onDemo={()=>goPortal("goddess")} onSignIn={()=>navigate("/auth")} onLegal={(p)=>navigate("/"+p)} />} />
         <Route path="*" element={<Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>} />
@@ -678,7 +676,16 @@ function AppPreviewSection({ isMobile }) {
 
   /* ── Desktop panel content (changes per tab) ── */
   function DesktopPanel() {
-    if (view === "dashboard") return <DesktopMockup theme={theme} width={460}/>;
+    if (view === "dashboard") return (
+      <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)" }}>
+        <iframe
+          src="/portal?preview=1&theme=dark"
+          title="Self Hypnosis Goddess dashboard preview"
+          style={{ width:"183%", height:"183%", border:"none", transform:"scale(0.546)", transformOrigin:"top left", pointerEvents:"none" }}
+          loading="lazy"
+        />
+      </div>
+    );
     if (view === "proof") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)" }}>
         <div style={{ background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"22px 24px 26px" }}>
@@ -736,7 +743,16 @@ function AppPreviewSection({ isMobile }) {
         <div style={{ position:"absolute", right:-3, top:"38%", width:3, height:"22%", background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
         <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative" }}>
           <div style={{ position:"absolute", top:Math.round(w*0.033), left:"50%", transform:"translateX(-50%)", width:Math.round(w*0.38), height:Math.round(w*0.077), background:"#000", borderRadius:20, zIndex:10 }}/>
-          {view==="dashboard" && <PortalScreenshot width={w - pad*2} theme={theme}/>}
+          {view==="dashboard" && (
+            <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative" }}>
+              <iframe
+                src="/portal?preview=1&theme=dark"
+                title="Self Hypnosis Goddess mobile dashboard preview"
+                style={{ width:390, height:844, border:"none", transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left", pointerEvents:"none" }}
+                loading="lazy"
+              />
+            </div>
+          )}
           {view==="proof"     && <ProofWallScreenshot width={w - pad*2} theme={theme}/>}
           {view==="analytics" && (
             <div style={{ width:w - pad*2, background:theme==="dark"?"#080808":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding:"12px 8px" }}>
