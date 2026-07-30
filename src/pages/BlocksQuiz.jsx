@@ -244,23 +244,21 @@ const RESULTS = {
 
 const RITUAL = "Say your new assumption aloud right before sleep — that's the theta window, when your subconscious stops arguing with it. Two minutes. Every night. 21 nights. That's the install window.";
 
-function LogoMark() {
+
+
+function SHGNav() {
   return (
-    <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
-      <defs>
-        <linearGradient id="lgmbq" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F5E0A0"/>
-          <stop offset="22%" stopColor="#E8B870"/>
-          <stop offset="52%" stopColor="#BFA5D8"/>
-          <stop offset="78%" stopColor="#2CB7A7"/>
-          <stop offset="100%" stopColor="#167A6B"/>
-        </linearGradient>
-      </defs>
-      <circle cx="10" cy="10" r="7" stroke="url(#lgmbq)" strokeWidth="1.5" fill="none"/>
-      <circle cx="18" cy="10" r="7" stroke="url(#lgmbq)" strokeWidth="1.5" fill="none"/>
-      <circle cx="10" cy="18" r="7" stroke="url(#lgmbq)" strokeWidth="1.5" fill="none"/>
-      <circle cx="18" cy="18" r="7" stroke="url(#lgmbq)" strokeWidth="1.5" fill="none"/>
-    </svg>
+    <nav style={{ display:"flex", alignItems:"center", padding:"0 20px", height:54, borderBottom:"1px solid #1c1828", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", gap:9 }}>
+      <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
+        <defs><linearGradient id="shgnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+        <circle cx="35" cy="35" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
+        <circle cx="65" cy="35" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
+        <circle cx="35" cy="65" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
+        <circle cx="65" cy="65" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
+        <line x1="50" y1="80" x2="50" y2="96" stroke="url(#shgnav)" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+      <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:"clamp(11px,3.2vw,14px)", letterSpacing:"0.02em", color:"#f2ece4", whiteSpace:"nowrap" }}>Self Hypnosis Goddess</span>
+    </nav>
   );
 }
 
@@ -329,13 +327,7 @@ export default function BlocksQuiz() {
     <div style={base}>
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
 
-      <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 28px", borderBottom: "1px solid #111" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <LogoMark/>
-          <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Self Hypnosis Goddess</span>
-        </div>
-        <button onClick={() => navigate("/blocks")} style={{ background: "none", border: "none", color: "#9a8e88", fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", cursor: "pointer" }}>← All blocks</button>
-      </nav>
+      <SHGNav/>
 
       {phase === "landing" && (
         <div style={{ textAlign: "center", padding: "64px 24px 48px", background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" }}>
