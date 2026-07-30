@@ -191,6 +191,13 @@ export default function LuckyGirl() {
           <LogoMark/>
           <span style={s.navName}>Reshma Oracle</span>
         </div>
+        {phase !== "landing" && (
+          <button
+            onClick={() => { setPhase("landing"); setStep(0); setScores({}); setResult(null); window.scrollTo(0,0); }}
+            style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#7a6e68", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
+            ← Back
+          </button>
+        )}
       </nav>
 
       {phase === "landing" && (
