@@ -39,7 +39,7 @@ export default function Blocks() {
       <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 28px", borderBottom: "1px solid #111", gap: 10 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <LogoMark/>
-          <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Reshma Oracle</span>
+          <span style={{ fontSize: 13, letterSpacing: ".1em", color: "#f2ece4" }}>Self Hypnosis Goddess</span>
         </div>
         <button onClick={() => navigate("/")} style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#7a6e68", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
           ← Back
