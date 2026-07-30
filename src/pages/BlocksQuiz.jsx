@@ -6,7 +6,7 @@ const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
 const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MzA0MDAsImV4cCI6MjAyNTQwNjQwMH0.example";
 
 const CATEGORIES = {
-  money: { name: "Moneymaxxing", color: "#E8B870", label: "Money block" },
+  money: { name: "RichGirlMaxxing", color: "#E8B870", label: "RichGirl block" },
   love:  { name: "Lovemaxxing",  color: "#BFA5D8", label: "Love block"  },
   beauty:{ name: "Beautymaxxing",color: "#F5E0A0", label: "Beauty block"},
   self:  { name: "Selfmaxxing",  color: "#2CB7A7", label: "Self block"  }
