@@ -318,10 +318,10 @@ export default function BlocksQuiz() {
     } catch (_) {}
   }
 
-  const base = { background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" };
+  const base = { background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontFamily: "'Jost', sans-serif", fontWeight: 400, minHeight: "100vh" };
   const inputStyle = { width: "100%", background: "rgba(255,255,255,0.9)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 14, padding: "20px 22px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" };
   const btnStyle = { width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG, display: "block" };
-  const optStyle = { background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14, padding: "22px 24px", color: "#dcc8b8", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer", lineHeight: 1.6, width: "100%", marginBottom: 10 };
+  const optStyle = { background: "rgba(255,255,255,0.85)", border: "2px solid transparent", borderRadius: 14, padding: "22px 24px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400, textAlign: "left", cursor: "pointer", lineHeight: 1.6, width: "100%", marginBottom: 12, transition: "all 0.2s" };
 
   return (
     <div style={base}>
@@ -363,8 +363,8 @@ export default function BlocksQuiz() {
           <div>
             {qs[step].opts.map((opt, i) => (
               <button key={i} style={optStyle} onClick={() => pickAnswer(opt.c)}
-                onMouseEnter={e => { e.currentTarget.style.background = "rgba(0,0,0,0.15)"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; }}>
+                onMouseEnter={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.border = "2px solid #000"; e.currentTarget.style.transform = "scale(1.01)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; e.currentTarget.style.border = "2px solid transparent"; e.currentTarget.style.transform = "scale(1)"; }}>
                 {opt.t}
               </button>
             ))}
