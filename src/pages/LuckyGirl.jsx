@@ -183,42 +183,83 @@ export default function LuckyGirl() {
       )}
 
 
-      {/* INTRO — unlucky vs lucky definition */}
+      {/* INTRO — full Lucky Girl definition, workbook style */}
       {phase === "intro" && (
-        <div style={{ background: "#000", minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px 80px" }}>
-          <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#E8B870", marginBottom: 32, textAlign: "center" }}>✦ Before we begin ✦</div>
-          <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(28px,5vw,44px)", color: "#f2ece4", textAlign: "center", marginBottom: 48, letterSpacing: "-.01em", lineHeight: 1.1 }}>Two women. Same world.<br/>Different operating system.</h2>
+        <div style={{ background: "#000", minHeight: "calc(100vh - 54px)", padding: "56px 24px 80px" }}>
+          <div style={{ maxWidth: 680, margin: "0 auto" }}>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 640, width: "100%", marginBottom: 48 }}>
-            {/* Unlucky Girl */}
-            <div style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 16, padding: "28px 20px" }}>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#f2ece4", marginBottom: 16 }}>Her unlucky universe</div>
-              {["Nobody chooses me.", "Money avoids me.", "Things never work out.", "I'm always too late.", "I never win.", "People forget me."].map((t, i) => (
-                <div key={i} style={{ fontSize: 17, color: "#f2ece4", fontStyle: "normal", lineHeight: 2, fontFamily: "'Jost', sans-serif", fontWeight: 300 }}>"{t}"</div>
-              ))}
+            {/* Heading */}
+            <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(32px,6vw,56px)", color: "#f2ece4", textAlign: "center", marginBottom: 48, letterSpacing: "-.02em", lineHeight: 1.05 }}>Two women. Same world.<br/>Different operating system.</h2>
+
+            {/* Definition box */}
+            <div style={{ border: "1px solid #2a2a2a", borderRadius: 16, padding: "28px 28px", marginBottom: 28 }}>
+              <p style={{ fontSize: 16, color: "#f2ece4", lineHeight: 1.9, marginBottom: 20 }}>
+                LuckyGirlMaxxing is the deliberate practice of choosing, rehearsing and repeating the identity of a woman life supports — until that identity becomes so familiar to her subconscious mind that reality has no real choice but to keep confirming it. It is not superstition and it is not passive wishing. It is identity architecture: a chosen assumption, held steadily enough and long enough, that it reshapes what she expects, what she notices, and what she is willing to do next.
+              </p>
+              <div style={{ fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "#6a6058", marginBottom: 10 }}>noun</div>
+              <p style={{ fontSize: 18, color: "#E8B870", lineHeight: 1.6, marginBottom: 16, fontWeight: 400 }}>
+                A woman whose subconscious mind is so convinced life supports her that reality repeatedly confirms it.
+              </p>
+              <div style={{ fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "#6a6058", marginBottom: 8 }}>verb — To Lucky Girl.</div>
+              <p style={{ fontSize: 18, color: "#2CB7A7", lineHeight: 1.6, fontWeight: 400 }}>
+                The act of assuming favourable outcomes until they become ordinary.
+              </p>
             </div>
 
-            {/* Lucky Girl */}
-            <div style={{ background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius: 16, padding: "28px 20px" }}>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Her lucky universe</div>
-              {["I always get upgraded.", "Money finds me.", "The universe rushes to meet me.", "I arrive at the perfect time.", "Opportunities chase me.", "People adore helping me."].map((t, i) => (
-                <div key={i} style={{ fontSize: 17, color: "#000", fontStyle: "normal", lineHeight: 2, fontFamily: "'Jost', sans-serif", fontWeight: 300 }}>"{t}"</div>
-              ))}
+            {/* Equation */}
+            <div style={{ border: "1px solid #2a2a2a", borderRadius: 16, padding: "22px 28px", marginBottom: 28, textAlign: "center" }}>
+              <div style={{ fontSize: "clamp(14px,2.5vw,18px)", fontWeight: 500, letterSpacing: ".08em", color: "#f2ece4" }}>
+                <span style={{ color: "#E8B870" }}>ASSUMPTION</span>
+                {" × "}
+                <span style={{ color: "#BFA5D8" }}>REPETITION</span>
+                {" = "}
+                <span style={{ color: "#2CB7A7" }}>IDENTITY</span>
+              </div>
             </div>
+
+            {/* She expects */}
+            <div style={{ border: "1px solid #2a2a2a", borderRadius: 16, padding: "22px 28px", marginBottom: 28 }}>
+              <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#E8B870", marginBottom: 16 }}>She expects, as a matter of course</div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px" }}>
+                {["She expects upgrades.", "She expects abundance.", "She expects devotion.", "She expects beauty.", "She expects ease.", "She expects to be chosen."].map((t, i) => (
+                  <div key={i} style={{ fontSize: 16, color: "#f2ece4", lineHeight: 1.8 }}>✓ {t}</div>
+                ))}
+              </div>
+            </div>
+
+            {/* Two universes */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 40 }}>
+              <div style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 16, padding: "24px 20px" }}>
+                <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#f2ece4", marginBottom: 16 }}>Her unlucky universe</div>
+                {['"Nobody chooses me."', '"Money avoids me."', '"Things never work out."', '"I'm always too late."', '"I never win."', '"People forget me."'].map((t, i) => (
+                  <div key={i} style={{ fontSize: 15, color: "#f2ece4", lineHeight: 2, fontWeight: 300 }}>{t}</div>
+                ))}
+              </div>
+              <div style={{ background: LG, borderRadius: 16, padding: "24px 20px" }}>
+                <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Her lucky universe</div>
+                {['"I always get upgraded."', '"Money finds me."', '"The universe rushes to meet me."', '"I arrive at the perfect time."', '"Opportunities chase me."', '"People adore helping me."'].map((t, i) => (
+                  <div key={i} style={{ fontSize: 15, color: "#000", lineHeight: 2, fontWeight: 300 }}>{t}</div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom line */}
+            <p style={{ fontSize: 18, color: "#f2ece4", textAlign: "center", lineHeight: 1.7, marginBottom: 12 }}>
+              Lucky Girl is a state of consciousness. Life doesn't happen to her — it happens for her. Always.
+            </p>
+            <p style={{ fontSize: 15, color: "#E8B870", textAlign: "center", marginBottom: 40 }}>
+              This quiz finds what's keeping you out of it.
+            </p>
+
+            <div style={{ textAlign: "center" }}>
+              <button
+                onClick={() => { setPhase("quiz"); window.scrollTo(0, 0); }}
+                style={{ border: "none", borderRadius: 40, padding: "22px 56px", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG }}>
+                Find my block
+              </button>
+            </div>
+
           </div>
-
-          <p style={{ fontSize: 17, color: "#f2ece4", textAlign: "center", maxWidth: 480, lineHeight: 1.7, marginBottom: 12 }}>
-            Lucky Girl is a state of consciousness. Life doesn't happen to her — it happens for her. Always.
-          </p>
-          <p style={{ fontSize: 15, color: "#E8B870", textAlign: "center", maxWidth: 440, lineHeight: 1.7, marginBottom: 40 }}>
-            This quiz finds what's keeping you out of it.
-          </p>
-
-          <button
-            onClick={() => { setPhase("quiz"); window.scrollTo(0, 0); }}
-            style={{ border: "none", borderRadius: 40, padding: "22px 56px", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" }}>
-            Find my block
-          </button>
         </div>
       )}
 
