@@ -276,7 +276,7 @@ export default function App() {
                   <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
                 </div>
               </div>
-            : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} isPreview={new URLSearchParams(window.location.search).get("preview")==="1" ? true : undefined} initialTab={new URLSearchParams(window.location.search).get("tab") || "home"} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
+            : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/"); }} isPreview={new URLSearchParams(window.location.search).get("preview")==="1" ? true : undefined} initialTab={new URLSearchParams(window.location.search).get("tab") || "home"} forceTheme={new URLSearchParams(window.location.search).get("theme") || null} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.session?.user?.user_metadata?.full_name || authCtx.session?.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
         } />
         <Route path="/waitlist" element={<Landing forceWaitlist={true} onJoin={()=>setCheckoutModal(true)} onDemo={()=>goPortal("goddess")} onSignIn={()=>navigate("/auth")} onLegal={(p)=>navigate("/"+p)} />} />
         <Route path="*" element={<Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>} />
@@ -679,7 +679,7 @@ function AppPreviewSection({ isMobile }) {
     if (view === "dashboard") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
         <iframe
-          src="/portal?preview=1&theme=dark"
+          src={`/portal?preview=1&theme=${theme}`}
           title="Self Hypnosis Goddess dashboard preview"
           style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
           loading="lazy"
@@ -689,7 +689,7 @@ function AppPreviewSection({ isMobile }) {
     if (view === "proof") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
         <iframe
-          src="/portal?preview=1&theme=dark&tab=proof"
+          src={`/portal?preview=1&theme=${theme}&tab=proof`}
           title="Self Hypnosis Goddess ProofOS preview"
           style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
           loading="lazy"
@@ -699,7 +699,7 @@ function AppPreviewSection({ isMobile }) {
     if (view === "analytics") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)", background:"#000" }}>
         <iframe
-          src="/portal?preview=1&theme=dark&tab=analytics"
+          src={`/portal?preview=1&theme=${theme}&tab=analytics`}
           title="Self Hypnosis Goddess Analytics preview"
           style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
           loading="lazy"
@@ -724,7 +724,7 @@ function AppPreviewSection({ isMobile }) {
           {view==="dashboard" && (
             <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
               <iframe
-                src="/portal?preview=1&theme=dark"
+                src={`/portal?preview=1&theme=${theme}`}
                 title="Self Hypnosis Goddess mobile dashboard preview"
                 style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
                 loading="lazy"
@@ -734,7 +734,7 @@ function AppPreviewSection({ isMobile }) {
           {view==="proof" && (
             <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
               <iframe
-                src="/portal?preview=1&theme=dark&tab=proof"
+                src={`/portal?preview=1&theme=${theme}&tab=proof`}
                 title="Self Hypnosis Goddess mobile ProofOS preview"
                 style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
                 loading="lazy"
@@ -744,7 +744,7 @@ function AppPreviewSection({ isMobile }) {
           {view==="analytics" && (
             <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
               <iframe
-                src="/portal?preview=1&theme=dark&tab=analytics"
+                src={`/portal?preview=1&theme=${theme}&tab=analytics`}
                 title="Self Hypnosis Goddess mobile Analytics preview"
                 style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
                 loading="lazy"
