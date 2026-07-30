@@ -40,10 +40,10 @@ const WALL = [
   },
   {
     desire: "£1,800 refund out of nowhere.",
-    category: "Moneymaxxing", days: 4, signs: 2,
-    track: "a Moneymaxxing track", feel: "Money really does find me first.",
+    category: "Richgirlmaxxing", days: 4, signs: 2,
+    track: "a Richgirlmaxxing track", feel: "Money really does find me first.",
     log: [
-      "Day 1: Old belief — \"It's so hard to attract money out of thin air.\" Started listening to a Moneymaxxing track.",
+      "Day 1: Old belief — \"It's so hard to attract money out of thin air.\" Started listening to a Richgirlmaxxing track.",
       "Day 2: £1,800 landed in my account as a refund. Still don't know what it was for.",
       "Day 4: Marked manifested.",
     ]
