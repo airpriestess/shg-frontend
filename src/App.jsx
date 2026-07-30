@@ -99,7 +99,7 @@ function LibraryBanner({ isMobile, onLegal }) {
   const CATS = [
     { name:"Lovemaxxing",       affirmation:"He chooses me. Every time. Obviously.",              col:"#F5E0A0",
       icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/></svg> },
-    { name:"Moneymaxxing",      affirmation:"Money finds me first. Of course it does.",            col:"#E8B870",
+    { name:"Richgirlmaxxing",      affirmation:"Money finds me first. Of course it does.",            col:"#E8B870",
       icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="17" stroke="currentColor" strokeWidth="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
     { name:"Beautymaxxing",     affirmation:"Gorgeous is my default. Always has been.",           col:"#BFA5D8",
       icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 20 C24 20 20 24 20 29 C20 33 23 36 27 36 C24 38 23 42 25 46 C22 44 20 40 21 35 C16 34 13 30 13 25 C13 19 18 14 24 14 C27 14 29 16 30 17 C31 16 33 14 36 14 C42 14 47 19 47 25 C47 30 44 34 39 35 C40 40 38 44 35 46 C37 42 36 38 33 36 C37 36 40 33 40 29 C40 24 36 20 30 20 Z" fill="currentColor" opacity="0.85"/></svg> },
@@ -907,7 +907,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   // Category-specific colours
   const CAT_COLOURS = {
     // Carousel only — full palette including warm pink + hot blue accent tiles
-    "Moneymaxxing":     "linear-gradient(135deg,#0A4A8A,#2CB7A7,#2CB7A7)",  // navy → deep blue → turquoise
+    "Richgirlmaxxing":     "linear-gradient(135deg,#0A4A8A,#2CB7A7,#2CB7A7)",  // navy → deep blue → turquoise
     "Luckygirlmaxxing": "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",  // full Lucky Girl ombre
     "Beautymaxxing":    "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // blush → soft rose
     "Lovemaxxing":      "linear-gradient(135deg,#F5E0A0,#E07898)",        // pale blush → warm rose
@@ -996,7 +996,7 @@ const FAQS = [
   {q:"How do I know how to listen — what do I actually do?",a:"Every account includes access to the in-app Guide — a full walkthrough covering exactly how to use the vault: which format to pick and when, best times of day to listen, how often, what headphones setup works best, how the different elements (hypnosis, subliminal, binaural, music) combine, and how to use ProofOS to track what happens. It answers every question about the process in one place, so you're never guessing. You'll find it inside the portal from your first login."},
   {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
   {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
-  {q:"What categories are in the vault?",a:"A growing library — right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Moneymaxxing, Businessmaxxing, Desiresmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
+  {q:"What categories are in the vault?",a:"A growing library — right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Richgirlmaxxing, Businessmaxxing, Desiresmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
   {q:"What are subliminals?",a:"Affirmations recorded below the threshold of conscious hearing, layered underneath the music and spoken hypnosis. Your conscious mind doesn't register them as words — but your subconscious does. They bypass the part of you that would normally argue back with a new belief."},
   {q:"How do the different elements combine in one track?",a:"Each audio layers four things at once: spoken hypnosis (guiding you into the state), subliminal affirmations (below hearing threshold), binaural beats (two slightly different frequencies, one per ear, syncing both brain hemispheres into theta), and original melodic house music (so it's something you actually want to listen to, not just tolerate). All four play simultaneously, not in sequence."},
   {q:"Who is Reshma Oracle?",a:"The person recording every track in this vault. No agency, no outsourced voice work — every hypnosis session, every affirmation, every frequency choice is hers. Self Hypnosis Goddess exists because she noticed everyone in this space consumes content and no one actually installs a new identity — so she built something designed for daily repetition, not one-off inspiration."},
@@ -1145,7 +1145,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   const cats = [
     { label: "Lovemaxxing", tagline: "He's obsessed. Of course he is.", color: T.rose },
-    { label: "Moneymaxxing", tagline: "Money finds me first. Obviously.", color: "#2CB7A7" },
+    { label: "Richgirlmaxxing", tagline: "Money finds me first. Obviously.", color: "#2CB7A7" },
     { label: "Beautymaxxing", tagline: "Gorgeous is my default.", color: T.champSoft },
     { label: "Lifemaxxing", tagline: "Highest timeline. Activated.", color: "#e8e0d0" },
     { label: "DNA Shifting", tagline: "My bloodline remembers.", color: "#2CB7A7" },
@@ -1154,7 +1154,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   // Comparison section heading explanation is added in JSX below
   const compRows = [
-    { old: "I have to work hard to receive money.", neu: "Money found me without effort.", proof: "£2,000 refund arrived out of nowhere. Day 6.", cat: "Money" },
+    { old: "I have to work hard to receive money.", neu: "Money found me without effort.", proof: "£2,000 refund arrived out of nowhere. Day 6.", cat: "Rich Girl" },
     { old: "He has moved on. I need to accept it.", neu: "He is already on his way back.", proof: "He texted first after 3 weeks of silence. Day 9.", cat: "Lovemaxxing" },
     { old: "I don't feel beautiful unless someone tells me.", neu: "I feel gorgeous from the inside. The mirror confirmed it.", proof: "Woke up and felt it before I even looked. Day 4.", cat: "Beauty" },
     { old: "I've tried scripting, affirmations, vision boards. Nothing sticks.", neu: "I stopped trying. The subconscious installed it while I slept.", proof: "Stopped forcing it. It arrived anyway.", cat: "Identity" },
@@ -1276,7 +1276,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Selfmaxxing",        tagline:"I am the main character. Obviously." },
               { label:"Erosmaxxing",        tagline:"I am a goddess in the bedroom." },
               { label:"Bodymaxxing",        tagline:"My body is snatched. Obviously." },
-              { label:"Moneymaxxing",       tagline:"Billions are my birthright." },
+              { label:"Richgirlmaxxing",       tagline:"Billions are my birthright." },
               { label:"Luckygirlmaxxing",   tagline:"Everything always works out for me." },
               { label:"Lovemaxxing",        tagline:"My person finds their way back. Always." },
               { label:"Beautymaxxing",      tagline:"My face is iconic and original." },
@@ -1287,7 +1287,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Singlemaxxing",      tagline:"I am whole. I am enough. I am it." },
               { label:"Facemaxxing",        tagline:"I am the most gorgeous woman in the multiverse." },
               { label:"Selfmaxxing",        tagline:"My energy is magnetic. People know it." },
-              { label:"Moneymaxxing",       tagline:"I make billions in my sleep." },
+              { label:"Richgirlmaxxing",       tagline:"I make billions in my sleep." },
               { label:"Lifemaxxing",        tagline:"Highest timeline. Activated." },
               { label:"DNAmaxxing",         tagline:"My cells are rewriting themselves right now." },
               { label:"Beautymaxxing",      tagline:"People stare. I understand. Obviously." },
@@ -1304,7 +1304,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Luckygirlmaxxing",   tagline:"I'm always in the right place at the right time." },
               { label:"Lovemaxxing",        tagline:"I am the love story I used to only dream about." },
               { label:"Singlemaxxing",      tagline:"I am the prize. I stopped auditioning for it." },
-              { label:"Moneymaxxing",       tagline:"I'm making £100k a day. Obviously." },
+              { label:"Richgirlmaxxing",       tagline:"I'm making £100k a day. Obviously." },
               { label:"Lovemaxxing",        tagline:"He can't imagine his life without me." },
               { label:"Bodymaxxing",        tagline:"My reflection finally matches how I feel inside." },
               { label:"Facemaxxing",        tagline:"My face is my proof of concept." },
@@ -1317,7 +1317,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Sovereignmaxxing",   tagline:"I answer to no one but myself." },
               { label:"Businessmaxxing",    tagline:"My empire built itself while I slept." },
               { label:"Lifemaxxing",        tagline:"My whole life feels like it's finally catching up to me." },
-              { label:"Moneymaxxing",       tagline:"Opportunities pay me to show up." },
+              { label:"Richgirlmaxxing",       tagline:"Opportunities pay me to show up." },
               { label:"DNAmaxxing",         tagline:"Ageless. Radiant. Undeniable." },
               { label:"Lovemaxxing",        tagline:"He remembers me even when I'm not there." },
               { label:"DNAmaxxing",         tagline:"My bloodline stops repeating itself, starting with me." },
@@ -1325,7 +1325,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Confidencemaxxing",  tagline:"I don't shrink. I never did." },
               { label:"Healmaxxing",        tagline:"I healed the version of me that needed this most." },
               { label:"Confidencemaxxing",  tagline:"I walk in like I already own the room." },
-              { label:"Moneymaxxing",       tagline:"Wealth is just who I am now." },
+              { label:"Richgirlmaxxing",       tagline:"Wealth is just who I am now." },
               { label:"Erosmaxxing",        tagline:"I know my own power in the bedroom." },
               { label:"Peacemaxxing",       tagline:"I am the calm in every room I enter." },
               { label:"Skinnymaxxing",      tagline:"I trust my body to know what it's doing." },
@@ -1335,15 +1335,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Beautymaxxing",      tagline:"Compliments find me without me asking." },
               { label:"Sleepmaxxing",       tagline:"I manifest more in eight hours than most do all day." },
               { label:"Luckygirlmaxxing",   tagline:"Doors open before I even knock." },
-              { label:"Moneymaxxing",       tagline:"Money finds me out of thin air." },
+              { label:"Richgirlmaxxing",       tagline:"Money finds me out of thin air." },
               { label:"Beautymaxxing",      tagline:"I became the face I used to manifest." },
               { label:"Intuitionmaxxing",   tagline:"I trust myself before anyone else." },
-              { label:"Moneymaxxing",       tagline:"I am a magnet for unexpected income." },
+              { label:"Richgirlmaxxing",       tagline:"I am a magnet for unexpected income." },
               { label:"Luckygirlmaxxing",   tagline:"I win things I didn't even enter for." },
               { label:"Singlemaxxing",      tagline:"I fell in love with my own company." },
-              { label:"Moneymaxxing",       tagline:"I'm making £5k a day and it's only the beginning." },
+              { label:"Richgirlmaxxing",       tagline:"I'm making £5k a day and it's only the beginning." },
               { label:"Friendmaxxing",      tagline:"My circle finally deserves me." },
-              { label:"Moneymaxxing",       tagline:"Six figures. Then seven. Then I stopped counting." },
+              { label:"Richgirlmaxxing",       tagline:"Six figures. Then seven. Then I stopped counting." },
               { label:"Erosmaxxing",        tagline:"I am irresistible. I know it. He knows it." },
               { label:"Desiresmaxxing",      tagline:"My desires are already done deals." },
               { label:"Bodymaxxing",        tagline:"Strong, lean, undeniable." },
@@ -1363,7 +1363,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Erosmaxxing",        tagline:"He can't stop thinking about last night." },
               { label:"Desiresmaxxing",      tagline:"Desired. Received. Obviously." },
               { label:"Selfmaxxing",        tagline:"I am the version of me I used to pray for." },
-              { label:"Moneymaxxing",       tagline:"I open my banking app and smile. Every time." },
+              { label:"Richgirlmaxxing",       tagline:"I open my banking app and smile. Every time." },
               { label:"Erosmaxxing",        tagline:"I know exactly what I want in the bedroom." },
               { label:"Skinnymaxxing",      tagline:"The weight came off like it was never mine to keep." },
                         ]} fullscreen={true} />
@@ -1779,7 +1779,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
       {/* BOTTOM CAROUSEL — same ombre style as top, different affirmations */}
       <IdentityCarousel cats={[
-        { label:"Moneymaxxing",     tagline:"Money finds me first. Obviously." },
+        { label:"Richgirlmaxxing",     tagline:"Money finds me first. Obviously." },
         { label:"Lovemaxxing",      tagline:"He's obsessed. Of course he is." },
         { label:"Beautymaxxing",    tagline:"Gorgeous is my default. Always." },
         { label:"Selfmaxxing",      tagline:"I am the upgraded version. Now." },
@@ -1834,7 +1834,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{...GPRICE(isMobile)}}>
             {[
               { quote: "I listened on day 1 and felt something shift. By day 5 he texted. I didn't even look for it.", name: "Sarah, 29", cat: "Lovemaxxing" },
-              { quote: "£1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", name: "Priya, 33", cat: "Moneymaxxing" },
+              { quote: "£1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", name: "Priya, 33", cat: "Richgirlmaxxing" },
               { quote: "I look the same and feel completely different about my face. The glow is internal first.", name: "Maya, 26", cat: "Beautymaxxing" },
               { quote: "I've tried every subliminal channel. This is the only one where I actually feel it working in real time.", name: "Jade, 31", cat: "Selfmaxxing" },
               { quote: "I genuinely thought he was about to break up with me. I kept listening anyway. He proposed three weeks later.", name: "Ellie, 30", cat: "Lovemaxxing" },
@@ -1843,7 +1843,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { quote: "People offer to buy me a coffee or a drink now — genuinely, 90% of the time I go out. It never used to happen.", name: "Bella, 28", cat: "Erosmaxxing" },
               { quote: "I found €50 on the street one day, out of nowhere, while I had Money Finds Me First on repeat. Then it happened again. Then again. It just keeps happening.", name: "Camille, 25", cat: "Luckygirlmaxxing" },
               { quote: "Woke up knowing he was coming back. No logical reason. He called that afternoon.", name: "Layla, 28", cat: "Lovemaxxing" },
-              { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Moneymaxxing" },
+              { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Richgirlmaxxing" },
               { quote: "I used to check my phone every five minutes waiting for him to text. Now I forget to check, and that's exactly when he does.", name: "Amara, 30", cat: "Lovemaxxing" },
             ].map((t, i) => (
               <div key={i} style={{ background:"#fff", border:"1px solid rgba(44,183,167,0.1)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(0,0,0,0.15)" }}>
