@@ -15,7 +15,6 @@ import About from "./pages/About.jsx";
 import Library from "./pages/Library.jsx";
 import AssumptionQuiz from "./pages/AssumptionQuiz.jsx";
 import LuckyGirl from "./pages/LuckyGirl.jsx";
-import Blocks from "./pages/Blocks.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
@@ -172,23 +171,18 @@ function LibraryBanner({ isMobile, onLegal }) {
         onMouseLeave={startTimer}
         onTouchStart={stopTimer}
         onTouchEnd={startTimer}
-        style={{ width:"100%", padding: isMobile?"32px 24px":"48px 64px", background:"#000", display:"flex", alignItems:"center", justifyContent:"space-between", gap: isMobile?20:48, minHeight: isMobile?140:160, cursor:"pointer" }}
+        style={{ width:"100%", padding: isMobile?"32px 24px":"48px 64px", background:LGb, display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?20:48, minHeight: isMobile?140:160, cursor:"pointer" }}
       >
-        {/* Icon */}
-        <div style={{ flexShrink:0, width: isMobile?64:80, height: isMobile?64:80, color:cat.col, opacity:0.9, transition:"color 0.5s" }}>
-          {cat.icon}
-        </div>
-
-        {/* Text */}
-        <div style={{ flex:1 }}>
-          <div style={{ fontSize: isMobile?11:12, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:cat.col, fontFamily:"'Jost',sans-serif", marginBottom:8, transition:"color 0.5s" }}>{cat.name}</div>
-          <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(24px,2.5vw,36px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{cat.affirmation}</div>
+        {/* Text — centered, black on Lucky Girl gradient background */}
+        <div style={{ flex:1, maxWidth:720, textAlign:"center" }}>
+          <div style={{ fontSize: isMobile?11:12, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{cat.name}</div>
+          <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(24px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{cat.affirmation}</div>
         </div>
 
         {/* Progress dots */}
         <div style={{ display:"flex", flexDirection:"column", gap:5, flexShrink:0 }}>
           {CATS.map((_,i) => (
-            <div key={i} onClick={()=>setIdx(i)} style={{ width:4, height: i===idx?18:4, borderRadius:2, background: i===idx?cat.col:"rgba(255,255,255,0.15)", cursor:"pointer", transition:"height 0.3s, background 0.4s" }}/>
+            <div key={i} onClick={()=>setIdx(i)} style={{ width:4, height: i===idx?18:4, borderRadius:2, background: i===idx?"#000":"rgba(0,0,0,0.2)", cursor:"pointer", transition:"height 0.3s, background 0.4s" }}/>
           ))}
         </div>
       </div>
@@ -201,7 +195,7 @@ function LibraryBanner({ isMobile, onLegal }) {
           const idleBg = isEven ? "#000" : "#f2ece4";
           const idleColor = isEven ? "rgba(242,236,228,0.5)" : "rgba(0,0,0,0.5)";
           return (
-            <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 14px":"7px 18px", borderRadius:20, border: isActive?"none":`1px solid ${isEven?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`, background: isActive?ct.col:idleBg, color: isActive?"#000":idleColor, fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: isActive?600:400, transition:"all 0.25s", whiteSpace:"nowrap" }}>
+            <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 14px":"7px 18px", borderRadius:20, border: isActive?"none":`1px solid ${isEven?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`, background: isActive?LGb:idleBg, color: isActive?"#000":idleColor, fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: isActive?600:400, transition:"all 0.25s", whiteSpace:"nowrap" }}>
               {ct.name}
             </button>
           );
@@ -262,7 +256,6 @@ export default function App() {
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
         <Route path="/quiz"    element={<AssumptionQuiz/>} />
         <Route path="/luckygirl" element={<LuckyGirl/>} />
-        <Route path="/blocks" element={<Blocks/>} />
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
