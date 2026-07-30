@@ -72,9 +72,9 @@ export default function About({ onBack }) {
       </div>
 
       {/* ── THE STRUGGLE — black ── */}
-      <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
+      <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-                    <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
             I was struggling with my belief system. All of it.
           </h2>
           <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
@@ -90,9 +90,9 @@ export default function About({ onBack }) {
       </div>
 
       {/* ── THE TURN — cream ── */}
-      <div style={{ background:CREAM, padding: isMobile?"64px 24px":"80px 24px" }}>
+      <div style={{ background:CREAM, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-                    <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:BLACK, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:BLACK, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
             Then I found manifestation. Then I found self-hypnosis. Then everything changed.
           </h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.85, marginBottom:20 }}>
