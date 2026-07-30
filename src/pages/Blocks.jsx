@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const CATEGORIES = [
-  { key: "money", name: "RichGirlMaxxing", desc: "Why wealth keeps slipping through your hands", color: "#E8B870", url: "/blocks/money" },
+  { key: "money", name: "Richgirlmaxxing", desc: "Why wealth keeps slipping through your hands", color: "#E8B870", url: "/blocks/money" },
   { key: "love", name: "Lovemaxxing", desc: "Why love feels conditional or hard to keep", color: "#BFA5D8", url: "/blocks/love" },
   { key: "beauty", name: "Beautymaxxing", desc: "Why gorgeous feels like something you're still working towards", color: "#F5E0A0", url: "/blocks/beauty" },
   { key: "self", name: "Selfmaxxing", desc: "Why the upgraded version of you feels just out of reach", color: "#2CB7A7", url: "/blocks/self" }
@@ -12,8 +12,9 @@ const CATEGORIES = [
 
 
 function SHGNav() {
+  const navigate = useNavigate();
   return (
-    <nav style={{ display:"flex", alignItems:"center", padding:"0 20px", height:54, borderBottom:"1px solid #1c1828", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", gap:9 }}>
+    <nav style={{ display:"flex", alignItems:"center", padding:"0 20px", height:54, borderBottom:"1px solid #1c1828", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", gap:9, cursor:"pointer" }} onClick={()=>navigate("/")}>
       <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
         <defs><linearGradient id="shgnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
         <circle cx="35" cy="35" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
