@@ -14,206 +14,207 @@ const CATEGORIES = {
 
 const QUESTIONS = {
   money: [
-    { q: "Money arrives unexpectedly. The quiet thought underneath the relief is...", opts: [
-      { t: "This is temporary — something will take it away", c: "scarcity" },
-      { t: "I got lucky. I didn't really earn this", c: "worthiness" },
-      { t: "I need to spend it carefully or it'll be gone", c: "scarcity" },
-      { t: "I wonder if it'll keep coming", c: "consistency" }
+    { q: "A friend asks to borrow £200. You have it. Your gut reaction is...", opts: [
+      { t: "I feel guilty saying no but terrified of saying yes", c: "scarcity" },
+      { t: "I say yes immediately even though I resent it", c: "worthiness" },
+      { t: "I say yes, then spend the next week anxious about my account", c: "scarcity" },
+      { t: "I want to help but I feel like I need it more than they think", c: "consistency" }
     ]},
-    { q: "When you imagine having everything you want financially, what shows up first?", opts: [
-      { t: "Excitement, then a quiet 'but will it last?'", c: "consistency" },
-      { t: "Joy, then wondering if I deserve it", c: "worthiness" },
-      { t: "Relief, then fear it could all disappear", c: "scarcity" },
-      { t: "Happiness, then worry about what others will think", c: "visibility" }
+    { q: "You want to spoil your best friend for her birthday. You find the perfect gift — £150. You feel...", opts: [
+      { t: "Excited, then immediately calculating what I can't buy myself this month", c: "scarcity" },
+      { t: "Guilty — like I haven't earned the right to spend like this yet", c: "worthiness" },
+      { t: "Happy to do it but I'll secretly hope she reciprocates", c: "consistency" },
+      { t: "Resistant — £150 feels like too much even though I wish it didn't", c: "scarcity" }
     ]},
-    { q: "Your relationship with receiving money feels...", opts: [
-      { t: "Effortful — I have to work hard for every pound", c: "worthiness" },
-      { t: "Uncertain — it comes and goes without explanation", c: "consistency" },
-      { t: "Tense — I never feel like I have enough", c: "scarcity" },
-      { t: "Uncomfortable — I feel exposed having it", c: "visibility" }
+    { q: "You've been at the same income level for months. You want more. The story you tell yourself is...", opts: [
+      { t: "I work hard but money just doesn't flow easily to me", c: "scarcity" },
+      { t: "I haven't done enough to deserve a higher level yet", c: "worthiness" },
+      { t: "Good things come and go — I can't count on consistent growth", c: "consistency" },
+      { t: "I don't want to be seen as greedy or money-obsessed", c: "visibility" }
     ]},
-    { q: "When you spend money on yourself, you feel...", opts: [
-      { t: "Guilty — like I should be saving instead", c: "worthiness" },
-      { t: "Anxious — what if I need it later?", c: "scarcity" },
-      { t: "Watched — like someone will judge the choice", c: "visibility" },
-      { t: "Fine in the moment, then regretful", c: "consistency" }
+    { q: "Someone offers you a generous opportunity — more than you expected to receive. You think...", opts: [
+      { t: "There must be a catch — this is too good", c: "scarcity" },
+      { t: "Why me? There are people more qualified than I am", c: "worthiness" },
+      { t: "I'll believe it when the money is actually in my account", c: "consistency" },
+      { t: "What will people think if I suddenly have this?", c: "visibility" }
     ]},
-    { q: "The unlucky girl version of you around money says...", opts: [
-      { t: "'Money avoids me.'", c: "scarcity" },
-      { t: "'I always have to struggle for it.'", c: "worthiness" },
-      { t: "'Things never work out financially.'", c: "consistency" },
-      { t: "'People will judge me if I have too much.'", c: "visibility" }
+    { q: "You treat yourself to something expensive — a nice dinner, a luxury item. Afterwards you feel...", opts: [
+      { t: "Guilty — like I should have saved it", c: "scarcity" },
+      { t: "Like I hadn't quite earned it yet", c: "worthiness" },
+      { t: "Good in the moment, then anxious the next day", c: "consistency" },
+      { t: "Self-conscious — like someone will judge the choice", c: "visibility" }
     ]},
-    { q: "When a big financial opportunity appears, your first instinct is...", opts: [
-      { t: "Excitement, then 'what's the catch?'", c: "consistency" },
-      { t: "Hope, then 'am I really the right person for this?'", c: "worthiness" },
-      { t: "Interest, then 'what if it doesn't work out?'", c: "scarcity" },
-      { t: "Desire, then 'what will people think if I go for it?'", c: "visibility" }
+    { q: "When you imagine being genuinely wealthy — money that stays, that grows — it feels...", opts: [
+      { t: "Like a fantasy that happens to other people, not me", c: "scarcity" },
+      { t: "Possible only if I work harder than I currently do", c: "worthiness" },
+      { t: "Exciting but I don't trust it would last", c: "consistency" },
+      { t: "Slightly uncomfortable — I wouldn't know how to act", c: "visibility" }
     ]},
-    { q: "Money flowing to you with ease feels...", opts: [
-      { t: "Suspicious — there must be a cost somewhere", c: "scarcity" },
-      { t: "Unlikely — I'd have to do something to deserve it", c: "worthiness" },
-      { t: "Possible, but I can't quite picture it as my reality", c: "consistency" },
-      { t: "Uncomfortable — I'd feel too exposed having it", c: "visibility" }
+    { q: "Money arrives out of nowhere — an unexpected payment, a refund, a win. Your first feeling is...", opts: [
+      { t: "Relief, then immediately spending it before it disappears", c: "scarcity" },
+      { t: "Surprise — like it wasn't really meant for me", c: "worthiness" },
+      { t: "Happy, but I don't let myself get too used to it", c: "consistency" },
+      { t: "Fine, but I don't tell anyone — it feels too exposed", c: "visibility" }
     ]},
-    { q: "The Lucky Girl version of you around money assumes...", opts: [
-      { t: "Money finds me first — of course it does", c: "scarcity" },
-      { t: "I am someone money flows to easily and stays with", c: "worthiness" },
-      { t: "My income only goes up from here", c: "consistency" },
-      { t: "I receive abundantly and unapologetically", c: "visibility" }
+    { q: "The RichGirl version of you receives money easily, gives generously, and never panics about her account. Right now that feels...", opts: [
+      { t: "Like someone else's life — not available to me yet", c: "scarcity" },
+      { t: "Like something I have to earn my way into first", c: "worthiness" },
+      { t: "Possible in theory but I can't feel it as real", c: "consistency" },
+      { t: "Slightly terrifying — that level of visibility feels like a lot", c: "visibility" }
     ]}
   ],
   love: [
+    { q: "You meet someone you really like. Before long you start thinking...", opts: [
+      { t: "Is he interested in me or just being friendly?", c: "worthiness" },
+      { t: "There are prettier, more interesting girls he could choose", c: "comparison" },
+      { t: "Don't get too attached — it probably won't go anywhere", c: "safety" },
+      { t: "I need to be perfect right now or I'll lose this", c: "performance" }
+    ]},
+    { q: "He goes quiet for a day or two. Your gut says...", opts: [
+      { t: "He's losing interest — I probably did something wrong", c: "worthiness" },
+      { t: "Someone else has his attention now", c: "comparison" },
+      { t: "This always happens. Good things don't last for me.", c: "safety" },
+      { t: "I need to say or do something to bring him back", c: "performance" }
+    ]},
+    { q: "A guy chooses you — clearly, directly. Your first instinct is...", opts: [
+      { t: "Wait for him to realise he made a mistake", c: "worthiness" },
+      { t: "Wonder what he sees that I don't see in myself", c: "comparison" },
+      { t: "Stay a little guarded just in case it changes", c: "safety" },
+      { t: "Make sure I keep being whoever made him choose me", c: "performance" }
+    ]},
+    { q: "You see a girl your ex is now dating. She's beautiful. You feel...", opts: [
+      { t: "Like it confirms what I already feared — I wasn't enough", c: "worthiness" },
+      { t: "Like beauty is something I'm always losing to", c: "comparison" },
+      { t: "Like love always finds someone else more easily", c: "safety" },
+      { t: "Pressure to look better, do more, be more", c: "performance" }
+    ]},
     { q: "In relationships, you tend to...", opts: [
-      { t: "Give more than you receive, and call it love", c: "worthiness" },
-      { t: "Wait to be chosen rather than choose first", c: "safety" },
-      { t: "Worry that being 'too much' will push them away", c: "visibility" },
-      { t: "Stay a little guarded, just in case", c: "safety" }
+      { t: "Give more than you receive and call it love", c: "performance" },
+      { t: "Minimise your needs so he doesn't feel overwhelmed", c: "worthiness" },
+      { t: "Keep one foot out in case it doesn't work", c: "safety" },
+      { t: "Compare yourself to girls he's been with before", c: "comparison" }
     ]},
-    { q: "When someone chooses you, your first reaction is...", opts: [
-      { t: "Warmth, then quietly wondering what they want from me", c: "worthiness" },
-      { t: "Joy, then checking if it's too good to be true", c: "safety" },
-      { t: "Happiness, then wondering how long it will last", c: "consistency" },
-      { t: "Pleasure, then feeling exposed being seen that clearly", c: "visibility" }
+    { q: "Being truly chosen — without performing, without earning it — feels...", opts: [
+      { t: "Like something I have to work harder to deserve", c: "worthiness" },
+      { t: "Unlikely when there are women who are more everything than me", c: "comparison" },
+      { t: "Too good to be true — something would go wrong", c: "safety" },
+      { t: "Possible only when I'm at my best, not on an average day", c: "performance" }
     ]},
-    { q: "Your unlucky girl story around love says...", opts: [
-      { t: "'Nobody chooses me.'", c: "worthiness" },
-      { t: "'There are no good men.'", c: "safety" },
-      { t: "'Love always ends.'", c: "consistency" },
-      { t: "'Nobody really sees me.'", c: "visibility" }
+    { q: "You want love that feels safe, easy, and certain. Right now that feels...", opts: [
+      { t: "Like I haven't become the woman who gets that yet", c: "worthiness" },
+      { t: "Like other women have it naturally but I have to fight for it", c: "comparison" },
+      { t: "Like something I'm scared to want too loudly", c: "safety" },
+      { t: "Only possible if I stay on — always showing up perfectly", c: "performance" }
     ]},
-    { q: "Receiving love without earning it feels...", opts: [
-      { t: "Too good — I must be missing something", c: "safety" },
-      { t: "Undeserved — what did I do to warrant this?", c: "worthiness" },
-      { t: "Temporary — I keep waiting for it to change", c: "consistency" },
-      { t: "Uncomfortable — being loved fully feels exposing", c: "visibility" }
-    ]},
-    { q: "Attention from a partner makes you feel...", opts: [
-      { t: "Warm, but I wonder when it will shift", c: "consistency" },
-      { t: "Good, but I wonder if I truly deserve it", c: "worthiness" },
-      { t: "Seen, but slightly nervous about what comes next", c: "safety" },
-      { t: "Cared for, but uncomfortably visible", c: "visibility" }
-    ]},
-    { q: "The block that keeps love from feeling easy is...", opts: [
-      { t: "I don't feel worthy of being loved just as I am", c: "worthiness" },
-      { t: "I'm afraid of being hurt if I trust too much", c: "safety" },
-      { t: "I believe love always runs out eventually", c: "consistency" },
-      { t: "I'm afraid of being truly seen and then rejected", c: "visibility" }
-    ]},
-    { q: "Love arriving easily and staying would mean...", opts: [
-      { t: "Something must be wrong — it's not usually this simple", c: "safety" },
-      { t: "I must have finally done enough to deserve it", c: "worthiness" },
-      { t: "I'd spend energy waiting for it to end", c: "consistency" },
-      { t: "I'd feel too exposed and vulnerable", c: "visibility" }
-    ]},
-    { q: "Your Lucky Girl assumption about love is...", opts: [
-      { t: "He chooses me. Every time. Obviously.", c: "worthiness" },
-      { t: "Love is safe and it stays with me", c: "safety" },
-      { t: "The right person finds me right when they should", c: "consistency" },
-      { t: "Being fully seen is what makes me magnetic", c: "visibility" }
+    { q: "The Lovemaxxing version of you is chosen first, loved easily, and never competes. Right now that feels...", opts: [
+      { t: "Like I'm not quite the woman that happens to yet", c: "worthiness" },
+      { t: "Hard to believe when I compare myself to other women", c: "comparison" },
+      { t: "Like something beautiful that I'm scared to trust", c: "safety" },
+      { t: "Like I'd have to be perfect every day to maintain it", c: "performance" }
     ]}
   ],
   beauty: [
-    { q: "When you catch yourself in the mirror, the first thought is...", opts: [
-      { t: "Cataloguing what still needs to change", c: "acceptance" },
-      { t: "Comparing to how I looked before or want to look", c: "comparison" },
-      { t: "Checking if I'm 'enough' today", c: "worthiness" },
-      { t: "Moving on quickly without really seeing myself", c: "avoidance" }
+    { q: "You're getting ready to go out. You look in the mirror. The first thought is...", opts: [
+      { t: "I need to fix this before I leave", c: "acceptance" },
+      { t: "She would look so much better in this than I do", c: "comparison" },
+      { t: "I look okay but I wish I looked like I did two years ago", c: "acceptance" },
+      { t: "I move on quickly — I don't really let myself look", c: "avoidance" }
     ]},
-    { q: "Feeling beautiful in your body right now, as you are, feels...", opts: [
-      { t: "Conditional — I'll feel it when I hit my goal", c: "acceptance" },
-      { t: "Unlikely — others always look better", c: "comparison" },
-      { t: "Possible, but I haven't quite earned it yet", c: "worthiness" },
-      { t: "Uncomfortable — I don't like focusing on my body", c: "avoidance" }
+    { q: "Someone gorgeous walks into the room. You feel...", opts: [
+      { t: "Immediately aware of everything I wish I could change", c: "comparison" },
+      { t: "Fine — but slightly less confident than a second ago", c: "comparison" },
+      { t: "Inspired but also quietly deflated", c: "acceptance" },
+      { t: "Nothing — I've learned not to compare, I just go quiet", c: "avoidance" }
     ]},
-    { q: "Your unlucky girl story about your body or beauty says...", opts: [
-      { t: "'I need to fix this before I can feel good.'", c: "acceptance" },
-      { t: "'She looks better than me.'", c: "comparison" },
-      { t: "'I'm not naturally pretty.'", c: "worthiness" },
-      { t: "'Nobody notices me.'", c: "avoidance" }
+    { q: "Someone calls you beautiful. You...", opts: [
+      { t: "Deflect it — they're just being nice", c: "worthiness" },
+      { t: "Accept it, then immediately think of someone who's more beautiful", c: "comparison" },
+      { t: "Feel it for a second, then remember what still needs fixing", c: "acceptance" },
+      { t: "Feel uncomfortable — I don't like that kind of attention", c: "avoidance" }
     ]},
-    { q: "When someone calls you beautiful, you...", opts: [
-      { t: "Deflect or minimise it — they're just being kind", c: "worthiness" },
-      { t: "Accept it, then immediately compare to someone else", c: "comparison" },
-      { t: "Feel it briefly, then think of what still needs work", c: "acceptance" },
-      { t: "Feel uncomfortable being looked at that way", c: "avoidance" }
+    { q: "You're in a photo and you don't like how you look. You feel...", opts: [
+      { t: "Like I need to lose weight or change something before the next one", c: "acceptance" },
+      { t: "Like everyone else in the photo looks so much better", c: "comparison" },
+      { t: "Like I'll never look the way I want to in photos", c: "worthiness" },
+      { t: "Like deleting it — I'd rather not be seen like this", c: "avoidance" }
     ]},
-    { q: "Getting dressed or ready in the morning feels...", opts: [
-      { t: "Like a problem to solve — how do I hide what I don't like", c: "acceptance" },
-      { t: "Like a comparison game before I leave the house", c: "comparison" },
-      { t: "Like I'm trying to reach a standard I haven't hit yet", c: "worthiness" },
-      { t: "Neutral — I do it quickly and don't think about it", c: "avoidance" }
+    { q: "You post a photo of yourself. While waiting for responses you feel...", opts: [
+      { t: "Anxious — what if I don't get as many likes as her?", c: "comparison" },
+      { t: "Slightly exposed — what if they notice what I notice?", c: "avoidance" },
+      { t: "Okay but I'm already critiquing what I should have done differently", c: "acceptance" },
+      { t: "Like I had to look a certain way to justify posting at all", c: "worthiness" }
     ]},
-    { q: "The thing keeping you from feeling gorgeous right now is...", opts: [
-      { t: "I'm waiting until my body looks a certain way", c: "acceptance" },
-      { t: "There's always someone who looks better", c: "comparison" },
-      { t: "I don't feel like I was born naturally beautiful", c: "worthiness" },
-      { t: "I don't let myself focus on how I look", c: "avoidance" }
+    { q: "Feeling gorgeous in your body right now, exactly as you are, feels...", opts: [
+      { t: "Like something I'll earn when I hit my goal", c: "acceptance" },
+      { t: "Hard when there are women who are naturally so much more beautiful", c: "comparison" },
+      { t: "Like something I haven't quite deserved yet", c: "worthiness" },
+      { t: "Uncomfortable — I don't like thinking about my body that much", c: "avoidance" }
     ]},
-    { q: "If gorgeous was your default right now, you'd feel...", opts: [
-      { t: "Like a fraud — I haven't done the work to get there", c: "acceptance" },
-      { t: "Good, until I saw someone who made me doubt it", c: "comparison" },
-      { t: "Surprised — it doesn't feel available to me", c: "worthiness" },
-      { t: "Exposed and uncomfortable being seen that way", c: "avoidance" }
+    { q: "When you imagine being a woman who wakes up and just feels beautiful — no fixing needed — that feels...", opts: [
+      { t: "Like I'd have to change my body first", c: "acceptance" },
+      { t: "Like some women are just born like that — I wasn't", c: "comparison" },
+      { t: "Like something I haven't earned the right to feel yet", c: "worthiness" },
+      { t: "Like I'd feel too visible and I'm not sure I want that", c: "avoidance" }
     ]},
-    { q: "Your Lucky Girl assumption about beauty is...", opts: [
-      { t: "Gorgeous is my default. Always has been.", c: "acceptance" },
-      { t: "I am the most beautiful version of myself right now", c: "worthiness" },
-      { t: "I don't compare — I'm in a category of my own", c: "comparison" },
-      { t: "Being seen is safe. I glow and I let people notice.", c: "avoidance" }
+    { q: "The Beautymaxxing version of you wakes up gorgeous, stays gorgeous, and never competes. Right now that feels...", opts: [
+      { t: "Like a future version of me that requires a lot of work first", c: "acceptance" },
+      { t: "Like something that comes naturally to other women but not me", c: "comparison" },
+      { t: "Like I haven't done enough to step into that identity yet", c: "worthiness" },
+      { t: "Like being that visible would actually make me uncomfortable", c: "avoidance" }
     ]}
   ],
   self: [
-    { q: "When you picture the upgraded version of you, she feels...", opts: [
-      { t: "Real, but far away — I still have so much to do first", c: "readiness" },
-      { t: "Possible, but I worry I'll never quite get there", c: "worthiness" },
-      { t: "Exciting, but I'm afraid of what changes when she arrives", c: "safety" },
-      { t: "Clear, but I don't know if people will accept her", c: "visibility" }
+    { q: "You walk into a room full of successful people. You feel...", opts: [
+      { t: "Aware that I haven't achieved enough to belong here yet", c: "readiness" },
+      { t: "Like I'm not quite the calibre of person in this room", c: "worthiness" },
+      { t: "Excited, then quietly wondering if they'll see through me", c: "visibility" },
+      { t: "Good — until someone more impressive walks in", c: "safety" }
     ]},
-    { q: "When something great happens to you, your first instinct is...", opts: [
-      { t: "Wait for the other shoe to drop", c: "safety" },
-      { t: "Wonder if I actually deserve it", c: "worthiness" },
-      { t: "Feel it briefly, then doubt if it's really 'for me'", c: "readiness" },
-      { t: "Minimise it so others don't feel bad", c: "visibility" }
+    { q: "Someone introduces you and says something really impressive about you. You feel...", opts: [
+      { t: "Slightly fraudulent — like they've got me confused with who I'm becoming", c: "readiness" },
+      { t: "Like I need to qualify it — 'oh it's not that impressive'", c: "worthiness" },
+      { t: "Warm, then immediately worried I won't live up to it", c: "visibility" },
+      { t: "Good in the moment, then anxious about maintaining the image", c: "safety" }
     ]},
-    { q: "The upgraded version of you — what does she have that you feel you don't yet?", opts: [
-      { t: "Permission to take up space fully", c: "visibility" },
-      { t: "Certainty that she's enough exactly as she is", c: "worthiness" },
-      { t: "The feeling that she's finally ready", c: "readiness" },
-      { t: "Safety to be herself without consequence", c: "safety" }
+    { q: "You have a big opportunity in front of you. The voice that holds you back says...", opts: [
+      { t: "You're not ready yet — do more prep first", c: "readiness" },
+      { t: "Who do you think you are? There are better people for this", c: "worthiness" },
+      { t: "What if everyone sees you fail publicly?", c: "visibility" },
+      { t: "What if you get it and then lose it?", c: "safety" }
     ]},
-    { q: "Your unlucky girl story about yourself says...", opts: [
-      { t: "'I'm not there yet.'", c: "readiness" },
-      { t: "'I'm not the kind of person who gets that.'", c: "worthiness" },
-      { t: "'Good things don't stay for people like me.'", c: "safety" },
-      { t: "'People don't really see or value me.'", c: "visibility" }
+    { q: "You think about the upgraded version of you — fully in her power. She feels...", opts: [
+      { t: "Real but far — I still have so much to do before I'm her", c: "readiness" },
+      { t: "Like a version I haven't earned the right to be yet", c: "worthiness" },
+      { t: "Exciting but also terrifying — she's very visible", c: "visibility" },
+      { t: "Like something I'm scared to want too loudly in case it doesn't happen", c: "safety" }
     ]},
-    { q: "When you imagine stepping fully into your dream life, what holds you back?", opts: [
-      { t: "I don't feel ready yet — I need to do more first", c: "readiness" },
-      { t: "I'm not sure I'm worthy of that version of life", c: "worthiness" },
-      { t: "I'm afraid of what I might lose or what might change", c: "safety" },
-      { t: "I worry about standing out or being judged", c: "visibility" }
+    { q: "When things are going really well in your life, you feel...", opts: [
+      { t: "Like I'm not quite ready for this level yet", c: "readiness" },
+      { t: "Like I don't fully deserve it", c: "worthiness" },
+      { t: "Exposed — like more people are watching and I could mess up", c: "visibility" },
+      { t: "Happy, but already waiting for it to end", c: "safety" }
     ]},
-    { q: "Choosing yourself — your desires, your pace, your standards — feels...", opts: [
-      { t: "Premature — I'll do that when I've earned the right", c: "readiness" },
-      { t: "Selfish — I haven't done enough to justify it yet", c: "worthiness" },
-      { t: "Risky — I might upset people or lose them", c: "safety" },
-      { t: "Exposing — I'd have to be fully visible to do it", c: "visibility" }
+    { q: "Choosing yourself — your standards, your pace, your desires — feels...", opts: [
+      { t: "Like something I'll do when I've achieved more first", c: "readiness" },
+      { t: "Like I haven't done enough to justify it yet", c: "worthiness" },
+      { t: "Like it would make me look arrogant or difficult", c: "visibility" },
+      { t: "Risky — what if I lose people who are used to the old me?", c: "safety" }
     ]},
-    { q: "If the upgraded version of you arrived today, you'd feel...", opts: [
-      { t: "Like a fraud — I haven't done enough to be her yet", c: "readiness" },
-      { t: "Surprised — I don't feel worthy of that identity", c: "worthiness" },
-      { t: "Anxious — what if it doesn't stick or I lose it?", c: "safety" },
-      { t: "Exposed — she's a lot more visible than I'm used to", c: "visibility" }
+    { q: "Being fully seen — your ambition, your desires, your power — feels...", opts: [
+      { t: "Like something I'll allow when I'm more ready", c: "readiness" },
+      { t: "Like something I have to earn the right to first", c: "worthiness" },
+      { t: "Genuinely terrifying — I've always stayed a bit under the radar", c: "visibility" },
+      { t: "Like it could change relationships I'm not ready to lose", c: "safety" }
     ]},
-    { q: "Your Lucky Girl assumption about yourself is...", opts: [
-      { t: "I am the upgraded version. She is here now.", c: "readiness" },
-      { t: "I am exactly worthy of everything I desire", c: "worthiness" },
-      { t: "Good things are safe with me. They stay.", c: "safety" },
-      { t: "Being fully seen is my superpower", c: "visibility" }
+    { q: "The Selfmaxxing version of you takes up space, owns her power, and never shrinks. Right now that feels...", opts: [
+      { t: "Like a future version — I'm not quite there yet", c: "readiness" },
+      { t: "Like something I need to achieve more to deserve", c: "worthiness" },
+      { t: "Incredible but also very exposed and vulnerable", c: "visibility" },
+      { t: "Like she might lose the people who like the smaller version of me", c: "safety" }
     ]}
   ]
 };
+
 
 const RESULTS = {
   money: {
