@@ -7,7 +7,7 @@ const OMBRE="linear-gradient(135deg,#fce4c0 0%,#C8960A 50%,#2CB7A7 100%)";
 
 const THREADS = [
   { desire:"He texts me first", cat:"Lovemaxxing", catColor:"#d4789a", catBg:"rgba(212,120,154,0.12)", days:14, done:true, signs:3, track:"He Finds His Way Back" },
-  { desire:"£1,800 received. Paid by client.", cat:"Moneymaxxing", catColor:"#2CB7A7", catBg:"rgba(44,183,167,0.12)", days:6, done:false, signs:2, track:"Money Finds Me First" },
+  { desire:"£1,800 received. Paid by client.", cat:"Richgirlmaxxing", catColor:"#2CB7A7", catBg:"rgba(44,183,167,0.12)", days:6, done:false, signs:2, track:"Money Finds Me First" },
   { desire:"My skin is glowing", cat:"Beautymaxxing", catColor:"#c4856a", catBg:"rgba(196,133,106,0.12)", days:3, done:false, signs:1, track:"Gorgeous Is My Default" },
   { desire:"I am a lucky girl", cat:"Luckygirlmaxxing", catColor:"#9b87c4", catBg:"rgba(155,135,196,0.12)", days:7, done:true, signs:4, track:"Lucky Girl Summer" },
 ];
