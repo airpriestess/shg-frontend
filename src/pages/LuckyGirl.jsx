@@ -239,10 +239,10 @@ export default function LuckyGirl() {
             <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000", marginBottom: 20 }}>✦ Your Lucky Girl block ✦</div>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(44px,8vw,80px)", lineHeight: 1.0, color: "#000", letterSpacing: "-.02em" }}>{result.block}</h2>
           </div>
-          <div style={{ maxWidth: 560, margin: "0 auto", padding: "40px 24px 80px", textAlign: "center" }}>
-            <div style={{ background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
+          <div style={{ maxWidth: 560, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" }}>
+            <div style={{ background: "rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.15)", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
               <div style={{ fontSize: 12, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14 }}>The assumption running your life</div>
-              <div style={{ fontSize: 20, color: "#f2ece4", fontStyle: "italic", lineHeight: 1.8 }}>{result.old}</div>
+              <div style={{ fontSize: 20, color: "#000", fontStyle: "italic", lineHeight: 1.8 }}>{result.old}</div>
             </div>
             <div style={{ borderRadius: 16, padding: 36, marginBottom: 16, textAlign: "center", background: LG }}>
               <div style={{ fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Your new assumption</div>
@@ -250,7 +250,7 @@ export default function LuckyGirl() {
             </div>
             <div style={{ background: "#0a0a0a", border: "1px solid #222", borderRadius: 16, padding: 28, marginBottom: 32, textAlign: "left" }}>
               <div style={{ fontSize: 12, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14 }}>Your 21-night ritual</div>
-              <div style={{ fontSize: 19, color: "#f2ece4", lineHeight: 1.85 }}>{RITUAL}</div>
+              <div style={{ fontSize: 19, color: "#000", lineHeight: 1.85 }}>{RITUAL}</div>
             </div>
             <p style={{ fontSize: 18, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for — hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
             <div style={{ background: LG, borderRadius: 20, padding: "40px 28px", marginBottom: 16, textAlign: "center" }}>
