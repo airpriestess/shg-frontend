@@ -260,7 +260,22 @@ export default function LuckyGirl() {
               <div style={{ fontSize: 19, color: "#f2ece4", lineHeight: 1.85 }}>{RITUAL}</div>
             </div>
             <p style={{ fontSize: 18, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for — hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
-            <a href="/" style={{ display: "inline-block", border: "none", borderRadius: 40, padding: "22px 56px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", background: LG, textDecoration: "none" }}>Explore Self Hypnosis Goddess</a>
+            <div style={{ background: LG, borderRadius: 20, padding: "36px 28px", marginBottom: 16, textAlign: "center" }}>
+              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>✦ The next step ✦</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,40px)", color: "#000", fontWeight: 400, lineHeight: 1.2, marginBottom: 16 }}>Lucky Girl Maxxing</div>
+              <div style={{ fontSize: 16, color: "#000", lineHeight: 1.7, marginBottom: 8 }}>21 days to become the woman good things happen to.</div>
+              <div style={{ fontSize: 14, color: "rgba(0,0,0,0.7)", lineHeight: 1.7, marginBottom: 28, maxWidth: 400, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
+              <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noreferrer"
+                style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 48px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
+                Get the workbook — £37
+              </a>
+            </div>
+            <div style={{ border: "1px solid #222", borderRadius: 16, padding: "24px 28px", textAlign: "center" }}>
+              <div style={{ fontSize: 14, color: "#f2ece4", lineHeight: 1.7, marginBottom: 16 }}>Want the audio that rewires this assumption while you sleep?</div>
+              <a href="/" style={{ display: "inline-block", border: "1px solid #E8B870", borderRadius: 40, padding: "16px 36px", color: "#E8B870", fontFamily: "'Jost', sans-serif", fontSize: 15, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
+                Explore Self Hypnosis Goddess
+              </a>
+            </div>
           </div>
         </>
       )}
