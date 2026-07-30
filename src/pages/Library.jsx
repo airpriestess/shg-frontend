@@ -27,11 +27,11 @@ const CATEGORIES = [
     shift: "From waiting to begin — to feeling like your life is already full."
   },
   {
-    name: "Moneymaxxing",
+    name: "Richgirlmaxxing",
     accent: "#E8B870",
     tagline: "Money doesn't go to the most deserving. It goes to the most believing.",
     pain: "You work hard. You do everything right. And the money still feels like it's always just slightly out of reach — or it arrives and disappears. You feel guilty spending. You feel anxious not spending. You equate money with stress, with struggle, with things that aren't meant for you.",
-    what: "Moneymaxxing targets the subconscious identity underneath your bank balance. The one that was installed before you were old enough to question it. Every track runs subliminals that say you are the kind of person money moves toward — not as a treat, as a default.",
+    what: "Richgirlmaxxing targets the subconscious identity underneath your bank balance. The one that was installed before you were old enough to question it. Every track runs subliminals that say you are the kind of person money moves toward — not as a treat, as a default.",
     shift: "From feeling like money is something you fight for — to feeling like it's already looking for you."
   },
   {
