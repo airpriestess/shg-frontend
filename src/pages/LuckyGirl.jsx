@@ -96,7 +96,7 @@ export default function LuckyGirl() {
     if (!name.trim()) { setEmailError("Just need your first name."); return; }
     if (!/\S+@\S+\.\S+/.test(email)) { setEmailError("That email doesn't look right."); return; }
     setEmailError("");
-    setPhase("quiz");
+    setPhase("intro");
     window.scrollTo(0, 0);
   }
 
@@ -172,6 +172,46 @@ export default function LuckyGirl() {
             <button style={{ width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#fff", background: "#000", display: "block" }}
               onClick={submitEmail}>Find my block</button>
           </div>
+        </div>
+      )}
+
+
+      {/* INTRO — unlucky vs lucky definition */}
+      {phase === "intro" && (
+        <div style={{ background: "#000", minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px 80px" }}>
+          <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#E8B870", marginBottom: 32, textAlign: "center" }}>✦ Before we begin ✦</div>
+          <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(28px,5vw,44px)", color: "#f2ece4", textAlign: "center", marginBottom: 48, letterSpacing: "-.01em", lineHeight: 1.1 }}>Two women. Same world.<br/>Different operating system.</h2>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 640, width: "100%", marginBottom: 48 }}>
+            {/* Unlucky Girl */}
+            <div style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 16, padding: "28px 20px" }}>
+              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#5a5048", marginBottom: 16 }}>Her unlucky universe</div>
+              {["Nobody chooses me.", "Money avoids me.", "Things never work out.", "I'm always too late.", "I never win.", "People forget me."].map((t, i) => (
+                <div key={i} style={{ fontSize: 15, color: "#5a5048", fontStyle: "italic", lineHeight: 2, fontFamily: "'Cormorant Garamond', serif" }}>"{t}"</div>
+              ))}
+            </div>
+
+            {/* Lucky Girl */}
+            <div style={{ background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius: 16, padding: "28px 20px" }}>
+              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Her lucky universe</div>
+              {["I always get upgraded.", "Money finds me.", "The universe rushes to meet me.", "I arrive at the perfect time.", "Opportunities chase me.", "People adore helping me."].map((t, i) => (
+                <div key={i} style={{ fontSize: 15, color: "#000", fontStyle: "italic", lineHeight: 2, fontFamily: "'Cormorant Garamond', serif" }}>"{t}"</div>
+              ))}
+            </div>
+          </div>
+
+          <p style={{ fontSize: 17, color: "#f2ece4", textAlign: "center", maxWidth: 480, lineHeight: 1.7, marginBottom: 12 }}>
+            A Lucky Girl isn't luckier. Her subconscious just expects different things.
+          </p>
+          <p style={{ fontSize: 15, color: "#E8B870", textAlign: "center", maxWidth: 440, lineHeight: 1.7, marginBottom: 40 }}>
+            This quiz finds the assumption blocking yours.
+          </p>
+
+          <button
+            onClick={() => { setPhase("quiz"); window.scrollTo(0, 0); }}
+            style={{ border: "none", borderRadius: 40, padding: "22px 56px", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" }}>
+            Find my block
+          </button>
         </div>
       )}
 
