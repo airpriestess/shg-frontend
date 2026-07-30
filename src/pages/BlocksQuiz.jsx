@@ -321,7 +321,7 @@ export default function BlocksQuiz() {
   }
 
   const base = { background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" };
-  const inputStyle = { width: "100%", background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 14, padding: "20px 22px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" };
+  const inputStyle = { width: "100%", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 14, padding: "20px 22px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" };
   const btnStyle = { width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG, display: "block" };
   const optStyle = { background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14, padding: "22px 24px", color: "#dcc8b8", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer", lineHeight: 1.6, width: "100%", marginBottom: 10 };
 
@@ -338,14 +338,14 @@ export default function BlocksQuiz() {
       </nav>
 
       {phase === "landing" && (
-        <div style={{ textAlign: "center", padding: "64px 24px 48px" }}>
+        <div style={{ textAlign: "center", padding: "64px 24px 48px", background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" }}>
           <div style={{ display: "inline-block", fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>
             ✦ {cat.label} ✦
           </div>
-          <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#f2ece4", marginBottom: 16, letterSpacing: "-.02em" }}>
+          <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#000", marginBottom: 16, letterSpacing: "-.02em" }}>
             What's blocking your<br/>{cat.name} era?
           </h1>
-          <p style={{ fontSize: 17, color: "#c8beb8", lineHeight: 1.7, maxWidth: 420, margin: "20px auto 48px" }}>
+          <p style={{ fontSize: 17, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, maxWidth: 420, margin: "20px auto 48px" }}>
             8 questions. Your invisible block — named, and replaced.
           </p>
           <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 24px" }}>
