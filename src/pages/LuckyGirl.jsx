@@ -156,7 +156,7 @@ export default function LuckyGirl() {
       {/* LANDING — full LG gradient background */}
       {phase === "landing" && (
         <div style={{ background: LG, minHeight: "calc(100vh - 61px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "64px 24px 80px", textAlign: "center" }}>
-          <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, color: "rgba(0,0,0,0.5)" }}>
+          <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, color: "#000" }}>
             ✦ Free diagnostic ✦
           </div>
           <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,80px)", lineHeight: 1.05, color: "#000", marginBottom: 16, letterSpacing: "-.02em", maxWidth: 700 }}>
@@ -208,18 +208,18 @@ export default function LuckyGirl() {
           </div>
           <div style={{ maxWidth: 560, margin: "0 auto", padding: "40px 24px 80px", textAlign: "center" }}>
             <div style={{ background: "#0a0a0a", border: "1px solid #222", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
-              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#f2ece4", marginBottom: 12 }}>The assumption running your life</div>
+              <div style={{ fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 12 }}>The assumption running your life</div>
               <div style={{ fontSize: 17, color: "#f2ece4", fontStyle: "italic", lineHeight: 1.8 }}>{result.old}</div>
             </div>
             <div style={{ borderRadius: 16, padding: 36, marginBottom: 16, textAlign: "center", background: LG }}>
-              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Your new assumption</div>
+              <div style={{ fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Your new assumption</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(24px,4.5vw,36px)", color: "#000", fontWeight: 400, lineHeight: 1.3 }}>{result.new}</div>
             </div>
             <div style={{ background: "#0a0a0a", border: "1px solid #222", borderRadius: 16, padding: 28, marginBottom: 32, textAlign: "left" }}>
-              <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#f2ece4", marginBottom: 12 }}>Your 21-night ritual</div>
+              <div style={{ fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 12 }}>Your 21-night ritual</div>
               <div style={{ fontSize: 16, color: "#f2ece4", lineHeight: 1.85 }}>{RITUAL}</div>
             </div>
-            <p style={{ fontSize: 15, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio does — hypnosis, subliminals, and binaural beats that replace this assumption while you sleep, until your nervous system accepts it as fact.</p>
+            <p style={{ fontSize: 15, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for — hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
             <a href="/" style={{ display: "inline-block", border: "none", borderRadius: 40, padding: "20px 48px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", background: LG, textDecoration: "none" }}>Explore Self Hypnosis Goddess</a>
           </div>
         </>
