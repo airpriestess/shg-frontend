@@ -177,7 +177,7 @@ function LibraryBanner({ isMobile, onLegal }) {
       >
         {/* Text — centered, black on Lucky Girl gradient background */}
         <div style={{ flex:1, maxWidth:720, textAlign:"center" }}>
-          <div style={{ fontSize: isMobile?11:12, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{cat.name}</div>
+          <div style={{ fontSize: isMobile?11:12, fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{cat.name}</div>
           <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(24px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{cat.affirmation}</div>
         </div>
 
@@ -197,7 +197,7 @@ function LibraryBanner({ isMobile, onLegal }) {
           const idleBg = isEven ? "#000" : "#f2ece4";
           const idleColor = isEven ? "rgba(242,236,228,0.5)" : "rgba(0,0,0,0.5)";
           return (
-            <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 14px":"7px 18px", borderRadius:20, border: isActive?"none":`1px solid ${isEven?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`, background: isActive?LGb:idleBg, color: isActive?"#000":idleColor, fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: isActive?600:400, transition:"all 0.25s", whiteSpace:"nowrap" }}>
+            <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 14px":"7px 18px", borderRadius:20, border: isActive?"none":`1px solid ${isEven?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`, background: isActive?LGb:idleBg, color: isActive?"#000":idleColor, fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight:400, transition:"all 0.25s", whiteSpace:"nowrap" }}>
               {ct.name}
             </button>
           );
