@@ -23,7 +23,7 @@ const CAT_ICONS = {
   Facemaxxing: { accent:"#2CB7A7", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/>' },
   Bodymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#2CB7A7", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Moneymaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Richgirlmaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Businessmaxxing: { accent:"#E8B870", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Desiresmaxxing: { accent:"#E8B870", icon:'<path d="M32 14 C32 14 20 22 20 32 C20 38.6 25.4 44 32 44 C38.6 44 44 38.6 44 32 C44 22 32 14 32 14Z M26 30 L32 24 L38 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#167A6B", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
@@ -50,12 +50,12 @@ const TRACKS = [
   { title:"Seduced Focus",                      cat:"Selfmaxxing" },
   { title:"Spoilt Goddess",                     cat:"Selfmaxxing" },
   { title:"He Finds His Way Back",              cat:"Lovemaxxing" },
-  { title:"Money Finds Me First",               cat:"Moneymaxxing" },
+  { title:"Money Finds Me First",               cat:"Richgirlmaxxing" },
   { title:"While I Sleep I Manifest",           cat:"Sleepmaxxing" },
   { title:"10 Years Into One Hour",             cat:"Healmaxxing" },
 ];
 
-const FEATURED_CATS = ["Lovemaxxing","Moneymaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
+const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
 const NAV_ITEMS = [["Home","●",true],["Search","○",false],["Library","☰",false],["ProofOS ✦","✓",false],["Analytics","▦",false]];
 
 function Thumb({ cat, size }) {
