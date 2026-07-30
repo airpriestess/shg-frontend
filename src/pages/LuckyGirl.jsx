@@ -189,7 +189,7 @@ export default function LuckyGirl() {
       <nav style={s.nav}>
         <div style={s.navLeft}>
           <LogoMark/>
-          <span style={s.navName}>Reshma Oracle</span>
+          <span style={s.navName}>Self Hypnosis Goddess</span>
         </div>
         {phase !== "landing" && (
           <button
