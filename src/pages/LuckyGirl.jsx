@@ -192,9 +192,9 @@ export default function LuckyGirl() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 640, width: "100%", marginBottom: 48 }}>
             {/* Unlucky Girl */}
             <div style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 16, padding: "28px 20px" }}>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#5a5048", marginBottom: 16 }}>Her unlucky universe</div>
+              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#f2ece4", marginBottom: 16 }}>Her unlucky universe</div>
               {["Nobody chooses me.", "Money avoids me.", "Things never work out.", "I'm always too late.", "I never win.", "People forget me."].map((t, i) => (
-                <div key={i} style={{ fontSize: 15, color: "#5a5048", fontStyle: "italic", lineHeight: 2, fontFamily: "'Cormorant Garamond', serif" }}>"{t}"</div>
+                <div key={i} style={{ fontSize: 17, color: "#f2ece4", fontStyle: "normal", lineHeight: 2, fontFamily: "'Jost', sans-serif", fontWeight: 300 }}>"{t}"</div>
               ))}
             </div>
 
@@ -202,7 +202,7 @@ export default function LuckyGirl() {
             <div style={{ background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius: 16, padding: "28px 20px" }}>
               <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>Her lucky universe</div>
               {["I always get upgraded.", "Money finds me.", "The universe rushes to meet me.", "I arrive at the perfect time.", "Opportunities chase me.", "People adore helping me."].map((t, i) => (
-                <div key={i} style={{ fontSize: 15, color: "#000", fontStyle: "italic", lineHeight: 2, fontFamily: "'Cormorant Garamond', serif" }}>"{t}"</div>
+                <div key={i} style={{ fontSize: 17, color: "#000", fontStyle: "normal", lineHeight: 2, fontFamily: "'Jost', sans-serif", fontWeight: 300 }}>"{t}"</div>
               ))}
             </div>
           </div>
