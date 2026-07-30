@@ -189,6 +189,17 @@ export default function LuckyGirl() {
           <div style={{ maxWidth: 680, margin: "0 auto" }}>
 
             {/* Heading */}
+            <div style={{ textAlign: "center", marginBottom: 32 }}>
+              <svg width="48" height="48" viewBox="0 0 28 28" fill="none" style={{ marginBottom: 20 }}>
+                <defs><linearGradient id="lgintro" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="22%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                <circle cx="10" cy="10" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
+                <circle cx="18" cy="10" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
+                <circle cx="10" cy="18" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
+                <circle cx="18" cy="18" r="7" stroke="url(#lgintro)" strokeWidth="1.5" fill="none"/>
+                <line x1="14" y1="22" x2="14" y2="27" stroke="url(#lgintro)" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#E8B870", marginBottom: 16 }}>Self Hypnosis Goddess</div>
+            </div>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(32px,6vw,56px)", color: "#f2ece4", textAlign: "center", marginBottom: 48, letterSpacing: "-.02em", lineHeight: 1.05 }}>Two women. Same world.<br/>Different operating system.</h2>
 
             {/* Definition box */}
@@ -208,12 +219,39 @@ export default function LuckyGirl() {
 
             {/* Equation */}
             <div style={{ border: "1px solid #2a2a2a", borderRadius: 16, padding: "22px 28px", marginBottom: 28, textAlign: "center" }}>
-              <div style={{ fontSize: "clamp(14px,2.5vw,18px)", fontWeight: 500, letterSpacing: ".08em", color: "#f2ece4" }}>
+              <div style={{ fontSize: "clamp(14px,2.5vw,18px)", fontWeight: 500, letterSpacing: ".08em", color: "#f2ece4", marginBottom: 24 }}>
                 <span style={{ color: "#E8B870" }}>ASSUMPTION</span>
                 {" × "}
                 <span style={{ color: "#BFA5D8" }}>REPETITION</span>
                 {" = "}
                 <span style={{ color: "#2CB7A7" }}>IDENTITY</span>
+              </div>
+              {/* Assumption chain diagram - from workbook */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
+                {[
+                  { label: "ASSUMPTION", color: "#E8B870" },
+                  { label: "FAMILIARITY", color: "#BFA5D8" },
+                  { label: "EXPECTATION", color: "#2CB7A7" },
+                  { label: "REALITY", color: "#F5E0A0", icon: true }
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ textAlign: "center" }}>
+                      {item.icon ? (
+                        <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
+                          <defs><linearGradient id={"rg"+i} x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="50%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#2CB7A7"/></linearGradient></defs>
+                          <circle cx="10" cy="10" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
+                          <circle cx="18" cy="10" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
+                          <circle cx="10" cy="18" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
+                          <circle cx="18" cy="18" r="7" stroke={"url(#rg"+i+")"} strokeWidth="1.5" fill="none"/>
+                        </svg>
+                      ) : (
+                        <div style={{ width: 32, height: 32, borderRadius: "50%", border: "1.5px solid " + item.color, display: "flex", alignItems: "center", justifyContent: "center" }}/>
+                      )}
+                      <div style={{ fontSize: 9, letterSpacing: ".1em", color: item.color, marginTop: 6, textTransform: "uppercase" }}>{item.label}</div>
+                    </div>
+                    {i < 3 && <div style={{ color: "#3a3a3a", fontSize: 18, marginBottom: 14 }}>→</div>}
+                  </div>
+                ))}
               </div>
             </div>
 
