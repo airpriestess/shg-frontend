@@ -270,8 +270,8 @@ export default function LuckyGirl() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 40 }}>
               <div style={{ background: "#080808", border: "1px solid #1a1a1a", borderRadius: 16, padding: "24px 20px" }}>
                 <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "#f2ece4", marginBottom: 16 }}>Her unlucky universe</div>
-                {['"Nobody chooses me."', '"Money avoids me."', '"Things never work out."', '"I'm always too late."', '"I never win."', '"People forget me."'].map((t, i) => (
-                  <div key={i} style={{ fontSize: 15, color: "#f2ece4", lineHeight: 2, fontWeight: 300 }}>{t}</div>
+                {["Nobody chooses me.", "Money avoids me.", "Things never work out.", "I am always too late.", "I never win.", "People forget me."].map((t, i) => (
+                  <div key={i} style={{ fontSize: 15, color: "#f2ece4", lineHeight: 2, fontWeight: 300 }}>"{t}"</div>
                 ))}
                 <img src="/wb_unlucky_universe.png" alt="Her Unlucky Universe" style={{ width: "100%", borderRadius: 8, marginTop: 16, opacity: 0.85 }}/>
               </div>
