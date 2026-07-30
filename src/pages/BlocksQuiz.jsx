@@ -319,7 +319,7 @@ export default function BlocksQuiz() {
   }
 
   const base = { background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" };
-  const inputStyle = { width: "100%", background: "rgba(0,0,0,0.2)", border: "1px solid rgba(0,0,0,0.25)", borderRadius: 14, padding: "20px 22px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" };
+  const inputStyle = { width: "100%", background: "rgba(255,255,255,0.9)", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 14, padding: "20px 22px", color: "#000", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" };
   const btnStyle = { width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG, display: "block" };
   const optStyle = { background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14, padding: "22px 24px", color: "#dcc8b8", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer", lineHeight: 1.6, width: "100%", marginBottom: 10 };
 
@@ -344,7 +344,7 @@ export default function BlocksQuiz() {
             <input style={inputStyle} placeholder="First name" value={name} onChange={e => setName(e.target.value)}/>
             <input style={inputStyle} placeholder="Email address" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
             {emailError && <p style={{ color: "#BFA5D8", fontSize: 13, marginBottom: 10 }}>{emailError}</p>}
-            <button style={btnStyle} onClick={submitEmail}>Find my {category} block</button>
+            <button style={btnStyle} onClick={submitEmail}>Find my block</button>
           </div>
         </div>
       )}
