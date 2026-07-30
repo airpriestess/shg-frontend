@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const CATEGORIES = [
-  { key: "money", name: "Moneymaxxing", desc: "Why money keeps slipping through your hands", color: "#E8B870", url: "/blocks/money" },
+  { key: "money", name: "RichGirlMaxxing", desc: "Why wealth keeps slipping through your hands", color: "#E8B870", url: "/blocks/money" },
   { key: "love", name: "Lovemaxxing", desc: "Why love feels conditional or hard to keep", color: "#BFA5D8", url: "/blocks/love" },
   { key: "beauty", name: "Beautymaxxing", desc: "Why gorgeous feels like something you're still working towards", color: "#F5E0A0", url: "/blocks/beauty" },
   { key: "self", name: "Selfmaxxing", desc: "Why the upgraded version of you feels just out of reach", color: "#2CB7A7", url: "/blocks/self" }
