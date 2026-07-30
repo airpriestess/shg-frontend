@@ -846,9 +846,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         {/* Main */}
         <div style={{ flex:1,overflowY:"auto",background:isDark?(TAB_WASH[tab]?.dark||C.bg):C.bg,paddingBottom:20,backgroundImage:isDark?LG_FADE:LG_FADE_LIGHT }}>
           <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
+            <style>{`.shg-home-search::placeholder{color:${C.cr};opacity:0.55;}`}</style>
             <div style={{ maxWidth:360,position:"relative" }}>
               <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:16,color:C.dim }}>⌕</span>
               <input
+                className="shg-home-search"
                 value={searchQ}
                 onChange={e=>{setQ(e.target.value); setTab("search");}}
                 placeholder="What do you want to play?"
@@ -1343,10 +1345,11 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
   }) : tracks;
   return (
     <div style={{ padding:"16px 16px 0" }}>
+      <style>{`.shg-search-input::placeholder{color:${C.inputCr};opacity:0.55;}`}</style>
       <div style={{ fontSize:20,fontWeight:400,marginBottom:14,color:C.cr }}>Search</div>
       <div style={{ display:"flex",alignItems:"center",gap:10,background:C.inputBg,borderRadius:10,padding:"10px 14px",marginBottom:16 }}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.dim} strokeWidth="2.5" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input value={searchQ} onChange={e=>setQ(e.target.value)} placeholder="Tracks, categories, desires…"
+        <input className="shg-search-input" value={searchQ} onChange={e=>setQ(e.target.value)} placeholder="Tracks, categories, desires…"
           style={{ border:"none",background:"transparent",flex:1,fontSize:16,color:C.inputCr,outline:"none",fontFamily:"'Jost',sans-serif"}}/>
         {searchQ && <button onClick={()=>setQ("")} style={{ background:"none",border:"none",color:C.dim,fontSize:18,cursor:"pointer",lineHeight:1 }}>✕</button>}
       </div>
