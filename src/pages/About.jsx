@@ -6,7 +6,7 @@ import HamburgerMenu from "../components/HamburgerMenu.jsx";
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const CREAM = "#fdf0e8";
 const BLACK = "#000000";
-const ROSE  = "#B76E79";
+const LG_TEAL  = "#167A6B";
 
 export default function About({ onBack }) {
   const navigate = useNavigate();
@@ -108,7 +108,7 @@ export default function About({ onBack }) {
       {/* ── THE BUILD — black, two-col on desktop ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(52px,14vw,80px)":"clamp(72px,8vw,120px)", fontWeight:800, color:"#ffffff", lineHeight:0.92, letterSpacing:"-0.03em", marginBottom:56, textAlign:"center", textTransform:"uppercase" }}>Why this<br/>exists</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(38px,10vw,56px)":"clamp(52px,5.5vw,80px)", fontWeight:400, color:"#ffffff", lineHeight:1.05, letterSpacing:"-0.02em", marginBottom:56, textAlign:"center" }}>Why this<br/>exists</h2>
 
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
             {[
@@ -127,8 +127,8 @@ export default function About({ onBack }) {
               {
                 accent:"#2CB7A7",
                 year:"Why I built it",
-                head:"I needed it to exist, so I made it.",
-                body:"I spent years running live meditations and writing hypnosis scripts. The results were real — but only while I was in the room. The moment the session ended, so did the shift. I needed something that stayed. Something with a real voice, real EMDR, real binaural layering — not AI, not generic. So I built it for myself first.",
+                head:"I started this journey for myself, and then I realised — holy shit, everyone needs help with this.",
+                body:"I spent years running live meditations and writing hypnosis scripts. The results were real — but only while I was in the room. The moment the session ended, so did the shift. I needed something that stayed. Something with a real voice, real EMDR, real binaural layering — not AI, not generic. So I built it for myself first. And then I realised what I'd built wasn't just for me.",
               },
               {
                 accent:"#F5E0A0",
@@ -151,10 +151,9 @@ export default function About({ onBack }) {
       {/* ── THE PHILOSOPHY — LG gradient ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:640, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(44px,5vw,64px)", fontWeight:800, color:BLACK, lineHeight:1, letterSpacing:"-0.02em", textTransform:"uppercase", marginBottom:36 }}>What I actually believe</h2>
-          <blockquote style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(24px,6.5vw,34px)":"clamp(28px,3vw,40px)", color:BLACK, lineHeight:1.4, fontWeight:400, margin:"0 0 32px" }}>
-            "I am delusional about everything.<br/>And I am proud of it."
-          </blockquote>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(32px,8.5vw,44px)":"clamp(40px,4.2vw,56px)", fontWeight:400, color:BLACK, lineHeight:1.15, letterSpacing:"-0.01em", marginBottom:36 }}>
+            "I'm delusional, and I know it."
+          </h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.8, marginBottom:20 }}>
             I don't care how logical the world is. I choose to live in my magical version of it — and that is exactly how I am able to manifest the things I manifest.
           </p>
@@ -170,12 +169,15 @@ export default function About({ onBack }) {
       {/* ── WHAT I MAKE — black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto", textAlign:"center" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(44px,5vw,64px)", fontWeight:800, color:"#ffffff", lineHeight:1, letterSpacing:"-0.02em", textTransform:"uppercase", marginBottom:20 }}>What's inside</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(34px,9vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#ffffff", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:20 }}>What is Goddess so special?</h2>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(24px,6vw,34px)":"clamp(28px,2.8vw,40px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:20 }}>
-            Every audio in this library is my voice. Written and recorded by me.
+            Because I understand your pain. I live in your head.
           </h2>
+          <p style={{ fontSize: isMobile?15:16, color:"#f2ece4", lineHeight:1.8, marginBottom:24 }}>
+            There is nothing like this on the market. You can go and try and research — you'll never find anything close to what I'm building with the manifestation tracker.
+          </p>
           <p style={{ fontSize: isMobile?15:16, color:"#f2ece4", lineHeight:1.8, marginBottom:40 }}>
-            Full voice hypnosis. Subliminals. 528hz. EMDR. Binaural beats. Melodic house. Theta induction. Every format I've found that actually works — layered into tracks you can loop while you sleep, work, or exist.
+            My voice takes you into the magic. Once you trust it, I teleport you into a delusional, magical space where anything and everything is possible.
           </p>
 
           <div style={{ display:"flex", flexWrap:"wrap", gap:10, justifyContent:"center" }}>
@@ -197,7 +199,7 @@ export default function About({ onBack }) {
       {/* ── CTA ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
                 <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,7vw,40px)":"clamp(32px,3.5vw,48px)", color:BLACK, lineHeight:1.25, fontWeight:400, marginBottom:40 }}>
-          Press play. Feel the shift.
+          Join the community. Press play. Feel the shift.
         </h2>
         <button onClick={()=>{ navigate("/"); setTimeout(()=>{ const el=document.getElementById("pricing"); if(el) el.scrollIntoView({behavior:"smooth"}); },300); }} style={{ background:BLACK, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:CREAM, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
           Join Self Hypnosis Goddess →
