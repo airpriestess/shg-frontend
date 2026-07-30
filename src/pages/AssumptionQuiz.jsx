@@ -84,7 +84,7 @@ const QUESTIONS = [
 
 const RESULTS = {
   money: {
-    label: "Moneymaxxing",
+    label: "Richgirlmaxxing",
     accent: T.gold,
     old: "I have to work hard for every pound I get.",
     new: "Money finds me first. Of course it does.",
