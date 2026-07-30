@@ -13,6 +13,7 @@ import Legal from "./pages/Legal.jsx";
 import Science from "./pages/Science.jsx";
 import About from "./pages/About.jsx";
 import Library from "./pages/Library.jsx";
+import AssumptionQuiz from "./pages/AssumptionQuiz.jsx";
 import PortalScreenshot from "./components/PortalScreenshot.jsx";
 import AnalyticsBoard from "./components/AnalyticsBoard.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
@@ -257,6 +258,7 @@ export default function App() {
         <Route path="/about"   element={<About   onBack={()=>navigate("/")}/>} />
         <Route path="/library" element={<Library onBack={()=>navigate("/")}/>} />
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
+        <Route path="/quiz"    element={<AssumptionQuiz/>} />
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
