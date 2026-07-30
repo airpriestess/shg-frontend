@@ -128,7 +128,7 @@ export default function LuckyGirl() {
   }
 
   const inputStyle = {
-    width: "100%", background: "rgba(0,0,0,0.25)", border: "1px solid rgba(0,0,0,0.3)",
+    width: "100%", background: "rgba(255,255,255,0.85)", border: "1px solid rgba(0,0,0,0.15)",
     borderRadius: 14, padding: "20px 22px", color: "#000",
     fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400,
     outline: "none", marginBottom: 14, display: "block"
@@ -147,7 +147,7 @@ export default function LuckyGirl() {
   };
 
   return (
-    <div style={{ background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" }}>
+    <div style={{ background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
 
       {/* NAV */}
@@ -162,7 +162,7 @@ export default function LuckyGirl() {
           <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,80px)", lineHeight: 1.05, color: "#000", marginBottom: 16, letterSpacing: "-.02em", maxWidth: 700 }}>
             What's blocking your Lucky Girl era?
           </h1>
-          <p style={{ fontSize: 18, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, maxWidth: 440, margin: "0 auto 48px" }}>
+          <p style={{ fontSize: 18, color: "#000", lineHeight: 1.7, maxWidth: 440, margin: "0 auto 48px" }}>
             8 questions. Your invisible block — named, and replaced.
           </p>
           <div style={{ maxWidth: 480, width: "100%" }}>
