@@ -93,7 +93,7 @@ const s = {
   hero: { textAlign: "center", padding: "64px 24px 48px" },
   tag: { display: "inline-block", fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 32, background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" },
   heading: { fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(42px,8vw,80px)", lineHeight: 1.05, color: "#f2ece4", marginBottom: 12, letterSpacing: "-.02em" },
-  sub: { fontSize: 17, color: "#7a6e68", lineHeight: 1.7, maxWidth: 440, margin: "24px auto 48px" },
+  sub: { fontSize: 17, color: "#c8beb8", lineHeight: 1.7, maxWidth: 440, margin: "24px auto 48px" },
   emailWrap: { maxWidth: 480, margin: "0 auto", padding: "0 24px" },
   input: { width: "100%", background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 14, padding: "20px 22px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300, outline: "none", marginBottom: 14, display: "block" },
   ctaBtn: { width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", color: "#000", background: LG, display: "block" },
@@ -106,7 +106,7 @@ const s = {
   opt: { background: "#080808", border: "1px solid #1c1c1c", borderRadius: 14, padding: "22px 24px", color: "#dcc8b8", fontFamily: "'Jost', sans-serif", fontSize: 16, fontWeight: 300, textAlign: "left", cursor: "pointer", lineHeight: 1.6 },
   resultWrap: { maxWidth: 520, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" },
   oldCard: { background: "#0a0a0a", border: "1px solid #1a1a1a", borderRadius: 14, padding: 24, marginBottom: 16, textAlign: "left" },
-  oldLabel: { fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#5a5048", marginBottom: 10 },
+  oldLabel: { fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#9a8e88", marginBottom: 10 },
   oldText: { fontSize: 15, color: "#b09888", fontStyle: "italic", lineHeight: 1.7 },
   newCard: { borderRadius: 14, padding: 28, marginBottom: 16, textAlign: "center", background: LG },
   newLabel: { fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", marginBottom: 12 },
@@ -114,7 +114,7 @@ const s = {
   ritualCard: { border: "1px solid #1a1a1a", borderRadius: 14, padding: 22, marginBottom: 28, textAlign: "left" },
   ritualLabel: { fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 10, display: "inline-block" },
   ritualText: { fontSize: 14, color: "#b09888", lineHeight: 1.8 },
-  finalNote: { fontSize: 13, color: "#7a6e68", marginBottom: 16, lineHeight: 1.6 },
+  finalNote: { fontSize: 13, color: "#c8beb8", marginBottom: 16, lineHeight: 1.6 },
   outlineBtn: { display: "inline-block", border: "1px solid #2CB7A7", borderRadius: 30, padding: "13px 28px", color: "#2CB7A7", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".04em", cursor: "pointer", background: "none", textDecoration: "none" }
 };
 
@@ -194,7 +194,7 @@ export default function LuckyGirl() {
         {phase !== "landing" && (
           <button
             onClick={() => { setPhase("landing"); setStep(0); setScores({}); setResult(null); window.scrollTo(0,0); }}
-            style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#7a6e68", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
+            style={{ background: "none", border: "1px solid #1e1e1e", borderRadius: 30, padding: "10px 20px", color: "#c8beb8", fontFamily: "'Jost', sans-serif", fontSize: 13, letterSpacing: ".05em", cursor: "pointer" }}>
             ← Back
           </button>
         )}
