@@ -210,13 +210,13 @@ export default function LuckyGirl() {
 
       {/* QUIZ — black background */}
       {phase === "quiz" && (
-        <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px", background: "#000" }}>
+        <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px" }}>
           <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 }}>
             {QUESTIONS.map((_, i) => (
-              <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "#000" : "rgba(0,0,0,0.2)", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
+              <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "rgba(0,0,0,0.8)" : "rgba(0,0,0,0.15)", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
             ))}
           </div>
-          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
+          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.6)", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
           <div style={{ fontFamily: "'Jost', sans-serif", fontStyle: "normal", fontSize: "clamp(24px,4vw,36px)", fontWeight: 400, textAlign: "center", marginBottom: 44, color: "#000", lineHeight: 1.4 }}>
             {QUESTIONS[step].q}
           </div>
