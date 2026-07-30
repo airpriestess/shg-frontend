@@ -265,7 +265,7 @@ export default function LuckyGirl() {
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(26px,5vw,40px)", color: "#000", fontWeight: 400, lineHeight: 1.2, marginBottom: 16 }}>Lucky Girl Maxxing</div>
               <div style={{ fontSize: 16, color: "#000", lineHeight: 1.7, marginBottom: 8 }}>21 days to become the woman good things happen to.</div>
               <div style={{ fontSize: 14, color: "rgba(0,0,0,0.7)", lineHeight: 1.7, marginBottom: 28, maxWidth: 400, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
-              <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noreferrer"
+              <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer"
                 style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 48px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
                 Get the workbook — £37
               </a>
