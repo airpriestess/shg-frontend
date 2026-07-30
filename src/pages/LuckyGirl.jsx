@@ -5,53 +5,53 @@ const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
 const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MzA0MDAsImV4cCI6MjAyNTQwNjQwMH0.example";
 
 const QUESTIONS = [
-  { q: "When you picture your dream life arriving, the first feeling that shows up is...", opts: [
-    { t: "Excitement, then a quiet 'but is this really for me?'", c: "identity" },
-    { t: "Joy, then immediately wondering if it'll last", c: "money" },
-    { t: "Relief, then checking if the people I love approve", c: "love" },
-    { t: "Happiness, then noticing what still needs fixing about me", c: "body" }
+  { q: "You just got upgraded to first class. Out of nowhere. Your gut says...", opts: [
+    { t: "Of course — this is just how my life goes", c: "identity" },
+    { t: "Enjoy it now, it probably won't happen again", c: "money" },
+    { t: "I hope the person next to me doesn't think I don't belong here", c: "love" },
+    { t: "I wish I'd worn something better", c: "body" }
   ]},
-  { q: "Money arrives unexpectedly. The quiet thought underneath the relief is...", opts: [
-    { t: "This is temporary — something will take it away", c: "money" },
-    { t: "I got lucky. I didn't really earn this", c: "identity" },
-    { t: "I hope this doesn't change how people see me", c: "love" },
-    { t: "Now I need to spend it on something that fixes me", c: "body" }
+  { q: "£3,000 lands in your account unexpectedly. You feel...", opts: [
+    { t: "Relieved — but already nervous about it running out", c: "money" },
+    { t: "Shocked — I didn't do anything to deserve this", c: "identity" },
+    { t: "Happy — then immediately thinking about who else needs some", c: "love" },
+    { t: "Good — now I can finally fix the things I've been putting off", c: "body" }
   ]},
-  { q: "In love and relationships, you tend to...", opts: [
-    { t: "Give more than you receive, and call it caring", c: "love" },
-    { t: "Wait to be chosen rather than choose first", c: "love" },
-    { t: "Stay a little guarded, just in case", c: "identity" },
-    { t: "Wonder if they'd still want you if they saw all of you", c: "body" }
+  { q: "Someone gorgeous, successful, and emotionally available wants you. You think...", opts: [
+    { t: "What's the catch — people like that don't just choose me", c: "love" },
+    { t: "I wonder how long before they see who I really am", c: "identity" },
+    { t: "I need to make sure I don't need them too much", c: "love" },
+    { t: "I'd feel so much more confident once I've sorted myself out", c: "body" }
   ]},
-  { q: "You catch yourself in the mirror. The first thought is...", opts: [
-    { t: "Cataloguing what still needs to change", c: "body" },
-    { t: "Comparing to how I used to look or want to look", c: "body" },
-    { t: "Wondering if I'm enough today", c: "identity" },
-    { t: "Moving on quickly — I don't really look", c: "money" }
+  { q: "You're getting ready for the most important night of your life. You feel...", opts: [
+    { t: "Like I'm still one dress size, one treatment, one fix away", c: "body" },
+    { t: "Beautiful — then second-guessing it the second I leave the door", c: "body" },
+    { t: "Excited — then wondering if I actually belong in the room", c: "identity" },
+    { t: "Ready — but quietly bracing for something to go wrong", c: "money" }
   ]},
-  { q: "When something great happens to you, your first instinct is...", opts: [
-    { t: "Wait for the other shoe to drop", c: "money" },
-    { t: "Wonder if you actually deserve it", c: "identity" },
-    { t: "Check if the people close to you are okay with it", c: "love" },
-    { t: "Minimise it so others don't feel bad", c: "body" }
+  { q: "Life just gave you exactly what you asked for. Your first thought is...", opts: [
+    { t: "Something's about to go wrong — it's always too good to be true", c: "money" },
+    { t: "I must have done something right for once", c: "identity" },
+    { t: "I hope this doesn't make people around me feel bad", c: "love" },
+    { t: "I'll fully enjoy it once I feel better about myself", c: "body" }
   ]},
-  { q: "The version of you living your dream life has something you feel you don't yet. It's...", opts: [
-    { t: "Permission to take up space fully", c: "identity" },
-    { t: "A body she's completely at peace with", c: "body" },
-    { t: "Love that feels safe and easy", c: "love" },
-    { t: "Money that stays", c: "money" }
+  { q: "She has it all — the money, the love, the body, the life. The difference between her and you is...", opts: [
+    { t: "She just believes she deserves it. I'm still working on that.", c: "identity" },
+    { t: "She doesn't panic when good things arrive. I always do.", c: "money" },
+    { t: "She lets people love her without testing it. I can't.", c: "love" },
+    { t: "She's comfortable being seen. I'm not there yet.", c: "body" }
   ]},
-  { q: "Receiving something beautiful — love, money, recognition — with zero effort would feel...", opts: [
-    { t: "Suspicious — there must be a catch somewhere", c: "money" },
-    { t: "Undeserved — I haven't done enough to warrant this", c: "identity" },
-    { t: "Exposing — I don't like being seen that clearly", c: "love" },
-    { t: "Uncomfortable — I'm not ready to be seen like that", c: "body" }
+  { q: "Your dream life is trying to reach you right now. What's in the way?", opts: [
+    { t: "I keep self-sabotaging the moment things get good", c: "money" },
+    { t: "I don't fully believe I'm the woman who gets that life", c: "identity" },
+    { t: "I'm scared of losing the people I love if I change too much", c: "love" },
+    { t: "I'm waiting until I look like the version of me who deserves it", c: "body" }
   ]},
-  { q: "The thing that keeps you from fully stepping into your Lucky Girl era is...", opts: [
-    { t: "I don't fully believe it's available for someone like me", c: "identity" },
-    { t: "I'm afraid of what changes when I actually have it", c: "money" },
-    { t: "I don't want to outgrow the people I love", c: "love" },
-    { t: "I'm waiting until I look or feel a certain way first", c: "body" }
+  { q: "In your Lucky Girl era, every day feels like life is conspiring for you. The area where that's hardest to believe right now is...", opts: [
+    { t: "Money — it still feels like something I have to chase", c: "money" },
+    { t: "Love — being chosen freely still feels too good to be true", c: "love" },
+    { t: "My body — I can't feel lucky in a body I'm still fighting", c: "body" },
+    { t: "My identity — I don't fully feel like her yet", c: "identity" }
   ]}
 ];
 
