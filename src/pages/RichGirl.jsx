@@ -81,6 +81,25 @@ export default function RichGirl() {
         @keyframes kb { 0%,100%{filter:drop-shadow(0 0 8px rgba(245,224,160,.5))} 50%{filter:drop-shadow(0 0 24px rgba(191,165,216,.7))} }
         .loop-node { transition: all .4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; }
         .loop-node:hover { transform: translateY(-2px); }
+        @keyframes lgGlow {
+          0% { box-shadow: 0 0 20px rgba(245,224,160,0.4), 0 0 40px rgba(245,224,160,0.2); }
+          25% { box-shadow: 0 0 20px rgba(191,165,216,0.5), 0 0 60px rgba(191,165,216,0.25); }
+          50% { box-shadow: 0 0 20px rgba(44,183,167,0.5), 0 0 60px rgba(44,183,167,0.25); }
+          75% { box-shadow: 0 0 20px rgba(191,165,216,0.5), 0 0 60px rgba(191,165,216,0.25); }
+          100% { box-shadow: 0 0 20px rgba(245,224,160,0.4), 0 0 40px rgba(245,224,160,0.2); }
+        }
+        @keyframes lgBorderGlow {
+          0% { border-color: rgba(245,224,160,0.8); }
+          33% { border-color: rgba(191,165,216,0.8); }
+          66% { border-color: rgba(44,183,167,0.8); }
+          100% { border-color: rgba(245,224,160,0.8); }
+        }
+        .cta-glow {
+          animation: lgGlow 4s ease-in-out infinite;
+          border: 2px solid rgba(245,224,160,0.8);
+          animation: lgGlow 4s ease-in-out infinite, lgBorderGlow 4s ease-in-out infinite;
+        }
+        .cta-glow:hover { transform: translateY(-3px) scale(1.02); transition: transform .3s; }
       `}</style>
       <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
       <SHGNav/>
@@ -219,13 +238,13 @@ export default function RichGirl() {
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:64 }}>
             <div style={{ background:"rgba(255,255,255,0.5)", borderRadius:16, padding:"36px 28px", textAlign:"left" }}>
               <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:16 }}>Free · 2 minutes</div>
-              <div style={{ fontSize:22, fontWeight:600, color:"#000", marginBottom:8 }}>RichGirl Quiz</div>
+              <div style={{ fontSize:32, fontWeight:700, color:"#000", marginBottom:12, letterSpacing:"-.02em" }}>RichGirl Quiz</div>
               <div style={{ fontSize:14, color:"rgba(0,0,0,0.5)", lineHeight:1.6, marginBottom:28 }}>Find your current capacity level. Identify your block. Two minutes. Free.</div>
               <a href="/blocks/money" style={{ display:"block", background:LG, borderRadius:30, padding:"16px 20px", color:"#000", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:600, letterSpacing:".04em", textDecoration:"none", textAlign:"center" }}>Take the quiz — free</a>
             </div>
-            <div style={{ background:LG, borderRadius:16, padding:"36px 28px", textAlign:"left" }}>
+            <div style={{ background:LG, borderRadius:20, padding:"48px 36px", textAlign:"center" }} className="cta-glow">
               <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:"rgba(0,0,0,.4)", marginBottom:16 }}>Instant access</div>
-              <div style={{ fontSize:22, fontWeight:600, color:"#000", marginBottom:4 }}>RichGirl Workbook</div>
+              <div style={{ fontSize:32, fontWeight:700, color:"#000", marginBottom:8, letterSpacing:"-.02em" }}>RichGirl Workbook</div>
               <div style={{ marginBottom:8 }}><span style={{ fontSize:20, fontWeight:700, color:"#000" }}>£29</span> <span style={{ fontSize:14, textDecoration:"line-through", color:"rgba(0,0,0,.35)" }}>£49</span></div>
               <div style={{ fontSize:14, color:"rgba(0,0,0,.65)", lineHeight:1.6, marginBottom:28 }}>21 days to activate your RichGirl operating system.</div>
               <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer" style={{ display:"block", background:"#000", borderRadius:30, padding:"16px 20px", color:"#000", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:600, letterSpacing:".04em", textDecoration:"none", textAlign:"center" }}>Get the RichGirl Workbook →</a>
