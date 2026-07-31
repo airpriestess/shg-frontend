@@ -127,7 +127,7 @@ function LibraryBanner({ isMobile, onLegal }) {
       icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="14" r="6" stroke="currentColor" strokeWidth="2.5"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
     { name:"Wellnessmaxxing",   affirmation:"My body and mind are finally in sync.",               col:"#167A6B",
       icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 46 C16 36 12 24 20 18 C25 14 30 18 30 24 C30 18 35 14 40 18 C48 24 44 36 30 46 Z" stroke="currentColor" strokeWidth="2.5"/><path d="M22 26 L27 26 L29 20 L32 32 L34 26 L38 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg> },
-    { name:"Healmaxxing",       affirmation:"Pain is leaving my body. For good.",                  col:"#F5E0A0",
+    { name:"Healthmaxxing",       affirmation:"Pain is leaving my body. For good.",                  col:"#F5E0A0",
       icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 30 L28 30 L30 24 L32 36 L34 30 L38 30" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><rect x="12" y="16" width="36" height="28" rx="8" stroke="currentColor" strokeWidth="2.5"/></svg> },
     { name:"Studymaxxing",      affirmation:"My mind absorbs everything. Effortlessly.",           col:"#E8B870",
       icon:<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 22 L30 14 L46 22 L30 30 Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M22 26 L22 36 Q30 40 38 36 L38 26" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg> },
@@ -926,7 +926,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
     "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#BFA5D8)",        // teal → lilac
     "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0,#E8B870)",        // blush → gold
     "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#F5E0A0)",        // gold → soft pink
-    "Healmaxxing":      "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // pale pink → warm rose
+    "Healthmaxxing":      "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // pale pink → warm rose
     "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // teal → hot blue
     "Friendmaxxing":    "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // hot blue → teal
     "Studymaxxing":     "linear-gradient(135deg,#2CB7A7,#BFA5D8)",        // hot blue → lilac
@@ -997,7 +997,7 @@ const FAQS = [
   {q:"How do I know how to listen — what do I actually do?",a:"Every account includes access to the in-app Guide — a full walkthrough covering exactly how to use the vault: which format to pick and when, best times of day to listen, how often, what headphones setup works best, how the different elements (hypnosis, subliminal, binaural, music) combine, and how to use ProofOS to track what happens. It answers every question about the process in one place, so you're never guessing. You'll find it inside the portal from your first login."},
   {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
   {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
-  {q:"What categories are in the vault?",a:"A growing library — right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Richgirlmaxxing, Businessmaxxing, Desiresmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
+  {q:"What categories are in the vault?",a:"A growing library — right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Richgirlmaxxing, Businessmaxxing, Desiresmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healthmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
   {q:"What are subliminals?",a:"Affirmations recorded below the threshold of conscious hearing, layered underneath the music and spoken hypnosis. Your conscious mind doesn't register them as words — but your subconscious does. They bypass the part of you that would normally argue back with a new belief."},
   {q:"How do the different elements combine in one track?",a:"Each audio layers four things at once: spoken hypnosis (guiding you into the state), subliminal affirmations (below hearing threshold), binaural beats (two slightly different frequencies, one per ear, syncing both brain hemispheres into theta), and original melodic house music (so it's something you actually want to listen to, not just tolerate). All four play simultaneously, not in sequence."},
   {q:"Who is Reshma Oracle?",a:"The person recording every track in this vault. No agency, no outsourced voice work — every hypnosis session, every affirmation, every frequency choice is hers. Self Hypnosis Goddess exists because she noticed everyone in this space consumes content and no one actually installs a new identity — so she built something designed for daily repetition, not one-off inspiration."},
@@ -1324,7 +1324,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"DNAmaxxing",         tagline:"My bloodline stops repeating itself, starting with me." },
               { label:"Sleepmaxxing",       tagline:"Every night is another install." },
               { label:"Confidencemaxxing",  tagline:"I don't shrink. I never did." },
-              { label:"Healmaxxing",        tagline:"I healed the version of me that needed this most." },
+              { label:"Healthmaxxing",        tagline:"I healed the version of me that needed this most." },
               { label:"Confidencemaxxing",  tagline:"I walk in like I already own the room." },
               { label:"Richgirlmaxxing",       tagline:"Wealth is just who I am now." },
               { label:"Erosmaxxing",        tagline:"I know my own power in the bedroom." },
@@ -1349,7 +1349,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Desiresmaxxing",      tagline:"My desires are already done deals." },
               { label:"Bodymaxxing",        tagline:"Strong, lean, undeniable." },
               { label:"Desiresmaxxing",      tagline:"Everything I want is rushing toward me." },
-              { label:"Healmaxxing",        tagline:"What used to hurt doesn't run me anymore." },
+              { label:"Healthmaxxing",        tagline:"What used to hurt doesn't run me anymore." },
               { label:"Lovemaxxing",        tagline:"He chooses me. Every single day." },
               { label:"Singlemaxxing",      tagline:"I'm dating myself first. Everyone else can wait." },
               { label:"Peacemaxxing",       tagline:"Nothing shakes me anymore." },
