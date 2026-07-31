@@ -212,21 +212,17 @@ export default function RichGirl() {
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
             {LADDER.map((rung, i) => {
-              const colors = ["#2CB7A7","#167A6B","#BFA5D8","#E8B870","#F5E0A0","#f2ece4"];
-              const color = colors[i] || "#f2ece4";
               const isActive = activeLadder === i;
               return (
                 <div key={i} onClick={() => setActiveLadder(isActive?null:i)}
                   className="loop-node"
-                  style={{ background:"#000", border:"none", borderRadius:14, overflow:"hidden", display:"flex", alignItems:"stretch" }}>
-                  <div style={{ width:80, minWidth:80, background:color, display:"flex", alignItems:"center", justifyContent:"center", padding:"28px 8px" }}>
-                    <div style={{ fontSize:32, fontWeight:700, color:"#000", lineHeight:1 }}>{rung.level}</div>
+                  style={{ background:isActive?"rgba(0,0,0,0.85)":"rgba(255,255,255,0.7)", border:"none", borderRadius:14, padding:"28px 32px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+                  <div>
+                    <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:isActive?"rgba(255,255,255,0.5)":"rgba(0,0,0,0.4)", fontWeight:600, marginBottom:6 }}>Level {rung.level}</div>
+                    <div style={{ fontSize:"clamp(20px,3vw,32px)", fontWeight:700, color:isActive?"#fff":"#000", letterSpacing:"-.02em" }}>{rung.amount}</div>
+                    {isActive && <div style={{ marginTop:12, fontSize:15, lineHeight:1.7, color:"rgba(255,255,255,0.85)", maxWidth:560 }}>{rung.desc}</div>}
                   </div>
-                  <div style={{ flex:1, padding:"24px 28px", display:"flex", flexDirection:"column", justifyContent:"center" }}>
-                    <div style={{ fontSize:"clamp(20px,3vw,32px)", fontWeight:700, color:"#fff", letterSpacing:"-.02em", marginBottom:isActive?12:0 }}>{rung.amount}</div>
-                    {isActive && <div style={{ fontSize:15, lineHeight:1.7, color:"rgba(255,255,255,0.85)" }}>{rung.desc}</div>}
-                  </div>
-                  <div style={{ display:"flex", alignItems:"center", padding:"0 24px", fontSize:22, color:"rgba(255,255,255,0.3)" }}>{isActive?"−":"+"}</div>
+                  <div style={{ fontSize:22, color:isActive?"rgba(255,255,255,0.4)":"rgba(0,0,0,0.3)", flexShrink:0, marginLeft:16 }}>{isActive?"−":"+"}</div>
                 </div>
               );
             })}
