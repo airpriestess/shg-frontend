@@ -20,6 +20,7 @@ const IDENTITY = [
 ];
 
 const LADDER = [
+  { level: 6, amount: "£1M a day", desc: "Too delusional? Good. That feeling — that nervous, slightly ridiculous excitement — is your nervous system meeting its next level. Stay here. Let it get boring. Then it will happen." },
   { level: 5, amount: "£100K a month", desc: "The level that still feels like fiction. Until you stay here long enough for it to feel like Tuesday." },
   { level: 4, amount: "£10K a day", desc: "Bigger systems, bigger visibility. Real pathways under you by now." },
   { level: 3, amount: "£1K a day", desc: "Delulu is the solulu. Same number, completely new meaning — this is what you earn in a day, not a month." },
