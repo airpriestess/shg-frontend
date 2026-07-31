@@ -313,7 +313,7 @@ export default function LandingProofWall({ isMobile }) {
     <div style={{ width: "100%", background: "#000", paddingTop: 60, paddingBottom: 60 }}>
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: 36, padding: "0 24px" }}>
-        <div style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#E8B870", marginBottom: 12, fontFamily: "'Jost',sans-serif" }}>ProofOS ✦</div>
+        <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>Proof Wall</div>
         <h2 style={{ fontSize: isMobile ? 26 : 36, fontWeight: 400, color: "#f2ece4", lineHeight: 1.2, fontFamily: "'Jost',sans-serif", marginBottom: 12 }}>
           Real results. Every category.
         </h2>
