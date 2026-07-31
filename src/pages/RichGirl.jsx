@@ -210,21 +210,26 @@ export default function RichGirl() {
           <p style={{ fontSize:17, lineHeight:1.8, color:"#000", maxWidth:680, marginBottom:64, margin:"0 auto 64px", textAlign:"center" }}>
             That nervous, excited feeling is your nervous system recognising the next level it can actually practise. Stay there until it feels normal. Then go again. There is no ceiling.
           </p>
-          <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-            {LADDER.map((rung, i) => (
-              <div key={i} onClick={() => setActiveLadder(activeLadder===i?null:i)}
-                className="loop-node"
-                style={{ background:activeLadder===i?"rgba(0,0,0,0.85)":"rgba(255,255,255,0.5)", border:"none", borderRadius:14, padding:"28px 32px" }}>
-                <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <div style={{ display:"flex", alignItems:"center", gap:24 }}>
-                    <div style={{ fontSize:11, letterSpacing:".2em", color:activeLadder===i?"rgba(0,0,0,.4)":"rgba(255,255,255,.3)", fontWeight:600 }}>LEVEL {rung.level}</div>
-                    <div style={{ fontSize:"clamp(20px,3vw,32px)", fontWeight:600, color:activeLadder===i?"#f2ece4":"#000", letterSpacing:"-.02em" }}>{rung.amount}</div>
+          <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+            {LADDER.map((rung, i) => {
+              const colors = ["#2CB7A7","#167A6B","#BFA5D8","#E8B870","#F5E0A0","#f2ece4"];
+              const color = colors[i] || "#f2ece4";
+              const isActive = activeLadder === i;
+              return (
+                <div key={i} onClick={() => setActiveLadder(isActive?null:i)}
+                  className="loop-node"
+                  style={{ background:"#000", border:"none", borderRadius:14, overflow:"hidden", display:"flex", alignItems:"stretch" }}>
+                  <div style={{ width:80, minWidth:80, background:color, display:"flex", alignItems:"center", justifyContent:"center", padding:"28px 8px" }}>
+                    <div style={{ fontSize:32, fontWeight:700, color:"#000", lineHeight:1 }}>{rung.level}</div>
                   </div>
-                  <div style={{ fontSize:22, color:activeLadder===i?"rgba(255,255,255,0.4)":"rgba(0,0,0,0.3)" }}>{activeLadder===i?"−":"+"}</div>
+                  <div style={{ flex:1, padding:"24px 28px", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+                    <div style={{ fontSize:"clamp(20px,3vw,32px)", fontWeight:700, color:"#fff", letterSpacing:"-.02em", marginBottom:isActive?12:0 }}>{rung.amount}</div>
+                    {isActive && <div style={{ fontSize:15, lineHeight:1.7, color:"rgba(255,255,255,0.85)" }}>{rung.desc}</div>}
+                  </div>
+                  <div style={{ display:"flex", alignItems:"center", padding:"0 24px", fontSize:22, color:"rgba(255,255,255,0.3)" }}>{isActive?"−":"+"}</div>
                 </div>
-                {activeLadder===i && <div style={{ marginTop:16, fontSize:16, lineHeight:1.7, color:"#f2ece4", maxWidth:560 }}>{rung.desc}</div>}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
