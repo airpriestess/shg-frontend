@@ -129,7 +129,7 @@ export default function RichGirl() {
             </div>
             <div style={{ background:LG, padding:"52px 48px" }}>
               <div style={{ fontSize:12, letterSpacing:".24em", textTransform:"uppercase", color:"#000", marginBottom:28, fontWeight:700 }}>The truth</div>
-              {["Listen to self hypnosis and subliminals daily","Hack your focus","It's already written in your nervous system","Stop wanting. Start knowing.","It's locked in. Of course. Obviously."].map((t,i,a) => (
+              {["Listen to self hypnosis and subliminals daily","Hack your focus","It's already written in your nervous system","Stop wanting. Start knowing.","Consistency. Of course. Obviously."].map((t,i,a) => (
                 <div key={i} style={{ fontSize:18, lineHeight:1.5, color:"#000", padding:"16px 0", borderBottom:i<a.length-1?"1px solid rgba(0,0,0,.12)":"none" }}>{t}</div>
               ))}
             </div>
