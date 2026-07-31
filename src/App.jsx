@@ -253,12 +253,12 @@ export default function App() {
         <Route path="/about"   element={<About   onBack={()=>navigate("/")}/>} />
         <Route path="/library" element={<Library onBack={()=>navigate("/")}/>} />
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
-        <Route path="/quiz"    element={<QuizHub/>} />
+
         <Route path="/luckygirl" element={<LuckyGirl/>} />
         <Route path="/richgirl" element={<RichGirl/>} />
         <Route path="/guide/richgirl" element={<RichGirl/>} />
-        <Route path="/blocks" element={<Blocks/>} />
-        <Route path="/blocks/:category" element={<BlocksQuiz/>} />
+        <Route path="/blocks" element={<><script dangerouslySetInnerHTML={{__html:"window.location.replace('/blocks')"}} /></>} />
+
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
@@ -1240,10 +1240,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ["Pricing",       ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
               ["ProofOS",       ()=>{ document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
               ["Preview App",  ()=>{ onDemo?.(); setMenuOpen(false); }],
-              ["Guides",       ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
-              ["Blocks",       ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
+              ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
               ["About Reshma", ()=>{ onLegal?.("about"); setMenuOpen(false); }],
               ["The Science",  ()=>{ onLegal?.("science"); setMenuOpen(false); }],
+              ["The Library",  ()=>{ onLegal?.("library"); setMenuOpen(false); }],
+              ["YouTube",       ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
