@@ -5,11 +5,13 @@ const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78
 const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
 const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MzA0MDAsImV4cCI6MjAyNTQwNjQwMH0.example";
 
+const CAT_MAP = { richgirl: "money", lovemaxxing: "love", beautymaxxing: "beauty", selfmaxxing: "self", luckygirl: "lucky" };
 const CATEGORIES = {
-  money: { name: "RichGirlMaxxing", color: "#E8B870", label: "RichGirl block" },
-  love:  { name: "Lovemaxxing",  color: "#BFA5D8", label: "Love block"  },
-  beauty:{ name: "Beautymaxxing",color: "#F5E0A0", label: "Beauty block"},
-  self:  { name: "Selfmaxxing",  color: "#000", label: "Self block"  }
+  money:   { name: "RichGirl Maxxing",  color: "#E8B870", label: "RichGirl block" },
+  love:    { name: "LoveMaxxing",       color: "#BFA5D8", label: "Love block"     },
+  beauty:  { name: "BeautyMaxxing",     color: "#F5E0A0", label: "Beauty block"   },
+  self:    { name: "SelfMaxxing",       color: "#2CB7A7", label: "Self block"     },
+  lucky:   { name: "LuckyGirl Maxxing", color: "#E8B870", label: "Luck block"     },
 };
 
 const QUESTIONS = {
@@ -163,6 +165,56 @@ const QUESTIONS = {
       { t: "Like being that visible would actually make me uncomfortable", c: "avoidance" }
     ]}
   ],
+  lucky: [
+    { q: "Something good happens out of nowhere. Your first thought is...", opts: [
+      { t: "Enjoy it now, because it probably won't last", c: "impermanence" },
+      { t: "That kind of thing happens to other people, not really to me", c: "identity" },
+      { t: "I'm waiting for the catch — it can't just be this easy", c: "safety" },
+      { t: "I probably had something to do with it going right", c: "agency" }
+    ]},
+    { q: "You miss a connection or opportunity you didn't see coming. You think...", opts: [
+      { t: "This always happens — I miss the moment every time", c: "identity" },
+      { t: "I wasn't ready. I need to work on myself first.", c: "safety" },
+      { t: "Lucky people just find those connections naturally. I don't.", c: "identity" },
+      { t: "I wasn't looking for it — my filter needs updating", c: "awareness" }
+    ]},
+    { q: "A plan falls through at the last minute. You feel...", opts: [
+      { t: "Confirmation — things rarely go smoothly for me", c: "identity" },
+      { t: "Anxious — what if this is a sign I should stop trying?", c: "safety" },
+      { t: "Frustrated, but I start looking for what opened up instead", c: "agency" },
+      { t: "Like I should have known better than to get excited", c: "impermanence" }
+    ]},
+    { q: "Someone you know seems to effortlessly attract good things. You feel...", opts: [
+      { t: "Like they have something I don't and probably never will", c: "identity" },
+      { t: "Happy for them, but quietly aware that luck skips me", c: "identity" },
+      { t: "Curious — what are they doing differently?", c: "agency" },
+      { t: "Like luck is randomly distributed and I got a smaller share", c: "impermanence" }
+    ]},
+    { q: "When you imagine your life going really, genuinely well — it feels...", opts: [
+      { t: "Nice to think about but I don't really let myself believe it", c: "safety" },
+      { t: "Like it's for people who started with more than I did", c: "identity" },
+      { t: "Possible but I'm terrified to want it in case it doesn't happen", c: "safety" },
+      { t: "Like it's coming — I just haven't quite arrived yet", c: "agency" }
+    ]},
+    { q: "When a good opportunity closes, your automatic thought is...", opts: [
+      { t: "That was probably my one chance and I missed it", c: "impermanence" },
+      { t: "Lucky people would have seen it coming. I didn't.", c: "identity" },
+      { t: "Something better is probably on its way", c: "agency" },
+      { t: "I need to be more prepared so I don't miss the next one", c: "safety" }
+    ]},
+    { q: "How do you feel about the word lucky in relation to yourself?", opts: [
+      { t: "Uncomfortable — it feels like I'm tempting fate", c: "safety" },
+      { t: "Distant — luck is something other people have", c: "identity" },
+      { t: "I believe it sometimes, but I don't trust it to stay", c: "impermanence" },
+      { t: "Like something I'm in the process of becoming", c: "agency" }
+    ]},
+    { q: "The LuckyGirl assumes life works for her — timing, people, opportunities. Right now that feels...", opts: [
+      { t: "Like an identity that was never really available to me", c: "identity" },
+      { t: "Possible, but I would need everything to go right first", c: "safety" },
+      { t: "Real in moments — but I don't trust it to be permanent", c: "impermanence" },
+      { t: "Closer than it has ever felt — I just need to install it properly", c: "agency" }
+    ]}
+  ],
   self: [
     { q: "You walk into a room full of successful people. You feel...", opts: [
       { t: "Aware that I haven't achieved enough to belong here yet", c: "readiness" },
@@ -217,6 +269,13 @@ const QUESTIONS = {
 
 
 const RESULTS = {
+  lucky: {
+    identity:     { block: "The Outsider Identity",    old: "Luck is something other people have. I was not born with it.", new: "Luck is an identity. I have installed it now. It runs automatically." },
+    impermanence: { block: "The Impermanence Block",   old: "Good things happen sometimes — but I cannot trust them to last.", new: "Good things stay. I am the kind of woman life works for. Of course." },
+    safety:       { block: "The Safety Trap",          old: "If I believe I am lucky and it does not work out, the disappointment will be unbearable.", new: "I assume the best outcome. Of course it worked out. It always does." },
+    awareness:    { block: "The Awareness Gap",        old: "Lucky people see opportunities I miss. I am not tuned to the right frequency.", new: "My filter is updating. Same room. Different eye. I see what is for me." },
+    agency:       { block: "The Waiting Pattern",      old: "I know luck is possible. I am just waiting for it to arrive.", new: "I do not wait for luck. I am the identity that luck recognises." }
+  },
   money: {
     scarcity:    { block: "The Scarcity Loop",         old: '"Money avoids me. There\'s never enough, and what arrives always leaves."',                                        new: "Money finds me first. Of course it does." },
     worthiness:  { block: "The Earning Trap",          old: '"I have to work hard for every pound. Receiving without effort feels wrong."',                                     new: "I am someone money flows to easily and stays with." },
