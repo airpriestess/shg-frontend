@@ -145,65 +145,16 @@ export default function RichGirl() {
           <p style={{ fontSize: 17, lineHeight: 1.8, color: "rgba(242,236,228,0.7)", maxWidth: 680, marginBottom: 64 }}>
             That nervous, excited feeling is your nervous system recognising the next level it can actually practise. Stay there until it feels normal. Then go again. There is no ceiling.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {LADDER.map((rung, i) => (
-              <div key={i} onClick={() => setActiveLadder(activeLadder === i ? null : i)}
-                style={{ background: activeLadder === i ? LG : "rgba(255,255,255,0.03)", border: `1px solid ${activeLadder === i ? "transparent" : "rgba(255,255,255,0.08)"}`, borderRadius: 14, padding: "28px 32px", cursor: "pointer", transition: "all .3s" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-                    <div style={{ fontSize: 11, letterSpacing: ".2em", color: activeLadder === i ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.3)", fontWeight: 600 }}>LEVEL {rung.level}</div>
-                    <div style={{ fontSize: "clamp(20px,3vw,32px)", fontWeight: 600, color: activeLadder === i ? "#000" : "#f2ece4", letterSpacing: "-.02em" }}>{rung.amount}</div>
-                  </div>
-                  <div style={{ fontSize: 20, color: activeLadder === i ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.2)" }}>{activeLadder === i ? "−" : "+"}</div>
-                </div>
-                {activeLadder === i && (
-                  <div style={{ marginTop: 16, fontSize: 16, lineHeight: 1.7, color: "rgba(0,0,0,0.75)", maxWidth: 560 }}>{rung.desc}</div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* CTA */}
-      <div style={{ padding: "100px 48px", textAlign: "center" }}>
-        <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <h2 style={{ fontSize: "clamp(32px,5vw,60px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.1, letterSpacing: "-.03em", marginBottom: 16 }}>Ready to install it?</h2>
-          <p style={{ fontSize: 17, lineHeight: 1.8, color: "rgba(242,236,228,0.65)", marginBottom: 56 }}>Find your level. Install it tonight.</p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 64 }}>
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "36px 28px" }}>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 16 }}>Free · 2 minutes</div>
-              <div style={{ fontSize: 22, fontWeight: 600, color: "#f2ece4", marginBottom: 8 }}>RichGirl Quiz</div>
-              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, marginBottom: 28 }}>Find your current capacity level. Identify your block. Two minutes. Free.</div>
-              <a href="/blocks/money" style={{ display: "block", background: LG, border: "none", borderRadius: 30, padding: "16px 20px", color: "#000", fontFamily: "'Jost',sans-serif", fontSize: 14, fontWeight: 600, letterSpacing: ".04em", textDecoration: "none" }}>Take the quiz — free</a>
-            </div>
-            <div style={{ background: LG, borderRadius: 16, padding: "36px 28px" }}>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.4)", marginBottom: 16 }}>Instant access</div>
-              <div style={{ fontSize: 22, fontWeight: 600, color: "#000", marginBottom: 4 }}>RichGirl Workbook</div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: "#000", marginBottom: 4 }}>£29 <span style={{ fontSize: 14, textDecoration: "line-through", opacity: 0.4 }}>£49</span></div>
-              <div style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", lineHeight: 1.6, marginBottom: 28 }}>21 days to activate your RichGirl operating system.</div>
-              <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer" style={{ display: "block", background: "#000", border: "none", borderRadius: 30, padding: "16px 20px", color: "#f2ece4", fontFamily: "'Jost',sans-serif", fontSize: 14, fontWeight: 600, letterSpacing: ".04em", textDecoration: "none" }}>Get the RichGirl Workbook →</a>
-            </div>
-          </div>
-
-          <p style={{ fontSize: "clamp(18px,2.5vw,26px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.6, maxWidth: 480, margin: "0 auto" }}>
-            After this, the old version of you stops making sense. You don't go back.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  );
-}          <div style={{ display:"flex", flexDirection:"column", gap:3, marginTop:64 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
             {[
               { level:5, amount:"£100K a month", note:"The level that still feels like fiction. Until you stay here long enough for it to feel like Tuesday.", badge:"linear-gradient(160deg,#2CB7A7,#167A6B)", color:"#000" },
               { level:4, amount:"£10K a day", note:"Bigger systems, bigger visibility. Real pathways under you by now.", badge:"linear-gradient(160deg,#BFA5D8,#2CB7A7)", color:"#000" },
               { level:3, amount:"£1K a day", note:"Delulu is the solulu. Same number, completely new meaning — this is what you earn in a day, not a month.", badge:"linear-gradient(160deg,#E8B870,#BFA5D8)", color:"#000" },
               { level:2, amount:"£5K a month", note:"The first level where the nervous system starts to feel it as real. Stay here until it's boring.", badge:"linear-gradient(160deg,#F5E0A0,#E8B870)", color:"#000" },
               { level:1, amount:"£1K a month", note:"The level your current identity already believes without blinking. Your starting point, not your ceiling.", badge:"linear-gradient(160deg,#f2ece4,#F5E0A0)", color:"#1a0a04" },
-            ].map((rung,i) => (
-              <div key={i} style={{ display:"grid", gridTemplateColumns:"72px 1fr", overflow:"hidden", borderRadius:10, cursor:"pointer", transition:"transform .3s", marginBottom:3 }}
+            ].map((rung, i) => (
+              <div key={i}
+                style={{ display:"grid", gridTemplateColumns:"72px 1fr", overflow:"hidden", borderRadius:10, cursor:"pointer", transition:"transform .3s", marginBottom:3 }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateX(8px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "translateX(0)"; }}>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:700, color:rung.color, background:rung.badge }}>
