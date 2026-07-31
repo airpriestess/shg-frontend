@@ -194,7 +194,7 @@ export default function RichGirl() {
               <div style={{ fontSize:16, lineHeight:1.8, color:"rgba(0,0,0,0.8)" }}>{LOOP_NODES[activeLoop].p}</div>
             </div>
 
-            <p style={{ fontSize:14, lineHeight:1.8, color:"#000", maxWidth:600, margin:"32px auto 0", textAlign:"center" }}>
+            <p style={{ fontSize:15, lineHeight:1.8, color:"#fff", maxWidth:600, margin:"32px auto 0", textAlign:"center" }}>
               Theta state is the drowsy window before sleep or upon rising — 4 to 8Hz, where the analytical mind switches off and the subconscious accepts new identity without resistance. The SHG audio library activates this state instantly through binaural beats and isochronic tones. No waiting. No guesswork. The install happens whether you're half-asleep or wide awake. Library coming soon.
             </p>
           </div>
