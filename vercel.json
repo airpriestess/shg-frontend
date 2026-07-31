@@ -6,43 +6,43 @@
     },
     {
       "source": "/blocks/richgirl",
-      "destination": "/index.html"
+      "destination": "/blocks/richgirl/index.html"
     },
     {
       "source": "/blocks/luckygirl",
-      "destination": "/index.html"
+      "destination": "/blocks/luckygirl/index.html"
     },
     {
       "source": "/blocks/lovemaxxing",
-      "destination": "/index.html"
+      "destination": "/blocks/lovemaxxing/index.html"
     },
     {
       "source": "/blocks/beautymaxxing",
-      "destination": "/index.html"
+      "destination": "/blocks/beautymaxxing/index.html"
     },
     {
       "source": "/blocks/selfmaxxing",
-      "destination": "/index.html"
+      "destination": "/blocks/selfmaxxing/index.html"
     },
     {
       "source": "/blocks/money",
-      "destination": "/index.html"
+      "destination": "/blocks/richgirl/index.html"
     },
     {
       "source": "/blocks/love",
-      "destination": "/index.html"
+      "destination": "/blocks/lovemaxxing/index.html"
     },
     {
       "source": "/blocks/beauty",
-      "destination": "/index.html"
+      "destination": "/blocks/beautymaxxing/index.html"
     },
     {
       "source": "/blocks/self",
-      "destination": "/index.html"
+      "destination": "/blocks/selfmaxxing/index.html"
     },
     {
       "source": "/blocks/lucky",
-      "destination": "/index.html"
+      "destination": "/blocks/luckygirl/index.html"
     },
     {
       "source": "/guides",
