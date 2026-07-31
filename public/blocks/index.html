@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find Your Maxxing — Self Hypnosis Goddess</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+  --white:#f2ece4;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:#000;color:var(--white);overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.04);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+
+/* HERO */
+.hero{
+  min-height:55vh;background:var(--g);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 48px 80px;
+}
+.hero h1{font-size:clamp(52px,8vw,100px);font-weight:700;color:#000;letter-spacing:-.04em;line-height:.9;margin-bottom:20px;}
+.hero-sub{font-size:clamp(15px,1.8vw,20px);font-weight:300;color:rgba(0,0,0,0.55);}
+
+/* GRID */
+.grid-section{padding:80px 48px 100px;}
+.grid-wrap{max-width:1000px;margin:0 auto;}
+.grid-label{font-size:9px;letter-spacing:.32em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin-bottom:16px;font-weight:600;text-align:center;}
+.grid-title{font-size:clamp(24px,3.5vw,40px);font-weight:300;color:var(--white);margin-bottom:52px;letter-spacing:-.02em;text-align:center;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+/* GUIDE CARD */
+.gcard{
+  border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+  text-decoration:none;
+  display:flex;flex-direction:column;
+  transition:transform .35s,box-shadow .4s;
+}
+.gcard:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 80px rgba(191,165,216,.2),0 0 120px rgba(44,183,167,.1);
+}
+.gcard-cover{
+  height:280px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+  position:relative;overflow:hidden;
+}
+.gcard-cover-grad{background:var(--g);}
+.gcard-cover-dark{
+  background:#070707;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.gcard-cover-dark::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(191,165,216,.15) 0%,rgba(44,183,167,.08) 60%,transparent 100%);
+}
+.gcard-cover-grad .gcard-cat{color:rgba(0,0,0,.4);}
+.gcard-cover-dark .gcard-cat{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.gcard-cat{font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;position:relative;}
+.gcard-name{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1;position:relative;text-align:center;}
+.gcard-cover-grad .gcard-name{color:#000;}
+.gcard-cover-dark .gcard-name{color:var(--white);}
+.gcard-tagline{font-size:15px;font-weight:300;position:relative;text-align:center;padding:0 24px;}
+.gcard-cover-grad .gcard-tagline{color:rgba(0,0,0,.5);}
+.gcard-cover-dark .gcard-tagline{color:rgba(255,255,255,.5);}
+.gcard-body{padding:32px 36px 36px;flex:1;display:flex;flex-direction:column;gap:16px;}
+.gcard-desc{font-size:16px;color:var(--white);line-height:1.7;font-weight:300;flex:1;text-align:center;}
+.gcard-cta{
+  display:block;text-align:center;
+  padding:18px;border-radius:12px;
+  background:var(--g);
+  color:#000;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+}
+
+/* COMING SOON cards */
+.gcard.soon{opacity:1;pointer-events:auto;}
+.soon-tag{position:absolute;top:16px;right:16px;background:rgba(0,0,0,.5);color:rgba(255,255,255,.5);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
+
+@media(max-width:680px){
+  nav{padding:14px 24px;}
+  .hero{padding:100px 24px 60px;}
+  .grid-section{padding:60px 24px 80px;}
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <svg width="20" height="20" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="33" r="22" stroke="#E8B870" stroke-width="3.5"/>
+      <circle cx="67" cy="50" r="22" stroke="#BFA5D8" stroke-width="3.5"/>
+      <circle cx="50" cy="67" r="22" stroke="#2CB7A7" stroke-width="3.5"/>
+      <circle cx="33" cy="50" r="22" stroke="#E8B870" stroke-width="3.5"/>
+    </svg>
+    Self Hypnosis Goddess
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Find Your Block</h1>
+  <p class="hero-sub">Pick your category. Identify your block. Install the upgrade.</p>
+</section>
+
+<!-- GRID -->
+<section class="grid-section">
+  <div class="grid-wrap">
+    <div class="grid-label">Choose your guide</div>
+    <h2 class="grid-title">Which version of you<br>is ready to install next?</h2>
+
+    <div class="grid">
+      <!-- RICHGIRL -->
+      <a href="/guide/richgirl" class="gcard">
+        <div class="gcard-cover gcard-cover-grad">
+          <div class="gcard-cat">Moneymaxxing</div>
+          <div class="gcard-name">RichGirl Maxxing</div>
+          <div class="gcard-tagline">Right mind. Right identity. Right operating system.</div>
+        </div>
+        <div class="gcard-body">
+          <div class="gcard-desc">Your focus has no money target yet. Read the guide to understand the install — then take the quiz to find your level.</div>
+          <div class="gcard-cta">Read the guide →</div>
+        </div>
+      </a>
+
+      <!-- LUCKYGIRL -->
+      <a href="/guide/luckygirl" class="gcard">
+        <div class="gcard-cover gcard-cover-grad">
+          <div class="gcard-cat">Luckygirlmaxxing</div>
+          <div class="gcard-name">LuckyGirl Maxxing</div>
+          <div class="gcard-tagline">Right place. Right time. Right outcome. Mine.</div>
+        </div>
+        <div class="gcard-body">
+          <div class="gcard-desc">Luck is an identity, not a birthright. Read the guide to understand the install — then take the quiz to find your luck block.</div>
+          <div class="gcard-cta">Read the guide →</div>
+        </div>
+      </a>
+
+      <!-- LOVEMAXXING — coming soon -->
+      <a href="/guide/lovemaxxing" class="gcard">
+        <div class="gcard-cover gcard-cover-dark">
+          <div class="gcard-cat">Lovemaxxing</div>
+          <div class="gcard-name">LoveMaxxing</div>
+          <div class="gcard-tagline">Him obsessed. You unbothered. Of course.</div>
+        </div>
+        <div class="gcard-body">
+          <div class="gcard-desc">Train the four chambers of your love identity so extraordinary love is the only relationship that fits.</div>
+          <div class="gcard-cta">Read the guide →</div>
+        </div>
+      </a>
+
+      <!-- BEAUTYMAXXING — coming soon -->
+      <a href="/guide/beautymaxxing" class="gcard">
+        <div class="gcard-cover gcard-cover-dark">
+          <div class="gcard-cat">Beautymaxxing</div>
+          <div class="gcard-name">BeautyMaxxing</div>
+          <div class="gcard-tagline">Right mirror. Right identity. Right frequency.</div>
+        </div>
+        <div class="gcard-body">
+          <div class="gcard-desc">Beauty as identity, not performance. Install the self-perception that makes being seen feel safe and inevitable.</div>
+          <div class="gcard-cta">Read the guide →</div>
+        </div>
+      </a>
+
+      <!-- SELFMAXXING — coming soon, full width -->
+      <a href="/guide/selfmaxxing" class="gcard" style="grid-column:1/-1;">
+        <div class="gcard-cover gcard-cover-dark" style="height:160px;">
+          <div class="soon-tag">Coming soon</div>
+          <div class="gcard-cat">Selfmaxxing</div>
+          <div class="gcard-name">SelfMaxxing</div>
+        </div>
+        <div class="gcard-body">
+          <div class="gcard-desc">The master install. When the self-concept upgrades, every other category follows. The version of you who has it all starts here.</div>
+          <div class="gcard-cta">Read the guide →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
