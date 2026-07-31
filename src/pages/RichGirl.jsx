@@ -107,7 +107,7 @@ export default function RichGirl() {
       {/* HERO */}
       <div style={{ minHeight:"60vh", background:LG, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", padding:"120px 48px 72px" }}>
         <h1 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:700, color:"#000", letterSpacing:"-.03em", lineHeight:1, marginBottom:20 }}>RichGirl Maxxing</h1>
-        <p style={{ fontSize:"clamp(14px,1.6vw,18px)", fontWeight:400, color:"rgba(0,0,0,0.7)", letterSpacing:".02em" }}>Right mind. Right identity. Right operating system.</p>
+        <p style={{ fontSize:"clamp(14px,1.6vw,18px)", fontWeight:400, color:"#000", letterSpacing:".02em" }}>Right mind. Right identity. Right operating system.</p>
       </div>
 
       {/* LET'S BE HONEST */}
@@ -182,7 +182,7 @@ export default function RichGirl() {
               {LOOP_NODES.map((node, i) => (
                 <div key={i} className="loop-node" onClick={() => clickLoop(i)}
                   style={{ flex:1, minWidth:80, padding:"28px 12px", textAlign:"center", background:activeLoop===i?"rgba(0,0,0,0.85)":"rgba(255,255,255,0.5)", border:"none", borderRadius:12 }}>
-                  <div style={{ fontSize:11, letterSpacing:".1em", textTransform:"uppercase", fontWeight:700, color:activeLoop===i?"#f2ece4":"rgba(0,0,0,0.5)", marginBottom:8 }}>{node.t}</div>
+                  <div style={{ fontSize:11, letterSpacing:".1em", textTransform:"uppercase", fontWeight:700, color:activeLoop===i?"#f2ece4":"#000", marginBottom:8 }}>{node.t}</div>
                   {activeLoop===i && <div style={{ width:6, height:6, borderRadius:"50%", background:"#000", margin:"0 auto" }}/>}
                 </div>
               ))}
@@ -194,7 +194,7 @@ export default function RichGirl() {
               <div style={{ fontSize:16, lineHeight:1.8, color:"rgba(0,0,0,0.8)" }}>{LOOP_NODES[activeLoop].p}</div>
             </div>
 
-            <p style={{ fontSize:14, lineHeight:1.8, color:"rgba(0,0,0,0.5)", maxWidth:600, margin:"32px auto 0", textAlign:"center" }}>
+            <p style={{ fontSize:14, lineHeight:1.8, color:"#000", maxWidth:600, margin:"32px auto 0", textAlign:"center" }}>
               That drowsy, half-gone feeling right before you fall asleep — that's theta. 4 to 8Hz. The analytical mind has mostly switched off. Whatever you hear in that state goes directly into the subconscious, with no resistance. That is the exact window the Self Hypnosis Goddess audio library is built for.
             </p>
           </div>
@@ -207,7 +207,7 @@ export default function RichGirl() {
           <div style={ey}>The Money Capacity Ladder</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:12 }}>Pick the level that makes you go</h2>
           <h2 style={{ fontWeight:300, fontSize:"clamp(38px,6vw,76px)", lineHeight:1.05, letterSpacing:"-.03em", background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>"heaven yes — that could be me."</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"rgba(0,0,0,0.6)", maxWidth:680, marginBottom:64, margin:"0 auto 64px", textAlign:"center" }}>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"#000", maxWidth:680, marginBottom:64, margin:"0 auto 64px", textAlign:"center" }}>
             That nervous, excited feeling is your nervous system recognising the next level it can actually practise. Stay there until it feels normal. Then go again. There is no ceiling.
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
@@ -233,20 +233,20 @@ export default function RichGirl() {
       <div style={{ padding:"100px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:600, margin:"0 auto" }}>
           <h2 style={{ ...hm, fontSize:"clamp(32px,5vw,60px)", marginBottom:16 }}>Ready to install it?</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"rgba(0,0,0,0.6)", marginBottom:56 }}>Find your level. Install it tonight. Two ways in. Pick yours.</p>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"#000", marginBottom:56 }}>Find your level. Install it tonight. Two ways in. Pick yours.</p>
 
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:64 }}>
             <div style={{ background:"rgba(255,255,255,0.5)", borderRadius:16, padding:"36px 28px", textAlign:"left" }}>
               <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:16 }}>Free · 2 minutes</div>
               <div style={{ fontSize:32, fontWeight:700, color:"#000", marginBottom:12, letterSpacing:"-.02em" }}>RichGirl Quiz</div>
-              <div style={{ fontSize:14, color:"rgba(0,0,0,0.5)", lineHeight:1.6, marginBottom:28 }}>Find your current capacity level. Identify your block. Two minutes. Free.</div>
+              <div style={{ fontSize:14, color:"#000", lineHeight:1.6, marginBottom:28 }}>Find your current capacity level. Identify your block. Two minutes. Free.</div>
               <a href="/blocks/money" style={{ display:"block", background:LG, borderRadius:30, padding:"16px 20px", color:"#000", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:600, letterSpacing:".04em", textDecoration:"none", textAlign:"center" }}>Take the quiz — free</a>
             </div>
             <div style={{ background:LG, borderRadius:20, padding:"48px 36px", textAlign:"center" }} className="cta-glow">
-              <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:"rgba(0,0,0,.4)", marginBottom:16 }}>Instant access</div>
+              <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:"rgba(0,0,0,0.6)", marginBottom:16 }}>Instant access</div>
               <div style={{ fontSize:32, fontWeight:700, color:"#000", marginBottom:8, letterSpacing:"-.02em" }}>RichGirl Workbook</div>
               <div style={{ marginBottom:8 }}><span style={{ fontSize:20, fontWeight:700, color:"#000" }}>£29</span> <span style={{ fontSize:14, textDecoration:"line-through", color:"rgba(0,0,0,.35)" }}>£49</span></div>
-              <div style={{ fontSize:14, color:"rgba(0,0,0,.65)", lineHeight:1.6, marginBottom:28 }}>21 days to activate your RichGirl operating system.</div>
+              <div style={{ fontSize:14, color:"#000", lineHeight:1.6, marginBottom:28 }}>21 days to activate your RichGirl operating system.</div>
               <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer" style={{ display:"block", background:"#000", borderRadius:30, padding:"16px 20px", color:"#000", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:600, letterSpacing:".04em", textDecoration:"none", textAlign:"center" }}>Get the RichGirl Workbook →</a>
             </div>
           </div>
