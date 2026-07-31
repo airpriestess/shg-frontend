@@ -147,11 +147,11 @@ const CATEGORIES = [
     shift: "From dressing to hide — to dressing like the woman you're already becoming."
   },
   {
-    name: "Healmaxxing",
+    name: "Healthmaxxing",
     accent: "#F5E0A0",
     tagline: "You don't have to keep carrying what happened to you as proof of who you are.",
     pain: "Something happened and you've been rebuilding around it ever since. You've done the therapy, the journalling, the processing. And still there are moments where it comes back. Where you react in ways you don't want to react. Where the old pain is still somewhere in the body.",
-    what: "Healmaxxing uses EMDR bilateral audio and theta-state access to process what talk therapy can't always reach — the stored frequency in the nervous system. The tracks work while you rest, gently shifting what's held in the body.",
+    what: "Healthmaxxing uses EMDR bilateral audio and theta-state access to process what talk therapy can't always reach — the stored frequency in the nervous system. The tracks work while you rest, gently shifting what's held in the body.",
     shift: "From carrying old pain as part of your identity — to feeling like the version of you that's already moved through it."
   },
   {
