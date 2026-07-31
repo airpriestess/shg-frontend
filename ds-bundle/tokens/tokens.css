@@ -1,0 +1,54 @@
+/* ─────────────────────────────────────────────
+   SHG Design System — Brand Tokens
+   Source of truth: SHG_App_Brain.md
+   ───────────────────────────────────────────── */
+
+:root {
+
+  /* ── App colours ── */
+  --color-bg:           #000000;      /* pure black background */
+  --color-surface:      #06040c;      /* card surface */
+  --color-border:       #1c1828;      /* subtle border */
+  --color-rose-gold:    #B76E79;
+  --color-peach:        #d4a090;
+  --color-peach-light:  #e8c0a8;
+  --color-cream:        #f2ece4;      /* primary text on dark */
+  --color-muted:        #786860;      /* secondary text */
+
+  /* ── Typography ── */
+  --font-ui:            'Jost', system-ui, sans-serif;          /* 300–800 */
+  --font-display:       'Cormorant Garamond', Georgia, serif;   /* italic headlines */
+
+  /* ── Carousel palette (instagram-carousel skill) ── */
+  --c-cream-bg:     #fdf0e8;
+  --c-teal:         #2CB7A7;
+  --c-teal-dk:      #167A6B;
+  --c-gold:         #E8B870;
+  --c-champagne:    #F5E0A0;
+  --c-lilac:        #BFA5D8;
+  --c-rose:         #E07898;
+  --c-navy:         #0A4A8A;
+  --c-navy-lt:      #1A4A8A;
+
+  /* ── Category gradients ── */
+  --grad-love:         linear-gradient(135deg, #F5E0A0, #E07898);
+  --grad-money:        linear-gradient(135deg, #0A4A8A, #2CB7A7);
+  --grad-lucky:        linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B);
+  --grad-beauty:       linear-gradient(135deg, #F5E0A0, #f0c8d0);
+  --grad-sleep-dna:    linear-gradient(135deg, #1A4A8A, #2CB7A7);
+  --grad-confidence:   linear-gradient(135deg, #E8B870, #F5E0A0);
+  --grad-self-well:    linear-gradient(135deg, #BFA5D8, #2CB7A7);
+  --grad-sovereign:    linear-gradient(135deg, #E8B870, #2CB7A7);
+  --grad-teal:         linear-gradient(135deg, #2CB7A7, #167A6B);
+
+  /* ── Slide canvas ── */
+  --slide-preview-w:   420px;
+  --slide-preview-h:   560px;
+  --slide-export-w:    1080px;
+  --slide-export-h:    1440px;
+
+  /* ── Stripe payment links ── */
+  --stripe-audio:    'https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00';
+  --stripe-goddess:  'https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01';
+  --stripe-lifetime: 'https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02';
+}
