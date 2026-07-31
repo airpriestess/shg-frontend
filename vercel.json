@@ -5,6 +5,46 @@
       "destination": "/blocks/index.html"
     },
     {
+      "source": "/blocks/richgirl",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/luckygirl",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/lovemaxxing",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/beautymaxxing",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/selfmaxxing",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/money",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/love",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/beauty",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/self",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blocks/lucky",
+      "destination": "/index.html"
+    },
+    {
       "source": "/guides",
       "destination": "/guides/index.html"
     },
