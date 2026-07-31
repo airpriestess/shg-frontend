@@ -86,16 +86,16 @@ export default function RichGirl() {
 
       {/* HERO */}
       <div style={{ minHeight:"60vh", background:LG, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", padding:"120px 48px 72px" }}>
-        <h1 style={{ fontSize:"clamp(64px,10vw,120px)", fontWeight:700, color:"#000", letterSpacing:"-.04em", lineHeight:.9, marginBottom:20 }}>RichGirl<br/>Maxxing</h1>
+        <h1 style={{ fontSize:"clamp(36px,6vw,72px)", fontWeight:700, color:"#000", letterSpacing:"-.04em", lineHeight:1, marginBottom:20 }}>RichGirl Maxxing</h1>
         <p style={{ fontSize:"clamp(14px,1.6vw,18px)", fontWeight:400, color:"rgba(0,0,0,0.7)", letterSpacing:".02em" }}>Right mind. Right identity. Right operating system.</p>
       </div>
 
       {/* LET'S BE HONEST */}
       <div style={{ padding:"100px 48px" }}>
-        <div style={{ maxWidth:920, margin:"0 auto" }}>
+        <div style={{ maxWidth:920, margin:"0 auto", textAlign:"center" }}>
           <div style={ey}>Let's be honest</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:28 }}>You don't have the wrong filter.<br/>You have no filter at all.</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"#f2ece4", maxWidth:680, marginBottom:64 }}>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"#f2ece4", maxWidth:680, marginBottom:64, margin:"0 auto 64px" }}>
             Your brain has a built-in focus system — the Reticular Activating System — that decides what you notice out of the millions of signals around you every day. Without a trained identity, it has no target. No focus. Money, opportunity, the right people — they're there. Your brain just isn't locked onto them yet.
           </p>
 
@@ -145,11 +145,11 @@ export default function RichGirl() {
 
       {/* THE MECHANISM */}
       <div style={{ padding:"100px 48px" }}>
-        <div style={{ maxWidth:920, margin:"0 auto" }}>
+        <div style={{ maxWidth:920, margin:"0 auto", textAlign:"center" }}>
           <div style={ey}>The Mechanism</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:8 }}>Affirmations always work.</h2>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:32 }}>Just not in beta state.</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"#f2ece4", maxWidth:680, marginBottom:64 }}>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"#f2ece4", maxWidth:680, marginBottom:64, margin:"0 auto 64px" }}>
             In beta — wide awake — your brain argues back. In theta, the guard drops completely. The same affirmation that felt hollow at 2pm installs as identity at the edge of sleep.
           </p>
 
