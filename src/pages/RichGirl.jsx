@@ -251,9 +251,17 @@ export default function RichGirl() {
             </div>
           </div>
 
-          <p style={{ fontSize:"clamp(18px,2.5vw,26px)", fontWeight:300, color:"#000", lineHeight:1.6 }}>
-            After this, the old version of you stops making sense. You don't go back.
-          </p>
+          <div style={{ marginTop: 64, maxWidth: 560, margin: "64px auto 0", textAlign: "center" }}>
+            <p style={{ fontSize:"clamp(20px,2.5vw,28px)", fontWeight:300, color:"#000", lineHeight:1.6, marginBottom:16 }}>
+              After this, the old version of you stops making sense.
+            </p>
+            <p style={{ fontSize:"clamp(20px,2.5vw,28px)", fontWeight:300, color:"#000", lineHeight:1.6, marginBottom:32 }}>
+              You don't go back.
+            </p>
+            <p style={{ fontSize:"clamp(15px,1.8vw,18px)", fontWeight:300, color:"rgba(0,0,0,0.7)", lineHeight:1.8 }}>
+              Not because it's hard to go back — because the identity that was waiting on money, doubting the signal, scanning for red flags, just stops feeling like yours. The RichGirl operating system doesn't coexist with the old one. It replaces it.
+            </p>
+          </div>
         </div>
       </div>
     </div>
