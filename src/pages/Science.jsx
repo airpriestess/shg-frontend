@@ -165,22 +165,6 @@ export default function Science({ onBack }) {
           </div>
         </div>
 
-        {/* ═══ ORIGIN — WHY I BUILT THIS ═══ */}
-        <section style={{marginBottom:64,textAlign:"center"}}>
-          <Lbl c={LAV}>The origin</Lbl>
-          <H2>Why I built this</H2>
-          <P>I spent years doing everything right on the surface. Reading the books. Going to therapy. Journalling. Meditating. Saying affirmations in the mirror that I didn't believe and could feel myself not believing as I said them.</P>
-          <P>None of it touched the thing underneath. The belief that ran the program — about what I deserved in love, about my relationship with money, about what my body could be — stayed exactly where it was. Because I was trying to change it from the wrong level.</P>
-          <P>The beliefs that run your life don't live in your conscious thoughts. They were installed before you were 7 years old, in a brainwave state where there was no critical mind to filter them. They live in the subconscious. And the subconscious only opens in one state.</P>
-          <div style={{padding:isMobile?"24px 20px":"32px 40px",background:"rgba(44,183,167,0.06)",border:"1px solid rgba(44,183,167,0.2)",borderRadius:16,margin:"28px 0",textAlign:"center"}}>
-            <div style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:isMobile?"clamp(20px,5vw,26px)":"clamp(22px,2.8vw,30px)",color:CR,lineHeight:1.5,marginBottom:12}}>
-              "I didn't find a system that worked the way I knew it needed to work. So I built one."
-            </div>
-            <div style={{fontSize:13,color:TEAL,letterSpacing:"0.1em"}}>— Reshma Oracle</div>
-          </div>
-          <P>Self Hypnosis Goddess is the result of combining everything I learned about the subconscious, brainwave states, heart coherence, EMDR, and sound frequencies — into one audio system that anyone can press play on. No training. No meditation background. No belief required. Just headphones and the decision to stop trying to change from the wrong level.</P>
-        </section>
-
         <Div/>
 
         {/* ═══ THE FORMULA — annotated ═══ */}
@@ -304,9 +288,56 @@ export default function Science({ onBack }) {
 
         <Div/>
 
+        {/* ═══ BINAURAL BEATS ═══ */}
+        <section style={{marginBottom:64,textAlign:"center"}}>
+          <Lbl c={TEAL}>Section 02</Lbl>
+          <H2>Binaural beats — how sound alone shifts your brainwave state</H2>
+          <P>A binaural beat isn't a sound you actually hear. It's a sound your brain creates. Play a tone at 200Hz in your left ear and a tone at 204Hz in your right ear, and your brain doesn't hear two tones — it perceives a third, phantom pulse at exactly the difference between them: 4Hz. That 4Hz pulse is a theta frequency.</P>
+          <P>Your brain doesn't just perceive that pulse. It follows it. This is called entrainment — the brain's tendency to synchronise its own electrical activity to a rhythmic external stimulus. Give it a steady 4Hz pulse for long enough, and your brainwaves measurably shift toward 4Hz too, whether you're trying to or not.</P>
+
+          {/* Binaural diagram */}
+          <div style={{display:"flex",justifyContent:"center",margin:"32px 0"}}>
+            <svg viewBox="0 0 360 140" width={isMobile?"100%":420} style={{maxWidth:"100%"}}>
+              <defs>
+                <linearGradient id="bblg" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#2CB7A7"/>
+                  <stop offset="100%" stopColor="#BFA5D8"/>
+                </linearGradient>
+              </defs>
+              <text x="70" y="20" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill={TEAL}>LEFT EAR</text>
+              <path d="M10,40 C20,25 30,55 40,40 C50,25 60,55 70,40 C80,25 90,55 100,40 C110,25 120,55 130,40" fill="none" stroke={TEAL} strokeWidth="1.8" opacity="0.85"/>
+              <text x="70" y="56" textAnchor="middle" fontFamily="monospace" fontSize="9" fill={TEAL}>200Hz</text>
+
+              <text x="290" y="20" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill={LAV}>RIGHT EAR</text>
+              <path d="M230,40 C239,25 248,55 257,40 C266,25 275,55 284,40 C293,25 302,55 311,40 C320,25 329,55 338,40" fill="none" stroke={LAV} strokeWidth="1.8" opacity="0.85"/>
+              <text x="284" y="56" textAnchor="middle" fontFamily="monospace" fontSize="9" fill={LAV}>204Hz</text>
+
+              <text x="180" y="90" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill={CR}>YOUR BRAIN PERCEIVES</text>
+              <path d="M100,115 C130,95 150,135 180,115 C210,95 230,135 260,115" fill="none" stroke="url(#bblg)" strokeWidth="2.5"/>
+              <text x="180" y="132" textAnchor="middle" fontFamily="monospace" fontSize="10" fill={TEAL} fontWeight="600">4Hz — theta</text>
+            </svg>
+          </div>
+
+          <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:12}}>
+            {[
+              {c:TEAL,t:"Two tones, one difference",b:"Each ear receives a pure, slightly different frequency. Neither tone alone is anything special — it's the gap between them that matters. A 4Hz gap targets theta. A 10Hz gap targets alpha."},
+              {c:LAV,t:"Entrainment, not relaxation",b:"This isn't the brain calming down because the sound is soothing. It's a measurable electrical phenomenon — your brainwave frequency actually shifts to match the perceived beat, verified on EEG."},
+              {c:CHAMP,t:"Headphones required",b:"Because each ear needs to receive a genuinely different tone, binaural beats only work through stereo headphones — not speakers, where both ears hear both tones blended together."},
+              {c:GOLD,t:"Why it's layered under everything",b:"Binaural beats do the one thing willpower can't: lower the brain's critical filter without you doing anything. That's the door. Once it's open, the hypnosis and subliminals underneath can actually land.",glow:true},
+            ].map((p,i)=>(
+              <Box key={i} c={p.c} glow={p.glow}>
+                <H3 c={p.c}>{p.t}</H3>
+                <P>{p.b}</P>
+              </Box>
+            ))}
+          </div>
+        </section>
+
+        <Div/>
+
         {/* ═══ HEART-BRAIN ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
-          <Lbl c={LAV}>Section 02</Lbl>
+          <Lbl c={LAV}>Section 03</Lbl>
           <H2>The heart-brain — it was never just the mind</H2>
 
           {/* Lucky Girl gradient visual — decorative SVG */}
@@ -397,7 +428,7 @@ export default function Science({ onBack }) {
 
         {/* ═══ HEART COHERENCE ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
-          <Lbl c={TEAL}>Section 03</Lbl>
+          <Lbl c={TEAL}>Section 04</Lbl>
           <H2>Heart coherence — the state that opens the door</H2>
           <P>Heart rate variability (HRV) — the variation in time between heartbeats — is the measure of your heart's rhythmic pattern. An erratic, disordered pattern reflects a contracted emotional state. A smooth, rhythmic pattern reflects coherence.</P>
           <P>These patterns travel to the brain and determine what the brain is capable of. In an incoherent state, the brain locks down. Old patterns reinforce. Nothing new can install. In a coherent state, the brain opens — cognitive function improves, resistance drops, and new information lands at a deeper level.</P>
@@ -436,7 +467,7 @@ export default function Science({ onBack }) {
 
         {/* ═══ SUBLIMINALS ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
-          <Lbl c={GOLD}>Section 04</Lbl>
+          <Lbl c={GOLD}>Section 05</Lbl>
           <H2>Why subliminals work where affirmations don't</H2>
           <P>An affirmation is a conscious statement. It is heard, evaluated by the critical faculty, and checked against existing belief. If it contradicts what you already believe — which it usually does, or you wouldn't need to say it — it is rejected. Every time.</P>
           <P>A subliminal is delivered below the threshold of conscious awareness. The ear receives it. The critical faculty never engages. The belief lands directly into the subconscious without the filter of evaluation.</P>
@@ -465,7 +496,7 @@ export default function Science({ onBack }) {
 
         {/* ═══ EMDR ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
-          <Lbl c={LAV}>Section 05</Lbl>
+          <Lbl c={LAV}>Section 06</Lbl>
           <H2>EMDR — why both hemispheres matter</H2>
           <P>EMDR (Eye Movement Desensitisation and Reprocessing) was originally developed for trauma. The bilateral stimulation — alternating left-right input — was found to allow the brain to process difficult material without the usual emotional resistance. Both hemispheres synchronise. Defences drop. Processing deepens.</P>
           <P>In audio form, the left-right alternation happens through sound — a tone, a beat, or a pulse that alternates between the left and right ears through headphones.</P>
@@ -513,7 +544,7 @@ export default function Science({ onBack }) {
 
         {/* ═══ THE FULL SYSTEM ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
-          <Lbl>Section 06</Lbl>
+          <Lbl>Section 07</Lbl>
           <H2>How it all combines — the complete system</H2>
           <P>No single element does what all five do together. The music raises coherence. The binaural beats open theta. The EMDR synchronises both hemispheres. The hypnosis delivers the identity. The subliminals embed it below conscious awareness. In sequence, in one track, simultaneously.</P>
 
