@@ -47,7 +47,7 @@ export default function RichGirl() {
   }, []);
 
   return (
-    <div style={{ background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh", overflowX: "hidden" }}>
+    <div style={{ background: LG, color: "#000", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
       <SHGNav/>
 
@@ -58,10 +58,10 @@ export default function RichGirl() {
       </div>
 
       {/* LET'S BE HONEST */}
-      <div style={{ padding: "100px 48px", maxWidth: 920, margin: "0 auto" }}>
-        <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 20, fontWeight: 600 }}>Let's be honest</div>
-        <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 28 }}>You don't have the wrong filter.<br/>You have no filter at all.</h2>
-        <p style={{ fontSize: 17, lineHeight: 1.8, color: "#f2ece4", maxWidth: 680 }}>
+      <div style={{ padding: "100px 48px", maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
+        <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 20, fontWeight: 600 }}>Let's be honest</div>
+        <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#000", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 28 }}>You don't have the wrong filter.<br/>You have no filter at all.</h2>
+        <p style={{ fontSize: 17, lineHeight: 1.8, color: "#000", maxWidth: 680 }}>
           Your brain has a built-in focus system — the Reticular Activating System — that decides what you notice out of the millions of signals around you every day. Without a trained identity, it has no target. No focus. Money, opportunity, the right people — they're there. Your brain just isn't locked onto them yet.
         </p>
 
@@ -83,18 +83,18 @@ export default function RichGirl() {
       </div>
 
       {/* THE IDENTITY */}
-      <div style={{ padding: "100px 48px", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 20, fontWeight: 600 }}>The Identity</div>
-          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 12 }}>RichGirl isn't a personality type.</h2>
-          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 64 }}>It's an operating system.</h2>
+      <div style={{ padding: "100px 48px", background: "transparent" }}>
+        <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center", textAlign: "center" }}>
+          <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 20, fontWeight: 600 }}>The Identity</div>
+          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#000", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 12 }}>RichGirl isn't a personality type.</h2>
+          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#000", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 64 }}>It's an operating system.</h2>
 
           {/* Rotating identity */}
           <div style={{ minHeight: 200, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative" }}>
             {IDENTITY.map((item, i) => (
               <div key={i} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, opacity: activeId === i ? 1 : 0, transform: activeId === i ? "translateY(0)" : "translateY(10px)", transition: "opacity .9s, transform .9s", pointerEvents: activeId === i ? "auto" : "none" }}>
-                <div style={{ fontSize: "clamp(18px,2.8vw,32px)", letterSpacing: "-.01em", textTransform: "uppercase", fontWeight: 700, background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 20 }}>{item.key}</div>
-                <div style={{ fontSize: "clamp(18px,2.4vw,26px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.5, maxWidth: 640, letterSpacing: "-.01em" }}>{item.val}</div>
+                <div style={{ fontSize: "clamp(18px,2.8vw,32px)", letterSpacing: "-.01em", textTransform: "uppercase", fontWeight: 700, color: "rgba(0,0,0,0.5)", marginBottom: 20 }}>{item.key}</div>
+                <div style={{ fontSize: "clamp(18px,2.4vw,26px)", fontWeight: 300, color: "#000", lineHeight: 1.5, maxWidth: 640, letterSpacing: "-.01em" }}>{item.val}</div>
               </div>
             ))}
           </div>
@@ -110,26 +110,26 @@ export default function RichGirl() {
 
       {/* THE MECHANISM */}
       <div style={{ padding: "100px 48px" }}>
-        <div style={{ maxWidth: 920, margin: "0 auto" }}>
-          <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 20, fontWeight: 600 }}>The Mechanism</div>
-          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 12 }}>Affirmations always work.</h2>
-          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 32 }}>Just not in beta state.</h2>
-          <p style={{ fontSize: 17, lineHeight: 1.8, color: "#f2ece4", maxWidth: 680, marginBottom: 64 }}>
+        <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 20, fontWeight: 600 }}>The Mechanism</div>
+          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#000", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 12 }}>Affirmations always work.</h2>
+          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#000", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 32 }}>Just not in beta state.</h2>
+          <p style={{ fontSize: 17, lineHeight: 1.8, color: "#000", maxWidth: 680, marginBottom: 64 }}>
             In beta — wide awake — your brain argues back. In theta, the guard drops completely. The same affirmation that felt hollow at 2pm installs as identity at the edge of sleep.
           </p>
 
           {/* Install loop */}
-          <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: "56px 48px" }}>
-            <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", textAlign: "center", marginBottom: 48, fontWeight: 600 }}>The RichGirl install loop</div>
+          <div style={{ background: "rgba(255,255,255,0.3)", border: "none", borderRadius: 16, padding: "56px 48px" }}>
+            <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", textAlign: "center", marginBottom: 48, fontWeight: 600 }}>The RichGirl install loop</div>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, flexWrap: "wrap", marginBottom: 48 }}>
               {["Identity", "Expectation", "RAS Filter", "Attention", "Reality", "Proof"].map((node, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "20px 24px", textAlign: "center", fontSize: 14, fontWeight: 500, color: "#f2ece4", letterSpacing: ".03em" }}>{node}</div>
+                  <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, padding: "20px 24px", textAlign: "center", fontSize: 14, fontWeight: 500, color: "#000", letterSpacing: ".03em" }}>{node}</div>
                   {i < 5 && <div style={{ color: "rgba(255,255,255,0.3)", fontSize: 18 }}>→</div>}
                 </div>
               ))}
             </div>
-            <p style={{ fontSize: 16, lineHeight: 1.8, color: "rgba(242,236,228,0.7)", maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
+            <p style={{ fontSize: 16, lineHeight: 1.8, color: "rgba(0,0,0,0.7)", maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
               That drowsy, half-gone feeling right before you fall asleep — that's theta. Your brain is producing slow waves at 4 to 8Hz. The analytical, argumentative part of your mind has mostly switched off. Whatever you hear in that state goes directly into the subconscious, with no resistance. That is the exact window the Self Hypnosis Goddess audio library is built for.
             </p>
           </div>
@@ -137,12 +137,12 @@ export default function RichGirl() {
       </div>
 
       {/* MONEY CAPACITY LADDER */}
-      <div style={{ padding: "100px 48px", background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: 920, margin: "0 auto" }}>
-          <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", marginBottom: 20, fontWeight: 600 }}>The Money Capacity Ladder</div>
-          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 16 }}>Pick the level that makes you go</h2>
-          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 16 }}>"heaven yes — that could be me."</h2>
-          <p style={{ fontSize: 17, lineHeight: 1.8, color: "rgba(242,236,228,0.7)", maxWidth: 680, marginBottom: 64 }}>
+      <div style={{ padding: "100px 48px", background: "transparent" }}>
+        <div style={{ maxWidth: 920, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ fontSize: 13, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 20, fontWeight: 600 }}>The Money Capacity Ladder</div>
+          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "#000", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 16 }}>Pick the level that makes you go</h2>
+          <h2 style={{ fontSize: "clamp(38px,6vw,76px)", fontWeight: 300, color: "rgba(0,0,0,0.5)", lineHeight: 1.05, letterSpacing: "-.03em", marginBottom: 16 }}>"heaven yes — that could be me."</h2>
+          <p style={{ fontSize: 17, lineHeight: 1.8, color: "rgba(0,0,0,0.7)", maxWidth: 680, marginBottom: 64 }}>
             That nervous, excited feeling is your nervous system recognising the next level it can actually practise. Stay there until it feels normal. Then go again. There is no ceiling.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
@@ -161,8 +161,8 @@ export default function RichGirl() {
                   {rung.level}
                 </div>
                 <div style={{ padding:"24px 36px", background:"rgba(255,255,255,.025)", border:"1px solid rgba(255,255,255,.06)", borderLeft:"none", borderRadius:"0 10px 10px 0" }}>
-                  <div style={{ fontSize:"clamp(32px,4.5vw,52px)", fontWeight:400, color:"#f2ece4", lineHeight:1, marginBottom:8, letterSpacing:"-.02em" }}>{rung.amount}</div>
-                  <div style={{ fontSize:13, color:"#f2ece4", lineHeight:1.5 }}>{rung.note}</div>
+                  <div style={{ fontSize:"clamp(32px,4.5vw,52px)", fontWeight:400, color:"#fff", lineHeight:1, marginBottom:8, letterSpacing:"-.02em" }}>{rung.amount}</div>
+                  <div style={{ fontSize:13, color:"#fff", lineHeight:1.5 }}>{rung.note}</div>
                 </div>
               </div>
             ))}
@@ -172,14 +172,14 @@ export default function RichGirl() {
 
       {/* CTA */}
       <div style={{ padding: "100px 48px", textAlign: "center" }}>
-        <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <h2 style={{ fontSize: "clamp(32px,5vw,60px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.1, letterSpacing: "-.03em", marginBottom: 16 }}>Ready to install it?</h2>
-          <p style={{ fontSize: 17, lineHeight: 1.8, color: "rgba(242,236,228,0.65)", marginBottom: 56 }}>Find your level. Install it tonight.</p>
+        <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ fontSize: "clamp(32px,5vw,60px)", fontWeight: 300, color: "#000", lineHeight: 1.1, letterSpacing: "-.03em", marginBottom: 16 }}>Ready to install it?</h2>
+          <p style={{ fontSize: 17, lineHeight: 1.8, color: "rgba(0,0,0,0.65)", marginBottom: 56 }}>Find your level. Install it tonight.</p>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 64 }}>
-            <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "36px 28px" }}>
+            <div style={{ background: "rgba(255,255,255,0.7)", border: "none", borderRadius: 16, padding: "48px 36px" }}>
               <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 16 }}>Free · 2 minutes</div>
-              <div style={{ fontSize: 22, fontWeight: 600, color: "#f2ece4", marginBottom: 8 }}>RichGirl Quiz</div>
+              <div style={{ fontSize: 22, fontWeight: 600, color: "#000", marginBottom: 8 }}>RichGirl Quiz</div>
               <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, marginBottom: 28 }}>Find your current capacity level. Identify your block. Two minutes. Free.</div>
               <a href="/blocks/money" style={{ display: "block", background: LG, border: "none", borderRadius: 30, padding: "16px 20px", color: "#000", fontFamily: "'Jost',sans-serif", fontSize: 14, fontWeight: 600, letterSpacing: ".04em", textDecoration: "none" }}>Take the quiz — free</a>
             </div>
@@ -188,11 +188,11 @@ export default function RichGirl() {
               <div style={{ fontSize: 22, fontWeight: 600, color: "#000", marginBottom: 4 }}>RichGirl Workbook</div>
               <div style={{ fontSize: 20, fontWeight: 700, color: "#000", marginBottom: 4 }}>£29 <span style={{ fontSize: 14, textDecoration: "line-through", opacity: 0.4 }}>£49</span></div>
               <div style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", lineHeight: 1.6, marginBottom: 28 }}>21 days to activate your RichGirl operating system.</div>
-              <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer" style={{ display: "block", background: "#000", border: "none", borderRadius: 30, padding: "16px 20px", color: "#f2ece4", fontFamily: "'Jost',sans-serif", fontSize: 14, fontWeight: 600, letterSpacing: ".04em", textDecoration: "none" }}>Get the RichGirl Workbook →</a>
+              <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer" style={{ display: "block", background: "#000", border: "none", borderRadius: 30, padding: "16px 20px", color: "#000", fontFamily: "'Jost',sans-serif", fontSize: 14, fontWeight: 600, letterSpacing: ".04em", textDecoration: "none" }}>Get the RichGirl Workbook →</a>
             </div>
           </div>
 
-          <p style={{ fontSize: "clamp(18px,2.5vw,26px)", fontWeight: 300, color: "#f2ece4", lineHeight: 1.6, maxWidth: 480, margin: "0 auto" }}>
+          <p style={{ fontSize: "clamp(18px,2.5vw,26px)", fontWeight: 300, color: "#000", lineHeight: 1.6, maxWidth: 480, margin: "0 auto" }}>
             After this, the old version of you stops making sense. You don't go back.
           </p>
         </div>
