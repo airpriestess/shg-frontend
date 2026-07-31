@@ -206,7 +206,7 @@ export default function RichGirl() {
         <div style={{ maxWidth:920, margin:"0 auto", textAlign:"center" }}>
           <div style={ey}>The Money Capacity Ladder</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:12 }}>Pick the level that makes you go</h2>
-          <h2 style={{ fontWeight:300, fontSize:"clamp(38px,6vw,76px)", lineHeight:1.05, letterSpacing:"-.03em", background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>"heaven yes — that could be me."</h2>
+          <h2 style={{ fontWeight:700, fontSize:"clamp(38px,6vw,76px)", lineHeight:1.05, letterSpacing:"-.03em", color:"#000", marginBottom:16 }}>"heaven yes — that could be me."</h2>
           <p style={{ fontSize:17, lineHeight:1.8, color:"#000", maxWidth:680, marginBottom:64, margin:"0 auto 64px", textAlign:"center" }}>
             That nervous, excited feeling is your nervous system recognising the next level it can actually practise. Stay there until it feels normal. Then go again. There is no ceiling.
           </p>
