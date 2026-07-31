@@ -86,7 +86,7 @@ export default function RichGirl() {
 
       {/* HERO */}
       <div style={{ minHeight:"60vh", background:LG, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", padding:"120px 48px 72px" }}>
-        <h1 style={{ fontSize:"clamp(36px,6vw,72px)", fontWeight:700, color:"#000", letterSpacing:"-.04em", lineHeight:1, marginBottom:20 }}>RichGirl Maxxing</h1>
+        <h1 style={{ fontSize:"clamp(28px,4vw,48px)", fontWeight:700, color:"#000", letterSpacing:"-.03em", lineHeight:1, marginBottom:20 }}>RichGirl Maxxing</h1>
         <p style={{ fontSize:"clamp(14px,1.6vw,18px)", fontWeight:400, color:"rgba(0,0,0,0.7)", letterSpacing:".02em" }}>Right mind. Right identity. Right operating system.</p>
       </div>
 
