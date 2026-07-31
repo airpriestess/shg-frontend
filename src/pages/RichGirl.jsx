@@ -39,7 +39,7 @@ function SHGNav() {
           <circle cx="65" cy="65" r="18" fill="none" stroke="url(#rgnav)" strokeWidth="2"/>
           <line x1="50" y1="80" x2="50" y2="96" stroke="url(#rgnav)" strokeWidth="2" strokeLinecap="round"/>
         </svg>
-        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:13, letterSpacing:".22em", textTransform:"uppercase", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
+        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:13, letterSpacing:".22em", textTransform:"uppercase", color:"#000" }}>Self Hypnosis Goddess</span>
       </div>
       <a href="/blocks/money" style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", fontWeight:600, color:"#000", padding:"10px 24px", borderRadius:20, background:LG, textDecoration:"none" }}>Take the quiz</a>
     </nav>
@@ -72,10 +72,10 @@ export default function RichGirl() {
   };
 
   const ey = { fontSize:13, letterSpacing:".28em", textTransform:"uppercase", background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:20, fontWeight:600, display:"inline-block" };
-  const hm = { fontWeight:300, color:"#f2ece4", lineHeight:1.05, letterSpacing:"-.03em" };
+  const hm = { fontWeight:300, color:"#000", lineHeight:1.05, letterSpacing:"-.03em" };
 
   return (
-    <div style={{ background:"#000", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, minHeight:"100vh", overflowX:"hidden" }}>
+    <div style={{ background:LG, color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:300, minHeight:"100vh", overflowX:"hidden" }}>
       <style>{`
         @keyframes kb { 0%,100%{filter:drop-shadow(0 0 8px rgba(245,224,160,.5))} 50%{filter:drop-shadow(0 0 24px rgba(191,165,216,.7))} }
         .loop-node { transition: all .4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; }
@@ -95,7 +95,7 @@ export default function RichGirl() {
         <div style={{ maxWidth:920, margin:"0 auto", textAlign:"center" }}>
           <div style={ey}>Let's be honest</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:28 }}>You don't have the wrong filter.<br/>You have no filter at all.</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"#f2ece4", maxWidth:680, marginBottom:64, margin:"0 auto 64px" }}>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"#000", maxWidth:680, marginBottom:64, margin:"0 auto 64px" }}>
             Your brain has a built-in focus system — the Reticular Activating System — that decides what you notice out of the millions of signals around you every day. Without a trained identity, it has no target. No focus. Money, opportunity, the right people — they're there. Your brain just isn't locked onto them yet.
           </p>
 
@@ -118,7 +118,7 @@ export default function RichGirl() {
       </div>
 
       {/* THE IDENTITY */}
-      <div style={{ padding:"100px 48px", background:"rgba(255,255,255,.02)", borderTop:"1px solid rgba(255,255,255,.06)", borderBottom:"1px solid rgba(255,255,255,.06)" }}>
+      <div style={{ padding:"100px 48px", background:"transparent" }}>
         <div style={{ maxWidth:920, margin:"0 auto", textAlign:"center" }}>
           <div style={ey}>The Identity</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:8 }}>RichGirl isn't a personality type.</h2>
@@ -129,7 +129,7 @@ export default function RichGirl() {
             {IDENTITY.map((item, i) => (
               <div key={i} style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:24, opacity:activeId===i?1:0, transform:activeId===i?"translateY(0)":"translateY(12px)", transition:"opacity .9s, transform .9s", pointerEvents:activeId===i?"auto":"none" }}>
                 <div style={{ fontSize:"clamp(20px,3vw,36px)", letterSpacing:"-.01em", textTransform:"uppercase", fontWeight:700, background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:20, animation:"kb 4s ease-in-out infinite" }}>{item.key}</div>
-                <div style={{ fontSize:"clamp(17px,2.2vw,24px)", fontWeight:300, color:"#f2ece4", lineHeight:1.6, maxWidth:640 }}>{item.val}</div>
+                <div style={{ fontSize:"clamp(17px,2.2vw,24px)", fontWeight:300, color:"#000", lineHeight:1.6, maxWidth:640 }}>{item.val}</div>
               </div>
             ))}
           </div>
@@ -149,32 +149,32 @@ export default function RichGirl() {
           <div style={ey}>The Mechanism</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:8 }}>Affirmations always work.</h2>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:32 }}>Just not in beta state.</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"#f2ece4", maxWidth:680, marginBottom:64, margin:"0 auto 64px" }}>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"#000", maxWidth:680, marginBottom:64, margin:"0 auto 64px" }}>
             In beta — wide awake — your brain argues back. In theta, the guard drops completely. The same affirmation that felt hollow at 2pm installs as identity at the edge of sleep.
           </p>
 
           {/* Install loop */}
-          <div style={{ background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.06)", borderRadius:16, padding:"56px 48px" }}>
+          <div style={{ background:"rgba(255,255,255,0.6)", border:"none", borderRadius:16, padding:"56px 48px" }}>
             <div style={{ ...ey, display:"block", textAlign:"center", marginBottom:48 }}>The RichGirl install loop — click any node</div>
 
             {/* Nodes */}
             <div style={{ display:"flex", alignItems:"stretch", gap:4, marginBottom:36, overflowX:"auto" }}>
               {LOOP_NODES.map((node, i) => (
                 <div key={i} className="loop-node" onClick={() => clickLoop(i)}
-                  style={{ flex:1, minWidth:80, padding:"28px 12px", textAlign:"center", background:activeLoop===i?LG:"rgba(255,255,255,.03)", border:`1px solid ${activeLoop===i?"transparent":"rgba(255,255,255,.08)"}`, borderRadius:12 }}>
-                  <div style={{ fontSize:11, letterSpacing:".1em", textTransform:"uppercase", fontWeight:700, color:activeLoop===i?"#000":"rgba(255,255,255,.4)", marginBottom:8 }}>{node.t}</div>
+                  style={{ flex:1, minWidth:80, padding:"28px 12px", textAlign:"center", background:activeLoop===i?"rgba(0,0,0,0.85)":"rgba(255,255,255,0.5)", border:"none", borderRadius:12 }}>
+                  <div style={{ fontSize:11, letterSpacing:".1em", textTransform:"uppercase", fontWeight:700, color:activeLoop===i?"#f2ece4":"rgba(0,0,0,0.5)", marginBottom:8 }}>{node.t}</div>
                   {activeLoop===i && <div style={{ width:6, height:6, borderRadius:"50%", background:"#000", margin:"0 auto" }}/>}
                 </div>
               ))}
             </div>
 
             {/* Active node description */}
-            <div style={{ background:"rgba(255,255,255,.04)", borderRadius:12, padding:"32px 36px", minHeight:100 }}>
+            <div style={{ background:"rgba(255,255,255,0.7)", borderRadius:12, padding:"32px 36px", minHeight:100 }}>
               <div style={{ fontSize:16, letterSpacing:".1em", textTransform:"uppercase", background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontWeight:700, marginBottom:16 }}>{LOOP_NODES[activeLoop].t}</div>
-              <div style={{ fontSize:16, lineHeight:1.8, color:"rgba(242,236,228,.8)" }}>{LOOP_NODES[activeLoop].p}</div>
+              <div style={{ fontSize:16, lineHeight:1.8, color:"rgba(0,0,0,0.8)" }}>{LOOP_NODES[activeLoop].p}</div>
             </div>
 
-            <p style={{ fontSize:14, lineHeight:1.8, color:"rgba(242,236,228,.5)", maxWidth:600, margin:"32px auto 0", textAlign:"center" }}>
+            <p style={{ fontSize:14, lineHeight:1.8, color:"rgba(0,0,0,0.5)", maxWidth:600, margin:"32px auto 0", textAlign:"center" }}>
               That drowsy, half-gone feeling right before you fall asleep — that's theta. 4 to 8Hz. The analytical mind has mostly switched off. Whatever you hear in that state goes directly into the subconscious, with no resistance. That is the exact window the Self Hypnosis Goddess audio library is built for.
             </p>
           </div>
@@ -182,27 +182,27 @@ export default function RichGirl() {
       </div>
 
       {/* MONEY CAPACITY LADDER */}
-      <div style={{ padding:"100px 48px", background:"rgba(255,255,255,.02)", borderTop:"1px solid rgba(255,255,255,.06)" }}>
+      <div style={{ padding:"100px 48px", background:"transparent" }}>
         <div style={{ maxWidth:920, margin:"0 auto", textAlign:"center" }}>
           <div style={ey}>The Money Capacity Ladder</div>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:12 }}>Pick the level that makes you go</h2>
           <h2 style={{ fontWeight:300, fontSize:"clamp(38px,6vw,76px)", lineHeight:1.05, letterSpacing:"-.03em", background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>"heaven yes — that could be me."</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"rgba(242,236,228,.65)", maxWidth:680, marginBottom:64, margin:"0 auto 64px", textAlign:"center" }}>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"rgba(0,0,0,0.6)", maxWidth:680, marginBottom:64, margin:"0 auto 64px", textAlign:"center" }}>
             That nervous, excited feeling is your nervous system recognising the next level it can actually practise. Stay there until it feels normal. Then go again. There is no ceiling.
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
             {LADDER.map((rung, i) => (
               <div key={i} onClick={() => setActiveLadder(activeLadder===i?null:i)}
                 className="loop-node"
-                style={{ background:activeLadder===i?LG:"rgba(255,255,255,.03)", border:`1px solid ${activeLadder===i?"transparent":"rgba(255,255,255,.08)"}`, borderRadius:14, padding:"28px 32px" }}>
+                style={{ background:activeLadder===i?"rgba(0,0,0,0.85)":"rgba(255,255,255,0.5)", border:"none", borderRadius:14, padding:"28px 32px" }}>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:24 }}>
                     <div style={{ fontSize:11, letterSpacing:".2em", color:activeLadder===i?"rgba(0,0,0,.4)":"rgba(255,255,255,.3)", fontWeight:600 }}>LEVEL {rung.level}</div>
-                    <div style={{ fontSize:"clamp(20px,3vw,32px)", fontWeight:600, color:activeLadder===i?"#000":"#f2ece4", letterSpacing:"-.02em" }}>{rung.amount}</div>
+                    <div style={{ fontSize:"clamp(20px,3vw,32px)", fontWeight:600, color:activeLadder===i?"#f2ece4":"#000", letterSpacing:"-.02em" }}>{rung.amount}</div>
                   </div>
-                  <div style={{ fontSize:22, color:activeLadder===i?"rgba(0,0,0,.4)":"rgba(255,255,255,.2)" }}>{activeLadder===i?"−":"+"}</div>
+                  <div style={{ fontSize:22, color:activeLadder===i?"rgba(255,255,255,0.4)":"rgba(0,0,0,0.3)" }}>{activeLadder===i?"−":"+"}</div>
                 </div>
-                {activeLadder===i && <div style={{ marginTop:16, fontSize:16, lineHeight:1.7, color:"rgba(0,0,0,.75)", maxWidth:560 }}>{rung.desc}</div>}
+                {activeLadder===i && <div style={{ marginTop:16, fontSize:16, lineHeight:1.7, color:"#f2ece4", maxWidth:560 }}>{rung.desc}</div>}
               </div>
             ))}
           </div>
@@ -213,13 +213,13 @@ export default function RichGirl() {
       <div style={{ padding:"100px 48px", textAlign:"center" }}>
         <div style={{ maxWidth:600, margin:"0 auto" }}>
           <h2 style={{ ...hm, fontSize:"clamp(32px,5vw,60px)", marginBottom:16 }}>Ready to install it?</h2>
-          <p style={{ fontSize:17, lineHeight:1.8, color:"rgba(242,236,228,.65)", marginBottom:56 }}>Find your level. Install it tonight. Two ways in. Pick yours.</p>
+          <p style={{ fontSize:17, lineHeight:1.8, color:"rgba(0,0,0,0.6)", marginBottom:56 }}>Find your level. Install it tonight. Two ways in. Pick yours.</p>
 
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:64 }}>
-            <div style={{ background:"rgba(255,255,255,.04)", border:"1px solid rgba(255,255,255,.1)", borderRadius:16, padding:"36px 28px", textAlign:"left" }}>
-              <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:"rgba(255,255,255,.4)", marginBottom:16 }}>Free · 2 minutes</div>
-              <div style={{ fontSize:22, fontWeight:600, color:"#f2ece4", marginBottom:8 }}>RichGirl Quiz</div>
-              <div style={{ fontSize:14, color:"rgba(255,255,255,.5)", lineHeight:1.6, marginBottom:28 }}>Find your current capacity level. Identify your block. Two minutes. Free.</div>
+            <div style={{ background:"rgba(255,255,255,0.5)", borderRadius:16, padding:"36px 28px", textAlign:"left" }}>
+              <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase", color:"rgba(0,0,0,0.4)", marginBottom:16 }}>Free · 2 minutes</div>
+              <div style={{ fontSize:22, fontWeight:600, color:"#000", marginBottom:8 }}>RichGirl Quiz</div>
+              <div style={{ fontSize:14, color:"rgba(0,0,0,0.5)", lineHeight:1.6, marginBottom:28 }}>Find your current capacity level. Identify your block. Two minutes. Free.</div>
               <a href="/blocks/money" style={{ display:"block", background:LG, borderRadius:30, padding:"16px 20px", color:"#000", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:600, letterSpacing:".04em", textDecoration:"none", textAlign:"center" }}>Take the quiz — free</a>
             </div>
             <div style={{ background:LG, borderRadius:16, padding:"36px 28px", textAlign:"left" }}>
@@ -227,11 +227,11 @@ export default function RichGirl() {
               <div style={{ fontSize:22, fontWeight:600, color:"#000", marginBottom:4 }}>RichGirl Workbook</div>
               <div style={{ marginBottom:8 }}><span style={{ fontSize:20, fontWeight:700, color:"#000" }}>£29</span> <span style={{ fontSize:14, textDecoration:"line-through", color:"rgba(0,0,0,.35)" }}>£49</span></div>
               <div style={{ fontSize:14, color:"rgba(0,0,0,.65)", lineHeight:1.6, marginBottom:28 }}>21 days to activate your RichGirl operating system.</div>
-              <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer" style={{ display:"block", background:"#000", borderRadius:30, padding:"16px 20px", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:600, letterSpacing:".04em", textDecoration:"none", textAlign:"center" }}>Get the RichGirl Workbook →</a>
+              <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer" style={{ display:"block", background:"#000", borderRadius:30, padding:"16px 20px", color:"#000", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:600, letterSpacing:".04em", textDecoration:"none", textAlign:"center" }}>Get the RichGirl Workbook →</a>
             </div>
           </div>
 
-          <p style={{ fontSize:"clamp(18px,2.5vw,26px)", fontWeight:300, color:"#f2ece4", lineHeight:1.6 }}>
+          <p style={{ fontSize:"clamp(18px,2.5vw,26px)", fontWeight:300, color:"#000", lineHeight:1.6 }}>
             After this, the old version of you stops making sense. You don't go back.
           </p>
         </div>
