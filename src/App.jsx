@@ -17,6 +17,7 @@ import AssumptionQuiz from "./pages/AssumptionQuiz.jsx";
 import LuckyGirl from "./pages/LuckyGirl.jsx";
 import RichGirl from "./pages/RichGirl.jsx";
 import Blocks from "./pages/Blocks.jsx";
+import Quizzes from "./pages/Quizzes.jsx";
 import BlocksQuiz from "./pages/BlocksQuiz.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LandingProofWall from "./components/LandingProofWall.jsx";
@@ -254,6 +255,7 @@ export default function App() {
         <Route path="/library" element={<Library onBack={()=>navigate("/")}/>} />
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
         <Route path="/quiz"    element={<AssumptionQuiz/>} />
+        <Route path="/quizzes" element={<Quizzes/>} />
         <Route path="/luckygirl" element={<LuckyGirl/>} />
         <Route path="/richgirl" element={<RichGirl/>} />
         <Route path="/blocks" element={<Blocks/>} />
