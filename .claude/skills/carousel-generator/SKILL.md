@@ -1,67 +1,83 @@
 # SHG Carousel Generator
 
-Generates Instagram carousels for Self Hypnosis Goddess: a swipeable 420×560 HTML preview that exports as 1080×1440 PNGs.
+Generates Instagram carousels for Self Hypnosis Goddess.
+Output: swipeable 420×560 HTML preview → 1080×1440 PNG export.
+
+---
+
+## Design rule — read this first
+
+From `SHG_App_Brain.md §Design decisions — locked`:
+
+> **Maxxing carousel: PEACH/ROSE GOLD background with BLACK text (not dark bg with light text)**
+> Each carousel category gets its own unique peach/rose shade.
+> Preview strip below carousel: dark (#000) background with peach text.
+
+**This overrides the colour system in the instagram-carousel skill.**
+All slides (01–09) use a peach/rose background with `color: #000`.
+Slide 10 (CTA) uses the dark surface `#06040c` with cream `#f2ece4` text.
 
 ---
 
 ## Step 1 — always load the content skill first
 
-Before writing any copy, load the instagram-carousel skill:
-
 ```
 /instagram-carousel
 ```
 
-That skill owns all content rules: categories, affirmation writing, hook formulas, gradient choices, caption formula, and hashtag bank. Never write slides without it.
+That skill owns all content rules: categories, affirmation writing, hook formulas, caption formula, and hashtag bank. Load it before writing any copy.
 
 ---
 
 ## Step 2 — lock copy with the user
 
-Confirm before building HTML:
-- Category and subcategory
+Confirm before building:
+- Category
 - Hook line (slide 01)
-- All 8 affirmations (slides 02–09)
-- Gradient / visual choice
-- Text colour (dark bg → cream `#fdf0e8`; light bg → black `#000`)
+- 8 affirmations (slides 02–09)
+- Which shade from the table below
+
+---
+
+## SHG slide background reference
+
+| Category | CSS value | Text |
+|----------|-----------|------|
+| Lovemaxxing | `#F2C8C0` | `#000` |
+| Beautymaxxing | `#F0D0C8` | `#000` |
+| Facemaxxing | `#F0C0C8` | `#000` |
+| Erosmaxxing | `#E8B8C8` | `#000` |
+| Stylemaxxing | `#E8D0D8` | `#000` |
+| Moneymaxxing | `#E8D8B0` | `#000` |
+| Businessmaxxing | `#E0D0B0` | `#000` |
+| Desiresmaxxing | `#E8C0B8` | `#000` |
+| Bodymaxxing | `#E0D0C0` | `#000` |
+| Skinnymaxxing | `#EAD8D0` | `#000` |
+| Wellnessmaxxing | `#D8E0D8` | `#000` |
+| Healmaxxing | `#D4E8E4` | `#000` |
+| Selfmaxxing | `#D8C8E0` | `#000` |
+| Sovereignmaxxing | `#D0B8B0` | `#000` |
+| Confidencemaxxing | `#D8B8B0` | `#000` |
+| Lifemaxxing | `#E0C8C0` | `#000` |
+| Singlemaxxing | `#E4D4C4` | `#000` |
+| Friendmaxxing | `#D8E8E0` | `#000` |
+| Intuitionmaxxing | `#D4C8E8` | `#000` |
+| Studymaxxing | `#D8DCF0` | `#000` |
+| Peacemaxxing | `#D8E4F0` | `#000` |
+| Sleepmaxxing | `#C8CCE8` | `#000` |
+| DNAmaxxing | `#CCE4E8` | `#000` |
+| Luckygirlmaxxing | `linear-gradient(135deg, #F0D8C0, #E0A8A0)` | `#000` |
+| **CTA (slide 10)** | `#06040c` | `#f2ece4` |
 
 ---
 
 ## Step 3 — build the HTML
 
-Create the file at:
+Create: `carousels/<kebab-slug>/index.html`
 
-```
-carousels/<kebab-slug>/index.html
-```
+Slug format: `<category>-<short-topic>` e.g. `lovemaxxing-he-chooses-me`
 
-Use the exact template below. Only fill in slide content — never change the layout, JS, or CSS structure.
-
-### Naming
-
-Slug = `<category>-<short-topic>`, e.g. `lovemaxxing-he-chooses-me`, `moneymaxxing-5k-days`.
-
-### Gradient reference
-
-| Category | CSS gradient |
-|----------|-------------|
-| Lovemaxxing | `linear-gradient(135deg, #F5E0A0, #E07898)` |
-| Moneymaxxing | `linear-gradient(135deg, #0A4A8A, #2CB7A7)` |
-| Luckygirlmaxxing | `linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B)` |
-| Beautymaxxing | `linear-gradient(135deg, #F5E0A0, #f0c8d0)` |
-| Sleepmaxxing / DNAmaxxing | `linear-gradient(135deg, #1A4A8A, #2CB7A7)` |
-| Confidencemaxxing / Lifemaxxing / Stylemaxxing | `linear-gradient(135deg, #E8B870, #F5E0A0)` |
-| Selfmaxxing / Wellnessmaxxing / Studymaxxing | `linear-gradient(135deg, #BFA5D8, #2CB7A7)` |
-| Sovereignmaxxing / Desiresmaxxing | `linear-gradient(135deg, #E8B870, #2CB7A7)` |
-| Black visual | `#000000` with `color: #fdf0e8` |
-| Cream visual | `#fdf0e8` with `color: #000000` |
-| All others | `linear-gradient(135deg, #2CB7A7, #167A6B)` |
-
-Text colour rule: light/champagne gradients → `#000`; dark/navy/teal gradients → `#fdf0e8`.
-
----
-
-## HTML Template
+Use the template below. Only change slide backgrounds and text content.
 
 ```html
 <!DOCTYPE html>
@@ -76,102 +92,103 @@ Text colour rule: light/champagne gradients → `#000`; dark/navy/teal gradients
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:#000;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Jost',sans-serif;user-select:none}
 
-/* Frame */
+/* ── Frame ── */
 .frame{width:420px;background:#06040c;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px #1c1828}
 
-/* Viewport + track */
+/* ── Viewport + track ── */
 .viewport{width:420px;height:560px;overflow:hidden;position:relative}
 .track{display:flex;height:560px;transition:transform .28s cubic-bezier(.4,0,.2,1);will-change:transform}
 
-/* Slides */
+/* ── Slide canvas ── */
 .slide{width:420px;height:560px;flex-shrink:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:52px 36px 72px;text-align:center;overflow:hidden}
 
-/* Logo mark — place assets/logo-mark.svg or it shows nothing (graceful) */
-.slide::after{content:'';position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:44px;height:44px;opacity:.35;background:url('../../assets/logo-mark.svg') center/contain no-repeat}
+/* ── SHG logo mark (place assets/logo-mark.svg for it to appear) ── */
+.slide::after{content:'';position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:44px;height:44px;opacity:.25;background:url('../../assets/logo-mark.svg') center/contain no-repeat}
 
-/* Typography */
+/* ── Typography ── */
 .hook{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:28px;line-height:1.25;font-weight:500;letter-spacing:.01em}
 .affirmation{font-family:'Jost',sans-serif;font-size:23px;font-weight:600;line-height:1.3;letter-spacing:.02em}
 .cta-headline{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:26px;font-weight:500;line-height:1.3;margin-bottom:14px}
-.cta-url{font-family:'Jost',sans-serif;font-size:14px;font-weight:400;opacity:.7;letter-spacing:.1em;text-transform:lowercase}
+.cta-url{font-family:'Jost',sans-serif;font-size:14px;font-weight:400;opacity:.65;letter-spacing:.1em;text-transform:lowercase}
 
-/* Arrows */
-.arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.35);border:none;color:#f2ece4;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .15s}
-.arrow:hover{background:rgba(0,0,0,.6)}
+/* ── Arrows ── */
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.15);border:none;color:#000;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .15s}
+.arrow:hover{background:rgba(0,0,0,.3)}
 .arrow-prev{left:10px}
 .arrow-next{right:10px}
 
-/* Dots */
+/* ── Dots ── */
 .dots{display:flex;gap:5px;justify-content:center;align-items:center;padding:9px 0;background:#000}
 .dot{width:6px;height:6px;border-radius:50%;background:#786860;transition:all .2s;cursor:pointer}
 .dot.active{background:#d4a090;width:8px;height:8px}
 
-/* Thumbnail strip */
-.strip{background:#06040c;padding:10px 12px;display:flex;gap:6px;overflow-x:auto;border-top:1px solid #1c1828;scrollbar-width:none}
+/* ── Thumbnail strip ── */
+.strip{background:#000;padding:10px 12px;display:flex;gap:6px;overflow-x:auto;border-top:1px solid #1c1828;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
 
-/* Keyboard hint */
+/* ── Keyboard hint ── */
 .hint{color:#786860;font-size:11px;font-family:'Jost',sans-serif;margin-top:10px;letter-spacing:.04em}
 </style>
 </head>
 <body>
 
 <div class="frame">
-  <div class="viewport" id="vp">
+  <div class="viewport">
     <div class="track" id="track">
 
-      <!-- ═══════════════════════════════════════
-           SLIDES — edit only background + color
-           and the text content inside each slide
-           ═══════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════════
+           SLIDES
+           · Slides 01–09: peach/rose bg, color:#000
+           · Slide 10 (CTA): bg:#06040c, color:#f2ece4
+           ══════════════════════════════════════════ -->
 
       <!-- SLIDE 01: Hook -->
-      <div class="slide" data-slide="0" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="0" style="background:CATEGORY_COLOR;color:#000;">
         <p class="hook">HOOK LINE</p>
       </div>
 
       <!-- SLIDE 02 -->
-      <div class="slide" data-slide="1" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="1" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
       <!-- SLIDE 03 -->
-      <div class="slide" data-slide="2" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="2" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
       <!-- SLIDE 04 -->
-      <div class="slide" data-slide="3" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="3" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
       <!-- SLIDE 05 -->
-      <div class="slide" data-slide="4" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="4" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
       <!-- SLIDE 06 -->
-      <div class="slide" data-slide="5" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="5" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
       <!-- SLIDE 07 -->
-      <div class="slide" data-slide="6" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="6" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
       <!-- SLIDE 08 -->
-      <div class="slide" data-slide="7" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="7" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
       <!-- SLIDE 09 -->
-      <div class="slide" data-slide="8" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <div class="slide" data-slide="8" style="background:CATEGORY_COLOR;color:#000;">
         <p class="affirmation">AFFIRMATION</p>
       </div>
 
-      <!-- SLIDE 10: CTA -->
-      <div class="slide" data-slide="9" style="background:GRADIENT_OR_COLOR;color:TEXT_COLOR;">
+      <!-- SLIDE 10: CTA — always dark bg + cream text -->
+      <div class="slide" data-slide="9" style="background:#06040c;color:#f2ece4;">
         <p class="cta-headline">Save this.<br>Listen tonight.</p>
         <p class="cta-url">reshmaoracle.com</p>
       </div>
@@ -196,7 +213,7 @@ const track = document.getElementById('track');
 const dotsEl = document.getElementById('dots');
 const stripEl = document.getElementById('strip');
 
-// Dots
+// Build dots
 for (let i = 0; i < N; i++) {
   const d = document.createElement('div');
   d.className = 'dot' + (i === 0 ? ' active' : '');
@@ -204,11 +221,11 @@ for (let i = 0; i < N; i++) {
   dotsEl.appendChild(d);
 }
 
-// Thumbnails — scale-down clone of each slide
+// Build thumbnail strip — scale-down clone of each slide
 slides.forEach((slide, i) => {
-  const wrap = document.createElement('div');
   const S = 50 / 420;
-  wrap.style.cssText = `width:50px;height:${Math.round(560*S)}px;flex-shrink:0;border-radius:4px;overflow:hidden;cursor:pointer;opacity:${i===0?'1':'.45'};border:${i===0?'1.5px solid #d4a090':'1.5px solid transparent'};transition:all .2s`;
+  const wrap = document.createElement('div');
+  wrap.style.cssText = `width:50px;height:${Math.round(560*S)}px;flex-shrink:0;border-radius:3px;overflow:hidden;cursor:pointer;opacity:${i===0?'1':'.45'};border:${i===0?'1.5px solid #d4a090':'1.5px solid transparent'};transition:all .2s`;
   const mini = slide.cloneNode(true);
   mini.style.cssText = `width:420px;height:560px;transform-origin:top left;transform:scale(${S});pointer-events:none;flex-shrink:0;`;
   wrap.appendChild(mini);
@@ -229,7 +246,7 @@ function goTo(i) {
 
 function move(dir) { goTo(cur + dir); }
 
-// Called by export-slides.js
+// Called by export scripts
 window.goToSlide = goTo;
 
 document.addEventListener('keydown', e => {
@@ -243,23 +260,21 @@ document.addEventListener('keydown', e => {
 
 ---
 
-## Step 4 — export
-
-When the user says "export" or "save as PNGs":
+## Step 4 — export to PNG
 
 ```bash
 node export-slides.js carousels/<slug>/index.html
 ```
 
-Python fallback (if Node unavailable):
+Python fallback:
 
 ```bash
 python3 export-slides.py carousels/<slug>/index.html
 ```
 
-PNGs land in `carousels/<slug>/slides/slide-01.png` … `slide-10.png` at 1080×1440px.
+PNGs land in `carousels/<slug>/slides/slide-01.png` … `slide-10.png` at 1080×1440.
 
-If Playwright isn't installed yet:
+If Playwright isn't installed:
 
 ```bash
 npm install playwright
@@ -270,8 +285,9 @@ npx playwright install chromium
 
 ## Notes
 
-- **Always 10 slides.** Never 8, never 12.
-- Slide 10 is always the CTA: "Save this. Listen tonight." + reshmaoracle.com.
-- Put your own photos in `assets/` — drop `reshma-photo.jpg`, `logo-mark.svg`, etc. there and reference them with `../../assets/filename`.
-- The thumbnail strip is auto-generated from the slides — no extra work needed.
-- Open `index.html` in any browser to preview. Arrow keys navigate. What you see at 420px wide is exactly what exports at 1080×1440.
+- Always 10 slides. Never 8, never 12.
+- Slide 10 is always dark (`#06040c`) with cream text and the reshmaoracle.com CTA.
+- Drop your logo SVG at `assets/logo-mark.svg` — it appears on every slide automatically.
+- Drop your photo at `assets/reshma.jpg` for use on the hook slide.
+- The thumbnail strip is generated automatically from the slides.
+- What you see at 420px in the browser is exactly what exports at 1080×1440.
