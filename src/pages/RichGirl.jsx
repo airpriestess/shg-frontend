@@ -204,8 +204,8 @@ export default function RichGirl() {
               { level:1, amount:"£1K a month", note:"The level your current identity already believes without blinking. Your starting point, not your ceiling.", badge:"linear-gradient(160deg,#f2ece4,#F5E0A0)", color:"#1a0a04" },
             ].map((rung,i) => (
               <div key={i} style={{ display:"grid", gridTemplateColumns:"72px 1fr", overflow:"hidden", borderRadius:10, cursor:"pointer", transition:"transform .3s", marginBottom:3 }}
-                onMouseEnter={e=>e.currentTarget.style.transform="translateX(8px)"}
-                onMouseLeave={e=>e.currentTarget.style.transform="translateX(0)"}>
+                onMouseEnter={e => { e.currentTarget.style.transform = "translateX(8px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = "translateX(0)"; }}>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:700, color:rung.color, background:rung.badge }}>
                   {rung.level}
                 </div>
