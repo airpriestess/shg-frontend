@@ -1,5 +1,36 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/blocks",
+      "destination": "/blocks/index.html"
+    },
+    {
+      "source": "/guides",
+      "destination": "/guides/index.html"
+    },
+    {
+      "source": "/guide/richgirl",
+      "destination": "/guide/richgirl/index.html"
+    },
+    {
+      "source": "/guide/luckygirl",
+      "destination": "/guide/luckygirl/index.html"
+    },
+    {
+      "source": "/guide/lovemaxxing",
+      "destination": "/guide/lovemaxxing/index.html"
+    },
+    {
+      "source": "/guide/beautymaxxing",
+      "destination": "/guide/beautymaxxing/index.html"
+    },
+    {
+      "source": "/guide/selfmaxxing",
+      "destination": "/guide/selfmaxxing/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
