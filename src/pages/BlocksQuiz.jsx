@@ -370,11 +370,13 @@ export default function BlocksQuiz() {
   }
 
   async function saveToSupabase(n, e, c, block) {
+    const tableMap = { money: "quiz_richgirl", richgirl: "quiz_richgirl", lucky: "quiz_luckygirl", luckygirl: "quiz_luckygirl", love: "quiz_lovemaxxing", lovemaxxing: "quiz_lovemaxxing", beauty: "quiz_beautymaxxing", beautymaxxing: "quiz_beautymaxxing", self: "quiz_selfmaxxing", selfmaxxing: "quiz_selfmaxxing" };
+    const table = tableMap[c] || "quiz_leads";
     try {
-      await fetch(SUPABASE_URL + "/rest/v1/quiz_leads", {
+      await fetch(SUPABASE_URL + "/rest/v1/" + table, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "apikey": SUPABASE_ANON, "Authorization": "Bearer " + SUPABASE_ANON },
-        body: JSON.stringify({ name: n, email: e, result_category: c, answers: { block }, source: "blocks/" + c })
+        headers: { "Content-Type": "application/json", "apikey": SUPABASE_ANON, "Authorization": "Bearer " + SUPABASE_ANON, "Prefer": "return=minimal" },
+        body: JSON.stringify({ name: n, email: e, block: block, created_at: new Date().toISOString() })
       });
     } catch (_) {}
   }
