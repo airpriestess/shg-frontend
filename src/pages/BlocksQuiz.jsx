@@ -383,7 +383,7 @@ export default function BlocksQuiz() {
           </div>
           <div style={{ maxWidth: 560, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" }}>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.1, color: "#f2ece4", marginBottom: 36, letterSpacing: "-.01em" }}>{result.block}</h2>
-            <div style={{ background: "rgba(0,0,0,0.75)", border: "none", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
+            <div style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.15)", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
               <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "#000", marginBottom: 12 }}>The assumption running your life</div>
               <div style={{ fontSize: 16, color: "#000", fontStyle: "italic", lineHeight: 1.7 }}>{result.old}</div>
             </div>
@@ -391,7 +391,7 @@ export default function BlocksQuiz() {
               <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(0,0,0,0.45)", marginBottom: 14 }}>Your new assumption</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(22px,4vw,32px)", color: "#000", fontWeight: 400, lineHeight: 1.35 }}>{result.new}</div>
             </div>
-            <div style={{ background: "rgba(255,255,255,0.85)", border: "none", borderRadius: 16, padding: 28, marginBottom: 32, textAlign: "left" }}>
+            <div style={{ background: "rgba(0,0,0,0.1)", border: "1px solid rgba(0,0,0,0.15)", borderRadius: 16, padding: 28, marginBottom: 32, textAlign: "left" }}>
               <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", background: LG, WebkitBackgroundClip: "text", backgroundClip: "text", color: "#000", marginBottom: 12, display: "inline-block" }}>Your install ritual</div>
               <div style={{ fontSize: 16, color: "#000", lineHeight: 1.8 }}>{RITUAL}</div>
             </div>
