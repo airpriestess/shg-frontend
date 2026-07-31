@@ -122,10 +122,10 @@ const WALL = [
   },
   {
     desire: "I healed something I'd been carrying for 12 years.",
-    category: "Healmaxxing", days: 28, signs: 5,
-    track: "a Healmaxxing track", feel: "I didn't have to relive it to release it.",
+    category: "Healthmaxxing", days: 28, signs: 5,
+    track: "a Healthmaxxing track", feel: "I didn't have to relive it to release it.",
     log: [
-      "Day 1: Old belief — \"Some things just don't heal.\" Started listening to a Healmaxxing track.",
+      "Day 1: Old belief — \"Some things just don't heal.\" Started listening to a Healthmaxxing track.",
       "Day 7: Noticed I wasn't bracing for it anymore.",
       "Day 14: The memory came up and I felt... neutral.",
       "Day 28: Talked about it to a friend without crying for the first time.",
