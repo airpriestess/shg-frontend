@@ -256,6 +256,7 @@ export default function App() {
         <Route path="/quiz"    element={<QuizHub/>} />
         <Route path="/luckygirl" element={<LuckyGirl/>} />
         <Route path="/richgirl" element={<RichGirl/>} />
+        <Route path="/guide/richgirl" element={<RichGirl/>} />
         <Route path="/blocks" element={<Blocks/>} />
         <Route path="/blocks/:category" element={<BlocksQuiz/>} />
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
