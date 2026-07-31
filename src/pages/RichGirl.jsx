@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const LOOP_NODES = [
-  { t: "Subconscious Identity", p: "The identity installed in theta becomes the operating system. \"I am RichGirl. Money finds me.\" Said in the right state — the drowsy edge of sleep, where the arguing stops — it stops feeling like an affirmation and starts feeling like something you simply know." },
+  { t: "Subconscious Identity", p: "The identity installed in theta becomes the operating system. \"I am RichGirl. Money finds me.\" Said in theta state — or activated instantly through binaural beats and isochronic tones — it stops feeling like an affirmation and starts feeling like something you simply know." },
   { t: "Expectation", p: "Once the identity installs, expectation replaces hope automatically. She isn't trying to believe money will arrive. She knows it will. That's not a mindset. That's a signal her entire focus system is now broadcasting." },
   { t: "RAS Filter", p: "The Reticular Activating System decides what you notice. It's why you buy a white car and suddenly see white cars everywhere — they were always there. Once the RichGirl identity is installed, your focus system locks onto opportunity, money, and the right people — from the exact same days, the exact same environment." },
   { t: "Attention", p: "You start noticing what you're trained to notice. The conversation you would have walked past. The message you would have dismissed. The opportunity that was always there, now suddenly visible." },
@@ -15,7 +15,7 @@ const IDENTITY = [
   { key: "She is", val: "Delusionally certain. Confident before the proof. Her RAS is scanning for opportunity, not red flags." },
   { key: "She expects", val: "Money to find her from directions she hasn't planned. The right people to appear at the right moment." },
   { key: "She assumes", val: "She is always in the right place at the right time. That's not arrogance. That's a calibrated nervous system." },
-  { key: "She installs", val: "The assumption before the evidence. In theta — the edge of sleep — where the subconscious accepts the new instruction without resistance." },
+  { key: "She installs", val: "The assumption before the evidence. In theta state — the drowsy window before sleep or upon rising — and activated instantly through binaural beats and isochronic tones." },
   { key: "She says", val: '"Of course. Obviously." And she means it. Because her nervous system stopped arguing.' },
 ];
 
@@ -170,7 +170,7 @@ export default function RichGirl() {
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:8 }}>Affirmations always work.</h2>
           <h2 style={{ ...hm, fontSize:"clamp(38px,6vw,76px)", marginBottom:32 }}>Just not in beta state.</h2>
           <p style={{ fontSize:17, lineHeight:1.8, color:"#000", maxWidth:680, marginBottom:64, margin:"0 auto 64px" }}>
-            In beta — wide awake — your brain argues back. In theta, the guard drops completely. The same affirmation that felt hollow at 2pm installs as identity at the edge of sleep.
+            In beta — wide awake — your brain argues back. In theta, the guard drops completely. The same affirmation that felt hollow at 2pm installs as identity in theta state — accessed through the drowsy window before sleep or upon rising, or activated instantly through binaural beats and isochronic tones.
           </p>
 
           {/* Install loop */}
@@ -195,7 +195,7 @@ export default function RichGirl() {
             </div>
 
             <p style={{ fontSize:14, lineHeight:1.8, color:"#000", maxWidth:600, margin:"32px auto 0", textAlign:"center" }}>
-              That drowsy, half-gone feeling right before you fall asleep — that's theta. 4 to 8Hz. The analytical mind has mostly switched off. Whatever you hear in that state goes directly into the subconscious, with no resistance. That is the exact window the Self Hypnosis Goddess audio library is built for.
+              Theta state is the drowsy window before sleep or upon rising — 4 to 8Hz, where the analytical mind switches off and the subconscious accepts new identity without resistance. The SHG audio library activates this state instantly through binaural beats and isochronic tones. No waiting. No guesswork. The install happens whether you're half-asleep or wide awake. Library coming soon.
             </p>
           </div>
         </div>
