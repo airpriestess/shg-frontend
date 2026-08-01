@@ -848,7 +848,7 @@ function HeroMarquee() {
   );
 }
 
-/* ── MAXXING CAROUSEL — peach/rose gold bg, BLACK text ────────────────────── */
+/* ── MAXXING CAROUSEL — Lucky Girl gradient bg, BLACK text ────────────────────── */
 function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
@@ -1257,14 +1257,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {[
               ["Pricing",       ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
               ["ProofOS",       ()=>{ document.getElementById("proofos")?.scrollIntoView({behavior:"smooth"}); setMenuOpen(false); }],
-              ["Preview App",  ()=>{ onDemo?.(); setMenuOpen(false); }],
+              ["Preview Audio Library",  ()=>{ onDemo?.(); setMenuOpen(false); }],
+              ["Guides",       ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
+              ["Blocks",       ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
+              ["Take the Quiz", ()=>{ window.location.href="/quiz"; setMenuOpen(false); }],
               ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
               ["About Reshma", ()=>{ onLegal?.("about"); setMenuOpen(false); }],
               ["The Science",  ()=>{ onLegal?.("science"); setMenuOpen(false); }],
               ["The Library",  ()=>{ onLegal?.("library"); setMenuOpen(false); }],
-              ["YouTube",       ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
+              ["YouTube",       ()=>{ window.open("https://youtube.com/@reshmaoracle","_blank"); setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
+              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"7px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(17px,4.2vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
           </div>
 
@@ -1535,7 +1538,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"64px 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(16px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
-          👁 Preview the App
+          👁 Preview Audio Library
         </button>
         <div style={{ fontSize:11, color:"rgba(232,184,112,0.85)", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Beta — still being built</div>
         <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"14px 36px":"18px 48px", background:"linear-gradient(135deg,rgba(245,224,160,0.55) 0%,rgba(232,184,112,0.55) 20%,rgba(191,165,216,0.55) 52%,rgba(44,183,167,0.55) 78%,rgba(22,122,107,0.55) 100%)", border:"none", borderRadius:40, color:"rgba(253,240,232,0.9)", fontSize: isMobile?"clamp(17px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the science behind this →</button>
