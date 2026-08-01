@@ -8,23 +8,23 @@ import { supabase } from "../lib/supabase.js";
 
 // Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
-  {n:"Shame",       v:20,  c:"#2a0a0a"}, // near black-red
-  {n:"Guilt",       v:30,  c:"#5a0f0f"}, // deep crimson
-  {n:"Apathy",      v:50,  c:"#333333"}, // flat grey
-  {n:"Grief",       v:75,  c:"#BFA5D8"}, // deep purple-grey
-  {n:"Fear",        v:100, c:"#167A6B"}, // dark amber-brown
-  {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
-  {n:"Anger",       v:150, c:"#E8B870"}, // orange
-  {n:"Pride",       v:175, c:"#f1c40f"}, // yellow
-  {n:"Courage",     v:200, c:"#E8B870"}, // champagne — the line
-  {n:"Neutrality",  v:250, c:"#167A6B"}, // teal-green
-  {n:"Willingness", v:310, c:"#BFA5D8"}, // lilac
-  {n:"Acceptance",  v:350, c:"#2CB7A7"}, // teal — correct end of LG
-  {n:"Reason",      v:400, c:"#BFA5D8"}, // purple
+  {n:"Shame",       v:20,  c:"#167A6B"},
+  {n:"Guilt",       v:30,  c:"#167A6B"},
+  {n:"Apathy",      v:50,  c:"#167A6B"},
+  {n:"Grief",       v:75,  c:"#167A6B"},
+  {n:"Fear",        v:100, c:"#2CB7A7"},
+  {n:"Desire",      v:125, c:"#2CB7A7"},
+  {n:"Anger",       v:150, c:"#BFA5D8"},
+  {n:"Pride",       v:175, c:"#BFA5D8"},
+  {n:"Courage",     v:200, c:"#BFA5D8"}, // the line
+  {n:"Neutrality",  v:250, c:"#BFA5D8"},
+  {n:"Willingness", v:310, c:"#E8B870"},
+  {n:"Acceptance",  v:350, c:"#E8B870"},
+  {n:"Reason",      v:400, c:"#E8B870"},
   {n:"Love",        v:500, c:"#F5E0A0"},
   {n:"Joy",         v:540, c:"#F5E0A0"},
-  {n:"Peace",       v:600, c:"#F5E0A0"}, // champagne — brightest on scale
-  {n:"Enlightenment",v:700,c:"#ffffff"}, // pure white
+  {n:"Peace",       v:600, c:"#F5E0A0"},
+  {n:"Enlightenment",v:700,c:"#F5E0A0"},
 ];
 const dominant = (log,days) => {
   const cutoff = Date.now() - days*86400000;
