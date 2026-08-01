@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 function SHGNav() {
+  const navigate = useNavigate();
   return (
-    <nav style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"18px 32px", display:"flex", alignItems:"center", justifyContent:"space-between", background:"rgba(0,0,0,0.88)", backdropFilter:"blur(24px)", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
+    <nav onClick={()=>navigate("/")} style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"18px 32px", display:"flex", alignItems:"center", justifyContent:"space-between", background:"rgba(0,0,0,0.88)", backdropFilter:"blur(24px)", borderBottom:"1px solid rgba(255,255,255,0.04)", cursor:"pointer" }}>
       <div style={{ display:"flex", alignItems:"center", gap:10 }}>
         <svg viewBox="0 0 100 100" width="22" height="22">
           <defs><linearGradient id="bnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="22%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
