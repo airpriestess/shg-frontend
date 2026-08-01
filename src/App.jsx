@@ -1710,7 +1710,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                         <div style={{ fontSize: isMobile?12:14, color:"#555", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
                       <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
-                        <div style={{ width:`${row.pct}%`, height:"100%", background:LGb, backgroundSize:"760px 100%", backgroundPosition:"left", borderRadius:3 }}/>
+                        <div style={{ width:`${row.pct}%`, height:"100%", background:LGb, borderRadius:3 }}/>
                       </div>
                     </div>
                   </div>
@@ -1765,7 +1765,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"6px 4px" }}>
                 <div style={{ width:10, height:10, borderRadius:"50%", background:dotColor, flexShrink:0, boxShadow:h.v>=600?`0 0 10px ${dotColor}, 0 0 20px ${dotColor}66`:h.v>=200?`0 0 6px ${dotColor}88`:"none" }}/>
                 <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.08)", overflow:"hidden" }}>
-                  <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:LGb, backgroundSize:"520px 100%", backgroundPosition:"left", opacity:h.v>=600?1:h.v>=200?0.85:0.55, boxShadow:h.v>=600?`0 0 8px #E8B870`:"none" }}/>
+                  <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:LGb, opacity:h.v>=600?1:h.v>=200?0.85:0.55, boxShadow:h.v>=600?`0 0 8px #E8B870`:"none" }}/>
                 </div>
                 <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":theme==="dark"?"#e8e0d8":"#000000", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
                 <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", width:32, textAlign:"right" }}>{h.v}</span>
