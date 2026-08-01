@@ -679,32 +679,41 @@ function AppPreviewSection({ isMobile }) {
   function DesktopPanel() {
     if (view === "dashboard") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
-        <iframe
-          src={`/portal?preview=1&theme=${theme}`}
-          title="Self Hypnosis Goddess dashboard preview"
-          style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
-          loading="lazy"
-        />
+        <div style={{ width:838, height:544, transform:"scale(0.546)", transformOrigin:"top left" }}>
+          <iframe
+            src={`/portal?preview=1&theme=${theme}`}
+            title="Self Hypnosis Goddess dashboard preview"
+            width="838"
+            height="544"
+            style={{ border:"none", display:"block" }}
+          />
+        </div>
       </div>
     );
     if (view === "proof") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
-        <iframe
-          src={`/portal?preview=1&theme=${theme}&tab=proof`}
-          title="Self Hypnosis Goddess ProofOS preview"
-          style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
-          loading="lazy"
-        />
+        <div style={{ width:838, height:544, transform:"scale(0.546)", transformOrigin:"top left" }}>
+          <iframe
+            src={`/portal?preview=1&theme=${theme}&tab=proof`}
+            title="Self Hypnosis Goddess ProofOS preview"
+            width="838"
+            height="544"
+            style={{ border:"none", display:"block" }}
+          />
+        </div>
       </div>
     );
     if (view === "analytics") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)", background:"#000" }}>
-        <iframe
-          src={`/portal?preview=1&theme=${theme}&tab=analytics`}
-          title="Self Hypnosis Goddess Analytics preview"
-          style={{ width:838, height:544, border:"none", zoom:0.546, pointerEvents:"none", display:"block" }}
-          loading="lazy"
-        />
+        <div style={{ width:838, height:544, transform:"scale(0.546)", transformOrigin:"top left" }}>
+          <iframe
+            src={`/portal?preview=1&theme=${theme}&tab=analytics`}
+            title="Self Hypnosis Goddess Analytics preview"
+            width="838"
+            height="544"
+            style={{ border:"none", display:"block" }}
+          />
+        </div>
       </div>
     );
     return null;
@@ -724,32 +733,41 @@ function AppPreviewSection({ isMobile }) {
           <div style={{ position:"absolute", top:Math.round(w*0.033), left:"50%", transform:"translateX(-50%)", width:Math.round(w*0.38), height:Math.round(w*0.077), background:"#000", borderRadius:20, zIndex:10 }}/>
           {view==="dashboard" && (
             <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-              <iframe
-                src={`/portal?preview=1&theme=${theme}`}
-                title="Self Hypnosis Goddess mobile dashboard preview"
-                style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
-                loading="lazy"
-              />
+              <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
+                <iframe
+                  src={`/portal?preview=1&theme=${theme}`}
+                  title="Self Hypnosis Goddess mobile dashboard preview"
+                  width="390"
+                  height="844"
+                  style={{ border:"none", display:"block" }}
+                />
+              </div>
             </div>
           )}
           {view==="proof" && (
             <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-              <iframe
-                src={`/portal?preview=1&theme=${theme}&tab=proof`}
-                title="Self Hypnosis Goddess mobile ProofOS preview"
-                style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
-                loading="lazy"
-              />
+              <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
+                <iframe
+                  src={`/portal?preview=1&theme=${theme}&tab=proof`}
+                  title="Self Hypnosis Goddess mobile ProofOS preview"
+                  width="390"
+                  height="844"
+                  style={{ border:"none", display:"block" }}
+                />
+              </div>
             </div>
           )}
           {view==="analytics" && (
             <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-              <iframe
-                src={`/portal?preview=1&theme=${theme}&tab=analytics`}
-                title="Self Hypnosis Goddess mobile Analytics preview"
-                style={{ width:390, height:844, border:"none", zoom:(w-pad*2)/390, pointerEvents:"none", display:"block" }}
-                loading="lazy"
-              />
+              <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
+                <iframe
+                  src={`/portal?preview=1&theme=${theme}&tab=analytics`}
+                  title="Self Hypnosis Goddess mobile Analytics preview"
+                  width="390"
+                  height="844"
+                  style={{ border:"none", display:"block" }}
+                />
+              </div>
             </div>
           )}
         </div>
