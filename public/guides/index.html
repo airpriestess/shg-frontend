@@ -14,7 +14,7 @@
 body{font-family:'Jost',sans-serif;background:#000;color:var(--white);overflow-x:hidden;}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.04);}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);cursor:pointer;font-size:14px;font-weight:300;letter-spacing:.02em;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);cursor:pointer;font-family:\'Jost\',sans-serif;font-size:14px;font-weight:300;letter-spacing:.02em;}
 .nav-cta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;color:#000;padding:10px 24px;border-radius:20px;background:var(--g);text-decoration:none;}
 
 /* HERO */
@@ -73,10 +73,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:fl
 <nav>
   <a href="/" class="logo">
     <svg width="20" height="20" viewBox="0 0 100 100" fill="none">
-      <circle cx="50" cy="33" r="22" stroke="#E8B870" stroke-width="3.5"/>
-      <circle cx="67" cy="50" r="22" stroke="#BFA5D8" stroke-width="3.5"/>
-      <circle cx="50" cy="67" r="22" stroke="#2CB7A7" stroke-width="3.5"/>
-      <circle cx="33" cy="50" r="22" stroke="#E8B870" stroke-width="3.5"/>
+      <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5E0A0"/><stop offset="20%" stop-color="#E8B870"/><stop offset="52%" stop-color="#BFA5D8"/><stop offset="78%" stop-color="#2CB7A7"/><stop offset="100%" stop-color="#167A6B"/></linearGradient></defs>
+      <circle cx="35" cy="35" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <circle cx="65" cy="35" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <circle cx="35" cy="65" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" stroke-width="2" stroke-linecap="round"/>
     </svg>
     Self Hypnosis Goddess
   </a>
