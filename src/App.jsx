@@ -1255,14 +1255,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Main nav items — massive */}
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {[
-              ["About Reshma", ()=>{ onLegal?.("about"); setMenuOpen(false); }],
-              ["Preview Audio Library",  ()=>{ onDemo?.(); setMenuOpen(false); }],
-              ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
-              ["The Science",  ()=>{ onLegal?.("science"); setMenuOpen(false); }],
-              ["The Library",  ()=>{ onLegal?.("library"); setMenuOpen(false); }],
-              ["Guides",       ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
-              ["Find Your Block", ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
-              ["Pricing",       ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
+              ["About Reshma",        ()=>{ onLegal?.("about"); setMenuOpen(false); }],
+              ["The Science",         ()=>{ onLegal?.("science"); setMenuOpen(false); }],
+              ["Preview SHG",         ()=>{ onDemo?.(); setMenuOpen(false); }],
+              ["The Library",         ()=>{ onLegal?.("library"); setMenuOpen(false); }],
+              ["Pricing",             ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
+              ["Guides",              ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
+              ["Blocks",              ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"7px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(17px,4.2vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
