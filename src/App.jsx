@@ -1740,31 +1740,29 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
             {[
-              {n:"Enlightenment",v:700},
-              {n:"Peace",       v:600},
-              {n:"Joy",         v:540},
-              {n:"Love",        v:500},
-              {n:"Reason",      v:400},
-              {n:"Acceptance",  v:350},
-              {n:"Willingness", v:310},
-              {n:"Neutrality",  v:250},
-              {n:"Courage",     v:200},
-              {n:"Pride",       v:175},
-              {n:"Anger",       v:150},
-              {n:"Desire",      v:125},
-              {n:"Fear",        v:100},
-              {n:"Grief",       v:75},
-              {n:"Apathy",      v:50},
-              {n:"Guilt",       v:30},
-              {n:"Shame",       v:20},
+              {n:"Enlightenment",v:700, c:"#F5E0A0"},
+              {n:"Peace",       v:600, c:"#F5E0A0"},
+              {n:"Joy",         v:540, c:"#F5E0A0"},
+              {n:"Love",        v:500, c:"#F5E0A0"},
+              {n:"Reason",      v:400, c:"#2CB7A7"},
+              {n:"Acceptance",  v:350, c:"#2CB7A7"},
+              {n:"Willingness", v:310, c:"#BFA5D8"},
+              {n:"Neutrality",  v:250, c:"#BFA5D8"},
+              {n:"Courage",     v:200, c:"#E8B870"},
+              {n:"Pride",       v:175, c:"#E8B870"},
+              {n:"Anger",       v:150, c:"#c94040"},
+              {n:"Desire",      v:125, c:"#d0812f"},
+              {n:"Fear",        v:100, c:"#c66a2e"},
+              {n:"Grief",       v:75,  c:"#b8562f"},
+              {n:"Apathy",      v:50,  c:"#a8432a"},
+              {n:"Guilt",       v:30,  c:"#9c2b2b"},
+              {n:"Shame",       v:20,  c:"#7a1f1f"},
             ].map((h,i)=>{
-              const LGb = "linear-gradient(90deg,#167A6B 0%,#2CB7A7 25%,#BFA5D8 50%,#E8B870 75%,#F5E0A0 100%)";
-              const dotColor = ["#F5E0A0","#F5E0A0","#E8B870","#E8B870","#BFA5D8","#BFA5D8","#BFA5D8","#2CB7A7","#2CB7A7","#E8B870","#E8B870","#BFA5D8","#2CB7A7","#167A6B","#167A6B","#167A6B","#167A6B"][i];
               return (
               <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"6px 4px" }}>
-                <div style={{ width:10, height:10, borderRadius:"50%", background:dotColor, flexShrink:0, boxShadow:h.v>=600?`0 0 10px ${dotColor}, 0 0 20px ${dotColor}66`:h.v>=200?`0 0 6px ${dotColor}88`:"none" }}/>
+                <div style={{ width:10, height:10, borderRadius:"50%", background:h.c, flexShrink:0, boxShadow:h.v>=600?`0 0 10px ${h.c}, 0 0 20px ${h.c}66`:h.v>=200?`0 0 6px ${h.c}88`:"none" }}/>
                 <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.08)", overflow:"hidden" }}>
-                  <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:LGb, opacity:h.v>=600?1:h.v>=200?0.85:0.55, boxShadow:h.v>=600?`0 0 8px #E8B870`:"none" }}/>
+                  <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:h.c, opacity:h.v>=600?1:h.v>=200?0.85:0.65, boxShadow:h.v>=600?`0 0 8px ${h.c}`:"none" }}/>
                 </div>
                 <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":theme==="dark"?"#e8e0d8":"#000000", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
                 <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", width:32, textAlign:"right" }}>{h.v}</span>
