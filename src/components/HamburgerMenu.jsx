@@ -36,7 +36,7 @@ export default function HamburgerMenu({ onSignIn }) {
         <div style={{ position:"fixed",inset:0,zIndex:999,backgroundColor:"#000000",opacity:1,isolation:"isolate",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:"calc(98px + env(safe-area-inset-top,0px))",paddingTop:"env(safe-area-inset-top,0px)" }}>
-            <span onClick={()=>go(()=>navigate("/"))} style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:300,fontSize:18,letterSpacing:"0.02em",color:"#f2ece4",cursor:"pointer" }}>
+            <span onClick={()=>go(()=>navigate("/"))} style={{ fontFamily:"'Jost',sans-serif",fontWeight:300,fontSize:18,letterSpacing:"0.02em",color:"#f2ece4",cursor:"pointer" }}>
               Self Hypnosis Goddess
             </span>
             <button onClick={()=>setOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#f2ece4",WebkitTapHighlightColor:"transparent" }}>
