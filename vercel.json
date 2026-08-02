@@ -25,26 +25,6 @@
       "destination": "/blocks/selfmaxxing/index.html"
     },
     {
-      "source": "/blocks/money",
-      "destination": "/blocks/richgirl/index.html"
-    },
-    {
-      "source": "/blocks/love",
-      "destination": "/blocks/lovemaxxing/index.html"
-    },
-    {
-      "source": "/blocks/beauty",
-      "destination": "/blocks/beautymaxxing/index.html"
-    },
-    {
-      "source": "/blocks/self",
-      "destination": "/blocks/selfmaxxing/index.html"
-    },
-    {
-      "source": "/blocks/lucky",
-      "destination": "/blocks/luckygirl/index.html"
-    },
-    {
       "source": "/guides",
       "destination": "/guides/index.html"
     },
