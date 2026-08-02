@@ -15,7 +15,7 @@ function SHGNav() {
           <circle cx="65" cy="65" r="18" fill="none" stroke="url(#bnav)" strokeWidth="2"/>
           <line x1="50" y1="80" x2="50" y2="96" stroke="url(#bnav)" strokeWidth="2" strokeLinecap="round"/>
         </svg>
-        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:13, letterSpacing:".22em", textTransform:"uppercase", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
+        <span style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:15, letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
       </div>
     </nav>
   );
