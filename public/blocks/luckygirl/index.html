@@ -70,7 +70,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 .card:hover::before{opacity:1;}
 .card.sel{border-color:transparent;transform:translateY(-4px);box-shadow:0 12px 48px rgba(232,184,112,.4);}
 .card.sel::before{opacity:1;}
-.card-text{font-size:15px;font-weight:500;line-height:1.5;color:#000;position:relative;z-index:1;}
+.card-text{font-size:15px;font-weight:300;line-height:1.6;color:#000;position:relative;z-index:1;}
 .card-dot{display:none;}
 @media(max-width:600px){.cards{grid-template-columns:1fr;}}
 
@@ -209,12 +209,12 @@ const Qs = [
   },
   {
     label: "The Interpretation",
-    q: "He doesn't reply for two days. Before you know anything, your honest first thought is...",
+    q: "A reply is slow, a plan falls through, something you expected does not arrive. Your honest first thought is...",
     opts: [
-      { t: "He has lost interest. This is how it always goes.", c: "interpret" },
-      { t: "Something went wrong. I replay the last thing I said.", c: "os" },
-      { t: "He is probably busy. I hold my state and wait.", c: "filter" },
-      { t: "Timing. If it is right it will work out. I trust that.", c: "story" }
+      { t: "Confirmation. Things just do not tend to work out smoothly for me.", c: "interpret" },
+      { t: "Something I did. I replay what I could have done differently.", c: "os" },
+      { t: "Redirection. Something better is probably already forming.", c: "filter" },
+      { t: "Timing. If it is right it finds its way. I hold and wait.", c: "story" }
     ]
   },
   {
