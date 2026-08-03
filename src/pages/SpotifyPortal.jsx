@@ -914,7 +914,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div onClick={()=>setFullP(true)} style={{ position:"absolute",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#E8B870" }}>{track.title}</div>
+            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:isDark?"#E8B870":"#000" }}>{track.title}</div>
             <div style={{ fontSize:13,color:C.mu }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
           </div>
           <button onClick={e=>{e.stopPropagation();toggleLike(track.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
