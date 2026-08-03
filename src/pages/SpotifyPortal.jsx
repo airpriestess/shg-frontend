@@ -420,7 +420,9 @@ const INIT_THREADS = [
 
 // Category → proof wall colours (matches landing Proof Wall)
 const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Rich Girl":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beauty":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Identity":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNA":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sleep":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lovemaxxing2":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Desiresmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beautymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Facemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Bodymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Richgirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Businessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNAmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Selfmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Erosmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lifemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Luckygirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sovereignmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Healthmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Peacemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Wellnessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Skinnymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Singlemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Friendmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" };
-const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Rich Girl":"#E8B870", "Beauty":"#F5E0A0", "Identity":"#BFA5D8", "DNA":"#167A6B", "Sleep":"#2CB7A7", "Beautymaxxing":"#F5E0A0", "Facemaxxing":"#E8B870", "Bodymaxxing":"#2CB7A7", "Richgirlmaxxing":"#E8B870", "Businessmaxxing":"#2CB7A7", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#F5E0A0", "Lifemaxxing":"#E8B870", "Luckygirlmaxxing":"#2CB7A7", "Sovereignmaxxing":"#BFA5D8", "Healthmaxxing":"#F5E0A0", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#2CB7A7", "Confidencemaxxing":"#E8B870", "Skinnymaxxing":"#2CB7A7", "Singlemaxxing":"#F5E0A0" };
+// Lucky Girl gradient stops, cycled in fixed order so category badges read as a deliberate spectrum, not a random clash
+const LG_STOPS = ["#F5E0A0", "#E8B870", "#BFA5D8", "#2CB7A7", "#167A6B"];
+const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Rich Girl":"#E8B870", "Beauty":"#BFA5D8", "Identity":"#2CB7A7", "DNA":"#167A6B", "Sleep":"#F5E0A0", "Beautymaxxing":"#E8B870", "Facemaxxing":"#BFA5D8", "Bodymaxxing":"#2CB7A7", "Richgirlmaxxing":"#167A6B", "Businessmaxxing":"#F5E0A0", "DNAmaxxing":"#E8B870", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#2CB7A7", "Lifemaxxing":"#167A6B", "Luckygirlmaxxing":"#F5E0A0", "Sovereignmaxxing":"#E8B870", "Healthmaxxing":"#BFA5D8", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#167A6B", "Confidencemaxxing":"#F5E0A0", "Skinnymaxxing":"#E8B870", "Singlemaxxing":"#BFA5D8" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
@@ -1408,7 +1410,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
-        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:"#000",background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
@@ -1428,14 +1430,23 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           {catOpen && dropRect && (
             <>
             <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"rgba(0,0,0,0.45)" }}/>
+            {(() => {
+              const BOTTOM_SAFE = 90; // clears mini-player + bottom nav
+              const spaceBelow = dropRect ? window.innerHeight - dropRect.bottom - BOTTOM_SAFE - 6 : 300;
+              const spaceAbove = dropRect ? dropRect.top - 12 : 300;
+              const openUpward = spaceBelow < 160 && spaceAbove > spaceBelow;
+              const maxH = Math.max(140, Math.min(300, openUpward ? spaceAbove : spaceBelow));
+              return (
             <div style={{
               position:"fixed",
-              top: dropRect ? dropRect.bottom + 6 : 0,
+              ...(openUpward
+                ? { bottom: dropRect ? (window.innerHeight - dropRect.top + 6) : "auto" }
+                : { top: dropRect ? dropRect.bottom + 6 : 0 }),
               left: dropRect ? dropRect.left : 0,
               width: dropRect ? dropRect.width : "auto",
               zIndex:99999,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
-              maxHeight:300, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
+              maxHeight:maxH, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
             }}>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
@@ -1464,6 +1475,8 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                 );
               })}
             </div>
+              );
+            })()}
             </>
           )}
         </div>
@@ -1493,10 +1506,10 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:16,fontWeight:400,color:isDark?"#f2ece4":"#000000",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+              <div style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#000000" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
@@ -1888,7 +1901,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
-          }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:"#f2ece4",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:isDark?"#f2ece4":"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
           {userTier === "audio" && !isPreview && (
@@ -1971,7 +1984,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
                 </span>
                 <span style={{ fontSize:12,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
-                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:"rgba(0,0,0,0.3)",cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2 }} title="Remove sign">✕</button>
+                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:PC.dim,cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2,opacity:0.6 }} title="Remove sign">✕</button>
               </div>
             ))}
             {!d.done && (
@@ -1987,10 +2000,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
                   style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"9px 10px",fontSize:14,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
                 <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
-                <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
+                <label style={{ padding:"9px 10px",background:PC.inputBg,border:`1px solid ${PC.border}`,borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",color:PC.text }}>📷
                   <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
                 </label>
-                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#c0392b":"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":"#000",animation:recId===d.id?"shgRecButtonPulse 1s ease-in-out infinite":"none" }}>{recId===d.id?"⏹":"🎤"}</button>
+                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#c0392b":PC.inputBg,border:`1px solid ${recId===d.id?"#c0392b":PC.border}`,borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":PC.text,animation:recId===d.id?"shgRecButtonPulse 1s ease-in-out infinite":"none" }}>{recId===d.id?"⏹":"🎤"}</button>
               </div>
               </>
             )}
