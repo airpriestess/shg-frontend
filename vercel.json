@@ -1,56 +1,56 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/blocks/luckygirl",
-      "dest": "/blocks/luckygirl/index.html"
+      "source": "/blocks",
+      "destination": "/blocks/index.html"
     },
     {
-      "src": "/blocks/lovemaxxing",
-      "dest": "/blocks/lovemaxxing/index.html"
+      "source": "/blocks/luckygirl",
+      "destination": "/blocks/luckygirl/index.html"
     },
     {
-      "src": "/blocks/beautymaxxing",
-      "dest": "/blocks/beautymaxxing/index.html"
+      "source": "/blocks/lovemaxxing",
+      "destination": "/blocks/lovemaxxing/index.html"
     },
     {
-      "src": "/blocks/selfmaxxing",
-      "dest": "/blocks/selfmaxxing/index.html"
+      "source": "/blocks/beautymaxxing",
+      "destination": "/blocks/beautymaxxing/index.html"
     },
     {
-      "src": "/blocks/richgirl",
-      "dest": "/blocks/richgirl/index.html"
+      "source": "/blocks/selfmaxxing",
+      "destination": "/blocks/selfmaxxing/index.html"
     },
     {
-      "src": "/blocks",
-      "dest": "/blocks/index.html"
+      "source": "/blocks/richgirl",
+      "destination": "/blocks/richgirl/index.html"
     },
     {
-      "src": "/guide/richgirl",
-      "dest": "/guide/richgirl/index.html"
+      "source": "/guides",
+      "destination": "/guides/index.html"
     },
     {
-      "src": "/guide/luckygirl",
-      "dest": "/guide/luckygirl/index.html"
+      "source": "/guide/richgirl",
+      "destination": "/guide/richgirl/index.html"
     },
     {
-      "src": "/guide/lovemaxxing",
-      "dest": "/guide/lovemaxxing/index.html"
+      "source": "/guide/luckygirl",
+      "destination": "/guide/luckygirl/index.html"
     },
     {
-      "src": "/guide/beautymaxxing",
-      "dest": "/guide/beautymaxxing/index.html"
+      "source": "/guide/lovemaxxing",
+      "destination": "/guide/lovemaxxing/index.html"
     },
     {
-      "src": "/guide/selfmaxxing",
-      "dest": "/guide/selfmaxxing/index.html"
+      "source": "/guide/beautymaxxing",
+      "destination": "/guide/beautymaxxing/index.html"
     },
     {
-      "src": "/guides",
-      "dest": "/guides/index.html"
+      "source": "/guide/selfmaxxing",
+      "destination": "/guide/selfmaxxing/index.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
