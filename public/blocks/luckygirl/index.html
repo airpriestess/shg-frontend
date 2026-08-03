@@ -202,49 +202,49 @@ const Qs = [
     q: "One of these lines has been running quietly in your head. Which one feels most familiar?",
     opts: [
       { t: "Nobody chooses me. I am always the one who gets passed over.", c: "os" },
-      { t: "I know good things can happen. I just do not fully expect them to happen to me.", c: "story" },
-      { t: "Things are starting to shift. I just do not quite trust it yet.", c: "filter" },
-      { t: "I feel lucky sometimes. But I cannot make it consistent.", c: "interpret" }
+      { t: "Good things happen to me sometimes — I just cannot make them stay.", c: "story" },
+      { t: "I miss opportunities because I do not see them until they have already closed.", c: "filter" },
+      { t: "I notice good things arriving — I just talk myself out of trusting them.", c: "interpret" }
     ]
   },
   {
     label: "The Interpretation",
     q: "A reply is slow, a plan falls through, something you expected does not arrive. Your honest first thought is...",
     opts: [
-      { t: "Confirmation. Things just do not tend to work out smoothly for me.", c: "interpret" },
-      { t: "Something I did. I replay what I could have done differently.", c: "os" },
-      { t: "Redirection. Something better is probably already forming.", c: "filter" },
-      { t: "Timing. If it is right it finds its way. I hold and wait.", c: "story" }
+      { t: "Confirmation. Things just do not tend to work out smoothly for me.", c: "os" },
+      { t: "I already knew it would end like this. The old story proves itself again.", c: "story" },
+      { t: "I probably missed the window. I waited too long or moved too fast.", c: "filter" },
+      { t: "Redirection. Something better is probably already forming. I hold and wait.", c: "interpret" }
     ]
   },
   {
     label: "The Recognition Filter",
     q: "A casual invitation arrives from someone you barely know. Your first instinct is...",
     opts: [
-      { t: "Ignore it. If it were important it would feel more obvious.", c: "os" },
-      { t: "Overthink it until the moment passes and the decision makes itself.", c: "interpret" },
-      { t: "Check if it meets my standard. If yes, I move.", c: "filter" },
-      { t: "Say yes. Good things arrive through unexpected doors.", c: "story" }
+      { t: "Dismiss it immediately. Things that arrive easily are usually not worth much.", c: "os" },
+      { t: "Overthink it for so long that the moment passes and I never reply.", c: "story" },
+      { t: "Evaluate it quickly — is it relevant, is there a real action, does it meet my standard?", c: "filter" },
+      { t: "Feel excited — then find a reason why it probably will not lead anywhere for me.", c: "interpret" }
     ]
   },
   {
     label: "The Luck Story",
-    q: "A plan you were excited about collapses at the last minute. You feel...",
+    q: "A plan you were genuinely excited about collapses at the last minute. You feel...",
     opts: [
-      { t: "Confirmation. This is just what happens for me.", c: "story" },
-      { t: "Redirected. Something better is already on its way.", c: "filter" },
-      { t: "Like life keeps moving me away from the things I want most.", c: "os" },
-      { t: "Frustrated — but I interrupt the old story before it takes over.", c: "interpret" }
+      { t: "Defeated. This is proof that things never really work out for me.", c: "os" },
+      { t: "Unsurprised. The old story predicted this. I saw it coming.", c: "story" },
+      { t: "Frustrated — but I immediately start looking for what opened up instead.", c: "filter" },
+      { t: "Briefly disappointed — then I reinterpret it before the story takes over.", c: "interpret" }
     ]
   },
   {
     label: "The Operating System",
-    q: "Someone you know gets upgraded out of nowhere — a connection, an opportunity, a win. You feel...",
+    q: "Someone you know gets upgraded out of nowhere — a connection, an opportunity, an unexpected win. You feel...",
     opts: [
-      { t: "Happy for them. And aware that life seems to remember other people more than it remembers me.", c: "os" },
-      { t: "Inspired. That is proof it is possible. My version is coming.", c: "story" },
-      { t: "Like some people were just born with better odds than me.", c: "interpret" },
-      { t: "Motivated. I look for the next move I can make today.", c: "filter" }
+      { t: "Quietly aware that life seems to remember other people before it remembers me.", c: "os" },
+      { t: "Like some people were just born with better odds than me.", c: "story" },
+      { t: "Motivated. I look for what move I can make today.", c: "filter" },
+      { t: "Inspired — and then I immediately doubt whether the same could happen for me.", c: "interpret" }
     ]
   },
   {
@@ -252,29 +252,29 @@ const Qs = [
     q: "You walk into a room full of people. Where does your attention go first?",
     opts: [
       { t: "Who already knows each other. Who has not noticed I have arrived.", c: "os" },
-      { t: "Who looks approachable. What feels like an opening.", c: "filter" },
-      { t: "What could go wrong. Who looks like they do not want to be approached.", c: "interpret" },
-      { t: "I scan for relevance. I am looking for what is useful.", c: "story" }
+      { t: "What could go wrong. Who might judge me. What the risk is.", c: "story" },
+      { t: "Who looks interesting. What feels like an opening worth exploring.", c: "filter" },
+      { t: "I notice the opportunity — then immediately wonder if I am the kind of person it is for.", c: "interpret" }
     ]
   },
   {
     label: "Receiving",
     q: "Something good happens — a compliment, a win, someone goes out of their way for you. Before you enjoy it...",
     opts: [
-      { t: "I wait for it to be cancelled out. Good things do not tend to stick for me.", c: "story" },
-      { t: "I let it land. I register it as evidence. I let it count.", c: "filter" },
-      { t: "I minimise it. It was probably coincidence or politeness.", c: "interpret" },
-      { t: "I feel it briefly — then return to scanning for what is not working.", c: "os" }
+      { t: "I brace. Things like this usually get cancelled out before they fully land.", c: "os" },
+      { t: "I feel it briefly — then my attention returns to everything that is still not working.", c: "story" },
+      { t: "I let it count. I register it as evidence that things are moving.", c: "filter" },
+      { t: "I minimise it immediately. It was probably coincidence. I do not want to get my hopes up.", c: "interpret" }
     ]
   },
   {
     label: "The LuckyGirl Identity",
     q: "The LuckyGirl assumes life supports her — timing, people, openings. She does not wait for proof. That identity feels...",
     opts: [
-      { t: "Like a story for women who started with a different kind of life than mine.", c: "story" },
-      { t: "True in flashes. I lose it when the evidence stops arriving.", c: "interpret" },
-      { t: "Like something I am actively building. Some days I am already her.", c: "filter" },
-      { t: "Like the version of me I have been trying to reach for a long time.", c: "os" }
+      { t: "Like a personality I was not born with and cannot manufacture.", c: "os" },
+      { t: "Like something I believed once — and then life proved me wrong enough times that I stopped.", c: "story" },
+      { t: "Like something I am actively building. I am already her on some days.", c: "filter" },
+      { t: "Like the truest version of me — I just cannot hold it when the evidence contradicts it.", c: "interpret" }
     ]
   }
 ];
