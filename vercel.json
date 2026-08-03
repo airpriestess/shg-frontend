@@ -5,10 +5,6 @@
       "destination": "/blocks/index.html"
     },
     {
-      "source": "/blocks/richgirl",
-      "destination": "/blocks/richgirl/index.html"
-    },
-    {
       "source": "/blocks/luckygirl",
       "destination": "/blocks/luckygirl/index.html"
     },
@@ -23,6 +19,10 @@
     {
       "source": "/blocks/selfmaxxing",
       "destination": "/blocks/selfmaxxing/index.html"
+    },
+    {
+      "source": "/blocks/richgirl",
+      "destination": "/blocks/richgirl/index.html"
     },
     {
       "source": "/guides",
