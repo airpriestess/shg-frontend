@@ -43,37 +43,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 .q-label{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--white);margin-bottom:20px;display:block;font-weight:500;}
 .q-text{font-size:clamp(20px,3.2vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--white);margin-bottom:36px;}
 
-.cards{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+/* 2x2 GRID CARDS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
 .card{
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:16px;padding:22px 24px;
+  background:#ffffff;
+  border:2px solid #e8e8e8;
+  border-radius:16px;
+  padding:28px 22px;
   cursor:pointer;
   transition:all .3s cubic-bezier(.4,0,.2,1);
-  position:relative;overflow:hidden;
+  position:relative;
+  overflow:hidden;
+  min-height:120px;
+  display:flex;
+  align-items:center;
 }
-.card::after{
-  content:'';position:absolute;inset:0;
-  background:var(--g);opacity:0;
-  transition:opacity .3s;border-radius:16px;
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+  opacity:0;
+  transition:opacity .3s;
 }
-.card:hover{border-color:rgba(232,184,112,.4);transform:translateX(6px);}
-.card:hover::after{opacity:.04;}
-.card.sel{
-  border-color:rgba(232,184,112,.8);
-  background:rgba(232,184,112,.06);
-  transform:translateX(6px);
-  box-shadow:0 0 40px rgba(232,184,112,.15),0 0 80px rgba(191,165,216,.08);
-}
-.card.sel::after{opacity:.07;}
-.card-text{font-size:15px;font-weight:300;line-height:1.6;color:var(--white);position:relative;z-index:1;}
-.card-dot{
-  position:absolute;right:20px;top:50%;transform:translateY(-50%);
-  width:20px;height:20px;border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.2);
-  transition:all .3s;z-index:1;
-}
-.card.sel .card-dot{background:var(--g);border-color:transparent;}
+.card:hover{border-color:transparent;transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,184,112,.3);}
+.card:hover::before{opacity:1;}
+.card.sel{border-color:transparent;transform:translateY(-4px);box-shadow:0 12px 48px rgba(232,184,112,.4);}
+.card.sel::before{opacity:1;}
+.card-text{font-size:15px;font-weight:500;line-height:1.5;color:#000;position:relative;z-index:1;}
+.card-dot{display:none;}
+@media(max-width:600px){.cards{grid-template-columns:1fr;}}
 
 .btn-next{
   width:100%;padding:20px;border-radius:12px;
@@ -200,82 +199,82 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 const Qs = [
   {
     label: "The Unlucky Universe",
-    q: "One of these lines has been repeating quietly in your head for years. Which one sounds most like you?",
+    q: "One of these lines has been running quietly in your head. Which one feels most familiar?",
     opts: [
-      { t: '"Nobody chooses me."', c: "os" },
-      { t: '"Things never work out — not really, not for me."', c: "story" },
-      { t: '"Everyone else gets opportunities. I\'m always too late."', c: "filter" },
-      { t: '"I never win. Good things just don\'t really happen to me."', c: "interpret" }
+      { t: "Nobody chooses me. I am always the one who gets passed over.", c: "os" },
+      { t: "I know good things can happen. I just do not fully expect them to happen to me.", c: "story" },
+      { t: "Things are starting to shift. I just do not quite trust it yet.", c: "filter" },
+      { t: "I feel lucky sometimes. But I cannot make it consistent.", c: "interpret" }
     ]
   },
   {
-    label: "The Old Interpretation",
-    q: "He doesn't reply for two days. Before you know anything, your first automatic thought is...",
+    label: "The Interpretation",
+    q: "He doesn't reply for two days. Before you know anything, your honest first thought is...",
     opts: [
-      { t: "He's not interested. I knew it.", c: "interpret" },
-      { t: "I always end up here. Nobody chooses me.", c: "os" },
-      { t: "I probably missed my window. I was too slow.", c: "filter" },
-      { t: "Something always goes wrong right when things feel good.", c: "story" }
+      { t: "He has lost interest. This is how it always goes.", c: "interpret" },
+      { t: "Something went wrong. I replay the last thing I said.", c: "os" },
+      { t: "He is probably busy. I hold my state and wait.", c: "filter" },
+      { t: "Timing. If it is right it will work out. I trust that.", c: "story" }
     ]
   },
   {
     label: "The Recognition Filter",
-    q: "A casual invitation arrives — someone you don't know well, an event you hadn't considered. You...",
+    q: "A casual invitation arrives from someone you barely know. Your first instinct is...",
     opts: [
-      { t: "Dismiss it. You're not sure it's relevant and you don't want to look like you're trying.", c: "filter" },
-      { t: "Overthink it until the window closes and the decision makes itself.", c: "os" },
-      { t: "See it as probably nothing — good things don't tend to arrive through unexpected channels for you.", c: "story" },
-      { t: "Treat it with suspicion. If it were really good it would feel more obvious.", c: "interpret" }
+      { t: "Ignore it. If it were important it would feel more obvious.", c: "os" },
+      { t: "Overthink it until the moment passes and the decision makes itself.", c: "interpret" },
+      { t: "Check if it meets my standard. If yes, I move.", c: "filter" },
+      { t: "Say yes. Good things arrive through unexpected doors.", c: "story" }
     ]
   },
   {
     label: "The Luck Story",
-    q: "A plan you were genuinely excited about falls through at the last minute. You feel...",
+    q: "A plan you were excited about collapses at the last minute. You feel...",
     opts: [
-      { t: "Confirmation. This is just what happens. You should have known better.", c: "story" },
-      { t: "Like life keeps redirecting you away from the things you want most.", c: "os" },
-      { t: "Like you read the timing wrong again — you always seem to move too early or too late.", c: "filter" },
-      { t: "Like the universe is sending a message that this wasn't for you.", c: "interpret" }
+      { t: "Confirmation. This is just what happens for me.", c: "story" },
+      { t: "Redirected. Something better is already on its way.", c: "filter" },
+      { t: "Like life keeps moving me away from the things I want most.", c: "os" },
+      { t: "Frustrated — but I interrupt the old story before it takes over.", c: "interpret" }
     ]
   },
   {
     label: "The Operating System",
-    q: "Someone in your life gets upgraded — a seat, an opportunity, a connection that arrives out of nowhere. You feel...",
+    q: "Someone you know gets upgraded out of nowhere — a connection, an opportunity, a win. You feel...",
     opts: [
-      { t: "Genuinely happy for them — and quietly aware that life seems to remember other people more than it remembers you.", c: "os" },
-      { t: "Like luck is randomly distributed and you consistently draw the shorter straw.", c: "story" },
-      { t: "Like they were in the right place, paying attention. You're never quite in the right place.", c: "filter" },
-      { t: "Happy — but suspicious. You wonder when the catch will arrive for them.", c: "interpret" }
+      { t: "Happy for them. And aware that life seems to remember other people more than it remembers me.", c: "os" },
+      { t: "Inspired. That is proof it is possible. My version is coming.", c: "story" },
+      { t: "Like luck is randomly distributed and I consistently draw the shorter straw.", c: "interpret" },
+      { t: "Like a signal. I ask myself what room I could walk into today.", c: "filter" }
     ]
   },
   {
     label: "Focused Attention",
-    q: "You walk into a room full of people. What your attention lands on first is...",
+    q: "You walk into a room full of people. Where does your attention land first?",
     opts: [
-      { t: "Who already knows each other. Who doesn't notice you've arrived.", c: "os" },
-      { t: "What could go wrong. Who looks like they don't want to be approached.", c: "interpret" },
-      { t: "Evidence that confirms you're slightly behind, slightly outside, slightly not quite right for this.", c: "story" },
-      { t: "Nothing in particular — which means you usually leave with nothing in particular.", c: "filter" }
+      { t: "Who already knows each other. Who has not noticed I have arrived.", c: "os" },
+      { t: "Who looks approachable. What feels like an opening.", c: "filter" },
+      { t: "What could go wrong. Who looks like they do not want to be approached.", c: "interpret" },
+      { t: "I scan for relevance. I am looking for what is useful.", c: "story" }
     ]
   },
   {
-    label: "Choose Before the Evidence",
-    q: "Something good happens — a compliment, an easy win, someone goes out of their way for you. Before you can enjoy it, you...",
+    label: "Receiving",
+    q: "Something good happens — a compliment, a win, someone goes out of their way for you. Before you enjoy it...",
     opts: [
-      { t: "Wait for it to be cancelled out by something else. Good things don't tend to stick.", c: "story" },
-      { t: "Minimise it. It was probably just coincidence or politeness.", c: "interpret" },
-      { t: "Feel it briefly — then return to scanning for what's not working.", c: "os" },
-      { t: "Wonder if you missed something. If this is the signal you should have moved faster.", c: "filter" }
+      { t: "I wait for it to be cancelled out. Good things do not tend to stick for me.", c: "story" },
+      { t: "I let it land. I register it as evidence. I let it count.", c: "filter" },
+      { t: "I minimise it. It was probably coincidence or politeness.", c: "interpret" },
+      { t: "I feel it briefly — then return to scanning for what is not working.", c: "os" }
     ]
   },
   {
     label: "The LuckyGirl Identity",
-    q: "The LuckyGirl assumes life supports her — upgrades, timing, the right people. She doesn't wait for proof. When you try that on, it feels...",
+    q: "The LuckyGirl assumes life supports her — timing, people, openings. She does not wait for proof. That identity feels...",
     opts: [
-      { t: "Like a story for women who started with more luck than I did.", c: "story" },
-      { t: "Like I'd have to fake it — because nothing around me has given me that evidence yet.", c: "os" },
-      { t: "True in flashes. Then I notice what's not working and lose it.", c: "interpret" },
-      { t: "Like something I keep almost reaching — and then something interrupts before I can hold it.", c: "filter" }
+      { t: "Like a story for women who started with a different kind of life than mine.", c: "story" },
+      { t: "True in flashes. I lose it when the evidence stops arriving.", c: "interpret" },
+      { t: "Like something I am actively building. Some days I am already her.", c: "filter" },
+      { t: "Like the version of me I have been trying to reach for a long time.", c: "os" }
     ]
   }
 ];
