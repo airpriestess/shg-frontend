@@ -17,14 +17,14 @@ const WALL = [
     ]
   },
   {
-    desire: "I am now making £5,000 a day from my business.",
+    desire: "I am now making $5,000 a day from my business.",
     category: "Businessmaxxing", days: 31, signs: 4,
     track: "a Businessmaxxing track", feel: "The number kept moving and I stopped being shocked by it.",
     log: [
       "Day 1: Old belief — \"It's impossible for me to make the income I actually want.\" Started listening to a Businessmaxxing track.",
-      "Week 1: £1,000 in a day for the first time.",
-      "Week 2: £2,000 in a day. Same store, same offer, nothing changed but me.",
-      "Week 4: £5,000 in a day. Then again. Then it became normal.",
+      "Week 1: $1,000 in a day for the first time.",
+      "Week 2: $2,000 in a day. Same store, same offer, nothing changed but me.",
+      "Week 4: $5,000 in a day. Then again. Then it became normal.",
     ]
   },
   {
@@ -39,12 +39,12 @@ const WALL = [
     ]
   },
   {
-    desire: "£1,800 refund out of nowhere.",
+    desire: "$1,800 refund out of nowhere.",
     category: "Richgirlmaxxing", days: 4, signs: 2,
     track: "a Richgirlmaxxing track", feel: "Money really does find me first.",
     log: [
       "Day 1: Old belief — \"It's so hard to attract money out of thin air.\" Started listening to a Richgirlmaxxing track.",
-      "Day 2: £1,800 landed in my account as a refund. Still don't know what it was for.",
+      "Day 2: $1,800 landed in my account as a refund. Still don't know what it was for.",
       "Day 4: Marked manifested.",
     ]
   },
