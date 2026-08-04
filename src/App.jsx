@@ -410,22 +410,22 @@ const STRIPE = {
 const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
-    monthly: "$24", annual: "$230", annualNote: "~$19.17/mo · £15.17/mo billed annually",
-    usd: "£19/mo", usdAnnual: "£182/yr",
+    monthly: "$24", annual: "$230", annualNote: "~$19.17/mo billed annually",
+    usd: "$24/mo", usdAnnual: "$230/yr",
     features: ["Full exclusive audio vault","All 6 formats — Melodic House, Voice Only, Sleep & Rest, Subliminal, EMDR, Binaural","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
     cta: (annual)=> annual ? "Join Audio — $230/year" : "Join Audio — $24/month",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
-    monthly: "$42", annual: "$403", annualNote: "~$33.58/mo · £26.42/mo billed annually",
-    usd: "£33/mo", usdAnnual: "£317/yr",
+    monthly: "$42", annual: "$403", annualNote: "~$33.58/mo billed annually",
+    usd: "$42/mo", usdAnnual: "$403/yr",
     features: ["Everything in Audio Tier","ProofOS — manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall — every win, forever","Early access drops — 48hrs ahead","Analytics board — watch your evidence build"],
     cta: (annual)=> annual ? "Activate Goddess — $403/year" : "Activate Goddess Tier — $42/month",
   },
   lifetime: {
     name: "Lifetime Access", emoji: "♾",
     monthly: "$600", annual: "$600", annualNote: "One payment. Forever.",
-    usd: "£500", usdAnnual: "£500",
+    usd: "$600", usdAnnual: "$600",
     features: ["Everything in Goddess Tier","Every future audio ever released","Every future feature — included","No monthly billing, ever","1,000 spots only"],
     cta: ()=> "Claim Lifetime Access — $600",
   },
@@ -482,7 +482,7 @@ function CheckoutModal({ onClose, onDemo }) {
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
                 <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#2CB7A7"}}>£11.92/mo · billed once</div>}
+                {isAnnual && <div style={{fontSize:10,color:"#2CB7A7"}}>~$19.17/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
@@ -608,7 +608,7 @@ function PricingSection({ onJoin }) {
                 <span style={{ fontSize: 13, color: c.periodColor, fontFamily: "'Jost',sans-serif" }}>{c.id === "lifetime" ? " one time" : isAnnual ? "/year" : "/month"}</span>
               </div>
               <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>
-                {isAnnual ? TIERS[c.id]?.usdAnnual : TIERS[c.id]?.usd} · Stripe handles currency conversion
+                Stripe handles currency conversion
               </div>
               {c.note && <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 20, fontFamily: "'Jost',sans-serif" }}>{c.note}</div>}
               {!c.note && <div style={{ marginBottom: 20 }} />}
@@ -641,7 +641,7 @@ const MARQUEE_ITEMS = [
   {t:"My DNA is shifting. Right now.",c:"#2CB7A7"},{t:"My highest timeline. Activated.",c:"#2CB7A7"},{t:"He's obsessed. Of course he is.",c:"#2CB7A7"},
   {t:"My skin is porcelain. Always.",c:"#2CB7A7"},{t:"I shift while I sleep.",c:"#2CB7A7"},{t:"Money arrives unexpectedly.",c:"#2CB7A7"},
   {t:"My bloodline is being rewritten.",c:"#2CB7A7"},{t:"He comes back. Every time.",c:"#2CB7A7"},{t:"My waist is always snatched.",c:"#2CB7A7"},
-  {t:"£10,000 months are my baseline.",c:"#2CB7A7"},{t:"I receive. Constantly. Effortlessly.",c:"#2CB7A7"},{t:"My self-concept is permanent now.",c:"#2CB7A7"},
+  {t:"$10,000 months are my baseline.",c:"#2CB7A7"},{t:"I receive. Constantly. Effortlessly.",c:"#2CB7A7"},{t:"My self-concept is permanent now.",c:"#2CB7A7"},
   {t:"He can't stop thinking about me.",c:"#2CB7A7"},{t:"I am radiant without trying.",c:"#2CB7A7"},{t:"My skin glows. Everyone sees it.",c:"#2CB7A7"},
   {t:"He chose me. Again.",c:"#2CB7A7"},{t:"Abundance is my default state.",c:"#2CB7A7"},{t:"My beauty is effortless.",c:"#2CB7A7"},
   {t:"He's already mine.",c:"#2CB7A7"},{t:"Money loves me. Of course it does.",c:"#2CB7A7"},{t:"I am the woman he keeps coming back to.",c:"#2CB7A7"},
@@ -841,7 +841,7 @@ function HeroMarquee() {
       <div className="marquee-track" style={{ gap:"0 36px" }}>
         {doubled.map((item,i) => { const idx=i%MARQUEE_ITEMS.length; const isLit=idx===lit; return (
           <span key={i} style={{ fontSize:11, fontWeight:400, letterSpacing:"0.15em", textTransform:"uppercase", color:isLit?"#fff":item.c, whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif", transition:"color 0.12s, text-shadow 0.12s", textShadow:isLit?`0 0 18px ${item.c},0 0 36px ${item.c}66`:"none" }}>
-          <span style={{marginRight:6,opacity:0.7}}>{item.t.toLowerCase().includes("money")||item.t.toLowerCase().includes("£")||item.t.toLowerCase().includes("income")||item.t.toLowerCase().includes("wealth")||item.t.toLowerCase().includes("financial")?"💰":item.t.toLowerCase().includes("skin")||item.t.toLowerCase().includes("face")||item.t.toLowerCase().includes("beauty")||item.t.toLowerCase().includes("glow")||item.t.toLowerCase().includes("gorgeous")||item.t.toLowerCase().includes("radiant")||item.t.toLowerCase().includes("stunning")?"✦":item.t.toLowerCase().includes("he ")||item.t.toLowerCase().includes("him")||item.t.toLowerCase().includes("sp ")||item.t.toLowerCase().includes("love")||item.t.toLowerCase().includes("devoted")?"♡":item.t.toLowerCase().includes("sleep")||item.t.toLowerCase().includes("dna")||item.t.toLowerCase().includes("cell")||item.t.toLowerCase().includes("blood")?"◐":"✦"}</span>{item.t}</span>
+          <span style={{marginRight:6,opacity:0.7}}>{item.t.toLowerCase().includes("money")||item.t.toLowerCase().includes("$")||item.t.toLowerCase().includes("income")||item.t.toLowerCase().includes("wealth")||item.t.toLowerCase().includes("financial")?"💰":item.t.toLowerCase().includes("skin")||item.t.toLowerCase().includes("face")||item.t.toLowerCase().includes("beauty")||item.t.toLowerCase().includes("glow")||item.t.toLowerCase().includes("gorgeous")||item.t.toLowerCase().includes("radiant")||item.t.toLowerCase().includes("stunning")?"✦":item.t.toLowerCase().includes("he ")||item.t.toLowerCase().includes("him")||item.t.toLowerCase().includes("sp ")||item.t.toLowerCase().includes("love")||item.t.toLowerCase().includes("devoted")?"♡":item.t.toLowerCase().includes("sleep")||item.t.toLowerCase().includes("dna")||item.t.toLowerCase().includes("cell")||item.t.toLowerCase().includes("blood")?"◐":"✦"}</span>{item.t}</span>
         );})}
       </div>
     </div>
@@ -1173,7 +1173,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   // Comparison section heading explanation is added in JSX below
   const compRows = [
-    { old: "I have to work hard to receive money.", neu: "Money found me without effort.", proof: "£2,000 refund arrived out of nowhere. Day 6.", cat: "Rich Girl" },
+    { old: "I have to work hard to receive money.", neu: "Money found me without effort.", proof: "$2,000 refund arrived out of nowhere. Day 6.", cat: "Rich Girl" },
     { old: "He has moved on. I need to accept it.", neu: "He is already on his way back.", proof: "He texted first after 3 weeks of silence. Day 9.", cat: "Lovemaxxing" },
     { old: "I don't feel beautiful unless someone tells me.", neu: "I feel gorgeous from the inside. The mirror confirmed it.", proof: "Woke up and felt it before I even looked. Day 4.", cat: "Beauty" },
     { old: "I've tried scripting, affirmations, vision boards. Nothing sticks.", neu: "I stopped trying. The subconscious installed it while I slept.", proof: "Stopped forcing it. It arrived anyway.", cat: "Identity" },
@@ -1322,7 +1322,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Luckygirlmaxxing",   tagline:"I'm always in the right place at the right time." },
               { label:"Lovemaxxing",        tagline:"I am the love story I used to only dream about." },
               { label:"Singlemaxxing",      tagline:"I am the prize. I stopped auditioning for it." },
-              { label:"Richgirlmaxxing",       tagline:"I'm making £100k a day. Obviously." },
+              { label:"Richgirlmaxxing",       tagline:"I'm making $100k a day. Obviously." },
               { label:"Lovemaxxing",        tagline:"He can't imagine his life without me." },
               { label:"Bodymaxxing",        tagline:"My reflection finally matches how I feel inside." },
               { label:"Facemaxxing",        tagline:"My face is my proof of concept." },
@@ -1359,7 +1359,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Richgirlmaxxing",       tagline:"I am a magnet for unexpected income." },
               { label:"Luckygirlmaxxing",   tagline:"I win things I didn't even enter for." },
               { label:"Singlemaxxing",      tagline:"I fell in love with my own company." },
-              { label:"Richgirlmaxxing",       tagline:"I'm making £5k a day and it's only the beginning." },
+              { label:"Richgirlmaxxing",       tagline:"I'm making $5k a day and it's only the beginning." },
               { label:"Friendmaxxing",      tagline:"My circle finally deserves me." },
               { label:"Richgirlmaxxing",       tagline:"Six figures. Then seven. Then I stopped counting." },
               { label:"Erosmaxxing",        tagline:"I am irresistible. I know it. He knows it." },
@@ -1850,7 +1850,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{...GPRICE(isMobile)}}>
             {[
               { quote: "I listened on day 1 and felt something shift. By day 5 he texted. I didn't even look for it.", name: "Sarah, 29", cat: "Lovemaxxing" },
-              { quote: "£1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", name: "Priya, 33", cat: "Richgirlmaxxing" },
+              { quote: "$1,800 came back as a refund I had forgotten about. Three days after starting Money Finds Me First.", name: "Priya, 33", cat: "Richgirlmaxxing" },
               { quote: "I look the same and feel completely different about my face. The glow is internal first.", name: "Maya, 26", cat: "Beautymaxxing" },
               { quote: "I've tried every subliminal channel. This is the only one where I actually feel it working in real time.", name: "Jade, 31", cat: "Selfmaxxing" },
               { quote: "I genuinely thought he was about to break up with me. I kept listening anyway. He proposed three weeks later.", name: "Ellie, 30", cat: "Lovemaxxing" },
