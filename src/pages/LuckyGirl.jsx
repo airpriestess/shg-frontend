@@ -12,7 +12,7 @@ const QUESTIONS = [
     { t: "I hope the person next to me doesn't think I don't belong here", c: "love" },
     { t: "I wish I'd worn something better", c: "body" }
   ]},
-  { q: "£10,000 arrives unexpectedly. You feel...", opts: [
+  { q: "$10,000 arrives unexpectedly. You feel...", opts: [
     { t: "Relieved — but already nervous about it running out", c: "money" },
     { t: "Shocked — I didn't do anything to deserve this", c: "identity" },
     { t: "Happy — then immediately thinking about who else needs some", c: "love" },
@@ -257,11 +257,11 @@ export default function LuckyGirl() {
               <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>✦ The next step ✦</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5vw,48px)", color: "#000", fontWeight: 400, lineHeight: 1.1, marginBottom: 12 }}>Lucky Girl Maxxing</div>
               <div style={{ fontSize: 17, color: "#000", lineHeight: 1.6, marginBottom: 6, fontWeight: 400 }}>21 days to become the woman good things happen to.</div>
-              <div style={{ fontSize: 22, color: "#000", fontWeight: 500, marginBottom: 8 }}>£19 <span style={{ fontSize: 15, textDecoration: "line-through", opacity: 0.5 }}>£49</span></div>
+              <div style={{ fontSize: 22, color: "#000", fontWeight: 500, marginBottom: 8 }}>$19 <span style={{ fontSize: 15, textDecoration: "line-through", opacity: 0.5 }}>$49</span></div>
               <div style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, marginBottom: 28, maxWidth: 380, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
               <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer"
                 style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 56px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
-                Get the workbook — £19
+                Get the workbook — $19
               </a>
             </div>
             <div style={{ border: "1px solid #222", borderRadius: 16, padding: "24px 28px", textAlign: "center" }}>
