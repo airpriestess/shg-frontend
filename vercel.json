@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/blog/why-affirmations-never-worked",
+      "destination": "/blog/why-affirmations-never-worked/index.html"
+    },
+    {
       "source": "/blog",
       "destination": "/blog/index.html"
     },
