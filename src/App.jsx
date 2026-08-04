@@ -30,156 +30,13 @@ import { useAuth } from "./contexts/AuthContext.jsx";
 const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3";
 
 
-function Shop() {
-  const PRODUCTS = [
-    {
-      id: "luckygirl",
-      name: "Lucky Girl Maxxing Workbook",
-      price: "£19",
-      oldPrice: "£37",
-      description: "21 days to activate your Lucky Girl operating system — and become luckier than the version of you who started this book",
-      highlights: ["21-day activation", "Identity-first framework", "Manifestation mechanics"],
-      link: "https://shop.reshmaoracle.com/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f",
-      status: "Available"
-    },
-    {
-      id: "lovemaxxing",
-      name: "Love Maxxing Workbook",
-      price: "£37",
-      description: "Become the woman men can't stop thinking about — and attract love that's actually worth having",
-      highlights: ["Desire mapping", "Attraction compass", "Selection code"],
-      link: "https://shop.reshmaoracle.com/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db",
-      status: "Available"
-    },
-    {
-      id: "moneymaxxing",
-      name: "Money Maxxing Workbook",
-      price: "£37",
-      description: "Step into the frequency of the woman who never has to think about money — because it's already there",
-      highlights: ["Wealth identity", "Money mindset", "Attraction to abundance"],
-      link: "https://shop.reshmaoracle.com",
-      status: "Coming soon"
-    },
-    {
-      id: "beautymaxxing",
-      name: "Beauty Maxxing Workbook",
-      price: "£37",
-      description: "Become the most beautiful version of yourself — from the inside out, where it actually counts",
-      highlights: ["Beauty frequency", "Confidence coding", "Embodied beauty"],
-      link: "https://shop.reshmaoracle.com",
-      status: "Coming soon"
-    }
-  ];
-
+function ShopRedirect() {
+  useEffect(() => {
+    window.location.replace("https://beacons.ai/reshmaoracle");
+  }, []);
   return (
-    <div style={{ minHeight:"100vh", background:"#000", paddingTop:80, paddingBottom:80 }}>
-      {/* NAV */}
-      <div style={{ position:"fixed", top:0, left:0, right:0, background:"#000", borderBottom:"1px solid rgba(253,240,232,0.1)", zIndex:100, height:80, display:"flex", alignItems:"center", paddingLeft:20, paddingRight:20 }}>
-        <a href="/" style={{ textDecoration:"none", fontFamily:"'Jost',sans-serif", fontSize:18, color:"#B76E79", fontWeight:400 }}>← Self Hypnosis Goddess</a>
-      </div>
-
-      {/* HERO */}
-      <div style={{ maxWidth:1200, margin:"0 auto", paddingLeft:20, paddingRight:20, marginBottom:80 }}>
-        <h1 style={{ fontSize:"clamp(40px,6vw,72px)", fontFamily:"'Jost',sans-serif", color:"#fdf0e8", fontWeight:400, marginBottom:20, textAlign:"center" }}>
-          Workbooks
-        </h1>
-        <p style={{ fontSize:18, color:"#e8e0d8", textAlign:"center", maxWidth:600, margin:"0 auto 60px", lineHeight:1.6 }}>
-          Identity-first frameworks to activate the version of you that already has everything you want.
-        </p>
-      </div>
-
-      {/* PRODUCTS GRID */}
-      <div style={{ maxWidth:1200, margin:"0 auto", paddingLeft:20, paddingRight:20, display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(300px, 1fr))", gap:40 }}>
-        {PRODUCTS.map((p) => (
-          <div key={p.id} style={{
-            background:"#0a0a0a",
-            border:"1px solid rgba(253,240,232,0.15)",
-            borderRadius:20,
-            padding:40,
-            display:"flex",
-            flexDirection:"column",
-            gap:24
-          }}>
-            {/* PRICE TAG */}
-            <div>
-              <div style={{ fontSize:32, fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#f5e0a0", marginBottom:4 }}>
-                {p.price}
-              </div>
-              {p.oldPrice && (
-                <div style={{ fontSize:14, color:"#e8e0d8", textDecoration:"line-through", opacity:0.6 }}>
-                  {p.oldPrice}
-                </div>
-              )}
-            </div>
-
-            {/* TITLE */}
-            <div>
-              <h3 style={{ fontSize:20, fontFamily:"'Jost',sans-serif", fontWeight:400, color:"#fdf0e8", margin:0, marginBottom:8 }}>
-                {p.name}
-              </h3>
-              <p style={{ fontSize:14, color:"#c4a896", margin:0 }}>
-                {p.status}
-              </p>
-            </div>
-
-            {/* DESCRIPTION */}
-            <p style={{ fontSize:15, color:"#d4a090", lineHeight:1.6, margin:0, flexGrow:1 }}>
-              {p.description}
-            </p>
-
-            {/* HIGHLIGHTS */}
-            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
-              {p.highlights.map((h, i) => (
-                <div key={i} style={{ fontSize:13, color:"#e8b870", display:"flex", alignItems:"center", gap:8 }}>
-                  <span style={{ color:"#f5e0a0" }}>✓</span>
-                  {h}
-                </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            {p.status === "Available" ? (
-              <a href={p.link} style={{
-                background:"linear-gradient(135deg,#f5e0a0 0%,#e8b870 22%,#d4a090 48%,#c4789a 72%,#B76E79 100%)",
-                border:"none",
-                borderRadius:12,
-                padding:"14px 24px",
-                fontSize:16,
-                fontFamily:"'Jost',sans-serif",
-                fontWeight:500,
-                color:"#000",
-                cursor:"pointer",
-                textDecoration:"none",
-                textAlign:"center",
-                transition:"opacity 0.2s"
-              }} onMouseEnter={e=>e.target.style.opacity="0.9"} onMouseLeave={e=>e.target.style.opacity="1"}>
-                Get the workbook
-              </a>
-            ) : (
-              <button disabled style={{
-                background:"rgba(232,224,216,0.15)",
-                border:"1px solid rgba(232,224,216,0.2)",
-                borderRadius:12,
-                padding:"14px 24px",
-                fontSize:16,
-                fontFamily:"'Jost',sans-serif",
-                fontWeight:500,
-                color:"#e8e0d8",
-                cursor:"not-allowed",
-                opacity:0.5
-              }}>
-                Coming soon
-              </button>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* FOOTER NOTE */}
-      <div style={{ maxWidth:1200, margin:"80px auto 0", paddingLeft:20, paddingRight:20, borderTop:"1px solid rgba(253,240,232,0.1)", paddingTop:40, textAlign:"center", fontSize:14, color:"#c4a896" }}>
-        <p>Each workbook is a 21-day activation framework. You can work through them in any order or all at once.</p>
-        <p style={{ marginTop:16 }}>Questions? Reach out via <a href="https://instagram.com/selfhypnosisgoddess" style={{ color:"#e8b870", textDecoration:"none" }}>@selfhypnosisgoddess</a></p>
-      </div>
+    <div style={{ minHeight:"100vh", background:"#000", display:"flex", alignItems:"center", justifyContent:"center" }}>
+      <span style={{ fontFamily:"'Jost',sans-serif", color:"#fdf0e8", fontSize:16, opacity:0.5 }}>Redirecting to shop…</span>
     </div>
   );
 }
@@ -392,7 +249,7 @@ export default function App() {
       <style>{CSS}</style>
 <Routes>
         <Route path="/" element={<><Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>{checkoutModal && <CheckoutModal onClose={() => setCheckoutModal(false)} onDemo={() => { setCheckoutModal(false); goPortal("goddess"); }} />}</>} />
-        <Route path="/shop" element={<Shop/>} />
+        <Route path="/shop" element={<ShopRedirect/>} />
         <Route path="/about"   element={<About   onBack={()=>navigate("/")}/>} />
         <Route path="/library" element={<Library onBack={()=>navigate("/")}/>} />
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
@@ -1430,7 +1287,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center" }}>
             <IdentityCarousel cats={[
               { label:"Luckygirlmaxxing",   tagline:"Lucky girl? That's just who I am." },
-              { label:"Luckygirlmaxxing",   tagline:"Everything always works out for me." },
+              { label:"Richgirlmaxxing",       tagline:"I make billions in my sleep." },
               { label:"Lifemaxxing",        tagline:"My highest self is my only self." },
               { label:"Beautymaxxing",      tagline:"Gorgeous is my default." },
               { label:"Lovemaxxing",        tagline:"He only has eyes for me." },
