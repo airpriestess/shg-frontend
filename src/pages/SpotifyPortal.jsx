@@ -602,7 +602,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
             <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
-            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$42/mo":userTier==="lifetime"?"$600 one-time":"$24/mo"}</span>
+            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$42/mo":userTier==="lifetime"?"$1000 one-time":"$24/mo"}</span>
           </div>
         </div>
         {userTier==="audio" && (
