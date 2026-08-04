@@ -602,13 +602,13 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
             <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
-            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$42/mo":userTier==="lifetime"?"$1000 one-time":"$24/mo"}</span>
+            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$79/mo":userTier==="lifetime"?"$1000 one-time":"$49/mo"}</span>
           </div>
         </div>
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
-            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$42/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$79/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
@@ -1541,7 +1541,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$42<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$79<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
@@ -1579,7 +1579,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
       </div>
       <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-        Upgrade to Goddess — $42/mo
+        Upgrade to Goddess — $79/mo
       </button>
     </div>
   );
