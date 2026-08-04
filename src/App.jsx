@@ -682,13 +682,69 @@ const MARQUEE_ITEMS = [
   {t:"My aura is undeniable.",c:"#2CB7A7"},{t:"Money comes from everywhere.",c:"#2CB7A7"},{t:"The shift is already done.",c:"#2CB7A7"},
   {t:"I am reprogramming daily.",c:"#2CB7A7"},{t:"He's obsessed with who I am.",c:"#2CB7A7"},{t:"Every night I become her more.",c:"#2CB7A7"},
 ];
+// ── PHONE SHELL — hoisted to top level so it's a stable component type across renders (was nested, causing iframe remount/flash) ──
+function PhoneShell({ w=200, theme, view }) {
+  const br = Math.round(w * 0.21);
+  const pad = Math.round(w * 0.025);
+  return (
+    <div style={{ position:"relative", width:w, background:"#1a1a1a", borderRadius:br, padding:`${Math.round(w*0.055)}px ${pad}px`, boxShadow:"0 0 0 2px #3a3a3a, 0 0 0 4px #1a1a1a, 0 0 0 6px #3a3a3a, 0 28px 56px rgba(0,0,0,0.85)" }}>
+      <div style={{ position:"absolute", left:-3, top:"22%", width:3, height:"10%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+      <div style={{ position:"absolute", left:-3, top:"35%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+      <div style={{ position:"absolute", left:-3, top:"54%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
+      <div style={{ position:"absolute", right:-3, top:"38%", width:3, height:"22%", background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
+      <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative" }}>
+        <div style={{ position:"absolute", top:Math.round(w*0.033), left:"50%", transform:"translateX(-50%)", width:Math.round(w*0.38), height:Math.round(w*0.077), background:"#000", borderRadius:20, zIndex:10 }}/>
+        {view==="dashboard" && (
+          <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
+            <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
+              <iframe
+                src={`/portal?preview=1&theme=${theme}`}
+                title="Self Hypnosis Goddess mobile dashboard preview"
+                width="390"
+                height="844"
+                style={{ border:"none", display:"block" }}
+              />
+            </div>
+          </div>
+        )}
+        {view==="proof" && (
+          <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
+            <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
+              <iframe
+                src={`/portal?preview=1&theme=${theme}&tab=proof`}
+                title="Self Hypnosis Goddess mobile ProofOS preview"
+                width="390"
+                height="844"
+                style={{ border:"none", display:"block" }}
+              />
+            </div>
+          </div>
+        )}
+        {view==="analytics" && (
+          <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
+            <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
+              <iframe
+                src={`/portal?preview=1&theme=${theme}&tab=analytics`}
+                title="Self Hypnosis Goddess mobile Analytics preview"
+                width="390"
+                height="844"
+                style={{ border:"none", display:"block" }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
   const [theme, setTheme] = useState("dark");
   const [view,  setView]  = useState("dashboard");
 
-  /* ── Desktop panel content (changes per tab) ── */
-  function DesktopPanel() {
+  /* ── Desktop panel content (changes per tab) — computed inline, not a nested component, to avoid remounting the iframe on every render ── */
+  const desktopPanelContent = (() => {
     if (view === "dashboard") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
         <div style={{ width:838, height:544, transform:"scale(0.546)", transformOrigin:"top left" }}>
@@ -729,64 +785,9 @@ function AppPreviewSection({ isMobile }) {
       </div>
     );
     return null;
-  }
+  })();
 
   /* ── iPhone shell ── */
-  function PhoneShell({ w=200 }) {
-    const br = Math.round(w * 0.21);
-    const pad = Math.round(w * 0.025);
-    return (
-      <div style={{ position:"relative", width:w, background:"#1a1a1a", borderRadius:br, padding:`${Math.round(w*0.055)}px ${pad}px`, boxShadow:"0 0 0 2px #3a3a3a, 0 0 0 4px #1a1a1a, 0 0 0 6px #3a3a3a, 0 28px 56px rgba(0,0,0,0.85)" }}>
-        <div style={{ position:"absolute", left:-3, top:"22%", width:3, height:"10%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
-        <div style={{ position:"absolute", left:-3, top:"35%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
-        <div style={{ position:"absolute", left:-3, top:"54%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
-        <div style={{ position:"absolute", right:-3, top:"38%", width:3, height:"22%", background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
-        <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative" }}>
-          <div style={{ position:"absolute", top:Math.round(w*0.033), left:"50%", transform:"translateX(-50%)", width:Math.round(w*0.38), height:Math.round(w*0.077), background:"#000", borderRadius:20, zIndex:10 }}/>
-          {view==="dashboard" && (
-            <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-              <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
-                <iframe
-                  src={`/portal?preview=1&theme=${theme}`}
-                  title="Self Hypnosis Goddess mobile dashboard preview"
-                  width="390"
-                  height="844"
-                  style={{ border:"none", display:"block" }}
-                />
-              </div>
-            </div>
-          )}
-          {view==="proof" && (
-            <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-              <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
-                <iframe
-                  src={`/portal?preview=1&theme=${theme}&tab=proof`}
-                  title="Self Hypnosis Goddess mobile ProofOS preview"
-                  width="390"
-                  height="844"
-                  style={{ border:"none", display:"block" }}
-                />
-              </div>
-            </div>
-          )}
-          {view==="analytics" && (
-            <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-              <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
-                <iframe
-                  src={`/portal?preview=1&theme=${theme}&tab=analytics`}
-                  title="Self Hypnosis Goddess mobile Analytics preview"
-                  width="390"
-                  height="844"
-                  style={{ border:"none", display:"block" }}
-                />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div style={{ width:"100%", background:"#000", padding:isMobile?"36px 0 44px":"56px 0 64px", display:"flex", flexDirection:"column", alignItems:"center", gap:24 }}>
 
@@ -813,19 +814,19 @@ function AppPreviewSection({ isMobile }) {
       {/* Mockups row */}
       {isMobile ? (
         /* Mobile: just the phone, centred */
-        <PhoneShell w={200}/>
+        <PhoneShell w={200} theme={theme} view={view}/>
       ) : (
         /* Desktop: browser mockup left, iPhone right — always both visible */
         <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:40, padding:"0 32px", maxWidth:1100, width:"100%" }}>
           {/* Desktop panel */}
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
             <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop · works in any browser</div>
-            <DesktopPanel/>
+            {desktopPanelContent}
           </div>
           {/* iPhone */}
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
             <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>iPhone · Android</div>
-            <PhoneShell w={210}/>
+            <PhoneShell w={210} theme={theme} view={view}/>
           </div>
         </div>
       )}
