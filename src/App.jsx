@@ -424,10 +424,10 @@ const TIERS = {
   },
   lifetime: {
     name: "Lifetime Access", emoji: "♾",
-    monthly: "$600", annual: "$600", annualNote: "One payment. Forever.",
-    usd: "$600", usdAnnual: "$600",
+    monthly: "$1000", annual: "$1000", annualNote: "One payment. Forever.",
+    usd: "$1000", usdAnnual: "$1000",
     features: ["Everything in Goddess Tier","Every future audio ever released","Every future feature — included","No monthly billing, ever","1,000 spots only"],
-    cta: ()=> "Claim Lifetime Access — $600",
+    cta: ()=> "Claim Lifetime Access — $1000",
   },
 };
 
