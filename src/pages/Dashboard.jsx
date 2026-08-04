@@ -17,16 +17,16 @@ const TIMELINE = [
   { day: "Day 2", event: "Voice proof",      detail: "I felt calmer and more certain after listening.",          icon: "🎙", photo: false },
   { day: "Day 3", event: "Sign noticed",     detail: "Saw 555 three times. A phrase from the audio appeared.",  icon: "◈",  photo: false },
   { day: "Day 5", event: "Photo proof",      detail: "Bank notification screenshot captured.",                   icon: "📷", photo: true  },
-  { day: "Day 8", event: "Manifested ★",    detail: "£5,000 received. Thread closed.",                          icon: "★",  photo: true  },
+  { day: "Day 8", event: "Manifested ★",    detail: "$5,000 received. Thread closed.",                          icon: "★",  photo: true  },
 ];
 
 const RECENT_PROOF = [
-  { icon: "💰", label: "Bank Notification",  thread: "I receive £5,000 unexpectedly",   date: "Jul 1"  },
+  { icon: "💰", label: "Bank Notification",  thread: "I receive $5,000 unexpectedly",   date: "Jul 1"  },
   { icon: "💬", label: "Message Screenshot", thread: "He sends me a loving message",     date: "Jun 30" },
   { icon: "🪞", label: "Mirror Photo",       thread: "My skin looks clear and luminous", date: "Jun 29" },
-  { icon: "555",label: "Angel Number",       thread: "I receive £5,000 unexpectedly",   date: "Jun 27" },
+  { icon: "555",label: "Angel Number",       thread: "I receive $5,000 unexpectedly",   date: "Jun 27" },
   { icon: "📧", label: "Email Confirmation", thread: "He sends me a loving message",     date: "Jun 26" },
-  { icon: "📅", label: "Calendar Invite",    thread: "I receive £5,000 unexpectedly",   date: "Jun 25" },
+  { icon: "📅", label: "Calendar Invite",    thread: "I receive $5,000 unexpectedly",   date: "Jun 25" },
 ];
 
 // ── Small stat number card ────────────────────────────────────────────────────
