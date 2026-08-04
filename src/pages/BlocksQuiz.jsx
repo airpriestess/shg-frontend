@@ -16,17 +16,17 @@ const CATEGORIES = {
 
 const QUESTIONS = {
   money: [
-    { q: "A friend asks to borrow £200. You have it. Your gut reaction is...", opts: [
+    { q: "A friend asks to borrow $200. You have it. Your gut reaction is...", opts: [
       { t: "I feel guilty saying no but terrified of saying yes", c: "scarcity" },
       { t: "I say yes immediately even though I resent it", c: "worthiness" },
       { t: "I say yes, then spend the next week anxious about my account", c: "scarcity" },
       { t: "I want to help but I feel like I need it more than they think", c: "consistency" }
     ]},
-    { q: "You want to spoil your best friend for her birthday. You find the perfect gift — £150. You feel...", opts: [
+    { q: "You want to spoil your best friend for her birthday. You find the perfect gift — $150. You feel...", opts: [
       { t: "Excited, then immediately calculating what I can't buy myself this month", c: "scarcity" },
       { t: "Guilty — like I haven't earned the right to spend like this yet", c: "worthiness" },
       { t: "Happy to do it but I'll secretly hope she reciprocates", c: "consistency" },
-      { t: "Resistant — £150 feels like too much even though I wish it didn't", c: "scarcity" }
+      { t: "Resistant — $150 feels like too much even though I wish it didn't", c: "scarcity" }
     ]},
     { q: "You've been at the same income level for months. You want more. The story you tell yourself is...", opts: [
       { t: "I work hard but money just doesn't flow easily to me", c: "scarcity" },
