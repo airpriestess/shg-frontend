@@ -90,17 +90,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-ey">✦ Self Hypnosis Goddess Journal ✦</span>
+  <span class="hero-ey">Self Hypnosis Goddess Journal</span>
   <h1>The Journal.</h1>
   <p class="hero-sub">Everything you need to understand the install — and why the version of you who starts reading this is not the version who finishes.</p>
-  <div class="filters">
-    <div class="pill active">All</div>
-    <div class="pill">LuckyGirl</div>
-    <div class="pill">LoveMaxxing</div>
-    <div class="pill">BeautyMaxxing</div>
-    <div class="pill">RichGirl</div>
-    <div class="pill">SelfMaxxing</div>
-    <div class="pill">The Science</div>
+  <div class="filters" id="filters">
+    <div class="pill active" data-filter="all">All</div>
+    <div class="pill" data-filter="luckygirl">LuckyGirl</div>
+    <div class="pill" data-filter="lovemaxxing">LoveMaxxing</div>
+    <div class="pill" data-filter="beautymaxxing">BeautyMaxxing</div>
+    <div class="pill" data-filter="richgirl">RichGirl</div>
+    <div class="pill" data-filter="selfmaxxing">SelfMaxxing</div>
+    <div class="pill" data-filter="science">The Science</div>
   </div>
 </section>
 
@@ -109,7 +109,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
   <div class="feat-card">
     <div class="feat-img">
       <div class="feat-img-inner">✦</div>
-      <div class="feat-tag">✦ Featured</div>
+      <div class="feat-tag">Featured</div>
     </div>
     <div class="feat-body">
       <div class="feat-cat">LuckyGirl Maxxing</div>
@@ -122,7 +122,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 </section>
 
 <!-- LUCKYGIRL ARTICLES -->
-<section class="grid-section">
+<section class="grid-section" data-category="luckygirl">
   <span class="grid-label">LuckyGirl Maxxing</span>
   <div class="grid">
 
@@ -178,7 +178,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 </section>
 
 <!-- LOVEMAXXING ARTICLES -->
-<section class="grid-section">
+<section class="grid-section" data-category="lovemaxxing">
   <span class="grid-label">LoveMaxxing</span>
   <div class="grid">
 
@@ -234,7 +234,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 </section>
 
 <!-- SCIENCE / SELF ARTICLES -->
-<section class="grid-section">
+<section class="grid-section" data-category="science">
   <span class="grid-label">The Science</span>
   <div class="grid">
 
@@ -289,9 +289,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
   </div>
 </section>
 
+
+<!-- MID CTA — MEMBERSHIP -->
+<section style="background:#000;padding:60px 48px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);">
+  <div style="max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+    <div>
+      <div style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;">Self Hypnosis Goddess</div>
+      <h2 style="font-size:clamp(26px,4vw,40px);font-weight:700;color:#f2ece4;letter-spacing:-.02em;line-height:1.1;margin-bottom:16px;">The audio library that installs the identity while you sleep.</h2>
+      <p style="font-size:15px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:28px;">Every article on this journal leads to the same place — the version of you who has already installed the identity. The membership is how you get there.</p>
+      <a href="/#pricing" style="display:inline-block;padding:16px 32px;border-radius:10px;background:var(--g);color:#000;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-decoration:none;">Join the membership →</a>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:32px;">
+      <div style="font-size:13px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.8;">
+        <div style="margin-bottom:10px;color:#f2ece4;font-weight:500;">What you get inside:</div>
+        <div style="margin-bottom:8px;">Full audio vault — hypnosis, subliminals, EMDR</div>
+        <div style="margin-bottom:8px;">4 new tracks every week</div>
+        <div style="margin-bottom:8px;">Loop player and sleep timer</div>
+        <div style="margin-bottom:8px;">ProofOS manifestation tracker</div>
+        <div>The Guide — 11 sections of the full system</div>
+      </div>
+      <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);">
+        <span style="font-size:22px;font-weight:700;color:#f2ece4;">From £19</span>
+        <span style="font-size:13px;color:rgba(255,255,255,.4);margin-left:8px;">/ month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BEAUTYMAXXING + SELFMAXXING -->
-<section class="grid-section">
-  <span class="grid-label">BeautyMaxxing & SelfMaxxing</span>
+<section class="grid-section" data-category="beautymaxxing selfmaxxing richgirl">
+  <span class="grid-label">BeautyMaxxing · SelfMaxxing · RichGirl</span>
   <div class="grid">
 
     <div class="card">
@@ -354,6 +381,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
     <button>Subscribe →</button>
   </div>
 </section>
+
+
+<script>
+document.querySelectorAll('.pill').forEach(pill => {
+  pill.addEventListener('click', function() {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.grid-section').forEach(section => {
+      if(filter === 'all') {
+        section.style.display = 'block';
+      } else {
+        const cats = section.dataset.category || '';
+        section.style.display = cats.includes(filter) ? 'block' : 'none';
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>
