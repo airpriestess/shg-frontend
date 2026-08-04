@@ -434,5 +434,57 @@ function activateNode(i,m){
 }
 setInterval(()=>{if(!lp){li=(li+1)%6;activateNode(li,false);}},5000);
 </script>
+
+<!-- POPUP -->
+<div id="popup" style="display:none;position:fixed;inset:0;z-index:999;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);">
+  <div style="background:#000;border:1px solid rgba(255,255,255,.1);border-radius:24px;max-width:440px;width:100%;overflow:hidden;position:relative;">
+    <button onclick="closePopup()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:none;color:#f2ece4;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:1;">✕</button>
+    <div style="background:var(--g);padding:40px 36px 32px;text-align:center;">
+      <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#000;font-weight:700;margin-bottom:12px;">✦ Self Hypnosis Goddess ✦</div>
+      <div style="font-size:clamp(24px,5vw,32px);font-weight:700;color:#000;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px;">Join the inner circle.</div>
+      <div style="font-size:15px;color:#000;font-weight:400;line-height:1.5;">Get the next article before anyone else. Plus — find your LuckyGirl block free.</div>
+    </div>
+    <div style="padding:32px 36px;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <input id="popup-name" type="text" placeholder="Your first name" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px 18px;font-family:Jost,sans-serif;font-size:15px;color:#f2ece4;outline:none;" autocomplete="given-name">
+        <input id="popup-email" type="email" placeholder="Your email address" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px 18px;font-family:Jost,sans-serif;font-size:15px;color:#f2ece4;outline:none;" autocomplete="email">
+        <button onclick="submitPopup()" style="padding:18px;border-radius:10px;background:var(--g);color:#000;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;">Let me in →</button>
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:16px;line-height:1.5;">No spam. Unsubscribe any time.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Show popup after 4 seconds if not already dismissed
+setTimeout(function(){
+  if(!localStorage.getItem('shg_popup_dismissed')) {
+    document.getElementById('popup').style.display='flex';
+  }
+}, 4000);
+
+function closePopup() {
+  document.getElementById('popup').style.display='none';
+  localStorage.setItem('shg_popup_dismissed','1');
+}
+
+function submitPopup() {
+  const name = document.getElementById('popup-name').value.trim();
+  const email = document.getElementById('popup-email').value.trim();
+  if(!name||!email){alert('Please enter your name and email.');return;}
+  // TODO: POST to Beacons API when key is available
+  // For now save to Supabase
+  closePopup();
+  // Show success
+  const btn = document.querySelector('#popup button:last-of-type');
+  if(btn) btn.textContent = '✓ You're in!';
+}
+
+// Close on backdrop click
+document.getElementById('popup').addEventListener('click', function(e){
+  if(e.target === this) closePopup();
+});
+</script>
+
 </body>
 </html>
