@@ -388,10 +388,10 @@ const INIT_THREADS = [
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
     createdAt:"6 Jun 2026",
     signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot — the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note — the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
-  { id:2, desire:"£5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Rich Girl",
+  { id:2, desire:"$5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Rich Girl",
     feelBefore:"Tight and worried about money.", feelAfter:"",
     createdAt:"22 Jun 2026",
-    signs:[ {text:"Got a random refund £180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found £20 in my coat pocket",date:"1 Jul"} ] },
+    signs:[ {text:"Got a random refund $180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found $20 in my coat pocket",date:"1 Jul"} ] },
   { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Rich Girl",
     feelBefore:"Doubtful but hopeful.", feelAfter:"",
     createdAt:"21 Jun 2026",
@@ -408,7 +408,7 @@ const INIT_THREADS = [
     feelBefore:"Overworked and overlooked. Tired of proving myself.", feelAfter:"Relief. Like I could finally exhale.",
     createdAt:"3 Nov 2025",
     signs:[ {text:"Manager asked to lead the project I wanted",date:"14 Nov"}, {text:"Offer letter arrived",date:"25 Nov"} ], manifestedAt:"25 Nov 2025" },
-  { id:7, desire:"Won £850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Rich Girl",
+  { id:7, desire:"Won $850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Rich Girl",
     feelBefore:"Skeptical this stuff even works.", feelAfter:"Shocked. Genuinely shocked.",
     createdAt:"8 Sep 2025",
     signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot — the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
@@ -602,13 +602,13 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
             <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
-            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"£33/mo":userTier==="lifetime"?"£500 one-time":"£19/mo"}</span>
+            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$42/mo":userTier==="lifetime"?"$600 one-time":"$24/mo"}</span>
           </div>
         </div>
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
-            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$42/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
             </button>
@@ -1541,7 +1541,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>£33<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$42<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
@@ -1579,7 +1579,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
       </div>
       <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-        Upgrade to Goddess — £33/mo
+        Upgrade to Goddess — $42/mo
       </button>
     </div>
   );
@@ -2025,16 +2025,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
   const products = [
-    { name:"Lovemaxxing Guide",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
-    { name:"Richgirlmaxxing Guide",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing" },
-    { name:"Luckygirlmaxxing Guide", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
-    { name:"Sovereignmaxxing Guide", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
-    { name:"Confidencemaxxing Guide",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
-    { name:"Beautymaxxing Guide",    price:"£19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
-    { name:"Healthmaxxing Guide",      price:"£19", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing" },
-    { name:"Sleepmaxxing Guide",     price:"£19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
-    { name:"Businessmaxxing Guide",  price:"£19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
-    { name:"Peacemaxxing Guide",     price:"£19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
+    { name:"Lovemaxxing Guide",      price:"$19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
+    { name:"Richgirlmaxxing Guide",     price:"$19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing" },
+    { name:"Luckygirlmaxxing Guide", price:"$19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
+    { name:"Sovereignmaxxing Guide", price:"$19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
+    { name:"Confidencemaxxing Guide",price:"$19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
+    { name:"Beautymaxxing Guide",    price:"$19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
+    { name:"Healthmaxxing Guide",      price:"$19", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing" },
+    { name:"Sleepmaxxing Guide",     price:"$19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
+    { name:"Businessmaxxing Guide",  price:"$19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
+    { name:"Peacemaxxing Guide",     price:"$19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
   ];
   return (
     <div style={{ padding:"16px 16px 40px" }}>
