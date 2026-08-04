@@ -410,24 +410,24 @@ const STRIPE = {
 const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
-    monthly: "£19", annual: "£182", annualNote: "£15.17/mo · ~$19/mo billed annually",
-    usd: "~$24/mo", usdAnnual: "~$229/yr",
+    monthly: "$24", annual: "$230", annualNote: "~$19.17/mo · £15.17/mo billed annually",
+    usd: "£19/mo", usdAnnual: "£182/yr",
     features: ["Full exclusive audio vault","All 6 formats — Melodic House, Voice Only, Sleep & Rest, Subliminal, EMDR, Binaural","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
-    cta: (annual)=> annual ? "Join Audio — £182/year" : "Join Audio — £19/month",
+    cta: (annual)=> annual ? "Join Audio — $230/year" : "Join Audio — $24/month",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
-    monthly: "£33", annual: "£317", annualNote: "£26.42/mo · ~$33/mo billed annually",
-    usd: "~$41/mo", usdAnnual: "~$399/yr",
+    monthly: "$42", annual: "$403", annualNote: "~$33.58/mo · £26.42/mo billed annually",
+    usd: "£33/mo", usdAnnual: "£317/yr",
     features: ["Everything in Audio Tier","ProofOS — manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall — every win, forever","Early access drops — 48hrs ahead","Analytics board — watch your evidence build"],
-    cta: (annual)=> annual ? "Activate Goddess — £317/year" : "Activate Goddess Tier — £33/month",
+    cta: (annual)=> annual ? "Activate Goddess — $403/year" : "Activate Goddess Tier — $42/month",
   },
   lifetime: {
     name: "Lifetime Access", emoji: "♾",
-    monthly: "£500", annual: "£500", annualNote: "One payment. Forever.",
-    usd: "~$630", usdAnnual: "~$630",
+    monthly: "$600", annual: "$600", annualNote: "One payment. Forever.",
+    usd: "£500", usdAnnual: "£500",
     features: ["Everything in Goddess Tier","Every future audio ever released","Every future feature — included","No monthly billing, ever","1,000 spots only"],
-    cta: ()=> "Claim Lifetime Access — £500",
+    cta: ()=> "Claim Lifetime Access — $600",
   },
 };
 
@@ -508,7 +508,7 @@ function CheckoutModal({ onClose, onDemo }) {
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
                 <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>£26.42/mo · billed once</div>}
+                {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>~$33.58/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
