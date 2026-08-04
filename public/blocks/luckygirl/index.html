@@ -353,7 +353,7 @@ function renderQ() {
       document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));
       c.classList.add('sel');
       chosen = opt.c;
-      document.getElementById('btn-next').classList.add('vis');
+      setTimeout(() => { nextQ(); }, 380);
     };
     wrap.appendChild(c);
   });
