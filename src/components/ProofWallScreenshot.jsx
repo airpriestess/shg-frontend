@@ -17,7 +17,7 @@ function ManifestedTile({ d, s, C, f, pad, r8, r20 }) {
   const accent = d.catColor || "#2CB7A7";
   return (
     <div style={{ background:`linear-gradient(135deg,${accent}18,${accent}08)`, border:`1px solid ${accent}40`, borderRadius:r8, padding:`${Math.round(8*s)}px ${Math.round(10*s)}px` }}>
-      <div style={{ fontSize:Math.max(6,Math.round(10*s)), color:accent, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:Math.round(4*s) }}>✦ {d.cat}</div>
+      <div style={{ fontSize:Math.max(6,Math.round(10*s)), color:accent, letterSpacing:"0.04em", marginBottom:Math.round(4*s) }}>{d.cat}</div>
       <div style={{ fontSize:f.sm, color:C.cr, lineHeight:1.35, marginBottom:Math.round(5*s) }}>{d.desire}</div>
       <div style={{ display:"flex", alignItems:"center", gap:Math.round(4*s) }}>
         <div style={{ fontSize:Math.max(5,f.xs-1), color:"#5ab06a" }}>✓ Manifested</div>
