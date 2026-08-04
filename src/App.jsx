@@ -14,6 +14,7 @@ import Science from "./pages/Science.jsx";
 import About from "./pages/About.jsx";
 import Library from "./pages/Library.jsx";
 import QuizHub from "./pages/QuizHub.jsx";
+import Events from "./pages/Events.jsx";
 import LuckyGirl from "./pages/LuckyGirl.jsx";
 import RichGirl from "./pages/RichGirl.jsx";
 import Blocks from "./pages/Blocks.jsx";
@@ -253,6 +254,7 @@ export default function App() {
         <Route path="/about"   element={<About   onBack={()=>navigate("/")}/>} />
         <Route path="/library" element={<Library onBack={()=>navigate("/")}/>} />
         <Route path="/science" element={<Science  onBack={()=>navigate("/")}/>} />
+        <Route path="/events"  element={<Events/>} />
 
         <Route path="/luckygirl" element={<LuckyGirl/>} />
         <Route path="/richgirl" element={<RichGirl/>} />
@@ -1262,6 +1264,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ["Pricing",             ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
               ["Guides",              ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
               ["Blocks",              ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
+              ["Events · Coming Soon", ()=>{ window.location.href="/events"; setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"7px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(17px,4.2vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
             ))}
