@@ -1273,7 +1273,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ["Preview SHG",         ()=>{ onDemo?.(); setMenuOpen(false); }],
               ["The Library",         ()=>{ onLegal?.("library"); setMenuOpen(false); }],
               ["Pricing",             ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
-              ["Journal",             ()=>{ window.location.href="/blog"; setMenuOpen(false); }],
+              ["Blog",                ()=>{ window.location.href="/blog"; setMenuOpen(false); }],
               ["Guides",              ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
               ["Blocks",              ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
               ["Events · Coming Soon", ()=>{ window.location.href="/events"; setMenuOpen(false); }],
