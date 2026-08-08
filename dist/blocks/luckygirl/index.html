@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LuckyGirl Block Quiz — Self Hypnosis Goddess</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);--white:#f2ece4;}
+*{box-sizing:border-box;margin:0;padding:0;}
+a{color:inherit;text-decoration:none;}
+body{font-family:'Jost',sans-serif;background:#000;color:var(--white);min-height:100vh;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);}
+.logo{display:flex;align-items:center;}
+
+.screen{display:none;min-height:100vh;}
+.screen.active{display:flex;flex-direction:column;}
+
+/* EMAIL */
+#s-email{align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;}
+.ey{font-size:10px;letter-spacing:.32em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:24px;font-weight:600;display:block;}
+.email-h1{font-size:clamp(44px,8vw,88px);font-weight:700;letter-spacing:-.04em;line-height:.95;margin-bottom:16px;color:var(--white);}
+.email-sub{font-size:17px;font-weight:300;color:var(--white);line-height:1.6;margin-bottom:48px;max-width:400px;}
+.form{display:flex;flex-direction:column;gap:14px;width:100%;max-width:420px;}
+.form input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px 20px;font-family:'Jost',sans-serif;font-size:16px;color:var(--white);outline:none;transition:border .3s;}
+.form input::placeholder{color:#f2ece4;}
+.form input:focus{border-color:rgba(232,184,112,.6);}
+.btn-go{padding:20px;border-radius:12px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;}
+.privacy{font-size:12px;color:#f2ece4;margin-top:4px;}
+
+/* QUIZ */
+#s-quiz{padding:72px 20px 20px;align-items:center;}
+.quiz-inner{width:100%;max-width:640px;margin:0 auto;}
+
+.prog-wrap{margin-bottom:20px;}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:10px;}
+.prog-cat{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--white);font-weight:500;}
+.prog-num{font-size:14px;letter-spacing:.1em;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
+.prog-bar{height:2px;background:rgba(255,255,255,.08);border-radius:2px;}
+.prog-fill{height:100%;background:var(--g);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+
+.q-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--white);margin-bottom:10px;display:block;font-weight:500;}
+.q-text{font-size:clamp(17px,3vw,26px);font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--white);margin-bottom:20px;}
+
+/* 2x2 GRID CARDS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.card{
+  background:#ffffff;
+  border:2px solid #e8e8e8;
+  border-radius:16px;
+  padding:28px 22px;
+  cursor:pointer;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  position:relative;
+  overflow:hidden;
+  min-height:120px;
+  display:flex;
+  align-items:center;
+}
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+  opacity:0;
+  transition:opacity .3s;
+}
+.card:hover{border-color:transparent;transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,184,112,.3);}
+.card:hover::before{opacity:1;}
+.card.sel{border-color:transparent;transform:translateY(-4px);box-shadow:0 12px 48px rgba(232,184,112,.4);}
+.card.sel::before{opacity:1;}
+.card-text{font-size:13px;font-weight:300;line-height:1.45;color:#000;position:relative;z-index:1;}
+.card-dot{display:none;}
+@media(max-width:600px){.cards{grid-template-columns:1fr;}}
+
+.btn-next{
+  width:100%;padding:20px;border-radius:12px;
+  background:var(--g);color:#000;
+  font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  border:none;cursor:pointer;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s;
+  margin-top:8px;
+}
+.btn-next.vis{opacity:1;pointer-events:auto;}
+
+/* RESULT */
+#s-result{padding:96px 24px 80px;align-items:center;text-align:center;}
+.res-inner{width:100%;max-width:580px;margin:0 auto;}
+.res-ey{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--white);margin-bottom:16px;display:block;}
+.res-block{font-size:clamp(30px,5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:8px;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.res-desc{font-size:16px;font-weight:300;color:var(--white);line-height:1.7;margin-bottom:40px;}
+
+.res-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px;margin-bottom:20px;text-align:left;}
+.res-card-label{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--white);margin-bottom:20px;display:block;}
+
+/* Hawkins */
+.h-row{display:flex;align-items:center;gap:20px;margin-bottom:20px;}
+.h-side{text-align:center;min-width:80px;}
+.h-num{font-size:40px;font-weight:700;line-height:1;color:var(--white);}
+.h-name{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-top:4px;}
+.h-side.target .h-num{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.h-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(232,184,112,.5));position:relative;}
+.h-line::after{content:'→';position:absolute;right:-8px;top:-11px;color:#E8B870;font-size:18px;}
+.h-desc{font-size:14px;font-weight:300;color:var(--white);line-height:1.7;}
+
+/* Flip */
+.flip-old{font-size:15px;font-weight:300;color:#f2ece4;line-height:1.6;font-style:italic;margin-bottom:20px;}
+.flip-arrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:20px;display:block;}
+.flip-new{font-size:18px;font-weight:500;color:var(--white);line-height:1.5;}
+
+.res-ctas{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
+.btn-primary{display:block;text-align:center;padding:20px;border-radius:12px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;}
+.btn-sec{display:block;text-align:center;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,.2);color:var(--white);font-size:12px;letter-spacing:.2em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://reshmaoracle.com" style="display:flex;align-items:center;text-decoration:none;"><img src="https://reshmaoracle.com/logo_black_bg.png" alt="Self Hypnosis Goddess" style="height:28px;width:auto;"></a>
+</nav>
+
+<!-- EMAIL -->
+<div class="screen active" id="s-email">
+  <span class="ey">✦ Free Diagnostic ✦</span>
+  <h1 class="email-h1">Find your<br>LuckyGirl block.</h1>
+  <p class="email-sub">8 questions. Your invisible block — named, placed on the Hawkins scale, and replaced.</p>
+  <div class="form">
+    <input id="inp-name" type="text" placeholder="Your first name" autocomplete="given-name">
+    <input id="inp-email" type="email" placeholder="Your email address" autocomplete="email">
+    <button class="btn-go" onclick="startQuiz()">Find my block →</button>
+    <p class="privacy">Your details are safe. No spam, ever.</p>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="s-quiz">
+  <div class="quiz-inner">
+    <div class="prog-wrap">
+      <div class="prog-top">
+        <span class="prog-cat">LuckyGirl Maxxing</span>
+        <span class="prog-num" id="prog-num">1 / 8</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:12.5%"></div></div>
+    </div>
+    <span class="q-label" id="q-label"></span>
+    <div class="q-text" id="q-text"></div>
+    <div class="cards" id="cards"></div>
+    <button class="btn-next" id="btn-next" onclick="nextQ()">Next →</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="screen" id="s-result">
+  <div class="res-inner">
+    <span class="res-ey">Your block is identified</span>
+    <div class="res-block" id="res-block"></div>
+    <div class="res-desc" id="res-desc"></div>
+
+    <div class="res-card">
+      <span class="res-card-label">Your Hawkins frequency</span>
+      <div class="h-row">
+        <div class="h-side">
+          <div class="h-num" id="h-cur"></div>
+          <div class="h-name" id="h-cur-n"></div>
+        </div>
+        <div class="h-line"></div>
+        <div class="h-side target">
+          <div class="h-num" id="h-tar"></div>
+          <div class="h-name" id="h-tar-n"></div>
+        </div>
+      </div>
+      <div class="h-desc" id="h-desc"></div>
+    </div>
+
+    <div class="res-card">
+      <div class="flip-old" id="flip-old"></div>
+      <span class="flip-arrow">↓ The install</span>
+      <div class="flip-new" id="flip-new"></div>
+    </div>
+
+    <div style="margin-top:32px;text-align:center;">
+      <div style="font-size:clamp(28px,5vw,48px);font-weight:700;color:var(--white);letter-spacing:-.03em;line-height:1;margin-bottom:12px;">Now install it.</div>
+      <div style="font-size:17px;font-weight:300;color:var(--white);line-height:1.7;max-width:440px;margin:0 auto 32px;">Your block is named. The identity that replaces it is in the workbook. 21 days. Press play. Done.</div>
+
+      <div style="background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);border-radius:20px;padding:32px;margin-bottom:20px;">
+        <div style="font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#000;font-weight:700;margin-bottom:16px;">LuckyGirl Maxxing Workbook</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:left;">
+          <div style="font-size:14px;font-weight:500;color:#000;">✦ Your block named and replaced in theta</div>
+          <div style="font-size:14px;font-weight:500;color:#000;">✦ The LuckyGirl operating system — installed in 21 days</div>
+          <div style="font-size:14px;font-weight:500;color:#000;">✦ The Recognition Filter — how to notice what's already moving</div>
+          <div style="font-size:14px;font-weight:500;color:#000;">✦ Timing Windows — move before the window closes</div>
+          <div style="font-size:14px;font-weight:500;color:#000;">✦ The Domino Effect Method — one move, everything follows</div>
+          <div style="font-size:14px;font-weight:500;color:#000;">✦ 21 pieces of evidence — until lucky feels like identity</div>
+        </div>
+        <div style="font-size:13px;color:rgba(0,0,0,.4);margin-bottom:16px;text-decoration:line-through;">£49</div>
+        <div style="font-size:36px;font-weight:700;color:#000;margin-bottom:20px;">£29</div>
+        <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" style="display:block;padding:18px;border-radius:12px;background:#000;color:#f2ece4;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-decoration:none;">I am ready to install — £29 →</a>
+      </div>
+      <a href="/guide/luckygirl" style="display:block;padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.15);color:#f2ece4;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;">Read the guide first</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const Qs = [
+  {
+    label: "The Unlucky Universe",
+    q: "One of these lines has been running quietly in your head. Which one feels most familiar?",
+    opts: [
+      { t: "Nobody chooses me. Good things always seem to find someone else first.", c: "os" },
+      { t: "Good things happen to me sometimes — I just cannot make them stay.", c: "story" },
+      { t: "I miss opportunities because I do not see them until they have already closed.", c: "filter" },
+      { t: "I notice good things arriving — I just talk myself out of trusting them.", c: "interpret" }
+    ]
+  },
+  {
+    label: "The Interpretation",
+    q: "A reply is slow, a plan falls through, something you expected does not arrive. Your honest first thought is...",
+    opts: [
+      { t: "Confirmation. Things just do not tend to work out smoothly for me.", c: "os" },
+      { t: "I already knew it would end like this. The old story proves itself again.", c: "story" },
+      { t: "I probably missed the window. I waited too long or moved too fast.", c: "filter" },
+      { t: "Redirection. Something better is probably already forming. I hold and wait.", c: "interpret" }
+    ]
+  },
+  {
+    label: "The Recognition Filter",
+    q: "A casual invitation arrives from someone you barely know. Your first instinct is...",
+    opts: [
+      { t: "Dismiss it immediately. Things that arrive easily are usually not worth much.", c: "os" },
+      { t: "Overthink it for so long that the moment passes and I never reply.", c: "story" },
+      { t: "Evaluate it quickly — is it relevant, is there a real action, does it meet my standard?", c: "filter" },
+      { t: "Feel excited — then find a reason why it probably will not lead anywhere for me.", c: "interpret" }
+    ]
+  },
+  {
+    label: "The Luck Story",
+    q: "A plan you were genuinely excited about collapses at the last minute. You feel...",
+    opts: [
+      { t: "Defeated. This is proof that things never really work out for me.", c: "os" },
+      { t: "Unsurprised. The old story predicted this. I saw it coming.", c: "story" },
+      { t: "Frustrated — but I immediately start looking for what opened up instead.", c: "filter" },
+      { t: "Briefly disappointed — then I reinterpret it before the story takes over.", c: "interpret" }
+    ]
+  },
+  {
+    label: "The Operating System",
+    q: "Someone you know gets upgraded out of nowhere — a connection, an opportunity, an unexpected win. You feel...",
+    opts: [
+      { t: "Quietly aware that life seems to remember other people before it remembers me.", c: "os" },
+      { t: "Like some people were just born with better odds than me.", c: "story" },
+      { t: "Motivated. I look for what move I can make today.", c: "filter" },
+      { t: "Inspired — and then I immediately doubt whether the same could happen for me.", c: "interpret" }
+    ]
+  },
+  {
+    label: "Focused Attention",
+    q: "You walk into a room full of people. Where does your attention go first?",
+    opts: [
+      { t: "Who already knows each other. Who has not noticed I have arrived.", c: "os" },
+      { t: "What could go wrong. Who might judge me. What the risk is.", c: "story" },
+      { t: "Who looks interesting. What feels like an opening worth exploring.", c: "filter" },
+      { t: "I notice the opportunity — then immediately wonder if I am the kind of person it is for.", c: "interpret" }
+    ]
+  },
+  {
+    label: "Receiving",
+    q: "Something good happens — a compliment, a win, someone goes out of their way for you. Before you enjoy it...",
+    opts: [
+      { t: "I tense up. Something this good usually gets cancelled out before I can enjoy it.", c: "os" },
+      { t: "I feel it briefly — then my attention returns to everything that is still not working.", c: "story" },
+      { t: "I let it count. I register it as evidence that things are moving.", c: "filter" },
+      { t: "I brush it off. It was probably coincidence or politeness.", c: "interpret" }
+    ]
+  },
+  {
+    label: "The LuckyGirl Identity",
+    q: "The LuckyGirl assumes life supports her — timing, people, openings. She does not wait for proof. That identity feels...",
+    opts: [
+      { t: "Like a personality I was not born with and cannot manufacture.", c: "os" },
+      { t: "Like something I believed once — and then life proved me wrong enough times that I stopped.", c: "story" },
+      { t: "Like something I am actively building. I am already her on some days.", c: "filter" },
+      { t: "Like the truest version of me — I just cannot hold it when the evidence contradicts it.", c: "interpret" }
+    ]
+  }
+];
+
+const RESULTS = {
+  os: {
+    block: "The Gray Operating System",
+    desc: "Your subconscious identity has been quietly convinced it's unlucky — dimming your attention, colouring your interpretation, and asking reality to agree with it. It was never a curse. It was a loop, running on repeat.",
+    h: { cur: 50, curN: "Apathy", tar: 310, tarN: "Willingness", desc: "You're operating from Apathy (50) around luck — the state where the subconscious has concluded that support isn't really available. The install moves you to Willingness (310) — where the LuckyGirl expectation runs automatically." },
+    old: '"Nobody really chooses me. Life doesn\'t move for me the way it moves for other people."',
+    new: "I am the woman life remembers to support. My subconscious now expects upgrades, timing, and the right people. Of course."
+  },
+  story: {
+    block: "The Unlucky Universe Story",
+    desc: "You've been repeating a rehearsed conclusion — said so often it started to feel like identity. \"Things never work out. I never win. Good things happen to other people.\" Not a fact. A story. And naming the story is the first way to stop proving it.",
+    h: { cur: 75, curN: "Grief", tar: 250, tarN: "Neutrality", desc: "You're operating from Grief (75) around luck — repeating conclusions that feel like facts. The install moves you to Neutrality (250) — where the old story loses its automatic grip and a new one can be chosen." },
+    old: '"Things never work out — not really, not for me. I\'ve always known this."',
+    new: "I no longer need one dramatic event to prove I am lucky. I can see the identity in how I interpret, choose, move and receive."
+  },
+  filter: {
+    block: "The Gray Recognition Filter",
+    desc: "Your attention is trained on delay, risk and rejection — scanning the same rooms as everyone else, but looking for what confirms the old story. The LuckyGirl Recognition Filter opens onto relevance, timing and openings. Same room. Same day. Different eye.",
+    h: { cur: 100, curN: "Fear", tar: 350, tarN: "Acceptance", desc: "You're operating from Fear (100) around luck — your filter scans for what might go wrong, for what closes before you can reach it. The install moves you to Acceptance (350) — where openings are noticed and moved on." },
+    old: '"I\'m always too late. I miss the moment. Lucky people see what I don\'t."',
+    new: "My filter is updating. I notice what is relevant, timely and worth exploring. I move while the window is still open."
+  },
+  interpret: {
+    block: "The Old Interpretation Loop",
+    desc: "Every delay becomes proof she's been forgotten. Every quiet reply confirms it's not working. Every cancelled plan means things never work out. The LuckyGirl interrupts the interpretation at the point the body reacts — before the old behaviour completes itself.",
+    h: { cur: 125, curN: "Desire", tar: 400, tarN: "Reason", desc: "You're operating from Desire (125) around luck — wanting evidence before you'll allow the identity. The install moves you to Reason (400) — where the interpretation is chosen, not automatic." },
+    old: '"He didn\'t reply — he\'s not interested. The plan fell through — nothing works out. I got rejected — I\'m not good enough."',
+    new: "He's busy, not gone. The plan fell through — free for something better. I got rejected — it wasn't my door. The interpretation is mine to choose now."
+  }
+};
+
+let cur = 0, scores = {os:0,story:0,filter:0,interpret:0}, chosen = null;
+
+function startQuiz() {
+  const n = document.getElementById('inp-name').value.trim();
+  const e = document.getElementById('inp-email').value.trim();
+  if(!n||!e){alert('Please enter your name and email.');return;}
+  show('s-quiz');
+  renderQ();
+}
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function renderQ() {
+  const q = Qs[cur];
+  document.getElementById('q-label').textContent = q.label;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('prog-num').textContent = (cur+1)+' / '+Qs.length;
+  document.getElementById('prog-fill').style.width = ((cur+1)/Qs.length*100)+'%';
+  chosen = null;
+  document.getElementById('btn-next').classList.remove('vis');
+
+  const wrap = document.getElementById('cards');
+  wrap.innerHTML = '';
+  q.opts.forEach(opt => {
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML = `<div class="card-text">${opt.t}</div><div class="card-dot"></div>`;
+    c.onclick = () => {
+      document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));
+      c.classList.add('sel');
+      chosen = opt.c;
+      setTimeout(function(){ nextQ(); }, 380);
+    };
+    wrap.appendChild(c);
+  });
+}
+
+function nextQ() {
+  if(!chosen) return;
+  scores[chosen]++;
+  cur++;
+  if(cur >= Qs.length){showResult();return;}
+  renderQ();
+}
+
+function showResult(blockKey) {
+  const top = blockKey || Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  // Write block to URL so refresh works
+  if(!blockKey) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('block', top);
+    window.history.replaceState({}, '', url);
+  }
+  const r = RESULTS[top];
+  if(!r) return;
+  document.getElementById('res-block').textContent = r.block;
+  document.getElementById('res-desc').textContent = r.desc;
+  document.getElementById('h-cur').textContent = r.h.cur;
+  document.getElementById('h-cur-n').textContent = r.h.curN;
+  document.getElementById('h-tar').textContent = r.h.tar;
+  document.getElementById('h-tar-n').textContent = r.h.tarN;
+  document.getElementById('h-desc').textContent = r.h.desc;
+  document.getElementById('flip-old').textContent = r.old;
+  document.getElementById('flip-new').textContent = r.new;
+  show('s-result');
+}
+
+
+// On page load - check if URL has a block param
+const _urlBlock = new URLSearchParams(window.location.search).get('block');
+if(_urlBlock && RESULTS[_urlBlock]) {
+  showResult(_urlBlock);
+}
+</script>
+</body>
+</html>

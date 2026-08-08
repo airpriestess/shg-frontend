@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selfmaxxing Block Quiz — Self Hypnosis Goddess</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);--white:#f2ece4;}
+*{box-sizing:border-box;margin:0;padding:0;}
+a{color:inherit;text-decoration:none;}
+body{font-family:'Jost',sans-serif;background:#000;color:var(--white);min-height:100vh;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Jost',sans-serif;font-size:14px;font-weight:300;letter-spacing:.02em;color:var(--white);}
+.screen{display:none;min-height:100vh;}
+.screen.active{display:flex;flex-direction:column;}
+#s-email{align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;}
+.ey{font-size:10px;letter-spacing:.32em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:24px;font-weight:600;display:block;}
+.email-h1{font-size:clamp(44px,7vw,80px);font-weight:700;letter-spacing:-.04em;line-height:.95;margin-bottom:16px;color:var(--white);}
+.email-sub{font-size:17px;font-weight:300;color:var(--white);line-height:1.6;margin-bottom:48px;max-width:420px;}
+.form{display:flex;flex-direction:column;gap:14px;width:100%;max-width:420px;}
+.form input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px 20px;font-family:'Jost',sans-serif;font-size:16px;color:var(--white);outline:none;transition:border .3s;}
+.form input::placeholder{color:rgba(255,255,255,.3);}
+.form input:focus{border-color:rgba(232,184,112,.6);}
+.btn-go{padding:20px;border-radius:12px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;}
+.privacy{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;}
+#s-quiz{padding:96px 24px 80px;align-items:center;}
+.quiz-inner{width:100%;max-width:640px;margin:0 auto;}
+.prog-wrap{margin-bottom:40px;}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:10px;}
+.prog-cat{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--white);}
+.prog-num{font-size:10px;letter-spacing:.1em;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
+.prog-bar{height:2px;background:rgba(255,255,255,.08);border-radius:2px;}
+.prog-fill{height:100%;background:var(--g);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+.q-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--white);margin-bottom:20px;display:block;}
+.q-text{font-size:clamp(20px,3.2vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--white);margin-bottom:36px;}
+.cards{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:22px 24px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
+.card::after{content:'';position:absolute;inset:0;background:var(--g);opacity:0;transition:opacity .3s;border-radius:16px;}
+.card:hover{border-color:rgba(232,184,112,.4);transform:translateX(6px);}
+.card:hover::after{opacity:.04;}
+.card.sel{border-color:rgba(232,184,112,.8);background:rgba(232,184,112,.06);transform:translateX(6px);box-shadow:0 0 40px rgba(232,184,112,.15),0 0 80px rgba(191,165,216,.08);}
+.card.sel::after{opacity:.07;}
+.card-text{font-size:15px;font-weight:300;line-height:1.6;color:var(--white);position:relative;z-index:1;}
+.card-dot{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);transition:all .3s;z-index:1;}
+.card.sel .card-dot{background:var(--g);border-color:transparent;}
+.btn-next{width:100%;padding:20px;border-radius:12px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s;margin-top:8px;}
+.btn-next.vis{opacity:1;pointer-events:auto;}
+#s-result{padding:96px 24px 80px;align-items:center;text-align:center;}
+.res-inner{width:100%;max-width:580px;margin:0 auto;}
+.res-ey{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--white);margin-bottom:16px;display:block;}
+.res-block{font-size:clamp(28px,5vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.res-desc{font-size:16px;font-weight:300;color:var(--white);line-height:1.7;margin-bottom:40px;}
+.res-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px;margin-bottom:20px;text-align:left;}
+.res-card-label{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--white);margin-bottom:20px;display:block;}
+.h-row{display:flex;align-items:center;gap:20px;margin-bottom:20px;}
+.h-side{text-align:center;min-width:80px;}
+.h-num{font-size:40px;font-weight:700;line-height:1;color:var(--white);}
+.h-name{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-top:4px;}
+.h-side.target .h-num{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.h-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(232,184,112,.5));position:relative;}
+.h-line::after{content:"→";position:absolute;right:-8px;top:-11px;color:#E8B870;font-size:18px;}
+.h-desc{font-size:14px;font-weight:300;color:var(--white);line-height:1.7;}
+.flip-old{font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.6;font-style:italic;margin-bottom:20px;}
+.flip-arrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:20px;display:block;}
+.flip-new{font-size:17px;font-weight:500;color:var(--white);line-height:1.5;}
+.res-ctas{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
+.btn-primary{display:block;text-align:center;padding:20px;border-radius:12px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;}
+.btn-sec{display:block;text-align:center;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,.2);color:var(--white);font-size:12px;letter-spacing:.2em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">
+    <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+      <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5E0A0"/><stop offset="20%" stop-color="#E8B870"/><stop offset="52%" stop-color="#BFA5D8"/><stop offset="78%" stop-color="#2CB7A7"/><stop offset="100%" stop-color="#167A6B"/></linearGradient></defs>
+      <circle cx="35" cy="35" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <circle cx="65" cy="35" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <circle cx="35" cy="65" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" stroke-width="2"/>
+      <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Self Hypnosis Goddess
+  </div>
+</nav>
+<div class="screen active" id="s-email">
+  <span class="ey">✦ Free Diagnostic ✦</span>
+  <h1 class="email-h1">Find your<br>self-concept block.</h1>
+  <p class="email-sub">8 questions. The root block — named, placed on the Hawkins scale, and replaced.</p>
+  <div class="form">
+    <input id="inp-name" type="text" placeholder="Your first name" autocomplete="given-name">
+    <input id="inp-email" type="email" placeholder="Your email address" autocomplete="email">
+    <button class="btn-go" onclick="startQuiz()">Find my block →</button>
+    <p class="privacy">Your details are safe. No spam, ever.</p>
+  </div>
+</div>
+<div class="screen" id="s-quiz">
+  <div class="quiz-inner">
+    <div class="prog-wrap">
+      <div class="prog-top">
+        <span class="prog-cat">Selfmaxxing</span>
+        <span class="prog-num" id="prog-num">1 / 8</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:12.5%"></div></div>
+    </div>
+    <span class="q-label" id="q-label"></span>
+    <div class="q-text" id="q-text"></div>
+    <div class="cards" id="cards"></div>
+    <button class="btn-next" id="btn-next" onclick="nextQ()">Next →</button>
+  </div>
+</div>
+<div class="screen" id="s-result">
+  <div class="res-inner">
+    <span class="res-ey">Your block is identified</span>
+    <div class="res-block" id="res-block"></div>
+    <div class="res-desc" id="res-desc"></div>
+    <div class="res-card">
+      <span class="res-card-label">Your Hawkins frequency</span>
+      <div class="h-row">
+        <div class="h-side"><div class="h-num" id="h-cur"></div><div class="h-name" id="h-cur-n"></div></div>
+        <div class="h-line"></div>
+        <div class="h-side target"><div class="h-num" id="h-tar"></div><div class="h-name" id="h-tar-n"></div></div>
+      </div>
+      <div class="h-desc" id="h-desc"></div>
+    </div>
+    <div class="res-card">
+      <div class="flip-old" id="flip-old"></div>
+      <span class="flip-arrow">↓ The install</span>
+      <div class="flip-new" id="flip-new"></div>
+    </div>
+    <div class="res-ctas">
+      <a href="https://reshmaoracle.com" class="btn-primary">Install the sovereign self-concept tonight →</a>
+      <a href="/guide/selfmaxxing" class="btn-sec">Read the Selfmaxxing guide</a>
+    </div>
+  </div>
+</div>
+<script>
+const Qs = [
+  {
+    label: "The Root",
+    q: "You have a clear vision of the life you want — the full version, everything working. When you imagine it actually being yours, your honest first response is...",
+    opts: [
+      { t: "There is something fundamental I need to resolve first. Until that changes, the rest cannot follow.", c: "core" },
+      { t: "I can see it clearly — and then something in me finds a way to move away from it.", c: "sabotage" },
+      { t: "I am not sure I trust my own judgment enough to build toward it consistently.", c: "trust" },
+      { t: "Other people seem to have access to that version of life more naturally than I do.", c: "comparison" }
+    ]
+  },
+  {
+    label: "The Ceiling",
+    q: "You get close — genuinely close — to something you want. A goal, a relationship, an opportunity. Before it lands, something shifts. That shift feels like...",
+    opts: [
+      { t: "The fundamental thing reasserting itself. I have not fixed it yet so I cannot hold this.", c: "core" },
+      { t: "Me. I can feel myself about to do something that will undo it. I have done this before.", c: "sabotage" },
+      { t: "Doubt. What if I chose wrong? What if I cannot sustain it? The uncertainty becomes the obstacle.", c: "trust" },
+      { t: "The gap between where I am and where the people who get to keep good things started.", c: "comparison" }
+    ]
+  },
+  {
+    label: "Deciding",
+    q: "You need to make a significant decision — a direction, a commitment, a change. The honest experience of deciding feels like...",
+    opts: [
+      { t: "Like I am choosing from a version of myself that is not complete yet. The decision feels premature.", c: "core" },
+      { t: "Fine in the moment. I commit. Then I find a reason to question, delay or withdraw.", c: "sabotage" },
+      { t: "Difficult. I second-guess every option. I do not back my own read of the situation.", c: "trust" },
+      { t: "Like other people are better equipped to make this kind of decision. More sorted, more sure.", c: "comparison" }
+    ]
+  },
+  {
+    label: "Success",
+    q: "You achieve something meaningful — something you worked for, something real. Your internal response is...",
+    opts: [
+      { t: "Relief. Then awareness that the fundamental thing is still there. This win does not reach it.", c: "core" },
+      { t: "Pleasure. Then a quiet waiting for the moment I find a way to undo it or dim it.", c: "sabotage" },
+      { t: "Pride. Then doubt about whether I can replicate it or whether it was luck.", c: "trust" },
+      { t: "Satisfaction. Then awareness of how far I still am from the standard I am measuring against.", c: "comparison" }
+    ]
+  },
+  {
+    label: "The Version",
+    q: "The sovereign version of you — money, love, beauty, everything working, fully expressed — she feels...",
+    opts: [
+      { t: "On the other side of a fundamental shift I have not made yet. Not available until that moves.", c: "core" },
+      { t: "Real. And something in me keeps interrupting her right before she arrives.", c: "sabotage" },
+      { t: "Like someone I could be — if I could trust myself completely enough to get there.", c: "trust" },
+      { t: "Like the version I will become once I close the gap between me and the people I most admire.", c: "comparison" }
+    ]
+  },
+  {
+    label: "Permission",
+    q: "You want something significant — a life, a version of yourself, a standard of experience. Claiming it — fully, without apology — feels...",
+    opts: [
+      { t: "Like something I will allow once the fundamental thing is resolved. Not yet.", c: "core" },
+      { t: "Possible in moments. Then I find a reason to take it back, shrink it or give it away.", c: "sabotage" },
+      { t: "Like I need more evidence that I can be trusted with it before I fully claim it.", c: "trust" },
+      { t: "Like something I will earn once I reach the level of the people who seem to have it naturally.", c: "comparison" }
+    ]
+  },
+  {
+    label: "Your Relationship With Yourself",
+    q: "The most honest description of how you relate to yourself right now is...",
+    opts: [
+      { t: "I am a work in progress. Something fundamental is not yet resolved. I am not yet complete.", c: "core" },
+      { t: "I get in my own way. I can see myself doing it and I have not been able to stop.", c: "sabotage" },
+      { t: "I do not fully back myself. My instincts feel unreliable and my judgment feels risky.", c: "trust" },
+      { t: "I measure myself against others. There is always someone further along who has what I want.", c: "comparison" }
+    ]
+  },
+  {
+    label: "The SelfMaxxed Identity",
+    q: "The SelfMaxxed woman is already the version. Not becoming — already. She acts from that identity now, before the external evidence arrives. That feels...",
+    opts: [
+      { t: "Like something I am waiting to become. It requires the fundamental thing to shift first.", c: "core" },
+      { t: "Like something I choose — and then find a way to interrupt before it fully settles.", c: "sabotage" },
+      { t: "Like something I would claim if I could trust my own judgment completely.", c: "trust" },
+      { t: "Like the most advanced version of what I am trying to reach. Still ahead of where I am.", c: "comparison" }
+    ]
+  }
+];
+
+const RESULTS = {
+  core: {
+    block: "The Core Block",
+    desc: "There is something fundamental that needs to resolve before the rest is allowed. This is the most persistent of all the self-concept blocks — because it is not attached to a specific behaviour or pattern. It is attached to identity itself. The belief is: I am not yet complete. And until I am, nothing can fully land.",
+    h: { cur: 50, curN: "Apathy", tar: 310, tarN: "Willingness", desc: "You are operating from Apathy (50) around self-concept — the subconscious has concluded the version is not yet available. The install moves you to Willingness (310), where the sovereign identity is chosen before the fundamental thing resolves." },
+    old: "I am not yet complete. Something fundamental needs to change first. Once that is resolved, the rest will follow.",
+    new: "I am not a project. I am not becoming. I am already the version. The install is complete. The rest is catching up."
+  },
+  sabotage: {
+    block: "The Sabotage Block",
+    desc: "You can see yourself doing it. You get close — and something in you moves to undo it. Not weakness. Not failure. A subconscious identity that has decided the version is not safe to hold. The sabotage is protection. It is the old self-concept refusing to be replaced without a fight.",
+    h: { cur: 100, curN: "Fear", tar: 350, tarN: "Acceptance", desc: "You are operating from Fear (100) around self-concept — the subconscious perceives the upgraded version as threatening and moves to dismantle it. The install moves you to Acceptance (350), where the sovereign identity is safe to hold." },
+    old: "I get close and I undo it. I can see myself doing it. I commit and then I find a way to withdraw or shrink.",
+    new: "The version who sabotages was running an old program. That program has been replaced. She moves forward. She stays. Of course."
+  },
+  trust: {
+    block: "The Trust Block",
+    desc: "You do not fully back yourself. Your instincts feel unreliable, your judgment feels risky, and your decisions feel like they need external validation before they count. The sovereign self-concept does not wait for permission. It generates its own certainty — from the inside out.",
+    h: { cur: 125, curN: "Desire", tar: 400, tarN: "Reason", desc: "You are operating from Desire (125) around self-concept — wanting to trust yourself but requiring external evidence before acting. The install moves you to Reason (400), where your judgment is the authority." },
+    old: "I do not back myself. I need more evidence, more certainty, more external validation before I can trust my own read.",
+    new: "I trust myself completely. My instincts are calibrated. My decisions are correct. I act before the certainty arrives. Obviously."
+  },
+  comparison: {
+    block: "The Comparison Block",
+    desc: "The self-concept is measured against other people — and there is always someone further along. The standard keeps moving because it is not yours. It is borrowed. The sovereign self-concept is self-referential: it measures against the chosen version, not the most advanced person in the room.",
+    h: { cur: 175, curN: "Pride", tar: 500, tarN: "Love", desc: "You are operating from Pride (175) around self-concept — ranking, measuring, always aware of the gap. The install moves you to Love (500), where the self-concept is sovereign, not comparative." },
+    old: "There is always someone further along. More sorted, more advanced, more naturally suited to the version I want. I am still catching up.",
+    new: "I am not in anyone else's race. My self-concept is sovereign. The version I chose is the only standard that matters. I am already her."
+  }
+};
+
+let cur = 0, scores = {core:0,sabotage:0,trust:0,comparison:0}, chosen = null;
+
+function startQuiz() {
+  const n = document.getElementById('inp-name').value.trim();
+  const e = document.getElementById('inp-email').value.trim();
+  if(!n||!e){alert('Please enter your name and email.');return;}
+  show('s-quiz'); renderQ();
+}
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function renderQ() {
+  const q = Qs[cur];
+  document.getElementById('q-label').textContent = q.label;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('prog-num').textContent = (cur+1)+' / '+Qs.length;
+  document.getElementById('prog-fill').style.width = ((cur+1)/Qs.length*100)+'%';
+  chosen = null;
+  document.getElementById('btn-next').classList.remove('vis');
+  const wrap = document.getElementById('cards');
+  wrap.innerHTML = '';
+  q.opts.forEach(opt => {
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML = '<div class="card-text">'+opt.t+'</div><div class="card-dot"></div>';
+    c.onclick = () => {
+      document.querySelectorAll('.card').forEach(x=>x.classList.remove('sel'));
+      c.classList.add('sel'); chosen = opt.c;
+      document.getElementById('btn-next').classList.add('vis');
+    };
+    wrap.appendChild(c);
+  });
+}
+
+function nextQ() {
+  if(!chosen) return;
+  scores[chosen]++;
+  cur++;
+  if(cur >= Qs.length){showResult();return;}
+  renderQ();
+}
+
+function showResult() {
+  const top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  const r = RESULTS[top];
+  document.getElementById('res-block').textContent = r.block;
+  document.getElementById('res-desc').textContent = r.desc;
+  document.getElementById('h-cur').textContent = r.h.cur;
+  document.getElementById('h-cur-n').textContent = r.h.curN;
+  document.getElementById('h-tar').textContent = r.h.tar;
+  document.getElementById('h-tar-n').textContent = r.h.tarN;
+  document.getElementById('h-desc').textContent = r.h.desc;
+  document.getElementById('flip-old').textContent = r.old;
+  document.getElementById('flip-new').textContent = r.new;
+  show('s-result');
+}
+</script>
+</body>
+</html>

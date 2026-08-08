@@ -2100,26 +2100,31 @@ function HRow({ children }) {
 }
 function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike, openPlayer }) {
   const isP = current?.id===t.id;
+  const hasAudio = !!AUDIO_URLS[t.title];
+  const unavail = !hasAudio && !isPreview;
   return (
-    <div style={{ flexShrink:0,width:140 }}>
-      <div onClick={()=>{play(t); openPlayer?.();}} style={{ position:"relative",marginBottom:8,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+    <div style={{ flexShrink:0,width:140, opacity:unavail?0.5:1, transition:"opacity 0.2s" }}>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed" }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
         {isPreview&&(
           <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
         )}
-        {!isPreview&&isP&&playing&&(
+        {unavail&&(
+          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#ddd",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
+        )}
+        {!isPreview&&isP&&playing&&!unavail&&(
           <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.45)" }}>
             <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
           </div>
         )}
-        {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
-        {!isPreview && (
+        {t.isNew&&hasAudio&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
+        {!isPreview && hasAudio && (
           <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"rgba(0,0,0,0.55)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
             <Ico.Heart on={liked?.has(t.id)}/>
           </button>
         )}
       </div>
-      <div onClick={()=>{play(t); openPlayer?.();}} style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>{t.title}</div>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ fontSize:16,fontWeight:400,color:unavail?C.mu:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:hasAudio?"pointer":"not-allowed" }}>{t.title}</div>
       <div style={{ fontSize:14,color:C.mu }}>{t.cat} · {t.dur}</div>
     </div>
   );

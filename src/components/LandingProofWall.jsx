@@ -349,7 +349,9 @@ export default function LandingProofWall({ isMobile }) {
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setPaused(false)}
         onPointerDown={() => setPaused(true)}
+        onPointerUp={() => setPaused(false)}
         style={{
           display: "flex",
           overflowX: "auto",
