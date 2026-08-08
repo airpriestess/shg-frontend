@@ -1107,12 +1107,28 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       <>
       <Thumb title={track.title} cat={track.cat} size={270} radius={14}/>
       {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
-      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",marginTop:24,marginBottom:20 }}>
-        <div>
-          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{track.title}</div>
-          <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
-        </div>
-        <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
+      <div style={{ width:"100%",marginTop:24,marginBottom:12 }}>
+        <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{track.title}</div>
+        <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
+      </div>
+      <div style={{ display:"flex",gap:8,width:"100%",marginBottom:20,flexWrap:"wrap" }}>
+        {track.format && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.format}</span>}
+        {track.cat && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.cat}</span>}
+        {track.dur && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.dur}</span>}
+      </div>
+      <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.08)":"rgba(0,0,0,0.08)"}` }}>
+        <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
+          <Ico.Heart on={liked.has(track.id)}/>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Like</span>
+        </button>
+        <button style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Save</span>
+        </button>
+        <button onClick={()=>{ if(navigator.share){ navigator.share({title:track.title,url:window.location.href}).catch(()=>{});} }} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Share</span>
+        </button>
       </div>
       </>
       )}
