@@ -1704,7 +1704,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 style={{ flex:1, padding:"11px 13px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:16, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
               <button onClick={()=>{
                 if(!bucketText.trim()) return;
-                setThreads([{id:Date.now(),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
+                setThreads([{id:Date.now()+Math.random().toString(36).slice(2,8),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
                 setBucketText("");
               }} style={{ padding:"11px 18px", background:isDark?"#000":"#f2ece4", border:"none", borderRadius:8, color:"#f2ece4", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
             </div>
@@ -1899,7 +1899,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               return;
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
-            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
+            setThreads([{id:Date.now()+Math.random().toString(36).slice(2,8),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
           }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:isDark?"#f2ece4":"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
