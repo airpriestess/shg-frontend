@@ -888,8 +888,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
         </div>
       )}
-      <div style={{ height:52,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <span style={{ fontSize:15,fontWeight:400,color:C.cr }}>9:41</span>
+      <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
         <svg viewBox="0 0 100 100" width={22} height={22} fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="lg_nav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
           <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
@@ -955,11 +954,20 @@ function PreviewBanner({ onSignOut, C }) {
 }
 
 function BetaBanner({ C, isDark }) {
+  const [dismissed, setDismissed] = useState(() => {
+    try { return sessionStorage.getItem("shg_beta_dismissed") === "1"; } catch { return false; }
+  });
+  if (dismissed) return null;
+  const close = () => {
+    setDismissed(true);
+    try { sessionStorage.setItem("shg_beta_dismissed", "1"); } catch {}
+  };
   return (
-    <div style={{ background:isDark?"#0a0a0a":"rgba(0,0,0,0.06)",borderBottom:`1px solid ${C.border}`,padding:"6px 16px",textAlign:"center",flexShrink:0 }}>
-      <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif" }}>
-        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span> — the app is still being built. Some tracks and features may not work yet.
+    <div style={{ background:isDark?"#0a0a0a":"rgba(0,0,0,0.06)",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
+      <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",display:"block" }}>
+        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span> — some tracks may not work yet.
       </span>
+      <button onClick={close} aria-label="Dismiss" style={{ position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",width:22,height:22,borderRadius:"50%",background:"none",border:"none",color:C.mu,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",WebkitTapHighlightColor:"transparent" }}>✕</button>
     </div>
   );
 }
