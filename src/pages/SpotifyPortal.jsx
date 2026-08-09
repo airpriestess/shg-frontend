@@ -656,7 +656,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {/* Stats row */}
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
-            {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Intentions",C.cr]].map(([v,l,c],i)=>(
+            {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Desires",C.cr]].map(([v,l,c],i)=>(
               <div key={i} style={{ background:C.bg3,borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
                 <div style={{ fontSize:18,fontWeight:400,color:c }}>{v}</div>
                 <div style={{ fontSize:12,color:C.mu }}>{l}</div>
@@ -1689,7 +1689,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
       {/* Stats */}
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14 }}>
-        {[[threads.length,"Intentions"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
+        {[[threads.length,"Desires"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
           <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
             <div style={{ fontSize:22,fontWeight:400,color:PC.text }}>{v}</div>
             <div style={{ fontSize:12,color:PC.mu,fontWeight:400 }}>{l}</div>
@@ -1738,7 +1738,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
             <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
-              ✦ You've got {activeThreads.filter(t=>!t.done).length} active intentions. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
+              ✦ You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
 
@@ -1842,7 +1842,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <>
       {/* ADD NEW THREAD */}
       <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#f2ece4"),border:"none",borderRadius:12,color:adding?PC.text:(isDark?"#f2ece4":"#000"),fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-        {adding?"✕ Cancel":"+ New Intention"}
+        {adding?"✕ Cancel":"+ New Desire"}
       </button>
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
@@ -1941,7 +1941,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {/* THREAD LIST */}
       {displayedThreads.length===0 && proofFilter!=="all" && (
         <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center",marginBottom:10 }}>
-          <div style={{ fontSize:15,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} intentions yet.</div>
+          <div style={{ fontSize:15,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} desires yet.</div>
         </div>
       )}
       {displayedThreads.map(d=>(
