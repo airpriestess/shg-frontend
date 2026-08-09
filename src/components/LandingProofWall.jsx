@@ -275,7 +275,7 @@ export default function LandingProofWall({ isMobile }) {
   const GAP = 16;
   const total = WALL.length;
 
-  // Auto-advance every 6s — pause on touch/hover
+  // Auto-advance every 3.5s — pause on touch/hover
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
@@ -284,7 +284,7 @@ export default function LandingProofWall({ isMobile }) {
         trackRef.current?.scrollTo({ left: next * (CARD_W + GAP), behavior: "smooth" });
         return next;
       });
-    }, 6000);
+    }, 3500);
     return () => clearInterval(id);
   }, [paused, total, CARD_W, GAP]);
 
@@ -426,9 +426,12 @@ export default function LandingProofWall({ isMobile }) {
 
       {/* Pause/play hint on mobile */}
       {isMobile && (
-        <p style={{ textAlign: "center", fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "'Jost',sans-serif", marginTop: 16, letterSpacing: "0.06em" }}>
-          Swipe to scroll · tap dot to jump · auto-advances every 6s
-        </p>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 18 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8B870" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#E8B870", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em", fontWeight: 400 }}>
+            Swipe to see more results
+          </p>
+        </div>
       )}
     </div>
   );
