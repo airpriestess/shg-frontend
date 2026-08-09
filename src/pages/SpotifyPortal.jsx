@@ -1619,6 +1619,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [bucketText, setBucketText] = useState("");
   const [promotingId, setPromotingId] = useState(null);
   const [trackPickerOpen, setTrackPickerOpen] = useState(false);
+  const [catPickerOpen, setCatPickerOpen] = useState(false);
+  const [feelPickerOpen, setFeelPickerOpen] = useState(false);
   const [promoCatOpen, setPromoCatOpen] = useState(null);
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
@@ -1854,14 +1856,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
           <div style={{ position:"relative", marginBottom:11 }}>
-            <div onClick={()=>setTrackPickerOpen(o=>!o)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+            <div onClick={()=>{setTrackPickerOpen(o=>!o); setCatPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
               <span>{linkedTrack || "— Select a track —"}</span>
               <span style={{ fontSize:13, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
             </div>
             {trackPickerOpen && (
               <>
               <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"fixed", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {TRACKS.map(t=>{
                   const catColor = CAT_ICONS[t.cat]?.accent || R;
                   return (
@@ -1883,32 +1885,73 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             )}
           </div>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
-          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:15 }}>
-            {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing"].map(c=>{
-              const catColor = CAT_ICONS[c]?.accent || R;
-              const active = newCat===c;
+          <div style={{ position:"relative", marginBottom:15 }}>
+            {(() => {
+              const catColor = CAT_ICONS[newCat]?.accent || R;
               return (
-                <button key={c} onClick={()=>setNewCat(c)}
-                  style={{ display:"flex", alignItems:"center", gap:6, padding:"7px 13px", borderRadius:20,
-                    background:active?`${catColor}22`:PC.inputBg, border:`1px solid ${active?catColor:PC.border}`,
-                    color:active?catColor:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", cursor:"pointer" }}>
-                  <div style={{ width:8, height:8, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
-                  {c}
-                </button>
+                <div onClick={()=>{setCatPickerOpen(o=>!o); setTrackPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
+                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
+                    <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 4px ${catColor}99` }}/>
+                    {newCat}
+                  </span>
+                  <span style={{ fontSize:13, color:PC.mu, transform:catPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                </div>
               );
-            })}
+            })()}
+            {catPickerOpen && (
+              <>
+              <div onClick={()=>setCatPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing"].map(c=>{
+                  const catColor = CAT_ICONS[c]?.accent || R;
+                  const active = newCat===c;
+                  return (
+                    <div key={c} onClick={()=>{setNewCat(c); setCatPickerOpen(false);}}
+                      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer",
+                        background:active?`${catColor}1c`:"transparent", borderBottom:`1px solid ${PC.border}` }}
+                      onMouseEnter={e=>{if(!active)e.currentTarget.style.background=`${catColor}14`;}}
+                      onMouseLeave={e=>{if(!active)e.currentTarget.style.background="transparent";}}>
+                      <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
+                      <span style={{ fontSize:15, color:active?catColor:PC.text }}>{c}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              </>
+            )}
           </div>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>How am I feeling right now?</div>
-          <div style={{ overflowY:"auto",marginBottom:10,maxHeight:220,border:`1px solid ${PC.border}`,borderRadius:10 }}>
-            {HAWKINS.slice().reverse().map(h=>(
-              <div key={h.n} onClick={()=>setFeel(h.n)}
-                style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
-                  background:newFeel===h.n?`${h.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}>
-                <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>
-                <span style={{ fontSize:16,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:14,color:PC.mu }}>{h.v}</span>
+          <div style={{ position:"relative", marginBottom:11 }}>
+            {(() => {
+              const h = HAWKINS.find(x=>x.n===newFeel);
+              return (
+                <div onClick={()=>{setFeelPickerOpen(o=>!o); setTrackPickerOpen(false); setCatPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:h?h.c:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
+                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
+                    {h && <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>}
+                    {h ? `${h.n} · ${h.v}` : "— Select how you feel —"}
+                  </span>
+                  <span style={{ fontSize:13, color:PC.mu, transform:feelPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                </div>
+              );
+            })()}
+            {feelPickerOpen && (
+              <>
+              <div onClick={()=>setFeelPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {HAWKINS.slice().reverse().map(hItem=>(
+                  <div key={hItem.n} onClick={()=>{setFeel(hItem.n); setFeelPickerOpen(false);}}
+                    style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
+                      background:newFeel===hItem.n?`${hItem.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}
+                    onMouseEnter={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background=`${hItem.c}14`;}}
+                    onMouseLeave={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background="transparent";}}>
+                    <div style={{ width:11,height:11,borderRadius:"50%",background:hItem.c,flexShrink:0,boxShadow:`0 0 5px ${hItem.c}99` }}/>
+                    <span style={{ fontSize:16,color:hItem.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{hItem.n}</span>
+                    <span style={{ fontSize:14,color:PC.mu }}>{hItem.v}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+              </>
+            )}
           </div>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
