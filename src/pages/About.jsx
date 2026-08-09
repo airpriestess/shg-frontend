@@ -75,9 +75,7 @@ export default function About({ onBack }) {
       {/* ── THE STRUGGLE — black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
-            I was struggling with my belief system. All of it.
-          </h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#ffffff", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>Where<br/>it started</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
             Bullied. Never chosen. Always looking for my place — in rooms, in jobs, in my own skin. The kind of early life that leaves a mark on how you see yourself, and how you think the world sees you back.
           </p>
@@ -93,9 +91,7 @@ export default function About({ onBack }) {
       {/* ── THE TURN — cream ── */}
       <div style={{ background:CREAM, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,6.5vw,36px)":"clamp(30px,3vw,44px)", color:BLACK, lineHeight:1.3, fontWeight:400, marginBottom:28 }}>
-            Then I found manifestation. Then I found self-hypnosis. Then everything changed.
-          </h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>The<br/>discovery</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.85, marginBottom:20 }}>
             I realised I could train my brain every single day — for how I wanted to think, feel, and act. Not hope. Not try. Train. And the results started shifting in ways that felt genuinely crazy. Manifestations I couldn't explain. Messages from people I'd never met. Things arriving before I felt ready for them.
           </p>
@@ -147,9 +143,7 @@ export default function About({ onBack }) {
       {/* ── THE PHILOSOPHY — LG gradient ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:640, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(32px,8.5vw,44px)":"clamp(40px,4.2vw,56px)", fontWeight:400, color:BLACK, lineHeight:1.15, letterSpacing:"-0.01em", marginBottom:36 }}>
-            "I'm delusional, and I know it."
-          </h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>What I<br/>actually believe</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.8, marginBottom:20 }}>
             I don't care how logical the world is. I choose to live in my magical version of it — and that is exactly how I am able to manifest the things I manifest.
           </p>
@@ -165,10 +159,8 @@ export default function About({ onBack }) {
       {/* ── WHAT I MAKE — black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto", textAlign:"center" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(34px,9vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#ffffff", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:20 }}>What is Self Hypnosis Goddess so special?</h2>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(24px,6vw,34px)":"clamp(28px,2.8vw,40px)", color:CREAM, lineHeight:1.3, fontWeight:400, marginBottom:32 }}>
-            Because I understand your pain. I live in your head.
-          </h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#ffffff", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:16, textTransform:"uppercase" }}>What's<br/>inside</h2>
+          <p style={{ fontSize: isMobile?16:18, color:CREAM, lineHeight:1.7, marginBottom:40, maxWidth:500, margin:"0 auto 40px" }}>Because I understand your pain. I live in your head.</p>
 
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20, marginBottom:40, textAlign:"left" }}>
             {[
@@ -202,9 +194,8 @@ export default function About({ onBack }) {
 
       {/* ── CTA ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
-                <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,7vw,40px)":"clamp(32px,3.5vw,48px)", color:BLACK, lineHeight:1.25, fontWeight:400, marginBottom:40 }}>
-          Join the community. Press play. Feel the shift.
-        </h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:24, textTransform:"uppercase" }}>Press play.<br/>Feel the shift.</h2>
+          <p style={{ fontSize: isMobile?16:18, color:"#000", lineHeight:1.7, marginBottom:40 }}>Join the community.</p>
         <button onClick={()=>{ navigate("/"); setTimeout(()=>{ const el=document.getElementById("pricing"); if(el) el.scrollIntoView({behavior:"smooth"}); },300); }} style={{ background:BLACK, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:CREAM, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
           Join Self Hypnosis Goddess →
         </button>
