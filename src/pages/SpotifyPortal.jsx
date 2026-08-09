@@ -1411,8 +1411,22 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   useEffect(() => {
     const onClick = e => { if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
     document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    document.addEventListener("touchstart", onClick, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("touchstart", onClick);
+    };
   }, []);
+  useEffect(() => {
+    if (!catOpen) return;
+    const closeOnScroll = () => setCatOpen(false);
+    window.addEventListener("scroll", closeOnScroll, { passive: true, capture: true });
+    window.addEventListener("resize", closeOnScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", closeOnScroll, { capture: true });
+      window.removeEventListener("resize", closeOnScroll);
+    };
+  }, [catOpen]);
   const openDropdown = () => {
     if (btnRef.current) {
       const r = btnRef.current.getBoundingClientRect();
