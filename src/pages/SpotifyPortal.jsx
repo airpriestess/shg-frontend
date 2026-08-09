@@ -1405,7 +1405,6 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   const [catOpen, setCatOpen] = useState(false);
-  const [dropRect, setDropRect] = useState(null);
   const catRef = useRef(null);
   const btnRef = useRef(null);
   useEffect(() => {
@@ -1428,10 +1427,6 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     };
   }, [catOpen]);
   const openDropdown = () => {
-    if (btnRef.current) {
-      const r = btnRef.current.getBoundingClientRect();
-      setDropRect(r);
-    }
     setCatOpen(o=>!o);
   };
   const catLabel = cat==="All" ? "All categories" : (cat==="Liked" ? "Liked ♡" : cat);
@@ -1442,7 +1437,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
-      <div style={{ padding:"0 16px 14px" }}>
+      <div style={{ padding:"0 16px 14px", position:"relative", zIndex:catOpen?100:"auto" }}>
         <div ref={catRef} style={{ position:"relative" }}>
           <button
             ref={btnRef}
@@ -1451,32 +1446,21 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
               background:"#000", border:"1px solid rgba(232,184,112,0.4)", borderRadius:12,
               padding:"14px 16px", fontSize:16, fontWeight:400, color:"#E8B870",
-              fontFamily:"'Jost',sans-serif", cursor:"pointer"
+              fontFamily:"'Jost',sans-serif", cursor:"pointer", position:"relative", zIndex:2
             }}
           >
             <span>{catLabel}</span>
             <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
-          {catOpen && dropRect && (
-            <>
-            <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"rgba(0,0,0,0.45)" }}/>
-            {(() => {
-              const BOTTOM_SAFE = 90; // clears mini-player + bottom nav
-              const spaceBelow = dropRect ? window.innerHeight - dropRect.bottom - BOTTOM_SAFE - 6 : 300;
-              const spaceAbove = dropRect ? dropRect.top - 12 : 300;
-              const openUpward = spaceBelow < 160 && spaceAbove > spaceBelow;
-              const maxH = Math.max(140, Math.min(300, openUpward ? spaceAbove : spaceBelow));
-              return (
+          {catOpen && (
             <div style={{
-              position:"fixed",
-              ...(openUpward
-                ? { bottom: dropRect ? (window.innerHeight - dropRect.top + 6) : "auto" }
-                : { top: dropRect ? dropRect.bottom + 6 : 0 }),
-              left: dropRect ? dropRect.left : 0,
-              width: dropRect ? dropRect.width : "auto",
-              zIndex:99999,
+              position:"absolute",
+              top:"calc(100% + 6px)",
+              left:0,
+              right:0,
+              zIndex:100,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
-              maxHeight:maxH, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
+              maxHeight:300, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
             }}>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
@@ -1505,12 +1489,12 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                 );
               })}
             </div>
-              );
-            })()}
-            </>
           )}
         </div>
       </div>
+      {catOpen && (
+        <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:99, background:"transparent" }}/>
+      )}
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
