@@ -627,7 +627,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const ProfilePanel = () => (
     <>
       <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.5)" }} onClick={()=>setProfileOpen(false)}/>
-      <div style={{ position:"fixed",top:isMobile?0:"auto",right:0,bottom:0,width:isMobile?"100%":320,background:C.bg2,borderLeft:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
+      <div style={{ position:"fixed",top:isMobile?0:"auto",right:0,bottom:0,width:isMobile?"100%":320,background:isDark?"#0a0a0a":"#fdf0e8",borderLeft:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
         {/* Header */}
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
@@ -657,7 +657,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           {/* Stats row */}
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
             {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Desires",C.cr]].map(([v,l,c],i)=>(
-              <div key={i} style={{ background:C.bg3,borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
+              <div key={i} style={{ background:isDark?"#111111":"#f2ece4",borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
                 <div style={{ fontSize:18,fontWeight:400,color:c }}>{v}</div>
                 <div style={{ fontSize:12,color:C.mu }}>{l}</div>
               </div>
