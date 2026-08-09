@@ -153,7 +153,7 @@ img{max-width:100%;}
 @media(max-width:680px){
   body [style*="grid-template-columns"]{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;}
   body [style*="1.2fr 1.8fr"],[style*="1fr 36px"]{display:none!important;}
-  body > #root > * [style*="padding"]{max-width:100vw!important;overflow-x:hidden!important;}
+  body > #root > * [style*="padding"]:not(.hscroll-ok){max-width:100vw!important;overflow-x:hidden!important;}
   h1{font-size:clamp(32px,9vw,52px)!important;}
   .hero-ctas>button{width:100%!important;}
   html,body{overflow-x:hidden!important;max-width:100vw!important;}

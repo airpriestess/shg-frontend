@@ -346,6 +346,7 @@ export default function LandingProofWall({ isMobile }) {
       {/* Scroll track */}
       <div
         ref={trackRef}
+        className="hscroll-ok"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={() => setPaused(true)}
