@@ -876,6 +876,18 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
+      {confirmDeleteId!==null && (
+        <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:340,width:"100%",borderRadius:16,padding:"24px 22px",background:isDark?"#111":"#fdf0e8",border:`1px solid ${C.border}` }}>
+            <div style={{ fontSize:18,fontWeight:400,color:C.cr,marginBottom:8,fontFamily:"'Jost',sans-serif" }}>Delete this thread?</div>
+            <div style={{ fontSize:14,color:C.mu,marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
+            <div style={{ display:"flex",gap:10 }}>
+              <button onClick={()=>setConfirmDeleteId(null)} style={{ flex:1,padding:"12px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.cr,fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Cancel</button>
+              <button onClick={()=>confirmDeleteNow(confirmDeleteId)} style={{ flex:1,padding:"12px",background:"#8a2030",border:"none",borderRadius:10,color:"#fff",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
       <BetaBanner C={C} isDark={isDark}/>
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
@@ -1626,6 +1638,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
   const [bucketText, setBucketText] = useState("");
   const [promotingId, setPromotingId] = useState(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [trackPickerOpen, setTrackPickerOpen] = useState(false);
   const [catPickerOpen, setCatPickerOpen] = useState(false);
   const [feelPickerOpen, setFeelPickerOpen] = useState(false);
@@ -1638,7 +1651,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
   };
   const undoMarkDone = (id) => setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
-  const deleteThread = (id) => { if(window.confirm("Delete this thread?")) setThreads(threads.filter(t=>t.id!==id)); };
+  const deleteThread = (id) => { setConfirmDeleteId(id); };
+  const confirmDeleteNow = (id) => { setThreads(threads.filter(t=>t.id!==id)); setConfirmDeleteId(null); };
   const addSign = (id) => {
     const text = (signInput[id]||"").trim();
     if(!text) return;
@@ -1978,7 +1992,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
             setThreads([{id:Date.now()+Math.random().toString(36).slice(2,8),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
-          }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:isDark?"#f2ece4":"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
           </button>
           {userTier === "audio" && !isPreview && (
