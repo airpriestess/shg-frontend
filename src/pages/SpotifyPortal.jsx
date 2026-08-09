@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
 import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
@@ -1405,8 +1406,15 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   const [catOpen, setCatOpen] = useState(false);
+  const [dropPos, setDropPos] = useState(null);
   const catRef = useRef(null);
   const btnRef = useRef(null);
+  const measureDropdown = () => {
+    if (btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setDropPos({ top: r.bottom + 6, left: r.left, width: r.width });
+    }
+  };
   useEffect(() => {
     const onClick = e => { if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
     document.addEventListener("mousedown", onClick);
@@ -1418,15 +1426,17 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   }, []);
   useEffect(() => {
     if (!catOpen) return;
-    const closeOnScroll = () => setCatOpen(false);
-    window.addEventListener("scroll", closeOnScroll, { passive: true, capture: true });
-    window.addEventListener("resize", closeOnScroll, { passive: true });
+    measureDropdown();
+    const onReposition = () => measureDropdown();
+    window.addEventListener("scroll", onReposition, { passive: true, capture: true });
+    window.addEventListener("resize", onReposition, { passive: true });
     return () => {
-      window.removeEventListener("scroll", closeOnScroll, { capture: true });
-      window.removeEventListener("resize", closeOnScroll);
+      window.removeEventListener("scroll", onReposition, { capture: true });
+      window.removeEventListener("resize", onReposition);
     };
   }, [catOpen]);
   const openDropdown = () => {
+    measureDropdown();
     setCatOpen(o=>!o);
   };
   const catLabel = cat==="All" ? "All categories" : (cat==="Liked" ? "Liked ♡" : cat);
@@ -1437,7 +1447,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
-      <div style={{ padding:"0 16px 14px", position:"relative", zIndex:catOpen?100:"auto" }}>
+      <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
           <button
             ref={btnRef}
@@ -1446,19 +1456,19 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
               background:"#000", border:"1px solid rgba(232,184,112,0.4)", borderRadius:12,
               padding:"14px 16px", fontSize:16, fontWeight:400, color:"#E8B870",
-              fontFamily:"'Jost',sans-serif", cursor:"pointer", position:"relative", zIndex:2
+              fontFamily:"'Jost',sans-serif", cursor:"pointer"
             }}
           >
             <span>{catLabel}</span>
             <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
-          {catOpen && (
+          {catOpen && dropPos && createPortal(
             <div style={{
-              position:"absolute",
-              top:"calc(100% + 6px)",
-              left:0,
-              right:0,
-              zIndex:100,
+              position:"fixed",
+              top:dropPos.top,
+              left:dropPos.left,
+              width:dropPos.width,
+              zIndex:999999,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
               maxHeight:300, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
             }}>
@@ -1488,12 +1498,14 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   </div>
                 );
               })}
-            </div>
+            </div>,
+            document.body
           )}
         </div>
       </div>
-      {catOpen && (
-        <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:99, background:"transparent" }}/>
+      {catOpen && createPortal(
+        <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:999998, background:"transparent" }}/>,
+        document.body
       )}
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
