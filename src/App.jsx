@@ -1405,7 +1405,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:12, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:12, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Theta state. On demand. Instantly.</div>
 
         </div>
 
@@ -1570,8 +1570,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Heading — centered, dark text on light gradient top */}
           <div style={{ marginBottom: isMobile?48:72, textAlign:"center", width:"100%" }}>
             <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center" }}>The method</div>
-            <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12, textAlign:"center" }}>Manifest your dream reality<br/>through self-hypnosis<br/>and subliminals.</div>
-            <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", textAlign:"center" }}>Here is exactly what happens when you press play.</div>
+            <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12, textAlign:"center" }}>Theta state doesn't require sleep.<br/>Press play and you're there<br/>in minutes.</div>
+            <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", textAlign:"center" }}>No waiting for bedtime. No perfect conditions. Here's exactly what happens when you press play.</div>
           </div>
 
           {/* Beta → Theta → Identity boxes */}
@@ -1616,7 +1616,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Numbered steps — massive titles, full copy, thick arrows */}
           <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
             {[
-              { n:"01", title:"PRESS PLAY.", body:"Choose a track from 24 categories based on what you want to manifest. Pick your intention. That's it. No ritual, no perfect timing, no preparation needed. Just press play." },
+              { n:"01", title:"PRESS PLAY. ANYTIME.", body:"Choose a track from 24 categories based on what you want to manifest. You do not have to wait until you're falling asleep. Morning coffee, car ride, gym, lunch break — theta is available the instant you press play." },
               { n:"02", title:"THETA STATE.", body:"Your brain drops into theta (4–8Hz). Binaural beats — one frequency in each ear — create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
               { n:"03", title:"YOUR SUBCONSCIOUS OPENS.", body:"The critical mind — the part that argues, doubts, and filters — steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming." },
               { n:"04", title:"THE HYPNOSIS ACTIVATES.", body:"Reshma's voice speaks directly to your subconscious, putting you into hypnosis and opening your subconscious mind. Your new identity is delivered while the gatekeeper is offline. No resistance. No filtering. It goes straight in." },
