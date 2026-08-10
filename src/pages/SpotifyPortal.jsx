@@ -833,17 +833,14 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       <div style={{ flex:1,display:"flex",overflow:"hidden" }}>
         {/* Sidebar */}
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
-          <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
-            <svg viewBox="0 0 100 100" width="28" height="28" fill="none" style={{flexShrink:0}} xmlns="http://www.w3.org/2000/svg">
+          <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+            <svg viewBox="0 0 100 100" width="40" height="40" fill="none" style={{flexShrink:0}} xmlns="http://www.w3.org/2000/svg">
               <defs><linearGradient id="lg_leftnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-              <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
-              <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
-              <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
-              <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
+              <circle cx="35" cy="35" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
+              <circle cx="65" cy="35" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
+              <circle cx="35" cy="65" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
+              <circle cx="65" cy="65" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
             </svg>
-            <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:18,color:C.text}}>
-              Self Hypnosis Goddess
-            </span>
             <span style={{ fontSize:9,fontWeight:600,letterSpacing:"0.1em",color:isDark?"#E8B870":"#f2ece4",background:isDark?"transparent":"#000",border:`1px solid ${isDark?"rgba(232,184,112,0.4)":"rgba(0,0,0,0.4)"}`,borderRadius:20,padding:"2px 7px",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>BETA</span>
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
