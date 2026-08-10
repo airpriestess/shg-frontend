@@ -467,7 +467,39 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const [searchQ, setQ]       = useState("");
   const [libCat, setLibCat]   = useState("All");
   const [libFormat, setLibFormat] = useState("All");
-  const [threads, setThreads] = useState(INIT_THREADS);
+  const [threads, setThreads] = useState(isPreview ? INIT_THREADS : []);
+  const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
+  useEffect(() => {
+    if (isPreview || !userId) return;
+    let cancelled = false;
+    (async () => {
+      const { data, error } = await supabase
+        .from("manifestations")
+        .select("*")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+      if (cancelled) return;
+      if (error) { console.error("Failed to load manifestations:", error); setThreadsLoaded(true); return; }
+      const mapped = (data||[]).map(m => ({
+        id: m.id,
+        desire: m.desire,
+        category: m.category || "",
+        days: m.created_at ? Math.floor((Date.now()-new Date(m.created_at))/86400000) : 0,
+        done: m.status === "manifested",
+        isBucket: m.status === "in_progress" && !m.category,
+        track: null,
+        signs: [],
+        oldBelief: m.notes || "",
+        feelBefore: "",
+        feelAfter: "",
+        createdAt: m.created_at,
+        manifestedAt: m.manifested_at,
+      }));
+      setThreads(mapped);
+      setThreadsLoaded(true);
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview]);
   const [theme, setTheme]     = useState(forceTheme || "dark");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
@@ -498,6 +530,15 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const greet = (hour<12?"Good morning":"Good evening") + (isPreview ? "" : `, ${firstName}`);
 
   // ── AUDIO PLAYBACK ───────────────────────────────────────────────────────
+  const logPlay = async (trackTitle) => {
+    if (isPreview || !userId) return;
+    try {
+      const { data: rows } = await supabase.from("tracks").select("id").eq("title", trackTitle).limit(1);
+      const trackId = rows?.[0]?.id;
+      if (!trackId) return; // no matching Supabase track row — skip logging, don't block playback
+      await supabase.from("play_history").insert({ user_id: userId, track_id: trackId });
+    } catch (e) { console.error("Failed to log play:", e); }
+  };
   const play = (t) => {
     const hasUrl = !!AUDIO_URLS[t.title];
     if (track.id === t.id) {
@@ -505,7 +546,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       return;
     }
     setTrack(t);
-    if (hasUrl) { setPlay(true); if (!isPreview) setListenCount(n=>n+1); }
+    if (hasUrl) { setPlay(true); if (!isPreview) { setListenCount(n=>n+1); logPlay(t.title); } }
     setProg(0);
   };
 
@@ -711,8 +752,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
-      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)}/>)}
+      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -1298,10 +1339,55 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 }
 
 // ── ANALYTICS TAB — dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
+
+  // ── PATTERNS: real listen counts per category/track, correlated with manifested desires ──
+  const [patterns, setPatterns] = useState(null); // null = loading/no data yet
+  useEffect(() => {
+    if (isPreview || !userId) { setPatterns([]); return; }
+    let cancelled = false;
+    (async () => {
+      const { data: plays, error: playsErr } = await supabase
+        .from("play_history")
+        .select("played_at, tracks(id, title, category)")
+        .eq("user_id", userId);
+      if (cancelled) return;
+      if (playsErr || !plays || plays.length === 0) { setPatterns([]); return; }
+
+      // Aggregate listens per category and per track
+      const byCategory = {}; // category -> {count, trackTitles:Set}
+      const byTrack = {}; // title -> {count, category}
+      plays.forEach(p => {
+        const cat = p.tracks?.category;
+        const title = p.tracks?.title;
+        if (cat) { byCategory[cat] = byCategory[cat] || {count:0}; byCategory[cat].count++; }
+        if (title) { byTrack[title] = byTrack[title] || {count:0, category:cat}; byTrack[title].count++; }
+      });
+
+      // Manifested desires with a category, grouped
+      const manifestedByCategory = {};
+      threads.filter(t=>t.done && t.category).forEach(t => {
+        manifestedByCategory[t.category] = (manifestedByCategory[t.category]||0) + 1;
+      });
+
+      const catInsights = Object.entries(byCategory)
+        .map(([cat,v]) => ({ type:"category", name:cat, listens:v.count, manifestedCount: manifestedByCategory[cat]||0 }))
+        .filter(i => i.manifestedCount > 0)
+        .sort((a,b)=>b.manifestedCount-a.manifestedCount || b.listens-a.listens);
+
+      const trackInsights = Object.entries(byTrack)
+        .map(([title,v]) => ({ type:"track", name:title, listens:v.count, manifestedCount: manifestedByCategory[v.category]||0 }))
+        .filter(i => i.manifestedCount > 0)
+        .sort((a,b)=>b.manifestedCount-a.manifestedCount || b.listens-a.listens);
+
+      setPatterns([...catInsights.slice(0,2), ...trackInsights.slice(0,2)].slice(0,3));
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, threads]);
+
   return (
     <div>
       <div style={{ padding:"20px 16px 12px" }}>
@@ -1326,6 +1412,24 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
+
+      {/* PATTERNS — what's actually working, real listen + manifestation correlation */}
+      {!isPreview && patterns && patterns.length > 0 && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:"linear-gradient(135deg,rgba(245,224,160,0.08),rgba(191,165,216,0.06),rgba(44,183,167,0.08))", border:`1px solid rgba(232,184,112,0.3)` }}>
+          <div style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>What's working for you ✦</div>
+          {patterns.map((p,i) => (
+            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", borderBottom: i<patterns.length-1 ? `1px solid ${C.border}` : "none" }}>
+              <div style={{ width:8, height:8, borderRadius:"50%", background: p.type==="category" ? "#E8B870" : "#BFA5D8", flexShrink:0 }}/>
+              <div style={{ flex:1 }}>
+                <div style={{ fontSize:14, color:C.cr }}>{p.name}</div>
+                <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
+                  {p.listens} listen{p.listens!==1?"s":""}, alongside {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} marked manifested
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* FULL ANALYTICS BOARD */}
       <div style={{ margin:"0 16px 20px" }}>
@@ -1586,7 +1690,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
   );
 }
 
-function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter }) {
+function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter, userId }) {
   const [newD, setD]       = useState("");
   const [newBelief, setNewBelief] = useState("");
   const [newCat, setNewCat]   = useState("Richgirlmaxxing");
@@ -1633,14 +1737,31 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [promoCatOpen, setPromoCatOpen] = useState(null);
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
-  const confirmFinish = (id) => {
+  const confirmFinish = async (id) => {
     const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(" — ");
     setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
+    if (!isPreview && userId) {
+      const { error } = await supabase.from("manifestations").update({ status:"manifested", manifested_at:new Date().toISOString(), notes: after || undefined }).eq("id", id).eq("user_id", userId);
+      if (error) console.error("Failed to mark manifested:", error);
+    }
   };
-  const undoMarkDone = (id) => setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
+  const undoMarkDone = async (id) => {
+    setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
+    if (!isPreview && userId) {
+      const { error } = await supabase.from("manifestations").update({ status:"in_progress", manifested_at:null }).eq("id", id).eq("user_id", userId);
+      if (error) console.error("Failed to undo manifested:", error);
+    }
+  };
   const deleteThread = (id) => { setConfirmDeleteId(id); };
-  const confirmDeleteNow = (id) => { setThreads(threads.filter(t=>t.id!==id)); setConfirmDeleteId(null); };
+  const confirmDeleteNow = async (id) => {
+    setThreads(threads.filter(t=>t.id!==id));
+    setConfirmDeleteId(null);
+    if (!isPreview && userId) {
+      const { error } = await supabase.from("manifestations").delete().eq("id", id).eq("user_id", userId);
+      if (error) console.error("Failed to delete desire:", error);
+    }
+  };
   const addSign = (id) => {
     const text = (signInput[id]||"").trim();
     if(!text) return;
@@ -1752,10 +1873,21 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ display:"flex", gap:8 }}>
               <input value={bucketText} onChange={e=>setBucketText(e.target.value)} placeholder="A holiday to... A new car... Whatever it is"
                 style={{ flex:1, padding:"11px 13px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:16, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
-              <button onClick={()=>{
+              <button onClick={async ()=>{
                 if(!bucketText.trim()) return;
-                setThreads([{id:Date.now()+Math.random().toString(36).slice(2,8),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
+                const localId = Date.now()+Math.random().toString(36).slice(2,8);
+                setThreads([{id:localId,desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
                 setBucketText("");
+                if (!isPreview && userId) {
+                  const { data, error } = await supabase.from("manifestations").insert({
+                    user_id: userId, desire: bucketText, status: "in_progress",
+                  }).select().single();
+                  if (!error && data) {
+                    setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
+                  } else if (error) {
+                    console.error("Failed to save bucket item:", error);
+                  }
+                }
               }} style={{ padding:"11px 18px", background:isDark?"#fff":"#000", border:"none", borderRadius:8, color:isDark?"#000":"#fff", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
             </div>
           </div>
@@ -1812,7 +1944,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         Focus on this now
                       </button>
-                      <button onClick={()=>setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t))} style={{ flex:1, padding:"8px 12px", background:R, border:`1px solid ${R}`, borderRadius:8, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                      <button onClick={async ()=>{
+                        setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t));
+                        if (!isPreview && userId) {
+                          const { error } = await supabase.from("manifestations").update({ status:"manifested", manifested_at:new Date().toISOString() }).eq("id", item.id).eq("user_id", userId);
+                          if (error) console.error("Failed to mark manifested:", error);
+                        }
+                      }} style={{ flex:1, padding:"8px 12px", background:R, border:`1px solid ${R}`, borderRadius:8, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         ✓ Already manifested
                       </button>
                     </div>
@@ -1983,15 +2121,27 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           ) : null; })()}
           <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
             style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
-          <button onClick={()=>{
+          <button onClick={async ()=>{
             if(!newD.trim()) return;
             if(userTier === "audio" && !isPreview) {
               onUpgrade?.();
               return;
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
-            setThreads([{id:Date.now()+Math.random().toString(36).slice(2,8),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
+            const localId = Date.now()+Math.random().toString(36).slice(2,8);
+            const optimistic = {id:localId,desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief};
+            setThreads([optimistic,...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
+            if (!isPreview && userId) {
+              const { data, error } = await supabase.from("manifestations").insert({
+                user_id: userId, desire: newD, category: newCat, status: "in_progress", notes: newBelief,
+              }).select().single();
+              if (!error && data) {
+                setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
+              } else if (error) {
+                console.error("Failed to save desire:", error);
+              }
+            }
           }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             {userTier === "audio" && !isPreview ? "Add Desire — Upgrade to Goddess ✦" : "Add Desire"}
           </button>
