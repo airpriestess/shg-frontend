@@ -96,50 +96,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 </head>
 <body>
 
-<!-- EMAIL GATE -->
-<div id="gate" style="position:fixed;inset:0;z-index:999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;">
-  <a href="https://reshmaoracle.com" style="margin-bottom:48px;"><img src="https://reshmaoracle.com/logo_black_bg.png" style="height:32px;"></a>
-  <div style="font-size:10px;letter-spacing:.32em;text-transform:uppercase;background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;margin-bottom:20px;">✦ Self Hypnosis Goddess Blog ✦</div>
-  <h1 style="font-family:Jost,sans-serif;font-size:clamp(36px,7vw,64px);font-weight:700;letter-spacing:-.04em;line-height:.95;color:#f2ece4;margin-bottom:16px;">Access<br>the Blog.</h1>
-  <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.5vw,22px);color:#f2ece4;line-height:1.5;max-width:420px;margin-bottom:40px;">The identity work. The science. The copy of everything that changes when the operating system installs. Enter your email to read.</p>
-  <div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:380px;">
-    <input id="gate-name" type="text" placeholder="Your first name" autocomplete="given-name"
-      style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px 18px;font-family:Jost,sans-serif;font-size:15px;color:#f2ece4;outline:none;">
-    <input id="gate-email" type="email" placeholder="Your email address" autocomplete="email"
-      style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px 18px;font-family:Jost,sans-serif;font-size:15px;color:#f2ece4;outline:none;">
-    <button onclick="unlockJournal()"
-      style="padding:18px;border-radius:10px;background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);color:#000;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;">
-      Read the Blog →
-    </button>
-  </div>
-  <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:16px;">No spam. Unsubscribe any time.</p>
-</div>
-
-<script>
-// Check if already unlocked
-if(localStorage.getItem('shg_journal_access')) {
-  document.getElementById('gate').style.display = 'none';
-}
-
-function unlockJournal() {
-  const name = document.getElementById('gate-name').value.trim();
-  const email = document.getElementById('gate-email').value.trim();
-  if(!name || !email || !email.includes('@')) {
-    alert('Please enter your name and email.');
-    return;
-  }
-  // Store access
-  localStorage.setItem('shg_journal_access', '1');
-  localStorage.setItem('shg_journal_name', name);
-  localStorage.setItem('shg_journal_email', email);
-  // Hide gate
-  document.getElementById('gate').style.display = 'none';
-  // Personalise if name available
-  const greeting = document.getElementById('journal-greeting');
-  if(greeting) greeting.textContent = 'Welcome, ' + name + '.';
-}
-</script>
-
 
 <nav>
   <a href="https://reshmaoracle.com"><img src="https://reshmaoracle.com/logo_black_bg.png" alt="Self Hypnosis Goddess" style="height:26px;"></a>
@@ -148,7 +104,6 @@ function unlockJournal() {
 
 <!-- HERO -->
 <section class="hero">
-  <span id="journal-greeting" style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.1em;display:block;margin-bottom:8px;"></span>
   <span class="hero-ey">Self Hypnosis Goddess Blog</span>
   <h1>The Blog.</h1>
   <p class="hero-sub">Everything you need to understand the install — and why the version of you who starts reading this is not the version who finishes.</p>
@@ -165,19 +120,18 @@ function unlockJournal() {
 
 <!-- FEATURED -->
 <section class="featured">
-  <div class="feat-card">
+  <a href="/blog/why-affirmations-never-worked" class="feat-card" style="text-decoration:none;color:inherit;">
     <div class="feat-img">
-      
       <div class="feat-tag">Featured</div>
     </div>
     <div class="feat-body">
       <div class="feat-cat">LuckyGirl Maxxing</div>
       <h2 class="feat-title">Why lucky girls are lucky — and it has nothing to do with luck</h2>
       <p class="feat-excerpt">She is not special. She did not get a different starting point. Her subconscious is simply running a different program. Here is exactly what that program is — and how to install it.</p>
-      <div class="feat-meta">4 August 2026 · 6 min read</div>
+      <div class="feat-meta">10 August 2026 · 6 min read</div>
       <span class="read-more">Read the article</span>
     </div>
-  </div>
+  </a>
 </section>
 
 <!-- LUCKYGIRL ARTICLES -->
