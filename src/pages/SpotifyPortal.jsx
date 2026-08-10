@@ -1756,7 +1756,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 if(!bucketText.trim()) return;
                 setThreads([{id:Date.now()+Math.random().toString(36).slice(2,8),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
                 setBucketText("");
-              }} style={{ padding:"11px 18px", background:isDark?"#000":"#f2ece4", border:"none", borderRadius:8, color:"#f2ece4", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
+              }} style={{ padding:"11px 18px", background:isDark?"#fff":"#000", border:"none", borderRadius:8, color:isDark?"#000":"#fff", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
             </div>
           </div>
 
@@ -1812,7 +1812,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         Focus on this now
                       </button>
-                      <button onClick={()=>setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t))} style={{ flex:1, padding:"8px 12px", background:`${R}18`, border:`1px solid ${R}44`, borderRadius:8, color:R, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                      <button onClick={()=>setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t))} style={{ flex:1, padding:"8px 12px", background:R, border:`1px solid ${R}`, borderRadius:8, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         ✓ Already manifested
                       </button>
                     </div>
