@@ -1967,7 +1967,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                     onMouseEnter={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background=`${hItem.c}14`;}}
                     onMouseLeave={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background="transparent";}}>
                     <div style={{ width:11,height:11,borderRadius:"50%",background:hItem.c,flexShrink:0,boxShadow:`0 0 5px ${hItem.c}99` }}/>
-                    <span style={{ fontSize:16,color:hItem.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{hItem.n}</span>
+                    <span style={{ fontSize:16,color:PC.text,flex:1,fontFamily:"'Jost',sans-serif" }}>{hItem.n}</span>
                     <span style={{ fontSize:14,color:PC.mu }}>{hItem.v}</span>
                   </div>
                 ))}
