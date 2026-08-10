@@ -1993,7 +1993,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             setThreads([{id:Date.now()+Math.random().toString(36).slice(2,8),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
           }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-            {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
+            {userTier === "audio" && !isPreview ? "Add Desire — Upgrade to Goddess ✦" : "Add Desire"}
           </button>
           {userTier === "audio" && !isPreview && (
             <div style={{ fontSize:13,color:"#e8e0d8",marginTop:8,lineHeight:1.5 }}>
@@ -2104,7 +2104,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ marginTop:10,height:3,background:"rgba(0,0,0,0.1)",borderRadius:2 }}>
             <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",borderRadius:2 }}/>
           </div>
-          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove thread</button>
+          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove desire</button>
         </div>
       ))}
       </>
