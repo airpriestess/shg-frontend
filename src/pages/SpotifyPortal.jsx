@@ -876,18 +876,6 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
-      {confirmDeleteId!==null && (
-        <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:340,width:"100%",borderRadius:16,padding:"24px 22px",background:isDark?"#111":"#fdf0e8",border:`1px solid ${C.border}` }}>
-            <div style={{ fontSize:18,fontWeight:400,color:C.cr,marginBottom:8,fontFamily:"'Jost',sans-serif" }}>Delete this thread?</div>
-            <div style={{ fontSize:14,color:C.mu,marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
-            <div style={{ display:"flex",gap:10 }}>
-              <button onClick={()=>setConfirmDeleteId(null)} style={{ flex:1,padding:"12px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.cr,fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Cancel</button>
-              <button onClick={()=>confirmDeleteNow(confirmDeleteId)} style={{ flex:1,padding:"12px",background:"#8a2030",border:"none",borderRadius:10,color:"#fff",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Delete</button>
-            </div>
-          </div>
-        </div>
-      )}
       <BetaBanner C={C} isDark={isDark}/>
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
@@ -1698,6 +1686,18 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   return (
     <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
       <style>{`@keyframes shgRecPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}@keyframes shgRecButtonPulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0.5);}50%{box-shadow:0 0 0 6px rgba(192,57,43,0);}}`}</style>
+      {confirmDeleteId!==null && (
+        <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:340,width:"100%",borderRadius:16,padding:"24px 22px",background:"#fdf0e8",border:`1px solid ${PC.border}` }}>
+            <div style={{ fontSize:18,fontWeight:400,color:"#000",marginBottom:8,fontFamily:"'Jost',sans-serif" }}>Delete this thread?</div>
+            <div style={{ fontSize:14,color:PC.mu,marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
+            <div style={{ display:"flex",gap:10 }}>
+              <button onClick={()=>setConfirmDeleteId(null)} style={{ flex:1,padding:"12px",background:"none",border:`1px solid ${PC.border}`,borderRadius:10,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Cancel</button>
+              <button onClick={()=>confirmDeleteNow(confirmDeleteId)} style={{ flex:1,padding:"12px",background:"#8a2030",border:"none",borderRadius:10,color:"#fff",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#167A6B",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
       <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
 
