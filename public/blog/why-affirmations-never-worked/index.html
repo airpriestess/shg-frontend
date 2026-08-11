@@ -253,25 +253,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
     <span class="library-teaser-ey">Coming Soon</span>
     <h3>The Self Hypnosis Goddess Audio Library</h3>
     <p>Hypnosis, subliminals, binaural beats and EMDR-inspired audio — all built around the LuckyGirl identity. Delivered in theta. On demand. The library launches soon.</p>
-    <div style="display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto;">
-      <input id="waitlist-name" type="text" placeholder="Your first name" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 18px;font-family:Jost,sans-serif;font-size:15px;color:#f2ece4;outline:none;" autocomplete="given-name">
-      <input id="waitlist-email" type="email" placeholder="Your email address" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 18px;font-family:Jost,sans-serif;font-size:15px;color:#f2ece4;outline:none;" autocomplete="email">
-      <button onclick="joinWaitlist()" style="padding:16px;border-radius:10px;background:var(--g);color:#000;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;">Join the waitlist →</button>
-    </div>
-    <p id="waitlist-msg" style="font-size:13px;color:#f2ece4;margin-top:16px;display:none;">You are on the list.</p>
-    <p style="font-size:11px;color:#f2ece4;margin-top:12px;">No spam. You will hear from us when the library launches.</p>
+    <a href="/?waitlist=1" style="display:inline-block;margin-top:8px;padding:16px 40px;border-radius:10px;background:var(--g);color:#000;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-decoration:none;">Join the waitlist →</a>
+    <p style="font-size:11px;color:#f2ece4;margin-top:16px;">No spam. You will hear from us when the library launches.</p>
   </div>
-  <script>
-  function joinWaitlist(){
-    const n=document.getElementById('waitlist-name').value.trim();
-    const e=document.getElementById('waitlist-email').value.trim();
-    if(!n||!e){alert('Please enter your name and email.');return;}
-    document.getElementById('waitlist-msg').style.display='block';
-    document.querySelector('.library-teaser button').textContent='You are in ✓';
-    document.querySelector('.library-teaser button').style.opacity='.5';
-    document.querySelector('.library-teaser button').disabled=true;
-  }
-  </script>
 
 </div>
 
