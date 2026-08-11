@@ -744,7 +744,7 @@ function PhoneShell({ w=200, theme, view }) {
 
 // ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const [view,  setView]  = useState("dashboard");
 
   /* ── Desktop panel content (changes per tab) — computed inline, not a nested component, to avoid remounting the iframe on every render ── */
