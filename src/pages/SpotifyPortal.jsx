@@ -845,10 +845,10 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",background:"none",border:"none",borderLeft:tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?"#E8B870":isDark?"#727272":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#E8B870"}
+              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(232,184,112,0.14)":"rgba(0,0,0,0.85)"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#E8B870":"#F5E0A0"):isDark?"#727272":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              onMouseEnter={e=>{if(tab!==n.id)e.currentTarget.style.color="#E8B870";}}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
-              <n.I a={tab===n.id} c={C.cr}/> {n.label}
+              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#F5E0A0"):C.cr}/> {n.label}
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"6px 16px" }}/>
