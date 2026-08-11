@@ -495,6 +495,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
                 <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#2CB7A7"}}>~$19.17/mo · billed once</div>}
+                <div style={{fontSize:9,fontWeight:500,color:"#E8B870",letterSpacing:"0.1em",marginTop:4,textTransform:"uppercase"}}>Coming Soon</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
@@ -521,6 +522,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
                 <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>~$33.58/mo · billed once</div>}
+                <div style={{fontSize:9,fontWeight:500,color:"#F5E0A0",letterSpacing:"0.1em",marginTop:4,textTransform:"uppercase"}}>Coming Soon</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
@@ -545,6 +547,7 @@ function CheckoutModal({ onClose, onDemo }) {
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#F5E0A0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
                 <div style={{fontSize:11,color:"#2CB7A7"}}>one time</div>
+                <div style={{fontSize:9,fontWeight:500,color:"#F5E0A0",letterSpacing:"0.1em",marginTop:4,textTransform:"uppercase"}}>Coming Soon</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
@@ -619,6 +622,7 @@ function PricingSection({ onJoin }) {
                 <span style={{ fontSize: 36, fontWeight: 400, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Jost',sans-serif", display: "inline-block" }}>{c.price}</span>
                 <span style={{ fontSize: 13, color: c.periodColor, fontFamily: "'Jost',sans-serif" }}>{c.id === "lifetime" ? " one time" : isAnnual ? "/year" : "/month"}</span>
               </div>
+              <div style={{ fontSize: 10, fontWeight: 500, color: "#E8B870", letterSpacing: "0.1em", marginBottom: 8, fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Coming Soon</div>
               <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>
                 Stripe handles currency conversion
               </div>
