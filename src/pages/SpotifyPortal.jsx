@@ -1343,6 +1343,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
   // ── PATTERNS: real listen counts per category/track, correlated with manifested desires ──
   const [patterns, setPatterns] = useState(null); // null = loading/no data yet
+  const [realListens, setRealListens] = useState({ total:0, week:[0,0,0,0,0,0,0] });
   useEffect(() => {
     if (isPreview || !userId) { setPatterns([]); return; }
     let cancelled = false;
@@ -1352,7 +1353,19 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         .select("played_at, tracks(id, title, category)")
         .eq("user_id", userId);
       if (cancelled) return;
-      if (playsErr || !plays || plays.length === 0) { setPatterns([]); return; }
+      if (playsErr || !plays || plays.length === 0) { setPatterns([]); setRealListens({ total:0, week:[0,0,0,0,0,0,0] }); return; }
+
+      // Real weekly play counts (Mon-Sun) from actual played_at timestamps
+      const now = new Date();
+      const dayOfWeek = (now.getDay()+6)%7; // 0=Mon ... 6=Sun
+      const monday = new Date(now); monday.setDate(now.getDate()-dayOfWeek); monday.setHours(0,0,0,0);
+      const weekCounts = [0,0,0,0,0,0,0];
+      plays.forEach(p => {
+        const d = new Date(p.played_at);
+        const diffDays = Math.floor((d - monday) / 86400000);
+        if (diffDays >= 0 && diffDays < 7) weekCounts[diffDays]++;
+      });
+      setRealListens({ total: plays.length, week: weekCounts });
 
       // Aggregate listens per category and per track
       const byCategory = {}; // category -> {count, trackTitles:Set}
@@ -1435,9 +1448,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           data={isPreview ? DEMO_ANALYTICS : {
             manifested, inProgress,
             signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
-            listens: listenCount,
-            streakDays: 14,
-            week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
+            listens: realListens.total,
+            streakDays: 0,
+            week: realListens.week,
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
               .map(([name,n])=>[name,({"Lovemaxxing":"#167A6B","Rich Girl":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"})[name]||"#E8B870",n]),
@@ -1484,14 +1497,14 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
-        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 10px",margin:isP?"0 -10px":0,borderRadius:isP?8:0,background:isP?(C.bg==="#000000"?"rgba(232,184,112,0.12)":"rgba(0,0,0,0.85)"):"none",borderBottom:isP?"none":`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:400,color:isP?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
-            <div style={{ fontSize:13,color:C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
+            <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+            <div style={{ fontSize:13,color:isP?"#c9c2b8":C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
           </div>
           {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (
@@ -2262,6 +2275,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const products = [
     { name:"Lovemaxxing Guide",      price:"$19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
     { name:"Richgirlmaxxing Guide",     price:"$19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing" },
@@ -2291,7 +2305,7 @@ function ShopTab({ C }) {
               <div style={{ fontSize:14,fontWeight:400,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
               <div style={{ fontSize:13,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
               <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-                <span style={{ fontSize:17,fontWeight:400,color:R }}>{p.price}</span>
+                <span style={{ fontSize:17,fontWeight:500,color:isDark?R:"#000"}}>{p.price}</span>
                 <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>{p.stripe?"Buy now · Stripe":"Buy on Beacons"}<ArrowIcon size={10}/></span>
               </div>
             </div>
