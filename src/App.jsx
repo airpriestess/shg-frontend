@@ -1420,7 +1420,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:12, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Theta state. On demand. Instantly.</div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:8, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
+          <div style={{ fontSize: isMobile?"clamp(13px,3.5vw,16px)":"clamp(14px,1.4vw,18px)", color:"#a09aa8", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0.02em", marginBottom:12 }}>Theta. On demand. Instantly.</div>
 
         </div>
 
