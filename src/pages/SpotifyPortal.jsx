@@ -500,7 +500,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     })();
     return () => { cancelled = true; };
   }, [userId, isPreview]);
-  const [theme, setTheme]     = useState(forceTheme || "dark");
+  const [theme, setTheme]     = useState(forceTheme || "light");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
   // Seeded 30-day emotional log — dominant state trends upward on Hawkins scale
