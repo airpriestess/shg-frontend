@@ -841,7 +841,13 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
               <circle cx="35" cy="65" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
               <circle cx="65" cy="65" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
             </svg>
-            <span style={{ fontSize:9,fontWeight:600,letterSpacing:"0.1em",color:isDark?"#E8B870":"#f2ece4",background:isDark?"transparent":"#000",border:`1px solid ${isDark?"rgba(232,184,112,0.4)":"rgba(0,0,0,0.4)"}`,borderRadius:20,padding:"2px 7px",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>BETA</span>
+            {isDark ? (
+              <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" }}>BETA</span>
+            ) : (
+              <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,background:"#000",display:"inline-block" }}>
+                <span style={{ backgroundImage:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundClip:"text", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent" }}>BETA</span>
+              </span>
+            )}
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
