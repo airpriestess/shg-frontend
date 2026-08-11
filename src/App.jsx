@@ -1107,6 +1107,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      // wait a tick for the page to fully render before measuring position
+      const t = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+      return () => clearTimeout(t);
+    }
+  }, [location.pathname, location.hash]);
   const [shopOpen, setShopOpen] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [waitlistStatus, setWaitlistStatus] = useState("idle"); // idle | saving | done | error
