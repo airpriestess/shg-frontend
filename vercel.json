@@ -1,8 +1,15 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/blog/why-affirmations-never-worked",
-      "destination": "/blog/why-affirmations-never-worked/index.html"
+      "destination": "/blog/why-lucky-girls-are-lucky",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/blog/why-lucky-girls-are-lucky",
+      "destination": "/blog/why-lucky-girls-are-lucky/index.html"
     },
     {
       "source": "/blog",
