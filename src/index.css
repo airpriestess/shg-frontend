@@ -22,11 +22,15 @@ input:focus,textarea:focus{border-color:#2CB7A766;box-shadow:0 0 0 3px rgba(44,1
 select{
   background:#000000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f2ece4' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;
   border:1px solid #1c1828;color:#f2ece4;border-radius:10px;padding:10px 36px 10px 14px;
-  outline:none;font-size:14px;width:100%;cursor:pointer;-webkit-appearance:none;appearance:none;
+  outline:none;font-size:16px;width:100%;cursor:pointer;-webkit-appearance:none;appearance:none;
+  min-height:44px;
 }
 select:focus{border-color:#2CB7A766;box-shadow:0 0 0 3px rgba(44,183,167,0.08);}
-select option{background:#0a0a0a;color:#f2ece4;font-size:14px;padding:10px;}
+select option{background:#0a0a0a;color:#f2ece4;font-size:15px;padding:12px;min-height:44px;}
 select option:hover,select option:checked{background:#1c1828;}
+@media (max-width:768px){
+  select{font-size:16px;padding:12px 36px 12px 14px;}
+}
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 .wrap{
