@@ -1131,9 +1131,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     const email = waitlistEmail.trim();
     if (!email || !email.includes("@")) { setWaitlistStatus("error"); return; }
     setWaitlistStatus("saving");
-    const { error } = await _sb.from("waitlist").insert({ email, source: "landing_page_banner" });
-    if (error && !error.message?.includes("duplicate")) { setWaitlistStatus("error"); return; }
-    setWaitlistStatus("done");
+    try {
+      const { error } = await _sb.from("waitlist").insert({ email, source: "landing_page_banner" });
+      // duplicate email = they're already on the list, treat as success not error
+      if (error && error.code !== "23505" && !error.message?.toLowerCase().includes("duplicate")) {
+        setWaitlistStatus("error");
+        return;
+      }
+      setWaitlistStatus("done");
+    } catch (err) {
+      setWaitlistStatus("error");
+    }
   };
   const [faqOpen, setFaqOpen] = useState(null);
   const audioRef = useRef(null);
