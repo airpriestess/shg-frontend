@@ -1128,8 +1128,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   const submitWaitlist = async (e) => {
     e?.preventDefault();
-    const email = waitlistEmail.trim();
-    if (!email || !email.includes("@")) { setWaitlistStatus("error"); return; }
+    // strip ALL whitespace AND invisible unicode chars (nbsp, zero-width, BOM) that autofill sometimes injects
+    const email = waitlistEmail.replace(/[\s\u00A0\u200B\uFEFF]+/g, "");
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !EMAIL_RE.test(email)) { setWaitlistStatus("error"); return; }
     setWaitlistStatus("saving");
     try {
       const { error } = await _sb.from("waitlist").insert({ email, source: "landing_page_banner" });
