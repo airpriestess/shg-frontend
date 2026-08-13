@@ -25,7 +25,7 @@ import LandingProofWall from "./components/LandingProofWall.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
-import { createClient as _sbClient } from "@supabase/supabase-js";
+import { supabase as _sb } from "./lib/supabase.js";
 import AuthGate from "./components/AuthGate.jsx";
 import { useAuth } from "./contexts/AuthContext.jsx";
 
