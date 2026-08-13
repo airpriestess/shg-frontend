@@ -1258,11 +1258,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
               <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-              <circle cx="35" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
-              <circle cx="65" cy="35" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
-              <circle cx="35" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
-              <circle cx="65" cy="65" r="18" fill="none" stroke="url(#navlg)" strokeWidth="2"/>
-              <line x1="50" y1="80" x2="50" y2="96" stroke="url(#navlg)" strokeWidth="2" strokeLinecap="round"/>
+              <circle cx="50" cy="33" r="22" fill="none" stroke="url(#navlg)" strokeWidth="2.5"/>
+              <circle cx="67" cy="50" r="22" fill="none" stroke="url(#navlg)" strokeWidth="2.5"/>
+              <circle cx="50" cy="67" r="22" fill="none" stroke="url(#navlg)" strokeWidth="2.5"/>
+              <circle cx="33" cy="50" r="22" fill="none" stroke="url(#navlg)" strokeWidth="2.5"/>
             </svg>
             <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: "clamp(11px,3.2vw,14px)", letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
