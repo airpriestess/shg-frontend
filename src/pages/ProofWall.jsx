@@ -2,11 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
 import { createClient } from "@supabase/supabase-js";
-
-const sb = createClient(
-  "https://qtwvslrwmreazmrdktsn.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MzIwMjAsImV4cCI6MjA5ODMwODAyMH0.FjfHRNOjnmbiYMjA9eKT1hexvwCN2ERtTyBOqY2cj-8"
-);
+import { supabase as sb } from "../lib/supabase.js";
 
 const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
 const RG = "#2CB7A7";
