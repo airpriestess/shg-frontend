@@ -840,7 +840,7 @@ function AppPreviewSection({ isMobile }) {
         <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
           style={{ width:44, height:24, borderRadius:12, background:theme==="dark"?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
-          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="dark"?23:3, transition:"left 0.25s" }}/>
+          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="dark"?3:23, transition:"left 0.25s" }}/>
         </button>
         <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
