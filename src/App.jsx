@@ -1255,7 +1255,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
             <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
-              <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+              <defs><linearGradient id="navlg" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
               <circle cx="50" cy="33" r="22" fill="none" stroke="url(#navlg)" strokeWidth="2.5"/>
               <circle cx="67" cy="50" r="22" fill="none" stroke="url(#navlg)" strokeWidth="2.5"/>
               <circle cx="50" cy="67" r="22" fill="none" stroke="url(#navlg)" strokeWidth="2.5"/>
@@ -1439,7 +1439,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
                 <svg viewBox="0 0 100 102" width={isMobile?34:64} height={isMobile?34:64}>
-                  <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                  <defs><linearGradient id="artlg" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
                   <circle cx="50" cy="33" r="16" fill="none" stroke="url(#artlg)" strokeWidth="2.5"/>
                   <circle cx="67" cy="50" r="16" fill="none" stroke="url(#artlg)" strokeWidth="2.5"/>
                   <circle cx="50" cy="67" r="16" fill="none" stroke="url(#artlg)" strokeWidth="2.5"/>
@@ -1462,7 +1462,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
               <svg viewBox="0 0 100 102" width={28} height={28} style={{ opacity: playing ? 1 : 0.35, transition:"opacity 0.4s" }}>
-                <defs><linearGradient id="playlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+                <defs><linearGradient id="playlg" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
                 <circle cx="50" cy="33" r="16" fill="none" stroke="url(#playlg)" strokeWidth="2"/>
                 <circle cx="67" cy="50" r="16" fill="none" stroke="url(#playlg)" strokeWidth="2"/>
                 <circle cx="50" cy="67" r="16" fill="none" stroke="url(#playlg)" strokeWidth="2"/>
@@ -1507,7 +1507,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
         <svg viewBox="0 0 100 102" width={isMobile?100:140} height={isMobile?100:140}>
-          <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <defs><linearGradient id="herolg" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
           <circle cx="50" cy="33" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
           <circle cx="67" cy="50" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
           <circle cx="50" cy="67" r="18" fill="none" stroke="url(#herolg)" strokeWidth="2"/>
@@ -1844,7 +1844,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
         <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
-          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
           <circle cx="50" cy="33" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
           <circle cx="67" cy="50" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
           <circle cx="50" cy="67" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
@@ -1863,7 +1863,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
         <svg viewBox="0 0 100 102" width={18} height={18} style={{opacity:0.5}}>
-          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <defs><linearGradient id="divlg" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
           <circle cx="50" cy="33" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
           <circle cx="67" cy="50" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
           <circle cx="50" cy="67" r="18" fill="none" stroke="url(#divlg)" strokeWidth="2"/>
@@ -1934,7 +1934,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ background: "#000", padding: isMobile?"64px 24px":"80px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
           <div style={{ fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: "#E8B870", fontFamily: "'Jost',sans-serif", fontWeight:400, marginBottom: 16 }}>Coming soon</div>
-          <h2 style={{ fontSize: "clamp(32px,5vw,58px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20, fontWeight: 400, fontFamily: "'Jost',sans-serif" }}>
+          <h2 style={{ fontSize: "clamp(26px,3.6vw,42px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20, fontWeight: 400, fontFamily: "'Jost',sans-serif", whiteSpace: isMobile?"normal":"nowrap" }}>
             Thank you for being here.
           </h2>
           <p style={{ fontSize: isMobile?16:19, color: theme==="dark"?"#e8e0d8":"#000000", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
@@ -1951,7 +1951,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ borderTop: T.border, padding: "64px 24px 28px", textAlign: "center" }}>
         <div style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
           <svg viewBox="0 0 100 102" width={72} height={72}>
-            <defs><linearGradient id="footerlg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+            <defs><linearGradient id="footerlg" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
             <circle cx="50" cy="33" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
             <circle cx="67" cy="50" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>
             <circle cx="50" cy="67" r="18" fill="none" stroke="url(#footerlg)" strokeWidth="2"/>

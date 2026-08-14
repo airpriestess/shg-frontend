@@ -675,7 +675,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             <div style={{ width:56,height:56,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center" }}>
               <svg viewBox="0 0 100 100" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <linearGradient id="lg_sidebar" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <linearGradient id="lg_sidebar" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
                     <stop offset="0%" stopColor="#F5E0A0"/>
                     <stop offset="20%" stopColor="#E8B870"/>
                     <stop offset="52%" stopColor="#BFA5D8"/>
@@ -835,7 +835,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
             <svg viewBox="0 0 100 100" width="40" height="40" fill="none" style={{flexShrink:0}} xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="lg_leftnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+              <defs><linearGradient id="lg_leftnav" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
               <circle cx="50" cy="33" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
               <circle cx="67" cy="50" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
               <circle cx="50" cy="67" r="22" fill="none" stroke={isDark?"url(#lg_leftnav)":"#000"} strokeWidth="2.5"/>
@@ -934,7 +934,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
         <svg viewBox="0 0 100 100" width={22} height={22} fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="lg_nav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
+          <defs><linearGradient id="lg_nav" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
           <circle cx="50" cy="33" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2.5"/>
           <circle cx="67" cy="50" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2.5"/>
           <circle cx="50" cy="67" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2.5"/>
