@@ -234,10 +234,10 @@ export default function Library({ onBack }) {
         <div style={{ display:"flex", justifyContent:"center", marginBottom:24 }}>
           <svg viewBox="0 0 100 102" width={isMobile?56:72} height={isMobile?56:72} fill="none">
             <defs><linearGradient id="liblg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#000"/><stop offset="100%" stopColor="#000"/></linearGradient></defs>
-            <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-            <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-            <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-            <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+            <circle cx="50" cy="33" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+            <circle cx="67" cy="50" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+            <circle cx="50" cy="67" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+            <circle cx="33" cy="50" r="18" fill="none" stroke="#000" strokeWidth="2"/>
             
           </svg>
         </div>

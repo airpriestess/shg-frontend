@@ -59,11 +59,10 @@ function Thumb({ cat, size, radius=4 }) {
             <stop offset="100%" stopColor="#167A6B"/>
           </linearGradient>
         </defs>
-        <circle cx="35" cy="35" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="65" cy="35" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="35" cy="65" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="65" cy="65" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <line x1="50" y1="80" x2="50" y2="96" stroke="url(#thlg)" strokeWidth="5" strokeLinecap="round"/>
+        <circle cx="50" cy="33" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
+        <circle cx="67" cy="50" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
+        <circle cx="50" cy="67" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
+        <circle cx="33" cy="50" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
       </svg>
     </div>
   );
@@ -108,11 +107,10 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:"50%",
           background:OMBRE, display:"flex", alignItems:"center", justifyContent:"center" }}>
           <svg viewBox="0 0 100 102" width={Math.round(16*s)} height={Math.round(16*s)} fill="none">
-            <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <line x1="50" y1="80" x2="50" y2="96" stroke="#000" strokeWidth="8" strokeLinecap="round"/>
+            <circle cx="50" cy="33" r="18" fill="none" stroke="#000" strokeWidth="8"/>
+            <circle cx="67" cy="50" r="18" fill="none" stroke="#000" strokeWidth="8"/>
+            <circle cx="50" cy="67" r="18" fill="none" stroke="#000" strokeWidth="8"/>
+            <circle cx="33" cy="50" r="18" fill="none" stroke="#000" strokeWidth="8"/>
           </svg>
         </div>
       </div>

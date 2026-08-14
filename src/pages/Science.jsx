@@ -70,7 +70,7 @@ export default function Science({ onBack }) {
       <div style={{position:"sticky",top:0,background:"rgba(0,0,0,0.97)",borderBottom:"1px solid rgba(44,183,167,0.12)",padding:"14px 24px",display:"flex",alignItems:"center",justifyContent:"space-between",zIndex:100}}>
         <button onClick={onBack} style={{background:"none",border:"none",color:TEAL,cursor:"pointer",fontSize:14,fontFamily:"'Jost',sans-serif",padding:0}}>← Back</button>
         <div style={{fontSize:12,color:MU,letterSpacing:"0.1em"}}>The Science · reshmaoracle.com</div>
-        <div style={{width:60}}/>
+        <HamburgerMenu/>
       </div>
 
       <div style={{maxWidth:840,margin:"0 auto",padding:isMobile?"0 18px 80px":"0 24px 100px"}}>
@@ -82,10 +82,10 @@ export default function Science({ onBack }) {
           {/* Logo mark — large, black stroke on gradient bg */}
           <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
             <svg viewBox="0 0 100 102" width={isMobile?72:96} height={isMobile?72:96} fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <circle cx="50" cy="33" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <circle cx="67" cy="50" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <circle cx="50" cy="67" r="18" fill="none" stroke="#000" strokeWidth="2"/>
+              <circle cx="33" cy="50" r="18" fill="none" stroke="#000" strokeWidth="2"/>
               
             </svg>
           </div>
