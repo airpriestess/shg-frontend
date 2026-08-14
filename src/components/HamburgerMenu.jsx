@@ -14,7 +14,7 @@ export default function HamburgerMenu({ onSignIn }) {
     ["About Reshma",       () => navigate("/about")],
     ["The Science",        () => navigate("/science")],
     ["The Library",        () => navigate("/library")],
-    ["Quizzes",            () => navigate("/quizzes")],
+    ["Blocks",             () => navigate("/blocks")],
     ["Shop Maxxing Guides",() => window.open("https://beacons.ai/reshmaoracle","_blank")],
     ["YouTube",            () => window.open("https://youtube.com/@reshmaoracle","_blank")],
   ];

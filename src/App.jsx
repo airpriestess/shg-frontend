@@ -13,7 +13,6 @@ import Legal from "./pages/Legal.jsx";
 import Science from "./pages/Science.jsx";
 import About from "./pages/About.jsx";
 import Library from "./pages/Library.jsx";
-import QuizHub from "./pages/QuizHub.jsx";
 import Events from "./pages/Events.jsx";
 import Shop from "./pages/Shop.jsx";
 import LuckyGirl from "./pages/LuckyGirl.jsx";
