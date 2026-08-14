@@ -16,6 +16,7 @@ export default function HamburgerMenu({ onSignIn }) {
     ["The Science",        () => navigate("/science")],
     ["The Library",        () => navigate("/library")],
     ["Blocks",             () => navigate("/blocks")],
+    ["Guides",             () => { window.location.href = "/guides"; }],
     ["Shop Maxxing Guides",() => window.open("https://beacons.ai/reshmaoracle","_blank")],
     ["YouTube",            () => window.open("https://youtube.com/@reshmaoracle","_blank")],
   ];

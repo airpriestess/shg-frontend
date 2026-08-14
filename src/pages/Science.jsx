@@ -69,7 +69,7 @@ export default function Science({ onBack }) {
       {/* NAV */}
       <div style={{position:"sticky",top:0,background:"rgba(0,0,0,0.97)",borderBottom:"1px solid rgba(44,183,167,0.12)",padding:"14px 24px",display:"flex",alignItems:"center",justifyContent:"space-between",zIndex:100}}>
         <button onClick={onBack} style={{background:"none",border:"none",color:TEAL,cursor:"pointer",fontSize:14,fontFamily:"'Jost',sans-serif",padding:0}}>← Back</button>
-        <div style={{fontSize:12,color:MU,letterSpacing:"0.1em"}}>The Science · reshmaoracle.com</div>
+        <div style={{fontSize:12,color:MU,letterSpacing:"0.1em",textTransform:"uppercase"}}>The Science · reshmaoracle.com</div>
         <HamburgerMenu/>
       </div>
 
