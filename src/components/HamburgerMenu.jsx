@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
@@ -31,9 +32,9 @@ export default function HamburgerMenu({ onSignIn }) {
         <div style={{ width:22,height:2,background:"#f2ece4",borderRadius:1 }}/>
       </button>
 
-      {/* Full-screen menu */}
-      {open && (
-        <div style={{ position:"fixed",inset:0,zIndex:999,backgroundColor:"#000000",opacity:1,isolation:"isolate",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
+      {/* Full-screen menu — rendered via portal to escape any ancestor backdrop-filter/transform that would break position:fixed */}
+      {open && createPortal(
+        <div style={{ position:"fixed",inset:0,zIndex:9999,backgroundColor:"#000000",opacity:1,isolation:"isolate",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:"calc(98px + env(safe-area-inset-top,0px))",paddingTop:"env(safe-area-inset-top,0px)" }}>
             <span onClick={()=>go(()=>navigate("/"))} style={{ fontFamily:"'Jost',sans-serif",fontWeight:300,fontSize:18,letterSpacing:"0.02em",color:"#f2ece4",cursor:"pointer" }}>
@@ -67,7 +68,8 @@ export default function HamburgerMenu({ onSignIn }) {
               </button>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
