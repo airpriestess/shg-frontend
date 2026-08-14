@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import HamburgerMenu from "../components/HamburgerMenu.jsx";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
@@ -15,6 +16,9 @@ function SHGNav() {
           <circle cx="33" cy="50" r="18" fill="none" stroke="url(#bnav)" strokeWidth="2"/>
         </svg>
         <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:15, letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
+      </div>
+      <div onClick={(e)=>e.stopPropagation()}>
+        <HamburgerMenu/>
       </div>
     </nav>
   );
