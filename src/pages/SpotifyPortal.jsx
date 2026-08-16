@@ -551,10 +551,15 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const logPlay = async (trackTitle) => {
     if (isPreview || !userId) return;
     try {
-      const { data: rows } = await supabase.from("tracks").select("id").eq("title", trackTitle).limit(1);
-      const trackId = rows?.[0]?.id;
-      if (!trackId) return; // no matching Supabase track row — skip logging, don't block playback
-      await supabase.from("play_history").insert({ user_id: userId, track_id: trackId });
+      const tracksRes = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/tracks");
+      const { tracks } = await tracksRes.json();
+      const match = tracks?.find(t => t.title === trackTitle);
+      if (!match) return; // no matching track row — skip logging, don't block playback
+      await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ track_id: match.id }),
+      });
     } catch (e) { console.error("Failed to log play:", e); }
   };
   const play = (t) => {
@@ -1346,10 +1351,17 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
     if (isPreview || !userId) { setPatterns([]); return; }
     let cancelled = false;
     (async () => {
-      const { data: plays, error: playsErr } = await supabase
-        .from("play_history")
-        .select("played_at, tracks(id, title, category)")
-        .eq("user_id", userId);
+      let plays, playsErr;
+      try {
+        const res = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        plays = data.plays;
+      } catch (e) {
+        playsErr = e;
+      }
       if (cancelled) return;
       if (playsErr || !plays || plays.length === 0) { setPatterns([]); setRealListens({ total:0, week:[0,0,0,0,0,0,0] }); return; }
 
@@ -1369,8 +1381,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       const byCategory = {}; // category -> {count, trackTitles:Set}
       const byTrack = {}; // title -> {count, category}
       plays.forEach(p => {
-        const cat = p.tracks?.category;
-        const title = p.tracks?.title;
+        const cat = p.category;
+        const title = p.title;
         if (cat) { byCategory[cat] = byCategory[cat] || {count:0}; byCategory[cat].count++; }
         if (title) { byTrack[title] = byTrack[title] || {count:0, category:cat}; byTrack[title].count++; }
       });
