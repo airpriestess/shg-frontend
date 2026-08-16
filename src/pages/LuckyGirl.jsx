@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
+import { supabase } from "../lib/supabase";
 
 const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
-const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
-const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MzA0MDAsImV4cCI6MjAyNTQwNjQwMH0.example";
 
 const QUESTIONS = [
   { q: "You just got upgraded to first class. Out of nowhere. Your gut says...", opts: [
@@ -118,19 +117,20 @@ export default function LuckyGirl() {
 
   async function saveToSupabase(n, e, cat) {
     try {
-      await fetch(SUPABASE_URL + "/rest/v1/quiz_leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "apikey": SUPABASE_ANON, "Authorization": "Bearer " + SUPABASE_ANON },
-        body: JSON.stringify({ name: n, email: e, result_category: cat, source: "luckygirl" })
-      });
-    } catch (_) {}
+      const { error } = await supabase.from("quiz_leads").insert([{ name: n, email: e, result_category: cat, source: "luckygirl" }]);
+      if (error) console.error("quiz_leads insert failed:", error.message);
+    } catch (err) {
+      console.error("quiz_leads insert threw:", err);
+    }
     try {
       await fetch("https://hooks.zapier.com/hooks/catch/28404567/46bqizc/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: n, email: e, result_category: cat, source: "luckygirl" })
       });
-    } catch (_) {}
+    } catch (err) {
+      console.error("zapier webhook failed:", err);
+    }
   }
 
   const inputStyle = {

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
 const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
-const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
-const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MzA0MDAsImV4cCI6MjAyNTQwNjQwMH0.example";
 
 const CAT_MAP = { richgirl: "money", lovemaxxing: "love", beautymaxxing: "beauty", selfmaxxing: "self", luckygirl: "lucky" };
 const CATEGORIES = {
@@ -363,15 +362,17 @@ export default function BlocksQuiz() {
   }
 
   async function saveToSupabase(n, e, c, block) {
-    const tableMap = { money: "quiz_richgirl", richgirl: "quiz_richgirl", lucky: "quiz_luckygirl", luckygirl: "quiz_luckygirl", love: "quiz_lovemaxxing", lovemaxxing: "quiz_lovemaxxing", beauty: "quiz_beautymaxxing", beautymaxxing: "quiz_beautymaxxing", self: "quiz_selfmaxxing", selfmaxxing: "quiz_selfmaxxing" };
-    const table = tableMap[c] || "quiz_leads";
     try {
-      await fetch(SUPABASE_URL + "/rest/v1/" + table, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "apikey": SUPABASE_ANON, "Authorization": "Bearer " + SUPABASE_ANON, "Prefer": "return=minimal" },
-        body: JSON.stringify({ name: n, email: e, block: block, created_at: new Date().toISOString() })
-      });
-    } catch (_) {}
+      const { error } = await supabase.from("quiz_leads").insert([{
+        name: n,
+        email: e,
+        result_category: block,
+        source: `blocks_quiz_${c}`,
+      }]);
+      if (error) console.error("quiz_leads insert failed:", error.message);
+    } catch (err) {
+      console.error("quiz_leads insert threw:", err);
+    }
   }
 
   const base = { background: "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontFamily: "'Jost', sans-serif", fontWeight: 400, minHeight: "100vh" };
