@@ -8,7 +8,7 @@ function SHGNav() {
   return (
     <nav onClick={()=>navigate("/")} style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"18px 32px", display:"flex", alignItems:"center", justifyContent:"space-between", background:"rgba(0,0,0,0.88)", backdropFilter:"blur(24px)", borderBottom:"1px solid rgba(255,255,255,0.04)", cursor:"pointer" }}>
       <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-        <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width="22" height="22" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="22" height="22" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:15, letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
       </div>
       <div onClick={(e)=>e.stopPropagation()}>

@@ -6,7 +6,7 @@ function SHGNav() {
   const navigate = useNavigate();
   return (
     <nav onClick={()=>navigate("/")} style={{ display:"flex", alignItems:"center", padding:"0 20px", height:54, borderBottom:"1px solid rgba(0,0,0,0.1)", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", gap:9, position:"sticky", top:0, zIndex:100, cursor:"pointer" }}>
-      <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width="24" height="24" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="24" height="24" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
       <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:"clamp(11px,3.2vw,14px)", letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
     </nav>
   );

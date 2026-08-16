@@ -51,7 +51,7 @@ function Thumb({ cat, size, radius=4 }) {
       border:"1px solid rgba(255,255,255,0.08)",
       display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
       {/* Clover logo mark */}
-      <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width={size*0.44} height={size*0.44} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={size*0.44} height={size*0.44} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
     </div>
   );
 }
@@ -94,7 +94,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         {/* Avatar — clover mark */}
         <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:"50%",
           background:OMBRE, display:"flex", alignItems:"center", justifyContent:"center" }}>
-          <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width={Math.round(16*s)} height={Math.round(16*s)} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={Math.round(16*s)} height={Math.round(16*s)} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         </div>
       </div>
 
