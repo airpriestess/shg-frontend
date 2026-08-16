@@ -1,83 +1,102 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "../lib/supabase.js";
+
+const AUTH_WORKER_URL = "https://shg-auth-worker.airpriestess.workers.dev";
+const TOKEN_STORAGE_KEY = "shg_auth_token";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [session, setSession] = useState(null);
-  const [profile, setProfile] = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch profile (tier, stripe_customer_id, etc.)
-  async function fetchProfile(userId) {
-    const { data } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single();
-    setProfile(data);
+  async function fetchMe(token) {
+    try {
+      const res = await fetch(`${AUTH_WORKER_URL}/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+        setUser(null);
+        return;
+      }
+      const { user: u } = await res.json();
+      setUser(u);
+    } catch (err) {
+      setUser(null);
+    }
   }
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session: s } }) => {
-      setSession(s);
-      if (s?.user) fetchProfile(s.user.id);
+    const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+    if (token) {
+      fetchMe(token).finally(() => setLoading(false));
+    } else {
       setLoading(false);
-    });
-
-    // Listen for auth changes (sign in, sign out, token refresh)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
-      setSession(s);
-      if (s?.user) {
-        fetchProfile(s.user.id);
-      } else {
-        setProfile(null);
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    }
   }, []);
 
-  // Auth actions
   async function signUp(email, password, fullName) {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { full_name: fullName } },
+    const res = await fetch(`${AUTH_WORKER_URL}/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, full_name: fullName }),
     });
-    if (error) throw error;
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Sign up failed");
+    localStorage.setItem(TOKEN_STORAGE_KEY, data.token);
+    setUser(data.user);
     return data;
   }
 
   async function signIn(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
+    const res = await fetch(`${AUTH_WORKER_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Sign in failed");
+    localStorage.setItem(TOKEN_STORAGE_KEY, data.token);
+    setUser(data.user);
     return data;
   }
 
   async function signOut() {
-    await supabase.auth.signOut();
-    setSession(null);
-    setProfile(null);
+    const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+    if (token) {
+      try {
+        await fetch(`${AUTH_WORKER_URL}/logout`, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch (err) {
+        // ignore network errors on logout, clear local state regardless
+      }
+    }
+    localStorage.removeItem(TOKEN_STORAGE_KEY);
+    setUser(null);
   }
 
   async function resetPassword(email) {
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin,
-    });
-    if (error) throw error;
+    // Password reset requires email sending, not yet wired up (pending Nitrosend integration).
+    throw new Error("Password reset isn't available yet — please contact support to reset your password.");
   }
 
-  const user = session?.user || null;
-  const tier = profile?.tier || "free"; // "free" | "audio" | "goddess"
-  const isGoddessTier = tier === "goddess";
+  const tier = user?.tier || "free"; // "free" | "audio" | "goddess" | "lifetime"
+  const isGoddessTier = tier === "goddess" || tier === "lifetime";
   const isAuthenticated = !!user;
 
   return (
     <AuthContext.Provider value={{
-      user, session, profile, tier, isGoddessTier, isAuthenticated, loading,
-      signUp, signIn, signOut, resetPassword, fetchProfile,
+      user,
+      session: user ? { user } : null, // shape-compatible shim for existing consumers expecting session.user
+      profile: user, // shim: profile and user are the same object now
+      tier, isGoddessTier, isAuthenticated, loading,
+      signUp, signIn, signOut, resetPassword,
+      fetchProfile: () => {
+        const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+        if (token) fetchMe(token);
+      },
     }}>
       {children}
     </AuthContext.Provider>
