@@ -27,7 +27,7 @@ import { supabase as _sb } from "./lib/supabase.js";
 import AuthGate from "./components/AuthGate.jsx";
 import { useAuth } from "./contexts/AuthContext.jsx";
 
-const FREE_TRACK_URL = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3";
+const FREE_TRACK_URL = "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV";
 
 
 function PricingRedirect() {
@@ -1145,12 +1145,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   // ── HERO PLAYLIST ─────────────────────────────────────────────────────────
   const PLAYLIST = [
-    { title: "Spoilt Goddess",                               sub: "Selfmaxxing",       freq: "Hypnosis · Melodic House · 528hz · EMDR",  url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" },
-    { title: "I'm a Living Breathing Masterpiece",           sub: "Beautymaxxing",     freq: "Hypnosis · 528hz · EMDR",                   url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview.mp3" },
-    { title: "My Desires Are Obsessed With Me",              sub: "Desiresmaxxing",    freq: "Hypnosis · Subliminal · EMDR",               url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview%20(1).mp3" },
-    { title: "Seduced Focus",                                sub: "Manifestation",     freq: "Hypnosis · Binaural · EMDR",                 url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/preview%20(2).mp3" },
-    { title: "While I Sleep I Manifest",                     sub: "Sleepmaxxing",      freq: "Subliminal · Sleep · EMDR",                  url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/29.06.2026-6.mp3" },
-    { title: "10 Years Into One Hour",                       sub: "EMDR Reset",        freq: "EMDR · Theta · 432hz",                       url: "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3" },
+    { title: "Luckiest Girl Universe",                       sub: "Luckygirlmaxxing",  freq: "Hypnosis · 12min",                          url: "https://shg-audio-worker.airpriestess.workers.dev/LUCKIEST%20GIRL%20UNIVERSE%20HYPNOSIS%2012MINS%2014.08.2026.WAV" },
+    { title: "Drop The Tension",                             sub: "Peacemaxxing",      freq: "Hypnosis · 5min",                           url: "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV" },
+    { title: "Spoilt",                                       sub: "Selfmaxxing",       freq: "Hypnosis · 9min",                           url: "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" },
+    { title: "100 Years of Beauty Sleep",                    sub: "Beautymaxxing",     freq: "Hypnosis · Sleep · 6min",                   url: "https://shg-audio-worker.airpriestess.workers.dev/100%20YEARS%20OF%20BEAUTY%20SLEEP%20HYPNOSIS%206MIN%2020.04.WAV" },
+    { title: "Lifetime of Luck",                             sub: "Luckygirlmaxxing",  freq: "Hypnosis · 9min",                           url: "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV" },
+    { title: "Monica Face",                                  sub: "Facemaxxing",       freq: "Hypnosis · 9min",                           url: "https://shg-audio-worker.airpriestess.workers.dev/MONICA%20FACE%20HYPNOSIS%209MIN%2006.05.2026.WAV" },
   ];
   const [trackIdx, setTrackIdx] = useState(0);
   const currentTrack = PLAYLIST[trackIdx];
@@ -1231,7 +1231,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   return (
     <div className="hypno-bg" style={{ background: "#000000", minHeight: "100vh" }}>
-      <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" onEnded={nextTrack} />
+      <audio ref={audioRef} src="https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" preload="none" onEnded={nextTrack} />
       <audio ref={vaultRef} preload="none" />
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
