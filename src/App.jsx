@@ -23,9 +23,8 @@ import LandingProofWall from "./components/LandingProofWall.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
-import { supabase as _sb } from "./lib/supabase.js";
-import AuthGate from "./components/AuthGate.jsx";
 import { useAuth } from "./contexts/AuthContext.jsx";
+import AuthGate from "./components/AuthGate.jsx";
 
 const FREE_TRACK_URL = "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV";
 
@@ -1990,6 +1989,7 @@ const SIGN_SUGGESTIONS = {
 };
 
 function SignModal({ open, type, onClose, threadId }) {
+  const { token } = useAuth();
   const [val, setVal] = useState("");
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
@@ -1998,11 +1998,14 @@ function SignModal({ open, type, onClose, threadId }) {
     if (!val.trim()) return;
     setSaving(true);
     try {
-      await _sb.from("proof_entries").insert({
-        thread_id: threadId || null,
-        type: type || "Sign",
-        caption: val,
-        happened_at: new Date().toISOString(),
+      const formData = new FormData();
+      formData.append("type", type || "Sign");
+      formData.append("caption", val);
+      if (threadId) formData.append("thread_id", threadId);
+      await fetch("https://shg-proof-worker.airpriestess.workers.dev/proof-entries/upload", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
       });
     } catch(e) { console.error(e); }
     setDone(true);
