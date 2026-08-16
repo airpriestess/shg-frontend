@@ -1230,7 +1230,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   return (
     <div className="hypno-bg" style={{ background: "#000000", minHeight: "100vh" }}>
-      <audio ref={audioRef} src="https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" preload="none" onEnded={nextTrack} />
+      <audio ref={audioRef} src={PLAYLIST[0].url} preload="none" onEnded={nextTrack} />
       <audio ref={vaultRef} preload="none" />
 
       {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
