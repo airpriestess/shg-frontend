@@ -249,10 +249,37 @@ const RESULTS = {
 
 let cur = 0, scores = {fixation:0,comparison:0,inconsistency:0,perception:0}, chosen = null;
 
+
+let _quizLeadEmail = '', _quizLeadName = '';
+function saveQuizLead(resultCategory) {
+  try {
+    fetch('https://qtwvslrwmreazmrdktsn.supabase.co/rest/v1/quiz_leads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MzIwMjAsImV4cCI6MjA5ODMwODAyMH0.FjfHRNOjnmbiYMjA9eKT1hexvwCN2ERtTyBOqY2cj-8',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MzIwMjAsImV4cCI6MjA5ODMwODAyMH0.FjfHRNOjnmbiYMjA9eKT1hexvwCN2ERtTyBOqY2cj-8',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        name: _quizLeadName,
+        email: _quizLeadEmail,
+        result_category: resultCategory || null,
+        source: 'blocks_beautymaxxing'
+      })
+    }).catch(function(err) { console.error('quiz_leads insert failed:', err); });
+  } catch (err) {
+    console.error('quiz_leads insert threw:', err);
+  }
+}
+
 function startQuiz() {
   const n = document.getElementById('inp-name').value.trim();
   const e = document.getElementById('inp-email').value.trim();
   if(!n||!e){alert('Please enter your name and email.');return;}
+  _quizLeadName = n;
+  _quizLeadEmail = e;
+  saveQuizLead(null);
   show('s-quiz'); renderQ();
 }
 
@@ -295,6 +322,7 @@ function nextQ() {
 
 function showResult() {
   const top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  saveQuizLead(top);
   const r = RESULTS[top];
   document.getElementById('res-block').textContent = r.block;
   document.getElementById('res-desc').textContent = r.desc;
