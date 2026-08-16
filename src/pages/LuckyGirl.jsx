@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
-import { supabase } from "../lib/supabase";
 
 const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
@@ -117,8 +116,12 @@ export default function LuckyGirl() {
 
   async function saveToSupabase(n, e, cat) {
     try {
-      const { error } = await supabase.from("quiz_leads").insert([{ name: n, email: e, result_category: cat, source: "luckygirl" }]);
-      if (error) console.error("quiz_leads insert failed:", error.message);
+      const res = await fetch("https://shg-quiz-worker.airpriestess.workers.dev", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: n, email: e, result_category: cat, source: "luckygirl" })
+      });
+      if (!res.ok) console.error("quiz_leads insert failed:", res.status);
     } catch (err) {
       console.error("quiz_leads insert threw:", err);
     }
