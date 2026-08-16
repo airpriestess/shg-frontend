@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../lib/supabase.js";
+
+const PUSH_WORKER_URL = "https://shg-push-worker.airpriestess.workers.dev";
 
 const VAPID_PUBLIC = "BAngNYNtiFBh14NCA0yqlLovaDzYt30BFLgvkuU-_nxPAyR6idGyLiaY6chM8YYVme8p1eMLnvxIqMogy_RNMXg";
 
@@ -10,7 +11,7 @@ function urlBase64ToUint8Array(base64String) {
   return Uint8Array.from(rawData, c => c.charCodeAt(0));
 }
 
-export function usePushNotifications(userId) {
+export function usePushNotifications(userId, token) {
   const [permission, setPermission] = useState(() =>
     "Notification" in window ? Notification.permission : "unavailable"
   );
@@ -51,16 +52,19 @@ export function usePushNotifications(userId) {
 
       const subJson = sub.toJSON();
 
-      // Save to Supabase
-      const { error } = await supabase.from("push_subscriptions").upsert({
-        user_id: userId,
-        endpoint: subJson.endpoint,
-        p256dh: subJson.keys.p256dh,
-        auth: subJson.keys.auth,
-        user_agent: navigator.userAgent.slice(0, 200),
-      }, { onConflict: "endpoint" });
+      const res = await fetch(`${PUSH_WORKER_URL}/push-subscriptions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          endpoint: subJson.endpoint,
+          p256dh: subJson.keys.p256dh,
+          auth: subJson.keys.auth,
+          user_agent: navigator.userAgent.slice(0, 200),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to save subscription");
 
-      if (error) throw error;
       setSubscribed(true);
     } catch (err) {
       console.error("Push subscription failed:", err);
@@ -75,7 +79,11 @@ export function usePushNotifications(userId) {
       const reg = await navigator.serviceWorker.ready;
       const sub = await reg.pushManager.getSubscription();
       if (sub) {
-        await supabase.from("push_subscriptions").delete().eq("endpoint", sub.endpoint);
+        await fetch(`${PUSH_WORKER_URL}/push-subscriptions`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ endpoint: sub.endpoint }),
+        });
         await sub.unsubscribe();
       }
       setSubscribed(false);
@@ -90,8 +98,8 @@ export function usePushNotifications(userId) {
 }
 
 // ── UI COMPONENT — shown in profile menu / settings ──
-export function PushNotificationToggle({ userId, C }) {
-  const { permission, subscribed, loading, subscribe, unsubscribe } = usePushNotifications(userId);
+export function PushNotificationToggle({ userId, token, C }) {
+  const { permission, subscribed, loading, subscribe, unsubscribe } = usePushNotifications(userId, token);
 
   const isUnsupported = permission === "unavailable" || !("PushManager" in window);
   const isDenied = permission === "denied";
@@ -136,8 +144,8 @@ export function PushNotificationToggle({ userId, C }) {
 }
 
 // ── PROMPT BANNER — shows after 3rd session if not subscribed ──
-export function PushPromptBanner({ userId, C, onDismiss }) {
-  const { permission, subscribed, loading, subscribe } = usePushNotifications(userId);
+export function PushPromptBanner({ userId, token, C, onDismiss }) {
+  const { permission, subscribed, loading, subscribe } = usePushNotifications(userId, token);
 
   if (subscribed || permission === "granted" || permission === "denied" || permission === "unavailable") return null;
 

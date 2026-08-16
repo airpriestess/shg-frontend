@@ -728,7 +728,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 20px" }}/>
-          <PushNotificationToggle userId={userId} C={C}/>
+          <PushNotificationToggle userId={userId} token={token} C={C}/>
           <button onClick={onHome} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:16,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             ← Back to site
           </button>
@@ -1234,7 +1234,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       )}
 
       {/* PUSH PROMPT */}
-      {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} C={C} onDismiss={onDismissPush}/>}
+      {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} token={token} C={C} onDismiss={onDismissPush}/>}
 
       {/* PROOFOS TEASER — home tab */}
       <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
