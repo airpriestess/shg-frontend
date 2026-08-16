@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
-import { createClient } from "@supabase/supabase-js";
-import { supabase as sb } from "../lib/supabase.js";
+import { useAuth } from "../contexts/AuthContext.jsx";
+
+const PROOF_WORKER_URL = "https://shg-proof-worker.airpriestess.workers.dev";
 
 const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
 const RG = "#2CB7A7";
@@ -70,6 +71,7 @@ function ImageLightbox({ url, caption, onClose }) {
 }
 
 export default function ProofWall({ onAddProof }) {
+  const { token } = useAuth();
   const [entries, setEntries]   = useState([]);
   const [loading, setLoading]   = useState(true);
   const [filter, setFilter]     = useState("All");
@@ -86,14 +88,12 @@ export default function ProofWall({ onAddProof }) {
     setLoading(true);
     setError(null);
     try {
-      const { data, error: err } = await sb
-        .from("proof_entries")
-        .select("*")
-        .order("happened_at", { ascending: false })
-        .limit(100);
-
-      if (err) throw err;
-      setEntries(data || []);
+      const res = await fetch(`${PROOF_WORKER_URL}/proof-entries`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to load");
+      setEntries(data.entries || []);
     } catch (e) {
       console.error(e);
       setError("Could not load proof entries. " + (e.message || ""));

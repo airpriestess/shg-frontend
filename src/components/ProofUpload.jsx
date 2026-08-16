@@ -8,11 +8,13 @@
 import { useState, useRef, useEffect } from "react";
 import { T } from "../design/tokens.js";
 import { Btn, Modal, FormField } from "./UI.jsx";
-import { createClient } from "@supabase/supabase-js";
-import { supabase as sb } from "../lib/supabase.js";
+import { useAuth } from "../contexts/AuthContext.jsx";
+
+const PROOF_WORKER_URL = "https://shg-proof-worker.airpriestess.workers.dev";
 
 // ── PHOTO UPLOAD MODAL ────────────────────────────────────────────────────────
 export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }) {
+  const { token } = useAuth();
   const [file, setFile]         = useState(null);
   const [preview, setPreview]   = useState(null);
   const [caption, setCaption]   = useState("");
@@ -43,37 +45,27 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
     setUploading(true);
     setError(null);
     try {
-      const ext  = file.name.split(".").pop().toLowerCase() || "jpg";
-      const path = `proof/${threadId || "general"}/${Date.now()}.${ext}`;
-      const { error: upErr } = await sb.storage.from("proof-uploads").upload(path, file, {
-        contentType: file.type || "image/jpeg",
-        upsert: false,
-      });
-      if (upErr) throw upErr;
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("type", "Photo Proof");
+      if (caption) formData.append("caption", caption);
+      if (audioTitle) formData.append("audio_title", audioTitle);
+      if (threadId) formData.append("thread_id", threadId);
 
-      const { data: { publicUrl } } = sb.storage.from("proof-uploads").getPublicUrl(path);
-
-      // Save entry to proof_entries table
-      await sb.from("proof_entries").insert({
-        thread_id:   threadId || null,
-        type:        "Photo Proof",
-        photo_url:   publicUrl,
-        caption:     caption || null,
-        audio_title: audioTitle || null,
-        happened_at: new Date().toISOString(),
+      const res = await fetch(`${PROOF_WORKER_URL}/proof-entries/upload`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Upload failed");
 
       setDone(true);
-      if (onSaved) onSaved({ type: "Photo Proof", photo_url: publicUrl, caption });
+      if (onSaved) onSaved({ type: "Photo Proof", photo_url: data.entry.photo_url, caption });
       setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
-      // Still show success if storage worked even if table insert failed
-      if (e.message?.includes("proof_entries")) {
-        setDone(true);
-      } else {
-        setError("Upload failed — " + (e.message || "please try again."));
-      }
+      setError("Upload failed — " + (e.message || "please try again."));
     } finally {
       setUploading(false);
     }
@@ -156,6 +148,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
 
 // ── VOICE PROOF MODAL ─────────────────────────────────────────────────────────
 export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }) {
+  const { token } = useAuth();
   const [state, setState]       = useState("idle"); // idle | recording | recorded | uploading | done
   const [duration, setDuration] = useState(0);
   const [caption, setCaption]   = useState("");
@@ -219,40 +212,33 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
     setError(null);
     try {
       const ext = audioBlob.type.includes("ogg") ? "ogg" : audioBlob.type.includes("mp4") ? "mp4" : "webm";
-      const path = `proof/${threadId || "general"}/voice_${Date.now()}.${ext}`;
-      const { error: upErr } = await sb.storage.from("proof-uploads").upload(path, audioBlob, {
-        contentType: audioBlob.type || "audio/webm",
-        upsert: false,
-      });
-      if (upErr) throw upErr;
+      const file = new File([audioBlob], `voice.${ext}`, { type: audioBlob.type || "audio/webm" });
 
-      const { data: { publicUrl } } = sb.storage.from("proof-uploads").getPublicUrl(path);
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("type", "Voice Proof");
+      formData.append("duration_sec", String(duration));
+      if (caption) formData.append("caption", caption);
+      if (audioTitle) formData.append("audio_title", audioTitle);
+      if (threadId) formData.append("thread_id", threadId);
 
-      await sb.from("proof_entries").insert({
-        thread_id:    threadId || null,
-        type:         "Voice Proof",
-        voice_url:    publicUrl,
-        duration_sec: duration,
-        caption:      caption || null,
-        audio_title:  audioTitle || null,
-        happened_at:  new Date().toISOString(),
+      const res = await fetch(`${PROOF_WORKER_URL}/proof-entries/upload`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Upload failed");
 
       setState("done");
       // Notify parent so thread refreshes immediately
-      if (onSaved) onSaved({ type: "Voice Proof", voice_url: publicUrl, duration_sec: duration, caption });
+      if (onSaved) onSaved({ type: "Voice Proof", voice_url: data.entry.voice_url, duration_sec: duration, caption });
       // Auto-close after 2s so user sees the confirmation
       setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
-      if (e.message?.includes("proof_entries")) {
-        setState("done");
-        if (onSaved) onSaved({ type: "Voice Proof" });
-        setTimeout(() => { reset(); onClose(); }, 2000);
-      } else {
-        setError("Upload failed — " + (e.message || "please try again."));
-        setState("recorded");
-      }
+      setError("Upload failed — " + (e.message || "please try again."));
+      setState("recorded");
     }
   };
 
