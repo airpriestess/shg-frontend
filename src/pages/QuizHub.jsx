@@ -6,13 +6,7 @@ function SHGNav() {
   const navigate = useNavigate();
   return (
     <nav onClick={()=>navigate("/")} style={{ display:"flex", alignItems:"center", padding:"0 20px", height:54, borderBottom:"1px solid rgba(0,0,0,0.1)", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", gap:9, position:"sticky", top:0, zIndex:100, cursor:"pointer" }}>
-      <svg viewBox="0 0 100 100" width="24" height="24" style={{flexShrink:0}}>
-        <defs><linearGradient id="shgnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-        <circle cx="50" cy="33" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
-        <circle cx="67" cy="50" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
-        <circle cx="50" cy="67" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
-        <circle cx="33" cy="50" r="18" fill="none" stroke="url(#shgnav)" strokeWidth="2"/>
-      </svg>
+      <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width="24" height="24" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
       <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:"clamp(11px,3.2vw,14px)", letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
     </nav>
   );

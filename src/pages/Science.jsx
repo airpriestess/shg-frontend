@@ -81,13 +81,7 @@ export default function Science({ onBack }) {
 
           {/* Logo mark — large, black stroke on gradient bg */}
           <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
-            <svg viewBox="0 0 100 102" width={isMobile?72:96} height={isMobile?72:96} fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="33" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="67" cy="50" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="50" cy="67" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="33" cy="50" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              
-            </svg>
+            <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width={isMobile?72:96} height={isMobile?72:96} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
           </div>
 
           {/* Wordmark */}

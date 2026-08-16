@@ -51,19 +51,7 @@ function Thumb({ cat, size, radius=4 }) {
       border:"1px solid rgba(255,255,255,0.08)",
       display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
       {/* Clover logo mark */}
-      <svg viewBox="0 0 100 102" width={size*0.44} height={size*0.44} fill="none">
-        <defs>
-          <linearGradient id="thlg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F5E0A0"/>
-            <stop offset="52%" stopColor="#BFA5D8"/>
-            <stop offset="100%" stopColor="#167A6B"/>
-          </linearGradient>
-        </defs>
-        <circle cx="50" cy="33" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="67" cy="50" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="50" cy="67" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="33" cy="50" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-      </svg>
+      <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width={size*0.44} height={size*0.44} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
     </div>
   );
 }
@@ -106,12 +94,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         {/* Avatar — clover mark */}
         <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:"50%",
           background:OMBRE, display:"flex", alignItems:"center", justifyContent:"center" }}>
-          <svg viewBox="0 0 100 102" width={Math.round(16*s)} height={Math.round(16*s)} fill="none">
-            <circle cx="50" cy="33" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="67" cy="50" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="50" cy="67" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="33" cy="50" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-          </svg>
+          <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width={Math.round(16*s)} height={Math.round(16*s)} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         </div>
       </div>
 
