@@ -673,7 +673,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
             <div style={{ width:56,height:56,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center" }}>
-              <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width="52" height="52" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+              <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width="52" height="52" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
             </div>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
@@ -820,7 +820,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         {/* Sidebar */}
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-            <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width="40" height="40" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+            <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width="40" height="40" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
             {isDark ? (
               <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" }}>BETA</span>
             ) : (
@@ -913,7 +913,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </div>
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width="24" height="24" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+        <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width="24" height="24" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{

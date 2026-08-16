@@ -81,7 +81,7 @@ export default function Science({ onBack }) {
 
           {/* Logo mark — large, black stroke on gradient bg */}
           <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
-            <img src="/logo_black_bg.png" alt="Self Hypnosis Goddess" width={isMobile?72:96} height={isMobile?72:96} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+            <img src="/logo_transparent.png" alt="Self Hypnosis Goddess" width={isMobile?72:96} height={isMobile?72:96} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
           </div>
 
           {/* Wordmark */}
