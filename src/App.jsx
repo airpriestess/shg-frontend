@@ -277,7 +277,7 @@ export default function App() {
           authCtx.loading
             ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <div style={{display:"flex",alignItems:"center",gap:8}}>
-                  <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="22" height="22" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+                  <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
                   <span style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:16,color:"#fff",opacity:0.8,letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
                 </div>
               </div>
@@ -1249,7 +1249,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
-            <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="24" height="24" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+            <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
             <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: "clamp(11px,3.2vw,14px)", letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#f2ece4" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
@@ -1445,7 +1445,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {/* Logo mark — replaces progress bar */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
-              <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={28} height={28} style={{ opacity: playing ? 1 : 0.35, transition:"opacity 0.4s" , objectFit:"contain", display:"block"}} />
+              <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={44} height={44} style={{ opacity: playing ? 1 : 0.6, transition:"opacity 0.4s" , objectFit:"contain", display:"block"}} />
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
             </div>
             {/* Controls */}
@@ -1815,7 +1815,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* ─── Section divider ─── */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
-        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={18} height={18} style={{opacity:0.5, objectFit:"contain", display:"block"}} />
+        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={22} height={22} style={{opacity:0.5, objectFit:"contain", display:"block"}} />
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* PROOFOS INTRO — MASSIVE STATEMENT */}

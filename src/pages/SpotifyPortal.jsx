@@ -913,7 +913,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </div>
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="24" height="24" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{
