@@ -1146,7 +1146,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   const PLAYLIST = [
     { title: "I Am The Luckiest Woman In This Universe",     sub: "Luckygirlmaxxing",  freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/LUCKIEST%20GIRL%20UNIVERSE%20HYPNOSIS%2012MINS%2014.08.2026.WAV" },
     { title: "Drop The Tension",                             sub: "Peacemaxxing",      freq: "Hypnosis · Melodic House",                  url: "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV" },
-    { title: "Spoilt",                                       sub: "Selfmaxxing",       freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" },
+    { title: "Spoilt",                                       sub: "Goddessmaxxing",    freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" },
     { title: "100 Years of Beauty Sleep",                    sub: "Beautymaxxing",     freq: "Hypnosis · Sleep · 432hz",                  url: "https://shg-audio-worker.airpriestess.workers.dev/100%20YEARS%20OF%20BEAUTY%20SLEEP%20HYPNOSIS%206MIN%2020.04.WAV" },
     { title: "Lifetime of Luck",                             sub: "Luckygirlmaxxing",  freq: "Hypnosis · Melodic House",                  url: "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV" },
     { title: "Monica Face",                                  sub: "Facemaxxing",       freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/MONICA%20FACE%20HYPNOSIS%209MIN%2006.05.2026.WAV" },
@@ -1430,9 +1430,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?34:64} height={isMobile?34:64} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#f2ece4", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
+                <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#f2ece4", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "I Am The Luckiest Woman In This Universe"}</div>
                 <div style={{ fontSize: isMobile?12:16, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
-                <div style={{ fontSize: 12, color: "#ddd0c8", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
+                <div style={{ fontSize: 12, color: "#ddd0c8", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.sub}{currentTrack?.sub && currentTrack?.freq ? " · " : ""}{currentTrack?.freq || "Hypnosis · 528hz"}</div>
               </div>
               {playing && (
                 <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(42,168,154,0.12)", border: "1px solid rgba(42,168,154,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
