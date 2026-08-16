@@ -1127,12 +1127,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     if (!email || !EMAIL_RE.test(email)) { setWaitlistStatus("error"); return; }
     setWaitlistStatus("saving");
     try {
-      const { error } = await _sb.from("waitlist").insert({ email, source: "landing_page_banner" });
-      // duplicate email = they're already on the list, treat as success not error
-      if (error && error.code !== "23505" && !error.message?.toLowerCase().includes("duplicate")) {
-        setWaitlistStatus("error");
-        return;
-      }
+      const res = await fetch("https://shg-quiz-worker.airpriestess.workers.dev/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "landing_page_banner" }),
+      });
+      // Worker returns success:true even for duplicate emails (already on the list)
+      if (!res.ok) { setWaitlistStatus("error"); return; }
       setWaitlistStatus("done");
     } catch (err) {
       setWaitlistStatus("error");
