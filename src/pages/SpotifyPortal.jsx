@@ -7,6 +7,22 @@ import { PushNotificationToggle, PushPromptBanner } from "../components/PushNoti
 import { useAuth } from "../contexts/AuthContext.jsx";
 import { supabase } from "../lib/supabase.js";
 
+const MANIFESTATIONS_WORKER_URL = "https://shg-manifestations-worker.airpriestess.workers.dev";
+
+async function manifestationsApi(path, token, options = {}) {
+  const res = await fetch(`${MANIFESTATIONS_WORKER_URL}${path}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      ...options.headers,
+    },
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Request failed");
+  return data;
+}
+
 // Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
   {n:"Shame",       v:20,  c:"#7a1f1f"}, // deep red
@@ -446,7 +462,7 @@ const Ico = {
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
 export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
-  const { session } = useAuth();
+  const { session, token } = useAuth();
   const userId = session?.user?.id;
   const [pushDismissed, setPushDismissed] = useState(false);
   const [tab, setTab]         = useState(initialTab);
@@ -473,11 +489,13 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     if (isPreview || !userId) return;
     let cancelled = false;
     (async () => {
-      const { data, error } = await supabase
-        .from("manifestations")
-        .select("*")
-        .eq("user_id", userId)
-        .order("created_at", { ascending: false });
+      let data, error;
+      try {
+        const res = await manifestationsApi("/manifestations", token);
+        data = res.manifestations;
+      } catch (err) {
+        error = err;
+      }
       if (cancelled) return;
       if (error) { console.error("Failed to load manifestations:", error); setThreadsLoaded(true); return; }
       const mapped = (data||[]).map(m => ({
@@ -1732,15 +1750,23 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
     if (!isPreview && userId) {
-      const { error } = await supabase.from("manifestations").update({ status:"manifested", manifested_at:new Date().toISOString(), notes: after || undefined }).eq("id", id).eq("user_id", userId);
-      if (error) console.error("Failed to mark manifested:", error);
+      try {
+        await manifestationsApi(`/manifestations/${id}`, token, {
+          method: "PATCH",
+          body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString(), notes: after || undefined }),
+        });
+      } catch (err) { console.error("Failed to mark manifested:", err); }
     }
   };
   const undoMarkDone = async (id) => {
     setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
     if (!isPreview && userId) {
-      const { error } = await supabase.from("manifestations").update({ status:"in_progress", manifested_at:null }).eq("id", id).eq("user_id", userId);
-      if (error) console.error("Failed to undo manifested:", error);
+      try {
+        await manifestationsApi(`/manifestations/${id}`, token, {
+          method: "PATCH",
+          body: JSON.stringify({ status: "in_progress", manifested_at: null }),
+        });
+      } catch (err) { console.error("Failed to undo manifested:", err); }
     }
   };
   const deleteThread = (id) => { setConfirmDeleteId(id); };
@@ -1748,8 +1774,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setThreads(threads.filter(t=>t.id!==id));
     setConfirmDeleteId(null);
     if (!isPreview && userId) {
-      const { error } = await supabase.from("manifestations").delete().eq("id", id).eq("user_id", userId);
-      if (error) console.error("Failed to delete desire:", error);
+      try {
+        await manifestationsApi(`/manifestations/${id}`, token, { method: "DELETE" });
+      } catch (err) { console.error("Failed to delete desire:", err); }
     }
   };
   const addSign = (id) => {
@@ -1869,13 +1896,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 setThreads([{id:localId,desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
                 setBucketText("");
                 if (!isPreview && userId) {
-                  const { data, error } = await supabase.from("manifestations").insert({
-                    user_id: userId, desire: bucketText, status: "in_progress",
-                  }).select().single();
-                  if (!error && data) {
+                  try {
+                    const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                      method: "POST",
+                      body: JSON.stringify({ desire: bucketText }),
+                    });
                     setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
-                  } else if (error) {
-                    console.error("Failed to save bucket item:", error);
+                  } catch (err) {
+                    console.error("Failed to save bucket item:", err);
                   }
                 }
               }} style={{ padding:"11px 18px", background:isDark?"#fff":"#000", border:"none", borderRadius:8, color:isDark?"#000":"#fff", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
@@ -1937,8 +1965,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       <button onClick={async ()=>{
                         setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t));
                         if (!isPreview && userId) {
-                          const { error } = await supabase.from("manifestations").update({ status:"manifested", manifested_at:new Date().toISOString() }).eq("id", item.id).eq("user_id", userId);
-                          if (error) console.error("Failed to mark manifested:", error);
+                          try {
+                            await manifestationsApi(`/manifestations/${item.id}`, token, {
+                              method: "PATCH",
+                              body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString() }),
+                            });
+                          } catch (err) { console.error("Failed to mark manifested:", err); }
                         }
                       }} style={{ flex:1, padding:"8px 12px", background:R, border:`1px solid ${R}`, borderRadius:8, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         ✓ Already manifested
@@ -2123,13 +2155,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             setThreads([optimistic,...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
             if (!isPreview && userId) {
-              const { data, error } = await supabase.from("manifestations").insert({
-                user_id: userId, desire: newD, category: newCat, status: "in_progress", notes: newBelief,
-              }).select().single();
-              if (!error && data) {
+              try {
+                const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                  method: "POST",
+                  body: JSON.stringify({ desire: newD, category: newCat, notes: newBelief }),
+                });
                 setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
-              } else if (error) {
-                console.error("Failed to save desire:", error);
+              } catch (err) {
+                console.error("Failed to save desire:", err);
               }
             }
           }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>

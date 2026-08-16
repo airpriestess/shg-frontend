@@ -85,10 +85,11 @@ export function AuthProvider({ children }) {
   const tier = user?.tier || "free"; // "free" | "audio" | "goddess" | "lifetime"
   const isGoddessTier = tier === "goddess" || tier === "lifetime";
   const isAuthenticated = !!user;
+  const token = user ? localStorage.getItem(TOKEN_STORAGE_KEY) : null;
 
   return (
     <AuthContext.Provider value={{
-      user,
+      user, token,
       session: user ? { user } : null, // shape-compatible shim for existing consumers expecting session.user
       profile: user, // shim: profile and user are the same object now
       tier, isGoddessTier, isAuthenticated, loading,
