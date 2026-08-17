@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body { margin:0; background:#000; font-family:'Jost',sans-serif; }
+  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Cormorant+Garamond:ital@1&display=swap');
+  .wrap { max-width:1100px; margin:0 auto; padding:100px 40px; }
+  .eyebrow { text-align:center; font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
+    background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:20px; }
+  h2 { text-align:center; font-size:clamp(32px,4.5vw,52px); font-weight:300; color:#f2ece4; margin:0 0 60px; }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:24px; overflow:hidden; border:1px solid rgba(242,236,228,0.1); }
+  .before, .after { padding:48px 40px; }
+  .before { background:#0a0a0a; }
+  .after { background:linear-gradient(160deg,rgba(245,224,160,0.06),rgba(191,165,216,0.06),rgba(44,183,167,0.08)); }
+  .label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:20px; font-weight:500; }
+  .before .label { color:#5a5550; }
+  .after .label { color:#2CB7A7; }
+  .voice-text { font-size:17px; line-height:1.7; color:#7a756e; font-style:italic; min-height:140px; }
+  .clean-text { font-size:19px; line-height:1.7; color:#f2ece4; min-height:140px; }
+  .cursor { display:inline-block; width:2px; height:18px; background:#2CB7A7; animation:blink 1s infinite; vertical-align:middle; margin-left:2px; }
+  @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+  .arrow { text-align:center; margin:40px 0; font-size:28px; color:#2CB7A7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">✦ How the audio actually works</div>
+  <h2>From racing thoughts<br>to installed identity.</h2>
+  <div class="split">
+    <div class="before">
+      <div class="label">Your mind, right now</div>
+      <div class="voice-text" id="rawText"></div>
+    </div>
+    <div class="after">
+      <div class="label">After 21 nights of theta</div>
+      <div class="clean-text" id="cleanText"></div>
+    </div>
+  </div>
+</div>
+<script>
+const raw = "I don't know if I'm even good enough for this... maybe I should just wait, see what happens, hope it works out somehow, I don't really know what I'm doing half the time honestly";
+const clean = "Of course this works out for me. I'm always exactly where I need to be. Everything is falling into place — it always does.";
+let i = 0;
+const rawEl = document.getElementById('rawText');
+function typeRaw() {
+  if (i < raw.length) {
+    rawEl.textContent = raw.slice(0, i+1);
+    i++;
+    setTimeout(typeRaw, 22);
+  } else {
+    setTimeout(typeClean, 500);
+  }
+}
+let j = 0;
+const cleanEl = document.getElementById('cleanText');
+function typeClean() {
+  if (j < clean.length) {
+    cleanEl.textContent = clean.slice(0, j+1);
+    j++;
+    setTimeout(typeClean, 28);
+  }
+}
+typeRaw();
+</script>
+</body>
+</html>
