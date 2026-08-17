@@ -2299,16 +2299,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 function ShopTab({ C }) {
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const products = [
-    { name:"Lovemaxxing Guide",      price:"$19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
-    { name:"Richgirlmaxxing Guide",     price:"$19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing" },
-    { name:"Luckygirlmaxxing Guide", price:"$19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
-    { name:"Sovereignmaxxing Guide", price:"$19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
-    { name:"Confidencemaxxing Guide",price:"$19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
-    { name:"Beautymaxxing Guide",    price:"$19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
-    { name:"Healthmaxxing Guide",      price:"$19", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing" },
-    { name:"Sleepmaxxing Guide",     price:"$19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
-    { name:"Businessmaxxing Guide",  price:"$19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
-    { name:"Peacemaxxing Guide",     price:"$19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
+    { name:"Lovemaxxing Guide",      price:"$19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing",      available:true },
+    { name:"Luckygirlmaxxing Guide", price:"$19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing", available:true },
+    { name:"Richgirlmaxxing Guide",     price:"$19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing",     available:false },
+    { name:"Sovereignmaxxing Guide", price:"$19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing", available:false },
+    { name:"Confidencemaxxing Guide",price:"$19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing",available:false },
+    { name:"Beautymaxxing Guide",    price:"$19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing",   available:false },
+    { name:"Healthmaxxing Guide",      price:"$19", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing",     available:false },
+    { name:"Sleepmaxxing Guide",     price:"$19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing",    available:false },
+    { name:"Businessmaxxing Guide",  price:"$19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing", available:false },
+    { name:"Peacemaxxing Guide",     price:"$19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing",    available:false },
   ];
   return (
     <div style={{ padding:"16px 16px 40px" }}>
@@ -2316,9 +2316,9 @@ function ShopTab({ C }) {
       <div style={{ fontSize:15,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
         {products.map((p,i)=>(
-          <div key={i} onClick={()=>window.open(BEACONS,"_blank")}
-            style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:"pointer",transition:"transform 0.15s" }}
-            onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
+          <div key={i} onClick={()=>p.available && window.open(BEACONS,"_blank")}
+            style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:p.available?1:0.55 }}
+            onMouseEnter={e=>{ if(p.available) e.currentTarget.style.transform="translateY(-2px)"; }}
             onMouseLeave={e=>e.currentTarget.style.transform="none"}>
             <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"#000" }}>
               <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
@@ -2327,8 +2327,11 @@ function ShopTab({ C }) {
               <div style={{ fontSize:14,fontWeight:400,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
               <div style={{ fontSize:13,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
               <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-                <span style={{ fontSize:17,fontWeight:500,color:isDark?R:"#000"}}>{p.price}</span>
-                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>{p.stripe?"Buy now · Stripe":"Buy on Beacons"}<ArrowIcon size={10}/></span>
+                <span style={{ fontSize:17,fontWeight:500,color:isDark?R:"#000"}}>{p.available?p.price:""}</span>
+                {p.available
+                  ? <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>Buy on Beacons<ArrowIcon size={10}/></span>
+                  : <span style={{ padding:"4px 10px",background:"transparent",border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif" }}>Coming soon</span>
+                }
               </div>
             </div>
           </div>
