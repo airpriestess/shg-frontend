@@ -5,7 +5,6 @@ import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
-import { supabase } from "../lib/supabase.js";
 
 const MANIFESTATIONS_WORKER_URL = "https://shg-manifestations-worker.airpriestess.workers.dev";
 
@@ -63,15 +62,14 @@ const dominant = (log,days) => {
    ═══════════════════════════════════════════════════════════════════════ */
 
 // ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
-const BASE = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/";
 const AUDIO_URLS = {
-  "Spoilt Goddess":                        BASE + "SPOILT%20INSTAGRAM%2013.04.2026.WAV",
-  "Money Finds Me First":                  BASE + "29.06.2026-6.mp3",
-  "10 Years Into One Hour":                BASE + "COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3",
-  "I'm a Living Breathing Masterpiece":   BASE + "preview.mp3",
-  "My Desires Are Obsessed With Me":       BASE + "preview%20(1).mp3",
-  "Seduced Focus":                         BASE + "preview%20(2).mp3",
-  "While I Sleep I Manifest":              BASE + "29.06.2026-6.mp3",
+  "Spoilt Goddess":                        "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
+  "Money Finds Me First":                  "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV",
+  "10 Years Into One Hour":                "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV",
+  "I'm a Living Breathing Masterpiece":   "https://shg-audio-worker.airpriestess.workers.dev/MONICA%20FACE%20HYPNOSIS%209MIN%2006.05.2026.WAV",
+  "My Desires Are Obsessed With Me":       "https://shg-audio-worker.airpriestess.workers.dev/LUCKIEST%20GIRL%20UNIVERSE%20HYPNOSIS%2012MINS%2014.08.2026.WAV",
+  "Seduced Focus":                         "https://shg-audio-worker.airpriestess.workers.dev/100%20YEARS%20OF%20BEAUTY%20SLEEP%20HYPNOSIS%206MIN%2020.04.WAV",
+  "While I Sleep I Manifest":              "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV",
 };
 
 // ── BEACONS STORE ────────────────────────────────────────────────────────────
@@ -638,10 +636,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     if (isPreview) { alert("Sign up to manage your subscription."); return; }
     setPortalLoading(true);
     try {
-      const { data: { session: s } } = await supabase.auth.getSession();
-      const res = await fetch("https://qtwvslrwmreazmrdktsn.supabase.co/functions/v1/create-portal-session", {
+      const res = await fetch("https://shg-billing-worker.airpriestess.workers.dev/create-portal-session", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${s?.access_token}` },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ return_url: window.location.href }),
       });
       const { url, error } = await res.json();
