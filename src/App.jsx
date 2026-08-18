@@ -413,14 +413,14 @@ const STRIPE = {
 const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
-    monthly: "$49", annual: "$470", annualNote: "~$39.17/mo billed annually",
+    monthly: "$49", annual: "$470", annualPerMonth: "$39.20", annualNote: "$470 billed annually",
     usd: "$49/mo", usdAnnual: "$470/yr",
     features: ["Full exclusive audio vault","All 6 formats, Melodic House, Voice Only, Sleep & Rest, Subliminal, EMDR, Binaural","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
     cta: (annual)=> annual ? "Join Audio, $470/year" : "Join Audio, $49/month",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
-    monthly: "$79", annual: "$758", annualNote: "~$63.17/mo billed annually",
+    monthly: "$79", annual: "$758", annualPerMonth: "$63.20", annualNote: "$758 billed annually",
     usd: "$79/mo", usdAnnual: "$758/yr",
     features: ["Everything in Audio Tier","ProofOS, manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall, every win, forever","Early access drops, 48hrs ahead","Analytics board, watch your evidence build"],
     cta: (annual)=> annual ? "Activate Goddess, $758/year" : "Activate Goddess Tier, $79/month",
@@ -572,8 +572,8 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: theme==="dark"?"#e8e0d8":"#000000", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annualPerMonth    : TIERS.audio.monthly,    note: isAnnual ? TIERS.audio.annualNote : null,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: theme==="dark"?"#e8e0d8":"#000000", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annualPerMonth  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
     { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: theme==="dark"?"#e8e0d8":"#000000", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
   ];
 
@@ -611,7 +611,7 @@ function PricingSection({ onJoin }) {
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 36, fontWeight: 400, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Jost',sans-serif", display: "inline-block" }}>{c.price}</span>
-                <span style={{ fontSize: 13, color: c.periodColor, fontFamily: "'Jost',sans-serif" }}>{c.id === "lifetime" ? " one time" : isAnnual ? "/year" : "/month"}</span>
+                <span style={{ fontSize: 13, color: c.periodColor, fontFamily: "'Jost',sans-serif" }}>{c.id === "lifetime" ? " one time" : "/month"}</span>
               </div>
               <div style={{ fontSize: 10, fontWeight: 500, color: "#E8B870", letterSpacing: "0.1em", marginBottom: 8, fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Coming Soon</div>
               <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>
