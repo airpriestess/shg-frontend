@@ -483,9 +483,9 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:11,color:"#8a7268",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
-                <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#2CB7A7"}}>~$19.17/mo · billed once</div>}
+                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annualPerMonth:TIERS.audio.monthly}</div>
+                <div style={{fontSize:11,color:"#2CB7A7"}}>/month</div>
+                {isAnnual && <div style={{fontSize:10,color:"#2CB7A7"}}>{TIERS.audio.annualNote}</div>}
                 <div style={{fontSize:9,fontWeight:500,color:"#E8B870",letterSpacing:"0.1em",marginTop:4,textTransform:"uppercase"}}>Coming Soon</div>
               </div>
             </div>
@@ -510,9 +510,9 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:11,color:"#2CB7A7",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
-                <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>~$33.58/mo · billed once</div>}
+                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annualPerMonth:TIERS.goddess.monthly}</div>
+                <div style={{fontSize:11,color:"#2CB7A7"}}>/month</div>
+                {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>{TIERS.goddess.annualNote}</div>}
                 <div style={{fontSize:9,fontWeight:500,color:"#F5E0A0",letterSpacing:"0.1em",marginTop:4,textTransform:"uppercase"}}>Coming Soon</div>
               </div>
             </div>
