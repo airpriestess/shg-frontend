@@ -637,6 +637,18 @@ function PricingSection({ onJoin }) {
           Monthly: cancel anytime · Annual: paid upfront · Stripe secure checkout<br />
           No app to download, works in any browser, iPhone, Android
         </div>
+
+        {/* THE GUARANTEE */}
+        <div style={{ marginTop: 64, padding: "44px 32px", borderRadius: 20, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", textAlign: "center", maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
+          <div style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "#E8B870", marginBottom: 18, fontFamily: "'Jost',sans-serif" }}>The Guarantee</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, fontWeight: 400, color: "#f2ece4", lineHeight: 1.9 }}>
+            What I promise:<br/><br/>
+            A brain rewired to expect your desired outcome.<br/><br/>
+            Belief that things work out for you, even when the evidence hasn't arrived yet.<br/><br/>
+            Assumptions rewired. Mood rewired. Identity rewired. Reality shifted.<br/><br/>
+            That's manifestation.
+          </div>
+        </div>
       </div>
     </div>
   );
