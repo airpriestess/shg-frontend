@@ -128,6 +128,44 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
   <a href="/#pricing" class="nav-cta">Join the membership</a>
 </nav>
 
+<div style="max-width:660px;margin:110px auto 0;padding:0 48px;">
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:180px;">
+      <div style="font-size:13px;font-weight:500;color:#f2ece4;margin-bottom:2px;">Two new articles a week</div>
+      <div style="font-size:12px;color:#a89e94;">Subscribe and find your block while you're here.</div>
+    </div>
+    <div style="display:flex;gap:8px;flex:1;min-width:240px;">
+      <input type="email" id="top-email" placeholder="Your email" style="flex:1;padding:11px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-family:'Jost',sans-serif;font-size:13px;outline:none;background:rgba(255,255,255,.05);color:#f2ece4;">
+      <button id="top-btn" style="padding:11px 18px;border-radius:8px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;white-space:nowrap;">Subscribe</button>
+    </div>
+  </div>
+  <p id="top-msg" style="font-size:12px;color:#a89e94;margin-top:8px;min-height:16px;"></p>
+</div>
+<script>
+(function() {
+  const id = 'top';
+  const btn = document.getElementById(id + '-btn');
+  const input = document.getElementById(id + '-email');
+  const msg = document.getElementById(id + '-msg');
+  btn.addEventListener('click', async function() {
+    const email = input.value.trim();
+    if (!email || !email.includes('@')) { msg.textContent = 'Please enter a valid email address.'; return; }
+    btn.disabled = true; btn.textContent = '...';
+    try {
+      const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/waitlist', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'article_inline_top' }),
+      });
+      const data = await res.json();
+      if (res.ok) { msg.textContent = data.alreadyExists ? "Already subscribed — see you next time." : "You're in."; input.value = ''; }
+      else { msg.textContent = 'Something went wrong — try again.'; }
+    } catch (err) { msg.textContent = 'Something went wrong — try again.'; }
+    finally { btn.disabled = false; btn.textContent = 'Subscribe'; }
+  });
+  input.addEventListener('keypress', function(e) { if (e.key === 'Enter') btn.click(); });
+})();
+</script>
+
 <div class="art-hero">
   <div class="breadcrumb">
     <a href="/blog">Journal</a>
@@ -258,6 +296,44 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
   </div>
 
 </div>
+
+<div style="max-width:660px;margin:32px auto 0;padding:0 48px;">
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:180px;">
+      <div style="font-size:13px;font-weight:500;color:#f2ece4;margin-bottom:2px;">Two new articles a week</div>
+      <div style="font-size:12px;color:#a89e94;">Subscribe and find your block while you're here.</div>
+    </div>
+    <div style="display:flex;gap:8px;flex:1;min-width:240px;">
+      <input type="email" id="bottom-email" placeholder="Your email" style="flex:1;padding:11px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-family:'Jost',sans-serif;font-size:13px;outline:none;background:rgba(255,255,255,.05);color:#f2ece4;">
+      <button id="bottom-btn" style="padding:11px 18px;border-radius:8px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;white-space:nowrap;">Subscribe</button>
+    </div>
+  </div>
+  <p id="bottom-msg" style="font-size:12px;color:#a89e94;margin-top:8px;min-height:16px;"></p>
+</div>
+<script>
+(function() {
+  const id = 'bottom';
+  const btn = document.getElementById(id + '-btn');
+  const input = document.getElementById(id + '-email');
+  const msg = document.getElementById(id + '-msg');
+  btn.addEventListener('click', async function() {
+    const email = input.value.trim();
+    if (!email || !email.includes('@')) { msg.textContent = 'Please enter a valid email address.'; return; }
+    btn.disabled = true; btn.textContent = '...';
+    try {
+      const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/waitlist', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'article_inline_bottom' }),
+      });
+      const data = await res.json();
+      if (res.ok) { msg.textContent = data.alreadyExists ? "Already subscribed — see you next time." : "You're in."; input.value = ''; }
+      else { msg.textContent = 'Something went wrong — try again.'; }
+    } catch (err) { msg.textContent = 'Something went wrong — try again.'; }
+    finally { btn.disabled = false; btn.textContent = 'Subscribe'; }
+  });
+  input.addEventListener('keypress', function(e) { if (e.key === 'Enter') btn.click(); });
+})();
+</script>
 
 <!-- RELATED -->
 <div class="related">
