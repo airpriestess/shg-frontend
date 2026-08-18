@@ -614,9 +614,6 @@ function PricingSection({ onJoin }) {
                 <span style={{ fontSize: 13, color: c.periodColor, fontFamily: "'Jost',sans-serif" }}>{c.id === "lifetime" ? " one time" : "/month"}</span>
               </div>
               <div style={{ fontSize: 10, fontWeight: 500, color: "#E8B870", letterSpacing: "0.1em", marginBottom: 8, fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Coming Soon</div>
-              <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>
-                Stripe handles currency conversion
-              </div>
               {c.note && <div style={{ fontSize: 11, color: c.muteColor, marginBottom: 20, fontFamily: "'Jost',sans-serif" }}>{c.note}</div>}
               {!c.note && <div style={{ marginBottom: 20 }} />}
               <div style={{ marginBottom: 24, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 16 }}>
