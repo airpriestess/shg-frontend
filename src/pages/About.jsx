@@ -1,4 +1,4 @@
-/* About — Reshma Oracle */
+/* About, Reshma Oracle */
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
@@ -37,7 +37,7 @@ export default function About({ onBack }) {
         <HamburgerMenu/>
       </div>
 
-      {/* ── HERO — LG gradient, photo + headline ── */}
+      {/* ── HERO, LG gradient, photo + headline ── */}
       <div style={{ width:"100%", background:LG, padding: isMobile?"72px 24px 64px":"96px 24px 80px", textAlign:"center" }}>
         {/* Photo */}
         <div style={{ display:"flex", justifyContent:"center", marginBottom:32 }}>
@@ -72,15 +72,15 @@ export default function About({ onBack }) {
         </p>
       </div>
 
-      {/* ── THE STRUGGLE — black ── */}
+      {/* ── THE STRUGGLE, black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#ffffff", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>Where<br/>it started</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
-            Bullied. Never chosen. Always looking for my place — in rooms, in jobs, in my own skin. The kind of early life that leaves a mark on how you see yourself, and how you think the world sees you back.
+            Bullied. Never chosen. Always looking for my place, in rooms, in jobs, in my own skin. The kind of early life that leaves a mark on how you see yourself, and how you think the world sees you back.
           </p>
           <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
-            Love. Beauty. Body. My relationship with myself. I couldn't find anything that helped me keep my consciousness consistently stable — not therapy, not tools, not habits. Something would work for a day and then collapse the next. Nothing stuck.
+            Love. Beauty. Body. My relationship with myself. I couldn't find anything that helped me keep my consciousness consistently stable, not therapy, not tools, not habits. Something would work for a day and then collapse the next. Nothing stuck.
           </p>
           <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85 }}>
             This went on for my whole life.
@@ -88,20 +88,20 @@ export default function About({ onBack }) {
         </div>
       </div>
 
-      {/* ── THE TURN — cream ── */}
+      {/* ── THE TURN, cream ── */}
       <div style={{ background:CREAM, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>The<br/>discovery</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.85, marginBottom:20 }}>
-            I realised I could train my brain every single day — for how I wanted to think, feel, and act. Not hope. Not try. Train. And the results started shifting in ways that felt genuinely crazy. Manifestations I couldn't explain. Messages from people I'd never met. Things arriving before I felt ready for them.
+            I realised I could train my brain every single day, for how I wanted to think, feel, and act. Not hope. Not try. Train. And the results started shifting in ways that felt genuinely crazy. Manifestations I couldn't explain. Messages from people I'd never met. Things arriving before I felt ready for them.
           </p>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.85 }}>
-            I started creating audios for myself. That was it — nothing more than that. Just for me.
+            I started creating audios for myself. That was it, nothing more than that. Just for me.
           </p>
         </div>
       </div>
 
-      {/* ── THE BUILD — black, two-col on desktop ── */}
+      {/* ── THE BUILD, black, two-col on desktop ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(38px,10vw,56px)":"clamp(52px,5.5vw,80px)", fontWeight:400, color:"#ffffff", lineHeight:1.05, letterSpacing:"-0.02em", marginBottom:56, textAlign:"center" }}>Why this<br/>exists</h2>
@@ -112,22 +112,22 @@ export default function About({ onBack }) {
                 {
                   accent:"#E8B870",
                   label:"The starting point",
-                  body:"I started creating audios for myself. That was it — nothing more than that. Just for me. I'd spent years running live meditations and writing hypnosis scripts, and the results were real — but only while I was in the room. The moment the session ended, so did the shift. I needed something that stayed with me after I closed my eyes and got on with my day.",
+                  body:"I started creating audios for myself. That was it, nothing more than that. Just for me. I'd spent years running live meditations and writing hypnosis scripts, and the results were real, but only while I was in the room. The moment the session ended, so did the shift. I needed something that stayed with me after I closed my eyes and got on with my day.",
                 },
                 {
                   accent:"#BFA5D8",
                   label:"What I built",
-                  body:"So I built something with a real voice, real EMDR, real binaural layering — not AI, not generic, not something I outsourced. I recorded it the way I'd wanted something recorded for me for years and could never find. I built it for myself first, because I needed it to exist.",
+                  body:"So I built something with a real voice, real EMDR, real binaural layering, not AI, not generic, not something I outsourced. I recorded it the way I'd wanted something recorded for me for years and could never find. I built it for myself first, because I needed it to exist.",
                 },
                 {
                   accent:"#2CB7A7",
                   label:"The realisation",
-                  body:"And then I realised — holy shit, everyone needs help with this. I started this journey for myself. I didn't set out to build a company or a platform. I was just trying to fix the thing that had followed me my whole life — the belief system that never let me feel chosen, never let me feel settled in my own skin. Therapy, tools, habits — something would work for a day and collapse the next. Nothing stuck, until I started training my brain instead of just talking to it.",
+                  body:"And then I realised, holy shit, everyone needs help with this. I started this journey for myself. I didn't set out to build a company or a platform. I was just trying to fix the thing that had followed me my whole life, the belief system that never let me feel chosen, never let me feel settled in my own skin. Therapy, tools, habits, something would work for a day and collapse the next. Nothing stuck, until I started training my brain instead of just talking to it.",
                 },
                 {
                   accent:"#F5E0A0",
                   label:"What it means now",
-                  body:"What I'd built wasn't just for me anymore. Almost nothing on the market is built for the theta state — the window your brain enters just before sleep, when the subconscious stops arguing and starts accepting. That's the window every track in this library is built for. Not one day. Not when you've earned it. Now.",
+                  body:"What I'd built wasn't just for me anymore. Almost nothing on the market is built for the theta state, the window your brain enters just before sleep, when the subconscious stops arguing and starts accepting. That's the window every track in this library is built for. Not one day. Not when you've earned it. Now.",
                 },
               ].map(({ accent, label, body }, i) => (
                 <div key={i} style={{ borderRadius:16, padding:"28px 26px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
@@ -140,23 +140,23 @@ export default function About({ onBack }) {
         </div>
       </div>
 
-      {/* ── THE PHILOSOPHY — LG gradient ── */}
+      {/* ── THE PHILOSOPHY, LG gradient ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:640, margin:"0 auto" }}>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>What I<br/>actually believe</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.8, marginBottom:20 }}>
-            I don't care how logical the world is. I choose to live in my magical version of it — and that is exactly how I am able to manifest the things I manifest.
+            I don't care how logical the world is. I choose to live in my magical version of it, and that is exactly how I am able to manifest the things I manifest.
           </p>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.8, marginBottom:20 }}>
-            SHG exists to help you stay in the magic. To keep your mind calibrated to what you want — not what you fear. Every audio, every track, every tool inside is built to do one thing: help you stay in your version of reality long enough for it to become the real one.
+            SHG exists to help you stay in the magic. To keep your mind calibrated to what you want, not what you fear. Every audio, every track, every tool inside is built to do one thing: help you stay in your version of reality long enough for it to become the real one.
           </p>
           <p style={{ fontSize: isMobile?16:18, color:BLACK, lineHeight:1.7, fontWeight:500 }}>
-            I don't have to deal with the BS anymore. I'm the only boss in my life. That's what this is about — for me, and for you.
+            I don't have to deal with the BS anymore. I'm the only boss in my life. That's what this is about, for me, and for you.
           </p>
         </div>
       </div>
 
-      {/* ── WHAT I MAKE — black ── */}
+      {/* ── WHAT I MAKE, black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto", textAlign:"center" }}>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#ffffff", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:16, textTransform:"uppercase" }}>What's<br/>inside</h2>
@@ -164,9 +164,9 @@ export default function About({ onBack }) {
 
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20, marginBottom:40, textAlign:"left" }}>
             {[
-              { accent:"#E8B870", label:"Nowhere else like it", body:"There is nothing like this on the market. You can go and try and research — you'll never find anything close to what I'm building with the manifestation tracker." },
-              { accent:"#BFA5D8", label:"The audio", body:"My voice takes you into the magic. Once you trust it, I teleport you into a delusional, magical space where anything and everything is possible. Full voice hypnosis, subliminals, 528hz, EMDR, binaural beats, melodic house, theta induction — every format I've found that actually works, stacked into something you can loop while you sleep, work, or exist." },
-              { accent:"#2CB7A7", label:"The tracking", body:"ProofOS tracks every desire, every sign, every win — logged against the Hawkins scale, so you can watch your own emotional state climb in real time, not just hope it's working. Across 24 categories. Every manifestation, dated, permanent, yours for life." },
+              { accent:"#E8B870", label:"Nowhere else like it", body:"There is nothing like this on the market. You can go and try and research, you'll never find anything close to what I'm building with the manifestation tracker." },
+              { accent:"#BFA5D8", label:"The audio", body:"My voice takes you into the magic. Once you trust it, I teleport you into a delusional, magical space where anything and everything is possible. Full voice hypnosis, subliminals, 528hz, EMDR, binaural beats, melodic house, theta induction, every format I've found that actually works, stacked into something you can loop while you sleep, work, or exist." },
+              { accent:"#2CB7A7", label:"The tracking", body:"ProofOS tracks every desire, every sign, every win, logged against the Hawkins scale, so you can watch your own emotional state climb in real time, not just hope it's working. Across 24 categories. Every manifestation, dated, permanent, yours for life." },
               { accent:"#F5E0A0", label:"Mine, not generic", body:"This isn't a meditation app with my voice slapped on top. I built the formula, I wrote every script, I recorded every track. Nothing here is generic, and nothing here is AI. It's mine, and now it's yours too." },
             ].map(({ accent, label, body }, i) => (
               <div key={i} style={{ borderRadius:16, padding:"24px 24px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>

@@ -45,7 +45,7 @@ export default function CreateThreadModal({ open, onClose, preselectedAudioId })
         </FormField>
 
         <FormField label="Details (optional)">
-          <textarea value={form.intentionDetails} onChange={e => set("intentionDetails")(e.target.value)} placeholder="Add any details about this desire — timing, person, amount, specifics..." rows={2} style={{ resize: "vertical" }} />
+          <textarea value={form.intentionDetails} onChange={e => set("intentionDetails")(e.target.value)} placeholder="Add any details about this desire, timing, person, amount, specifics..." rows={2} style={{ resize: "vertical" }} />
         </FormField>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>

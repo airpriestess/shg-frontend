@@ -3,7 +3,7 @@ import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
 import { PROOF_THREADS, AUDIOS, USER } from "../data/sample.js";
 
-const RG = "#2CB7A7"; // Lucky Girl teal — single accent
+const RG = "#2CB7A7"; // Lucky Girl teal, single accent
 
 const STATUS_LABEL = {
   "Active": { label: "Active", color: "#d8c8a0" },
@@ -13,7 +13,7 @@ const STATUS_LABEL = {
 };
 
 const TIMELINE = [
-  { day: "Day 1", event: "First listen",     detail: "Money Finds Me First — Proof Thread opened.",             icon: "🎧", photo: false },
+  { day: "Day 1", event: "First listen",     detail: "Money Finds Me First, Proof Thread opened.",             icon: "🎧", photo: false },
   { day: "Day 2", event: "Voice proof",      detail: "I felt calmer and more certain after listening.",          icon: "🎙", photo: false },
   { day: "Day 3", event: "Sign noticed",     detail: "Saw 555 three times. A phrase from the audio appeared.",  icon: "◈",  photo: false },
   { day: "Day 5", event: "Photo proof",      detail: "Bank notification screenshot captured.",                   icon: "📷", photo: true  },
@@ -109,7 +109,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10, marginBottom: 24 }} className="grid-4">
               <StatCard value={PROOF_THREADS.length} label="Intentions" />
               <StatCard value={manifested.length}    label="Manifested" />
-              <StatCard value={avgDays ? `${avgDays}d` : "—"} label="Avg Days" />
+              <StatCard value={avgDays ? `${avgDays}d` : ","} label="Avg Days" />
               <StatCard value={`${rate}%`}           label="Rate" />
             </div>
 

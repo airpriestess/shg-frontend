@@ -6,36 +6,36 @@ const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78
 
 const QUESTIONS = [
   { q: "You just got upgraded to first class. Out of nowhere. Your gut says...", opts: [
-    { t: "Of course — this is just how my life goes", c: "identity" },
+    { t: "Of course, this is just how my life goes", c: "identity" },
     { t: "Enjoy it now, it probably won't happen again", c: "money" },
     { t: "I hope the person next to me doesn't think I don't belong here", c: "love" },
     { t: "I wish I'd worn something better", c: "body" }
   ]},
   { q: "$10,000 arrives unexpectedly. You feel...", opts: [
-    { t: "Relieved — but already nervous about it running out", c: "money" },
-    { t: "Shocked — I didn't do anything to deserve this", c: "identity" },
-    { t: "Happy — then immediately thinking about who else needs some", c: "love" },
-    { t: "Good — now I can finally fix the things I've been putting off", c: "body" }
+    { t: "Relieved, but already nervous about it running out", c: "money" },
+    { t: "Shocked, I didn't do anything to deserve this", c: "identity" },
+    { t: "Happy, then immediately thinking about who else needs some", c: "love" },
+    { t: "Good, now I can finally fix the things I've been putting off", c: "body" }
   ]},
   { q: "Someone gorgeous, successful, and emotionally available wants you. You think...", opts: [
-    { t: "What's the catch — people like that don't just choose me", c: "love" },
+    { t: "What's the catch, people like that don't just choose me", c: "love" },
     { t: "I wonder how long before they see who I really am", c: "identity" },
     { t: "I need to make sure I don't need them too much", c: "love" },
     { t: "I'd feel so much more confident once I've sorted myself out", c: "body" }
   ]},
   { q: "You're getting ready for the most important night of your life. You feel...", opts: [
     { t: "Like I'm still one dress size, one treatment, one fix away", c: "body" },
-    { t: "Beautiful — then second-guessing it the second I leave the door", c: "body" },
-    { t: "Excited — then wondering if I actually belong in the room", c: "identity" },
-    { t: "Ready — but quietly waiting for something to go wrong", c: "money" }
+    { t: "Beautiful, then second-guessing it the second I leave the door", c: "body" },
+    { t: "Excited, then wondering if I actually belong in the room", c: "identity" },
+    { t: "Ready, but quietly waiting for something to go wrong", c: "money" }
   ]},
   { q: "Life just gave you exactly what you asked for. Your first thought is...", opts: [
-    { t: "Something's about to go wrong — it's always too good to be true", c: "money" },
+    { t: "Something's about to go wrong, it's always too good to be true", c: "money" },
     { t: "I must have done something right for once", c: "identity" },
     { t: "I hope this doesn't make people around me feel bad", c: "love" },
     { t: "I'll fully enjoy it once I feel better about myself", c: "body" }
   ]},
-  { q: "She has it all — the money, the love, the body, the life. The difference between her and you is...", opts: [
+  { q: "She has it all, the money, the love, the body, the life. The difference between her and you is...", opts: [
     { t: "She just believes she deserves it. I'm still working on that.", c: "identity" },
     { t: "She doesn't panic when good things arrive. I always do.", c: "money" },
     { t: "She lets people love her without testing it. I can't.", c: "love" },
@@ -47,11 +47,11 @@ const QUESTIONS = [
     { t: "I'm scared of losing the people I love if I change too much", c: "love" },
     { t: "I'm waiting until I look like the version of me who deserves it", c: "body" }
   ]},
-  { q: "In your Lucky Girl era, every day feels lucky — right place, right time. The area where that's still hardest to believe is...", opts: [
-    { t: "Money — I never get the lucky break, it always goes to someone else", c: "money" },
-    { t: "Love — being chosen freely still feels too good to be true", c: "love" },
-    { t: "My body — I can't feel lucky in a body I'm still fighting", c: "body" },
-    { t: "My identity — I don't fully feel like her yet", c: "identity" }
+  { q: "In your Lucky Girl era, every day feels lucky, right place, right time. The area where that's still hardest to believe is...", opts: [
+    { t: "Money, I never get the lucky break, it always goes to someone else", c: "money" },
+    { t: "Love, being chosen freely still feels too good to be true", c: "love" },
+    { t: "My body, I can't feel lucky in a body I'm still fighting", c: "body" },
+    { t: "My identity, I don't fully feel like her yet", c: "identity" }
   ]}
 ];
 
@@ -62,7 +62,7 @@ const RESULTS = {
   identity: { block: "The Not-Yet Trap",             old: '"I have to become a different version of myself before I\'m allowed to have the life I want. The person I am now isn\'t quite the person who gets to have that."',           new: "I am the upgraded version. She is here now." }
 };
 
-const RITUAL = "Say your new assumption aloud right before sleep — that's the theta window, when your subconscious stops arguing with it. Two minutes. Every night. 21 nights. That's the install window.";
+const RITUAL = "Say your new assumption aloud right before sleep, that's the theta window, when your subconscious stops arguing with it. Two minutes. Every night. 21 nights. That's the install window.";
 
 
 
@@ -162,7 +162,7 @@ export default function LuckyGirl() {
       {/* NAV */}
       <SHGNav/>
 
-      {/* LANDING — full LG gradient background */}
+      {/* LANDING, full LG gradient background */}
       {phase === "landing" && (
         <div style={{ background: LG, minHeight: "calc(100vh - 61px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "64px 24px 80px", textAlign: "center" }}>
           <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, color: "#000" }}>
@@ -172,7 +172,7 @@ export default function LuckyGirl() {
             What's blocking your Lucky Girl era?
           </h1>
           <p style={{ fontSize: 18, color: "#000", lineHeight: 1.7, maxWidth: 440, margin: "0 auto 48px" }}>
-            8 questions. Your invisible block — named, and replaced.
+            8 questions. Your invisible block, named, and replaced.
           </p>
           <div style={{ maxWidth: 480, width: "100%" }}>
             <input style={inputStyle} placeholder="First name" value={name} onChange={e => setName(e.target.value)}/>
@@ -185,7 +185,7 @@ export default function LuckyGirl() {
       )}
 
 
-      {/* INTRO — image only, minimal */}
+      {/* INTRO, image only, minimal */}
       {phase === "intro" && (
         <div style={{ background: "#000", minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px 64px" }}>
           <svg width="72" height="72" viewBox="0 0 28 28" fill="none" style={{ marginBottom: 32, display: "block", margin: "0 auto 32px" }}>
@@ -208,7 +208,7 @@ export default function LuckyGirl() {
         </div>
       )}
 
-      {/* QUIZ — black background */}
+      {/* QUIZ, black background */}
       {phase === "quiz" && (
         <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px" }}>
           <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 }}>
@@ -252,7 +252,7 @@ export default function LuckyGirl() {
               <div style={{ fontSize: 12, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14 }}>Your 21-night ritual</div>
               <div style={{ fontSize: 19, color: "#000", lineHeight: 1.85 }}>{RITUAL}</div>
             </div>
-            <p style={{ fontSize: 18, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for — hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
+            <p style={{ fontSize: 18, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for, hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
             <div style={{ background: LG, borderRadius: 20, padding: "40px 28px", marginBottom: 16, textAlign: "center" }}>
               <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>✦ The next step ✦</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5vw,48px)", color: "#000", fontWeight: 400, lineHeight: 1.1, marginBottom: 12 }}>Lucky Girl Maxxing</div>
@@ -261,7 +261,7 @@ export default function LuckyGirl() {
               <div style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, marginBottom: 28, maxWidth: 380, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
               <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer"
                 style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 56px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
-                Get the workbook — $19
+                Get the workbook, $19
               </a>
             </div>
             <div style={{ border: "1px solid #222", borderRadius: 16, padding: "24px 28px", textAlign: "center" }}>

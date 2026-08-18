@@ -27,7 +27,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
 
   const handleFile = (f) => {
     if (!f) return;
-    if (f.size > 20 * 1024 * 1024) { setError("File too large — maximum 20 MB."); return; }
+    if (f.size > 20 * 1024 * 1024) { setError("File too large, maximum 20 MB."); return; }
     setFile(f);
     setError(null);
     const reader = new FileReader();
@@ -65,7 +65,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
       setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
-      setError("Upload failed — " + (e.message || "please try again."));
+      setError("Upload failed, " + (e.message || "please try again."));
     } finally {
       setUploading(false);
     }
@@ -237,7 +237,7 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
       setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
-      setError("Upload failed — " + (e.message || "please try again."));
+      setError("Upload failed, " + (e.message || "please try again."));
       setState("recorded");
     }
   };
@@ -300,7 +300,7 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
 
             {(state === "recorded" || state === "uploading") && audioUrl && (
               <>
-                <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 700, marginBottom: 12 }}>🎙 Recording — {fmt(duration)}</div>
+                <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 700, marginBottom: 12 }}>🎙 Recording, {fmt(duration)}</div>
                 <audio controls src={audioUrl} style={{ width: "100%", marginBottom: 16, borderRadius: 8 }} />
                 <button onClick={reset} style={{ background: "none", border: "none", color: T.textMuted, fontSize: 12, cursor: "pointer" }}>✕ Discard and re-record</button>
               </>

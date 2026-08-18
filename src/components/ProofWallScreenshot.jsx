@@ -1,4 +1,4 @@
-/* ProofWallScreenshot — phone showing ProofOS tracker */
+/* ProofWallScreenshot, phone showing ProofOS tracker */
 
 const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(44,183,167,0.10)", cr:"#2CB7A7", mu:"#f2ece4", dim:"#e8e0d8", nav:"rgba(0,0,0,0.97)" };
 const LIGHT = { bg:"#fdf8f2", bg2:"#ffffff", bg3:"rgba(44,183,167,0.10)", cr:"#1a1008", mu:"#1a1008", dim:"#3a342c", nav:"rgba(253,248,242,0.97)" };
@@ -12,7 +12,7 @@ const THREADS = [
   { desire:"I am a lucky girl", cat:"Luckygirlmaxxing", catColor:"#9b87c4", catBg:"rgba(155,135,196,0.12)", days:7, done:true, signs:4, track:"Lucky Girl Summer" },
 ];
 
-/* Elegant manifested tile — no images, just branded gradient + text */
+/* Elegant manifested tile, no images, just branded gradient + text */
 function ManifestedTile({ d, s, C, f, pad, r8, r20 }) {
   const accent = d.catColor || "#2CB7A7";
   return (

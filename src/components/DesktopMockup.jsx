@@ -1,4 +1,4 @@
-/* DesktopMockup — browser frame, dark/light, matches real dashboard */
+/* DesktopMockup, browser frame, dark/light, matches real dashboard */
 
 const THEMES = {
   dark: {
@@ -168,7 +168,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
               ))}
             </div>
 
-            {/* Made for you — 2×3 category grid */}
+            {/* Made for you, 2×3 category grid */}
             <div style={{ fontSize:f.sm, color:C.cr, marginBottom:gap }}>Made for you</div>
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:Math.round(4*s) }}>
               {FEATURED_CATS.slice(0,6).map((cat,i)=>{

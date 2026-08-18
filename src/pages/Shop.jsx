@@ -6,7 +6,7 @@ const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78
 const WORKBOOKS = [
   {
     key: "luckygirl", name: "LuckyGirl Workbook",
-    desc: "The Recognition Filter. Timing Windows. The Domino Effect. 21 pieces of evidence. The full operating system — installed in 21 days.",
+    desc: "The Recognition Filter. Timing Windows. The Domino Effect. 21 pieces of evidence. The full operating system, installed in 21 days.",
     price: "$29", was: "$49",
     cta: "Install the LuckyGirl operating system →",
     url: "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f",
@@ -14,7 +14,7 @@ const WORKBOOKS = [
   },
   {
     key: "lovemaxxing", name: "Lovemaxxing Workbook",
-    desc: "The Four Chambers. The Attraction Compass. The Repulsion Map. The Selection Code — installed in 21 days.",
+    desc: "The Four Chambers. The Attraction Compass. The Repulsion Map. The Selection Code, installed in 21 days.",
     price: "$29", was: "$49",
     cta: "Install the Lovemaxxing operating system →",
     url: "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db",

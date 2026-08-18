@@ -88,7 +88,7 @@ export default function Blocks() {
         <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 20 }}>✦ Free diagnostics ✦</div>
         <h1 style={{ fontSize: "clamp(48px,8vw,96px)", fontWeight: 700, color: "#000", letterSpacing: "-.04em", lineHeight: 1, marginBottom: 20 }}>Find your block.</h1>
         <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "rgba(0,0,0,0.65)", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
-          8 questions. Your invisible block — named, and replaced.
+          8 questions. Your invisible block, named, and replaced.
         </p>
       </div>
 
@@ -129,7 +129,7 @@ export default function Blocks() {
       {/* BOTTOM CTA */}
       <div style={{ padding: "60px 32px 100px", textAlign: "center" }}>
         <p style={{ fontSize: 16, color: "rgba(255,255,255,0.4)", lineHeight: 1.7, maxWidth: 400, margin: "0 auto 32px" }}>
-          Not sure which one? Take the Lucky Girl quiz — it diagnoses your primary block across all four areas.
+          Not sure which one? Take the Lucky Girl quiz, it diagnoses your primary block across all four areas.
         </p>
         <div onClick={() => navigate("/luckygirl")}
           style={{ display: "inline-block", background: LG, borderRadius: 40, padding: "18px 40px", fontSize: 16, fontWeight: 600, color: "#000", cursor: "pointer", letterSpacing: ".03em" }}>

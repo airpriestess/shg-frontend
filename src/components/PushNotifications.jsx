@@ -97,7 +97,7 @@ export function usePushNotifications(userId, token) {
   return { permission, subscribed, loading, subscribe, unsubscribe };
 }
 
-// ── UI COMPONENT — shown in profile menu / settings ──
+// ── UI COMPONENT, shown in profile menu / settings ──
 export function PushNotificationToggle({ userId, token, C }) {
   const { permission, subscribed, loading, subscribe, unsubscribe } = usePushNotifications(userId, token);
 
@@ -117,7 +117,7 @@ export function PushNotificationToggle({ userId, token, C }) {
               : isDenied
               ? "Blocked in browser settings"
               : subscribed
-              ? "On — you'll hear when new tracks drop"
+              ? "On, you'll hear when new tracks drop"
               : "Get notified when new tracks drop"}
           </div>
         </div>
@@ -143,7 +143,7 @@ export function PushNotificationToggle({ userId, token, C }) {
   );
 }
 
-// ── PROMPT BANNER — shows after 3rd session if not subscribed ──
+// ── PROMPT BANNER, shows after 3rd session if not subscribed ──
 export function PushPromptBanner({ userId, token, C, onDismiss }) {
   const { permission, subscribed, loading, subscribe } = usePushNotifications(userId, token);
 

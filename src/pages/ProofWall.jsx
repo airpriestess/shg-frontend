@@ -144,7 +144,7 @@ export default function ProofWall({ onAddProof }) {
           ))}
         </div>
 
-        {/* Photo grid — masonry style */}
+        {/* Photo grid, masonry style */}
         {photos.length > 0 && (
           <div style={{ marginBottom:32 }}>
             <div style={{ fontSize:11, color:RG, fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Photo Proof</div>
@@ -227,7 +227,7 @@ export default function ProofWall({ onAddProof }) {
             <div style={{ fontSize:36, marginBottom:16, opacity:0.3 }}>◈</div>
             <div style={{ fontSize:18, fontWeight:600, color:T.textPrimary, marginBottom:8 }}>No proof yet</div>
             <div style={{ fontSize:14, color:T.textMuted, lineHeight:1.7, marginBottom:24, maxWidth:340, margin:"0 auto 24px" }}>
-              Your evidence vault is empty. Start capturing — upload a photo, record your voice, or log a sign.
+              Your evidence vault is empty. Start capturing, upload a photo, record your voice, or log a sign.
             </div>
             <div style={{ display:"flex", gap:10, justifyContent:"center" }}>
               <Btn variant="champagne" onClick={() => onAddProof("Photo Proof")}>📷 Add Photo Proof</Btn>

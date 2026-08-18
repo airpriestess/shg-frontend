@@ -35,7 +35,7 @@ export default function Events() {
           Events
         </h1>
         <p style={{ fontSize:17, color:"#c8bcb0", maxWidth:480, margin:"0 auto", lineHeight:1.7 }}>
-          Live sessions, workshops, and in-person gatherings — book your spot below.
+          Live sessions, workshops, and in-person gatherings, book your spot below.
         </p>
       </div>
 

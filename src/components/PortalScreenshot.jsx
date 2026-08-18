@@ -1,4 +1,4 @@
-/* PortalScreenshot — mobile phone mockup, matches real dashboard exactly */
+/* PortalScreenshot, mobile phone mockup, matches real dashboard exactly */
 
 const THEMES = {
   dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,184,112,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#f2ece4", dim:"#e8e0d8", border:"rgba(232,184,112,0.12)" },
@@ -8,7 +8,7 @@ const THEMES = {
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 const TEAL  = "#2CB7A7";
 
-// All accents in LG palette only — no blue, no pink, no brown
+// All accents in LG palette only, no blue, no pink, no brown
 const CAT = {
   Lovemaxxing:      { accent:"#167A6B" },
   Beautymaxxing:    { accent:"#BFA5D8" },
@@ -91,7 +91,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
           <div style={{ fontSize:f.xs, color:C.mu, letterSpacing:"0.06em", textTransform:"uppercase", marginBottom:1 }}>Welcome back</div>
           <span style={{ fontSize:f.lg, color:C.cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Goddess</span>
         </div>
-        {/* Avatar — clover mark */}
+        {/* Avatar, clover mark */}
         <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:"50%",
           background:OMBRE, display:"flex", alignItems:"center", justifyContent:"center" }}>
           <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={Math.round(16*s)} height={Math.round(16*s)} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
@@ -106,7 +106,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
           background:OMBRE, borderRadius:20, color:"#000" }}>NEW</span>
       </div>
 
-      {/* TRACK CARDS — horizontal scroll */}
+      {/* TRACK CARDS, horizontal scroll */}
       <div style={{ display:"flex", gap:Math.round(8*s), padding:`0 ${pad}px ${Math.round(10*s)}px`, overflowX:"hidden" }}>
         {TRACKS.slice(0,8).map((t,i)=>(
           <div key={i} style={{ flexShrink:0 }}>

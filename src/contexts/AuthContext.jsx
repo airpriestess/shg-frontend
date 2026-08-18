@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
 
   async function resetPassword(email) {
     // Password reset requires email sending, not yet wired up (pending Nitrosend integration).
-    throw new Error("Password reset isn't available yet — please contact support to reset your password.");
+    throw new Error("Password reset isn't available yet, please contact support to reset your password.");
   }
 
   const tier = user?.tier || "free"; // "free" | "audio" | "goddess" | "lifetime"

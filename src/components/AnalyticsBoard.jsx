@@ -1,4 +1,4 @@
-/* AnalyticsBoard — portal + landing preview */
+/* AnalyticsBoard, portal + landing preview */
 import { ArrowIcon } from "./UI.jsx";
 
 const R = "#E8B870", P = "#BFA5D8";

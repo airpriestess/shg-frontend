@@ -33,7 +33,7 @@ export default function HamburgerMenu({ onSignIn }) {
         <div style={{ width:22,height:2,background:"#f2ece4",borderRadius:1 }}/>
       </button>
 
-      {/* Full-screen menu — rendered via portal to escape any ancestor backdrop-filter/transform that would break position:fixed */}
+      {/* Full-screen menu, rendered via portal to escape any ancestor backdrop-filter/transform that would break position:fixed */}
       {open && createPortal(
         <div style={{ position:"fixed",inset:0,zIndex:9999,backgroundColor:"#000000",opacity:1,isolation:"isolate",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar */}
