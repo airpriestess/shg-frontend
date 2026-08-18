@@ -6,25 +6,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <style>
+  :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);}
   body { margin:0; background:#000; font-family:'Jost',sans-serif; }
   .wrap { max-width:1100px; margin:0 auto; padding:100px 40px; }
   .eyebrow { text-align:center; font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
-    background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+    background:var(--g);
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:20px; font-weight:400; }
   h2 { text-align:center; font-size:clamp(28px,4vw,44px); font-weight:300; color:#f2ece4; margin:0 0 16px; line-height:1.2; }
-  .subtext { text-align:center; font-size:15px; color:#8a827a; margin:0 0 56px; line-height:1.6; max-width:560px; margin-left:auto; margin-right:auto; }
-  .split { display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:24px; overflow:hidden; border:1px solid rgba(242,236,228,0.1); min-height:280px; }
+  .subtext { text-align:center; font-size:15px; color:#ddd0c8; margin:0 0 56px; line-height:1.6; max-width:560px; margin-left:auto; margin-right:auto; }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:24px; overflow:hidden; border:1px solid rgba(242,236,228,0.15); min-height:280px; }
   .before, .after { padding:44px 40px; position:relative; }
   .before { background:#0a0a0a; }
-  .after { background:linear-gradient(160deg,rgba(245,224,160,0.06),rgba(191,165,216,0.06),rgba(44,183,167,0.08)); }
-  .cat-tag { font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#5a5550; margin-bottom:16px; font-weight:500; }
-  .after .cat-tag { color:#2CB7A7; }
-  .label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:14px; font-weight:500; color:#4a453f; }
-  .after .label { color:#8a7a95; }
-  .belief-text { font-size:20px; line-height:1.5; color:#6b655e; font-family:'Cormorant Garamond',serif; font-style:italic; min-height:80px; }
-  .identity-text { font-size:22px; line-height:1.5; color:#f2ece4; font-family:'Cormorant Garamond',serif; font-style:italic; min-height:80px; }
-  .proof { margin-top:20px; padding-top:16px; border-top:1px solid rgba(44,183,167,0.15); font-size:12px; color:#2CB7A7; font-family:'Jost',sans-serif; font-style:normal; opacity:0; transition:opacity 0.4s; }
-  .proof.show { opacity:1; }
+  .after { background:var(--g); }
+  .cat-tag { font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#ddd0c8; margin-bottom:16px; font-weight:500; }
+  .after .cat-tag { color:#000; opacity:0.6; }
+  .label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:14px; font-weight:500; color:#8a827a; }
+  .after .label { color:#000; opacity:0.55; }
+  .belief-text { font-size:20px; line-height:1.5; color:#8a827a; font-family:'Cormorant Garamond',serif; font-style:italic; min-height:80px; }
+  .identity-text { font-size:22px; line-height:1.5; color:#000; font-family:'Cormorant Garamond',serif; font-style:italic; min-height:80px; font-weight:500; }
+  .proof { margin-top:20px; padding-top:16px; border-top:1px solid rgba(0,0,0,0.15); font-size:12px; color:#000; font-family:'Jost',sans-serif; font-style:normal; font-weight:600; opacity:0; transition:opacity 0.4s; }
+  .proof.show { opacity:0.75; }
   .dots { display:flex; justify-content:center; gap:6px; margin-top:40px; }
   .dot { width:6px; height:6px; border-radius:50%; background:rgba(242,236,228,0.15); transition:background 0.3s; }
   .dot.active { background:#2CB7A7; }
@@ -34,15 +35,15 @@
 <div class="wrap">
   <div class="eyebrow">✦ What repeated listening actually does</div>
   <h2>Decades of programming.<br>Replaced one identity at a time.</h2>
-  <p class="subtext">Every belief you hold was installed through repetition. Self hypnosis and subliminal audio work the same way — listened to over and over, across all 24 categories, until the new identity is the automatic one.</p>
+  <p class="subtext">Every belief you hold was installed through repetition. Self hypnosis and subliminal audio work the same way, listened to over and over, across all 24 categories, until the new identity is the automatic one.</p>
   <div class="split">
     <div class="before">
-      <div class="cat-tag" id="catBefore">Rich Girl</div>
+      <div class="cat-tag" id="catBefore">Health</div>
       <div class="label">The old belief</div>
       <div class="belief-text" id="oldText"></div>
     </div>
     <div class="after">
-      <div class="cat-tag" id="catAfter">Rich Girl</div>
+      <div class="cat-tag" id="catAfter">Health</div>
       <div class="label">The new identity</div>
       <div class="identity-text" id="newText"></div>
       <div class="proof" id="proofText"></div>
@@ -52,11 +53,11 @@
 </div>
 <script>
 const pairs = [
-  { old: "I have to work hard to receive money.", neu: "Money found me without effort.", proof: "$2,000 refund arrived out of nowhere. Day 6.", cat: "Rich Girl" },
-  { old: "He has moved on. I need to accept it.", neu: "He is already on his way back.", proof: "He texted first after 3 weeks of silence. Day 9.", cat: "Lovemaxxing" },
-  { old: "I don't feel beautiful unless someone tells me.", neu: "I feel gorgeous from the inside. The mirror confirmed it.", proof: "Woke up and felt it before I even looked. Day 4.", cat: "Beauty" },
-  { old: "I've tried scripting, affirmations, vision boards. Nothing sticks.", neu: "I stopped trying. The subconscious installed it while I slept.", proof: "Stopped forcing it. It arrived anyway.", cat: "Identity" },
-  { old: "I've been visualising for months. Still waiting.", neu: "One listen changed how I felt about it. Then it moved.", proof: "Felt the shift after the first audio. Evidence followed.", cat: "Identity" },
+  { old: "I'll always need something to manage the pain.", neu: "I lost the need for painkillers in 10 weeks.", proof: "Threw out the bottle. Haven't touched one since. Day 68.", cat: "Health" },
+  { old: "I have to work twice as hard for half the money.", neu: "I make more resting than I used to make grinding.", proof: "$4,000 landed while I was asleep. Day 11.", cat: "Rich Girl" },
+  { old: "He's moved on. It's over.", neu: "He drove 200 miles to say he made a mistake.", proof: "Showed up at my door unannounced. Day 19.", cat: "Lovemaxxing" },
+  { old: "I've been the same size my whole adult life.", neu: "My body released 14 pounds without a single diet.", proof: "Jeans from 2019 fit again. Never restricted once. Day 40.", cat: "Beauty" },
+  { old: "Good things happen to other people, not me.", neu: "I got upgraded to first class for saying nothing at all.", proof: "Gate agent just handed me the boarding pass. Day 3.", cat: "Luckygirlmaxxing" },
 ];
 
 let pairIdx = 0;
