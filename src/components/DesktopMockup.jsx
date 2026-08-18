@@ -7,7 +7,7 @@ const THEMES = {
     cr:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", scrubBg:"#2a2a2a",
   },
   light: {
-    browser:"#ede8e0", browserBorder:"#d8d0c4", urlBar:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", urlText:"#000000",
+    browser:"#ede8e0", browserBorder:"#d8d0c4", urlBar:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", urlText:"#000000",
     bg:"#faf7f2", bg2:"#ffffff", bg3:"rgba(44,183,167,0.10)", nav:"rgba(250,247,242,0.97)",
     cr:"#1a1410", mu:"#1a1410", dim:"#3a342c", border:"rgba(200,168,120,0.2)", scrubBg:"#e0d8cc",
   },
@@ -15,7 +15,7 @@ const THEMES = {
 
 const TEAL = "#2CB7A7";
 const GOLD = "#E8B870";
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
 const CAT_ICONS = {
   Lovemaxxing: { accent:"#167A6B", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },

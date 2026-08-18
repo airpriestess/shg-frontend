@@ -1,7 +1,7 @@
 /* KnowledgeGuide — comprehensive listening guide covering every question */
 import { useState } from "react";
 
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
 const SECTIONS = [
   { k:"formula", icon:"◈", title:"The formula in every SHG audio",
