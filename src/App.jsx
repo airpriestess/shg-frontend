@@ -413,17 +413,17 @@ const STRIPE = {
 const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
-    monthly: "$49", annual: "$470", annualPerMonth: "$39.20", annualNote: "$470 billed annually",
+    monthly: "$49", annual: "$470", annualPerMonth: "$39", annualNote: "$470 billed annually",
     usd: "$49/mo", usdAnnual: "$470/yr",
     features: ["Full exclusive audio vault","All 6 formats, Melodic House, Voice Only, Sleep & Rest, Subliminal, EMDR, Binaural","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
-    cta: (annual)=> annual ? "Join Audio, $39.20/month" : "Join Audio, $49/month",
+    cta: (annual)=> annual ? "Join Audio, $39/month" : "Join Audio, $49/month",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
-    monthly: "$79", annual: "$758", annualPerMonth: "$63.20", annualNote: "$758 billed annually",
+    monthly: "$79", annual: "$758", annualPerMonth: "$63", annualNote: "$758 billed annually",
     usd: "$79/mo", usdAnnual: "$758/yr",
     features: ["Everything in Audio Tier","ProofOS, manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall, every win, forever","Early access drops, 48hrs ahead","Analytics board, watch your evidence build"],
-    cta: (annual)=> annual ? "Activate Goddess, $63.20/month" : "Activate Goddess Tier, $79/month",
+    cta: (annual)=> annual ? "Activate Goddess, $63/month" : "Activate Goddess Tier, $79/month",
   },
   lifetime: {
     name: "Lifetime Access", emoji: "♾",
