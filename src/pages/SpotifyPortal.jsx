@@ -2286,16 +2286,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 function ShopTab({ C }) {
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const products = [
-    { name:"Lovemaxxing Guide",      price:"$19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing",      available:true },
-    { name:"Luckygirlmaxxing Guide", price:"$19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing", available:true },
-    { name:"Richgirlmaxxing Guide",     price:"$19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing",     available:false },
-    { name:"Sovereignmaxxing Guide", price:"$19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing", available:false },
-    { name:"Confidencemaxxing Guide",price:"$19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing",available:false },
-    { name:"Beautymaxxing Guide",    price:"$19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing",   available:false },
-    { name:"Healthmaxxing Guide",      price:"$19", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing",     available:false },
-    { name:"Sleepmaxxing Guide",     price:"$19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing",    available:false },
-    { name:"Businessmaxxing Guide",  price:"$19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing", available:false },
-    { name:"Peacemaxxing Guide",     price:"$19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing",    available:false },
+    { name:"Lovemaxxing Guide",      price:"$29", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing",      available:true },
+    { name:"Luckygirlmaxxing Guide", price:"$29", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing", available:true },
+    { name:"Richgirlmaxxing Guide",     price:"$29", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing",     available:false },
+    { name:"Sovereignmaxxing Guide", price:"$29", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing", available:false },
+    { name:"Confidencemaxxing Guide",price:"$29", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing",available:false },
+    { name:"Beautymaxxing Guide",    price:"$29", desc:"The mirror gap, closed",                             cat:"Beautymaxxing",   available:false },
+    { name:"Healthmaxxing Guide",      price:"$29", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing",     available:false },
+    { name:"Sleepmaxxing Guide",     price:"$29", desc:"The overnight identity-install track",               cat:"Sleepmaxxing",    available:false },
+    { name:"Businessmaxxing Guide",  price:"$29", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing", available:false },
+    { name:"Peacemaxxing Guide",     price:"$29", desc:"Nervous system, regulated",                          cat:"Peacemaxxing",    available:false },
   ];
   return (
     <div style={{ padding:"16px 16px 40px" }}>
