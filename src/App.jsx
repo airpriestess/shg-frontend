@@ -639,9 +639,9 @@ function PricingSection({ onJoin }) {
         </div>
 
         {/* THE GUARANTEE */}
-        <div style={{ marginTop: 64, padding: "44px 32px", borderRadius: 20, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", textAlign: "center", maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
-          <div style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "#E8B870", marginBottom: 18, fontFamily: "'Jost',sans-serif" }}>The Guarantee</div>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, fontWeight: 400, color: "#f2ece4", lineHeight: 1.9 }}>
+        <div style={{ marginTop: 64, padding: isMobile ? "48px 24px" : "72px 56px", borderRadius: 24, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", textAlign: "center", maxWidth: 820, marginLeft: "auto", marginRight: "auto" }}>
+          <div style={{ fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#000", opacity: 0.6, marginBottom: 24, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>The Guarantee</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(22px,6vw,30px)" : "clamp(26px,3vw,38px)", fontWeight: 400, color: "#000", lineHeight: 1.5, letterSpacing: "-0.01em" }}>
             What I promise:<br/><br/>
             A brain rewired to expect your desired outcome.<br/><br/>
             Belief that things work out for you, even when the evidence hasn't arrived yet.<br/><br/>
