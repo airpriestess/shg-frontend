@@ -11,7 +11,7 @@ export const AUDIOS = [
     manifestedCount: 2,
     lastListenedAt: "2026-06-30",
     lastProofAt: "2026-06-29",
-    description: "Subconscious reprogramming for receiving — money, opportunities, unexpected income. Layered with 528hz transformation frequency and bilateral subliminal affirmations. Listen at night for deepest receptivity.",
+    description: "Subconscious reprogramming for receiving, money, opportunities, unexpected income. Layered with 528hz transformation frequency and bilateral subliminal affirmations. Listen at night for deepest receptivity.",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ export const AUDIOS = [
     manifestedCount: 1,
     lastListenedAt: "2026-07-01",
     lastProofAt: "2026-07-01",
-    description: "Deep identity installation for beauty, radiance, and self-image. 432hz harmony frequency. 8-hour sleep subliminal — plays throughout the night while your subconscious installs the new self-concept.",
+    description: "Deep identity installation for beauty, radiance, and self-image. 432hz harmony frequency. 8-hour sleep subliminal, plays throughout the night while your subconscious installs the new self-concept.",
   },
   {
     id: 3,
@@ -134,7 +134,7 @@ export const PROOF_THREADS = [
     entries: [
       { id: 201, type: "Symptom", stage: "Evidence Appearing", title: "My body felt warm and calm after the night audio", description: "A physical warmth I can only describe as recognition. Like my cells agreed.", happenedAt: "2026-06-12", noticedAt: "2026-06-12", dayNumber: 2 },
       { id: 202, type: "Sign", stage: "Evidence Appearing", title: "Someone asked what I was doing differently", description: "Sarah asked unprompted during coffee. She said I looked different. Glowing.", happenedAt: "2026-06-18", noticedAt: "2026-06-18", dayNumber: 8 },
-      { id: 203, type: "Photo Proof", stage: "Evidence Appearing", title: "Comparison photo — week 1 vs week 2", description: "I can see it myself now.", happenedAt: "2026-06-22", noticedAt: "2026-06-22", dayNumber: 12 },
+      { id: 203, type: "Photo Proof", stage: "Evidence Appearing", title: "Comparison photo, week 1 vs week 2", description: "I can see it myself now.", happenedAt: "2026-06-22", noticedAt: "2026-06-22", dayNumber: 12 },
       { id: 204, type: "Final Manifestation", stage: "Final Proof", title: "Three separate people commented in one day", description: "A stranger, my sister, and someone from work. All on the same day. It is done.", happenedAt: "2026-07-01", noticedAt: "2026-07-01", dayNumber: 21, isFinal: true },
     ]
   },
@@ -145,7 +145,7 @@ export const PROOF_THREADS = [
     emotionalCertaintyScore: 7, listeningMode: "Sleep", mood_before: "Desperate, overthinking", mood_after: "Detached, certain",
     entries: [
       { id: 301, type: "Synchronicity", stage: "Before Manifestation", title: "His name appeared three times in one hour", description: "On a playlist, a friend mentioned someone with his name, then I saw it on a sign.", happenedAt: "2026-06-28", noticedAt: "2026-06-28", dayNumber: 1 },
-      { id: 302, type: "Voice Proof", stage: "Evidence Appearing", title: "Recorded after the session — I feel ready", description: "Something shifted. I stopped wanting and started knowing.", happenedAt: "2026-06-30", noticedAt: "2026-06-30", dayNumber: 3 },
+      { id: 302, type: "Voice Proof", stage: "Evidence Appearing", title: "Recorded after the session, I feel ready", description: "Something shifted. I stopped wanting and started knowing.", happenedAt: "2026-06-30", noticedAt: "2026-06-30", dayNumber: 3 },
     ]
   },
 ];
