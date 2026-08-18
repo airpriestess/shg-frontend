@@ -179,7 +179,7 @@ function LibraryBanner({ isMobile, onLegal }) {
         onTouchEnd={startTimer}
         style={{ width:"100%", padding: isMobile?"32px 24px":"48px 64px", background:LGb, display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?20:48, minHeight: isMobile?140:160, cursor:"pointer" }}
       >
-        {/* Text — centered, black on Lucky Girl gradient background */}
+        {/* Text, centered, black on Lucky Girl gradient background */}
         <div style={{ flex:1, maxWidth:720, textAlign:"center" }}>
           <div style={{ fontSize: isMobile?11:12, fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{cat.name}</div>
           <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(24px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{cat.affirmation}</div>
@@ -193,7 +193,7 @@ function LibraryBanner({ isMobile, onLegal }) {
         </div>
       </div>
 
-      {/* Category pills — alternate black and cream */}
+      {/* Category pills, alternate black and cream */}
       <div style={{ display:"flex", justifyContent:"center", gap:8, padding: isMobile?"14px 16px":"16px 24px", flexWrap:"wrap", background:"#000", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
         {CATS.map((ct,i) => {
           const isActive = i === idx;
@@ -244,7 +244,7 @@ export default function App() {
     try {
       const perm = await requestNotificationPermission();
       if (perm === "granted") scheduleReminders();
-    } catch(e) { /* silent — notifications not critical */ }
+    } catch(e) { /* silent, notifications not critical */ }
   };
   const openCreateThread = (audioId) => { setPreselectedAudioId(audioId || null); setCreateThreadModal(true); };
   const openAddProof = (type, threadId) => { setAddProofType(type); setAddProofThreadId(threadId || null); };
@@ -388,7 +388,7 @@ function ArchivePage() {
   const { PROOF_THREADS } = { PROOF_THREADS: [] };
   return (
     <div style={{ padding: "28px 24px", overflowY: "auto", height: "100%", width: "100%" }} className="fade mob-pb">
-      <h1 style={{ fontSize: 28, fontWeight: 700, color: "#000000", marginBottom: 8 }}>Manifested Archive</h1>
+      <h1 style={{ fontSize: 28, fontWeight: 400, color: "#000000", marginBottom: 8 }}>Manifested Archive</h1>
       <p style={{ fontSize: 19, color: "#000000", marginBottom: 24 }}>Every completed intention lives here. Your permanent Proof Wall.</p>
       <div style={{ textAlign: "center", padding: "60px 24px" }}>
         <div style={{ fontSize: 40, marginBottom: 16, opacity: 0.4 }}>✦</div>
@@ -409,28 +409,28 @@ const STRIPE = {
   goddess_annual: "https://buy.stripe.com/5kQ3cvgk17Ea1h7aXe7AI04",
 };
 
-// ═══ SINGLE SOURCE OF TRUTH — every price, feature list, CTA everywhere reads from here ═══
+// ═══ SINGLE SOURCE OF TRUTH, every price, feature list, CTA everywhere reads from here ═══
 const TIERS = {
   audio: {
     name: "Audio Tier", emoji: "🔊",
     monthly: "$49", annual: "$470", annualNote: "~$39.17/mo billed annually",
     usd: "$49/mo", usdAnnual: "$470/yr",
-    features: ["Full exclusive audio vault","All 6 formats — Melodic House, Voice Only, Sleep & Rest, Subliminal, EMDR, Binaural","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
-    cta: (annual)=> annual ? "Join Audio — $470/year" : "Join Audio — $49/month",
+    features: ["Full exclusive audio vault","All 6 formats, Melodic House, Voice Only, Sleep & Rest, Subliminal, EMDR, Binaural","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
+    cta: (annual)=> annual ? "Join Audio, $470/year" : "Join Audio, $49/month",
   },
   goddess: {
     name: "Goddess Tier", emoji: "✦",
     monthly: "$79", annual: "$758", annualNote: "~$63.17/mo billed annually",
     usd: "$79/mo", usdAnnual: "$758/yr",
-    features: ["Everything in Audio Tier","ProofOS — manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall — every win, forever","Early access drops — 48hrs ahead","Analytics board — watch your evidence build"],
-    cta: (annual)=> annual ? "Activate Goddess — $758/year" : "Activate Goddess Tier — $79/month",
+    features: ["Everything in Audio Tier","ProofOS, manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall, every win, forever","Early access drops, 48hrs ahead","Analytics board, watch your evidence build"],
+    cta: (annual)=> annual ? "Activate Goddess, $758/year" : "Activate Goddess Tier, $79/month",
   },
   lifetime: {
     name: "Lifetime Access", emoji: "♾",
     monthly: "$1000", annual: "$1000", annualNote: "One payment. Forever.",
     usd: "$1000", usdAnnual: "$1000",
-    features: ["Everything in Goddess Tier","Every future audio ever released","Every future feature — included","No monthly billing, ever","1,000 spots only"],
-    cta: ()=> "Claim Lifetime Access — $1000",
+    features: ["Everything in Goddess Tier","Every future audio ever released","Every future feature, included","No monthly billing, ever","1,000 spots only"],
+    cta: ()=> "Claim Lifetime Access, $1000",
   },
 };
 
@@ -490,7 +490,7 @@ function CheckoutModal({ onClose, onDemo }) {
               </div>
             </div>
             <div style={{marginBottom:12}}>
-              {["Full audio vault — all desire categories","New tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
+              {["Full audio vault, all desire categories","New tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#000000",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
@@ -517,7 +517,7 @@ function CheckoutModal({ onClose, onDemo }) {
               </div>
             </div>
             <div style={{marginBottom:12}}>
-              {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link audios · capture every sign","Early access drops — 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
+              {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link audios · capture every sign","Early access drops, 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:f.includes("✦")?"#2CB7A7":"#167A6B",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?700:400}}>
                   <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
@@ -551,7 +551,7 @@ function CheckoutModal({ onClose, onDemo }) {
             <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(44,183,167,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
-          <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
+          <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first, no signup needed</button>
           <div style={{textAlign:"center",fontSize:11,color:"#a0909a",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
         </div>
       </div>
@@ -560,7 +560,7 @@ function CheckoutModal({ onClose, onDemo }) {
 }
 
 
-/* ── PRICING SECTION — lives on the page itself, not just inside the modal ──── */
+/* ── PRICING SECTION, lives on the page itself, not just inside the modal ──── */
 function PricingSection({ onJoin }) {
   const isMobile = useMobile();
   const theme = "dark";
@@ -635,7 +635,7 @@ function PricingSection({ onJoin }) {
 
         <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: theme==="dark"?"#e8e0d8":"#000000", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
           Monthly: cancel anytime · Annual: paid upfront · Stripe secure checkout<br />
-          No app to download — works in any browser, iPhone, Android
+          No app to download, works in any browser, iPhone, Android
         </div>
       </div>
     </div>
@@ -677,7 +677,7 @@ const MARQUEE_ITEMS = [
   {t:"My aura is undeniable.",c:"#2CB7A7"},{t:"Money comes from everywhere.",c:"#2CB7A7"},{t:"The shift is already done.",c:"#2CB7A7"},
   {t:"I am reprogramming daily.",c:"#2CB7A7"},{t:"He's obsessed with who I am.",c:"#2CB7A7"},{t:"Every night I become her more.",c:"#2CB7A7"},
 ];
-// ── PHONE SHELL — hoisted to top level so it's a stable component type across renders (was nested, causing iframe remount/flash) ──
+// ── PHONE SHELL, hoisted to top level so it's a stable component type across renders (was nested, causing iframe remount/flash) ──
 function PhoneShell({ w=200, theme, view }) {
   const br = Math.round(w * 0.21);
   const pad = Math.round(w * 0.025);
@@ -733,12 +733,12 @@ function PhoneShell({ w=200, theme, view }) {
   );
 }
 
-// ── APP PREVIEW SECTION — dashboard + proofos with theme toggle ──────────────
+// ── APP PREVIEW SECTION, dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
   const [theme, setTheme] = useState("light");
   const [view,  setView]  = useState("dashboard");
 
-  /* ── Desktop panel content (changes per tab) — computed inline, not a nested component, to avoid remounting the iframe on every render ── */
+  /* ── Desktop panel content (changes per tab), computed inline, not a nested component, to avoid remounting the iframe on every render ── */
   const desktopPanelContent = (() => {
     if (view === "dashboard") return (
       <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
@@ -811,7 +811,7 @@ function AppPreviewSection({ isMobile }) {
         /* Mobile: just the phone, centred */
         <PhoneShell w={200} theme={theme} view={view}/>
       ) : (
-        /* Desktop: browser mockup left, iPhone right — always both visible */
+        /* Desktop: browser mockup left, iPhone right, always both visible */
         <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:40, padding:"0 32px", maxWidth:1100, width:"100%" }}>
           {/* Desktop panel */}
           <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
@@ -856,7 +856,7 @@ function HeroMarquee() {
   );
 }
 
-/* ── MAXXING CAROUSEL — Lucky Girl gradient bg, BLACK text ────────────────────── */
+/* ── MAXXING CAROUSEL, Lucky Girl gradient bg, BLACK text ────────────────────── */
 function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
@@ -918,7 +918,7 @@ function MaxxingCarousel({ cats }) {
   );
 }
 
-/* ── IDENTITY CAROUSEL — six accent ombres, rotates through brand colours ──── */
+/* ── IDENTITY CAROUSEL, six accent ombres, rotates through brand colours ──── */
 function IdentityCarousel({ cats, fullscreen=false }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
@@ -933,7 +933,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
 
   // Category-specific colours
   const CAT_COLOURS = {
-    // Carousel only — full palette including warm pink + hot blue accent tiles
+    // Carousel only, full palette including warm pink + hot blue accent tiles
     "Richgirlmaxxing":     "linear-gradient(135deg,#0A4A8A,#2CB7A7,#2CB7A7)",  // navy → deep blue → turquoise
     "Luckygirlmaxxing": "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",  // full Lucky Girl ombre
     "Beautymaxxing":    "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // blush → soft rose
@@ -1010,23 +1010,23 @@ function IdentityCarousel({ cats, fullscreen=false }) {
 
 /* ── FAQ SECTION ───────────────────────────────────────────────────────────── */
 const FAQS = [
-  {q:"What exactly is Self Hypnosis Goddess?",a:"A private audio membership of original hypnosis tracks produced by Reshma Oracle. Each audio is layered with EMDR, binaural beats, and melodic house music to guide your brain into theta state — where the subconscious accepts new beliefs. No app download needed. Access everything through a web portal that plays like Spotify."},
-  {q:"How is this different from YouTube hypnosis?",a:"The YouTube audios are free and public. The vault contains originals never published — longer, deeper, produced specifically to rewire the subconscious around specific desires. No ads at 3am. No algorithm deciding what you hear next."},
+  {q:"What exactly is Self Hypnosis Goddess?",a:"A private audio membership of original hypnosis tracks produced by Reshma Oracle. Each audio is layered with EMDR, binaural beats, and melodic house music to guide your brain into theta state, where the subconscious accepts new beliefs. No app download needed. Access everything through a web portal that plays like Spotify."},
+  {q:"How is this different from YouTube hypnosis?",a:"The YouTube audios are free and public. The vault contains originals never published, longer, deeper, produced specifically to rewire the subconscious around specific desires. No ads at 3am. No algorithm deciding what you hear next."},
   {q:"Is this for all genders?",a:"Yes. Depending on the track. The love and SP tracks are written with female listeners in mind by default, but the money, identity, beauty, DNA, and sleep tracks apply to anyone. More gender-neutral tracks are being added regularly."},
-  {q:"Do I need headphones?",a:"Headphones maximise the binaural effect and are strongly recommended. The EMDR bilateral element works through left-right audio stimulation. AirPods, earbuds, over-ear — any pair works."},
-  {q:"How long until I notice something shifting?",a:"Most members report something noticeable within 3 to 7 days — a small sign, a shift in how they feel about the desire, or a change in the obsessive loop. The install deepens with repetition. 30 days of consistent listening typically closes the old identity completely."},
+  {q:"Do I need headphones?",a:"Headphones maximise the binaural effect and are strongly recommended. The EMDR bilateral element works through left-right audio stimulation. AirPods, earbuds, over-ear, any pair works."},
+  {q:"How long until I notice something shifting?",a:"Most members report something noticeable within 3 to 7 days, a small sign, a shift in how they feel about the desire, or a change in the obsessive loop. The install deepens with repetition. 30 days of consistent listening typically closes the old identity completely."},
   {q:"Can I listen while I sleep?",a:"Yes. This is one of the most effective ways to use the audios. Your conscious resistance is off. The subconscious is in delta and receives the installation without filtering. Several tracks are designed specifically for sleep listening."},
   {q:"What is ProofOS?",a:"ProofOS is the manifestation tracking system included in Goddess Tier. Log your desires, link them to the audio you listened to, capture signs as they arrive, and mark when it manifests. It creates a personal record of evidence so you can see the pattern building."},
   {q:"What's the difference between Audio and Goddess Tier?",a:`Audio Tier (${TIERS.audio.monthly}/mo): full vault, all categories, new tracks weekly, loop player, sleep timer. Goddess Tier (${TIERS.goddess.monthly}/mo): everything in Audio plus ProofOS tracking, early access drops 48hrs before everyone else, and monthly ritual audio.`},
-  {q:"What is Lifetime Access?",a:`A one-time payment of ${TIERS.lifetime.monthly} that gives you everything in Goddess Tier, forever — no monthly or annual billing, ever again. That includes every track already in the vault, every future audio ever released, every future feature added to ProofOS or the portal, and early access to new drops before anyone else. It's the same tier, permanently unlocked with one payment instead of a recurring one. Limited to 1,000 spots total — once they're gone, Lifetime Access closes and the option reverts to Audio or Goddess subscriptions only.`},
-  {q:"Is my Proof Wall permanent?",a:"Yes — your Proof Wall is for life. Every manifestation you log stays there forever, dated, with exactly how long it took from the day you set the intention to the day it manifested. Most people manifest things constantly and never realise it, because they don't write it down and the evidence gets lost. This replaces that gap entirely: never lose a single manifestation again."},
-  {q:"How do I know how to listen — what do I actually do?",a:"Every account includes access to the in-app Guide — a full walkthrough covering exactly how to use the vault: which format to pick and when, best times of day to listen, how often, what headphones setup works best, how the different elements (hypnosis, subliminal, binaural, music) combine, and how to use ProofOS to track what happens. It answers every question about the process in one place, so you're never guessing. You'll find it inside the portal from your first login."},
+  {q:"What is Lifetime Access?",a:`A one-time payment of ${TIERS.lifetime.monthly} that gives you everything in Goddess Tier, forever, no monthly or annual billing, ever again. That includes every track already in the vault, every future audio ever released, every future feature added to ProofOS or the portal, and early access to new drops before anyone else. It's the same tier, permanently unlocked with one payment instead of a recurring one. Limited to 1,000 spots total, once they're gone, Lifetime Access closes and the option reverts to Audio or Goddess subscriptions only.`},
+  {q:"Is my Proof Wall permanent?",a:"Yes, your Proof Wall is for life. Every manifestation you log stays there forever, dated, with exactly how long it took from the day you set the intention to the day it manifested. Most people manifest things constantly and never realise it, because they don't write it down and the evidence gets lost. This replaces that gap entirely: never lose a single manifestation again."},
+  {q:"How do I know how to listen, what do I actually do?",a:"Every account includes access to the in-app Guide, a full walkthrough covering exactly how to use the vault: which format to pick and when, best times of day to listen, how often, what headphones setup works best, how the different elements (hypnosis, subliminal, binaural, music) combine, and how to use ProofOS to track what happens. It answers every question about the process in one place, so you're never guessing. You'll find it inside the portal from your first login."},
   {q:"Can I cancel anytime?",a:"Yes. Cancel before your next renewal date and you will not be charged again. No refunds after 14 days from payment date."},
-  {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely — reaching the subconscious where belief actually lives."},
-  {q:"What categories are in the vault?",a:"A growing library — right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Richgirlmaxxing, Businessmaxxing, Desiresmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healthmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
-  {q:"What are subliminals?",a:"Affirmations recorded below the threshold of conscious hearing, layered underneath the music and spoken hypnosis. Your conscious mind doesn't register them as words — but your subconscious does. They bypass the part of you that would normally argue back with a new belief."},
+  {q:"Does this work if other subliminals didn't?",a:"Most subliminals fail because they use generic voices, poor production, or deliver affirmations to a conscious mind in beta state. SHG uses binaural beats and EMDR to bypass the conscious filter entirely, reaching the subconscious where belief actually lives."},
+  {q:"What categories are in the vault?",a:"A growing library, right now it includes Lovemaxxing, Beautymaxxing, Facemaxxing, Bodymaxxing, Skinnymaxxing, Richgirlmaxxing, Businessmaxxing, Desiresmaxxing, DNAmaxxing, Selfmaxxing, Erosmaxxing, Singlemaxxing, Wellnessmaxxing, Sleepmaxxing, Studymaxxing, Friendmaxxing, Peacemaxxing, Confidencemaxxing, Stylemaxxing, Healthmaxxing, Intuitionmaxxing, Lifemaxxing, Luckygirlmaxxing, and Sovereignmaxxing. New categories and tracks added weekly."},
+  {q:"What are subliminals?",a:"Affirmations recorded below the threshold of conscious hearing, layered underneath the music and spoken hypnosis. Your conscious mind doesn't register them as words, but your subconscious does. They bypass the part of you that would normally argue back with a new belief."},
   {q:"How do the different elements combine in one track?",a:"Each audio layers four things at once: spoken hypnosis (guiding you into the state), subliminal affirmations (below hearing threshold), binaural beats (two slightly different frequencies, one per ear, syncing both brain hemispheres into theta), and original melodic house music (so it's something you actually want to listen to, not just tolerate). All four play simultaneously, not in sequence."},
-  {q:"Who is Reshma Oracle?",a:"The person recording every track in this vault. No agency, no outsourced voice work — every hypnosis session, every affirmation, every frequency choice is hers. Self Hypnosis Goddess exists because she noticed everyone in this space consumes content and no one actually installs a new identity — so she built something designed for daily repetition, not one-off inspiration."},
+  {q:"Who is Reshma Oracle?",a:"The person recording every track in this vault. No agency, no outsourced voice work, every hypnosis session, every affirmation, every frequency choice is hers. Self Hypnosis Goddess exists because she noticed everyone in this space consumes content and no one actually installs a new identity, so she built something designed for daily repetition, not one-off inspiration."},
   {q:"Is there a mobile app?",a:"The portal is a web app that works on any device in any browser. On iPhone: tap Share → Add to Home Screen. A dedicated iOS and Android app is in development."},
 ];
 function FAQSection() {
@@ -1055,7 +1055,7 @@ function FAQSection() {
 }
 
 /* ── LANDING PAGE ─────────────────────────────────────────────────────────── */
-/* ── MOBILE HOOK — bypasses all CSS specificity issues ── */
+/* ── MOBILE HOOK, bypasses all CSS specificity issues ── */
 function useMobile() {
   const [m, setM] = useState(() => typeof window !== "undefined" ? window.innerWidth <= 680 : false);
   useEffect(() => {
@@ -1065,7 +1065,7 @@ function useMobile() {
   }, []);
   return m;
 }
-/* Grid helper — returns inline style that works on ALL devices */
+/* Grid helper, returns inline style that works on ALL devices */
 const G2 = (m, gap = 16) => m
   ? { display: "flex", flexDirection: "column", gap: 14 }
   : { display: "grid", gridTemplateColumns: "1fr 1fr", gap };
@@ -1182,7 +1182,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   const togglePlay = () => {
     if (!audioRef.current) return;
-    if (!currentTrack.url) return; // preview tracks — no audio yet
+    if (!currentTrack.url) return; // preview tracks, no audio yet
     if (playing) { audioRef.current.pause(); setPlaying(false); }
     else { audioRef.current.play().catch(() => {}); setPlaying(true); }
   };
@@ -1214,20 +1214,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   ];
 
   const faqs = [
-    { q: "What is self hypnosis?", a: "Hypnosis bypasses the critical conscious mind and speaks directly to the subconscious. In a deeply relaxed theta state, your subconscious accepts new beliefs as true — at the identity level. Reshma's voice guides you into that state. The reprogramming happens while you are in it." },
-    { q: "What is a subliminal?", a: "Subliminal audios layer affirmations beneath music or sound at a frequency your conscious mind cannot detect — but your subconscious hears clearly. No mental resistance. No filtering. The new belief goes straight in. Most effective when listened to repeatedly, especially during sleep." },
-    { q: "Why include both?", a: "Some self hypnosis tracks include subliminal layers beneath the voice — working on two levels simultaneously. The hypnosis creates the open channel. The subliminals reinforce the new identity beneath it. Together, they reprogram faster and more deeply than either alone." },
-    { q: "How often should I listen?", a: "Daily is ideal. First thing on waking or last thing at night — when your subconscious is most receptive in alpha and theta states. Results depend on your belief system and how consistently you listen. Some shift in days. Some in weeks. Every person and every topic is different." },
-    { q: "What is SATs?", a: "State Akin to Sleep — the threshold between waking and sleep. Your critical mind is offline. The subconscious is fully open. This is the most powerful state for identity installation. The sleep tracks are designed to work in this state." },
+    { q: "What is self hypnosis?", a: "Hypnosis bypasses the critical conscious mind and speaks directly to the subconscious. In a deeply relaxed theta state, your subconscious accepts new beliefs as true, at the identity level. Reshma's voice guides you into that state. The reprogramming happens while you are in it." },
+    { q: "What is a subliminal?", a: "Subliminal audios layer affirmations beneath music or sound at a frequency your conscious mind cannot detect, but your subconscious hears clearly. No mental resistance. No filtering. The new belief goes straight in. Most effective when listened to repeatedly, especially during sleep." },
+    { q: "Why include both?", a: "Some self hypnosis tracks include subliminal layers beneath the voice, working on two levels simultaneously. The hypnosis creates the open channel. The subliminals reinforce the new identity beneath it. Together, they reprogram faster and more deeply than either alone." },
+    { q: "How often should I listen?", a: "Daily is ideal. First thing on waking or last thing at night, when your subconscious is most receptive in alpha and theta states. Results depend on your belief system and how consistently you listen. Some shift in days. Some in weeks. Every person and every topic is different." },
+    { q: "What is SATs?", a: "State Akin to Sleep, the threshold between waking and sleep. Your critical mind is offline. The subconscious is fully open. This is the most powerful state for identity installation. The sleep tracks are designed to work in this state." },
     { q: "Does it play in background?", a: "Yes. Add to Home Screen on iPhone or Android and it plays in background like Spotify. No app download needed. No ads. No interruptions at 3am." },
   ];
 
   const TECH_ROWS = [
-    { t: "Self Hypnosis", w: "Guided induction — Reshma's voice", d: "Bypasses conscious resistance. Opens the subconscious.", when: "Theta state · 4–8 Hz" },
+    { t: "Self Hypnosis", w: "Guided induction, Reshma's voice", d: "Bypasses conscious resistance. Opens the subconscious.", when: "Theta state · 4–8 Hz" },
     { t: "Subliminals", w: "Affirmations layered beneath sound", d: "Delivers the new self-concept without conscious filtering.", when: "Any state · most powerful during sleep" },
-    { t: "Binaural Beats", w: "Two frequencies — one per ear", d: "Entrains the brain to theta or delta — full receptivity.", when: "Headphones required · begins within minutes" },
+    { t: "Binaural Beats", w: "Two frequencies, one per ear", d: "Entrains the brain to theta or delta, full receptivity.", when: "Headphones required · begins within minutes" },
     { t: "EMDR (bilateral)", w: "Bilateral audio stimulation", d: "Dissolves old beliefs and identity blocks at depth.", when: "During the audio session" },
-    { t: "Reiki / Energy", w: "Encoded energetic frequency", d: "Raises the energetic vibration — activates alignment.", when: "Present throughout every track" },
+    { t: "Reiki / Energy", w: "Encoded energetic frequency", d: "Raises the energetic vibration, activates alignment.", when: "Present throughout every track" },
     { t: "Solfeggio", w: "432hz · 528hz · 963hz", d: "432hz: harmony · 528hz: DNA repair · 963hz: activation", when: "Stated per track" },
   ];
 
@@ -1236,7 +1236,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <audio ref={audioRef} src={PLAYLIST[0].url} preload="none" onEnded={nextTrack} />
       <audio ref={vaultRef} preload="none" />
 
-      {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
+      {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
@@ -1258,7 +1258,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
 
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: "0 0 auto", justifyContent:"flex-end" }}>
-          {/* Hamburger — both mobile and desktop */}
+          {/* Hamburger, both mobile and desktop */}
           <button onClick={()=>setMenuOpen(m=>!m)} style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent",touchAction:"manipulation" }} aria-label="Open menu">
             <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s,opacity 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,5px)":"none" }}/>
             <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"opacity 0.2s",opacity:menuOpen?0:1 }}/>
@@ -1267,10 +1267,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </nav>
 
-      {/* MOBILE MENU — full screen takeover like Steven Bartlett */}
+      {/* MOBILE MENU, full screen takeover like Steven Bartlett */}
       {menuOpen && (
         <div style={{ position:"fixed",inset:0,zIndex:999,background:"#000",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
-          {/* Top bar — logo + close */}
+          {/* Top bar, logo + close */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
             <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:18, letterSpacing:"0.02em", color:"#f2ece4", cursor:"pointer" }}>Self Hypnosis Goddess</span>
             <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#f2ece4",WebkitTapHighlightColor:"transparent" }}>
@@ -1278,7 +1278,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </button>
           </div>
 
-          {/* Main nav items — massive */}
+          {/* Main nav items, massive */}
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {[
               ["About Reshma",        ()=>{ onLegal?.("about"); setMenuOpen(false); }],
@@ -1296,7 +1296,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             ))}
           </div>
 
-          {/* Bottom — join + sign in */}
+          {/* Bottom, join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
             <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Join Now ✦
@@ -1308,7 +1308,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       )}
 
-      {/* HERO — full viewport carousel, then player */}
+      {/* HERO, full viewport carousel, then player */}
       <div style={{ marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))` }}>
 
         {/* FULL SCREEN CAROUSEL */}
@@ -1347,7 +1347,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Lifemaxxing",        tagline:"I am living my dream reality right now." },
               { label:"Confidencemaxxing",  tagline:"Confidence looks good on me in every room." },
               { label:"Wellnessmaxxing",    tagline:"My body and mind are finally in sync." },
-              { label:"Businessmaxxing",    tagline:"The empire everyone said was unrealistic — built." },
+              { label:"Businessmaxxing",    tagline:"The empire everyone said was unrealistic, built." },
               { label:"Luckygirlmaxxing",   tagline:"I'm always in the right place at the right time." },
               { label:"Lovemaxxing",        tagline:"I am the love story I used to only dream about." },
               { label:"Singlemaxxing",      tagline:"I am the prize. I stopped auditioning for it." },
@@ -1427,7 +1427,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         {/* SPOTIFY-STYLE PLAYER */}
         <div style={{ background:"#000", padding: isMobile?"12px 14px 20px":"32px 24px 48px" }}>
           <div style={{ background: "#0a0a0a", border: "1px solid rgba(42,168,154,0.35)", borderRadius: isMobile?14:22, padding: isMobile ? "16px" : "36px 44px", maxWidth: isMobile?"100%":780, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
-            {/* Top row — track info + waveform */}
+            {/* Top row, track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
                 <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?34:64} height={isMobile?34:64} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
@@ -1444,10 +1444,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 </div>
               )}
             </div>
-            {/* Logo mark — replaces progress bar */}
+            {/* Logo mark, replaces progress bar */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
-              <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={44} height={44} style={{ opacity: playing ? 1 : 0.6, transition:"opacity 0.4s" , objectFit:"contain", display:"block"}} />
+              <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={44} height={44} style={{ opacity: playing ? 1 : 0.6, transition:"opacity 0.4s", objectFit:"contain", display:"block"}} />
               <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
             </div>
             {/* Controls */}
@@ -1478,18 +1478,18 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ))}
             </div>
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#ddd0c8", fontFamily:"'Jost',sans-serif" }}>
-              {playing ? "✦ Playing — continues in background" : "Tap play to listen — free preview"}
+              {playing ? "✦ Playing, continues in background" : "Tap play to listen, free preview"}
             </div>
           </div>
         </div>
       </div>
 
-      {/* LOGO — mark above Self Hypnosis Goddess / Audio Library */}
+      {/* LOGO, mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
         <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?100:140} height={isMobile?100:140} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
       </div>
 
-      {/* BRAND BLOCK — immediately after player, so people know what this IS before we explain how it works */}
+      {/* BRAND BLOCK, immediately after player, so people know what this IS before we explain how it works */}
       <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
         <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#ffffff", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0em", marginBottom:16 }}>
           Self Hypnosis Goddess
@@ -1507,7 +1507,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-      {/* APP PREVIEW — dashboard mockup with dark/light toggle */}
+      {/* APP PREVIEW, dashboard mockup with dark/light toggle */}
       <AppPreviewSection isMobile={isMobile} />
 
       {/* FORMULA */}
@@ -1540,12 +1540,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-            {/* THREE CTAs — Preview / Join Now / Lifetime, all in one place */}
+            {/* THREE CTAs, Preview / Join Now / Lifetime, all in one place */}
       <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"64px 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(16px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview Audio Library
         </button>
-        <div style={{ fontSize:11, color:"rgba(232,184,112,0.85)", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Beta — still being built</div>
+        <div style={{ fontSize:11, color:"rgba(232,184,112,0.85)", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Beta, still being built</div>
         <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"14px 36px":"18px 48px", background:"linear-gradient(135deg,rgba(245,224,160,0.55) 0%,rgba(232,184,112,0.55) 20%,rgba(191,165,216,0.55) 52%,rgba(44,183,167,0.55) 78%,rgba(22,122,107,0.55) 100%)", border:"none", borderRadius:40, color:"rgba(253,240,232,0.9)", fontSize: isMobile?"clamp(17px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the science behind this →</button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
@@ -1557,11 +1557,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-      {/* HOW IT WORKS — LG gradient background getting darker, white boxes */}
+      {/* HOW IT WORKS, LG gradient background getting darker, white boxes */}
       <div style={{ background:"linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
         <div style={{ maxWidth:720, margin:"0 auto" }}>
 
-          {/* Heading — centered, dark text on light gradient top */}
+          {/* Heading, centered, dark text on light gradient top */}
           <div style={{ marginBottom: isMobile?48:72, textAlign:"center", width:"100%" }}>
             <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center" }}>The method</div>
             <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12, textAlign:"center" }}>Theta state doesn't require sleep. Press play and you're there in minutes.</div>
@@ -1571,7 +1571,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Beta → Theta → Identity boxes */}
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?48:72 }}>
 
-            {/* BETA — solid dark grey, white text fully readable */}
+            {/* BETA, solid dark grey, white text fully readable */}
             <div style={{ background:"#2a2a2a", border:"1px solid rgba(255,255,255,0.12)", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center" }}>
               <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#ffffff", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
               <div style={{ fontSize: isMobile?32:44, fontWeight:500, color:"#ffffff", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Beta</div>
@@ -1581,7 +1581,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
             <div style={{ fontSize: isMobile?28:34, color:"#000", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:700 }}>{isMobile?"↓":"→"}</div>
 
-            {/* THETA — green/teal, bold, clearly transitioning */}
+            {/* THETA, green/teal, bold, clearly transitioning */}
             <div style={{ background:"linear-gradient(135deg,#0d3b35 0%,#134f47 50%,#1a6b60 100%)", border:"2px solid #2CB7A7", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center" }}>
               <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#ffffff", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
               <div style={{ fontSize: isMobile?32:44, fontWeight:500, color:"#ffffff", fontFamily:"'Jost',sans-serif", marginBottom:6 }}>Theta</div>
@@ -1591,10 +1591,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
             <div style={{ fontSize: isMobile?28:34, color:"#000", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:700 }}>{isMobile?"↓":"→"}</div>
 
-            {/* IDENTITY — full LG gradient, maximum brightness, thick bold text */}
+            {/* IDENTITY, full LG gradient, maximum brightness, thick bold text */}
             <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:20, padding: isMobile?"28px 16px":"40px 28px", textAlign:"center", boxShadow:"0 16px 64px rgba(44,183,167,0.45), 0 4px 20px rgba(245,224,160,0.3)" }}>
               <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#000", marginBottom:10, fontFamily:"'Jost',sans-serif" }}>The result</div>
-              <div style={{ fontSize: isMobile?36:52, fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
+              <div style={{ fontSize: isMobile?36:52, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
               <div style={{ fontSize:13, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:12 }}>Installed. ✦</div>
               <div style={{ fontSize:15, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.65, fontWeight:600 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
             </div>
@@ -1607,26 +1607,26 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,60px)", fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0 }}>How it works.</div>
           </div>
 
-          {/* Numbered steps — massive titles, full copy, thick arrows */}
+          {/* Numbered steps, massive titles, full copy, thick arrows */}
           <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
             {[
-              { n:"01", title:"PRESS PLAY. ANYTIME.", body:"Choose a track from 24 categories based on what you want to manifest. You do not have to wait until you're falling asleep. Morning coffee, car ride, gym, lunch break — theta is available the instant you press play." },
-              { n:"02", title:"THETA STATE.", body:"Your brain drops into theta (4–8Hz). Binaural beats — one frequency in each ear — create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
-              { n:"03", title:"YOUR SUBCONSCIOUS OPENS.", body:"The critical mind — the part that argues, doubts, and filters — steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming." },
+              { n:"01", title:"PRESS PLAY. ANYTIME.", body:"Choose a track from 24 categories based on what you want to manifest. You do not have to wait until you're falling asleep. Morning coffee, car ride, gym, lunch break, theta is available the instant you press play." },
+              { n:"02", title:"THETA STATE.", body:"Your brain drops into theta (4–8Hz). Binaural beats, one frequency in each ear, create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
+              { n:"03", title:"YOUR SUBCONSCIOUS OPENS.", body:"The critical mind, the part that argues, doubts, and filters, steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming." },
               { n:"04", title:"THE HYPNOSIS ACTIVATES.", body:"Reshma's voice speaks directly to your subconscious, putting you into hypnosis and opening your subconscious mind. Your new identity is delivered while the gatekeeper is offline. No resistance. No filtering. It goes straight in." },
-              { n:"05", title:"SUBLIMINALS LAYER UNDERNEATH.", body:"Affirmations recorded below conscious hearing. You can't make them out — but your subconscious can. Your new identity repeating hundreds of times per session while you listen." },
-              { n:"06", title:"MELODIC HOUSE HYPES YOU UP.", body:"The music holds you in state and keeps the energy high. Some tracks drive you. Some take you deep. Either way you stay locked in the frequency where identity shifts — and it feels incredible." },
-              { n:"07", title:"YOUR REALITY STARTS SHIFTING.", body:"Your beliefs and assumptions have changed. Your identity has shifted. Reality reflects your identity — so things start to change. This can happen in seconds. Or days. Every session goes deeper." },
-              { n:"08", title:"LOG EVERY SIGN IN PROOFOS.", body:"As your reality shifts you'll notice synchronicities — things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
+              { n:"05", title:"SUBLIMINALS LAYER UNDERNEATH.", body:"Affirmations recorded below conscious hearing. You can't make them out, but your subconscious can. Your new identity repeating hundreds of times per session while you listen." },
+              { n:"06", title:"MELODIC HOUSE HYPES YOU UP.", body:"The music holds you in state and keeps the energy high. Some tracks drive you. Some take you deep. Either way you stay locked in the frequency where identity shifts, and it feels incredible." },
+              { n:"07", title:"YOUR REALITY STARTS SHIFTING.", body:"Your beliefs and assumptions have changed. Your identity has shifted. Reality reflects your identity, so things start to change. This can happen in seconds. Or days. Every session goes deeper." },
+              { n:"08", title:"LOG EVERY SIGN IN PROOFOS.", body:"As your reality shifts you'll notice synchronicities, things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
             ].map((s,i)=>(
               <div key={i}>
                 <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"32px 24px":"48px 56px", display:"flex", gap: isMobile?20:40, alignItems:"flex-start" }}>
-                  {/* Number — massive, left, faded */}
+                  {/* Number, massive, left, faded */}
                   <div style={{ fontSize: isMobile?52:80, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?52:80, letterSpacing:"-0.02em" }}>{s.n}</div>
                   {/* Text */}
                   <div style={{ flex:1, paddingTop: isMobile?8:14 }}>
                     <div style={{ display:"flex", alignItems:"flex-start", flexWrap:"wrap", gap:10, marginBottom:16 }}>
-                      <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(28px,3vw,40px)", fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.1, letterSpacing:"-0.01em" }}>{s.title}</div>
+                      <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(28px,3vw,40px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.1, letterSpacing:"-0.01em" }}>{s.title}</div>
                       {s.badge && <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:20, padding:"6px 16px", fontSize:11, letterSpacing:"0.14em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", flexShrink:0, marginTop:4, fontWeight:500 }}>Goddess Tier ✦</span>}
                     </div>
                     <div style={{ fontSize: isMobile?15:18, color:"#222", fontFamily:"'Jost',sans-serif", lineHeight:1.85 }}>{s.body}</div>
@@ -1644,11 +1644,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   {/* PROOFOS INTRO */}
       <ProofOSBanner isMobile={isMobile}/>
 
-      {/* LANDING PROOF WALL — exact mirror of the live dashboard */}
+      {/* LANDING PROOF WALL, exact mirror of the live dashboard */}
       <LandingProofWall isMobile={isMobile}/>
 
 
-      {/* MELODIC HOUSE USP — LG gradient background */}
+      {/* MELODIC HOUSE USP, LG gradient background */}
       <div style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative" }}>
@@ -1661,21 +1661,21 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               Monotone voice. Generic ambient sound. You fall asleep in two minutes and nothing changes. Most hypnosis feels like a task, not a ritual.
             </p>
             <p style={{ fontSize: isMobile?17:21, color: "#000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-              This is the only one that makes listening feel like a daily ritual. Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats — produced to keep you coming back.
+              This is the only one that makes listening feel like a daily ritual. Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats, produced to keep you coming back.
             </p>
             <p style={{ fontSize: isMobile?18:22, color: "#0a0a0a", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               Save yourself thousands in therapy sessions.
             </p>
 
-                        {/* SIX FORMATS — clean white card, 2-col grid, no overlapping visuals */}
+                        {/* SIX FORMATS, clean white card, 2-col grid, no overlapping visuals */}
             <div style={{ background:"#ffffff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px", border:"none" }}>
               <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Six formats</div>
               <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
-                  { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song — it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
-                  { label:"Voice Only",       sub:"Pure vocal hypnosis — no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive.", color:"#E8B870", dot:"#E8B870" },
-                  { label:"Sleep & Rest",     sub:"Calm audio for winding down or sleeping — ambient, white noise, or soft sound. Subliminals layered throughout. Designed to run all night.", color:"#BFA5D8", dot:"#BFA5D8" },
+                  { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song, it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
+                  { label:"Voice Only",       sub:"Pure vocal hypnosis, no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive.", color:"#E8B870", dot:"#E8B870" },
+                  { label:"Sleep & Rest",     sub:"Calm audio for winding down or sleeping, ambient, white noise, or soft sound. Subliminals layered throughout. Designed to run all night.", color:"#BFA5D8", dot:"#BFA5D8" },
                   { label:"Subliminal",       sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day.", color:"#2CB7A7", dot:"#2CB7A7" },
                   { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
                   { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#BFA5D8", dot:"#BFA5D8" },
@@ -1691,7 +1691,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               </div>
             </div>
 
-            {/* FREQUENCIES — white card, clean horizontal bars */}
+            {/* FREQUENCIES, white card, clean horizontal bars */}
             <div style={{ background:"#ffffff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto", boxShadow:"0 4px 32px rgba(0,0,0,0.12)" }}>
               <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Solfeggio Frequencies</div>
               <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Every track is tuned to a frequency.</div>
@@ -1701,7 +1701,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { hz:"852hz", name:"Intuition",      assoc:"Returning to spiritual order",                 pct:90 },
                   { hz:"741hz", name:"Expression",     assoc:"Awakening intuition · problem solving",        pct:80 },
                   { hz:"639hz", name:"Connection",     assoc:"Relationships · harmonising with others",      pct:70 },
-                  { hz:"528hz", name:"Transformation", assoc:"The love frequency — repair · DNA · abundance",pct:62 },
+                  { hz:"528hz", name:"Transformation", assoc:"The love frequency, repair · DNA · abundance",pct:62 },
                   { hz:"432hz", name:"Harmony",        assoc:"Natural tuning · calm · coherence",            pct:54 },
                   { hz:"417hz", name:"Change",         assoc:"Undoing situations · facilitating change",     pct:46 },
                   { hz:"396hz", name:"Liberation",     assoc:"Releasing fear and guilt",                     pct:38 },
@@ -1726,7 +1726,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 })}
               </div>
               <p style={{ fontSize:12, color:"#555", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
-                Binaural beats layered beneath every track sync both hemispheres into theta — where the reprogramming begins.
+                Binaural beats layered beneath every track sync both hemispheres into theta, where the reprogramming begins.
               </p>
             </div>
           </div>
@@ -1734,7 +1734,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
       </div>
 
-      {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
+      {/* HAWKINS SCALE, measurement tool shown in the dashboard */}
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
           <div style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>Your emotional state, measured</div>
@@ -1742,7 +1742,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             The Hawkins Scale.
           </h2>
           <p style={{ fontSize: isMobile?16:19, color:theme==="dark"?"#e8e0d8":"#000000", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
-            Your emotional state is not a feeling — it's a frequency. And your heart broadcasts it. Every intention you log in ProofOS gets tagged against this 17-level scale. As you listen, your baseline climbs. Your heart rhythm shifts. Your brain follows. Watch the evidence build — not just in what arrives, but in where you are when it does.
+            Your emotional state is not a feeling, it's a frequency. And your heart broadcasts it. Every intention you log in ProofOS gets tagged against this 17-level scale. As you listen, your baseline climbs. Your heart rhythm shifts. Your brain follows. Watch the evidence build, not just in what arrives, but in where you are when it does.
           </p>
           <p style={{ fontSize: isMobile?"clamp(22px,5.5vw,28px)":"clamp(26px,2.8vw,36px)", color:"#f2ece4", lineHeight:1.4, maxWidth:580, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em" }}>
             SHG doesn't just install beliefs. It shifts the state you broadcast from.
@@ -1781,28 +1781,28 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </div>
           <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"8px 18px", background:"rgba(232,184,112,0.1)", border:"1px solid rgba(232,184,112,0.3)", borderRadius:20 }}>
             <div style={{ width:8, height:8, borderRadius:"50%", background:"#E8B870" }}/>
-            <span style={{ fontSize:12, color:"#f2ece4" }}>200 — Courage — is the line. Below it, you're contracting. Above it, you're expanding.</span>
+            <span style={{ fontSize:12, color:"#f2ece4" }}>200, Courage, is the line. Below it, you're contracting. Above it, you're expanding.</span>
           </div>
         </div>
       </div>
 
-      {/* WHAT'S INSIDE — CATEGORY SHOWCASE */}
+      {/* WHAT'S INSIDE, CATEGORY SHOWCASE */}
       <div style={{ padding: isMobile ? "56px 0 48px" : "88px 0 72px", background: "#000", width: "100%" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", padding: "0 24px", textAlign: "center", marginBottom: isMobile?36:52 }}>
           <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:20, fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>A growing library</div>
           <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:24 }}>24 categories.<br/>All of them me.</div>
           <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:560, margin:"0 auto 16px", fontFamily:"'Jost',sans-serif" }}>
-            Every track in this library is recorded by me — Reshma. One voice. One vision. Built track by track, category by category, from scratch.
+            Every track in this library is recorded by me, Reshma. One voice. One vision. Built track by track, category by category, from scratch.
           </p>
           <p style={{ fontSize: isMobile?16:19, color:"#c8bfb8", lineHeight:1.85, maxWidth:560, margin:"0 auto", fontFamily:"'Jost',sans-serif" }}>
-            This is a new project and I am still building it. What you see here is growing — four new tracks every week, across every desire you've been sitting on.
+            This is a new project and I am still building it. What you see here is growing, four new tracks every week, across every desire you've been sitting on.
           </p>
         </div>
 
         {/* Auto-cycling category banner */}
         <LibraryBanner isMobile={isMobile} onLegal={onLegal}/>
       </div>
-      {/* BOTTOM CAROUSEL — same ombre style as top, different affirmations */}
+      {/* BOTTOM CAROUSEL, same ombre style as top, different affirmations */}
       <IdentityCarousel cats={[
         { label:"Richgirlmaxxing",     tagline:"Money finds me first. Obviously." },
         { label:"Lovemaxxing",      tagline:"He's obsessed. Of course he is." },
@@ -1820,10 +1820,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={22} height={22} style={{opacity:0.5, objectFit:"contain", display:"block"}} />
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
-      {/* PROOFOS INTRO — MASSIVE STATEMENT */}
+      {/* PROOFOS INTRO, MASSIVE STATEMENT */}
       <div id="proofos" style={{ padding: isMobile?"48px 20px":"80px 24px", textAlign:"center", maxWidth:820, margin:"0 auto" }}>
         <p style={{ fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(36px,4.5vw,58px)", color:"#f2ece4", lineHeight:1.3, fontWeight:400, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", margin:0 }}>
-          Every track links to a desire. Every sign you receive gets logged in <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>ProofOS ✦</span> — dated, stacked, permanent. Your proof wall builds itself while you sleep.
+          Every track links to a desire. Every sign you receive gets logged in <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>ProofOS ✦</span>, dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
       </div>
       
@@ -1851,7 +1851,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { quote: "I genuinely thought he was about to break up with me. I kept listening anyway. He proposed three weeks later.", name: "Ellie, 30", cat: "Lovemaxxing" },
               { quote: "I wrote down five desires. Within 30 days all five had either arrived or were clearly on their way.", name: "Freya, 27", cat: "Desiresmaxxing" },
               { quote: "I was so sure my business was about to crash. A client came out of nowhere and it turned everything around.", name: "Nadia, 34", cat: "Businessmaxxing" },
-              { quote: "People offer to buy me a coffee or a drink now — genuinely, 90% of the time I go out. It never used to happen.", name: "Bella, 28", cat: "Erosmaxxing" },
+              { quote: "People offer to buy me a coffee or a drink now, genuinely, 90% of the time I go out. It never used to happen.", name: "Bella, 28", cat: "Erosmaxxing" },
               { quote: "I found €50 on the street one day, out of nowhere, while I had Money Finds Me First on repeat. Then it happened again. Then again. It just keeps happening.", name: "Camille, 25", cat: "Luckygirlmaxxing" },
               { quote: "Woke up knowing he was coming back. No logical reason. He called that afternoon.", name: "Layla, 28", cat: "Lovemaxxing" },
               { quote: "The sleep subliminal changed my dreams. I woke up feeling like money was already mine.", name: "Chloe, 35", cat: "Richgirlmaxxing" },
@@ -1929,7 +1929,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ fontSize: 12, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
       </div>
 
-      {/* SHOP MODAL — embedded Beacons, stays on-site */}
+      {/* SHOP MODAL, embedded Beacons, stays on-site */}
       {shopOpen && (
         <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(42,168,154,0.3)" }}>
@@ -1959,7 +1959,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             ) : (
               <>
                 <div style={{ fontFamily:"'Jost',sans-serif", fontSize:34, fontWeight:300, color:"#f2ece4", marginBottom:10, letterSpacing:"-0.01em" }}>Join the Waitlist</div>
-                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:22, lineHeight:1.6 }}>We're not live yet — get first access the moment it opens.</div>
+                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:22, lineHeight:1.6 }}>We're not live yet, get first access the moment it opens.</div>
                 <form onSubmit={submitWaitlist}>
                   <input
                     type="email"

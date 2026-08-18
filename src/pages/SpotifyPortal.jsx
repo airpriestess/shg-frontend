@@ -22,7 +22,7 @@ async function manifestationsApi(path, token, options = {}) {
   return data;
 }
 
-// Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
+// Full Hawkins scale, 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
   {n:"Shame",       v:20,  c:"#7a1f1f"}, // deep red
   {n:"Guilt",       v:30,  c:"#9c2b2b"}, // red
@@ -30,9 +30,9 @@ const HAWKINS = [
   {n:"Grief",       v:75,  c:"#b8562f"}, // burnt orange
   {n:"Fear",        v:100, c:"#c66a2e"}, // orange
   {n:"Desire",      v:125, c:"#d0812f"}, // amber-orange
-  {n:"Anger",       v:150, c:"#c94040"}, // red (spike — anger reads hot, not warm-fading)
-  {n:"Pride",       v:175, c:"#E8B870"}, // gold — transition begins
-  {n:"Courage",     v:200, c:"#E8B870"}, // gold — the line
+  {n:"Anger",       v:150, c:"#c94040"}, // red (spike, anger reads hot, not warm-fading)
+  {n:"Pride",       v:175, c:"#E8B870"}, // gold, transition begins
+  {n:"Courage",     v:200, c:"#E8B870"}, // gold, the line
   {n:"Neutrality",  v:250, c:"#BFA5D8"}, // lilac
   {n:"Willingness", v:310, c:"#BFA5D8"}, // lilac
   {n:"Acceptance",  v:350, c:"#2CB7A7"}, // teal
@@ -40,7 +40,7 @@ const HAWKINS = [
   {n:"Love",        v:500, c:"#F5E0A0"}, // champagne
   {n:"Joy",         v:540, c:"#F5E0A0"}, // champagne
   {n:"Peace",       v:600, c:"#F5E0A0"}, // champagne
-  {n:"Enlightenment",v:700,c:"#F5E0A0"}, // champagne — brightest
+  {n:"Enlightenment",v:700,c:"#F5E0A0"}, // champagne, brightest
 ];
 const dominant = (log,days) => {
   const cutoff = Date.now() - days*86400000;
@@ -51,7 +51,7 @@ const dominant = (log,days) => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════════
-   SHG PORTAL — Full Spotify-style with:
+   SHG PORTAL, Full Spotify-style with:
    · Real Supabase audio playback
    · Proof threads linked to tracks + undo/edit
    · Favorites section
@@ -84,13 +84,13 @@ const THEMES = {
     bg3:     "#111111",
     bg4:     "#161616",
     nav:     "#050505",
-    cr:      "#f2ece4",   // primary text — warm cream
-    mu:      "#f2ece4",   // muted text — now same as primary, no grey
-    dim:     "#e8e0d8",   // faint text — still near-white, no grey/brown
+    cr:      "#f2ece4",   // primary text, warm cream
+    mu:      "#f2ece4",   // muted text, now same as primary, no grey
+    dim:     "#e8e0d8",   // faint text, still near-white, no grey/brown
     border:  "rgba(232,184,112,0.15)",  // gold-tinted border
     inputBg: "#1a1a1a",
     inputCr: "#f2ece4",
-    // LG accent colours for labels, icons, active tabs — never backgrounds
+    // LG accent colours for labels, icons, active tabs, never backgrounds
     accentGold: "#E8B870",
     accentLav:  "#BFA5D8",
     accentTeal: "#2CB7A7",
@@ -103,10 +103,10 @@ const THEMES = {
     bg2:     "rgba(255,255,255,0.25)",  // frosted glass cards
     bg3:     "rgba(255,255,255,0.35)",  // raised cards
     bg4:     "rgba(255,255,255,0.45)",  // highest surface
-    nav:     "rgba(245,224,160,0.55)",  // nav bar — champagne frosted
-    cr:      "#000000",   // primary text — black
-    mu:      "#000000",   // muted text — also black (no grey in light mode)
-    dim:     "#000000",   // faint text — also black
+    nav:     "rgba(245,224,160,0.55)",  // nav bar, champagne frosted
+    cr:      "#000000",   // primary text, black
+    mu:      "#000000",   // muted text, also black (no grey in light mode)
+    dim:     "#000000",   // faint text, also black
     border:  "rgba(255,255,255,0.45)",
     inputBg: "rgba(255,255,255,0.55)",
     inputCr: "#000000",
@@ -121,7 +121,7 @@ const THEMES = {
 const R = "#E8B870", P = "#BFA5D8";
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
-// Per-tab subtle wash — black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
+// Per-tab subtle wash, black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
 // Light theme: cream fading to a soft champagne pastel.
 // TAB_WASH: dark = pure black per tab. light = undefined (LG gradient is the bg, set via THEMES.light.bg).
@@ -187,11 +187,11 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 }
 
 // ── TRACK DATA ────────────────────────────────────────────────────────────────
-// Category-level shift/benefit templates — used as a fallback description for tracks
+// Category-level shift/benefit templates, used as a fallback description for tracks
 // that don't have a hand-written desc yet. Not unique per track, but genuinely tailored
 // per category so it's honest content, not generic filler repeated everywhere.
 // Guide names per category, shown as "Related guide" in each track's description.
-// SHOP_URL is the general storefront for now — swap in real per-product URLs here
+// SHOP_URL is the general storefront for now, swap in real per-product URLs here
 // once individual guide listings exist (e.g. GUIDE_URLS["Richgirlmaxxing"] = "https://...").
 const SHOP_URL = "https://beacons.ai/reshmaoracle";
 const CAT_GUIDE = {
@@ -205,7 +205,7 @@ const CAT_GUIDE = {
   Intuitionmaxxing:"Intuitionmaxxing Guide", Desiresmaxxing:"Desiresmaxxing Guide",
 };
 const CAT_DESC = {
-  Lovemaxxing: { shift:"This shifts you from feeling like you have to chase, prove, or wonder where you stand — into feeling like the security you want is already yours.",
+  Lovemaxxing: { shift:"This shifts you from feeling like you have to chase, prove, or wonder where you stand, into feeling like the security you want is already yours.",
     benefits:["Stop checking your phone for reassurance","Release anxious attachment patterns","Feel chosen without needing constant proof"] },
   Selfmaxxing: { shift:"This shifts you from shrinking to fit into rooms, into taking up the space you were always allowed to take.",
     benefits:["Stop over-explaining your boundaries","Build quiet, unshakeable self-trust","Feel like yourself even under pressure"] },
@@ -225,7 +225,7 @@ const CAT_DESC = {
     benefits:["Stop outsourcing decisions that are yours to make","Feel settled being disliked by the wrong people","Build a quieter, steadier inner authority"] },
   Lifemaxxing: { shift:"This shifts you from waiting for your life to start, into feeling like you're already living the version you used to dream about.",
     benefits:["Notice how far you've already come","Stop postponing joy for 'someday'","Feel present in a life that's actually yours"] },
-  Erosmaxxing: { shift:"This shifts you from performing confidence, into actually feeling it — especially in the moments that used to make you shrink.",
+  Erosmaxxing: { shift:"This shifts you from performing confidence, into actually feeling it, especially in the moments that used to make you shrink.",
     benefits:["Feel present instead of self-conscious","Release old shame around desire","Own your own magnetism without apology"] },
   Bodymaxxing: { shift:"This shifts you from fighting your body, into feeling like it's finally on your side.",
     benefits:["Reduce the mental noise around how you look","Feel strong without needing to prove it","Move through the world without shrinking"] },
@@ -253,7 +253,7 @@ const CAT_DESC = {
     benefits:["Reduce the anxiety of being overlooked","Speak up for what you're actually worth","Feel confident taking up space in the room"] },
 };
 function getDesc(track) {
-  return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively — no active effort required","Track the shift in ProofOS as signs come in"] };
+  return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively, no active effort required","Track the shift in ProofOS as signs come in"] };
 }
 
 const TRACKS = [
@@ -264,7 +264,7 @@ const TRACKS = [
     desc:{ shift:"This shifts you from feeling like you have to earn good things happening to you, into feeling like you're already the woman everyone wants to spoil.",
       benefits:["Stop over-giving to feel worthy of receiving","Let people show up for you without guilt","Feel deserving of ease, not just effort"] } },
   { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false,
-    desc:{ shift:"This shifts you from feeling like you have to chase, check your phone, or wonder if he still thinks about you — into feeling secure that he's already finding his way back.",
+    desc:{ shift:"This shifts you from feeling like you have to chase, check your phone, or wonder if he still thinks about you, into feeling secure that he's already finding his way back.",
       benefits:["Stop the anxious phone-checking loop","Release the need to initiate contact first","Feel settled in the outcome instead of controlling it"] } },
   { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Richgirlmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to hustle for every pound, into feeling like money is already looking for you.",
@@ -402,7 +402,7 @@ const INIT_THREADS = [
   { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"Lovemaxxing",
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
     createdAt:"6 Jun 2026",
-    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot — the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note — the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
+    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot, the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note, the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
   { id:2, desire:"$5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Rich Girl",
     feelBefore:"Tight and worried about money.", feelAfter:"",
     createdAt:"22 Jun 2026",
@@ -418,7 +418,7 @@ const INIT_THREADS = [
   { id:5, desire:"Fully paid trip to Bali", days:31, done:true, track:"Lucky Girl Summer", category:"Luckygirlmaxxing",
     feelBefore:"Convinced holidays like this only happened to other people.", feelAfter:"Still processing that this actually happened to me.",
     createdAt:"14 Feb 2026",
-    signs:[ {text:"Friend mentioned a trip out of nowhere",date:"2 Mar"}, {text:"Won a giveaway I forgot I entered",date:"9 Mar"}, {text:"Screenshot — flights confirmed, fully paid",date:"17 Mar",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"17 Mar 2026" },
+    signs:[ {text:"Friend mentioned a trip out of nowhere",date:"2 Mar"}, {text:"Won a giveaway I forgot I entered",date:"9 Mar"}, {text:"Screenshot, flights confirmed, fully paid",date:"17 Mar",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"17 Mar 2026" },
   { id:6, desire:"All 5 desires manifested",     days:22, done:true,  track:"My Desires Are Obsessed With Me", category:"Desiresmaxxing",
     feelBefore:"Overworked and overlooked. Tired of proving myself.", feelAfter:"Relief. Like I could finally exhale.",
     createdAt:"3 Nov 2025",
@@ -426,11 +426,11 @@ const INIT_THREADS = [
   { id:7, desire:"Won $850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Rich Girl",
     feelBefore:"Skeptical this stuff even works.", feelAfter:"Shocked. Genuinely shocked.",
     createdAt:"8 Sep 2025",
-    signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot — the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
+    signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot, the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
   { id:8, desire:"Best friend reached out first", days:45, done:true, track:"Friendmaxxing Guide", category:"Friendmaxxing",
     feelBefore:"Grieving a friendship I thought was over.", feelAfter:"Full circle. Grateful.",
     createdAt:"19 Jan 2026",
-    signs:[ {text:"Saw an old photo of us randomly",date:"14 Feb"}, {text:"She texted — 'I miss you'",date:"5 Mar"} ], manifestedAt:"5 Mar 2026" },
+    signs:[ {text:"Saw an old photo of us randomly",date:"14 Feb"}, {text:"She texted, 'I miss you'",date:"5 Mar"} ], manifestedAt:"5 Mar 2026" },
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
@@ -519,7 +519,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const [theme, setTheme]     = useState(forceTheme || "light");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
-  // Seeded 30-day emotional log — dominant state trends upward on Hawkins scale
+  // Seeded 30-day emotional log, dominant state trends upward on Hawkins scale
   const [emoLog, setEmoLog] = useState(()=>{
     const arr=[]; const now=Date.now();
     const path=["Fear","Fear","Desire","Anger","Pride","Pride","Courage","Neutrality","Willingness","Courage","Willingness","Acceptance","Reason","Acceptance","Love","Willingness","Acceptance","Love","Joy","Reason","Love","Love","Peace","Joy","Love","Peace","Joy","Peace","Love","Love"];
@@ -552,7 +552,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       const tracksRes = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/tracks");
       const { tracks } = await tracksRes.json();
       const match = tracks?.find(t => t.title === trackTitle);
-      if (!match) return; // no matching track row — skip logging, don't block playback
+      if (!match) return; // no matching track row, skip logging, don't block playback
       await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
@@ -672,7 +672,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$79/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-              {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
+              {portalLoading ? "Opening..." : "Upgrade now, instant access ✦"}
             </button>
           </div>
         )}
@@ -716,7 +716,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ flex:1,overflowY:"auto",padding:"8px 0" }}>
           {[
             { icon:<Ico.Book c={C.mu}/>, label:"Listening Guide", action:()=>{setShowGuide(true);setProfileOpen(false);} },
-            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile — connect to Supabase auth") },
+            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile, connect to Supabase auth") },
             { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
             { icon:<Ico.Shop c={C.mu}/>, label:"Shop", action:()=>{setTab("shop");setProfileOpen(false);} },
             { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Coming soon: daily push reminders.\n\nThis requires the app to be installed to your home screen (iPhone: Share → Add to Home Screen) so your browser can send notifications even when SHG isn't open. We'll prompt you to enable this once it's live.") },
@@ -815,7 +815,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                   <div style={{ width:14,height:14,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 8px ${h.c}` }}/>
                   <div>
                     <div style={{ fontSize:15,color:C.cr }}>{h.n} · {h.v}</div>
-                    <div style={{ fontSize:13,color:C.mu }}>{h.v>=200?"Expansive energy — you're creating from above the line":"Contractive energy — the audio will help lift you"}</div>
+                    <div style={{ fontSize:13,color:C.mu }}>{h.v>=200?"Expansive energy, you're creating from above the line":"Contractive energy, the audio will help lift you"}</div>
                   </div>
                 </div>
               ) : null;
@@ -828,8 +828,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
-            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
-            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
+            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
+            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
             <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
@@ -925,8 +925,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
-            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
-            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
+            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
+            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
             <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
@@ -985,7 +985,7 @@ function PreviewBanner({ onSignOut, C }) {
   return (
     <div style={{ background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",padding:"9px 16px",textAlign:"center",flexShrink:0 }}>
       <span style={{ fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>
-        🔒 Preview mode — <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
+        🔒 Preview mode, <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
       </span>
     </div>
   );
@@ -1003,7 +1003,7 @@ function BetaBanner({ C, isDark }) {
   return (
     <div style={{ background:isDark?"#0a0a0a":"rgba(0,0,0,0.06)",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
       <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",display:"block" }}>
-        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span> — some tracks may not work yet.
+        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span>, some tracks may not work yet.
       </span>
       <button onClick={close} aria-label="Dismiss" style={{ position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",width:22,height:22,borderRadius:"50%",background:"none",border:"none",color:C.mu,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",WebkitTapHighlightColor:"transparent" }}>✕</button>
     </div>
@@ -1080,7 +1080,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
           <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#E8B870":C.mu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
-          <span style={{ fontSize:13,color:C.dim,width:32,textAlign:"right" }}>—</span>
+          <span style={{ fontSize:13,color:C.dim,width:32,textAlign:"right" }}>,</span>
           <div style={{ flex:1,height:4,background:C.border,borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
             <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",transition:"width 0.3s" }}/>
           </div>
@@ -1147,7 +1147,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
           <div style={{ fontSize:15,color:C.mu,marginBottom:24 }}>Read along</div>
           <div style={{ width:"100%",fontSize:19,lineHeight:1.9,color:C.cr,fontWeight:400,textAlign:"center",whiteSpace:"pre-line",paddingBottom:40 }}>
-            {track.script || "Script coming soon — this affirmation script hasn't been added yet."}
+            {track.script || "Script coming soon, this affirmation script hasn't been added yet."}
           </div>
         </div>
       ) : (
@@ -1187,7 +1187,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
       </div>
       <div style={{ display:"flex",justifyContent:"space-between",width:"100%",marginBottom:32 }}>
-        <span style={{ fontSize:13,color:C.dim }}>—</span><span style={{ fontSize:13,color:C.dim }}>{track.dur}</span>
+        <span style={{ fontSize:13,color:C.dim }}>,</span><span style={{ fontSize:13,color:C.dim }}>{track.dur}</span>
       </div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%" }}>
         <span style={{ fontSize:18,color:C.dim,cursor:"pointer" }}>⇄</span>
@@ -1229,7 +1229,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
             <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
-            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics — 10% off</div>
+            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics, 10% off</div>
           </div>
           <div style={{ fontSize:18,color:"#000",flexShrink:0 }}>→</div>
         </div>
@@ -1238,7 +1238,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* PUSH PROMPT */}
       {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} token={token} C={C} onDismiss={onDismissPush}/>}
 
-      {/* PROOFOS TEASER — home tab */}
+      {/* PROOFOS TEASER, home tab */}
       <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
           <div style={{ fontSize:13,fontWeight:600,color:"#167A6B",letterSpacing:"0.15em",textTransform:"uppercase",display:"inline-block" }}>ProofOS ✦</div>
@@ -1256,13 +1256,13 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore ProofOS →</div>
       </div>
 
-      {/* KNOWLEDGE GUIDE — all tiers */}
+      {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
         <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(44,183,167,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals, all explained.</div>
           </span>
           <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
         </button>
@@ -1303,7 +1303,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* YOUR FAVOURITES */}
       <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
-          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track — it lives here.</div>
+          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track, it lives here.</div>
           :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
 
@@ -1335,7 +1335,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
   );
 }
 
-// ── ANALYTICS TAB — dominant emotional state + full analytics board, its own destination ──
+// ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
 function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
@@ -1411,7 +1411,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <span style={{ fontSize:24,fontWeight:400,color:C.cr }}>Analytics</span>
       </div>
 
-      {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
+      {/* EMOTIONAL PATTERN, dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
           <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
@@ -1420,17 +1420,17 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
             <div key={i} style={{ background:C.card2, borderRadius:12, padding:"16px 10px", textAlign:"center" }}>
               <div style={{ fontSize:13, color:C.mu, fontWeight:400, letterSpacing:"0.05em", textTransform:"uppercase", marginBottom:8 }}>{l}</div>
-              <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||","}</div>
               <div style={{ fontSize:15, color:C.mu, fontWeight:400, marginTop:4 }}>{d?.v||""}</div>
             </div>
           ))}
         </div>
         <div style={{ fontSize:14, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
-          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
+          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today, the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
 
-      {/* PATTERNS — what's actually working, real listen + manifestation correlation */}
+      {/* PATTERNS, what's actually working, real listen + manifestation correlation */}
       {!isPreview && patterns && patterns.length > 0 && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:"linear-gradient(135deg,rgba(245,224,160,0.08),rgba(191,165,216,0.06),rgba(44,183,167,0.08))", border:`1px solid rgba(232,184,112,0.3)` }}>
           <div style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>What's working for you ✦</div>
@@ -1467,13 +1467,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         />
       </div>
 
-      {/* KNOWLEDGE GUIDE — available to all tiers */}
+      {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
         <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(44,183,167,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
-            <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
+            <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals, everything explained.</div>
           </span>
           <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
         </button>
@@ -1636,7 +1636,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
         <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:999998, background:"transparent" }}/>,
         document.body
       )}
-      {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
+      {/* FORMAT FILTER, Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
           <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
@@ -1697,10 +1697,10 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
         <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$79<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
-        <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
+        <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan, no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
-        Unlock {feature} — upgrade now ✦
+        Unlock {feature}, upgrade now ✦
       </button>
       <div style={{ fontSize:13, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
     </div>
@@ -1721,7 +1721,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterInput, setFeelAfterInput] = useState("");
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
-  // ProofOS — always LG gradient background, white cards, black text
+  // ProofOS, always LG gradient background, white cards, black text
   const isDark = false; // ProofOS always uses light card theme on LG bg
   const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"rgba(0,0,0,0.1)", inputBg:"rgba(255,255,255,0.9)" };
   const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
@@ -1742,7 +1742,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
   const confirmFinish = async (id) => {
-    const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(" — ");
+    const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(", ");
     setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
     if (!isPreview && userId) {
@@ -1833,9 +1833,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         </div>
       )}
       <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#167A6B",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
-      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
+      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured, forever.</div>
 
-      {/* Filter banner — shown when drilled in from Analytics */}
+      {/* Filter banner, shown when drilled in from Analytics */}
       {proofFilter!=="all" && (
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",background:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14 }}>
           <span style={{ fontSize:14,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
@@ -1866,18 +1866,18 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       </div>
 
       {view==="bucket" ? (
-        /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
+        /* ═══ BUCKET LIST, capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
             <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
-              <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever — no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
+              <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever, no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
-              <b style={{fontWeight:600}}>Active</b> is different — it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5–10 at a time, so your energy stays focused instead of spread thin.
+              <b style={{fontWeight:600}}>Active</b> is different, it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5–10 at a time, so your energy stays focused instead of spread thin.
             </div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75 }}>
-              Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active — pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own — <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
+              Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active, pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own, <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
             </div>
           </div>
 
@@ -1908,14 +1908,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
             <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
-              ✦ You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
+              ✦ You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5–10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
 
           {bucketItems.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
-              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest — big or small.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest, big or small.</div>
             </div>
           ) : (
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -1926,7 +1926,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                     <div style={{ marginBottom:11, position:"relative" }}>
                       <div style={{ fontSize:13, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:7 }}>Choose a category to promote this</div>
                       <div onClick={()=>setPromoCatOpen(o=>o===item.id?null:item.id)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-                        <span>— Select a category —</span>
+                        <span>, Select a category,</span>
                         <span style={{ fontSize:13, color:PC.mu, transform:promoCatOpen===item.id?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
                       </div>
                       {promoCatOpen===item.id && (
@@ -1979,14 +1979,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           )}
         </div>
       ) : view==="wall" ? (
-        /* ═══ PROOF WALL — your wins, forever ═══ */
+        /* ═══ PROOF WALL, your wins, forever ═══ */
         <div>
           <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
           <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
-              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here — and stays here for life.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here, and stays here for life.</div>
             </div>
           ) : (
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
@@ -2035,7 +2035,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
           <div style={{ position:"relative", marginBottom:11 }}>
             <div onClick={()=>{setTrackPickerOpen(o=>!o); setCatPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-              <span>{linkedTrack || "— Select a track —"}</span>
+              <span>{linkedTrack || ", Select a track,"}</span>
               <span style={{ fontSize:13, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
             </div>
             {trackPickerOpen && (
@@ -2106,7 +2106,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <div onClick={()=>{setFeelPickerOpen(o=>!o); setTrackPickerOpen(false); setCatPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:h?h.c:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
                   <span style={{ display:"flex",alignItems:"center",gap:8 }}>
                     {h && <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>}
-                    {h ? `${h.n} · ${h.v}` : "— Select how you feel —"}
+                    {h ? `${h.n} · ${h.v}` : ", Select how you feel,"}
                   </span>
                   <span style={{ fontSize:13, color:PC.mu, transform:feelPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
                 </div>
@@ -2134,10 +2134,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
               <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
+              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive, you're above the line ✦" : "Contractive, the audio will lift you"}</span>
             </div>
           ) : null; })()}
-          <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
+          <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words, e.g. 'I'm feeling anxious about this'"
             style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
           <button onClick={async ()=>{
             if(!newD.trim()) return;
@@ -2145,7 +2145,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               onUpgrade?.();
               return;
             }
-            const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
+            const before = [newFeel, newFeelText].filter(Boolean).join(", ");
             const localId = Date.now()+Math.random().toString(36).slice(2,8);
             const optimistic = {id:localId,desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief};
             setThreads([optimistic,...threads]);
@@ -2162,11 +2162,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               }
             }
           }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-            {userTier === "audio" && !isPreview ? "Add Desire — Upgrade to Goddess ✦" : "Add Desire"}
+            {userTier === "audio" && !isPreview ? "Add Desire, Upgrade to Goddess ✦" : "Add Desire"}
           </button>
           {userTier === "audio" && !isPreview && (
             <div style={{ fontSize:13,color:"#e8e0d8",marginTop:8,lineHeight:1.5 }}>
-              You're on Audio Tier. Log your desire — then upgrade to Goddess to save it to your Proof Thread and track every sign.
+              You're on Audio Tier. Log your desire, then upgrade to Goddess to save it to your Proof Thread and track every sign.
             </div>
           )}
         </div>
@@ -2213,10 +2213,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             </div>
           </div>
 
-          {/* Marking manifested — capture feelAfter */}
+          {/* Marking manifested, capture feelAfter */}
           {finishing===d.id && (
             <div style={{ marginTop:10,background:PC.card,border:`1px solid ${PC.border}`,borderRadius:10,padding:"12px 14px" }}>
-              <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓, how are you feeling now?</div>
               <div style={{ display:"flex", gap:6, overflowX:"auto", marginBottom:10, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
                 {HAWKINS.slice().reverse().map(h=>(
                   <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
@@ -2232,7 +2232,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             </div>
           )}
 
-          {/* ═══ SIGNS & SYNCHRONICITY LOG — the heart of ProofOS ═══ */}
+          {/* ═══ SIGNS & SYNCHRONICITY LOG, the heart of ProofOS ═══ */}
           <div style={{ marginTop:12,paddingTop:10,borderTop:`1px solid ${PC.border}` }}>
             <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
