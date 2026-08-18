@@ -1124,11 +1124,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !EMAIL_RE.test(email)) { setWaitlistStatus("error"); return; }
     setWaitlistStatus("saving");
+    const refSource = new URLSearchParams(window.location.search).get("ref") || "landing_page_banner";
     try {
       const res = await fetch("https://shg-quiz-worker.airpriestess.workers.dev/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "landing_page_banner" }),
+        body: JSON.stringify({ email, source: refSource }),
       });
       // Worker returns success:true even for duplicate emails (already on the list)
       if (!res.ok) { setWaitlistStatus("error"); return; }
