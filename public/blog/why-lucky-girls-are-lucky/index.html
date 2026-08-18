@@ -363,5 +363,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
   </div>
 </div>
 
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  fetch('https://shg-quiz-worker.airpriestess.workers.dev/track-view', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      page: window.location.pathname,
+      referrer: document.referrer || null,
+      utm_source: params.get('utm_source'),
+      utm_medium: params.get('utm_medium'),
+      utm_campaign: params.get('utm_campaign'),
+    }),
+  }).catch(() => {});
+})();
+</script>
+
 </body>
 </html>
