@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BeautyMaxxing Block Quiz — Self Hypnosis Goddess</title>
+<title>BeautyMaxxing Block Quiz, Self Hypnosis Goddess</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);--white:#f2ece4;}
@@ -79,7 +79,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 <div class="screen active" id="s-email">
   <span class="ey">✦ Free Diagnostic ✦</span>
   <h1 class="email-h1">Find your<br>beauty block.</h1>
-  <p class="email-sub">8 questions. Your self-perception block — named, placed on the Hawkins scale, and replaced.</p>
+  <p class="email-sub">8 questions. Your self-perception block, named, placed on the Hawkins scale, and replaced.</p>
   <div class="form">
     <input id="inp-name" type="text" placeholder="Your first name" autocomplete="given-name">
     <input id="inp-email" type="email" placeholder="Your email address" autocomplete="email">
@@ -122,7 +122,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
       <div class="flip-new" id="flip-new"></div>
     </div>
     <div class="res-ctas">
-      <a href="/?waitlist=1" class="btn-primary">Join the waitlist — BeautyMaxxing audio coming soon →</a>
+      <a href="/?waitlist=1" class="btn-primary">Join the waitlist, BeautyMaxxing audio coming soon →</a>
       <a href="/guide/beautymaxxing" class="btn-sec">Read the BeautyMaxxing guide</a>
     </div>
   </div>
@@ -134,24 +134,24 @@ const Qs = [
     q: "You catch yourself in a mirror or photo unexpectedly. Before you can think, your first automatic response is...",
     opts: [
       { t: "You zoom in on one specific thing. The same thing. It is always the same thing.", c: "fixation" },
-      { t: "You immediately compare — to how you used to look, to someone else, to a standard you cannot quite define.", c: "comparison" },
+      { t: "You immediately compare, to how you used to look, to someone else, to a standard you cannot quite define.", c: "comparison" },
       { t: "It varies completely. Some days you look fine. Other days the same mirror looks completely different.", c: "inconsistency" },
       { t: "A general unease. Nothing specific. Just a sense that something is not quite right.", c: "perception" }
     ]
   },
   {
     label: "The One Thing",
-    q: "When you imagine being fully, visibly, undeniably beautiful — the version that feels completely at ease in her own skin — what stops the image from landing?",
+    q: "When you imagine being fully, visibly, undeniably beautiful, the version that feels completely at ease in her own skin, what stops the image from landing?",
     opts: [
       { t: "One specific thing would need to change first. Until that changes, the rest does not count.", c: "fixation" },
       { t: "There is always a woman nearby who has more of what beauty is supposed to look like.", c: "comparison" },
-      { t: "I can almost see it — and then something shifts and I lose it again.", c: "inconsistency" },
+      { t: "I can almost see it, and then something shifts and I lose it again.", c: "inconsistency" },
       { t: "I genuinely do not know what I look like. I cannot trust what I see.", c: "perception" }
     ]
   },
   {
     label: "Getting Dressed",
-    q: "Getting ready to go somewhere you will be seen — a date, an event, anywhere that feels observed. You feel...",
+    q: "Getting ready to go somewhere you will be seen, a date, an event, anywhere that feels observed. You feel...",
     opts: [
       { t: "Preoccupied with whether the specific thing is visible, manageable or controllable today.", c: "fixation" },
       { t: "Like you are preparing to be measured against a standard you probably will not meet.", c: "comparison" },
@@ -163,7 +163,7 @@ const Qs = [
     label: "The Compliment",
     q: "Someone tells you that you look amazing. Your honest internal response is...",
     opts: [
-      { t: "Pleased for a moment — then immediately aware of the specific thing they clearly did not notice.", c: "fixation" },
+      { t: "Pleased for a moment, then immediately aware of the specific thing they clearly did not notice.", c: "fixation" },
       { t: "A quiet thought: she has better taste than me but I still do not look as good as the women she usually admires.", c: "comparison" },
       { t: "I believe it in the moment. By tomorrow I will not.", c: "inconsistency" },
       { t: "I suspect they are being kind rather than honest. I cannot fully receive it.", c: "perception" }
@@ -171,11 +171,11 @@ const Qs = [
   },
   {
     label: "Other Women",
-    q: "You see a woman who is undeniably beautiful — striking, magnetic, the kind of presence that shifts a room. You feel...",
+    q: "You see a woman who is undeniably beautiful, striking, magnetic, the kind of presence that shifts a room. You feel...",
     opts: [
       { t: "Fine about her. The specific thing I am focused on is unrelated to what she has.", c: "fixation" },
       { t: "Like she is on a frequency I am not on. Like beauty is distributed and she got more.", c: "comparison" },
-      { t: "Admiration — and a wave of something I cannot hold onto. Good days I feel close to her. Bad days, miles away.", c: "inconsistency" },
+      { t: "Admiration, and a wave of something I cannot hold onto. Good days I feel close to her. Bad days, miles away.", c: "inconsistency" },
       { t: "Curious what she sees when she looks in the mirror. I wonder if she knows something I do not.", c: "perception" }
     ]
   },
@@ -191,7 +191,7 @@ const Qs = [
   },
   {
     label: "Being Seen",
-    q: "Someone is clearly attracted to you — making it obvious, paying attention, moved by you. Before you can enjoy it, you feel...",
+    q: "Someone is clearly attracted to you, making it obvious, paying attention, moved by you. Before you can enjoy it, you feel...",
     opts: [
       { t: "I wonder if they would feel differently if they noticed the specific thing.", c: "fixation" },
       { t: "Like I am not quite the standard they probably usually go for.", c: "comparison" },
@@ -201,9 +201,9 @@ const Qs = [
   },
   {
     label: "The BeautyMaxxed Identity",
-    q: "The BeautyMaxxed woman does not try to feel beautiful. She has installed the identity — she radiates, the room notices, gorgeous is her default. When you try that on, it feels...",
+    q: "The BeautyMaxxed woman does not try to feel beautiful. She has installed the identity, she radiates, the room notices, gorgeous is her default. When you try that on, it feels...",
     opts: [
-      { t: "Possible — after the specific thing is resolved. Not before.", c: "fixation" },
+      { t: "Possible, after the specific thing is resolved. Not before.", c: "fixation" },
       { t: "Like a frequency available to other women. I have not found the route to it.", c: "comparison" },
       { t: "True on certain days. Completely out of reach on others. I cannot make it stable.", c: "inconsistency" },
       { t: "Like an identity I have never given myself permission to fully claim.", c: "perception" }
@@ -214,29 +214,29 @@ const Qs = [
 const RESULTS = {
   fixation: {
     block: "The Fixation Block",
-    desc: "There is one specific thing. Until it is resolved, the rest of your beauty does not count. This is not vanity and it is not superficiality — it is a filter so narrow it screens out everything that contradicts it. The specific thing is not the problem. The filter is.",
-    h: { cur: 100, curN: "Fear", tar: 350, tarN: "Acceptance", desc: "You are operating from Fear (100) around beauty — the subconscious has decided one specific thing must change before the identity is allowed. The install moves you to Acceptance (350), where beauty is whole, not conditional." },
+    desc: "There is one specific thing. Until it is resolved, the rest of your beauty does not count. This is not vanity and it is not superficiality, it is a filter so narrow it screens out everything that contradicts it. The specific thing is not the problem. The filter is.",
+    h: { cur: 100, curN: "Fear", tar: 350, tarN: "Acceptance", desc: "You are operating from Fear (100) around beauty, the subconscious has decided one specific thing must change before the identity is allowed. The install moves you to Acceptance (350), where beauty is whole, not conditional." },
     old: "I need to fix this one specific thing first. Until it changes, I cannot fully own being beautiful.",
-    new: "Gorgeous is my default now. Not after. Not when. Now. The fixation was never the truth — it was a filter. The filter has been replaced."
+    new: "Gorgeous is my default now. Not after. Not when. Now. The fixation was never the truth, it was a filter. The filter has been replaced."
   },
   comparison: {
     block: "The Comparison Block",
-    desc: "Your self-perception is not measured against a fixed standard — it is measured against other women. In a room of beautiful women, you feel less. Alone, you feel fine. The standard keeps moving because it is never actually yours. It is borrowed, and it will never fit.",
-    h: { cur: 175, curN: "Pride", tar: 400, tarN: "Reason", desc: "You are operating from Pride (175) around beauty — constantly measuring, ranking, competing. The install moves you to Reason (400), where your self-perception is self-referential, not comparative." },
+    desc: "Your self-perception is not measured against a fixed standard, it is measured against other women. In a room of beautiful women, you feel less. Alone, you feel fine. The standard keeps moving because it is never actually yours. It is borrowed, and it will never fit.",
+    h: { cur: 175, curN: "Pride", tar: 400, tarN: "Reason", desc: "You are operating from Pride (175) around beauty, constantly measuring, ranking, competing. The install moves you to Reason (400), where your self-perception is self-referential, not comparative." },
     old: "There is always a woman who has more of what beauty is supposed to look like. I am always slightly behind the standard.",
     new: "I am not in competition. I am in a category of my own. Right mirror. Right identity. Right frequency. Gorgeous is my default."
   },
   inconsistency: {
     block: "The Inconsistency Block",
-    desc: "Some days you feel it. Most days you do not. The identity cannot hold because it was never installed at the subconscious level — it is being generated day by day from whatever the mirror shows that morning. Beauty should not fluctuate with lighting.",
-    h: { cur: 125, curN: "Desire", tar: 350, tarN: "Acceptance", desc: "You are operating from Desire (125) around beauty — accessing the feeling in flashes but unable to hold it. The install moves you to Acceptance (350), where the beauty identity is stable regardless of the day." },
+    desc: "Some days you feel it. Most days you do not. The identity cannot hold because it was never installed at the subconscious level, it is being generated day by day from whatever the mirror shows that morning. Beauty should not fluctuate with lighting.",
+    h: { cur: 125, curN: "Desire", tar: 350, tarN: "Acceptance", desc: "You are operating from Desire (125) around beauty, accessing the feeling in flashes but unable to hold it. The install moves you to Acceptance (350), where the beauty identity is stable regardless of the day." },
     old: "Some days I feel beautiful. Other days I look in the same mirror and feel nothing like her. I cannot make it consistent.",
-    new: "She radiates consistently. Not on good days — always. The identity is installed at the subconscious level now. It does not fluctuate with the mirror."
+    new: "She radiates consistently. Not on good days, always. The identity is installed at the subconscious level now. It does not fluctuate with the mirror."
   },
   perception: {
     block: "The Perception Block",
-    desc: "You do not know what you actually look like — and you assume the worst. The image in the mirror is not objective. It has been filtered through years of comparison, criticism and conditioning. What you see is not your face. It is your self-perception. And self-perception can be replaced.",
-    h: { cur: 75, curN: "Grief", tar: 310, tarN: "Willingness", desc: "You are operating from Grief (75) around beauty — repeating a story about your appearance that feels like fact but is a trained filter. The install moves you to Willingness (310), where you begin to see what is actually there." },
+    desc: "You do not know what you actually look like, and you assume the worst. The image in the mirror is not objective. It has been filtered through years of comparison, criticism and conditioning. What you see is not your face. It is your self-perception. And self-perception can be replaced.",
+    h: { cur: 75, curN: "Grief", tar: 310, tarN: "Willingness", desc: "You are operating from Grief (75) around beauty, repeating a story about your appearance that feels like fact but is a trained filter. The install moves you to Willingness (310), where you begin to see what is actually there." },
     old: "I do not know what I actually look like. I cannot trust the mirror. I assume the reality is worse than what others seem to see.",
     new: "I see what is actually there now. Not the gap. Not the audit. What is actually there. And what is there is enough. More than enough. Of course."
   }

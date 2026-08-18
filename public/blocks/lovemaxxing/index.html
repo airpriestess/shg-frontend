@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LoveMaxxing Block Quiz — Self Hypnosis Goddess</title>
+<title>LoveMaxxing Block Quiz, Self Hypnosis Goddess</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);--white:#f2ece4;}
@@ -87,7 +87,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 <div class="screen active" id="s-email">
   <span class="ey">✦ Free Diagnostic ✦</span>
   <h1 class="email-h1">Find your<br>LoveMaxxing block.</h1>
-  <p class="email-sub">8 questions. Your romantic block — named, placed on the Hawkins scale, and replaced.</p>
+  <p class="email-sub">8 questions. Your romantic block, named, placed on the Hawkins scale, and replaced.</p>
   <div class="form">
     <input id="inp-name" type="text" placeholder="Your first name" autocomplete="given-name">
     <input id="inp-email" type="email" placeholder="Your email address" autocomplete="email">
@@ -144,22 +144,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 const Qs = [
   {
     label: "The Four Chambers",
-    q: "Think of a man you were genuinely drawn to — or a pattern that kept repeating. Which of these is most honest about what happened?",
+    q: "Think of a man you were genuinely drawn to, or a pattern that kept repeating. Which of these is most honest about what happened?",
     opts: [
       { t: "I knew something was off but the attraction was so strong I gave him access anyway.", c: "attraction" },
       { t: "I didn't have a clear standard. I kept adjusting what I would accept as things developed.", c: "standards" },
-      { t: "I knew he wasn't right — but I couldn't make myself feel repulsed. I kept hoping he'd change.", c: "repulsion" },
+      { t: "I knew he wasn't right, but I couldn't make myself feel repulsed. I kept hoping he'd change.", c: "repulsion" },
       { t: "He was actually good to me. I was the one who pulled away, found fault, or self-sabotaged.", c: "receiving" }
     ]
   },
   {
     label: "The Nightmare Attracting Cycle",
-    q: "When a man is inconsistent — warm one week, distant the next — your honest response is...",
+    q: "When a man is inconsistent, warm one week, distant the next, your honest response is...",
     opts: [
       { t: "I work harder. I become more available, more patient, more understanding.", c: "standards" },
       { t: "I tell myself he is just going through something. I wait it out.", c: "repulsion" },
       { t: "I feel more attracted. The uncertainty makes him feel more valuable somehow.", c: "attraction" },
-      { t: "I notice it — but when he comes back warm, I let it reset everything.", c: "receiving" }
+      { t: "I notice it, but when he comes back warm, I let it reset everything.", c: "receiving" }
     ]
   },
   {
@@ -168,13 +168,13 @@ const Qs = [
     opts: [
       { t: "Bored. The certainty removes the pull.", c: "attraction" },
       { t: "Suspicious. Men who are this available usually want something.", c: "receiving" },
-      { t: "Comfortable — but quietly wondering if I deserve this or if it will last.", c: "standards" },
-      { t: "Safe — and then I find something wrong with him to create distance.", c: "repulsion" }
+      { t: "Comfortable, but quietly wondering if I deserve this or if it will last.", c: "standards" },
+      { t: "Safe, and then I find something wrong with him to create distance.", c: "repulsion" }
     ]
   },
   {
     label: "The Romantic Identity Split",
-    q: "When you imagine the woman who is deeply loved, consistently chosen, treated with extraordinary care — she feels...",
+    q: "When you imagine the woman who is deeply loved, consistently chosen, treated with extraordinary care, she feels...",
     opts: [
       { t: "Like a woman who found the right man. I just haven't found mine yet.", c: "attraction" },
       { t: "Like a woman who knew what she wanted and refused to accept less. I am still working out what I want.", c: "standards" },
@@ -188,13 +188,13 @@ const Qs = [
     opts: [
       { t: "Know he is unreliable and cannot stop being drawn in anyway. The chemistry overrides the evidence.", c: "attraction" },
       { t: "Give him one more chance. Then another. The potential feels real even when the behaviour does not.", c: "standards" },
-      { t: "Recognise the pattern — it is the same man in a different body. You get in anyway.", c: "repulsion" },
-      { t: "Hold back emotionally — not because you are strong but because something in you already knows it will hurt.", c: "receiving" }
+      { t: "Recognise the pattern, it is the same man in a different body. You get in anyway.", c: "repulsion" },
+      { t: "Hold back emotionally, not because you are strong but because something in you already knows it will hurt.", c: "receiving" }
     ]
   },
   {
     label: "What Loses Access",
-    q: "A man shows a clear red flag early — low effort, evasiveness, inconsistency. You...",
+    q: "A man shows a clear red flag early, low effort, evasiveness, inconsistency. You...",
     opts: [
       { t: "Notice it but wait to see if the attraction grows enough to outweigh it.", c: "attraction" },
       { t: "Tell yourself it is too early to judge. Give him more time to show up differently.", c: "standards" },
@@ -207,7 +207,7 @@ const Qs = [
     q: "Your most honest inner voice about relationships right now says...",
     opts: [
       { t: "The men I am truly attracted to are never good for me.", c: "attraction" },
-      { t: "I do not know exactly what I want — so I accept what arrives and hope it is enough.", c: "standards" },
+      { t: "I do not know exactly what I want, so I accept what arrives and hope it is enough.", c: "standards" },
       { t: "I know what I do not want. I end up there anyway.", c: "repulsion" },
       { t: "A good man has shown up before. Something in me found a way to push him out.", c: "receiving" }
     ]
@@ -217,9 +217,9 @@ const Qs = [
     q: "The LoveMaxxed woman enters every interaction already knowing her standard. She lets character decide access. That identity feels...",
     opts: [
       { t: "Like something I would have if I could just stop being attracted to the wrong men.", c: "attraction" },
-      { t: "Like something I need to build first — I am still working out what I actually require.", c: "standards" },
+      { t: "Like something I need to build first, I am still working out what I actually require.", c: "standards" },
       { t: "Like something I choose and then undo. My romantic nightmare keeps finding a way back in.", c: "repulsion" },
-      { t: "Like the woman I almost am — I just cannot seem to let what she deserves actually arrive.", c: "receiving" }
+      { t: "Like the woman I almost am, I just cannot seem to let what she deserves actually arrive.", c: "receiving" }
     ]
   }
 ];
@@ -227,29 +227,29 @@ const Qs = [
 const RESULTS = {
   attraction: {
     block: "The Missing Attraction Chamber",
-    desc: "Chemistry is a real signal. It is not a reliable guide. Your subconscious recognises familiarity and labels it as attraction — so intensity, uncertainty and emotional activation feel like love, while consistency and ease feel like boredom. The attraction chamber is running on the wrong signal.",
-    h: { cur: 125, curN: "Desire", tar: 350, tarN: "Acceptance", desc: "You are operating from Desire (125) in love — craving the feeling of attraction without evaluating what it is pointing towards. The install moves you to Acceptance (350), where chemistry opens your attention but character decides access." },
+    desc: "Chemistry is a real signal. It is not a reliable guide. Your subconscious recognises familiarity and labels it as attraction, so intensity, uncertainty and emotional activation feel like love, while consistency and ease feel like boredom. The attraction chamber is running on the wrong signal.",
+    h: { cur: 125, curN: "Desire", tar: 350, tarN: "Acceptance", desc: "You are operating from Desire (125) in love, craving the feeling of attraction without evaluating what it is pointing towards. The install moves you to Acceptance (350), where chemistry opens your attention but character decides access." },
     old: "The men I am genuinely attracted to are never good for me. Intensity feels like love. Calm feels like boredom.",
     new: "Chemistry opens my attention. It does not decide access. I use all four chambers before granting a man entry to my life. Attraction and character now point in the same direction."
   },
   standards: {
     block: "The Missing Standards Chamber",
-    desc: "Standards are not a list of preferences. They are a felt sense of what is acceptable before attachment forms — an energetic border that determines who gets access to your life. Without a clear standard, you keep adjusting what you accept as the relationship develops. The nightmare always finds the gap.",
-    h: { cur: 100, curN: "Fear", tar: 400, tarN: "Reason", desc: "You are operating from Fear (100) in love — uncertain of what you deserve, adjusting your requirements to match what arrives. The install moves you to Reason (400), where you enter every interaction already knowing your standard." },
+    desc: "Standards are not a list of preferences. They are a felt sense of what is acceptable before attachment forms, an energetic border that determines who gets access to your life. Without a clear standard, you keep adjusting what you accept as the relationship develops. The nightmare always finds the gap.",
+    h: { cur: 100, curN: "Fear", tar: 400, tarN: "Reason", desc: "You are operating from Fear (100) in love, uncertain of what you deserve, adjusting your requirements to match what arrives. The install moves you to Reason (400), where you enter every interaction already knowing your standard." },
     old: "I do not know exactly what I want. I accept what arrives and hope it is enough. I keep adjusting.",
-    new: "I know what I require before a man arrives. My standard is held before attachment forms. Access requires character, consistency and clear intention — not potential and not charm alone."
+    new: "I know what I require before a man arrives. My standard is held before attachment forms. Access requires character, consistency and clear intention, not potential and not charm alone."
   },
   repulsion: {
     block: "The Missing Repulsion Chamber",
-    desc: "Repulsion is not hatred. It is trained incompatibility. The romantic nightmare does not lose access because you declare it — he loses access because the qualities that once felt familiar have lost their glamour. Right now, you can see the pattern clearly and still end up inside it.",
-    h: { cur: 75, curN: "Grief", tar: 310, tarN: "Willingness", desc: "You are operating from Grief (75) in love — watching the pattern repeat, knowing it is the same man in a different body, and finding yourself there anyway. The install moves you to Willingness (310), where incompatibility becomes automatic, not effortful." },
+    desc: "Repulsion is not hatred. It is trained incompatibility. The romantic nightmare does not lose access because you declare it, he loses access because the qualities that once felt familiar have lost their glamour. Right now, you can see the pattern clearly and still end up inside it.",
+    h: { cur: 75, curN: "Grief", tar: 310, tarN: "Willingness", desc: "You are operating from Grief (75) in love, watching the pattern repeat, knowing it is the same man in a different body, and finding yourself there anyway. The install moves you to Willingness (310), where incompatibility becomes automatic, not effortful." },
     old: "I know he is wrong. I know the pattern. I end up there anyway. My romantic nightmare keeps finding a way back in.",
     new: "My romantic nightmare has an expiry date. The qualities that once kept me are now emotionally incompatible with who I am. I do not talk myself back in. I observe the pattern and remove access."
   },
   receiving: {
     block: "The Missing Receiving Chamber",
-    desc: "The receiving chamber is your ability to allow devotion, consistency and care to reach you — without overfunctioning, testing or deflecting. A good man has shown up. Something in you found a way to push him out. The LoveMaxxed identity lets extraordinary love arrive and stay.",
-    h: { cur: 175, curN: "Pride", tar: 500, tarN: "Love", desc: "You are operating from Pride (175) in love — protecting yourself from disappointment by keeping real devotion at a distance. The install moves you to Love (500), where care reaches you fully, without flinching or self-sabotage." },
+    desc: "The receiving chamber is your ability to allow devotion, consistency and care to reach you, without overfunctioning, testing or deflecting. A good man has shown up. Something in you found a way to push him out. The LoveMaxxed identity lets extraordinary love arrive and stay.",
+    h: { cur: 175, curN: "Pride", tar: 500, tarN: "Love", desc: "You are operating from Pride (175) in love, protecting yourself from disappointment by keeping real devotion at a distance. The install moves you to Love (500), where care reaches you fully, without flinching or self-sabotage." },
     old: "When a good man shows up, I find something wrong. I pull away. I test. I overfunctionem and exhaust what could have been extraordinary.",
     new: "I let devotion reach me. I let consistency feel safe. I allow extraordinary care to arrive and remain. I am the woman who receives love without dismantling it."
   }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SelfMaxxing Block Quiz — Self Hypnosis Goddess</title>
+<title>SelfMaxxing Block Quiz, Self Hypnosis Goddess</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);--white:#f2ece4;}
@@ -79,7 +79,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 <div class="screen active" id="s-email">
   <span class="ey">✦ Free Diagnostic ✦</span>
   <h1 class="email-h1">Find your<br>self-concept block.</h1>
-  <p class="email-sub">8 questions. The root block — named, placed on the Hawkins scale, and replaced.</p>
+  <p class="email-sub">8 questions. The root block, named, placed on the Hawkins scale, and replaced.</p>
   <div class="form">
     <input id="inp-name" type="text" placeholder="Your first name" autocomplete="given-name">
     <input id="inp-email" type="email" placeholder="Your email address" autocomplete="email">
@@ -122,7 +122,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
       <div class="flip-new" id="flip-new"></div>
     </div>
     <div class="res-ctas">
-      <a href="/?waitlist=1" class="btn-primary">Join the waitlist — SelfMaxxing audio coming soon →</a>
+      <a href="/?waitlist=1" class="btn-primary">Join the waitlist, SelfMaxxing audio coming soon →</a>
       <a href="/guide/selfmaxxing" class="btn-sec">Read the SelfMaxxing guide</a>
     </div>
   </div>
@@ -131,17 +131,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 const Qs = [
   {
     label: "The Root",
-    q: "You have a clear vision of the life you want — the full version, everything working. When you imagine it actually being yours, your honest first response is...",
+    q: "You have a clear vision of the life you want, the full version, everything working. When you imagine it actually being yours, your honest first response is...",
     opts: [
       { t: "There is something fundamental I need to resolve first. Until that changes, the rest cannot follow.", c: "core" },
-      { t: "I can see it clearly — and then something in me finds a way to move away from it.", c: "sabotage" },
+      { t: "I can see it clearly, and then something in me finds a way to move away from it.", c: "sabotage" },
       { t: "I am not sure I trust my own judgment enough to build toward it consistently.", c: "trust" },
       { t: "Other people seem to have access to that version of life more naturally than I do.", c: "comparison" }
     ]
   },
   {
     label: "The Ceiling",
-    q: "You get close — genuinely close — to something you want. A goal, a relationship, an opportunity. Before it lands, something shifts. That shift feels like...",
+    q: "You get close, genuinely close, to something you want. A goal, a relationship, an opportunity. Before it lands, something shifts. That shift feels like...",
     opts: [
       { t: "The fundamental thing reasserting itself. I have not fixed it yet so I cannot hold this.", c: "core" },
       { t: "Me. I can feel myself about to do something that will undo it. I have done this before.", c: "sabotage" },
@@ -151,7 +151,7 @@ const Qs = [
   },
   {
     label: "Deciding",
-    q: "You need to make a significant decision — a direction, a commitment, a change. The honest experience of deciding feels like...",
+    q: "You need to make a significant decision, a direction, a commitment, a change. The honest experience of deciding feels like...",
     opts: [
       { t: "Like I am choosing from a version of myself that is not complete yet. The decision feels premature.", c: "core" },
       { t: "Fine in the moment. I commit. Then I find a reason to question, delay or withdraw.", c: "sabotage" },
@@ -161,7 +161,7 @@ const Qs = [
   },
   {
     label: "Success",
-    q: "You achieve something meaningful — something you worked for, something real. Your internal response is...",
+    q: "You achieve something meaningful, something you worked for, something real. Your internal response is...",
     opts: [
       { t: "Relief. Then awareness that the fundamental thing is still there. This win does not reach it.", c: "core" },
       { t: "Pleasure. Then a quiet waiting for the moment I find a way to undo it or dim it.", c: "sabotage" },
@@ -171,17 +171,17 @@ const Qs = [
   },
   {
     label: "The Version",
-    q: "The sovereign version of you — money, love, beauty, everything working, fully expressed — she feels...",
+    q: "The sovereign version of you, money, love, beauty, everything working, fully expressed, she feels...",
     opts: [
       { t: "On the other side of a fundamental shift I have not made yet. Not available until that moves.", c: "core" },
       { t: "Real. And something in me keeps interrupting her right before she arrives.", c: "sabotage" },
-      { t: "Like someone I could be — if I could trust myself completely enough to get there.", c: "trust" },
+      { t: "Like someone I could be, if I could trust myself completely enough to get there.", c: "trust" },
       { t: "Like the version I will become once I close the gap between me and the people I most admire.", c: "comparison" }
     ]
   },
   {
     label: "Permission",
-    q: "You want something significant — a life, a version of yourself, a standard of experience. Claiming it — fully, without apology — feels...",
+    q: "You want something significant, a life, a version of yourself, a standard of experience. Claiming it, fully, without apology, feels...",
     opts: [
       { t: "Like something I will allow once the fundamental thing is resolved. Not yet.", c: "core" },
       { t: "Possible in moments. Then I find a reason to take it back, shrink it or give it away.", c: "sabotage" },
@@ -201,10 +201,10 @@ const Qs = [
   },
   {
     label: "The SelfMaxxed Identity",
-    q: "The SelfMaxxed woman is already the version. Not becoming — already. She acts from that identity now, before the external evidence arrives. That feels...",
+    q: "The SelfMaxxed woman is already the version. Not becoming, already. She acts from that identity now, before the external evidence arrives. That feels...",
     opts: [
       { t: "Like something I am waiting to become. It requires the fundamental thing to shift first.", c: "core" },
-      { t: "Like something I choose — and then find a way to interrupt before it fully settles.", c: "sabotage" },
+      { t: "Like something I choose, and then find a way to interrupt before it fully settles.", c: "sabotage" },
       { t: "Like something I would claim if I could trust my own judgment completely.", c: "trust" },
       { t: "Like the most advanced version of what I am trying to reach. Still ahead of where I am.", c: "comparison" }
     ]
@@ -214,29 +214,29 @@ const Qs = [
 const RESULTS = {
   core: {
     block: "The Core Block",
-    desc: "There is something fundamental that needs to resolve before the rest is allowed. This is the most persistent of all the self-concept blocks — because it is not attached to a specific behaviour or pattern. It is attached to identity itself. The belief is: I am not yet complete. And until I am, nothing can fully land.",
-    h: { cur: 50, curN: "Apathy", tar: 310, tarN: "Willingness", desc: "You are operating from Apathy (50) around self-concept — the subconscious has concluded the version is not yet available. The install moves you to Willingness (310), where the sovereign identity is chosen before the fundamental thing resolves." },
+    desc: "There is something fundamental that needs to resolve before the rest is allowed. This is the most persistent of all the self-concept blocks, because it is not attached to a specific behaviour or pattern. It is attached to identity itself. The belief is: I am not yet complete. And until I am, nothing can fully land.",
+    h: { cur: 50, curN: "Apathy", tar: 310, tarN: "Willingness", desc: "You are operating from Apathy (50) around self-concept, the subconscious has concluded the version is not yet available. The install moves you to Willingness (310), where the sovereign identity is chosen before the fundamental thing resolves." },
     old: "I am not yet complete. Something fundamental needs to change first. Once that is resolved, the rest will follow.",
     new: "I am not a project. I am not becoming. I am already the version. The install is complete. The rest is catching up."
   },
   sabotage: {
     block: "The Sabotage Block",
-    desc: "You can see yourself doing it. You get close — and something in you moves to undo it. Not weakness. Not failure. A subconscious identity that has decided the version is not safe to hold. The sabotage is protection. It is the old self-concept refusing to be replaced without a fight.",
-    h: { cur: 100, curN: "Fear", tar: 350, tarN: "Acceptance", desc: "You are operating from Fear (100) around self-concept — the subconscious perceives the upgraded version as threatening and moves to dismantle it. The install moves you to Acceptance (350), where the sovereign identity is safe to hold." },
+    desc: "You can see yourself doing it. You get close, and something in you moves to undo it. Not weakness. Not failure. A subconscious identity that has decided the version is not safe to hold. The sabotage is protection. It is the old self-concept refusing to be replaced without a fight.",
+    h: { cur: 100, curN: "Fear", tar: 350, tarN: "Acceptance", desc: "You are operating from Fear (100) around self-concept, the subconscious perceives the upgraded version as threatening and moves to dismantle it. The install moves you to Acceptance (350), where the sovereign identity is safe to hold." },
     old: "I get close and I undo it. I can see myself doing it. I commit and then I find a way to withdraw or shrink.",
     new: "The version who sabotages was running an old program. That program has been replaced. She moves forward. She stays. Of course."
   },
   trust: {
     block: "The Trust Block",
-    desc: "You do not fully back yourself. Your instincts feel unreliable, your judgment feels risky, and your decisions feel like they need external validation before they count. The sovereign self-concept does not wait for permission. It generates its own certainty — from the inside out.",
-    h: { cur: 125, curN: "Desire", tar: 400, tarN: "Reason", desc: "You are operating from Desire (125) around self-concept — wanting to trust yourself but requiring external evidence before acting. The install moves you to Reason (400), where your judgment is the authority." },
+    desc: "You do not fully back yourself. Your instincts feel unreliable, your judgment feels risky, and your decisions feel like they need external validation before they count. The sovereign self-concept does not wait for permission. It generates its own certainty, from the inside out.",
+    h: { cur: 125, curN: "Desire", tar: 400, tarN: "Reason", desc: "You are operating from Desire (125) around self-concept, wanting to trust yourself but requiring external evidence before acting. The install moves you to Reason (400), where your judgment is the authority." },
     old: "I do not back myself. I need more evidence, more certainty, more external validation before I can trust my own read.",
     new: "I trust myself completely. My instincts are calibrated. My decisions are correct. I act before the certainty arrives. Obviously."
   },
   comparison: {
     block: "The Comparison Block",
-    desc: "The self-concept is measured against other people — and there is always someone further along. The standard keeps moving because it is not yours. It is borrowed. The sovereign self-concept is self-referential: it measures against the chosen version, not the most advanced person in the room.",
-    h: { cur: 175, curN: "Pride", tar: 500, tarN: "Love", desc: "You are operating from Pride (175) around self-concept — ranking, measuring, always aware of the gap. The install moves you to Love (500), where the self-concept is sovereign, not comparative." },
+    desc: "The self-concept is measured against other people, and there is always someone further along. The standard keeps moving because it is not yours. It is borrowed. The sovereign self-concept is self-referential: it measures against the chosen version, not the most advanced person in the room.",
+    h: { cur: 175, curN: "Pride", tar: 500, tarN: "Love", desc: "You are operating from Pride (175) around self-concept, ranking, measuring, always aware of the gap. The install moves you to Love (500), where the self-concept is sovereign, not comparative." },
     old: "There is always someone further along. More sorted, more advanced, more naturally suited to the version I want. I am still catching up.",
     new: "I am not in anyone else's race. My self-concept is sovereign. The version I chose is the only standard that matters. I am already her."
   }
