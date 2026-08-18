@@ -200,10 +200,52 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
   <h2>Get the next article<br>before anyone else.</h2>
   <p>New articles drop weekly. Subscribe and find your block while you're here — it's free.</p>
   <div class="email-form">
-    <input type="email" placeholder="Your email address">
-    <button>Subscribe →</button>
+    <input type="email" id="blog-subscribe-email" placeholder="Your email address">
+    <button id="blog-subscribe-btn">Subscribe →</button>
   </div>
+  <p id="blog-subscribe-msg" style="font-size:13px;color:#000;margin-top:14px;min-height:18px;"></p>
 </section>
+
+<script>
+(function() {
+  const btn = document.getElementById('blog-subscribe-btn');
+  const input = document.getElementById('blog-subscribe-email');
+  const msg = document.getElementById('blog-subscribe-msg');
+
+  btn.addEventListener('click', async function() {
+    const email = input.value.trim();
+    if (!email || !email.includes('@')) {
+      msg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+    try {
+      const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'blog_email_cta' }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        msg.textContent = data.alreadyExists ? "You're already subscribed — see you in the next one." : "You're in. See you in the next article.";
+        input.value = '';
+      } else {
+        msg.textContent = 'Something went wrong — please try again.';
+      }
+    } catch (err) {
+      msg.textContent = 'Something went wrong — please try again.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') btn.click();
+  });
+})();
+</script>
 
 
 <script>
