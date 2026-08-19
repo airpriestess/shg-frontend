@@ -1132,7 +1132,7 @@ function LuckyGirlTimeline({ isMobile }) {
                 {/* Box — always first child, direction controls which side */}
                 <div style={{ width:"46%", flexShrink:0 }}>
                   <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
-                    <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
+                    <div style={{ fontSize: isMobile?14:16, fontWeight:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
                     {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000", opacity:.5, marginTop:6 }}>✦ {item.tag}</div>}
                   </div>
                 </div>
@@ -1181,7 +1181,7 @@ function HowItWorksAccordion({ isMobile }) {
   };
 
   const steps = [
-    { n:"01", title:"Press play. Anytime.", body:"Choose a track from 24 categories based on what you want to manifest. Morning coffee, car ride, gym, lunch break. Theta is available the instant you press play." },
+    { n:"01", title:"Choose a track. Press play. Anytime.", body:"Whatever you want to manifest, there's a track for that. Browse 24 categories, pick the one that matches where you want to shift. Press play. That's it. Morning, car ride, gym, lunch break, falling asleep — it works in any state. Listen twice a day minimum. Repetition is the mechanism. Every time you hear it, the new identity goes deeper. The subconscious doesn't need you to believe it yet. It just needs the repetition." },
     { n:"02", title:"Theta state.", body:"Your brain drops into theta (4 to 8Hz). Binaural beats, one frequency in each ear, create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
     { n:"03", title:"Your subconscious opens.", body:"The critical mind, the part that argues, doubts, and filters, steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming." },
     { n:"04", title:"The hypnosis activates.", body:"Reshma's voice speaks directly to your subconscious, putting you into hypnosis and opening your subconscious mind. Your new identity is delivered while the gatekeeper is offline. No resistance. No filtering. It goes straight in." },
@@ -1556,9 +1556,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:8, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
-          <div style={{ fontSize: isMobile?"clamp(13px,3.5vw,16px)":"clamp(14px,1.4vw,18px)", color:"#a09aa8", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0.02em", marginBottom:12 }}>Theta. On demand. Instantly.</div>
-
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:16, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
+          {/* VALUE PROP BOX */}
+          <div style={{ display:"inline-block", margin:"0 auto 12px", padding: isMobile?"14px 24px":"18px 40px", background:"rgba(255,255,255,.04)", border:"1px solid rgba(255,255,255,.1)", borderRadius:40, maxWidth: isMobile?"90%":640 }}>
+            <div style={{ fontSize: isMobile?"clamp(15px,4vw,18px)":"clamp(16px,1.6vw,20px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0.01em", lineHeight:1.5 }}>Shift your identity. Manifest your desired reality.</div>
+            <div style={{ fontSize: isMobile?12:13, color:"#a09aa8", fontFamily:"'Jost',sans-serif", fontWeight:300, marginTop:6, letterSpacing:"0.02em" }}>Reprogram your mind from stuck to unstoppable.</div>
+          </div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
@@ -1701,6 +1704,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Heading, centered, dark text on light gradient top */}
           <div style={{ marginBottom: isMobile?48:72, textAlign:"center", width:"100%" }}>
             <div style={{ fontSize:13, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center", fontWeight:600 }}>The method</div>
+            <div style={{ fontSize: isMobile?"clamp(22px,5vw,28px)":"clamp(26px,2.8vw,34px)", fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em", lineHeight:1.4, marginBottom:16, textAlign:"center" }}>Your beliefs are running on old programming. Self hypnosis replaces them at the source, in theta, where the subconscious accepts the upgrade without resistance.</div>
             <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12, textAlign:"center" }}>Theta state doesn't require sleep. Press play and you're there in minutes.</div>
             <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", textAlign:"center" }}>No waiting for bedtime. No perfect conditions. Here's exactly what happens when you press play.</div>
           </div>
