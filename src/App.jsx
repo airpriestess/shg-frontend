@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { CSS, T } from "./design/tokens.js";
 import { Btn, Card, Rings, WaveForm, Pill, Modal, FormField, Label, ProgressBar, ArrowIcon, ExternalArrowIcon } from "./components/UI.jsx";
@@ -1092,7 +1092,7 @@ const GPROOF = (m) => m
   : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 };
 
 function LuckyGirlTimeline({ isMobile }) {
-  const [active, setActive] = React.useState(0);
+  const [active, setActive] = useState(0);
   const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
   const items = [
     { title:"Right place. Right time. Right outcome. Mine.", tag:"Luckygirlmaxxing" },
@@ -1108,7 +1108,7 @@ function LuckyGirlTimeline({ isMobile }) {
     { title:"She has it all. Not more. All. All at once.", tag:"The identity" },
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     const t = setInterval(() => setActive(a => (a + 1) % items.length), 2200);
     return () => clearInterval(t);
   }, []);
@@ -1166,16 +1166,16 @@ function LuckyGirlTimeline({ isMobile }) {
 function HowItWorksAccordion({ isMobile }) {
   const [open, setOpen] = useState(0);
   const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
-  const timerRef = React.useRef(null);
+  const timerRef = useRef(null);
 
-  const startTimer = React.useCallback(() => {
+  const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setOpen(prev => (prev + 1) % 8);
     }, 10000);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     startTimer();
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [startTimer]);
