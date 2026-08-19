@@ -1091,6 +1091,78 @@ const GPROOF = (m) => m
   ? { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }
   : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 };
 
+function LuckyGirlTimeline({ isMobile }) {
+  const [active, setActive] = React.useState(0);
+  const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+  const items = [
+    { title:"Right place. Right time. Right outcome. Mine.", tag:"Luckygirlmaxxing" },
+    { title:"Infinite cash streams. Always arriving.", tag:"Richgirlmaxxing" },
+    { title:"Perfect body. Perfect health. No effort required.", tag:"Beautymaxxing" },
+    { title:"The perfect man. He finds her first.", tag:"Lovemaxxing" },
+    { title:"Always loved by the right people.", tag:"Lovemaxxing" },
+    { title:"Always attracting the right people.", tag:"Luckygirlmaxxing" },
+    { title:"Unlimited access. Unlimited experiences. No ceiling.", tag:"Sovereignmaxxing" },
+    { title:"Perfect timing. Every single time.", tag:"Luckygirlmaxxing" },
+    { title:"Synchronicities. Signs. She notices all of them.", tag:"ProofOS" },
+    { title:"Always the most successful version of herself.", tag:"Selfmaxxing" },
+    { title:"She has it all. Not more. All. All at once.", tag:"The identity" },
+  ];
+
+  React.useEffect(() => {
+    const t = setInterval(() => setActive(a => (a + 1) % items.length), 2200);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div style={{ background:G, width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
+      <div style={{ maxWidth:900, margin:"0 auto" }}>
+        {/* ONE LINE heading — no line break */}
+        <h2 style={{ textAlign:"center", fontSize: isMobile?"clamp(48px,11vw,72px)":"clamp(64px,8vw,96px)", fontWeight:300, color:"#000", letterSpacing:"-.03em", lineHeight:.95, marginBottom:16, whiteSpace: isMobile?"normal":"nowrap" }}>Lucky Girl Timeline.</h2>
+        <div style={{ textAlign:"center", fontSize: isMobile?"clamp(20px,5vw,28px)":"clamp(24px,2.8vw,34px)", fontWeight:300, color:"#000", letterSpacing:"-.01em", lineHeight:1.2, marginBottom:10 }}>She gets to have it all. All of it. All at once.</div>
+        <div style={{ textAlign:"center", fontSize:14, color:"#000", opacity:.6, marginBottom: isMobile?56:80 }}>This isn't a wish list. This is what runs automatically when the identity is installed.</div>
+
+        {/* Timeline */}
+        <div style={{ position:"relative" }}>
+          <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:2, background:"rgba(0,0,0,.2)", transform:"translateX(-50%)", borderRadius:2 }} />
+          {items.map((item, i) => {
+            const isLeft = i % 2 === 0;
+            const isActive = active === i;
+            return (
+              <div key={i} style={{ display:"flex", alignItems:"center", marginBottom: isMobile?14:18, position:"relative", minHeight: isMobile?60:70 }}>
+                <div style={{ width:"46%", order: isLeft?1:2, marginLeft: isLeft?0:"auto", marginRight: isLeft?"auto":0 }}>
+                  {isLeft && (
+                    <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign:"right", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
+                      <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
+                      {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000", opacity:.5, marginTop:6 }}>✦ {item.tag}</div>}
+                    </div>
+                  )}
+                </div>
+                <div style={{ position:"absolute", left:"50%", top:"50%", transform:"translate(-50%,-50%)", width: isActive?16:12, height: isActive?16:12, borderRadius:"50%", background: isActive?"#000":"rgba(0,0,0,.3)", border:"2px solid rgba(255,255,255,.8)", transition:"all .4s", zIndex:2 }} />
+                <div style={{ position:"absolute", top:"50%", height:2, background:"rgba(0,0,0,.15)", width:"4%", left: isLeft?"auto":"50%", right: isLeft?"50%":"auto", transform:"translateY(-50%)" }} />
+                <div style={{ width:"46%", order: isLeft?2:1, marginLeft: isLeft?"auto":0, marginRight: isLeft?0:"auto" }}>
+                  {!isLeft && (
+                    <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign:"left", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
+                      <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
+                      {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000", opacity:.5, marginTop:6 }}>✦ {item.tag}</div>}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* BRIDGE — how the audio gets you there */}
+        <div style={{ marginTop: isMobile?56:72, textAlign:"center", borderTop:"1px solid rgba(0,0,0,.12)", paddingTop: isMobile?40:56 }}>
+          <div style={{ fontSize:11, letterSpacing:".28em", textTransform:"uppercase", color:"#000", opacity:.5, marginBottom:16 }}>How she gets there</div>
+          <div style={{ fontSize: isMobile?"clamp(22px,5vw,28px)":"clamp(26px,2.8vw,34px)", fontWeight:300, color:"#000", lineHeight:1.4, maxWidth:640, margin:"0 auto", marginBottom:20 }}>The Self Hypnosis Goddess audio library installs this identity. One track at a time. While you live your life.</div>
+          <div style={{ fontSize:14, color:"#000", opacity:.55, maxWidth:500, margin:"0 auto" }}>Luckygirlmaxxing. Richgirlmaxxing. Beautymaxxing. Lovemaxxing. All 24 categories. The complete operating system upgrade.</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HowItWorksAccordion({ isMobile }) {
   const [open, setOpen] = useState(0);
   const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
@@ -1607,6 +1679,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </button>
         </div>
       </div>
+
+      {/* LUCKY GIRL TIMELINE */}
+      <LuckyGirlTimeline isMobile={isMobile} />
 
       {/* HOW IT WORKS, LG gradient background getting darker, white boxes */}
       <div style={{ background:"linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
