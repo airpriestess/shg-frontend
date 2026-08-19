@@ -9,157 +9,109 @@
   :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:#000;font-family:'Jost',sans-serif;color:#f2ece4;min-height:100vh;}
-  .wrap{max-width:700px;margin:0 auto;padding:100px 40px 120px;}
+  .wrap{max-width:680px;margin:0 auto;padding:100px 40px 120px;}
 
   .eyebrow{text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;font-weight:500;}
   .heading{text-align:center;font-size:clamp(36px,5vw,56px);font-weight:300;color:#f2ece4;margin-bottom:12px;letter-spacing:-.02em;line-height:1.1;}
   .subhead{text-align:center;font-size:16px;color:#a89e94;font-weight:300;margin-bottom:72px;line-height:1.6;}
 
-  .timeline{position:relative;padding-left:32px;}
-  .timeline::before{
-    content:'';
-    position:absolute;
-    left:8px;top:0;bottom:0;
-    width:2px;
-    background:var(--g);
-    border-radius:2px;
-  }
+  .timeline{position:relative;padding-left:36px;}
+  .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--g);border-radius:2px;}
 
-  .moment{
-    position:relative;
-    margin-bottom:48px;
-    opacity:0;
-    transform:translateX(-12px);
-    animation:slideIn .5s ease forwards;
-  }
+  .moment{position:relative;margin-bottom:44px;opacity:0;transform:translateX(-12px);animation:slideIn .5s ease forwards;}
   .moment:nth-child(1){animation-delay:.1s}
-  .moment:nth-child(2){animation-delay:.25s}
-  .moment:nth-child(3){animation-delay:.4s}
-  .moment:nth-child(4){animation-delay:.55s}
-  .moment:nth-child(5){animation-delay:.7s}
-  .moment:nth-child(6){animation-delay:.85s}
-  .moment:nth-child(7){animation-delay:1s}
-  .moment:nth-child(8){animation-delay:1.15s}
-  .moment:nth-child(9){animation-delay:1.3s}
-  .moment:nth-child(10){animation-delay:1.45s}
-  .moment:nth-child(11){animation-delay:1.6s}
-
+  .moment:nth-child(2){animation-delay:.22s}
+  .moment:nth-child(3){animation-delay:.34s}
+  .moment:nth-child(4){animation-delay:.46s}
+  .moment:nth-child(5){animation-delay:.58s}
+  .moment:nth-child(6){animation-delay:.7s}
+  .moment:nth-child(7){animation-delay:.82s}
+  .moment:nth-child(8){animation-delay:.94s}
+  .moment:nth-child(9){animation-delay:1.06s}
+  .moment:nth-child(10){animation-delay:1.18s}
+  .moment:nth-child(11){animation-delay:1.3s}
   @keyframes slideIn{to{opacity:1;transform:translateX(0);}}
 
-  .dot{
-    position:absolute;
-    left:-27px;
-    top:6px;
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    background:var(--g);
-    border:2px solid #000;
-    box-shadow:0 0 0 3px rgba(44,183,167,.2);
-  }
+  .dot{position:absolute;left:-31px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--g);border:2px solid #000;box-shadow:0 0 0 3px rgba(44,183,167,.15);}
 
-  .moment-text{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:clamp(20px,3vw,26px);
-    font-weight:400;
-    color:#f2ece4;
-    line-height:1.4;
-    letter-spacing:.01em;
-  }
+  .moment-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3vw,28px);font-weight:400;color:#f2ece4;line-height:1.35;letter-spacing:.01em;transition:all .3s;cursor:default;}
+  .moment:hover .moment-text{background:var(--g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
-  .moment-tag{
-    display:inline-block;
-    margin-top:8px;
-    font-size:10px;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    color:#2CB7A7;
-    font-family:'Jost',sans-serif;
-    font-weight:500;
-  }
-
-  /* Hover glow */
-  .moment:hover .moment-text{
-    background:var(--g);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    transition:all .3s;
-  }
+  .moment-tag{display:inline-block;margin-top:7px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#2CB7A7;font-family:'Jost',sans-serif;font-weight:500;}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="eyebrow">✦ The Luckygirlmaxxing operating system</div>
   <h2 class="heading">She gets to have it all.<br>All of it. All at once.</h2>
-  <p class="subhead">This is what runs automatically when the identity is installed.</p>
+  <p class="subhead">This isn't a wish list. This is what runs automatically<br>when the identity is installed.</p>
 
   <div class="timeline">
 
     <div class="moment">
       <div class="dot"></div>
       <div class="moment-text">Right place. Right time. Right outcome. Mine.</div>
-      <div class="moment-tag">✦ Identity</div>
+      <div class="moment-tag">✦ Luckygirlmaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">Good things find her. She stopped chasing them.</div>
-      <div class="moment-tag">✦ Receiving</div>
+      <div class="moment-text">Infinite cash streams. Always arriving.</div>
+      <div class="moment-tag">✦ Richgirlmaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">She walks into the room and something shifts.</div>
-      <div class="moment-tag">✦ Presence</div>
+      <div class="moment-text">Perfect body. Perfect health. She never had to fight for it.</div>
+      <div class="moment-tag">✦ Beautymaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">The call comes on a Tuesday she wasn't expecting.</div>
-      <div class="moment-tag">✦ Timing</div>
+      <div class="moment-text">The perfect man. He finds her first.</div>
+      <div class="moment-tag">✦ Lovemaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">The deal closes. Of course it does.</div>
-      <div class="moment-tag">✦ Assumption</div>
+      <div class="moment-text">Unlimited access. Unlimited experiences. No ceiling.</div>
+      <div class="moment-tag">✦ Sovereignmaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">She wakes up to a notification that changes everything.</div>
-      <div class="moment-tag">✦ Reality</div>
+      <div class="moment-text">Perfect timing. Every single time.</div>
+      <div class="moment-tag">✦ Luckygirlmaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">Luck isn't something she has. It's something she is.</div>
-      <div class="moment-tag">✦ Identity</div>
+      <div class="moment-text">Synchronicities. Signs. She notices all of them.</div>
+      <div class="moment-tag">✦ ProofOS</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">The timing is always perfect. She stopped questioning it.</div>
-      <div class="moment-tag">✦ Trust</div>
+      <div class="moment-text">She walks in and the energy of the room shifts.</div>
+      <div class="moment-tag">✦ Confidencemaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">An upgrade she didn't ask for. A seat she didn't book.</div>
-      <div class="moment-tag">✦ Overflow</div>
+      <div class="moment-text">Her body is her home. She is at peace inside it.</div>
+      <div class="moment-tag">✦ Selfmaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">The right person appears at the exact right moment.</div>
-      <div class="moment-tag">✦ Synchronicity</div>
+      <div class="moment-text">The deal closes. The seat upgrades. The call comes through.</div>
+      <div class="moment-tag">✦ Richgirlmaxxing</div>
     </div>
 
     <div class="moment">
       <div class="dot"></div>
-      <div class="moment-text">Everything she touches turns into something better than she planned.</div>
-      <div class="moment-tag">✦ Expansion</div>
+      <div class="moment-text">She has it all. Not more. All. All at once.</div>
+      <div class="moment-tag">✦ The installed identity</div>
     </div>
 
   </div>
