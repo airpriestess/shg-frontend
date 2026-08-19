@@ -1166,6 +1166,25 @@ function LuckyGirlTimeline({ isMobile }) {
 function HowItWorksAccordion({ isMobile }) {
   const [open, setOpen] = useState(0);
   const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+  const timerRef = React.useRef(null);
+
+  const startTimer = React.useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setOpen(prev => (prev + 1) % 8);
+    }, 10000);
+  }, []);
+
+  React.useEffect(() => {
+    startTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [startTimer]);
+
+  const handleClick = (i) => {
+    setOpen(open === i ? -1 : i);
+    startTimer();
+  };
+
   const steps = [
     { n:"01", title:"Press play. Anytime.", body:"Choose a track from 24 categories based on what you want to manifest. Morning coffee, car ride, gym, lunch break. Theta is available the instant you press play." },
     { n:"02", title:"Theta state.", body:"Your brain drops into theta (4 to 8Hz). Binaural beats, one frequency in each ear, create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
@@ -1181,7 +1200,7 @@ function HowItWorksAccordion({ isMobile }) {
       {steps.map((s,i) => (
         <div key={i}>
           <div
-            onClick={() => setOpen(open === i ? -1 : i)}
+            onClick={() => handleClick(i)}
             style={{ display:"flex", alignItems:"center", gap:20, padding: isMobile?"16px 20px":"20px 28px", cursor:"pointer", background: open===i ? G : "#f2ece4", borderRadius: open===i ? "14px 14px 0 0" : 14, border:"1px solid rgba(0,0,0,.06)", transition:"all .25s" }}
           >
             <span style={{ fontSize:11, letterSpacing:"0.2em", color: open===i ? "rgba(0,0,0,.5)" : "#888", fontWeight:500, flexShrink:0, width:28, fontFamily:"'Jost',sans-serif" }}>{s.n}</span>
