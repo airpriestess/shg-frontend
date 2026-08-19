@@ -179,6 +179,15 @@ nav{
   .loop-track{flex-direction:column;}
   .id-stage{min-height:380px;}
 }
+
+.mob-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#f2ece4;}
+.mob-overlay{display:none;position:fixed;inset:0;background:#000;z-index:500;flex-direction:column;padding:32px 28px;}
+.mob-overlay.open{display:flex;}
+.mob-overlay-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
+.mob-nav-item{font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#f2ece4;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:-.01em;}
+.mob-close{background:none;border:none;color:#f2ece4;font-size:28px;cursor:pointer;padding:8px;}
+@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta{display:none;}}
+
 </style>
 <!-- v2 --></head>
 <body>
@@ -482,5 +491,16 @@ document.getElementById('popup').addEventListener('click', function(e){
 });
 </script>
 
+<div class="mob-overlay" id="mobMenu">
+  <div class="mob-overlay-top">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="/logo_transparent_cropped.png" width="36" height="36" style="object-fit:contain;"/></a>
+    <button class="mob-close" onclick="document.getElementById('mobMenu').classList.remove('open')">&#x2715;</button>
+  </div>
+  <a href="/" class="mob-nav-item">Home</a>
+  <a href="/guides" class="mob-nav-item">Guides</a>
+  <a href="/blog" class="mob-nav-item">Journal</a>
+  <a href="/blocks" class="mob-nav-item">Find your block</a>
+  <a href="/portal?preview=1&theme=dark" class="mob-nav-item">Preview the portal</a>
+</div>
 </body>
 </html>

@@ -33,7 +33,7 @@ export default function About({ onBack }) {
         <button onClick={onBack} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:13, cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>
           ← Back
         </button>
-        <span style={{ fontSize:12, color:"#f2ece4", letterSpacing:"0.18em", textTransform:"uppercase" }}>reshmaoracle.com</span>
+        <span style={{ fontSize:12, color:"#f2ece4", letterSpacing:"0.18em", textTransform:"none" }}>reshmaoracle.com</span>
         <HamburgerMenu/>
       </div>
 
@@ -63,7 +63,7 @@ export default function About({ onBack }) {
           </div>
         </div>
 
-        <div style={{ fontFamily:"'Jost',sans-serif", fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", marginBottom:16 }}>Self Hypnosis Goddess</div>
+        <div style={{ fontFamily:"'Jost',sans-serif", fontSize:11, letterSpacing:"0.22em", textTransform:"none", color:"#000", marginBottom:16 }}>Self Hypnosis Goddess</div>
         <h1 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(44px,4.5vw,60px)", color:BLACK, margin:"0 0 20px", lineHeight:1.15, fontWeight:400 }}>
           I built what I couldn't find.
         </h1>
@@ -75,7 +75,7 @@ export default function About({ onBack }) {
       {/* ── THE STRUGGLE, black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#ffffff", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>Where<br/>it started</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#f2ece4", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:40, textTransform:"none" }}>Where<br/>it started</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
             Bullied. Never chosen. Always looking for my place, in rooms, in jobs, in my own skin. The kind of early life that leaves a mark on how you see yourself, and how you think the world sees you back.
           </p>
@@ -91,7 +91,7 @@ export default function About({ onBack }) {
       {/* ── THE TURN, cream ── */}
       <div style={{ background:CREAM, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>The<br/>discovery</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"none" }}>The<br/>discovery</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.85, marginBottom:20 }}>
             I realised I could train my brain every single day, for how I wanted to think, feel, and act. Not hope. Not try. Train. And the results started shifting in ways that felt genuinely crazy. Manifestations I couldn't explain. Messages from people I'd never met. Things arriving before I felt ready for them.
           </p>
@@ -131,7 +131,7 @@ export default function About({ onBack }) {
                 },
               ].map(({ accent, label, body }, i) => (
                 <div key={i} style={{ borderRadius:16, padding:"28px 26px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
-                  <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:accent, marginBottom:12, fontWeight:500 }}>{label}</div>
+                  <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"none", color:accent, marginBottom:12, fontWeight:500 }}>{label}</div>
                   <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
                 </div>
               ))}
@@ -143,7 +143,7 @@ export default function About({ onBack }) {
       {/* ── THE PHILOSOPHY, LG gradient ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:640, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"uppercase" }}>What I<br/>actually believe</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:40, textTransform:"none" }}>What I<br/>actually believe</h2>
           <p style={{ fontSize: isMobile?16:17, color:"#000", lineHeight:1.8, marginBottom:20 }}>
             I don't care how logical the world is. I choose to live in my magical version of it, and that is exactly how I am able to manifest the things I manifest.
           </p>
@@ -159,7 +159,7 @@ export default function About({ onBack }) {
       {/* ── WHAT I MAKE, black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto", textAlign:"center" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#ffffff", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:16, textTransform:"uppercase" }}>What's<br/>inside</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#f2ece4", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:16, textTransform:"none" }}>What's<br/>inside</h2>
           <p style={{ fontSize: isMobile?16:18, color:CREAM, lineHeight:1.7, marginBottom:40, maxWidth:500, margin:"0 auto 40px" }}>Because I understand your pain. I live in your head.</p>
 
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20, marginBottom:40, textAlign:"left" }}>
@@ -170,7 +170,7 @@ export default function About({ onBack }) {
               { accent:"#F5E0A0", label:"Mine, not generic", body:"This isn't a meditation app with my voice slapped on top. I built the formula, I wrote every script, I recorded every track. Nothing here is generic, and nothing here is AI. It's mine, and now it's yours too." },
             ].map(({ accent, label, body }, i) => (
               <div key={i} style={{ borderRadius:16, padding:"24px 24px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
-                <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:accent, marginBottom:10, fontWeight:500 }}>{label}</div>
+                <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"none", color:accent, marginBottom:10, fontWeight:500 }}>{label}</div>
                 <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
               </div>
             ))}
@@ -194,7 +194,7 @@ export default function About({ onBack }) {
 
       {/* ── CTA ── */}
       <div style={{ background:LG, padding: isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:800, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:24, textTransform:"uppercase" }}>Press play.<br/>Feel the shift.</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#000000", lineHeight:0.95, letterSpacing:"-0.03em", marginBottom:24, textTransform:"none" }}>Press play.<br/>Feel the shift.</h2>
           <p style={{ fontSize: isMobile?16:18, color:"#000", lineHeight:1.7, marginBottom:40 }}>Join the community.</p>
         <button onClick={()=>{ navigate("/"); setTimeout(()=>{ const el=document.getElementById("pricing"); if(el) el.scrollIntoView({behavior:"smooth"}); },300); }} style={{ background:BLACK, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:CREAM, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
           Join Self Hypnosis Goddess →

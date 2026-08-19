@@ -66,6 +66,15 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:18px 48px;display
   .grid{grid-template-columns:1fr;}
   .gcard-full{grid-column:1;}
 }
+
+.mob-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#f2ece4;}
+.mob-overlay{display:none;position:fixed;inset:0;background:#000;z-index:500;flex-direction:column;padding:32px 28px;}
+.mob-overlay.open{display:flex;}
+.mob-overlay-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
+.mob-nav-item{font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#f2ece4;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:-.01em;}
+.mob-close{background:none;border:none;color:#f2ece4;font-size:28px;cursor:pointer;padding:8px;}
+@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta{display:none;}}
+
 </style>
 </head>
 <body>
@@ -80,6 +89,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:18px 48px;display
     <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="40" height="40" style="display:block;object-fit:contain;flex-shrink:0;" />
     Self Hypnosis Goddess
   </a>
+  <button class="mob-menu-btn" onclick="document.getElementById('mobMenu').classList.add('open')" aria-label="Menu"><svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#f2ece4"/><rect y="7" width="22" height="2" rx="1" fill="#f2ece4"/><rect y="14" width="22" height="2" rx="1" fill="#f2ece4"/></svg></button>
   <a href="/blocks" class="nav-cta">Find your block</a>
 </nav>
 
@@ -166,5 +176,16 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:18px 48px;display
   </div>
 </section>
 
+<div class="mob-overlay" id="mobMenu">
+  <div class="mob-overlay-top">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="/logo_transparent_cropped.png" width="36" height="36" style="object-fit:contain;"/></a>
+    <button class="mob-close" onclick="document.getElementById('mobMenu').classList.remove('open')">&#x2715;</button>
+  </div>
+  <a href="/" class="mob-nav-item">Home</a>
+  <a href="/guides" class="mob-nav-item">Guides</a>
+  <a href="/blog" class="mob-nav-item">Journal</a>
+  <a href="/blocks" class="mob-nav-item">Find your block</a>
+  <a href="/portal?preview=1&theme=dark" class="mob-nav-item">Preview the portal</a>
+</div>
 </body>
 </html>
