@@ -13,210 +13,114 @@
 
   .eyebrow{text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:16px;font-weight:500;}
   .heading{text-align:center;font-size:clamp(36px,5vw,56px);font-weight:300;color:#000;margin-bottom:10px;letter-spacing:-.02em;line-height:1.1;}
-  .subhead{text-align:center;font-size:15px;color:rgba(0,0,0,.5);font-weight:300;margin-bottom:80px;line-height:1.6;}
+  .subhead{text-align:center;font-size:15px;color:rgba(0,0,0,.55);font-weight:300;margin-bottom:16px;line-height:1.6;}
+  .bridge{text-align:center;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.4);margin-bottom:72px;font-weight:500;}
 
-  /* TIMELINE */
   .tl{position:relative;}
+  .tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:rgba(0,0,0,.2);border-radius:2px;}
 
-  /* CENTRE VERTICAL LINE */
-  .tl::before{
-    content:'';
-    position:absolute;
-    left:50%;
-    top:0;bottom:0;
-    width:2px;
-    transform:translateX(-50%);
-    background:rgba(0,0,0,.2);
-    border-radius:2px;
-  }
+  .row{display:flex;align-items:center;margin-bottom:24px;position:relative;min-height:76px;}
 
-  /* EACH ROW */
-  .row{
-    display:flex;
-    align-items:center;
-    margin-bottom:28px;
-    position:relative;
-    min-height:80px;
-  }
-
-  /* LEFT SIDE */
-  .row.left .box{margin-right:auto;margin-left:0;text-align:right;}
-  .row.left .spacer{order:2;}
-  .row.left .box{order:1;}
-
-  /* RIGHT SIDE */
-  .row.right .box{margin-left:auto;margin-right:0;text-align:left;}
-  .row.right .spacer{order:1;}
-  .row.right .box{order:2;}
-
-  /* SPACER takes up the other half */
-  .spacer{width:50%;flex-shrink:0;}
-
-  /* THE BOX */
   .box{
     width:44%;
     padding:18px 22px;
     border-radius:14px;
-    background:rgba(255,255,255,.55);
-    border:1px solid rgba(255,255,255,.7);
-    backdrop-filter:blur(8px);
+    background:#fff;
+    border:1px solid rgba(255,255,255,.9);
     transition:all .4s ease;
-    opacity:.45;
+    opacity:.5;
     transform:scale(.97);
   }
-  .box.active{
-    background:rgba(255,255,255,.92);
-    opacity:1;
-    transform:scale(1);
-    box-shadow:0 8px 32px rgba(0,0,0,.08);
-  }
+  .box.active{opacity:1;transform:scale(1);box-shadow:0 8px 32px rgba(0,0,0,.1);}
 
-  .box-title{
-    font-size:clamp(14px,1.8vw,17px);
-    font-weight:400;
-    color:#000;
-    line-height:1.35;
-    letter-spacing:-.01em;
-  }
-  .box-body{
-    font-size:13px;
-    font-weight:300;
-    color:rgba(0,0,0,.55);
-    line-height:1.55;
-    margin-top:6px;
-    max-height:0;
-    overflow:hidden;
-    opacity:0;
-    transition:max-height .4s ease, opacity .35s ease;
-  }
+  .row.left .box{margin-right:auto;text-align:right;order:1;}
+  .row.left .spacer{order:2;}
+  .row.right .box{margin-left:auto;text-align:left;order:2;}
+  .row.right .spacer{order:1;}
+  .spacer{width:50%;flex-shrink:0;}
+
+  .box-title{font-size:clamp(14px,1.8vw,17px);font-weight:400;color:#000;line-height:1.35;letter-spacing:-.01em;}
+  .box-body{font-size:13px;font-weight:300;color:rgba(0,0,0,.5);line-height:1.55;margin-top:6px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s,opacity .35s;}
   .box.active .box-body{max-height:60px;opacity:1;}
-  .box-tag{
-    font-size:10px;
-    letter-spacing:.15em;
-    text-transform:uppercase;
-    color:rgba(0,0,0,.35);
-    margin-top:8px;
-    max-height:0;overflow:hidden;opacity:0;
-    transition:max-height .4s, opacity .35s;
-  }
+  .box-tag{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.3);margin-top:7px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s,opacity .35s;}
   .box.active .box-tag{max-height:24px;opacity:1;}
 
-  /* DOT on the centre line */
-  .dot{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:14px;height:14px;
-    border-radius:50%;
-    background:rgba(0,0,0,.2);
-    border:2px solid rgba(255,255,255,.6);
-    transition:background .4s, box-shadow .4s;
-    z-index:2;
-  }
-  .row.active-row .dot{
-    background:#000;
-    border-color:#fff;
-    box-shadow:0 0 0 4px rgba(0,0,0,.12);
-  }
+  .dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.8);transition:background .4s,box-shadow .4s;z-index:2;}
+  .row.active-row .dot{background:#000;border-color:#fff;box-shadow:0 0 0 4px rgba(0,0,0,.12);}
 
-  /* CONNECTOR LINE from box to centre dot */
-  .connector{
-    position:absolute;
-    top:50%;
-    height:2px;
-    background:rgba(0,0,0,.15);
-    width:6%;
-    transition:background .4s;
-  }
+  .connector{position:absolute;top:50%;height:2px;background:rgba(0,0,0,.12);width:6%;transition:background .4s;}
   .row.left .connector{right:50%;transform:translateY(-50%);}
   .row.right .connector{left:50%;transform:translateY(-50%);}
-  .row.active-row .connector{background:rgba(0,0,0,.3);}
+  .row.active-row .connector{background:rgba(0,0,0,.25);}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="eyebrow">✦ The Luckygirlmaxxing operating system</div>
+  <div class="eyebrow">✦ The Luckygirlmaxxing identity</div>
   <h2 class="heading">She gets to have it all.<br>All of it. All at once.</h2>
-  <p class="subhead">This isn't a wish list. This is what runs automatically when the identity is installed.</p>
+  <p class="subhead">This is where the Self Hypnosis Goddess library takes you.</p>
+  <p class="bridge">The installed identity looks like this</p>
 
   <div class="tl" id="tl">
 
     <div class="row left" data-body="She doesn't look for it. It finds her." data-tag="Luckygirlmaxxing">
       <div class="box"><div class="box-title">Right place. Right time. Right outcome. Mine.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="spacer"></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
     </div>
 
     <div class="row right" data-body="Multiple streams. Always arriving. Never chased." data-tag="Richgirlmaxxing">
       <div class="spacer"></div>
       <div class="box"><div class="box-title">Infinite cash streams. Always arriving.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="dot"></div><div class="connector"></div>
     </div>
 
     <div class="row left" data-body="She never had to fight for it. It was always hers." data-tag="Beautymaxxing">
       <div class="box"><div class="box-title">Perfect body. Perfect health. No effort required.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="spacer"></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
     </div>
 
     <div class="row right" data-body="The right one. He finds her first. Of course he does." data-tag="Lovemaxxing">
       <div class="spacer"></div>
       <div class="box"><div class="box-title">The perfect man. He finds her first.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row left" data-body="Not chased. Chosen. By the ones who are worth it." data-tag="Lovemaxxing">
+      <div class="box"><div class="box-title">Always loved by the right people.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row right" data-body="Her energy does the work. She just shows up." data-tag="Luckygirlmaxxing">
+      <div class="spacer"></div>
+      <div class="box"><div class="box-title">Always attracting the right people.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="dot"></div><div class="connector"></div>
     </div>
 
     <div class="row left" data-body="No ceiling. No gatekeeping. Full access. Always." data-tag="Sovereignmaxxing">
       <div class="box"><div class="box-title">Unlimited access. Unlimited experiences. No ceiling.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="spacer"></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
     </div>
 
     <div class="row right" data-body="The moment arrives exactly when it should. Every time." data-tag="Luckygirlmaxxing">
       <div class="spacer"></div>
       <div class="box"><div class="box-title">Perfect timing. Every single time.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="dot"></div><div class="connector"></div>
     </div>
 
     <div class="row left" data-body="She sees them. She logs them. The proof wall fills." data-tag="ProofOS">
       <div class="box"><div class="box-title">Synchronicities. Signs. She notices all of them.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="spacer"></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
     </div>
 
-    <div class="row right" data-body="She walks in and the energy shifts. Without trying." data-tag="Confidencemaxxing">
+    <div class="row right" data-body="Not trying harder. Just running a different operating system." data-tag="Selfmaxxing">
       <div class="spacer"></div>
-      <div class="box"><div class="box-title">She walks in. The room shifts.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
-    </div>
-
-    <div class="row left" data-body="Her body is her home. She is at peace inside it." data-tag="Selfmaxxing">
-      <div class="box"><div class="box-title">At peace in her body. In her mind. In her life.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="spacer"></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
-    </div>
-
-    <div class="row right" data-body="The deal closes. The seat upgrades. The call comes through." data-tag="Richgirlmaxxing">
-      <div class="spacer"></div>
-      <div class="box"><div class="box-title">The deal closes. The seat upgrades. Of course it does.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="box"><div class="box-title">Always the most successful version of herself.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="dot"></div><div class="connector"></div>
     </div>
 
     <div class="row left" data-body="This is what the installed identity feels like." data-tag="The identity">
       <div class="box"><div class="box-title">She has it all. Not more. All. All at once.</div><div class="box-body"></div><div class="box-tag"></div></div>
-      <div class="spacer"></div>
-      <div class="dot"></div>
-      <div class="connector"></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
     </div>
 
   </div>
