@@ -1149,9 +1149,9 @@ function LuckyGirlTimeline({ isMobile }) {
 
         {/* BRIDGE — how the audio gets you there */}
         <div style={{ marginTop: isMobile?56:72, textAlign:"center", borderTop:"1px solid rgba(0,0,0,.12)", paddingTop: isMobile?40:56 }}>
-          <div style={{ fontSize:11, letterSpacing:".28em", textTransform:"uppercase", color:"#000", opacity:.5, marginBottom:16 }}>How she gets there</div>
+          <div style={{ fontSize:13, letterSpacing:".2em", textTransform:"uppercase", color:"#000", fontWeight:600, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How she gets there</div>
           <div style={{ fontSize: isMobile?"clamp(22px,5vw,28px)":"clamp(26px,2.8vw,34px)", fontWeight:300, color:"#000", lineHeight:1.4, maxWidth:640, margin:"0 auto", marginBottom:20 }}>The Self Hypnosis Goddess audio library installs this identity. One track at a time. While you live your life.</div>
-          <div style={{ fontSize:14, color:"#000", opacity:.55, maxWidth:500, margin:"0 auto" }}>Luckygirlmaxxing. Richgirlmaxxing. Beautymaxxing. Lovemaxxing. All 24 categories. The complete operating system upgrade.</div>
+          <div style={{ fontSize:14, color:"#000", maxWidth:500, margin:"0 auto" }}>Luckygirlmaxxing. Richgirlmaxxing. Beautymaxxing. Lovemaxxing. All 24 categories. The complete operating system upgrade.</div>
         </div>
       </div>
     </div>
