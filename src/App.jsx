@@ -1091,6 +1091,48 @@ const GPROOF = (m) => m
   ? { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }
   : { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 };
 
+function HowItWorksAccordion({ isMobile }) {
+  const [open, setOpen] = useState(0);
+  const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+  const steps = [
+    { n:"01", title:"Press play. Anytime.", body:"Choose a track from 24 categories based on what you want to manifest. Morning coffee, car ride, gym, lunch break. Theta is available the instant you press play." },
+    { n:"02", title:"Theta state.", body:"Your brain drops into theta (4 to 8Hz). Binaural beats, one frequency in each ear, create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
+    { n:"03", title:"Your subconscious opens.", body:"The critical mind, the part that argues, doubts, and filters, steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming." },
+    { n:"04", title:"The hypnosis activates.", body:"Reshma's voice speaks directly to your subconscious, putting you into hypnosis and opening your subconscious mind. Your new identity is delivered while the gatekeeper is offline. No resistance. No filtering. It goes straight in." },
+    { n:"05", title:"Subliminals layer underneath.", body:"Affirmations recorded below conscious hearing. You can't make them out, but your subconscious can. Your new identity repeating hundreds of times per session while you listen." },
+    { n:"06", title:"Melodic house hypes you up.", body:"The music holds you in state and keeps the energy high. Some tracks drive you. Some take you deep. Either way you stay locked in the frequency where identity shifts, and it feels incredible." },
+    { n:"07", title:"Your reality starts shifting.", body:"Your beliefs and assumptions have changed. Your identity has shifted. Reality reflects your identity, so things start to change. This can happen in seconds. Or days. Every session goes deeper." },
+    { n:"08", title:"Log every sign in ProofOS.", body:"As your reality shifts you'll notice synchronicities, things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
+  ];
+  return (
+    <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
+      {steps.map((s,i) => (
+        <div key={i}>
+          <div
+            onClick={() => setOpen(open === i ? -1 : i)}
+            style={{ display:"flex", alignItems:"center", gap:20, padding: isMobile?"16px 20px":"20px 28px", cursor:"pointer", background: open===i ? G : "#f2ece4", borderRadius: open===i ? "14px 14px 0 0" : 14, border:"1px solid rgba(0,0,0,.06)", transition:"all .25s" }}
+          >
+            <span style={{ fontSize:11, letterSpacing:"0.2em", color: open===i ? "rgba(0,0,0,.5)" : "#888", fontWeight:500, flexShrink:0, width:28, fontFamily:"'Jost',sans-serif" }}>{s.n}</span>
+            <span style={{ fontSize: isMobile?16:18, fontWeight:400, color:"#000", flex:1, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em" }}>{s.title}</span>
+            {s.badge && open===i && <span style={{ background:"#000", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", flexShrink:0, fontWeight:500 }}>Goddess Tier ✦</span>}
+            <span style={{ fontSize:20, color:"#888", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform .3s", fontWeight:300 }}>+</span>
+          </div>
+          {open===i && (
+            <div style={{ background:G, borderRadius:"0 0 14px 14px", padding: isMobile?"16px 20px 24px":"20px 28px 28px" }}>
+              <p style={{ fontSize: isMobile?14:15, fontWeight:400, color:"#000", lineHeight:1.75, fontFamily:"'Jost',sans-serif", paddingLeft: isMobile?36:48 }}>{s.body}</p>
+            </div>
+          )}
+          {i < 7 && (
+            <div style={{ textAlign:"center", padding:"8px 0" }}>
+              <span style={{ display:"inline-flex", alignItems:"center", justifyContent:"center", width:28, height:28, borderRadius:"50%", background:"rgba(0,0,0,.06)", fontSize:13, color:"#2CB7A7" }}>↓</span>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   const [proofTheme, setProofTheme] = useState("dark");
   const theme = "dark";
@@ -1610,47 +1652,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
           </div>
 
-          {/* HOW IT WORKS divider */}
+          {/* HOW IT WORKS — accordion redesign */}
           <div style={{ textAlign:"center", margin: isMobile?"48px 0 40px":"72px 0 56px" }}>
-            <div style={{ fontSize:13, letterSpacing:"0.24em", textTransform:"uppercase", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Step by step</div>
-            <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,60px)", fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0 }}>How it works.</div>
+            <div style={{ fontSize: isMobile?"clamp(48px,10vw,72px)":"clamp(56px,7vw,88px)", fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.03em", lineHeight:1.0, background:"linear-gradient(135deg,#1a1a1a,#2a2a2a)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>How it works.</div>
+            <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", marginTop:12, opacity:.65 }}>Here's exactly what happens inside every session.</div>
           </div>
 
-          {/* Numbered steps, massive titles, full copy, thick arrows */}
-          <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
-            {[
-              { n:"01", title:"PRESS PLAY. ANYTIME.", body:"Choose a track from 24 categories based on what you want to manifest. You do not have to wait until you're falling asleep. Morning coffee, car ride, gym, lunch break, theta is available the instant you press play." },
-              { n:"02", title:"THETA STATE.", body:"Your brain drops into theta (4–8Hz). Binaural beats, one frequency in each ear, create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance." },
-              { n:"03", title:"YOUR SUBCONSCIOUS OPENS.", body:"The critical mind, the part that argues, doubts, and filters, steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming." },
-              { n:"04", title:"THE HYPNOSIS ACTIVATES.", body:"Reshma's voice speaks directly to your subconscious, putting you into hypnosis and opening your subconscious mind. Your new identity is delivered while the gatekeeper is offline. No resistance. No filtering. It goes straight in." },
-              { n:"05", title:"SUBLIMINALS LAYER UNDERNEATH.", body:"Affirmations recorded below conscious hearing. You can't make them out, but your subconscious can. Your new identity repeating hundreds of times per session while you listen." },
-              { n:"06", title:"MELODIC HOUSE HYPES YOU UP.", body:"The music holds you in state and keeps the energy high. Some tracks drive you. Some take you deep. Either way you stay locked in the frequency where identity shifts, and it feels incredible." },
-              { n:"07", title:"YOUR REALITY STARTS SHIFTING.", body:"Your beliefs and assumptions have changed. Your identity has shifted. Reality reflects your identity, so things start to change. This can happen in seconds. Or days. Every session goes deeper." },
-              { n:"08", title:"LOG EVERY SIGN IN PROOFOS.", body:"As your reality shifts you'll notice synchronicities, things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.", badge:true },
-            ].map((s,i)=>(
-              <div key={i}>
-                <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"32px 24px":"48px 56px", display:"flex", gap: isMobile?20:40, alignItems:"flex-start" }}>
-                  {/* Number, massive, left, faded */}
-                  <div style={{ fontSize: isMobile?52:80, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, width: isMobile?52:80, letterSpacing:"-0.02em" }}>{s.n}</div>
-                  {/* Text */}
-                  <div style={{ flex:1, paddingTop: isMobile?8:14 }}>
-                    <div style={{ display:"flex", alignItems:"flex-start", flexWrap:"wrap", gap:10, marginBottom:16 }}>
-                      <div style={{ fontSize: isMobile?"clamp(22px,6vw,30px)":"clamp(28px,3vw,40px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.1, letterSpacing:"-0.01em" }}>{s.title}</div>
-                      {s.badge && <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:20, padding:"6px 16px", fontSize:11, letterSpacing:"0.14em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", flexShrink:0, marginTop:4, fontWeight:500 }}>Goddess Tier ✦</span>}
-                    </div>
-                    <div style={{ fontSize: isMobile?15:18, color:"#222", fontFamily:"'Jost',sans-serif", lineHeight:1.85 }}>{s.body}</div>
-                  </div>
-                </div>
-                {/* Thick black arrow */}
-                {i < 7 && <div style={{ textAlign:"center", padding: isMobile?"12px 0":"16px 0", fontSize: isMobile?32:44, color:"#000", fontWeight:700, lineHeight:1 }}>↓</div>}
-              </div>
-            ))}
-          </div>
+          {/* Accordion */}
+          <HowItWorksAccordion isMobile={isMobile} />
 
         </div>
       </div>
 
-                  {/* PROOFOS INTRO */}
+      {/* PROOFOS INTRO */}
       <ProofOSBanner isMobile={isMobile}/>
 
       {/* LANDING PROOF WALL, exact mirror of the live dashboard */}
