@@ -1559,8 +1559,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:16, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
           {/* VALUE PROP BOX */}
           <div style={{ display:"inline-block", margin:"0 auto 12px", padding: isMobile?"14px 24px":"18px 40px", background:"rgba(255,255,255,.04)", border:"1px solid rgba(255,255,255,.1)", borderRadius:40, maxWidth: isMobile?"90%":640 }}>
-            <div style={{ fontSize: isMobile?"clamp(15px,4vw,18px)":"clamp(16px,1.6vw,20px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0.01em", lineHeight:1.5 }}>Shift your identity. Manifest your desired reality.</div>
-            <div style={{ fontSize: isMobile?12:13, color:"#a09aa8", fontFamily:"'Jost',sans-serif", fontWeight:300, marginTop:6, letterSpacing:"0.02em" }}>Reprogram your mind from stuck to unstoppable.</div>
+            <div style={{ fontSize: isMobile?"clamp(15px,4vw,18px)":"clamp(16px,1.6vw,20px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.01em", lineHeight:1.5, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>Shift your identity. Manifest your desired reality.</div>
+            <div style={{ fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", fontWeight:300, marginTop:6, letterSpacing:"0.02em", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", opacity:.8 }}>Reprogram your mind from stuck to unstoppable.</div>
           </div>
         </div>
 
