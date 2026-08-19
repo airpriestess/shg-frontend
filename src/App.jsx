@@ -1128,25 +1128,20 @@ function LuckyGirlTimeline({ isMobile }) {
             const isLeft = i % 2 === 0;
             const isActive = active === i;
             return (
-              <div key={i} style={{ display:"flex", alignItems:"center", marginBottom: isMobile?14:18, position:"relative", minHeight: isMobile?60:70 }}>
-                <div style={{ width:"46%", order: isLeft?1:2, marginLeft: isLeft?0:"auto", marginRight: isLeft?"auto":0 }}>
-                  {isLeft && (
-                    <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign:"right", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
-                      <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
-                      {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000", opacity:.5, marginTop:6 }}>✦ {item.tag}</div>}
-                    </div>
-                  )}
+              <div key={i} style={{ display:"flex", flexDirection: isLeft ? "row" : "row-reverse", alignItems:"center", marginBottom: isMobile?14:18, position:"relative", minHeight: isMobile?60:70 }}>
+                {/* Box — always first child, direction controls which side */}
+                <div style={{ width:"46%", flexShrink:0 }}>
+                  <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
+                    <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
+                    {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000", opacity:.5, marginTop:6 }}>✦ {item.tag}</div>}
+                  </div>
                 </div>
+                {/* Spacer pushes box to correct side */}
+                <div style={{ flex:1 }} />
+                {/* Centre dot */}
                 <div style={{ position:"absolute", left:"50%", top:"50%", transform:"translate(-50%,-50%)", width: isActive?16:12, height: isActive?16:12, borderRadius:"50%", background: isActive?"#000":"rgba(0,0,0,.3)", border:"2px solid rgba(255,255,255,.8)", transition:"all .4s", zIndex:2 }} />
+                {/* Connector */}
                 <div style={{ position:"absolute", top:"50%", height:2, background:"rgba(0,0,0,.15)", width:"4%", left: isLeft?"auto":"50%", right: isLeft?"50%":"auto", transform:"translateY(-50%)" }} />
-                <div style={{ width:"46%", order: isLeft?2:1, marginLeft: isLeft?"auto":0, marginRight: isLeft?0:"auto" }}>
-                  {!isLeft && (
-                    <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign:"left", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
-                      <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
-                      {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000", opacity:.5, marginTop:6 }}>✦ {item.tag}</div>}
-                    </div>
-                  )}
-                </div>
               </div>
             );
           })}
@@ -1699,16 +1694,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-      {/* LUCKY GIRL TIMELINE */}
-      <LuckyGirlTimeline isMobile={isMobile} />
-
       {/* HOW IT WORKS, LG gradient background getting darker, white boxes */}
       <div style={{ background:"linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
         <div style={{ maxWidth:720, margin:"0 auto" }}>
 
           {/* Heading, centered, dark text on light gradient top */}
           <div style={{ marginBottom: isMobile?48:72, textAlign:"center", width:"100%" }}>
-            <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center" }}>The method</div>
+            <div style={{ fontSize:13, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center", fontWeight:600 }}>The method</div>
             <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,4.5vw,64px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:12, textAlign:"center" }}>Theta state doesn't require sleep. Press play and you're there in minutes.</div>
             <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", textAlign:"center" }}>No waiting for bedtime. No perfect conditions. Here's exactly what happens when you press play.</div>
           </div>
@@ -1757,6 +1749,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         </div>
       </div>
+
+      {/* LUCKY GIRL TIMELINE */}
+      <LuckyGirlTimeline isMobile={isMobile} />
 
       {/* PROOFOS INTRO */}
       <ProofOSBanner isMobile={isMobile}/>
