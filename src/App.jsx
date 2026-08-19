@@ -69,14 +69,14 @@ function ProofOSBanner({ isMobile }) {
       <div style={{ textAlign:"center", marginBottom: isMobile?28:36, padding:"0 24px" }}>
         <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>Goddess Tier ✦</div>
         <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:14 }}>ProofOS.</div>
-        <div style={{ fontSize: isMobile?15:18, color:"rgba(242,236,228,0.55)", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:480, margin:"0 auto" }}>
+        <div style={{ fontSize: isMobile?15:18, color:"#f2ece4", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:480, margin:"0 auto" }}>
           Every desire. Every sign. Every moment it arrived. Logged, dated, permanent.
         </div>
       </div>
 
       {/* Full-width cycling banner */}
       <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", width:"100%", padding: isMobile?"22px 24px":"28px 48px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:24, minHeight: isMobile?90:96 }}>
-        <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:"rgba(0,0,0,0.15)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
+        <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
         <div style={{ flex:1, textAlign: isMobile?"left":"center" }}>
           <div style={{ fontSize: isMobile?"clamp(18px,5vw,26px)":"clamp(22px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom:6 }}>{s.label}</div>
           <div style={{ fontSize: isMobile?13:16, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
