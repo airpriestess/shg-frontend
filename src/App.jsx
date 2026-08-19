@@ -1119,7 +1119,7 @@ function LuckyGirlTimeline({ isMobile }) {
         {/* ONE LINE heading — no line break */}
         <h2 style={{ textAlign:"center", fontSize: isMobile?"clamp(48px,11vw,72px)":"clamp(64px,8vw,96px)", fontWeight:300, color:"#000", letterSpacing:"-.03em", lineHeight:.95, marginBottom:16, whiteSpace: isMobile?"normal":"nowrap" }}>Lucky Girl Timeline.</h2>
         <div style={{ textAlign:"center", fontSize: isMobile?"clamp(20px,5vw,28px)":"clamp(24px,2.8vw,34px)", fontWeight:300, color:"#000", letterSpacing:"-.01em", lineHeight:1.2, marginBottom:10 }}>She gets to have it all. All of it. All at once.</div>
-        <div style={{ textAlign:"center", fontSize:14, color:"#000", opacity:.6, marginBottom: isMobile?56:80 }}>This isn't a wish list. This is what runs automatically when the identity is installed.</div>
+        <div style={{ textAlign:"center", fontSize: isMobile?16:18, color:"#000", fontWeight:400, marginBottom: isMobile?56:80, fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>This isn't a wish list. This is what runs automatically when the identity is installed.</div>
 
         {/* Timeline */}
         <div style={{ position:"relative" }}>
