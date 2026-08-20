@@ -588,17 +588,17 @@ function PricingSection({ onJoin }) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
-          <div style={{ display: "flex", background: "#fdf0e8", borderRadius: 50, padding: 3, border: "1px solid rgba(255,255,255,0.1)" }}>
+          <div style={{ display: "flex", background: "#111", borderRadius: 50, padding: 3, border: "1px solid rgba(255,255,255,0.12)" }}>
             {["monthly", "annual"].map(b => (
               <button key={b} onClick={() => setBilling(b)} style={{
                 padding: "9px 24px", borderRadius: 50, border: "none", cursor: "pointer",
                 fontSize: 12, fontWeight: 400, letterSpacing: "0.06em",
-                background: billing === b ? "#fdf0e8" : "transparent",
-                color: billing === b ? "#000" : theme==="dark"?"#fdf0e8":"#000000",
+                background: billing === b ? "linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7)" : "transparent",
+                color: billing === b ? "#000" : "#fdf0e8",
                 fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 8,
                 transition: "all 0.2s",
               }}>
-                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ fontSize: 10, color: billing === b ? "#2CB7A7" : "#2CB7A7", letterSpacing: "0.1em" }}>SAVE 20%</span></>}
+                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ fontSize: 10, color: billing === b ? "#000" : "#2CB7A7", letterSpacing: "0.1em" }}>SAVE 20%</span></>}
               </button>
             ))}
           </div>
