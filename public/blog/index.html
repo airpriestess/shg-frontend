@@ -108,6 +108,19 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 .cs-row.lit span{color:#000 !important;-webkit-text-fill-color:#000 !important;background:none !important;}
 .cs-row.lit svg path{fill:#000 !important;}
 @media(prefers-reduced-motion:reduce){.cs-row{transition:none}}
+
+/* Coming soon cards, matching Archive */
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.cs-card{border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);transition:all .6s ease;}
+.cs-card-img{height:110px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;opacity:.55;transition:opacity .6s ease;}
+.cs-card.lit{transform:translateY(-4px);border-color:transparent;box-shadow:0 10px 30px rgba(191,165,216,.2);}
+.cs-card.lit .cs-card-img{opacity:1;}
+.cs-card-body{padding:16px 16px 18px;}
+.cs-num{font-size:10px;letter-spacing:.2em;background:linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;margin-bottom:9px;}
+.cs-title{font-size:14px;font-weight:400;color:#fdf0e8;line-height:1.4;margin-bottom:12px;min-height:58px;}
+.cs-lock{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#fdf0e8;}
+@media(max-width:900px){.cs-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.cs-grid{grid-template-columns:1fr;}.cs-title{min-height:0;}}
 </style>
 
   <meta property="og:type" content="website">
@@ -180,32 +193,16 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 
 <!-- COMING SOON -->
 <section class="grid-section" style="margin-bottom:64px;">
-  <span class="grid-label">Coming soon</span>
-  <div style="display:flex;flex-direction:column;gap:10px;">
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">01</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">The state affirmations actually need to work</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">02</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">Same room. Same day. Why she sees the opening and you don&#39;t.</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">03</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">Most opportunities leave before fear finishes speaking</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">04</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">The Domino Effect, why you only need to see the first move</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">05</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">She expects upgrades. She expects ease. Why that&#39;s not arrogance.</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">06</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">Why feeling lucky doesn&#39;t mean saying yes to everything</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">07</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">What 21 pieces of evidence actually does to your subconscious</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
-    <div class="cs-row" style="padding:18px 24px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:18px;">
-      <span style="font-size:11px;letter-spacing:.16em;color:#fdf0e8;flex-shrink:0;width:28px;">08</span>
-      <span style="font-size:16px;font-weight:400;color:#fdf0e8;line-height:1.4;flex:1;">Why she chose the identity before the evidence arrived</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-left:auto;opacity:.85;"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm9 14H6V10h12v10z" fill="#fdf0e8"/></svg></div>
+  <span class="grid-label">
+  <div class="cs-grid">
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">01</div><div class="cs-title">The state affirmations actually need to work</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">02</div><div class="cs-title">Same room. Same day. Why she sees the opening and you don&#39;t.</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">03</div><div class="cs-title">Most opportunities leave before fear finishes speaking</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">04</div><div class="cs-title">The Domino Effect, why you only need to see the first move</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">05</div><div class="cs-title">She expects upgrades. She expects ease. Why that&#39;s not arrogance.</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">06</div><div class="cs-title">Why feeling lucky doesn&#39;t mean saying yes to everything</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">07</div><div class="cs-title">What 21 pieces of evidence actually does to your subconscious</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">08</div><div class="cs-title">Why she chose the identity before the evidence arrived</div><div class="cs-lock">Coming soon</div></div></div>
   </div>
 </section>
 
@@ -448,6 +445,18 @@ document.querySelectorAll('.pill').forEach(pill => {
       }, 1800);
     }, gi * 450);
   });
+})();
+</script>
+<script>
+(function csCards(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards=document.querySelectorAll('.cs-card'); if(!cards.length) return;
+  var i=0;
+  setInterval(function(){
+    cards.forEach(function(c){c.classList.remove('lit');});
+    cards[i].classList.add('lit');
+    i=(i+1)%cards.length;
+  },1600);
 })();
 </script>
 </body>
