@@ -2,7 +2,7 @@
 export const SAMPLE_TRACKS = [
   {
     id: "t3",
-    title: "Spoilt",
+    title: "Spoilt Goddess",
     category: "Goddessmaxxing",
     tier: "audio",
     duration: 540,

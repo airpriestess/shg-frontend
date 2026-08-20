@@ -64,7 +64,7 @@ const dominant = (log,days) => {
 // ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
 const AUDIO_URLS = {
   // Real tracks — titles match D1 database exactly
-  "Spoilt":                                     "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
+  "Spoilt Goddess":                                     "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
   "Lifetime of Luck":                           "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV",
   "Drop The Tension":                           "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV",
   "Monica Face":                                "https://shg-audio-worker.airpriestess.workers.dev/MONICA%20FACE%20HYPNOSIS%209MIN%2006.05.2026.WAV",
