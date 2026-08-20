@@ -66,10 +66,10 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 .art-body h2{font-size:clamp(24px,3.5vw,36px);font-weight:400;letter-spacing:-.025em;color:#f2ece4;margin:60px 0 22px;line-height:1.1;}
 .art-body h3{font-size:20px;font-weight:600;color:#f2ece4;margin:40px 0 16px;letter-spacing:-.01em;}
 .art-body strong{font-weight:600;color:#f2ece4;}
-.art-body em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08em;}
+.art-body em{font-family:'Jost',sans-serif;font-size:1.08em;}
 
 .pq{border-left:2px solid;border-image:var(--g) 1;padding:24px 32px;margin:44px 0;}
-.pq p{font-family:'Cormorant Garamond',serif;font-style:normal;font-size:clamp(24px,3.2vw,33px);font-weight:400;color:#f2ece4;line-height:1.35;margin:0;}
+.pq p{font-family:'Jost',sans-serif;font-size:clamp(24px,3.2vw,33px);font-weight:400;color:#f2ece4;line-height:1.35;margin:0;}
 
 .callout{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px;margin:44px 0;}
 .callout-label{font-size:9px;letter-spacing:.28em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;margin-bottom:16px;display:block;}
@@ -141,6 +141,47 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 
 .shg-lib-resp{}
 @media(max-width:600px){.shg-lib div[style*="repeat(3,1fr)"]{grid-template-columns:1fr !important;gap:14px !important;}}
+
+/* VISUAL DIAGRAMS */
+.dg{margin:48px 0;}
+.dg-cap{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#fdf0e8;text-align:center;margin-top:18px;}
+
+/* Circular loop */
+.ring{position:relative;width:100%;max-width:420px;height:420px;margin:0 auto;}
+.ring-node{position:absolute;width:104px;text-align:center;font-size:11px;line-height:1.3;color:#fdf0e8;transform:translate(-50%,-50%);}
+.ring-dot{width:13px;height:13px;border-radius:50%;background:linear-gradient(90deg,#E8B870,#2CB7A7);margin:0 auto 7px;}
+.ring-mid{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:150px;}
+.ring-mid b{display:block;font-size:14px;font-weight:400;background:linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+/* Two-path split */
+.paths{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;border-radius:16px;overflow:hidden;}
+.path{padding:26px 22px;}
+.path-a{background:rgba(255,255,255,.03);}
+.path-b{background:linear-gradient(160deg,rgba(232,184,112,.18),rgba(44,183,167,.18));}
+.path-h{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#fdf0e8;margin-bottom:16px;}
+.path-step{font-size:14px;color:#fdf0e8;line-height:1.45;padding:9px 0;}
+.path-spine{width:1px;background:linear-gradient(180deg,#E8B870,#BFA5D8,#2CB7A7);}
+.path-seed{text-align:center;padding:16px;font-size:13px;color:#fdf0e8;background:rgba(255,255,255,.02);}
+
+/* Funnel */
+.funnel{max-width:440px;margin:0 auto;}
+.fn{margin:0 auto 8px;border-radius:10px;padding:14px;text-align:center;font-size:13px;color:#000;
+    background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+    background-size:300% 100%;animation:shgGrad 12s ease-in-out infinite;}
+
+/* Scale bar */
+.bar{height:52px;border-radius:26px;overflow:hidden;display:flex;position:relative;
+     background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+     background-size:300% 100%;animation:shgGrad 14s ease-in-out infinite;}
+.bar-lab{display:flex;justify-content:space-between;margin-top:12px;font-size:11px;color:#fdf0e8;}
+.bar-mark{position:absolute;top:-9px;bottom:-9px;width:3px;background:#000;border-radius:2px;}
+
+@media(max-width:600px){
+  .paths{grid-template-columns:1fr;}
+  .path-spine{width:100%;height:1px;background:linear-gradient(90deg,#E8B870,#2CB7A7);}
+  .ring{max-width:300px;height:330px;}
+  .ring-node{width:86px;font-size:10px;}
+}
 </style>
 
   <meta property="og:type" content="article">
@@ -268,21 +309,21 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 
   <p>The Unlucky Universe Story is not a belief sitting still in your mind. It is a loop, running continuously, and each pass around it makes the next pass faster.</p>
 
-  <div class="loop">
-    <div class="loop-title">The Unlucky Girl Operating System</div>
-    <div class="loop-step"><span class="loop-num">1</span><span class="loop-text">Subconscious identity: <em>I am unlucky</em></span></div>
-    <div class="loop-arrow">&darr;</div>
-    <div class="loop-step"><span class="loop-num">2</span><span class="loop-text">Expectation: braced for the disappointment</span></div>
-    <div class="loop-arrow">&darr;</div>
-    <div class="loop-step"><span class="loop-num">3</span><span class="loop-text">Attention: scanning for what confirms it</span></div>
-    <div class="loop-arrow">&darr;</div>
-    <div class="loop-step"><span class="loop-num">4</span><span class="loop-text">Interpretation: neutral events read as proof</span></div>
-    <div class="loop-arrow">&darr;</div>
-    <div class="loop-step"><span class="loop-num">5</span><span class="loop-text">Reality: behaviour shifts, outcomes follow</span></div>
-    <div class="loop-arrow">&darr;</div>
-    <div class="loop-step"><span class="loop-num">6</span><span class="loop-text">Proof: "See? I knew it."</span></div>
-    <div class="loop-arrow">&darr;</div>
-    <div class="loop-step"><span class="loop-num">7</span><span class="loop-text">Identity reinforced, loop begins again</span></div>
+  <div class="dg">
+  <div class="ring">
+    <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;">
+      <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#E8B870"/><stop offset="50%" stop-color="#BFA5D8"/><stop offset="100%" stop-color="#2CB7A7"/>
+      </linearGradient></defs>
+      <circle cx="50" cy="50" r="39" fill="none" stroke="url(#rg)" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.75">
+        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="40s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <div class="ring-node" style="left:50.0%;top:10.714285714285715%;"><div class="ring-dot"></div>Identity</div><div class="ring-node" style="left:84.0224265772458%;top:30.35714285714286%;"><div class="ring-dot"></div>Expectation</div><div class="ring-node" style="left:84.0224265772458%;top:69.64285714285714%;"><div class="ring-dot"></div>Attention</div><div class="ring-node" style="left:50.0%;top:89.28571428571428%;"><div class="ring-dot"></div>Interpretation</div><div class="ring-node" style="left:15.977573422754197%;top:69.64285714285714%;"><div class="ring-dot"></div>Reality</div><div class="ring-node" style="left:15.977573422754197%;top:30.357142857142854%;"><div class="ring-dot"></div>Proof</div>
+    <div class="ring-mid"><b>It never stops</b><span style="font-size:11px;color:#fdf0e8;">Each pass makes<br/>the next one faster</span></div>
+  </div>
+  <div class="dg-cap">The loop runs before the event, not after</div>
+</div>
   </div>
 
   <p>Notice where the loop actually starts. Not with the event. With the identity. By the time the event arrives, expectation and attention have already done their work, deciding in advance what you will notice and what it will mean.</p>
@@ -306,39 +347,29 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 
   <p>Two women experience the same delayed flight. One reads it as proof life never works for her. The other stays open to redirection, new information, another route. The event stays identical. The meaning creates a completely different next decision.</p>
 
-  <div class="split-box">
-    <div class="split-half split-old">
-      <div class="split-label">Old luck story</div>
-      <ul>
-        <li>"He didn't reply, he's not interested."</li>
-        <li>"The plan fell through, nothing works out."</li>
-        <li>"I got rejected, I'm not good enough."</li>
-        <li>"She didn't invite me, I don't matter."</li>
-        <li>"The flight was delayed, of course, typical."</li>
-      </ul>
+  <div class="dg">
+  <div class="path-seed">One event. A delayed reply.</div>
+  <div class="paths">
+    <div class="path path-a">
+      <div class="path-h">Path one</div>
+      <div class="path-step">She has forgotten about me</div>
+      <div class="path-step">&darr;&nbsp; Stops following up</div>
+      <div class="path-step">&darr;&nbsp; No reply ever comes</div>
+      <div class="path-step">&darr;&nbsp; Proof collected</div>
+      <div class="path-step" style="padding-top:14px;">Story gets stronger</div>
     </div>
-    <div class="split-half split-new">
-      <div class="split-label">What she actually knows</div>
-      <ul>
-        <li>One event is not a verdict.</li>
-        <li>A delay is not a pattern.</li>
-        <li>A no is one data point.</li>
-        <li>Silence is not information.</li>
-        <li>Redirection is not rejection.</li>
-      </ul>
+    <div class="path-spine"></div>
+    <div class="path path-b">
+      <div class="path-h">Path two</div>
+      <div class="path-step">She is busy, this is not a no</div>
+      <div class="path-step">&darr;&nbsp; Follows up once</div>
+      <div class="path-step">&darr;&nbsp; Reply arrives</div>
+      <div class="path-step">&darr;&nbsp; Evidence registered</div>
+      <div class="path-step" style="padding-top:14px;">Identity gets stronger</div>
     </div>
   </div>
-
-  <p>She is not delusional. She simply refuses to let one event be the final word, and lets time prove her right.</p>
-
-  <h2>The half-second where it can be interrupted</h2>
-
-  <p>The identity can change at the point of interpretation. An event occurs, the old thought appears, the body reacts, a familiar behaviour follows, and by the time the day ends, the original event has been quietly filed away as more proof of the old story.</p>
-
-  <p>You are not being asked to stop the event from happening, or to stop the first thought from appearing. Both are usually automatic. You are being asked to insert one conscious interruption in the half-second after the body reacts and before the old behaviour completes itself.</p>
-
-  <div class="eq-box">
-    <div class="eq-label">The old loop</div>
+  <div class="dg-cap">The event was identical. The verdict was not.</div>
+</div>
     <div class="eq">EVENT &nbsp;+&nbsp; AUTOMATIC MEANING &nbsp;+&nbsp; FAMILIAR BEHAVIOUR<br/>= OLD IDENTITY REINFORCED</div>
   </div>
 
@@ -446,6 +477,17 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
     <div class="loop-arrow">&darr;</div>
     <div class="loop-step"><span class="loop-num">4</span><span class="loop-text">What now feels more normal. Let the event update the identity.</span></div>
   </div>
+
+  <div class="dg">
+  <div class="funnel">
+    <div class="fn" style="width:100%;">Everything that happened today</div>
+    <div class="fn" style="width:82%;">What you actually noticed</div>
+    <div class="fn" style="width:64%;">What you let mean something</div>
+    <div class="fn" style="width:46%;">What you wrote down</div>
+    <div class="fn" style="width:30%;font-weight:500;">Identity evidence</div>
+  </div>
+  <div class="dg-cap">Most of it never reaches the bottom</div>
+</div>
 
   <p>That last step is the one everybody skips, and it is the only one that changes anything. The event is not the point. What the event is allowed to mean about you afterwards is the entire point.</p>
 
@@ -568,7 +610,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   <div class="related-grid">
     <a href="/blog/why-lucky-girls-are-lucky" class="rel-card">
       <div class="rel-img shg-grad" style="background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);display:flex;align-items:flex-end;padding:16px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;font-weight:500;color:#000;line-height:1.3;">I am the woman good things happen to. Every day, life conspires in my favour.</div>
+        <div style="font-family:'Jost',sans-serif;font-size:13px;font-weight:500;color:#000;line-height:1.3;">I am the woman good things happen to. Every day, life conspires in my favour.</div>
       </div>
       <div class="rel-body">
         <span class="rel-cat">Luckygirlmaxxing</span>
