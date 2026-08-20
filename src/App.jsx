@@ -1556,12 +1556,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         {/* TWO LINES ABOVE PLAYER */}
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:16, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
-          {/* VALUE PROP BOX */}
-          <div style={{ display:"inline-block", margin:"0 auto 12px", padding: isMobile?"14px 24px":"18px 40px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:40, maxWidth: isMobile?"90%":640 }}>
-            <div style={{ fontSize: isMobile?"clamp(15px,4vw,18px)":"clamp(16px,1.6vw,20px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.01em", lineHeight:1.5, color:"#000" }}>Shift your identity. Manifest your desired reality.</div>
-            <div style={{ fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", fontWeight:300, marginTop:6, letterSpacing:"0.02em", color:"#000" }}>Reprogram your mind from stuck to unstoppable.</div>
-          </div>
+          <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:10, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Reprogram your mind from stuck to unstoppable.</div>
+          <div style={{ fontSize: isMobile?"clamp(14px,3.5vw,18px)":"clamp(16px,1.6vw,22px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0.01em", lineHeight:1.5, marginBottom:16, width:"100%", padding: isMobile?"0 16px":"0 20px" }}>Shift your identity. Shift your reality.</div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
