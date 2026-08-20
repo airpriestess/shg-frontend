@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:'Jost',sans-serif;overflow:hidden}
+.stage{width:1080px;height:1920px;position:relative;background:#000;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;transform-origin:top left}
+.kicker{font-size:30px;letter-spacing:.34em;text-transform:uppercase;color:#fdf0e8;margin-bottom:26px;opacity:0}
+.title{font-size:96px;font-weight:200;letter-spacing:-.03em;line-height:1.02;text-align:center;margin-bottom:60px;opacity:0;
+  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.ring{position:relative;width:900px;height:900px}
+.nd{position:absolute;width:330px;transform:translate(-50%,-50%);text-align:center;opacity:.16;transition:opacity .5s}
+.nd.on{opacity:1}
+.dot{width:20px;height:20px;border-radius:50%;margin:0 auto 14px;background:#3a3a3a;transition:all .5s}
+.nd.on .dot{background:linear-gradient(90deg,#E8B870,#2CB7A7);box-shadow:0 0 34px rgba(232,184,112,.85);transform:scale(1.5)}
+.lab{font-size:34px;font-weight:400;color:#fdf0e8;margin-bottom:8px}
+.line{font-size:26px;font-weight:300;color:#fdf0e8;line-height:1.32;max-height:0;overflow:hidden;transition:max-height .5s}
+.nd.on .line{max-height:90px}
+.mid{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:330px}
+.mid b{display:block;font-size:40px;font-weight:300;margin-bottom:10px;
+  background:linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mid span{font-size:24px;color:#fdf0e8;line-height:1.4}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
+.scene.live{opacity:1}
+.end{text-align:center;padding:0 90px}
+.end h2{font-size:88px;font-weight:200;color:#fdf0e8;line-height:1.12;letter-spacing:-.03em;margin-bottom:30px}
+.end p{font-size:40px;font-weight:300;
+  background:linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7);-webkit-background-clip:text;background-clip:text;color:transparent}
+svg{position:absolute;inset:0;width:100%;height:100%}
+</style></head><body>
+<div class="stage" id="stage">
+
+  <div class="scene" id="s1">
+    <div class="kicker" style="opacity:1">The loop you are running</div>
+    <div class="title" style="opacity:1">Unlucky.</div>
+    <div class="ring">
+      <svg viewBox="0 0 100 100"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#E8B870"/><stop offset="50%" stop-color="#BFA5D8"/><stop offset="100%" stop-color="#2CB7A7"/>
+      </linearGradient></defs>
+      <circle cx="50" cy="50" r="35" fill="none" stroke="url(#g1)" stroke-width="0.35" stroke-dasharray="2.5 2" opacity=".65">
+      <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="30s" repeatCount="indefinite"/></circle></svg>
+      <div class="nd u" data-i="0" style="left:50.0%;top:15.0%;">
+          <div class="dot"></div><div class="lab">Identity</div><div class="line">I am just unlucky</div></div>
+<div class="nd u" data-i="1" style="left:80.31088913245536%;top:32.5%;">
+          <div class="dot"></div><div class="lab">Expectation</div><div class="line">Braced for the disappointment</div></div>
+<div class="nd u" data-i="2" style="left:80.31088913245536%;top:67.5%;">
+          <div class="dot"></div><div class="lab">Attention</div><div class="line">Scanning for what confirms it</div></div>
+<div class="nd u" data-i="3" style="left:50.0%;top:85.0%;">
+          <div class="dot"></div><div class="lab">Interpretation</div><div class="line">Neutral events read as proof</div></div>
+<div class="nd u" data-i="4" style="left:19.689110867544645%;top:67.5%;">
+          <div class="dot"></div><div class="lab">Reality</div><div class="line">She acts from the bracing</div></div>
+<div class="nd u" data-i="5" style="left:19.68911086754465%;top:32.5%;">
+          <div class="dot"></div><div class="lab">Proof</div><div class="line">See. I knew it.</div></div>
+      <div class="mid"><b>It never stops</b><span>Each pass makes<br/>the next one faster</span></div>
+    </div>
+  </div>
+
+  <div class="scene" id="s2">
+    <div class="kicker" style="opacity:1">The loop she is running</div>
+    <div class="title" style="opacity:1">Lucky.</div>
+    <div class="ring">
+      <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="none" stroke="url(#g1)" stroke-width="0.35" stroke-dasharray="2.5 2" opacity=".65">
+      <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="30s" repeatCount="indefinite"/></circle></svg>
+      <div class="nd l" data-i="0" style="left:50.0%;top:15.0%;">
+          <div class="dot"></div><div class="lab">Identity</div><div class="line">Life supports me</div></div>
+<div class="nd l" data-i="1" style="left:80.31088913245536%;top:32.5%;">
+          <div class="dot"></div><div class="lab">Expectation</div><div class="line">Assumes the favourable outcome</div></div>
+<div class="nd l" data-i="2" style="left:80.31088913245536%;top:67.5%;">
+          <div class="dot"></div><div class="lab">Attention</div><div class="line">Notices the opening</div></div>
+<div class="nd l" data-i="3" style="left:50.0%;top:85.0%;">
+          <div class="dot"></div><div class="lab">Interpretation</div><div class="line">Keeps the door open</div></div>
+<div class="nd l" data-i="4" style="left:19.689110867544645%;top:67.5%;">
+          <div class="dot"></div><div class="lab">Reality</div><div class="line">She acts from certainty</div></div>
+<div class="nd l" data-i="5" style="left:19.68911086754465%;top:32.5%;">
+          <div class="dot"></div><div class="lab">Proof</div><div class="line">Of course it worked out.</div></div>
+      <div class="mid"><b>Same mechanism</b><span>Different program<br/>running underneath</span></div>
+    </div>
+  </div>
+
+  <div class="scene" id="s3">
+    <div class="end">
+      <h2>Both are just<br/>repetition.</h2>
+      <p>Choose the one you want.</p>
+    </div>
+  </div>
+
+</div>
+<script>
+function fit(){var s=document.getElementById('stage');
+  var k=Math.min(innerWidth/1080,innerHeight/1920);
+  s.style.transform='scale('+k+')';
+  s.style.marginLeft=((innerWidth-1080*k)/2)+'px';
+  s.style.marginTop=((innerHeight-1920*k)/2)+'px';}
+fit();addEventListener('resize',fit);
+
+var STEP=1200, END=2600;
+function run(){
+  var s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3');
+  [s1,s2,s3].forEach(function(s){s.classList.remove('live')});
+  document.querySelectorAll('.nd').forEach(function(n){n.classList.remove('on')});
+  var t=0;
+  s1.classList.add('live');
+  document.querySelectorAll('.nd.u').forEach(function(n,i){
+    setTimeout(function(){n.classList.add('on')}, i*STEP);});
+  t = 6*STEP + 500;
+  setTimeout(function(){s1.classList.remove('live');s2.classList.add('live');
+    document.querySelectorAll('.nd.l').forEach(function(n,i){
+      setTimeout(function(){n.classList.add('on')}, i*STEP);});}, t);
+  t += 6*STEP + 500;
+  setTimeout(function(){s2.classList.remove('live');s3.classList.add('live')}, t);
+  t += END;
+  setTimeout(run, t);
+}
+run();
+</script></body></html>
