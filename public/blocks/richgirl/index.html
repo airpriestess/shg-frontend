@@ -24,7 +24,7 @@ p{font-size:17px;font-weight:300;color:#f2ece4;line-height:1.7;max-width:400px;m
   <a href="/?waitlist=1" style="padding:6px 18px;background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.2);border-radius:20px;color:#000;font-size:12px;font-weight:400;text-decoration:none;white-space:nowrap;font-family:'Jost',sans-serif;letter-spacing:0.06em;">Join the waitlist &#8594;</a>
 </div>
 
-<div class="logo" onclick="window.location.href='/'" style="cursor:pointer;">
+<div class="logo" onclick="window.location.href='/'" style="cursor:pointer;display:flex;align-items:center;">
   <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="40" height="40" style="display:block;object-fit:contain;flex-shrink:0;" />
   <span>Self Hypnosis Goddess</span>
 </div>
@@ -32,5 +32,18 @@ p{font-size:17px;font-weight:300;color:#f2ece4;line-height:1.7;max-width:400px;m
 <h1>This quiz<br>is coming.</h1>
 <p>Read the guide first, then come back to identify your specific block.</p>
 <a href="/guides" class="cta">Read the guides →</a>
+<button style="margin-left:auto;background:none;border:none;cursor:pointer;padding:8px;" onclick="document.getElementById('mobMenu').classList.add('open')" aria-label="Menu"><svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#f2ece4"/><rect y="7" width="22" height="2" rx="1" fill="#f2ece4"/><rect y="14" width="22" height="2" rx="1" fill="#f2ece4"/></svg></button>
+<div class="mob-overlay" id="mobMenu" style="display:none;position:fixed;inset:0;background:#000;z-index:500;flex-direction:column;padding:32px 28px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="/logo_transparent_cropped.png" width="36" height="36" style="object-fit:contain;"/></a>
+    <button style="background:none;border:none;color:#f2ece4;font-size:28px;cursor:pointer;padding:8px;" onclick="document.getElementById('mobMenu').classList.remove('open')">&#x2715;</button>
+  </div>
+  <a href="/" style="font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#f2ece4;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);">Home</a>
+  <a href="/guides" style="font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#f2ece4;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);">Guides</a>
+  <a href="/blog" style="font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#f2ece4;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);">Journal</a>
+  <a href="/blocks" style="font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#f2ece4;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);">Find your block</a>
+  <a href="/portal?preview=1&theme=dark" style="font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#f2ece4;text-decoration:none;display:block;padding:12px 0;">Preview the portal</a>
+</div>
+<script>document.getElementById('mobMenu').style.display='none';document.getElementById('mobMenu').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});</script>
 </body>
 </html>
