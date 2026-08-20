@@ -1234,8 +1234,30 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     const params = new URLSearchParams(window.location.search);
     return params.get("waitlist") === "1";
   });
+  // Capture the original external source once per session so it survives
+  // internal navigation. A UTM-tagged email click that later hits the
+  // waitlist should still report the email, not the page it converted on.
   const [waitlistRefSource] = useState(() => {
-    return new URLSearchParams(window.location.search).get("ref") || "landing_page_banner";
+    const q = new URLSearchParams(window.location.search);
+    const ref = q.get("ref");
+
+    let origin = null;
+    try { origin = sessionStorage.getItem("shg_origin"); } catch (e) {}
+
+    if (!origin) {
+      const src = q.get("utm_source");
+      const med = q.get("utm_medium");
+      const camp = q.get("utm_campaign");
+      if (src) {
+        origin = [src, med, camp].filter(Boolean).join("|");
+      } else if (document.referrer && !document.referrer.includes(window.location.host)) {
+        try { origin = "referrer|" + new URL(document.referrer).hostname; } catch (e) {}
+      }
+      if (origin) { try { sessionStorage.setItem("shg_origin", origin); } catch (e) {} }
+    }
+
+    const placement = ref || "landing_page_banner";
+    return origin ? `${origin}::${placement}` : placement;
   });
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("waitlist") === "1") {
