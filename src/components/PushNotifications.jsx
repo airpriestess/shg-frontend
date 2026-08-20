@@ -108,7 +108,7 @@ export function PushNotificationToggle({ userId, token, C }) {
     <div style={{ padding: "12px 16px", borderTop: `0.5px solid ${C?.border || "#2a2020"}` }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#f2ece4", marginBottom: 2 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#fdf0e8", marginBottom: 2 }}>
             🔔 Daily reminders
           </div>
           <div style={{ fontSize: 11, color: C?.mu || "#fdf0e8", lineHeight: 1.4 }}>
@@ -157,7 +157,7 @@ export function PushPromptBanner({ userId, token, C, onDismiss }) {
     }}>
       <span style={{ fontSize: 22, flexShrink: 0 }}>🔔</span>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#f2ece4", marginBottom: 2 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#fdf0e8", marginBottom: 2 }}>
           Never miss a new drop
         </div>
         <div style={{ fontSize: 11, color: C?.mu || "#fdf0e8" }}>

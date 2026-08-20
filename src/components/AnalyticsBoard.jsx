@@ -5,7 +5,7 @@ const R = "#E8B870", P = "#BFA5D8";
 const OMBRE = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const PALETTES = {
-  dark:  { card:"#111111", card2:"#1a1a1a", text:"#f2ece4", mu:"#fdf0e8", dim:"#fdf0e8", border:"rgba(232,184,112,0.15)", track:"rgba(232,184,112,0.08)" },
+  dark:  { card:"#111111", card2:"#1a1a1a", text:"#fdf0e8", mu:"#fdf0e8", dim:"#fdf0e8", border:"rgba(232,184,112,0.15)", track:"rgba(232,184,112,0.08)" },
   light: { card:"#fdf8f2", card2:"rgba(232,184,112,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(232,184,112,0.18)", track:"rgba(232,184,112,0.12)" },
 };
 

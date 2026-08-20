@@ -9,7 +9,7 @@ function SHGNav() {
     <nav onClick={()=>navigate("/")} style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"18px 32px", display:"flex", alignItems:"center", justifyContent:"space-between", background:"#000000", backdropFilter:"blur(24px)", borderBottom:"1px solid rgba(255,255,255,0.04)", cursor:"pointer" }}>
       <div style={{ display:"flex", alignItems:"center", gap:10 }}>
         <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
-        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:15, letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
+        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:15, letterSpacing:"0.02em", color:"#fdf0e8" }}>Self Hypnosis Goddess</span>
       </div>
       <div onClick={(e)=>e.stopPropagation()}>
         <HamburgerMenu/>
@@ -69,7 +69,7 @@ export default function Blocks() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ background: "#000", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" }}>
+    <div style={{ background: "#000", color: "#fdf0e8", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" }}>
       <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet"/>
       <style>{`
         @keyframes lgGlow {
@@ -104,7 +104,7 @@ export default function Blocks() {
               <div style={{ padding: "36px 40px", display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center", gap: 24 }}>
                 <div>
                   <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: block.color, marginBottom: 10, fontWeight: 600 }}>{block.name}</div>
-                  <h2 style={{ fontSize: "clamp(22px,3vw,36px)", fontWeight: 700, color: "#f2ece4", letterSpacing: "-.02em", lineHeight: 1.1, marginBottom: 10 }}>{block.slogan}</h2>
+                  <h2 style={{ fontSize: "clamp(22px,3vw,36px)", fontWeight: 700, color: "#fdf0e8", letterSpacing: "-.02em", lineHeight: 1.1, marginBottom: 10 }}>{block.slogan}</h2>
                   <p style={{ fontSize: 14, color: "#fdf0e8", lineHeight: 1.6, marginBottom: 20 }}>{block.desc}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                     {block.what.map((w, j) => (

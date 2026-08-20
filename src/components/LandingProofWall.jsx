@@ -262,7 +262,7 @@ const WALL = [
 // Card style cycles: black → cream/white → LG gradient
 function getCardStyle(i) {
   const cycle = i % 3;
-  if (cycle === 0) return { bg: "#000", text: "#f2ece4", mu: "#fdf0e8", logBg: "#111", badgeBg: "#fdf0e8", badgeColor: "#E8B870", border: "rgba(232,184,112,0.15)" };
+  if (cycle === 0) return { bg: "#000", text: "#fdf0e8", mu: "#fdf0e8", logBg: "#111", badgeBg: "#fdf0e8", badgeColor: "#E8B870", border: "rgba(232,184,112,0.15)" };
   if (cycle === 1) return { bg: "#ffffff", text: "#000", mu: "#000000", logBg: "#f5f5f5", badgeBg: "#f0f0f0", badgeColor: "#000", border: "#000000" };
   return { bg: LG, text: "#000", mu: "#000", logBg: "#000000", badgeBg: "#000000", badgeColor: "#000", border: "#000000" };
 }
@@ -313,8 +313,8 @@ export default function LandingProofWall({ isMobile }) {
     <div style={{ width: "100%", background: "#000", paddingTop: 60, paddingBottom: 60 }}>
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: 36, padding: "0 24px" }}>
-        <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>Proof Wall</div>
-        <h2 style={{ fontSize: isMobile ? 26 : 36, fontWeight: 400, color: "#f2ece4", lineHeight: 1.2, fontFamily: "'Jost',sans-serif", marginBottom: 12 }}>
+        <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:16 }}>Proof Wall</div>
+        <h2 style={{ fontSize: isMobile ? 26 : 36, fontWeight: 400, color: "#fdf0e8", lineHeight: 1.2, fontFamily: "'Jost',sans-serif", marginBottom: 12 }}>
           Real results. Every category.
         </h2>
         <p style={{ fontSize: isMobile ? 14 : 17, color: "#fdf0e8", lineHeight: 1.7, maxWidth: 480, margin: "0 auto", fontFamily: "'Jost',sans-serif", fontWeight: 300 }}>

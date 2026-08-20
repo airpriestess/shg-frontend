@@ -30,10 +30,10 @@ export default function About({ onBack }) {
 
       {/* ── NAV ── */}
       <div style={{ position:"sticky", top:0, zIndex:50, background:"rgba(0,0,0,0.92)", backdropFilter:"blur(12px)", borderBottom:"1px solid rgba(255,255,255,0.06)", padding:"0 24px", height:52, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <button onClick={onBack} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:13, cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>
+        <button onClick={onBack} style={{ background:"none", border:"none", color:"#fdf0e8", fontSize:13, cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>
           ← Back
         </button>
-        <span style={{ fontSize:12, color:"#f2ece4", letterSpacing:"0.18em", textTransform:"none" }}>reshmaoracle.com</span>
+        <span style={{ fontSize:12, color:"#fdf0e8", letterSpacing:"0.18em", textTransform:"none" }}>reshmaoracle.com</span>
         <HamburgerMenu/>
       </div>
 
@@ -75,14 +75,14 @@ export default function About({ onBack }) {
       {/* ── THE STRUGGLE, black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#f2ece4", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:40, textTransform:"none" }}>Where<br/>it started</h2>
-          <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#fdf0e8", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:40, textTransform:"none" }}>Where<br/>it started</h2>
+          <p style={{ fontSize: isMobile?16:17, color:"#fdf0e8", lineHeight:1.85, marginBottom:20 }}>
             Bullied. Never chosen. Always looking for my place, in rooms, in jobs, in my own skin. The kind of early life that leaves a mark on how you see yourself, and how you think the world sees you back.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85, marginBottom:20 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#fdf0e8", lineHeight:1.85, marginBottom:20 }}>
             Love. Beauty. Body. My relationship with myself. I couldn't find anything that helped me keep my consciousness consistently stable, not therapy, not tools, not habits. Something would work for a day and then collapse the next. Nothing stuck.
           </p>
-          <p style={{ fontSize: isMobile?16:17, color:"#f2ece4", lineHeight:1.85 }}>
+          <p style={{ fontSize: isMobile?16:17, color:"#fdf0e8", lineHeight:1.85 }}>
             This went on for my whole life.
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function About({ onBack }) {
               ].map(({ accent, label, body }, i) => (
                 <div key={i} style={{ borderRadius:16, padding:"28px 26px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"#fdf0e8" }}>
                   <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"none", color:accent, marginBottom:12, fontWeight:500 }}>{label}</div>
-                  <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
+                  <p style={{ fontSize:14, color:"#fdf0e8", lineHeight:1.75, margin:0 }}>{body}</p>
                 </div>
               ))}
             </div>
@@ -159,7 +159,7 @@ export default function About({ onBack }) {
       {/* ── WHAT I MAKE, black ── */}
       <div style={{ background:BLACK, padding: isMobile?"64px 24px":"80px 24px" }}>
         <div style={{ maxWidth:660, margin:"0 auto", textAlign:"center" }}>
-          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#f2ece4", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:16, textTransform:"none" }}>What's<br/>inside</h2>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,88px)", fontWeight:300, color:"#fdf0e8", lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:16, textTransform:"none" }}>What's<br/>inside</h2>
           <p style={{ fontSize: isMobile?16:18, color:CREAM, lineHeight:1.7, marginBottom:40, maxWidth:500, margin:"0 auto 40px" }}>Because I understand your pain. I live in your head.</p>
 
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20, marginBottom:40, textAlign:"left" }}>
@@ -171,7 +171,7 @@ export default function About({ onBack }) {
             ].map(({ accent, label, body }, i) => (
               <div key={i} style={{ borderRadius:16, padding:"24px 24px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"#fdf0e8" }}>
                 <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"none", color:accent, marginBottom:10, fontWeight:500 }}>{label}</div>
-                <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
+                <p style={{ fontSize:14, color:"#fdf0e8", lineHeight:1.75, margin:0 }}>{body}</p>
               </div>
             ))}
           </div>
@@ -183,7 +183,7 @@ export default function About({ onBack }) {
                 borderRadius:40,
                 background: i % 4 === 0 ? LG : "transparent",
                 border: i % 4 === 0 ? "none" : "1px solid rgba(242,236,228,0.15)",
-                color: i % 4 === 0 ? BLACK : "#f2ece4",
+                color: i % 4 === 0 ? BLACK : "#fdf0e8",
                 fontSize:13,
                 letterSpacing:"0.02em",
               }}>{t}</div>

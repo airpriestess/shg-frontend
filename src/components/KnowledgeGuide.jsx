@@ -158,7 +158,7 @@ export default function KnowledgeGuide({ onClose, C }) {
   const isDark = C?.bg === "#080808" || C?.bg === "#0f0f0f" || !C?.bg?.startsWith("#f");
   const bg = isDark ? "#0a0a0a" : "#fdf8f2";
   const bg2 = isDark ? "#111111" : "#ffffff";
-  const cr = isDark ? "#f2ece4" : "#1a1008";
+  const cr = isDark ? "#fdf0e8" : "#1a1008";
   const mu = isDark ? "#c8bfb8" : "#3a3028";
   const border = isDark ? "rgba(44,183,167,0.15)" : "rgba(180,104,48,0.18)";
 
@@ -180,7 +180,7 @@ export default function KnowledgeGuide({ onClose, C }) {
             <div>
               <div style={{ fontSize:12, color:"#2CB7A7", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook ✦</div>
               <div style={{ fontSize:18, color:cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Everything you need to know</div>
-              <div style={{ fontSize:14, color:cr, marginTop:4, opacity:0.6 }}>{SECTIONS.length} questions answered</div>
+              <div style={{ fontSize:14, color:cr, marginTop:4,  }}>{SECTIONS.length} questions answered</div>
             </div>
             <button onClick={onClose} style={{ background:"none", border:"none", fontSize:20, cursor:"pointer", color:mu, padding:4 }}>✕</button>
           </div>

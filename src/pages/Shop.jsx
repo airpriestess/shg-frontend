@@ -52,7 +52,7 @@ function SHGNav() {
     <nav onClick={()=>navigate("/")} style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 20px", height:54, borderBottom:"1px solid rgba(255,255,255,0.08)", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", position:"sticky", top:0, zIndex:100, cursor:"pointer" }}>
       <div style={{ display:"flex", alignItems:"center", gap:9 }}>
         <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
-        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:14, letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
+        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:14, letterSpacing:"0.02em", color:"#fdf0e8" }}>Self Hypnosis Goddess</span>
       </div>
       <div onClick={(e)=>e.stopPropagation()}>
         <HamburgerMenu/>
@@ -71,12 +71,12 @@ function WorkbookCard({ w }) {
         <div style={{ fontSize:11, letterSpacing:".3em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20 }}>
           {w.available ? "Instant Access" : "Coming Soon"}
         </div>
-        <div style={{ fontSize:"clamp(30px,4vw,42px)", fontWeight:400, color:"#f2ece4", lineHeight:1.1, marginBottom:24 }}>
+        <div style={{ fontSize:"clamp(30px,4vw,42px)", fontWeight:400, color:"#fdf0e8", lineHeight:1.1, marginBottom:24 }}>
           {w.name.replace(" Workbook", "")}<br/>Workbook
         </div>
         <div style={{ width:60, height:2, background:LG, margin:"0 auto 24px" }}/>
         {w.available ? (
-          <div style={{ fontSize:26, fontWeight:600, color:"#f2ece4" }}>
+          <div style={{ fontSize:26, fontWeight:600, color:"#fdf0e8" }}>
             <span style={{ textDecoration:"line-through", opacity:0.4, fontWeight:400, fontSize:18, marginRight:10 }}>{w.was}</span>
             {w.price}
           </div>
@@ -117,7 +117,7 @@ function WorkbookCard({ w }) {
 
 export default function Shop() {
   return (
-    <div style={{ background:"#000", minHeight:"100vh", color:"#f2ece4", fontFamily:"'Jost',sans-serif" }}>
+    <div style={{ background:"#000", minHeight:"100vh", color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>
       <SHGNav/>
 
       <div style={{ textAlign:"center", padding:"64px 24px 48px" }}>

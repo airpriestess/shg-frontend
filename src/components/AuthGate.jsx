@@ -38,7 +38,7 @@ export default function AuthGate({ onSuccess }) {
   const inputStyle = {
     width: "100%", padding: "12px 16px", background: "#0a0700",
     border: `1px solid ${error ? "#c84040" : "rgba(44,183,167,0.25)"}`,
-    borderRadius: 10, color: "#f2ece4", fontSize: 14, fontFamily: "'Jost',sans-serif",
+    borderRadius: 10, color: "#fdf0e8", fontSize: 14, fontFamily: "'Jost',sans-serif",
     outline: "none", marginBottom: 12,
   };
 

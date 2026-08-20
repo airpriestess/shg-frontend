@@ -72,7 +72,7 @@ function SHGNav() {
     <nav style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 20px", height:54, borderBottom:"1px solid #1c1828", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", cursor:"pointer" }}>
       <div onClick={()=>navigate("/")} style={{ display:"flex", alignItems:"center", gap:9 }}>
         <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
-        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:"clamp(11px,3.2vw,14px)", letterSpacing:"0.02em", color:"#f2ece4", whiteSpace:"nowrap" }}>Self Hypnosis Goddess</span>
+        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:"clamp(11px,3.2vw,14px)", letterSpacing:"0.02em", color:"#fdf0e8", whiteSpace:"nowrap" }}>Self Hypnosis Goddess</span>
       </div>
       <HamburgerMenu/>
     </nav>
@@ -144,7 +144,7 @@ export default function LuckyGirl() {
   };
   const inputStyleDark = {
     width: "100%", background: "#0a0a0a", border: "1px solid #1e1e1e",
-    borderRadius: 14, padding: "20px 22px", color: "#f2ece4",
+    borderRadius: 14, padding: "20px 22px", color: "#fdf0e8",
     fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300,
     outline: "none", marginBottom: 14, display: "block"
   };
@@ -177,7 +177,7 @@ export default function LuckyGirl() {
           <div style={{ maxWidth: 480, width: "100%" }}>
             <input style={inputStyle} placeholder="First name" value={name} onChange={e => setName(e.target.value)}/>
             <input style={inputStyle} placeholder="Email address" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
-            {emailError && <p style={{ color: "#000", fontSize: 13, marginBottom: 10, opacity: 0.7 }}>{emailError}</p>}
+            {emailError && <p style={{ color: "#000", fontSize: 13, marginBottom: 10,  }}>{emailError}</p>}
             <button style={{ width: "100%", border: "none", borderRadius: 40, padding: "22px 20px", fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", color: "#fff", background: "#000", display: "block" }}
               onClick={submitEmail}>Find my block</button>
           </div>
@@ -196,8 +196,8 @@ export default function LuckyGirl() {
             <circle cx="18" cy="18" r="7" stroke="url(#lgintro2)" strokeWidth="1" fill="none"/>
             <line x1="14" y1="22" x2="14" y2="27" stroke="url(#lgintro2)" strokeWidth="1" strokeLinecap="round"/>
           </svg>
-          <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(24px,5vw,40px)", color: "#f2ece4", textAlign: "center", marginBottom: 16, letterSpacing: "-.01em", lineHeight: 1.1 }}>Two women. Same world.<br/>Different operating system.</h2>
-          <p style={{ fontSize: 17, color: "#f2ece4", textAlign: "center", maxWidth: 420, lineHeight: 1.7, marginBottom: 40 }}>
+          <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(24px,5vw,40px)", color: "#fdf0e8", textAlign: "center", marginBottom: 16, letterSpacing: "-.01em", lineHeight: 1.1 }}>Two women. Same world.<br/>Different operating system.</h2>
+          <p style={{ fontSize: 17, color: "#fdf0e8", textAlign: "center", maxWidth: 420, lineHeight: 1.7, marginBottom: 40 }}>
             Lucky Girl is a state of consciousness. This quiz finds what's keeping you out of it.
           </p>
           <button
@@ -252,7 +252,7 @@ export default function LuckyGirl() {
               <div style={{ fontSize: 12, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14 }}>Your 21-night ritual</div>
               <div style={{ fontSize: 19, color: "#000", lineHeight: 1.85 }}>{RITUAL}</div>
             </div>
-            <p style={{ fontSize: 18, color: "#f2ece4", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for, hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
+            <p style={{ fontSize: 18, color: "#fdf0e8", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for, hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
             <div style={{ background: LG, borderRadius: 20, padding: "40px 28px", marginBottom: 16, textAlign: "center" }}>
               <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>✦ The next step ✦</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5vw,48px)", color: "#000", fontWeight: 400, lineHeight: 1.1, marginBottom: 12 }}>Lucky Girl Maxxing</div>
@@ -260,12 +260,12 @@ export default function LuckyGirl() {
               <div style={{ fontSize: 22, color: "#000", fontWeight: 500, marginBottom: 8 }}>$19 <span style={{ fontSize: 15, textDecoration: "line-through", opacity: 0.5 }}>$49</span></div>
               <div style={{ fontSize: 14, color: "#000000", lineHeight: 1.7, marginBottom: 28, maxWidth: 380, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
               <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer"
-                style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 56px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
+                style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 56px", color: "#fdf0e8", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
                 Get the workbook, $19
               </a>
             </div>
             <div style={{ border: "1px solid #222", borderRadius: 16, padding: "24px 28px", textAlign: "center" }}>
-              <div style={{ fontSize: 14, color: "#f2ece4", lineHeight: 1.7, marginBottom: 16 }}>Want the audio that rewires this assumption while you sleep?</div>
+              <div style={{ fontSize: 14, color: "#fdf0e8", lineHeight: 1.7, marginBottom: 16 }}>Want the audio that rewires this assumption while you sleep?</div>
               <a href="/" style={{ display: "inline-block", border: "1px solid #E8B870", borderRadius: 40, padding: "16px 36px", color: "#E8B870", fontFamily: "'Jost', sans-serif", fontSize: 15, fontWeight: 400, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
                 Explore Self Hypnosis Goddess
               </a>

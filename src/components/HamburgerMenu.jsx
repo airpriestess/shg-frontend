@@ -29,9 +29,9 @@ export default function HamburgerMenu({ onSignIn }) {
         onClick={() => setOpen(true)}
         style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent" }}
         aria-label="Open menu">
-        <div style={{ width:22,height:2,background:"#f2ece4",borderRadius:1 }}/>
-        <div style={{ width:22,height:2,background:"#f2ece4",borderRadius:1 }}/>
-        <div style={{ width:22,height:2,background:"#f2ece4",borderRadius:1 }}/>
+        <div style={{ width:22,height:2,background:"#fdf0e8",borderRadius:1 }}/>
+        <div style={{ width:22,height:2,background:"#fdf0e8",borderRadius:1 }}/>
+        <div style={{ width:22,height:2,background:"#fdf0e8",borderRadius:1 }}/>
       </button>
 
       {/* Full-screen menu, rendered via portal to escape any ancestor backdrop-filter/transform that would break position:fixed */}
@@ -39,10 +39,10 @@ export default function HamburgerMenu({ onSignIn }) {
         <div style={{ position:"fixed",inset:0,zIndex:9999,backgroundColor:"#000000",opacity:1,isolation:"isolate",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
           {/* Top bar */}
           <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:"calc(98px + env(safe-area-inset-top,0px))",paddingTop:"env(safe-area-inset-top,0px)" }}>
-            <span onClick={()=>go(()=>navigate("/"))} style={{ fontFamily:"'Jost',sans-serif",fontWeight:300,fontSize:18,letterSpacing:"0.02em",color:"#f2ece4",cursor:"pointer" }}>
+            <span onClick={()=>go(()=>navigate("/"))} style={{ fontFamily:"'Jost',sans-serif",fontWeight:300,fontSize:18,letterSpacing:"0.02em",color:"#fdf0e8",cursor:"pointer" }}>
               Self Hypnosis Goddess
             </span>
-            <button onClick={()=>setOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#f2ece4",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>setOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#fdf0e8",WebkitTapHighlightColor:"transparent" }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                 <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
               </svg>
@@ -53,7 +53,7 @@ export default function HamburgerMenu({ onSignIn }) {
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {items.map(([label, fn], i) => (
               <button key={i} onClick={()=>go(fn)}
-                style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#f2ece4",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>
+                style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#fdf0e8",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>
                 {label}
               </button>
             ))}
@@ -65,7 +65,7 @@ export default function HamburgerMenu({ onSignIn }) {
               Join Now ✦
             </button>
             {onSignIn && (
-              <button onClick={()=>go(onSignIn)} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#f2ece4",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+              <button onClick={()=>go(onSignIn)} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#fdf0e8",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
                 Sign in
               </button>
             )}

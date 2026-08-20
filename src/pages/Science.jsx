@@ -9,7 +9,7 @@ const LAV   = "#BFA5D8";
 const GOLD  = "#E8B870";
 const CHAMP = "#F5E0A0";
 const DTEAL = "#167A6B";
-const CR    = "#f2ece4";
+const CR    = "#fdf0e8";
 const MU    = "#c8bfb8";
 const DIM   = "#666666";
 
@@ -85,7 +85,7 @@ export default function Science({ onBack }) {
           </div>
 
           {/* Wordmark */}
-          <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(14px,4vw,18px)":"clamp(16px,1.6vw,20px)",color:"#000",letterSpacing:"0.16em",marginBottom:24,opacity:0.75}}>Self Hypnosis Goddess</div>
+          <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(14px,4vw,18px)":"clamp(16px,1.6vw,20px)",color:"#000",letterSpacing:"0.16em",marginBottom:24,}}>Self Hypnosis Goddess</div>
 
           {/* Big headline, black on gradient */}
           <h1 style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:isMobile?"clamp(32px,8vw,52px)":"clamp(44px,5vw,68px)",fontWeight:400,lineHeight:1.1,marginBottom:16,color:"#000"}}>

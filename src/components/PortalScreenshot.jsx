@@ -1,7 +1,7 @@
 /* PortalScreenshot, mobile phone mockup, matches real dashboard exactly */
 
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,184,112,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#f2ece4", dim:"#fdf0e8", border:"rgba(232,184,112,0.12)" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,184,112,0.08)", nav:"#050505", cr:"#fdf0e8", mu:"#fdf0e8", dim:"#fdf0e8", border:"rgba(232,184,112,0.12)" },
   light: { bg:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", bg2:"#fdf0e8", bg3:"#fdf0e8", nav:"rgba(245,224,160,0.55)", cr:"#000000", mu:"#000000", dim:"#000000", border:"#fdf0e8", inputBg:"#fdf0e8" },
 };
 

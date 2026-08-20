@@ -84,12 +84,12 @@ const THEMES = {
     bg3:     "#111111",
     bg4:     "#161616",
     nav:     "#050505",
-    cr:      "#f2ece4",   // primary text, warm cream
-    mu:      "#f2ece4",   // muted text, now same as primary, no grey
+    cr:      "#fdf0e8",   // primary text, warm cream
+    mu:      "#fdf0e8",   // muted text, now same as primary, no grey
     dim:     "#fdf0e8",   // faint text, still near-white, no grey/brown
     border:  "rgba(232,184,112,0.15)",  // gold-tinted border
     inputBg: "#1a1a1a",
-    inputCr: "#f2ece4",
+    inputCr: "#fdf0e8",
     // LG accent colours for labels, icons, active tabs, never backgrounds
     accentGold: "#E8B870",
     accentLav:  "#BFA5D8",
@@ -704,7 +704,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           {/* Stats row */}
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
             {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Desires",C.cr]].map(([v,l,c],i)=>(
-              <div key={i} style={{ background:isDark?"#111111":"#f2ece4",borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
+              <div key={i} style={{ background:isDark?"#111111":"#fdf0e8",borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
                 <div style={{ fontSize:18,fontWeight:400,color:c }}>{v}</div>
                 <div style={{ fontSize:12,color:C.mu }}>{l}</div>
               </div>
@@ -827,7 +827,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
-            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
             <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
@@ -924,7 +924,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
         <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
-            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
             <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
@@ -1228,7 +1228,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {userTier==="audio"&&!isPreview&&(
         <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
-            <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
+            <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3, }}>Goddess offer</div>
             <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics, 10% off</div>
           </div>
           <div style={{ fontSize:18,color:"#000",flexShrink:0 }}>→</div>
@@ -1609,7 +1609,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
                       padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
-                      color:active?catColor:"#f2ece4", background:active?`${catColor}1c`:"#0a0a0a",
+                      color:active?catColor:"#fdf0e8", background:active?`${catColor}1c`:"#0a0a0a",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
                       borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?`3px solid ${catColor}`:"3px solid transparent"
                     }}
@@ -1838,7 +1838,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {/* Filter banner, shown when drilled in from Analytics */}
       {proofFilter!=="all" && (
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",background:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14 }}>
-          <span style={{ fontSize:14,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
+          <span style={{ fontSize:14,color:"#fdf0e8",fontFamily:"'Jost',sans-serif" }}>
             {proofFilter==="manifested" ? `Showing ${manifested.length} manifested ✓` : `Showing ${inProgress.length} in progress`}
           </span>
           <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#fdf0e8",fontSize:13,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
@@ -1995,7 +1995,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   <span style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
                   <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
                   <div style={{ fontSize:12,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
-                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5,opacity:0.75 }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"#fdf0e8",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
@@ -2021,7 +2021,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : (
       <>
       {/* ADD NEW THREAD */}
-      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#f2ece4"),border:"none",borderRadius:12,color:adding?PC.text:(isDark?"#f2ece4":"#000"),fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#fdf0e8"),border:"none",borderRadius:12,color:adding?PC.text:(isDark?"#fdf0e8":"#000"),fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
         {adding?"✕ Cancel":"+ New Desire"}
       </button>
       {adding && (
@@ -2244,7 +2244,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
                 </span>
                 <span style={{ fontSize:12,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
-                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:PC.dim,cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2,opacity:0.6 }} title="Remove sign">✕</button>
+                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:PC.dim,cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2, }} title="Remove sign">✕</button>
               </div>
             ))}
             {!d.done && (
@@ -2259,7 +2259,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
                   style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"9px 10px",fontSize:14,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
+                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#fdf0e8",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
                 <label style={{ padding:"9px 10px",background:PC.inputBg,border:`1px solid ${PC.border}`,borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",color:PC.text }}>📷
                   <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
                 </label>
