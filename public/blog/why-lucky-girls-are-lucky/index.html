@@ -180,6 +180,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
       <div style="font-size:13px;color:#fdf0e8;">Subscribe and find your block while you're here.</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <input type="text" id="top-name" placeholder="Your first name" style="flex:1;min-width:0;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-family:'Jost',sans-serif;font-size:15px;outline:none;background:rgba(255,255,255,.05);color:#fdf0e8;">
       <input type="email" id="top-email" placeholder="Your email" style="flex:1;min-width:0;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-family:'Jost',sans-serif;font-size:15px;outline:none;background:rgba(255,255,255,.05);color:#fdf0e8;">
       <button id="top-btn" style="padding:10px 18px;border-radius:8px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;">Subscribe</button>
     </div>
@@ -199,10 +200,10 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
     try {
       const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'article_inline_top' }),
+        body: JSON.stringify({ email: email, first_name: nameEl ? nameEl.value.trim() : '', source: 'article_inline_top' }),
       });
       const data = await res.json();
-      if (res.ok) { msg.textContent = data.alreadyExists ? "Already subscribed, see you next time." : "You're in."; input.value = ''; }
+      if (res.ok) { msg.textContent = data.alreadyExists ? "Already subscribed, see you next time." : "You're in."; input.value = ''; if (nameEl) nameEl.value = ''; }
       else { msg.textContent = 'Something went wrong, try again.'; }
     } catch (err) { msg.textContent = 'Something went wrong, try again.'; }
     finally { btn.disabled = false; btn.textContent = 'Subscribe'; }
@@ -341,6 +342,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
       <div style="font-size:13px;color:#fdf0e8;">Subscribe and find your block while you're here.</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <input type="text" id="bottom-name" placeholder="Your first name" style="flex:1;min-width:0;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-family:'Jost',sans-serif;font-size:15px;outline:none;background:rgba(255,255,255,.05);color:#fdf0e8;">
       <input type="email" id="bottom-email" placeholder="Your email" style="flex:1;min-width:0;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);font-family:'Jost',sans-serif;font-size:15px;outline:none;background:rgba(255,255,255,.05);color:#fdf0e8;">
       <button id="bottom-btn" style="padding:10px 18px;border-radius:8px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;">Subscribe</button>
     </div>
@@ -360,10 +362,10 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
     try {
       const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'article_inline_bottom' }),
+        body: JSON.stringify({ email: email, first_name: nameEl ? nameEl.value.trim() : '', source: 'article_inline_bottom' }),
       });
       const data = await res.json();
-      if (res.ok) { msg.textContent = data.alreadyExists ? "Already subscribed, see you next time." : "You're in."; input.value = ''; }
+      if (res.ok) { msg.textContent = data.alreadyExists ? "Already subscribed, see you next time." : "You're in."; input.value = ''; if (nameEl) nameEl.value = ''; }
       else { msg.textContent = 'Something went wrong, try again.'; }
     } catch (err) { msg.textContent = 'Something went wrong, try again.'; }
     finally { btn.disabled = false; btn.textContent = 'Subscribe'; }

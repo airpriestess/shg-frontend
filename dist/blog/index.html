@@ -162,7 +162,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 <section class="hero">
   <div style="display:flex;align-items:center;gap:14px;max-width:640px;margin:0 auto 40px;padding:10px 10px 10px 22px;border-radius:40px;background:var(--g);">
     <span style="font-size:13px;color:#000;font-family:'Jost',sans-serif;white-space:nowrap;flex-shrink:0;">Two new articles a week</span>
-    <input type="email" id="hero-subscribe-email" placeholder="Your email" style="flex:1;min-width:0;padding:9px 14px;border-radius:24px;border:1px solid rgba(0,0,0,.15);font-family:'Jost',sans-serif;font-size:13px;outline:none;background:rgba(255,255,255,.35);color:#000;">
+    <input type="text" id="hero-subscribe-name" placeholder="Your first name" style="flex:1;min-width:0;padding:9px 14px;border-radius:24px;border:1px solid rgba(0,0,0,.15);font-family:'Jost',sans-serif;font-size:13px;outline:none;background:rgba(255,255,255,.35);color:#000;">
+      <input type="email" id="hero-subscribe-email" placeholder="Your email" style="flex:1;min-width:0;padding:9px 14px;border-radius:24px;border:1px solid rgba(0,0,0,.15);font-family:'Jost',sans-serif;font-size:13px;outline:none;background:rgba(255,255,255,.35);color:#000;">
     <button id="hero-subscribe-btn" style="padding:9px 18px;border-radius:24px;background:#000;color:#fdf0e8;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;">Subscribe</button>
   </div>
   <h1>The Journal.</h1>
@@ -305,7 +306,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   <h2>Get the next article<br>before anyone else.</h2>
   <p>Two new articles a week. Subscribe and find your block while you're here, it's free.</p>
   <div class="email-form">
-    <input type="email" id="blog-subscribe-email" placeholder="Your email address">
+    <input type="text" id="blog-subscribe-name" placeholder="Your first name">
+      <input type="email" id="blog-subscribe-email" placeholder="Your email address">
     <button id="blog-subscribe-btn">Subscribe →</button>
   </div>
   <p id="blog-subscribe-msg" style="font-size:13px;color:#000;margin-top:14px;min-height:18px;"></p>
@@ -315,19 +317,21 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 (function() {
   const btn = document.getElementById('hero-subscribe-btn');
   const input = document.getElementById('hero-subscribe-email');
+  const nameEl = document.getElementById('hero-subscribe-name');
   if (!btn || !input) return;
   btn.addEventListener('click', async function() {
     const email = input.value.trim();
     if (!email || !email.includes('@')) return;
+    if (nameEl && !nameEl.value.trim()) { nameEl.focus(); return; }
     btn.disabled = true;
     btn.textContent = '...';
     try {
       const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'blog_hero_bar' }),
+        body: JSON.stringify({ email: email, first_name: nameEl ? nameEl.value.trim() : '', source: 'blog_hero_bar' }),
       });
-      if (res.ok) { input.value = ''; btn.textContent = 'Done'; }
+      if (res.ok) { input.value = ''; if (nameEl) nameEl.value = ''; btn.textContent = 'Done'; }
       else { btn.textContent = 'Try again'; }
     } catch (err) { btn.textContent = 'Try again'; }
     setTimeout(() => { btn.disabled = false; btn.textContent = 'Subscribe'; }, 2000);
@@ -340,6 +344,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 (function() {
   const btn = document.getElementById('blog-subscribe-btn');
   const input = document.getElementById('blog-subscribe-email');
+  const nameEl = document.getElementById('blog-subscribe-name');
   const msg = document.getElementById('blog-subscribe-msg');
 
   btn.addEventListener('click', async function() {
@@ -354,12 +359,12 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
       const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'blog_email_cta' }),
+        body: JSON.stringify({ email: email, first_name: nameEl ? nameEl.value.trim() : '', source: 'blog_email_cta' }),
       });
       const data = await res.json();
       if (res.ok) {
         msg.textContent = data.alreadyExists ? "You're already subscribed, see you in the next one." : "You're in. See you in the next article.";
-        input.value = '';
+        input.value = ''; if (nameEl) nameEl.value = '';
       } else {
         msg.textContent = 'Something went wrong, please try again.';
       }

@@ -1277,6 +1277,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   }, [location.pathname, location.hash]);
   const [shopOpen, setShopOpen] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState("");
+  const [waitlistName, setWaitlistName] = useState("");
   const [waitlistStatus, setWaitlistStatus] = useState("idle"); // idle | saving | done | error
 
   const submitWaitlist = async (e) => {
@@ -1284,13 +1285,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     // strip ALL whitespace AND invisible unicode chars (nbsp, zero-width, BOM) that autofill sometimes injects
     const email = waitlistEmail.replace(/[\s\u00A0\u200B\uFEFF]+/g, "");
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!waitlistName.trim()) { setWaitlistStatus("error"); return; }
     if (!email || !EMAIL_RE.test(email)) { setWaitlistStatus("error"); return; }
     setWaitlistStatus("saving");
     try {
       const res = await fetch("https://shg-quiz-worker.airpriestess.workers.dev/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: waitlistRefSource }),
+        body: JSON.stringify({ email, first_name: waitlistName.trim(), source: waitlistRefSource }),
       });
       // Worker returns success:true even for duplicate emails (already on the list)
       if (!res.ok) { setWaitlistStatus("error"); return; }
@@ -2097,8 +2099,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             ) : (
               <>
                 <div style={{ fontFamily:"'Jost',sans-serif", fontSize:34, fontWeight:300, color:"#fdf0e8", marginBottom:10, letterSpacing:"-0.01em" }}>Join the Waitlist</div>
-                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:22, lineHeight:1.6 }}>We're not live yet, get first access the moment it opens.</div>
+                <div style={{ fontSize:14, color:"#fdf0e8", marginBottom:22, lineHeight:1.6 }}>We're not live yet, get first access the moment it opens.</div>
                 <form onSubmit={submitWaitlist}>
+                  <input
+                    type="text"
+                    required
+                    value={waitlistName}
+                    onChange={e=>{setWaitlistName(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
+                    placeholder="Your first name"
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:theme==="dark"?"#fdf0e8":"#000000", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                  />
                   <input
                     type="email"
                     required
@@ -2107,7 +2117,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     placeholder="your@email.com"
                     style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:theme==="dark"?"#fdf0e8":"#000000", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
-                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2CB7A7", marginBottom:12 }}>Please enter a valid email.</div>}
+                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2CB7A7", marginBottom:12 }}>{!waitlistName.trim() ? "Please enter your first name." : "Please enter a valid email."}</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
