@@ -168,7 +168,7 @@ export default function KnowledgeGuide({ onClose, C }) {
 
   return (
     <>
-      <div style={{ position:"fixed", inset:0, zIndex:1000, background:"rgba(0,0,0,0.7)" }} onClick={onClose}/>
+      <div style={{ position:"fixed", inset:0, zIndex:1000, background:"#000000" }} onClick={onClose}/>
       <div style={{ position:"fixed", top:"4%", left:"50%", transform:"translateX(-50%)", width:"94%", maxWidth:580,
         maxHeight:"92vh", overflowY:"auto", background:bg, border:`1px solid ${border}`,
         borderRadius:20, zIndex:1001, fontFamily:"'Jost',sans-serif", boxShadow:"0 30px 80px rgba(0,0,0,0.6)" }}>

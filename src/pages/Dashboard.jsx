@@ -32,7 +32,7 @@ const RECENT_PROOF = [
 // ── Small stat number card ────────────────────────────────────────────────────
 function StatCard({ value, label }) {
   return (
-    <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
+    <div style={{ background: "#fdf0e8", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "20px 16px", textAlign: "center" }}>
       <div style={{ fontSize: 28, fontWeight: 800, color: "#2CB7A7", lineHeight: 1, marginBottom: 6, fontFamily: "'Jost',sans-serif" }}>{value}</div>
       <div style={{ fontSize: 11, color: "#5a3838", letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</div>
     </div>
@@ -117,7 +117,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 24 }} className="grid-2">
 
               {/* Current Ritual */}
-              <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 16, padding: "20px" }}>
+              <div style={{ background: "#fdf0e8", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 16, padding: "20px" }}>
                 <SectionHead>Current Ritual</SectionHead>
                 {currentAudio ? (
                   <>
@@ -142,7 +142,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
               </div>
 
               {/* Quick Capture */}
-              <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 16, padding: "20px" }}>
+              <div style={{ background: "#fdf0e8", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 16, padding: "20px" }}>
                 <SectionHead>Quick Capture</SectionHead>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {[
@@ -170,7 +170,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
               <SectionHead action="View all" onAction={() => onNavigate("proof-threads")}>Recent Photo Proof</SectionHead>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }} className="grid-3">
                 {RECENT_PROOF.map((p, i) => (
-                  <div key={i} onClick={() => onNavigate("proof-threads")} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
+                  <div key={i} onClick={() => onNavigate("proof-threads")} style={{ background: "#fdf0e8", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 12, overflow: "hidden", cursor: "pointer", transition: "border-color 0.15s" }}
                     onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
                     onMouseLeave={e => e.currentTarget.style.borderColor = "#1c1828"}
                   >
@@ -191,7 +191,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                 <SectionHead action="Proof Wall" onAction={() => onNavigate("proof-wall")}>Manifested</SectionHead>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {manifested.map(t => (
-                    <div key={t.id} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid #1a3a1a", borderRadius: 12, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                    <div key={t.id} style={{ background: "#fdf0e8", border: "1px solid #1a3a1a", borderRadius: 12, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ fontSize: 14, fontWeight: 600, color: "#0a0a0a", marginBottom: 3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.intentionTitle}</div>
                         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
@@ -210,7 +210,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             )}
 
             {/* ── STORAGE ── */}
-            <div style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "16px 18px" }}>
+            <div style={{ background: "#fdf0e8", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "16px 18px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
                 <span style={{ fontSize: 12, color: "#5a3838", textTransform: "uppercase", letterSpacing: "0.1em" }}>Storage</span>
                 <span style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 700 }}>{USER.storageUsedMb} / {storageLimit} MB</span>
@@ -231,7 +231,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
             {PROOF_THREADS.map(t => {
               const sc = STATUS_LABEL[t.status] || { label: t.status, color: "#5a3838" };
               return (
-                <div key={t.id} onClick={() => onNavigate("proof-threads")} style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "18px 20px",
+                <div key={t.id} onClick={() => onNavigate("proof-threads")} style={{ background: "#fdf0e8", border: "1px solid rgba(44,183,167,0.2)", borderRadius: 14, padding: "18px 20px",
                   transition: "border-color 0.15s", cursor: "pointer" }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = RG + "44"}
                   onMouseLeave={e => e.currentTarget.style.borderColor = "#1c1828"}
@@ -257,7 +257,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                   </div>
                   {t.mood_before && t.mood_after && (
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 12 }}>
-                      <span style={{ fontSize: 11, padding: "2px 8px", background: "rgba(255,255,255,0.82)", border: "1px solid #222", borderRadius: 20, color: "#5a3838" }}>{t.mood_before}</span>
+                      <span style={{ fontSize: 11, padding: "2px 8px", background: "#fdf0e8", border: "1px solid #222", borderRadius: 20, color: "#5a3838" }}>{t.mood_before}</span>
                       <span style={{ fontSize: 11, color: "#181428" }}>→</span>
                       <span style={{ fontSize: 11, padding: "2px 8px", background: `${RG}14`, border: `1px solid ${RG}2a`, borderRadius: 20, color: RG }}>{t.mood_after}</span>
                     </div>
@@ -289,7 +289,7 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
                       <div style={{ width: 40, flexShrink: 0, display: "flex", justifyContent: "center", paddingTop: 14 }}>
                         <div style={{ width: 22, height: 22, borderRadius: "50%", background: `${col}18`, border: `1.5px solid ${col}55`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, zIndex: 1, position: "relative" }}>{item.icon}</div>
                       </div>
-                      <div style={{ flex: 1, background: "rgba(255,255,255,0.82)", border: `1px solid ${col}22`, borderRadius: 12, padding: "14px 16px", marginBottom: 8 }}>
+                      <div style={{ flex: 1, background: "#fdf0e8", border: `1px solid ${col}22`, borderRadius: 12, padding: "14px 16px", marginBottom: 8 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
                           <div>
                             <span style={{ fontSize: 11, color: col, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{item.day}</span>

@@ -130,7 +130,7 @@ export default function About({ onBack }) {
                   body:"What I'd built wasn't just for me anymore. Almost nothing on the market is built for the theta state, the window your brain enters just before sleep, when the subconscious stops arguing and starts accepting. That's the window every track in this library is built for. Not one day. Not when you've earned it. Now.",
                 },
               ].map(({ accent, label, body }, i) => (
-                <div key={i} style={{ borderRadius:16, padding:"28px 26px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
+                <div key={i} style={{ borderRadius:16, padding:"28px 26px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"#fdf0e8" }}>
                   <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"none", color:accent, marginBottom:12, fontWeight:500 }}>{label}</div>
                   <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
                 </div>
@@ -169,7 +169,7 @@ export default function About({ onBack }) {
               { accent:"#2CB7A7", label:"The tracking", body:"ProofOS tracks every desire, every sign, every win, logged against the Hawkins scale, so you can watch your own emotional state climb in real time, not just hope it's working. Across 24 categories. Every manifestation, dated, permanent, yours for life." },
               { accent:"#F5E0A0", label:"Mine, not generic", body:"This isn't a meditation app with my voice slapped on top. I built the formula, I wrote every script, I recorded every track. Nothing here is generic, and nothing here is AI. It's mine, and now it's yours too." },
             ].map(({ accent, label, body }, i) => (
-              <div key={i} style={{ borderRadius:16, padding:"24px 24px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)" }}>
+              <div key={i} style={{ borderRadius:16, padding:"24px 24px", borderLeft:`3px solid ${accent}`, borderTop:"1px solid rgba(255,255,255,0.07)", borderRight:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", background:"#fdf0e8" }}>
                 <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"none", color:accent, marginBottom:10, fontWeight:500 }}>{label}</div>
                 <p style={{ fontSize:14, color:"#f2ece4", lineHeight:1.75, margin:0 }}>{body}</p>
               </div>

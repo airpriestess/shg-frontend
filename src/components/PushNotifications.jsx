@@ -111,7 +111,7 @@ export function PushNotificationToggle({ userId, token, C }) {
           <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#f2ece4", marginBottom: 2 }}>
             🔔 Daily reminders
           </div>
-          <div style={{ fontSize: 11, color: C?.mu || "#ddd0c8", lineHeight: 1.4 }}>
+          <div style={{ fontSize: 11, color: C?.mu || "#fdf0e8", lineHeight: 1.4 }}>
             {isUnsupported
               ? "Add to Home Screen on iPhone to enable"
               : isDenied
@@ -160,14 +160,14 @@ export function PushPromptBanner({ userId, token, C, onDismiss }) {
         <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#f2ece4", marginBottom: 2 }}>
           Never miss a new drop
         </div>
-        <div style={{ fontSize: 11, color: C?.mu || "#ddd0c8" }}>
+        <div style={{ fontSize: 11, color: C?.mu || "#fdf0e8" }}>
           Get notified when Reshma uploads new tracks.
         </div>
       </div>
       <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
         <button
           onClick={onDismiss}
-          style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, color: C?.mu || "#ddd0c8", padding: "0 4px" }}
+          style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, color: C?.mu || "#fdf0e8", padding: "0 4px" }}
         >✕</button>
         <button
           onClick={subscribe}

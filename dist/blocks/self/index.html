@@ -36,15 +36,15 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 40px;display
 .q-text{font-size:clamp(20px,3.2vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--white);margin-bottom:36px;}
 .cards{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
 .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:22px 24px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
-.card::after{content:'';position:absolute;inset:0;background:var(--g);opacity:0;transition:opacity .3s;border-radius:16px;}
+.card::after{content:'';position:absolute;inset:0;background:var(--g);transition:opacity .3s;border-radius:16px;}
 .card:hover{border-color:rgba(232,184,112,.4);transform:translateX(6px);}
-.card:hover::after{opacity:.04;}
+.card:hover::after{}
 .card.sel{border-color:rgba(232,184,112,.8);background:rgba(232,184,112,.06);transform:translateX(6px);box-shadow:0 0 40px rgba(232,184,112,.15),0 0 80px rgba(191,165,216,.08);}
 .card.sel::after{opacity:.07;}
 .card-text{font-size:15px;font-weight:300;line-height:1.6;color:var(--white);position:relative;z-index:1;}
 .card-dot{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);transition:all .3s;z-index:1;}
 .card.sel .card-dot{background:var(--g);border-color:transparent;}
-.btn-next{width:100%;padding:20px;border-radius:12px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s;margin-top:8px;}
+.btn-next{width:100%;padding:20px;border-radius:12px;background:var(--g);color:#000;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;pointer-events:none;transition:opacity .4s;margin-top:8px;}
 .btn-next.vis{opacity:1;pointer-events:auto;}
 #s-result{padding:96px 24px 80px;align-items:center;text-align:center;}
 .res-inner{width:100%;max-width:580px;margin:0 auto;}

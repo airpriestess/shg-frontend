@@ -137,7 +137,7 @@ export default function LuckyGirl() {
   }
 
   const inputStyle = {
-    width: "100%", background: "rgba(255,255,255,0.85)", border: "1px solid rgba(0,0,0,0.15)",
+    width: "100%", background: "#fdf0e8", border: "1px solid rgba(0,0,0,0.15)",
     borderRadius: 14, padding: "20px 22px", color: "#000",
     fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 400,
     outline: "none", marginBottom: 14, display: "block"
@@ -149,7 +149,7 @@ export default function LuckyGirl() {
     outline: "none", marginBottom: 14, display: "block"
   };
   const optStyle = {
-    background: "rgba(255,255,255,0.85)", border: "2px solid transparent", borderRadius: 14,
+    background: "#fdf0e8", border: "2px solid transparent", borderRadius: 14,
     padding: "26px 28px", color: "#000", fontFamily: "'Jost', sans-serif",
     fontSize: 19, fontWeight: 400, textAlign: "left", cursor: "pointer",
     lineHeight: 1.6, width: "100%", marginBottom: 12, display: "block", transition: "all 0.2s"
@@ -213,18 +213,18 @@ export default function LuckyGirl() {
         <div style={{ maxWidth: 560, margin: "0 auto", padding: "48px 24px 80px" }}>
           <div style={{ display: "flex", gap: 5, justifyContent: "center", marginBottom: 28 }}>
             {QUESTIONS.map((_, i) => (
-              <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "rgba(0,0,0,0.8)" : "rgba(0,0,0,0.15)", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
+              <div key={i} style={{ height: 3, borderRadius: 2, background: i < step ? "#000000" : "#000000", flex: 1, maxWidth: 48, transition: "background .3s" }}/>
             ))}
           </div>
-          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0,0,0,0.6)", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
+          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000000", textAlign: "center", marginBottom: 24 }}>{step + 1} of {QUESTIONS.length}</div>
           <div style={{ fontFamily: "'Jost', sans-serif", fontStyle: "normal", fontSize: "clamp(24px,4vw,36px)", fontWeight: 400, textAlign: "center", marginBottom: 44, color: "#000", lineHeight: 1.4 }}>
             {QUESTIONS[step].q}
           </div>
           <div>
             {QUESTIONS[step].opts.map((opt, i) => (
               <button key={i} style={optStyle} onClick={() => pickAnswer(opt.c)}
-                onMouseEnter={e => { e.currentTarget.style.background = "rgba(0,0,0,0.15)"; e.currentTarget.style.color = "#000"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; e.currentTarget.style.color = "#000"; }}>
+                onMouseEnter={e => { e.currentTarget.style.background = "#000000"; e.currentTarget.style.color = "#000"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#fdf0e8"; e.currentTarget.style.color = "#000"; }}>
                 {opt.t}
               </button>
             ))}
@@ -240,7 +240,7 @@ export default function LuckyGirl() {
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(44px,8vw,80px)", lineHeight: 1.0, color: "#000", letterSpacing: "-.02em" }}>{result.block}</h2>
           </div>
           <div style={{ maxWidth: 560, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" }}>
-            <div style={{ background: "rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.15)", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
+            <div style={{ background: "#000000", border: "1px solid rgba(0,0,0,0.15)", borderRadius: 16, padding: 28, marginBottom: 16, textAlign: "left" }}>
               <div style={{ fontSize: 12, letterSpacing: ".15em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14 }}>The assumption running your life</div>
               <div style={{ fontSize: 20, color: "#000", fontStyle: "italic", lineHeight: 1.8 }}>{result.old}</div>
             </div>
@@ -258,7 +258,7 @@ export default function LuckyGirl() {
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5vw,48px)", color: "#000", fontWeight: 400, lineHeight: 1.1, marginBottom: 12 }}>Lucky Girl Maxxing</div>
               <div style={{ fontSize: 17, color: "#000", lineHeight: 1.6, marginBottom: 6, fontWeight: 400 }}>21 days to become the woman good things happen to.</div>
               <div style={{ fontSize: 22, color: "#000", fontWeight: 500, marginBottom: 8 }}>$19 <span style={{ fontSize: 15, textDecoration: "line-through", opacity: 0.5 }}>$49</span></div>
-              <div style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, marginBottom: 28, maxWidth: 380, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
+              <div style={{ fontSize: 14, color: "#000000", lineHeight: 1.7, marginBottom: 28, maxWidth: 380, margin: "0 auto 28px" }}>The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
               <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank" rel="noreferrer"
                 style={{ display: "inline-block", background: "#000", border: "none", borderRadius: 40, padding: "20px 56px", color: "#f2ece4", fontFamily: "'Jost', sans-serif", fontSize: 18, fontWeight: 500, letterSpacing: ".04em", cursor: "pointer", textDecoration: "none" }}>
                 Get the workbook, $19

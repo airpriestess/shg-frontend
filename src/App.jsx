@@ -76,14 +76,14 @@ function ProofOSBanner({ isMobile }) {
 
       {/* Full-width cycling banner */}
       <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", width:"100%", padding: isMobile?"22px 24px":"28px 48px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:24, minHeight: isMobile?90:96 }}>
-        <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
+        <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:"#000000", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
         <div style={{ flex:1, textAlign: isMobile?"left":"center" }}>
           <div style={{ fontSize: isMobile?"clamp(18px,5vw,26px)":"clamp(22px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom:6 }}>{s.label}</div>
-          <div style={{ fontSize: isMobile?13:16, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
+          <div style={{ fontSize: isMobile?13:16, color:"#000000", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
         </div>
         <div style={{ display:"flex", flexDirection:"column", gap:6, flexShrink:0 }}>
           {STEPS.map((_,i)=>(
-            <div key={i} onClick={()=>setIdx(i)} style={{ width:6, height: i===idx?24:6, borderRadius:3, background: i===idx?"rgba(0,0,0,0.5)":"rgba(0,0,0,0.2)", cursor:"pointer", transition:"height 0.3s" }}/>
+            <div key={i} onClick={()=>setIdx(i)} style={{ width:6, height: i===idx?24:6, borderRadius:3, background: i===idx?"#000000":"#000000", cursor:"pointer", transition:"height 0.3s" }}/>
           ))}
         </div>
       </div>
@@ -91,7 +91,7 @@ function ProofOSBanner({ isMobile }) {
       {/* Step pills */}
       <div style={{ display:"flex", justifyContent:"center", gap: isMobile?6:12, marginTop:20, padding:"0 24px", flexWrap:"wrap" }}>
         {STEPS.map((st,i)=>(
-          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 12px":"8px 18px", borderRadius:20, border:"none", background: i===idx?"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(255,255,255,0.06)", color: i===idx?"#000":"rgba(242,236,228,0.4)", fontSize: isMobile?11:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s" }}>
+          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 12px":"8px 18px", borderRadius:20, border:"none", background: i===idx?"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"#fdf0e8", color: i===idx?"#000":"#fdf0e8", fontSize: isMobile?11:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s" }}>
             {st.num} {st.label}
           </button>
         ))}
@@ -188,7 +188,7 @@ function LibraryBanner({ isMobile, onLegal }) {
         {/* Progress dots */}
         <div style={{ display:"flex", flexDirection:"column", gap:5, flexShrink:0 }}>
           {CATS.map((_,i) => (
-            <div key={i} onClick={()=>setIdx(i)} style={{ width:4, height: i===idx?18:4, borderRadius:2, background: i===idx?"#000":"rgba(0,0,0,0.2)", cursor:"pointer", transition:"height 0.3s, background 0.4s" }}/>
+            <div key={i} onClick={()=>setIdx(i)} style={{ width:4, height: i===idx?18:4, borderRadius:2, background: i===idx?"#000":"#000000", cursor:"pointer", transition:"height 0.3s, background 0.4s" }}/>
           ))}
         </div>
       </div>
@@ -199,9 +199,9 @@ function LibraryBanner({ isMobile, onLegal }) {
           const isActive = i === idx;
           const isEven = i % 2 === 0;
           const idleBg = isEven ? "#000" : "#f2ece4";
-          const idleColor = isEven ? "rgba(242,236,228,0.5)" : "rgba(0,0,0,0.5)";
+          const idleColor = isEven ? "#fdf0e8" : "#000000";
           return (
-            <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 14px":"7px 18px", borderRadius:20, border: isActive?"none":`1px solid ${isEven?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`, background: isActive?LGb:idleBg, color: isActive?"#000":idleColor, fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight:400, transition:"all 0.25s", whiteSpace:"nowrap" }}>
+            <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 14px":"7px 18px", borderRadius:20, border: isActive?"none":`1px solid ${isEven?"#fdf0e8":"#000000"}`, background: isActive?LGb:idleBg, color: isActive?"#000":idleColor, fontSize: isMobile?12:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight:400, transition:"all 0.25s", whiteSpace:"nowrap" }}>
               {ct.name}
             </button>
           );
@@ -363,7 +363,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
               <WaveForm playing color={T.champagne} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#2CB7A7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
-                <div style={{ fontSize: 12, color: "#ddd0c8" }}>{(currentAudio.audioFormats || []).join(' · ')}{currentAudio.frequency ? ` · ${currentAudio.frequency}` : ''}</div>
+                <div style={{ fontSize: 12, color: "#fdf0e8" }}>{(currentAudio.audioFormats || []).join(' · ')}{currentAudio.frequency ? ` · ${currentAudio.frequency}` : ''}</div>
               </div>
               <button onClick={onStopPlay} style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg, ${T.blood}, ${T.rose})`, border: "none", color: "#fff", fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>⏸</button>
             </div>
@@ -444,10 +444,10 @@ function CheckoutModal({ onClose, onDemo }) {
     onClose();
   };
   return (
-    <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.75)",zIndex:2000,display:"flex",alignItems:"flex-end",justifyContent:"center" }}
+    <div style={{ position:"fixed",inset:0,background:"#000000",zIndex:2000,display:"flex",alignItems:"flex-end",justifyContent:"center" }}
       onClick={e => e.target===e.currentTarget && onClose()}>
       <div style={{ background:"#fff",overflowY:"auto",maxHeight:"94vh",borderRadius:"24px 24px 0 0",width:"100%",maxWidth:540,position:"relative",boxShadow:"0 -20px 80px rgba(0,0,0,0.5)" }}>
-        <button onClick={onClose} style={{position:"absolute",top:16,right:16,background:"rgba(0,0,0,0.08)",border:"none",borderRadius:"50%",width:32,height:32,fontSize:16,cursor:"pointer",lineHeight:"32px",zIndex:10}}>✕</button>
+        <button onClick={onClose} style={{position:"absolute",top:16,right:16,background:"#000000",border:"none",borderRadius:"50%",width:32,height:32,fontSize:16,cursor:"pointer",lineHeight:"32px",zIndex:10}}>✕</button>
 
         {/* HEADER */}
         <div style={{background:"linear-gradient(135deg,rgba(191,165,216,0.08),rgba(44,183,167,0.08))",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
@@ -456,7 +456,7 @@ function CheckoutModal({ onClose, onDemo }) {
           <p style={{fontSize:13,color:"#2a2a2a",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
           {/* MONTHLY / ANNUAL TOGGLE */}
-          <div style={{display:"flex",background:"rgba(0,0,0,0.06)",borderRadius:50,padding:3,width:"fit-content"}}>
+          <div style={{display:"flex",background:"#000000",borderRadius:50,padding:3,width:"fit-content"}}>
             {["monthly","annual"].map(b => (
               <button key={b} onClick={()=>setBilling(b)} style={{
                 padding:"8px 20px",borderRadius:50,border:"none",cursor:"pointer",
@@ -543,7 +543,7 @@ function CheckoutModal({ onClose, onDemo }) {
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:theme==="dark"?"#e8e0d8":"#000000",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
+                <div key={i} style={{fontSize:12,color:theme==="dark"?"#fdf0e8":"#000000",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
                   <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
               ))}
@@ -572,29 +572,29 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annualPerMonth    : TIERS.audio.monthly,    note: isAnnual ? TIERS.audio.annualNote : null,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: theme==="dark"?"#e8e0d8":"#000000", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annualPerMonth  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#e8e0d8":"#000000", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: theme==="dark"?"#e8e0d8":"#000000", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annualPerMonth    : TIERS.audio.monthly,    note: isAnnual ? TIERS.audio.annualNote : null,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: theme==="dark"?"#fdf0e8":"#000000", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#fdf0e8":"#000000", featureColor: "#fdf0e8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annualPerMonth  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#fdf0e8":"#000000", featureColor: "#fdf0e8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: theme==="dark"?"#fdf0e8":"#000000", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
   ];
 
   return (
     <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%", scrollMarginTop: isMobile ? 24 : 0 }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 400, color: theme==="dark"?"#e8e0d8":"#000000", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
+          <div style={{ fontSize: 11, fontWeight: 400, color: theme==="dark"?"#fdf0e8":"#000000", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
           <h2 style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(28px,8vw,40px)" : "clamp(32px,4vw,48px)", fontWeight: 400, color: "#f2ece4", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
             Full access. No download needed.
           </h2>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
-          <div style={{ display: "flex", background: "rgba(255,255,255,0.07)", borderRadius: 50, padding: 3, border: "1px solid rgba(255,255,255,0.1)" }}>
+          <div style={{ display: "flex", background: "#fdf0e8", borderRadius: 50, padding: 3, border: "1px solid rgba(255,255,255,0.1)" }}>
             {["monthly", "annual"].map(b => (
               <button key={b} onClick={() => setBilling(b)} style={{
                 padding: "9px 24px", borderRadius: 50, border: "none", cursor: "pointer",
                 fontSize: 12, fontWeight: 400, letterSpacing: "0.06em",
                 background: billing === b ? "#f2ece4" : "transparent",
-                color: billing === b ? "#000" : theme==="dark"?"#e8e0d8":"#000000",
+                color: billing === b ? "#000" : theme==="dark"?"#fdf0e8":"#000000",
                 fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 8,
                 transition: "all 0.2s",
               }}>
@@ -630,7 +630,7 @@ function PricingSection({ onJoin }) {
           ))}
         </div>
 
-        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: theme==="dark"?"#e8e0d8":"#000000", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
+        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: theme==="dark"?"#fdf0e8":"#000000", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
           Monthly: cancel anytime · Annual: paid upfront · Stripe secure checkout<br />
           No app to download, works in any browser, iPhone, Android
         </div>
@@ -804,7 +804,7 @@ function AppPreviewSection({ isMobile }) {
       </div>
 
       {/* Tab switcher */}
-      <div style={{ display:"flex", gap:0, background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.13)", borderRadius:24, padding:4 }}>
+      <div style={{ display:"flex", gap:0, background:"#fdf0e8", border:"1px solid rgba(255,255,255,0.13)", borderRadius:24, padding:4 }}>
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
             style={{ padding:"8px 20px", borderRadius:20, background:view===id?"#f2ece4":"transparent", border:"none",
@@ -1049,7 +1049,7 @@ function FAQSection() {
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
         {FAQS.map((faq,i) => (
-          <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(44,183,167,0.35)":"rgba(44,183,167,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(44,183,167,0.12)":"none" }}>
+          <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"#fdf0e8",border:"1px solid",borderColor:open===i?"rgba(44,183,167,0.35)":"rgba(44,183,167,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(44,183,167,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
               <span style={{ fontSize:15,fontWeight:400,color:"#0a0a0a",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
               <span style={{ fontSize:20,color:"#2CB7A7",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
@@ -1123,7 +1123,7 @@ function LuckyGirlTimeline({ isMobile }) {
 
         {/* Timeline */}
         <div style={{ position:"relative" }}>
-          <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:2, background:"rgba(0,0,0,.2)", transform:"translateX(-50%)", borderRadius:2 }} />
+          <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:2, background:"#000000", transform:"translateX(-50%)", borderRadius:2 }} />
           {items.map((item, i) => {
             const isLeft = i % 2 === 0;
             const isActive = active === i;
@@ -1133,15 +1133,15 @@ function LuckyGirlTimeline({ isMobile }) {
                 <div style={{ width:"46%", flexShrink:0 }}>
                   <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
                     <div style={{ fontSize: isMobile?14:16, fontWeight:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
-                    {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000", opacity:.5, marginTop:6 }}>✦ {item.tag}</div>}
+                    {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000",  marginTop:6 }}>✦ {item.tag}</div>}
                   </div>
                 </div>
                 {/* Spacer pushes box to correct side */}
                 <div style={{ flex:1 }} />
                 {/* Centre dot */}
-                <div style={{ position:"absolute", left:"50%", top:"50%", transform:"translate(-50%,-50%)", width: isActive?16:12, height: isActive?16:12, borderRadius:"50%", background: isActive?"#000":"rgba(0,0,0,.3)", border:"2px solid rgba(255,255,255,.8)", transition:"all .4s", zIndex:2 }} />
+                <div style={{ position:"absolute", left:"50%", top:"50%", transform:"translate(-50%,-50%)", width: isActive?16:12, height: isActive?16:12, borderRadius:"50%", background: isActive?"#000":"#000000", border:"2px solid rgba(255,255,255,.8)", transition:"all .4s", zIndex:2 }} />
                 {/* Connector */}
-                <div style={{ position:"absolute", top:"50%", height:2, background:"rgba(0,0,0,.15)", width:"4%", left: isLeft?"auto":"50%", right: isLeft?"50%":"auto", transform:"translateY(-50%)" }} />
+                <div style={{ position:"absolute", top:"50%", height:2, background:"#000000", width:"4%", left: isLeft?"auto":"50%", right: isLeft?"50%":"auto", transform:"translateY(-50%)" }} />
               </div>
             );
           })}
@@ -1198,10 +1198,10 @@ function HowItWorksAccordion({ isMobile }) {
             onClick={() => handleClick(i)}
             style={{ display:"flex", alignItems:"center", gap:20, padding: isMobile?"16px 20px":"20px 28px", cursor:"pointer", background: open===i ? G : "#f2ece4", borderRadius: open===i ? "14px 14px 0 0" : 14, border:"1px solid rgba(0,0,0,.06)", transition:"all .25s" }}
           >
-            <span style={{ fontSize:11, letterSpacing:"0.2em", color: open===i ? "rgba(0,0,0,.5)" : "#888", fontWeight:500, flexShrink:0, width:28, fontFamily:"'Jost',sans-serif" }}>{s.n}</span>
+            <span style={{ fontSize:11, letterSpacing:"0.2em", color: open===i ? "#000000" : "#fdf0e8", fontWeight:500, flexShrink:0, width:28, fontFamily:"'Jost',sans-serif" }}>{s.n}</span>
             <span style={{ fontSize: isMobile?16:18, fontWeight:400, color:"#000", flex:1, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em" }}>{s.title}</span>
             {s.badge && open===i && <span style={{ background:"#000", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", flexShrink:0, fontWeight:500 }}>Goddess Tier ✦</span>}
-            <span style={{ fontSize:20, color:"#888", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform .3s", fontWeight:300 }}>+</span>
+            <span style={{ fontSize:20, color:"#fdf0e8", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform .3s", fontWeight:300 }}>+</span>
           </div>
           {open===i && (
             <div style={{ background:G, borderRadius:"0 0 14px 14px", padding: isMobile?"16px 20px 24px":"20px 28px 28px" }}>
@@ -1210,7 +1210,7 @@ function HowItWorksAccordion({ isMobile }) {
           )}
           {i < 7 && (
             <div style={{ textAlign:"center", padding:"8px 0" }}>
-              <span style={{ display:"inline-flex", alignItems:"center", justifyContent:"center", width:28, height:28, borderRadius:"50%", background:"rgba(0,0,0,.06)", fontSize:13, color:"#2CB7A7" }}>↓</span>
+              <span style={{ display:"inline-flex", alignItems:"center", justifyContent:"center", width:28, height:28, borderRadius:"50%", background:"#000000", fontSize:13, color:"#2CB7A7" }}>↓</span>
             </div>
           )}
         </div>
@@ -1575,7 +1575,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#f2ece4", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "I Am The Luckiest Woman In This Universe"}</div>
                 <div style={{ fontSize: isMobile?12:16, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
-                <div style={{ fontSize: 12, color: "#ddd0c8", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.sub}{currentTrack?.sub && currentTrack?.freq ? " · " : ""}{currentTrack?.freq || "Hypnosis · 528hz"}</div>
+                <div style={{ fontSize: 12, color: "#fdf0e8", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.sub}{currentTrack?.sub && currentTrack?.freq ? " · " : ""}{currentTrack?.freq || "Hypnosis · 528hz"}</div>
               </div>
               {playing && (
                 <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(42,168,154,0.12)", border: "1px solid rgba(42,168,154,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
@@ -1586,9 +1586,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </div>
             {/* Logo mark, replaces progress bar */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
-              <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
+              <div style={{ flex:1, height:1, background:"#fdf0e8" }}/>
               <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={44} height={44} style={{ opacity: playing ? 1 : 0.6, transition:"opacity 0.4s", objectFit:"contain", display:"block"}} />
-              <div style={{ flex:1, height:1, background:"rgba(255,255,255,0.06)" }}/>
+              <div style={{ flex:1, height:1, background:"#fdf0e8" }}/>
             </div>
             {/* Controls */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"4px 4px 0", overflow:"visible" }}>
@@ -1617,7 +1617,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#2CB7A7":"rgba(42,168,154,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
               ))}
             </div>
-            <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#ddd0c8", fontFamily:"'Jost',sans-serif" }}>
+            <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>
               {playing ? "✦ Playing, continues in background" : "Tap play to listen, free preview"}
             </div>
           </div>
@@ -1800,7 +1800,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     <div style={{ width:8, height:8, borderRadius:"50%", background:f.dot, flexShrink:0, marginTop:6 }}/>
                     <div>
                       <div style={{ fontSize: isMobile?17:20, fontWeight:600, color:"#000", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
-                      <div style={{ fontSize: isMobile?14:16, color:"#444", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
+                      <div style={{ fontSize: isMobile?14:16, color:"#000000", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
                     </div>
                   </div>
                 ))}
@@ -1857,7 +1857,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#f2ece4", fontWeight:400, marginBottom:24, lineHeight:1.05, textAlign:"center" }}>
             The Hawkins Scale.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:theme==="dark"?"#e8e0d8":"#000000", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color:theme==="dark"?"#fdf0e8":"#000000", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
             Your emotional state is not a feeling, it's a frequency. And your heart broadcasts it. Every intention you log in ProofOS gets tagged against this 17-level scale. As you listen, your baseline climbs. Your heart rhythm shifts. Your brain follows. Watch the evidence build, not just in what arrives, but in where you are when it does.
           </p>
           <p style={{ fontSize: isMobile?"clamp(22px,5.5vw,28px)":"clamp(26px,2.8vw,36px)", color:"#f2ece4", lineHeight:1.4, maxWidth:580, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em" }}>
@@ -1886,11 +1886,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               return (
               <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"6px 4px" }}>
                 <div style={{ width:10, height:10, borderRadius:"50%", background:h.c, flexShrink:0, boxShadow:h.v>=600?`0 0 10px ${h.c}, 0 0 20px ${h.c}66`:h.v>=200?`0 0 6px ${h.c}88`:"none" }}/>
-                <div style={{ flex:1, height:6, borderRadius:3, background:"rgba(255,255,255,0.08)", overflow:"hidden" }}>
+                <div style={{ flex:1, height:6, borderRadius:3, background:"#fdf0e8", overflow:"hidden" }}>
                   <div style={{ width:`${(h.v/700)*100}%`, height:"100%", background:h.c, opacity:h.v>=600?1:h.v>=200?0.85:0.65, boxShadow:h.v>=600?`0 0 8px ${h.c}`:"none" }}/>
                 </div>
-                <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":theme==="dark"?"#e8e0d8":"#000000", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:11, color:theme==="dark"?"#e8e0d8":"#000000", width:32, textAlign:"right" }}>{h.v}</span>
+                <span style={{ fontSize:12, color: h.v>=200?"#f2ece4":theme==="dark"?"#fdf0e8":"#000000", width:100, textAlign:"left", fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
+                <span style={{ fontSize:11, color:theme==="dark"?"#fdf0e8":"#000000", width:32, textAlign:"right" }}>{h.v}</span>
               </div>
               );
             })}
@@ -1975,7 +1975,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             ].map((t, i) => (
               <div key={i} style={{ background:"#fff", border:"1px solid rgba(44,183,167,0.1)", borderRadius:16, padding:"22px 20px", display:"flex", flexDirection:"column", gap:12, boxShadow:"0 4px 24px rgba(0,0,0,0.15)" }}>
                 <div style={{ width:32, height:24, opacity:0.25 }}>
-                  <svg viewBox="0 0 32 24" fill="#ccc"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
+                  <svg viewBox="0 0 32 24" fill="#fdf0e8"><path d="M0 24V14.4C0 10.24 1.12 6.72 3.36 3.84 5.6.96 8.64.16 12.48 0L13.44 2.4C10.88 3.04 8.96 4.16 7.68 5.76 6.4 7.36 5.76 9.28 5.76 11.52H11.52V24H0zm20.48 0V14.4c0-4.16 1.12-7.68 3.36-10.56C26.08.96 29.12.16 32.96 0L33.92 2.4C31.36 3.04 29.44 4.16 28.16 5.76c-1.28 1.6-1.92 3.52-1.92 5.76h5.76V24H20.48z"/></svg>
                 </div>
                 <p style={{ fontSize:isMobile?16:18, color:"#0a0a0a", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
@@ -2015,13 +2015,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <h2 style={{ fontSize: "clamp(26px,3.6vw,42px)", color: "#f2ece4", lineHeight: 1.1, marginBottom: 20, fontWeight: 400, fontFamily: "'Jost',sans-serif", whiteSpace: isMobile?"normal":"nowrap" }}>
             Thank you for being here.
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color: theme==="dark"?"#e8e0d8":"#000000", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
+          <p style={{ fontSize: isMobile?16:19, color: theme==="dark"?"#fdf0e8":"#000000", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             You can join the waitlist and be the first to know when the audio library opens.
           </p>
           <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "22px 64px", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border: "none", borderRadius: 40, color: "#000", fontSize: isMobile?22:26, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em" }}>
             Join the waitlist →
           </button>
-          <div style={{ marginTop: 14, fontSize: 13, color: theme==="dark"?"#e8e0d8":"#000000", fontWeight:400, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
+          <div style={{ marginTop: 14, fontSize: 13, color: theme==="dark"?"#fdf0e8":"#000000", fontWeight:400, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
         </div>
       </div>
 
@@ -2033,13 +2033,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ marginBottom:16 }}>
           <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:22, color:"#f2ece4", letterSpacing:"0.02em" }}>Self Hypnosis Goddess</span>
         </div>
-        <div style={{ fontSize: 13, color: theme==="dark"?"#e8e0d8":"#000000", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
+        <div style={{ fontSize: 13, color: theme==="dark"?"#fdf0e8":"#000000", marginBottom: 6 }}>Reshma Oracle · reshmaoracle.com</div>
         <div style={{ fontSize: 11, color: T.borderGlow, letterSpacing: "0.03em", maxWidth: 560, margin: "0 auto 14px", lineHeight: 1.6, opacity: 0.75 }}>
           Self Hypnosis Goddess is a self-hypnosis and manifestation audio product. It is not therapy, medical treatment, or a substitute for professional mental health care. If you're experiencing a mental health crisis, please contact a licensed professional or emergency services.
         </div>
         <div style={{ display:"flex", gap:20, justifyContent:"center", marginBottom:14, flexWrap:"wrap" }}>
           {[["About Reshma","about"],["Terms of Service","tos"],["Privacy Policy","privacy"],["Refund Policy","refunds"]].map(([l,s])=>(
-            <button key={s} onClick={()=>onLegal?.(s)} style={{ background:"none", border:"none", color:theme==="dark"?"#e8e0d8":"#000000", fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif", textDecoration:"underline", textUnderlineOffset:3 }}>{l}</button>
+            <button key={s} onClick={()=>onLegal?.(s)} style={{ background:"none", border:"none", color:theme==="dark"?"#fdf0e8":"#000000", fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif", textDecoration:"underline", textUnderlineOffset:3 }}>{l}</button>
           ))}
         </div>
         <div style={{ fontSize: 12, color: T.borderGlow, letterSpacing: "0.15em" }}>© 2026 RESHMA ORACLE · ALL RIGHTS RESERVED</div>
@@ -2047,12 +2047,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* SHOP MODAL, embedded Beacons, stays on-site */}
       {shopOpen && (
-        <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
+        <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"#000000", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(42,168,154,0.3)" }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(42,168,154,0.2)", flexShrink:0 }}>
               <span style={{ fontFamily:"'Jost',sans-serif", fontSize:13, color:"#c8bcb0", letterSpacing:"0.1em", textTransform:"uppercase" }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
-                <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:theme==="dark"?"#e8e0d8":"#000000", textDecoration:"none" }}>Open in new tab ↗</a>
+                <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:theme==="dark"?"#fdf0e8":"#000000", textDecoration:"none" }}>Open in new tab ↗</a>
                 <button onClick={()=>setShopOpen(false)} style={{ background:"none", border:"none", color:"#f2ece4", fontSize:22, cursor:"pointer", lineHeight:1, padding:4 }}>×</button>
               </div>
             </div>
@@ -2063,7 +2063,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* WAITLIST MODAL */}
       {waitlistOpen && (
-        <div onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.75)", zIndex:900, display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
+        <div onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ position:"fixed", inset:0, background:"#000000", zIndex:900, display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ background:"#000", border:"1.5px solid #E8B87055", borderRadius:20, padding:"36px 28px", maxWidth:400, width:"100%", textAlign:"center" }}>
             {waitlistStatus === "done" ? (
               <>
@@ -2083,7 +2083,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     value={waitlistEmail}
                     onChange={e=>{setWaitlistEmail(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
                     placeholder="your@email.com"
-                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:theme==="dark"?"#e8e0d8":"#000000", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:theme==="dark"?"#fdf0e8":"#000000", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
                   {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2CB7A7", marginBottom:12 }}>Please enter a valid email.</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>

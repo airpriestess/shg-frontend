@@ -86,7 +86,7 @@ const THEMES = {
     nav:     "#050505",
     cr:      "#f2ece4",   // primary text, warm cream
     mu:      "#f2ece4",   // muted text, now same as primary, no grey
-    dim:     "#e8e0d8",   // faint text, still near-white, no grey/brown
+    dim:     "#fdf0e8",   // faint text, still near-white, no grey/brown
     border:  "rgba(232,184,112,0.15)",  // gold-tinted border
     inputBg: "#1a1a1a",
     inputCr: "#f2ece4",
@@ -100,15 +100,15 @@ const THEMES = {
   // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
   light: {
     bg:      "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",
-    bg2:     "rgba(255,255,255,0.25)",  // frosted glass cards
-    bg3:     "rgba(255,255,255,0.35)",  // raised cards
-    bg4:     "rgba(255,255,255,0.45)",  // highest surface
+    bg2:     "#fdf0e8",  // frosted glass cards
+    bg3:     "#fdf0e8",  // raised cards
+    bg4:     "#fdf0e8",  // highest surface
     nav:     "rgba(245,224,160,0.55)",  // nav bar, champagne frosted
     cr:      "#000000",   // primary text, black
     mu:      "#000000",   // muted text, also black (no grey in light mode)
     dim:     "#000000",   // faint text, also black
-    border:  "rgba(255,255,255,0.45)",
-    inputBg: "rgba(255,255,255,0.55)",
+    border:  "#fdf0e8",
+    inputBg: "#fdf0e8",
     inputCr: "#000000",
     accentGold: "#000000",
     accentLav:  "#000000",
@@ -654,7 +654,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   const BillingPanel = () => (
     <>
-      <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.6)" }} onClick={()=>setBillingOpen(false)}/>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"#000000" }} onClick={()=>setBillingOpen(false)}/>
       <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:999,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
         <div style={{ fontSize:13,color:C.mu,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
         <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
@@ -687,7 +687,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   const ProfilePanel = () => (
     <>
-      <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.5)" }} onClick={()=>setProfileOpen(false)}/>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"#000000" }} onClick={()=>setProfileOpen(false)}/>
       <div style={{ position:"fixed",top:isMobile?0:"auto",right:0,bottom:0,width:isMobile?"100%":320,background:isDark?"#0a0a0a":"#fdf0e8",borderLeft:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
         {/* Header */}
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
@@ -775,7 +775,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {showEmoLog && (
         <>
-          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowEmoLog(false)}/>
+          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"#000000" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
             <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
@@ -788,7 +788,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
                   style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
                     background:quickFeel===h.n?`${h.c}22`:"transparent",
-                    border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
+                    border:`1px solid ${quickFeel===h.n?h.c:"#fdf0e8"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 6px ${h.c}99` }}/>
                   <span style={{ fontSize:15,color:h.c,flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
@@ -801,9 +801,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
                   style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
                     background:quickFeel===h.n?`${h.c}33`:"transparent",
-                    border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
+                    border:`1px solid ${quickFeel===h.n?h.c:"#fdf0e8"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                  <span style={{ fontSize:15,color:isDark?(h.v>=600?"#F5E0A0":h.v<=30?"#e8e0d8":h.c):"#000000",flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:15,color:isDark?(h.v>=600?"#F5E0A0":h.v<=30?"#fdf0e8":h.c):"#000000",flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
@@ -825,13 +825,13 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </>
       )}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
-        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
-            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
-            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
         </div>
       )}
@@ -851,7 +851,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(232,184,112,0.14)":"rgba(0,0,0,0.85)"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#E8B870":"#F5E0A0"):isDark?"#727272":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(232,184,112,0.14)":"#000000"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#E8B870":"#F5E0A0"):isDark?"#727272":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
               onMouseEnter={e=>{if(tab!==n.id)e.currentTarget.style.color="#E8B870";}}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
               <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#F5E0A0"):C.cr}/> {n.label}
@@ -870,7 +870,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
               style={{ display:"flex",alignItems:"center",gap:9,padding:"4px 18px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:13,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
               onMouseEnter={e=>e.currentTarget.style.color=C.cr}
               onMouseLeave={e=>{if(track.id!==t.id)e.currentTarget.style.color=C.mu;}}>
-              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={24} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
+              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={24} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
               <span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{t.title}</span>
             </button>
           ))}
@@ -922,13 +922,13 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <BetaBanner C={C} isDark={isDark}/>
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
-        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
-            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
-            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
         </div>
       )}
@@ -1001,7 +1001,7 @@ function BetaBanner({ C, isDark }) {
     try { sessionStorage.setItem("shg_beta_dismissed", "1"); } catch {}
   };
   return (
-    <div style={{ background:isDark?"#0a0a0a":"rgba(0,0,0,0.06)",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
+    <div style={{ background:isDark?"#0a0a0a":"#000000",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
       <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",display:"block" }}>
         <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span>, some tracks may not work yet.
       </span>
@@ -1163,7 +1163,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         {track.cat && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.cat}</span>}
         {track.dur && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.dur}</span>}
       </div>
-      <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.08)":"rgba(0,0,0,0.08)"}` }}>
+      <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
           <Ico.Heart on={liked.has(track.id)}/>
           <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Like</span>
@@ -1180,7 +1180,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       </>
       )}
       <div style={{ width:"100%",marginBottom:8 }}>
-        <div style={{ height:4,background:isDark?"#333333":"rgba(0,0,0,0.2)",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
+        <div style={{ height:4,background:isDark?"#333333":"#000000",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
           <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",position:"relative",transition:"width 0.3s" }}>
             <div style={{ position:"absolute",right:-6,top:"50%",transform:"translateY(-50%)",width:13,height:13,borderRadius:"50%",background:C.cr }}/>
           </div>
@@ -1504,10 +1504,10 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
-        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 10px",margin:isP?"0 -10px":0,borderRadius:isP?8:0,background:isP?(C.bg==="#000000"?"rgba(232,184,112,0.12)":"rgba(0,0,0,0.85)"):"none",borderBottom:isP?"none":`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 10px",margin:isP?"0 -10px":0,borderRadius:isP?8:0,background:isP?(C.bg==="#000000"?"rgba(232,184,112,0.12)":"#000000"):"none",borderBottom:isP?"none":`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
-            {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+            {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
             <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
@@ -1653,9 +1653,9 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
               <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
-              {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+              {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
               {!isPreview&&cur?.id===t.id&&playing&&(
-                <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
+                <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
                   <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
                 </div>
               )}
@@ -1723,7 +1723,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   // ProofOS, always LG gradient background, white cards, black text
   const isDark = false; // ProofOS always uses light card theme on LG bg
-  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"rgba(0,0,0,0.1)", inputBg:"rgba(255,255,255,0.9)" };
+  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"#000000", inputBg:"rgba(255,255,255,0.9)" };
   const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
   const manifested = threads.filter(t=>t.done);
@@ -1821,7 +1821,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
       <style>{`@keyframes shgRecPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}@keyframes shgRecButtonPulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0.5);}50%{box-shadow:0 0 0 6px rgba(192,57,43,0);}}`}</style>
       {confirmDeleteId!==null && (
-        <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
+        <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:340,width:"100%",borderRadius:16,padding:"24px 22px",background:"#fdf0e8",border:`1px solid ${PC.border}` }}>
             <div style={{ fontSize:18,fontWeight:400,color:"#000",marginBottom:8,fontFamily:"'Jost',sans-serif" }}>Delete this thread?</div>
             <div style={{ fontSize:14,color:PC.mu,marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
@@ -1841,7 +1841,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <span style={{ fontSize:14,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
             {proofFilter==="manifested" ? `Showing ${manifested.length} manifested ✓` : `Showing ${inProgress.length} in progress`}
           </span>
-          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#e8e0d8",fontSize:13,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
+          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#fdf0e8",fontSize:13,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
         </div>
       )}
 
@@ -1859,9 +1859,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:"rgba(0,0,0,0.1)",
+            background:view===k?col:"#000000",
             border:"none",
-            color:view===k?"#000":"rgba(0,0,0,0.45)", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+            color:view===k?"#000":"#000000", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
@@ -1992,12 +1992,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
               {manifested.map(d=>(
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
-                  <span style={{ fontSize:11,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
+                  <span style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
                   <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
                   <div style={{ fontSize:12,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
                   <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5,opacity:0.75 }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
-                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
+                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"#fdf0e8",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
               ))}
               <div style={{ background:PC.card,border:`1px dashed ${PC.border}`,borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
@@ -2007,7 +2007,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
               <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
                 {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
-                  <div key={s.key} style={{ background:"rgba(255,255,255,0.85)",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
+                  <div key={s.key} style={{ background:"#fdf0e8",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
                     {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
                     {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
                     <div style={{ fontSize:8.5,fontWeight:400,color:C.mu,marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
@@ -2165,7 +2165,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {userTier === "audio" && !isPreview ? "Add Desire, Upgrade to Goddess ✦" : "Add Desire"}
           </button>
           {userTier === "audio" && !isPreview && (
-            <div style={{ fontSize:13,color:"#e8e0d8",marginTop:8,lineHeight:1.5 }}>
+            <div style={{ fontSize:13,color:"#fdf0e8",marginTop:8,lineHeight:1.5 }}>
               You're on Audio Tier. Log your desire, then upgrade to Goddess to save it to your Proof Thread and track every sign.
             </div>
           )}
@@ -2270,7 +2270,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
 
           {/* Progress + delete */}
-          <div style={{ marginTop:10,height:3,background:"rgba(0,0,0,0.1)",borderRadius:2 }}>
+          <div style={{ marginTop:10,height:3,background:"#000000",borderRadius:2 }}>
             <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",borderRadius:2 }}/>
           </div>
           <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove desire</button>
@@ -2355,19 +2355,19 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
       <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed" }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
         {isPreview&&(
-          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
+          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
         )}
         {unavail&&(
-          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#ddd",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
+          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#fdf0e8",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
         )}
         {!isPreview&&isP&&playing&&!unavail&&(
-          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.45)" }}>
+          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"#000000" }}>
             <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
           </div>
         )}
         {t.isNew&&hasAudio&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
         {!isPreview && hasAudio && (
-          <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"rgba(0,0,0,0.55)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
+          <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"#000000",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
             <Ico.Heart on={liked?.has(t.id)}/>
           </button>
         )}

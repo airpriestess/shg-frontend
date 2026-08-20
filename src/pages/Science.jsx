@@ -20,7 +20,7 @@ const H3  = ({c,children})=><h3 style={{fontFamily:"'Jost',sans-serif",fontSize:
 const P   = ({c,children})=><p style={{fontSize:18,color:c||MU,lineHeight:1.9,marginBottom:20,fontFamily:"'Jost',sans-serif",textAlign:"left"}}>{children}</p>;
 const Div = ()=><div style={{height:1,background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.25),transparent)",margin:"56px 0"}}/>;
 const Box = ({children,c,glow})=>(
-  <div style={{padding:"22px 20px",background:glow?`${c||TEAL}08`:"rgba(255,255,255,0.03)",border:`1px solid ${c||TEAL}22`,borderRadius:14,marginBottom:0,boxShadow:glow?`0 0 30px ${c||TEAL}18`:"none"}}>
+  <div style={{padding:"22px 20px",background:glow?`${c||TEAL}08`:"#fdf0e8",border:`1px solid ${c||TEAL}22`,borderRadius:14,marginBottom:0,boxShadow:glow?`0 0 30px ${c||TEAL}18`:"none"}}>
     {children}
   </div>
 );
@@ -32,21 +32,21 @@ const WAVES = [
   {s:"Delta",hz:"0.5–4 Hz",c:DTEAL,h:28,desc:"Deep sleep. Cellular repair. Consciousness offline. Subliminals continue working here."},
   {s:"Theta",hz:"4–8 Hz", c:TEAL, h:70,desc:"The installation window. Critical resistance drops. New identity goes in. SHG targets this state in every track.",active:true},
   {s:"Alpha",hz:"8–14 Hz",c:LAV,  h:50,desc:"Relaxed awareness. The bridge. Receptive but not fully open. Good daytime listening state."},
-  {s:"Beta", hz:"14–40 Hz",c:"#666",h:38,desc:"Your current waking state. Alert, analytical, sceptical. The critical mind is fully active here, which is exactly why affirmations bounce off. You can't argue your way past a belief from the same level it was installed."},
+  {s:"Beta", hz:"14–40 Hz",c:"#000000",h:38,desc:"Your current waking state. Alert, analytical, sceptical. The critical mind is fully active here, which is exactly why affirmations bounce off. You can't argue your way past a belief from the same level it was installed."},
   {s:"Gamma",hz:"40+ Hz", c:DIM,  h:20,desc:"Peak coherence. Observed in advanced meditators. Emerges naturally from deep theta practice."},
 ];
 
 const FORMULA_PARTS = [
   {term:"Hypnosis",color:CHAMP,   note:"Spoken guidance that takes you into theta and delivers the new identity directly to the subconscious, with the critical mind fully bypassed."},
-  {term:"+",color:"rgba(255,255,255,0.3)",note:null},
+  {term:"+",color:"#fdf0e8",note:null},
   {term:"Subliminals",color:GOLD, note:"Affirmations embedded below the threshold of conscious awareness. The filter never engages. The belief lands without resistance."},
-  {term:"+",color:"rgba(255,255,255,0.3)",note:null},
+  {term:"+",color:"#fdf0e8",note:null},
   {term:"Melodic House",color:LAV,note:"The music that elevates your emotional state before the installation begins. Heart coherence rises. The brain opens."},
   {term:"+",color:TEAL,           note:null},
   {term:"EMDR",color:TEAL,        note:"Left-right bilateral audio synchronises both hemispheres. Resistance drops at a neurological level. Processing deepens."},
-  {term:"+",color:"rgba(255,255,255,0.3)",note:null},
+  {term:"+",color:"#fdf0e8",note:null},
   {term:"Binaural Beats",color:DTEAL,note:"Two tones, one per ear. The brain generates the difference, and entrains to theta within minutes. No willpower required."},
-  {term:"=",color:"rgba(255,255,255,0.3)",note:null},
+  {term:"=",color:"#fdf0e8",note:null},
   {term:"Theta on demand.",color:"#fff",note:"The only state where the subconscious opens. The only state where new beliefs install without the conscious mind arguing back. On demand.",result:true},
 ];
 
@@ -91,7 +91,7 @@ export default function Science({ onBack }) {
           <h1 style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:isMobile?"clamp(32px,8vw,52px)":"clamp(44px,5vw,68px)",fontWeight:400,lineHeight:1.1,marginBottom:16,color:"#000"}}>
             The science behind the shift.
           </h1>
-          <div style={{fontSize:isMobile?16:20,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
+          <div style={{fontSize:isMobile?16:20,color:"#000000",fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
         </div>
 
         {/* Three concept cards, sit below the gradient hero */}
@@ -142,7 +142,7 @@ export default function Science({ onBack }) {
             ].map((card,i)=>(
               <div key={i} style={{
                 padding:isMobile?"24px 20px":"32px 24px",
-                background:"rgba(255,255,255,0.03)",
+                background:"#fdf0e8",
                 border:"1px solid rgba(232,184,112,0.18)",
                 borderRadius:18,
                 textAlign:"center",
@@ -168,7 +168,7 @@ export default function Science({ onBack }) {
           <P>This is not a playlist. Every SHG track layers five elements simultaneously. Each one targets a different layer of the mechanism. Together they create a condition that no single approach can produce alone.</P>
 
           {/* Formula box */}
-          <div style={{padding:isMobile?"20px 16px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"rgba(0,0,0,0.6)",margin:"32px 0",overflowX:"hidden"}}>
+          <div style={{padding:isMobile?"20px 16px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"#000000",margin:"32px 0",overflowX:"hidden"}}>
             <div style={{display:"flex",alignItems:"center",flexWrap:"wrap",gap:"6px 6px",justifyContent:"center",marginBottom:isMobile?16:0}}>
               {FORMULA_PARTS.filter(p=>p.term!=="Theta on demand.").map((p,i)=>(
                 <span key={i} style={{
@@ -389,7 +389,7 @@ export default function Science({ onBack }) {
               {n:"4 ways",l:"Heart-to-brain signal pathways",c:TEAL},
               {n:"5,000×",l:"Stronger magnetically",c:CHAMP},
             ].map((s,i)=>(
-              <div key={i} style={{textAlign:"center",padding:"18px 12px",background:"rgba(255,255,255,0.03)",border:`1px solid ${s.c}20`,borderRadius:12}}>
+              <div key={i} style={{textAlign:"center",padding:"18px 12px",background:"#fdf0e8",border:`1px solid ${s.c}20`,borderRadius:12}}>
                 <div style={{fontSize:isMobile?22:28,fontWeight:300,color:s.c,fontFamily:"'Jost',sans-serif",lineHeight:1,marginBottom:6}}>{s.n}</div>
                 <div style={{fontSize:11,color:MU,fontFamily:"'Jost',sans-serif",lineHeight:1.5}}>{s.l}</div>
               </div>
@@ -407,7 +407,7 @@ export default function Science({ onBack }) {
               {p:"Biophysical",c:LAV,d:"Every heartbeat generates pressure waves through the vascular system that influence brain activity. The rhythm of these waves, coherent or incoherent, affects cognition and emotional regulation."},
               {p:"Electromagnetic",c:TEAL,d:"The heart's electromagnetic field radiates several feet outside the body. Your emotional state affects the people around you before you speak a word."},
             ].map((p,i)=>(
-              <div key={i} style={{display:"flex",gap:12,padding:"16px",background:"rgba(255,255,255,0.02)",border:`1px solid ${p.c}20`,borderRadius:12}}>
+              <div key={i} style={{display:"flex",gap:12,padding:"16px",background:"#fdf0e8",border:`1px solid ${p.c}20`,borderRadius:12}}>
                 <div style={{width:4,background:p.c,borderRadius:2,flexShrink:0}}/>
                 <div>
                   <div style={{fontSize:13,fontWeight:500,color:p.c,fontFamily:"'Jost',sans-serif",marginBottom:6}}>{p.p}</div>
@@ -507,11 +507,11 @@ export default function Science({ onBack }) {
               {/* Left hemisphere */}
               <ellipse cx="90" cy="60" rx="70" ry="50" fill="none" stroke="#E8B870" strokeWidth="2" opacity="0.8"/>
               <text x="90" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#E8B870">LEFT</text>
-              <text x="90" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#888">logic · language</text>
+              <text x="90" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#fdf0e8">logic · language</text>
               {/* Right hemisphere */}
               <ellipse cx="270" cy="60" rx="70" ry="50" fill="none" stroke="#BFA5D8" strokeWidth="2" opacity="0.8"/>
               <text x="270" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#BFA5D8">RIGHT</text>
-              <text x="270" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#888">intuition · emotion</text>
+              <text x="270" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#fdf0e8">intuition · emotion</text>
               {/* Connecting arc */}
               <path d="M160,40 C180,20 180,20 200,40" fill="none" stroke="url(#elg)" strokeWidth="2" strokeDasharray="4 3"/>
               <path d="M160,80 C180,100 180,100 200,80" fill="none" stroke="url(#elg)" strokeWidth="2" strokeDasharray="4 3"/>
@@ -552,7 +552,7 @@ export default function Science({ onBack }) {
             ].map((l,i)=>(
               <div key={i} style={{display:"flex",gap:0,marginBottom:2,overflow:"hidden",borderRadius:i===0?"12px 12px 0 0":i===4?"0 0 12px 12px":"0"}}>
                 <div style={{width:6,background:l.c,flexShrink:0}}/>
-                <div style={{flex:1,display:"grid",gridTemplateColumns:isMobile?"1fr":"100px 160px 1fr",gap:isMobile?6:0,padding:"16px 18px",background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderLeft:"none",alignItems:"center"}}>
+                <div style={{flex:1,display:"grid",gridTemplateColumns:isMobile?"1fr":"100px 160px 1fr",gap:isMobile?6:0,padding:"16px 18px",background:"#fdf0e8",border:"1px solid rgba(255,255,255,0.05)",borderLeft:"none",alignItems:"center"}}>
                   <div style={{fontSize:10,color:DIM,fontFamily:"'Jost',sans-serif",letterSpacing:"0.1em"}}>{l.l}</div>
                   <div style={{fontSize:14,fontWeight:500,color:l.c,fontFamily:"'Jost',sans-serif"}}>{l.e}</div>
                   <div style={{fontSize:13,color:MU,lineHeight:1.6,fontFamily:"'Jost',sans-serif"}}>{l.w}</div>
@@ -569,7 +569,7 @@ export default function Science({ onBack }) {
             <div style={{fontSize:isMobile?26:42,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal",lineHeight:1.2}}>
               = Theta on demand. Identity installed.
             </div>
-            <div style={{fontSize:15,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",marginTop:16,letterSpacing:"0.06em"}}>This is the formula. This is Self Hypnosis Goddess.</div>
+            <div style={{fontSize:15,color:"#000000",fontFamily:"'Jost',sans-serif",marginTop:16,letterSpacing:"0.06em"}}>This is the formula. This is Self Hypnosis Goddess.</div>
           </div>
         </section>
 

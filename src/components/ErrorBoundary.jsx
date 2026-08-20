@@ -18,7 +18,7 @@ export default class ErrorBoundary extends Component {
               <button onClick={()=>{ if("caches" in window) caches.keys().then(k=>k.forEach(x=>caches.delete(x))); localStorage.clear(); sessionStorage.clear(); window.location.reload(); }} style={{ padding:"12px", background:"#000", border:"none", borderRadius:10, color:"#fff", fontSize:14, fontWeight:800, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Clear cache + reload</button>
               <button onClick={()=>{ window.location.href="/"; }} style={{ padding:"12px", background:"none", border:"1px solid rgba(0,0,0,0.2)", borderRadius:10, color:"#f2ece4", fontSize:13, fontWeight:700, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Back to landing page</button>
             </div>
-            {this.state.err && <details style={{ marginTop:10, textAlign:"left", fontSize:10, color:"#c8bfb8", background:"rgba(0,0,0,0.04)", padding:"8px 10px", borderRadius:8 }}>
+            {this.state.err && <details style={{ marginTop:10, textAlign:"left", fontSize:10, color:"#c8bfb8", background:"#000000", padding:"8px 10px", borderRadius:8 }}>
               <summary style={{ cursor:"pointer", fontWeight:700 }}>Technical details (send to support)</summary>
               <div style={{ marginTop:6, fontFamily:"monospace", wordBreak:"break-word" }}>{String(this.state.err?.message || this.state.err)}</div>
             </details>}

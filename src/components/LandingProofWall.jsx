@@ -262,9 +262,9 @@ const WALL = [
 // Card style cycles: black → cream/white → LG gradient
 function getCardStyle(i) {
   const cycle = i % 3;
-  if (cycle === 0) return { bg: "#000", text: "#f2ece4", mu: "#e8e0d8", logBg: "#111", badgeBg: "rgba(255,255,255,0.1)", badgeColor: "#E8B870", border: "rgba(232,184,112,0.15)" };
-  if (cycle === 1) return { bg: "#ffffff", text: "#000", mu: "#444", logBg: "#f5f5f5", badgeBg: "#f0f0f0", badgeColor: "#000", border: "rgba(0,0,0,0.08)" };
-  return { bg: LG, text: "#000", mu: "#000", logBg: "rgba(0,0,0,0.1)", badgeBg: "rgba(0,0,0,0.12)", badgeColor: "#000", border: "rgba(0,0,0,0.1)" };
+  if (cycle === 0) return { bg: "#000", text: "#f2ece4", mu: "#fdf0e8", logBg: "#111", badgeBg: "#fdf0e8", badgeColor: "#E8B870", border: "rgba(232,184,112,0.15)" };
+  if (cycle === 1) return { bg: "#ffffff", text: "#000", mu: "#000000", logBg: "#f5f5f5", badgeBg: "#f0f0f0", badgeColor: "#000", border: "#000000" };
+  return { bg: LG, text: "#000", mu: "#000", logBg: "#000000", badgeBg: "#000000", badgeColor: "#000", border: "#000000" };
 }
 
 export default function LandingProofWall({ isMobile }) {
@@ -317,7 +317,7 @@ export default function LandingProofWall({ isMobile }) {
         <h2 style={{ fontSize: isMobile ? 26 : 36, fontWeight: 400, color: "#f2ece4", lineHeight: 1.2, fontFamily: "'Jost',sans-serif", marginBottom: 12 }}>
           Real results. Every category.
         </h2>
-        <p style={{ fontSize: isMobile ? 14 : 17, color: "#e8e0d8", lineHeight: 1.7, maxWidth: 480, margin: "0 auto", fontFamily: "'Jost',sans-serif", fontWeight: 300 }}>
+        <p style={{ fontSize: isMobile ? 14 : 17, color: "#fdf0e8", lineHeight: 1.7, maxWidth: 480, margin: "0 auto", fontFamily: "'Jost',sans-serif", fontWeight: 300 }}>
           One result per category, logged inside the app, exactly as it happened.
         </p>
       </div>
@@ -332,7 +332,7 @@ export default function LandingProofWall({ isMobile }) {
               width: active === i ? 20 : 6,
               height: 6,
               borderRadius: 3,
-              background: active === i ? "#E8B870" : "rgba(255,255,255,0.2)",
+              background: active === i ? "#E8B870" : "#fdf0e8",
               border: "none",
               cursor: "pointer",
               padding: 0,

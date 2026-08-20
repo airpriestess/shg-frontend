@@ -59,11 +59,11 @@ export default function QuizHub() {
       <SHGNav/>
 
       <div style={{ textAlign: "center", padding: "64px 24px 48px" }}>
-        <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 20 }}>✦ Free diagnostics ✦</div>
+        <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000000", marginBottom: 20 }}>✦ Free diagnostics ✦</div>
         <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 600, fontSize: "clamp(36px,7vw,72px)", color: "#000", lineHeight: 1.05, letterSpacing: "-.02em", marginBottom: 16 }}>
           Find your block.
         </h1>
-        <p style={{ fontSize: 18, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
+        <p style={{ fontSize: 18, color: "#000000", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
           8 questions. Your invisible block, named, and replaced.
         </p>
       </div>
@@ -72,9 +72,9 @@ export default function QuizHub() {
         {QUIZZES.map((q, i) => (
           <div key={i}
             onClick={() => navigate(q.url)}
-            style={{ background: "rgba(255,255,255,0.85)", borderRadius: 20, padding: "28px 24px", cursor: "pointer", transition: "all .2s", border: "2px solid transparent" }}
+            style={{ background: "#fdf0e8", borderRadius: 20, padding: "28px 24px", cursor: "pointer", transition: "all .2s", border: "2px solid transparent" }}
             onMouseEnter={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.transform = "scale(1.02)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; e.currentTarget.style.transform = "scale(1)"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#fdf0e8"; e.currentTarget.style.transform = "scale(1)"; }}
           >
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div>
@@ -84,11 +84,11 @@ export default function QuizHub() {
                 <div style={{ fontSize: "clamp(18px,3vw,24px)", fontWeight: 600, color: "#000", marginBottom: 6, letterSpacing: "-.01em" }}>
                   {q.slogan}
                 </div>
-                <div style={{ fontSize: 14, color: "rgba(0,0,0,0.55)", lineHeight: 1.5 }}>
+                <div style={{ fontSize: 14, color: "#000000", lineHeight: 1.5 }}>
                   {q.desc}
                 </div>
               </div>
-              <div style={{ fontSize: 24, color: "rgba(0,0,0,0.25)", marginLeft: 16, flexShrink: 0 }}>→</div>
+              <div style={{ fontSize: 24, color: "#000000", marginLeft: 16, flexShrink: 0 }}>→</div>
             </div>
           </div>
         ))}

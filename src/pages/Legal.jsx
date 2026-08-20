@@ -75,7 +75,7 @@ export default function Legal({ page = "tos", onBack }) {
             ))}
           </div>
         ))}
-        <div style={{ marginTop:64, paddingTop:32, borderTop:"1px solid rgba(44,183,167,0.12)", fontSize:13, color:"#888", fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ marginTop:64, paddingTop:32, borderTop:"1px solid rgba(44,183,167,0.12)", fontSize:13, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>
           © 2026 Reshma Oracle · All rights reserved · <a href="mailto:hello@reshmaoracle.com" style={{ color:"#2CB7A7" }}>hello@reshmaoracle.com</a>
         </div>
       </div>

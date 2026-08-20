@@ -6,7 +6,7 @@ const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78
 function SHGNav() {
   const navigate = useNavigate();
   return (
-    <nav onClick={()=>navigate("/")} style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"18px 32px", display:"flex", alignItems:"center", justifyContent:"space-between", background:"rgba(0,0,0,0.88)", backdropFilter:"blur(24px)", borderBottom:"1px solid rgba(255,255,255,0.04)", cursor:"pointer" }}>
+    <nav onClick={()=>navigate("/")} style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, padding:"18px 32px", display:"flex", alignItems:"center", justifyContent:"space-between", background:"#000000", backdropFilter:"blur(24px)", borderBottom:"1px solid rgba(255,255,255,0.04)", cursor:"pointer" }}>
       <div style={{ display:"flex", alignItems:"center", gap:10 }}>
         <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:15, letterSpacing:"0.02em", color:"#f2ece4" }}>Self Hypnosis Goddess</span>
@@ -85,9 +85,9 @@ export default function Blocks() {
 
       {/* HERO */}
       <div style={{ background: LG, padding: "120px 48px 80px", textAlign: "center" }}>
-        <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", marginBottom: 20 }}>✦ Free diagnostics ✦</div>
+        <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000000", marginBottom: 20 }}>✦ Free diagnostics ✦</div>
         <h1 style={{ fontSize: "clamp(48px,8vw,96px)", fontWeight: 700, color: "#000", letterSpacing: "-.04em", lineHeight: 1, marginBottom: 20 }}>Find your block.</h1>
-        <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "rgba(0,0,0,0.65)", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
+        <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
           8 questions. Your invisible block, named, and replaced.
         </p>
       </div>
@@ -96,7 +96,7 @@ export default function Blocks() {
       <div style={{ padding: "80px 32px", maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column", gap: 24 }}>
         {BLOCKS.map((block, i) => (
           <div key={i} className="block-card" onClick={() => navigate(block.url)}
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, overflow: "hidden", animation: "lgGlow 6s ease-in-out infinite", animationDelay: `${i * 1.5}s` }}>
+            style={{ background: "#fdf0e8", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, overflow: "hidden", animation: "lgGlow 6s ease-in-out infinite", animationDelay: `${i * 1.5}s` }}>
             <div style={{ display: "grid", gridTemplateColumns: "6px 1fr", minHeight: 160 }}>
               {/* Color bar */}
               <div style={{ background: block.badge }}/>
@@ -105,10 +105,10 @@ export default function Blocks() {
                 <div>
                   <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: block.color, marginBottom: 10, fontWeight: 600 }}>{block.name}</div>
                   <h2 style={{ fontSize: "clamp(22px,3vw,36px)", fontWeight: 700, color: "#f2ece4", letterSpacing: "-.02em", lineHeight: 1.1, marginBottom: 10 }}>{block.slogan}</h2>
-                  <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", lineHeight: 1.6, marginBottom: 20 }}>{block.desc}</p>
+                  <p style={{ fontSize: 14, color: "#fdf0e8", lineHeight: 1.6, marginBottom: 20 }}>{block.desc}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                     {block.what.map((w, j) => (
-                      <div key={j} style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", gap: 8 }}>
+                      <div key={j} style={{ fontSize: 13, color: "#fdf0e8", display: "flex", alignItems: "center", gap: 8 }}>
                         <span style={{ color: block.color, fontSize: 10 }}>✦</span> {w}
                       </div>
                     ))}
@@ -128,7 +128,7 @@ export default function Blocks() {
 
       {/* BOTTOM CTA */}
       <div style={{ padding: "60px 32px 100px", textAlign: "center" }}>
-        <p style={{ fontSize: 16, color: "rgba(255,255,255,0.4)", lineHeight: 1.7, maxWidth: 400, margin: "0 auto 32px" }}>
+        <p style={{ fontSize: 16, color: "#fdf0e8", lineHeight: 1.7, maxWidth: 400, margin: "0 auto 32px" }}>
           Not sure which one? Take the Lucky Girl quiz, it diagnoses your primary block across all four areas.
         </p>
         <div onClick={() => navigate("/luckygirl")}

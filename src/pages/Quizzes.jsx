@@ -29,13 +29,13 @@ export default function Quizzes() {
       <SHGNav/>
 
       <div style={{ textAlign: "center", padding: "64px 24px 40px" }}>
-        <div style={{ display: "inline-block", fontSize: 10, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, color: "rgba(0,0,0,0.55)" }}>
+        <div style={{ display: "inline-block", fontSize: 10, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, color: "#000000" }}>
           ✦ Find your block ✦
         </div>
         <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,76px)", lineHeight: 1.05, color: "#000", marginBottom: 20, letterSpacing: "-.02em" }}>
           Which quiz calls you?
         </h1>
-        <p style={{ fontSize: 17, color: "rgba(0,0,0,0.75)", lineHeight: 1.7, maxWidth: 460, margin: "0 auto" }}>
+        <p style={{ fontSize: 17, color: "#000000", lineHeight: 1.7, maxWidth: 460, margin: "0 auto" }}>
           Every quiz finds one thing: the invisible belief that's been running the show. Pick where it's showing up loudest.
         </p>
       </div>
@@ -45,13 +45,13 @@ export default function Quizzes() {
           <div
             key={q.key}
             onClick={() => navigate(q.url)}
-            style={{ background: "rgba(255,255,255,0.85)", border: "2px solid transparent", borderRadius: 24, padding: "40px 24px", textAlign: "center", cursor: "pointer", transition: "all .2s", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
+            style={{ background: "#fdf0e8", border: "2px solid transparent", borderRadius: 24, padding: "40px 24px", textAlign: "center", cursor: "pointer", transition: "all .2s", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
             onMouseEnter={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.transform = "scale(1.03)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.15)"; e.currentTarget.style.borderColor = q.color; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.85)"; e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; e.currentTarget.style.borderColor = "transparent"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#fdf0e8"; e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 24px rgba(0,0,0,0.08)"; e.currentTarget.style.borderColor = "transparent"; }}
           >
             <div style={{ fontSize: 10, letterSpacing: ".18em", textTransform: "uppercase", color: q.color, marginBottom: 12, fontWeight: 500 }}>{q.tag}</div>
             <div style={{ fontSize: 21, fontWeight: 500, color: "#000", marginBottom: 10, fontFamily: "'Jost',sans-serif" }}>{q.name}</div>
-            <div style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", lineHeight: 1.6 }}>{q.desc}</div>
+            <div style={{ fontSize: 14, color: "#000000", lineHeight: 1.6 }}>{q.desc}</div>
           </div>
         ))}
       </div>
