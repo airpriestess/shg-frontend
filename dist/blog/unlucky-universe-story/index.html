@@ -34,6 +34,32 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 .hero-img{width:100%;height:500px;border-radius:20px;background:var(--g);position:relative;overflow:hidden;display:flex;align-items:flex-end;}
 .hero-img-quote{padding:40px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.8vw,32px);font-weight:500;color:#000;line-height:1.3;max-width:820px;}
 
+
+/* DIAGRAMS */
+.eq-box{background:var(--g);border-radius:16px;padding:28px 24px;margin:40px 0;text-align:center;}
+.eq-box .eq{font-family:'Jost',sans-serif;font-size:clamp(14px,2.4vw,19px);font-weight:400;color:#000;line-height:1.6;letter-spacing:.01em;}
+.eq-box .eq-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#000;margin-bottom:14px;}
+.loop{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:32px 28px;margin:40px 0;}
+.loop-title{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E8B870;margin-bottom:24px;text-align:center;}
+.loop-step{display:flex;align-items:center;gap:14px;padding:11px 0;}
+.loop-num{width:26px;height:26px;border-radius:50%;background:var(--g);color:#000;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.loop-text{font-size:15px;color:#f2ece4;line-height:1.45;}
+.loop-arrow{text-align:center;color:#2CB7A7;font-size:15px;padding:2px 0;}
+.split-box{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:40px 0;}
+.split-half{border-radius:14px;padding:24px 20px;}
+.split-old{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);}
+.split-new{background:var(--g);}
+.split-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;}
+.split-old .split-label{color:#a89e94;}
+.split-new .split-label{color:#000;}
+.split-half ul{list-style:none;padding:0;margin:0;}
+.split-half li{font-size:14px;line-height:1.65;padding:5px 0;}
+.split-old li{color:#f2ece4;}
+.split-new li{color:#000;}
+.quotes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:36px 0;}
+.quote-chip{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px 16px;font-size:14px;color:#f2ece4;line-height:1.4;font-style:italic;}
+@media(max-width:640px){.split-box,.quotes-grid{grid-template-columns:1fr;}}
+
 .art-body{max-width:660px;margin:0 auto;padding:72px 48px;}
 .art-body p{font-size:18px;font-weight:300;line-height:1.85;color:#f2ece4;margin-bottom:32px;}
 .art-body h2{font-size:clamp(24px,3.5vw,36px);font-weight:400;letter-spacing:-.025em;color:#f2ece4;margin:60px 0 22px;line-height:1.1;}
@@ -202,27 +228,111 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 
   <p>This is the Unlucky Universe Story, and naming it is the first move that actually weakens it.</p>
 
+  <div class="quotes-grid">
+    <div class="quote-chip">"Nobody chooses me."</div>
+    <div class="quote-chip">"Things never work out."</div>
+    <div class="quote-chip">"Why is it always me?"</div>
+    <div class="quote-chip">"I never win."</div>
+    <div class="quote-chip">"Money avoids me."</div>
+    <div class="quote-chip">"I'm always too late."</div>
+    <div class="quote-chip">"Nobody notices me."</div>
+    <div class="quote-chip">"Everyone else gets opportunities."</div>
+  </div>
+
+  <p>Read those again. Not one of them is a fact. Every single one is a rehearsed conclusion, said so often it started to feel like identity. She believes life happens to her, not with her. Her subconscious feels unlucky, therefore reality agrees.</p>
+
   <div class="pq">
     <p>A rehearsed conclusion feels like wisdom. It is not wisdom. It is just the sentence you've said the most times.</p>
   </div>
 
+  <h2>The loop that keeps it alive</h2>
+
+  <p>The Unlucky Universe Story is not a belief sitting still in your mind. It is a loop, running continuously, and each pass around it makes the next pass faster.</p>
+
+  <div class="loop">
+    <div class="loop-title">The Unlucky Girl Operating System</div>
+    <div class="loop-step"><span class="loop-num">1</span><span class="loop-text">Subconscious identity: <em>I am unlucky</em></span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">2</span><span class="loop-text">Expectation: braced for the disappointment</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">3</span><span class="loop-text">Attention: scanning for what confirms it</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">4</span><span class="loop-text">Interpretation: neutral events read as proof</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">5</span><span class="loop-text">Reality: behaviour shifts, outcomes follow</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">6</span><span class="loop-text">Proof: "See? I knew it."</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">7</span><span class="loop-text">Identity reinforced, loop begins again</span></div>
+  </div>
+
+  <p>Notice where the loop actually starts. Not with the event. With the identity. By the time the event arrives, expectation and attention have already done their work, deciding in advance what you will notice and what it will mean.</p>
+
   <h2>Why the story feels true even though it isn't fixed</h2>
 
-  <p>The subconscious does not distinguish between <em>this happened once and I decided it was a pattern</em> and <em>this is an immutable law of how my life works</em>. Once a conclusion has been rehearsed enough times, it stops being treated as an opinion and starts being treated as a fact the brain must protect. This is why you can logically know that one bad outcome doesn't predict the next one, and still feel the story kick in anyway, ahead of any evidence, the moment a new situation starts to resemble an old one.</p>
+  <p>The subconscious does not distinguish between <em>this happened once and I decided it was a pattern</em> and <em>this is an immutable law of how my life works</em>. Once a conclusion has been rehearsed enough times, it stops being treated as an opinion and starts being treated as a fact the brain must protect.</p>
 
-  <p>The story runs <em>before</em> the outcome. That is the part most women miss. You don't conclude the plan will fall through after it falls through, you walk in already braced for it, and the bracing itself changes how you show up, what you notice, what you're willing to try.</p>
+  <p>This is why you can logically know that one bad outcome doesn't predict the next one, and still feel the story kick in anyway, ahead of any evidence, the moment a new situation starts to resemble an old one.</p>
 
-  <p><strong>The mechanism:</strong> Every time a rehearsed conclusion gets confirmed, the neural pathway underneath it gets faster and more automatic, not because the universe is proving a law, but because a well-practised story requires less and less evidence each time to feel true. Ten confirmations in, the story doesn't need evidence at all. It just needs a situation that rhymes.</p>
+  <div class="eq-box">
+    <div class="eq-label">The mechanism</div>
+    <div class="eq">ASSUMPTION &nbsp;&times;&nbsp; REPETITION &nbsp;=&nbsp; IDENTITY</div>
+  </div>
+
+  <p>Every time a rehearsed conclusion gets confirmed, the neural pathway underneath it gets faster and more automatic. Not because the universe is proving a law, but because a well-practised story requires less and less evidence each time to feel true. Ten confirmations in, the story doesn't need evidence at all. It just needs a situation that rhymes.</p>
 
   <h2>The story isn't lying about the past. It's wrong about what the past means.</h2>
 
   <p>The events in your Unlucky Universe Story are usually real. The job didn't come through. He did stop texting back. The delay did happen. The story isn't a fabrication, it's a <em>conclusion</em>, and conclusions are a choice, even when they don't feel like one.</p>
 
-  <p><strong>What happened:</strong> A real, specific event, a delay, a no, a disappointment. <strong>What the story does with it:</strong> Files it as proof of a permanent pattern, not a single data point. <strong>What can be interrupted:</strong> The gap between the event and the meaning, where the story writes its verdict.</p>
+  <p>Two women experience the same delayed flight. One reads it as proof life never works for her. The other stays open to redirection, new information, another route. The event stays identical. The meaning creates a completely different next decision.</p>
+
+  <div class="split-box">
+    <div class="split-half split-old">
+      <div class="split-label">Old luck story</div>
+      <ul>
+        <li>"He didn't reply, he's not interested."</li>
+        <li>"The plan fell through, nothing works out."</li>
+        <li>"I got rejected, I'm not good enough."</li>
+        <li>"She didn't invite me, I don't matter."</li>
+        <li>"The flight was delayed, of course, typical."</li>
+      </ul>
+    </div>
+    <div class="split-half split-new">
+      <div class="split-label">What she actually knows</div>
+      <ul>
+        <li>One event is not a verdict.</li>
+        <li>A delay is not a pattern.</li>
+        <li>A no is one data point.</li>
+        <li>Silence is not information.</li>
+        <li>Redirection is not rejection.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>She is not delusional. She simply refuses to let one event be the final word, and lets time prove her right.</p>
+
+  <h2>The half-second where it can be interrupted</h2>
+
+  <p>The identity can change at the point of interpretation. An event occurs, the old thought appears, the body reacts, a familiar behaviour follows, and by the time the day ends, the original event has been quietly filed away as more proof of the old story.</p>
+
+  <p>You are not being asked to stop the event from happening, or to stop the first thought from appearing. Both are usually automatic. You are being asked to insert one conscious interruption in the half-second after the body reacts and before the old behaviour completes itself.</p>
+
+  <div class="eq-box">
+    <div class="eq-label">The old loop</div>
+    <div class="eq">EVENT &nbsp;+&nbsp; AUTOMATIC MEANING &nbsp;+&nbsp; FAMILIAR BEHAVIOUR<br/>= OLD IDENTITY REINFORCED</div>
+  </div>
+
+  <div class="eq-box">
+    <div class="eq-label">The interrupted loop</div>
+    <div class="eq">EVENT &nbsp;+&nbsp; CONSCIOUS INTERRUPTION &nbsp;+&nbsp; SELECTED RESPONSE<br/>= NEW EVIDENCE</div>
+  </div>
+
+  <p>That half-second is the entire practice. A selected response creates the first break in the old identity loop.</p>
 
   <h2>Naming the story out loud is not a small thing</h2>
 
-  <p>Something specific happens the first time you write down your Unlucky Universe Story in its exact words, not a vague sense of "I'm just not lucky," but the literal sentence you've been repeating. <em>"Good things happen to other people, not me." "I always find the catch." "It's never actually for me."</em> Written down, the story stops being invisible scaffolding and starts being something you can actually look at.</p>
+  <p>Something specific happens the first time you write down your Unlucky Universe Story in its exact words. Not a vague sense of "I'm just not lucky," but the literal sentence you've been repeating. Written down, the story stops being invisible scaffolding and starts being something you can actually look at.</p>
 
   <div class="pq">
     <p>She didn't argue with the story. She just finally saw it clearly enough to stop agreeing with it by default.</p>
@@ -235,6 +345,25 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   <p>Self Hypnosis Goddess is a private audio membership created by Reshma Oracle, the voice behind every track on the platform. Naming the story consciously is a start, but the story doesn't live in your conscious mind. It lives in a theta-installed subconscious pattern, which means it needs to be replaced in the same state it was built in.</p>
 
   <p>The audio doesn't argue with your Unlucky Universe Story or try to talk you out of it in beta, where the mind is primed to defend its existing evidence. It delivers the new identity, the LuckyGirl operating system, directly into theta, where the old story has no argument left to make. The replacement doesn't happen through willpower. It happens through repetition, in the state where repetition actually rewrites the pattern.</p>
+
+  <div class="loop">
+    <div class="loop-title">The Lucky Girl Operating System</div>
+    <div class="loop-step"><span class="loop-num">1</span><span class="loop-text">Subconscious identity: <em>life supports me</em></span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">2</span><span class="loop-text">Expectation: assumes the favourable outcome</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">3</span><span class="loop-text">Attention: notices openings, not obstacles</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">4</span><span class="loop-text">Interpretation: keeps the door open</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">5</span><span class="loop-text">Reality: acts from certainty, outcomes shift</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">6</span><span class="loop-text">Proof: evidence accumulates</span></div>
+    <div class="loop-arrow">&darr;</div>
+    <div class="loop-step"><span class="loop-num">7</span><span class="loop-text">Identity reinforced, loop begins again</span></div>
+  </div>
+
+  <p>Nothing outside her changed first. The operating system changed, and the world simply started matching it. This is what makes reality feel obedient instead of random.</p>
 
   <p>The quiz names your specific Unlucky Universe Story and places it on the Hawkins scale, because the story you're running isn't the same as everyone else's, and the replacement work is different depending on which block is actually active.</p>
 
