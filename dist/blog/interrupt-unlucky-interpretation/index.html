@@ -81,8 +81,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 .rel-card:hover{border-color:rgba(232,184,112,.6);}
 .rel-img{height:120px;display:flex;align-items:center;justify-content:center;font-size:32px;}
 .rel-body{padding:18px;}
-.rel-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;margin-bottom:8px;display:block;}
-.rel-title{font-size:14px;font-weight:600;color:#fdf0e8;line-height:1.3;}
+.rel-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400;margin-bottom:8px;display:block;}
+.rel-title{font-size:14px;font-weight:400;color:#fdf0e8;line-height:1.3;}
 
 @media(max-width:768px){
   nav{padding:14px 20px;}
@@ -234,6 +234,45 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   </div>
 
   <h2>Why the same event gets two completely different verdicts</h2>
+<div style="margin:36px 0;max-width:560px;margin-left:auto;margin-right:auto;">
+  <div style="text-align:center;padding:16px 24px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);font-size:14px;color:#fdf0e8;margin-bottom:20px;">One event: the message sits unread for six hours.</div>
+  <div style="text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#fdf0e8;margin-bottom:20px;">↓ &nbsp; The half-second &nbsp; ↓</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:16px 14px;font-size:13px;color:#fdf0e8;line-height:1.6;text-align:right;">
+      <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;color:#fdf0e8;">Old reflex</div>
+      She has forgotten about me<br/><br/>Stops following up<br/><br/>No reply comes<br/><br/>Proof added to the story
+    </div>
+    <div style="background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);border-radius:12px;padding:16px 14px;font-size:13px;color:#000;line-height:1.6;">
+      <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;color:#000;">Interrupted</div>
+      She is busy, not gone<br/><br/>Follows up once<br/><br/>Reply arrives<br/><br/>Evidence registered
+    </div>
+  </div>
+  <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#fdf0e8;text-align:center;margin-top:14px;">The event was identical. The verdict was not.</div>
+</div>
+<div class="dg">
+  <div class="tl-split">
+    <div class="tl-spine"></div>
+    <div class="tl-event">One event: the message sits unread for six hours.</div>
+    <div class="tl-gap">↓ &nbsp; The half-second &nbsp; ↓</div>
+    <div class="tl-fork">
+      <div class="tl-left">
+        <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;color:#fdf0e8;">Old reflex</div>
+        She has forgotten about me<br/><br/>
+        Stops following up<br/><br/>
+        No reply comes<br/><br/>
+        Proof added to the story
+      </div>
+      <div class="tl-right">
+        <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;color:#000;">Interrupted</div>
+        She is busy, not gone<br/><br/>
+        Follows up once<br/><br/>
+        Reply arrives<br/><br/>
+        Evidence registered
+      </div>
+    </div>
+  </div>
+  <div class="dg-cap">The event was identical. The verdict was not.</div>
+</div>
 
   <p>Two women experience the identical event, he doesn't text back for two days, and walk away with opposite conclusions. One assumes he's busy. One assumes it's over. Neither of them consciously chose their interpretation; both interpretations arrived instantly, feeling like plain observation rather than a judgment call. The event was identical. The identity running underneath each woman was not.</p>
 
@@ -373,17 +412,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 
       <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:28px;margin-bottom:30px;">
         <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#fdf0e8;text-align:center;margin-bottom:18px;">What changes</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div class="shg-grad" style="font-size:14px;color:#000;line-height:1.5;padding:13px 16px;border-radius:10px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;">Right place. Right time. Right outcome. Mine.</div>
-          <div class="shg-grad" style="font-size:14px;color:#000;line-height:1.5;padding:13px 16px;border-radius:10px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;">Infinite cash streams. Always arriving.</div>
-          <div class="shg-grad" style="font-size:14px;color:#000;line-height:1.5;padding:13px 16px;border-radius:10px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;">Perfect timing. Every single time.</div>
-          <div class="shg-grad" style="font-size:14px;color:#000;line-height:1.5;padding:13px 16px;border-radius:10px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;">Always attracting the right people.</div>
-          <div class="shg-grad" style="font-size:14px;color:#000;line-height:1.5;padding:13px 16px;border-radius:10px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;">Unlimited access. No ceiling.</div>
-          <div class="shg-grad" style="font-size:14px;color:#000;line-height:1.5;padding:13px 16px;border-radius:10px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;">She has it all. Not more. All. All at once.</div>
-        </div>
-      </div>
-
-      <div style="text-align:center;">
+        <div style="text-align:center;">
         <div style="font-size:clamp(26px,3.6vw,40px);font-weight:300;color:#fdf0e8;line-height:1.15;letter-spacing:-.02em;margin-bottom:8px;">Become the woman<br/>good things happen to.</div>
         <div style="font-size:15px;color:#fdf0e8;margin-bottom:28px;">Automatically, always, of course, obviously.</div>
         <a href="/?waitlist=1&ref=blog_interrupt_unlucky_interpretation_lib" class="shg-grad" style="display:inline-block;padding:20px 52px;border-radius:44px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;color:#000;font-family:Jost,sans-serif;font-size:14px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;">Join the waitlist &nbsp;&#8594;</a>
@@ -399,7 +428,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   <div class="related-grid">
     <a href="/blog/why-lucky-girls-are-lucky" class="rel-card">
       <div class="rel-img shg-grad" style="background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);display:flex;align-items:flex-end;padding:16px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;font-weight:500;color:#000;line-height:1.3;">I am the woman good things happen to. Every day, life conspires in my favour.</div>
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:13px;font-weight:300;color:#000;line-height:1.4;">I am the woman good things happen to. Every day, life conspires in my favour.</div>
       </div>
       <div class="rel-body">
         <span class="rel-cat">Luckygirlmaxxing</span>
@@ -408,7 +437,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
     </a>
     <a href="/blog/unlucky-universe-story" class="rel-card">
       <div class="rel-img shg-grad" style="background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);display:flex;align-items:flex-end;padding:16px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;font-weight:500;color:#000;line-height:1.3;">The story isn't the truth. It's just the version that got repeated the most.</div>
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:13px;font-weight:300;color:#000;line-height:1.4;">The story isn't the truth. It's just the version that got repeated the most.</div>
       </div>
       <div class="rel-body">
         <span class="rel-cat">Luckygirlmaxxing</span>
