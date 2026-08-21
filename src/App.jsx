@@ -808,7 +808,7 @@ function AppPreviewSection({ isMobile }) {
         {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
           <button key={id} onClick={()=>setView(id)}
             style={{ padding:"8px 20px", borderRadius:20, background:view===id?"#fdf0e8":"transparent", border:"none",
-              color:view===id?"#000":"#fff", fontSize:12, fontWeight:400, cursor:"pointer",
+              color:view===id?"#000":"#333", fontSize:12, fontWeight:400, cursor:"pointer",
               fontFamily:"'Jost',sans-serif", transition:"all 0.2s", letterSpacing:"0.04em" }}>
             {l}
           </button>
@@ -1682,15 +1682,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ fontSize: isMobile?"clamp(12px,3.2vw,16px)":"clamp(16px,1.6vw,22px)", fontWeight:400, fontFamily:"'Jost',sans-serif", letterSpacing:"0em", lineHeight:1.5, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"6px 6px":"0 10px" }}>
           {[
             { t:"Hypnosis",        c:"#F5E0A0" },
-            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"+",               c:"#000", op:true },
             { t:"Subliminals",     c:"#E8B870" },
-            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"+",               c:"#000", op:true },
             { t:"Melodic House",   c:"#BFA5D8" },
-            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"+",               c:"#000", op:true },
             { t:"EMDR",            c:"#2CB7A7" },
-            { t:"+",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"+",               c:"#000", op:true },
             { t:"Binaural Beats",  c:"#2CB7A7" },
-            { t:"=",               c:"rgba(232,224,216,0.35)", op:true },
+            { t:"=",               c:"#000", op:true },
             { t:"Theta on demand.", c:"#fff", result:true },
           ].map((item,i)=>(
             item.op
