@@ -1198,10 +1198,10 @@ function HowItWorksAccordion({ isMobile }) {
             onClick={() => handleClick(i)}
             style={{ display:"flex", alignItems:"center", gap:20, padding: isMobile?"16px 20px":"20px 28px", cursor:"pointer", background: open===i ? G : "#fdf0e8", borderRadius: open===i ? "14px 14px 0 0" : 14, border:"1px solid rgba(0,0,0,.06)", transition:"all .25s" }}
           >
-            <span style={{ fontSize:11, letterSpacing:"0.2em", color: open===i ? "#000000" : "#fdf0e8", fontWeight:500, flexShrink:0, width:28, fontFamily:"'Jost',sans-serif" }}>{s.n}</span>
+            <span style={{ fontSize:11, letterSpacing:"0.2em", color: "#000", fontWeight:500, flexShrink:0, width:28, fontFamily:"'Jost',sans-serif" }}>{s.n}</span>
             <span style={{ fontSize: isMobile?16:18, fontWeight:400, color:"#000", flex:1, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em" }}>{s.title}</span>
             {s.badge && open===i && <span style={{ background:"#000", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", flexShrink:0, fontWeight:500 }}>Goddess Tier ✦</span>}
-            <span style={{ fontSize:20, color:"#fdf0e8", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform .3s", fontWeight:300 }}>+</span>
+            <span style={{ fontSize:20, color: open===i ? "#000" : "#000", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform .3s", fontWeight:300 }}>+</span>
           </div>
           {open===i && (
             <div style={{ background:G, borderRadius:"0 0 14px 14px", padding: isMobile?"16px 20px 24px":"20px 28px 28px" }}>

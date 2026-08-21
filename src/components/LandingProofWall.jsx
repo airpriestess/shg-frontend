@@ -264,7 +264,7 @@ function getCardStyle(i) {
   const cycle = i % 3;
   if (cycle === 0) return { bg: "#000", text: "#fdf0e8", mu: "#fdf0e8", logBg: "#111", badgeBg: "#fdf0e8", badgeColor: "#E8B870", border: "rgba(232,184,112,0.15)" };
   if (cycle === 1) return { bg: "#ffffff", text: "#000", mu: "#000000", logBg: "#f5f5f5", badgeBg: "#f0f0f0", badgeColor: "#000", border: "#000000" };
-  return { bg: LG, text: "#000", mu: "#000", logBg: "#000000", badgeBg: "#000000", badgeColor: "#000", border: "#000000" };
+  if (cycle === 2) return { bg: LG, text: "#000", mu: "#000", logBg: "rgba(0,0,0,0.12)", badgeBg: "rgba(0,0,0,0.18)", badgeColor: "#000", border: "rgba(0,0,0,0.2)" };
 }
 
 export default function LandingProofWall({ isMobile }) {
