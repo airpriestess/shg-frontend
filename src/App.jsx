@@ -866,44 +866,6 @@ function HeroMarquee() {
 }
 
 /* ── MAXXING CAROUSEL, Lucky Girl gradient bg, BLACK text ────────────────────── */
-/* ── CATEGORY TICKER ── 24 maxxing categories, one lights up at a time ── */
-const CATS = [
-  "Luckygirlmaxxing","Richgirlmaxxing","Lovemaxxing","Beautymaxxing","Selfmaxxing",
-  "Goddessmaxxing","Sleepmaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing",
-  "Healthmaxxing","DNAmaxxing","Desiresmaxxing","Businessmaxxing","Peacemaxxing",
-  "Confidencemaxxing","Stylemaxxing","Friendmaxxing","Singlemaxxing","Intuitionmaxxing",
-  "Sovereignmaxxing","Lifemaxxing","Wellnessmaxxing","Studymaxxing",
-];
-const CATS_DBL = [...CATS,...CATS];
-
-function CategoryTicker() {
-  const [lit, setLit] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setLit(i => (i+1)%CATS.length), 1800);
-    return () => clearInterval(t);
-  }, []);
-  return (
-    <div style={{ display:"flex", animation:"catTick 40s linear infinite", whiteSpace:"nowrap", gap:0 }}>
-      {CATS_DBL.map((cat,i) => {
-        const isLit = i%CATS.length === lit;
-        return (
-          <span key={i} style={{
-            padding:"0 28px", fontSize:11, fontFamily:"'Jost',sans-serif",
-            fontWeight:400, letterSpacing:"0.2em", textTransform:"uppercase",
-            whiteSpace:"nowrap", transition:"all .4s ease",
-            background: isLit ? "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" : "none",
-            WebkitBackgroundClip: isLit ? "text" : "unset",
-            backgroundClip: isLit ? "text" : "unset",
-            color: isLit ? "transparent" : "rgba(255,255,255,.35)",
-            borderRight:"1px solid rgba(255,255,255,.07)",
-          }}>{cat}</span>
-        );
-      })}
-      <style>{`@keyframes catTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}`}</style>
-    </div>
-  );
-}
-
 function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
@@ -925,7 +887,7 @@ function MaxxingCarousel({ cats }) {
       <div style={{
         transition:"opacity 0.25s, transform 0.25s",
         opacity: flash ? 0 : 1,
-        transform: flash ? "translateY(8px)" : "translateY(0px)",
+        transform: flash ? "scale(0.98)" : "scale(1)",
         background: bg,
         padding:"clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
@@ -939,7 +901,7 @@ function MaxxingCarousel({ cats }) {
         }}>{current.label} ✦</div>
         <div style={{
           fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05, color:"#000",
-          fontFamily:"'Noto Serif',serif", fontWeight:100, fontStyle:"italic", letterSpacing:"-0.01em"
+          fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
@@ -979,8 +941,34 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   const next3 = cats[(idx+3)%cats.length];
 
   // Category-specific colours
-  const CAT_COLOURS = {};
-  const FALLBACK = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+  const CAT_COLOURS = {
+    // Carousel only, full palette including warm pink + hot blue accent tiles
+    "Richgirlmaxxing":     "linear-gradient(135deg,#0A4A8A,#2CB7A7,#2CB7A7)",  // navy → deep blue → turquoise
+    "Luckygirlmaxxing": "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",  // full Lucky Girl ombre
+    "Beautymaxxing":    "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // blush → soft rose
+    "Lovemaxxing":      "linear-gradient(135deg,#F5E0A0,#E07898)",        // pale blush → warm rose
+    "DNAmaxxing":       "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // hot blue → teal
+    "Lifemaxxing":      "linear-gradient(135deg,#E8B870,#E8B870)",        // amber gold
+    "Bodymaxxing":      "linear-gradient(135deg,#167A6B,#2CB7A7)",        // deep teal
+    "Selfmaxxing":      "linear-gradient(135deg,#BFA5D8,#2CB7A7)",        // lilac → teal
+    "Erosmaxxing":      "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // warm rose → blush
+    "Businessmaxxing":  "linear-gradient(135deg,#2CB7A7,#E8B870)",        // hot blue → gold
+    "Singlemaxxing":    "linear-gradient(135deg,#F5E0A0,#D4889A)",        // blush → dusty rose
+    "Skinnymaxxing":    "linear-gradient(135deg,#2CB7A7,#167A6B)",        // teal
+    "Sleepmaxxing":     "linear-gradient(135deg,#1A4A8A,#2CB7A7)",        // deep blue → hot blue
+    "Facemaxxing":      "linear-gradient(135deg,#E8B870,#F5E0A0)",        // gold → blush
+    "Desiresmaxxing":    "linear-gradient(135deg,#E8B870,#BFA5D8)",        // hot blue → lilac
+    "Wellnessmaxxing":  "linear-gradient(135deg,#2CB7A7,#BFA5D8)",        // teal → lilac
+    "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0,#E8B870)",        // blush → gold
+    "Stylemaxxing":     "linear-gradient(135deg,#E8B870,#F5E0A0)",        // gold → soft pink
+    "Healthmaxxing":      "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // pale pink → warm rose
+    "Peacemaxxing":     "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // teal → hot blue
+    "Friendmaxxing":    "linear-gradient(135deg,#2CB7A7,#2CB7A7)",        // hot blue → teal
+    "Studymaxxing":     "linear-gradient(135deg,#2CB7A7,#BFA5D8)",        // hot blue → lilac
+    "Intuitionmaxxing": "linear-gradient(135deg,#F5E0A0,#F5E0A0)",        // warm rose → blush
+    "Sovereignmaxxing": "linear-gradient(135deg,#E8B870,#2CB7A7)",        // gold → hot blue
+  };
+  const FALLBACK = "linear-gradient(135deg,#2CB7A7,#2CB7A7)";
   const bg = CAT_COLOURS[current.label] || FALLBACK;
 
   return (
@@ -988,7 +976,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
       <div style={{
         transition:"opacity 0.25s, transform 0.25s",
         opacity: flash ? 0 : 1,
-        transform: flash ? "translateY(8px)" : "translateY(0px)",
+        transform: flash ? "scale(0.98)" : "scale(1)",
         background: bg,
         padding: fullscreen ? "0 clamp(20px,5vw,60px)" : "clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
@@ -1003,7 +991,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
         }}>{current.label} ✦</div>
         <div style={{
           fontSize: fullscreen ? "clamp(28px,5.5vw,56px)" : "clamp(20px,3.5vw,42px)", lineHeight:1.12, color:"#000",
-          fontFamily:"'Noto Serif',serif", fontWeight:100, fontStyle:"italic", letterSpacing:"-0.01em"
+          fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
       </div>
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
@@ -1415,7 +1403,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
             Of course, obviously. ✦
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"6px 18px", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border: "none", borderRadius: 20, color: "#000", fontSize: isMobile ? 14 : 12, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"6px 18px", background: "rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.2)", borderRadius: 20, color: "#000", fontSize: isMobile ? 14 : 12, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join the waitlist →
           </button>
         </div>
@@ -1595,28 +1583,28 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:16, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
           {/* GRADIENT BOX */}
           <div style={{ margin:"0 auto 12px", padding: isMobile?"14px 24px":"18px 40px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:40, width: isMobile?"90%":"100%", maxWidth:"100%" }}>
-            <div style={{ fontSize: isMobile?"clamp(18px,5vw,28px)":"clamp(22px,2.8vw,36px)", fontFamily:"'Noto Serif',serif", fontWeight:100, fontStretch:"condensed", letterSpacing:"0em", lineHeight:1.1, textTransform:"uppercase", color:"#000" }}>Reprogram your mind from stuck to unstoppable.</div>
+            <div style={{ fontSize: isMobile?"clamp(18px,5vw,28px)":"clamp(22px,2.8vw,36px)", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.2, color:"#000" }}>Reprogram your mind from stuck to unstoppable.</div>
             <div style={{ fontSize: isMobile?13:15, fontFamily:"'Jost',sans-serif", fontWeight:300, marginTop:8, color:"#000" }}>Shift your identity. Shift your reality.</div>
           </div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
         <div style={{ background:"#000", padding: isMobile?"12px 14px 20px":"32px 24px 48px" }}>
-          <div style={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.08)", borderRadius: isMobile?14:22, padding: isMobile ? "16px" : "36px 44px", maxWidth: isMobile?"100%":780, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
+          <div style={{ background: "#0a0a0a", border: "1px solid rgba(42,168,154,0.35)", borderRadius: isMobile?14:22, padding: isMobile ? "16px" : "36px 44px", maxWidth: isMobile?"100%":780, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
             {/* Top row, track info + waveform */}
-            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16, flexDirection: isMobile?"column":"row", textAlign: isMobile?"center":"left" }}>
-              <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(255,255,255,0.06)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
+              <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
                 <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?34:64} height={isMobile?34:64} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#fdf0e8", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "I Am The Luckiest Woman In This Universe"}</div>
-                <div style={{ fontSize: isMobile?12:16, fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>Reshma Oracle</div>
-                <div style={{ fontSize: isMobile?12:14, color: "#fdf0e8", fontFamily: "'Jost',sans-serif", marginTop: 2, opacity: 0.6 }}>{currentTrack?.sub}{currentTrack?.sub && currentTrack?.freq ? " · " : ""}{currentTrack?.freq || "Hypnosis · 528hz"}</div>
+                <div style={{ fontSize: isMobile?12:16, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: 12, color: "#fdf0e8", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.sub}{currentTrack?.sub && currentTrack?.freq ? " · " : ""}{currentTrack?.freq || "Hypnosis · 528hz"}</div>
               </div>
               {playing && (
-                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "linear-gradient(135deg,#E8B870,#2CB7A7)", animation: "pulse 1.2s ease-in-out infinite" }}/>
-                  <span style={{ fontSize: 11, color: "#fdf0e8", fontFamily: "'Jost',sans-serif", fontWeight: 400 }}>LIVE</span>
+                <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(42,168,154,0.12)", border: "1px solid rgba(42,168,154,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2CB7A7", animation: "pulse 1.2s ease-in-out infinite" }}/>
+                  <span style={{ fontSize: 11, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
                 </div>
               )}
             </div>
@@ -1629,18 +1617,18 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {/* Controls */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"4px 4px 0", overflow:"visible" }}>
               <button title="Share (coming soon)" style={{ background:"none", border:"none", cursor:"default", padding:8, opacity:0.3, lineHeight:0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fdf0e8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2CB7A7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
               </button>
-              <button onClick={prevTrack} title="Previous track" style={{ background:"rgba(255,255,255,0.06)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", padding:8, lineHeight:0, display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.15s" }} onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.12)"} onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.06)"}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="#fdf0e8"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#fdf0e8"/></svg>
+              <button onClick={prevTrack} title="Previous track" style={{ background:"rgba(44,183,167,0.1)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", padding:8, lineHeight:0, display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.15s" }} onMouseEnter={e=>e.currentTarget.style.background="rgba(44,183,167,0.22)"} onMouseLeave={e=>e.currentTarget.style.background="rgba(44,183,167,0.1)"}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#2CB7A7"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill="#2CB7A7"/></svg>
               </button>
-              <button onClick={togglePlay} title={playing ? "Pause" : "Play"} style={{ width:50, height:50, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(0,0,0,0.4)", flexShrink:0, lineHeight:0, overflow:"visible", transition:"transform 0.15s" }} onMouseEnter={e=>e.currentTarget.style.transform="scale(1.06)"} onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
+              <button onClick={togglePlay} title={playing ? "Pause" : "Play"} style={{ width:50, height:50, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(42,168,154,0.45)", flexShrink:0, lineHeight:0, overflow:"visible", transition:"transform 0.15s" }} onMouseEnter={e=>e.currentTarget.style.transform="scale(1.06)"} onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
                 {playing
                   ? <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
                   : <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
                 }
               </button>
-              <button onClick={nextTrack} title="Next track" style={{ background:"rgba(255,255,255,0.06)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", padding:8, lineHeight:0, display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.15s" }} onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.12)"} onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.06)"}>
+              <button onClick={nextTrack} title="Next track" style={{ background:"rgba(44,183,167,0.1)", border:"none", borderRadius:"50%", width:40, height:40, cursor:"pointer", padding:8, lineHeight:0, display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.15s" }} onMouseEnter={e=>e.currentTarget.style.background="rgba(44,183,167,0.22)"} onMouseLeave={e=>e.currentTarget.style.background="rgba(44,183,167,0.1)"}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="#2CB7A7"><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill="#2CB7A7"/></svg>
               </button>
               <button title="Repeat (coming soon)" style={{ background:"none", border:"none", cursor:"default", padding:8, opacity:0.3, lineHeight:0 }}>
@@ -1685,13 +1673,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* APP PREVIEW, dashboard mockup with dark/light toggle */}
       <AppPreviewSection isMobile={isMobile} />
-
-      {/* CATEGORY TICKER */}
-      <div style={{ background:"#000", borderTop:"1px solid rgba(255,255,255,.06)", borderBottom:"1px solid rgba(255,255,255,.06)", padding:"18px 0", overflow:"hidden",
-        maskImage:"linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)",
-        WebkitMaskImage:"linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)" }}>
-        <CategoryTicker />
-      </div>
 
       {/* FORMULA */}
       <div style={{ background:"#000", padding: isMobile?"0 20px 56px":"12px 48px 64px", textAlign:"center" }}>
