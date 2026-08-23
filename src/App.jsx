@@ -866,6 +866,44 @@ function HeroMarquee() {
 }
 
 /* ── MAXXING CAROUSEL, Lucky Girl gradient bg, BLACK text ────────────────────── */
+/* ── CATEGORY TICKER ── 24 maxxing categories, one lights up at a time ── */
+const CATS = [
+  "Luckygirlmaxxing","Richgirlmaxxing","Lovemaxxing","Beautymaxxing","Selfmaxxing",
+  "Goddessmaxxing","Sleepmaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing",
+  "Healthmaxxing","DNAmaxxing","Desiresmaxxing","Businessmaxxing","Peacemaxxing",
+  "Confidencemaxxing","Stylemaxxing","Friendmaxxing","Singlemaxxing","Intuitionmaxxing",
+  "Sovereignmaxxing","Lifemaxxing","Wellnessmaxxing","Studymaxxing",
+];
+const CATS_DBL = [...CATS,...CATS];
+
+function CategoryTicker() {
+  const [lit, setLit] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setLit(i => (i+1)%CATS.length), 1800);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div style={{ display:"flex", animation:"catTick 40s linear infinite", whiteSpace:"nowrap", gap:0 }}>
+      {CATS_DBL.map((cat,i) => {
+        const isLit = i%CATS.length === lit;
+        return (
+          <span key={i} style={{
+            padding:"0 28px", fontSize:11, fontFamily:"'Jost',sans-serif",
+            fontWeight:400, letterSpacing:"0.2em", textTransform:"uppercase",
+            whiteSpace:"nowrap", transition:"all .4s ease",
+            background: isLit ? "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" : "none",
+            WebkitBackgroundClip: isLit ? "text" : "unset",
+            backgroundClip: isLit ? "text" : "unset",
+            color: isLit ? "transparent" : "rgba(255,255,255,.35)",
+            borderRight:"1px solid rgba(255,255,255,.07)",
+          }}>{cat}</span>
+        );
+      })}
+      <style>{`@keyframes catTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}`}</style>
+    </div>
+  );
+}
+
 function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
@@ -1647,6 +1685,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* APP PREVIEW, dashboard mockup with dark/light toggle */}
       <AppPreviewSection isMobile={isMobile} />
+
+      {/* CATEGORY TICKER */}
+      <div style={{ background:"#000", borderTop:"1px solid rgba(255,255,255,.06)", borderBottom:"1px solid rgba(255,255,255,.06)", padding:"18px 0", overflow:"hidden",
+        maskImage:"linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)",
+        WebkitMaskImage:"linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)" }}>
+        <CategoryTicker />
+      </div>
 
       {/* FORMULA */}
       <div style={{ background:"#000", padding: isMobile?"0 20px 56px":"12px 48px 64px", textAlign:"center" }}>
