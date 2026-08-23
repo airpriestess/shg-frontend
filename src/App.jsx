@@ -870,7 +870,7 @@ function MaxxingCarousel({ cats }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
   useEffect(() => {
-    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 250); }, 2800);
+    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 700); }, 3500);
     return () => clearInterval(timer);
   }, [cats.length]);
   const current = cats[idx];
@@ -885,9 +885,8 @@ function MaxxingCarousel({ cats }) {
   return (
     <div style={{ overflow:"hidden" }}>
       <div style={{
-        transition:"opacity 0.25s, transform 0.25s",
+        transition:"opacity 0.7s ease",
         opacity: flash ? 0 : 1,
-        transform: flash ? "scale(0.98)" : "scale(1)",
         background: bg,
         padding:"clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
@@ -932,7 +931,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   const [idx, setIdx] = useState(0);
   const [flash, setFlash] = useState(false);
   useEffect(() => {
-    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 200); }, 2000);
+    const timer = setInterval(() => { setFlash(true); setTimeout(() => { setIdx(i => (i+1)%cats.length); setFlash(false); }, 700); }, 3500);
     return () => clearInterval(timer);
   }, [cats.length]);
   const current = cats[idx];
@@ -974,9 +973,8 @@ function IdentityCarousel({ cats, fullscreen=false }) {
   return (
     <div style={{ overflow:"hidden", display:"flex", flexDirection:"column", ...(fullscreen?{flex:1}:{}) }}>
       <div style={{
-        transition:"opacity 0.25s, transform 0.25s",
+        transition:"opacity 0.7s ease",
         opacity: flash ? 0 : 1,
-        transform: flash ? "scale(0.98)" : "scale(1)",
         background: bg,
         padding: fullscreen ? "0 clamp(20px,5vw,60px)" : "clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
