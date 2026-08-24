@@ -452,7 +452,7 @@ function CheckoutModal({ onClose, onDemo }) {
         {/* HEADER */}
         <div style={{background:"linear-gradient(135deg,rgba(191,165,216,0.08),rgba(44,183,167,0.08))",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
           <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#2CB7A7",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
-          <h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(22px,4vw,30px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4,textAlign:"center"}}>Choose your membership.</h3>
+          <h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(22px,4vw,30px)",color:"#fdf0e8",fontWeight:400,lineHeight:1.2,marginBottom:4,textAlign:"center"}}>Choose your membership.</h3>
           <p style={{fontSize:13,color:"#2a2a2a",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
           {/* MONTHLY / ANNUAL TOGGLE */}
@@ -480,7 +480,7 @@ function CheckoutModal({ onClose, onDemo }) {
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
                 <div style={{fontSize:16,fontWeight:400,color:"#000000",marginBottom:2}}>Audio Tier</div>
-                <div style={{fontSize:11,color:"#8a7268",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
+                <div style={{fontSize:11,color:"rgba(253,240,232,0.55)",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annualPerMonth:TIERS.audio.monthly}</div>
@@ -512,7 +512,7 @@ function CheckoutModal({ onClose, onDemo }) {
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annualPerMonth:TIERS.goddess.monthly}</div>
                 <div style={{fontSize:11,color:"#2CB7A7"}}>/month</div>
-                {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>{TIERS.goddess.annualNote}</div>}
+                {isAnnual && <div style={{fontSize:10,color:"rgba(253,240,232,0.6)"}}>{TIERS.goddess.annualNote}</div>}
                 <div style={{fontSize:9,fontWeight:500,color:"#F5E0A0",letterSpacing:"0.1em",marginTop:4,textTransform:"uppercase"}}>Coming Soon</div>
               </div>
             </div>
@@ -552,7 +552,7 @@ function CheckoutModal({ onClose, onDemo }) {
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first, no signup needed</button>
-          <div style={{textAlign:"center",fontSize:11,color:"#a0909a",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
+          <div style={{textAlign:"center",fontSize:11,color:"rgba(253,240,232,0.45)",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
         </div>
       </div>
     </div>
@@ -1181,7 +1181,7 @@ function HowItWorksAccordion({ isMobile }) {
   const steps = [
     { n:"01", title:"Choose a track. Press play. Anytime.", body:"Browse 24 categories — Luckygirlmaxxing, Richgirlmaxxing, Lovemaxxing, Beautymaxxing, Selfmaxxing and more. Whatever area of your life you want to shift, there is a track built specifically for that identity upgrade. Pick it. Press play. No ritual required, no perfect timing, no need to be relaxed first. In the car, in the gym, while you cook, while you fall asleep. The audio works in any environment. The one non-negotiable: repetition. Listen at least twice a day. The subconscious doesn't install on one exposure. It installs through consistent repetition, the same way your old beliefs were installed. Keep going even if you don't feel it working yet. That's the point — it works below conscious awareness." },
     { n:"02", title:"Theta state — your subconscious opens.", body:"Theta is a brainwave state between 4 and 8Hz, the state you pass through every night just before sleep, and the only state where your subconscious mind becomes fully receptive to new beliefs. The binaural beats in every SHG track put you there within minutes. How: one frequency plays in your left ear, a slightly different frequency plays in your right ear. Your brain detects the difference and creates a third tone, following it down into theta automatically. You don't have to do anything. You just listen. In theta, the gatekeeper goes offline. The critical, doubting, filtering conscious mind steps back. What's left is pure subconscious, open and ready for the install." },
-    { n:"03", title:"The hypnosis script installs the new identity.", body:"While you're in theta, Reshma's voice delivers a direct hypnosis script built around your chosen identity. Not affirmations you repeat out loud hoping to believe them. An actual hypnosis session that speaks to your subconscious as the authority it recognises. The language is precise. The delivery is intentional. Every word is chosen to bypass the part of your mind that says 'I don't believe this yet' and land in the part that simply receives and installs. This is why the tracks feel different to guided meditations. This is hypnosis, not inspiration." },
+    { n:"03", title:"The hypnosis script installs the new identity.", body:"While you're in theta, Reshma's voice delivers a direct hypnosis script built around your chosen identity. Not affirmations you repeat out loud hoping to believe them. An actual hypnosis session that speaks to your subconscious as the authority it recognises. The language is precise. The delivery is intentional. Every word is chosen to bypass the part of your mind that says 'I don't believe this yet' and arrive in the part that simply receives and installs. This is why the tracks feel different to guided meditations. This is hypnosis, not inspiration." },
     { n:"04", title:"Subliminals reinforce every second.", body:"Here is what a subliminal actually is. Affirmations recorded at a volume your conscious mind cannot detect, but your subconscious receives clearly. While you listen to the music and the hypnosis voice, a second layer of identity statements plays underneath, just below the threshold of conscious hearing. You cannot make out the words. You are not meant to. Your conscious mind hears music. Your subconscious hears every word, receiving the same identity statements hundreds of times per session, with zero interference from the part of your mind that usually argues, doubts, or says 'I don't believe this.' This is why subliminals work where willpower fails. Willpower requires your conscious mind to fight your subconscious. Subliminals bypass the fight entirely and go straight to the source. No belief required. No effort required. Just repetition, at a frequency your subconscious cannot ignore." },
     { n:"05", title:"Melodic house locks you in state.", body:"Every track is built on melodic house — a specific tempo and frequency range chosen because it keeps the nervous system elevated without pulling you out of theta. This is not background music. The music is structural. It holds the binaural frequency stable, maintains emotional engagement so you stay present rather than drifting, and creates the feeling state that matches the identity you're installing. When you feel the energy lift as the track plays, that's not a side effect. That's the mechanism. Identity installs fastest when the emotional and neurological state match the belief." },
     { n:"06", title:"Your beliefs change. Automatically.", body:"You won't necessarily notice the moment it happens. That's normal. The subconscious doesn't send you a confirmation email. What you'll notice instead is that the old thought doesn't fire as automatically as it used to. The doubt is quieter. The assumption shifts. You catch yourself thinking from the new identity without trying. This is because the neural pathway underneath the old belief has been weakened through disuse, and the pathway underneath the new one has been strengthened through repetition. Neuroscience calls this neuroplasticity. In this context it means your mind is genuinely different from the one you started with." },
@@ -1426,7 +1426,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
         <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
-          <div className="shimmer-bar" />
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
             Of course, obviously. ✦
           </span>
@@ -1610,7 +1609,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:16, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
           {/* GRADIENT BOX */}
           <div style={{ margin:"0 auto 12px", padding: isMobile?"14px 24px":"22px 48px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:40, width: isMobile?"90%":"auto", maxWidth:680, display:"inline-block" }}>
-            <div style={{ fontSize: isMobile?"clamp(18px,5vw,28px)":"clamp(22px,2.8vw,36px)", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.2, color:"#000" }}>Reprogram your mind from stuck to unstoppable.</div>
+            <div style={{ fontSize: isMobile?"clamp(18px,5vw,28px)":"clamp(22px,2.8vw,36px)", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.2, color:"#000" }}>Your subconscious. Reprogrammed. Identity installed.</div>
             <div style={{ fontSize: isMobile?13:15, fontFamily:"'Jost',sans-serif", fontWeight:300, marginTop:8, color:"#000" }}>Shift your identity. Shift your reality.</div>
           </div>
         </div>
@@ -1739,7 +1738,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(16px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview Audio Library
         </button>
-        <div style={{ fontSize:11, color:"rgba(232,184,112,0.85)", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Beta, still being built</div>
+        <div style={{ fontSize:11, color:"rgba(232,184,112,0.85)", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Growing weekly</div>
         <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"14px 36px":"18px 48px", background:"linear-gradient(135deg,rgba(245,224,160,0.55) 0%,rgba(232,184,112,0.55) 20%,rgba(191,165,216,0.55) 52%,rgba(44,183,167,0.55) 78%,rgba(22,122,107,0.55) 100%)", border:"none", borderRadius:40, color:"rgba(253,240,232,0.9)", fontSize: isMobile?"clamp(17px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the science behind this →</button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
@@ -2007,7 +2006,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#fdf6ee" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#7a7a7a", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"rgba(253,240,232,0.5)", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
             <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize:isMobile?"clamp(32px,8vw,48px)":"clamp(40px,5vw,60px)", fontWeight:400, color:"#0a0a0a", letterSpacing:"0em", lineHeight:1.1, textAlign:"center" }}>
               Wall of Love
             </h2>
@@ -2033,7 +2032,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 </div>
                 <p style={{ fontSize:isMobile?16:18, color:"#0a0a0a", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <span style={{ fontSize:12, fontWeight:400, color:"#6a6a6a", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
+                  <span style={{ fontSize:12, fontWeight:400, color:"rgba(253,240,232,0.55)", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:20, color:"#000", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>
@@ -2104,7 +2103,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div onClick={()=>setShopOpen(false)} style={{ position:"fixed", inset:0, zIndex:2000, background:"#000000", display:"flex", alignItems:"center", justifyContent:"center", padding: isMobile?0:20 }}>
           <div onClick={e=>e.stopPropagation()} style={{ width:"100%", height: isMobile?"100%":"90vh", maxWidth:900, background:"#0a0a0a", borderRadius: isMobile?0:20, overflow:"hidden", display:"flex", flexDirection:"column", border:"1px solid rgba(42,168,154,0.3)" }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 18px", borderBottom:"1px solid rgba(42,168,154,0.2)", flexShrink:0 }}>
-              <span style={{ fontFamily:"'Jost',sans-serif", fontSize:13, color:"#c8bcb0", letterSpacing:"0.1em", textTransform:"uppercase" }}>Shop</span>
+              <span style={{ fontFamily:"'Jost',sans-serif", fontSize:13, color:"#fdf0e8", letterSpacing:"0.1em", textTransform:"uppercase" }}>Shop</span>
               <div style={{ display:"flex", gap:10, alignItems:"center" }}>
                 <a href="https://beacons.ai/reshmaoracle" target="_blank" rel="noopener noreferrer" style={{ fontSize:12, color:theme==="dark"?"#fdf0e8":"#000000", textDecoration:"none" }}>Open in new tab ↗</a>
                 <button onClick={()=>setShopOpen(false)} style={{ background:"none", border:"none", color:"#fdf0e8", fontSize:22, cursor:"pointer", lineHeight:1, padding:4 }}>×</button>
@@ -2123,7 +2122,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <>
                 <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
                 <div style={{ fontSize:20, fontWeight:400, color:"#fdf0e8", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
-                <div style={{ fontSize:14, color:"#c8c0bc", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
+                <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
                 <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
               </>
             ) : (
