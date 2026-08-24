@@ -1,4 +1,4 @@
-# SHG App Brain — Session 2+ (CORRECT VERSION)
+# SHG App Brain — Current (CORRECT VERSION)
 
 > ⚠️ The Session 1 doc with #C8892A gold, Inter font, €14.99, white text is WRONG and outdated. Ignore it entirely. This is the source of truth.
 
@@ -37,12 +37,13 @@
 
 - Frontend: React + Vite — inline JSX styles only, NO Tailwind, NO CSS modules
 - CSS: export const CSS in tokens.js → <style>{CSS}</style> in App.jsx
-- Backend: Node.js + Express
-- Database: Supabase (qtwvslrwmreazmrdktsn)
-- Payments: Stripe
-- Hosting: Vercel
-- Audio: Supabase Storage (bucket: tracks)
+- Hosting: Cloudflare Pages (GitHub → auto-deploy)
+- Auth: stub (signIn/signUp throw "Auth not yet configured" — needs replacement)
+- Audio: needs Cloudflare R2 or similar — currently `/audio/` relative paths (placeholder)
+- Payments: Stripe (buy links direct; portal stub at /api/create-portal-session)
 - Email: Beacons.ai → Zapier → Stripe
+
+**Removed:** Supabase (was qtwvslrwmreazmrdktsn), Vercel
 
 ---
 
@@ -51,7 +52,17 @@
 - Spoilt Goddess (Melodic House · EMDR · 528hz): SPOILT INSTAGRAM 13.04.2026.WAV
 - Subliminal (music only · Delta): 29.06.2026-6.mp3
 
-Base URL: https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/
+Audio needs a real host (Cloudflare R2 recommended). App currently references `/audio/<filename>` as placeholder.
+
+---
+
+## Carousel system
+
+- Category backgrounds: `ds-bundle/tokens/tokens.css` — `--slide-<category>`
+- Preview: 420×560 HTML in `carousels/<slug>/index.html`
+- Export: 1080×1440 PNG via `node export-slides.js <path>` (Playwright)
+- Generator skill: `.claude/skills/carousel-generator/SKILL.md`
+- Demo: `carousels/demo-lovemaxxing/index.html` — Lovemaxxing blush #F2C8C0
 
 ---
 
@@ -89,13 +100,16 @@ export const CSS = `...`; // tokens.js
 
 ## Pending
 
+- [ ] Auth backend — replace stub with real provider (Cloudflare Worker + JWT, or Clerk/Auth0)
+- [ ] Audio hosting — upload WAVs/MP3s to Cloudflare R2 and update BASE_URL in SpotifyPortal.jsx
+- [ ] Stripe portal — Cloudflare Worker at /api/create-portal-session
+- [ ] Proof upload — replace URL.createObjectURL stub with Cloudflare R2 backend
+- [ ] Quiz leads — replace console.log stubs with API endpoint (Cloudflare Worker → database)
+- [ ] Push notification subscriptions — replace console.log stub with API endpoint
 - [ ] Mobile grid stacking — still broken on phones
 - [ ] Real images replacing placeholders (hero, problem cards, proof wall, reshma photo)
 - [ ] Conscious/subconscious mind branded diagram
-- [ ] Stripe webhook → Supabase (written, not deployed)
-- [ ] Real Supabase auth (currently demo mode)
 - [ ] Beacons.ai → Zapier → Stripe email automation
 - [ ] 5-email welcome sequence
-- [ ] Formats section — visual
 - [ ] DNA activation mention on landing
 - [ ] ProofOS worked example copy

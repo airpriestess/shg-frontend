@@ -19,6 +19,7 @@ import RichGirl from "./pages/RichGirl.jsx";
 import Blocks from "./pages/Blocks.jsx";
 import Quizzes from "./pages/Quizzes.jsx";
 import BlocksQuiz from "./pages/BlocksQuiz.jsx";
+import CarouselStudio from "./pages/CarouselStudio.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LandingProofWall from "./components/LandingProofWall.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
@@ -259,6 +260,7 @@ export default function App() {
         <Route path="/richgirl" element={<RichGirl/>} />
         <Route path="/blocks" element={<Blocks/>} />
         <Route path="/blocks/:category" element={<BlocksQuiz/>} />
+        <Route path="/carousels" element={<CarouselStudio/>} />
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
