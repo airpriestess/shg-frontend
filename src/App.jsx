@@ -735,8 +735,6 @@ function AppPreviewSection({ isMobile }) {
       </div>
     );
   })();
-
-  );
 }
 
 function HeroMarquee() {
