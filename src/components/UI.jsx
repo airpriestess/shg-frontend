@@ -118,7 +118,7 @@ export function Modal({ open, onClose, title, children, width = 520 }) {
 export function ProgressBar({ value, max, color, height = 5 }) {
   const pct = Math.min(100, (value / max) * 100);
   return (
-    <div style={{ height, background: "rgba(255,255,255,0.06)", borderRadius: height, overflow: "hidden" }}>
+    <div style={{ height, background: "#fdf0e8", borderRadius: height, overflow: "hidden" }}>
       <div style={{ width: `${pct}%`, height: "100%", background: color || "linear-gradient(90deg, " + T.gold + ", " + T.rose + ")" , borderRadius: height, transition: "width 0.6s ease" }} />
     </div>
   );

@@ -8,9 +8,13 @@
 import { useState, useRef, useEffect } from "react";
 import { T } from "../design/tokens.js";
 import { Btn, Modal, FormField } from "./UI.jsx";
+import { useAuth } from "../contexts/AuthContext.jsx";
+
+const PROOF_WORKER_URL = "https://shg-proof-worker.airpriestess.workers.dev";
 
 // ── PHOTO UPLOAD MODAL ────────────────────────────────────────────────────────
 export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }) {
+  const { token } = useAuth();
   const [file, setFile]         = useState(null);
   const [preview, setPreview]   = useState(null);
   const [caption, setCaption]   = useState("");
@@ -23,7 +27,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
 
   const handleFile = (f) => {
     if (!f) return;
-    if (f.size > 20 * 1024 * 1024) { setError("File too large — maximum 20 MB."); return; }
+    if (f.size > 20 * 1024 * 1024) { setError("File too large, maximum 20 MB."); return; }
     setFile(f);
     setError(null);
     const reader = new FileReader();
@@ -41,23 +45,27 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
     setUploading(true);
     setError(null);
     try {
-      const ext  = file.name.split(".").pop().toLowerCase() || "jpg";
-      const path = `proof/${threadId || "general"}/${Date.now()}.${ext}`;
-      // TODO: upload to Cloudflare R2 / your storage API
-      const publicUrl = URL.createObjectURL(file);
-      console.log("photo proof saved locally", { path, caption, audioTitle });
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("type", "Photo Proof");
+      if (caption) formData.append("caption", caption);
+      if (audioTitle) formData.append("audio_title", audioTitle);
+      if (threadId) formData.append("thread_id", threadId);
+
+      const res = await fetch(`${PROOF_WORKER_URL}/proof-entries/upload`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Upload failed");
 
       setDone(true);
-      if (onSaved) onSaved({ type: "Photo Proof", photo_url: publicUrl, caption });
+      if (onSaved) onSaved({ type: "Photo Proof", photo_url: data.entry.photo_url, caption });
       setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
-      // Still show success if storage worked even if table insert failed
-      if (e.message?.includes("proof_entries")) {
-        setDone(true);
-      } else {
-        setError("Upload failed — " + (e.message || "please try again."));
-      }
+      setError("Upload failed, " + (e.message || "please try again."));
     } finally {
       setUploading(false);
     }
@@ -140,6 +148,7 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
 
 // ── VOICE PROOF MODAL ─────────────────────────────────────────────────────────
 export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }) {
+  const { token } = useAuth();
   const [state, setState]       = useState("idle"); // idle | recording | recorded | uploading | done
   const [duration, setDuration] = useState(0);
   const [caption, setCaption]   = useState("");
@@ -203,26 +212,33 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
     setError(null);
     try {
       const ext = audioBlob.type.includes("ogg") ? "ogg" : audioBlob.type.includes("mp4") ? "mp4" : "webm";
-      const path = `proof/${threadId || "general"}/voice_${Date.now()}.${ext}`;
-      // TODO: upload to Cloudflare R2 / your storage API
-      const publicUrl = URL.createObjectURL(audioBlob);
-      console.log("voice proof saved locally", { path, duration, caption, audioTitle });
+      const file = new File([audioBlob], `voice.${ext}`, { type: audioBlob.type || "audio/webm" });
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("type", "Voice Proof");
+      formData.append("duration_sec", String(duration));
+      if (caption) formData.append("caption", caption);
+      if (audioTitle) formData.append("audio_title", audioTitle);
+      if (threadId) formData.append("thread_id", threadId);
+
+      const res = await fetch(`${PROOF_WORKER_URL}/proof-entries/upload`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Upload failed");
 
       setState("done");
       // Notify parent so thread refreshes immediately
-      if (onSaved) onSaved({ type: "Voice Proof", voice_url: publicUrl, duration_sec: duration, caption });
+      if (onSaved) onSaved({ type: "Voice Proof", voice_url: data.entry.voice_url, duration_sec: duration, caption });
       // Auto-close after 2s so user sees the confirmation
       setTimeout(() => { reset(); onClose(); }, 2000);
     } catch (e) {
       console.error(e);
-      if (e.message?.includes("proof_entries")) {
-        setState("done");
-        if (onSaved) onSaved({ type: "Voice Proof" });
-        setTimeout(() => { reset(); onClose(); }, 2000);
-      } else {
-        setError("Upload failed — " + (e.message || "please try again."));
-        setState("recorded");
-      }
+      setError("Upload failed, " + (e.message || "please try again."));
+      setState("recorded");
     }
   };
 
@@ -284,7 +300,7 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
 
             {(state === "recorded" || state === "uploading") && audioUrl && (
               <>
-                <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 700, marginBottom: 12 }}>🎙 Recording — {fmt(duration)}</div>
+                <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 700, marginBottom: 12 }}>🎙 Recording, {fmt(duration)}</div>
                 <audio controls src={audioUrl} style={{ width: "100%", marginBottom: 16, borderRadius: 8 }} />
                 <button onClick={reset} style={{ background: "none", border: "none", color: T.textMuted, fontSize: 12, cursor: "pointer" }}>✕ Discard and re-record</button>
               </>

@@ -9,7 +9,7 @@ const RG = "#2CB7A7";
 
 export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
   const limit     = userTier === "founder" ? 25600 : userTier === "goddess" ? 5120 : 1024;
-  const planLabel = userTier === "founder" ? "Founder · Lifetime" : userTier === "goddess" ? "Goddess Tier · £33/month" : "Audio Tier · £19/month";
+  const planLabel = userTier === "founder" ? "Founder · Lifetime" : userTier === "goddess" ? "Goddess Tier · $79/month" : "Audio Tier · $49/month";
 
   const [notifStatus, setNotifStatus] = useState(
     typeof Notification !== "undefined" ? Notification.permission : "unsupported"
@@ -129,10 +129,10 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
               { t: "Best time", b: "First thing on waking or last thing at night. Your subconscious is most receptive at the threshold of sleep." },
-              { t: "How often", b: "Daily. Consistency is the installation. Think of it as a daily practice — the more you return, the deeper the shift." },
-              { t: "SATs — State Akin to Sleep", b: "The most powerful state for reprogramming. At the edge of sleep your critical mind is offline and the new self-concept installs deepest." },
+              { t: "How often", b: "Daily. Consistency is the installation. Think of it as a daily practice, the more you return, the deeper the shift." },
+              { t: "SATs, State Akin to Sleep", b: "The most powerful state for reprogramming. At the edge of sleep your critical mind is offline and the new self-concept installs deepest." },
               { t: "Headphones", b: "Required for binaural beats and bilateral EMDR tracks. Speakers work for subliminals. Check each track." },
-              { t: "Melodic house versions", b: "Some audios are available with melodic house music layered beneath Reshma's voice. This is a unique sound design choice — the frequency of the music reinforces the subconscious installation." },
+              { t: "Melodic house versions", b: "Some audios are available with melodic house music layered beneath Reshma's voice. This is a unique sound design choice, the frequency of the music reinforces the subconscious installation." },
             ].map((g, i, arr) => (
               <div key={i} style={{ padding: "14px 0", borderBottom: i < arr.length-1 ? "1px solid #161228" : "none" }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#2CB7A7", marginBottom: 5 }}>{g.t}</div>

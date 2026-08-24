@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { T } from "../design/tokens.js";
 import { Btn } from "../components/UI.jsx";
+import { useAuth } from "../contexts/AuthContext.jsx";
+
+const PROOF_WORKER_URL = "https://shg-proof-worker.airpriestess.workers.dev";
 
 const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
 const RG = "#2CB7A7";
@@ -68,6 +71,7 @@ function ImageLightbox({ url, caption, onClose }) {
 }
 
 export default function ProofWall({ onAddProof }) {
+  const { token } = useAuth();
   const [entries, setEntries]   = useState([]);
   const [loading, setLoading]   = useState(true);
   const [filter, setFilter]     = useState("All");
@@ -84,14 +88,12 @@ export default function ProofWall({ onAddProof }) {
     setLoading(true);
     setError(null);
     try {
-      const { data, error: err } = await sb
-        .from("proof_entries")
-        .select("*")
-        .order("happened_at", { ascending: false })
-        .limit(100);
-
-      if (err) throw err;
-      setEntries(data || []);
+      const res = await fetch(`${PROOF_WORKER_URL}/proof-entries`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to load");
+      setEntries(data.entries || []);
     } catch (e) {
       console.error(e);
       setError("Could not load proof entries. " + (e.message || ""));
@@ -142,7 +144,7 @@ export default function ProofWall({ onAddProof }) {
           ))}
         </div>
 
-        {/* Photo grid — masonry style */}
+        {/* Photo grid, masonry style */}
         {photos.length > 0 && (
           <div style={{ marginBottom:32 }}>
             <div style={{ fontSize:11, color:RG, fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Photo Proof</div>
@@ -225,7 +227,7 @@ export default function ProofWall({ onAddProof }) {
             <div style={{ fontSize:36, marginBottom:16, opacity:0.3 }}>◈</div>
             <div style={{ fontSize:18, fontWeight:600, color:T.textPrimary, marginBottom:8 }}>No proof yet</div>
             <div style={{ fontSize:14, color:T.textMuted, lineHeight:1.7, marginBottom:24, maxWidth:340, margin:"0 auto 24px" }}>
-              Your evidence vault is empty. Start capturing — upload a photo, record your voice, or log a sign.
+              Your evidence vault is empty. Start capturing, upload a photo, record your voice, or log a sign.
             </div>
             <div style={{ display:"flex", gap:10, justifyContent:"center" }}>
               <Btn variant="champagne" onClick={() => onAddProof("Photo Proof")}>📷 Add Photo Proof</Btn>

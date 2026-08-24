@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+const PUSH_WORKER_URL = "https://shg-push-worker.airpriestess.workers.dev";
+
 const VAPID_PUBLIC = "BAngNYNtiFBh14NCA0yqlLovaDzYt30BFLgvkuU-_nxPAyR6idGyLiaY6chM8YYVme8p1eMLnvxIqMogy_RNMXg";
 
 function urlBase64ToUint8Array(base64String) {
@@ -9,7 +11,7 @@ function urlBase64ToUint8Array(base64String) {
   return Uint8Array.from(rawData, c => c.charCodeAt(0));
 }
 
-export function usePushNotifications(userId) {
+export function usePushNotifications(userId, token) {
   const [permission, setPermission] = useState(() =>
     "Notification" in window ? Notification.permission : "unavailable"
   );
@@ -50,8 +52,20 @@ export function usePushNotifications(userId) {
 
       const subJson = sub.toJSON();
 
-      // TODO: save subscription to your API endpoint
-      console.log("push subscription", { endpoint: subJson.endpoint });
+      const res = await fetch(`${PUSH_WORKER_URL}/push-subscriptions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          endpoint: subJson.endpoint,
+          p256dh: subJson.keys.p256dh,
+          auth: subJson.keys.auth,
+          user_agent: navigator.userAgent.slice(0, 200),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to save subscription");
+
+
       setSubscribed(true);
     } catch (err) {
       console.error("Push subscription failed:", err);
@@ -66,7 +80,11 @@ export function usePushNotifications(userId) {
       const reg = await navigator.serviceWorker.ready;
       const sub = await reg.pushManager.getSubscription();
       if (sub) {
-        // TODO: remove subscription from your API endpoint
+        await fetch(`${PUSH_WORKER_URL}/push-subscriptions`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ endpoint: sub.endpoint }),
+        });
         await sub.unsubscribe();
       }
       setSubscribed(false);
@@ -80,9 +98,9 @@ export function usePushNotifications(userId) {
   return { permission, subscribed, loading, subscribe, unsubscribe };
 }
 
-// ── UI COMPONENT — shown in profile menu / settings ──
-export function PushNotificationToggle({ userId, C }) {
-  const { permission, subscribed, loading, subscribe, unsubscribe } = usePushNotifications(userId);
+// ── UI COMPONENT, shown in profile menu / settings ──
+export function PushNotificationToggle({ userId, token, C }) {
+  const { permission, subscribed, loading, subscribe, unsubscribe } = usePushNotifications(userId, token);
 
   const isUnsupported = permission === "unavailable" || !("PushManager" in window);
   const isDenied = permission === "denied";
@@ -91,16 +109,16 @@ export function PushNotificationToggle({ userId, C }) {
     <div style={{ padding: "12px 16px", borderTop: `0.5px solid ${C?.border || "#2a2020"}` }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#f2ece4", marginBottom: 2 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#fdf0e8", marginBottom: 2 }}>
             🔔 Daily reminders
           </div>
-          <div style={{ fontSize: 11, color: C?.mu || "#ddd0c8", lineHeight: 1.4 }}>
+          <div style={{ fontSize: 11, color: C?.mu || "#fdf0e8", lineHeight: 1.4 }}>
             {isUnsupported
               ? "Add to Home Screen on iPhone to enable"
               : isDenied
               ? "Blocked in browser settings"
               : subscribed
-              ? "On — you'll hear when new tracks drop"
+              ? "On, you'll hear when new tracks drop"
               : "Get notified when new tracks drop"}
           </div>
         </div>
@@ -126,9 +144,9 @@ export function PushNotificationToggle({ userId, C }) {
   );
 }
 
-// ── PROMPT BANNER — shows after 3rd session if not subscribed ──
-export function PushPromptBanner({ userId, C, onDismiss }) {
-  const { permission, subscribed, loading, subscribe } = usePushNotifications(userId);
+// ── PROMPT BANNER, shows after 3rd session if not subscribed ──
+export function PushPromptBanner({ userId, token, C, onDismiss }) {
+  const { permission, subscribed, loading, subscribe } = usePushNotifications(userId, token);
 
   if (subscribed || permission === "granted" || permission === "denied" || permission === "unavailable") return null;
 
@@ -140,17 +158,17 @@ export function PushPromptBanner({ userId, C, onDismiss }) {
     }}>
       <span style={{ fontSize: 22, flexShrink: 0 }}>🔔</span>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#f2ece4", marginBottom: 2 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: C?.cr || "#fdf0e8", marginBottom: 2 }}>
           Never miss a new drop
         </div>
-        <div style={{ fontSize: 11, color: C?.mu || "#ddd0c8" }}>
+        <div style={{ fontSize: 11, color: C?.mu || "#fdf0e8" }}>
           Get notified when Reshma uploads new tracks.
         </div>
       </div>
       <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
         <button
           onClick={onDismiss}
-          style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, color: C?.mu || "#ddd0c8", padding: "0 4px" }}
+          style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, color: C?.mu || "#fdf0e8", padding: "0 4px" }}
         >✕</button>
         <button
           onClick={subscribe}

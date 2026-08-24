@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<style>
+  body { margin:0; background:#000; font-family:'Jost',sans-serif; }  .wrap { max-width:900px; margin:0 auto; padding:140px 40px; text-align:center; position:relative; }
+  .eyebrow { font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
+    background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:24px; }
+  h1 { font-size:clamp(36px,5.5vw,64px); font-weight:300; color:#fdf0e8; line-height:1.15; margin:0; }
+  .rotate-word { font-family:'Cormorant Garamond',serif; font-style:italic;
+    background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; }
+  .sub { font-size:17px; color:#fdf0e8; margin-top:28px; }
+  .orbit-text { position:absolute; top:50%; left:50%; width:340px; height:340px; margin:-170px 0 0 -170px; z-index:-1; opacity:0.35; }
+  .orbit-text text { font-size:10px; letter-spacing:0.15em; fill:#a89e94; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <svg class="orbit-text" viewBox="0 0 340 340">
+    <defs><path id="circlePath" d="M 170,170 m -140,0 a 140,140 0 1,1 280,0 a 140,140 0 1,1 -280,0"/></defs>
+    <text><textPath href="#circlePath">theta state · every night · 24 categories · installed not wished for · theta state · every night ·</textPath></text>
+  </svg>
+  <div class="eyebrow">✦ Self hypnosis, on demand</div>
+  <h1>Spotify for your<br><span class="rotate-word" id="rotWord">subconscious mind.</span></h1>
+  <div class="sub">Theta. On demand. Instantly.</div>
+</div>
+<script>
+const words = ["subconscious mind.", "identity install.", "manifestation engine.", "reprogramming loop."];
+let idx = 0;
+const el = document.getElementById('rotWord');
+setInterval(() => {
+  el.style.opacity = 0;
+  setTimeout(() => {
+    idx = (idx + 1) % words.length;
+    el.textContent = words[idx];
+    el.style.opacity = 1;
+  }, 300);
+}, 2400);
+el.style.transition = 'opacity 0.3s';
+</script>
+</body>
+</html>

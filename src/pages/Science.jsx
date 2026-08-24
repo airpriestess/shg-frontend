@@ -1,4 +1,4 @@
-/* Science — Why this works, how it works, how I built it */
+/* Science, Why this works, how it works, how I built it */
 import { useState, useEffect, useRef } from "react";
 import HamburgerMenu from "../components/HamburgerMenu.jsx";
 
@@ -9,8 +9,8 @@ const LAV   = "#BFA5D8";
 const GOLD  = "#E8B870";
 const CHAMP = "#F5E0A0";
 const DTEAL = "#167A6B";
-const CR    = "#f2ece4";
-const MU    = "#c8bfb8";
+const CR    = "#fdf0e8";
+const MU    = "rgba(253,240,232,0.7)";
 const DIM   = "#666666";
 
 // Reusable components
@@ -20,7 +20,7 @@ const H3  = ({c,children})=><h3 style={{fontFamily:"'Jost',sans-serif",fontSize:
 const P   = ({c,children})=><p style={{fontSize:18,color:c||MU,lineHeight:1.9,marginBottom:20,fontFamily:"'Jost',sans-serif",textAlign:"left"}}>{children}</p>;
 const Div = ()=><div style={{height:1,background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.25),transparent)",margin:"56px 0"}}/>;
 const Box = ({children,c,glow})=>(
-  <div style={{padding:"22px 20px",background:glow?`${c||TEAL}08`:"rgba(255,255,255,0.03)",border:`1px solid ${c||TEAL}22`,borderRadius:14,marginBottom:0,boxShadow:glow?`0 0 30px ${c||TEAL}18`:"none"}}>
+  <div style={{padding:"22px 20px",background:glow?`${c||TEAL}08`:"#fdf0e8",border:`1px solid ${c||TEAL}22`,borderRadius:14,marginBottom:0,boxShadow:glow?`0 0 30px ${c||TEAL}18`:"none"}}>
     {children}
   </div>
 );
@@ -32,21 +32,21 @@ const WAVES = [
   {s:"Delta",hz:"0.5–4 Hz",c:DTEAL,h:28,desc:"Deep sleep. Cellular repair. Consciousness offline. Subliminals continue working here."},
   {s:"Theta",hz:"4–8 Hz", c:TEAL, h:70,desc:"The installation window. Critical resistance drops. New identity goes in. SHG targets this state in every track.",active:true},
   {s:"Alpha",hz:"8–14 Hz",c:LAV,  h:50,desc:"Relaxed awareness. The bridge. Receptive but not fully open. Good daytime listening state."},
-  {s:"Beta", hz:"14–40 Hz",c:"#666",h:38,desc:"Your current waking state. Alert, analytical, sceptical. The critical mind is fully active here — which is exactly why affirmations bounce off. You can't argue your way past a belief from the same level it was installed."},
+  {s:"Beta", hz:"14–40 Hz",c:"#000000",h:38,desc:"Your current waking state. Alert, analytical, sceptical. The critical mind is fully active here, which is exactly why affirmations bounce off. You can't argue your way past a belief from the same level it was installed."},
   {s:"Gamma",hz:"40+ Hz", c:DIM,  h:20,desc:"Peak coherence. Observed in advanced meditators. Emerges naturally from deep theta practice."},
 ];
 
 const FORMULA_PARTS = [
-  {term:"Hypnosis",color:CHAMP,   note:"Spoken guidance that takes you into theta and delivers the new identity directly to the subconscious — with the critical mind fully bypassed."},
-  {term:"+",color:"rgba(255,255,255,0.3)",note:null},
+  {term:"Hypnosis",color:CHAMP,   note:"Spoken guidance that takes you into theta and delivers the new identity directly to the subconscious, with the critical mind fully bypassed."},
+  {term:"+",color:"#fdf0e8",note:null},
   {term:"Subliminals",color:GOLD, note:"Affirmations embedded below the threshold of conscious awareness. The filter never engages. The belief lands without resistance."},
-  {term:"+",color:"rgba(255,255,255,0.3)",note:null},
+  {term:"+",color:"#fdf0e8",note:null},
   {term:"Melodic House",color:LAV,note:"The music that elevates your emotional state before the installation begins. Heart coherence rises. The brain opens."},
   {term:"+",color:TEAL,           note:null},
   {term:"EMDR",color:TEAL,        note:"Left-right bilateral audio synchronises both hemispheres. Resistance drops at a neurological level. Processing deepens."},
-  {term:"+",color:"rgba(255,255,255,0.3)",note:null},
-  {term:"Binaural Beats",color:DTEAL,note:"Two tones, one per ear. The brain generates the difference — and entrains to theta within minutes. No willpower required."},
-  {term:"=",color:"rgba(255,255,255,0.3)",note:null},
+  {term:"+",color:"#fdf0e8",note:null},
+  {term:"Binaural Beats",color:DTEAL,note:"Two tones, one per ear. The brain generates the difference, and entrains to theta within minutes. No willpower required."},
+  {term:"=",color:"#fdf0e8",note:null},
   {term:"Theta on demand.",color:"#fff",note:"The only state where the subconscious opens. The only state where new beliefs install without the conscious mind arguing back. On demand.",result:true},
 ];
 
@@ -69,8 +69,8 @@ export default function Science({ onBack }) {
       {/* NAV */}
       <div style={{position:"sticky",top:0,background:"rgba(0,0,0,0.97)",borderBottom:"1px solid rgba(44,183,167,0.12)",padding:"14px 24px",display:"flex",alignItems:"center",justifyContent:"space-between",zIndex:100}}>
         <button onClick={onBack} style={{background:"none",border:"none",color:TEAL,cursor:"pointer",fontSize:14,fontFamily:"'Jost',sans-serif",padding:0}}>← Back</button>
-        <div style={{fontSize:12,color:MU,letterSpacing:"0.1em"}}>The Science · reshmaoracle.com</div>
-        <div style={{width:60}}/>
+        <div style={{fontSize:12,color:MU,letterSpacing:"0.1em",textTransform:"uppercase"}}>The Science · reshmaoracle.com</div>
+        <HamburgerMenu/>
       </div>
 
       <div style={{maxWidth:840,margin:"0 auto",padding:isMobile?"0 18px 80px":"0 24px 100px"}}>
@@ -79,28 +79,22 @@ export default function Science({ onBack }) {
         {/* Full-bleed LG gradient hero banner */}
         <div style={{width:"100vw",position:"relative",left:"50%",transform:"translateX(-50%)",background:LG,padding:isMobile?"48px 20px 52px":"72px 24px 80px",textAlign:"center",marginBottom:64}}>
 
-          {/* Logo mark — large, black stroke on gradient bg */}
+          {/* Logo mark, large, black stroke on gradient bg */}
           <div style={{display:"flex",justifyContent:"center",marginBottom:20}}>
-            <svg viewBox="0 0 100 102" width={isMobile?72:96} height={isMobile?72:96} fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="2"/>
-              
-            </svg>
+            <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?72:96} height={isMobile?72:96} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
           </div>
 
           {/* Wordmark */}
-          <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(14px,4vw,18px)":"clamp(16px,1.6vw,20px)",color:"#000",letterSpacing:"0.16em",marginBottom:24,opacity:0.75}}>Self Hypnosis Goddess</div>
+          <div style={{fontFamily:"'Jost',sans-serif",fontWeight:400,fontSize:isMobile?"clamp(14px,4vw,18px)":"clamp(16px,1.6vw,20px)",color:"#000",letterSpacing:"0.16em",marginBottom:24,}}>Self Hypnosis Goddess</div>
 
-          {/* Big headline — black on gradient */}
+          {/* Big headline, black on gradient */}
           <h1 style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontSize:isMobile?"clamp(32px,8vw,52px)":"clamp(44px,5vw,68px)",fontWeight:400,lineHeight:1.1,marginBottom:16,color:"#000"}}>
             The science behind the shift.
           </h1>
-          <div style={{fontSize:isMobile?16:20,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
+          <div style={{fontSize:isMobile?16:20,color:"#000000",fontFamily:"'Jost',sans-serif",fontWeight:300}}>Why this works when nothing else has.</div>
         </div>
 
-        {/* Three concept cards — sit below the gradient hero */}
+        {/* Three concept cards, sit below the gradient hero */}
         <div style={{marginBottom:64}}>
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr 1fr",gap:16}}>
 
@@ -129,7 +123,7 @@ export default function Science({ onBack }) {
                   </svg>
                 ),
                 title:"Heart Coherence",
-                body:"The heart has its own brain — 40,000 neurons. When it's coherent, the cranial brain opens. The installation goes deeper."
+                body:"The heart has its own brain, 40,000 neurons. When it's coherent, the cranial brain opens. The installation goes deeper."
               },
               {
                 icon:(
@@ -148,7 +142,7 @@ export default function Science({ onBack }) {
             ].map((card,i)=>(
               <div key={i} style={{
                 padding:isMobile?"24px 20px":"32px 24px",
-                background:"rgba(255,255,255,0.03)",
+                background:"#fdf0e8",
                 border:"1px solid rgba(232,184,112,0.18)",
                 borderRadius:18,
                 textAlign:"center",
@@ -167,14 +161,14 @@ export default function Science({ onBack }) {
 
         <Div/>
 
-        {/* ═══ THE FORMULA — annotated ═══ */}
+        {/* ═══ THE FORMULA, annotated ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl>The formula</Lbl>
           <H2>Every track is built from this.</H2>
           <P>This is not a playlist. Every SHG track layers five elements simultaneously. Each one targets a different layer of the mechanism. Together they create a condition that no single approach can produce alone.</P>
 
           {/* Formula box */}
-          <div style={{padding:isMobile?"20px 16px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"rgba(0,0,0,0.6)",margin:"32px 0",overflowX:"hidden"}}>
+          <div style={{padding:isMobile?"20px 16px":"40px 48px",border:`1px solid rgba(232,184,112,0.3)`,borderRadius:20,background:"#000000",margin:"32px 0",overflowX:"hidden"}}>
             <div style={{display:"flex",alignItems:"center",flexWrap:"wrap",gap:"6px 6px",justifyContent:"center",marginBottom:isMobile?16:0}}>
               {FORMULA_PARTS.filter(p=>p.term!=="Theta on demand.").map((p,i)=>(
                 <span key={i} style={{
@@ -228,8 +222,8 @@ export default function Science({ onBack }) {
         {/* ═══ BRAINWAVE STATES ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl>Section 01</Lbl>
-          <H2>Brainwave states — where change actually lives</H2>
-          <P>Your brain produces electrical activity that oscillates at different speeds depending on what you're doing and feeling. These frequencies determine what your mind is capable of in that moment — including whether new beliefs can install or bounce off.</P>
+          <H2>Brainwave states, where change actually lives</H2>
+          <P>Your brain produces electrical activity that oscillates at different speeds depending on what you're doing and feeling. These frequencies determine what your mind is capable of in that moment, including whether new beliefs can install or bounce off.</P>
 
           {/* Frequency bars */}
           <div style={{margin:"36px 0"}}>
@@ -282,7 +276,7 @@ export default function Science({ onBack }) {
           </div>
 
           <div style={{margin:"28px 0",padding:"22px 24px",background:"rgba(44,183,167,0.06)",border:"1px solid rgba(44,183,167,0.18)",borderRadius:14}}>
-            <P c={CR}>Children under 7 spend most of their waking hours in theta and delta — which is why everything they observe downloads directly as belief, with no critical filter to argue back. That is how your original programming was installed. That same window reopens every night as you drift to sleep, and every morning as you rise. SHG gets you there on demand.</P>
+            <P c={CR}>Children under 7 spend most of their waking hours in theta and delta, which is why everything they observe downloads directly as belief, with no critical filter to argue back. That is how your original programming was installed. That same window reopens every night as you drift to sleep, and every morning as you rise. SHG gets you there on demand.</P>
           </div>
         </section>
 
@@ -291,9 +285,9 @@ export default function Science({ onBack }) {
         {/* ═══ BINAURAL BEATS ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={TEAL}>Section 02</Lbl>
-          <H2>Binaural beats — how sound alone shifts your brainwave state</H2>
-          <P>A binaural beat isn't a sound you actually hear. It's a sound your brain creates. Play a tone at 200Hz in your left ear and a tone at 204Hz in your right ear, and your brain doesn't hear two tones — it perceives a third, phantom pulse at exactly the difference between them: 4Hz. That 4Hz pulse is a theta frequency.</P>
-          <P>Your brain doesn't just perceive that pulse. It follows it. This is called entrainment — the brain's tendency to synchronise its own electrical activity to a rhythmic external stimulus. Give it a steady 4Hz pulse for long enough, and your brainwaves measurably shift toward 4Hz too, whether you're trying to or not.</P>
+          <H2>Binaural beats, how sound alone shifts your brainwave state</H2>
+          <P>A binaural beat isn't a sound you actually hear. It's a sound your brain creates. Play a tone at 200Hz in your left ear and a tone at 204Hz in your right ear, and your brain doesn't hear two tones, it perceives a third, phantom pulse at exactly the difference between them: 4Hz. That 4Hz pulse is a theta frequency.</P>
+          <P>Your brain doesn't just perceive that pulse. It follows it. This is called entrainment, the brain's tendency to synchronise its own electrical activity to a rhythmic external stimulus. Give it a steady 4Hz pulse for long enough, and your brainwaves measurably shift toward 4Hz too, whether you're trying to or not.</P>
 
           {/* Binaural diagram */}
           <div style={{display:"flex",justifyContent:"center",margin:"32px 0"}}>
@@ -314,15 +308,15 @@ export default function Science({ onBack }) {
 
               <text x="180" y="90" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill={CR}>YOUR BRAIN PERCEIVES</text>
               <path d="M100,115 C130,95 150,135 180,115 C210,95 230,135 260,115" fill="none" stroke="url(#bblg)" strokeWidth="2.5"/>
-              <text x="180" y="132" textAnchor="middle" fontFamily="monospace" fontSize="10" fill={TEAL} fontWeight="600">4Hz — theta</text>
+              <text x="180" y="132" textAnchor="middle" fontFamily="monospace" fontSize="10" fill={TEAL} fontWeight="600">4Hz, theta</text>
             </svg>
           </div>
 
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:12}}>
             {[
-              {c:TEAL,t:"Two tones, one difference",b:"Each ear receives a pure, slightly different frequency. Neither tone alone is anything special — it's the gap between them that matters. A 4Hz gap targets theta. A 10Hz gap targets alpha."},
-              {c:LAV,t:"Entrainment, not relaxation",b:"This isn't the brain calming down because the sound is soothing. It's a measurable electrical phenomenon — your brainwave frequency actually shifts to match the perceived beat, verified on EEG."},
-              {c:CHAMP,t:"Headphones required",b:"Because each ear needs to receive a genuinely different tone, binaural beats only work through stereo headphones — not speakers, where both ears hear both tones blended together."},
+              {c:TEAL,t:"Two tones, one difference",b:"Each ear receives a pure, slightly different frequency. Neither tone alone is anything special, it's the gap between them that matters. A 4Hz gap targets theta. A 10Hz gap targets alpha."},
+              {c:LAV,t:"Entrainment, not relaxation",b:"This isn't the brain calming down because the sound is soothing. It's a measurable electrical phenomenon, your brainwave frequency actually shifts to match the perceived beat, verified on EEG."},
+              {c:CHAMP,t:"Headphones required",b:"Because each ear needs to receive a genuinely different tone, binaural beats only work through stereo headphones, not speakers, where both ears hear both tones blended together."},
               {c:GOLD,t:"Why it's layered under everything",b:"Binaural beats do the one thing willpower can't: lower the brain's critical filter without you doing anything. That's the door. Once it's open, the hypnosis and subliminals underneath can actually land.",glow:true},
             ].map((p,i)=>(
               <Box key={i} c={p.c} glow={p.glow}>
@@ -338,9 +332,9 @@ export default function Science({ onBack }) {
         {/* ═══ HEART-BRAIN ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={LAV}>Section 03</Lbl>
-          <H2>The heart-brain — it was never just the mind</H2>
+          <H2>The heart-brain, it was never just the mind</H2>
 
-          {/* Lucky Girl gradient visual — decorative SVG */}
+          {/* Lucky Girl gradient visual, decorative SVG */}
           <div style={{display:"flex",justifyContent:"center",margin:"36px 0 40px"}}>
             <svg viewBox="0 0 440 200" width={isMobile?"100%":520} style={{maxWidth:"100%",overflow:"visible"}}>
               <defs>
@@ -395,25 +389,25 @@ export default function Science({ onBack }) {
               {n:"4 ways",l:"Heart-to-brain signal pathways",c:TEAL},
               {n:"5,000×",l:"Stronger magnetically",c:CHAMP},
             ].map((s,i)=>(
-              <div key={i} style={{textAlign:"center",padding:"18px 12px",background:"rgba(255,255,255,0.03)",border:`1px solid ${s.c}20`,borderRadius:12}}>
+              <div key={i} style={{textAlign:"center",padding:"18px 12px",background:"#fdf0e8",border:`1px solid ${s.c}20`,borderRadius:12}}>
                 <div style={{fontSize:isMobile?22:28,fontWeight:300,color:s.c,fontFamily:"'Jost',sans-serif",lineHeight:1,marginBottom:6}}>{s.n}</div>
                 <div style={{fontSize:11,color:MU,fontFamily:"'Jost',sans-serif",lineHeight:1.5}}>{s.l}</div>
               </div>
             ))}
           </div>
 
-          <P>The heart is not just a pump. It contains over 40,000 neurons — its own nervous system, capable of sensing, processing information, and making decisions independently of the cranial brain. Scientists call this the heart-brain.</P>
-          <P>The heart communicates with the cranial brain through four simultaneous pathways — neurological, biochemical, biophysical, and electromagnetic. And the direction of the dominant signal is predominantly from heart to head. What the heart broadcasts, the brain receives. What the brain then accepts as belief, the body acts out as reality.</P>
+          <P>The heart is not just a pump. It contains over 40,000 neurons, its own nervous system, capable of sensing, processing information, and making decisions independently of the cranial brain. Scientists call this the heart-brain.</P>
+          <P>The heart communicates with the cranial brain through four simultaneous pathways, neurological, biochemical, biophysical, and electromagnetic. And the direction of the dominant signal is predominantly from heart to head. What the heart broadcasts, the brain receives. What the brain then accepts as belief, the body acts out as reality.</P>
 
           {/* 4 pathways */}
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:12,margin:"24px 0"}}>
             {[
-              {p:"Neurological",c:CHAMP,d:"The vagus nerve carries signals continuously from heart to brain stem, amygdala, and thalamus — the structures governing emotion, memory, and threat response."},
-              {p:"Biochemical",c:GOLD,d:"The heart produces and secretes hormones including oxytocin — the bonding hormone — which travel through the bloodstream and directly influence brain function and emotional state."},
-              {p:"Biophysical",c:LAV,d:"Every heartbeat generates pressure waves through the vascular system that influence brain activity. The rhythm of these waves — coherent or incoherent — affects cognition and emotional regulation."},
+              {p:"Neurological",c:CHAMP,d:"The vagus nerve carries signals continuously from heart to brain stem, amygdala, and thalamus, the structures governing emotion, memory, and threat response."},
+              {p:"Biochemical",c:GOLD,d:"The heart produces and secretes hormones including oxytocin, the bonding hormone, which travel through the bloodstream and directly influence brain function and emotional state."},
+              {p:"Biophysical",c:LAV,d:"Every heartbeat generates pressure waves through the vascular system that influence brain activity. The rhythm of these waves, coherent or incoherent, affects cognition and emotional regulation."},
               {p:"Electromagnetic",c:TEAL,d:"The heart's electromagnetic field radiates several feet outside the body. Your emotional state affects the people around you before you speak a word."},
             ].map((p,i)=>(
-              <div key={i} style={{display:"flex",gap:12,padding:"16px",background:"rgba(255,255,255,0.02)",border:`1px solid ${p.c}20`,borderRadius:12}}>
+              <div key={i} style={{display:"flex",gap:12,padding:"16px",background:"#fdf0e8",border:`1px solid ${p.c}20`,borderRadius:12}}>
                 <div style={{width:4,background:p.c,borderRadius:2,flexShrink:0}}/>
                 <div>
                   <div style={{fontSize:13,fontWeight:500,color:p.c,fontFamily:"'Jost',sans-serif",marginBottom:6}}>{p.p}</div>
@@ -429,14 +423,14 @@ export default function Science({ onBack }) {
         {/* ═══ HEART COHERENCE ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={TEAL}>Section 04</Lbl>
-          <H2>Heart coherence — the state that opens the door</H2>
-          <P>Heart rate variability (HRV) — the variation in time between heartbeats — is the measure of your heart's rhythmic pattern. An erratic, disordered pattern reflects a contracted emotional state. A smooth, rhythmic pattern reflects coherence.</P>
-          <P>These patterns travel to the brain and determine what the brain is capable of. In an incoherent state, the brain locks down. Old patterns reinforce. Nothing new can install. In a coherent state, the brain opens — cognitive function improves, resistance drops, and new information lands at a deeper level.</P>
+          <H2>Heart coherence, the state that opens the door</H2>
+          <P>Heart rate variability (HRV), the variation in time between heartbeats, is the measure of your heart's rhythmic pattern. An erratic, disordered pattern reflects a contracted emotional state. A smooth, rhythmic pattern reflects coherence.</P>
+          <P>These patterns travel to the brain and determine what the brain is capable of. In an incoherent state, the brain locks down. Old patterns reinforce. Nothing new can install. In a coherent state, the brain opens, cognitive function improves, resistance drops, and new information lands at a deeper level.</P>
 
           {/* Incoherent vs Coherent */}
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:16,margin:"28px 0"}}>
             {[
-              {s:"Incoherent",c:"#555",items:["Erratic heart rhythm","Stress hormones elevated","Brain locks old beliefs in","Critical faculty on high alert","New information bounces off"]},
+              {s:"Incoherent",c:"rgba(253,240,232,0.55)",items:["Erratic heart rhythm","Stress hormones elevated","Brain locks old beliefs in","Critical faculty on high alert","New information bounces off"]},
               {s:"Coherent",c:TEAL,items:["Smooth rhythmic heart rhythm","Stress hormones reduce","Brain becomes receptive","Critical faculty quietens","New identity can install"],glow:true},
             ].map((col,i)=>(
               <Box key={i} c={col.c} glow={col.glow}>
@@ -444,7 +438,7 @@ export default function Science({ onBack }) {
                 <svg viewBox="0 0 200 36" width="100%" height={36} style={{marginBottom:14,display:"block"}}>
                   {i===0
                     ? <polyline points="0,18 12,5 18,30 26,8 34,24 40,18 52,10 60,26 68,14 74,22 84,18 96,8 104,28 110,12 118,22 126,18 136,8 144,26 152,14 160,20 168,18 178,10 186,24 194,14 200,18"
-                        fill="none" stroke="#555" strokeWidth="1.5" strokeLinecap="round"/>
+                        fill="none" stroke="rgba(253,240,232,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
                     : <path d="M0,18 C25,-2 50,38 75,18 C100,-2 125,38 150,18 C175,-2 188,8 200,18" fill="none" stroke={TEAL} strokeWidth="2" strokeLinecap="round"/>
                   }
                 </svg>
@@ -459,7 +453,7 @@ export default function Science({ onBack }) {
           </div>
 
           <div style={{padding:"22px 24px",background:"rgba(191,165,216,0.07)",border:"1px solid rgba(191,165,216,0.2)",borderRadius:14,margin:"8px 0"}}>
-            <P c={CR}>The research finding that changed everything: sincere feelings of appreciation, care, or love create measurable increases in heart coherence — and that coherence produced 25% improvements in cognitive performance in study participants. Emotional state is not a byproduct of circumstance. It is something that can be deliberately generated. The SHG tracks generate it through music and frequency — before the installation begins.</P>
+            <P c={CR}>The research finding that changed everything: sincere feelings of appreciation, care, or love create measurable increases in heart coherence, and that coherence produced 25% improvements in cognitive performance in study participants. Emotional state is not a byproduct of circumstance. It is something that can be deliberately generated. The SHG tracks generate it through music and frequency, before the installation begins.</P>
           </div>
         </section>
 
@@ -469,13 +463,13 @@ export default function Science({ onBack }) {
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={GOLD}>Section 05</Lbl>
           <H2>Why subliminals work where affirmations don't</H2>
-          <P>An affirmation is a conscious statement. It is heard, evaluated by the critical faculty, and checked against existing belief. If it contradicts what you already believe — which it usually does, or you wouldn't need to say it — it is rejected. Every time.</P>
+          <P>An affirmation is a conscious statement. It is heard, evaluated by the critical faculty, and checked against existing belief. If it contradicts what you already believe, which it usually does, or you wouldn't need to say it, it is rejected. Every time.</P>
           <P>A subliminal is delivered below the threshold of conscious awareness. The ear receives it. The critical faculty never engages. The belief lands directly into the subconscious without the filter of evaluation.</P>
 
           <div style={{margin:"32px 0"}}>
             {[
-              {n:"01",c:CHAMP,t:"Below the threshold",b:"Subliminals are embedded at a volume the conscious mind cannot clearly register. The ear receives them. The critical faculty — which rejects anything contradicting existing belief — does not engage."},
-              {n:"02",c:GOLD,t:"Processed by the subconscious directly",b:"While the conscious mind is occupied with the music and hypnosis, the subconscious receives the embedded statements as information — without running them through the belief filter."},
+              {n:"01",c:CHAMP,t:"Below the threshold",b:"Subliminals are embedded at a volume the conscious mind cannot clearly register. The ear receives them. The critical faculty, which rejects anything contradicting existing belief, does not engage."},
+              {n:"02",c:GOLD,t:"Processed by the subconscious directly",b:"While the conscious mind is occupied with the music and hypnosis, the subconscious receives the embedded statements as information, without running them through the belief filter."},
               {n:"03",c:LAV,t:"Repetition creates installation",b:"Delivered repeatedly during the theta state, subliminals create new neural pathways. The statement moves from foreign to familiar to default. The identity shifts."},
               {n:"04",c:TEAL,t:"Behaviour changes without effort",b:"Once a belief is installed subconsciously, the behaviour that matches it becomes what you simply do. Not forced. Not disciplined. Just the natural expression of who you now believe you are."},
             ].map((s,i)=>(
@@ -497,9 +491,9 @@ export default function Science({ onBack }) {
         {/* ═══ EMDR ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl c={LAV}>Section 06</Lbl>
-          <H2>EMDR — why both hemispheres matter</H2>
-          <P>EMDR (Eye Movement Desensitisation and Reprocessing) was originally developed for trauma. The bilateral stimulation — alternating left-right input — was found to allow the brain to process difficult material without the usual emotional resistance. Both hemispheres synchronise. Defences drop. Processing deepens.</P>
-          <P>In audio form, the left-right alternation happens through sound — a tone, a beat, or a pulse that alternates between the left and right ears through headphones.</P>
+          <H2>EMDR, why both hemispheres matter</H2>
+          <P>EMDR (Eye Movement Desensitisation and Reprocessing) was originally developed for trauma. The bilateral stimulation, alternating left-right input, was found to allow the brain to process difficult material without the usual emotional resistance. Both hemispheres synchronise. Defences drop. Processing deepens.</P>
+          <P>In audio form, the left-right alternation happens through sound, a tone, a beat, or a pulse that alternates between the left and right ears through headphones.</P>
 
           {/* Hemisphere diagram */}
           <div style={{display:"flex",justifyContent:"center",margin:"32px 0"}}>
@@ -513,11 +507,11 @@ export default function Science({ onBack }) {
               {/* Left hemisphere */}
               <ellipse cx="90" cy="60" rx="70" ry="50" fill="none" stroke="#E8B870" strokeWidth="2" opacity="0.8"/>
               <text x="90" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#E8B870">LEFT</text>
-              <text x="90" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#888">logic · language</text>
+              <text x="90" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#fdf0e8">logic · language</text>
               {/* Right hemisphere */}
               <ellipse cx="270" cy="60" rx="70" ry="50" fill="none" stroke="#BFA5D8" strokeWidth="2" opacity="0.8"/>
               <text x="270" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#BFA5D8">RIGHT</text>
-              <text x="270" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#888">intuition · emotion</text>
+              <text x="270" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#fdf0e8">intuition · emotion</text>
               {/* Connecting arc */}
               <path d="M160,40 C180,20 180,20 200,40" fill="none" stroke="url(#elg)" strokeWidth="2" strokeDasharray="4 3"/>
               <path d="M160,80 C180,100 180,100 200,80" fill="none" stroke="url(#elg)" strokeWidth="2" strokeDasharray="4 3"/>
@@ -527,10 +521,10 @@ export default function Science({ onBack }) {
 
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:12}}>
             {[
-              {c:GOLD,t:"Left ear → Right hemisphere",b:"The tone entering the left ear stimulates the right hemisphere — associated with creativity, intuition, pattern recognition, and emotional processing."},
-              {c:LAV,t:"Right ear → Left hemisphere",b:"The tone entering the right ear stimulates the left hemisphere — associated with logical processing, language, and analytical function."},
-              {c:TEAL,t:"Bilateral synchronisation",b:"Both hemispheres receive and process simultaneously. They synchronise. The brain moves into a state of bilateral coherence — unified, receptive, ready for deep processing.",glow:true},
-              {c:CHAMP,t:"Why this installs identity",b:"EMDR was originally used for trauma because bilateral stimulation allows the brain to process difficult material without resistance. The same mechanism makes it ideal for identity installation — the fight drops away, and the new belief lands.",glow:true},
+              {c:GOLD,t:"Left ear → Right hemisphere",b:"The tone entering the left ear stimulates the right hemisphere, associated with creativity, intuition, pattern recognition, and emotional processing."},
+              {c:LAV,t:"Right ear → Left hemisphere",b:"The tone entering the right ear stimulates the left hemisphere, associated with logical processing, language, and analytical function."},
+              {c:TEAL,t:"Bilateral synchronisation",b:"Both hemispheres receive and process simultaneously. They synchronise. The brain moves into a state of bilateral coherence, unified, receptive, ready for deep processing.",glow:true},
+              {c:CHAMP,t:"Why this installs identity",b:"EMDR was originally used for trauma because bilateral stimulation allows the brain to process difficult material without resistance. The same mechanism makes it ideal for identity installation, the fight drops away, and the new belief lands.",glow:true},
             ].map((p,i)=>(
               <Box key={i} c={p.c} glow={p.glow}>
                 <H3 c={p.c}>{p.t}</H3>
@@ -545,7 +539,7 @@ export default function Science({ onBack }) {
         {/* ═══ THE FULL SYSTEM ═══ */}
         <section style={{marginBottom:64,textAlign:"center"}}>
           <Lbl>Section 07</Lbl>
-          <H2>How it all combines — the complete system</H2>
+          <H2>How it all combines, the complete system</H2>
           <P>No single element does what all five do together. The music raises coherence. The binaural beats open theta. The EMDR synchronises both hemispheres. The hypnosis delivers the identity. The subliminals embed it below conscious awareness. In sequence, in one track, simultaneously.</P>
 
           <div style={{margin:"32px 0"}}>
@@ -553,12 +547,12 @@ export default function Science({ onBack }) {
               {l:"Layer 1",e:"Melodic House Music",c:GOLD,w:"Elevates emotional state. Raises heart coherence before anything else starts. The brain receives a signal: something good is happening. It opens slightly."},
               {l:"Layer 2",e:"Binaural Beats",c:LAV,w:"Entrains the brain from beta to theta within minutes. The critical faculty stands down. The installation window opens."},
               {l:"Layer 3",e:"EMDR Bilateral Audio",c:TEAL,w:"Synchronises both hemispheres. Resistance drops neurologically. The brain is now unified, receptive, and processing with its full capacity."},
-              {l:"Layer 4",e:"Vocal Hypnosis",c:CHAMP,w:"The specific identity — delivered directly. Spoken, guided, embodied. No filter. No evaluation. The subconscious receives it as instruction."},
+              {l:"Layer 4",e:"Vocal Hypnosis",c:CHAMP,w:"The specific identity, delivered directly. Spoken, guided, embodied. No filter. No evaluation. The subconscious receives it as instruction."},
               {l:"Layer 5",e:"Subliminals",c:DTEAL,w:"The same beliefs embedded below conscious awareness. Stacked with the hypnosis. Repeated. The new neural pathway builds."},
             ].map((l,i)=>(
               <div key={i} style={{display:"flex",gap:0,marginBottom:2,overflow:"hidden",borderRadius:i===0?"12px 12px 0 0":i===4?"0 0 12px 12px":"0"}}>
                 <div style={{width:6,background:l.c,flexShrink:0}}/>
-                <div style={{flex:1,display:"grid",gridTemplateColumns:isMobile?"1fr":"100px 160px 1fr",gap:isMobile?6:0,padding:"16px 18px",background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderLeft:"none",alignItems:"center"}}>
+                <div style={{flex:1,display:"grid",gridTemplateColumns:isMobile?"1fr":"100px 160px 1fr",gap:isMobile?6:0,padding:"16px 18px",background:"#fdf0e8",border:"1px solid rgba(255,255,255,0.05)",borderLeft:"none",alignItems:"center"}}>
                   <div style={{fontSize:10,color:DIM,fontFamily:"'Jost',sans-serif",letterSpacing:"0.1em"}}>{l.l}</div>
                   <div style={{fontSize:14,fontWeight:500,color:l.c,fontFamily:"'Jost',sans-serif"}}>{l.e}</div>
                   <div style={{fontSize:13,color:MU,lineHeight:1.6,fontFamily:"'Jost',sans-serif"}}>{l.w}</div>
@@ -575,7 +569,7 @@ export default function Science({ onBack }) {
             <div style={{fontSize:isMobile?26:42,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal",lineHeight:1.2}}>
               = Theta on demand. Identity installed.
             </div>
-            <div style={{fontSize:15,color:"rgba(0,0,0,0.6)",fontFamily:"'Jost',sans-serif",marginTop:16,letterSpacing:"0.06em"}}>This is the formula. This is Self Hypnosis Goddess.</div>
+            <div style={{fontSize:15,color:"#000000",fontFamily:"'Jost',sans-serif",marginTop:16,letterSpacing:"0.06em"}}>This is the formula. This is Self Hypnosis Goddess.</div>
           </div>
         </section>
 

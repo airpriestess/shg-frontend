@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<style>
+  :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:linear-gradient(180deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 78%,#167A6B 100%);font-family:'Jost',sans-serif;min-height:100vh;}
+  .wrap{max-width:900px;margin:0 auto;padding:100px 40px 120px;}
+
+  .eyebrow{text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#000000;margin-bottom:16px;font-weight:500;}
+  .heading{text-align:center;font-size:clamp(36px,5vw,56px);font-weight:300;color:#000;margin-bottom:10px;letter-spacing:-.02em;line-height:1.1;}
+  .subhead{text-align:center;font-size:15px;color:#000000;font-weight:300;margin-bottom:16px;line-height:1.6;}
+  .bridge{text-align:center;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#000000;margin-bottom:72px;font-weight:500;}
+
+  .tl{position:relative;}
+  .tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:rgba(0,0,0,.2);border-radius:2px;}
+
+  .row{display:flex;align-items:center;margin-bottom:24px;position:relative;min-height:76px;}
+
+  .box{
+    width:44%;
+    padding:18px 22px;
+    border-radius:14px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.08);
+    transition:all .4s ease;
+    
+    transform:scale(.97);
+  }
+  .box.active{transform:scale(1);box-shadow:0 8px 32px rgba(0,0,0,.1);}
+
+  .row.left .box{margin-right:auto;text-align:right;order:1;}
+  .row.left .spacer{order:2;}
+  .row.right .box{margin-left:auto;text-align:left;order:2;}
+  .row.right .spacer{order:1;}
+  .spacer{width:50%;flex-shrink:0;}
+
+  .box-title{font-size:clamp(14px,1.8vw,17px);font-weight:400;color:#000 !important;line-height:1.35;letter-spacing:-.01em;}
+  .box-body{font-size:13px;font-weight:300;color:#000;line-height:1.55;margin-top:6px;max-height:0;overflow:hidden;transition:max-height .4s,opacity .35s;}
+  .box.active .box-body{max-height:60px;opacity:1;}
+  .box-tag{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#000000;margin-top:7px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s,opacity .35s;}
+  .box.active .box-tag{max-height:24px;opacity:1;}
+
+  .dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.8);transition:background .4s,box-shadow .4s;z-index:2;}
+  .row.active-row .dot{background:#000;border-color:#fff;box-shadow:0 0 0 4px rgba(0,0,0,.12);}
+
+  .connector{position:absolute;top:50%;height:2px;background:rgba(0,0,0,.12);width:6%;transition:background .4s;}
+  .row.left .connector{right:50%;transform:translateY(-50%);}
+  .row.right .connector{left:50%;transform:translateY(-50%);}
+  .row.active-row .connector{background:rgba(0,0,0,.25);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 style="text-align:center;font-size:clamp(56px,9vw,110px);font-weight:300;color:#000;letter-spacing:-.03em;line-height:.95;margin-bottom:24px;">Lucky Girl<br>Timeline.</h1>
+  <h2 class="heading">She gets to have it all.<br>All of it. All at once.</h2>
+  <p style="text-align:center;font-size:15px;color:#000;font-weight:300;margin-bottom:72px;line-height:1.6;">This is where the Self Hypnosis Goddess library takes you.</p>
+
+  <div class="tl" id="tl">
+
+    <div class="row left" data-body="She doesn't look for it. It finds her." data-tag="Luckygirlmaxxing">
+      <div class="box"><div class="box-title">Right place. Right time. Right outcome. Mine.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row right" data-body="Multiple streams. Always arriving. Never chased." data-tag="Richgirlmaxxing">
+      <div class="spacer"></div>
+      <div class="box"><div class="box-title">Infinite cash streams. Always arriving.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row left" data-body="She never had to fight for it. It was always hers." data-tag="Beautymaxxing">
+      <div class="box"><div class="box-title">Perfect body. Perfect health. No effort required.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row right" data-body="The right one. He finds her first. Of course he does." data-tag="Lovemaxxing">
+      <div class="spacer"></div>
+      <div class="box"><div class="box-title">The perfect man. He finds her first.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row left" data-body="Not chased. Chosen. By the ones who are worth it." data-tag="Lovemaxxing">
+      <div class="box"><div class="box-title">Always loved by the right people.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row right" data-body="Her energy does the work. She just shows up." data-tag="Luckygirlmaxxing">
+      <div class="spacer"></div>
+      <div class="box"><div class="box-title">Always attracting the right people.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row left" data-body="No ceiling. No gatekeeping. Full access. Always." data-tag="Sovereignmaxxing">
+      <div class="box"><div class="box-title">Unlimited access. Unlimited experiences. No ceiling.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row right" data-body="The moment arrives exactly when it should. Every time." data-tag="Luckygirlmaxxing">
+      <div class="spacer"></div>
+      <div class="box"><div class="box-title">Perfect timing. Every single time.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row left" data-body="She sees them. She logs them. The proof wall fills." data-tag="ProofOS">
+      <div class="box"><div class="box-title">Synchronicities. Signs. She notices all of them.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row right" data-body="Not trying harder. Just running a different operating system." data-tag="Selfmaxxing">
+      <div class="spacer"></div>
+      <div class="box"><div class="box-title">Always the most successful version of herself.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="dot"></div><div class="connector"></div>
+    </div>
+
+    <div class="row left" data-body="This is what the installed identity feels like." data-tag="The identity">
+      <div class="box"><div class="box-title">She has it all. Not more. All. All at once.</div><div class="box-body"></div><div class="box-tag"></div></div>
+      <div class="spacer"></div><div class="dot"></div><div class="connector"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const rows = document.querySelectorAll('.row');
+let current = 0;
+
+function activate(idx) {
+  rows.forEach(r => {
+    r.classList.remove('active-row');
+    r.querySelector('.box').classList.remove('active');
+  });
+  const row = rows[idx];
+  row.classList.add('active-row');
+  const box = row.querySelector('.box');
+  box.classList.add('active');
+  box.querySelector('.box-body').textContent = row.dataset.body;
+  box.querySelector('.box-tag').textContent = '✦ ' + row.dataset.tag;
+}
+
+activate(0);
+setInterval(() => {
+  current = (current + 1) % rows.length;
+  activate(current);
+}, 2200);
+</script>
+</body>
+</html>

@@ -1,13 +1,13 @@
-/* DesktopMockup — browser frame, dark/light, matches real dashboard */
+/* DesktopMockup, browser frame, dark/light, matches real dashboard */
 
 const THEMES = {
   dark: {
-    browser:"#1a1a1a", browserBorder:"#2a2a2a", urlBar:"#222", urlText:"#e8e0d8",
+    browser:"#1a1a1a", browserBorder:"#2a2a2a", urlBar:"#000000", urlText:"#fdf0e8",
     bg:"#080808", bg2:"#111111", bg3:"rgba(44,183,167,0.08)", nav:"#050505",
-    cr:"#f2ece4", mu:"#e8e0d8", dim:"#e8e0d8", border:"rgba(44,183,167,0.12)", scrubBg:"#2a2a2a",
+    cr:"#fdf0e8", mu:"#fdf0e8", dim:"#fdf0e8", border:"rgba(44,183,167,0.12)", scrubBg:"#2a2a2a",
   },
   light: {
-    browser:"#ede8e0", browserBorder:"#d8d0c4", urlBar:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", urlText:"#000000",
+    browser:"#ede8e0", browserBorder:"#d8d0c4", urlBar:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", urlText:"#000000",
     bg:"#faf7f2", bg2:"#ffffff", bg3:"rgba(44,183,167,0.10)", nav:"rgba(250,247,242,0.97)",
     cr:"#1a1410", mu:"#1a1410", dim:"#3a342c", border:"rgba(200,168,120,0.2)", scrubBg:"#e0d8cc",
   },
@@ -15,7 +15,7 @@ const THEMES = {
 
 const TEAL = "#2CB7A7";
 const GOLD = "#E8B870";
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
 const CAT_ICONS = {
   Lovemaxxing: { accent:"#167A6B", icon:'<path d="M30 52 C14 42 10 30 18 24 C24 19 30 23 30 30 C30 23 36 19 42 24 C50 30 46 42 30 52 Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>' },
@@ -37,7 +37,7 @@ const CAT_ICONS = {
   Peacemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
   Confidencemaxxing: { accent:"#E8B870", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
   Stylemaxxing: { accent:"#E8B870", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
-  Healmaxxing: { accent:"#167A6B", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
+  Healthmaxxing: { accent:"#167A6B", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Lifemaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Luckygirlmaxxing: { accent:"#2CB7A7", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
@@ -52,7 +52,7 @@ const TRACKS = [
   { title:"He Finds His Way Back",              cat:"Lovemaxxing" },
   { title:"Money Finds Me First",               cat:"Richgirlmaxxing" },
   { title:"While I Sleep I Manifest",           cat:"Sleepmaxxing" },
-  { title:"10 Years Into One Hour",             cat:"Healmaxxing" },
+  { title:"10 Years Into One Hour",             cat:"Healthmaxxing" },
 ];
 
 const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
@@ -168,7 +168,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
               ))}
             </div>
 
-            {/* Made for you — 2×3 category grid */}
+            {/* Made for you, 2×3 category grid */}
             <div style={{ fontSize:f.sm, color:C.cr, marginBottom:gap }}>Made for you</div>
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:Math.round(4*s) }}>
               {FEATURED_CATS.slice(0,6).map((cat,i)=>{

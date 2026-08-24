@@ -1,29 +1,46 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
 import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
-// Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
+const MANIFESTATIONS_WORKER_URL = "https://shg-manifestations-worker.airpriestess.workers.dev";
+
+async function manifestationsApi(path, token, options = {}) {
+  const res = await fetch(`${MANIFESTATIONS_WORKER_URL}${path}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      ...options.headers,
+    },
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Request failed");
+  return data;
+}
+
+// Full Hawkins scale, 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
-  {n:"Shame",       v:20,  c:"#2a0a0a"}, // near black-red
-  {n:"Guilt",       v:30,  c:"#5a0f0f"}, // deep crimson
-  {n:"Apathy",      v:50,  c:"#333333"}, // flat grey
-  {n:"Grief",       v:75,  c:"#BFA5D8"}, // deep purple-grey
-  {n:"Fear",        v:100, c:"#167A6B"}, // dark amber-brown
-  {n:"Desire",      v:125, c:"#c0392b"}, // burnt red-orange
-  {n:"Anger",       v:150, c:"#E8B870"}, // orange
-  {n:"Pride",       v:175, c:"#f1c40f"}, // yellow
-  {n:"Courage",     v:200, c:"#E8B870"}, // champagne — the line
-  {n:"Neutrality",  v:250, c:"#167A6B"}, // teal-green
+  {n:"Shame",       v:20,  c:"#7a1f1f"}, // deep red
+  {n:"Guilt",       v:30,  c:"#9c2b2b"}, // red
+  {n:"Apathy",      v:50,  c:"#a8432a"}, // red-orange
+  {n:"Grief",       v:75,  c:"#b8562f"}, // burnt orange
+  {n:"Fear",        v:100, c:"#c66a2e"}, // orange
+  {n:"Desire",      v:125, c:"#d0812f"}, // amber-orange
+  {n:"Anger",       v:150, c:"#c94040"}, // red (spike, anger reads hot, not warm-fading)
+  {n:"Pride",       v:175, c:"#E8B870"}, // gold, transition begins
+  {n:"Courage",     v:200, c:"#E8B870"}, // gold, the line
+  {n:"Neutrality",  v:250, c:"#BFA5D8"}, // lilac
   {n:"Willingness", v:310, c:"#BFA5D8"}, // lilac
-  {n:"Acceptance",  v:350, c:"#2CB7A7"}, // teal — correct end of LG
-  {n:"Reason",      v:400, c:"#BFA5D8"}, // purple
-  {n:"Love",        v:500, c:"#F5E0A0"},
-  {n:"Joy",         v:540, c:"#F5E0A0"},
-  {n:"Peace",       v:600, c:"#F5E0A0"}, // champagne — brightest on scale
-  {n:"Enlightenment",v:700,c:"#ffffff"}, // pure white
+  {n:"Acceptance",  v:350, c:"#2CB7A7"}, // teal
+  {n:"Reason",      v:400, c:"#2CB7A7"}, // teal
+  {n:"Love",        v:500, c:"#F5E0A0"}, // champagne
+  {n:"Joy",         v:540, c:"#F5E0A0"}, // champagne
+  {n:"Peace",       v:600, c:"#F5E0A0"}, // champagne
+  {n:"Enlightenment",v:700,c:"#F5E0A0"}, // champagne, brightest
 ];
 const dominant = (log,days) => {
   const cutoff = Date.now() - days*86400000;
@@ -34,7 +51,7 @@ const dominant = (log,days) => {
 };
 
 /* ═══════════════════════════════════════════════════════════════════════
-   SHG PORTAL — Full Spotify-style with:
+   SHG PORTAL, Full Spotify-style with:
    · Real Supabase audio playback
    · Proof threads linked to tracks + undo/edit
    · Favorites section
@@ -44,16 +61,15 @@ const dominant = (log,days) => {
    · Light/dark theme toggle
    ═══════════════════════════════════════════════════════════════════════ */
 
-// ── AUDIO BASE URL — update to your Cloudflare R2 / CDN bucket URL ──────────
-const BASE = "/audio/";
+// ── AUDIO URLS ───────────────────────────────────────────────────────────────
 const AUDIO_URLS = {
-  "Spoilt Goddess":                        BASE + "SPOILT%20INSTAGRAM%2013.04.2026.WAV",
-  "Money Finds Me First":                  BASE + "29.06.2026-6.mp3",
-  "10 Years Into One Hour":                BASE + "COMPRESS%2010%20YEARS%20OF%20DELAY%20INTO%20ONE%20HOUR%20EMDR%20THEN%20ECHO%2007.04.2026.mp3",
-  "I'm a Living Breathing Masterpiece":   BASE + "preview.mp3",
-  "My Desires Are Obsessed With Me":       BASE + "preview%20(1).mp3",
-  "Seduced Focus":                         BASE + "preview%20(2).mp3",
-  "While I Sleep I Manifest":              BASE + "29.06.2026-6.mp3",
+  // Real tracks — titles match D1 database exactly
+  "Spoilt Goddess":                                     "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
+  "Lifetime of Luck":                           "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV",
+  "Drop The Tension":                           "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV",
+  "Monica Face":                                "https://shg-audio-worker.airpriestess.workers.dev/MONICA%20FACE%20HYPNOSIS%209MIN%2006.05.2026.WAV",
+  "I Am The Luckiest Woman In This Universe":   "https://shg-audio-worker.airpriestess.workers.dev/LUCKIEST%20GIRL%20UNIVERSE%20HYPNOSIS%2012MINS%2014.08.2026.WAV",
+  "100 Years of Beauty Sleep":                  "https://shg-audio-worker.airpriestess.workers.dev/100%20YEARS%20OF%20BEAUTY%20SLEEP%20HYPNOSIS%206MIN%2020.04.WAV",
 };
 
 // ── BEACONS STORE ────────────────────────────────────────────────────────────
@@ -68,13 +84,13 @@ const THEMES = {
     bg3:     "#111111",
     bg4:     "#161616",
     nav:     "#050505",
-    cr:      "#f2ece4",   // primary text — warm cream
-    mu:      "#f2ece4",   // muted text — now same as primary, no grey
-    dim:     "#e8e0d8",   // faint text — still near-white, no grey/brown
+    cr:      "#fdf0e8",   // primary text, warm cream
+    mu:      "#fdf0e8",   // muted text, now same as primary, no grey
+    dim:     "#fdf0e8",   // faint text, still near-white, no grey/brown
     border:  "rgba(232,184,112,0.15)",  // gold-tinted border
     inputBg: "#1a1a1a",
-    inputCr: "#f2ece4",
-    // LG accent colours for labels, icons, active tabs — never backgrounds
+    inputCr: "#fdf0e8",
+    // LG accent colours for labels, icons, active tabs, never backgrounds
     accentGold: "#E8B870",
     accentLav:  "#BFA5D8",
     accentTeal: "#2CB7A7",
@@ -83,16 +99,16 @@ const THEMES = {
   },
   // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
   light: {
-    bg:      "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
-    bg2:     "rgba(255,255,255,0.25)",  // frosted glass cards
-    bg3:     "rgba(255,255,255,0.35)",  // raised cards
-    bg4:     "rgba(255,255,255,0.45)",  // highest surface
-    nav:     "rgba(245,224,160,0.55)",  // nav bar — champagne frosted
-    cr:      "#000000",   // primary text — black
-    mu:      "#000000",   // muted text — also black (no grey in light mode)
-    dim:     "#000000",   // faint text — also black
-    border:  "rgba(255,255,255,0.45)",
-    inputBg: "rgba(255,255,255,0.55)",
+    bg:      "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",
+    bg2:     "#fdf0e8",  // frosted glass cards
+    bg3:     "#fdf0e8",  // raised cards
+    bg4:     "#fdf0e8",  // highest surface
+    nav:     "rgba(245,224,160,0.55)",  // nav bar, champagne frosted
+    cr:      "#000000",   // primary text, black
+    mu:      "#000000",   // muted text, also black (no grey in light mode)
+    dim:     "#000000",   // faint text, also black
+    border:  "#fdf0e8",
+    inputBg: "#fdf0e8",
     inputCr: "#000000",
     accentGold: "#000000",
     accentLav:  "#000000",
@@ -103,9 +119,9 @@ const THEMES = {
 };
 
 const R = "#E8B870", P = "#BFA5D8";
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
-// Per-tab subtle wash — black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
+// Per-tab subtle wash, black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
 // Light theme: cream fading to a soft champagne pastel.
 // TAB_WASH: dark = pure black per tab. light = undefined (LG gradient is the bg, set via THEMES.light.bg).
@@ -154,7 +170,7 @@ const CAT_ICONS = {
   Peacemaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="18" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M18 30 Q30 20 42 30 Q30 40 18 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="4" fill="currentColor"/>' },
   Confidencemaxxing: { accent:"#E8B870", icon:'<path d="M30 12 L36 24 L48 26 L39 34 L42 46 L30 40 L18 46 L21 34 L12 26 L24 24 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>' },
   Stylemaxxing: { accent:"#E8B870", icon:'<path d="M22 16 L26 20 L30 16 L34 20 L38 16 L38 22 L34 24 L34 46 L26 46 L26 24 L22 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>' },
-  Healmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
+  Healthmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Lifemaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Luckygirlmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
@@ -171,17 +187,17 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 }
 
 // ── TRACK DATA ────────────────────────────────────────────────────────────────
-// Category-level shift/benefit templates — used as a fallback description for tracks
+// Category-level shift/benefit templates, used as a fallback description for tracks
 // that don't have a hand-written desc yet. Not unique per track, but genuinely tailored
 // per category so it's honest content, not generic filler repeated everywhere.
 // Guide names per category, shown as "Related guide" in each track's description.
-// SHOP_URL is the general storefront for now — swap in real per-product URLs here
+// SHOP_URL is the general storefront for now, swap in real per-product URLs here
 // once individual guide listings exist (e.g. GUIDE_URLS["Richgirlmaxxing"] = "https://...").
 const SHOP_URL = "https://beacons.ai/reshmaoracle";
 const CAT_GUIDE = {
   Lovemaxxing:"Lovemaxxing Guide", Selfmaxxing:"Selfmaxxing Guide", Richgirlmaxxing:"Richgirlmaxxing Guide",
   Sleepmaxxing:"Sleepmaxxing Guide", Beautymaxxing:"Beautymaxxing Guide", DNAmaxxing:"DNAmaxxing Guide",
-  Luckygirlmaxxing:"Luckygirlmaxxing Guide", Healmaxxing:"Healmaxxing Guide", Sovereignmaxxing:"Sovereignmaxxing Guide",
+  Luckygirlmaxxing:"Luckygirlmaxxing Guide", Healthmaxxing:"Healthmaxxing Guide", Sovereignmaxxing:"Sovereignmaxxing Guide",
   Lifemaxxing:"Lifemaxxing Guide", Erosmaxxing:"Erosmaxxing Guide", Bodymaxxing:"Bodymaxxing Guide",
   Facemaxxing:"Facemaxxing Guide", Businessmaxxing:"Businessmaxxing Guide", Skinnymaxxing:"Skinnymaxxing Guide",
   Wellnessmaxxing:"Wellnessmaxxing Guide", Studymaxxing:"Studymaxxing Guide", Friendmaxxing:"Friendmaxxing Guide",
@@ -189,7 +205,7 @@ const CAT_GUIDE = {
   Intuitionmaxxing:"Intuitionmaxxing Guide", Desiresmaxxing:"Desiresmaxxing Guide",
 };
 const CAT_DESC = {
-  Lovemaxxing: { shift:"This shifts you from feeling like you have to chase, prove, or wonder where you stand — into feeling like the security you want is already yours.",
+  Lovemaxxing: { shift:"This shifts you from feeling like you have to chase, prove, or wonder where you stand, into feeling like the security you want is already yours.",
     benefits:["Stop checking your phone for reassurance","Release anxious attachment patterns","Feel chosen without needing constant proof"] },
   Selfmaxxing: { shift:"This shifts you from shrinking to fit into rooms, into taking up the space you were always allowed to take.",
     benefits:["Stop over-explaining your boundaries","Build quiet, unshakeable self-trust","Feel like yourself even under pressure"] },
@@ -203,13 +219,13 @@ const CAT_DESC = {
     benefits:["Support your body's natural repair rhythms","Shift the belief that decline is inevitable","Feel more at home in your own skin"] },
   Luckygirlmaxxing: { shift:"This shifts you from feeling like good things happen to other people, into expecting things to work out for you by default.",
     benefits:["Notice small wins you'd normally dismiss","Stop bracing for the worst-case outcome","Build the identity of someone things go right for"] },
-  Healmaxxing: { shift:"This shifts you from carrying old pain as part of your identity, into feeling like the version of you that's already moved through it.",
+  Healthmaxxing: { shift:"This shifts you from carrying old pain as part of your identity, into feeling like the version of you that's already moved through it.",
     benefits:["Process without having to relive every detail","Loosen the grip of stories that no longer serve you","Feel lighter without needing a reason why"] },
   Sovereignmaxxing: { shift:"This shifts you from seeking approval before you act, into trusting your own judgement as enough.",
     benefits:["Stop outsourcing decisions that are yours to make","Feel settled being disliked by the wrong people","Build a quieter, steadier inner authority"] },
   Lifemaxxing: { shift:"This shifts you from waiting for your life to start, into feeling like you're already living the version you used to dream about.",
     benefits:["Notice how far you've already come","Stop postponing joy for 'someday'","Feel present in a life that's actually yours"] },
-  Erosmaxxing: { shift:"This shifts you from performing confidence, into actually feeling it — especially in the moments that used to make you shrink.",
+  Erosmaxxing: { shift:"This shifts you from performing confidence, into actually feeling it, especially in the moments that used to make you shrink.",
     benefits:["Feel present instead of self-conscious","Release old shame around desire","Own your own magnetism without apology"] },
   Bodymaxxing: { shift:"This shifts you from fighting your body, into feeling like it's finally on your side.",
     benefits:["Reduce the mental noise around how you look","Feel strong without needing to prove it","Move through the world without shrinking"] },
@@ -237,7 +253,7 @@ const CAT_DESC = {
     benefits:["Reduce the anxiety of being overlooked","Speak up for what you're actually worth","Feel confident taking up space in the room"] },
 };
 function getDesc(track) {
-  return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively — no active effort required","Track the shift in ProofOS as signs come in"] };
+  return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively, no active effort required","Track the shift in ProofOS as signs come in"] };
 }
 
 const TRACKS = [
@@ -248,7 +264,7 @@ const TRACKS = [
     desc:{ shift:"This shifts you from feeling like you have to earn good things happening to you, into feeling like you're already the woman everyone wants to spoil.",
       benefits:["Stop over-giving to feel worthy of receiving","Let people show up for you without guilt","Feel deserving of ease, not just effort"] } },
   { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false,
-    desc:{ shift:"This shifts you from feeling like you have to chase, check your phone, or wonder if he still thinks about you — into feeling secure that he's already finding his way back.",
+    desc:{ shift:"This shifts you from feeling like you have to chase, check your phone, or wonder if he still thinks about you, into feeling secure that he's already finding his way back.",
       benefits:["Stop the anxious phone-checking loop","Release the need to initiate contact first","Feel settled in the outcome instead of controlling it"] } },
   { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Richgirlmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to hustle for every pound, into feeling like money is already looking for you.",
@@ -259,7 +275,7 @@ const TRACKS = [
   { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beautymaxxing", format:"528hz",         tier:"audio",   isNew:false, hasAudio:false },
   { id:6,  title:"DNA Activation Ceremony",  artist:"Reshma Oracle", dur:"45:00", cat:"DNAmaxxing", format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
   { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Luckygirlmaxxing", format:"Subliminal", tier:"audio", isNew:true,  hasAudio:false },
-  { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Healmaxxing", format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
+  { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Healthmaxxing", format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
   { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Sovereignmaxxing", format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
   { id:10, title:"My face is his favourite view", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
   { id:11, title:"Even my details are exquisite", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
@@ -386,11 +402,11 @@ const INIT_THREADS = [
   { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"Lovemaxxing",
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
     createdAt:"6 Jun 2026",
-    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot — the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note — the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
-  { id:2, desire:"£5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Rich Girl",
+    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot, the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note, the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
+  { id:2, desire:"$5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Rich Girl",
     feelBefore:"Tight and worried about money.", feelAfter:"",
     createdAt:"22 Jun 2026",
-    signs:[ {text:"Got a random refund £180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found £20 in my coat pocket",date:"1 Jul"} ] },
+    signs:[ {text:"Got a random refund $180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found $20 in my coat pocket",date:"1 Jul"} ] },
   { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Rich Girl",
     feelBefore:"Doubtful but hopeful.", feelAfter:"",
     createdAt:"21 Jun 2026",
@@ -402,47 +418,49 @@ const INIT_THREADS = [
   { id:5, desire:"Fully paid trip to Bali", days:31, done:true, track:"Lucky Girl Summer", category:"Luckygirlmaxxing",
     feelBefore:"Convinced holidays like this only happened to other people.", feelAfter:"Still processing that this actually happened to me.",
     createdAt:"14 Feb 2026",
-    signs:[ {text:"Friend mentioned a trip out of nowhere",date:"2 Mar"}, {text:"Won a giveaway I forgot I entered",date:"9 Mar"}, {text:"Screenshot — flights confirmed, fully paid",date:"17 Mar",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"17 Mar 2026" },
+    signs:[ {text:"Friend mentioned a trip out of nowhere",date:"2 Mar"}, {text:"Won a giveaway I forgot I entered",date:"9 Mar"}, {text:"Screenshot, flights confirmed, fully paid",date:"17 Mar",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"17 Mar 2026" },
   { id:6, desire:"All 5 desires manifested",     days:22, done:true,  track:"My Desires Are Obsessed With Me", category:"Desiresmaxxing",
     feelBefore:"Overworked and overlooked. Tired of proving myself.", feelAfter:"Relief. Like I could finally exhale.",
     createdAt:"3 Nov 2025",
     signs:[ {text:"Manager asked to lead the project I wanted",date:"14 Nov"}, {text:"Offer letter arrived",date:"25 Nov"} ], manifestedAt:"25 Nov 2025" },
-  { id:7, desire:"Won £850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Rich Girl",
+  { id:7, desire:"Won $850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Rich Girl",
     feelBefore:"Skeptical this stuff even works.", feelAfter:"Shocked. Genuinely shocked.",
     createdAt:"8 Sep 2025",
-    signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot — the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
+    signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot, the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
   { id:8, desire:"Best friend reached out first", days:45, done:true, track:"Friendmaxxing Guide", category:"Friendmaxxing",
     feelBefore:"Grieving a friendship I thought was over.", feelAfter:"Full circle. Grateful.",
     createdAt:"19 Jan 2026",
-    signs:[ {text:"Saw an old photo of us randomly",date:"14 Feb"}, {text:"She texted — 'I miss you'",date:"5 Mar"} ], manifestedAt:"5 Mar 2026" },
+    signs:[ {text:"Saw an old photo of us randomly",date:"14 Feb"}, {text:"She texted, 'I miss you'",date:"5 Mar"} ], manifestedAt:"5 Mar 2026" },
 ];
 
 // Category → proof wall colours (matches landing Proof Wall)
-const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Rich Girl":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beauty":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Identity":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNA":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sleep":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lovemaxxing2":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Desiresmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Beautymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Facemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Bodymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Richgirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Businessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "DNAmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Selfmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Erosmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Lifemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Luckygirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Sovereignmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Healmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Peacemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Wellnessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Skinnymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Singlemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", "Friendmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" };
-const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Rich Girl":"#E8B870", "Beauty":"#F5E0A0", "Identity":"#BFA5D8", "DNA":"#167A6B", "Sleep":"#2CB7A7", "Beautymaxxing":"#F5E0A0", "Facemaxxing":"#E8B870", "Bodymaxxing":"#2CB7A7", "Richgirlmaxxing":"#E8B870", "Businessmaxxing":"#2CB7A7", "DNAmaxxing":"#167A6B", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#F5E0A0", "Lifemaxxing":"#E8B870", "Luckygirlmaxxing":"#2CB7A7", "Sovereignmaxxing":"#BFA5D8", "Healmaxxing":"#F5E0A0", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#2CB7A7", "Confidencemaxxing":"#E8B870", "Skinnymaxxing":"#2CB7A7", "Singlemaxxing":"#F5E0A0" };
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Rich Girl":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Beauty":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Identity":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "DNA":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Sleep":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Lovemaxxing2":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Desiresmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Beautymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Facemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Bodymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Richgirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Businessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "DNAmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Selfmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Erosmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Lifemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Luckygirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Sovereignmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Healthmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Peacemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Wellnessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Skinnymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Singlemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Friendmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" };
+// Lucky Girl gradient stops, cycled in fixed order so category badges read as a deliberate spectrum, not a random clash
+const LG_STOPS = ["#F5E0A0", "#E8B870", "#BFA5D8", "#2CB7A7", "#167A6B"];
+const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Rich Girl":"#E8B870", "Beauty":"#BFA5D8", "Identity":"#2CB7A7", "DNA":"#167A6B", "Sleep":"#F5E0A0", "Beautymaxxing":"#E8B870", "Facemaxxing":"#BFA5D8", "Bodymaxxing":"#2CB7A7", "Richgirlmaxxing":"#167A6B", "Businessmaxxing":"#F5E0A0", "DNAmaxxing":"#E8B870", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#2CB7A7", "Lifemaxxing":"#167A6B", "Luckygirlmaxxing":"#F5E0A0", "Sovereignmaxxing":"#E8B870", "Healthmaxxing":"#BFA5D8", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#167A6B", "Confidencemaxxing":"#F5E0A0", "Skinnymaxxing":"#E8B870", "Singlemaxxing":"#BFA5D8" };
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
-  Home:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={a?c||"#fff":"none"} stroke={a?c||"#fff":"#727272"} strokeWidth="1.8"/></svg>,
-  Search: ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"#727272"} strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
-  Lib:    ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill={a?c||"#fff":"#727272"}><path d="M3 3h4v18H3zM9 3h2v18H9zM14 3l7 2.5v13L14 21z"/></svg>,
-  Proof:  ({a})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?R:"#727272"} strokeWidth="1.8" strokeLinecap="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg>,
+  Home:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={a?c||"#fff":"none"} stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8"/></svg>,
+  Search: ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
+  Lib:    ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill={a?c||"#fff":"rgba(253,240,232,0.45)"}><path d="M3 3h4v18H3zM9 3h2v18H9zM14 3l7 2.5v13L14 21z"/></svg>,
+  Proof:  ({a})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?R:"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg>,
   Play:   ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><polygon points="6 3 20 12 6 21"/></svg>,
   Pause:  ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>,
-  Heart:  ({on})=><svg width="18" height="18" viewBox="0 0 24 24" fill={on?R:"none"} stroke={on?R:"#727272"} strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.84-7.84 1.06-1.06a5.5 5.5 0 000-7.72z"/></svg>,
+  Heart:  ({on})=><svg width="18" height="18" viewBox="0 0 24 24" fill={on?R:"none"} stroke={on?R:"rgba(253,240,232,0.45)"} strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.84-7.84 1.06-1.06a5.5 5.5 0 000-7.72z"/></svg>,
   Lock:   ()=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={R} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
-  Edit:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="2" strokeLinecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
-  Undo:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
-  Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||"#727272"} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
-  Cog:    ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
-  Book:   ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"#727272"} strokeWidth="1.8" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
-  Shop:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"#727272"} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
-  Stats:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"#727272"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
+  Edit:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
+  Undo:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
+  Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||"rgba(253,240,232,0.45)"} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+  Cog:    ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  Book:   ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
+  Shop:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
+  Stats:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
 };
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
 export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
-  const { session } = useAuth();
+  const { session, token } = useAuth();
   const userId = session?.user?.id;
   const [pushDismissed, setPushDismissed] = useState(false);
   const [tab, setTab]         = useState(initialTab);
@@ -463,11 +481,45 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const [searchQ, setQ]       = useState("");
   const [libCat, setLibCat]   = useState("All");
   const [libFormat, setLibFormat] = useState("All");
-  const [threads, setThreads] = useState(INIT_THREADS);
-  const [theme, setTheme]     = useState(forceTheme || "dark");
+  const [threads, setThreads] = useState(isPreview ? INIT_THREADS : []);
+  const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
+  useEffect(() => {
+    if (isPreview || !userId) return;
+    let cancelled = false;
+    (async () => {
+      let data, error;
+      try {
+        const res = await manifestationsApi("/manifestations", token);
+        data = res.manifestations;
+      } catch (err) {
+        error = err;
+      }
+      if (cancelled) return;
+      if (error) { console.error("Failed to load manifestations:", error); setThreadsLoaded(true); return; }
+      const mapped = (data||[]).map(m => ({
+        id: m.id,
+        desire: m.desire,
+        category: m.category || "",
+        days: m.created_at ? Math.floor((Date.now()-new Date(m.created_at))/86400000) : 0,
+        done: m.status === "manifested",
+        isBucket: m.status === "in_progress" && !m.category,
+        track: null,
+        signs: [],
+        oldBelief: m.notes || "",
+        feelBefore: "",
+        feelAfter: "",
+        createdAt: m.created_at,
+        manifestedAt: m.manifested_at,
+      }));
+      setThreads(mapped);
+      setThreadsLoaded(true);
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview]);
+  const [theme, setTheme]     = useState(forceTheme || "light");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
-  // Seeded 30-day emotional log — dominant state trends upward on Hawkins scale
+  // Seeded 30-day emotional log, dominant state trends upward on Hawkins scale
   const [emoLog, setEmoLog] = useState(()=>{
     const arr=[]; const now=Date.now();
     const path=["Fear","Fear","Desire","Anger","Pride","Pride","Courage","Neutrality","Willingness","Courage","Willingness","Acceptance","Reason","Acceptance","Love","Willingness","Acceptance","Love","Joy","Reason","Love","Love","Peace","Joy","Love","Peace","Joy","Peace","Love","Love"];
@@ -494,6 +546,20 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const greet = (hour<12?"Good morning":"Good evening") + (isPreview ? "" : `, ${firstName}`);
 
   // ── AUDIO PLAYBACK ───────────────────────────────────────────────────────
+  const logPlay = async (trackTitle) => {
+    if (isPreview || !userId) return;
+    try {
+      const tracksRes = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/tracks");
+      const { tracks } = await tracksRes.json();
+      const match = tracks?.find(t => t.title === trackTitle);
+      if (!match) return; // no matching track row, skip logging, don't block playback
+      await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ track_id: match.id }),
+      });
+    } catch (e) { console.error("Failed to log play:", e); }
+  };
   const play = (t) => {
     const hasUrl = !!AUDIO_URLS[t.title];
     if (track.id === t.id) {
@@ -501,7 +567,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       return;
     }
     setTrack(t);
-    if (hasUrl) { setPlay(true); if (!isPreview) setListenCount(n=>n+1); }
+    if (hasUrl) { setPlay(true); if (!isPreview) { setListenCount(n=>n+1); logPlay(t.title); } }
     setProg(0);
   };
 
@@ -570,10 +636,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     if (isPreview) { alert("Sign up to manage your subscription."); return; }
     setPortalLoading(true);
     try {
-      // TODO: replace with your Cloudflare Worker endpoint
-      const res = await fetch("/api/create-portal-session", {
+      const res = await fetch("https://shg-billing-worker.airpriestess.workers.dev/create-portal-session", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ return_url: window.location.href }),
       });
       const { url, error } = await res.json();
@@ -589,7 +654,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   const BillingPanel = () => (
     <>
-      <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.6)" }} onClick={()=>setBillingOpen(false)}/>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"#000000" }} onClick={()=>setBillingOpen(false)}/>
       <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:999,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
         <div style={{ fontSize:13,color:C.mu,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
         <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
@@ -599,15 +664,15 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
             <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
-            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"£33/mo":userTier==="lifetime"?"£500 one-time":"£19/mo"}</span>
+            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$79/mo":userTier==="lifetime"?"$1000 one-time":"$49/mo"}</span>
           </div>
         </div>
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
-            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>£33/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$79/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-              {portalLoading ? "Opening..." : "Upgrade now — instant access ✦"}
+              {portalLoading ? "Opening..." : "Upgrade now, instant access ✦"}
             </button>
           </div>
         )}
@@ -622,27 +687,13 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   const ProfilePanel = () => (
     <>
-      <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.5)" }} onClick={()=>setProfileOpen(false)}/>
-      <div style={{ position:"fixed",top:isMobile?0:"auto",right:0,bottom:0,width:isMobile?"100%":320,background:C.bg2,borderLeft:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"#000000" }} onClick={()=>setProfileOpen(false)}/>
+      <div style={{ position:"fixed",top:isMobile?0:"auto",right:0,bottom:0,width:isMobile?"100%":320,background:isDark?"#0a0a0a":"#fdf0e8",borderLeft:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
         {/* Header */}
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
             <div style={{ width:56,height:56,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center" }}>
-              <svg viewBox="0 0 100 100" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="lg_sidebar" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#F5E0A0"/>
-                    <stop offset="20%" stopColor="#E8B870"/>
-                    <stop offset="52%" stopColor="#BFA5D8"/>
-                    <stop offset="78%" stopColor="#2CB7A7"/>
-                    <stop offset="100%" stopColor="#167A6B"/>
-                  </linearGradient>
-                </defs>
-                <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
-                <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
-                <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
-                <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_sidebar)" strokeWidth="2"/>
-              </svg>
+              <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="52" height="52" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
             </div>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
@@ -652,8 +703,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {/* Stats row */}
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
-            {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Intentions",C.cr]].map(([v,l,c],i)=>(
-              <div key={i} style={{ background:C.bg3,borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
+            {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Desires",C.cr]].map(([v,l,c],i)=>(
+              <div key={i} style={{ background:isDark?"#111111":"#fdf0e8",borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
                 <div style={{ fontSize:18,fontWeight:400,color:c }}>{v}</div>
                 <div style={{ fontSize:12,color:C.mu }}>{l}</div>
               </div>
@@ -665,7 +716,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ flex:1,overflowY:"auto",padding:"8px 0" }}>
           {[
             { icon:<Ico.Book c={C.mu}/>, label:"Listening Guide", action:()=>{setShowGuide(true);setProfileOpen(false);} },
-            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile — connect to Supabase auth") },
+            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile, connect to Supabase auth") },
             { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
             { icon:<Ico.Shop c={C.mu}/>, label:"Shop", action:()=>{setTab("shop");setProfileOpen(false);} },
             { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Coming soon: daily push reminders.\n\nThis requires the app to be installed to your home screen (iPhone: Share → Add to Home Screen) so your browser can send notifications even when SHG isn't open. We'll prompt you to enable this once it's live.") },
@@ -679,7 +730,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 20px" }}/>
-          <PushNotificationToggle userId={userId} C={C}/>
+          <PushNotificationToggle userId={userId} token={token} C={C}/>
           <button onClick={onHome} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:16,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             ← Back to site
           </button>
@@ -704,11 +755,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const openPlayer = () => { if (isDesktop) setShowDesc(true); else setFullP(true); };
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
+      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
-      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)}/>)}
+      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -724,7 +775,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {showEmoLog && (
         <>
-          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowEmoLog(false)}/>
+          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"#000000" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
             <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
@@ -737,7 +788,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
                   style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
                     background:quickFeel===h.n?`${h.c}22`:"transparent",
-                    border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
+                    border:`1px solid ${quickFeel===h.n?h.c:"#fdf0e8"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 6px ${h.c}99` }}/>
                   <span style={{ fontSize:15,color:h.c,flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
@@ -750,9 +801,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
                   style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
                     background:quickFeel===h.n?`${h.c}33`:"transparent",
-                    border:`1px solid ${quickFeel===h.n?h.c:"rgba(255,255,255,0.04)"}` }}>
+                    border:`1px solid ${quickFeel===h.n?h.c:"#fdf0e8"}` }}>
                   <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-                  <span style={{ fontSize:15,color:isDark?(h.v>=600?"#F5E0A0":h.v<=30?"#e8e0d8":h.c):"#000000",flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:15,color:isDark?(h.v>=600?"#F5E0A0":h.v<=30?"#fdf0e8":h.c):"#000000",flex:1 }}>{h.n}</span>
                   <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
                 </div>
               ))}
@@ -764,7 +815,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
                   <div style={{ width:14,height:14,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 8px ${h.c}` }}/>
                   <div>
                     <div style={{ fontSize:15,color:C.cr }}>{h.n} · {h.v}</div>
-                    <div style={{ fontSize:13,color:C.mu }}>{h.v>=200?"Expansive energy — you're creating from above the line":"Contractive energy — the audio will help lift you"}</div>
+                    <div style={{ fontSize:13,color:C.mu }}>{h.v>=200?"Expansive energy, you're creating from above the line":"Contractive energy, the audio will help lift you"}</div>
                   </div>
                 </div>
               ) : null;
@@ -774,65 +825,62 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </>
       )}
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
-        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",textAlign:"center" }}>
-            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
-            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
-            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
+        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
-            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
         </div>
       )}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <div style={{ flex:1,display:"flex",overflow:"hidden" }}>
         {/* Sidebar */}
-        <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",flexShrink:0,borderRight:`1px solid ${C.border}` }}>
-          <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",gap:8 }}>
-            <svg viewBox="0 0 100 100" width="28" height="28" fill="none" style={{flexShrink:0}} xmlns="http://www.w3.org/2000/svg">
-              <defs><linearGradient id="lg_leftnav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-              <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
-              <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
-              <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
-              <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_leftnav)" strokeWidth="2"/>
-            </svg>
-            <span style={{fontFamily:"'Jost',sans-serif",fontStyle:"normal",fontWeight:300,fontSize:18,color:C.text}}>
-              Self Hypnosis Goddess
-            </span>
-            <span style={{ fontSize:9,fontWeight:600,letterSpacing:"0.1em",color:isDark?"#E8B870":"#f2ece4",background:isDark?"transparent":"#000",border:`1px solid ${isDark?"rgba(232,184,112,0.4)":"rgba(0,0,0,0.4)"}`,borderRadius:20,padding:"2px 7px",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>BETA</span>
+        <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
+          <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+            <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="40" height="40" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+            {isDark ? (
+              <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" }}>BETA</span>
+            ) : (
+              <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,background:"#000",display:"inline-block" }}>
+                <span style={{ backgroundImage:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", backgroundClip:"text", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent" }}>BETA</span>
+              </span>
+            )}
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?"#E8B870":isDark?"#727272":"#000000",fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#E8B870"}
+              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(232,184,112,0.14)":"#000000"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#E8B870":"#F5E0A0"):isDark?"rgba(253,240,232,0.45)":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              onMouseEnter={e=>{if(tab!==n.id)e.currentTarget.style.color="#E8B870";}}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
-              <n.I a={tab===n.id} c={C.cr}/> {n.label}
+              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#F5E0A0"):C.cr}/> {n.label}
             </button>
           ))}
-          <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
-          <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:15,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
+          <div style={{ height:1,background:C.border,margin:"6px 16px" }}/>
+          <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:13,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
             onMouseEnter={e=>e.currentTarget.style.color="#E8B870"}
             onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
             <Ico.Book c={C.mu}/> Listening Guide
           </button>
-          <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
-          <div style={{ padding:"0 20px 6px",fontSize:13,fontWeight:400,color:C.dim,letterSpacing:"0.12em",textTransform:"uppercase" }}>Recently played</div>
+          <div style={{ height:1,background:C.border,margin:"6px 16px" }}/>
+          <div style={{ padding:"0 18px 4px",fontSize:11,fontWeight:400,color:C.dim,letterSpacing:"0.12em",textTransform:"uppercase" }}>Recently played</div>
           {TRACKS.slice(0,5).map(t=>(
             <button key={t.id} onClick={()=>{play(t); setShowDesc(true);}}
-              style={{ display:"flex",alignItems:"center",gap:10,padding:"5px 20px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:14,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
+              style={{ display:"flex",alignItems:"center",gap:9,padding:"4px 18px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:13,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
               onMouseEnter={e=>e.currentTarget.style.color=C.cr}
               onMouseLeave={e=>{if(track.id!==t.id)e.currentTarget.style.color=C.mu;}}>
-              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={28} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
+              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={24} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
               <span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{t.title}</span>
             </button>
           ))}
           <div style={{ flex:1 }}/>
-          <div style={{ padding:"8px 16px",display:"flex",gap:8 }}>
-            <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ flex:1,padding:"7px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          <div style={{ padding:"6px 14px",display:"flex",gap:6 }}>
+            <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ flex:1,padding:"6px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {isDark?"☀ Light":"☾ Dark"}
             </button>
           </div>
-          <button onClick={()=>setProfileOpen(true)} style={{ margin:"0 16px 8px",padding:"8px 12px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.cr,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",alignItems:"center",gap:10 }}>
+          <button onClick={()=>setProfileOpen(true)} style={{ margin:"0 14px 6px",padding:"6px 10px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.cr,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",alignItems:"center",gap:9 }}>
             <div style={{
               width:24,height:24,borderRadius:"50%",
               background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",
@@ -874,25 +922,18 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <BetaBanner C={C} isDark={isDark}/>
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
-        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",textAlign:"center" }}>
-            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10,opacity:0.7 }}>Member-Exclusive · Not Open To The Public</div>
-            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier — this once</div>
-            <div style={{ fontSize:15,color:"#000",opacity:0.8,marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide — unlocked.</div>
+        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
-            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",opacity:0.6,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
         </div>
       )}
-      <div style={{ height:52,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <span style={{ fontSize:15,fontWeight:400,color:C.cr }}>9:41</span>
-        <svg viewBox="0 0 100 100" width={22} height={22} fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="lg_nav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="20%" stopColor="#E8B870"/><stop offset="52%" stopColor="#BFA5D8"/><stop offset="78%" stopColor="#2CB7A7"/><stop offset="100%" stopColor="#167A6B"/></linearGradient></defs>
-          <circle cx="35" cy="35" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
-          <circle cx="65" cy="35" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
-          <circle cx="35" cy="65" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
-          <circle cx="65" cy="65" r="22" fill="none" stroke="url(#lg_nav)" strokeWidth="2"/>
-        </svg>
+      <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
+        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{
@@ -911,11 +952,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div onClick={()=>setFullP(true)} style={{ position:"absolute",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#E8B870" }}>{track.title}</div>
+            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:isDark?"#E8B870":"#000" }}>{track.title}</div>
             <div style={{ fontSize:13,color:C.mu }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
           </div>
           <button onClick={e=>{e.stopPropagation();toggleLike(track.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
-          <button onClick={e=>{e.stopPropagation();setPlay(p=>!p);}} style={{ width:36,height:36,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:0,flexShrink:0 }}>
+          <button onClick={e=>{e.stopPropagation();setPlay(p=>!p);}} style={{ width:36,height:36,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:0,flexShrink:0 }}>
             {playing?<Ico.Pause dark={!isDark}/>:<Ico.Play dark={!isDark}/>}
           </button>
           <div style={{ position:"absolute",bottom:0,left:0,right:0,height:2,background:C.border,borderRadius:"0 0 10px 10px" }}>
@@ -944,18 +985,27 @@ function PreviewBanner({ onSignOut, C }) {
   return (
     <div style={{ background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",padding:"9px 16px",textAlign:"center",flexShrink:0 }}>
       <span style={{ fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>
-        🔒 Preview mode — <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
+        🔒 Preview mode, <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
       </span>
     </div>
   );
 }
 
 function BetaBanner({ C, isDark }) {
+  const [dismissed, setDismissed] = useState(() => {
+    try { return sessionStorage.getItem("shg_beta_dismissed") === "1"; } catch { return false; }
+  });
+  if (dismissed) return null;
+  const close = () => {
+    setDismissed(true);
+    try { sessionStorage.setItem("shg_beta_dismissed", "1"); } catch {}
+  };
   return (
-    <div style={{ background:isDark?"#0a0a0a":"rgba(0,0,0,0.06)",borderBottom:`1px solid ${C.border}`,padding:"6px 16px",textAlign:"center",flexShrink:0 }}>
-      <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif" }}>
-        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span> — the app is still being built. Some tracks and features may not work yet.
+    <div style={{ background:isDark?"#0a0a0a":"#000000",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
+      <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",display:"block" }}>
+        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span>, some tracks may not work yet.
       </span>
+      <button onClick={close} aria-label="Dismiss" style={{ position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",width:22,height:22,borderRadius:"50%",background:"none",border:"none",color:C.mu,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",WebkitTapHighlightColor:"transparent" }}>✕</button>
     </div>
   );
 }
@@ -1030,7 +1080,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
           <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#E8B870":C.mu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
-          <span style={{ fontSize:13,color:C.dim,width:32,textAlign:"right" }}>—</span>
+          <span style={{ fontSize:13,color:C.dim,width:32,textAlign:"right" }}>,</span>
           <div style={{ flex:1,height:4,background:C.border,borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
             <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",transition:"width 0.3s" }}/>
           </div>
@@ -1097,31 +1147,47 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
           <div style={{ fontSize:15,color:C.mu,marginBottom:24 }}>Read along</div>
           <div style={{ width:"100%",fontSize:19,lineHeight:1.9,color:C.cr,fontWeight:400,textAlign:"center",whiteSpace:"pre-line",paddingBottom:40 }}>
-            {track.script || "Script coming soon — this affirmation script hasn't been added yet."}
+            {track.script || "Script coming soon, this affirmation script hasn't been added yet."}
           </div>
         </div>
       ) : (
       <>
       <Thumb title={track.title} cat={track.cat} size={270} radius={14}/>
       {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
-      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",marginTop:24,marginBottom:20 }}>
-        <div>
-          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{track.title}</div>
-          <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
-        </div>
-        <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
+      <div style={{ width:"100%",marginTop:24,marginBottom:12 }}>
+        <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{track.title}</div>
+        <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
+      </div>
+      <div style={{ display:"flex",gap:8,width:"100%",marginBottom:20,flexWrap:"wrap" }}>
+        {track.format && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.format}</span>}
+        {track.cat && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.cat}</span>}
+        {track.dur && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.dur}</span>}
+      </div>
+      <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
+        <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
+          <Ico.Heart on={liked.has(track.id)}/>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Like</span>
+        </button>
+        <button style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Save</span>
+        </button>
+        <button onClick={()=>{ if(navigator.share){ navigator.share({title:track.title,url:window.location.href}).catch(()=>{});} }} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Share</span>
+        </button>
       </div>
       </>
       )}
       <div style={{ width:"100%",marginBottom:8 }}>
-        <div style={{ height:4,background:isDark?"#333333":"rgba(0,0,0,0.2)",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
+        <div style={{ height:4,background:isDark?"#333333":"#000000",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
           <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",position:"relative",transition:"width 0.3s" }}>
             <div style={{ position:"absolute",right:-6,top:"50%",transform:"translateY(-50%)",width:13,height:13,borderRadius:"50%",background:C.cr }}/>
           </div>
         </div>
       </div>
       <div style={{ display:"flex",justifyContent:"space-between",width:"100%",marginBottom:32 }}>
-        <span style={{ fontSize:13,color:C.dim }}>—</span><span style={{ fontSize:13,color:C.dim }}>{track.dur}</span>
+        <span style={{ fontSize:13,color:C.dim }}>,</span><span style={{ fontSize:13,color:C.dim }}>{track.dur}</span>
       </div>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%" }}>
         <span style={{ fontSize:18,color:C.dim,cursor:"pointer" }}>⇄</span>
@@ -1137,7 +1203,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, pushDismissed, onDismissPush, openPlayer }) {
+function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, token, pushDismissed, onDismissPush, openPlayer }) {
 
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
   return (
@@ -1148,7 +1214,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ fontSize:13,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
           <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
             {isPreview?"Goddess":firstName}
-            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
+            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
               {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
             </span>
           </span>
@@ -1160,19 +1226,19 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* UPGRADE BANNER */}
       {userTier==="audio"&&!isPreview&&(
-        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
+        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
-            <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3,opacity:0.7 }}>Goddess offer</div>
-            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics — 10% off</div>
+            <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3, }}>Goddess offer</div>
+            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics, 10% off</div>
           </div>
           <div style={{ fontSize:18,color:"#000",flexShrink:0 }}>→</div>
         </div>
       )}
 
       {/* PUSH PROMPT */}
-      {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} C={C} onDismiss={onDismissPush}/>}
+      {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} token={token} C={C} onDismiss={onDismissPush}/>}
 
-      {/* PROOFOS TEASER — home tab */}
+      {/* PROOFOS TEASER, home tab */}
       <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
           <div style={{ fontSize:13,fontWeight:600,color:"#167A6B",letterSpacing:"0.15em",textTransform:"uppercase",display:"inline-block" }}>ProofOS ✦</div>
@@ -1190,13 +1256,13 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore ProofOS →</div>
       </div>
 
-      {/* KNOWLEDGE GUIDE — all tiers */}
+      {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
         <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(44,183,167,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals, all explained.</div>
           </span>
           <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
         </button>
@@ -1237,7 +1303,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* YOUR FAVOURITES */}
       <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
-          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track — it lives here.</div>
+          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track, it lives here.</div>
           :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
 
@@ -1269,18 +1335,83 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
   );
 }
 
-// ── ANALYTICS TAB — dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide }) {
+// ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
+
+  // ── PATTERNS: real listen counts per category/track, correlated with manifested desires ──
+  const [patterns, setPatterns] = useState(null); // null = loading/no data yet
+  const [realListens, setRealListens] = useState({ total:0, week:[0,0,0,0,0,0,0] });
+  useEffect(() => {
+    if (isPreview || !userId) { setPatterns([]); return; }
+    let cancelled = false;
+    (async () => {
+      let plays, playsErr;
+      try {
+        const res = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        plays = data.plays;
+      } catch (e) {
+        playsErr = e;
+      }
+      if (cancelled) return;
+      if (playsErr || !plays || plays.length === 0) { setPatterns([]); setRealListens({ total:0, week:[0,0,0,0,0,0,0] }); return; }
+
+      // Real weekly play counts (Mon-Sun) from actual played_at timestamps
+      const now = new Date();
+      const dayOfWeek = (now.getDay()+6)%7; // 0=Mon ... 6=Sun
+      const monday = new Date(now); monday.setDate(now.getDate()-dayOfWeek); monday.setHours(0,0,0,0);
+      const weekCounts = [0,0,0,0,0,0,0];
+      plays.forEach(p => {
+        const d = new Date(p.played_at);
+        const diffDays = Math.floor((d - monday) / 86400000);
+        if (diffDays >= 0 && diffDays < 7) weekCounts[diffDays]++;
+      });
+      setRealListens({ total: plays.length, week: weekCounts });
+
+      // Aggregate listens per category and per track
+      const byCategory = {}; // category -> {count, trackTitles:Set}
+      const byTrack = {}; // title -> {count, category}
+      plays.forEach(p => {
+        const cat = p.category;
+        const title = p.title;
+        if (cat) { byCategory[cat] = byCategory[cat] || {count:0}; byCategory[cat].count++; }
+        if (title) { byTrack[title] = byTrack[title] || {count:0, category:cat}; byTrack[title].count++; }
+      });
+
+      // Manifested desires with a category, grouped
+      const manifestedByCategory = {};
+      threads.filter(t=>t.done && t.category).forEach(t => {
+        manifestedByCategory[t.category] = (manifestedByCategory[t.category]||0) + 1;
+      });
+
+      const catInsights = Object.entries(byCategory)
+        .map(([cat,v]) => ({ type:"category", name:cat, listens:v.count, manifestedCount: manifestedByCategory[cat]||0 }))
+        .filter(i => i.manifestedCount > 0)
+        .sort((a,b)=>b.manifestedCount-a.manifestedCount || b.listens-a.listens);
+
+      const trackInsights = Object.entries(byTrack)
+        .map(([title,v]) => ({ type:"track", name:title, listens:v.count, manifestedCount: manifestedByCategory[v.category]||0 }))
+        .filter(i => i.manifestedCount > 0)
+        .sort((a,b)=>b.manifestedCount-a.manifestedCount || b.listens-a.listens);
+
+      setPatterns([...catInsights.slice(0,2), ...trackInsights.slice(0,2)].slice(0,3));
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, threads]);
+
   return (
     <div>
       <div style={{ padding:"20px 16px 12px" }}>
         <span style={{ fontSize:24,fontWeight:400,color:C.cr }}>Analytics</span>
       </div>
 
-      {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
+      {/* EMOTIONAL PATTERN, dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
           <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
@@ -1289,15 +1420,33 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
             <div key={i} style={{ background:C.card2, borderRadius:12, padding:"16px 10px", textAlign:"center" }}>
               <div style={{ fontSize:13, color:C.mu, fontWeight:400, letterSpacing:"0.05em", textTransform:"uppercase", marginBottom:8 }}>{l}</div>
-              <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||","}</div>
               <div style={{ fontSize:15, color:C.mu, fontWeight:400, marginTop:4 }}>{d?.v||""}</div>
             </div>
           ))}
         </div>
         <div style={{ fontSize:14, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
-          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
+          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today, the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
+
+      {/* PATTERNS, what's actually working, real listen + manifestation correlation */}
+      {!isPreview && patterns && patterns.length > 0 && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:"linear-gradient(135deg,rgba(245,224,160,0.08),rgba(191,165,216,0.06),rgba(44,183,167,0.08))", border:`1px solid rgba(232,184,112,0.3)` }}>
+          <div style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>What's working for you ✦</div>
+          {patterns.map((p,i) => (
+            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", borderBottom: i<patterns.length-1 ? `1px solid ${C.border}` : "none" }}>
+              <div style={{ width:8, height:8, borderRadius:"50%", background: p.type==="category" ? "#E8B870" : "#BFA5D8", flexShrink:0 }}/>
+              <div style={{ flex:1 }}>
+                <div style={{ fontSize:14, color:C.cr }}>{p.name}</div>
+                <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
+                  {p.listens} listen{p.listens!==1?"s":""}, alongside {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} marked manifested
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* FULL ANALYTICS BOARD */}
       <div style={{ margin:"0 16px 20px" }}>
@@ -1306,9 +1455,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           data={isPreview ? DEMO_ANALYTICS : {
             manifested, inProgress,
             signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
-            listens: listenCount,
-            streakDays: 14,
-            week: [2,4,3,6,5,4,Math.max(1,listenCount%7)],
+            listens: realListens.total,
+            streakDays: 0,
+            week: realListens.week,
             topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
               .sort((a,b)=>b[1]-a[1]).slice(0,3)
               .map(([name,n])=>[name,({"Lovemaxxing":"#167A6B","Rich Girl":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"})[name]||"#E8B870",n]),
@@ -1318,13 +1467,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         />
       </div>
 
-      {/* KNOWLEDGE GUIDE — available to all tiers */}
+      {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
         <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(44,183,167,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
-            <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
+            <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals, everything explained.</div>
           </span>
           <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
         </button>
@@ -1355,20 +1504,20 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
-        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 10px",margin:isP?"0 -10px":0,borderRadius:isP?8:0,background:isP?(C.bg==="#000000"?"rgba(232,184,112,0.12)":"#000000"):"none",borderBottom:isP?"none":`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
-            {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+            {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:400,color:isP?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
-            <div style={{ fontSize:13,color:C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
+            <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+            <div style={{ fontSize:13,color:isP?"#c9c2b8":C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
           </div>
           {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (
             <>
               <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0,flexShrink:0 }}><Ico.Heart on={liked.has(t.id)}/></button>
-              <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:32,height:32,borderRadius:"50%",background:isP?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)":"rgba(232,184,112,0.15)",border:isP?"none":"1px solid rgba(232,184,112,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+              <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:32,height:32,borderRadius:"50%",background:isP?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"rgba(232,184,112,0.15)",border:isP?"none":"1px solid rgba(232,184,112,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
                 {isP&&playing?<Ico.Pause dark={isP}/>:<Ico.Play dark={isP}/>}
               </button>
             </>
@@ -1382,23 +1531,41 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C, openPlayer }) {
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
-  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
+  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   const [catOpen, setCatOpen] = useState(false);
-  const [dropRect, setDropRect] = useState(null);
+  const [dropPos, setDropPos] = useState(null);
   const catRef = useRef(null);
   const btnRef = useRef(null);
+  const measureDropdown = () => {
+    if (btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setDropPos({ top: r.bottom + 6, left: r.left, width: r.width });
+    }
+  };
   useEffect(() => {
     const onClick = e => { if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
     document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    document.addEventListener("touchstart", onClick, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("touchstart", onClick);
+    };
   }, []);
+  useEffect(() => {
+    if (!catOpen) return;
+    measureDropdown();
+    const onReposition = () => measureDropdown();
+    window.addEventListener("scroll", onReposition, { passive: true, capture: true });
+    window.addEventListener("resize", onReposition, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onReposition, { capture: true });
+      window.removeEventListener("resize", onReposition);
+    };
+  }, [catOpen]);
   const openDropdown = () => {
-    if (btnRef.current) {
-      const r = btnRef.current.getBoundingClientRect();
-      setDropRect(r);
-    }
+    measureDropdown();
     setCatOpen(o=>!o);
   };
   const catLabel = cat==="All" ? "All categories" : (cat==="Liked" ? "Liked ♡" : cat);
@@ -1407,7 +1574,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
-        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:"#000",background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
@@ -1424,15 +1591,13 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <span>{catLabel}</span>
             <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
-          {catOpen && dropRect && (
-            <>
-            <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:9998, background:"rgba(0,0,0,0.45)" }}/>
+          {catOpen && dropPos && createPortal(
             <div style={{
               position:"fixed",
-              top: dropRect ? dropRect.bottom + 6 : 0,
-              left: dropRect ? dropRect.left : 0,
-              width: dropRect ? dropRect.width : "auto",
-              zIndex:99999,
+              top:dropPos.top,
+              left:dropPos.left,
+              width:dropPos.width,
+              zIndex:999999,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
               maxHeight:300, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
             }}>
@@ -1444,7 +1609,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
                       padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
-                      color:active?catColor:"#f2ece4", background:active?`${catColor}1c`:"#0a0a0a",
+                      color:active?catColor:"#fdf0e8", background:active?`${catColor}1c`:"#0a0a0a",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
                       borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?`3px solid ${catColor}`:"3px solid transparent"
                     }}
@@ -1462,15 +1627,19 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   </div>
                 );
               })}
-            </div>
-            </>
+            </div>,
+            document.body
           )}
         </div>
       </div>
-      {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
+      {catOpen && createPortal(
+        <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:999998, background:"transparent" }}/>,
+        document.body
+      )}
+      {/* FORMAT FILTER, Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
-          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
+          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
         ))}
       </div>
       {shown.length===0 && cat==="Liked" && (
@@ -1484,25 +1653,25 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
               <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
-              {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+              {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
               {!isPreview&&cur?.id===t.id&&playing&&(
-                <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
+                <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
                   <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
                 </div>
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:16,fontWeight:400,color:isDark?"#f2ece4":"#000000",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+              <div style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#000000" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
                 <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:8,lineHeight:0 }}>
                   <Ico.Heart on={liked.has(t.id)}/>
                 </button>
-                <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:30,height:30,borderRadius:"50%",background:cur?.id===t.id?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)":"rgba(232,184,112,0.15)",border:cur?.id===t.id?"none":"1px solid rgba(232,184,112,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+                <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:30,height:30,borderRadius:"50%",background:cur?.id===t.id?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"rgba(232,184,112,0.15)",border:cur?.id===t.id?"none":"1px solid rgba(232,184,112,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
                   {cur?.id===t.id&&playing?<Ico.Pause dark={cur?.id===t.id}/>:<Ico.Play dark={cur?.id===t.id}/>}
                 </button>
               </>
@@ -1527,18 +1696,18 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>£33<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
-        <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
+        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$79<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan, no re-entering card details</div>
       </div>
-      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
-        Unlock {feature} — upgrade now ✦
+      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+        Unlock {feature}, upgrade now ✦
       </button>
       <div style={{ fontSize:13, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
     </div>
   );
 }
 
-function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter }) {
+function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter, userId, token }) {
   const [newD, setD]       = useState("");
   const [newBelief, setNewBelief] = useState("");
   const [newCat, setNewCat]   = useState("Richgirlmaxxing");
@@ -1552,23 +1721,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterInput, setFeelAfterInput] = useState("");
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
-  // ProofOS — always LG gradient background, white cards, black text
+  // ProofOS, always LG gradient background, white cards, black text
   const isDark = false; // ProofOS always uses light card theme on LG bg
-  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"rgba(0,0,0,0.1)", inputBg:"rgba(255,255,255,0.9)" };
-  const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
-
-  if (isPreview) return (
-    <div style={{ padding:"40px 20px",textAlign:"center",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",minHeight:"100%" }}>
-      <div style={{ fontSize:36,marginBottom:16,color:"#E8B870" }}>✦</div>
-      <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:28,fontWeight:400,color:PC.text,marginBottom:10 }}>ProofOS</div>
-      <div style={{ fontSize:16,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
-        Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
-      </div>
-      <button style={{ padding:"12px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-        Upgrade to Goddess — £33/mo
-      </button>
-    </div>
-  );
+  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"#000000", inputBg:"rgba(255,255,255,0.9)" };
+  const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
   const manifested = threads.filter(t=>t.done);
   const inProgress = threads.filter(t=>!t.done);
@@ -1578,17 +1734,47 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
   const [bucketText, setBucketText] = useState("");
   const [promotingId, setPromotingId] = useState(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [trackPickerOpen, setTrackPickerOpen] = useState(false);
+  const [catPickerOpen, setCatPickerOpen] = useState(false);
+  const [feelPickerOpen, setFeelPickerOpen] = useState(false);
   const [promoCatOpen, setPromoCatOpen] = useState(null);
 
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
-  const confirmFinish = (id) => {
-    const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(" — ");
+  const confirmFinish = async (id) => {
+    const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(", ");
     setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
+    if (!isPreview && userId) {
+      try {
+        await manifestationsApi(`/manifestations/${id}`, token, {
+          method: "PATCH",
+          body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString(), notes: after || undefined }),
+        });
+      } catch (err) { console.error("Failed to mark manifested:", err); }
+    }
   };
-  const undoMarkDone = (id) => setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
-  const deleteThread = (id) => { if(window.confirm("Delete this thread?")) setThreads(threads.filter(t=>t.id!==id)); };
+  const undoMarkDone = async (id) => {
+    setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
+    if (!isPreview && userId) {
+      try {
+        await manifestationsApi(`/manifestations/${id}`, token, {
+          method: "PATCH",
+          body: JSON.stringify({ status: "in_progress", manifested_at: null }),
+        });
+      } catch (err) { console.error("Failed to undo manifested:", err); }
+    }
+  };
+  const deleteThread = (id) => { setConfirmDeleteId(id); };
+  const confirmDeleteNow = async (id) => {
+    setThreads(threads.filter(t=>t.id!==id));
+    setConfirmDeleteId(null);
+    if (!isPreview && userId) {
+      try {
+        await manifestationsApi(`/manifestations/${id}`, token, { method: "DELETE" });
+      } catch (err) { console.error("Failed to delete desire:", err); }
+    }
+  };
   const addSign = (id) => {
     const text = (signInput[id]||"").trim();
     if(!text) return;
@@ -1634,22 +1820,34 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   return (
     <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
       <style>{`@keyframes shgRecPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}@keyframes shgRecButtonPulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0.5);}50%{box-shadow:0 0 0 6px rgba(192,57,43,0);}}`}</style>
+      {confirmDeleteId!==null && (
+        <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:340,width:"100%",borderRadius:16,padding:"24px 22px",background:"#fdf0e8",border:`1px solid ${PC.border}` }}>
+            <div style={{ fontSize:18,fontWeight:400,color:"#000",marginBottom:8,fontFamily:"'Jost',sans-serif" }}>Delete this thread?</div>
+            <div style={{ fontSize:14,color:PC.mu,marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
+            <div style={{ display:"flex",gap:10 }}>
+              <button onClick={()=>setConfirmDeleteId(null)} style={{ flex:1,padding:"12px",background:"none",border:`1px solid ${PC.border}`,borderRadius:10,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Cancel</button>
+              <button onClick={()=>confirmDeleteNow(confirmDeleteId)} style={{ flex:1,padding:"12px",background:"#8a2030",border:"none",borderRadius:10,color:"#fff",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#167A6B",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
-      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured — forever.</div>
+      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured, forever.</div>
 
-      {/* Filter banner — shown when drilled in from Analytics */}
+      {/* Filter banner, shown when drilled in from Analytics */}
       {proofFilter!=="all" && (
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",background:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14 }}>
-          <span style={{ fontSize:14,color:"#f2ece4",fontFamily:"'Jost',sans-serif" }}>
+          <span style={{ fontSize:14,color:"#fdf0e8",fontFamily:"'Jost',sans-serif" }}>
             {proofFilter==="manifested" ? `Showing ${manifested.length} manifested ✓` : `Showing ${inProgress.length} in progress`}
           </span>
-          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#e8e0d8",fontSize:13,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
+          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#fdf0e8",fontSize:13,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
         </div>
       )}
 
       {/* Stats */}
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14 }}>
-        {[[threads.length,"Intentions"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
+        {[[threads.length,"Desires"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
           <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
             <div style={{ fontSize:22,fontWeight:400,color:PC.text }}>{v}</div>
             <div style={{ fontSize:12,color:PC.mu,fontWeight:400 }}>{l}</div>
@@ -1661,25 +1859,25 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:"rgba(0,0,0,0.1)",
+            background:view===k?col:"#000000",
             border:"none",
-            color:view===k?"#000":"rgba(0,0,0,0.45)", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+            color:view===k?"#000":"#000000", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
       {view==="bucket" ? (
-        /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
+        /* ═══ BUCKET LIST, capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
             <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
-              <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever — no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
+              <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever, no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
-              <b style={{fontWeight:600}}>Active</b> is different — it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5–10 at a time, so your energy stays focused instead of spread thin.
+              <b style={{fontWeight:600}}>Active</b> is different, it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5–10 at a time, so your energy stays focused instead of spread thin.
             </div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75 }}>
-              Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active — pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own — <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
+              Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active, pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own, <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
             </div>
           </div>
 
@@ -1688,24 +1886,36 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ display:"flex", gap:8 }}>
               <input value={bucketText} onChange={e=>setBucketText(e.target.value)} placeholder="A holiday to... A new car... Whatever it is"
                 style={{ flex:1, padding:"11px 13px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:16, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
-              <button onClick={()=>{
+              <button onClick={async ()=>{
                 if(!bucketText.trim()) return;
-                setThreads([{id:Date.now(),desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
+                const localId = Date.now()+Math.random().toString(36).slice(2,8);
+                setThreads([{id:localId,desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
                 setBucketText("");
-              }} style={{ padding:"11px 18px", background:isDark?"#000":"#f2ece4", border:"none", borderRadius:8, color:"#f2ece4", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
+                if (!isPreview && userId) {
+                  try {
+                    const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                      method: "POST",
+                      body: JSON.stringify({ desire: bucketText }),
+                    });
+                    setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
+                  } catch (err) {
+                    console.error("Failed to save bucket item:", err);
+                  }
+                }
+              }} style={{ padding:"11px 18px", background:isDark?"#fff":"#000", border:"none", borderRadius:8, color:isDark?"#000":"#fff", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
             </div>
           </div>
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
             <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
-              ✦ You've got {activeThreads.filter(t=>!t.done).length} active intentions. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
+              ✦ You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5–10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
 
           {bucketItems.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
-              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest — big or small.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest, big or small.</div>
             </div>
           ) : (
             <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -1716,13 +1926,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                     <div style={{ marginBottom:11, position:"relative" }}>
                       <div style={{ fontSize:13, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:7 }}>Choose a category to promote this</div>
                       <div onClick={()=>setPromoCatOpen(o=>o===item.id?null:item.id)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-                        <span>— Select a category —</span>
+                        <span>, Select a category,</span>
                         <span style={{ fontSize:13, color:PC.mu, transform:promoCatOpen===item.id?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
                       </div>
                       {promoCatOpen===item.id && (
                         <>
                         <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
-                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                           {Object.keys(CAT_ICONS).map(c=>{
                             const catColor = CAT_ICONS[c].accent;
                             return (
@@ -1748,7 +1958,17 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         Focus on this now
                       </button>
-                      <button onClick={()=>setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t))} style={{ flex:1, padding:"8px 12px", background:`${R}18`, border:`1px solid ${R}44`, borderRadius:8, color:R, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                      <button onClick={async ()=>{
+                        setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t));
+                        if (!isPreview && userId) {
+                          try {
+                            await manifestationsApi(`/manifestations/${item.id}`, token, {
+                              method: "PATCH",
+                              body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString() }),
+                            });
+                          } catch (err) { console.error("Failed to mark manifested:", err); }
+                        }
+                      }} style={{ flex:1, padding:"8px 12px", background:R, border:`1px solid ${R}`, borderRadius:8, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         ✓ Already manifested
                       </button>
                     </div>
@@ -1759,25 +1979,25 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           )}
         </div>
       ) : view==="wall" ? (
-        /* ═══ PROOF WALL — your wins, forever ═══ */
+        /* ═══ PROOF WALL, your wins, forever ═══ */
         <div>
           <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
           <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
-              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here — and stays here for life.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here, and stays here for life.</div>
             </div>
           ) : (
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
               {manifested.map(d=>(
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
-                  <span style={{ fontSize:11,padding:"2px 8px",background:"rgba(255,255,255,0.65)",color:CAT_COLOR[d.category]||"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
+                  <span style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
                   <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
                   <div style={{ fontSize:12,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
-                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5,opacity:0.75 }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
-                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"rgba(255,255,255,0.55)",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
+                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"#fdf0e8",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
               ))}
               <div style={{ background:PC.card,border:`1px dashed ${PC.border}`,borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
@@ -1787,7 +2007,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
               <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
                 {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
-                  <div key={s.key} style={{ background:"rgba(255,255,255,0.85)",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
+                  <div key={s.key} style={{ background:"#fdf0e8",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
                     {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
                     {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
                     <div style={{ fontSize:8.5,fontWeight:400,color:C.mu,marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
@@ -1801,8 +2021,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ) : (
       <>
       {/* ADD NEW THREAD */}
-      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#f2ece4"),border:"none",borderRadius:12,color:adding?PC.text:"#f2ece4",fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-        {adding?"✕ Cancel":"+ New Intention"}
+      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#fdf0e8"),border:"none",borderRadius:12,color:adding?PC.text:(isDark?"#fdf0e8":"#000"),fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+        {adding?"✕ Cancel":"+ New Desire"}
       </button>
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
@@ -1814,14 +2034,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
           <div style={{ position:"relative", marginBottom:11 }}>
-            <div onClick={()=>setTrackPickerOpen(o=>!o)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-              <span>{linkedTrack || "— Select a track —"}</span>
+            <div onClick={()=>{setTrackPickerOpen(o=>!o); setCatPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+              <span>{linkedTrack || ", Select a track,"}</span>
               <span style={{ fontSize:13, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
             </div>
             {trackPickerOpen && (
               <>
               <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"fixed", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":C.cr, border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {TRACKS.map(t=>{
                   const catColor = CAT_ICONS[t.cat]?.accent || R;
                   return (
@@ -1843,56 +2063,110 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             )}
           </div>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
-          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:15 }}>
-            {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healmaxxing","Intuitionmaxxing"].map(c=>{
-              const catColor = CAT_ICONS[c]?.accent || R;
-              const active = newCat===c;
+          <div style={{ position:"relative", marginBottom:15 }}>
+            {(() => {
+              const catColor = CAT_ICONS[newCat]?.accent || R;
               return (
-                <button key={c} onClick={()=>setNewCat(c)}
-                  style={{ display:"flex", alignItems:"center", gap:6, padding:"7px 13px", borderRadius:20,
-                    background:active?`${catColor}22`:PC.inputBg, border:`1px solid ${active?catColor:PC.border}`,
-                    color:active?catColor:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", cursor:"pointer" }}>
-                  <div style={{ width:8, height:8, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
-                  {c}
-                </button>
+                <div onClick={()=>{setCatPickerOpen(o=>!o); setTrackPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
+                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
+                    <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 4px ${catColor}99` }}/>
+                    {newCat}
+                  </span>
+                  <span style={{ fontSize:13, color:PC.mu, transform:catPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                </div>
               );
-            })}
+            })()}
+            {catPickerOpen && (
+              <>
+              <div onClick={()=>setCatPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing"].map(c=>{
+                  const catColor = CAT_ICONS[c]?.accent || R;
+                  const active = newCat===c;
+                  return (
+                    <div key={c} onClick={()=>{setNewCat(c); setCatPickerOpen(false);}}
+                      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer",
+                        background:active?`${catColor}1c`:"transparent", borderBottom:`1px solid ${PC.border}` }}
+                      onMouseEnter={e=>{if(!active)e.currentTarget.style.background=`${catColor}14`;}}
+                      onMouseLeave={e=>{if(!active)e.currentTarget.style.background="transparent";}}>
+                      <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
+                      <span style={{ fontSize:15, color:active?catColor:PC.text }}>{c}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              </>
+            )}
           </div>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>How am I feeling right now?</div>
-          <div style={{ overflowY:"auto",marginBottom:10,maxHeight:220,border:`1px solid ${PC.border}`,borderRadius:10 }}>
-            {HAWKINS.slice().reverse().map(h=>(
-              <div key={h.n} onClick={()=>setFeel(h.n)}
-                style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
-                  background:newFeel===h.n?`${h.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}>
-                <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>
-                <span style={{ fontSize:16,color:h.c,flex:1,fontFamily:"'Jost',sans-serif" }}>{h.n}</span>
-                <span style={{ fontSize:14,color:PC.mu }}>{h.v}</span>
+          <div style={{ position:"relative", marginBottom:11 }}>
+            {(() => {
+              const h = HAWKINS.find(x=>x.n===newFeel);
+              return (
+                <div onClick={()=>{setFeelPickerOpen(o=>!o); setTrackPickerOpen(false); setCatPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:h?h.c:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
+                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
+                    {h && <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>}
+                    {h ? `${h.n} · ${h.v}` : ", Select how you feel,"}
+                  </span>
+                  <span style={{ fontSize:13, color:PC.mu, transform:feelPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                </div>
+              );
+            })()}
+            {feelPickerOpen && (
+              <>
+              <div onClick={()=>setFeelPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {HAWKINS.slice().reverse().map(hItem=>(
+                  <div key={hItem.n} onClick={()=>{setFeel(hItem.n); setFeelPickerOpen(false);}}
+                    style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
+                      background:newFeel===hItem.n?`${hItem.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}
+                    onMouseEnter={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background=`${hItem.c}14`;}}
+                    onMouseLeave={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background="transparent";}}>
+                    <div style={{ width:11,height:11,borderRadius:"50%",background:hItem.c,flexShrink:0,boxShadow:`0 0 5px ${hItem.c}99` }}/>
+                    <span style={{ fontSize:16,color:PC.text,flex:1,fontFamily:"'Jost',sans-serif" }}>{hItem.n}</span>
+                    <span style={{ fontSize:14,color:PC.mu }}>{hItem.v}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+              </>
+            )}
           </div>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
               <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive — you're above the line ✦" : "Contractive — the audio will lift you"}</span>
+              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive, you're above the line ✦" : "Contractive, the audio will lift you"}</span>
             </div>
           ) : null; })()}
-          <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words — e.g. 'I'm feeling anxious about this'"
+          <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words, e.g. 'I'm feeling anxious about this'"
             style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
-          <button onClick={()=>{
+          <button onClick={async ()=>{
             if(!newD.trim()) return;
             if(userTier === "audio" && !isPreview) {
               onUpgrade?.();
               return;
             }
-            const before = [newFeel, newFeelText].filter(Boolean).join(" — ");
-            setThreads([{id:Date.now(),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief},...threads]);
+            const before = [newFeel, newFeelText].filter(Boolean).join(", ");
+            const localId = Date.now()+Math.random().toString(36).slice(2,8);
+            const optimistic = {id:localId,desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief};
+            setThreads([optimistic,...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
-          }} style={{ padding:"11px 22px",background:isDark?"#000":"#f2ece4",border:"none",borderRadius:10,color:"#f2ece4",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-            {userTier === "audio" && !isPreview ? "Add to Proof Thread — Upgrade to Goddess ✦" : "Add Proof Thread"}
+            if (!isPreview && userId) {
+              try {
+                const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                  method: "POST",
+                  body: JSON.stringify({ desire: newD, category: newCat, notes: newBelief }),
+                });
+                setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
+              } catch (err) {
+                console.error("Failed to save desire:", err);
+              }
+            }
+          }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            {userTier === "audio" && !isPreview ? "Add Desire, Upgrade to Goddess ✦" : "Add Desire"}
           </button>
           {userTier === "audio" && !isPreview && (
-            <div style={{ fontSize:13,color:"#e8e0d8",marginTop:8,lineHeight:1.5 }}>
-              You're on Audio Tier. Log your desire — then upgrade to Goddess to save it to your Proof Thread and track every sign.
+            <div style={{ fontSize:13,color:"#fdf0e8",marginTop:8,lineHeight:1.5 }}>
+              You're on Audio Tier. Log your desire, then upgrade to Goddess to save it to your Proof Thread and track every sign.
             </div>
           )}
         </div>
@@ -1901,7 +2175,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {/* THREAD LIST */}
       {displayedThreads.length===0 && proofFilter!=="all" && (
         <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center",marginBottom:10 }}>
-          <div style={{ fontSize:15,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} intentions yet.</div>
+          <div style={{ fontSize:15,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} desires yet.</div>
         </div>
       )}
       {displayedThreads.map(d=>(
@@ -1926,7 +2200,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               {d.done
                 ? <>
                     <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
-                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
                       <span style={{ fontSize:13,fontWeight:400,color:PC.text }}>Manifested</span>
                     </label>
                     <span style={{ fontSize:11,color:PC.dim,fontWeight:400 }}>tap to undo</span>
@@ -1939,10 +2213,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             </div>
           </div>
 
-          {/* Marking manifested — capture feelAfter */}
+          {/* Marking manifested, capture feelAfter */}
           {finishing===d.id && (
             <div style={{ marginTop:10,background:PC.card,border:`1px solid ${PC.border}`,borderRadius:10,padding:"12px 14px" }}>
-              <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓ — how are you feeling now?</div>
+              <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓, how are you feeling now?</div>
               <div style={{ display:"flex", gap:6, overflowX:"auto", marginBottom:10, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
                 {HAWKINS.slice().reverse().map(h=>(
                   <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
@@ -1953,12 +2227,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment, in your own words"
                   onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
                   style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"10px 12px",fontSize:15,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:8,color:"#000",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
+                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:8,color:"#000",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
               </div>
             </div>
           )}
 
-          {/* ═══ SIGNS & SYNCHRONICITY LOG — the heart of ProofOS ═══ */}
+          {/* ═══ SIGNS & SYNCHRONICITY LOG, the heart of ProofOS ═══ */}
           <div style={{ marginTop:12,paddingTop:10,borderTop:`1px solid ${PC.border}` }}>
             <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
@@ -1970,7 +2244,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
                 </span>
                 <span style={{ fontSize:12,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
-                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:"rgba(0,0,0,0.3)",cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2 }} title="Remove sign">✕</button>
+                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:PC.dim,cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2, }} title="Remove sign">✕</button>
               </div>
             ))}
             {!d.done && (
@@ -1985,21 +2259,21 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
                   onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
                   style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"9px 10px",fontSize:14,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
-                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#f2ece4",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
-                <label style={{ padding:"9px 10px",background:"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center" }}>📷
+                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#fdf0e8",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
+                <label style={{ padding:"9px 10px",background:PC.inputBg,border:`1px solid ${PC.border}`,borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",color:PC.text }}>📷
                   <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
                 </label>
-                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#c0392b":"rgba(0,0,0,0.08)",border:"1px solid rgba(0,0,0,0.15)",borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":"#000",animation:recId===d.id?"shgRecButtonPulse 1s ease-in-out infinite":"none" }}>{recId===d.id?"⏹":"🎤"}</button>
+                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#c0392b":PC.inputBg,border:`1px solid ${recId===d.id?"#c0392b":PC.border}`,borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":PC.text,animation:recId===d.id?"shgRecButtonPulse 1s ease-in-out infinite":"none" }}>{recId===d.id?"⏹":"🎤"}</button>
               </div>
               </>
             )}
           </div>
 
           {/* Progress + delete */}
-          <div style={{ marginTop:10,height:3,background:"rgba(0,0,0,0.1)",borderRadius:2 }}>
-            <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",borderRadius:2 }}/>
+          <div style={{ marginTop:10,height:3,background:"#000000",borderRadius:2 }}>
+            <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",borderRadius:2 }}/>
           </div>
-          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove thread</button>
+          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove desire</button>
         </div>
       ))}
       </>
@@ -2010,17 +2284,18 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
   const products = [
-    { name:"Lovemaxxing Guide",      price:"£19", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing" },
-    { name:"Richgirlmaxxing Guide",     price:"£19", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing" },
-    { name:"Luckygirlmaxxing Guide", price:"£19", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing" },
-    { name:"Sovereignmaxxing Guide", price:"£19", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing" },
-    { name:"Confidencemaxxing Guide",price:"£19", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing" },
-    { name:"Beautymaxxing Guide",    price:"£19", desc:"The mirror gap, closed",                             cat:"Beautymaxxing" },
-    { name:"Healmaxxing Guide",      price:"£19", desc:"Physical or emotional pain, released",               cat:"Healmaxxing" },
-    { name:"Sleepmaxxing Guide",     price:"£19", desc:"The overnight identity-install track",               cat:"Sleepmaxxing" },
-    { name:"Businessmaxxing Guide",  price:"£19", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing" },
-    { name:"Peacemaxxing Guide",     price:"£19", desc:"Nervous system, regulated",                          cat:"Peacemaxxing" },
+    { name:"Lovemaxxing Guide",      price:"$29", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing",      available:true },
+    { name:"Luckygirlmaxxing Guide", price:"$29", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing", available:true },
+    { name:"Richgirlmaxxing Guide",     price:"$29", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing",     available:false },
+    { name:"Sovereignmaxxing Guide", price:"$29", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing", available:false },
+    { name:"Confidencemaxxing Guide",price:"$29", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing",available:false },
+    { name:"Beautymaxxing Guide",    price:"$29", desc:"The mirror gap, closed",                             cat:"Beautymaxxing",   available:false },
+    { name:"Healthmaxxing Guide",      price:"$29", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing",     available:false },
+    { name:"Sleepmaxxing Guide",     price:"$29", desc:"The overnight identity-install track",               cat:"Sleepmaxxing",    available:false },
+    { name:"Businessmaxxing Guide",  price:"$29", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing", available:false },
+    { name:"Peacemaxxing Guide",     price:"$29", desc:"Nervous system, regulated",                          cat:"Peacemaxxing",    available:false },
   ];
   return (
     <div style={{ padding:"16px 16px 40px" }}>
@@ -2028,9 +2303,9 @@ function ShopTab({ C }) {
       <div style={{ fontSize:15,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
         {products.map((p,i)=>(
-          <div key={i} onClick={()=>window.open(BEACONS,"_blank")}
-            style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:"pointer",transition:"transform 0.15s" }}
-            onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
+          <div key={i} onClick={()=>p.available && window.open(BEACONS,"_blank")}
+            style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:p.available?1:0.55 }}
+            onMouseEnter={e=>{ if(p.available) e.currentTarget.style.transform="translateY(-2px)"; }}
             onMouseLeave={e=>e.currentTarget.style.transform="none"}>
             <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"#000" }}>
               <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
@@ -2039,8 +2314,11 @@ function ShopTab({ C }) {
               <div style={{ fontSize:14,fontWeight:400,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
               <div style={{ fontSize:13,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
               <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-                <span style={{ fontSize:17,fontWeight:400,color:R }}>{p.price}</span>
-                <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>{p.stripe?"Buy now · Stripe":"Buy on Beacons"}<ArrowIcon size={10}/></span>
+                <span style={{ fontSize:17,fontWeight:500,color:isDark?R:"#000"}}>{p.available?p.price:""}</span>
+                {p.available
+                  ? <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>Buy on Beacons<ArrowIcon size={10}/></span>
+                  : <span style={{ padding:"4px 10px",background:"transparent",border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif" }}>Coming soon</span>
+                }
               </div>
             </div>
           </div>
@@ -2070,26 +2348,31 @@ function HRow({ children }) {
 }
 function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike, openPlayer }) {
   const isP = current?.id===t.id;
+  const hasAudio = !!AUDIO_URLS[t.title];
+  const unavail = !hasAudio && !isPreview;
   return (
-    <div style={{ flexShrink:0,width:140 }}>
-      <div onClick={()=>{play(t); openPlayer?.();}} style={{ position:"relative",marginBottom:8,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+    <div style={{ flexShrink:0,width:140, opacity:unavail?0.5:1, transition:"opacity 0.2s" }}>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed" }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
         {isPreview&&(
-          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
+          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
         )}
-        {!isPreview&&isP&&playing&&(
-          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.45)" }}>
+        {unavail&&(
+          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#fdf0e8",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
+        )}
+        {!isPreview&&isP&&playing&&!unavail&&(
+          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"#000000" }}>
             <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
           </div>
         )}
-        {t.isNew&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
-        {!isPreview && (
-          <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"rgba(0,0,0,0.55)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
+        {t.isNew&&hasAudio&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
+        {!isPreview && hasAudio && (
+          <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"#000000",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
             <Ico.Heart on={liked?.has(t.id)}/>
           </button>
         )}
       </div>
-      <div onClick={()=>{play(t); openPlayer?.();}} style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>{t.title}</div>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ fontSize:16,fontWeight:400,color:unavail?C.mu:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:hasAudio?"pointer":"not-allowed" }}>{t.title}</div>
       <div style={{ fontSize:14,color:C.mu }}>{t.cat} · {t.dur}</div>
     </div>
   );

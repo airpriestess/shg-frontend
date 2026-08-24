@@ -154,10 +154,10 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
       transition: "border-color 0.2s",
       opacity: a.isLocked && !canPlay ? 0.65 : 1,
     }}
-      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#ddd0c8")}
+      onMouseEnter={e => !isSelected && (e.currentTarget.style.borderColor = "#fdf0e8")}
       onMouseLeave={e => !isSelected && (e.currentTarget.style.borderColor = "#1a1a1a")}
     >
-      {/* Row 1 — title + access badge */}
+      {/* Row 1, title + access badge */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10, marginBottom: 8 }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: T.textPrimary, lineHeight: 1.3, flex: 1 }}>
           {a.isLocked && !canPlay && <span style={{ opacity: 0.35 }}>🔒 </span>}
@@ -166,7 +166,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
         <AccessBadge audio={a} userTier={userTier} />
       </div>
 
-      {/* Row 2 — category + formats */}
+      {/* Row 2, category + formats */}
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10, alignItems: "center" }}>
         <span style={{ fontSize: 11, padding: "2px 8px", background: catCol + "22", border: `1px solid ${catCol}44`, borderRadius: 20, color: catCol, fontWeight: 700 }}>{a.category}</span>
         {(a.audioFormats || []).map((f, i) => (
@@ -175,7 +175,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
         {a.frequency && <span style={{ fontSize: 11, color: T.textFaint }}>· {a.frequency}</span>}
       </div>
 
-      {/* Row 3 — proof stats */}
+      {/* Row 3, proof stats */}
       {(linked.length > 0 || a.manifestedCount > 0) && (
         <div style={{ display: "flex", gap: 14, marginBottom: 12, flexWrap: "wrap" }}>
           {linked.length > 0 && <span style={{ fontSize: 12, color: "#2CB7A7" }}>🧵 {linked.length} intention{linked.length !== 1 ? "s" : ""}</span>}
@@ -184,7 +184,7 @@ function AudioCard({ audio: a, isSelected, isPlaying, canPlay, userTier, onSelec
         </div>
       )}
 
-      {/* Row 4 — last listened */}
+      {/* Row 4, last listened */}
       {a.lastListenedAt && (
         <div style={{ fontSize: 11, color: T.textFaint, marginBottom: 12 }}>Last listened {a.lastListenedAt}</div>
       )}

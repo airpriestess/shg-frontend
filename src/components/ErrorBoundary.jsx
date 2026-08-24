@@ -11,14 +11,14 @@ export default class ErrorBoundary extends Component {
           <div style={{ maxWidth:440, background:"#0a0a0a", borderRadius:20, padding:"32px 28px", textAlign:"center", boxShadow:"0 20px 60px rgba(0,0,0,0.2)" }}>
             <div style={{ fontSize:36, marginBottom:12 }}>✦</div>
             <div style={{ fontSize:11, fontWeight:900, color:"#E8B870", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:10 }}>Something interrupted the shift</div>
-            <div style={{ fontSize:18, fontWeight:800, color:"#f2ece4", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>Dashboard hit a snag loading.</div>
-            <div style={{ fontSize:13, color:"#c8bfb8", lineHeight:1.7, marginBottom:20 }}>Usually a stale cached file. Try one of these — in order — and tell Reshma if none work.</div>
+            <div style={{ fontSize:18, fontWeight:800, color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>Dashboard hit a snag loading.</div>
+            <div style={{ fontSize:13, color:"rgba(253,240,232,0.7)", lineHeight:1.7, marginBottom:20 }}>Usually a stale cached file. Try one of these, in order, and tell Reshma if none work.</div>
             <div style={{ display:"flex", flexDirection:"column", gap:8, marginBottom:16 }}>
               <button onClick={()=>{ window.location.reload(); }} style={{ padding:"12px", background:"linear-gradient(90deg,#F5E0A0,#2CB7A7)", border:"none", borderRadius:10, color:"#000", fontSize:14, fontWeight:800, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Reload</button>
               <button onClick={()=>{ if("caches" in window) caches.keys().then(k=>k.forEach(x=>caches.delete(x))); localStorage.clear(); sessionStorage.clear(); window.location.reload(); }} style={{ padding:"12px", background:"#000", border:"none", borderRadius:10, color:"#fff", fontSize:14, fontWeight:800, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Clear cache + reload</button>
-              <button onClick={()=>{ window.location.href="/"; }} style={{ padding:"12px", background:"none", border:"1px solid rgba(0,0,0,0.2)", borderRadius:10, color:"#f2ece4", fontSize:13, fontWeight:700, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Back to landing page</button>
+              <button onClick={()=>{ window.location.href="/"; }} style={{ padding:"12px", background:"none", border:"1px solid rgba(0,0,0,0.2)", borderRadius:10, color:"#fdf0e8", fontSize:13, fontWeight:700, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Back to landing page</button>
             </div>
-            {this.state.err && <details style={{ marginTop:10, textAlign:"left", fontSize:10, color:"#c8bfb8", background:"rgba(0,0,0,0.04)", padding:"8px 10px", borderRadius:8 }}>
+            {this.state.err && <details style={{ marginTop:10, textAlign:"left", fontSize:10, color:"rgba(253,240,232,0.7)", background:"#000000", padding:"8px 10px", borderRadius:8 }}>
               <summary style={{ cursor:"pointer", fontWeight:700 }}>Technical details (send to support)</summary>
               <div style={{ marginTop:6, fontFamily:"monospace", wordBreak:"break-word" }}>{String(this.state.err?.message || this.state.err)}</div>
             </details>}

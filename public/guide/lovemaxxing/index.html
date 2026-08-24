@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lovemaxxing, Self Hypnosis Goddess</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+  --gold:#E8B870;--lilac:#BFA5D8;--teal:#2CB7A7;--deep:#167A6B;
+  --white:#fdf0e8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+a{color:inherit;text-decoration:none;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;font-weight:400;background:#000;color:var(--white);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:48px;left:0;right:0;z-index:100;
+  padding:18px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(0,0,0,0.88);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fdf0e8;font-family:'Jost',sans-serif;font-size:clamp(11px,3.2vw,14px);font-weight:300;letter-spacing:.02em;text-transform:none;}
+.nav-cta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;color:#000!important;padding:10px 24px;border-radius:20px;background:var(--g);text-decoration:none!important;}
+
+/* HERO */
+.hero{
+  min-height:32vh;background:var(--g);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:150px 48px 64px;position:relative;overflow:hidden;
+}
+.hero-brand{display:none;}
+.hero h1{font-size:clamp(34px,5vw,56px);font-weight:300;color:#000;letter-spacing:-.01em;line-height:1.05;margin-bottom:20px;}
+.hero-sub{font-size:clamp(14px,1.6vw,18px);font-weight:400;color:#000000;letter-spacing:.02em;}
+
+/* GLOW DIVIDERS */
+.gd{height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,112,.25),rgba(191,165,216,.25),rgba(44,183,167,.25),transparent);position:relative;}
+.gd::after{content:'';position:absolute;top:-8px;left:0;right:0;height:16px;background:linear-gradient(90deg,transparent,rgba(232,184,112,.05),rgba(191,165,216,.07),rgba(44,183,167,.05),transparent);}
+
+/* SECTIONS */
+.s{padding:100px 48px;position:relative;overflow:hidden;}
+.sw{max-width:920px;margin:0 auto;}
+.sc{text-align:center;}
+.s::before{content:'';position:absolute;pointer-events:none;}
+.sg-l::before{top:50%;left:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(232,184,112,.07) 0%,transparent 70%);transform:translateY(-50%);}
+.sg-r::before{top:50%;right:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(44,183,167,.07) 0%,transparent 70%);transform:translateY(-50%);}
+.sg-c::before{top:0;left:50%;transform:translateX(-50%);width:600px;height:350px;background:radial-gradient(ellipse,rgba(191,165,216,.06) 0%,transparent 70%);}
+
+/* EYEBROW */
+.ey{font-size:13px;letter-spacing:.28em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;margin-bottom:20px;font-weight:600;}
+
+/* HEADINGS */
+.hm{font-size:clamp(28px,4.5vw,52px);font-weight:300;color:var(--white);line-height:1.1;letter-spacing:normal;margin-bottom:28px;}
+.bt{font-size:17px;line-height:1.8;color:var(--white);max-width:600px;margin:0 auto;}
+
+/* CALLOUT */
+.callout{display:grid;grid-template-columns:1fr 1fr;margin-top:64px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);}
+.col-l{background:rgba(242,236,228,.95);padding:52px 48px;}
+.col-r{background:var(--g);padding:52px 48px;}
+.col-lbl{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#000;margin-bottom:28px;font-weight:700;}
+.col-item{font-size:14px;line-height:1.5;color:#1a0a04;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.08);font-weight:400;}
+.col-item:last-child{border-bottom:none;}
+.col-r .col-item{font-weight:400;}
+
+/* IDENTITY */
+.id-stage{position:relative;min-height:320px;display:flex;align-items:center;justify-content:center;margin-top:64px;}
+.id-slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transform:translateY(10px);transition:opacity .9s,transform .9s;pointer-events:none;}
+.id-slide.active{transform:translateY(0);pointer-events:auto;}
+.id-key{font-size:clamp(28px,4vw,48px);letter-spacing:-.01em;text-transform:uppercase;font-weight:700;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:20px;animation:kb 4s ease-in-out infinite;}
+@keyframes kb{0%,100%{filter:drop-shadow(0 0 8px rgba(245,224,160,.5));}50%{filter:drop-shadow(0 0 24px rgba(191,165,216,.7));}}
+.id-val{font-size:clamp(18px,2.4vw,28px);font-weight:300;color:var(--white);line-height:1.5;max-width:640px;letter-spacing:-.01em;}
+.id-dots{display:flex;gap:10px;justify-content:center;margin-top:40px;}
+.id-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.12);cursor:pointer;transition:all .4s;}
+.id-dot.active{background:var(--g);transform:scale(1.5);}
+
+
+
+/* LOOP */
+.loop-wrap{margin-top:64px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:56px 48px;position:relative;overflow:hidden;}
+.loop-wrap::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:280px;background:radial-gradient(ellipse,rgba(232,184,112,.04) 0%,transparent 70%);pointer-events:none;}
+.loop-lbl{font-size:13px;letter-spacing:.28em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center;margin-bottom:48px;font-weight:600;display:inline-block;width:100%;}
+.loop-track{display:flex;align-items:stretch;gap:4px;}
+.loop-node{
+  flex:1;padding:32px 16px;text-align:center;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;cursor:pointer;
+  transition:all .4s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+}
+.loop-node:hover{
+  background:var(--g);
+  border-color:transparent;
+  box-shadow:0 0 40px rgba(191,165,216,.4),0 0 80px rgba(44,183,167,.2);
+  transform:translateY(-3px);
+}
+.loop-node:hover .ln-step,.loop-node:hover .ln-title{color:#000;}
+.loop-node.active{
+  background:var(--g);
+  border-color:transparent;
+  box-shadow:0 0 50px rgba(232,184,112,.35),0 0 100px rgba(191,165,216,.2);
+  transform:translateY(-3px);
+}
+.loop-node.active .ln-step{color:#000;}
+.loop-node.active .ln-title{color:#000;}
+.ln-step{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--white);margin-bottom:16px;font-weight:700;transition:all .4s;}
+.ln-title{font-size:18px;color:var(--white);line-height:1.3;transition:color .4s;font-weight:500;}
+
+.loop-info{margin-top:32px;padding:32px 40px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.05);border-radius:10px;text-align:center;min-height:110px;}
+.loop-info-title{font-size:28px;color:var(--white);margin-bottom:16px;font-weight:400;letter-spacing:-.01em;}
+.loop-info-text{font-size:17px;color:var(--white);line-height:1.8;max-width:600px;margin:0 auto;}
+.loop-return{margin-top:24px;text-align:center;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--white);}
+
+.theta-pill{margin-top:28px;padding:20px 28px;border-radius:12px;border:1px solid rgba(232,184,112,.15);background:rgba(232,184,112,.03);display:flex;align-items:center;gap:16px;text-align:left;}
+.theta-pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:tp 2.5s ease-in-out infinite;}
+@keyframes tp{0%,100%{box-shadow:0 0 0 0 rgba(232,184,112,0);}50%{box-shadow:0 0 0 6px rgba(232,184,112,.1);}}
+.theta-strong{font-size:14px;color:var(--white);line-height:1.65;}
+.theta-strong strong{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
+
+/* LADDER */
+.ladder{margin-top:64px;display:flex;flex-direction:column;gap:2px;}
+.rung{display:grid;grid-template-columns:72px 1fr;overflow:hidden;border-radius:10px;cursor:pointer;transition:transform .3s;margin-bottom:3px;}
+.rung:hover{transform:translateX(8px);}
+.rung-badge{display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#000;}
+.rung-body{padding:24px 36px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-left:none;border-radius:0 10px 10px 0;}
+.rung-amount{font-size:clamp(32px,4.5vw,52px);font-weight:400;color:var(--white);line-height:1;margin-bottom:8px;letter-spacing:-.02em;}
+.rung-note{font-size:13px;color:var(--white);line-height:1.5;}
+.r5 .rung-badge{background:linear-gradient(160deg,#2CB7A7,#167A6B);}
+.r4 .rung-badge{background:linear-gradient(160deg,#BFA5D8,#2CB7A7);}
+.r3 .rung-badge{background:linear-gradient(160deg,#E8B870,#BFA5D8);}
+.r2 .rung-badge{background:linear-gradient(160deg,#F5E0A0,#E8B870);}
+.r1 .rung-badge{background:linear-gradient(160deg,#fdf0e8,#F5E0A0);color:#1a0a04;}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:64px;}
+.card{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:box-shadow .4s,transform .3s;}
+.card:hover{box-shadow:0 0 60px rgba(191,165,216,.15),0 0 100px rgba(44,183,167,.08);transform:translateY(-4px);}
+.card-cover{height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;}
+.card-cover-grad{background:var(--g);}
+.card-cover-dark{background:#050505;border-bottom:1px solid rgba(255,255,255,.06);}
+.card-cover-dark::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(191,165,216,.15) 0%,rgba(44,183,167,.08) 60%,transparent 100%);}
+.card-badge{font-size:9px;letter-spacing:.28em;text-transform:uppercase;}
+.card-cover-grad .card-badge{color:#000;}
+.card-cover-dark .card-badge{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.card-title{font-size:clamp(32px,4vw,48px);font-weight:400;letter-spacing:-.03em;line-height:1;position:relative;}
+.card-cover-grad .card-title{color:#000;}
+.card-cover-dark .card-title{color:var(--white);text-align:center;line-height:1.1;}
+.card-tagline{font-size:13px;font-weight:300;position:relative;}
+.card-cover-grad .card-tagline{color:#000;}
+.card-divider{width:48px;height:2px;background:var(--g);border-radius:1px;position:relative;}
+.card-price{font-size:13px;letter-spacing:.1em;color:var(--white);position:relative;}
+.card-price strong{color:var(--white);font-size:24px;letter-spacing:-.01em;}
+.card-price s{color:var(--white);font-size:20px;}
+
+.card-body{padding:36px 36px 40px;flex:1;display:flex;flex-direction:column;text-align:center;}
+.card-sect{font-size:13px;letter-spacing:.28em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;margin-bottom:20px;font-weight:600;}
+.card-features{display:flex;flex-direction:column;gap:14px;flex:1;margin-bottom:32px;align-items:center;}
+.card-feature{display:flex;align-items:flex-start;gap:12px;}
+.card-check{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:2px;background:var(--g);display:flex;align-items:center;justify-content:center;}
+.card-check svg{display:block;}
+.card-ft{font-size:15px;color:var(--white);line-height:1.5;font-weight:300;text-align:center;}
+.btn-grad{display:block;text-align:center;padding:18px;border-radius:10px;background:var(--g);color:#000;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-decoration:none;}
+.btn-grad-outline{display:block;text-align:center;padding:18px;border-radius:10px;background:var(--g);color:#000;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-decoration:none;}
+
+/* PROMISE */
+.promise{margin-top:80px;padding:64px 48px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;text-align:center;}
+.promise-title{font-size:clamp(28px,4vw,48px);font-weight:300;color:var(--white);line-height:1.2;margin-bottom:20px;letter-spacing:-.02em;}
+.promise-body{font-size:17px;color:var(--white);line-height:1.8;max-width:580px;margin:0 auto;}
+
+@media(max-width:720px){
+  nav{padding:14px 24px;}
+  .s{padding:72px 24px;}
+  .callout,.cards-grid{grid-template-columns:1fr;}
+  .loop-track{flex-direction:column;}
+  .id-stage{min-height:380px;}
+}
+
+.mob-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#fdf0e8;}
+.mob-overlay{display:none;position:fixed;inset:0;background:#000;z-index:500;flex-direction:column;padding:32px 28px;}
+.mob-overlay.open{display:flex;}
+.mob-overlay-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
+.mob-nav-item{font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#fdf0e8;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:-.01em;}
+.mob-close{background:none;border:none;color:#fdf0e8;font-size:28px;cursor:pointer;padding:8px;}
+@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta{display:none;}}
+
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=6" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=6" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=6" />
+<link rel="apple-touch-icon" href="/favicon-192.png?v=6" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#000000" />
+</head>
+<body>
+<div style="position:fixed;top:0;left:0;right:0;z-index:400;height:48px;padding:0 14px;box-sizing:border-box;background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);display:flex;align-items:center;justify-content:center;gap:16px;overflow:hidden;">
+  <span style="font-family:'Jost',sans-serif;font-size:12px;font-weight:400;color:#000;letter-spacing:0.04em;white-space:nowrap;">Of course, obviously. &#10022;</span>
+  <a href="/?waitlist=1&ref=pg_guide_lovemaxxing_banner" style="padding:6px 18px;background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.2);border-radius:20px;color:#000;font-size:12px;font-weight:400;text-decoration:none;white-space:nowrap;font-family:'Jost',sans-serif;letter-spacing:0.06em;">Join the waitlist &#8594;</a>
+</div>
+
+
+<nav>
+  <a href="/" class="logo">
+    <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="40" height="40" style="display:block;object-fit:contain;flex-shrink:0;" />
+    Self Hypnosis Goddess
+  </a>
+  <a href="/blocks/lovemaxxing" class="nav-cta">Find your block</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Lovemaxxing</h1>
+  <p class="hero-sub">Him obsessed. You unbothered. Of course.</p>
+  
+</section>
+
+<div class="gd"></div>
+
+<!-- CALLOUT -->
+<section class="s sg-l">
+  <div class="sw sc">
+    <span class="ey">Let's be honest</span>
+    <h2 class="hm">You don't have the wrong filter.<br>You have no filter at all.</h2>
+    <p class="bt">Your brain has a built-in focus system, the Reticular Activating System, that decides what you notice out of the millions of signals around you every day. Without a trained identity, it has no target. No focus. Money, opportunity, the right people, they're there. Your brain just isn't locked onto them yet.</p>
+    <div class="callout">
+      <div class="col-l">
+        <div class="col-lbl">What they told you</div>
+        <div class="col-item">Play it cool and text less</div>
+        <div class="col-item">Work on your attachment style</div>
+        <div class="col-item">He just needs more time</div>
+        <div class="col-item">Love yourself first</div>
+        <div class="col-item">Maybe you're too much</div>
+      </div>
+      <div class="col-r">
+        <div class="col-lbl">The truth</div>
+        <div class="col-item">The behaviour follows the belief. Change the belief.</div>
+        <div class="col-item">The assumption is running. Not your personality.</div>
+        <div class="col-item">She doesn't wait for him to decide</div>
+        <div class="col-item">Knowing overrides hoping</div>
+        <div class="col-item">She moves on. Next.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gd"></div>
+
+<!-- POWER STATEMENT -->
+<section style="background:var(--g);padding:80px 48px;text-align:center;">
+  <p style="font-size:clamp(22px,4vw,48px);font-weight:300;color:#000;letter-spacing:-.03em;line-height:1.1;max-width:800px;margin:0 auto;">She stopped auditioning.<br>She started being chosen.</p>
+</section>
+
+<!-- IDENTITY -->
+<section class="s sg-c">
+  <div class="sw sc">
+    <span class="ey">The Identity</span>
+    <h2 class="hm">Lovemaxxing is an identity override.</h2>
+    <div class="id-stage">
+      <div class="id-slide active"><div class="id-key">You are</div><div class="id-val">The one who is chosen. Not because she performs it, because she expects it at the subconscious level, where it actually runs.</div></div>
+      <div class="id-slide"><div class="id-key">You expect</div><div class="id-val">Consistency, devotion, and clear intention. Not because she demands it, because her identity won't accept anything less as normal.</div></div>
+      <div class="id-slide"><div class="id-key">You assume</div><div class="id-val">She doesn't have to earn love. She doesn't have to prove she's worth it. The assumption already changed. The dynamic follows.</div></div>
+      <div class="id-slide"><div class="id-key">You install</div><div class="id-val">The new love identity in theta, the edge of sleep, where the subconscious accepts the new instruction and stops running the old program.</div></div>
+      <div class="id-slide"><div class="id-key">You say</div><div class="id-val">"Of course. Obviously." She doesn't check his profile. She doesn't wonder where she stands. She already knows.</div></div>
+    </div>
+    <div class="id-dots">
+      <div class="id-dot active" onclick="goSlide(0)"></div>
+      <div class="id-dot" onclick="goSlide(1)"></div>
+      <div class="id-dot" onclick="goSlide(2)"></div>
+      <div class="id-dot" onclick="goSlide(3)"></div>
+      <div class="id-dot" onclick="goSlide(4)"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- MECHANISM -->
+<section class="s sg-r">
+  <div class="sw sc">
+    <span class="ey">The Mechanism</span>
+    <h2 class="hm">The pattern runs deeper than the behaviour.</h2>
+    <p class="bt">You don't sit down and decide "I have to earn love." But the subconscious runs that assumption automatically, and every relationship plays it out. The chase. The proving. The wondering where you stand. That's not who you are. That's a program. And programs can be replaced.</p>
+    <div class="loop-wrap">
+      <div class="loop-lbl">The Lovemaxxing install loop, click any node</div>
+      <div class="loop-track">
+        <div class="loop-node active" id="ln0" onclick="activateNode(0,true)"><div class="ln-step">Start</div><div class="ln-title">Subconscious<br>Identity</div></div>
+        <div class="loop-node" id="ln1" onclick="activateNode(1,true)"><div class="ln-step">Creates</div><div class="ln-title">Expectation</div></div>
+        <div class="loop-node" id="ln2" onclick="activateNode(2,true)"><div class="ln-step">Trains</div><div class="ln-title">RAS Filter</div></div>
+        <div class="loop-node" id="ln3" onclick="activateNode(3,true)"><div class="ln-step">Shapes</div><div class="ln-title">Attention</div></div>
+        <div class="loop-node" id="ln4" onclick="activateNode(4,true)"><div class="ln-step">Creates</div><div class="ln-title">Reality</div></div>
+        <div class="loop-node" id="ln5" onclick="activateNode(5,true)"><div class="ln-step">Becomes</div><div class="ln-title">Proof</div></div>
+      </div>
+      <div class="loop-info">
+        <div class="loop-info-title" id="lnTitle">Subconscious Identity</div>
+        <p class="loop-info-text" id="lnText">The identity installed in theta becomes the operating system. "I am the woman who is chosen. Love finds me." Said in the right state, it stops feeling like an affirmation and starts feeling like a fact.</p>
+      </div>
+      <div class="loop-return">↻ &nbsp; loop reinforces identity &nbsp; ↻</div>
+      <div class="theta-pill">
+        <div class="theta-pulse"></div>
+        <p class="theta-strong"><strong>Where the install happens:</strong> That drowsy, half-gone feeling as sleep arrives, that's theta. Your brain is producing slow waves at 4 to 8Hz. The analytical, argumentative part of your mind has mostly switched off. Whatever you hear in that state goes directly into the subconscious, with no resistance. That is the exact window the Self Hypnosis Goddess audio library is built for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gd"></div>
+
+<!-- LADDER -->
+<section class="s sg-l">
+  <div class="sw sc">
+    <span class="ey">The Love Capacity Ladder</span>
+    <h2 class="hm">Pick the level that makes you go<br>"heaven yes, that could be me."</h2>
+    <p class="bt">Each level is a different assumption running underneath. Stay at the level that feels just out of reach, that's where your nervous system is actually practising.</p>
+    <div class="ladder">
+      <div class="rung r5"><div class="rung-badge">5</div><div class="rung-body"><div class="rung-amount">She is devoted to</div><div class="rung-note">Extraordinary love is the only relationship that fits. Anything less doesn't get past the filter.</div></div></div>
+      <div class="rung r4"><div class="rung-badge">4</div><div class="rung-body"><div class="rung-amount">She is chosen, fully</div><div class="rung-note">He moves toward her. She doesn't chase. Consistency is her baseline, not her goal.</div></div></div>
+      <div class="rung r3"><div class="rung-badge">3</div><div class="rung-body"><div class="rung-amount">She stops wondering</div><div class="rung-note">She doesn't check. She doesn't analyse. She trusts the identity and lets the dynamic play out.</div></div></div>
+      <div class="rung r2"><div class="rung-badge">2</div><div class="rung-body"><div class="rung-amount">She stops proving</div><div class="rung-note">The chasing slows. The nervous system starts to understand it doesn't need to earn this.</div></div></div>
+      <div class="rung r1"><div class="rung-badge">1</div><div class="rung-body"><div class="rung-amount">She is still waiting</div><div class="rung-note">Hoping he'll decide. Wondering where she stands. Your starting point, not your ceiling.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="gd"></div>
+
+<!-- LOVE STATEMENT -->
+<section style="background:#000;padding:80px 48px;text-align:center;border-top:1px solid rgba(255,255,255,.06);">
+  <p style="font-size:clamp(13px,1.2vw,14px);letter-spacing:.32em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:24px;font-weight:600;">THE IDENTITY</p>
+  <p style="font-size:clamp(28px,5vw,64px);font-weight:300;color:var(--white);letter-spacing:-.03em;line-height:1;max-width:800px;margin:0 auto 16px;">Him obsessed.</p>
+  <p style="font-size:clamp(28px,5vw,64px);font-weight:300;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.03em;line-height:1;max-width:800px;margin:0 auto 16px;">You unbothered.</p>
+  <p style="font-size:clamp(24px,4vw,52px);font-weight:300;color:var(--white);letter-spacing:-.02em;line-height:1;max-width:800px;margin:0 auto;">Of course.</p>
+</section>
+
+<!-- INSTALL -->
+<section class="s sg-c" id="install">
+  <div class="sw sc">
+    <span class="ey">Ready to install it?</span>
+    <h2 class="hm">Find your level.<br>Install it tonight.</h2>
+    <p class="bt">Two ways in. Pick yours.</p>
+
+    <div class="cards-grid">
+      <!-- QUIZ -->
+      <div class="card">
+        <div class="card-cover card-cover-grad">
+          <div class="card-badge">Free · 2 minutes</div>
+          <div class="card-title">Lovemaxxing Quiz</div>
+          <div class="card-tagline" style="color:#000;font-weight:500;">Find your love block</div>
+        </div>
+        <div class="card-body">
+          <div class="card-sect">What you get</div>
+          <div class="card-features">
+            <div class="card-feature"><div class="card-check"><svg width="9" height="7" viewBox="0 0 9 7"><path d="M1 3.5L3 5.5L8 1" stroke="#000" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="card-ft">Find your love block. Two minutes. Free.</div></div>
+          </div>
+          <a href="/blocks/lovemaxxing" class="btn-grad">Find your block, free</a>
+        </div>
+      </div>
+      <!-- WORKBOOK -->
+      <div class="card">
+        <div class="card-cover card-cover-dark">
+          <div class="card-badge">Instant access</div>
+          <div class="card-title">Lovemaxxing<br>Workbook</div>
+          <div class="card-divider"></div>
+          <div class="card-price"><s>$49</s> &nbsp;<strong>$29</strong></div>
+        </div>
+        <div class="card-body">
+          <div class="card-sect">What's inside</div>
+          <div class="card-features">
+            <div class="card-feature"><div class="card-check"><svg width="9" height="7" viewBox="0 0 9 7"><path d="M1 3.5L3 5.5L8 1" stroke="#000" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="card-ft">21 days to identify your dream partner and become unavailable to your romantic nightmare</div></div>
+          </div>
+          <a href="https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db" class="btn-grad-outline">Get the Lovemaxxing Workbook →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMISE -->
+    <div class="promise">
+      <h3 class="promise-title">After this, the chasing<br>stops feeling like yours.</h3>
+      <p class="promise-body">You don't go back. Not because it's hard, because the identity that was proving, chasing, and wondering where she stood just stops feeling like yours. The Lovemaxxing operating system doesn't coexist with the old assumption. It replaces it.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+const slides=document.querySelectorAll('.id-slide'),dots=document.querySelectorAll('.id-dot');
+let si=0;
+function goSlide(n){slides[si].classList.remove('active');dots[si].classList.remove('active');si=n;slides[si].classList.add('active');dots[si].classList.add('active');}
+setInterval(()=>goSlide((si+1)%slides.length),4200);
+
+const ld=[
+  {t:"Subconscious Identity",p:"The identity installed in theta becomes the operating system. Said in the right state, the drowsy edge of sleep, where the arguing stops, \u201cI am the woman who is chosen. He moves toward me.\u201d Said in the right state, it stops feeling like an affirmation and starts feeling like something you simply know."},
+  {t:"Expectation",p:"Once the identity installs, expectation replaces hope automatically. She isn't trying to believe money will arrive. She knows it will. That's not a mindset. That's a signal her entire focus system is now broadcasting."},
+  {t:"RAS Filter, Your Focus System",p:"The Reticular Activating System decides what you notice. Once the Lovemaxxing identity is installed, your focus locks onto devotion, consistency, and the right kind of attention."},
+  {t:"Attention",p:"You start noticing what you're trained to notice. The conversation you would have walked past. The message you would have dismissed. The opportunity that was always there, now suddenly visible."},
+  {t:"Reality",p:"The evidence starts arriving. Not because the world changed, because your filter changed. The red car was always there. You bought one and suddenly saw it everywhere. Same principle."},
+  {t:"Proof",p:"The evidence confirms the identity. The loop closes and reinforces itself. Each cycle makes the identity more familiar, more automatic, until it stops feeling installed and starts feeling like just who you are."}
+];
+let li=0,lp=false;
+function activateNode(i,m){
+  if(m)lp=true;
+  document.querySelectorAll('.loop-node').forEach((n,j)=>n.classList.toggle('active',i===j));
+  document.getElementById('lnTitle').textContent=ld[i].t;
+  document.getElementById('lnText').textContent=ld[i].p;
+  li=i;
+  if(m)setTimeout(()=>lp=false,9000);
+}
+setInterval(()=>{if(!lp){li=(li+1)%6;activateNode(li,false);}},5000);
+</script>
+<div class="mob-overlay" id="mobMenu">
+  <div class="mob-overlay-top">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="/logo_transparent_cropped.png" width="36" height="36" style="object-fit:contain;"/></a>
+    <button class="mob-close" onclick="document.getElementById('mobMenu').classList.remove('open')">&#x2715;</button>
+  </div>
+  <a href="/" class="mob-nav-item">Home</a>
+  <a href="/guides" class="mob-nav-item">Guides</a>
+  <a href="/blog" class="mob-nav-item">Journal</a>
+  <a href="/blocks" class="mob-nav-item">Find your block</a>
+  <a href="/portal?preview=1&theme=dark" class="mob-nav-item">Preview the portal</a>
+</div>
+</body>
+</html>

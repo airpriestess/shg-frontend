@@ -25,7 +25,7 @@ export const T = {
   borderGlow:   "rgba(232,184,112,0.15)",
 
   // Text — warm cream (dark mode)
-  textPrimary:   "#f2ece4",
+  textPrimary:   "#fdf0e8",
   textSecondary: "#dcc8b8",
   textMuted:     "#b09888",
   textFaint:     "#786860",
@@ -57,9 +57,9 @@ export const CSS = `
 /* ── RESET ─────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{background:#000;color:#f2ece4;font-family:'Jost',sans-serif;font-weight:300;font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
+body{background:#000;color:#fdf0e8;font-family:'Jost',sans-serif;font-weight:300;font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;}
 button,input,textarea,select{font-family:'Jost',sans-serif;}
-input,textarea{background:#000;border:1px solid #1e1e1e;color:#f2ece4;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
+input,textarea{background:#000;border:1px solid #1e1e1e;color:#fdf0e8;border-radius:10px;padding:13px 16px;font-size:15px;width:100%;outline:none;transition:border-color 0.2s;}
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#2CB7A766;}
 ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#1e1e1e;border-radius:2px;}
@@ -153,7 +153,7 @@ img{max-width:100%;}
 @media(max-width:680px){
   body [style*="grid-template-columns"]{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;}
   body [style*="1.2fr 1.8fr"],[style*="1fr 36px"]{display:none!important;}
-  body > #root > * [style*="padding"]{max-width:100vw!important;overflow-x:hidden!important;}
+  body > #root > * [style*="padding"]:not(.hscroll-ok){max-width:100vw!important;overflow-x:hidden!important;}
   h1{font-size:clamp(32px,9vw,52px)!important;}
   .hero-ctas>button{width:100%!important;}
   html,body{overflow-x:hidden!important;max-width:100vw!important;}

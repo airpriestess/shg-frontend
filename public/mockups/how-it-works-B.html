@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<style>
+  :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#000;font-family:'Jost',sans-serif;color:#fdf0e8;}
+  .wrap{max-width:900px;margin:0 auto;padding:100px 40px;}
+
+  .big-heading{text-align:center;font-size:clamp(48px,8vw,80px);font-weight:300;letter-spacing:-.03em;line-height:1;margin-bottom:16px;background:var(--g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .sub{text-align:center;font-size:16px;font-weight:300;color:#fdf0e8;margin-bottom:60px;line-height:1.6;}
+
+  .accordion{display:flex;flex-direction:column;gap:0;}
+
+  .acc-item{position:relative;}
+
+  .acc-header{display:flex;align-items:center;gap:20px;padding:20px 28px;cursor:pointer;transition:all .25s;background:#fdf0e8;border:1px solid rgba(0,0,0,.08);border-radius:14px;}
+  .acc-header:hover{background:#e8e0d8;}
+  .acc-header.active{background:var(--g);border-color:transparent;border-radius:14px 14px 0 0;}
+
+  .acc-num{font-size:11px;letter-spacing:.2em;color:#000000;font-weight:500;flex-shrink:0;width:28px;}
+  .acc-title{font-size:17px;font-weight:400;color:#000;flex:1;letter-spacing:-.01em;}
+  .acc-plus{font-size:20px;color:#000000;transition:transform .3s,color .3s;flex-shrink:0;font-weight:300;}
+
+  .acc-header.active .acc-num{color:#000000;}
+  .acc-header.active .acc-title{color:#000;}
+  .acc-header.active .acc-plus{color:#000;transform:rotate(45deg);}
+
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;background:var(--g);border-radius:0 0 14px 14px;}
+  .acc-body.open{max-height:300px;padding:20px 28px 28px;}
+  .acc-body p{font-size:15px;font-weight:400;color:#000;line-height:1.7;padding-left:48px;}
+
+  .arrow-down{display:flex;justify-content:center;padding:8px 0;}
+  .arrow-down span{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:14px;color:#2CB7A7;}
+
+  @media(max-width:600px){
+    .big-heading{font-size:clamp(36px,10vw,56px);}
+    .acc-header{padding:16px 20px;gap:14px;}
+    .acc-body.open{padding:16px 20px 24px;}
+    .acc-body p{padding-left:42px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="big-heading">How it works.</div>
+  <div class="sub">Press play. Your subconscious does the rest.<br>Here's exactly what happens inside every session.</div>
+
+  <div class="accordion" id="acc">
+
+    <div class="acc-item">
+      <div class="acc-header active" data-i="0"><span class="acc-num">01</span><span class="acc-title">Press play. Anytime.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body open"><p>Choose a track from 24 categories based on what you want to manifest. Morning coffee, car ride, gym, lunch break. Theta is available the instant you press play.</p></div>
+    </div>
+    <div class="arrow-down"><span>↓</span></div>
+
+    <div class="acc-item">
+      <div class="acc-header" data-i="1"><span class="acc-num">02</span><span class="acc-title">Theta state.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body"><p>Your brain drops into theta (4 to 8Hz). Binaural beats, one frequency in each ear, create a third tone your brain follows automatically. This is the only state where your subconscious opens and accepts new beliefs without resistance.</p></div>
+    </div>
+    <div class="arrow-down"><span>↓</span></div>
+
+    <div class="acc-item">
+      <div class="acc-header" data-i="2"><span class="acc-num">03</span><span class="acc-title">Your subconscious opens.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body"><p>The critical mind, the part that argues, doubts, and filters, steps back completely. What's left is your subconscious. Open. Receptive. This is where you're reprogramming.</p></div>
+    </div>
+    <div class="arrow-down"><span>↓</span></div>
+
+    <div class="acc-item">
+      <div class="acc-header" data-i="3"><span class="acc-num">04</span><span class="acc-title">The hypnosis activates.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body"><p>Reshma's voice speaks directly to your subconscious, putting you into hypnosis and opening your subconscious mind. Your new identity is delivered while the gatekeeper is offline. No resistance. No filtering. It goes straight in.</p></div>
+    </div>
+    <div class="arrow-down"><span>↓</span></div>
+
+    <div class="acc-item">
+      <div class="acc-header" data-i="4"><span class="acc-num">05</span><span class="acc-title">Subliminals layer underneath.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body"><p>Affirmations recorded below conscious hearing. You can't make them out, but your subconscious can. Your new identity repeating hundreds of times per session while you listen.</p></div>
+    </div>
+    <div class="arrow-down"><span>↓</span></div>
+
+    <div class="acc-item">
+      <div class="acc-header" data-i="5"><span class="acc-num">06</span><span class="acc-title">Melodic house hypes you up.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body"><p>The music holds you in state and keeps the energy high. Some tracks drive you. Some take you deep. Either way you stay locked in the frequency where identity shifts, and it feels incredible.</p></div>
+    </div>
+    <div class="arrow-down"><span>↓</span></div>
+
+    <div class="acc-item">
+      <div class="acc-header" data-i="6"><span class="acc-num">07</span><span class="acc-title">Your reality starts shifting.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body"><p>Your beliefs and assumptions have changed. Your identity has shifted. Reality reflects your identity, so things start to change. This can happen in seconds. Or days. Every session goes deeper.</p></div>
+    </div>
+    <div class="arrow-down"><span>↓</span></div>
+
+    <div class="acc-item">
+      <div class="acc-header" data-i="7"><span class="acc-num">08</span><span class="acc-title">Log every sign in ProofOS.</span><span class="acc-plus">+</span></div>
+      <div class="acc-body"><p>As your reality shifts you'll notice synchronicities, things arriving, situations changing. Log them with a date, a photo, a voice note. Watch the proof wall fill. That evidence keeps you in the state that makes more things arrive.</p></div>
+    </div>
+
+  </div>
+</div>
+<script>
+document.querySelectorAll('.acc-header').forEach(h => {
+  h.addEventListener('click', function() {
+    const wasActive = this.classList.contains('active');
+    document.querySelectorAll('.acc-header').forEach(hh => hh.classList.remove('active'));
+    document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+    if (!wasActive) {
+      this.classList.add('active');
+      this.nextElementSibling.classList.add('open');
+    }
+  });
+});
+</script>
+</body>
+</html>

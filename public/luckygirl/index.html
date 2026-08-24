@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luckygirlmaxxing, Self Hypnosis Goddess</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);}
+*{box-sizing:border-box;margin:0;padding:0;}
+a{text-decoration:none;color:inherit;}
+body{font-family:'Jost',sans-serif;background:#000;color:#fdf0e8;overflow-x:hidden;}
+
+nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-cta{padding:10px 24px;border-radius:40px;background:var(--g);color:#000;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:var(--g);}
+.hero-ey{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#000;font-weight:700;margin-bottom:24px;}
+.hero h1{font-size:clamp(44px,7vw,84px);font-weight:400;color:#000;letter-spacing:-.02em;line-height:.95;margin-bottom:24px;}
+.hero-sub{font-size:clamp(18px,2.5vw,26px);font-weight:500;color:#000;line-height:1.4;max-width:600px;margin-bottom:48px;}
+.hero-ctas{display:flex;flex-direction:column;gap:14px;width:100%;max-width:400px;}
+.btn-dark{display:block;padding:20px;border-radius:12px;background:#000;color:#fdf0e8;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-align:center;}
+.btn-outline-dark{display:block;padding:18px;border-radius:12px;border:2px solid #000;color:#000;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;text-align:center;}
+
+/* WHAT IT IS */
+.what{background:#000;padding:100px 48px;text-align:center;}
+.what-inner{max-width:800px;margin:0 auto;}
+.section-ey{font-size:11px;letter-spacing:.32em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;margin-bottom:20px;display:block;}
+.what h2{font-size:clamp(32px,5vw,60px);font-weight:400;color:#fdf0e8;letter-spacing:-.03em;line-height:1;margin-bottom:24px;}
+.what p{font-size:18px;font-weight:300;color:#fdf0e8;line-height:1.7;max-width:600px;margin:0 auto;}
+
+/* THREE STEPS */
+.steps{background:#000;padding:0 48px 100px;}
+.steps-inner{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+.step{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px 28px;}
+.step-num{font-size:48px;font-weight:700;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:16px;}
+.step-title{font-size:18px;font-weight:600;color:#fdf0e8;margin-bottom:12px;letter-spacing:-.01em;}
+.step-body{font-size:14px;font-weight:300;color:#fdf0e8;line-height:1.7;}
+.step-cta{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;}
+
+/* UNIVERSE */
+.universe{background:var(--g);padding:80px 48px;text-align:center;}
+.universe h2{font-size:clamp(28px,5vw,56px);font-weight:400;color:#000;letter-spacing:-.03em;line-height:1.1;max-width:700px;margin:0 auto 16px;}
+.universe p{font-size:17px;font-weight:400;color:#000;max-width:500px;margin:0 auto;}
+
+/* WHAT'S IN WORKBOOK */
+.workbook{background:#000;padding:100px 48px;text-align:center;}
+.workbook-inner{max-width:760px;margin:0 auto;}
+.workbook h2{font-size:clamp(28px,4vw,48px);font-weight:400;color:#fdf0e8;letter-spacing:-.03em;line-height:1.1;margin-bottom:48px;}
+.wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:48px;text-align:left;}
+.wb-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px;}
+.wb-item-title{font-size:14px;font-weight:600;color:#fdf0e8;margin-bottom:6px;}
+.wb-item-body{font-size:13px;font-weight:300;color:#fdf0e8;line-height:1.6;}
+.price-row{margin-bottom:24px;}
+.price-was{font-size:16px;color:#fdf0e8;text-decoration:line-through;margin-bottom:4px;}
+.price-now{font-size:52px;font-weight:700;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;}
+.btn-grad{display:block;padding:22px;border-radius:12px;background:var(--g);color:#000;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-align:center;max-width:400px;margin:0 auto 14px;}
+.btn-ghost{display:block;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,.15);color:#fdf0e8;font-size:12px;letter-spacing:.2em;text-transform:uppercase;max-width:400px;margin:0 auto;text-align:center;}
+
+@media(max-width:640px){
+  nav{padding:14px 20px;}
+  .what,.steps,.workbook,.universe{padding-left:24px;padding-right:24px;}
+  .steps-inner{grid-template-columns:1fr;}
+  .wb-grid{grid-template-columns:1fr;}
+  .hero-ctas{max-width:100%;}
+}
+
+.mob-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#fdf0e8;}
+.mob-overlay{display:none;position:fixed;inset:0;background:#000;z-index:500;flex-direction:column;padding:32px 28px;}
+.mob-overlay.open{display:flex;}
+.mob-overlay-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
+.mob-nav-item{font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#fdf0e8;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:-.01em;}
+.mob-close{background:none;border:none;color:#fdf0e8;font-size:28px;cursor:pointer;padding:8px;}
+@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta{display:none;}}
+
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=6" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=6" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=6" />
+<link rel="apple-touch-icon" href="/favicon-192.png?v=6" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#000000" />
+</head>
+<body>
+<div style="position:fixed;top:0;left:0;right:0;z-index:400;height:48px;padding:0 14px;box-sizing:border-box;background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);display:flex;align-items:center;justify-content:center;gap:16px;overflow:hidden;">
+  <span style="font-family:'Jost',sans-serif;font-size:12px;font-weight:400;color:#000;letter-spacing:0.04em;white-space:nowrap;">Of course, obviously. &#10022;</span>
+  <a href="/?waitlist=1&ref=pg_luckygirl_banner" style="padding:6px 18px;background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.2);border-radius:20px;color:#000;font-size:12px;font-weight:400;text-decoration:none;white-space:nowrap;font-family:'Jost',sans-serif;letter-spacing:0.06em;">Join the waitlist &#8594;</a>
+</div>
+
+
+<nav>
+  <a href="/"><img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style="height:40px;"></a>
+  <a href="/blocks/luckygirl" class="nav-cta">Find your block →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ey">✦ Self Hypnosis Goddess ✦</div>
+  <h1>LuckyGirl<br>Maxxing</h1>
+  <p class="hero-sub">21 days to become the woman good things happen to. Right place. Right time. Right outcome. Of course.</p>
+  <div class="hero-ctas">
+    <a href="/blocks/luckygirl" class="btn-dark">Find your LuckyGirl block, free →</a>
+    <a href="/guide/luckygirl" class="btn-outline-dark">Read the guide first</a>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section class="what">
+  <div class="what-inner">
+    <span class="section-ey">What is Luckygirlmaxxing</span>
+    <h2>Luck is not something she has.<br>It is who she is.</h2>
+    <p>Luckygirlmaxxing is the deliberate practice of choosing, rehearsing and repeating the identity of a woman life supports, until that identity becomes so familiar to her subconscious mind that reality has no real choice but to keep confirming it. Not superstition. Not passive wishing. Identity architecture.</p>
+  </div>
+</section>
+
+<!-- THREE STEPS -->
+<section class="steps">
+  <div class="steps-inner">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Find your block</div>
+      <div class="step-body">8 questions. Your specific block named and placed on the Hawkins scale. Free.</div>
+      <a href="/blocks/luckygirl" class="step-cta">Take the quiz →</a>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Understand the install</div>
+      <div class="step-body">The LuckyGirl guide explains exactly how the operating system works and what changes when you install it.</div>
+      <a href="/guide/luckygirl" class="step-cta">Read the guide →</a>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Install it in 21 days</div>
+      <div class="step-body">The workbook is the full practice. Assumption, repetition, evidence. The identity becomes identity.</div>
+      <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" class="step-cta">Get the workbook →</a>
+    </div>
+  </div>
+</section>
+
+<!-- UNIVERSE STATEMENT -->
+<section class="universe">
+  <h2>Her subconscious feels lucky. Reality has no choice but to agree.</h2>
+  <p>Assumption × Repetition = Identity. Every day she chooses her before the evidence arrives.</p>
+</section>
+
+<!-- WORKBOOK -->
+<section class="workbook">
+  <div class="workbook-inner">
+    <span class="section-ey">The Luckygirlmaxxing Workbook</span>
+    <h2>Everything you need to install the operating system.</h2>
+    <div class="wb-grid">
+      <div class="wb-item">
+        <div class="wb-item-title">Your LuckyGirl Identity</div>
+        <div class="wb-item-body">Choose her before the evidence arrives. Define exactly who she is and how she moves.</div>
+      </div>
+      <div class="wb-item">
+        <div class="wb-item-title">The Recognition Filter</div>
+        <div class="wb-item-body">Retrain your attention onto relevance, timing and openings, same room, different eye.</div>
+      </div>
+      <div class="wb-item">
+        <div class="wb-item-title">Your Current Luck Story</div>
+        <div class="wb-item-body">Name the rehearsed conclusions you've been repeating. Naming the story is the first way to stop proving it.</div>
+      </div>
+      <div class="wb-item">
+        <div class="wb-item-title">Timing Windows</div>
+        <div class="wb-item-body">Most opportunities leave before fear finishes speaking. Learn to move while the window is still open.</div>
+      </div>
+      <div class="wb-item">
+        <div class="wb-item-title">The Domino Effect Method</div>
+        <div class="wb-item-body">One credible first action. You don't need to see the whole chain, just tip the first domino.</div>
+      </div>
+      <div class="wb-item">
+        <div class="wb-item-title">LuckyGirl Standards</div>
+        <div class="wb-item-body">Feeling lucky doesn't mean saying yes to everything. She is selective. Standards keep the identity intact.</div>
+      </div>
+      <div class="wb-item">
+        <div class="wb-item-title">21 Pieces of Evidence</div>
+        <div class="wb-item-body">One miracle is exciting. Twenty one becomes identity. Fill the tracker until lucky stops feeling like something you're trying to be.</div>
+      </div>
+      <div class="wb-item">
+        <div class="wb-item-title">My LuckyGirl Identity Shift</div>
+        <div class="wb-item-body">Day 1 vs Day 21, in writing. The transition is not just felt. It is seen.</div>
+      </div>
+    </div>
+    <div class="price-row">
+      <div class="price-was">$49</div>
+      <div class="price-now">$29</div>
+    </div>
+    <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" class="btn-grad">I am ready to install, $29 →</a>
+    <a href="/blocks/luckygirl" class="btn-ghost">Find my block first, free</a>
+  </div>
+</section>
+
+<div class="mob-overlay" id="mobMenu">
+  <div class="mob-overlay-top">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="/logo_transparent_cropped.png" width="36" height="36" style="object-fit:contain;"/></a>
+    <button class="mob-close" onclick="document.getElementById('mobMenu').classList.remove('open')">&#x2715;</button>
+  </div>
+  <a href="/" class="mob-nav-item">Home</a>
+  <a href="/guides" class="mob-nav-item">Guides</a>
+  <a href="/blog" class="mob-nav-item">Journal</a>
+  <a href="/blocks" class="mob-nav-item">Find your block</a>
+  <a href="/portal?preview=1&theme=dark" class="mob-nav-item">Preview the portal</a>
+</div>
+</body>
+</html>

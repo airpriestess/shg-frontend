@@ -1,14 +1,14 @@
-/* PortalScreenshot — mobile phone mockup, matches real dashboard exactly */
+/* PortalScreenshot, mobile phone mockup, matches real dashboard exactly */
 
 const THEMES = {
-  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,184,112,0.08)", nav:"#050505", cr:"#f2ece4", mu:"#f2ece4", dim:"#e8e0d8", border:"rgba(232,184,112,0.12)" },
-  light: { bg:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", bg2:"rgba(255,255,255,0.25)", bg3:"rgba(255,255,255,0.35)", nav:"rgba(245,224,160,0.55)", cr:"#000000", mu:"#000000", dim:"#000000", border:"rgba(255,255,255,0.45)", inputBg:"rgba(255,255,255,0.55)" },
+  dark:  { bg:"#080808", bg2:"#111111", bg3:"rgba(232,184,112,0.08)", nav:"#050505", cr:"#fdf0e8", mu:"#fdf0e8", dim:"#fdf0e8", border:"rgba(232,184,112,0.12)" },
+  light: { bg:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", bg2:"#fdf0e8", bg3:"#fdf0e8", nav:"rgba(245,224,160,0.55)", cr:"#000000", mu:"#000000", dim:"#000000", border:"#fdf0e8", inputBg:"#fdf0e8" },
 };
 
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 const TEAL  = "#2CB7A7";
 
-// All accents in LG palette only — no blue, no pink, no brown
+// All accents in LG palette only, no blue, no pink, no brown
 const CAT = {
   Lovemaxxing:      { accent:"#167A6B" },
   Beautymaxxing:    { accent:"#BFA5D8" },
@@ -24,7 +24,7 @@ const CAT = {
   Confidencemaxxing:{ accent:"#BFA5D8" },
   Erosmaxxing:      { accent:"#167A6B" },
   Facemaxxing:      { accent:"#E8B870" },
-  Healmaxxing:      { accent:"#2CB7A7" },
+  Healthmaxxing:      { accent:"#2CB7A7" },
   Lifemaxxing:      { accent:"#F5E0A0" },
   Peacemaxxing:     { accent:"#BFA5D8" },
   Sovereignmaxxing: { accent:"#167A6B" },
@@ -39,10 +39,10 @@ const TRACKS = [
   { title:"He Finds His Way Back",              cat:"Lovemaxxing" },
   { title:"Money Finds Me First",               cat:"Richgirlmaxxing" },
   { title:"While I Sleep I Manifest",           cat:"Sleepmaxxing" },
-  { title:"10 Years Into One Hour",             cat:"Healmaxxing" },
+  { title:"10 Years Into One Hour",             cat:"Healthmaxxing" },
 ];
 
-const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Desiresmaxxing","Bodymaxxing","Confidencemaxxing","Erosmaxxing","Facemaxxing","Healmaxxing","Lifemaxxing","Peacemaxxing","Sovereignmaxxing","Sleepmaxxing"];
+const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing","DNAmaxxing","Desiresmaxxing","Bodymaxxing","Confidencemaxxing","Erosmaxxing","Facemaxxing","Healthmaxxing","Lifemaxxing","Peacemaxxing","Sovereignmaxxing","Sleepmaxxing"];
 
 function Thumb({ cat, size, radius=4 }) {
   return (
@@ -51,20 +51,7 @@ function Thumb({ cat, size, radius=4 }) {
       border:"1px solid rgba(255,255,255,0.08)",
       display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden" }}>
       {/* Clover logo mark */}
-      <svg viewBox="0 0 100 102" width={size*0.44} height={size*0.44} fill="none">
-        <defs>
-          <linearGradient id="thlg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F5E0A0"/>
-            <stop offset="52%" stopColor="#BFA5D8"/>
-            <stop offset="100%" stopColor="#167A6B"/>
-          </linearGradient>
-        </defs>
-        <circle cx="35" cy="35" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="65" cy="35" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="35" cy="65" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <circle cx="65" cy="65" r="18" fill="none" stroke="url(#thlg)" strokeWidth="5"/>
-        <line x1="50" y1="80" x2="50" y2="96" stroke="url(#thlg)" strokeWidth="5" strokeLinecap="round"/>
-      </svg>
+      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={size*0.44} height={size*0.44} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
     </div>
   );
 }
@@ -104,16 +91,10 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
           <div style={{ fontSize:f.xs, color:C.mu, letterSpacing:"0.06em", textTransform:"uppercase", marginBottom:1 }}>Welcome back</div>
           <span style={{ fontSize:f.lg, color:C.cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Goddess</span>
         </div>
-        {/* Avatar — clover mark */}
+        {/* Avatar, clover mark */}
         <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:"50%",
           background:OMBRE, display:"flex", alignItems:"center", justifyContent:"center" }}>
-          <svg viewBox="0 0 100 102" width={Math.round(16*s)} height={Math.round(16*s)} fill="none">
-            <circle cx="35" cy="35" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="65" cy="35" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="35" cy="65" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <circle cx="65" cy="65" r="18" fill="none" stroke="#000" strokeWidth="8"/>
-            <line x1="50" y1="80" x2="50" y2="96" stroke="#000" strokeWidth="8" strokeLinecap="round"/>
-          </svg>
+          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={Math.round(16*s)} height={Math.round(16*s)} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         </div>
       </div>
 
@@ -125,7 +106,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
           background:OMBRE, borderRadius:20, color:"#000" }}>NEW</span>
       </div>
 
-      {/* TRACK CARDS — horizontal scroll */}
+      {/* TRACK CARDS, horizontal scroll */}
       <div style={{ display:"flex", gap:Math.round(8*s), padding:`0 ${pad}px ${Math.round(10*s)}px`, overflowX:"hidden" }}>
         {TRACKS.slice(0,8).map((t,i)=>(
           <div key={i} style={{ flexShrink:0 }}>
