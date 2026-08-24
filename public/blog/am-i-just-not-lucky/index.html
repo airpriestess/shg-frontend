@@ -171,8 +171,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 .filter-result{background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;animation:drift 3s ease-in-out infinite;border-radius:12px;padding:14px;text-align:center;font-size:13px;color:#000;line-height:1.4;font-weight:600;}
 .filter-result:nth-child(2){animation-delay:.5s;}
 .filter-result:nth-child(3){animation-delay:1s;}
-.filter-blocked{border-radius:12px;padding:14px;text-align:center;font-size:12px;color:#fdf0e8;opacity:.2;line-height:1.4;position:relative;border:1px dashed rgba(255,255,255,.08);}
-.filter-blocked::after{content:'✕';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:20px;color:rgba(255,255,255,.15);}
+.filter-blocked{border-radius:12px;padding:14px;text-align:center;font-size:13px;color:#fdf0e8;opacity:.25;line-height:1.4;position:relative;border:1px dashed rgba(255,255,255,.15);background:rgba(255,255,255,.02);}
+.filter-blocked::after{content:'✕';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:22px;color:rgba(255,255,255,.25);}
 .filter-cap{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#fdf0e8;text-align:center;margin-top:14px;opacity:.4;}
 
 /* 3. LUCK SPECTRUM BAR */
@@ -577,9 +577,9 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
       <div class="filter-result">Opportunity surfaces. She notices. She acts.</div>
       <div class="filter-result">Signal registers. She follows it up.</div>
       <div class="filter-result">The opening lands. She walks through it.</div>
-      <div class="filter-blocked">filtered before awareness</div>
-      <div class="filter-blocked">filtered before awareness</div>
-      <div class="filter-blocked">filtered before awareness</div>
+      <div class="filter-blocked"><span style="text-decoration:line-through">Opportunity surfaces</span></div>
+      <div class="filter-blocked"><span style="text-decoration:line-through">Signal registers</span></div>
+      <div class="filter-blocked"><span style="text-decoration:line-through">The opening lands</span></div>
     </div>
     <div class="filter-cap">The same information reaches both of you. The filter decides what you see.</div>
   </div>
