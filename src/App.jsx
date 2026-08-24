@@ -416,7 +416,7 @@ const TIERS = {
     name: "Audio Tier", emoji: "🔊",
     monthly: "$49", annual: "$470", annualPerMonth: "$39", annualNote: "$470 billed annually",
     usd: "$49/mo", usdAnnual: "$470/yr",
-    features: ["Full exclusive audio vault","Hypnosis · subliminals · sleep · binaural · EMDR · melodic house","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
+    features: ["Full exclusive audio vault","Hypnosis · subliminals · sleep · binaural beats · EMDR","Loop player + sleep timer","New tracks every week","All desire categories","No ads. Ever."],
     cta: (annual)=> annual ? "Join Audio, $39/month" : "Join Audio, $49/month",
   },
   goddess: {
@@ -1426,7 +1426,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 4s ease-in-out infinite", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
             Of course, obviously. ✦
           </span>
