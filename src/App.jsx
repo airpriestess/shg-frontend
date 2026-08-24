@@ -691,53 +691,93 @@ const MARQUEE_ITEMS = [
 function PhoneShell({ w=200, theme, view }) {
   const br = Math.round(w * 0.21);
   const pad = Math.round(w * 0.025);
+  const T = theme === "dark"
+    ? { bg:"#0a0a0a", card:"#1a1a1a", text:"#fdf0e8", sub:"rgba(253,240,232,0.5)", border:"rgba(255,255,255,0.08)" }
+    : { bg:"#f5f0ea", card:"#fff", text:"#000", sub:"rgba(0,0,0,0.5)", border:"rgba(0,0,0,0.08)" };
+  const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+  const h = Math.round((w-pad*2)*844/390);
+  const tracks = [
+    { name:"Lucky Girl Summer", cat:"Luckygirlmaxxing", dur:"18:24" },
+    { name:"Infinite Cash Flow", cat:"Richgirlmaxxing", dur:"22:10" },
+    { name:"He Finds Me First", cat:"Lovemaxxing", dur:"19:55" },
+    { name:"Gorgeous Default", cat:"Beautymaxxing", dur:"16:40" },
+    { name:"Main Character", cat:"Selfmaxxing", dur:"21:05" },
+  ];
+  const proofs = [
+    "Got the job. Didn't even apply properly.",
+    "He texted first. Out of nowhere.",
+    "£400 came in I wasn't expecting.",
+    "Perfect parking spot. Obviously.",
+    "She said yes to the collab.",
+  ];
   return (
     <div style={{ position:"relative", width:w, background:"#1a1a1a", borderRadius:br, padding:`${Math.round(w*0.055)}px ${pad}px`, boxShadow:"0 0 0 2px #3a3a3a, 0 0 0 4px #1a1a1a, 0 0 0 6px #3a3a3a, 0 28px 56px rgba(0,0,0,0.85)" }}>
       <div style={{ position:"absolute", left:-3, top:"22%", width:3, height:"10%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
       <div style={{ position:"absolute", left:-3, top:"35%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
-      <div style={{ position:"absolute", left:-3, top:"54%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
       <div style={{ position:"absolute", right:-3, top:"38%", width:3, height:"22%", background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
-      <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative" }}>
+      <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative", background:T.bg }}>
         <div style={{ position:"absolute", top:Math.round(w*0.033), left:"50%", transform:"translateX(-50%)", width:Math.round(w*0.38), height:Math.round(w*0.077), background:"#000", borderRadius:20, zIndex:10 }}/>
-        {view==="dashboard" && (
-          <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-            <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
-              <iframe
-                src={`/portal?preview=1&theme=${theme}`}
-                title="Self Hypnosis Goddess mobile dashboard preview"
-                width="390"
-                height="844"
-                style={{ border:"none", display:"block" }}
-              />
+        <div style={{ width:w-pad*2, height:h, overflowY:"hidden", position:"relative", background:T.bg, fontFamily:"'Jost',sans-serif" }}>
+          {/* DASHBOARD VIEW */}
+          {view==="dashboard" && (
+            <div style={{ padding:"48px 14px 16px" }}>
+              <div style={{ background:G, borderRadius:10, padding:"12px 14px", marginBottom:12 }}>
+                <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:"#000", opacity:.6, marginBottom:3 }}>Now playing</div>
+                <div style={{ fontSize:11, fontWeight:600, color:"#000" }}>Lucky Girl Summer</div>
+                <div style={{ fontSize:8, color:"#000", opacity:.7 }}>Luckygirlmaxxing · 18:24</div>
+                <div style={{ marginTop:8, height:2, borderRadius:1, background:"rgba(0,0,0,0.2)" }}>
+                  <div style={{ width:"38%", height:2, borderRadius:1, background:"#000" }}/>
+                </div>
+              </div>
+              <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:T.sub, marginBottom:6 }}>Your library</div>
+              {tracks.map((t,i) => (
+                <div key={i} style={{ display:"flex", alignItems:"center", gap:8, padding:"7px 0", borderBottom:`1px solid ${T.border}` }}>
+                  <div style={{ width:26, height:26, borderRadius:6, background:G, flexShrink:0 }}/>
+                  <div style={{ flex:1, minWidth:0 }}>
+                    <div style={{ fontSize:9, fontWeight:500, color:T.text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{t.name}</div>
+                    <div style={{ fontSize:7, color:T.sub }}>{t.cat}</div>
+                  </div>
+                  <div style={{ fontSize:7, color:T.sub }}>{t.dur}</div>
+                </div>
+              ))}
             </div>
-          </div>
-        )}
-        {view==="proof" && (
-          <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-            <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
-              <iframe
-                src={`/portal?preview=1&theme=${theme}&tab=proof`}
-                title="Self Hypnosis Goddess mobile ProofOS preview"
-                width="390"
-                height="844"
-                style={{ border:"none", display:"block" }}
-              />
+          )}
+          {/* PROOFOS VIEW */}
+          {view==="proof" && (
+            <div style={{ padding:"48px 14px 16px" }}>
+              <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", marginBottom:10 }}>ProofOS ✦</div>
+              <div style={{ fontSize:11, fontWeight:300, color:T.text, marginBottom:12, lineHeight:1.3 }}>Your evidence wall.<br/>Reality confirmed.</div>
+              {proofs.map((p,i) => (
+                <div key={i} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"8px 10px", marginBottom:7, display:"flex", alignItems:"flex-start", gap:6 }}>
+                  <div style={{ width:14, height:14, borderRadius:"50%", background:G, flexShrink:0, marginTop:1 }}/>
+                  <div style={{ fontSize:9, color:T.text, lineHeight:1.4 }}>{p}</div>
+                </div>
+              ))}
             </div>
-          </div>
-        )}
-        {view==="analytics" && (
-          <div style={{ width:w - pad*2, height:Math.round((w-pad*2)*844/390), overflow:"hidden", position:"relative", background:"#000" }}>
-            <div style={{ width:390, height:844, transform:`scale(${(w-pad*2)/390})`, transformOrigin:"top left" }}>
-              <iframe
-                src={`/portal?preview=1&theme=${theme}&tab=analytics`}
-                title="Self Hypnosis Goddess mobile Analytics preview"
-                width="390"
-                height="844"
-                style={{ border:"none", display:"block" }}
-              />
+          )}
+          {/* ANALYTICS VIEW */}
+          {view==="analytics" && (
+            <div style={{ padding:"48px 14px 16px" }}>
+              <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:10 }}>Analytics</div>
+              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:6, marginBottom:10 }}>
+                {[["47","Sessions"],["312h","Total time"],["89%","Streak"],["24","Proofs"]].map(([n,l])=>(
+                  <div key={l} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"10px 8px", textAlign:"center" }}>
+                    <div style={{ fontSize:16, fontWeight:300, color:"#E8B870" }}>{n}</div>
+                    <div style={{ fontSize:7, color:T.sub, letterSpacing:"0.12em", textTransform:"uppercase", marginTop:2 }}>{l}</div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"10px" }}>
+                <div style={{ fontSize:7, color:T.sub, marginBottom:6 }}>Daily listening — last 7 days</div>
+                <div style={{ display:"flex", alignItems:"flex-end", gap:4, height:40 }}>
+                  {[60,80,45,90,100,70,85].map((h,i)=>(
+                    <div key={i} style={{ flex:1, height:`${h}%`, borderRadius:2, background:i===4?"linear-gradient(180deg,#E8B870,#2CB7A7)":T.border }}/>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
@@ -748,44 +788,94 @@ function AppPreviewSection({ isMobile }) {
   const [theme, setTheme] = useState("light");
   const [view,  setView]  = useState("dashboard");
 
-  /* ── Desktop panel content (changes per tab), computed inline, not a nested component, to avoid remounting the iframe on every render ── */
   const desktopPanelContent = (() => {
-    if (view === "dashboard") return (
-      <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
-        <div style={{ width:838, height:544, transform:"scale(0.546)", transformOrigin:"top left" }}>
-          <iframe
-            src={`/portal?preview=1&theme=${theme}`}
-            title="Self Hypnosis Goddess dashboard preview"
-            width="838"
-            height="544"
-            style={{ border:"none", display:"block" }}
-          />
+    const T = theme === "dark"
+      ? { bg:"#0a0a0a", card:"#1a1a1a", text:"#fdf0e8", sub:"rgba(253,240,232,0.45)", border:"rgba(255,255,255,0.07)" }
+      : { bg:"#f5f0ea", card:"#fff", text:"#000", sub:"rgba(0,0,0,0.45)", border:"rgba(0,0,0,0.07)" };
+    const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+    const tracks = [
+      { name:"Lucky Girl Summer", cat:"Luckygirlmaxxing", dur:"18:24" },
+      { name:"Infinite Cash Flow", cat:"Richgirlmaxxing", dur:"22:10" },
+      { name:"He Finds Me First", cat:"Lovemaxxing", dur:"19:55" },
+      { name:"Gorgeous Default", cat:"Beautymaxxing", dur:"16:40" },
+      { name:"Main Character Energy", cat:"Selfmaxxing", dur:"21:05" },
+      { name:"Right Place Right Time", cat:"Luckygirlmaxxing", dur:"17:30" },
+    ];
+    const proofs = [
+      "Got the job. Didn't even apply properly.",
+      "He texted first. Out of nowhere.",
+      "£400 came in I wasn't expecting.",
+      "Perfect parking spot. Obviously.",
+      "She said yes to the collab.",
+      "Upgrade to business. Complimentary.",
+    ];
+    const W = 460; const H = Math.round(W*0.65);
+    const baseStyle = { width:W, height:H, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:T.bg, fontFamily:"'Jost',sans-serif" };
+    if (view==="dashboard") return (
+      <div style={baseStyle}>
+        <div style={{ display:"flex", height:"100%" }}>
+          <div style={{ width:180, background:theme==="dark"?"#111":"#ede8e0", borderRight:`1px solid ${T.border}`, padding:16, display:"flex", flexDirection:"column", gap:6 }}>
+            <div style={{ background:G, borderRadius:8, padding:"10px 12px", marginBottom:8 }}>
+              <div style={{ fontSize:9, color:"#000", opacity:.6, marginBottom:2 }}>Now playing</div>
+              <div style={{ fontSize:11, fontWeight:600, color:"#000" }}>Lucky Girl Summer</div>
+              <div style={{ marginTop:6, height:2, background:"rgba(0,0,0,0.15)", borderRadius:1 }}><div style={{ width:"38%", height:2, background:"#000", borderRadius:1 }}/></div>
+            </div>
+            {tracks.map((t,i)=>(
+              <div key={i} style={{ display:"flex", gap:8, alignItems:"center", padding:"4px 6px", borderRadius:6, background:i===0?T.card:"transparent" }}>
+                <div style={{ width:28, height:28, borderRadius:6, background:G, flexShrink:0 }}/>
+                <div><div style={{ fontSize:9, fontWeight:500, color:T.text }}>{t.name}</div><div style={{ fontSize:8, color:T.sub }}>{t.cat}</div></div>
+              </div>
+            ))}
+          </div>
+          <div style={{ flex:1, padding:20 }}>
+            <div style={{ fontSize:10, color:T.sub, letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:12 }}>Your categories</div>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
+              {["Luckygirlmaxxing","Richgirlmaxxing","Lovemaxxing","Beautymaxxing","Selfmaxxing","Bodymaxxing"].map(c=>(
+                <div key={c} style={{ background:G, borderRadius:8, padding:"10px 8px", textAlign:"center" }}>
+                  <div style={{ fontSize:8, fontWeight:600, color:"#000", letterSpacing:"0.08em" }}>{c.replace("maxxing","")}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     );
-    if (view === "proof") return (
-      <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:"#000" }}>
-        <div style={{ width:838, height:544, transform:"scale(0.546)", transformOrigin:"top left" }}>
-          <iframe
-            src={`/portal?preview=1&theme=${theme}&tab=proof`}
-            title="Self Hypnosis Goddess ProofOS preview"
-            width="838"
-            height="544"
-            style={{ border:"none", display:"block" }}
-          />
+    if (view==="proof") return (
+      <div style={baseStyle}>
+        <div style={{ padding:20 }}>
+          <div style={{ fontSize:11, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6 }}>ProofOS ✦</div>
+          <div style={{ fontSize:18, fontWeight:300, color:T.text, marginBottom:16 }}>Your evidence wall.</div>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
+            {proofs.map((p,i)=>(
+              <div key={i} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"10px 12px", display:"flex", gap:8, alignItems:"flex-start" }}>
+                <div style={{ width:16, height:16, borderRadius:"50%", background:G, flexShrink:0, marginTop:1 }}/>
+                <div style={{ fontSize:10, color:T.text, lineHeight:1.4 }}>{p}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
-    if (view === "analytics") return (
-      <div style={{ width:460, height:Math.round(460*0.65), borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.18)", background:"#000" }}>
-        <div style={{ width:838, height:544, transform:"scale(0.546)", transformOrigin:"top left" }}>
-          <iframe
-            src={`/portal?preview=1&theme=${theme}&tab=analytics`}
-            title="Self Hypnosis Goddess Analytics preview"
-            width="838"
-            height="544"
-            style={{ border:"none", display:"block" }}
-          />
+    if (view==="analytics") return (
+      <div style={baseStyle}>
+        <div style={{ padding:20 }}>
+          <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:16 }}>Analytics</div>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:8, marginBottom:16 }}>
+            {[["47","Sessions"],["312h","Time"],["89%","Streak"],["24","Proofs"]].map(([n,l])=>(
+              <div key={l} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"12px 8px", textAlign:"center" }}>
+                <div style={{ fontSize:22, fontWeight:300, color:"#E8B870" }}>{n}</div>
+                <div style={{ fontSize:8, color:T.sub, letterSpacing:"0.12em", textTransform:"uppercase", marginTop:4 }}>{l}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:10, padding:14 }}>
+            <div style={{ fontSize:9, color:T.sub, marginBottom:10, letterSpacing:"0.12em", textTransform:"uppercase" }}>Daily listening</div>
+            <div style={{ display:"flex", alignItems:"flex-end", gap:5, height:60 }}>
+              {[55,70,40,85,100,65,80].map((h,i)=>(
+                <div key={i} style={{ flex:1, height:`${h}%`, borderRadius:3, background:i===4?G:T.border }}/>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -898,7 +988,7 @@ function MaxxingCarousel({ cats }) {
         <div style={{
           fontSize:13, fontWeight:600, letterSpacing:"0.3em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
-        }}>{current.label} ✦</div>
+        }}>{current.label}</div>
         <div style={{
           fontSize:"clamp(30px,6vw,72px)", lineHeight:1.05, color:"#000",
           fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
@@ -989,7 +1079,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
         <div style={{
           fontSize: fullscreen ? 11 : 10, fontWeight:500, letterSpacing:"0.28em", textTransform:"uppercase",
           marginBottom:20, fontFamily:"'Jost',sans-serif", color:"#000"
-        }}>{current.label} ✦</div>
+        }}>{current.label}</div>
         <div style={{
           fontSize: fullscreen ? "clamp(28px,5.5vw,56px)" : "clamp(20px,3.5vw,42px)", lineHeight:1.12, color:"#000",
           fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
@@ -1132,9 +1222,8 @@ function LuckyGirlTimeline({ isMobile }) {
               <div key={i} style={{ display:"flex", flexDirection: isLeft ? "row" : "row-reverse", alignItems:"center", marginBottom: isMobile?14:18, position:"relative", minHeight: isMobile?60:70 }}>
                 {/* Box — always first child, direction controls which side */}
                 <div style={{ width:"46%", flexShrink:0 }}>
-                  <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background:"#fff", opacity: isActive?1:.8, transform: isActive?"scale(1)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 8px 32px rgba(0,0,0,.12)":"none" }}>
-                    <div style={{ fontSize: isMobile?14:16, fontWeight:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
-                    {isActive && <div style={{ fontSize:10, letterSpacing:".15em", textTransform:"uppercase", color:"#000",  marginTop:6 }}>✦ {item.tag}</div>}
+                  <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background: isActive?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)":"rgba(0,0,0,0.25)", backgroundSize:"300% 100%", animation: isActive?"drift 3s ease-in-out infinite, cardGlowActive 1.5s ease-in-out infinite":undefined, transform: isActive?"scale(1.03)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 0 30px rgba(232,184,112,.6),0 0 60px rgba(44,183,167,.3)":"none" }}>
+                    <div style={{ fontSize: isMobile?14:16, fontWeight:600, color: isActive?"#000":"rgba(0,0,0,0.7)", lineHeight:1.4 }}>{item.title}</div>
                   </div>
                 </div>
                 {/* Spacer pushes box to correct side */}
@@ -1428,7 +1517,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 4s ease-in-out infinite", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
             Of course, obviously. ✦
           </span>
