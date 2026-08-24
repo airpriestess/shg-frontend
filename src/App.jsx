@@ -976,7 +976,9 @@ function IdentityCarousel({ cats, fullscreen=false }) {
       <div style={{
         transition:"opacity 0.7s ease",
         opacity: flash ? 0 : 1,
-        background: bg,
+        background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)",
+        backgroundSize: "300% 100%",
+        animation: "drift 4s ease-in-out infinite",
         padding: fullscreen ? "0 clamp(20px,5vw,60px)" : "clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
         position:"relative",

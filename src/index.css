@@ -188,7 +188,7 @@ select option:hover,select option:checked{background:#1c1828;}
 @keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(0.8)}50%{opacity:0.8;transform:scaleY(1)}}
 .banner-drift{background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% auto;animation:drift 8s ease infinite;}
 
-.glow-banner-wrap{position:relative;overflow:hidden;}
+.glow-banner-wrap{position:relative;overflow:hidden;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)!important;background-size:300% 100%!important;animation:drift 3s ease-in-out infinite!important;}
 .glow-banner-wrap::before{display:none;}
 .glow-banner-wrap::after{display:none;}
 .glow-banner-wrap > *{position:relative;z-index:2;}
