@@ -121,7 +121,6 @@ export default function LuckyGirl() {
     try {
       // TODO: send to your API endpoint
       console.log("quiz lead", { name: n, email: e, result_category: cat, source: "luckygirl" });
-      });
     } catch (_) {}
     try {
       await fetch("https://hooks.zapier.com/hooks/catch/28404567/46bqizc/", {

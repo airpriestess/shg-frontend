@@ -312,7 +312,6 @@ export default function BlocksQuiz() {
     try {
       // TODO: send to your API endpoint
       console.log("quiz lead", { name: n, email: e, result_category: c, answers: { block }, source: "blocks/" + c });
-      });
     } catch (_) {}
   }
 
