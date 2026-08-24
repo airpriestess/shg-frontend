@@ -691,92 +691,27 @@ const MARQUEE_ITEMS = [
 function PhoneShell({ w=200, theme, view }) {
   const br = Math.round(w * 0.21);
   const pad = Math.round(w * 0.025);
-  const T = theme === "dark"
-    ? { bg:"#0a0a0a", card:"#1a1a1a", text:"#fdf0e8", sub:"rgba(253,240,232,0.5)", border:"rgba(255,255,255,0.08)" }
-    : { bg:"#f5f0ea", card:"#fff", text:"#000", sub:"rgba(0,0,0,0.5)", border:"rgba(0,0,0,0.08)" };
-  const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
   const h = Math.round((w-pad*2)*844/390);
-  const tracks = [
-    { name:"Lucky Girl Summer", cat:"Luckygirlmaxxing", dur:"18:24" },
-    { name:"Infinite Cash Flow", cat:"Richgirlmaxxing", dur:"22:10" },
-    { name:"He Finds Me First", cat:"Lovemaxxing", dur:"19:55" },
-    { name:"Gorgeous Default", cat:"Beautymaxxing", dur:"16:40" },
-    { name:"Main Character", cat:"Selfmaxxing", dur:"21:05" },
-  ];
-  const proofs = [
-    "Got the job. Didn't even apply properly.",
-    "He texted first. Out of nowhere.",
-    "£400 came in I wasn't expecting.",
-    "Perfect parking spot. Obviously.",
-    "She said yes to the collab.",
-  ];
+  const scale = (w-pad*2)/390;
   return (
     <div style={{ position:"relative", width:w, background:"#1a1a1a", borderRadius:br, padding:`${Math.round(w*0.055)}px ${pad}px`, boxShadow:"0 0 0 2px #3a3a3a, 0 0 0 4px #1a1a1a, 0 0 0 6px #3a3a3a, 0 28px 56px rgba(0,0,0,0.85)" }}>
       <div style={{ position:"absolute", left:-3, top:"22%", width:3, height:"10%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
       <div style={{ position:"absolute", left:-3, top:"35%", width:3, height:"16%", background:"#3a3a3a", borderRadius:"2px 0 0 2px" }}/>
       <div style={{ position:"absolute", right:-3, top:"38%", width:3, height:"22%", background:"#3a3a3a", borderRadius:"0 2px 2px 0" }}/>
-      <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative", background:T.bg }}>
+      <div style={{ borderRadius:Math.round(br*0.82), overflow:"hidden", position:"relative" }}>
         <div style={{ position:"absolute", top:Math.round(w*0.033), left:"50%", transform:"translateX(-50%)", width:Math.round(w*0.38), height:Math.round(w*0.077), background:"#000", borderRadius:20, zIndex:10 }}/>
-        <div style={{ width:w-pad*2, height:h, overflowY:"hidden", position:"relative", background:T.bg, fontFamily:"'Jost',sans-serif" }}>
-          {/* DASHBOARD VIEW */}
-          {view==="dashboard" && (
-            <div style={{ padding:"48px 14px 16px" }}>
-              <div style={{ background:G, borderRadius:10, padding:"12px 14px", marginBottom:12 }}>
-                <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:"#000", opacity:.6, marginBottom:3 }}>Now playing</div>
-                <div style={{ fontSize:11, fontWeight:600, color:"#000" }}>Lucky Girl Summer</div>
-                <div style={{ fontSize:8, color:"#000", opacity:.7 }}>Luckygirlmaxxing · 18:24</div>
-                <div style={{ marginTop:8, height:2, borderRadius:1, background:"rgba(0,0,0,0.2)" }}>
-                  <div style={{ width:"38%", height:2, borderRadius:1, background:"#000" }}/>
-                </div>
-              </div>
-              <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:T.sub, marginBottom:6 }}>Your library</div>
-              {tracks.map((t,i) => (
-                <div key={i} style={{ display:"flex", alignItems:"center", gap:8, padding:"7px 0", borderBottom:`1px solid ${T.border}` }}>
-                  <div style={{ width:26, height:26, borderRadius:6, background:G, flexShrink:0 }}/>
-                  <div style={{ flex:1, minWidth:0 }}>
-                    <div style={{ fontSize:9, fontWeight:500, color:T.text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{t.name}</div>
-                    <div style={{ fontSize:7, color:T.sub }}>{t.cat}</div>
-                  </div>
-                  <div style={{ fontSize:7, color:T.sub }}>{t.dur}</div>
-                </div>
-              ))}
-            </div>
-          )}
-          {/* PROOFOS VIEW */}
-          {view==="proof" && (
-            <div style={{ padding:"48px 14px 16px" }}>
-              <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", marginBottom:10 }}>ProofOS ✦</div>
-              <div style={{ fontSize:11, fontWeight:300, color:T.text, marginBottom:12, lineHeight:1.3 }}>Your evidence wall.<br/>Reality confirmed.</div>
-              {proofs.map((p,i) => (
-                <div key={i} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"8px 10px", marginBottom:7, display:"flex", alignItems:"flex-start", gap:6 }}>
-                  <div style={{ width:14, height:14, borderRadius:"50%", background:G, flexShrink:0, marginTop:1 }}/>
-                  <div style={{ fontSize:9, color:T.text, lineHeight:1.4 }}>{p}</div>
-                </div>
-              ))}
-            </div>
-          )}
-          {/* ANALYTICS VIEW */}
-          {view==="analytics" && (
-            <div style={{ padding:"48px 14px 16px" }}>
-              <div style={{ fontSize:8, letterSpacing:"0.18em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:10 }}>Analytics</div>
-              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:6, marginBottom:10 }}>
-                {[["47","Sessions"],["312h","Total time"],["89%","Streak"],["24","Proofs"]].map(([n,l])=>(
-                  <div key={l} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"10px 8px", textAlign:"center" }}>
-                    <div style={{ fontSize:16, fontWeight:300, color:"#E8B870" }}>{n}</div>
-                    <div style={{ fontSize:7, color:T.sub, letterSpacing:"0.12em", textTransform:"uppercase", marginTop:2 }}>{l}</div>
-                  </div>
-                ))}
-              </div>
-              <div style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"10px" }}>
-                <div style={{ fontSize:7, color:T.sub, marginBottom:6 }}>Daily listening — last 7 days</div>
-                <div style={{ display:"flex", alignItems:"flex-end", gap:4, height:40 }}>
-                  {[60,80,45,90,100,70,85].map((h,i)=>(
-                    <div key={i} style={{ flex:1, height:`${h}%`, borderRadius:2, background:i===4?"linear-gradient(180deg,#E8B870,#2CB7A7)":T.border }}/>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+        <div style={{ width:w-pad*2, height:h, overflow:"hidden", position:"relative" }}>
+          <div style={{ width:390, height:844, transform:`scale(${scale})`, transformOrigin:"top left", pointerEvents:"none" }}>
+            <SpotifyPortal
+              isPreview={true}
+              forceTheme={theme}
+              initialTab={view==="proof"?"proof":view==="analytics"?"analytics":"home"}
+              userTier="audio"
+              userName="you"
+              onHome={()=>{}}
+              onSignOut={()=>{}}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -789,154 +724,18 @@ function AppPreviewSection({ isMobile }) {
   const [view,  setView]  = useState("dashboard");
 
   const desktopPanelContent = (() => {
-    const T = theme === "dark"
-      ? { bg:"#0a0a0a", card:"#1a1a1a", text:"#fdf0e8", sub:"rgba(253,240,232,0.45)", border:"rgba(255,255,255,0.07)" }
-      : { bg:"#f5f0ea", card:"#fff", text:"#000", sub:"rgba(0,0,0,0.45)", border:"rgba(0,0,0,0.07)" };
-    const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
-    const tracks = [
-      { name:"Lucky Girl Summer", cat:"Luckygirlmaxxing", dur:"18:24" },
-      { name:"Infinite Cash Flow", cat:"Richgirlmaxxing", dur:"22:10" },
-      { name:"He Finds Me First", cat:"Lovemaxxing", dur:"19:55" },
-      { name:"Gorgeous Default", cat:"Beautymaxxing", dur:"16:40" },
-      { name:"Main Character Energy", cat:"Selfmaxxing", dur:"21:05" },
-      { name:"Right Place Right Time", cat:"Luckygirlmaxxing", dur:"17:30" },
-    ];
-    const proofs = [
-      "Got the job. Didn't even apply properly.",
-      "He texted first. Out of nowhere.",
-      "£400 came in I wasn't expecting.",
-      "Perfect parking spot. Obviously.",
-      "She said yes to the collab.",
-      "Upgrade to business. Complimentary.",
-    ];
     const W = 460; const H = Math.round(W*0.65);
-    const baseStyle = { width:W, height:H, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", background:T.bg, fontFamily:"'Jost',sans-serif" };
-    if (view==="dashboard") return (
-      <div style={baseStyle}>
-        <div style={{ display:"flex", height:"100%" }}>
-          <div style={{ width:180, background:theme==="dark"?"#111":"#ede8e0", borderRight:`1px solid ${T.border}`, padding:16, display:"flex", flexDirection:"column", gap:6 }}>
-            <div style={{ background:G, borderRadius:8, padding:"10px 12px", marginBottom:8 }}>
-              <div style={{ fontSize:9, color:"#000", opacity:.6, marginBottom:2 }}>Now playing</div>
-              <div style={{ fontSize:11, fontWeight:600, color:"#000" }}>Lucky Girl Summer</div>
-              <div style={{ marginTop:6, height:2, background:"rgba(0,0,0,0.15)", borderRadius:1 }}><div style={{ width:"38%", height:2, background:"#000", borderRadius:1 }}/></div>
-            </div>
-            {tracks.map((t,i)=>(
-              <div key={i} style={{ display:"flex", gap:8, alignItems:"center", padding:"4px 6px", borderRadius:6, background:i===0?T.card:"transparent" }}>
-                <div style={{ width:28, height:28, borderRadius:6, background:G, flexShrink:0 }}/>
-                <div><div style={{ fontSize:9, fontWeight:500, color:T.text }}>{t.name}</div><div style={{ fontSize:8, color:T.sub }}>{t.cat}</div></div>
-              </div>
-            ))}
-          </div>
-          <div style={{ flex:1, padding:20 }}>
-            <div style={{ fontSize:10, color:T.sub, letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:12 }}>Your categories</div>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
-              {["Luckygirlmaxxing","Richgirlmaxxing","Lovemaxxing","Beautymaxxing","Selfmaxxing","Bodymaxxing"].map(c=>(
-                <div key={c} style={{ background:G, borderRadius:8, padding:"10px 8px", textAlign:"center" }}>
-                  <div style={{ fontSize:8, fontWeight:600, color:"#000", letterSpacing:"0.08em" }}>{c.replace("maxxing","")}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+    const scale = W/1280;
+    const tab = view==="proof"?"proof":view==="analytics"?"analytics":"home";
+    return (
+      <div style={{ width:W, height:H, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", position:"relative" }}>
+        <div style={{ width:1280, height:Math.round(H/scale), transform:`scale(${scale})`, transformOrigin:"top left", pointerEvents:"none" }}>
+          <SpotifyPortal isPreview={true} forceTheme={theme} initialTab={tab} userTier="audio" userName="you" onHome={()=>{}} onSignOut={()=>{}}/>
         </div>
       </div>
     );
-    if (view==="proof") return (
-      <div style={baseStyle}>
-        <div style={{ padding:20 }}>
-          <div style={{ fontSize:11, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6 }}>ProofOS ✦</div>
-          <div style={{ fontSize:18, fontWeight:300, color:T.text, marginBottom:16 }}>Your evidence wall.</div>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
-            {proofs.map((p,i)=>(
-              <div key={i} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"10px 12px", display:"flex", gap:8, alignItems:"flex-start" }}>
-                <div style={{ width:16, height:16, borderRadius:"50%", background:G, flexShrink:0, marginTop:1 }}/>
-                <div style={{ fontSize:10, color:T.text, lineHeight:1.4 }}>{p}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-    if (view==="analytics") return (
-      <div style={baseStyle}>
-        <div style={{ padding:20 }}>
-          <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:16 }}>Analytics</div>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:8, marginBottom:16 }}>
-            {[["47","Sessions"],["312h","Time"],["89%","Streak"],["24","Proofs"]].map(([n,l])=>(
-              <div key={l} style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:8, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, fontWeight:300, color:"#E8B870" }}>{n}</div>
-                <div style={{ fontSize:8, color:T.sub, letterSpacing:"0.12em", textTransform:"uppercase", marginTop:4 }}>{l}</div>
-              </div>
-            ))}
-          </div>
-          <div style={{ background:T.card, border:`1px solid ${T.border}`, borderRadius:10, padding:14 }}>
-            <div style={{ fontSize:9, color:T.sub, marginBottom:10, letterSpacing:"0.12em", textTransform:"uppercase" }}>Daily listening</div>
-            <div style={{ display:"flex", alignItems:"flex-end", gap:5, height:60 }}>
-              {[55,70,40,85,100,65,80].map((h,i)=>(
-                <div key={i} style={{ flex:1, height:`${h}%`, borderRadius:3, background:i===4?G:T.border }}/>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-    return null;
   })();
 
-  /* ── iPhone shell ── */
-  return (
-    <div style={{ width:"100%", background:"#000", padding:isMobile?"36px 0 44px":"56px 0 64px", display:"flex", flexDirection:"column", alignItems:"center", gap:24 }}>
-
-      {/* Heading */}
-      <div style={{ textAlign:"center" }}>
-        <div style={{ fontSize:11, color:"#E8B870", letterSpacing:"0.22em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>Live preview</div>
-        <div style={{ fontSize:isMobile?22:28, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em" }}>
-          {isMobile ? "See inside the platform." : "Desktop and iPhone. No download needed."}
-        </div>
-      </div>
-
-      {/* Tab switcher */}
-      <div style={{ display:"flex", gap:0, background:"#fdf0e8", border:"1px solid rgba(255,255,255,0.13)", borderRadius:24, padding:4 }}>
-        {[["dashboard","Dashboard"],["proof","ProofOS ✦"],["analytics","Analytics"]].map(([id,l])=>(
-          <button key={id} onClick={()=>setView(id)}
-            style={{ padding:"8px 20px", borderRadius:20, background:view===id?"#fdf0e8":"transparent", border:"none",
-              color:view===id?"#000":"#333", fontSize:12, fontWeight:400, cursor:"pointer",
-              fontFamily:"'Jost',sans-serif", transition:"all 0.2s", letterSpacing:"0.04em" }}>
-            {l}
-          </button>
-        ))}
-      </div>
-
-      {/* Mockups row */}
-      {isMobile ? (
-        /* Mobile: just the phone, centred */
-        <PhoneShell w={200} theme={theme} view={view}/>
-      ) : (
-        /* Desktop: browser mockup left, iPhone right, always both visible */
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:40, padding:"0 32px", maxWidth:1100, width:"100%" }}>
-          {/* Desktop panel */}
-          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
-            <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop · works in any browser</div>
-            {desktopPanelContent}
-          </div>
-          {/* iPhone */}
-          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
-            <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.2em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>iPhone · Android</div>
-            <PhoneShell w={210} theme={theme} view={view}/>
-          </div>
-        </div>
-      )}
-
-      {/* Dark / Light toggle */}
-      <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-        <span style={{ fontSize:11, color:theme==="dark"?"#E8B870":"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif" }}>Dark</span>
-        <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="dark"?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
-          <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="dark"?3:23, transition:"left 0.25s" }}/>
-        </button>
-        <span style={{ fontSize:11, color:theme==="dark"?"rgba(253,240,232,0.4)":"#E8B870", fontFamily:"'Jost',sans-serif" }}>Light</span>
-      </div>
-
-    </div>
   );
 }
 
@@ -1066,9 +865,9 @@ function IdentityCarousel({ cats, fullscreen=false }) {
       <div style={{
         transition:"opacity 0.7s ease",
         opacity: flash ? 0 : 1,
-        background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)",
-        backgroundSize: "300% 100%",
-        animation: "drift 4s ease-in-out infinite",
+        background: bg,
+        transition:\"opacity 0.7s ease\",
+        opacity: flash ? 0 : 1,
         padding: fullscreen ? "0 clamp(20px,5vw,60px)" : "clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
         position:"relative",
@@ -1222,8 +1021,8 @@ function LuckyGirlTimeline({ isMobile }) {
               <div key={i} style={{ display:"flex", flexDirection: isLeft ? "row" : "row-reverse", alignItems:"center", marginBottom: isMobile?14:18, position:"relative", minHeight: isMobile?60:70 }}>
                 {/* Box — always first child, direction controls which side */}
                 <div style={{ width:"46%", flexShrink:0 }}>
-                  <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background: isActive?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)":"rgba(0,0,0,0.25)", backgroundSize:"300% 100%", animation: isActive?"drift 3s ease-in-out infinite, cardGlowActive 1.5s ease-in-out infinite":undefined, transform: isActive?"scale(1.03)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 0 30px rgba(232,184,112,.6),0 0 60px rgba(44,183,167,.3)":"none" }}>
-                    <div style={{ fontSize: isMobile?14:16, fontWeight:600, color: isActive?"#000":"rgba(0,0,0,0.7)", lineHeight:1.4 }}>{item.title}</div>
+                  <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background: isActive?"#fdf0e8":"rgba(253,240,232,0.15)", transform: isActive?"scale(1.03)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 0 20px rgba(232,184,112,.4),0 0 40px rgba(191,165,216,.2)":"none" }}>
+                    <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
                   </div>
                 </div>
                 {/* Spacer pushes box to correct side */}
