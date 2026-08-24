@@ -572,16 +572,16 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annualPerMonth    : TIERS.audio.monthly,    note: isAnnual ? TIERS.audio.annualNote : null,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#fdf0e8", muteColor: theme==="dark"?"#fdf0e8":"#000000", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#fdf0e8":"#000000", featureColor: "#fdf0e8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annualPerMonth  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#fdf0e8", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: theme==="dark"?"#fdf0e8":"#000000", featureColor: "#fdf0e8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: theme==="dark"?"#fdf0e8":"#000000", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annualPerMonth    : TIERS.audio.monthly,    note: isAnnual ? TIERS.audio.annualNote : null,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#fdf0e8", muteColor: "#fdf0e8", priceColor: "#2CB7A7", periodColor: "#fdf0e8", featureColor: "#fdf0e8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annualPerMonth  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#fdf0e8", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: "#fdf0e8", featureColor: "#fdf0e8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: "#fdf0e8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
   ];
 
   return (
     <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%", scrollMarginTop: isMobile ? 24 : 0 }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 400, color: theme==="dark"?"#fdf0e8":"#000000", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
+          <div style={{ fontSize: 11, fontWeight: 400, color: "#fdf0e8", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
           <h2 style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(28px,8vw,40px)" : "clamp(32px,4vw,48px)", fontWeight: 400, color: "#fdf0e8", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
             Full access. No download needed.
           </h2>
@@ -630,7 +630,7 @@ function PricingSection({ onJoin }) {
           ))}
         </div>
 
-        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: theme==="dark"?"#fdf0e8":"#000000", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
+        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: "rgba(253,240,232,0.5)", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
           Monthly: cancel anytime · Annual: paid upfront · Stripe secure checkout<br />
           No app to download, works in any browser, iPhone, Android
         </div>
@@ -837,12 +837,12 @@ function AppPreviewSection({ isMobile }) {
 
       {/* Dark / Light toggle */}
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-        <span style={{ fontSize:11, color:theme==="dark"?"#E8B870":"#8a8a8a", fontFamily:"'Jost',sans-serif" }}>Dark</span>
+        <span style={{ fontSize:11, color:theme==="dark"?"#E8B870":"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
           style={{ width:44, height:24, borderRadius:12, background:theme==="dark"?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="dark"?3:23, transition:"left 0.25s" }}/>
         </button>
-        <span style={{ fontSize:11, color:theme==="dark"?"#8a8a8a":"#E8B870", fontFamily:"'Jost',sans-serif" }}>Light</span>
+        <span style={{ fontSize:11, color:theme==="dark"?"rgba(253,240,232,0.4)":"#E8B870", fontFamily:"'Jost',sans-serif" }}>Light</span>
       </div>
 
     </div>
@@ -1738,7 +1738,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(16px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview Audio Library
         </button>
-        <div style={{ fontSize:11, color:"rgba(232,184,112,0.85)", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Growing weekly</div>
+        <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Growing weekly</div>
         <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"14px 36px":"18px 48px", background:"linear-gradient(135deg,rgba(245,224,160,0.55) 0%,rgba(232,184,112,0.55) 20%,rgba(191,165,216,0.55) 52%,rgba(44,183,167,0.55) 78%,rgba(22,122,107,0.55) 100%)", border:"none", borderRadius:40, color:"rgba(253,240,232,0.9)", fontSize: isMobile?"clamp(17px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the science behind this →</button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
