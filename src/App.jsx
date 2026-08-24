@@ -607,10 +607,10 @@ function PricingSection({ onJoin }) {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 52 : 16, overflow: "visible", paddingTop: isMobile ? 8 : 0 }}>
           {cards.map(c => (
             <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "64px 20px 28px" : "56px 24px 28px") : "28px 20px", marginTop: isMobile ? (c.popular ? 20 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
-              {c.popular && <div style={{ position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", color: "#000", fontSize: 10, fontWeight: 500, padding: "6px 20px", borderRadius: 20, letterSpacing: "0.14em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 10 }}>✦ Most Popular</div>}
+              {c.popular && <div style={{ position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% auto", animation: "drift 8s ease infinite", color: "#000", fontSize: 10, fontWeight: 500, padding: "6px 20px", borderRadius: 20, letterSpacing: "0.14em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 10 }}>✦ Most Popular</div>}
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
-                <span style={{ fontSize: 52, fontWeight: 400, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Jost',sans-serif", display: "inline-block" }}>{c.price}</span>
+                <span style={{ fontSize: 52, fontWeight: 400, background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% auto", animation: "drift 8s ease infinite", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Jost',sans-serif", display: "inline-block" }}>{c.price}</span>
                 <span style={{ fontSize: 13, color: c.periodColor, fontFamily: "'Jost',sans-serif" }}>{c.id === "lifetime" ? " one time" : "/month"}</span>
               </div>
               <div style={{ fontSize: 10, fontWeight: 500, color: "#E8B870", letterSpacing: "0.1em", marginBottom: 8, fontFamily: "'Jost',sans-serif", textTransform: "uppercase" }}>Coming Soon</div>
@@ -636,7 +636,7 @@ function PricingSection({ onJoin }) {
         </div>
 
         {/* THE GUARANTEE */}
-        <div style={{ marginTop: 48, padding: isMobile ? "32px 24px" : "48px 56px", borderRadius: 20, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", textAlign: "center", maxWidth: 700, marginLeft: "auto", marginRight: "auto" }}>
+        <div style={{ marginTop: 48, padding: isMobile ? "32px 24px" : "48px 56px", borderRadius: 20, background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% auto", animation: "drift 8s ease infinite", textAlign: "center", maxWidth: 700, marginLeft: "auto", marginRight: "auto" }}>
           <div style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "#000", marginBottom: 16, fontFamily: "'Jost',sans-serif", fontWeight: 600 }}>The Guarantee</div>
           <div style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(15px,4vw,18px)" : "clamp(16px,1.6vw,20px)", fontWeight: 400, color: "#000", lineHeight: 1.8, letterSpacing: "-0.01em" }}>
             What I promise:<br/>
@@ -1397,7 +1397,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% auto", animation: "drift 8s ease infinite", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
             Of course, obviously. ✦
           </span>
@@ -2040,7 +2040,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <p style={{ fontSize: isMobile?16:19, color: theme==="dark"?"#fdf0e8":"#000000", marginBottom: 32, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 32px", fontFamily: "'Jost',sans-serif" }}>
             You can join the waitlist and be the first to know when the audio library opens.
           </p>
-          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "22px 64px", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border: "none", borderRadius: 40, color: "#000", fontSize: isMobile?22:26, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em" }}>
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: "22px 64px", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% auto", animation: "drift 8s ease infinite", border: "none", borderRadius: 40, color: "#000", fontSize: isMobile?22:26, fontWeight: 400, cursor: "pointer", fontFamily: "'Jost',sans-serif", letterSpacing: "0.04em" }}>
             Join the waitlist →
           </button>
           <div style={{ marginTop: 14, fontSize: 13, color: theme==="dark"?"#fdf0e8":"#000000", fontWeight:400, fontFamily: "'Jost',sans-serif" }}>No spam. Just the launch date.</div>
