@@ -866,8 +866,6 @@ function IdentityCarousel({ cats, fullscreen=false }) {
         transition:"opacity 0.7s ease",
         opacity: flash ? 0 : 1,
         background: bg,
-        transition:\"opacity 0.7s ease\",
-        opacity: flash ? 0 : 1,
         padding: fullscreen ? "0 clamp(20px,5vw,60px)" : "clamp(44px,8vw,80px) clamp(20px,5vw,60px)",
         textAlign:"center",
         position:"relative",
@@ -2117,4 +2115,3 @@ function SignModal({ open, type, onClose, threadId }) {
 
 
 
-// build 1787608316
