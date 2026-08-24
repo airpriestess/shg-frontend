@@ -10,7 +10,7 @@ const GOLD  = "#E8B870";
 const CHAMP = "#F5E0A0";
 const DTEAL = "#167A6B";
 const CR    = "#fdf0e8";
-const MU    = "#c8bfb8";
+const MU    = "rgba(253,240,232,0.7)";
 const DIM   = "#666666";
 
 // Reusable components
@@ -430,7 +430,7 @@ export default function Science({ onBack }) {
           {/* Incoherent vs Coherent */}
           <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:16,margin:"28px 0"}}>
             {[
-              {s:"Incoherent",c:"#555",items:["Erratic heart rhythm","Stress hormones elevated","Brain locks old beliefs in","Critical faculty on high alert","New information bounces off"]},
+              {s:"Incoherent",c:"rgba(253,240,232,0.55)",items:["Erratic heart rhythm","Stress hormones elevated","Brain locks old beliefs in","Critical faculty on high alert","New information bounces off"]},
               {s:"Coherent",c:TEAL,items:["Smooth rhythmic heart rhythm","Stress hormones reduce","Brain becomes receptive","Critical faculty quietens","New identity can install"],glow:true},
             ].map((col,i)=>(
               <Box key={i} c={col.c} glow={col.glow}>
@@ -438,7 +438,7 @@ export default function Science({ onBack }) {
                 <svg viewBox="0 0 200 36" width="100%" height={36} style={{marginBottom:14,display:"block"}}>
                   {i===0
                     ? <polyline points="0,18 12,5 18,30 26,8 34,24 40,18 52,10 60,26 68,14 74,22 84,18 96,8 104,28 110,12 118,22 126,18 136,8 144,26 152,14 160,20 168,18 178,10 186,24 194,14 200,18"
-                        fill="none" stroke="#555" strokeWidth="1.5" strokeLinecap="round"/>
+                        fill="none" stroke="rgba(253,240,232,0.55)" strokeWidth="1.5" strokeLinecap="round"/>
                     : <path d="M0,18 C25,-2 50,38 75,18 C100,-2 125,38 150,18 C175,-2 188,8 200,18" fill="none" stroke={TEAL} strokeWidth="2" strokeLinecap="round"/>
                   }
                 </svg>
