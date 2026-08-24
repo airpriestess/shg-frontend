@@ -8,11 +8,6 @@
 import { useState, useRef, useEffect } from "react";
 import { T } from "../design/tokens.js";
 import { Btn, Modal, FormField } from "./UI.jsx";
-import { createClient } from "@supabase/supabase-js";
-
-const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MzIwMjAsImV4cCI6MjA5ODMwODAyMH0.FjfHRNOjnmbiYMjA9eKT1hexvwCN2ERtTyBOqY2cj-8";
-const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ── PHOTO UPLOAD MODAL ────────────────────────────────────────────────────────
 export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }) {
@@ -48,23 +43,9 @@ export function PhotoProofModal({ open, onClose, onSaved, threadId, audioTitle }
     try {
       const ext  = file.name.split(".").pop().toLowerCase() || "jpg";
       const path = `proof/${threadId || "general"}/${Date.now()}.${ext}`;
-      const { error: upErr } = await sb.storage.from("proof-uploads").upload(path, file, {
-        contentType: file.type || "image/jpeg",
-        upsert: false,
-      });
-      if (upErr) throw upErr;
-
-      const { data: { publicUrl } } = sb.storage.from("proof-uploads").getPublicUrl(path);
-
-      // Save entry to proof_entries table
-      await sb.from("proof_entries").insert({
-        thread_id:   threadId || null,
-        type:        "Photo Proof",
-        photo_url:   publicUrl,
-        caption:     caption || null,
-        audio_title: audioTitle || null,
-        happened_at: new Date().toISOString(),
-      });
+      // TODO: upload to Cloudflare R2 / your storage API
+      const publicUrl = URL.createObjectURL(file);
+      console.log("photo proof saved locally", { path, caption, audioTitle });
 
       setDone(true);
       if (onSaved) onSaved({ type: "Photo Proof", photo_url: publicUrl, caption });
@@ -223,23 +204,9 @@ export function VoiceProofModal({ open, onClose, onSaved, threadId, audioTitle }
     try {
       const ext = audioBlob.type.includes("ogg") ? "ogg" : audioBlob.type.includes("mp4") ? "mp4" : "webm";
       const path = `proof/${threadId || "general"}/voice_${Date.now()}.${ext}`;
-      const { error: upErr } = await sb.storage.from("proof-uploads").upload(path, audioBlob, {
-        contentType: audioBlob.type || "audio/webm",
-        upsert: false,
-      });
-      if (upErr) throw upErr;
-
-      const { data: { publicUrl } } = sb.storage.from("proof-uploads").getPublicUrl(path);
-
-      await sb.from("proof_entries").insert({
-        thread_id:    threadId || null,
-        type:         "Voice Proof",
-        voice_url:    publicUrl,
-        duration_sec: duration,
-        caption:      caption || null,
-        audio_title:  audioTitle || null,
-        happened_at:  new Date().toISOString(),
-      });
+      // TODO: upload to Cloudflare R2 / your storage API
+      const publicUrl = URL.createObjectURL(audioBlob);
+      console.log("voice proof saved locally", { path, duration, caption, audioTitle });
 
       setState("done");
       // Notify parent so thread refreshes immediately

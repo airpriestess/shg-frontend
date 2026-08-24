@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
-const SUPABASE_URL = "https://qtwvslrwmreazmrdktsn.supabase.co";
-const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0d3ZzbHJ3bXJlYXptcmRrdHNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4MzA0MDAsImV4cCI6MjAyNTQwNjQwMH0.example";
 
 const QUESTIONS = [
   { q: "You just got upgraded to first class. Out of nowhere. Your gut says...", opts: [
@@ -121,10 +119,8 @@ export default function LuckyGirl() {
 
   async function saveToSupabase(n, e, cat) {
     try {
-      await fetch(SUPABASE_URL + "/rest/v1/quiz_leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "apikey": SUPABASE_ANON, "Authorization": "Bearer " + SUPABASE_ANON },
-        body: JSON.stringify({ name: n, email: e, result_category: cat, source: "luckygirl" })
+      // TODO: send to your API endpoint
+      console.log("quiz lead", { name: n, email: e, result_category: cat, source: "luckygirl" });
       });
     } catch (_) {}
     try {

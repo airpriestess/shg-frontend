@@ -4,7 +4,6 @@ import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
-import { supabase } from "../lib/supabase.js";
 
 // Full Hawkins scale — 20 (Shame) → 700+ (Enlightenment)
 const HAWKINS = [
@@ -45,8 +44,8 @@ const dominant = (log,days) => {
    · Light/dark theme toggle
    ═══════════════════════════════════════════════════════════════════════ */
 
-// ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
-const BASE = "https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/";
+// ── AUDIO BASE URL — update to your Cloudflare R2 / CDN bucket URL ──────────
+const BASE = "/audio/";
 const AUDIO_URLS = {
   "Spoilt Goddess":                        BASE + "SPOILT%20INSTAGRAM%2013.04.2026.WAV",
   "Money Finds Me First":                  BASE + "29.06.2026-6.mp3",
@@ -571,10 +570,10 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     if (isPreview) { alert("Sign up to manage your subscription."); return; }
     setPortalLoading(true);
     try {
-      const { data: { session: s } } = await supabase.auth.getSession();
-      const res = await fetch("https://qtwvslrwmreazmrdktsn.supabase.co/functions/v1/create-portal-session", {
+      // TODO: replace with your Cloudflare Worker endpoint
+      const res = await fetch("/api/create-portal-session", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${s?.access_token}` },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ return_url: window.location.href }),
       });
       const { url, error } = await res.json();

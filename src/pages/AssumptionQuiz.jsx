@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabase";
 import { T } from "../design/tokens.js";
 
 // ── Quiz data ────────────────────────────────────────────────────────────
@@ -160,15 +159,8 @@ export default function AssumptionQuiz() {
     setSaving(true);
     const resultKey = computeResultKey(answers);
     try {
-      await supabase.from("quiz_leads").insert([
-        {
-          name: name.trim(),
-          email: email.trim().toLowerCase(),
-          result_category: resultKey,
-          answers,
-          source: "assumption_quiz",
-        },
-      ]);
+      // TODO: send quiz lead to your API endpoint
+      console.log("quiz lead", { name: name.trim(), email: email.trim().toLowerCase(), result_category: resultKey });
     } catch (err) {
       // Non-blocking — she still gets her result even if the insert fails.
       console.error("quiz_leads insert failed", err);

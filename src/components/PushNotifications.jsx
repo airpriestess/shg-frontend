@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../lib/supabase.js";
 
 const VAPID_PUBLIC = "BAngNYNtiFBh14NCA0yqlLovaDzYt30BFLgvkuU-_nxPAyR6idGyLiaY6chM8YYVme8p1eMLnvxIqMogy_RNMXg";
 
@@ -51,16 +50,8 @@ export function usePushNotifications(userId) {
 
       const subJson = sub.toJSON();
 
-      // Save to Supabase
-      const { error } = await supabase.from("push_subscriptions").upsert({
-        user_id: userId,
-        endpoint: subJson.endpoint,
-        p256dh: subJson.keys.p256dh,
-        auth: subJson.keys.auth,
-        user_agent: navigator.userAgent.slice(0, 200),
-      }, { onConflict: "endpoint" });
-
-      if (error) throw error;
+      // TODO: save subscription to your API endpoint
+      console.log("push subscription", { endpoint: subJson.endpoint });
       setSubscribed(true);
     } catch (err) {
       console.error("Push subscription failed:", err);
@@ -75,7 +66,7 @@ export function usePushNotifications(userId) {
       const reg = await navigator.serviceWorker.ready;
       const sub = await reg.pushManager.getSubscription();
       if (sub) {
-        await supabase.from("push_subscriptions").delete().eq("endpoint", sub.endpoint);
+        // TODO: remove subscription from your API endpoint
         await sub.unsubscribe();
       }
       setSubscribed(false);
