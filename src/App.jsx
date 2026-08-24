@@ -1927,23 +1927,23 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               Save yourself thousands in therapy sessions.
             </p>
 
-                        {/* SIX FORMATS, clean white card, 2-col grid, no overlapping visuals */}
+                        {/* AUDIO FORMATS */}
             <div style={{ background:"#000", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px", border:"1px solid rgba(255,255,255,0.08)" }}>
-              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Six formats</div>
+              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>Audio formats</div>
               <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
-                  { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song, it rewires you beneath the surface.", color:"#2CB7A7", dot:"#2CB7A7" },
-                  { label:"Voice Only",       sub:"Pure vocal hypnosis, no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive.", color:"#E8B870", dot:"#E8B870" },
-                  { label:"Sleep & Rest",     sub:"Calm audio for winding down or sleeping, ambient, white noise, or soft sound. Subliminals layered throughout. Designed to run all night.", color:"#BFA5D8", dot:"#BFA5D8" },
-                  { label:"Subliminal",       sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day.", color:"#2CB7A7", dot:"#2CB7A7" },
-                  { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
-                  { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#BFA5D8", dot:"#BFA5D8" },
+                  { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song, it rewires you beneath the surface." },
+                  { label:"Voice Only",       sub:"Pure vocal hypnosis, no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive." },
+                  { label:"Sleep & Rest",     sub:"Calm audio for winding down or sleeping, ambient, white noise, or soft sound. Subliminals layered throughout. Designed to run all night." },
+                  { label:"Subliminal",       sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day." },
+                  { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
+                  { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy." },
                 ].map((f,i)=>(
-                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#000", borderRadius:14, border:"1px solid rgba(255,255,255,0.08)", borderLeft:`3px solid ${f.dot}` }}>
-                    <div style={{ width:8, height:8, borderRadius:"50%", background:f.dot, flexShrink:0, marginTop:6 }}/>
+                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#000", borderRadius:14, border:"1px solid rgba(255,255,255,0.08)", borderLeft:"3px solid transparent", borderImage:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) 1" }}>
+                    <div style={{ width:8, height:8, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", flexShrink:0, marginTop:6 }}/>
                     <div>
-                      <div style={{ fontSize: isMobile?17:20, fontWeight:400, color:"#fdf0e8", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
+                      <div style={{ fontSize: isMobile?17:20, fontWeight:400, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
                       <div style={{ fontSize: isMobile?14:16, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
                     </div>
                   </div>
