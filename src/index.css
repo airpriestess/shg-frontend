@@ -186,3 +186,4 @@ select option:hover,select option:checked{background:#1c1828;}
 }
 
 @keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(0.8)}50%{opacity:0.8;transform:scaleY(1)}}
+.banner-drift{background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% auto;animation:drift 8s ease infinite;}
