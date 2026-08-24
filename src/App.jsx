@@ -982,14 +982,34 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <audio ref={audioRef} src="https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/SPOILT%20INSTAGRAM%2013.04.2026.WAV" preload="none" onEnded={nextTrack} />
       <audio ref={vaultRef} preload="none" />
 
-      {/* ANNOUNCEMENT BANNER — fixed height so nav never overlaps it */}
+      {/* ANNOUNCEMENT BANNER — glowing gradient with drifting text */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#2CB7A7 0%,#8B7FC8 100%)", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 11, fontWeight: 300, color: "#000", letterSpacing: isMobile ? "0.1em" : "0.18em", whiteSpace: "nowrap" }}>
-            COMING SOON
-          </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"7px 20px", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border: "none", borderRadius: 20, color: "#000", fontSize: isMobile ? 12 : 13, fontWeight: 500, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
-            Join Waitlist
+        <div
+          className="glow-banner-wrap banner-drift"
+          style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", overflow: "hidden", display: "flex", alignItems: "center", boxShadow: "0 2px 28px rgba(200,134,10,0.4), 0 0 60px rgba(44,183,167,0.18)" }}
+        >
+          <div className="shimmer-bar" />
+          <div style={{ display: "flex", alignItems: "center", width: "100%", overflow: "hidden", height: "100%" }}>
+            <div className="announce-drift" style={{ display: "flex", alignItems: "center", gap: isMobile ? 24 : 44, whiteSpace: "nowrap", animation: "announceDrift 30s linear infinite", paddingLeft: "100vw" }}>
+              {[0,1,2].map(k => (
+                <span key={k} style={{ display: "inline-flex", alignItems: "center", gap: isMobile ? 18 : 32, fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 12 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.06em" }}>
+                  <span>Of course, obviously. ✦</span>
+                  <span style={{ opacity: 0.45 }}>·</span>
+                  <span>COMING SOON</span>
+                  <span style={{ opacity: 0.45 }}>·</span>
+                  <span>The upgrade is already yours.</span>
+                  <span style={{ opacity: 0.45 }}>·</span>
+                  <span>Everything is working out for me. ✦</span>
+                  <span style={{ opacity: 0.45 }}>·</span>
+                </span>
+              ))}
+            </div>
+          </div>
+          <button
+            onClick={() => setWaitlistOpen(true)}
+            style={{ position: "absolute", right: isMobile ? 10 : 16, top: "50%", transform: "translateY(-50%)", marginTop: `calc(env(safe-area-inset-top,0px) / 2)`, padding: isMobile ? "5px 13px" : "5px 16px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.22)", borderRadius: 20, color: "#000", fontSize: isMobile ? 12 : 11, fontWeight: 500, cursor: "pointer", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", zIndex: 2 }}
+          >
+            Join →
           </button>
         </div>
       )}
