@@ -26,6 +26,7 @@ import { requestNotificationPermission, scheduleReminders } from "./utils/notifi
 import { useAuth } from "./contexts/AuthContext.jsx";
 import AuthGate from "./components/AuthGate.jsx";
 
+const _BUILD = "v2-20260824";
 const FREE_TRACK_URL = "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV";
 
 
@@ -2224,4 +2225,6 @@ function SignModal({ open, type, onClose, threadId }) {
     </Modal>
   );
 }
+
+
 
