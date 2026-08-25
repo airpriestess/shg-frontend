@@ -444,7 +444,7 @@ export default function Science({ onBack }) {
                 </svg>
                 {col.items.map((item,j)=>(
                   <div key={j} style={{display:"flex",gap:8,marginBottom:7,alignItems:"flex-start"}}>
-                    <span style={{color:col.c,flexShrink:0,fontSize:11,marginTop:3}}>{i===0?"–":"✦"}</span>
+                    <span style={{color:col.c,flexShrink:0,fontSize:11,marginTop:3}}>{i===0?"–":""}</span>
                     <span style={{fontSize:13,color:MU,lineHeight:1.6,fontFamily:"'Jost',sans-serif"}}>{item}</span>
                   </div>
                 ))}

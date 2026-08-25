@@ -660,7 +660,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
           <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
             <span style={{ fontSize:14,color:C.mu }}>Current plan</span>
-            <span style={{ fontSize:15,color:userTier==="goddess"?R:C.cr }}>{userTier==="goddess"?"Goddess Tier ✦":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
+            <span style={{ fontSize:15,color:userTier==="goddess"?R:C.cr }}>{userTier==="goddess"?"Goddess Tier ":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
             <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
@@ -669,10 +669,10 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </div>
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
-            <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier ✦ to unlock ProofOS and Analytics.</div>
+            <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier  to unlock ProofOS and Analytics.</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$79/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-              {portalLoading ? "Opening..." : "Upgrade now, instant access ✦"}
+              {portalLoading ? "Opening..." : "Upgrade now, instant access "}
             </button>
           </div>
         )}
@@ -780,9 +780,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
               Select your state on the Hawkins scale.{" "}
-              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#E8B870",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
+              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#E8B870",cursor:"pointer",textDecoration:"underline" }}>See Guidebook </span>
             </div>
-            <div style={{ fontSize:11,color:"#BFA5D8",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
+            <div style={{ fontSize:11,color:"#BFA5D8",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates </div>
             <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
               {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
@@ -1038,7 +1038,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
               <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:17,marginTop:2 }}>✦</span>
+                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:17,marginTop:2 }}></span>
                     <span style={{ fontSize:18,lineHeight:1.65,color:C.cr }}>{b}</span>
                   </div>
                 ))}
@@ -1125,7 +1125,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
               <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:16,marginTop:2 }}>✦</span>
+                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:16,marginTop:2 }}></span>
                     <span style={{ fontSize:17,lineHeight:1.6,color:C.cr }}>{b}</span>
                   </div>
                 ))}
@@ -1241,7 +1241,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* PROOFOS TEASER, home tab */}
       <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
-          <div style={{ fontSize:13,fontWeight:600,color:"#167A6B",letterSpacing:"0.15em",textTransform:"uppercase",display:"inline-block" }}>ProofOS ✦</div>
+          <div style={{ fontSize:13,fontWeight:600,color:"#167A6B",letterSpacing:"0.15em",textTransform:"uppercase",display:"inline-block" }}>ProofOS </div>
           <span style={{ fontSize:15,color:"#F5E0A0" }}>›</span>
         </div>
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
@@ -1261,7 +1261,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(44,183,167,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
+            <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook </div>
             <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals, all explained.</div>
           </span>
           <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
@@ -1308,7 +1308,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </Sec>
 
       {/* NEW THIS WEEK */}
-      <Sec title="New this week ✦" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
+      <Sec title="New this week " C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
         <HRow>
           {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </HRow>
@@ -1426,14 +1426,14 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           ))}
         </div>
         <div style={{ fontSize:14, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
-          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today, the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
+          {dom7&&dom30 ? (dom7.v>dom30.v ? ` You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today, the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
 
       {/* PATTERNS, what's actually working, real listen + manifestation correlation */}
       {!isPreview && patterns && patterns.length > 0 && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:"linear-gradient(135deg,rgba(245,224,160,0.08),rgba(191,165,216,0.06),rgba(44,183,167,0.08))", border:`1px solid rgba(232,184,112,0.3)` }}>
-          <div style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>What's working for you ✦</div>
+          <div style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>What's working for you </div>
           {patterns.map((p,i) => (
             <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", borderBottom: i<patterns.length-1 ? `1px solid ${C.border}` : "none" }}>
               <div style={{ width:8, height:8, borderRadius:"50%", background: p.type==="category" ? "#E8B870" : "#BFA5D8", flexShrink:0 }}/>
@@ -1472,7 +1472,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(44,183,167,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
-            <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
+            <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook </div>
             <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals, everything explained.</div>
           </span>
           <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
@@ -1664,7 +1664,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               <div style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:13,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}> </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
@@ -1700,7 +1700,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
         <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan, no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
-        Unlock {feature}, upgrade now ✦
+        Unlock {feature}, upgrade now 
       </button>
       <div style={{ fontSize:13, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
     </div>
@@ -1832,7 +1832,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
         </div>
       )}
-      <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#167A6B",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS ✦</div>
+      <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#167A6B",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS </div>
       <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured, forever.</div>
 
       {/* Filter banner, shown when drilled in from Analytics */}
@@ -1869,7 +1869,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         /* ═══ BUCKET LIST, capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
-            <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
+            <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}> What's the difference?</div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
               <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever, no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
@@ -1908,13 +1908,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
             <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
-              ✦ You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5–10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
+               You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5–10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
 
           {bucketItems.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
-              <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
+              <div style={{ fontSize:26,marginBottom:8 }}></div>
               <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest, big or small.</div>
             </div>
           ) : (
@@ -1985,7 +1985,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
-              <div style={{ fontSize:26,marginBottom:8 }}>✦</div>
+              <div style={{ fontSize:26,marginBottom:8 }}></div>
               <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here, and stays here for life.</div>
             </div>
           ) : (
@@ -2134,7 +2134,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
               <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
-              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive, you're above the line ✦" : "Contractive, the audio will lift you"}</span>
+              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive, you're above the line " : "Contractive, the audio will lift you"}</span>
             </div>
           ) : null; })()}
           <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words, e.g. 'I'm feeling anxious about this'"
@@ -2162,7 +2162,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               }
             }
           }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-            {userTier === "audio" && !isPreview ? "Add Desire, Upgrade to Goddess ✦" : "Add Desire"}
+            {userTier === "audio" && !isPreview ? "Add Desire, Upgrade to Goddess " : "Add Desire"}
           </button>
           {userTier === "audio" && !isPreview && (
             <div style={{ fontSize:13,color:"#fdf0e8",marginTop:8,lineHeight:1.5 }}>
@@ -2237,7 +2237,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
             {(d.signs||[]).map((sg,si)=>(
               <div key={sg._sid??si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
-                <span style={{ fontSize:13,color:CAT_COLOR[d.category]||"#E8B870",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":"✦"}</span>
+                <span style={{ fontSize:13,color:CAT_COLOR[d.category]||"#E8B870",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":""}</span>
                 <span style={{ fontSize:14,color:PC.text,lineHeight:1.5,flex:1 }}>
                   {sg.text}
                   {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}

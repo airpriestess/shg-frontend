@@ -44,7 +44,7 @@ export function scheduleReminders() {
 
   const morningId = setTimeout(function fire() {
     fireNotification(
-      "Good morning ✦ Your vault is waiting",
+      "Good morning  Your vault is waiting",
       "Start your day with Reshma's voice. Open your Audio Vault."
     );
     setTimeout(fire, 24 * 60 * 60 * 1000); // repeat daily
@@ -52,7 +52,7 @@ export function scheduleReminders() {
 
   const eveningId = setTimeout(function fire() {
     fireNotification(
-      "Evening ritual ✦ Self Hypnosis Goddess",
+      "Evening ritual  Self Hypnosis Goddess",
       "Listen before sleep. Your subconscious works through the night."
     );
     setTimeout(fire, 24 * 60 * 60 * 1000); // repeat daily

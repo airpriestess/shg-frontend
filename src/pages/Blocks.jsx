@@ -85,7 +85,7 @@ export default function Blocks() {
 
       {/* HERO */}
       <div style={{ background: LG, padding: "120px 48px 80px", textAlign: "center" }}>
-        <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000000", marginBottom: 20 }}>✦ Free diagnostics ✦</div>
+        <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000000", marginBottom: 20 }}> Free diagnostics </div>
         <h1 style={{ fontSize: "clamp(48px,8vw,96px)", fontWeight: 700, color: "#000", letterSpacing: "-.04em", lineHeight: 1, marginBottom: 20 }}>Find your block.</h1>
         <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
           8 questions. Your invisible block, named, and replaced.
@@ -109,7 +109,7 @@ export default function Blocks() {
                   <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                     {block.what.map((w, j) => (
                       <div key={j} style={{ fontSize: 13, color: "#fdf0e8", display: "flex", alignItems: "center", gap: 8 }}>
-                        <span style={{ color: block.color, fontSize: 10 }}>✦</span> {w}
+                        <span style={{ color: block.color, fontSize: 10 }}></span> {w}
                       </div>
                     ))}
                   </div>

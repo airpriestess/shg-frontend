@@ -166,7 +166,7 @@ export default function LuckyGirl() {
       {phase === "landing" && (
         <div style={{ background: LG, minHeight: "calc(100vh - 61px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "64px 24px 80px", textAlign: "center" }}>
           <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", marginBottom: 28, color: "#000" }}>
-            ✦ Free diagnostic ✦
+             Free diagnostic 
           </div>
           <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,7vw,80px)", lineHeight: 1.05, color: "#000", marginBottom: 16, letterSpacing: "-.02em", maxWidth: 700 }}>
             What's blocking your Lucky Girl era?
@@ -236,7 +236,7 @@ export default function LuckyGirl() {
       {phase === "result" && result && (
         <>
           <div style={{ background: LG, padding: "72px 24px 56px", textAlign: "center" }}>
-            <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000", marginBottom: 20 }}>✦ Your Lucky Girl block ✦</div>
+            <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000", marginBottom: 20 }}> Your Lucky Girl block </div>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(44px,8vw,80px)", lineHeight: 1.0, color: "#000", letterSpacing: "-.02em" }}>{result.block}</h2>
           </div>
           <div style={{ maxWidth: 560, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" }}>
@@ -254,7 +254,7 @@ export default function LuckyGirl() {
             </div>
             <p style={{ fontSize: 18, color: "#fdf0e8", marginBottom: 28, lineHeight: 1.8 }}>This is exactly what your SHG audio is built for, hypnosis, subliminals, and binaural beats that rewire this assumption while you sleep, until your nervous system accepts it as fact.</p>
             <div style={{ background: LG, borderRadius: 20, padding: "40px 28px", marginBottom: 16, textAlign: "center" }}>
-              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}>✦ The next step ✦</div>
+              <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: "#000", marginBottom: 16 }}> The next step </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5vw,48px)", color: "#000", fontWeight: 400, lineHeight: 1.1, marginBottom: 12 }}>Lucky Girl Maxxing</div>
               <div style={{ fontSize: 17, color: "#000", lineHeight: 1.6, marginBottom: 6, fontWeight: 400 }}>21 days to become the woman good things happen to.</div>
               <div style={{ fontSize: 22, color: "#000", fontWeight: 500, marginBottom: 8 }}>$19 <span style={{ fontSize: 15, textDecoration: "line-through", opacity: 0.5 }}>$49</span></div>

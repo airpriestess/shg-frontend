@@ -62,7 +62,7 @@ export default function HamburgerMenu({ onSignIn }) {
           {/* Bottom CTAs */}
           <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
             <button onClick={()=>go(()=>navigate("/"))} style={{ width:"100%",padding:"16px",background:LG,border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
-              Join Now ✦
+              Join Now 
             </button>
             {onSignIn && (
               <button onClick={()=>go(onSignIn)} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#fdf0e8",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>

@@ -37,10 +37,10 @@ export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", comp
 
       {/* Header */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:14 }}>
-        <span style={{ fontSize:14*fs, fontWeight:400, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your analytics ✦</span>
+        <span style={{ fontSize:14*fs, fontWeight:400, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>Your analytics </span>
         <span style={{ fontSize:12*fs, fontWeight:400, padding:"4px 12px", background:OMBRE, backgroundSize:"100%", borderRadius:20, color:BLACK, animation:"abFlash 2.2s ease-in-out infinite" }}>{streakDays}-day streak</span>
       </div>
-      <div style={{ fontSize:16*fs, fontWeight:400, color:C.text, marginBottom:14 }}>{manifested} of {total} intentions manifested <span style={{ color:"#E8B870" }}>✦</span></div>
+      <div style={{ fontSize:16*fs, fontWeight:400, color:C.text, marginBottom:14 }}>{manifested} of {total} intentions manifested <span style={{ color:"#E8B870" }}></span></div>
 
       {/* Stat tiles */}
       <div style={{ display:"grid", gridTemplateColumns: compact ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>

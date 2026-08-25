@@ -56,7 +56,7 @@ function ProofOSBanner({ isMobile }) {
     { num:"02", label:"Press play", body:"Theta opens. Your subconscious accepts the new identity.", col:"#E8B870" },
     { num:"03", label:"Signs arrive", body:"Synchronicities. Shifts. People change. Money moves.", col:"#BFA5D8" },
     { num:"04", label:"Log every sign", body:"Date it. Photo it. Voice note it. The evidence is real.", col:"#2CB7A7" },
-    { num:"05", label:"Mark it manifested ✦", body:"It arrived. Dated. Permanent. Your Proof Wall builds.", col:"#167A6B" },
+    { num:"05", label:"Mark it manifested ", body:"It arrived. Dated. Permanent. Your Proof Wall builds.", col:"#167A6B" },
   ];
   const [idx, setIdx] = useState(0);
   useEffect(() => {
@@ -68,7 +68,7 @@ function ProofOSBanner({ isMobile }) {
     <div id="proofos" style={{ background:"#000", width:"100%", paddingTop: isMobile?"48px":"64px", paddingBottom: isMobile?"48px":"64px" }}>
       {/* Heading */}
       <div style={{ textAlign:"center", marginBottom: isMobile?28:36, padding:"0 24px" }}>
-        <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>Goddess Tier ✦</div>
+        <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>Goddess Tier </div>
         <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", fontWeight:400, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.0, marginBottom:14 }}>ProofOS.</div>
         <div style={{ fontSize: isMobile?15:18, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:480, margin:"0 auto" }}>
           Every desire. Every sign. Every moment it arrived. Logged, dated, permanent.
@@ -329,7 +329,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
         </button>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           {userTier === "goddess" || userTier === "lifetime"
-            ? <Pill color="champagne">{userTier === "lifetime" ? "Lifetime ✦" : "Goddess ✦"}</Pill>
+            ? <Pill color="champagne">{userTier === "lifetime" ? "Lifetime " : "Goddess "}</Pill>
             : <Btn size="sm" variant="champagne" onClick={onUpgrade}>Unlock Goddess Vault</Btn>}
         </div>
       </header>
@@ -392,7 +392,7 @@ function ArchivePage() {
       <h1 style={{ fontSize: 28, fontWeight: 400, color: "#000000", marginBottom: 8 }}>Manifested Archive</h1>
       <p style={{ fontSize: 19, color: "#000000", marginBottom: 24 }}>Every completed intention lives here. Your permanent Proof Wall.</p>
       <div style={{ textAlign: "center", padding: "60px 24px" }}>
-        <div style={{ fontSize: 40, marginBottom: 16, opacity: 0.4 }}>✦</div>
+        <div style={{ fontSize: 40, marginBottom: 16, opacity: 0.4 }}></div>
         <div style={{ fontSize: 18, color: "#000000" }}>Manifested threads will appear here.</div>
       </div>
     </div>
@@ -420,10 +420,10 @@ const TIERS = {
     cta: (annual)=> annual ? "Join Audio, $39/month" : "Join Audio, $49/month",
   },
   goddess: {
-    name: "Goddess Tier", emoji: "✦",
+    name: "Goddess Tier", emoji: "",
     monthly: "$79", annual: "$758", annualPerMonth: "$63", annualNote: "$758 billed annually",
     usd: "$79/mo", usdAnnual: "$758/yr",
-    features: ["Everything in Audio Tier","ProofOS, manifestation tracker for life ✦","Signs & synchronicity log on every desire","Your Proof Wall, every win, forever","Early access drops, 48hrs ahead","Analytics board, watch your evidence build"],
+    features: ["Everything in Audio Tier","ProofOS, manifestation tracker for life ","Signs & synchronicity log on every desire","Your Proof Wall, every win, forever","Early access drops, 48hrs ahead","Analytics board, watch your evidence build"],
     cta: (annual)=> annual ? "Activate Goddess, $63/month" : "Activate Goddess Tier, $79/month",
   },
   lifetime: {
@@ -504,11 +504,11 @@ function CheckoutModal({ onClose, onDemo }) {
 
           {/* GODDESS TIER */}
           <div style={{background:"linear-gradient(135deg,#0a1a18,#0d2825)",border:"2px solid #2CB7A7",borderRadius:16,padding:"28px 18px 18px",marginTop:52,position:"relative",overflow:"visible"}}>
-            <div style={{position:"absolute",top:-16,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",borderRadius:20,padding:"5px 18px",fontSize:10,fontWeight:500,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap",zIndex:10}}>✦ MOST POPULAR</div>
+            <div style={{position:"absolute",top:-16,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",borderRadius:20,padding:"5px 18px",fontSize:10,fontWeight:500,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap",zIndex:10}}> MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
                 <div style={{fontSize:16,fontWeight:400,color:"#2CB7A7",marginBottom:2}}>Goddess Tier</div>
-                <div style={{fontSize:11,color:"#2CB7A7",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
+                <div style={{fontSize:11,color:"#2CB7A7",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS </div>
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annualPerMonth:TIERS.goddess.monthly}</div>
@@ -518,8 +518,8 @@ function CheckoutModal({ onClose, onDemo }) {
               </div>
             </div>
             <div style={{marginBottom:12}}>
-              {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link audios · capture every sign","Early access drops, 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:f.includes("✦")?"#2CB7A7":"#167A6B",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?700:400}}>
+              {["Everything in Audio Tier","ProofOS manifestation tracker ","Log intentions · link audios · capture every sign","Early access drops, 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
+                <div key={i} style={{fontSize:12,color:f.includes("")?"#2CB7A7":"#167A6B",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("")?700:400}}>
                   <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
                 </div>
               ))}
@@ -608,7 +608,7 @@ function PricingSection({ onJoin }) {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: isMobile ? 52 : 16, overflow: "visible", paddingTop: isMobile ? 8 : 0 }}>
           {cards.map(c => (
             <div key={c.id} style={{ background: c.bg, border: `${c.popular ? "2px" : "1px"} solid ${c.border}`, borderRadius: 20, padding: c.popular ? (isMobile ? "64px 20px 28px" : "56px 24px 28px") : "28px 20px", marginTop: isMobile ? (c.popular ? 20 : 0) : (c.popular ? -12 : 0), position: "relative", overflow: "visible", boxShadow: c.popular ? "0 0 40px rgba(44,183,167,0.2)" : "none" }}>
-              {c.popular && <div style={{ position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontSize: 10, fontWeight: 500, padding: "6px 20px", borderRadius: 20, letterSpacing: "0.14em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 10 }}>✦ Most Popular</div>}
+              {c.popular && <div style={{ position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", fontSize: 10, fontWeight: 500, padding: "6px 20px", borderRadius: 20, letterSpacing: "0.14em", whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", textTransform: "uppercase", zIndex: 10 }}> Most Popular</div>}
               <div style={{ fontSize: 13, fontWeight: 400, color: c.muteColor, marginBottom: 6, fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em", textTransform: "uppercase" }}>{c.name}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 52, fontWeight: 400, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", fontFamily: "'Jost',sans-serif", display: "inline-block" }}>{c.price}</span>
@@ -619,7 +619,7 @@ function PricingSection({ onJoin }) {
               {!c.note && <div style={{ marginBottom: 20 }} />}
               <div style={{ marginBottom: 24, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 16 }}>
                 {c.features.map((f, i) => (
-                  <div key={i} style={{ fontSize: 13, color: f.includes("✦") ? c.dot : c.featureColor, marginBottom: 9, paddingLeft: 16, position: "relative", lineHeight: 1.5, fontFamily: "'Jost',sans-serif", fontWeight: 400 }}>
+                  <div key={i} style={{ fontSize: 13, color: f.includes("") ? c.dot : c.featureColor, marginBottom: 9, paddingLeft: 16, position: "relative", lineHeight: 1.5, fontFamily: "'Jost',sans-serif", fontWeight: 400 }}>
                     <span style={{ position: "absolute", left: 0, color: c.dot }}>·</span>{f}
                   </div>
                 ))}
@@ -746,7 +746,7 @@ function HeroMarquee() {
       <div className="marquee-track" style={{ gap:"0 36px" }}>
         {doubled.map((item,i) => { const idx=i%MARQUEE_ITEMS.length; const isLit=idx===lit; return (
           <span key={i} style={{ fontSize:11, fontWeight:400, letterSpacing:"0.15em", textTransform:"uppercase", color:isLit?"#fff":item.c, whiteSpace:"nowrap", fontFamily:"'Jost',sans-serif", transition:"color 0.12s, text-shadow 0.12s", textShadow:isLit?`0 0 18px ${item.c},0 0 36px ${item.c}66`:"none" }}>
-          <span style={{marginRight:6,opacity:0.7}}>{item.t.toLowerCase().includes("money")||item.t.toLowerCase().includes("$")||item.t.toLowerCase().includes("income")||item.t.toLowerCase().includes("wealth")||item.t.toLowerCase().includes("financial")?"💰":item.t.toLowerCase().includes("skin")||item.t.toLowerCase().includes("face")||item.t.toLowerCase().includes("beauty")||item.t.toLowerCase().includes("glow")||item.t.toLowerCase().includes("gorgeous")||item.t.toLowerCase().includes("radiant")||item.t.toLowerCase().includes("stunning")?"✦":item.t.toLowerCase().includes("he ")||item.t.toLowerCase().includes("him")||item.t.toLowerCase().includes("sp ")||item.t.toLowerCase().includes("love")||item.t.toLowerCase().includes("devoted")?"♡":item.t.toLowerCase().includes("sleep")||item.t.toLowerCase().includes("dna")||item.t.toLowerCase().includes("cell")||item.t.toLowerCase().includes("blood")?"◐":"✦"}</span>{item.t}</span>
+          <span style={{marginRight:6,opacity:0.7}}>{item.t.toLowerCase().includes("money")||item.t.toLowerCase().includes("$")||item.t.toLowerCase().includes("income")||item.t.toLowerCase().includes("wealth")||item.t.toLowerCase().includes("financial")?"💰":item.t.toLowerCase().includes("skin")||item.t.toLowerCase().includes("face")||item.t.toLowerCase().includes("beauty")||item.t.toLowerCase().includes("glow")||item.t.toLowerCase().includes("gorgeous")||item.t.toLowerCase().includes("radiant")||item.t.toLowerCase().includes("stunning")?"":item.t.toLowerCase().includes("he ")||item.t.toLowerCase().includes("him")||item.t.toLowerCase().includes("sp ")||item.t.toLowerCase().includes("love")||item.t.toLowerCase().includes("devoted")?"♡":item.t.toLowerCase().includes("sleep")||item.t.toLowerCase().includes("dna")||item.t.toLowerCase().includes("cell")||item.t.toLowerCase().includes("blood")?"◐":""}</span>{item.t}</span>
         );})}
       </div>
     </div>
@@ -1085,7 +1085,7 @@ function HowItWorksAccordion({ isMobile }) {
           >
             <span style={{ fontSize:11, letterSpacing:"0.2em", color: "#000", fontWeight:500, flexShrink:0, width:28, fontFamily:"'Jost',sans-serif" }}>{s.n}</span>
             <span style={{ fontSize: isMobile?16:18, fontWeight:400, color:"#000", flex:1, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em" }}>{s.title}</span>
-            {s.badge && open===i && <span style={{ background:"#000", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", flexShrink:0, fontWeight:500 }}>Goddess Tier ✦</span>}
+            {s.badge && open===i && <span style={{ background:"#000", borderRadius:20, padding:"4px 12px", fontSize:10, letterSpacing:"0.14em", textTransform:"uppercase", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", flexShrink:0, fontWeight:500 }}>Goddess Tier </span>}
             <span style={{ fontSize:20, color: open===i ? "#000" : "#000", flexShrink:0, transform: open===i ? "rotate(45deg)" : "none", transition:"transform .3s", fontWeight:300 }}>+</span>
           </div>
           {open===i && (
@@ -1314,7 +1314,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {!menuOpen && (
         <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
-            Of course, obviously. ✦
+            Of course, obviously. 
           </span>
           <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"6px 18px", background: "rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.2)", borderRadius: 20, color: "#000", fontSize: isMobile ? 14 : 12, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.06em" }}>
             Join the waitlist →
@@ -1373,7 +1373,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Bottom, join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
             <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
-              Join Now ✦
+              Join Now 
             </button>
             <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#fdf0e8",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Sign in
@@ -1555,7 +1555,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ))}
             </div>
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>
-              {playing ? "✦ Playing, continues in background" : "Tap play to listen, free preview"}
+              {playing ? " Playing, continues in background" : "Tap play to listen, free preview"}
             </div>
           </div>
         </div>
@@ -1573,7 +1573,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
         <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
           <div style={{ fontSize: isMobile?24:36, letterSpacing:"0.12em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>Audio Library</div>
-          <div style={{ fontSize: isMobile?13:16, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>+ ProofOS ✦</div>
+          <div style={{ fontSize: isMobile?13:16, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:400, display:"inline-block", textAlign:"center" }}>+ ProofOS </div>
         </div>
       </div>
 
@@ -1629,7 +1629,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"14px 36px":"18px 48px", background:"linear-gradient(135deg,rgba(245,224,160,0.55) 0%,rgba(232,184,112,0.55) 20%,rgba(191,165,216,0.55) 52%,rgba(44,183,167,0.55) 78%,rgba(22,122,107,0.55) 100%)", border:"none", borderRadius:40, color:"rgba(253,240,232,0.9)", fontSize: isMobile?"clamp(17px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the science behind this →</button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
-            Join Now ✦
+            Join Now 
           </button>
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1.5px solid #2CB7A7", borderRadius:30, color:"#fdf0e8", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
             Lifetime Access
@@ -1672,7 +1672,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 16px 64px rgba(44,183,167,0.3)" }}>
               <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", marginBottom:14, fontFamily:"'Jost',sans-serif", opacity:0.6 }}>The result</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
-              <div style={{ fontSize:12, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:14, opacity:0.6 }}>Installed. ✦</div>
+              <div style={{ fontSize:12, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:14, opacity:0.6 }}>Installed. </div>
               <div style={{ fontSize:14, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.7, fontWeight:500 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
             </div>
 
@@ -1878,7 +1878,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* PROOFOS INTRO, MASSIVE STATEMENT */}
       <div id="proofos" style={{ padding: isMobile?"48px 20px":"80px 24px", textAlign:"center", maxWidth:820, margin:"0 auto" }}>
         <p style={{ fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(36px,4.5vw,58px)", color:"#fdf0e8", lineHeight:1.3, fontWeight:400, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", margin:0 }}>
-          Every track links to a desire. Every sign you receive gets logged in <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>ProofOS ✦</span>, dated, stacked, permanent. Your proof wall builds itself while you sleep.
+          Every track links to a desire. Every sign you receive gets logged in <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>ProofOS </span>, dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
       </div>
       
@@ -1942,7 +1942,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </div>
           <a href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
             style={{ display:"inline-flex", alignItems:"center", gap:10, padding:"16px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:15, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", textDecoration:"none" }}>
-            Follow on Instagram ✦
+            Follow on Instagram 
           </a>
         </div>
       </div>
@@ -2006,7 +2006,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div onClick={e=>e.stopPropagation()} style={{ background:"#000", border:"1.5px solid #E8B87055", borderRadius:20, padding:"36px 28px", maxWidth:400, width:"100%", textAlign:"center" }}>
             {waitlistStatus === "done" ? (
               <>
-                <div style={{ fontSize:32, marginBottom:12 }}>✦</div>
+                <div style={{ fontSize:32, marginBottom:12 }}></div>
                 <div style={{ fontSize:20, fontWeight:400, color:"#fdf0e8", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
                 <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
                 <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
