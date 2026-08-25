@@ -386,9 +386,9 @@ function PricingSection({ onJoin }) {
   };
 
   const cards = [
-    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: "#e8e0d8", priceColor: "#2CB7A7", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
-    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#2CB7A7", priceColor: "#2CB7A7", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
-    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#F5E0A0", muteColor: "#2CB7A7", priceColor: "#F5E0A0", periodColor: "#2CB7A7", featureColor: "#e8e0d8", dot: "#2CB7A7", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
+    { id: "audio",    name: TIERS.audio.name,    price: isAnnual ? TIERS.audio.annual    : TIERS.audio.monthly,    note: TIERS.audio.annualNote,                              features: TIERS.audio.features,    cta: TIERS.audio.cta(isAnnual),    bg: "#111",  border: "rgba(44,183,167,0.2)",  nameColor: "#f2ece4", muteColor: "#e8e0d8", priceColor: "#f2ece4", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#f2ece4", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)", ctaColor: "#000" },
+    { id: "goddess",  name: TIERS.goddess.name,  price: isAnnual ? TIERS.goddess.annual  : TIERS.goddess.monthly,  note: isAnnual ? TIERS.goddess.annualNote : null,          features: TIERS.goddess.features,  cta: TIERS.goddess.cta(isAnnual),  bg: "#000",  border: "rgba(44,183,167,0.5)",  nameColor: "#f2ece4", muteColor: "#f2ece4", priceColor: "#f2ece4", periodColor: "#e8e0d8", featureColor: "#ddd0c8", dot: "#f2ece4", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000", popular: true },
+    { id: "lifetime", name: TIERS.lifetime.name, price: TIERS.lifetime.monthly,           note: TIERS.lifetime.annualNote,                                                     features: TIERS.lifetime.features, cta: TIERS.lifetime.cta(),         bg: "#0a0a0a", border: "rgba(44,183,167,0.35)", nameColor: "#f2ece4", muteColor: "#f2ece4", priceColor: "#f2ece4", periodColor: "#f2ece4", featureColor: "#e8e0d8", dot: "#f2ece4", ctaBg: "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", ctaColor: "#000" },
   ];
 
   return (
@@ -412,7 +412,7 @@ function PricingSection({ onJoin }) {
                 fontFamily: "'Jost',sans-serif", display: "flex", alignItems: "center", gap: 8,
                 transition: "all 0.2s",
               }}>
-                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ fontSize: 10, color: billing === b ? "#2CB7A7" : "#2CB7A7", letterSpacing: "0.1em" }}>SAVE 20%</span></>}
+                {b === "monthly" ? "Monthly" : <><span>Annual</span><span style={{ fontSize: 10, background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", letterSpacing: "0.1em" }}>SAVE 20%</span></>}
               </button>
             ))}
           </div>
@@ -501,18 +501,18 @@ function AppPreviewSection({ isMobile }) {
     if (view === "proof") return (
       <div style={{ width:460, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(44,183,167,0.15)" }}>
         <div style={{ background:theme==="dark"?"#080808":"#fdf8f2", padding:"22px 24px 26px" }}>
-          <div style={{ fontSize:13, color:theme==="dark"?"#2CB7A7":"#a86820", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
+          <div style={{ fontSize:13, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:16, fontWeight:600, fontFamily:"'Jost',sans-serif" }}>ProofOS ✦</div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:16 }}>
             {[["3","Desires"],["1","Manifested"],["14d","Streak"]].map(([v,l],i)=>(
               <div key={i} style={{ background:theme==="dark"?"rgba(44,183,167,0.08)":"rgba(44,183,167,0.08)", borderRadius:10, padding:"12px 8px", textAlign:"center" }}>
-                <div style={{ fontSize:22, color:theme==="dark"?"#2CB7A7":"#2CB7A7", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
+                <div style={{ fontSize:22, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", fontWeight:600, fontFamily:"'Jost',sans-serif" }}>{v}</div>
                 <div style={{ fontSize:9, color:theme==="dark"?"#e8e0d8":"#8a6858", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
               </div>
             ))}
           </div>
           <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.2)"}`, borderRadius:12, padding:"16px", marginBottom:10 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:8 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.12)", color:theme==="dark"?"#2CB7A7":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 10px", background:theme==="dark"?"rgba(44,183,167,0.14)":"rgba(44,183,167,0.12)", color:"#f2ece4", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>✓ Lovemaxxing</span>
               <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>5d · 5 signs</span>
             </div>
             <div style={{ fontSize:14, color:theme==="dark"?"#f2ece4":"#1a1008", lineHeight:1.4, fontWeight:600, marginBottom:4, fontFamily:"'Jost',sans-serif" }}>He always texts me first and initiates plans.</div>
@@ -525,7 +525,7 @@ function AppPreviewSection({ isMobile }) {
           </div>
           <div style={{ background:theme==="dark"?"#111":"#fff", border:`1px solid ${theme==="dark"?"rgba(44,183,167,0.1)":"rgba(44,183,167,0.15)"}`, borderRadius:10, padding:"12px 14px", opacity:0.7 }}>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:5 }}>
-              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(44,183,167,0.12)":"rgba(44,183,167,0.1)", color:theme==="dark"?"#2CB7A7":"#2CB7A7", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
+              <span style={{ fontSize:9, fontWeight:600, padding:"2px 8px", background:theme==="dark"?"rgba(44,183,167,0.12)":"rgba(44,183,167,0.1)", color:"#f2ece4", borderRadius:12, fontFamily:"'Jost',sans-serif" }}>Moneymaxxing</span>
               <span style={{ fontSize:9, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Day 6 · 2 signs</span>
             </div>
             <div style={{ fontSize:12, color:theme==="dark"?"#f2ece4":"#1a1008", fontFamily:"'Jost',sans-serif" }}>£1,800 received. Paid by client.</div>
@@ -612,7 +612,7 @@ function AppPreviewSection({ isMobile }) {
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Dark</span>
         <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
-          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"#2CB7A7":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
+          style={{ width:44, height:24, borderRadius:12, background:theme==="light"?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"#2a2a2a", border:"none", cursor:"pointer", position:"relative", transition:"background 0.25s", padding:0 }}>
           <div style={{ width:18, height:18, borderRadius:"50%", background:"#fff", position:"absolute", top:3, left:theme==="light"?23:3, transition:"left 0.25s" }}/>
         </button>
         <span style={{ fontSize:11, color:"#e8e0d8", fontFamily:"'Jost',sans-serif" }}>Light</span>
@@ -693,7 +693,7 @@ function MaxxingCarousel({ cats }) {
         {cats.map((_,i) => (
           <div key={i}
             onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
-            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#2CB7A7":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
+            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(255,255,255,0.1)", transition:"all 0.3s", cursor:"pointer" }}/>
         ))}
       </div>
     </div>
@@ -783,7 +783,7 @@ function IdentityCarousel({ cats, fullscreen=false }) {
         {cats.map((_,i) => (
           <div key={i}
             onClick={()=>{setFlash(true);setTimeout(()=>{setIdx(i);setFlash(false);},200);}}
-            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"#BFA5D8":"#1c1828", transition:"all 0.3s", cursor:"pointer" }}/>
+            style={{ width:i===idx?20:6, height:6, borderRadius:3, background:i===idx?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(255,255,255,0.1)", transition:"all 0.3s", cursor:"pointer" }}/>
         ))}
       </div>
     </div>
@@ -817,7 +817,7 @@ function FAQSection() {
     <div style={{ background:"#fdf6ee", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
-        <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
+        <div style={{ fontSize:11,background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
         <h2 className="wm" style={{ fontSize:"clamp(28px,4.5vw,52px)",color:"#0a0a0a",lineHeight:1.2 }}>FAQs</h2>
       </div>
       <div style={{ display:"flex",flexDirection:"column",gap:6 }}>
@@ -825,7 +825,7 @@ function FAQSection() {
           <div key={i} style={{ background:open===i?"rgba(255,255,255,0.95)":"rgba(255,255,255,0.7)",border:"1px solid",borderColor:open===i?"rgba(44,183,167,0.35)":"rgba(44,183,167,0.15)",borderRadius:14,overflow:"hidden",transition:"all 0.2s",boxShadow:open===i?"0 4px 20px rgba(44,183,167,0.12)":"none" }}>
             <button onClick={() => setOpen(open===i?null:i)} style={{ width:"100%",padding:"20px 22px",background:"none",border:"none",display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",gap:16 }}>
               <span style={{ fontSize:15,fontWeight:400,color:"#0a0a0a",textAlign:"left",lineHeight:1.4 }}>{faq.q}</span>
-              <span style={{ fontSize:20,color:"#2CB7A7",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
+              <span style={{ fontSize:20,color:"#1a1a1a",flexShrink:0,transform:open===i?"rotate(45deg)":"none",transition:"transform 0.2s" }}>+</span>
             </button>
             {open===i && <div style={{ padding:"0 22px 22px" }}><div style={{ height:1,background:"rgba(44,183,167,0.15)",marginBottom:16 }}/><p style={{ fontSize:15,color:"#1a1a1a",lineHeight:1.85,margin:0 }}>{faq.a}</p></div>}
           </div>
@@ -1211,13 +1211,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#f2ece4", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "Spoilt Goddess"}</div>
-                <div style={{ fontSize: isMobile?12:16, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
+                <div style={{ fontSize: isMobile?12:16, color: "#f2ece4", fontFamily: "'Jost',sans-serif", fontWeight: 400, letterSpacing: "0.06em" }}>Reshma Oracle</div>
                 <div style={{ fontSize: 12, color: "#ddd0c8", fontFamily: "'Jost',sans-serif", marginTop: 2 }}>{currentTrack?.freq || "Melodic House · EMDR · 528hz"}</div>
               </div>
               {playing && (
                 <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(42,168,154,0.12)", border: "1px solid rgba(42,168,154,0.3)", borderRadius: 20, padding: "4px 10px", flexShrink: 0 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2CB7A7", animation: "pulse 1.2s ease-in-out infinite" }}/>
-                  <span style={{ fontSize: 11, color: "#2CB7A7", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", animation: "pulse 1.2s ease-in-out infinite" }}/>
+                  <span style={{ fontSize: 11, color: "#f2ece4", fontFamily: "'Jost',sans-serif", fontWeight: 700 }}>LIVE</span>
                 </div>
               )}
             </div>
@@ -1258,7 +1258,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             {/* Track dots */}
             <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:12 }}>
               {PLAYLIST.map((_,i) => (
-                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"#2CB7A7":"rgba(42,168,154,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
+                <button key={i} onClick={()=>loadTrack(i)} style={{ width: i===trackIdx?18:6, height:6, borderRadius:3, background: i===trackIdx?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(255,255,255,0.1)", border:"none", cursor:"pointer", padding:0, transition:"all 0.25s" }}/>
               ))}
             </div>
             <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#ddd0c8", fontFamily:"'Jost',sans-serif" }}>
@@ -1338,7 +1338,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
             Join Now ✦
           </button>
-          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1.5px solid #2CB7A7", borderRadius:30, color:"#f2ece4", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
+          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1.5px solid rgba(255,255,255,0.2)", borderRadius:30, color:"#f2ece4", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
             Lifetime Access
           </button>
         </div>
@@ -1352,7 +1352,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
 
           {/* Overline */}
-          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How the audio actually works</div>
+          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#f2ece4", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How the audio actually works</div>
 
           {/* Heading */}
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:28, lineHeight:1.15, textAlign:"center" }}>
@@ -1372,8 +1372,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             </div>
             {/* Box 2 — Theta */}
             <div style={{ padding: isMobile?"20px 18px":"24px 20px", background:"rgba(44,183,167,0.06)", border:"1px solid rgba(44,183,167,0.25)", borderRadius:16, textAlign:"left" }}>
-              <div style={{ fontSize: isMobile?24:30, fontWeight:400, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Theta</div>
-              <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>4–8 Hz · the reprogramming state</div>
+              <div style={{ fontSize: isMobile?24:30, fontWeight:400, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", fontFamily:"'Jost',sans-serif", lineHeight:1, marginBottom:10 }}>Theta</div>
+              <div style={{ fontSize:11, letterSpacing:"0.18em", textTransform:"uppercase", color:"#f2ece4", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>4–8 Hz · the reprogramming state</div>
               <p style={{ fontSize: isMobile?14:15, color:"#c8bfb8", lineHeight:1.7, fontFamily:"'Jost',sans-serif", margin:0 }}>The subconscious opens here. New beliefs install without resistance. You enter this state naturally twice a day — falling asleep and waking up. SHG gets you there on demand.</p>
             </div>
             {/* Box 3 — Identity */}
@@ -1386,7 +1386,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* 5-state frequency breakdown */}
           <div style={{ marginBottom:40 }}>
-            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>All five brainwave states</div>
+            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#f2ece4", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>All five brainwave states</div>
             <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr 1fr 1fr", gap:10, marginBottom:16 }}>
               {[
                 { name:"Delta", hz:"0.5–4 Hz", color:"#167A6B", desc:"Deep sleep. Your body repairs. Subliminals keep working here even when you're fully unconscious.", tag:"Deep sleep" },
@@ -1396,9 +1396,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                 { name:"Gamma", hz:"40+ Hz",  color:"#E8B870", desc:"Peak coherence. Observed in advanced meditators. Emerges naturally the more time you spend in theta.", tag:"Peak state" },
               ].map((s,i)=>(
                 <div key={i} style={{ padding:"18px 14px", background: s.highlight?"rgba(44,183,167,0.08)":"rgba(255,255,255,0.02)", border:`1px solid ${s.highlight?"rgba(44,183,167,0.3)":"rgba(255,255,255,0.06)"}`, borderRadius:14, textAlign:"left" }}>
-                  <div style={{ fontSize: isMobile?18:20, fontWeight:400, color:s.color, fontFamily:"'Jost',sans-serif", marginBottom:4 }}>{s.name}</div>
-                  <div style={{ fontSize:10, color:"rgba(255,255,255,0.3)", fontFamily:"monospace", letterSpacing:"0.06em", marginBottom:s.highlight?8:12 }}>{s.hz}</div>
-                  {s.highlight && <div style={{ display:"inline-block", fontSize:9, letterSpacing:"0.14em", textTransform:"uppercase", background:"#2CB7A7", color:"#000", padding:"2px 8px", borderRadius:20, fontFamily:"'Jost',sans-serif", marginBottom:10 }}>SHG targets this</div>}
+                  <div style={{ fontSize: isMobile?18:20, fontWeight:400, color:"#f2ece4", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>{s.name}</div>
+                  <div style={{ fontSize:10, color:"rgba(255,255,255,0.3)", fontFamily:"'Jost', monospace", letterSpacing:"0.06em", marginBottom:s.highlight?8:12 }}>{s.hz}</div>
+                  {s.highlight && <div style={{ display:"inline-block", fontSize:9, letterSpacing:"0.14em", textTransform:"uppercase", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", color:"#000", padding:"2px 8px", borderRadius:20, fontFamily:"'Jost',sans-serif", marginBottom:10 }}>SHG targets this</div>}
                   <p style={{ fontSize:13, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif", margin:0 }}>{s.desc}</p>
                 </div>
               ))}
@@ -1416,7 +1416,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               ].map((m,i)=>(
                 <div key={i} style={{ padding:"20px 18px", background:"rgba(255,255,255,0.03)", border:`1px solid ${m.color}30`, borderRadius:14, textAlign:"left" }}>
                   <div style={{ fontSize:20, marginBottom:10 }}>{m.icon}</div>
-                  <div style={{ fontSize:13, fontWeight:500, color:m.color, marginBottom:8, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{m.label}</div>
+                  <div style={{ fontSize:13, fontWeight:500, color:"#f2ece4", marginBottom:8, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{m.label}</div>
                   <div style={{ fontSize: isMobile?13:14, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{m.desc}</div>
                 </div>
               ))}
@@ -1436,17 +1436,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ padding: isMobile?"56px 18px 64px":"88px 24px 96px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
 
-          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The heart-brain</div>
+          <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#f2ece4", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>The heart-brain</div>
 
           {/* Labels above */}
           <div style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr", alignItems:"center", maxWidth:620, margin:"0 auto 20px", gap:isMobile?8:16 }}>
             <div style={{ textAlign:"right" }}>
-              <div style={{ fontSize: isMobile?13:17, fontWeight:500, color:"#F5E0A0", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Heart Brain</div>
+              <div style={{ fontSize: isMobile?13:17, fontWeight:500, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Heart Brain</div>
               <div style={{ fontSize: isMobile?11:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>40,000 neurons.<br/>Broadcasts your<br/>emotional state.</div>
             </div>
             <div style={{ fontSize:isMobile?16:20, color:"rgba(44,183,167,0.4)", flexShrink:0, textAlign:"center" }}>⟷</div>
             <div style={{ textAlign:"left" }}>
-              <div style={{ fontSize: isMobile?13:17, fontWeight:500, color:"#BFA5D8", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Cranial Brain</div>
+              <div style={{ fontSize: isMobile?13:17, fontWeight:500, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Cranial Brain</div>
               <div style={{ fontSize: isMobile?11:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>Receives the signal.<br/>Installs belief<br/>accordingly.</div>
             </div>
           </div>
@@ -1544,7 +1544,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           </div>
 
           <div style={{ textAlign:"center", marginBottom:40 }}>
-            <div style={{ fontSize: isMobile?13:15, letterSpacing:"0.2em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Coherent Rhythm</div>
+            <div style={{ fontSize: isMobile?13:15, letterSpacing:"0.2em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Coherent Rhythm</div>
             <div style={{ fontSize: isMobile?12:13, color:"#c8bfb8", fontFamily:"'Jost',sans-serif", marginTop:6, lineHeight:1.6 }}>When heart and brain synchronise — the subconscious opens.</div>
           </div>
 
@@ -1567,14 +1567,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               { state:"Theta + coherence", signal:"Heart and brain in sync", result:"Full receptivity. Subconscious wide open. This is the SHG window.", color:"#2CB7A7" },
             ].map((row,i)=>(
               <div key={i} style={{ background: i===2?"rgba(44,183,167,0.07)":"rgba(255,255,255,0.03)", border:`1px solid ${row.color}28`, borderRadius:14, padding: isMobile?"18px 14px":"22px 18px", textAlign:"left" }}>
-                <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:row.color, marginBottom:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{row.state}</div>
+                <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"#f2ece4", marginBottom:10, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{row.state}</div>
                 <div style={{ fontSize:14, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif", marginBottom:8, fontWeight:400 }}>{row.signal}</div>
                 <div style={{ fontSize:13, color:"#c8bfb8", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{row.result}</div>
               </div>
             ))}
           </div>
 
-          <p style={{ fontSize: isMobile?15:17, color:"#2CB7A7", lineHeight:1.85, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>
+          <p style={{ fontSize: isMobile?15:17, color:"#f2ece4", lineHeight:1.85, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>
             SHG tracks shift the emotional state first — through music, frequency, and binaural entrainment — so that by the time the hypnosis and subliminals arrive, the heart-brain is already broadcasting coherence. The cranial brain follows. The door opens. The installation goes in.
           </p>
 
@@ -1585,7 +1585,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HOW IT WORKS — 5 steps, connected flow with drawn icons */}
       <div style={{ background:"#0a0a0a", padding: isMobile?"48px 24px 56px":"72px 48px 88px" }}>
         <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
-          <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
+          <div style={{ fontSize:11, color:"#f2ece4", letterSpacing:"0.3em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>How it works</div>
           <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.0 }}>Five steps.</div>
         </div>
 
@@ -1610,7 +1610,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
               </div>
               <div style={{ flex:1, paddingTop: isMobile?4:10 }}>
                 <div style={{ display:"flex", alignItems:"baseline", gap:12, marginBottom:6 }}>
-                  <span style={{ fontSize: isMobile?12:13, color:accent, fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.1em" }}>{n}</span>
+                  <span style={{ fontSize: isMobile?12:13, color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:600, letterSpacing:"0.1em" }}>{n}</span>
                   <div style={{ fontSize: isMobile?"clamp(20px,6vw,26px)":"clamp(24px,2.6vw,32px)", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.01em", lineHeight:1.15 }}>{title}</div>
                 </div>
                 <div style={{ fontSize: isMobile?15:18, color:"#e8e0d8", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.65, maxWidth:460 }}>{body}</div>
@@ -1639,7 +1639,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 12, color: "#2CB7A7", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
+            <div style={{ fontSize: 12, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center" }}>What makes this different</div>
             <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5.5vw,72px)", lineHeight: 1.05, marginBottom: 20, color: "#0a0a0a", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
               Most hypnosis is boring.<br/>This is different.
             </h2>
@@ -1655,7 +1655,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
                         {/* SIX FORMATS — clean white card, 2-col grid, no overlapping visuals */}
             <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:10, textAlign:"center" }}>Six formats</div>
+              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", marginBottom:10, textAlign:"center" }}>Six formats</div>
               <div style={{ fontSize: isMobile?"clamp(22px,6vw,28px)":"clamp(26px,3vw,34px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.01em", lineHeight:1.2 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
                 {[
@@ -1666,8 +1666,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session.", color:"#167A6B", dot:"#167A6B" },
                   { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy.", color:"#BFA5D8", dot:"#BFA5D8" },
                 ].map((f,i)=>(
-                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"18px 20px", background:"#f8f8f8", borderRadius:14, borderLeft:`3px solid ${f.dot}` }}>
-                    <div style={{ width:8, height:8, borderRadius:"50%", background:f.dot, flexShrink:0, marginTop:6 }}/>
+                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"18px 20px", background:"#f8f8f8", borderRadius:14, borderLeft:"3px solid rgba(0,0,0,0.1)" }}>
+                    <div style={{ width:8, height:8, borderRadius:"50%", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", flexShrink:0, marginTop:6 }}/>
                     <div>
                       <div style={{ fontSize: isMobile?15:17, fontWeight:500, color:"#0a0a0a", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
                       <div style={{ fontSize: isMobile?14:16, color:"#4a4a4a", lineHeight:1.65, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
@@ -1679,7 +1679,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
             {/* FREQUENCIES — white card, clean horizontal bars */}
             <div style={{ background:"#fff", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:10, textAlign:"center" }}>Solfeggio Frequencies</div>
+              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", marginBottom:10, textAlign:"center" }}>Solfeggio Frequencies</div>
               <div style={{ fontSize: isMobile?"clamp(22px,6vw,28px)":"clamp(26px,3vw,34px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.01em", lineHeight:1.2 }}>Every track is tuned to a frequency.</div>
               <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
                 {[
