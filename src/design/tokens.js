@@ -1,21 +1,21 @@
-// ─── SHG Design Tokens — Lucky Girl system ────────────────────────────────
+// ─── SHG Design Tokens - Lucky Girl system ────────────────────────────────
 // Locked gradient: #F5E0A0 → #E8B870 → #BFA5D8 → #2CB7A7 → #167A6B
 // DO NOT substitute old values (#C8960A, #5B8DB8, #C8860A, #B8820A)
 
 // ── LOCKED LG GRADIENT ───────────────────────────────────────────────────
 export const LG_GRAD = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
-export const LG_GRAD_JSX = "linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)"; // no % — esbuild safe
+export const LG_GRAD_JSX = "linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)"; // no % - esbuild safe
 
 // ── LG INDIVIDUAL STOPS ───────────────────────────────────────────────────
-export const LG_CHAMP = "#F5E0A0";  // champagne — lightest, warmest
+export const LG_CHAMP = "#F5E0A0";  // champagne - lightest, warmest
 export const LG_GOLD  = "#E8B870";  // gold
 export const LG_LAV   = "#BFA5D8";  // lilac
 export const LG_TEAL  = "#2CB7A7";  // teal
-export const LG_DEEP  = "#167A6B";  // deep teal — darkest
+export const LG_DEEP  = "#167A6B";  // deep teal - darkest
 
 // ── THEME TOKENS ─────────────────────────────────────────────────────────
 export const T = {
-  // ── Dark mode — pure black, LG accents only on labels/icons/tabs ──
+  // ── Dark mode - pure black, LG accents only on labels/icons/tabs ──
   bgRoot:       "#000000",
   bgSoft:       "#050505",
   surfaceBase:  "#000000",
@@ -24,13 +24,13 @@ export const T = {
   borderSoft:   "#1e1e1e",
   borderGlow:   "rgba(232,184,112,0.15)",
 
-  // Text — warm cream (dark mode)
+  // Text - warm cream (dark mode)
   textPrimary:   "#fdf0e8",
   textSecondary: "#dcc8b8",
   textMuted:     "#b09888",
   textFaint:     "#786860",
 
-  // LG accent colours — used on labels, icons, active states
+  // LG accent colours - used on labels, icons, active states
   gold:      "#E8B870",   // champagne gold
   champ:     "#F5E0A0",   // lightest champagne
   lav:       "#BFA5D8",   // lilac
@@ -46,7 +46,7 @@ export const T = {
   premiumCard: "linear-gradient(135deg,rgba(14,14,14,0.98),rgba(8,8,8,0.98))",
   inputBg:     "#1a1a1a",
 
-  // Glows — teal based, not gold
+  // Glows - teal based, not gold
   glow:      "0 0 40px rgba(44,183,167,0.12)",
   glowGold:  "0 0 30px rgba(232,184,112,0.14)",
 };
@@ -127,7 +127,7 @@ img{max-width:100%;}
   .hero-ctas button{width:100%!important;}
 }
 
-/* ── TABLET 681–1024px ───────────── */
+/* ── TABLET 681-1024px ───────────── */
 @media(min-width:681px) and (max-width:1024px){
   .price-grid{grid-template-columns:1fr!important;max-width:480px;margin-left:auto;margin-right:auto;}
   .grid-3{grid-template-columns:1fr 1fr!important;}

@@ -49,7 +49,7 @@ export const SAMPLE_TRACKS = [
     tier: "audio",
     duration: 540,
     frequency: "Hypnosis · 9min · 432hz",
-    description: "Beauty identity installation for your face. 432hz harmony frequency. Your face, your symmetry, your radiance — installed as your new automatic assumption.",
+    description: "Beauty identity installation for your face. 432hz harmony frequency. Your face, your symmetry, your radiance - installed as your new automatic assumption.",
     tags: ["beauty", "face", "432hz"],
   },
   {
@@ -82,7 +82,7 @@ export const SAMPLE_DESIRES = [
   },
   {
     id: "d2",
-    title: "Glow era — skin, body, presence",
+    title: "Glow era - skin, body, presence",
     category: "Beautymaxxing",
     intention: "I am the most beautiful, radiant version of myself. My body reflects my new identity.",
     startDate: "2026-06-12",
@@ -110,7 +110,7 @@ export const SAMPLE_DESIRES = [
   },
 ];
 
-// Legacy exports — kept for compatibility with existing components
+// Legacy exports - kept for compatibility with existing components
 export const AUDIOS = SAMPLE_TRACKS;
 export const PROOF_THREADS = SAMPLE_DESIRES;
 export const USER = {

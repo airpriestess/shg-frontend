@@ -80,7 +80,7 @@ select option:hover,select option:checked{background:#1c1828;}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── CTA SHAKE — aggressive vibrate like YouTube viral ads ──── */
+/* ── CTA SHAKE - aggressive vibrate like YouTube viral ads ──── */
 @keyframes ctaShake{
   0%,72%,100%{transform:translate3d(0,0,0) scale(1);}
   73%,75%,77%,79%,81%{transform:translate3d(-4px,0,0) scale(1.01);}
@@ -175,7 +175,7 @@ select option:hover,select option:checked{background:#1c1828;}
   .eyebrow-label{font-size:11px!important;}
 }
 
-/* ── TABLET 701–1024px ───────────────────────────────────────── */
+/* ── TABLET 701-1024px ───────────────────────────────────────── */
 @media(min-width:701px) and (max-width:1024px){
   .price-grid{
     grid-template-columns:1fr!important;
