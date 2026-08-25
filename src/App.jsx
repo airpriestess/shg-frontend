@@ -462,7 +462,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 padding:"8px 20px",borderRadius:50,border:"none",cursor:"pointer",
                 fontSize:12,fontWeight:400,letterSpacing:"0.06em",textTransform:"uppercase",
                 background:billing===b?"#fff":"transparent",
-                color:billing===b?"#2CB7A7":"#888888",
+                color:billing===b?"#2CB7A7":"#fdf0e8",
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
@@ -1397,7 +1397,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% auto", animation: "drift 8s ease infinite", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
+        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", paddingLeft: "14px", paddingRight: "14px", paddingBottom: 0, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden" }}>
           <div className="shimmer-bar" style={{ position:"relative", overflow:"hidden" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 14 : 12, fontWeight: 400, color: "#000", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
             Of course, obviously. ✦
@@ -1855,7 +1855,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     <div style={{ flex:1 }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
                         <div style={{ fontSize: isMobile?14:17, fontWeight:600, color:"#000", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
-                        <div style={{ fontSize: isMobile?12:14, color:"#555", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                        <div style={{ fontSize: isMobile?12:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
                       <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
                         <div style={{ width:`${row.pct}%`, height:"100%", background:LGb, borderRadius:3 }}/>
@@ -1865,7 +1865,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   );
                 })}
               </div>
-              <p style={{ fontSize:12, color:"#555", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+              <p style={{ fontSize:12, color:"#fdf0e8", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Binaural beats layered beneath every track sync both hemispheres into theta, where the reprogramming begins.
               </p>
             </div>
