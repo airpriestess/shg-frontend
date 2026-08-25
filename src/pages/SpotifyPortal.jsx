@@ -6,11 +6,10 @@ import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
-const MANIFESTATIONS_WORKER_URL = "https://shg-manifestations-worker.airpriestess.workers.dev";
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
 
-async function manifestationsApi(path, token, options = {}) {
-  const res = await fetch(`${MANIFESTATIONS_WORKER_URL}${path}`, {
+async function quizApi(path, token, options = {}) {
+  const res = await fetch(`${QUIZ_WORKER_URL}${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -555,18 +554,6 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     const trackCat = typeof trackObj === "object" ? trackObj?.cat : "";
     playStartRef.current = Date.now();
     playTrackRef.current = { title: trackTitle, cat: trackCat };
-    try {
-      const tracksRes = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/tracks");
-      const { tracks } = await tracksRes.json();
-      const match = tracks?.find(t => t.title === trackTitle);
-      if (match) {
-        await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-          body: JSON.stringify({ track_id: match.id }),
-        });
-      }
-    } catch (e) { console.error("Failed to log play:", e); }
     try {
       await fetch(`${QUIZ_WORKER_URL}/log-listen`, {
         method: "POST",
@@ -1415,12 +1402,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
     (async () => {
       let plays, playsErr;
       try {
-        const res = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error);
-        plays = data.plays;
+        const data = await quizApi("/listen-history", token);
+        plays = data.events;
       } catch (e) {
         playsErr = e;
       }
