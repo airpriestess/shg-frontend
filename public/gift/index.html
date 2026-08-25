@@ -51,96 +51,13 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* BANNER */
-.gift-banner {
-  width: 100%;
-  padding: 20px 24px;
-  background: linear-gradient(90deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
-  background-size: 300% 100%;
-  animation: lgDrift 4s ease-in-out infinite;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.gift-banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2.5s linear infinite;
-}
-.gift-banner span {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #000;
-  position: relative;
-  z-index: 1;
-}
 
-/* HEADER */
-.site-header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-}
-.gift-banner-bar {
-  width: 100%; padding: 14px 24px;
-  background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
-  background-size: 300% 100%;
-  animation: lgDrift 4s ease-in-out infinite;
-  text-align: center; position: relative; overflow: hidden;
-}
-.gift-banner-bar::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
-  background-size: 200% 100%; animation: shimmer 2.5s linear infinite;
-}
-.gift-banner-bar span {
-  font-size: 12px; font-weight: 500; letter-spacing: 0.2em;
-  text-transform: uppercase; color: #000; position: relative; z-index: 1;
-}
-nav {
-  background: rgba(0,0,0,0.95);
-  backdrop-filter: blur(16px);
-  padding: 0 24px; height: 58px;
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo img { height: 34px; width: auto; object-fit: contain; }
-.nav-logo span { font-size: 13px; font-weight: 300; color: var(--cream); letter-spacing: 0.02em; white-space: nowrap; }
-nav .nav-right { display: flex; align-items: center; gap: 16px; }
-nav .nav-link {
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--cream); text-decoration: none; opacity: 0.65; display: none;
-}
-@media(min-width:600px){ nav .nav-link { display: block; } }
-nav .nav-cta {
-  padding: 9px 20px; border-radius: 40px; background: var(--lg);
-  color: #000; font-size: 11px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  text-decoration: none; white-space: nowrap;
-}
-.hamburger {
-  display: none; background: none; border: none; cursor: pointer;
-  padding: 6px; flex-direction: column; gap: 5px;
-}
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); border-radius: 2px; }
-@media(max-width:599px){ .hamburger { display: flex; } nav .nav-cta { display: none; } }
-.mob-menu {
-  display: none; position: fixed; inset: 0; background: #000; z-index: 300;
-  flex-direction: column; padding: 28px 24px;
-}
-.mob-menu.open { display: flex; }
-.mob-menu-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-.mob-menu-close { background: none; border: none; color: var(--cream); font-size: 26px; cursor: pointer; }
-.mob-menu a { font-size: 24px; font-weight: 300; color: var(--cream); text-decoration: none; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.mob-menu .mob-cta { margin-top: 24px; padding: 16px; border-radius: 40px; background: var(--lg); color: #000; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; font-size: 13px; text-align: center; border: none; }
+
+
 
 /* HERO */
 .hero {
-  padding-top: 106px;
+  padding-top: 110px;
 }
 .hero-image {
   width: 100%; max-height: 56vw;
@@ -468,33 +385,125 @@ footer a {
     .two-col { grid-template-columns: 1fr; gap: 40px; }
   }
 
+
+/* ── NAV FIXED ── */
+#shg-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  width: 100%;
+}
+#shg-banner {
+  width: 100%;
+  padding: 11px 16px;
+  background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+  background-size: 300% 100%;
+  animation: lgDrift 4s ease-in-out infinite;
+  text-align: center;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #000;
+}
+#shg-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  background: rgba(0,0,0,0.97);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+#shg-nav .logo-wrap {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+#shg-nav .logo-wrap img { height: 32px; width: auto; }
+#shg-nav .logo-wrap .brand-name {
+  font-size: 13px; font-weight: 300; color: #fdf0e8;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+#shg-nav .nav-links {
+  display: flex; align-items: center; gap: 16px;
+}
+#shg-nav .nav-links a {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: #fdf0e8; text-decoration: none; opacity: 0.65;
+}
+#shg-nav .nav-cta {
+  padding: 9px 22px; border-radius: 40px;
+  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  color: #000; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap;
+}
+#shg-hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  flex-direction: column; gap: 5px; padding: 6px;
+}
+#shg-hamburger span { display: block; width: 22px; height: 2px; background: #fdf0e8; border-radius: 2px; }
+@media(max-width:599px){
+  #shg-hamburger { display: flex; }
+  #shg-nav .nav-links { display: none; }
+  #shg-nav .nav-cta { display: none; }
+}
+#mob-overlay {
+  display: none; position: fixed; inset: 0;
+  background: #000; z-index: 99999;
+  flex-direction: column; padding: 28px 24px;
+}
+#mob-overlay.open { display: flex; }
+#mob-overlay .mob-top {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;
+}
+#mob-overlay .mob-close {
+  background: none; border: none; color: #fdf0e8; font-size: 28px; cursor: pointer;
+}
+#mob-overlay a {
+  font-size: 26px; font-weight: 300; color: #fdf0e8;
+  text-decoration: none; padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+#mob-overlay .mob-join {
+  margin-top: 28px; padding: 18px;
+  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  border-radius: 40px; color: #000; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 13px; text-align: center;
+}
 </style>
 </head>
 <body>
 
-<div class="site-header">
-  <div class="gift-banner-bar">
-    <span>Free Gift. Self Hypnosis Goddess.</span>
-  </div>
-  <nav>
-    <a href="https://reshmaoracle.com" class="nav-logo">
+<div id="shg-header">
+  <div id="shg-banner">Free Gift. Self Hypnosis Goddess.</div>
+  <div id="shg-nav">
+    <a href="https://reshmaoracle.com" class="logo-wrap">
       <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess">
-      <span>Self Hypnosis Goddess</span>
+      <span class="brand-name">Self Hypnosis Goddess</span>
     </a>
-    <div class="nav-right">
-      <a href="/blog" class="nav-link">Journal</a>
+    <div class="nav-links">
+      <a href="/blog">Journal</a>
       <a href="https://reshmaoracle.com/?waitlist=1" class="nav-cta">Join waitlist</a>
     </div>
-    <button class="hamburger" onclick="document.getElementById('mobMenu').classList.add('open')" aria-label="Menu">
+    <button id="shg-hamburger" onclick="document.getElementById('mob-overlay').classList.add('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
-  </nav>
-</div>
-<div class="mob-menu" id="mobMenu">
-  <div class="mob-menu-top">
-    <img src="/logo_transparent_cropped.png" height="36" alt="SHG">
-    <button class="mob-menu-close" onclick="document.getElementById('mobMenu').classList.remove('open')">x</button>
   </div>
+</div>
+<div id="mob-overlay">
+  <div class="mob-top">
+    <img src="/logo_transparent_cropped.png" height="34" alt="SHG">
+    <button class="mob-close" onclick="document.getElementById('mob-overlay').classList.remove('open')">&#x2715;</button>
+  </div>
+  <a href="/blog">Journal</a>
+  <a href="https://reshmaoracle.com/?waitlist=1" class="mob-join">Join waitlist</a>
+</div>
+
+
   <a href="/blog">Journal</a>
   <a href="https://reshmaoracle.com/?waitlist=1" class="mob-cta">Join waitlist</a>
 </div>
@@ -654,6 +663,95 @@ footer a {
 @keyframes slideIn{to{opacity:1;transform:translateX(0)}}
 @keyframes ctaShake{0%,100%{transform:translateX(0)}15%{transform:translateX(-4px)}30%{transform:translateX(4px)}45%{transform:translateX(-3px)}60%{transform:translateX(3px)}75%{transform:translateX(-2px)}90%{transform:translateX(2px)}}
 @keyframes ctaGlow{from{box-shadow:0 0 14px 2px rgba(232,184,112,.5)}to{box-shadow:0 0 36px 10px rgba(44,183,167,.7)}}
+
+/* ── NAV FIXED ── */
+#shg-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  width: 100%;
+}
+#shg-banner {
+  width: 100%;
+  padding: 11px 16px;
+  background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+  background-size: 300% 100%;
+  animation: lgDrift 4s ease-in-out infinite;
+  text-align: center;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #000;
+}
+#shg-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  background: rgba(0,0,0,0.97);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+#shg-nav .logo-wrap {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+#shg-nav .logo-wrap img { height: 32px; width: auto; }
+#shg-nav .logo-wrap .brand-name {
+  font-size: 13px; font-weight: 300; color: #fdf0e8;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+#shg-nav .nav-links {
+  display: flex; align-items: center; gap: 16px;
+}
+#shg-nav .nav-links a {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: #fdf0e8; text-decoration: none; opacity: 0.65;
+}
+#shg-nav .nav-cta {
+  padding: 9px 22px; border-radius: 40px;
+  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  color: #000; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap;
+}
+#shg-hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  flex-direction: column; gap: 5px; padding: 6px;
+}
+#shg-hamburger span { display: block; width: 22px; height: 2px; background: #fdf0e8; border-radius: 2px; }
+@media(max-width:599px){
+  #shg-hamburger { display: flex; }
+  #shg-nav .nav-links { display: none; }
+  #shg-nav .nav-cta { display: none; }
+}
+#mob-overlay {
+  display: none; position: fixed; inset: 0;
+  background: #000; z-index: 99999;
+  flex-direction: column; padding: 28px 24px;
+}
+#mob-overlay.open { display: flex; }
+#mob-overlay .mob-top {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;
+}
+#mob-overlay .mob-close {
+  background: none; border: none; color: #fdf0e8; font-size: 28px; cursor: pointer;
+}
+#mob-overlay a {
+  font-size: 26px; font-weight: 300; color: #fdf0e8;
+  text-decoration: none; padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+#mob-overlay .mob-join {
+  margin-top: 28px; padding: 18px;
+  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  border-radius: 40px; color: #000; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 13px; text-align: center;
+}
 </style>
   <div style="max-width:600px;margin:0 auto;">
     <div style="text-align:center;font-size:clamp(20px,4vw,32px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:lgDrift 8s ease-in-out infinite;margin-bottom:52px;">What people notice</div>
