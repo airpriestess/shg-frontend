@@ -109,10 +109,19 @@ export default function Science({ onBack }) {
               {
                 icon:(
                   <svg viewBox="0 0 60 60" width={44} height={44} fill="none">
-                    <defs><linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="100%" stopColor="#E8B870"/></linearGradient></defs>
+                    <defs>
+                      <linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#F5E0A0"/><stop offset="100%" stopColor="#E8B870"/></linearGradient>
+                      <linearGradient id="lgStroke1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#F5E0A0"/>
+                        <stop offset="25%" stopColor="#E8B870"/>
+                        <stop offset="52%" stopColor="#BFA5D8"/>
+                        <stop offset="78%" stopColor="#2CB7A7"/>
+                        <stop offset="100%" stopColor="#167A6B"/>
+                      </linearGradient>
+                    </defs>
                     {/* Brain wave */}
                     <path d="M4,30 C12,14 20,46 28,30 C36,14 44,46 52,30 C54,26 56,28 58,30" fill="none" stroke="url(#c1)" strokeWidth="2.5" strokeLinecap="round"/>
-                    <circle cx="30" cy="30" r="22" fill="none" stroke="#E8B870" strokeWidth="1" opacity="0.2"/>
+                    <circle cx="30" cy="30" r="22" fill="none" stroke="url(#lgStroke1)" strokeWidth="1" opacity="0.2"/>
                   </svg>
                 ),
                 title:"Theta State",
@@ -121,11 +130,20 @@ export default function Science({ onBack }) {
               {
                 icon:(
                   <svg viewBox="0 0 60 60" width={44} height={44} fill="none">
-                    <defs><linearGradient id="c2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#E8B870"/><stop offset="100%" stopColor="#BFA5D8"/></linearGradient></defs>
+                    <defs>
+                      <linearGradient id="c2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#E8B870"/><stop offset="100%" stopColor="#BFA5D8"/></linearGradient>
+                      <linearGradient id="lgStroke2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#F5E0A0"/>
+                        <stop offset="25%" stopColor="#E8B870"/>
+                        <stop offset="52%" stopColor="#BFA5D8"/>
+                        <stop offset="78%" stopColor="#2CB7A7"/>
+                        <stop offset="100%" stopColor="#167A6B"/>
+                      </linearGradient>
+                    </defs>
                     {/* Heart */}
                     <path d="M30,48 C10,34 6,20 10,12 C14,4 22,4 26,10 C28,14 30,16 30,16 C30,16 32,14 34,10 C38,4 46,4 50,12 C54,20 50,34 30,48 Z" fill="none" stroke="url(#c2)" strokeWidth="2.5" strokeLinejoin="round"/>
                     {/* pulse */}
-                    <path d="M16,28 C20,28 22,20 26,36 C28,24 30,30 32,26 C34,22 36,32 40,28" fill="none" stroke="#BFA5D8" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
+                    <path d="M16,28 C20,28 22,20 26,36 C28,24 30,30 32,26 C34,22 36,32 40,28" fill="none" stroke="url(#lgStroke2)" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
                   </svg>
                 ),
                 title:"Heart Coherence",
@@ -134,12 +152,21 @@ export default function Science({ onBack }) {
               {
                 icon:(
                   <svg viewBox="0 0 60 60" width={44} height={44} fill="none">
-                    <defs><linearGradient id="c3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#2CB7A7"/></linearGradient></defs>
+                    <defs>
+                      <linearGradient id="c3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#BFA5D8"/><stop offset="100%" stopColor="#2CB7A7"/></linearGradient>
+                      <linearGradient id="lgStroke3" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#F5E0A0"/>
+                        <stop offset="25%" stopColor="#E8B870"/>
+                        <stop offset="52%" stopColor="#BFA5D8"/>
+                        <stop offset="78%" stopColor="#2CB7A7"/>
+                        <stop offset="100%" stopColor="#167A6B"/>
+                      </linearGradient>
+                    </defs>
                     {/* L/R arrows for EMDR */}
                     <circle cx="18" cy="30" r="12" fill="none" stroke="url(#c3)" strokeWidth="2"/>
                     <circle cx="42" cy="30" r="12" fill="none" stroke="url(#c3)" strokeWidth="2"/>
-                    <path d="M30,22 L38,30 L30,38" fill="none" stroke="#2CB7A7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M30,22 L22,30 L30,38" fill="none" stroke="#BFA5D8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M30,22 L38,30 L30,38" fill="none" stroke="url(#lgStroke3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M30,22 L22,30 L30,38" fill="none" stroke="url(#lgStroke3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 ),
                 title:"Bilateral Sync",
@@ -267,7 +294,7 @@ export default function Science({ onBack }) {
               {WAVES.map((w,i)=>(
                 <div key={i} style={{flex:1,textAlign:"center"}}>
                   <div style={{fontSize:11,color:w.active?TEAL:DIM,fontFamily:"'Jost',sans-serif",fontWeight:w.active?600:400,letterSpacing:"0.04em"}}>{w.s}</div>
-                  <div style={{fontSize:9,color:DIM,fontFamily:"monospace",marginTop:2}}>{w.hz}</div>
+                  <div style={{fontSize:9,color:DIM,fontFamily:"'Jost', sans-serif",marginTop:2}}>{w.hz}</div>
                 </div>
               ))}
             </div>
@@ -280,7 +307,7 @@ export default function Science({ onBack }) {
               <Box key={i} c={w.c} glow={w.active}>
                 <div style={{display:"flex",alignItems:"baseline",gap:8,marginBottom:10}}>
                   <span style={{fontSize:18,fontWeight:500,color:w.c,fontFamily:"'Jost',sans-serif"}}>{w.s}</span>
-                  <span style={{fontSize:10,color:DIM,fontFamily:"monospace"}}>{w.hz}</span>
+                  <span style={{fontSize:10,color:DIM,fontFamily:"'Jost', sans-serif"}}>{w.hz}</span>
                 </div>
                 {/* Mini waveform SVG */}
                 <svg viewBox="0 0 120 24" width="100%" height={24} style={{marginBottom:10,display:"block"}}>
@@ -478,14 +505,21 @@ export default function Science({ onBack }) {
                   <stop offset="0%" stopColor="#E8B870"/>
                   <stop offset="100%" stopColor="#BFA5D8"/>
                 </linearGradient>
+                <linearGradient id="lgStroke4" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#F5E0A0"/>
+                  <stop offset="25%" stopColor="#E8B870"/>
+                  <stop offset="52%" stopColor="#BFA5D8"/>
+                  <stop offset="78%" stopColor="#2CB7A7"/>
+                  <stop offset="100%" stopColor="#167A6B"/>
+                </linearGradient>
               </defs>
               {/* Left hemisphere */}
-              <ellipse cx="90" cy="60" rx="70" ry="50" fill="none" stroke="#E8B870" strokeWidth="2" opacity="0.8"/>
-              <text x="90" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#E8B870">LEFT</text>
+              <ellipse cx="90" cy="60" rx="70" ry="50" fill="none" stroke="url(#lgStroke4)" strokeWidth="2" opacity="0.8"/>
+              <text x="90" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="url(#lgStroke4)">LEFT</text>
               <text x="90" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#888">logic · language</text>
               {/* Right hemisphere */}
-              <ellipse cx="270" cy="60" rx="70" ry="50" fill="none" stroke="#BFA5D8" strokeWidth="2" opacity="0.8"/>
-              <text x="270" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="#BFA5D8">RIGHT</text>
+              <ellipse cx="270" cy="60" rx="70" ry="50" fill="none" stroke="url(#lgStroke4)" strokeWidth="2" opacity="0.8"/>
+              <text x="270" y="55" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="10" fill="url(#lgStroke4)">RIGHT</text>
               <text x="270" y="70" textAnchor="middle" fontFamily="Jost,sans-serif" fontSize="9" fill="#888">intuition · emotion</text>
               {/* Connecting arc */}
               <path d="M160,40 C180,20 180,20 200,40" fill="none" stroke="url(#elg)" strokeWidth="2" strokeDasharray="4 3"/>
