@@ -375,22 +375,38 @@
   }
 
   /* GLOWING DOWNLOAD BOX */
+  @keyframes lgBorderDrift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes lgGlow {
+    0%, 100% { box-shadow: 0 0 40px rgba(245,224,160,0.5), 0 0 80px rgba(191,165,216,0.3), 0 0 120px rgba(44,183,167,0.2); }
+    50%       { box-shadow: 0 0 80px rgba(245,224,160,0.8), 0 0 140px rgba(191,165,216,0.5), 0 0 200px rgba(44,183,167,0.35); }
+  }
   .download-section {
-    background: rgba(232,184,112,0.06);
-    border: 1.5px solid rgba(232,184,112,0.4);
-    border-radius: 20px;
-    padding: 40px 32px;
+    display: none;
+    position: relative;
     margin-bottom: 40px;
     text-align: center;
-    animation: giftPulse 3s ease-in-out infinite;
+    border-radius: 22px;
+    padding: 3px;
+    background: linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
+    background-size: 300% 300%;
+    animation: lgBorderDrift 4s ease-in-out infinite, lgGlow 3s ease-in-out infinite;
+  }
+  .download-section-inner {
+    background: #000;
+    border-radius: 20px;
+    padding: 48px 36px;
     position: relative;
     overflow: hidden;
   }
-  .download-section::before {
+  .download-section-inner::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(245,224,160,0.05) 0%, rgba(191,165,216,0.05) 52%, rgba(44,183,167,0.05) 100%);
+    background: linear-gradient(135deg, rgba(245,224,160,0.08) 0%, rgba(191,165,216,0.06) 52%, rgba(44,183,167,0.08) 100%);
     pointer-events: none;
   }
   .download-section.visible { display: block; }
@@ -465,6 +481,7 @@
 
   <!-- DOWNLOAD REVEALED -->
   <div class="download-section" id="downloadSection">
+  <div class="download-section-inner">
     <div class="download-check">✓</div>
     <h2>Your audio is ready</h2>
     <p>Put headphones in. Find somewhere quiet. Press play or download to your device.</p>
@@ -473,6 +490,7 @@
     </a>
     <br>
     <p class="listen-note">File downloads to your phone or device. Listen with stereo headphones for full effect.</p>
+  </div>
   </div>
 
   <div class="divider"></div>
