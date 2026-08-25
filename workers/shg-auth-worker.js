@@ -112,6 +112,10 @@ const PASSTHROUGH_PREFIXES = [
 ];
 
 function isPassthrough(pathname) {
+  // Pass through homepage and all static/SPA routes
+  if (pathname === "/" || pathname === "") return true;
+  // Pass through static assets
+  if (pathname.includes(".")) return true;
   return PASSTHROUGH_PREFIXES.some(
     (p) => pathname === p || pathname === p + "/" || pathname.startsWith(p + "/")
   );
