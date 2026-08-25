@@ -25,7 +25,7 @@
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    position: fixed; top: 55px; left: 0; right: 0; z-index: 100;
     background: rgba(0,0,0,0.85);
     backdrop-filter: blur(12px);
     padding: 0 24px;
@@ -44,7 +44,7 @@
 
   /* HERO */
   .hero {
-    padding-top: 52px;
+    padding-top: 107px;
     min-height: 100vh;
     display: flex; flex-direction: column;
   }
@@ -203,16 +203,8 @@
     letter-spacing: 0.06em;
   }
 
-  /* DOWNLOAD SECTION (hidden by default) */
-  .download-section {
-    display: none;
-    background: rgba(253,240,232,0.05);
-    border: 1px solid rgba(44,183,167,0.3);
-    border-radius: 20px;
-    padding: 40px 32px;
-    margin-bottom: 40px;
-    text-align: center;
-  }
+  /* DOWNLOAD SECTION */
+  .download-section { display: none; }
   .download-section.visible { display: block; }
   .download-check {
     width: 56px; height: 56px;
@@ -330,9 +322,79 @@
     .gate-form, .download-section { padding: 28px 20px; }
     .content { padding: 48px 20px 64px; }
   }
+
+  /* DRIFT ANIMATION */
+  @keyframes giftDrift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes giftPulse {
+    0%, 100% { box-shadow: 0 0 24px rgba(232,184,112,0.5), 0 0 60px rgba(191,165,216,0.25); }
+    50%       { box-shadow: 0 0 48px rgba(232,184,112,0.8), 0 0 100px rgba(44,183,167,0.4); }
+  }
+  @keyframes shimmerText {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* FREE GIFT BANNER */
+  .gift-banner {
+    width: 100%;
+    padding: 18px 24px;
+    background: linear-gradient(90deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
+    background-size: 300% 100%;
+    animation: giftDrift 4s ease-in-out infinite;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .gift-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmerText 2.5s linear infinite;
+  }
+  .gift-banner span {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #000;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* GLOWING DOWNLOAD BOX */
+  .download-section {
+    background: rgba(232,184,112,0.06);
+    border: 1.5px solid rgba(232,184,112,0.4);
+    border-radius: 20px;
+    padding: 40px 32px;
+    margin-bottom: 40px;
+    text-align: center;
+    animation: giftPulse 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  .download-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(245,224,160,0.05) 0%, rgba(191,165,216,0.05) 52%, rgba(44,183,167,0.05) 100%);
+    pointer-events: none;
+  }
+  .download-section.visible { display: block; }
+
 </style>
 </head>
 <body>
+
+<div class="gift-banner">
+  <span>✦ &nbsp; Free Gift — Self Hypnosis Goddess &nbsp; ✦</span>
+</div>
 
 <nav>
   <a href="https://reshmaoracle.com">
