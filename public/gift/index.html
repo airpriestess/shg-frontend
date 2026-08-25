@@ -439,6 +439,8 @@
 </footer>
 
 <script>
+function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());}
+
 async function handleSubmit(e) {
   e.preventDefault();
   const firstName = document.getElementById('firstName').value.trim();

@@ -840,6 +840,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 </div>
 
 <script>
+function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());}
+
 // SCROLL REVEAL
 (function(){
   var els = document.querySelectorAll('.reveal');
@@ -883,7 +885,7 @@ function makeSubscribe(prefix, source){
   if(!btn) return;
   btn.addEventListener('click', async function(){
     var email = emailEl.value.trim();
-    if(!email||!email.includes('@')){ msg.textContent='Please enter a valid email.'; return; }
+    if(!isValidEmail(email)){ msg.textContent='Please enter a valid email.'; return; }
     btn.disabled=true; btn.textContent='...';
     try{
       var res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe',{
