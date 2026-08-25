@@ -149,15 +149,35 @@
   }
 
   /* FORM */
-  .gate-form {
-    background: rgba(253,240,232,0.05);
-    border: 1px solid rgba(253,240,232,0.12);
-    border-radius: 20px;
-    padding: 40px 32px;
+  @keyframes formGlow {
+    0%, 100% { box-shadow: 0 0 40px rgba(245,224,160,0.4), 0 0 80px rgba(191,165,216,0.2); }
+    50%       { box-shadow: 0 0 80px rgba(245,224,160,0.7), 0 0 140px rgba(44,183,167,0.35); }
+  }
+  @keyframes btnShake {
+    0%,100% { transform: translateX(0); }
+    15%     { transform: translateX(-6px); }
+    30%     { transform: translateX(6px); }
+    45%     { transform: translateX(-4px); }
+    60%     { transform: translateX(4px); }
+    75%     { transform: translateX(-2px); }
+    90%     { transform: translateX(2px); }
+  }
+  .gate-form-wrap {
+    position: relative;
     margin-bottom: 40px;
+    border-radius: 24px;
+    padding: 3px;
+    background: linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
+    background-size: 300% 300%;
+    animation: lgBorderDrift 4s ease-in-out infinite, formGlow 3s ease-in-out infinite;
+  }
+  .gate-form {
+    background: #060606;
+    border-radius: 22px;
+    padding: 44px 36px;
   }
   .gate-form h2 {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--cream);
     margin-bottom: 8px;
@@ -194,21 +214,22 @@
   }
   .btn-primary {
     width: 100%;
-    padding: 18px 32px;
-    background: var(--lg);
+    padding: 20px 32px;
+    background: linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
+    background-size: 300% 300%;
     border: none;
     border-radius: 40px;
     color: #000;
     font-family: 'Jost', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-    margin-top: 8px;
+    animation: lgBorderDrift 3s ease-in-out infinite, btnShake 4s ease-in-out 2s infinite;
+    margin-top: 12px;
   }
-  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
   .btn-primary:active { transform: translateY(0); }
   .form-note {
     font-size: 11px;
@@ -310,7 +331,18 @@
     font-size: 16px;
     color: var(--cream);
     opacity: 0.9;
-    line-height: 1.7;
+    line-height: 1.75;
+  }
+  .step-text strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 6px;
+    background: var(--lg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   /* DIVIDER */
@@ -481,6 +513,7 @@
   </div>
 
   <!-- EMAIL GATE FORM -->
+  <div class="gate-form-wrap">
   <div class="gate-form" id="gateForm">
     <h2>Get the free audio</h2>
     <p>Enter your details to download instantly.</p>
@@ -493,6 +526,8 @@
       <p class="form-note">No spam. You'll join the SHG list and can unsubscribe any time.</p>
     </form>
   </div>
+
+  </div><!-- /gate-form-wrap -->
 
   <!-- DOWNLOAD REVEALED -->
   <div class="download-section" id="downloadSection">
