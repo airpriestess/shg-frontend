@@ -65,6 +65,7 @@ export function usePushNotifications(userId, token) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to save subscription");
 
+
       setSubscribed(true);
     } catch (err) {
       console.error("Push subscription failed:", err);

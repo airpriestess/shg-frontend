@@ -61,7 +61,7 @@ const dominant = (log,days) => {
    · Light/dark theme toggle
    ═══════════════════════════════════════════════════════════════════════ */
 
-// ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
+// ── AUDIO URLS ───────────────────────────────────────────────────────────────
 const AUDIO_URLS = {
   // Real tracks — titles match D1 database exactly
   "Spoilt Goddess":                                     "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",

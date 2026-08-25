@@ -18,6 +18,7 @@ import Shop from "./pages/Shop.jsx";
 import LuckyGirl from "./pages/LuckyGirl.jsx";
 import RichGirl from "./pages/RichGirl.jsx";
 import Blocks from "./pages/Blocks.jsx";
+import CarouselStudio from "./pages/CarouselStudio.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LandingProofWall from "./components/LandingProofWall.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
@@ -267,8 +268,8 @@ export default function App() {
         <Route path="/luckygirl" element={<LuckyGirl/>} />
         <Route path="/richgirl" element={<RichGirl/>} />
         <Route path="/guide/richgirl" element={<RichGirl/>} />
-        <Route path="/blocks" element={<><script dangerouslySetInnerHTML={{__html:"window.location.replace('/blocks')"}} /></>} />
-
+        <Route path="/blocks" element={<Blocks/>} />
+        <Route path="/carousels" element={<CarouselStudio/>} />
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
@@ -1223,7 +1224,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   const PLAYLIST = [
     { title: "I Am The Luckiest Woman In This Universe",     sub: "Luckygirlmaxxing",  freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/LUCKIEST%20GIRL%20UNIVERSE%20HYPNOSIS%2012MINS%2014.08.2026.WAV" },
     { title: "Drop The Tension",                             sub: "Peacemaxxing",      freq: "Hypnosis · Melodic House",                  url: "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV" },
-    { title: "Spoilt Goddess",                                       sub: "Goddessmaxxing",    freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" },
+    { title: "Spoilt Goddess",                               sub: "Goddessmaxxing",    freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" },
     { title: "100 Years of Beauty Sleep",                    sub: "Beautymaxxing",     freq: "Hypnosis · Sleep · 432hz",                  url: "https://shg-audio-worker.airpriestess.workers.dev/100%20YEARS%20OF%20BEAUTY%20SLEEP%20HYPNOSIS%206MIN%2020.04.WAV" },
     { title: "Lifetime of Luck",                             sub: "Luckygirlmaxxing",  freq: "Hypnosis · Melodic House",                  url: "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV" },
     { title: "Monica Face",                                  sub: "Facemaxxing",       freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/MONICA%20FACE%20HYPNOSIS%209MIN%2006.05.2026.WAV" },

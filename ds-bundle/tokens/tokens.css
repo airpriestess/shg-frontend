@@ -1,0 +1,64 @@
+/* ─────────────────────────────────────────────
+   SHG Design System — Brand Tokens
+   Source of truth: SHG_App_Brain.md
+   ───────────────────────────────────────────── */
+
+:root {
+
+  /* ── App colours ── */
+  --color-bg:           #000000;
+  --color-surface:      #06040c;
+  --color-border:       #1c1828;
+  --color-rose-gold:    #B76E79;
+  --color-peach:        #d4a090;
+  --color-peach-light:  #e8c0a8;
+  --color-cream:        #f2ece4;
+  --color-muted:        #786860;
+
+  /* ── Typography ── */
+  --font-ui:            'Jost', system-ui, sans-serif;
+  --font-display:       'Cormorant Garamond', Georgia, serif;
+
+  /* ── Carousel rule (SHG_App_Brain.md §Design decisions) ──
+     Backgrounds are PEACH / ROSE GOLD with BLACK text.
+     NOT dark backgrounds. NOT white text.
+     Each category gets its own unique peach/rose shade.       */
+  --carousel-text:      #000000;
+  --carousel-cta-text:  #f2ece4;  /* CTA slide uses dark bg + cream text */
+
+  /* ── Category slide backgrounds ── */
+  --slide-lovemaxxing:         #F2C8C0;   /* blush rose           */
+  --slide-beautymaxxing:       #F0D0C8;   /* peachy blush         */
+  --slide-facemaxxing:         #F0C0C8;   /* rose blush           */
+  --slide-erosmaxxing:         #E8B8C8;   /* dusty pink           */
+  --slide-stylemaxxing:        #E8D0D8;   /* soft blush           */
+  --slide-moneymaxxing:        #E8D8B0;   /* champagne gold       */
+  --slide-businessmaxxing:     #E0D0B0;   /* warm gold            */
+  --slide-desiresmaxxing:      #E8C0B8;   /* warm coral           */
+  --slide-bodymaxxing:         #E0D0C0;   /* warm beige-peach     */
+  --slide-skinnymaxxing:       #EAD8D0;   /* lightest peach       */
+  --slide-wellnessmaxxing:     #D8E0D8;   /* sage-tinted peach    */
+  --slide-healmaxxing:         #D4E8E4;   /* aqua-tinted peach    */
+  --slide-selfmaxxing:         #D8C8E0;   /* dusty lilac-rose     */
+  --slide-sovereignmaxxing:    #D0B8B0;   /* mocha rose           */
+  --slide-confidencemaxxing:   #D8B8B0;   /* deeper dusty rose    */
+  --slide-lifemaxxing:         #E0C8C0;   /* mid rose-peach       */
+  --slide-singlemaxxing:       #E4D4C4;   /* warm cream           */
+  --slide-friendmaxxing:       #D8E8E0;   /* mint-peach           */
+  --slide-intuitionmaxxing:    #D4C8E8;   /* soft lavender        */
+  --slide-studymaxxing:        #D8DCF0;   /* periwinkle-peach     */
+  --slide-peacemaxxing:        #D8E4F0;   /* icy peach-blue       */
+  --slide-sleepmaxxing:        #C8CCE8;   /* lavender-dusk        */
+  --slide-dnamaxxing:          #CCE4E8;   /* aqua ice             */
+  --slide-luckygirlmaxxing:    linear-gradient(135deg, #F0D8C0, #E0A8A0); /* peach → rose */
+
+  /* ── CTA slide (slide 10) — dark with cream ── */
+  --slide-cta-bg:       #06040c;
+  --slide-cta-overlay:  linear-gradient(180deg, #1c0a14 0%, #06040c 100%);
+
+  /* ── Slide dimensions ── */
+  --slide-preview-w:    420px;
+  --slide-preview-h:    560px;
+  --export-w:           1080px;
+  --export-h:           1440px;
+}
