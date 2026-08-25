@@ -1,9 +1,9 @@
 /* ── REAL PROOF UPLOAD MODAL ─────────────────────────────────────────────────
    Handles:
-   - Photo upload → Supabase Storage → saves URL to proof_entries table
-   - Voice recording → MediaRecorder → Supabase Storage → saves to proof_entries
+   - Photo upload → shg-proof-worker → saves URL to proof_entries table
+   - Voice recording → MediaRecorder → shg-proof-worker → saves to proof_entries
    - Sign / Symptom / Synchronicity → saves text to proof_entries
-   All writes go to Supabase. Falls back gracefully if not authed.
+   All writes go through shg-proof-worker. Falls back gracefully if not authed.
 ────────────────────────────────────────────────────────────────────────────── */
 import { useState, useRef, useEffect } from "react";
 import { T } from "../design/tokens.js";

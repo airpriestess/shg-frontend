@@ -53,7 +53,7 @@ const dominant = (log,days) => {
 
 /* ═══════════════════════════════════════════════════════════════════════
    SHG PORTAL, Full Spotify-style with:
-   · Real Supabase audio playback
+   · Real audio playback via Cloudflare Workers
    · Proof threads linked to tracks + undo/edit
    · Favorites section
    · Profile avatar → stats/settings panel
@@ -747,7 +747,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ flex:1,overflowY:"auto",padding:"8px 0" }}>
           {[
             { icon:<Ico.Book c={C.mu}/>, label:"Listening Guide", action:()=>{setShowGuide(true);setProfileOpen(false);} },
-            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile, connect to Supabase auth") },
+            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile coming soon") },
             { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
             { icon:<Ico.Shop c={C.mu}/>, label:"Shop", action:()=>{setTab("shop");setProfileOpen(false);} },
             { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Coming soon: daily push reminders.\n\nThis requires the app to be installed to your home screen (iPhone: Share → Add to Home Screen) so your browser can send notifications even when SHG isn't open. We'll prompt you to enable this once it's live.") },
