@@ -181,7 +181,7 @@ function AppShell({ userTier, tab, setTab, onSignOut, onUpgrade, currentAudio, p
             <div style={{ height: 60, background: "rgba(0,0,0,0.97)", borderTop: "1px solid #2CB7A733", display: "flex", alignItems: "center", padding: "0 20px", gap: 16, flexShrink: 0 }}>
               <WaveForm playing color={T.champagne} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#2CB7A7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
+                <div style={{ fontSize: 14, fontWeight: 700, background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentAudio.title}</div>
                 <div style={{ fontSize: 12, color: "#ddd0c8" }}>{(currentAudio.audioFormats || []).join(' · ')}{currentAudio.frequency ? ` · ${currentAudio.frequency}` : ''}</div>
               </div>
               <button onClick={onStopPlay} style={{ width: 38, height: 38, borderRadius: "50%", background: `linear-gradient(135deg, ${T.blood}, ${T.rose})`, border: "none", color: "#fff", fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>⏸</button>
@@ -280,7 +280,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 padding:"8px 20px",borderRadius:50,border:"none",cursor:"pointer",
                 fontSize:12,fontWeight:400,letterSpacing:"0.06em",textTransform:"uppercase",
                 background:billing===b?"#fff":"transparent",
-                color:billing===b?"#2CB7A7":"#888888",
+                color:billing===b?"#000":"#888888",
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
@@ -288,7 +288,7 @@ function CheckoutModal({ onClose, onDemo }) {
               </button>
             ))}
           </div>
-          {isAnnual && <div style={{marginTop:10,fontSize:12,color:"#167A6B",background:"rgba(44,183,167,0.1)",borderRadius:8,padding:"6px 12px",lineHeight:1.5}}>⚠ Annual plans are paid upfront and <strong>cannot be cancelled</strong> once purchased.</div>}
+          {isAnnual && <div style={{marginTop:10,fontSize:12,color:"#f2ece4",background:"rgba(44,183,167,0.1)",borderRadius:8,padding:"6px 12px",lineHeight:1.5}}>⚠ Annual plans are paid upfront and <strong>cannot be cancelled</strong> once purchased.</div>}
         </div>
 
         <div style={{padding:"20px 24px 28px",display:"flex",flexDirection:"column",gap:12,overflow:"visible"}}>
@@ -301,15 +301,15 @@ function CheckoutModal({ onClose, onDemo }) {
                 <div style={{fontSize:11,color:"#8a7268",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
-                <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
-                {isAnnual && <div style={{fontSize:10,color:"#2CB7A7"}}>£11.92/mo · billed once</div>}
+                <div style={{fontSize:26,fontWeight:400,color:"#f2ece4",lineHeight:1}}>{isAnnual?TIERS.audio.annual:TIERS.audio.monthly}</div>
+                <div style={{fontSize:11,color:"#f2ece4"}}>{isAnnual?"/year":"/month"}</div>
+                {isAnnual && <div style={{fontSize:10,color:"#f2ece4"}}>£11.92/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full audio vault — all desire categories","New tracks every week","Loop player · sleep timer · background play","Sleep subliminals · binaural · Reiki frequencies","No ads. Ever."].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#000000",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
+                  <span style={{position:"absolute",left:0,color:"#f2ece4"}}>·</span>{f}
                 </div>
               ))}
             </div>
@@ -323,19 +323,19 @@ function CheckoutModal({ onClose, onDemo }) {
             <div style={{position:"absolute",top:-16,left:"50%",transform:"translateX(-50%)",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",borderRadius:20,padding:"5px 18px",fontSize:10,fontWeight:500,color:"#000",letterSpacing:"0.12em",whiteSpace:"nowrap",zIndex:10}}>✦ MOST POPULAR</div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10,marginTop:18}}>
               <div>
-                <div style={{fontSize:16,fontWeight:400,color:"#2CB7A7",marginBottom:2}}>Goddess Tier</div>
-                <div style={{fontSize:11,color:"#2CB7A7",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
+                <div style={{fontSize:16,fontWeight:400,color:"#f2ece4",marginBottom:2}}>Goddess Tier</div>
+                <div style={{fontSize:11,color:"#f2ece4",fontWeight:400,letterSpacing:"0.06em"}}>Everything + ProofOS ✦</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
-                <div style={{fontSize:11,color:"#2CB7A7"}}>{isAnnual?"/year":"/month"}</div>
+                <div style={{fontSize:26,fontWeight:400,color:"#f2ece4",lineHeight:1}}>{isAnnual?TIERS.goddess.annual:TIERS.goddess.monthly}</div>
+                <div style={{fontSize:11,color:"#f2ece4"}}>{isAnnual?"/year":"/month"}</div>
                 {isAnnual && <div style={{fontSize:10,color:"#c08090"}}>£26.42/mo · billed once</div>}
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Everything in Audio Tier","ProofOS manifestation tracker ✦","Log intentions · link audios · capture every sign","Early access drops — 48hrs before everyone","Monthly ritual audio included"].map((f,i)=>(
-                <div key={i} style={{fontSize:12,color:f.includes("✦")?"#2CB7A7":"#167A6B",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?700:400}}>
-                  <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
+                <div key={i} style={{fontSize:12,color:"#f2ece4",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5,fontWeight:f.includes("✦")?700:400}}>
+                  <span style={{position:"absolute",left:0,color:"#f2ece4"}}>·</span>{f}
                 </div>
               ))}
             </div>
@@ -348,25 +348,25 @@ function CheckoutModal({ onClose, onDemo }) {
           <div style={{background:"#000",border:"1.5px solid #E8B87066",borderRadius:16,padding:"18px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
-                <div style={{fontSize:16,fontWeight:400,color:"#F5E0A0",marginBottom:2}}>Lifetime Access</div>
-                <div style={{fontSize:11,color:"#2CB7A7",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
+                <div style={{fontSize:16,fontWeight:400,background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent",marginBottom:2}}>Lifetime Access</div>
+                <div style={{fontSize:11,color:"#f2ece4",fontWeight:400,letterSpacing:"0.06em"}}>Once. Forever.</div>
               </div>
               <div style={{textAlign:"right"}}>
-                <div style={{fontSize:26,fontWeight:400,color:"#F5E0A0",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
-                <div style={{fontSize:11,color:"#2CB7A7"}}>one time</div>
+                <div style={{fontSize:26,fontWeight:400,background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent",lineHeight:1}}>{TIERS.lifetime.monthly}</div>
+                <div style={{fontSize:11,color:"#f2ece4"}}>one time</div>
               </div>
             </div>
             <div style={{marginBottom:12}}>
               {["Full vault + ProofOS for life","Every future audio ever released","Every future feature · No subscription","1,000 spots only"].map((f,i)=>(
                 <div key={i} style={{fontSize:12,color:"#e8e0d8",marginBottom:5,paddingLeft:12,position:"relative",lineHeight:1.5}}>
-                  <span style={{position:"absolute",left:0,color:"#2CB7A7"}}>·</span>{f}
+                  <span style={{position:"absolute",left:0,color:"#f2ece4"}}>·</span>{f}
                 </div>
               ))}
             </div>
             <button onClick={()=>goStripe("lifetime")} className="cta-shake" style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",boxShadow:"0 4px 20px rgba(44,183,167,0.25)",display:"inline-flex",alignItems:"center",justifyContent:"center",gap:7}}>{TIERS.lifetime.cta()}<ArrowIcon/></button>
           </div>
 
-          <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
+          <button onClick={onDemo} style={{background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent",border:"none",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first — no signup needed</button>
           <div style={{textAlign:"center",fontSize:11,color:"#a0909a",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
         </div>
       </div>

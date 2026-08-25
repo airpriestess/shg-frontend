@@ -71,7 +71,7 @@ export default function ListeningGuide() {
 
         {/* Header */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, color: RG, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Self Hypnosis Goddess</div>
+          <div style={{ fontSize: 11, color: "#f2ece4", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14 }}>Self Hypnosis Goddess</div>
           <h1 className="wm" style={{ fontSize: "clamp(36px,5vw,58px)", background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", lineHeight: 1.15, marginBottom: 16 }}>
             Listening Guide
           </h1>
@@ -89,11 +89,11 @@ export default function ListeningGuide() {
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {section.content.map((item, ii) => (
-                <div key={ii} style={{ borderLeft: `2px solid ${ii === 0 ? "#2CB7A7" : "#1c1828"}`, paddingLeft: 24, paddingBottom: 28, marginLeft: 8, transition: "border-color 0.2s" }}
-                  onMouseEnter={e => e.currentTarget.style.borderLeftColor = "#2CB7A7"}
-                  onMouseLeave={e => e.currentTarget.style.borderLeftColor = ii === 0 ? "#2CB7A7" : "#1c1828"}
+                <div key={ii} style={{ borderLeft: ii === 0 ? "2px solid rgba(255,255,255,0.8)" : "2px solid #1c1828", paddingLeft: 24, paddingBottom: 28, marginLeft: 8, transition: "border-color 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.borderLeftColor = "rgba(255,255,255,0.8)"}
+                  onMouseLeave={e => e.currentTarget.style.borderLeftColor = ii === 0 ? "rgba(255,255,255,0.8)" : "#1c1828"}
                 >
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#2CB7A7", marginLeft: -29, marginBottom: 12, position: "relative", zIndex: 1 }} />
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", marginLeft: -29, marginBottom: 12, position: "relative", zIndex: 1 }} />
                   <div style={{ fontSize: 16, fontWeight: 700, color: T.textPrimary, marginBottom: 10, lineHeight: 1.3 }}>{item.title}</div>
                   <div style={{ fontSize: 15, color: T.textMuted, lineHeight: 1.85 }}>{item.body}</div>
                 </div>
@@ -103,7 +103,7 @@ export default function ListeningGuide() {
         ))}
 
         {/* Footer note */}
-        <div style={{ background: "#000000", border: "1px solid #2CB7A733", borderRadius: 16, padding: "28px 32px", textAlign: "center" }}>
+        <div style={{ background: "#000000", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 16, padding: "28px 32px", textAlign: "center" }}>
           <div className="wm" style={{ fontSize: 28, background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 12 }}>
             This guide is always here.
           </div>

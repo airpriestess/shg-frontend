@@ -286,7 +286,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {linked.map(t => {
-              const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#2CB7A7" : T.textMuted;
+              const statusColor = t.status === "Manifested" ? "#4a9a5a" : t.status === "Evidence Appearing" ? "#f2ece4" : T.textMuted;
               return (
                 <div key={t.id} style={{ background: "#060410", border: "1px solid #1e1c0a", borderRadius: 10, padding: "12px 14px" }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: T.textPrimary, marginBottom: 6, lineHeight: 1.35 }}>{t.intentionTitle}</div>
@@ -300,7 +300,7 @@ function SelectedPanel({ audio: a, userTier, onCreateThread, onPlay, isPlaying, 
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 4 }}>
                       <span style={{ fontSize: 10, padding: "2px 7px", background: "#0a0a0a", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textFaint }}>{t.mood_before}</span>
                       <span style={{ fontSize: 10, color: T.textFaint }}>→</span>
-                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#2CB7A718", border: "1px solid #2CB7A733", borderRadius: 20, color: "#2CB7A7" }}>{t.mood_after}</span>
+                      <span style={{ fontSize: 10, padding: "2px 7px", background: "#2CB7A718", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 20, color: "#f2ece4" }}>{t.mood_after}</span>
                     </div>
                   )}
                 </div>

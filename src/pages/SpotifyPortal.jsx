@@ -1351,7 +1351,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     <div>
       <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
-        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:"#f2ece4",background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
         <div ref={catRef} style={{ position:"relative" }}>
@@ -1360,8 +1360,8 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             onClick={openDropdown}
             style={{
               width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
-              background:"#000", border:`1px solid ${R}66`, borderRadius:12,
-              padding:"14px 16px", fontSize:16, fontWeight:400, color:R,
+              background:"#000", border:"1px solid rgba(255,255,255,0.18)", borderRadius:12,
+              padding:"14px 16px", fontSize:16, fontWeight:400, color:"#f2ece4",
               fontFamily:"'Jost',sans-serif", cursor:"pointer"
             }}
           >
@@ -1377,7 +1377,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               left: dropRect.left,
               width: dropRect.width,
               zIndex:9999,
-              background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
+              background:"#0a0a0a", border:"1px solid rgba(255,255,255,0.18)", borderRadius:12,
               maxHeight:320, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
             }}>
               {catOptions.map(c=>{
@@ -1388,9 +1388,9 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
                     style={{
                       padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
-                      color:active?catColor:"#f2ece4", background:active?`${catColor}1c`:"#0a0a0a",
+                      color:"#f2ece4", background:active?`${catColor}1c`:"#0a0a0a",
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
-                      borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?`3px solid ${catColor}`:"3px solid transparent"
+                      borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?"2px solid rgba(255,255,255,0.8)":"2px solid transparent"
                     }}
                     onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${catColor}14`; }}
                     onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "#0a0a0a"; }}
@@ -1398,7 +1398,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                     {(c!=="All"&&c!=="Liked") ? (
                       <div style={{ width:10, height:10, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 5px ${catColor}99` }}/>
                     ) : c==="Liked" ? (
-                      <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:R, fontSize:13 }}>♡</div>
+                      <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:"#f2ece4", fontSize:13 }}>♡</div>
                     ) : (
                       <div style={{ width:10, height:10, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0,#BFA5D8,#2CB7A7)", flexShrink:0 }}/>
                     )}
@@ -1414,7 +1414,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       {/* FORMAT FILTER — Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
-          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?R:"none",border:`1px solid ${libFormat===fm?R:C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
+          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
         ))}
       </div>
       {shown.length===0 && cat==="Liked" && (
@@ -1431,22 +1431,22 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
               {!isPreview&&cur?.id===t.id&&playing&&(
                 <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
-                  <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:"#2CB7A7",borderRadius:1 }}/>)}</div>
+                  <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:"#f2ece4",borderRadius:1 }}/>)}</div>
                 </div>
               )}
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:16,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?R:(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+              <div style={{ fontSize:16,fontWeight:400,color:(!isPreview&&cur?.id===t.id)?"#f2ece4":(isDark?"#f2ece4":"#1a1008"),overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:R }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:isDark?"#e8e0d8":"#6a5030" }}>{t.tier==="goddess"&&<span style={{ color:"#f2ece4" }}>✦ </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
             {!isPreview&&(
               <>
                 <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:8,lineHeight:0 }}>
                   <Ico.Heart on={liked.has(t.id)}/>
                 </button>
-                <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:30,height:30,borderRadius:"50%",background:cur?.id===t.id?R:C.bg3,border:"none",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+                <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:30,height:30,borderRadius:"50%",background:cur?.id===t.id?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":C.bg3,border:"none",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
                   {cur?.id===t.id&&playing?<Ico.Pause dark={cur?.id===t.id}/>:<Ico.Play dark={cur?.id===t.id}/>}
                 </button>
               </>
@@ -1471,7 +1471,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#2CB7A7", marginBottom:4 }}>£33<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:22, color:"#f2ece4", marginBottom:4 }}>£33<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan — no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
@@ -1505,7 +1505,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
   if (isPreview) return (
     <div style={{ padding:"40px 20px",textAlign:"center",background:PAGE_BG,minHeight:"100%" }}>
-      <div style={{ fontSize:36,marginBottom:16,color:"#2CB7A7" }}>✦</div>
+      <div style={{ fontSize:36,marginBottom:16,color:"#f2ece4" }}>✦</div>
       <div style={{ fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:28,fontWeight:400,color:PC.text,marginBottom:10 }}>ProofOS</div>
       <div style={{ fontSize:16,color:PC.mu,lineHeight:1.8,marginBottom:24,maxWidth:300,margin:"0 auto 24px",fontWeight:400 }}>
         Your manifestation tracker for life. Log desires, capture every sign, build your proof wall. Included in Goddess Tier.
@@ -1601,8 +1601,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         {[["bucket",`Bucket List (${bucketItems.length})`],["threads","Active"],["wall",`Proof Wall (${manifested.length})`]].map(([k,l])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
             background:view===k?"linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 52%,#2CB7A7 100%)":"none",
-            border:`1px solid ${view===k?"transparent":"#2CB7A7"}`,
-            color:view===k?"#000":"#2CB7A7", fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
+            border:`1px solid ${view===k?"transparent":"rgba(255,255,255,0.15)"}`,
+            color:view===k?"#000":"#f2ece4", fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>
         ))}
       </div>
 
@@ -1610,7 +1610,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         /* ═══ BUCKET LIST — capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
-            <div style={{ fontSize:14,color:"#2CB7A7",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
+            <div style={{ fontSize:14,color:"#f2ece4",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}>✦ What's the difference?</div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
               <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever — no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
@@ -1636,7 +1636,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
-            <div style={{ fontSize:13, color:"#2CB7A7", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
+            <div style={{ fontSize:13, color:"#f2ece4", background:`${R}14`, border:`1px solid ${R}33`, borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
               ✦ You've got {activeThreads.filter(t=>!t.done).length} active intentions. We recommend focusing on 5–10 at once — more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
