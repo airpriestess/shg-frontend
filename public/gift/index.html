@@ -439,19 +439,28 @@
 </footer>
 
 <script>
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
   const firstName = document.getElementById('firstName').value.trim();
   const email = document.getElementById('emailInput').value.trim();
+  const btn = e.target.querySelector('button[type="submit"]');
 
-  // Store locally
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
   try {
     localStorage.setItem('shg_lead_name', firstName);
     localStorage.setItem('shg_lead_email', email);
   } catch(err) {}
 
-  // Fire to Beacons / your email provider via fetch if you add endpoint later
-  // For now: reveal download immediately
+  try {
+    await fetch('https://shg-auth-worker.airpriestess.workers.dev/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ first_name: firstName, email: email, source: 'gift_freebie' })
+    });
+  } catch(err) {}
+
   document.getElementById('gateForm').style.display = 'none';
   document.getElementById('downloadSection').classList.add('visible');
   document.getElementById('downloadSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
