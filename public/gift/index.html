@@ -333,17 +333,7 @@
     opacity: 0.9;
     line-height: 1.75;
   }
-  .step-text strong {
-    display: block;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--cream);
-    margin-bottom: 6px;
-    background: var(--lg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+
 
   /* DIVIDER */
   .divider {
@@ -457,6 +447,52 @@
     pointer-events: none;
   }
   .download-section.visible { display: block; }
+
+
+  .installing-section, .results-section {
+    margin-bottom: 48px;
+    text-align: left;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.5;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .affirmation-quote {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--cream);
+    border-left: 2px solid;
+    border-image: var(--lg) 1;
+    padding-left: 24px;
+    margin: 0;
+    font-style: normal;
+    letter-spacing: 0.01em;
+  }
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .result-item {
+    padding: 18px 20px;
+    border: 1px solid rgba(253,240,232,0.1);
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--cream);
+    opacity: 0.8;
+    line-height: 1.6;
+    background: rgba(253,240,232,0.03);
+  }
+  @media(max-width:600px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .affirmation-quote { font-size: 17px; }
+  }
 
 </style>
 </head>
@@ -572,6 +608,30 @@
     <br>
     <p class="listen-note">File downloads to your phone or device. Listen with headphones for full effect.</p>
   </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <div class="divider"></div>
+
+  <div class="installing-section">
+    <div class="section-label">What you are installing</div>
+    <blockquote class="affirmation-quote">
+      "I attract opportunities constantly. The right people find me. The right doors open for me. I am always in the right place at the right time. Opportunities are drawn to me effortlessly — I don't chase them, they arrive."
+    </blockquote>
+  </div>
+
+  <div class="results-section">
+    <div class="section-label">What people notice</div>
+    <div class="results-grid">
+      <div class="result-item">Opportunities appearing that were always there — suddenly visible</div>
+      <div class="result-item">The right person reaching out at exactly the right moment</div>
+      <div class="result-item">Doors opening without forcing them</div>
+      <div class="result-item">A quiet sense that things are working out — without needing to control how</div>
+      <div class="result-item">Conversations that lead somewhere, without trying to make them</div>
+      <div class="result-item">Feeling like the version of you that things just go right for</div>
+    </div>
   </div>
 
   <div class="divider"></div>
