@@ -269,7 +269,7 @@ function CheckoutModal({ onClose, onDemo }) {
 
         {/* HEADER */}
         <div style={{background:"linear-gradient(135deg,rgba(191,165,216,0.08),rgba(44,183,167,0.08))",padding:"28px 24px 20px",borderRadius:"24px 24px 0 0"}}>
-          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,color:"#2CB7A7",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
+          <div style={{fontFamily:"'Jost',sans-serif",fontSize:10,background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",WebkitTextFillColor:"transparent",color:"transparent",letterSpacing:"0.28em",textTransform:"uppercase",fontWeight:400,marginBottom:8}}>Start your shift today</div>
           <h3 style={{fontFamily:"'Jost',sans-serif",fontSize:"clamp(22px,4vw,30px)",color:"#1a1218",fontWeight:400,lineHeight:1.2,marginBottom:4,textAlign:"center"}}>Choose your membership.</h3>
           <p style={{fontSize:13,color:"#2a2a2a",lineHeight:1.5,marginBottom:16}}>Full access from day one. No downloads needed.</p>
 
@@ -1407,7 +1407,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
 
           {/* Method boxes */}
           <div style={{ marginBottom:40 }}>
-            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>What's inside every track</div>
+            <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#f2ece4", marginBottom:20, textAlign:"center", fontFamily:"'Jost',sans-serif" }}>What's inside every track</div>
             <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap:14 }}>
               {[
                 { label:"Binaural Beats", desc:"Two tones, one per ear. Your brain creates the difference between them and entrains to theta within minutes. No effort. No practice. Just press play.", color:"#F5E0A0", icon:"🎧" },
@@ -1426,7 +1426,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
           {/* Purple callout */}
           <div style={{ maxWidth:640, margin:"0 auto 0", padding: isMobile?"20px":"28px 36px", background:"rgba(191,165,216,0.06)", border:"1px solid rgba(191,165,216,0.2)", borderRadius:16, textAlign:"left" }}>
             <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, margin:"0 0 14px", fontFamily:"'Jost',sans-serif" }}>You have spent years trying to think your way into a different life. Affirmations you said into the mirror. Books you read. Habits you started and dropped. Therapy that helped but didn't change the thing underneath.</p>
-            <p style={{ fontSize: isMobile?16:19, color:"#BFA5D8", lineHeight:1.85, margin:0, fontFamily:"'Jost',sans-serif" }}>The reason none of it stuck is not a character flaw. You were trying to rewrite the program from the wrong level. The beliefs that run your life live in the subconscious — and the subconscious only opens in one state. Theta. That's the whole solution. I built an audio system that gets you there every single time you press play.</p>
+            <p style={{ fontSize: isMobile?16:19, color:"#f2ece4", lineHeight:1.85, margin:0, fontFamily:"'Jost',sans-serif" }}>The reason none of it stuck is not a character flaw. You were trying to rewrite the program from the wrong level. The beliefs that run your life live in the subconscious — and the subconscious only opens in one state. Theta. That's the whole solution. I built an audio system that gets you there every single time you press play.</p>
           </div>
 
         </div>
@@ -1761,7 +1761,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ))}
           </div>
           <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"8px 18px", background:"rgba(44,183,167,0.1)", border:"1px solid rgba(44,183,167,0.3)", borderRadius:20 }}>
-            <div style={{ width:8, height:8, borderRadius:"50%", background:"#2CB7A7" }}/>
+            <div style={{ width:8, height:8, borderRadius:"50%", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" }}/>
             <span style={{ fontSize:12, color:"#ddd0c8" }}>200 — Courage — is the line. Below it, you're contracting. Above it, you're expanding.</span>
           </div>
         </div>
@@ -1775,7 +1775,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
         <div style={{ maxWidth: 1080, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 44 }}>
             <div style={{ fontSize: isMobile?"clamp(36px,10vw,48px)":"clamp(48px,6vw,68px)", color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:20 }}>The Library.</div>
-            <div style={{ fontSize: 14, fontWeight: 500, color: "#2CB7A7", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
+            <div style={{ fontSize: 14, fontWeight: 500, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 14, fontFamily:"'Jost',sans-serif" }}>What's Inside</div>
             <h2 style={{ fontSize: "clamp(28px,4.5vw,44px)", color: "#000000", fontWeight: 400, marginBottom: 12, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em" }}>Whatever it is, it's covered.</h2>
             <p style={{ fontSize: 19, color: "#2a2a2a", maxWidth: 640, margin: "0 auto", whiteSpace: isMobile ? "normal" : "nowrap", fontFamily:"'Jost',sans-serif" }}>A growing library of categories. Real tracks for the exact thing that's actually keeping you up.</p>
           </div>
@@ -1939,7 +1939,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* INSTAGRAM */}
       <div style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:900, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
+          <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#f2ece4", fontFamily:"'Jost',sans-serif", fontWeight:400, marginBottom:14 }}>Follow along</div>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize:isMobile?"clamp(28px,7vw,40px)":"clamp(36px,4vw,50px)", color:"#f2ece4", marginBottom:32, fontWeight:400, textAlign:"center" }}>
             @selfhypnosisgoddess
           </h2>
@@ -1962,7 +1962,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
             ))}
           </div>
           <a href="https://www.instagram.com/selfhypnosisgoddess/" target="_blank" rel="noopener noreferrer"
-            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(42,168,154,0.4)", borderRadius:30, color:"#2CB7A7", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
+            style={{ display:"inline-block", padding:"12px 28px", border:"1px solid rgba(255,255,255,0.2)", borderRadius:30, color:"#f2ece4", fontSize:13, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", textDecoration:"none" }}>
             Follow on Instagram
           </a>
         </div>
@@ -2057,9 +2057,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                     value={waitlistEmail}
                     onChange={e=>{setWaitlistEmail(e.target.value); if(waitlistStatus==="error") setWaitlistStatus("idle");}}
                     placeholder="your@email.com"
-                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"#2CB7A7":"#2a2a2a"}`, borderRadius:12, color:"#e8e0d8", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
+                    style={{ width:"100%", padding:"14px 16px", background:"#0a0a0a", border:`1.5px solid ${waitlistStatus==="error"?"rgba(255,255,255,0.4)":"#2a2a2a"}`, borderRadius:12, color:"#e8e0d8", fontSize:15, fontFamily:"'Jost',sans-serif", outline:"none", marginBottom:12 }}
                   />
-                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#2CB7A7", marginBottom:12 }}>Please enter a valid email.</div>}
+                  {waitlistStatus === "error" && <div style={{ fontSize:12, color:"#f2ece4", marginBottom:12 }}>Please enter a valid email.</div>}
                   <button type="submit" disabled={waitlistStatus==="saving"} style={{ width:"100%", padding:"14px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border:"none", borderRadius:12, color:"#000", fontSize:14, fontWeight:400, cursor:waitlistStatus==="saving"?"default":"pointer", fontFamily:"'Jost',sans-serif", opacity:waitlistStatus==="saving"?0.6:1 }}>
                     {waitlistStatus === "saving" ? "Joining..." : "Join Waitlist"}
                   </button>
