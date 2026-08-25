@@ -120,7 +120,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 40px;display
 .mob-overlay-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
 .mob-nav-item{font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#fdf0e8;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:-.01em;}
 .mob-close{background:none;border:none;color:#fdf0e8;font-size:28px;cursor:pointer;padding:8px;}
-@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta{display:none;}}
+@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta{display:none;}.nav-link-hide{display:none;}}
+#mobMenuBlocks.open{display:flex!important;}
 
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=6" />
@@ -139,7 +140,25 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 40px;display
 
 <nav>
   <a href="https://reshmaoracle.com" style="display:flex;align-items:center;text-decoration:none;"><img src="https://reshmaoracle.com/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style="height:40px;width:auto;"></a>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <a href="/blog" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fdf0e8;text-decoration:none;" class="nav-link-hide">Journal</a>
+    <a href="/guides" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fdf0e8;text-decoration:none;" class="nav-link-hide">Guides</a>
+    <a href="https://reshmaoracle.com/?waitlist=1" style="padding:10px 24px;border-radius:40px;background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);color:#000;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-family:'Jost',sans-serif;text-decoration:none;" class="nav-link-hide">Join the waitlist</a>
+    <button class="mob-menu-btn" onclick="document.getElementById('mobMenuBlocks').classList.add('open')" aria-label="Menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#fdf0e8"/><rect y="7" width="22" height="2" rx="1" fill="#fdf0e8"/><rect y="14" width="22" height="2" rx="1" fill="#fdf0e8"/></svg>
+    </button>
+  </div>
 </nav>
+<div style="display:none;position:fixed;inset:0;background:#000;z-index:500;flex-direction:column;padding:32px 28px;" id="mobMenuBlocks">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;">
+    <img src="https://reshmaoracle.com/logo_transparent_cropped.png" height="36" style="object-fit:contain;"/>
+    <button onclick="document.getElementById('mobMenuBlocks').classList.remove('open')" style="background:none;border:none;color:#fdf0e8;font-size:28px;cursor:pointer;padding:8px;">✕</button>
+  </div>
+  <a href="https://reshmaoracle.com" class="mob-nav-item">Home</a>
+  <a href="/blog" class="mob-nav-item">Journal</a>
+  <a href="/guides" class="mob-nav-item">Guides</a>
+  <a href="https://reshmaoracle.com/?waitlist=1" class="mob-nav-item">Join the waitlist</a>
+</div>
 
 <!-- EMAIL -->
 <div class="screen active" id="s-email">
