@@ -1695,14 +1695,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
                   { hz:"174hz", name:"Foundation",     assoc:"Pain relief · safety · grounding",             pct:18,  color:"#2CB7A7" },
                 ].map((row,i)=>(
                   <div key={i} style={{ display:"flex", alignItems:"center", gap: isMobile?10:16 }}>
-                    <div style={{ fontSize: isMobile?11:13, fontWeight:600, color:row.color, width: isMobile?44:64, flexShrink:0, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>{row.hz}</div>
+                    <div style={{ fontSize: isMobile?11:13, fontWeight:600, color:"#0a0a0a", width: isMobile?44:64, flexShrink:0, fontFamily:"'Jost',sans-serif" }}>{row.hz}</div>
                     <div style={{ flex:1 }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
                         <div style={{ fontSize: isMobile?12:14, fontWeight:500, color:"#0a0a0a", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{row.name}</div>
                         <div style={{ fontSize: isMobile?11:12, color:"#6a6a6a", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
                       <div style={{ height:6, background:"#f0f0f0", borderRadius:3, overflow:"hidden" }}>
-                        <div style={{ width:`${row.pct}%`, height:"100%", background:row.color, borderRadius:3 }}/>
+                        <div style={{ width:`${row.pct}%`, height:"100%", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", borderRadius:3 }}/>
                       </div>
                     </div>
                   </div>
@@ -1720,14 +1720,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal }) {
       {/* HAWKINS SCALE — measurement tool shown in the dashboard */}
       <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
-          <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
+          <div style={{ fontSize: 12, color: "#f2ece4", fontWeight: 400, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 16 }}>Your emotional state, measured</div>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(32px,4vw,46px)", color:"#f2ece4", fontWeight:400, marginBottom:22, lineHeight:1.15, textAlign:"center" }}>
             The Hawkins Scale.
           </h2>
           <p style={{ fontSize: isMobile?16:19, color:"#e8e0d8", lineHeight:1.85, maxWidth:600, margin:"0 auto 12px", fontFamily:"'Jost',sans-serif" }}>
             Your emotional state is not a feeling — it's a frequency. And your heart broadcasts it. Every intention you log in ProofOS gets tagged against this 17-level scale. As you listen, your baseline climbs. Your heart rhythm shifts. Your brain follows. Watch the evidence build — not just in what arrives, but in where you are when it does.
           </p>
-          <p style={{ fontSize: isMobile?14:16, color:"#2CB7A7", lineHeight:1.7, maxWidth:520, margin:"0 auto 32px", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
+          <p style={{ fontSize: isMobile?14:16, color:"#f2ece4", lineHeight:1.7, maxWidth:520, margin:"0 auto 32px", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
             SHG doesn't just install beliefs. It shifts the state you broadcast from.
           </p>
           <div style={{ display:"flex", flexDirection:"column", gap:4, maxWidth:520, margin:"0 auto 32px" }}>
