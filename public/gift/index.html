@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Free Gift — Self Hypnosis Goddess</title>
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #E8B870;
+      --champ: #F5E0A0;
+      --lav: #BFA5D8;
+      --teal: #2CB7A7;
+      --deep: #167A6B;
+      --cream: #fdf0e8;
+      --black: #000;
+      --ombre: linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: #000;
+      font-family: 'Jost', sans-serif;
+      color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 60px;
+      min-height: 100vh;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      text-decoration: none;
+    }
+    .logo img { width: 36px; height: 36px; object-fit: contain; }
+    .logo-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: #0a0a0a;
+      border: 1px solid rgba(232,184,112,0.2);
+      border-radius: 24px;
+      padding: clamp(32px, 6vw, 48px) clamp(24px, 5vw, 40px);
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--cream);
+      opacity: 0.75;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 18px;
+      background: #141414;
+      border: 1px solid rgba(232,184,112,0.2);
+      border-radius: 12px;
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input::placeholder { color: rgba(253,240,232,0.35); }
+    input:focus { border-color: var(--gold); }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--ombre);
+      border: none;
+      border-radius: 12px;
+      color: #000;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .error-msg {
+      font-size: 13px;
+      color: #ff6b6b;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* Download section — hidden until form submitted */
+    .download-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .success-icon {
+      font-size: 40px;
+      margin-bottom: 4px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--ombre);
+      border-radius: 50px;
+      color: #000;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .download-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .fine-print {
+      font-size: 11px;
+      color: var(--cream);
+      opacity: 0.45;
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    .animate-in { animation: fadeIn 0.5s ease forwards; }
+  </style>
+</head>
+<body>
+
+  <a href="/" class="logo">
+    <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" />
+    <span class="logo-text">Self Hypnosis Goddess</span>
+  </a>
+
+  <div class="card">
+
+    <!-- FORM STATE -->
+    <div id="form-state">
+      <div class="tag">✦ Free Gift</div>
+      <h1>Your free hypnosis track is waiting</h1>
+      <p class="subtitle">Enter your details below and we'll unlock it instantly. No spam, no strings.</p>
+
+      <form id="gift-form" novalidate>
+        <div class="form-group">
+          <input type="text" id="first_name" name="first_name" placeholder="First name" autocomplete="given-name" />
+          <input type="email" id="email" name="email" placeholder="Email address" required autocomplete="email" />
+        </div>
+        <button type="submit" class="btn" id="submit-btn">Send me my free track →</button>
+        <div class="error-msg" id="error-msg"></div>
+      </form>
+
+      <p class="fine-print">By entering your email you agree to receive occasional emails from Self Hypnosis Goddess. Unsubscribe anytime.</p>
+    </div>
+
+    <!-- DOWNLOAD STATE -->
+    <div id="download-state" class="download-section">
+      <div class="success-icon">✦</div>
+      <div class="tag">It's yours</div>
+      <h1>Enjoy your free track</h1>
+      <p class="subtitle">Press play, put your headphones in, and let it do its thing.</p>
+      <a href="https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV"
+         class="download-btn" id="download-link" target="_blank" rel="noopener">
+        ▶ Play / Download
+      </a>
+      <p class="fine-print">Check your inbox too — we'll send this link to your email so you never lose it.</p>
+    </div>
+
+  </div>
+
+  <script>
+    const WORKER = 'https://shg-auth-worker.airpriestess.workers.dev';
+
+    const form       = document.getElementById('gift-form');
+    const submitBtn  = document.getElementById('submit-btn');
+    const errorMsg   = document.getElementById('error-msg');
+    const formState  = document.getElementById('form-state');
+    const dlState    = document.getElementById('download-state');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email      = document.getElementById('email').value.trim();
+      const first_name = document.getElementById('first_name').value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Please enter a valid email address.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'One moment…';
+      hideError();
+
+      try {
+        const res = await fetch(`${WORKER}/subscribe`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ first_name, email, source: 'gift_freebie' }),
+        });
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+
+        // Reveal download
+        formState.style.display = 'none';
+        dlState.style.display   = 'flex';
+        dlState.classList.add('animate-in');
+
+      } catch (err) {
+        showError(err.message || 'Something went wrong. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send me my free track →';
+      }
+    });
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.style.display = 'block';
+    }
+    function hideError() {
+      errorMsg.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
