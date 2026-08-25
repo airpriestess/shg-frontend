@@ -484,38 +484,36 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const [threads, setThreads] = useState(isPreview ? INIT_THREADS : []);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
   useEffect(() => {
-    if (isPreview || !userId) return;
+    if (isPreview || !userId || !token) return;
     let cancelled = false;
     (async () => {
-      let data, error;
       try {
-        const res = await manifestationsApi("/manifestations", token);
-        data = res.manifestations;
+        const data = await quizApi("/threads", token, { method: "GET" });
+        if (cancelled) return;
+        const mapped = (data.threads || []).map(t => ({
+          id: t.id,
+          desire: t.desire,
+          category: t.category || "",
+          track: t.track || "",
+          oldBelief: t.old_belief || "",
+          feelBefore: t.feel_before || "",
+          feelAfter: t.feel_after || "",
+          days: t.created_at ? Math.floor((Date.now() - new Date(t.created_at)) / 86400000) : 0,
+          done: !!t.done,
+          isBucket: !!t.is_bucket,
+          createdAt: t.created_at,
+          manifestedAt: t.manifested_at || null,
+          signs: (t.signs || []).map(s => ({ _sid: s.id, text: s.text || "", date: s.date || "", img: s.img || null, audio: s.audio || null })),
+        }));
+        setThreads(mapped);
       } catch (err) {
-        error = err;
+        console.error("Failed to load threads:", err);
+      } finally {
+        if (!cancelled) setThreadsLoaded(true);
       }
-      if (cancelled) return;
-      if (error) { console.error("Failed to load manifestations:", error); setThreadsLoaded(true); return; }
-      const mapped = (data||[]).map(m => ({
-        id: m.id,
-        desire: m.desire,
-        category: m.category || "",
-        days: m.created_at ? Math.floor((Date.now()-new Date(m.created_at))/86400000) : 0,
-        done: m.status === "manifested",
-        isBucket: m.status === "in_progress" && !m.category,
-        track: null,
-        signs: [],
-        oldBelief: m.notes || "",
-        feelBefore: "",
-        feelAfter: "",
-        createdAt: m.created_at,
-        manifestedAt: m.manifested_at,
-      }));
-      setThreads(mapped);
-      setThreadsLoaded(true);
     })();
     return () => { cancelled = true; };
-  }, [userId, isPreview]);
+  }, [userId, isPreview, token]);
   const [theme, setTheme]     = useState(forceTheme || "light");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
@@ -1912,9 +1910,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
     if (!isPreview && userId) {
       try {
-        await manifestationsApi(`/manifestations/${id}`, token, {
+        await quizApi(`/threads/${id}`, token, {
           method: "PATCH",
-          body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString(), notes: after || undefined }),
+          body: JSON.stringify({ done: true, manifested_at: new Date().toISOString(), feel_after: after || undefined }),
         });
       } catch (err) { console.error("Failed to mark manifested:", err); }
     }
@@ -1923,9 +1921,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
     if (!isPreview && userId) {
       try {
-        await manifestationsApi(`/manifestations/${id}`, token, {
+        await quizApi(`/threads/${id}`, token, {
           method: "PATCH",
-          body: JSON.stringify({ status: "in_progress", manifested_at: null }),
+          body: JSON.stringify({ done: false, manifested_at: null }),
         });
       } catch (err) { console.error("Failed to undo manifested:", err); }
     }
@@ -1936,23 +1934,44 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setConfirmDeleteId(null);
     if (!isPreview && userId) {
       try {
-        await manifestationsApi(`/manifestations/${id}`, token, { method: "DELETE" });
+        await quizApi(`/threads/${id}`, token, { method: "DELETE" });
       } catch (err) { console.error("Failed to delete desire:", err); }
     }
   };
-  const addSign = (id) => {
+  const addSign = async (id) => {
     const text = (signInput[id]||"").trim();
     if(!text) return;
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
-    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date,_sid:Date.now()+Math.random()}]}:t));
+    const tempSid = Date.now()+Math.random();
+    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date,_sid:tempSid}]}:t));
     setSignInput({...signInput,[id]:""});
+    if (!isPreview && userId) {
+      try {
+        const res = await quizApi(`/threads/${id}/signs`, token, {
+          method: "POST",
+          body: JSON.stringify({ text, date }),
+        });
+        // Replace temp _sid with real DB id
+        if (res.id) setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:(t.signs||[]).map(s=>s._sid===tempSid?{...s,_sid:res.id}:s)}:t));
+      } catch (err) { console.error("Failed to save sign:", err); }
+    }
   };
   const addMediaSign = (id, media) => {
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
     setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date,_sid:Date.now()+Math.random()}]}:t));
+    if (!isPreview && userId) {
+      quizApi(`/threads/${id}/signs`, token, {
+        method: "POST",
+        body: JSON.stringify({ text: media.text || null, date, img: media.img || null, audio: media.audio || null }),
+      }).catch(err => console.error("Failed to save media sign:", err));
+    }
   };
   const deleteSign = (threadId, signKey) => {
     setThreads(ts=>ts.map(t=>t.id===threadId?{...t,signs:(t.signs||[]).filter(s=>(s._sid??s) !== signKey)}:t));
+    if (!isPreview && userId && typeof signKey === "number") {
+      quizApi(`/threads/${threadId}/signs/${signKey}`, token, { method: "DELETE" })
+        .catch(err => console.error("Failed to delete sign:", err));
+    }
   };
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
@@ -2058,11 +2077,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 setBucketText("");
                 if (!isPreview && userId) {
                   try {
-                    const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                    await quizApi("/threads", token, {
                       method: "POST",
-                      body: JSON.stringify({ desire: bucketText }),
+                      body: JSON.stringify({ id: localId, desire: bucketText, is_bucket: true }),
                     });
-                    setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
                   } catch (err) {
                     console.error("Failed to save bucket item:", err);
                   }
@@ -2127,9 +2145,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                         setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t));
                         if (!isPreview && userId) {
                           try {
-                            await manifestationsApi(`/manifestations/${item.id}`, token, {
+                            await quizApi(`/threads/${item.id}`, token, {
                               method: "PATCH",
-                              body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString() }),
+                              body: JSON.stringify({ done: true, manifested_at: new Date().toISOString() }),
                             });
                           } catch (err) { console.error("Failed to mark manifested:", err); }
                         }
@@ -2317,11 +2335,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
             if (!isPreview && userId) {
               try {
-                const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                await quizApi("/threads", token, {
                   method: "POST",
-                  body: JSON.stringify({ desire: newD, category: newCat, notes: newBelief }),
+                  body: JSON.stringify({ id: localId, desire: newD, category: newCat, track: linkedTrack, old_belief: newBelief, feel_before: before }),
                 });
-                setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
               } catch (err) {
                 console.error("Failed to save desire:", err);
               }
