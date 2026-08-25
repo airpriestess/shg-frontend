@@ -12,10 +12,10 @@ const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
 const RG = "#2CB7A7";
 
 const TYPE_LABEL = {
-  "Photo Proof":     { icon: "📷", color: "#2CB7A7" },
-  "Voice Proof":     { icon: "🎙", color: "#2CB7A7" },
-  "Sign":            { icon: "◈",  color: "#2CB7A7" },
-  "Synchronicity":   { icon: "✦",  color: "#2CB7A7" },
+  "Photo Proof":     { icon: "📷", color: "#f2ece4" },
+  "Voice Proof":     { icon: "🎙", color: "#f2ece4" },
+  "Sign":            { icon: "◈",  color: "#f2ece4" },
+  "Synchronicity":   { icon: "✦",  color: "#f2ece4" },
   "Final Manifestation": { icon: "★", color: "#4a9a5a" },
 };
 
@@ -45,7 +45,7 @@ function VoicePlayer({ url }) {
 
   return (
     <div style={{ display:"flex", alignItems:"center", gap:10, background:"#0c0b08", border:`1px solid ${RG}33`, borderRadius:10, padding:"10px 14px" }}>
-      <button onClick={toggle} style={{ width:34, height:34, borderRadius:"50%", background: playing ? G : "transparent", border:`1.5px solid ${RG}66`, color: playing ? "#000" : RG, fontSize:12, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+      <button onClick={toggle} style={{ width:34, height:34, borderRadius:"50%", background: playing ? G : "transparent", border:`1.5px solid ${RG}66`, color: playing ? "#000" : "#f2ece4", fontSize:12, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
         {playing ? "⏸" : "▶"}
       </button>
       {/* Waveform bars */}
@@ -136,9 +136,9 @@ export default function ProofWall({ onAddProof }) {
         {/* Stats row */}
         <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10, marginBottom:24 }} className="grid-4">
           {[
-            { v: entries.length, l:"Total proof", c: RG },
-            { v: photos.length,  l:"Photo proof", c: RG },
-            { v: voices.length,  l:"Voice notes", c:"#2CB7A7" },
+            { v: entries.length, l:"Total proof", c: "#f2ece4" },
+            { v: photos.length,  l:"Photo proof", c: "#f2ece4" },
+            { v: voices.length,  l:"Voice notes", c:"#f2ece4" },
             { v: entries.filter(e=>e.type==="Final Manifestation").length, l:"Manifested", c:"#4a9a5a" },
           ].map((s,i) => (
             <div key={i} style={{ background:"#0c0b08", border:"1px solid #242014", borderRadius:12, padding:"14px 12px", textAlign:"center" }}>
@@ -151,19 +151,19 @@ export default function ProofWall({ onAddProof }) {
         {/* Photo grid — masonry style */}
         {photos.length > 0 && (
           <div style={{ marginBottom:32 }}>
-            <div style={{ fontSize:11, color:RG, fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Photo Proof</div>
+            <div style={{ fontSize:11, color:"#f2ece4", fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Photo Proof</div>
             <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:8 }} className="grid-3">
               {photos.map(entry => (
                 <div key={entry.id} onClick={() => setLightbox({ url:entry.photo_url, caption:entry.caption })}
                   style={{ background:"#0c0b08", border:"1px solid #242014", borderRadius:12, overflow:"hidden", cursor:"pointer", transition:"border-color 0.15s" }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = "#2CB7A766"}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"}
                   onMouseLeave={e => e.currentTarget.style.borderColor = "#242014"}
                 >
                   <img src={entry.photo_url} alt={entry.caption || "Proof"} style={{ width:"100%", height:140, objectFit:"cover", display:"block" }}
                     onError={e => { e.target.style.display="none"; }} />
                   <div style={{ padding:"10px 12px" }}>
                     {entry.caption && <div style={{ fontSize:13, color:T.textPrimary, fontWeight:600, marginBottom:3, lineHeight:1.35 }}>{entry.caption}</div>}
-                    {entry.audio_title && <div style={{ fontSize:11, color:RG, marginBottom:2 }}>🎧 {entry.audio_title}</div>}
+                    {entry.audio_title && <div style={{ fontSize:11, color:"#f2ece4", marginBottom:2 }}>🎧 {entry.audio_title}</div>}
                     <div style={{ fontSize:10, color:T.textFaint }}>{entry.happened_at ? new Date(entry.happened_at).toLocaleDateString("en-GB") : ""}</div>
                   </div>
                 </div>
@@ -175,15 +175,15 @@ export default function ProofWall({ onAddProof }) {
         {/* Voice notes */}
         {voices.length > 0 && (
           <div style={{ marginBottom:32 }}>
-            <div style={{ fontSize:11, color:"#2CB7A7", fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Voice Proof</div>
+            <div style={{ fontSize:11, color:"#f2ece4", fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>Voice Proof</div>
             <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
               {voices.map(entry => (
-                <div key={entry.id} style={{ background:"#0c0b08", border:"1px solid #2CB7A733", borderRadius:14, padding:"14px 16px" }}>
+                <div key={entry.id} style={{ background:"#0c0b08", border:"1px solid rgba(255,255,255,0.1)", borderRadius:14, padding:"14px 16px" }}>
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:10 }}>
                     <div>
                       {entry.caption && <div style={{ fontSize:14, fontWeight:600, color:T.textPrimary, marginBottom:3 }}>{entry.caption}</div>}
                       <div style={{ display:"flex", gap:10 }}>
-                        {entry.audio_title && <span style={{ fontSize:12, color:RG }}>🎧 {entry.audio_title}</span>}
+                        {entry.audio_title && <span style={{ fontSize:12, color:"#f2ece4" }}>🎧 {entry.audio_title}</span>}
                         {entry.duration_sec && <span style={{ fontSize:12, color:T.textMuted }}>{Math.floor(entry.duration_sec/60)}:{String(entry.duration_sec%60).padStart(2,"0")}</span>}
                         <span style={{ fontSize:11, color:T.textFaint }}>{entry.happened_at ? new Date(entry.happened_at).toLocaleDateString("en-GB") : ""}</span>
                       </div>
@@ -200,9 +200,9 @@ export default function ProofWall({ onAddProof }) {
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:16 }}>
           {filters.map(f => (
             <button key={f} onClick={() => setFilter(f)} style={{
-              padding:"6px 14px", borderRadius:20, border:`1.5px solid ${filter===f ? "#2CB7A788" : "#242014"}`,
-              background: filter===f ? "#2CB7A718" : "transparent",
-              color: filter===f ? RG : T.textMuted, fontSize:12, fontWeight:600, cursor:"pointer"
+              padding:"6px 14px", borderRadius:20, border:`1.5px solid ${filter===f ? "rgba(255,255,255,0.25)" : "#242014"}`,
+              background: filter===f ? "rgba(255,255,255,0.06)" : "transparent",
+              color: filter===f ? "#f2ece4" : T.textMuted, fontSize:12, fontWeight:600, cursor:"pointer"
             }}>{f}</button>
           ))}
         </div>
@@ -220,7 +220,7 @@ export default function ProofWall({ onAddProof }) {
 
         {error && (
           <div style={{ background:"#1a0a0a", border:"1px solid #C8906A44", borderRadius:12, padding:"16px 18px", marginBottom:16 }}>
-            <div style={{ fontSize:14, color:"#2CB7A7", marginBottom:6 }}>Could not load from vault</div>
+            <div style={{ fontSize:14, color:"#f2ece4", marginBottom:6 }}>Could not load from vault</div>
             <div style={{ fontSize:13, color:T.textMuted, marginBottom:12 }}>{error}</div>
             <Btn size="sm" variant="ghost" onClick={loadEntries}>Retry</Btn>
           </div>
@@ -241,7 +241,7 @@ export default function ProofWall({ onAddProof }) {
         )}
 
         {!loading && filtered.map(entry => {
-          const meta = TYPE_LABEL[entry.type] || { icon:"◈", color:RG };
+          const meta = TYPE_LABEL[entry.type] || { icon:"◈", color:"#f2ece4" };
           return (
             <div key={entry.id} style={{ background:"#0c0b08", border:`1px solid ${meta.color}22`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
               <div style={{ display:"flex", gap:12, alignItems:"flex-start" }}>

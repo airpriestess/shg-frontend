@@ -63,7 +63,7 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
       <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {statuses.map(s => (
-            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? "#2CB7A788" : "#1a1a1a"}`, background: filter === s ? "#2CB7A718" : "transparent", color: filter === s ? "#2CB7A7" : T.textMuted, fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
+            <button key={s} onClick={() => setFilter(s)} style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${filter === s ? "rgba(255,255,255,0.25)" : "#1a1a1a"}`, background: filter === s ? "rgba(255,255,255,0.06)" : "transparent", color: filter === s ? "#f2ece4" : T.textMuted, fontSize: 12, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}>{s}</button>
           ))}
         </div>
         <select value={sort} onChange={e => setSort(e.target.value)} style={{ maxWidth: 180 }}>
@@ -82,7 +82,7 @@ export default function ProofThreads({ onAddProof, onCreateThread }) {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 16, fontWeight: 700, color: "#e8e0d0", marginBottom: 5, lineHeight: 1.4 }}>{t.intentionTitle}</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#2CB7A7" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#f2ece4" }}>
                   <span>🎧</span><span>{t.linkedAudioTitle}</span>
                 </div>
               </div>
@@ -130,12 +130,12 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 16 }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: T.textPrimary, lineHeight: 1.35, marginBottom: 6 }}>{t.intentionTitle}</div>
-            <div style={{ fontSize: 13, color: "#2CB7A7", marginBottom: 12 }}>🎧 {t.linkedAudioTitle}</div>
+            <div style={{ fontSize: 13, color: "#f2ece4", marginBottom: 12 }}>🎧 {t.linkedAudioTitle}</div>
           </div>
           <Pill color={STATUS_COLOR[t.status] || "muted"}>{t.status}</Pill>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10, marginBottom: 16 }}>
-          {[{ v: t.daysActive, l: "Days active", c: "#2CB7A7" }, { v: t.proofEntryCount, l: "Proof entries", c: "#2CB7A7" }, { v: t.photoProofCount, l: "Photo proof", c: "#2CB7A7" }, { v: t.voiceProofCount, l: "Voice proof", c: "#2CB7A7" }].map((s, i) => (
+          {[{ v: t.daysActive, l: "Days active", c: "#f2ece4" }, { v: t.proofEntryCount, l: "Proof entries", c: "#f2ece4" }, { v: t.photoProofCount, l: "Photo proof", c: "#f2ece4" }, { v: t.voiceProofCount, l: "Voice proof", c: "#f2ece4" }].map((s, i) => (
             <div key={i} style={{ textAlign: "center", padding: "12px 8px", background: "#040208", borderRadius: 10, border: "1px solid #1e1c0a" }}>
               <div style={{ fontSize: 22, fontWeight: 800, color: s.c, lineHeight: 1, marginBottom: 3 }}>{s.v}</div>
               <div style={{ fontSize: 11, color: T.textMuted }}>{s.l}</div>
@@ -146,8 +146,8 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
       </Card>
 
       {/* MOOD BEFORE / AFTER CAPTURE */}
-      <div style={{ background: "#060410", border: "1.5px solid #2CB7A744", borderRadius: 14, padding: "18px 20px", marginBottom: 16 }}>
-        <div style={{ fontSize: 11, color: "#2CB7A7", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>How are you feeling?</div>
+      <div style={{ background: "#060410", border: "1.5px solid rgba(255,255,255,0.15)", borderRadius: 14, padding: "18px 20px", marginBottom: 16 }}>
+        <div style={{ fontSize: 11, color: "#f2ece4", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14 }}>How are you feeling?</div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           <div>
             <div style={{ fontSize: 12, color: T.textFaint, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>Before listening</div>
@@ -160,13 +160,13 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
             />
           </div>
           <div>
-            <div style={{ fontSize: 12, color: "#2CB7A7", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>After listening</div>
+            <div style={{ fontSize: 12, color: "#f2ece4", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>After listening</div>
             <textarea
               value={localMoodAfter}
               onChange={e => setLocalMoodAfter(e.target.value)}
               placeholder="e.g. more relaxed, certain, calm, detached..."
               rows={2}
-              style={{ width: "100%", background: "#040208", border: "1px solid #2CB7A733", borderRadius: 8, padding: "10px 12px", color: T.textPrimary, fontSize: 13, resize: "none", fontFamily: "'Jost',sans-serif", outline: "none" }}
+              style={{ width: "100%", background: "#040208", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "10px 12px", color: T.textPrimary, fontSize: 13, resize: "none", fontFamily: "'Jost',sans-serif", outline: "none" }}
             />
           </div>
         </div>
@@ -182,7 +182,7 @@ function ProofThreadDetail({ thread: t, onBack, onMarkManifested, onAddProof, ad
           <div style={{ marginTop: 12, display: "flex", gap: 8, alignItems: "center" }}>
             <span style={{ fontSize: 12, padding: "3px 10px", background: "#0a0a0a", border: "1px solid #1e1c0a", borderRadius: 20, color: T.textFaint }}>Before: {t.mood_before}</span>
             <span style={{ fontSize: 12, color: T.textFaint }}>→</span>
-            <span style={{ fontSize: 12, padding: "3px 10px", background: "#2CB7A718", border: "1px solid #2CB7A733", borderRadius: 20, color: "#2CB7A7" }}>After: {t.mood_after}</span>
+            <span style={{ fontSize: 12, padding: "3px 10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, color: "#f2ece4" }}>After: {t.mood_after}</span>
           </div>
         )}
       </div>
@@ -269,7 +269,7 @@ function PhotoProofForm({ threadId, onClose }) {
   const proofStages = ["Before Manifestation", "Evidence Appearing", "Final Proof", "After Manifestation"];
   return (
     <div>
-      <div style={{ border: "2px dashed #2CB7A7", borderRadius: 12, padding: "28px 20px", textAlign: "center", marginBottom: 16, cursor: "pointer", background: "#040208" }}
+      <div style={{ border: "2px dashed rgba(255,255,255,0.25)", borderRadius: 12, padding: "28px 20px", textAlign: "center", marginBottom: 16, cursor: "pointer", background: "#040208" }}
         onClick={() => document.getElementById("photo-upload").click()}>
         <input id="photo-upload" type="file" accept=".jpg,.jpeg,.png,.webp,.heic" style={{ display: "none" }} onChange={e => setFile(e.target.files[0])} />
         {file ? <div style={{ color: T.success, fontSize: 14, fontWeight: 600 }}>📷 {file.name}</div> : <div><div style={{ fontSize: 28, marginBottom: 8 }}>📷</div><div style={{ fontSize: 14, color: T.textMuted }}>Tap to upload photo proof</div><div style={{ fontSize: 12, color: "#ddd0c8", marginTop: 4 }}>JPG · PNG · WEBP · HEIC</div></div>}
@@ -302,7 +302,7 @@ function VoiceProofRecorder({ threadId, onClose }) {
     <div>
       <div style={{ textAlign: "center", padding: "28px 20px", background: "#040208", borderRadius: 14, marginBottom: 20, border: "1px solid #1e1c0a" }}>
         {state === "idle" && <div><div style={{ fontSize: 40, marginBottom: 12 }}>🎙</div><div style={{ fontSize: 15, color: T.textMuted, marginBottom: 16 }}>Press record and speak your proof. How does it feel? What shifted?</div><Btn variant="primary" onClick={startRec}>● Start Recording</Btn></div>}
-        {state === "recording" && <div><WaveForm playing /><div style={{ fontSize: 28, fontWeight: 700, color: T.rose, margin: "16px 0", fontFamily: "monospace" }}>{String(Math.floor(seconds / 60)).padStart(2, "0")}:{String(seconds % 60).padStart(2, "0")}</div><div style={{ fontSize: 13, color: T.textMuted, marginBottom: 16 }}>Recording...</div><Btn variant="danger" onClick={stopRec}>■ Stop</Btn></div>}
+        {state === "recording" && <div><WaveForm playing /><div style={{ fontSize: 28, fontWeight: 700, color: T.rose, margin: "16px 0", fontFamily: "'Jost', monospace" }}>{String(Math.floor(seconds / 60)).padStart(2, "0")}:{String(seconds % 60).padStart(2, "0")}</div><div style={{ fontSize: 13, color: T.textMuted, marginBottom: 16 }}>Recording...</div><Btn variant="danger" onClick={stopRec}>■ Stop</Btn></div>}
         {state === "recorded" && <div><div style={{ fontSize: 13, color: T.success, marginBottom: 12, fontWeight: 600 }}>✓ Recorded · {seconds}s</div><div style={{ display: "flex", gap: 10, justifyContent: "center" }}><Btn size="sm" variant="ghost" onClick={() => { setState("idle"); setSeconds(0); }}>Re-record</Btn><Btn size="sm" variant="ghost" onClick={startRec}>▶ Play back</Btn></div></div>}
       </div>
       {state === "recorded" && (
