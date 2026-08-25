@@ -1,4 +1,4 @@
-name: Deploy Cloudflare Worker
+name: Deploy Cloudflare Workers
 
 on:
   push:
@@ -8,12 +8,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy-auth:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy worker
+      - name: Deploy shg-auth-worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           workingDirectory: workers
+          command: deploy --config wrangler.toml
+
+  deploy-quiz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy shg-quiz-worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: workers
+          command: deploy --config wrangler-quiz.toml
