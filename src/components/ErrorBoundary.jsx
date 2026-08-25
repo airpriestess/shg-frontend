@@ -20,7 +20,7 @@ export default class ErrorBoundary extends Component {
             </div>
             {this.state.err && <details style={{ marginTop:10, textAlign:"left", fontSize:10, color:"#7a5a48", background:"rgba(0,0,0,0.04)", padding:"8px 10px", borderRadius:8 }}>
               <summary style={{ cursor:"pointer", fontWeight:700 }}>Technical details (send to support)</summary>
-              <div style={{ marginTop:6, fontFamily:"monospace", wordBreak:"break-word" }}>{String(this.state.err?.message || this.state.err)}</div>
+              <div style={{ marginTop:6, fontFamily:"'Jost',sans-serif", wordBreak:"break-word" }}>{String(this.state.err?.message || this.state.err)}</div>
             </details>}
           </div>
         </div>

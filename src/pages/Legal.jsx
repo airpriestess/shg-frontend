@@ -54,7 +54,7 @@ export default function Legal({ page = "tos", onBack }) {
     <div style={{ minHeight:"100vh", background:"#000", padding:"0 0 80px", fontFamily:"'Jost',sans-serif" }}>
       {/* Nav */}
       <div style={{ position:"sticky", top:0, background:"rgba(0,0,0,0.97)", borderBottom:"1px solid rgba(44,183,167,0.12)", padding:"16px 24px", display:"flex", alignItems:"center", gap:16, zIndex:100 }}>
-        <button onClick={onBack} style={{ background:"none", border:"none", color:"#2CB7A7", cursor:"pointer", fontSize:14, fontFamily:"'Jost',sans-serif", padding:0 }}>← Back</button>
+        <button onClick={onBack} style={{ background:"none", border:"none", cursor:"pointer", fontSize:14, fontFamily:"'Jost',sans-serif", padding:0, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent" }}>← Back</button>
         <div style={{ display:"flex", gap:24, marginLeft:"auto" }}>
           {Object.entries(PAGES).map(([k,v])=>(
             <a key={k} href={`#${k}`} style={{ fontSize:12, color: page===k?"#2CB7A7":"#c8bfb8", textDecoration:"none", letterSpacing:"0.08em" }}>{v.title}</a>
@@ -64,7 +64,7 @@ export default function Legal({ page = "tos", onBack }) {
 
       {/* Content */}
       <div style={{ maxWidth:720, margin:"0 auto", padding:"56px 24px 0" }}>
-        <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16 }}>reshmaoracle.com</div>
+        <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:16, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent" }}>reshmaoracle.com</div>
         <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:"clamp(36px,6vw,52px)", color:"#f2ece4", fontWeight:400, marginBottom:8, lineHeight:1.1 }}>{P.title}</h1>
         <p style={{ fontSize:13, color:"#c8bfb8", marginBottom:48 }}>Last updated: {P.updated}</p>
         {P.sections.map((s,i)=>(
@@ -75,8 +75,8 @@ export default function Legal({ page = "tos", onBack }) {
             ))}
           </div>
         ))}
-        <div style={{ marginTop:64, paddingTop:32, borderTop:"1px solid rgba(44,183,167,0.12)", fontSize:13, color:"#888", fontFamily:"'Jost',sans-serif" }}>
-          © 2026 Reshma Oracle · All rights reserved · <a href="mailto:hello@reshmaoracle.com" style={{ color:"#2CB7A7" }}>hello@reshmaoracle.com</a>
+        <div style={{ marginTop:64, paddingTop:32, borderTop:"1px solid rgba(44,183,167,0.12)", fontSize:13, color:"rgba(242,236,228,0.6)", fontFamily:"'Jost',sans-serif" }}>
+          © 2026 Reshma Oracle · All rights reserved · <a href="mailto:hello@reshmaoracle.com" style={{ background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent" }}>hello@reshmaoracle.com</a>
         </div>
       </div>
     </div>

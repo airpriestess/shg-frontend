@@ -177,13 +177,13 @@ export default function LandingProofWall({ isMobile }) {
                 <span style={{ fontSize:11, color:"#000", fontWeight:400 }}>{d.days}d · {d.signs} signs</span>
               </div>
               <div style={{ fontSize: isMobile?16:17, fontWeight:400, color:"#000", marginBottom:6, lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{d.desire}</div>
-              <div style={{ fontSize:12, color:"#666", fontWeight:400, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>♪ {d.track}</div>
+              <div style={{ fontSize:12, color:"#f2ece4", fontWeight:400, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>♪ {d.track}</div>
               <div style={{ background:"#f8f8f8", borderRadius:10, padding:"12px 14px", marginBottom:12 }}>
                 {d.log.map((line,li)=>(
                   <div key={li} style={{ fontSize:13, color:"#000", lineHeight:1.7, marginBottom: li===d.log.length-1?0:6, fontFamily:"'Jost',sans-serif" }}>{line}</div>
                 ))}
               </div>
-              <div style={{ fontSize:13, color:"#444", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>"{d.feel}"</div>
+              <div style={{ fontSize:13, color:"#f2ece4", lineHeight:1.5, fontFamily:"'Jost',sans-serif" }}>"{d.feel}"</div>
             </div>
           ))}
         </div>

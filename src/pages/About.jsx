@@ -67,8 +67,8 @@ export default function About({ onBack }) {
 
             {/* OLD SELF — grayscale */}
             <div style={{ flex:1, background:"#1a1a1a", padding: isMobile?"36px 28px":"48px 40px", display:"flex", flexDirection:"column", gap:16 }}>
-              <div style={{ fontSize:10, letterSpacing:"0.25em", textTransform:"uppercase", color:"#666", marginBottom:4 }}>Then</div>
-              <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?28:36, color:"#888", lineHeight:1.2, fontWeight:400 }}>
+              <div style={{ fontSize:10, letterSpacing:"0.25em", textTransform:"uppercase", color:"#f2ece4", marginBottom:4 }}>Then</div>
+              <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?28:36, color:"rgba(242,236,228,0.65)", lineHeight:1.2, fontWeight:400 }}>
                 The version of her that searched.
               </div>
               <div style={{ width:32, height:1, background:"#444", margin:"8px 0" }}/>
@@ -81,7 +81,7 @@ export default function About({ onBack }) {
               ].map((t, i) => (
                 <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:12 }}>
                   <div style={{ width:6, height:6, borderRadius:"50%", background:"#444", marginTop:7, flexShrink:0 }}/>
-                  <span style={{ fontSize:14, color:"#777", lineHeight:1.6 }}>{t}</span>
+                  <span style={{ fontSize:14, color:"rgba(242,236,228,0.65)", lineHeight:1.6 }}>{t}</span>
                 </div>
               ))}
             </div>
