@@ -7,6 +7,7 @@ import { PushNotificationToggle, PushPromptBanner } from "../components/PushNoti
 import { useAuth } from "../contexts/AuthContext.jsx";
 
 const MANIFESTATIONS_WORKER_URL = "https://shg-manifestations-worker.airpriestess.workers.dev";
+const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
 
 async function manifestationsApi(path, token, options = {}) {
   const res = await fetch(`${MANIFESTATIONS_WORKER_URL}${path}`, {
@@ -536,6 +537,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   };
   const audioRef = useRef(null);
   const intervalRef = useRef(null);
+  const playStartRef = useRef(null);
+  const playTrackRef = useRef(null);
 
   useEffect(() => { if (forceTheme) setTheme(forceTheme); }, [forceTheme]);
 
@@ -546,19 +549,46 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const greet = (hour<12?"Good morning":"Good evening") + (isPreview ? "" : `, ${firstName}`);
 
   // ── AUDIO PLAYBACK ───────────────────────────────────────────────────────
-  const logPlay = async (trackTitle) => {
+  const logPlay = async (trackObj) => {
     if (isPreview || !userId) return;
+    const trackTitle = typeof trackObj === "string" ? trackObj : trackObj?.title;
+    const trackCat = typeof trackObj === "object" ? trackObj?.cat : "";
+    playStartRef.current = Date.now();
+    playTrackRef.current = { title: trackTitle, cat: trackCat };
     try {
       const tracksRes = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/tracks");
       const { tracks } = await tracksRes.json();
       const match = tracks?.find(t => t.title === trackTitle);
-      if (!match) return; // no matching track row, skip logging, don't block playback
-      await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
+      if (match) {
+        await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ track_id: match.id }),
+        });
+      }
+    } catch (e) { console.error("Failed to log play:", e); }
+    try {
+      await fetch(`${QUIZ_WORKER_URL}/log-listen`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ track_id: match.id }),
+        body: JSON.stringify({ title: trackTitle, category: trackCat, duration_seconds: 0, completed: false }),
       });
-    } catch (e) { console.error("Failed to log play:", e); }
+    } catch (e) { /* non-blocking */ }
+  };
+
+  const logListenComplete = async (completed = false) => {
+    if (isPreview || !userId || !playStartRef.current || !playTrackRef.current) return;
+    const dur = Math.round((Date.now() - playStartRef.current) / 1000);
+    const { title, cat } = playTrackRef.current;
+    playStartRef.current = null;
+    playTrackRef.current = null;
+    try {
+      await fetch(`${QUIZ_WORKER_URL}/log-listen`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ title, category: cat, duration_seconds: dur, completed }),
+      });
+    } catch (e) { /* non-blocking */ }
   };
   const play = (t) => {
     const hasUrl = !!AUDIO_URLS[t.title];
@@ -567,7 +597,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       return;
     }
     setTrack(t);
-    if (hasUrl) { setPlay(true); if (!isPreview) { setListenCount(n=>n+1); logPlay(t.title); } }
+    if (hasUrl) { setPlay(true); if (!isPreview) { setListenCount(n=>n+1); logPlay(t); } }
     setProg(0);
   };
 
@@ -594,6 +624,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     };
     audio.addEventListener("timeupdate", update);
     const handleEnded = () => {
+      logListenComplete(true);
       if (isLooping) {
         audio.currentTime = 0;
         audio.play().catch(()=>{});
@@ -1341,6 +1372,40 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
 
+  const [recommendation, setRecommendation] = useState(null);
+  const [recLoading, setRecLoading] = useState(false);
+  const [streakDays, setStreakDays] = useState([]);
+  const [catCounts, setCatCounts] = useState({});
+  const [reminderSent, setReminderSent] = useState(false);
+  const [listenEvents, setListenEvents] = useState([]);
+
+  const fetchRecommendation = async () => {
+    if (isPreview || !userId || !token) return;
+    setRecLoading(true);
+    try {
+      const res = await fetch(`${QUIZ_WORKER_URL}/recommend`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ tracks: TRACKS.map(t=>({title:t.title,cat:t.cat})), recentPlays: listenEvents }),
+      });
+      const data = await res.json();
+      if (data.recommendation) setRecommendation(data.recommendation);
+    } catch (e) { /* non-blocking */ }
+    setRecLoading(false);
+  };
+
+  const sendReminder = async () => {
+    if (isPreview || !userId || !token) return;
+    try {
+      await fetch(`${QUIZ_WORKER_URL}/reminder`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ reminder_time: "20:00" }),
+      });
+      setReminderSent(true);
+    } catch (e) { /* non-blocking */ }
+  };
+
   // ── PATTERNS: real listen counts per category/track, correlated with manifested desires ──
   const [patterns, setPatterns] = useState(null); // null = loading/no data yet
   const [realListens, setRealListens] = useState({ total:0, week:[0,0,0,0,0,0,0] });
@@ -1405,6 +1470,48 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
     return () => { cancelled = true; };
   }, [userId, isPreview, threads]);
 
+  // Fetch listening events from quiz worker for streak + category radar + recommendations
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${QUIZ_WORKER_URL}/listen-history`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        const events = data.events || [];
+        if (cancelled) return;
+        setListenEvents(events);
+
+        // Streak: consecutive days with at least one listen
+        const days = new Set(events.map(e => e.played_at?.slice(0,10)));
+        let streak = 0;
+        const today = new Date();
+        for (let i = 0; i < 60; i++) {
+          const d = new Date(today); d.setDate(today.getDate() - i);
+          const key = d.toISOString().slice(0,10);
+          if (days.has(key)) streak++;
+          else if (i > 0) break;
+        }
+        // Last 30 days for calendar
+        const cal = [];
+        for (let i = 29; i >= 0; i--) {
+          const d = new Date(today); d.setDate(today.getDate() - i);
+          cal.push({ date: d.toISOString().slice(0,10), listened: days.has(d.toISOString().slice(0,10)) });
+        }
+        setStreakDays(cal);
+
+        // Category counts
+        const cc = {};
+        events.forEach(e => { if (e.category) cc[e.category] = (cc[e.category]||0) + 1; });
+        setCatCounts(cc);
+      } catch (e) { /* non-blocking */ }
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, token]);
+
   return (
     <div>
       <div style={{ padding:"20px 16px 12px" }}>
@@ -1445,6 +1552,81 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* AI RECOMMENDATION CARD */}
+      {!isPreview && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.3)` }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+            <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
+            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:12, color:"#BFA5D8", background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+              {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
+            </button>
+          </div>
+          {recommendation ? (
+            <div>
+              <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{recommendation.title}</div>
+              <div style={{ fontSize:13, color:"#BFA5D8", marginTop:4 }}>{recommendation.category}</div>
+              <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
+            </div>
+          ) : (
+            <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
+          )}
+        </div>
+      )}
+
+      {/* STREAK CALENDAR */}
+      {!isPreview && streakDays.length > 0 && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+            <span style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
+            <span style={{ fontSize:13, color:"#E8B870" }}>{streakDays.filter(d=>d.listened).length} days</span>
+          </div>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(10,1fr)", gap:4 }}>
+            {streakDays.map((d,i) => (
+              <div key={i} title={d.date} style={{ width:"100%", paddingBottom:"100%", position:"relative", borderRadius:4, background: d.listened ? "#E8B870" : "rgba(232,184,112,0.1)" }}/>
+            ))}
+          </div>
+          <div style={{ fontSize:12, color:C.mu, marginTop:8 }}>Last 30 days — gold = listened</div>
+        </div>
+      )}
+
+      {/* CATEGORY RADAR */}
+      {!isPreview && Object.keys(catCounts).length > 0 && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+          <div style={{ fontSize:13, fontWeight:400, color:"#2CB7A7", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
+          {Object.entries(catCounts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([cat,n],i,arr) => {
+            const max = arr[0][1];
+            const pct = Math.round((n/max)*100);
+            const colors = {"Lovemaxxing":"#167A6B","Rich Girl":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"};
+            const col = colors[cat] || "#BFA5D8";
+            return (
+              <div key={cat} style={{ marginBottom:8 }}>
+                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
+                  <span style={{ fontSize:13, color:C.cr }}>{cat}</span>
+                  <span style={{ fontSize:12, color:C.mu }}>{n} listen{n!==1?"s":""}</span>
+                </div>
+                <div style={{ height:6, borderRadius:3, background:"rgba(255,255,255,0.05)", overflow:"hidden" }}>
+                  <div style={{ height:"100%", width:`${pct}%`, borderRadius:3, background:col, transition:"width 0.6s ease" }}/>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* DAILY REMINDER BELL */}
+      {!isPreview && (
+        <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
+          <span style={{ fontSize:28 }}>🔔</span>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Daily reminder</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Get a nudge at 8pm to listen</div>
+          </div>
+          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:13, color: reminderSent ? "#2CB7A7" : "#fdf0e8", background: reminderSent ? "rgba(44,183,167,0.12)" : "rgba(232,184,112,0.15)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":"rgba(232,184,112,0.3)"}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
+            {reminderSent ? "✓ set" : "remind me"}
+          </button>
         </div>
       )}
 
