@@ -171,9 +171,9 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 .filter-result{background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;animation:drift 3s ease-in-out infinite;border-radius:12px;padding:14px;text-align:center;font-size:13px;color:#000;line-height:1.4;font-weight:600;}
 .filter-result:nth-child(2){animation-delay:.5s;}
 .filter-result:nth-child(3){animation-delay:1s;}
-.filter-blocked{border-radius:12px;padding:14px;text-align:center;font-size:13px;color:#fdf0e8;opacity:.25;line-height:1.4;position:relative;border:1px dashed rgba(255,255,255,.15);background:rgba(255,255,255,.02);}
+.filter-blocked{border-radius:12px;padding:14px;text-align:center;font-size:13px;color:#fdf0e8;opacity:.55;line-height:1.4;position:relative;border:1px dashed rgba(253,240,232,.3);background:rgba(253,240,232,.03);}
 .filter-blocked::after{content:'✕';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:22px;color:rgba(255,255,255,.25);}
-.filter-cap{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#fdf0e8;text-align:center;margin-top:14px;opacity:.4;}
+.filter-cap{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#fdf0e8;text-align:center;margin-top:14px;opacity:.8;font-weight:500;}
 
 /* 3. LUCK SPECTRUM BAR */
 .spectrum-wrap{margin:48px 0;}
@@ -375,7 +375,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   <p>The RAS is primed by your identity. Whatever your subconscious has decided is true about you and your place in the world — that is the frequency it scans for. If your installed identity says <em>I am someone things work out for</em>, the RAS surfaces opportunities, signals, openings. If it says <em>I am someone things don't work out for</em>, those same signals get filtered out before they reach you.</p>
 
   <!-- LUCK DIAL — MASSIVE STACKED ILLUSTRATED PANELS -->
-  <div class="reveal" style="margin:56px 0;">
+  <div class="reveal" style="margin:56px -24px;">
     <div style="font-size:11px;letter-spacing:.28em;text-transform:uppercase;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center;margin-bottom:32px;font-weight:700;">The same signal. Two completely different results.</div>
 
     <!-- PANEL 1: UNTUNED -->
@@ -437,8 +437,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
           <path d="M24,90 Q56,68 86,82 Q116,68 148,90" fill="none" stroke="url(#wg1)" stroke-width="1.2" opacity="0.15"/>
           <path d="M14,115 Q44,100 76,110 Q108,100 140,115 Q152,132 140,150" fill="none" stroke="url(#wg1)" stroke-width="1.2" opacity="0.15"/>
           <path d="M20,150 Q54,136 86,146 Q116,136 148,150" fill="none" stroke="url(#wg1)" stroke-width="1.2" opacity="0.12"/>
-          <text x="86" y="128" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="url(#wg1)" letter-spacing="2" opacity="0.3">NOTHING</text>
-          <text x="86" y="144" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="url(#wg1)" letter-spacing="2" opacity="0.3">REGISTERS</text>
+          <text x="86" y="128" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="#fdf0e8" letter-spacing="2" font-weight="500" opacity="0.7">NOTHING</text>
+          <text x="86" y="144" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="#fdf0e8" letter-spacing="2" font-weight="500" opacity="0.7">REGISTERS</text>
         </g>
 
         <!-- MISSED — gradient dashes, struck through -->
@@ -577,9 +577,9 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
       <div class="filter-result">Opportunity surfaces. She notices. She acts.</div>
       <div class="filter-result">Signal registers. She follows it up.</div>
       <div class="filter-result">The opening lands. She walks through it.</div>
-      <div class="filter-blocked"><span style="text-decoration:line-through">Opportunity surfaces</span></div>
-      <div class="filter-blocked"><span style="text-decoration:line-through">Signal registers</span></div>
-      <div class="filter-blocked"><span style="text-decoration:line-through">The opening lands</span></div>
+      <div class="filter-blocked"><span style="color:#fdf0e8;font-weight:500;">Opportunity surfaces</span></div>
+      <div class="filter-blocked"><span style="color:#fdf0e8;font-weight:500;">Signal registers</span></div>
+      <div class="filter-blocked"><span style="color:#fdf0e8;font-weight:500;">The opening lands</span></div>
     </div>
     <div class="filter-cap">The same information reaches both of you. The filter decides what you see.</div>
   </div>
