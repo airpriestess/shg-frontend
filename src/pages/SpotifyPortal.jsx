@@ -554,7 +554,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
           <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
             <span style={{ fontSize:14,color:C.mu }}>Current plan</span>
-            <span style={{ fontSize:15,color:userTier==="goddess"?R:C.cr }}>{userTier==="goddess"?"Goddess Tier ✦":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
+            <span style={{ fontSize:15,color:userTier==="goddess"?"#f2ece4":C.cr }}>{userTier==="goddess"?"Goddess Tier ✦":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
             <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
@@ -606,12 +606,12 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
               <div style={{ fontSize:14,color:C.mu }}>Goddess Tier</div>
-              <div style={{ fontSize:13,color:R,fontWeight:400,marginTop:2 }}>reshma@reshmaoracle.com</div>
+              <div style={{ fontSize:13,color:"#f2ece4",fontWeight:400,marginTop:2 }}>reshma@reshmaoracle.com</div>
             </div>
           </div>
           {/* Stats row */}
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
-            {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Intentions",C.cr]].map(([v,l,c],i)=>(
+            {[[manifestedCount,"Manifested","#f2ece4"],[listenCount,"Listens","#f2ece4"],[threads.length,"Intentions",C.cr]].map(([v,l,c],i)=>(
               <div key={i} style={{ background:C.bg3,borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
                 <div style={{ fontSize:18,fontWeight:400,color:c }}>{v}</div>
                 <div style={{ fontSize:12,color:C.mu }}>{l}</div>
@@ -685,12 +685,12 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <>
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"rgba(0,0,0,0.7)" }} onClick={()=>setShowEmoLog(false)}/>
           <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
-            <div style={{ fontSize:13,color:"#2CB7A7",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:13,color:"#f2ece4",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
               Select your state on the Hawkins scale.{" "}
-              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#2CB7A7",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
+              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#f2ece4",cursor:"pointer",textDecoration:"underline" }}>See Guidebook ✦</span>
             </div>
-            <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
+            <div style={{ fontSize:11,color:"#f2ece4",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates ✦</div>
             <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
               {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
                 <div key={h.n} onClick={()=>logEmotion(h.n)}
@@ -761,15 +761,15 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid #BFA5D8":"2px solid transparent",color:tab===n.id?"#E8B870":n.id==="proof"?"#2CB7A7":C.mu,fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
-              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=n.id==="proof"?"#2CB7A7":C.mu;}}>
+              style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:tab===n.id?"2px solid rgba(255,255,255,0.8)":"2px solid transparent",color:tab===n.id?"#f2ece4":C.mu,fontSize:15,fontWeight:400,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              onMouseEnter={e=>e.currentTarget.style.color="#f2ece4"}
+              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
               <n.I a={tab===n.id} c={C.cr}/> {n.label}
             </button>
           ))}
           <div style={{ height:1,background:C.border,margin:"8px 16px" }}/>
           <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:14,padding:"8px 20px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:15,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
-            onMouseEnter={e=>e.currentTarget.style.color="#2CB7A7"}
+            onMouseEnter={e=>e.currentTarget.style.color="#f2ece4"}
             onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
             <Ico.Book c={C.mu}/> Listening Guide
           </button>
@@ -884,8 +884,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
-              <n.I a={tab===n.id} c={tab===n.id?"#E8B870":C.dim}/>
-              <span style={{ fontSize:11,fontWeight:400,color:tab===n.id?"#E8B870":C.dim }}>{n.label}</span>
+              <n.I a={tab===n.id} c={tab===n.id?"#f2ece4":C.dim}/>
+              <span style={{ fontSize:11,fontWeight:400,color:tab===n.id?"#f2ece4":C.dim }}>{n.label}</span>
             </button>
           ))}
         </div>
@@ -927,13 +927,13 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:32,fontWeight:400,color:"#f5f0e8",marginBottom:6 }}>{track.title}</div>
               <div style={{ fontSize:16,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
-              <div style={{ fontSize:14,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
+              <div style={{ fontSize:14,color:"#f2ece4",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
               <div style={{ fontSize:19,lineHeight:1.75,color:"#f5f0e8",fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
-              <div style={{ fontSize:14,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
+              <div style={{ fontSize:14,color:"#f2ece4",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#E8B870",fontSize:17,marginTop:2 }}>✦</span>
+                    <span style={{ color:"#f2ece4",fontSize:17,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:18,lineHeight:1.65,color:"#f5f0e8" }}>{b}</span>
                   </div>
                 ))}
@@ -972,7 +972,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
             {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
           </button>
           <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
-          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#2CB7A7":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:"#f2ece4" }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
           <span style={{ fontSize:13,color:C.dim,width:32,textAlign:"right" }}>—</span>
@@ -1001,10 +1001,10 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
         <div style={{ display:"flex",gap:10 }}>
           <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="About this track" title="About this track">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#2CB7A7":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#2CB7A7":C.cr}/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={C.cr}/></svg>
           </button>
           <button onClick={()=>setView(v=>v==="script"?"cover":"script")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#2CB7A7":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
           </button>
         </div>
       </div>
@@ -1014,13 +1014,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           <div style={{ fontSize:15,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
           {(() => { const d = getDesc(track); return (
             <div style={{ width:"100%",paddingBottom:40 }}>
-              <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+              <div style={{ fontSize:13,color:"#f2ece4",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
               <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
-              <div style={{ fontSize:13,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+              <div style={{ fontSize:13,color:"#f2ece4",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
               <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
                 {d.benefits.map((b,i)=>(
                   <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:"#E8B870",fontSize:16,marginTop:2 }}>✦</span>
+                    <span style={{ color:"#f2ece4",fontSize:16,marginTop:2 }}>✦</span>
                     <span style={{ fontSize:17,lineHeight:1.6,color:C.cr }}>{b}</span>
                   </div>
                 ))}
@@ -1075,7 +1075,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
           {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
         </button>
         <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="24" height="24" viewBox="0 0 24 24" fill={C.cr}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.cr}/></svg></button>
-        <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#2CB7A7":R }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+        <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(44,183,167,0.25)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:"#f2ece4" }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
       </div>
     </div>
   );
@@ -1120,12 +1120,12 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* PROOFOS TEASER — home tab */}
       <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
-          <div style={{ fontSize:13,fontWeight:400,color:"#BFA5D8",letterSpacing:"0.15em",textTransform:"uppercase" }}>ProofOS ✦</div>
-          <span style={{ fontSize:15,color:"#F5E0A0" }}>›</span>
+          <div style={{ fontSize:13,fontWeight:400,color:"#f2ece4",letterSpacing:"0.15em",textTransform:"uppercase" }}>ProofOS ✦</div>
+          <span style={{ fontSize:15,color:"#f2ece4" }}>›</span>
         </div>
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
-          {[["Bucket List","Write it down. All of it. No limit.","#F5E0A0"],["Active","What you're focusing on right now with audio.","#BFA5D8"],["Proof Wall","Every manifestation. Dated. Permanent.","#2CB7A7"]].map(([name,desc,color])=>(
+          {[["Bucket List","Write it down. All of it. No limit.","#f2ece4"],["Active","What you're focusing on right now with audio.","#f2ece4"],["Proof Wall","Every manifestation. Dated. Permanent.","#f2ece4"]].map(([name,desc,color])=>(
             <div key={name} style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
               <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
               <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
@@ -1143,7 +1143,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals — all explained.</div>
           </span>
-          <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
+          <span style={{ fontSize:18, color:"#f2ece4" }}>›</span>
         </button>
       </div>
 
@@ -1228,7 +1228,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* EMOTIONAL PATTERN — dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
+          <span style={{ fontSize:13, fontWeight:400, color:"#f2ece4", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
@@ -1271,7 +1271,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook ✦</div>
             <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals — everything explained.</div>
           </span>
-          <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
+          <span style={{ fontSize:20, color:"#f2ece4", flexShrink:0 }}>›</span>
         </button>
       </div>
     </div>
@@ -1305,14 +1305,14 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:400,color:isP?R:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+            <div style={{ fontSize:15,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
             <div style={{ fontSize:13,color:C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
           </div>
           {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (
             <>
               <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0,flexShrink:0 }}><Ico.Heart on={liked.has(t.id)}/></button>
-              <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:32,height:32,borderRadius:"50%",background:isP?R:C.bg3,border:"none",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+              <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:32,height:32,borderRadius:"50%",background:isP?"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":C.bg3,border:"none",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
                 {isP&&playing?<Ico.Pause dark={isP}/>:<Ico.Play dark={isP}/>}
               </button>
             </>

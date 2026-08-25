@@ -55,7 +55,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
 
         {/* ── ACCOUNT ── */}
         <div style={{ background: "#000000", border: "1px solid #161228", borderRadius: 14, padding: "22px 22px" }}>
-          <div style={{ fontSize: 11, color: "#2CB7A7", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>Account</div>
+          <div style={{ fontSize: 11, color: "#f2ece4", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>Account</div>
           <Row label="Name"  value={USER.name} />
           <Row label="Email" value={USER.email} />
           <Row label="Plan"  value={planLabel} />
@@ -68,10 +68,10 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
 
         {/* ── STORAGE ── */}
         <div style={{ background: "#000000", border: "1px solid #161228", borderRadius: 14, padding: "22px 22px" }}>
-          <div style={{ fontSize: 11, color: "#2CB7A7", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>Evidence Vault Storage</div>
+          <div style={{ fontSize: 11, color: "#f2ece4", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>Evidence Vault Storage</div>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
             <span style={{ fontSize: 15, color: T.textPrimary, fontWeight: 600 }}>Used</span>
-            <span style={{ fontSize: 14, color: "#2CB7A7", fontWeight: 700 }}>{USER.storageUsedMb} MB <span style={{ color: T.textMuted, fontWeight: 400 }}>of {limit.toLocaleString()} MB</span></span>
+            <span style={{ fontSize: 14, fontWeight: 700 }}><span style={{ background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>{USER.storageUsedMb} MB</span> <span style={{ color: T.textMuted, fontWeight: 400 }}>of {limit.toLocaleString()} MB</span></span>
           </div>
           <div style={{ height: 6, background: "#161228", borderRadius: 3, marginBottom: 12 }}>
             <div style={{ width: `${Math.min((USER.storageUsedMb/limit)*100, 100)}%`, height: "100%", background: G, borderRadius: 3 }} />
@@ -89,7 +89,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
 
         {/* ── LISTENING REMINDERS ── */}
         <div style={{ background: "#000000", border: "1px solid #161228", borderRadius: 14, padding: "22px 22px" }}>
-          <div style={{ fontSize: 11, color: "#2CB7A7", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>Listening Reminders</div>
+          <div style={{ fontSize: 11, color: "#f2ece4", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>Listening Reminders</div>
           <p style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.75, marginBottom: 18 }}>
             Reshma reminds you to listen at 8am and 9pm every day. Works in Chrome and Edge on desktop and Android. On iPhone, add this app to your Home Screen first (tap Share → Add to Home Screen), then enable here.
           </p>
@@ -125,7 +125,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
 
         {/* ── HOW TO LISTEN ── */}
         <div style={{ background: "#000000", border: "1px solid #161228", borderRadius: 14, padding: "22px 22px" }}>
-          <div style={{ fontSize: 11, color: "#2CB7A7", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>How to Listen</div>
+          <div style={{ fontSize: 11, color: "#f2ece4", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 16 }}>How to Listen</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
               { t: "Best time", b: "First thing on waking or last thing at night. Your subconscious is most receptive at the threshold of sleep." },
@@ -135,7 +135,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
               { t: "Melodic house versions", b: "Some audios are available with melodic house music layered beneath Reshma's voice. This is a unique sound design choice — the frequency of the music reinforces the subconscious installation." },
             ].map((g, i, arr) => (
               <div key={i} style={{ padding: "14px 0", borderBottom: i < arr.length-1 ? "1px solid #161228" : "none" }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: "#2CB7A7", marginBottom: 5 }}>{g.t}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", marginBottom: 5 }}>{g.t}</div>
                 <div style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.75 }}>{g.b}</div>
               </div>
             ))}
@@ -154,7 +154,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
 
         {/* ── INSTALL ── */}
         <div style={{ background: "#000000", border: "1px solid #161228", borderRadius: 14, padding: "22px 22px" }}>
-          <div style={{ fontSize: 11, color: "#2CB7A7", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 14 }}>Install the App</div>
+          <div style={{ fontSize: 11, color: "#f2ece4", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 14 }}>Install the App</div>
           <div style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.9 }}>
             <strong style={{ color: T.textPrimary }}>iPhone:</strong> Tap Share → "Add to Home Screen"<br />
             <strong style={{ color: T.textPrimary }}>Android:</strong> Tap Menu → "Add to Home Screen"<br />
