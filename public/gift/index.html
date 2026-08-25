@@ -613,7 +613,7 @@ footer a {
 </footer>
 
 <script>
-function isValidEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim()); }
+function isValidEmail(e){ return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e.trim()); }
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -630,14 +630,26 @@ async function handleSubmit(e) {
   btn.disabled = true;
 
   try {
-    await fetch('/subscribe', {
+    const res = await fetch('/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ first_name: firstName, email: email, source: 'gift_freebie', type: 'gift' })
+      body: JSON.stringify({ first_name: firstName, email: email, source: 'gift_freebie' })
     });
-  } catch(err) {}
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      errorEl.textContent = data.error || 'Something went wrong. Please try again.';
+      btn.textContent = 'Download free \u2192';
+      btn.disabled = false;
+      return;
+    }
+  } catch(err) {
+    errorEl.textContent = 'Connection error. Please try again.';
+    btn.textContent = 'Download free \u2192';
+    btn.disabled = false;
+    return;
+  }
 
-  document.getElementById('gateFormWrap').style.display = 'none';
+  document.querySelector('.gate-form-wrap').style.display = 'none';
   document.getElementById('downloadSection').classList.add('visible');
   document.getElementById('downloadSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
