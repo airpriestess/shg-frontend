@@ -100,27 +100,20 @@ async function getUserFromToken(env, token) {
 }
 __name(getUserFromToken, "getUserFromToken");
 
-// Passthrough routes — these paths are handled by Cloudflare Pages,
-// not this worker. Return fetch(request) so the request continues normally.
-const PASSTHROUGH_PREFIXES = [
-  "/portal",
-  "/waitlist",
-  "/luckygirl",
-  "/guides",
-  "/science",
-  "/gift",
-];
+// API routes this worker owns — everything else passes through to Cloudflare Pages.
+const API_ROUTES = {
+  "POST /signup":    handleSignup,
+  "POST /login":     handleLogin,
+  "POST /logout":    handleLogout,
+  "GET /me":         handleMe,
+  "POST /subscribe": handleSubscribe,
+  "POST /leads":     handleLeads,
+};
 
-function isPassthrough(pathname) {
-  // Pass through homepage and all static/SPA routes
-  if (pathname === "/" || pathname === "") return true;
-  // Pass through static assets
-  if (pathname.includes(".")) return true;
-  return PASSTHROUGH_PREFIXES.some(
-    (p) => pathname === p || pathname === p + "/" || pathname.startsWith(p + "/")
-  );
+function isApiRoute(method, pathname) {
+  return (`${method} ${pathname}`) in API_ROUTES;
 }
-__name(isPassthrough, "isPassthrough");
+__name(isApiRoute, "isApiRoute");
 
 var worker_default = {
   async fetch(request, env) {
@@ -130,31 +123,22 @@ var worker_default = {
     const url = new URL(request.url);
     const { pathname } = url;
 
-    // Passthrough for non-API routes
-    if (isPassthrough(pathname)) {
+    // Static assets always pass through
+    if (pathname.includes(".")) {
       return fetch(request);
     }
 
-    try {
-      if (pathname === "/signup" && request.method === "POST") {
-        return handleSignup(request, env);
+    // Known API route — handle it
+    if (isApiRoute(request.method, pathname)) {
+      try {
+        return await API_ROUTES[`${request.method} ${pathname}`](request, env);
+      } catch (err) {
+        return json({ error: err.message || "Internal error" }, 500);
       }
-      if (pathname === "/login" && request.method === "POST") {
-        return handleLogin(request, env);
-      }
-      if (pathname === "/logout" && request.method === "POST") {
-        return handleLogout(request, env);
-      }
-      if (pathname === "/me" && request.method === "GET") {
-        return handleMe(request, env);
-      }
-      if (pathname === "/subscribe" && request.method === "POST") {
-        return handleSubscribe(request, env);
-      }
-      return json({ error: "Not found" }, 404);
-    } catch (err) {
-      return json({ error: err.message || "Internal error" }, 500);
     }
+
+    // Everything else (SPA routes, homepage) — pass through to Cloudflare Pages
+    return fetch(request);
   },
 };
 
@@ -246,25 +230,32 @@ async function handleMe(request, env) {
 __name(handleMe, "handleMe");
 
 async function handleSubscribe(request, env) {
+  // Kept for backwards compat — same logic as handleLeads
+  return handleLeads(request, env);
+}
+__name(handleSubscribe, "handleSubscribe");
+
+async function handleLeads(request, env) {
   let body;
   try {
     body = await request.json();
   } catch {
     return json({ error: "Invalid JSON body" }, 400);
   }
-  const { first_name, email, source } = body;
+  const { first_name, name, email, source } = body;
   if (!email || !isValidEmail(email)) {
     return json({ error: "Valid email required" }, 400);
   }
   const id = uuid();
   const created_at = new Date().toISOString();
+  const resolvedName = first_name || name || null;
   await env.DB.prepare(
-    `INSERT INTO gift_leads (id, first_name, email, source, created_at) VALUES (?, ?, ?, ?, ?)`
+    `INSERT OR REPLACE INTO leads (id, first_name, email, source, created_at) VALUES (?, ?, ?, ?, ?)`
   )
-    .bind(id, first_name || null, email.toLowerCase(), source || null, created_at)
+    .bind(id, resolvedName, email.toLowerCase(), source || "gift", created_at)
     .run();
   return json({ success: true, id });
 }
-__name(handleSubscribe, "handleSubscribe");
+__name(handleLeads, "handleLeads");
 
 export { worker_default as default };
