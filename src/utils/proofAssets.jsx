@@ -83,7 +83,7 @@ export const PROOF_ASSETS = [
     id: "email",
     label: "Email Confirmation",
     type: "Photo Proof",
-    color: "#2CB7A7",
+    color: "linear-gradient(90deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
     thread: "I receive £5,000 from an unexpected source",
     audio: "Money Finds Me First",
     date: "2026-06-26",
@@ -92,7 +92,7 @@ export const PROOF_ASSETS = [
       border: "#1a2030",
       content: [
         { text: "📧", size: size > 48 ? 20 : 13 },
-        { text: "Payment confirmed", size: 9, color: "#2CB7A7" },
+        { text: "Payment confirmed", size: 9, color: "linear-gradient(90deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" },
       ]
     })
   },
@@ -100,7 +100,7 @@ export const PROOF_ASSETS = [
     id: "calendar",
     label: "Calendar Invite",
     type: "Photo Proof",
-    color: "#5B8DB8",
+    color: "linear-gradient(90deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
     thread: "I receive £5,000 from an unexpected source",
     audio: "I Have Always Been The Prize",
     date: "2026-06-25",
@@ -109,7 +109,7 @@ export const PROOF_ASSETS = [
       border: "#1a2040",
       content: [
         { text: "📅", size: size > 48 ? 20 : 13 },
-        { text: "Jul 7 · Meeting", size: 9, color: "#5B8DB8" },
+        { text: "Jul 7 · Meeting", size: 9, color: "linear-gradient(90deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" },
       ]
     })
   },
@@ -159,15 +159,26 @@ export function ProofCard({ asset, size = 56, radius = 8, showLabel = false }) {
       display: "flex", flexDirection: "column", alignItems: "center",
       justifyContent: "center", gap: 2, overflow: "hidden", padding: 4,
     }}>
-      {content.map((line, i) => (
-        <div key={i} style={{
-          fontSize: line.size || 10, color: line.color || "#f4ead8",
-          fontWeight: line.bold ? 700 : 400,
-          letterSpacing: line.spacing || "normal",
-          textAlign: "center", lineHeight: 1.2,
-          fontFamily: line.bold ? "Inter, sans-serif" : "Inter, sans-serif",
-        }}>{line.text}</div>
-      ))}
+      {content.map((line, i) => {
+        const isGradient = typeof line.color === "string" && line.color.startsWith("linear-gradient");
+        return (
+          <div key={i} style={{
+            fontSize: line.size || 10,
+            fontWeight: line.bold ? 700 : 400,
+            letterSpacing: line.spacing || "normal",
+            textAlign: "center", lineHeight: 1.2,
+            fontFamily: "Jost, sans-serif",
+            ...(isGradient ? {
+              background: line.color,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            } : {
+              color: line.color || "#f4ead8",
+            }),
+          }}>{line.text}</div>
+        );
+      })}
     </div>
   );
 }
