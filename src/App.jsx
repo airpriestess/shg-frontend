@@ -1337,7 +1337,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: "0 0 auto", justifyContent:"flex-end" }}>
           {/* Free Gift CTA */}
-          <a href="/gift" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
+          <a href="/gift?utm_source=site&utm_medium=nav_cta&utm_campaign=free_gift" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
             Claim Free Gift
           </a>
           {/* Hamburger, both mobile and desktop */}
@@ -1372,7 +1372,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ["Guides",              ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
               ["Blocks",              ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
               ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
-              ["Free Gift", ()=>{ window.location.href="/gift"; setMenuOpen(false); }],
+              ["Free Gift", ()=>{ window.location.href="/gift?utm_source=site&utm_medium=hamburger&utm_campaign=free_gift"; setMenuOpen(false); }],
               ["Events · Coming Soon", ()=>{ window.location.href="/events"; setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"7px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#fdf0e8",fontSize:"clamp(17px,4.2vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>

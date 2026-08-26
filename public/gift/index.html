@@ -440,22 +440,26 @@ async function handleSubmit(e) {
 
   try {
     const p = new URLSearchParams(window.location.search);
-    const source = [
-      p.get('utm_source'),
-      p.get('utm_medium'),
-      p.get('utm_campaign')
-    ].filter(Boolean).join('|') || 'gift_freebie';
+    let utmSource=p.get('utm_source'), utmMedium=p.get('utm_medium'), utmCampaign=p.get('utm_campaign')||'free_gift';
+    const referrer=document.referrer||'';
+    if(!utmSource){try{
+      if(referrer.includes('youtube.com')){utmSource='youtube';const vid=new URL(referrer).searchParams.get('v');utmMedium=vid?'video:'+vid:'description';}
+      else if(referrer.includes('youtu.be')){utmSource='youtube';utmMedium='video:'+(referrer.split('youtu.be/')[1]||'').split('?')[0];}
+      else if(referrer.includes('instagram.com')){utmSource='instagram';utmMedium='referral';}
+      else if(referrer.includes('tiktok.com')){utmSource='tiktok';utmMedium='referral';}
+      else if(referrer.includes('reshmaoracle.com')){utmSource='site';utmMedium='internal';}
+      else if(referrer){utmSource='referral';utmMedium=new URL(referrer).hostname;}
+      else{utmSource='direct';utmMedium='none';}
+    }catch(e){utmSource='direct';utmMedium='none';}}
+    const source=[utmSource,utmMedium,utmCampaign].filter(Boolean).join('|');
 
     const res = await fetch('/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        first_name: firstName,
-        email: email,
-        source: source,
-        utm_source: p.get('utm_source') || null,
-        utm_medium: p.get('utm_medium') || null,
-        utm_campaign: p.get('utm_campaign') || null
+        first_name: firstName, email: email, source: source,
+        utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign,
+        referrer: referrer||null
       })
     });
     if (!res.ok) {
