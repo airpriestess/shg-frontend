@@ -524,6 +524,36 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
     return arr;
   });
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onbStep, setOnbStep] = useState(0);
+  const [onbGoals, setOnbGoals] = useState([]);
+  const [onbWhere, setOnbWhere] = useState("");
+  const [onbFreq, setOnbFreq] = useState("");
+  useEffect(() => {
+    if (isPreview || !userId || !threadsLoaded) return;
+    const key = `shg_onboarded_${userId}`;
+    try { if (localStorage.getItem(key)) return; } catch {}
+    setShowOnboarding(true);
+  }, [userId, isPreview, threadsLoaded]);
+  const finishOnboarding = async () => {
+    const key = `shg_onboarded_${userId}`;
+    try { localStorage.setItem(key, "1"); } catch {}
+    setShowOnboarding(false);
+    const email = session?.user?.email;
+    if (email) {
+      try {
+        await quizApi("/", null, {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            name: userName !== "you" ? userName : undefined,
+            result_category: onbGoals.join(", "),
+            source: "onboarding_quiz",
+          }),
+        });
+      } catch {}
+    }
+  };
   const [showGuide, setShowGuide] = useState(false);
   const [showEmoLog, setShowEmoLog] = useState(false);
   const [quickFeel, setQuickFeel] = useState("");
@@ -851,6 +881,14 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
         </div>
       )}
+      {showOnboarding && <OnboardingQuiz
+        step={onbStep} setStep={setOnbStep}
+        goals={onbGoals} setGoals={setOnbGoals}
+        where={onbWhere} setWhere={setOnbWhere}
+        freq={onbFreq} setFreq={setOnbFreq}
+        onDone={finishOnboarding}
+        isDark={isDark} C={C}
+      />}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <div style={{ flex:1,display:"flex",overflow:"hidden" }}>
         {/* Sidebar */}
@@ -2556,6 +2594,89 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
       </div>
       <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ fontSize:16,fontWeight:400,color:unavail?C.mu:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:hasAudio?"pointer":"not-allowed" }}>{t.title}</div>
       <div style={{ fontSize:14,color:C.mu }}>{t.cat} · {t.dur}</div>
+    </div>
+  );
+}
+
+// ── ONBOARDING QUIZ ────────────────────────────────────────────────────────────
+const OB_GOALS = ["Confidence","Abundance","Love","Sleep","Anxiety","Body","Purpose"];
+const OB_WHERE = ["Stuck and overwhelmed","Building momentum","Ready to go deep","Starting fresh"];
+const OB_FREQ  = ["Daily","A few times a week","Whenever I need it"];
+
+function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
+  const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
+  const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+  const bg = isDark ? "#0d0d0d" : "#fff";
+  const text = isDark ? "#FDF0E8" : "#111";
+  const sub = isDark ? "rgba(253,240,232,0.55)" : "#555";
+  const chip = (label, active, onClick) => (
+    React.createElement('button', { key: label, onClick, style: {
+      padding:"9px 16px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",
+      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ccc"}`,
+      background: active ? grad : "none", color: active ? "#000" : text,
+      fontWeight: active ? 600 : 400, transition:"all 0.15s",
+    }}, label)
+  );
+
+  const steps = [
+    {
+      title: "What do you most want to shift?",
+      sub: "Pick up to 3 — we'll tailor your tracks to these.",
+      content: React.createElement('div', { style: { display:"flex",flexWrap:"wrap",gap:10,justifyContent:"center" } },
+        OB_GOALS.map(g => chip(g, goals.includes(g), () => toggleGoal(g)))
+      ),
+      canNext: goals.length > 0,
+      next: () => setStep(1),
+    },
+    {
+      title: "Where are you right now?",
+      sub: "No right answer. Just honest.",
+      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
+        OB_WHERE.map(w => chip(w, where===w, () => setWhere(w)))
+      ),
+      canNext: !!where,
+      next: () => setStep(2),
+    },
+    {
+      title: "How often do you want to listen?",
+      sub: "We'll shape your experience around this.",
+      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
+        OB_FREQ.map(f => chip(f, freq===f, () => setFreq(f)))
+      ),
+      canNext: !!freq,
+      next: onDone,
+    },
+  ];
+
+  const s = steps[step];
+
+  return (
+    <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.75)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+      <div style={{ maxWidth:400,width:"100%",borderRadius:24,padding:"32px 28px",background:bg,boxShadow:"0 20px 60px rgba(0,0,0,0.4)" }}>
+        <div style={{ textAlign:"center",marginBottom:24 }}>
+          <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:sub,marginBottom:12 }}>Step {step+1} of 3</div>
+          <div style={{ display:"flex",gap:6,justifyContent:"center",marginBottom:20 }}>
+            {steps.map((_,i) => <div key={i} style={{ width:6,height:6,borderRadius:3,background:i===step?"#E8B870":"rgba(128,128,128,0.25)" }}/>)}
+          </div>
+          <div style={{ fontSize:20,fontWeight:400,color:text,marginBottom:8,lineHeight:1.3 }}>{s.title}</div>
+          <div style={{ fontSize:14,color:sub }}>{s.sub}</div>
+        </div>
+        <div style={{ marginBottom:28 }}>{s.content}</div>
+        <button
+          onClick={s.canNext ? s.next : undefined}
+          style={{
+            width:"100%",padding:"14px",border:"none",borderRadius:14,fontSize:16,
+            fontFamily:"'Jost',sans-serif",cursor:s.canNext?"pointer":"not-allowed",
+            background:s.canNext?grad:"rgba(128,128,128,0.2)",
+            color:s.canNext?"#000":"#888",fontWeight:s.canNext?600:400,transition:"all 0.2s",
+          }}
+        >{step < 2 ? "Continue" : "Let's go →"}</button>
+        {step === 0 && (
+          <button onClick={onDone} style={{ display:"block",width:"100%",marginTop:12,padding:"8px",background:"none",border:"none",color:sub,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            Skip for now
+          </button>
+        )}
+      </div>
     </div>
   );
 }
