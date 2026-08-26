@@ -97,13 +97,13 @@ const THEMES = {
     accentChamp:"#F5E0A0",
     accentDeep: "#167A6B",
   },
-  // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
+  // ── LIGHT MODE: lilac → teal gradient, minimal gold, ALL TEXT BLACK ─────
   light: {
-    bg:      "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",
-    bg2:     "#fdf0e8",  // frosted glass cards
-    bg3:     "#fdf0e8",  // raised cards
-    bg4:     "#fdf0e8",  // highest surface
-    nav:     "#F5E0A0",  // nav bar, solid champagne
+    bg:      "linear-gradient(135deg,#E4DCF5 0%,#BFA5D8 22%,#2CB7A7 58%,#167A6B 100%)",
+    bg2:     "#f4f1fb",  // frosted glass cards, soft lilac-white
+    bg3:     "#f4f1fb",
+    bg4:     "#f4f1fb",
+    nav:     "#DDD6F0",  // nav bar, soft lilac
     cr:      "#000000",   // primary text, black
     mu:      "#000000",   // muted text, also black (no grey in light mode)
     dim:     "#000000",   // faint text, also black
@@ -119,7 +119,7 @@ const THEMES = {
 };
 
 const R = "#E8B870", P = "#BFA5D8";
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#E4DCF5 0%,#BFA5D8 22%,#2CB7A7 58%,#167A6B 100%)";
 
 // Per-tab subtle wash, black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
@@ -2574,7 +2574,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 {d.track && <span style={{ fontSize:13,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
               </div>
               {d.feelBefore && <div style={{ fontSize:13,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
-              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#E8B870",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
+              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#2CB7A7",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
             <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
               <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:14,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>
