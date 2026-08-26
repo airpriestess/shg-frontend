@@ -1337,7 +1337,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: "0 0 auto", justifyContent:"flex-end" }}>
           {/* Free Gift CTA */}
-          <a href="/gift?utm_source=site&utm_medium=nav_cta&utm_campaign=free_gift" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:11, fontWeight:300, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
+          <a href="/gift?utm_source=site&utm_medium=nav_cta&utm_campaign=free_gift" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
             Claim Free Gift
           </a>
           {/* Hamburger, both mobile and desktop */}
@@ -1716,16 +1716,16 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 13, color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>What makes this different</div>
             <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,52px)":"clamp(44px,5.5vw,72px)", lineHeight: 1.05, marginBottom: 20, color: "#0a0a0a", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.02em" }}>
-              Most hypnosis is boring.<br/>This is different.
+              Your beliefs are running your life.<br/>Most people never change them.
             </h2>
             <p style={{ fontSize: isMobile?17:21, color: "#000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-              Monotone voice. Generic ambient sound. You fall asleep in two minutes and nothing changes. Most hypnosis feels like a task, not a ritual.
+              Affirmations do not work. Willpower does not work. Not because you are not trying. Because none of it reaches your subconscious. The part of your mind that is actually running the show.
             </p>
             <p style={{ fontSize: isMobile?17:21, color: "#000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-              This is the only one that makes listening feel like a daily ritual. Hypnosis and subliminals layered beneath melodic house music, EMDR and binaural beats, produced to keep you coming back.
+              SHG is built on one idea. The subconscious responds to repetition, not effort. EMDR, theta binaural beats, vocal hypnosis, and subliminals, layered beneath melodic house music, designed to keep you coming back. Not because it feels like work. Because it sounds like a track you actually want to hear.
             </p>
             <p style={{ fontSize: isMobile?18:22, color: "#0a0a0a", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-              Save yourself thousands in therapy sessions.
+              The result is not motivation. It is identity. You stop chasing what you want. You become someone for whom it arrives. The lucky girl. The rich girl. The woman things just go right for. Not through effort. Through repetition, delivered at the frequency your subconscious cannot ignore.
             </p>
 
                         {/* AUDIO FORMATS */}
