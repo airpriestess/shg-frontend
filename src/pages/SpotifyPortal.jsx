@@ -1907,14 +1907,15 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
           {catOpen && dropPos && createPortal(
-            <div style={{
+            <div onTouchMove={e=>e.stopPropagation()} style={{
               position:"fixed",
               top:dropPos.top,
               left:dropPos.left,
               width:dropPos.width,
               zIndex:999999,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
-              maxHeight:300, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
+              maxHeight:"55vh", overflowY:"scroll", WebkitOverflowScrolling:"touch",
+              boxShadow:"0 12px 40px rgba(0,0,0,0.95)", touchAction:"pan-y"
             }}>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
