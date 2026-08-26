@@ -1559,21 +1559,61 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       </div>
 
       {/* EMOTIONAL PATTERN, dominant state today / 7d / 30d */}
-      <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
+      <style>{`
+        @keyframes shg-glow-pulse {
+          0%,100% { opacity:0.55; }
+          50%      { opacity:1; }
+        }
+        .shg-dominant-card {
+          margin: 0 16px 14px;
+          padding: 20px 16px 18px;
+          border-radius: 20px;
+          position: relative;
+          overflow: hidden;
+          background: linear-gradient(135deg,rgba(191,165,216,0.18) 0%,rgba(44,183,167,0.14) 60%,rgba(22,122,107,0.10) 100%);
+          border: 1px solid rgba(191,165,216,0.45);
+          box-shadow: 0 0 32px rgba(191,165,216,0.22), 0 0 64px rgba(44,183,167,0.10), inset 0 1px 0 rgba(255,255,255,0.18);
+        }
+        .shg-dominant-card::before {
+          content:'';
+          position:absolute;
+          inset:0;
+          border-radius:20px;
+          background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(191,165,216,0.28) 0%, transparent 70%);
+          pointer-events:none;
+          animation: shg-glow-pulse 4s ease-in-out infinite;
+        }
+        .shg-state-cell {
+          border-radius: 14px;
+          padding: 16px 8px;
+          text-align: center;
+          background: rgba(255,255,255,0.10);
+          border: 1px solid rgba(191,165,216,0.25);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+        }
+        .shg-state-cell:first-child {
+          background: rgba(191,165,216,0.18);
+          border-color: rgba(191,165,216,0.5);
+          box-shadow: 0 0 18px rgba(191,165,216,0.25);
+        }
+      `}</style>
+      <div className="shg-dominant-card">
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:16, position:"relative" }}>
+          <span style={{ fontSize:11, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.22em", textTransform:"uppercase" }}>Your dominant state</span>
+          <span style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.1em", textTransform:"uppercase" }}>Hawkins scale</span>
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8, position:"relative" }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
-            <div key={i} style={{ background:C.card2, borderRadius:12, padding:"16px 10px", textAlign:"center" }}>
-              <div style={{ fontSize:13, color:C.mu, fontWeight:400, letterSpacing:"0.05em", textTransform:"uppercase", marginBottom:8 }}>{l}</div>
-              <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||","}</div>
-              <div style={{ fontSize:15, color:C.mu, fontWeight:400, marginTop:4 }}>{d?.v||""}</div>
+            <div key={i} className="shg-state-cell">
+              <div style={{ fontSize:11, color:"rgba(191,165,216,0.85)", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10 }}>{l}</div>
+              <div style={{ fontSize:i===0?22:18, fontWeight:400, color:"#ffffff", lineHeight:1.1, textShadow: i===0?"0 0 20px rgba(191,165,216,0.9), 0 0 40px rgba(44,183,167,0.5)":"0 0 12px rgba(191,165,216,0.5)" }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:13, color:"rgba(255,255,255,0.55)", fontWeight:400, marginTop:6 }}>{d?.v||""}</div>
             </div>
           ))}
         </div>
-        <div style={{ fontSize:14, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
-          {dom7&&dom30 ? (dom7.v>dom30.v ? ` You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today, the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
+        <div style={{ fontSize:13, color:"rgba(255,255,255,0.6)", marginTop:14, textAlign:"center", fontWeight:400, position:"relative" }}>
+          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
 
