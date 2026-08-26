@@ -123,11 +123,6 @@ var worker_default = {
     const url = new URL(request.url);
     const { pathname } = url;
 
-    // Static assets always pass through
-    if (pathname.includes(".")) {
-      return fetch(request);
-    }
-
     // Known API route — handle it
     if (isApiRoute(request.method, pathname)) {
       try {
@@ -137,8 +132,16 @@ var worker_default = {
       }
     }
 
-    // Everything else (SPA routes, homepage) — pass through to Cloudflare Pages
-    return fetch(request);
+    // Everything else (static assets, SPA routes, homepage) — proxy to Pages
+    const pagesUrl = new URL(request.url);
+    pagesUrl.hostname = "shg-frontend.pages.dev";
+    const pagesReq = new Request(pagesUrl.toString(), {
+      method: request.method,
+      headers: request.headers,
+      body: ["GET","HEAD"].includes(request.method) ? undefined : request.body,
+      redirect: "follow",
+    });
+    return fetch(pagesReq);
   },
 };
 
