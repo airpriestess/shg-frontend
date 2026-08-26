@@ -92,7 +92,7 @@ function ProofOSBanner({ isMobile }) {
       {/* Step pills */}
       <div style={{ display:"flex", justifyContent:"center", gap: isMobile?6:12, marginTop:20, padding:"0 24px", flexWrap:"wrap" }}>
         {STEPS.map((st,i)=>(
-          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 12px":"8px 18px", borderRadius:20, border:"none", background: i===idx?"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(253,240,232,0.12)", color: i===idx?"#000":"#fdf0e8", border: i===idx?"none":"1px solid rgba(253,240,232,0.2)", fontSize: isMobile?11:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:400, transition:"all 0.2s" }}>
+          <button key={i} onClick={()=>setIdx(i)} style={{ padding: isMobile?"6px 12px":"8px 18px", borderRadius:20, border:"none", background: i===idx?"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(253,240,232,0.08)", color: i===idx?"#000":"#fdf0e8", outline: i===idx?"none":"1px solid rgba(253,240,232,0.35)", fontSize: isMobile?11:13, fontFamily:"'Jost',sans-serif", cursor:"pointer", fontWeight: i===idx?500:300, transition:"all 0.2s", opacity: i===idx?1:0.75 }}>
             {st.num} {st.label}
           </button>
         ))}
@@ -1320,7 +1320,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 11 : 10, fontWeight: 500, color: "#000", letterSpacing: "0.2em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
             Of course, obviously.
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"5px 14px":"5px 16px", background: "rgba(0,0,0,0.2)", border: "1.5px solid rgba(0,0,0,0.4)", borderRadius: 20, color: "#000", fontSize: isMobile ? 11 : 10, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 400 }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"5px 14px":"5px 16px", background: "rgba(0,0,0,0.2)", border: "1.5px solid rgba(0,0,0,0.4)", borderRadius: 20, color: "#000", fontSize: isMobile ? 11 : 10, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 400 }}>
             Join the Waitlist →
           </button>
         </div>
