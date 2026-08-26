@@ -1922,7 +1922,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                 const active = cat===c;
                 const catColor = CAT_ICONS[c]?.accent || R;
                 return (
-                  <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
+                  <div key={c} onClick={()=>{setCat(c);setLibFormat("All");setCatOpen(false);}}
                     style={{
                       padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
                       color:active?catColor:"#fdf0e8", background:active?`${catColor}1c`:"#0a0a0a",
