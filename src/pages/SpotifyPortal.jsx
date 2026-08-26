@@ -1561,7 +1561,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* EMOTIONAL PATTERN, dominant state today / 7d / 30d */}
       <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
+          <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
           {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
@@ -1578,11 +1578,18 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       </div>
 
       {/* PATTERNS, what's actually working, real listen + manifestation correlation */}
-      {!isPreview && patterns && patterns.length > 0 && (
+      {(isPreview || (patterns && patterns.length > 0)) && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:"linear-gradient(135deg,rgba(245,224,160,0.08),rgba(191,165,216,0.06),rgba(44,183,167,0.08))", border:`1px solid rgba(232,184,112,0.3)` }}>
-          <div style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>What's working for you </div>
-          {patterns.map((p,i) => (
-            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", borderBottom: i<patterns.length-1 ? `1px solid ${C.border}` : "none" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>What's working for you</span>
+            {isPreview && <span style={{ fontSize:11, color:C.accentGold, opacity:0.6, fontStyle:"italic" }}>preview data</span>}
+          </div>
+          {(isPreview ? [
+            { type:"category", name:"Lovemaxxing", listens:38, manifestedCount:5 },
+            { type:"category", name:"Richgirlmaxxing", listens:29, manifestedCount:3 },
+            { type:"track",    name:"Money Finds Me First", listens:12, manifestedCount:3 },
+          ] : patterns).map((p,i,arr) => (
+            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
               <div style={{ width:8, height:8, borderRadius:"50%", background: p.type==="category" ? "#E8B870" : "#BFA5D8", flexShrink:0 }}/>
               <div style={{ flex:1 }}>
                 <div style={{ fontSize:14, color:C.cr }}>{p.name}</div>
@@ -1596,32 +1603,40 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       )}
 
       {/* AI RECOMMENDATION CARD */}
-      {!isPreview && (
-        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.3)` }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-            <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
-            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:12, color:"#BFA5D8", background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+      <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.3)` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+          <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
+          {!isPreview && (
+            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:12, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
               {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
             </button>
-          </div>
-          {recommendation ? (
-            <div>
-              <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{recommendation.title}</div>
-              <div style={{ fontSize:13, color:"#BFA5D8", marginTop:4 }}>{recommendation.category}</div>
-              <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
-            </div>
-          ) : (
-            <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
           )}
         </div>
-      )}
+        {isPreview ? (
+          <div>
+            <div style={{ fontSize:14, color:C.mu, marginBottom:10, lineHeight:1.55 }}>Hi Reshma — based on your 38 Lovemaxxing listens and 5 desires manifested in that area, today's pick is:</div>
+            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
+            <div style={{ fontSize:12, color:C.mu, marginTop:12, opacity:0.55, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+          </div>
+        ) : recommendation ? (
+          <div>
+            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{recommendation.title}</div>
+            <div style={{ fontSize:13, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
+          </div>
+        ) : (
+          <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
+        )}
+      </div>
 
       {/* STREAK CALENDAR */}
       {!isPreview && streakDays.length > 0 && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-            <span style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
-            <span style={{ fontSize:13, color:"#E8B870" }}>{streakDays.filter(d=>d.listened).length} days</span>
+            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
+            <span style={{ fontSize:13, color:C.accentGold }}>{streakDays.filter(d=>d.listened).length} days</span>
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(10,1fr)", gap:4 }}>
             {streakDays.map((d,i) => (
@@ -1635,7 +1650,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* CATEGORY RADAR */}
       {!isPreview && Object.keys(catCounts).length > 0 && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
-          <div style={{ fontSize:13, fontWeight:400, color:"#2CB7A7", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
+          <div style={{ fontSize:13, fontWeight:400, color:C.accentTeal, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
           {Object.entries(catCounts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([cat,n],i,arr) => {
             const max = arr[0][1];
             const pct = Math.round((n/max)*100);
@@ -1656,22 +1671,32 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         </div>
       )}
 
-      {/* DAILY REMINDER BELL */}
+
+      {/* DESIRE NUDGE — remind user to update desires / bucket list */}
+      {isPreview && (
+        <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
+          <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:3, lineHeight:1.4 }}>You haven't updated your desire list in 7 days. 3 intentions are still in progress. Want to mark anything manifested?</div>
+          </div>
+        </div>
+      )}
       {!isPreview && (
         <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
-          <span style={{ fontSize:28 }}>🔔</span>
+          <span style={{ fontSize:26, flexShrink:0 }}>🔔</span>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Daily reminder</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Get a nudge at 8pm to listen</div>
           </div>
-          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:13, color: reminderSent ? "#2CB7A7" : "#fdf0e8", background: reminderSent ? "rgba(44,183,167,0.12)" : "rgba(232,184,112,0.15)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":"rgba(232,184,112,0.3)"}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
+          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:13, color: reminderSent ? "#2CB7A7" : C.cr, background: reminderSent ? "rgba(44,183,167,0.1)" : "rgba(0,0,0,0.06)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":C.border}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
             {reminderSent ? "✓ set" : "remind me"}
           </button>
         </div>
       )}
 
-      {/* ASK RESHMA — Goddess tier only */}
-      {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
+      {/* ASK RESHMA — Goddess tier only, teaser shown in preview */}
+      <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail} isPreview={isPreview}/>
 
       {/* FULL ANALYTICS BOARD */}
       <div style={{ margin:"0 16px 20px" }}>
@@ -1708,7 +1733,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 }
 
 // ── ASK RESHMA CARD ───────────────────────────────────────────────────────────
-function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
+function AskReshmaCard({ C, userId, token, userTier, userEmail, isPreview }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const [sent, setSent] = useState(false);
