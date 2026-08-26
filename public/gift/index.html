@@ -326,6 +326,27 @@ footer a:hover{opacity:1;}
   </div>
 
   <!-- AFTER CONSISTENT LISTENING -->
+  <!-- FORM -->
+  <div class="form-wrap gate-form-wrap" id="gateForm">
+    <h2>Get the free audio</h2>
+    <p>Enter your details to download instantly.</p>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" id="firstName" placeholder="First name" autocomplete="given-name" required>
+      <input type="email" id="emailInput" placeholder="Email address" autocomplete="email" required>
+      <button type="submit" class="form-submit" id="submitBtn">Download Free &rarr;</button>
+      <div class="form-error" id="formError"></div>
+      <p class="form-note">No spam. You will join the SHG list and can unsubscribe any time.</p>
+    </form>
+  </div>
+
+  <!-- DOWNLOAD (hidden until email submitted) -->
+  <div class="download-wrap" id="downloadSection">
+    <span class="label grad-text" style="text-align:center;">Your audio is ready</span>
+    
+    <a href="/gift/I-Attract-Opportunities-Constantly.mp3" download class="download-link">Download Audio &rarr;</a>
+    
+  </div>
+
   <div style="margin-bottom:48px;padding:32px;background:rgba(245,224,160,0.04);border:1px solid rgba(245,224,160,0.15);border-radius:16px;">
     <p style="font-size:clamp(17px,2.5vw,20px);font-weight:300;color:#fdf0e8;line-height:1.9;margin:0;">
       One listen will not rewire your mind. Repetition is the mother of all skill. Your subconscious was not programmed overnight and it does not change overnight. But with consistent daily listening, something shifts. Not through conscious effort. Not through willpower. Through repetition. The belief installs quietly, beneath awareness, the way language installs in a child. One day it is simply there. And reality reorganises itself around it.
@@ -350,27 +371,6 @@ footer a:hover{opacity:1;}
       <span class="benefit-title">With repetition. Identity locked</span>
       <p class="benefit-body">This is not a mindset you maintain. It is who you become. Synchronicities stop surprising you. Of course things work out. Of course people show up. That is simply what happens for you now.</p>
     </div>
-  </div>
-
-  <!-- FORM -->
-  <div class="form-wrap gate-form-wrap" id="gateForm">
-    <h2>Get the free audio</h2>
-    <p>Enter your details to download instantly.</p>
-    <form onsubmit="handleSubmit(event)">
-      <input type="text" id="firstName" placeholder="First name" autocomplete="given-name" required>
-      <input type="email" id="emailInput" placeholder="Email address" autocomplete="email" required>
-      <button type="submit" class="form-submit" id="submitBtn">Download Free &rarr;</button>
-      <div class="form-error" id="formError"></div>
-      <p class="form-note">No spam. You will join the SHG list and can unsubscribe any time.</p>
-    </form>
-  </div>
-
-  <!-- DOWNLOAD (hidden until email submitted) -->
-  <div class="download-wrap" id="downloadSection">
-    <span class="label grad-text" style="text-align:center;">Your audio is ready</span>
-    
-    <a href="/gift/I-Attract-Opportunities-Constantly.mp3" download class="download-link">Download Audio &rarr;</a>
-    
   </div>
 
   <!-- HOW TO USE -->
