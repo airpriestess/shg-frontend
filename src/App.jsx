@@ -1976,68 +1976,68 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
 
       {/* BRAIN DIAGRAM */}
-      <div style={{ width:"100%", display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:600 }}>
+      <div style={{ width:"100%", display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", minHeight:isMobile?undefined:640 }}>
 
         {/* LEFT — WHITE, ALL BLACK */}
-        <div style={{ background:"#ffffff", padding: isMobile?"48px 24px":"80px 52px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between" }}>
-          <div style={{ fontSize:9, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(0,0,0,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:500, textAlign:"center" }}>Before</div>
-          <div style={{ fontSize: isMobile?18:24, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.2, textAlign:"center", marginBottom:32 }}>
+        <div style={{ background:"#ffffff", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>Before</div>
+          <div style={{ fontSize: isMobile?22:32, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.3, textAlign:"center" }}>
             Six opportunities arrived.<br/><strong style={{fontWeight:700}}>You noticed two.</strong>
           </div>
-          <svg viewBox="0 0 300 320" style={{width:"100%",maxWidth:300}}>
+          <svg viewBox="0 0 300 320" style={{width:"100%",maxWidth:320}}>
             {[25,75,125,175,225,275].map((x,i)=>(
               <g key={i}>
-                <circle cx={x} cy={30} r={16} fill="none" stroke="#000" strokeWidth="2"/>
-                <line x1={x} y1={46} x2={x} y2={148} stroke="#000" strokeWidth="1" strokeDasharray="5,5" strokeOpacity="0.3"/>
+                <circle cx={x} cy={30} r={18} fill="none" stroke="#000" strokeWidth="2"/>
+                <line x1={x} y1={48} x2={x} y2={145} stroke="#000" strokeWidth="1.5" strokeDasharray="6,5" strokeOpacity="0.25"/>
               </g>
             ))}
-            <rect x={20} y={148} width={260} height={54} rx={3} fill="none" stroke="#000" strokeWidth="2"/>
-            <text x={150} y={170} textAnchor="middle" fill="#000" fontSize="9" fontFamily="Jost,sans-serif" letterSpacing="3" fontWeight="600">CRITICAL MIND</text>
-            <text x={150} y={190} textAnchor="middle" fill="rgba(0,0,0,0.5)" fontSize="9" fontFamily="Jost,sans-serif">blocks new beliefs</text>
-            <line x1={100} y1={202} x2={100} y2={270} stroke="#000" strokeWidth="1" strokeDasharray="4,4" strokeOpacity="0.2"/>
-            <line x1={200} y1={202} x2={200} y2={270} stroke="#000" strokeWidth="1" strokeDasharray="4,4" strokeOpacity="0.2"/>
-            <circle cx={100} cy={285} r={14} fill="none" stroke="#000" strokeWidth="1.5" strokeOpacity="0.35"/>
-            <circle cx={200} cy={285} r={14} fill="none" stroke="#000" strokeWidth="1.5" strokeOpacity="0.35"/>
-            <text x={150} y={318} textAnchor="middle" fill="rgba(0,0,0,0.35)" fontSize="10" fontFamily="Jost,sans-serif" letterSpacing="2">2 of 6 received</text>
+            <rect x={18} y={145} width={264} height={60} rx={4} fill="none" stroke="#000" strokeWidth="2"/>
+            <text x={150} y={169} textAnchor="middle" fill="#000" fontSize="11" fontFamily="'Jost',sans-serif" letterSpacing="3" fontWeight="700">CRITICAL MIND</text>
+            <text x={150} y={191} textAnchor="middle" fill="rgba(0,0,0,0.45)" fontSize="11" fontFamily="'Jost',sans-serif">blocks new beliefs</text>
+            <line x1={100} y1={205} x2={100} y2={268} stroke="#000" strokeWidth="1.5" strokeDasharray="5,4" strokeOpacity="0.2"/>
+            <line x1={200} y1={205} x2={200} y2={268} stroke="#000" strokeWidth="1.5" strokeDasharray="5,4" strokeOpacity="0.2"/>
+            <circle cx={100} cy={285} r={16} fill="none" stroke="#000" strokeWidth="1.5" strokeOpacity="0.3"/>
+            <circle cx={200} cy={285} r={16} fill="none" stroke="#000" strokeWidth="1.5" strokeOpacity="0.3"/>
+            <text x={150} y={318} textAnchor="middle" fill="rgba(0,0,0,0.3)" fontSize="12" fontFamily="'Jost',sans-serif" letterSpacing="1">2 of 6 received</text>
           </svg>
-          <div style={{fontSize:13,fontWeight:300,color:"rgba(0,0,0,0.5)",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:260,marginTop:28}}>
+          <div style={{fontSize:15,fontWeight:300,color:"rgba(0,0,0,0.5)",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:300}}>
             Your filter was set before age 7. It runs automatically. You never chose it.
           </div>
         </div>
 
         {/* RIGHT — LG GRADIENT, ALL BLACK */}
-        <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding: isMobile?"48px 24px":"80px 52px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between" }}>
-          <div style={{ fontSize:9, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(0,0,0,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:500, textAlign:"center" }}>After</div>
-          <div style={{ fontSize: isMobile?18:24, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.2, textAlign:"center", marginBottom:32 }}>
+        <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>After · SHG Theta State</div>
+          <div style={{ fontSize: isMobile?22:32, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.3, textAlign:"center" }}>
             Six opportunities arrived.<br/><strong style={{fontWeight:700}}>You noticed all six.</strong>
           </div>
-          <svg viewBox="0 0 300 320" style={{width:"100%",maxWidth:300}}>
+          <svg viewBox="0 0 300 320" style={{width:"100%",maxWidth:320}}>
             {[25,75,125,175,225,275].map((x,i)=>(
               <g key={i}>
-                <circle cx={x} cy={30} r={16} fill="#000">
-                  <animate attributeName="r" values="14;18;14" dur="2.2s" begin={i*0.28+"s"} repeatCount="indefinite"/>
+                <circle cx={x} cy={30} r={18} fill="#000">
+                  <animate attributeName="r" values="16;20;16" dur="2.2s" begin={i*0.28+"s"} repeatCount="indefinite"/>
                 </circle>
-                <line x1={x} y1={46} x2={x} y2={148} stroke="#000" strokeWidth="1.5">
+                <line x1={x} y1={48} x2={x} y2={145} stroke="#000" strokeWidth="2">
                   <animate attributeName="strokeOpacity" values="0.3;0.9;0.3" dur="2.2s" begin={i*0.28+"s"} repeatCount="indefinite"/>
                 </line>
               </g>
             ))}
-            <rect x={20} y={148} width={260} height={54} rx={3} fill="rgba(0,0,0,0.15)" stroke="#000" strokeWidth="2"/>
-            <text x={150} y={170} textAnchor="middle" fill="#000" fontSize="9" fontFamily="Jost,sans-serif" letterSpacing="3" fontWeight="600">NEW IDENTITY</text>
-            <text x={150} y={190} textAnchor="middle" fill="rgba(0,0,0,0.6)" fontSize="9" fontFamily="Jost,sans-serif">filter open. all received.</text>
+            <rect x={18} y={145} width={264} height={60} rx={4} fill="rgba(0,0,0,0.12)" stroke="#000" strokeWidth="2"/>
+            <text x={150} y={169} textAnchor="middle" fill="#000" fontSize="11" fontFamily="'Jost',sans-serif" letterSpacing="3" fontWeight="700">NEW IDENTITY</text>
+            <text x={150} y={191} textAnchor="middle" fill="rgba(0,0,0,0.55)" fontSize="11" fontFamily="'Jost',sans-serif">filter open · all received</text>
             {[25,75,125,175,225,275].map((x,i)=>(
               <g key={i}>
-                <line x1={x} y1={202} x2={x} y2={270} stroke="#000" strokeWidth="1.5">
+                <line x1={x} y1={205} x2={x} y2={268} stroke="#000" strokeWidth="2">
                   <animate attributeName="strokeOpacity" values="0.3;1;0.3" dur="2.2s" begin={i*0.28+"s"} repeatCount="indefinite"/>
                 </line>
-                <circle cx={x} cy={285} r={14} fill="#000">
-                  <animate attributeName="r" values="12;16;12" dur="2.2s" begin={i*0.28+"s"} repeatCount="indefinite"/>
+                <circle cx={x} cy={285} r={16} fill="#000">
+                  <animate attributeName="r" values="14;18;14" dur="2.2s" begin={i*0.28+"s"} repeatCount="indefinite"/>
                 </circle>
               </g>
             ))}
-            <text x={150} y={318} textAnchor="middle" fill="rgba(0,0,0,0.6)" fontSize="10" fontFamily="Jost,sans-serif" letterSpacing="2">6 of 6 received</text>
+            <text x={150} y={318} textAnchor="middle" fill="rgba(0,0,0,0.55)" fontSize="12" fontFamily="'Jost',sans-serif" letterSpacing="1">6 of 6 received</text>
           </svg>
-          <div style={{fontSize:13,fontWeight:300,color:"rgba(0,0,0,0.65)",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:260,marginTop:28}}>
+          <div style={{fontSize:15,fontWeight:300,color:"rgba(0,0,0,0.65)",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:300}}>
             Same life. Same opportunities. Different filter. This is what we install.
           </div>
         </div>
