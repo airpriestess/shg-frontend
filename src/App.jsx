@@ -1722,7 +1722,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               Affirmations do not work. Willpower does not work. Not because you are not trying. Because none of it reaches your subconscious. The part of your mind that actually controls your experience of physical reality. The unseen is the seed and source of reality shifting.
             </p>
             <p style={{ fontSize: isMobile?17:21, color: "#000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-              SHG is built on one idea. The subconscious responds to repetition, not effort. EMDR, theta binaural beats, vocal hypnosis, and subliminals, layered beneath melodic house music, designed to keep you coming back. Not because it feels like work. Because it sounds like a track you actually want to hear.
+              SHG is built on one idea. The subconscious responds to repetition, not effort. EMDR, theta binaural beats, vocal hypnosis, and subliminals, layered beneath melodic house music, designed to keep your mind locked on your desires, dreams, goals and manifestations. Delusional at all times. By design.
             </p>
             <p style={{ fontSize: isMobile?18:22, color: "#0a0a0a", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               The result is not motivation. It is identity. You stop chasing what you want. You become someone for whom it arrives. The lucky girl. The rich girl. The woman things just go right for. Not through effort. Through repetition, delivered at the frequency your subconscious cannot ignore.
@@ -1741,8 +1741,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   { icon:"👁", label:"EMDR Hypnosis",      grad:"linear-gradient(135deg,#2CB7A7,#1A9A8A)", glow:"rgba(44,183,167,0.45)", sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
                   { icon:"✦",  label:"Binaural / Reiki",  grad:"linear-gradient(135deg,#167A6B,#2CB7A7)", glow:"rgba(22,122,107,0.45)",  sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy." },
                 ].map((f,i)=>(
-                  <div key={i} style={{ padding:"24px 22px", background:"rgba(0,0,0,0.6)", borderRadius:16, border:"1px solid rgba(255,255,255,0.06)", boxShadow:\`0 0 32px \${f.glow}, inset 0 0 0 1px rgba(255,255,255,0.04)\`, backdropFilter:"blur(8px)", transition:"box-shadow 0.3s" }}>
-                    <div style={{ fontSize:28, marginBottom:14, filter:\`drop-shadow(0 0 10px \${f.glow})\` }}>{f.icon}</div>
+                  <div key={i} style={{ padding:"24px 22px", background:"rgba(0,0,0,0.6)", borderRadius:16, border:"1px solid rgba(255,255,255,0.06)", boxShadow:"0 0 32px " + f.glow + ", inset 0 0 0 1px rgba(255,255,255,0.04)", backdropFilter:"blur(8px)", transition:"box-shadow 0.3s" }}>
+                    <div style={{ fontSize:28, marginBottom:14, filter:"drop-shadow(0 0 10px " + f.glow + ")" }}>{f.icon}</div>
                     <div style={{ fontSize: isMobile?16:18, fontWeight:500, background:f.grad, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>{f.label}</div>
                     <div style={{ fontSize: isMobile?14:15, color:"rgba(253,240,232,0.75)", lineHeight:1.75, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>{f.sub}</div>
                   </div>
