@@ -1558,64 +1558,90 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <span style={{ fontSize:24,fontWeight:400,color:C.cr }}>Analytics</span>
       </div>
 
-      {/* EMOTIONAL PATTERN, dominant state today / 7d / 30d */}
+      {/* MANIFESTATION HERO — the whole point of the app */}
       <style>{`
-        @keyframes shg-glow-pulse {
-          0%,100% { box-shadow: 0 0 0 1.5px rgba(191,165,216,0.6), 0 0 28px rgba(191,165,216,0.45), 0 0 56px rgba(44,183,167,0.22); }
-          50%      { box-shadow: 0 0 0 2px rgba(191,165,216,0.9), 0 0 48px rgba(191,165,216,0.65), 0 0 90px rgba(44,183,167,0.38); }
-        }
         @keyframes shg-drift {
           0%   { background-position: 0% 50%; }
           50%  { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        @keyframes shg-state-glow {
-          0%,100% { text-shadow: 0 0 12px rgba(191,165,216,0.7), 0 0 28px rgba(44,183,167,0.4); color: #3d1f5c; }
-          50%      { text-shadow: 0 0 20px rgba(191,165,216,1), 0 0 44px rgba(44,183,167,0.6); color: #5a2d8a; }
-        }
+        @keyframes shg-count-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
       `}</style>
-      <div style={{ margin:"0 16px 14px", padding:"20px 16px 18px", borderRadius:20, position:"relative", overflow:"hidden", background:"rgba(255,255,255,0.35)", border:"1.5px solid rgba(191,165,216,0.55)", animation:"shg-glow-pulse 3.5s ease-in-out infinite", backdropFilter:"blur(22px)", WebkitBackdropFilter:"blur(22px)" }}>
-        <div style={{ position:"absolute", inset:0, borderRadius:20, background:"linear-gradient(120deg,rgba(245,224,160,0.20) 0%,rgba(191,165,216,0.28) 35%,rgba(44,183,167,0.20) 70%,rgba(22,122,107,0.12) 100%)", backgroundSize:"280% 280%", animation:"shg-drift 8s ease-in-out infinite", pointerEvents:"none" }} />
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:16 }}>
-          <span style={{ fontSize:11, fontWeight:400, color:"#7a4fa0", letterSpacing:"0.22em", textTransform:"uppercase" }}>Your dominant state</span>
-          <span style={{ fontSize:11, color:"#167A6B", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase" }}>Hawkins scale</span>
-        </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
-          {[["Today",domToday,true],["Last 7 days",dom7,false],["Last 30 days",dom30,false]].map(([l,d,isToday],i)=>(
-            <div key={i} style={{ borderRadius:14, padding:"14px 8px", textAlign:"center", background: isToday ? "rgba(191,165,216,0.18)" : "rgba(255,255,255,0.25)", border: isToday ? "1.5px solid rgba(191,165,216,0.65)" : "1px solid rgba(255,255,255,0.5)" }}>
-              <div style={{ fontSize:11, color: isToday ? "#7a4fa0" : "#4a6860", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10 }}>{l}</div>
-              <div style={{ fontSize:isToday?24:18, fontWeight:400, lineHeight:1.1, animation: isToday?"shg-state-glow 3.5s ease-in-out infinite":"none", color: isToday?"#3d1f5c":"#1a1008" }}>{d?.n||"—"}</div>
-              <div style={{ fontSize:13, color: isToday?"rgba(61,31,92,0.6)":"rgba(26,16,8,0.45)", fontWeight:400, marginTop:6 }}>{d?.v||""}</div>
+      {(() => {
+        const mTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
+        const mDone  = isPreview ? 9  : manifested;
+        const mRate  = Math.round((mDone / mTotal) * 100);
+        const streak = isPreview ? 21 : (streakDays.filter(d=>d.listened).length || 0);
+        const totalL = isPreview ? 127 : (realListens?.total || 0);
+        return (
+          <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
+            background:"linear-gradient(135deg,rgba(245,224,160,0.22) 0%,rgba(191,165,216,0.28) 40%,rgba(44,183,167,0.22) 100%)",
+            backgroundSize:"200% 200%", animation:"shg-drift 10s ease-in-out infinite",
+            border:"1px solid rgba(255,255,255,0.4)", backdropFilter:"blur(16px)", WebkitBackdropFilter:"blur(16px)" }}>
+            {/* Rate */}
+            <div style={{ marginBottom:16 }}>
+              <div style={{ fontSize:11, color:"#4a3060", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6, fontWeight:400 }}>Manifestation rate</div>
+              <div style={{ display:"flex", alignItems:"baseline", gap:8 }}>
+                <span style={{ fontSize:52, fontWeight:400, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both" }}>{mRate}%</span>
+                <span style={{ fontSize:15, color:"rgba(26,16,8,0.55)", fontWeight:400 }}>{mDone} of {mTotal} desires</span>
+              </div>
+              {/* Progress bar */}
+              <div style={{ marginTop:10, height:6, borderRadius:3, background:"rgba(255,255,255,0.4)", overflow:"hidden" }}>
+                <div style={{ height:"100%", width:`${mRate}%`, borderRadius:3, background:"linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7)", transition:"width 1s ease" }}/>
+              </div>
             </div>
-          ))}
-        </div>
-        <div style={{ fontSize:13, color:"rgba(61,31,92,0.55)", marginTop:14, textAlign:"center", fontWeight:400 }}>
-          {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
-        </div>
-      </div>
+            {/* Stat row */}
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
+              {[
+                [streak, "day streak"],
+                [totalL, "total listens"],
+                [isPreview ? 23 : threads.reduce((a,t)=>a+(t.signs?.length||0),0), "signs logged"],
+              ].map(([v,l],i) => (
+                <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.3)", borderRadius:12, padding:"10px 6px", border:"1px solid rgba(255,255,255,0.5)" }}>
+                  <div style={{ fontSize:22, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
+                  <div style={{ fontSize:11, color:"rgba(26,16,8,0.55)", marginTop:4, letterSpacing:"0.05em" }}>{l}</div>
+                </div>
+              ))}
+            </div>
+            {isPreview && <div style={{ fontSize:11, color:"rgba(26,16,8,0.4)", marginTop:12, textAlign:"center", fontStyle:"italic" }}>preview data — sign up to track your real numbers</div>}
+          </div>
+        );
+      })()}
 
-      {/* PATTERNS, what's actually working, real listen + manifestation correlation */}
+      {/* PATTERN RECOGNITION — what's actually moving the needle */}
       {(isPreview || (patterns && patterns.length > 0)) && (
-        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:"linear-gradient(135deg,rgba(245,224,160,0.08),rgba(191,165,216,0.06),rgba(44,183,167,0.08))", border:`1px solid rgba(232,184,112,0.3)` }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>What's working for you</span>
-            {isPreview && <span style={{ fontSize:11, color:C.accentGold, opacity:0.6, fontStyle:"italic" }}>preview data</span>}
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Pattern recognition</span>
+            {isPreview && <span style={{ fontSize:11, color:C.accentGold, opacity:0.5, fontStyle:"italic" }}>preview data</span>}
+          </div>
+          <div style={{ fontSize:13, color:C.mu, marginBottom:12, lineHeight:1.5 }}>
+            {isPreview ? "These categories correlate most with your manifested desires:" : "Your highest-performing categories:"}
           </div>
           {(isPreview ? [
             { type:"category", name:"Lovemaxxing", listens:38, manifestedCount:5 },
             { type:"category", name:"Richgirlmaxxing", listens:29, manifestedCount:3 },
             { type:"track",    name:"Money Finds Me First", listens:12, manifestedCount:3 },
-          ] : patterns).map((p,i,arr) => (
-            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
-              <div style={{ width:8, height:8, borderRadius:"50%", background: p.type==="category" ? "#E8B870" : "#BFA5D8", flexShrink:0 }}/>
-              <div style={{ flex:1 }}>
-                <div style={{ fontSize:14, color:C.cr }}>{p.name}</div>
-                <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
-                  {p.listens} listen{p.listens!==1?"s":""}, alongside {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} marked manifested
+          ] : patterns).map((p,i,arr) => {
+            const convRate = Math.round((p.manifestedCount / Math.max(p.listens,1)) * 100);
+            return (
+              <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ width:36, height:36, borderRadius:10, flexShrink:0, background: p.type==="category" ? "rgba(232,184,112,0.15)" : "rgba(191,165,216,0.15)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>
+                  {p.type==="category" ? "✦" : "♪"}
+                </div>
+                <div style={{ flex:1 }}>
+                  <div style={{ fontSize:14, color:C.cr, fontWeight:400 }}>{p.name}</div>
+                  <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
+                    {p.listens} listens · {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} manifested
+                  </div>
+                </div>
+                <div style={{ textAlign:"right", flexShrink:0 }}>
+                  <div style={{ fontSize:16, fontWeight:400, color: p.type==="category" ? C.accentGold : C.accentLav }}>{convRate}%</div>
+                  <div style={{ fontSize:10, color:C.mu, letterSpacing:"0.05em" }}>conversion</div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
