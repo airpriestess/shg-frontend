@@ -1052,7 +1052,7 @@ function HowItWorksAccordion({ isMobile }) {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setOpen(prev => (prev + 1) % 8);
-    }, 10000);
+    }, 20000);
   }, []);
 
   useEffect(() => {
