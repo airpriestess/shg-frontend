@@ -1,12 +1,12 @@
 /* AnalyticsBoard, portal + landing preview */
 import { ArrowIcon } from "./UI.jsx";
 
-const R = "#2CB7A7", P = "#BFA5D8";
-const OMBRE = "linear-gradient(110deg,#E4DCF5 0%,#BFA5D8 22%,#2CB7A7 58%,#167A6B 100%)";
+const R = "#E8B870", P = "#BFA5D8";
+const OMBRE = "linear-gradient(110deg,#F5E0A0 0%,#BFA5D8 20%,#2CB7A7 55%,#167A6B 100%)";
 
 const PALETTES = {
-  dark:  { card:"#111111", card2:"#1a1a1a", text:"#fdf0e8", mu:"#fdf0e8", dim:"#fdf0e8", border:"rgba(44,183,167,0.2)", track:"rgba(44,183,167,0.08)" },
-  light: { card:"#f4f1fb", card2:"rgba(191,165,216,0.12)", text:"#0a0a14", mu:"#3d3550", dim:"#6b5f80", border:"rgba(191,165,216,0.3)", track:"rgba(44,183,167,0.10)" },
+  dark:  { card:"#111111", card2:"#1a1a1a", text:"#fdf0e8", mu:"#fdf0e8", dim:"#fdf0e8", border:"rgba(232,184,112,0.15)", track:"rgba(232,184,112,0.08)" },
+  light: { card:"#fdf8f2", card2:"rgba(232,184,112,0.10)", text:"#1a1008", mu:"#8a6840", dim:"#b89060", border:"rgba(232,184,112,0.18)", track:"rgba(232,184,112,0.12)" },
 };
 
 export const DEMO_ANALYTICS = {

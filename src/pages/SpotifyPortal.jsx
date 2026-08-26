@@ -97,13 +97,13 @@ const THEMES = {
     accentChamp:"#F5E0A0",
     accentDeep: "#167A6B",
   },
-  // ── LIGHT MODE: lilac → teal gradient, minimal gold, ALL TEXT BLACK ─────
+  // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
   light: {
-    bg:      "linear-gradient(135deg,#E4DCF5 0%,#BFA5D8 22%,#2CB7A7 58%,#167A6B 100%)",
-    bg2:     "#f4f1fb",  // frosted glass cards, soft lilac-white
-    bg3:     "#f4f1fb",
-    bg4:     "#f4f1fb",
-    nav:     "#DDD6F0",  // nav bar, soft lilac
+    bg:      "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 20%,#2CB7A7 55%,#167A6B 100%)",
+    bg2:     "#fdf0e8",  // frosted glass cards
+    bg3:     "#fdf0e8",
+    bg4:     "#fdf0e8",
+    nav:     "#F5E0A0",  // nav bar, solid champagne
     cr:      "#000000",   // primary text, black
     mu:      "#000000",   // muted text, also black (no grey in light mode)
     dim:     "#000000",   // faint text, also black
@@ -119,7 +119,7 @@ const THEMES = {
 };
 
 const R = "#E8B870", P = "#BFA5D8";
-const OMBRE = "linear-gradient(135deg,#E4DCF5 0%,#BFA5D8 22%,#2CB7A7 58%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 20%,#2CB7A7 55%,#167A6B 100%)";
 
 // Per-tab subtle wash, black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
