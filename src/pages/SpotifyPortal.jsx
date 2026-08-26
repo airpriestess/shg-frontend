@@ -2106,6 +2106,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [newFeel, setFeel] = useState("");
   const [newFeelText, setFeelText] = useState("");
   const [adding, setAdding] = useState(false);
+  const [listening, setListening] = useState(false);
   const [view, setView] = useState("threads"); // threads | wall | bucket
   const [signInput, setSignInput] = useState({}); // {threadId: text}
   const [finishing, setFinishing] = useState(null); // threadId being marked done
@@ -2438,8 +2439,23 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
-          <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
-            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ display:"flex",gap:8,marginBottom:11,alignItems:"center" }}>
+            <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
+              style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+            <button onClick={()=>{
+              const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+              if(!SR){ alert("Voice input isn't supported in this browser. Try Chrome or Safari."); return; }
+              if(listening){ setListening(false); return; }
+              const r = new SR(); r.lang="en-US"; r.interimResults=false; r.maxAlternatives=1;
+              setListening(true);
+              r.onresult = e => { setD(e.results[0][0].transcript); setListening(false); };
+              r.onerror = () => setListening(false);
+              r.onend = () => setListening(false);
+              r.start();
+            }} title="Speak your desire" style={{ flexShrink:0,width:44,height:44,borderRadius:"50%",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,background:listening?"#E8B870":"transparent",boxShadow:listening?"0 0 14px rgba(232,184,112,0.6)":"none",transition:"all 0.2s" }}>
+              {listening ? "⏹" : "🎙"}
+            </button>
+          </div>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
           <input value={newBelief} onChange={e=>setNewBelief(e.target.value)} placeholder="What do you actually believe about this right now? e.g. 'It's never worked out for me before'"
             style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
