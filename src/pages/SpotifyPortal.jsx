@@ -805,7 +805,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -1390,7 +1390,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 }
 
 // ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -1649,6 +1649,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         </div>
       )}
 
+      {/* ASK RESHMA — Goddess tier only */}
+      {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
+
       {/* FULL ANALYTICS BOARD */}
       <div style={{ margin:"0 16px 20px" }}>
         <AnalyticsBoard
@@ -1678,6 +1681,117 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           </span>
           <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
         </button>
+      </div>
+    </div>
+  );
+}
+
+// ── ASK RESHMA CARD ───────────────────────────────────────────────────────────
+function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [history, setHistory] = useState(null);
+  const isGoddess = userTier === "goddess";
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+
+  useEffect(() => {
+    if (!open || !isGoddess || !userId || !token) return;
+    (async () => {
+      try {
+        const data = await quizApi("/ask", token, { method: "GET" });
+        setHistory(data.questions || []);
+      } catch {}
+    })();
+  }, [open, isGoddess, userId, token]);
+
+  const submit = async () => {
+    if (!q.trim() || sending) return;
+    setSending(true);
+    try {
+      await quizApi("/ask", token, {
+        method: "POST",
+        body: JSON.stringify({ question: q.trim(), email: userEmail }),
+      });
+      setSent(true);
+      setQ("");
+      setHistory(h => [{ id: Date.now(), question: q.trim(), status:"pending", answer:null, created_at: new Date().toISOString() }, ...(h||[])]);
+    } catch {}
+    setSending(false);
+  };
+
+  const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+
+  return (
+    <div style={{ margin:"0 16px 14px" }}>
+      {/* Teaser card always visible */}
+      <div style={{ padding:"18px 16px", borderRadius:16, background: isGoddess ? C.bg2 : "rgba(232,184,112,0.06)", border:`1px solid ${isGoddess?"rgba(232,184,112,0.35)":"rgba(232,184,112,0.2)"}` }}>
+        <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom: open&&isGoddess ? 16 : 0 }}>
+          <div style={{ width:46,height:46,borderRadius:14,background:"rgba(232,184,112,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0 }}>✉️</div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15,fontWeight:500,color:C.cr }}>Ask Reshma directly</div>
+            <div style={{ fontSize:13,color:C.mu,marginTop:2,lineHeight:1.4 }}>
+              {isGoddess
+                ? "Drop a question — about the tracks, hypnosis, or your journey. Answered personally, not by AI."
+                : "Goddess members get direct Q&A with Reshma — answered personally within the app."}
+            </div>
+          </div>
+          {isGoddess ? (
+            <button onClick={()=>setOpen(o=>!o)} style={{ fontSize:13,color:"#E8B870",background:"rgba(232,184,112,0.12)",border:"1px solid rgba(232,184,112,0.3)",borderRadius:10,padding:"7px 13px",cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>
+              {open ? "close" : "ask"}
+            </button>
+          ) : (
+            <span style={{ fontSize:11,padding:"4px 10px",borderRadius:20,background:grad,color:"#000",fontWeight:600,flexShrink:0,whiteSpace:"nowrap" }}>Goddess</span>
+          )}
+        </div>
+
+        {/* Expanded panel for Goddess members */}
+        {open && isGoddess && (
+          <div>
+            <div style={{ fontSize:12,color:C.mu,marginBottom:10,padding:"8px 12px",borderRadius:8,background:isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.04)",lineHeight:1.5 }}>
+              💫 Not live — Reshma answers personally, typically within a few days. Your question stays private.
+            </div>
+            {sent && (
+              <div style={{ fontSize:14,color:"#2CB7A7",marginBottom:12,textAlign:"center",padding:"10px",borderRadius:8,background:"rgba(44,183,167,0.08)",border:"1px solid rgba(44,183,167,0.2)" }}>
+                ✓ Question sent. Reshma will answer you here soon.
+              </div>
+            )}
+            <textarea
+              value={q}
+              onChange={e=>{ setQ(e.target.value); setSent(false); }}
+              placeholder="What would you like to ask?"
+              maxLength={1000}
+              rows={4}
+              style={{ width:"100%",boxSizing:"border-box",padding:"12px 14px",borderRadius:10,border:`1px solid ${C.border}`,background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.04)",color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",resize:"none",outline:"none",lineHeight:1.5,marginBottom:4 }}
+            />
+            <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14 }}>
+              <span style={{ fontSize:12,color:C.mu }}>{q.length}/1000</span>
+              <button onClick={submit} disabled={!q.trim()||sending} style={{ padding:"9px 20px",borderRadius:10,border:"none",background:q.trim()&&!sending?grad:"rgba(128,128,128,0.2)",color:q.trim()&&!sending?"#000":"#888",fontSize:14,fontWeight:600,cursor:q.trim()&&!sending?"pointer":"not-allowed",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>
+                {sending ? "sending…" : "Send question"}
+              </button>
+            </div>
+
+            {/* Previous questions */}
+            {history && history.length > 0 && (
+              <div>
+                <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:8 }}>Your questions</div>
+                {history.slice(0,5).map((item,i) => (
+                  <div key={item.id||i} style={{ marginBottom:10,padding:"12px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.04)":"rgba(0,0,0,0.03)",border:`1px solid ${C.border}` }}>
+                    <div style={{ fontSize:13,color:C.cr,marginBottom:4 }}>{item.question}</div>
+                    {item.answer ? (
+                      <div style={{ fontSize:13,color:"#2CB7A7",marginTop:6,paddingTop:6,borderTop:`1px solid ${C.border}`,lineHeight:1.5 }}>
+                        <span style={{ fontWeight:600 }}>Reshma: </span>{item.answer}
+                      </div>
+                    ) : (
+                      <div style={{ fontSize:12,color:C.mu,fontStyle:"italic" }}>Awaiting answer…</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1893,7 +2007,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       <div style={{ fontSize:15, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
         {feature === "ProofOS"
           ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
-          : "Track your dominant emotional state, listening streaks, and the evidence building over time."}
+          : "Track your dominant emotional state, listening streaks, and the evidence building over time. Plus direct Q&A with Reshma — ask anything about the tracks, hypnosis, or your journey."}
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>

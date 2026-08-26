@@ -74,6 +74,12 @@ var worker_default = {
       const parts = url.pathname.split("/");
       return handleDeleteSign(request, env, parts[2], parts[4]);
     }
+    if (url.pathname === "/ask" && request.method === "POST") {
+      return handleAskReshma(request, env);
+    }
+    if (url.pathname === "/ask" && request.method === "GET") {
+      return handleGetQuestions(request, env);
+    }
     if (request.method === "POST") {
       return handleQuizLead(request, env);
     }
@@ -410,6 +416,52 @@ async function handleDeleteSign(request, env, threadId, signId) {
   ).bind(signId, threadId, userId).run();
 
   return json({ success: true });
+}
+
+// ── ASK RESHMA ────────────────────────────────────────────────────────────────
+
+async function handleAskReshma(request, env) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+
+  const { question, email } = body;
+  if (!question || !question.trim()) return json({ error: "Question is required" }, 400);
+  if (question.trim().length > 1000) return json({ error: "Question too long (max 1000 chars)" }, 400);
+
+  const result = await env.DB.prepare(
+    `INSERT INTO reshma_questions (user_id, email, question) VALUES (?, ?, ?)`
+  ).bind(userId, email || null, question.trim()).run();
+
+  // Notify via Nitrosend if configured
+  if (env.NITROSEND_API_KEY && env.RESHMA_NOTIFY_EMAIL) {
+    try {
+      await fetch("https://api.nitrosend.com/v1/transactional/send", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${env.NITROSEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: env.RESHMA_NOTIFY_EMAIL,
+          subject: "New question from a Goddess member",
+          text: `Question #${result.meta.last_row_id}\nFrom: ${email || userId}\n\n${question.trim()}`,
+        }),
+      });
+    } catch {}
+  }
+
+  return json({ success: true, id: result.meta.last_row_id });
+}
+
+async function handleGetQuestions(request, env) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  const result = await env.DB.prepare(
+    `SELECT id, question, status, answer, answered_at, created_at FROM reshma_questions WHERE user_id=? ORDER BY created_at DESC LIMIT 20`
+  ).bind(userId).all();
+
+  return json({ questions: result.results || [] });
 }
 
 export { worker_default as default };
