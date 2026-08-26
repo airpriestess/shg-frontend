@@ -1729,24 +1729,22 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             </p>
 
                         {/* AUDIO FORMATS */}
-            <div style={{ background:"#000", borderRadius:20, padding: isMobile?"28px 20px":"48px 48px", maxWidth:760, margin:"0 auto 40px", border:"1px solid rgba(255,255,255,0.08)" }}>
-              <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:700 }}>Audio formats</div>
-              <div style={{ fontSize: isMobile?"clamp(28px,7vw,36px)":"clamp(32px,3.5vw,44px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, textAlign:"center", marginBottom: isMobile?28:36, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
-              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?16:20 }}>
+            <div style={{ background:"transparent", maxWidth:760, margin:"0 auto 40px" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Audio formats</div>
+              <div style={{ fontSize: isMobile?"clamp(26px,6vw,34px)":"clamp(28px,3vw,38px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, textAlign:"center", marginBottom: isMobile?28:40, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
+              <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?14:18 }}>
                 {[
-                  { label:"Melodic House",     sub:"Reshma's voice layered beneath original melodic house music. You listen like a song, it rewires you beneath the surface." },
-                  { label:"Voice Only",       sub:"Pure vocal hypnosis, no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive." },
-                  { label:"Sleep & Rest",     sub:"Calm audio for winding down or sleeping, ambient, white noise, or soft sound. Subliminals layered throughout. Designed to run all night." },
-                  { label:"Subliminal",       sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day." },
-                  { label:"EMDR Hypnosis",    sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
-                  { label:"Binaural / Reiki", sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy." },
+                  { icon:"🎵", label:"Melodic House",     grad:"linear-gradient(135deg,#F5E0A0,#E8B870)", glow:"rgba(232,184,112,0.35)", sub:"Reshma's voice layered beneath original melodic house music. You listen like a song, it rewires you beneath the surface." },
+                  { icon:"🎙", label:"Voice Only",         grad:"linear-gradient(135deg,#E8B870,#BFA5D8)", glow:"rgba(191,165,216,0.35)", sub:"Pure vocal hypnosis, no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive." },
+                  { icon:"🌙", label:"Sleep & Rest",       grad:"linear-gradient(135deg,#BFA5D8,#9A7DC8)", glow:"rgba(154,125,200,0.35)", sub:"Calm audio for winding down or sleeping. Subliminals layered throughout. Designed to run all night." },
+                  { icon:"🔊", label:"Subliminal",         grad:"linear-gradient(135deg,#9A7DC8,#2CB7A7)", glow:"rgba(44,183,167,0.35)",  sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day." },
+                  { icon:"👁", label:"EMDR Hypnosis",      grad:"linear-gradient(135deg,#2CB7A7,#1A9A8A)", glow:"rgba(44,183,167,0.45)", sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
+                  { icon:"✦",  label:"Binaural / Reiki",  grad:"linear-gradient(135deg,#167A6B,#2CB7A7)", glow:"rgba(22,122,107,0.45)",  sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy." },
                 ].map((f,i)=>(
-                  <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start", padding:"20px 22px", background:"#000", borderRadius:14, border:"1px solid rgba(255,255,255,0.08)", borderLeft:"3px solid transparent", borderImage:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) 1" }}>
-                    <div style={{ width:8, height:8, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", flexShrink:0, marginTop:6 }}/>
-                    <div>
-                      <div style={{ fontSize: isMobile?17:20, fontWeight:400, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>{f.label}</div>
-                      <div style={{ fontSize: isMobile?14:16, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.sub}</div>
-                    </div>
+                  <div key={i} style={{ padding:"24px 22px", background:"rgba(0,0,0,0.6)", borderRadius:16, border:"1px solid rgba(255,255,255,0.06)", boxShadow:\`0 0 32px \${f.glow}, inset 0 0 0 1px rgba(255,255,255,0.04)\`, backdropFilter:"blur(8px)", transition:"box-shadow 0.3s" }}>
+                    <div style={{ fontSize:28, marginBottom:14, filter:\`drop-shadow(0 0 10px \${f.glow})\` }}>{f.icon}</div>
+                    <div style={{ fontSize: isMobile?16:18, fontWeight:500, background:f.grad, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>{f.label}</div>
+                    <div style={{ fontSize: isMobile?14:15, color:"rgba(253,240,232,0.75)", lineHeight:1.75, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>{f.sub}</div>
                   </div>
                 ))}
               </div>
