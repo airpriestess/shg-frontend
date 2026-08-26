@@ -1381,8 +1381,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
           {/* Bottom, join + sign in */}
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <button onClick={()=>{(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
-              Join Now 
+            <button onClick={()=>{setWaitlistOpen(true);setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
+              Join Waitlist
             </button>
             <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#fdf0e8",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
               Sign in
@@ -1629,7 +1629,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-            {/* THREE CTAs, Preview / Join Now / Lifetime, all in one place */}
+            {/* CTAs */}
       <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"64px 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
         <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(16px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
           👁 Preview Audio Library
@@ -1637,11 +1637,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Growing weekly</div>
         <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"14px 36px":"18px 48px", background:"linear-gradient(135deg,rgba(245,224,160,0.55) 0%,rgba(232,184,112,0.55) 20%,rgba(191,165,216,0.55) 52%,rgba(44,183,167,0.55) 78%,rgba(22,122,107,0.55) 100%)", border:"none", borderRadius:40, color:"rgba(253,240,232,0.9)", fontSize: isMobile?"clamp(17px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the science behind this →</button>
         <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
-          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.04em", cursor:"pointer" }}>
-            Join Now 
-          </button>
-          <button onClick={()=>(() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })()} style={{ padding:"14px 30px", background:"none", border:"1.5px solid #2CB7A7", borderRadius:30, color:"#fdf0e8", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.04em", cursor:"pointer" }}>
-            Lifetime Access
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding:"14px 40px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.08em", textTransform:"uppercase", cursor:"pointer" }}>
+            Join Waitlist
           </button>
         </div>
       </div>
