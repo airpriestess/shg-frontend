@@ -70,6 +70,7 @@ img{max-width:100%;}
 .wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
 
 /* ── ANIMATIONS ─────────────────── */
+@keyframes drift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 @keyframes wave{0%,100%{transform:scaleY(0.4);}50%{transform:scaleY(1);}}
 @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
