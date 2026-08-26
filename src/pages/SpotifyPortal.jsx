@@ -740,7 +740,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
             <div style={{ width:56,height:56,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center" }}>
-              <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="52" height="52" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+              <a href="https://reshmaoracle.com" style={{display:"block"}}><img src="/shg-logo.png" alt="Reshma Oracle" width="52" height="52" style={{flexShrink:0, objectFit:"contain", display:"block"}} /></a>
             </div>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
@@ -895,7 +895,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         {/* Sidebar */}
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-            <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="40" height="40" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+            <a href="https://reshmaoracle.com" style={{display:"block"}}><img src="/shg-logo.png" alt="Reshma Oracle" width="40" height="40" style={{flexShrink:0, objectFit:"contain", display:"block"}} /></a>
             {isDark ? (
               <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" }}>BETA</span>
             ) : (
@@ -988,7 +988,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </div>
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+        <a href="https://reshmaoracle.com" style={{display:"block"}}><img src="/shg-logo.png" alt="Reshma Oracle" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} /></a>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{
@@ -1467,6 +1467,165 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
   );
 }
 
+// ── MANIFESTATION TIMELINE ──
+const DEMO_TIMELINE = [
+  { month:"Jan 26", set:18, manifested:11, listens:42, avgDays:8,  cats:{Lovemaxxing:6,Richgirlmaxxing:5,Beautymaxxing:4,Selfmaxxing:3} },
+  { month:"Feb 26", set:22, manifested:15, listens:58, avgDays:6,  cats:{Lovemaxxing:8,Richgirlmaxxing:6,Beautymaxxing:4,Luckygirlmaxxing:4} },
+  { month:"Mar 26", set:19, manifested:14, listens:63, avgDays:7,  cats:{Richgirlmaxxing:7,Selfmaxxing:5,Lovemaxxing:4,Businessmaxxing:3} },
+  { month:"Apr 26", set:24, manifested:18, listens:71, avgDays:5,  cats:{Lovemaxxing:9,Luckygirlmaxxing:7,Richgirlmaxxing:5,Beautymaxxing:3} },
+  { month:"May 26", set:21, manifested:17, listens:80, avgDays:4,  cats:{Richgirlmaxxing:8,Lovemaxxing:6,Businessmaxxing:4,Selfmaxxing:3} },
+  { month:"Jun 26", set:26, manifested:21, listens:88, avgDays:4,  cats:{Lovemaxxing:10,Richgirlmaxxing:8,Luckygirlmaxxing:5,Beautymaxxing:3} },
+  { month:"Jul 26", set:28, manifested:23, listens:95, avgDays:3,  cats:{Richgirlmaxxing:11,Lovemaxxing:8,Businessmaxxing:5,Selfmaxxing:4} },
+  { month:"Aug 26", set:14, manifested:12, listens:52, avgDays:3,  cats:{Lovemaxxing:5,Richgirlmaxxing:4,Selfmaxxing:3,Beautymaxxing:2} },
+];
+const DEMO_CAT_STATS = [
+  { cat:"Lovemaxxing",  total:56, manifested:41, avgDays:5, color:"#167A6B" },
+  { cat:"Richgirl",     total:54, manifested:38, avgDays:4, color:"#E8B870" },
+  { cat:"Luckygirl",    total:16, manifested:14, avgDays:3, color:"#BFA5D8" },
+  { cat:"Beauty",       total:16, manifested:10, avgDays:7, color:"#2CB7A7" },
+  { cat:"Business",     total:12, manifested:8,  avgDays:9, color:"#8a6bb0" },
+  { cat:"Self",         total:15, manifested:9,  avgDays:6, color:"#F5E0A0" },
+];
+
+function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");
+
+  // Build real data from threads when not in preview
+  const months = isPreview ? DEMO_TIMELINE : (() => {
+    const map = {};
+    threads.forEach(t => {
+      const d = t.createdAt ? new Date(t.createdAt) : new Date();
+      const key = d.toLocaleString("en-GB",{month:"short",year:"2-digit"});
+      if (!map[key]) map[key] = { month:key, set:0, manifested:0, listens:0, avgDays:0, cats:{} };
+      map[key].set++;
+      if (t.done) map[key].manifested++;
+      (t.category||"Other").split(",").forEach(c => { map[key].cats[c.trim()] = (map[key].cats[c.trim()]||0)+1; });
+    });
+    return Object.values(map).slice(-8);
+  })();
+
+  const catStats = isPreview ? DEMO_CAT_STATS : (() => {
+    const map = {};
+    threads.forEach(t => {
+      const cat = t.category || "Other";
+      if (!map[cat]) map[cat] = { cat, total:0, manifested:0, totalDays:0, color:"#BFA5D8" };
+      map[cat].total++;
+      if (t.done) { map[cat].manifested++; map[cat].totalDays += (t.days||0); }
+    });
+    return Object.values(map).sort((a,b)=>b.manifested-a.manifested).slice(0,6).map((r,i) => ({
+      ...r, avgDays: r.manifested ? Math.round(r.totalDays/r.manifested) : 0,
+      color: ["#167A6B","#E8B870","#BFA5D8","#2CB7A7","#8a6bb0","#F5E0A0"][i],
+    }));
+  })();
+
+  const totalSet = months.reduce((s,m)=>s+m.set,0);
+  const totalManifested = months.reduce((s,m)=>s+m.manifested,0);
+  const overallRate = totalSet ? Math.round((totalManifested/totalSet)*100) : 0;
+  const avgDaysAll = isPreview ? 5 : (catStats.reduce((s,c)=>s+c.avgDays*c.manifested,0) / Math.max(catStats.reduce((s,c)=>s+c.manifested,0),1)) || 0;
+  const maxSet = Math.max(...months.map(m=>m.set), 1);
+
+  return (
+    <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif" }}>
+      {/* Header */}
+      <div style={{ marginBottom:16 }}>
+        <div style={{ fontSize:13, fontWeight:600, color:"#BFA5D8", letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:4 }}>Manifestation history</div>
+        <div style={{ fontSize:14, color:C.mu, lineHeight:1.5 }}>
+          {isPreview ? "A record that compounds. The longer you log, the more your patterns emerge." : "Your full manifestation record — every intention, every win, every pattern."}
+        </div>
+      </div>
+
+      {/* Top-line stats */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>
+        {[
+          [totalSet, "Intentions set", "#E8B870"],
+          [totalManifested, "Manifested", "#2CB7A7"],
+          [`${overallRate}%`, "Success rate", "#BFA5D8"],
+          [`${Math.round(avgDaysAll)}d`, "Avg to manifest", "#167A6B"],
+        ].map(([v,l,col])=>(
+          <div key={l} style={{ background:C.bg2, borderRadius:12, padding:"12px 10px", textAlign:"center", border:`1px solid ${col}33` }}>
+            <div style={{ fontSize:20, fontWeight:400, color:col, lineHeight:1 }}>{v}</div>
+            <div style={{ fontSize:10, color:C.mu, marginTop:5, lineHeight:1.3 }}>{l}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Monthly bar chart */}
+      <div style={{ background:C.bg2, borderRadius:16, padding:"18px 16px", marginBottom:14, border:`1px solid ${C.border}` }}>
+        <div style={{ fontSize:12, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>Intentions set vs manifested per month</div>
+        <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:90 }}>
+          {months.map((m,i)=>{
+            const setPct = (m.set/maxSet)*100;
+            const manPct = (m.manifested/maxSet)*100;
+            return (
+              <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
+                <div style={{ width:"100%", position:"relative", display:"flex", flexDirection:"column", justifyContent:"flex-end", height:"100%" }}>
+                  <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background:"rgba(232,184,112,0.2)", height:`${setPct}%`, position:"absolute", bottom:0, left:0 }}/>
+                  <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background:"#2CB7A7", height:`${manPct}%`, position:"absolute", bottom:0, left:0 }}/>
+                </div>
+                <div style={{ fontSize:8.5, color:C.mu, marginTop:4, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", width:"100%", textAlign:"center" }}>{m.month}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ display:"flex", gap:14, marginTop:10 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:5 }}>
+            <div style={{ width:10, height:10, borderRadius:2, background:"rgba(232,184,112,0.4)" }}/>
+            <span style={{ fontSize:11, color:C.mu }}>Set</span>
+          </div>
+          <div style={{ display:"flex", alignItems:"center", gap:5 }}>
+            <div style={{ width:10, height:10, borderRadius:2, background:"#2CB7A7" }}/>
+            <span style={{ fontSize:11, color:C.mu }}>Manifested</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Category breakdown — avg days to manifest */}
+      <div style={{ background:C.bg2, borderRadius:16, padding:"18px 16px", marginBottom:14, border:`1px solid ${C.border}` }}>
+        <div style={{ fontSize:12, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>By life area — time to manifest</div>
+        {catStats.map((r,i) => {
+          const rate = r.total ? Math.round((r.manifested/r.total)*100) : 0;
+          const barPct = Math.min(rate, 100);
+          return (
+            <div key={i} style={{ marginBottom:14 }}>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:5 }}>
+                <span style={{ fontSize:13, color:C.cr, fontWeight:400 }}>{r.cat}</span>
+                <div style={{ display:"flex", gap:10, alignItems:"baseline" }}>
+                  <span style={{ fontSize:11, color:C.mu }}>{r.manifested}/{r.total}</span>
+                  {r.avgDays > 0 && <span style={{ fontSize:11, color:r.color, fontWeight:500 }}>{r.avgDays}d avg</span>}
+                </div>
+              </div>
+              <div style={{ height:6, borderRadius:3, background:`${r.color}22`, overflow:"hidden" }}>
+                <div style={{ height:"100%", width:`${barPct}%`, borderRadius:3, background:r.color, transition:"width 0.8s ease" }}/>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Fastest + most active callouts */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:14 }}>
+        <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(44,183,167,0.3)` }}>
+          <div style={{ fontSize:10, color:"#2CB7A7", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Fastest area</div>
+          <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.cat || "—"}</div>
+          <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.avgDays || "—"}d avg</div>
+        </div>
+        <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(232,184,112,0.3)` }}>
+          <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Most active area</div>
+          <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.cat || "—"}</div>
+          <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.total || "—"} intentions</div>
+        </div>
+      </div>
+
+      {isPreview && (
+        <div style={{ background:`${C.bg2}`, borderRadius:14, padding:"14px 16px", border:`1px solid rgba(191,165,216,0.3)`, textAlign:"center" }}>
+          <div style={{ fontSize:13, color:"#BFA5D8", marginBottom:4, fontWeight:500 }}>Your chart grows with you</div>
+          <div style={{ fontSize:12, color:C.mu, lineHeight:1.5 }}>Log intentions across 2026 → 2030 and watch your manifestation speed and rate compound month by month. Sign up to start your permanent record →</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
 function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
@@ -1802,6 +1961,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* ASK RESHMA — Goddess tier only */}
       {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
 
+      {/* MANIFESTATION TIMELINE */}
+      <ManifestationTimeline threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} />
 
       {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
