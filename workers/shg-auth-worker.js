@@ -107,8 +107,16 @@ const PASSTHROUGH_PREFIXES = [
   "/waitlist",
   "/luckygirl",
   "/guides",
+  "/guide",
   "/science",
   "/gift",
+  "/blog",
+  "/blocks",
+  "/richgirl",
+  "/mockups",
+  "/loveMaxxing",
+  "/beautyMaxxing",
+  "/richGirl",
 ];
 
 function isPassthrough(pathname) {
