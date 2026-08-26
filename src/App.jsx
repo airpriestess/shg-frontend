@@ -1215,6 +1215,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     }
   };
   const [faqOpen, setFaqOpen] = useState(null);
+  const [giftPopup, setGiftPopup] = useState(() => {
+    // Show once per session, 4 seconds after load
+    try { return !sessionStorage.getItem('shg_gift_seen'); } catch(e) { return true; }
+  });
   const audioRef = useRef(null);
   const vaultRef = useRef(null);
   const [vaultPlaying, setVaultPlaying] = useState(null);
@@ -1332,6 +1336,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
 
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: "0 0 auto", justifyContent:"flex-end" }}>
+          {/* Free Gift CTA */}
+          <a href="/gift" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
+            Claim Free Gift
+          </a>
           {/* Hamburger, both mobile and desktop */}
           <button onClick={()=>setMenuOpen(m=>!m)} style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent",touchAction:"manipulation" }} aria-label="Open menu">
             <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s,opacity 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,5px)":"none" }}/>
@@ -1364,6 +1372,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ["Guides",              ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
               ["Blocks",              ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
               ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
+              ["Free Gift", ()=>{ window.location.href="/gift"; setMenuOpen(false); }],
               ["Events · Coming Soon", ()=>{ window.location.href="/events"; setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"7px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#fdf0e8",fontSize:"clamp(17px,4.2vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
@@ -2043,6 +2052,34 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       )}
     </div>
+
+    {/* ── FREE GIFT POPUP ── */}
+    {giftPopup && (() => {
+      setTimeout(() => {
+        try { sessionStorage.setItem('shg_gift_seen','1'); } catch(e){}
+      }, 4000);
+      return null;
+    })()}
+    {giftPopup && (
+      <div style={{ position:"fixed", inset:0, zIndex:99999, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding:"24px" }}
+        onClick={e => { if(e.target===e.currentTarget){ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} } }}>
+        <div style={{ background:"#0a0a0a", border:"1px solid rgba(245,224,160,0.3)", borderRadius:20, padding:"40px 32px", maxWidth:420, width:"100%", textAlign:"center", position:"relative", boxShadow:"0 0 80px rgba(44,183,167,0.2)" }}>
+          <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} }}
+            style={{ position:"absolute", top:16, right:16, background:"none", border:"none", color:"#fdf0e8", fontSize:22, cursor:"pointer", lineHeight:1, opacity:0.5 }}>&#x2715;</button>
+          <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", fontWeight:500, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>Free Gift</div>
+          <div style={{ fontSize:"clamp(24px,4vw,32px)", fontWeight:700, color:"#fdf0e8", lineHeight:1.15, marginBottom:12 }}>I Attract Opportunities Constantly</div>
+          <div style={{ fontSize:13, fontWeight:300, color:"#fdf0e8", opacity:0.65, lineHeight:1.7, marginBottom:32 }}>A free EMDR self hypnosis audio. Rewire your filter. Download instantly.</div>
+          <a href="/gift" onClick={()=>{ try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} }}
+            style={{ display:"block", padding:"18px 32px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:12, color:"#000", fontWeight:700, fontSize:14, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", marginBottom:12 }}>
+            Claim Free Gift
+          </a>
+          <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} }}
+            style={{ background:"none", border:"none", color:"#fdf0e8", opacity:0.4, fontSize:13, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+            No thanks
+          </button>
+        </div>
+      </div>
+    )}
   );
 }
 
