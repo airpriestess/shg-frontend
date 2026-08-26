@@ -110,6 +110,18 @@ const API_ROUTES = {
   "POST /leads":     handleLeads,
 };
 
+// Short redirect links — one per channel, never changes
+const GO_LINKS = {
+  "yt":    "/gift?utm_source=youtube&utm_medium=referral&utm_campaign=free_gift",
+  "ig":    "/gift?utm_source=instagram&utm_medium=bio&utm_campaign=free_gift",
+  "em":    "/gift?utm_source=email&utm_medium=email&utm_campaign=free_gift",
+  "tk":    "/gift?utm_source=tiktok&utm_medium=bio&utm_campaign=free_gift",
+  "wl-yt": "/?waitlist=1&utm_source=youtube&utm_medium=referral&utm_campaign=waitlist",
+  "wl-ig": "/?waitlist=1&utm_source=instagram&utm_medium=bio&utm_campaign=waitlist",
+  "wl-em": "/?waitlist=1&utm_source=email&utm_medium=email&utm_campaign=waitlist",
+  "wl-tk": "/?waitlist=1&utm_source=tiktok&utm_medium=bio&utm_campaign=waitlist",
+};
+
 function isApiRoute(method, pathname) {
   return (`${method} ${pathname}`) in API_ROUTES;
 }
@@ -129,6 +141,20 @@ var worker_default = {
         return await API_ROUTES[`${request.method} ${pathname}`](request, env);
       } catch (err) {
         return json({ error: err.message || "Internal error" }, 500);
+      }
+    }
+
+    // Short redirect links /go/*
+    if (pathname.startsWith("/go/")) {
+      const key = pathname.slice(4);
+      const dest = GO_LINKS[key];
+      if (dest) {
+        try {
+          await env.DB.prepare(
+            "INSERT INTO go_clicks (id, link_key, referrer, user_agent, created_at) VALUES (?, ?, ?, ?, ?)"
+          ).bind(crypto.randomUUID(), key, request.headers.get("referer")||null, request.headers.get("user-agent")||null, new Date().toISOString()).run();
+        } catch(e) {}
+        return Response.redirect("https://reshmaoracle.com" + dest, 302);
       }
     }
 
