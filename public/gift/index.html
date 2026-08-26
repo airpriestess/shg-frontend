@@ -210,18 +210,19 @@ h1{font-size:clamp(36px,6vw,62px);font-weight:800;line-height:1.05;margin-bottom
   background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
   animation:gradText 10s ease-in-out infinite;margin-bottom:52px;
 }
-.timeline{position:relative;padding-left:56px;}
+.timeline{position:relative;padding-left:44px;}
 .timeline::before{
-  content:'';position:absolute;left:18px;top:6px;bottom:6px;width:2px;
+  content:'';position:absolute;left:11px;top:6px;bottom:6px;width:2px;
   background:linear-gradient(180deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
 }
 .tl-item{position:relative;margin-bottom:36px;opacity:0;transform:translateX(-16px);}
 .tl-item.visible{animation:slideIn .6s ease forwards;}
 .tl-dot{
-  position:absolute;left:-42px;top:2px;
-  width:40px;height:40px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:15px;
+  position:absolute;left:-36px;top:4px;
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:11px;
   animation:dotPulse 2.5s ease-in-out infinite;
+  flex-shrink:0;
 }
 .tl-text{font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.65;}
 .tl-cta{text-align:center;margin-top:52px;}
@@ -399,9 +400,7 @@ footer a:hover{opacity:1;}
       <div class="tl-text">Feeling like the version of you that things just go right for</div>
     </div>
   </div>
-  <div class="tl-cta">
-    <a href="https://reshmaoracle.com/?waitlist=1">Get more inside the app</a>
-  </div>
+
 </div>
 </div>
 
