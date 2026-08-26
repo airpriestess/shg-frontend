@@ -1566,6 +1566,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           100% { background-position: 0% 50%; }
         }
         @keyframes shg-count-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+        @keyframes shg-glow-pulse {
+          0%,100% { box-shadow: 0 0 32px rgba(232,184,112,0.5), 0 4px 60px rgba(44,183,167,0.25); }
+          50%      { box-shadow: 0 0 56px rgba(191,165,216,0.6), 0 4px 80px rgba(44,183,167,0.4); }
+        }
       `}</style>
       {(() => {
         const mTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
@@ -1575,15 +1579,15 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         const totalL = isPreview ? 127 : (realListens?.total || 0);
         return (
           <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
-            background:"linear-gradient(135deg,rgba(245,224,160,0.22) 0%,rgba(191,165,216,0.28) 40%,rgba(44,183,167,0.22) 100%)",
-            backgroundSize:"200% 200%", animation:"shg-drift 10s ease-in-out infinite",
-            border:"1px solid rgba(255,255,255,0.4)", backdropFilter:"blur(16px)", WebkitBackdropFilter:"blur(16px)" }}>
+            background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
+            backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
+            border:"1px solid rgba(255,255,255,0.6)" }}>
             {/* Rate */}
             <div style={{ marginBottom:16 }}>
-              <div style={{ fontSize:11, color:"#4a3060", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6, fontWeight:400 }}>Manifestation rate</div>
+              <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6, fontWeight:500, opacity:0.7 }}>Manifestation rate</div>
               <div style={{ display:"flex", alignItems:"baseline", gap:8 }}>
                 <span style={{ fontSize:52, fontWeight:400, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both" }}>{mRate}%</span>
-                <span style={{ fontSize:15, color:"rgba(26,16,8,0.55)", fontWeight:400 }}>{mDone} of {mTotal} desires</span>
+                <span style={{ fontSize:15, color:"#1a1008", fontWeight:400, opacity:0.8 }}>{mDone} of {mTotal} desires</span>
               </div>
               {/* Progress bar */}
               <div style={{ marginTop:10, height:6, borderRadius:3, background:"rgba(255,255,255,0.4)", overflow:"hidden" }}>
@@ -1597,13 +1601,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                 [totalL, "total listens"],
                 [isPreview ? 23 : threads.reduce((a,t)=>a+(t.signs?.length||0),0), "signs logged"],
               ].map(([v,l],i) => (
-                <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.3)", borderRadius:12, padding:"10px 6px", border:"1px solid rgba(255,255,255,0.5)" }}>
+                <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.35)", borderRadius:12, padding:"10px 6px", border:"1px solid rgba(255,255,255,0.6)", backdropFilter:"blur(8px)" }}>
                   <div style={{ fontSize:22, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
-                  <div style={{ fontSize:11, color:"rgba(26,16,8,0.55)", marginTop:4, letterSpacing:"0.05em" }}>{l}</div>
+                  <div style={{ fontSize:11, color:"#1a1008", marginTop:4, letterSpacing:"0.05em", opacity:0.75 }}>{l}</div>
                 </div>
               ))}
             </div>
-            {isPreview && <div style={{ fontSize:11, color:"rgba(26,16,8,0.4)", marginTop:12, textAlign:"center", fontStyle:"italic" }}>preview data — sign up to track your real numbers</div>}
+            {isPreview && <div style={{ fontSize:11, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", opacity:0.75 }}>preview data — sign up to track your real numbers</div>}
           </div>
         );
       })()}
