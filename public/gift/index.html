@@ -201,39 +201,6 @@ h1{font-size:clamp(36px,6vw,62px);font-weight:800;line-height:1.05;margin-bottom
   text-decoration:none;animation:ctaGlow 2s ease-in-out infinite alternate;
 }
 
-/* TIMELINE */
-.timeline-section{padding:72px 24px 80px;max-width:600px;margin:0 auto;}
-.timeline-title{
-  text-align:center;font-size:clamp(22px,4vw,34px);
-  font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
-  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:gradText 10s ease-in-out infinite;margin-bottom:52px;
-}
-.timeline{position:relative;padding-left:44px;}
-.timeline::before{
-  content:'';position:absolute;left:11px;top:6px;bottom:6px;width:2px;
-  background:linear-gradient(180deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
-}
-.tl-item{position:relative;margin-bottom:36px;opacity:0;transform:translateX(-16px);}
-.tl-item.visible{animation:slideIn .6s ease forwards;}
-.tl-dot{
-  position:absolute;left:-36px;top:4px;
-  width:26px;height:26px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:11px;
-  animation:dotPulse 2.5s ease-in-out infinite;
-  flex-shrink:0;
-}
-.tl-text{font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.65;}
-.tl-cta{text-align:center;margin-top:52px;}
-.tl-cta a{
-  display:inline-block;padding:20px 52px;
-  background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
-  border-radius:6px;color:#000;font-family:'Jost',sans-serif;
-  font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-  text-decoration:none;
-  animation:ctaShake 4s ease-in-out infinite,ctaGlow 2s ease-in-out infinite alternate;
-}
 
 /* HOW TO USE */
 .how-block{
@@ -353,25 +320,26 @@ footer a:hover{opacity:1;}
     </p>
   </div>
 
-  <span class="label grad-text">Shifts You Can Expect</span>
-  <div class="benefit-grid">
-    <div class="benefit-card">
-      <span class="benefit-title">Within days. Your filter shifts</span>
-      <p class="benefit-body">Opportunities that were always there become visible. A message arrives. A stranger mentions something. A conversation goes somewhere it never would have before. It can happen within seconds of finishing a session. You just notice more.</p>
-    </div>
-    <div class="benefit-card">
-      <span class="benefit-title">Within weeks. You start moving differently</span>
-      <p class="benefit-body">You say yes before fear speaks. You reach out. You walk through the door. The hesitation that used to cost you opportunities stops running the show. Action becomes instinct.</p>
-    </div>
-    <div class="benefit-card">
-      <span class="benefit-title">Within months. Reality reorganises</span>
-      <p class="benefit-body">Things you have wanted for years start happening without you lifting a finger. Not because you tried harder. Because your subconscious is now broadcasting a different signal and the world is responding to it.</p>
-    </div>
-    <div class="benefit-card">
-      <span class="benefit-title">With repetition. Identity locked</span>
-      <p class="benefit-body">This is not a mindset you maintain. It is who you become. Synchronicities stop surprising you. Of course things work out. Of course people show up. That is simply what happens for you now.</p>
-    </div>
-  </div>
+  <h2 style="font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradText 12s ease-in-out infinite;text-align:center;margin-bottom:48px;">Shifts you can expect</h2>
+
+  <ul style="list-style:none;padding:0;margin:0 0 64px;">
+    <li style="padding:24px 0;border-bottom:1px solid rgba(245,224,160,0.12);display:flex;gap:20px;align-items:flex-start;">
+      <span style="background:linear-gradient(135deg,#F5E0A0,#E8B870);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;padding-top:3px;">Within days</span>
+      <span style="font-size:clamp(16px,2.2vw,19px);font-weight:300;color:#fdf0e8;line-height:1.8;">Opportunities that were always there become visible. A message arrives. A stranger mentions something. A conversation goes somewhere it never would have before. It can happen within seconds of finishing a session. You just notice more.</span>
+    </li>
+    <li style="padding:24px 0;border-bottom:1px solid rgba(245,224,160,0.12);display:flex;gap:20px;align-items:flex-start;">
+      <span style="background:linear-gradient(135deg,#E8B870,#BFA5D8);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;padding-top:3px;">Within weeks</span>
+      <span style="font-size:clamp(16px,2.2vw,19px);font-weight:300;color:#fdf0e8;line-height:1.8;">You say yes before fear speaks. You reach out. You walk through the door. The hesitation that used to cost you opportunities stops running the show. Action becomes instinct.</span>
+    </li>
+    <li style="padding:24px 0;border-bottom:1px solid rgba(245,224,160,0.12);display:flex;gap:20px;align-items:flex-start;">
+      <span style="background:linear-gradient(135deg,#BFA5D8,#2CB7A7);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;padding-top:3px;">Within months</span>
+      <span style="font-size:clamp(16px,2.2vw,19px);font-weight:300;color:#fdf0e8;line-height:1.8;">Things you have wanted for years start happening without you lifting a finger. Not because you tried harder. Because your subconscious is now broadcasting a different signal and the world is responding to it.</span>
+    </li>
+    <li style="padding:24px 0;display:flex;gap:20px;align-items:flex-start;">
+      <span style="background:linear-gradient(135deg,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;padding-top:3px;">With repetition</span>
+      <span style="font-size:clamp(16px,2.2vw,19px);font-weight:300;color:#fdf0e8;line-height:1.8;">This is not a mindset you maintain. It is who you become. Synchronicities stop surprising you. Of course things work out. Of course people show up. That is simply what happens for you now.</span>
+    </li>
+  </ul>
 
   <!-- HOW TO USE -->
   <div class="how-block">
@@ -386,41 +354,6 @@ footer a:hover{opacity:1;}
   </div>
 
 </div><!-- /content -->
-
-<!-- WHAT PEOPLE NOTICE TIMELINE -->
-<div style="background:#000;padding:0 0 80px;">
-<div class="timeline-section">
-  <div class="timeline-title">What people notice</div>
-  <div class="timeline">
-    <div class="tl-item" style="animation-delay:.05s">
-      <div class="tl-dot" style="background:radial-gradient(circle,#F5E0A0,#E8B870);">✦</div>
-      <div class="tl-text">Opportunities appearing that were always there, suddenly visible</div>
-    </div>
-    <div class="tl-item" style="animation-delay:.2s">
-      <div class="tl-dot" style="background:radial-gradient(circle,#E8C870,#BFA5D8);">✦</div>
-      <div class="tl-text">The right person reaching out at exactly the right moment</div>
-    </div>
-    <div class="tl-item" style="animation-delay:.35s">
-      <div class="tl-dot" style="background:radial-gradient(circle,#BFA5D8,#9A7DC8);">✦</div>
-      <div class="tl-text">Doors opening without forcing them</div>
-    </div>
-    <div class="tl-item" style="animation-delay:.5s">
-      <div class="tl-dot" style="background:radial-gradient(circle,#2CB7A7,#1A9A8A);">✦</div>
-      <div class="tl-text">A quiet sense that things are working out, without needing to control how</div>
-    </div>
-    <div class="tl-item" style="animation-delay:.65s">
-      <div class="tl-dot" style="background:radial-gradient(circle,#2CB7A7,#167A6B);">✦</div>
-      <div class="tl-text">Conversations that lead somewhere, without trying to make them</div>
-    </div>
-    <div class="tl-item" style="animation-delay:.8s">
-      <div class="tl-dot" style="background:radial-gradient(circle,#167A6B,#0E5A50);">✦</div>
-      <div class="tl-text">Feeling like the version of you that things just go right for</div>
-    </div>
-  </div>
-
-</div>
-</div>
-
 <footer>
   <a href="https://reshmaoracle.com">reshmaoracle.com</a>
 </footer>
