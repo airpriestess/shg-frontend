@@ -6,11 +6,10 @@ import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
-const MANIFESTATIONS_WORKER_URL = "https://shg-manifestations-worker.airpriestess.workers.dev";
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
 
-async function manifestationsApi(path, token, options = {}) {
-  const res = await fetch(`${MANIFESTATIONS_WORKER_URL}${path}`, {
+async function quizApi(path, token, options = {}) {
+  const res = await fetch(`${QUIZ_WORKER_URL}${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +52,7 @@ const dominant = (log,days) => {
 
 /* ═══════════════════════════════════════════════════════════════════════
    SHG PORTAL, Full Spotify-style with:
-   · Real Supabase audio playback
+   · Real audio playback via Cloudflare Workers
    · Proof threads linked to tracks + undo/edit
    · Favorites section
    · Profile avatar → stats/settings panel
@@ -104,7 +103,7 @@ const THEMES = {
     bg2:     "#fdf0e8",  // frosted glass cards
     bg3:     "#fdf0e8",  // raised cards
     bg4:     "#fdf0e8",  // highest surface
-    nav:     "rgba(245,224,160,0.55)",  // nav bar, champagne frosted
+    nav:     "#F5E0A0",  // nav bar, solid champagne
     cr:      "#000000",   // primary text, black
     mu:      "#000000",   // muted text, also black (no grey in light mode)
     dim:     "#000000",   // faint text, also black
@@ -485,38 +484,36 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const [threads, setThreads] = useState(isPreview ? INIT_THREADS : []);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
   useEffect(() => {
-    if (isPreview || !userId) return;
+    if (isPreview || !userId || !token) return;
     let cancelled = false;
     (async () => {
-      let data, error;
       try {
-        const res = await manifestationsApi("/manifestations", token);
-        data = res.manifestations;
+        const data = await quizApi("/threads", token, { method: "GET" });
+        if (cancelled) return;
+        const mapped = (data.threads || []).map(t => ({
+          id: t.id,
+          desire: t.desire,
+          category: t.category || "",
+          track: t.track || "",
+          oldBelief: t.old_belief || "",
+          feelBefore: t.feel_before || "",
+          feelAfter: t.feel_after || "",
+          days: t.created_at ? Math.floor((Date.now() - new Date(t.created_at)) / 86400000) : 0,
+          done: !!t.done,
+          isBucket: !!t.is_bucket,
+          createdAt: t.created_at,
+          manifestedAt: t.manifested_at || null,
+          signs: (t.signs || []).map(s => ({ _sid: s.id, text: s.text || "", date: s.date || "", img: s.img || null, audio: s.audio || null })),
+        }));
+        setThreads(mapped);
       } catch (err) {
-        error = err;
+        console.error("Failed to load threads:", err);
+      } finally {
+        if (!cancelled) setThreadsLoaded(true);
       }
-      if (cancelled) return;
-      if (error) { console.error("Failed to load manifestations:", error); setThreadsLoaded(true); return; }
-      const mapped = (data||[]).map(m => ({
-        id: m.id,
-        desire: m.desire,
-        category: m.category || "",
-        days: m.created_at ? Math.floor((Date.now()-new Date(m.created_at))/86400000) : 0,
-        done: m.status === "manifested",
-        isBucket: m.status === "in_progress" && !m.category,
-        track: null,
-        signs: [],
-        oldBelief: m.notes || "",
-        feelBefore: "",
-        feelAfter: "",
-        createdAt: m.created_at,
-        manifestedAt: m.manifested_at,
-      }));
-      setThreads(mapped);
-      setThreadsLoaded(true);
     })();
     return () => { cancelled = true; };
-  }, [userId, isPreview]);
+  }, [userId, isPreview, token]);
   const [theme, setTheme]     = useState(forceTheme || "light");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(47);
@@ -527,6 +524,36 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
     return arr;
   });
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onbStep, setOnbStep] = useState(0);
+  const [onbGoals, setOnbGoals] = useState([]);
+  const [onbWhere, setOnbWhere] = useState("");
+  const [onbFreq, setOnbFreq] = useState("");
+  useEffect(() => {
+    if (isPreview || !userId || !threadsLoaded) return;
+    const key = `shg_onboarded_${userId}`;
+    try { if (localStorage.getItem(key)) return; } catch {}
+    setShowOnboarding(true);
+  }, [userId, isPreview, threadsLoaded]);
+  const finishOnboarding = async () => {
+    const key = `shg_onboarded_${userId}`;
+    try { localStorage.setItem(key, "1"); } catch {}
+    setShowOnboarding(false);
+    const email = session?.user?.email;
+    if (email) {
+      try {
+        await quizApi("/", null, {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            name: userName !== "you" ? userName : undefined,
+            result_category: onbGoals.join(", "),
+            source: "onboarding_quiz",
+          }),
+        });
+      } catch {}
+    }
+  };
   const [showGuide, setShowGuide] = useState(false);
   const [showEmoLog, setShowEmoLog] = useState(false);
   const [quickFeel, setQuickFeel] = useState("");
@@ -555,18 +582,6 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     const trackCat = typeof trackObj === "object" ? trackObj?.cat : "";
     playStartRef.current = Date.now();
     playTrackRef.current = { title: trackTitle, cat: trackCat };
-    try {
-      const tracksRes = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/tracks");
-      const { tracks } = await tracksRes.json();
-      const match = tracks?.find(t => t.title === trackTitle);
-      if (match) {
-        await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-          body: JSON.stringify({ track_id: match.id }),
-        });
-      }
-    } catch (e) { console.error("Failed to log play:", e); }
     try {
       await fetch(`${QUIZ_WORKER_URL}/log-listen`, {
         method: "POST",
@@ -747,7 +762,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div style={{ flex:1,overflowY:"auto",padding:"8px 0" }}>
           {[
             { icon:<Ico.Book c={C.mu}/>, label:"Listening Guide", action:()=>{setShowGuide(true);setProfileOpen(false);} },
-            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile, connect to Supabase auth") },
+            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile coming soon") },
             { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
             { icon:<Ico.Shop c={C.mu}/>, label:"Shop", action:()=>{setTab("shop");setProfileOpen(false);} },
             { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Coming soon: daily push reminders.\n\nThis requires the app to be installed to your home screen (iPhone: Share → Add to Home Screen) so your browser can send notifications even when SHG isn't open. We'll prompt you to enable this once it's live.") },
@@ -790,7 +805,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -866,6 +881,14 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
         </div>
       )}
+      {showOnboarding && <OnboardingQuiz
+        step={onbStep} setStep={setOnbStep}
+        goals={onbGoals} setGoals={setOnbGoals}
+        where={onbWhere} setWhere={setOnbWhere}
+        freq={onbFreq} setFreq={setOnbFreq}
+        onDone={finishOnboarding}
+        isDark={isDark} C={C}
+      />}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <div style={{ flex:1,display:"flex",overflow:"hidden" }}>
         {/* Sidebar */}
@@ -945,7 +968,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   // ── MOBILE ───────────────────────────────────────────────────────────────
   return (
-    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden",position:"relative" }}>
+    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
@@ -980,7 +1003,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
       {!isPreview && !fullP && (
-        <div onClick={()=>setFullP(true)} style={{ position:"absolute",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
+        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
             <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:isDark?"#E8B870":"#000" }}>{track.title}</div>
@@ -998,7 +1021,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
       {/* Bottom nav */}
       {!fullP && (
-        <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
+        <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#050505":"#F5E0A0",borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
               <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#000000"):C.dim}/>
@@ -1367,7 +1390,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 }
 
 // ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -1415,12 +1438,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
     (async () => {
       let plays, playsErr;
       try {
-        const res = await fetch("https://shg-manifestations-worker.airpriestess.workers.dev/play-history", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error);
-        plays = data.plays;
+        const data = await quizApi("/listen-history", token);
+        plays = data.events;
       } catch (e) {
         playsErr = e;
       }
@@ -1630,6 +1649,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         </div>
       )}
 
+      {/* ASK RESHMA — Goddess tier only */}
+      {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
+
       {/* FULL ANALYTICS BOARD */}
       <div style={{ margin:"0 16px 20px" }}>
         <AnalyticsBoard
@@ -1659,6 +1681,117 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           </span>
           <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
         </button>
+      </div>
+    </div>
+  );
+}
+
+// ── ASK RESHMA CARD ───────────────────────────────────────────────────────────
+function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [history, setHistory] = useState(null);
+  const isGoddess = userTier === "goddess";
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+
+  useEffect(() => {
+    if (!open || !isGoddess || !userId || !token) return;
+    (async () => {
+      try {
+        const data = await quizApi("/ask", token, { method: "GET" });
+        setHistory(data.questions || []);
+      } catch {}
+    })();
+  }, [open, isGoddess, userId, token]);
+
+  const submit = async () => {
+    if (!q.trim() || sending) return;
+    setSending(true);
+    try {
+      await quizApi("/ask", token, {
+        method: "POST",
+        body: JSON.stringify({ question: q.trim(), email: userEmail }),
+      });
+      setSent(true);
+      setQ("");
+      setHistory(h => [{ id: Date.now(), question: q.trim(), status:"pending", answer:null, created_at: new Date().toISOString() }, ...(h||[])]);
+    } catch {}
+    setSending(false);
+  };
+
+  const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+
+  return (
+    <div style={{ margin:"0 16px 14px" }}>
+      {/* Teaser card always visible */}
+      <div style={{ padding:"18px 16px", borderRadius:16, background: isGoddess ? C.bg2 : "rgba(232,184,112,0.06)", border:`1px solid ${isGoddess?"rgba(232,184,112,0.35)":"rgba(232,184,112,0.2)"}` }}>
+        <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom: open&&isGoddess ? 16 : 0 }}>
+          <div style={{ width:46,height:46,borderRadius:14,background:"rgba(232,184,112,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0 }}>✉️</div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15,fontWeight:500,color:C.cr }}>Ask Reshma directly</div>
+            <div style={{ fontSize:13,color:C.mu,marginTop:2,lineHeight:1.4 }}>
+              {isGoddess
+                ? "Drop a question — about the tracks, hypnosis, or your journey. Answered personally, not by AI."
+                : "Goddess members get direct Q&A with Reshma — answered personally within the app."}
+            </div>
+          </div>
+          {isGoddess ? (
+            <button onClick={()=>setOpen(o=>!o)} style={{ fontSize:13,color:"#E8B870",background:"rgba(232,184,112,0.12)",border:"1px solid rgba(232,184,112,0.3)",borderRadius:10,padding:"7px 13px",cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>
+              {open ? "close" : "ask"}
+            </button>
+          ) : (
+            <span style={{ fontSize:11,padding:"4px 10px",borderRadius:20,background:grad,color:"#000",fontWeight:600,flexShrink:0,whiteSpace:"nowrap" }}>Goddess</span>
+          )}
+        </div>
+
+        {/* Expanded panel for Goddess members */}
+        {open && isGoddess && (
+          <div>
+            <div style={{ fontSize:12,color:C.mu,marginBottom:10,padding:"8px 12px",borderRadius:8,background:isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.04)",lineHeight:1.5 }}>
+              💫 Not live — Reshma answers personally, typically within a few days. Your question stays private.
+            </div>
+            {sent && (
+              <div style={{ fontSize:14,color:"#2CB7A7",marginBottom:12,textAlign:"center",padding:"10px",borderRadius:8,background:"rgba(44,183,167,0.08)",border:"1px solid rgba(44,183,167,0.2)" }}>
+                ✓ Question sent. Reshma will answer you here soon.
+              </div>
+            )}
+            <textarea
+              value={q}
+              onChange={e=>{ setQ(e.target.value); setSent(false); }}
+              placeholder="What would you like to ask?"
+              maxLength={1000}
+              rows={4}
+              style={{ width:"100%",boxSizing:"border-box",padding:"12px 14px",borderRadius:10,border:`1px solid ${C.border}`,background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.04)",color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",resize:"none",outline:"none",lineHeight:1.5,marginBottom:4 }}
+            />
+            <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14 }}>
+              <span style={{ fontSize:12,color:C.mu }}>{q.length}/1000</span>
+              <button onClick={submit} disabled={!q.trim()||sending} style={{ padding:"9px 20px",borderRadius:10,border:"none",background:q.trim()&&!sending?grad:"rgba(128,128,128,0.2)",color:q.trim()&&!sending?"#000":"#888",fontSize:14,fontWeight:600,cursor:q.trim()&&!sending?"pointer":"not-allowed",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>
+                {sending ? "sending…" : "Send question"}
+              </button>
+            </div>
+
+            {/* Previous questions */}
+            {history && history.length > 0 && (
+              <div>
+                <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:8 }}>Your questions</div>
+                {history.slice(0,5).map((item,i) => (
+                  <div key={item.id||i} style={{ marginBottom:10,padding:"12px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.04)":"rgba(0,0,0,0.03)",border:`1px solid ${C.border}` }}>
+                    <div style={{ fontSize:13,color:C.cr,marginBottom:4 }}>{item.question}</div>
+                    {item.answer ? (
+                      <div style={{ fontSize:13,color:"#2CB7A7",marginTop:6,paddingTop:6,borderTop:`1px solid ${C.border}`,lineHeight:1.5 }}>
+                        <span style={{ fontWeight:600 }}>Reshma: </span>{item.answer}
+                      </div>
+                    ) : (
+                      <div style={{ fontSize:12,color:C.mu,fontStyle:"italic" }}>Awaiting answer…</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1774,21 +1907,22 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
           {catOpen && dropPos && createPortal(
-            <div style={{
+            <div onTouchMove={e=>e.stopPropagation()} style={{
               position:"fixed",
               top:dropPos.top,
               left:dropPos.left,
               width:dropPos.width,
               zIndex:999999,
               background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
-              maxHeight:300, overflowY:"auto", boxShadow:"0 12px 40px rgba(0,0,0,0.95)"
+              maxHeight:"55vh", overflowY:"scroll", WebkitOverflowScrolling:"touch",
+              boxShadow:"0 12px 40px rgba(0,0,0,0.95)", touchAction:"pan-y"
             }}>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
                 const active = cat===c;
                 const catColor = CAT_ICONS[c]?.accent || R;
                 return (
-                  <div key={c} onClick={()=>{setCat(c);setCatOpen(false);}}
+                  <div key={c} onClick={()=>{setCat(c);setLibFormat("All");setCatOpen(false);}}
                     style={{
                       padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
                       color:active?catColor:"#fdf0e8", background:active?`${catColor}1c`:"#0a0a0a",
@@ -1874,7 +2008,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
       <div style={{ fontSize:15, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
         {feature === "ProofOS"
           ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
-          : "Track your dominant emotional state, listening streaks, and the evidence building over time."}
+          : "Track your dominant emotional state, listening streaks, and the evidence building over time. Plus direct Q&A with Reshma — ask anything about the tracks, hypnosis, or your journey."}
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
@@ -1929,9 +2063,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
     if (!isPreview && userId) {
       try {
-        await manifestationsApi(`/manifestations/${id}`, token, {
+        await quizApi(`/threads/${id}`, token, {
           method: "PATCH",
-          body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString(), notes: after || undefined }),
+          body: JSON.stringify({ done: true, manifested_at: new Date().toISOString(), feel_after: after || undefined }),
         });
       } catch (err) { console.error("Failed to mark manifested:", err); }
     }
@@ -1940,9 +2074,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
     if (!isPreview && userId) {
       try {
-        await manifestationsApi(`/manifestations/${id}`, token, {
+        await quizApi(`/threads/${id}`, token, {
           method: "PATCH",
-          body: JSON.stringify({ status: "in_progress", manifested_at: null }),
+          body: JSON.stringify({ done: false, manifested_at: null }),
         });
       } catch (err) { console.error("Failed to undo manifested:", err); }
     }
@@ -1953,23 +2087,44 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
     setConfirmDeleteId(null);
     if (!isPreview && userId) {
       try {
-        await manifestationsApi(`/manifestations/${id}`, token, { method: "DELETE" });
+        await quizApi(`/threads/${id}`, token, { method: "DELETE" });
       } catch (err) { console.error("Failed to delete desire:", err); }
     }
   };
-  const addSign = (id) => {
+  const addSign = async (id) => {
     const text = (signInput[id]||"").trim();
     if(!text) return;
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
-    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date,_sid:Date.now()+Math.random()}]}:t));
+    const tempSid = Date.now()+Math.random();
+    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date,_sid:tempSid}]}:t));
     setSignInput({...signInput,[id]:""});
+    if (!isPreview && userId) {
+      try {
+        const res = await quizApi(`/threads/${id}/signs`, token, {
+          method: "POST",
+          body: JSON.stringify({ text, date }),
+        });
+        // Replace temp _sid with real DB id
+        if (res.id) setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:(t.signs||[]).map(s=>s._sid===tempSid?{...s,_sid:res.id}:s)}:t));
+      } catch (err) { console.error("Failed to save sign:", err); }
+    }
   };
   const addMediaSign = (id, media) => {
     const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
     setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date,_sid:Date.now()+Math.random()}]}:t));
+    if (!isPreview && userId) {
+      quizApi(`/threads/${id}/signs`, token, {
+        method: "POST",
+        body: JSON.stringify({ text: media.text || null, date, img: media.img || null, audio: media.audio || null }),
+      }).catch(err => console.error("Failed to save media sign:", err));
+    }
   };
   const deleteSign = (threadId, signKey) => {
     setThreads(ts=>ts.map(t=>t.id===threadId?{...t,signs:(t.signs||[]).filter(s=>(s._sid??s) !== signKey)}:t));
+    if (!isPreview && userId && typeof signKey === "number") {
+      quizApi(`/threads/${threadId}/signs/${signKey}`, token, { method: "DELETE" })
+        .catch(err => console.error("Failed to delete sign:", err));
+    }
   };
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
@@ -2041,9 +2196,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:"#000000",
-            border:"none",
-            color:view===k?"#000":"#000000", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+            background:view===k?col:"rgba(255,255,255,0.55)",
+            border:`1px solid ${view===k?"transparent":"rgba(255,255,255,0.7)"}`,
+            color:"#000", fontSize:13,fontWeight:view===k?600:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
@@ -2075,11 +2230,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 setBucketText("");
                 if (!isPreview && userId) {
                   try {
-                    const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                    await quizApi("/threads", token, {
                       method: "POST",
-                      body: JSON.stringify({ desire: bucketText }),
+                      body: JSON.stringify({ id: localId, desire: bucketText, is_bucket: true }),
                     });
-                    setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
                   } catch (err) {
                     console.error("Failed to save bucket item:", err);
                   }
@@ -2144,9 +2298,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                         setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t));
                         if (!isPreview && userId) {
                           try {
-                            await manifestationsApi(`/manifestations/${item.id}`, token, {
+                            await quizApi(`/threads/${item.id}`, token, {
                               method: "PATCH",
-                              body: JSON.stringify({ status: "manifested", manifested_at: new Date().toISOString() }),
+                              body: JSON.stringify({ done: true, manifested_at: new Date().toISOString() }),
                             });
                           } catch (err) { console.error("Failed to mark manifested:", err); }
                         }
@@ -2334,11 +2488,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
             if (!isPreview && userId) {
               try {
-                const { manifestation: data } = await manifestationsApi("/manifestations", token, {
+                await quizApi("/threads", token, {
                   method: "POST",
-                  body: JSON.stringify({ desire: newD, category: newCat, notes: newBelief }),
+                  body: JSON.stringify({ id: localId, desire: newD, category: newCat, track: linkedTrack, old_belief: newBelief, feel_before: before }),
                 });
-                setThreads(ts => ts.map(t => t.id===localId ? {...t, id:data.id, createdAt:data.created_at} : t));
               } catch (err) {
                 console.error("Failed to save desire:", err);
               }
@@ -2556,6 +2709,89 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
       </div>
       <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ fontSize:16,fontWeight:400,color:unavail?C.mu:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:hasAudio?"pointer":"not-allowed" }}>{t.title}</div>
       <div style={{ fontSize:14,color:C.mu }}>{t.cat} · {t.dur}</div>
+    </div>
+  );
+}
+
+// ── ONBOARDING QUIZ ────────────────────────────────────────────────────────────
+const OB_GOALS = ["Confidence","Abundance","Love","Sleep","Anxiety","Body","Purpose"];
+const OB_WHERE = ["Stuck and overwhelmed","Building momentum","Ready to go deep","Starting fresh"];
+const OB_FREQ  = ["Daily","A few times a week","Whenever I need it"];
+
+function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
+  const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
+  const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+  const bg = isDark ? "#0d0d0d" : "#fff";
+  const text = isDark ? "#FDF0E8" : "#111";
+  const sub = isDark ? "rgba(253,240,232,0.55)" : "#555";
+  const chip = (label, active, onClick) => (
+    React.createElement('button', { key: label, onClick, style: {
+      padding:"9px 16px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",
+      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ccc"}`,
+      background: active ? grad : "none", color: active ? "#000" : text,
+      fontWeight: active ? 600 : 400, transition:"all 0.15s",
+    }}, label)
+  );
+
+  const steps = [
+    {
+      title: "What do you most want to shift?",
+      sub: "Pick up to 3 — we'll tailor your tracks to these.",
+      content: React.createElement('div', { style: { display:"flex",flexWrap:"wrap",gap:10,justifyContent:"center" } },
+        OB_GOALS.map(g => chip(g, goals.includes(g), () => toggleGoal(g)))
+      ),
+      canNext: goals.length > 0,
+      next: () => setStep(1),
+    },
+    {
+      title: "Where are you right now?",
+      sub: "No right answer. Just honest.",
+      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
+        OB_WHERE.map(w => chip(w, where===w, () => setWhere(w)))
+      ),
+      canNext: !!where,
+      next: () => setStep(2),
+    },
+    {
+      title: "How often do you want to listen?",
+      sub: "We'll shape your experience around this.",
+      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
+        OB_FREQ.map(f => chip(f, freq===f, () => setFreq(f)))
+      ),
+      canNext: !!freq,
+      next: onDone,
+    },
+  ];
+
+  const s = steps[step];
+
+  return (
+    <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.75)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+      <div style={{ maxWidth:400,width:"100%",borderRadius:24,padding:"32px 28px",background:bg,boxShadow:"0 20px 60px rgba(0,0,0,0.4)" }}>
+        <div style={{ textAlign:"center",marginBottom:24 }}>
+          <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:sub,marginBottom:12 }}>Step {step+1} of 3</div>
+          <div style={{ display:"flex",gap:6,justifyContent:"center",marginBottom:20 }}>
+            {steps.map((_,i) => <div key={i} style={{ width:6,height:6,borderRadius:3,background:i===step?"#E8B870":"rgba(128,128,128,0.25)" }}/>)}
+          </div>
+          <div style={{ fontSize:20,fontWeight:400,color:text,marginBottom:8,lineHeight:1.3 }}>{s.title}</div>
+          <div style={{ fontSize:14,color:sub }}>{s.sub}</div>
+        </div>
+        <div style={{ marginBottom:28 }}>{s.content}</div>
+        <button
+          onClick={s.canNext ? s.next : undefined}
+          style={{
+            width:"100%",padding:"14px",border:"none",borderRadius:14,fontSize:16,
+            fontFamily:"'Jost',sans-serif",cursor:s.canNext?"pointer":"not-allowed",
+            background:s.canNext?grad:"rgba(128,128,128,0.2)",
+            color:s.canNext?"#000":"#888",fontWeight:s.canNext?600:400,transition:"all 0.2s",
+          }}
+        >{step < 2 ? "Continue" : "Let's go →"}</button>
+        {step === 0 && (
+          <button onClick={onDone} style={{ display:"block",width:"100%",marginTop:12,padding:"8px",background:"none",border:"none",color:sub,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            Skip for now
+          </button>
+        )}
+      </div>
     </div>
   );
 }

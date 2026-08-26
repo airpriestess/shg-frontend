@@ -3,7 +3,7 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 
 var CORS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Methods": "POST, GET, PATCH, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
@@ -52,6 +52,33 @@ var worker_default = {
     }
     if (url.pathname === "/listen-history" && request.method === "GET") {
       return handleListenHistory(request, env);
+    }
+    // ── ProofOS thread persistence ─────────────────────────────────────────
+    if (url.pathname === "/threads" && request.method === "GET") {
+      return handleGetThreads(request, env);
+    }
+    if (url.pathname === "/threads" && request.method === "POST") {
+      return handleSaveThread(request, env);
+    }
+    if (url.pathname.startsWith("/threads/") && request.method === "PATCH") {
+      return handleUpdateThread(request, env, url.pathname.slice(9));
+    }
+    if (url.pathname.startsWith("/threads/") && request.method === "DELETE") {
+      return handleDeleteThread(request, env, url.pathname.slice(9));
+    }
+    if (url.pathname.match(/^\/threads\/[^/]+\/signs$/) && request.method === "POST") {
+      const threadId = url.pathname.split("/")[2];
+      return handleAddSign(request, env, threadId);
+    }
+    if (url.pathname.match(/^\/threads\/[^/]+\/signs\/\d+$/) && request.method === "DELETE") {
+      const parts = url.pathname.split("/");
+      return handleDeleteSign(request, env, parts[2], parts[4]);
+    }
+    if (url.pathname === "/ask" && request.method === "POST") {
+      return handleAskReshma(request, env);
+    }
+    if (url.pathname === "/ask" && request.method === "GET") {
+      return handleGetQuestions(request, env);
     }
     if (request.method === "POST") {
       return handleQuizLead(request, env);
@@ -266,5 +293,175 @@ async function handleListenHistory(request, env) {
   return json({ events: result.results || [] });
 }
 __name(handleListenHistory, "handleListenHistory");
+
+// ── PROOFOS THREAD HANDLERS ───────────────────────────────────────────────────
+
+async function authUser(request, env) {
+  const token = (request.headers.get("Authorization") || "").replace("Bearer ", "");
+  return getUserFromToken(env, token);
+}
+
+async function handleGetThreads(request, env) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  const threads = await env.DB.prepare(
+    `SELECT * FROM proof_threads WHERE user_id = ? ORDER BY created_at ASC`
+  ).bind(userId).all();
+
+  const signs = await env.DB.prepare(
+    `SELECT * FROM proof_signs WHERE user_id = ? ORDER BY created_at ASC`
+  ).bind(userId).all();
+
+  const signsByThread = {};
+  for (const s of (signs.results || [])) {
+    if (!signsByThread[s.thread_id]) signsByThread[s.thread_id] = [];
+    signsByThread[s.thread_id].push(s);
+  }
+
+  const result = (threads.results || []).map(t => ({
+    ...t,
+    done: t.done === 1,
+    is_bucket: t.is_bucket === 1,
+    signs: signsByThread[t.id] || [],
+  }));
+
+  return json({ threads: result });
+}
+
+async function handleSaveThread(request, env) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+
+  const { id, desire, category = "", track = "", old_belief = "", feel_before = "", is_bucket = false } = body;
+  if (!id || !desire) return json({ error: "id and desire are required" }, 400);
+
+  await env.DB.prepare(
+    `INSERT INTO proof_threads (id, user_id, desire, category, track, old_belief, feel_before, is_bucket)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+     ON CONFLICT(id) DO UPDATE SET desire=excluded.desire, category=excluded.category,
+       track=excluded.track, old_belief=excluded.old_belief, feel_before=excluded.feel_before,
+       is_bucket=excluded.is_bucket, updated_at=datetime('now')`
+  ).bind(id, userId, desire, category, track, old_belief, feel_before, is_bucket ? 1 : 0).run();
+
+  return json({ success: true, id });
+}
+
+async function handleUpdateThread(request, env, threadId) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+
+  const fields = [];
+  const vals = [];
+  const allowed = ["desire","category","track","old_belief","feel_before","feel_after","days","done","is_bucket","manifested_at"];
+  for (const [k, v] of Object.entries(body)) {
+    if (allowed.includes(k)) {
+      fields.push(`${k}=?`);
+      vals.push(typeof v === "boolean" ? (v ? 1 : 0) : v);
+    }
+  }
+  if (fields.length === 0) return json({ error: "No valid fields" }, 400);
+  fields.push("updated_at=datetime('now')");
+  vals.push(threadId, userId);
+
+  await env.DB.prepare(
+    `UPDATE proof_threads SET ${fields.join(",")} WHERE id=? AND user_id=?`
+  ).bind(...vals).run();
+
+  return json({ success: true });
+}
+
+async function handleDeleteThread(request, env, threadId) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  await env.DB.prepare(
+    `DELETE FROM proof_signs WHERE thread_id=? AND user_id=?`
+  ).bind(threadId, userId).run();
+  await env.DB.prepare(
+    `DELETE FROM proof_threads WHERE id=? AND user_id=?`
+  ).bind(threadId, userId).run();
+
+  return json({ success: true });
+}
+
+async function handleAddSign(request, env, threadId) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+
+  const { text, date, img, audio } = body;
+
+  const result = await env.DB.prepare(
+    `INSERT INTO proof_signs (thread_id, user_id, text, date, img, audio) VALUES (?, ?, ?, ?, ?, ?)`
+  ).bind(threadId, userId, text || null, date || null, img || null, audio || null).run();
+
+  return json({ success: true, id: result.meta.last_row_id });
+}
+
+async function handleDeleteSign(request, env, threadId, signId) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  await env.DB.prepare(
+    `DELETE FROM proof_signs WHERE id=? AND thread_id=? AND user_id=?`
+  ).bind(signId, threadId, userId).run();
+
+  return json({ success: true });
+}
+
+// ── ASK RESHMA ────────────────────────────────────────────────────────────────
+
+async function handleAskReshma(request, env) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+
+  const { question, email } = body;
+  if (!question || !question.trim()) return json({ error: "Question is required" }, 400);
+  if (question.trim().length > 1000) return json({ error: "Question too long (max 1000 chars)" }, 400);
+
+  const result = await env.DB.prepare(
+    `INSERT INTO reshma_questions (user_id, email, question) VALUES (?, ?, ?)`
+  ).bind(userId, email || null, question.trim()).run();
+
+  // Notify via Nitrosend if configured
+  if (env.NITROSEND_API_KEY && env.RESHMA_NOTIFY_EMAIL) {
+    try {
+      await fetch("https://api.nitrosend.com/v1/transactional/send", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${env.NITROSEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: env.RESHMA_NOTIFY_EMAIL,
+          subject: "New question from a Goddess member",
+          text: `Question #${result.meta.last_row_id}\nFrom: ${email || userId}\n\n${question.trim()}`,
+        }),
+      });
+    } catch {}
+  }
+
+  return json({ success: true, id: result.meta.last_row_id });
+}
+
+async function handleGetQuestions(request, env) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+
+  const result = await env.DB.prepare(
+    `SELECT id, question, status, answer, answered_at, created_at FROM reshma_questions WHERE user_id=? ORDER BY created_at DESC LIMIT 20`
+  ).bind(userId).all();
+
+  return json({ questions: result.results || [] });
+}
 
 export { worker_default as default };

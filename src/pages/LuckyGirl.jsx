@@ -108,13 +108,13 @@ export default function LuckyGirl() {
       const topCode = Object.entries(newScores).sort((a, b) => b[1] - a[1])[0][0];
       const r = RESULTS[topCode];
       setResult(r);
-      saveToSupabase(name, email, topCode);
+      saveQuizLead(name, email, topCode);
       setPhase("result");
       window.scrollTo(0, 0);
     }
   }
 
-  async function saveToSupabase(n, e, cat) {
+  async function saveQuizLead(n, e, cat) {
     try {
       const res = await fetch("https://shg-quiz-worker.airpriestess.workers.dev", {
         method: "POST",

@@ -100,35 +100,20 @@ async function getUserFromToken(env, token) {
 }
 __name(getUserFromToken, "getUserFromToken");
 
-// Passthrough routes — these paths are handled by Cloudflare Pages,
-// not this worker. Return fetch(request) so the request continues normally.
-const PASSTHROUGH_PREFIXES = [
-  "/portal",
-  "/waitlist",
-  "/luckygirl",
-  "/guides",
-  "/guide",
-  "/science",
-  "/gift",
-  "/blog",
-  "/blocks",
-  "/richgirl",
-  "/mockups",
-  "/loveMaxxing",
-  "/beautyMaxxing",
-  "/richGirl",
-];
+// API routes this worker owns — everything else passes through to Cloudflare Pages.
+const API_ROUTES = {
+  "POST /signup":    handleSignup,
+  "POST /login":     handleLogin,
+  "POST /logout":    handleLogout,
+  "GET /me":         handleMe,
+  "POST /subscribe": handleSubscribe,
+  "POST /leads":     handleLeads,
+};
 
-function isPassthrough(pathname) {
-  // Pass through homepage and all static/SPA routes
-  if (pathname === "/" || pathname === "") return true;
-  // Pass through static assets
-  if (pathname.includes(".")) return true;
-  return PASSTHROUGH_PREFIXES.some(
-    (p) => pathname === p || pathname === p + "/" || pathname.startsWith(p + "/")
-  );
+function isApiRoute(method, pathname) {
+  return (`${method} ${pathname}`) in API_ROUTES;
 }
-__name(isPassthrough, "isPassthrough");
+__name(isApiRoute, "isApiRoute");
 
 var worker_default = {
   async fetch(request, env) {
@@ -138,31 +123,25 @@ var worker_default = {
     const url = new URL(request.url);
     const { pathname } = url;
 
-    // Passthrough for non-API routes
-    if (isPassthrough(pathname)) {
-      return fetch(request);
+    // Known API route — handle it
+    if (isApiRoute(request.method, pathname)) {
+      try {
+        return await API_ROUTES[`${request.method} ${pathname}`](request, env);
+      } catch (err) {
+        return json({ error: err.message || "Internal error" }, 500);
+      }
     }
 
-    try {
-      if (pathname === "/signup" && request.method === "POST") {
-        return handleSignup(request, env);
-      }
-      if (pathname === "/login" && request.method === "POST") {
-        return handleLogin(request, env);
-      }
-      if (pathname === "/logout" && request.method === "POST") {
-        return handleLogout(request, env);
-      }
-      if (pathname === "/me" && request.method === "GET") {
-        return handleMe(request, env);
-      }
-      if (pathname === "/subscribe" && request.method === "POST") {
-        return handleSubscribe(request, env);
-      }
-      return json({ error: "Not found" }, 404);
-    } catch (err) {
-      return json({ error: err.message || "Internal error" }, 500);
-    }
+    // Everything else (static assets, SPA routes, homepage) — proxy to Pages
+    const pagesUrl = new URL(request.url);
+    pagesUrl.hostname = "shg-frontend.pages.dev";
+    const pagesReq = new Request(pagesUrl.toString(), {
+      method: request.method,
+      headers: request.headers,
+      body: ["GET","HEAD"].includes(request.method) ? undefined : request.body,
+      redirect: "follow",
+    });
+    return fetch(pagesReq);
   },
 };
 
@@ -254,18 +233,25 @@ async function handleMe(request, env) {
 __name(handleMe, "handleMe");
 
 async function handleSubscribe(request, env) {
+  // Kept for backwards compat — same logic as handleLeads
+  return handleLeads(request, env);
+}
+__name(handleSubscribe, "handleSubscribe");
+
+async function handleLeads(request, env) {
   let body;
   try {
     body = await request.json();
   } catch {
     return json({ error: "Invalid JSON body" }, 400);
   }
-  const { first_name, email, source } = body;
+  const { first_name, name, email, source } = body;
   if (!email || !isValidEmail(email)) {
     return json({ error: "Valid email required" }, 400);
   }
   const id = uuid();
   const created_at = new Date().toISOString();
+  const resolvedName = first_name || name || null;
   const utm_source = body.utm_source || null;
   const utm_medium = body.utm_medium || null;
   const utm_campaign = body.utm_campaign || null;
@@ -273,10 +259,10 @@ async function handleSubscribe(request, env) {
   await env.DB.prepare(
     `INSERT INTO gift_leads (id, first_name, email, source, utm_source, utm_medium, utm_campaign, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
   )
-    .bind(id, first_name || null, email.toLowerCase(), source || null, utm_source, utm_medium, utm_campaign, created_at)
+    .bind(id, resolvedName, email.toLowerCase(), source || null, utm_source, utm_medium, utm_campaign, created_at)
     .run();
   return json({ success: true, id });
 }
-__name(handleSubscribe, "handleSubscribe");
+__name(handleLeads, "handleLeads");
 
 export { worker_default as default };
