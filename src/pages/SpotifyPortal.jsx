@@ -1561,31 +1561,35 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* EMOTIONAL PATTERN, dominant state today / 7d / 30d */}
       <style>{`
         @keyframes shg-glow-pulse {
-          0%,100% { box-shadow: 0 0 20px rgba(191,165,216,0.5), 0 0 45px rgba(44,183,167,0.25), 0 0 80px rgba(191,165,216,0.12); }
-          50%      { box-shadow: 0 0 36px rgba(191,165,216,0.75), 0 0 70px rgba(44,183,167,0.4), 0 0 120px rgba(191,165,216,0.2); }
+          0%,100% { box-shadow: 0 0 0 1.5px rgba(191,165,216,0.6), 0 0 28px rgba(191,165,216,0.45), 0 0 56px rgba(44,183,167,0.22); }
+          50%      { box-shadow: 0 0 0 2px rgba(191,165,216,0.9), 0 0 48px rgba(191,165,216,0.65), 0 0 90px rgba(44,183,167,0.38); }
         }
         @keyframes shg-drift {
           0%   { background-position: 0% 50%; }
           50%  { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
+        @keyframes shg-state-glow {
+          0%,100% { text-shadow: 0 0 12px rgba(191,165,216,0.7), 0 0 28px rgba(44,183,167,0.4); color: #3d1f5c; }
+          50%      { text-shadow: 0 0 20px rgba(191,165,216,1), 0 0 44px rgba(44,183,167,0.6); color: #5a2d8a; }
+        }
       `}</style>
-      <div style={{ margin:"0 16px 14px", padding:"20px 16px 18px", borderRadius:20, position:"relative", overflow:"hidden", background:"rgba(255,255,255,0.28)", border:"1px solid rgba(255,255,255,0.55)", animation:"shg-glow-pulse 4s ease-in-out infinite", backdropFilter:"blur(20px)", WebkitBackdropFilter:"blur(20px)" }}>
-        <div style={{ position:"absolute", inset:0, borderRadius:20, background:"linear-gradient(120deg,rgba(245,224,160,0.18) 0%,rgba(191,165,216,0.22) 35%,rgba(44,183,167,0.16) 70%,rgba(22,122,107,0.10) 100%)", backgroundSize:"260% 260%", animation:"shg-drift 9s ease-in-out infinite", pointerEvents:"none" }} />
+      <div style={{ margin:"0 16px 14px", padding:"20px 16px 18px", borderRadius:20, position:"relative", overflow:"hidden", background:"rgba(255,255,255,0.35)", border:"1.5px solid rgba(191,165,216,0.55)", animation:"shg-glow-pulse 3.5s ease-in-out infinite", backdropFilter:"blur(22px)", WebkitBackdropFilter:"blur(22px)" }}>
+        <div style={{ position:"absolute", inset:0, borderRadius:20, background:"linear-gradient(120deg,rgba(245,224,160,0.20) 0%,rgba(191,165,216,0.28) 35%,rgba(44,183,167,0.20) 70%,rgba(22,122,107,0.12) 100%)", backgroundSize:"280% 280%", animation:"shg-drift 8s ease-in-out infinite", pointerEvents:"none" }} />
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:16 }}>
-          <span style={{ fontSize:11, fontWeight:400, color:"#4a3060", letterSpacing:"0.22em", textTransform:"uppercase" }}>Your dominant state</span>
-          <span style={{ fontSize:11, color:"#167A6B", letterSpacing:"0.1em", textTransform:"uppercase" }}>Hawkins scale</span>
+          <span style={{ fontSize:11, fontWeight:400, color:"#7a4fa0", letterSpacing:"0.22em", textTransform:"uppercase" }}>Your dominant state</span>
+          <span style={{ fontSize:11, color:"#167A6B", fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase" }}>Hawkins scale</span>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:8 }}>
           {[["Today",domToday,true],["Last 7 days",dom7,false],["Last 30 days",dom30,false]].map(([l,d,isToday],i)=>(
-            <div key={i} style={{ borderRadius:14, padding:"14px 8px", textAlign:"center", background: isToday ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.2)", border: isToday ? "1px solid rgba(191,165,216,0.7)" : "1px solid rgba(255,255,255,0.35)" }}>
-              <div style={{ fontSize:11, color: isToday ? "#7a5090" : "#5a7060", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10 }}>{l}</div>
-              <div style={{ fontSize:isToday?22:18, fontWeight:400, color:"#1a1008", lineHeight:1.1, textShadow: isToday?"0 0 16px rgba(191,165,216,0.6)":"none" }}>{d?.n||"—"}</div>
-              <div style={{ fontSize:13, color:"rgba(26,16,8,0.5)", fontWeight:400, marginTop:6 }}>{d?.v||""}</div>
+            <div key={i} style={{ borderRadius:14, padding:"14px 8px", textAlign:"center", background: isToday ? "rgba(191,165,216,0.18)" : "rgba(255,255,255,0.25)", border: isToday ? "1.5px solid rgba(191,165,216,0.65)" : "1px solid rgba(255,255,255,0.5)" }}>
+              <div style={{ fontSize:11, color: isToday ? "#7a4fa0" : "#4a6860", fontWeight:400, letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:10 }}>{l}</div>
+              <div style={{ fontSize:isToday?24:18, fontWeight:400, lineHeight:1.1, animation: isToday?"shg-state-glow 3.5s ease-in-out infinite":"none", color: isToday?"#3d1f5c":"#1a1008" }}>{d?.n||"—"}</div>
+              <div style={{ fontSize:13, color: isToday?"rgba(61,31,92,0.6)":"rgba(26,16,8,0.45)", fontWeight:400, marginTop:6 }}>{d?.v||""}</div>
             </div>
           ))}
         </div>
-        <div style={{ fontSize:13, color:"rgba(26,16,8,0.55)", marginTop:14, textAlign:"center", fontWeight:400 }}>
+        <div style={{ fontSize:13, color:"rgba(61,31,92,0.55)", marginTop:14, textAlign:"center", fontWeight:400 }}>
           {dom7&&dom30 ? (dom7.v>dom30.v ? `✦ You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today — the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
         </div>
       </div>
