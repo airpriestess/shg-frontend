@@ -103,7 +103,7 @@ const THEMES = {
     bg2:     "#fdf0e8",  // frosted glass cards
     bg3:     "#fdf0e8",  // raised cards
     bg4:     "#fdf0e8",  // highest surface
-    nav:     "rgba(245,224,160,0.55)",  // nav bar, champagne frosted
+    nav:     "#F5E0A0",  // nav bar, solid champagne
     cr:      "#000000",   // primary text, black
     mu:      "#000000",   // muted text, also black (no grey in light mode)
     dim:     "#000000",   // faint text, also black
@@ -983,7 +983,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
       {/* Bottom nav */}
       {!fullP && (
-        <div style={{ position:"absolute",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:C.nav,borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
+        <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#050505":"#F5E0A0",borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
               <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#000000"):C.dim}/>
