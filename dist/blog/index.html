@@ -328,6 +328,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 </section>
 
 <script>
+function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());}
+
 (function() {
   const btn = document.getElementById('hero-subscribe-btn');
   const input = document.getElementById('hero-subscribe-email');
@@ -335,7 +337,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   if (!btn || !input) return;
   btn.addEventListener('click', async function() {
     const email = input.value.trim();
-    if (!email || !email.includes('@')) return;
+    if (!isValidEmail(email)) return;
     if (nameEl && !nameEl.value.trim()) { nameEl.focus(); return; }
     btn.disabled = true;
     btn.textContent = '...';
@@ -363,7 +365,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
 
   btn.addEventListener('click', async function() {
     const email = input.value.trim();
-    if (!email || !email.includes('@')) {
+    if (!isValidEmail(email)) {
       msg.textContent = 'Please enter a valid email address.';
       return;
     }

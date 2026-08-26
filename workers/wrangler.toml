@@ -3,10 +3,6 @@ main = "shg-auth-worker.js"
 compatibility_date = "2024-01-01"
 account_id = "28963e29ce046d75be64994ba4fb8b1d"
 
-routes = [
-  { pattern = "reshmaoracle.com/*", zone_name = "reshmaoracle.com" }
-]
-
 [[d1_databases]]
 binding = "DB"
 database_name = "shg-database"

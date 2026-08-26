@@ -252,10 +252,14 @@ async function handleLeads(request, env) {
   const id = uuid();
   const created_at = new Date().toISOString();
   const resolvedName = first_name || name || null;
+  const utm_source = body.utm_source || null;
+  const utm_medium = body.utm_medium || null;
+  const utm_campaign = body.utm_campaign || null;
+
   await env.DB.prepare(
-    `INSERT OR REPLACE INTO leads (id, first_name, email, source, created_at) VALUES (?, ?, ?, ?, ?)`
+    `INSERT INTO gift_leads (id, first_name, email, source, utm_source, utm_medium, utm_campaign, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
   )
-    .bind(id, resolvedName, email.toLowerCase(), source || "gift", created_at)
+    .bind(id, resolvedName, email.toLowerCase(), source || null, utm_source, utm_medium, utm_campaign, created_at)
     .run();
   return json({ success: true, id });
 }

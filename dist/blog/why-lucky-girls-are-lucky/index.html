@@ -188,6 +188,8 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   <p id="top-msg" style="font-size:12px;color:#fdf0e8;margin-top:8px;min-height:16px;"></p>
 </div>
 <script>
+function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());}
+
 (function() {
   const id = 'top';
   const btn = document.getElementById(id + '-btn');
@@ -195,7 +197,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   const msg = document.getElementById(id + '-msg');
   btn.addEventListener('click', async function() {
     const email = input.value.trim();
-    if (!email || !email.includes('@')) { msg.textContent = 'Please enter a valid email address.'; return; }
+    if (!isValidEmail(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
     btn.disabled = true; btn.textContent = '...';
     try {
       const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {
@@ -363,12 +365,12 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
     <h3>Luckygirlmaxxing Workbook</h3>
     <p>Your block is named. Now install the identity that replaces it. Everything you need for the full 21-day practice.</p>
     <div class="cta-wb-items">
-      <div class="cta-wb-item">✦ The LuckyGirl Identity, chosen before the evidence arrives</div>
-      <div class="cta-wb-item">✦ The Recognition Filter, same room, different eye</div>
-      <div class="cta-wb-item">✦ Your Current Luck Story, name it and stop proving it</div>
-      <div class="cta-wb-item">✦ Timing Windows, move while it is still open</div>
-      <div class="cta-wb-item">✦ The Domino Effect Method, one move, everything follows</div>
-      <div class="cta-wb-item">✦ 21 Pieces of Evidence, until lucky is just who you are</div>
+      <div class="cta-wb-item"> The LuckyGirl Identity, chosen before the evidence arrives</div>
+      <div class="cta-wb-item"> The Recognition Filter, same room, different eye</div>
+      <div class="cta-wb-item"> Your Current Luck Story, name it and stop proving it</div>
+      <div class="cta-wb-item"> Timing Windows, move while it is still open</div>
+      <div class="cta-wb-item"> The Domino Effect Method, one move, everything follows</div>
+      <div class="cta-wb-item"> 21 Pieces of Evidence, until lucky is just who you are</div>
     </div>
     <div class="cta-wb-price">$29</div>
     <a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f">Get the workbook, $29 →</a>
@@ -399,7 +401,7 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   const msg = document.getElementById(id + '-msg');
   btn.addEventListener('click', async function() {
     const email = input.value.trim();
-    if (!email || !email.includes('@')) { msg.textContent = 'Please enter a valid email address.'; return; }
+    if (!isValidEmail(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
     btn.disabled = true; btn.textContent = '...';
     try {
       const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {

@@ -2,7 +2,7 @@
 const CACHE_NAME = "shg-v3";
 
 self.addEventListener("install", (event) => {
-  // Skip waiting immediately — don't hold onto old version
+  // Skip waiting immediately - don't hold onto old version
   self.skipWaiting();
   event.waitUntil(
     // Clear ALL old caches on install
@@ -18,14 +18,14 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Network first — never serve stale HTML
+// Network first - never serve stale HTML
 self.addEventListener("fetch", (event) => {
   // Always fetch fresh from network for HTML pages
   if (event.request.mode === "navigate") {
     event.respondWith(fetch(event.request));
     return;
   }
-  // For everything else — network first, no caching
+  // For everything else - network first, no caching
   event.respondWith(fetch(event.request));
 });
 

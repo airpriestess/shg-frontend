@@ -1002,7 +1002,7 @@ function LuckyGirlTimeline({ isMobile }) {
   return (
     <div style={{ background:G, width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
       <div style={{ maxWidth:900, margin:"0 auto" }}>
-        {/* ONE LINE heading — no line break */}
+        {/* ONE LINE heading - no line break */}
         <h2 style={{ textAlign:"center", fontSize: isMobile?"clamp(48px,11vw,72px)":"clamp(64px,8vw,96px)", fontWeight:300, color:"#000", letterSpacing:"-.03em", lineHeight:.95, marginBottom:16, whiteSpace: isMobile?"normal":"nowrap" }}>Lucky Girl Timeline.</h2>
         <div style={{ textAlign:"center", fontSize: isMobile?"clamp(20px,5vw,28px)":"clamp(24px,2.8vw,34px)", fontWeight:300, color:"#000", letterSpacing:"-.01em", lineHeight:1.2, marginBottom:10 }}>She gets to have it all. All of it. All at once.</div>
         <div style={{ textAlign:"center", fontSize: isMobile?16:18, color:"#000", fontWeight:400, marginBottom: isMobile?56:80, fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>This isn't a wish list. This is what runs automatically when the identity is installed.</div>
@@ -1015,7 +1015,7 @@ function LuckyGirlTimeline({ isMobile }) {
             const isActive = active === i;
             return (
               <div key={i} style={{ display:"flex", flexDirection: isLeft ? "row" : "row-reverse", alignItems:"center", marginBottom: isMobile?14:18, position:"relative", minHeight: isMobile?60:70 }}>
-                {/* Box — always first child, direction controls which side */}
+                {/* Box - always first child, direction controls which side */}
                 <div style={{ width:"46%", flexShrink:0 }}>
                   <div style={{ padding: isMobile?"14px 16px":"18px 24px", borderRadius:14, background: isActive?"#fdf0e8":"rgba(253,240,232,0.15)", transform: isActive?"scale(1.03)":"scale(.97)", transition:"all .4s", textAlign: isLeft?"right":"left", boxShadow: isActive?"0 0 20px rgba(232,184,112,.4),0 0 40px rgba(191,165,216,.2)":"none" }}>
                     <div style={{ fontSize: isMobile?14:16, fontWeight: isActive?500:400, color:"#000", lineHeight:1.4 }}>{item.title}</div>
@@ -1032,7 +1032,7 @@ function LuckyGirlTimeline({ isMobile }) {
           })}
         </div>
 
-        {/* BRIDGE — how the audio gets you there */}
+        {/* BRIDGE - how the audio gets you there */}
         <div style={{ marginTop: isMobile?56:72, textAlign:"center", borderTop:"1px solid rgba(0,0,0,.12)", paddingTop: isMobile?40:56 }}>
           <div style={{ fontSize:13, letterSpacing:".2em", textTransform:"uppercase", color:"#000", fontWeight:600, marginBottom:16, fontFamily:"'Jost',sans-serif" }}>How she gets there</div>
           <div style={{ fontSize: isMobile?"clamp(22px,5vw,28px)":"clamp(26px,2.8vw,34px)", fontWeight:300, color:"#000", lineHeight:1.4, maxWidth:640, margin:"0 auto", marginBottom:20 }}>The Self Hypnosis Goddess audio library installs this identity. One track at a time. While you live your life.</div>
@@ -1066,14 +1066,14 @@ function HowItWorksAccordion({ isMobile }) {
   };
 
   const steps = [
-    { n:"01", title:"Choose a track. Press play. Anytime.", body:"Browse 24 categories — Luckygirlmaxxing, Richgirlmaxxing, Lovemaxxing, Beautymaxxing, Selfmaxxing and more. Whatever area of your life you want to shift, there is a track built specifically for that identity upgrade. Pick it. Press play. No ritual required, no perfect timing, no need to be relaxed first. In the car, in the gym, while you cook, while you fall asleep. The audio works in any environment. The one non-negotiable: repetition. Listen at least twice a day. The subconscious doesn't install on one exposure. It installs through consistent repetition, the same way your old beliefs were installed. Keep going even if you don't feel it working yet. That's the point — it works below conscious awareness." },
-    { n:"02", title:"Theta state — your subconscious opens.", body:"Theta is a brainwave state between 4 and 8Hz, the state you pass through every night just before sleep, and the only state where your subconscious mind becomes fully receptive to new beliefs. The binaural beats in every SHG track put you there within minutes. How: one frequency plays in your left ear, a slightly different frequency plays in your right ear. Your brain detects the difference and creates a third tone, following it down into theta automatically. You don't have to do anything. You just listen. In theta, the gatekeeper goes offline. The critical, doubting, filtering conscious mind steps back. What's left is pure subconscious, open and ready for the install." },
+    { n:"01", title:"Choose a track. Press play. Anytime.", body:"Browse 24 categories - Luckygirlmaxxing, Richgirlmaxxing, Lovemaxxing, Beautymaxxing, Selfmaxxing and more. Whatever area of your life you want to shift, there is a track built specifically for that identity upgrade. Pick it. Press play. No ritual required, no perfect timing, no need to be relaxed first. In the car, in the gym, while you cook, while you fall asleep. The audio works in any environment. The one non-negotiable: repetition. Listen at least twice a day. The subconscious doesn't install on one exposure. It installs through consistent repetition, the same way your old beliefs were installed. Keep going even if you don't feel it working yet. That's the point - it works below conscious awareness." },
+    { n:"02", title:"Theta state - your subconscious opens.", body:"Theta is a brainwave state between 4 and 8Hz, the state you pass through every night just before sleep, and the only state where your subconscious mind becomes fully receptive to new beliefs. The binaural beats in every SHG track put you there within minutes. How: one frequency plays in your left ear, a slightly different frequency plays in your right ear. Your brain detects the difference and creates a third tone, following it down into theta automatically. You don't have to do anything. You just listen. In theta, the gatekeeper goes offline. The critical, doubting, filtering conscious mind steps back. What's left is pure subconscious, open and ready for the install." },
     { n:"03", title:"The hypnosis script installs the new identity.", body:"While you're in theta, Reshma's voice delivers a direct hypnosis script built around your chosen identity. Not affirmations you repeat out loud hoping to believe them. An actual hypnosis session that speaks to your subconscious as the authority it recognises. The language is precise. The delivery is intentional. Every word is chosen to bypass the part of your mind that says 'I don't believe this yet' and arrive in the part that simply receives and installs. This is why the tracks feel different to guided meditations. This is hypnosis, not inspiration." },
     { n:"04", title:"Subliminals reinforce every second.", body:"Here is what a subliminal actually is. Affirmations recorded at a volume your conscious mind cannot detect, but your subconscious receives clearly. While you listen to the music and the hypnosis voice, a second layer of identity statements plays underneath, just below the threshold of conscious hearing. You cannot make out the words. You are not meant to. Your conscious mind hears music. Your subconscious hears every word, receiving the same identity statements hundreds of times per session, with zero interference from the part of your mind that usually argues, doubts, or says 'I don't believe this.' This is why subliminals work where willpower fails. Willpower requires your conscious mind to fight your subconscious. Subliminals bypass the fight entirely and go straight to the source. No belief required. No effort required. Just repetition, at a frequency your subconscious cannot ignore." },
-    { n:"05", title:"Melodic house locks you in state.", body:"Every track is built on melodic house — a specific tempo and frequency range chosen because it keeps the nervous system elevated without pulling you out of theta. This is not background music. The music is structural. It holds the binaural frequency stable, maintains emotional engagement so you stay present rather than drifting, and creates the feeling state that matches the identity you're installing. When you feel the energy lift as the track plays, that's not a side effect. That's the mechanism. Identity installs fastest when the emotional and neurological state match the belief." },
+    { n:"05", title:"Melodic house locks you in state.", body:"Every track is built on melodic house - a specific tempo and frequency range chosen because it keeps the nervous system elevated without pulling you out of theta. This is not background music. The music is structural. It holds the binaural frequency stable, maintains emotional engagement so you stay present rather than drifting, and creates the feeling state that matches the identity you're installing. When you feel the energy lift as the track plays, that's not a side effect. That's the mechanism. Identity installs fastest when the emotional and neurological state match the belief." },
     { n:"06", title:"Your beliefs change. Automatically.", body:"You won't necessarily notice the moment it happens. That's normal. The subconscious doesn't send you a confirmation email. What you'll notice instead is that the old thought doesn't fire as automatically as it used to. The doubt is quieter. The assumption shifts. You catch yourself thinking from the new identity without trying. This is because the neural pathway underneath the old belief has been weakened through disuse, and the pathway underneath the new one has been strengthened through repetition. Neuroscience calls this neuroplasticity. In this context it means your mind is genuinely different from the one you started with." },
-    { n:"07", title:"Reality reflects the new identity.", body:"When the identity changes, behaviour changes. When behaviour changes, decisions change. When decisions change, outcomes change. This is the mechanism behind manifestation — not magical thinking, but identity-level change producing different actions, different energy, different signals to the people and situations around you. The lucky girl who gets upgraded at the airport isn't lucky. She's walking through the world as someone who expects good things, and that expectation is visible, readable, and magnetising. You won't need to remind yourself to act differently. The new identity acts on its own." },
-    { n:"08", title:"Log every sign in ProofOS.", body:"The moment things start shifting, you'll notice signs: a synchronicity, an unexpected call, a number that keeps appearing, something arriving that you'd been holding in your mind. Log every one. ProofOS is your evidence wall — date stamped, searchable, permanent. The reason logging matters is neurological, not motivational. Every time you record a sign, you are training your Reticular Activating System to notice more of the same. You are also building a body of evidence that keeps you in the emotional state that generates further manifestation. The proof wall fills. The state deepens. The loop accelerates.", badge:true },
+    { n:"07", title:"Reality reflects the new identity.", body:"When the identity changes, behaviour changes. When behaviour changes, decisions change. When decisions change, outcomes change. This is the mechanism behind manifestation - not magical thinking, but identity-level change producing different actions, different energy, different signals to the people and situations around you. The lucky girl who gets upgraded at the airport isn't lucky. She's walking through the world as someone who expects good things, and that expectation is visible, readable, and magnetising. You won't need to remind yourself to act differently. The new identity acts on its own." },
+    { n:"08", title:"Log every sign in ProofOS.", body:"The moment things start shifting, you'll notice signs: a synchronicity, an unexpected call, a number that keeps appearing, something arriving that you'd been holding in your mind. Log every one. ProofOS is your evidence wall - date stamped, searchable, permanent. The reason logging matters is neurological, not motivational. Every time you record a sign, you are training your Reticular Activating System to notice more of the same. You are also building a body of evidence that keeps you in the emotional state that generates further manifestation. The proof wall fills. The state deepens. The loop accelerates.", badge:true },
   ];
   return (
     <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
@@ -1215,6 +1215,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     }
   };
   const [faqOpen, setFaqOpen] = useState(null);
+  const [giftPopup, setGiftPopup] = useState(() => {
+    // Show once per session, 4 seconds after load
+    try { return !sessionStorage.getItem('shg_gift_seen'); } catch(e) { return true; }
+  });
   const audioRef = useRef(null);
   const vaultRef = useRef(null);
   const [vaultPlaying, setVaultPlaying] = useState(null);
@@ -1297,7 +1301,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   ];
 
   const TECH_ROWS = [
-    { t: "Self Hypnosis", w: "Guided induction, Reshma's voice", d: "Bypasses conscious resistance. Opens the subconscious.", when: "Theta state · 4–8 Hz" },
+    { t: "Self Hypnosis", w: "Guided induction, Reshma's voice", d: "Bypasses conscious resistance. Opens the subconscious.", when: "Theta state · 4-8 Hz" },
     { t: "Subliminals", w: "Affirmations layered beneath sound", d: "Delivers the new self-concept without conscious filtering.", when: "Any state · most powerful during sleep" },
     { t: "Binaural Beats", w: "Two frequencies, one per ear", d: "Entrains the brain to theta or delta, full receptivity.", when: "Headphones required · begins within minutes" },
     { t: "EMDR (bilateral)", w: "Bilateral audio stimulation", d: "Dissolves old beliefs and identity blocks at depth.", when: "During the audio session" },
@@ -1332,6 +1336,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
 
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: "0 0 auto", justifyContent:"flex-end" }}>
+          {/* Free Gift CTA */}
+          <a href="/gift" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
+            Claim Free Gift
+          </a>
           {/* Hamburger, both mobile and desktop */}
           <button onClick={()=>setMenuOpen(m=>!m)} style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent",touchAction:"manipulation" }} aria-label="Open menu">
             <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s,opacity 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,5px)":"none" }}/>
@@ -1364,6 +1372,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               ["Guides",              ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
               ["Blocks",              ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
               ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
+              ["Free Gift", ()=>{ window.location.href="/gift"; setMenuOpen(false); }],
               ["Events · Coming Soon", ()=>{ window.location.href="/events"; setMenuOpen(false); }],
             ].map(([l,fn],i)=>(
               <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"7px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#fdf0e8",fontSize:"clamp(17px,4.2vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
@@ -1644,17 +1653,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Heading */}
           <div style={{ marginBottom: isMobile?48:72, textAlign:"center", width:"100%" }}>
             <div style={{ fontSize:"clamp(36px,5vw,64px)", letterSpacing:"-0.02em", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center", fontWeight:300, lineHeight:1 }}>The Method.</div>
-            <div style={{ fontSize: isMobile?15:17, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.7, marginBottom:16, textAlign:"center" }}>Your beliefs are running on old programming. Self hypnosis replaces them at the source — in theta, where the subconscious accepts the upgrade without resistance.</div>
+            <div style={{ fontSize: isMobile?15:17, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.7, marginBottom:16, textAlign:"center" }}>Your beliefs are running on old programming. Self hypnosis replaces them at the source - in theta, where the subconscious accepts the upgrade without resistance.</div>
             <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", textAlign:"center", opacity:0.7 }}>No perfect conditions. No waiting for bedtime. Press play and you're there in minutes.</div>
           </div>
 
-          {/* Beta → Theta → Identity boxes — uniform sizing */}
+          {/* Beta → Theta → Identity boxes - uniform sizing */}
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?48:72 }}>
 
             <div style={{ background:"#1a1a1a", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
               <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif", opacity:0.5 }}>Where you start</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Beta</div>
-              <div style={{ fontSize:12, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:14, opacity:0.5 }}>13–40 Hz</div>
+              <div style={{ fontSize:12, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:14, opacity:0.5 }}>13-40 Hz</div>
               <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7, opacity:0.8 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
             </div>
 
@@ -1663,7 +1672,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ background:"linear-gradient(135deg,#0d3b35,#134f47,#1a6b60)", border:"2px solid #2CB7A7", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
               <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Theta</div>
-              <div style={{ fontSize:12, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>4–8 Hz</div>
+              <div style={{ fontSize:12, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>4-8 Hz</div>
               <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7, opacity:0.9 }}>The subconscious opens. New beliefs install without resistance.</div>
             </div>
 
@@ -2039,6 +2048,28 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 </form>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* ── FREE GIFT POPUP ── */}
+      {giftPopup && (
+        <div style={{ position:"fixed", inset:0, zIndex:99999, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding:"24px" }}
+          onClick={e => { if(e.target===e.currentTarget){ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} } }}>
+          <div style={{ background:"#0a0a0a", border:"1px solid rgba(245,224,160,0.3)", borderRadius:20, padding:"40px 32px", maxWidth:420, width:"100%", textAlign:"center", position:"relative" }}>
+            <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
+              style={{ position:"absolute", top:16, right:16, background:"none", border:"none", color:"#fdf0e8", fontSize:22, cursor:"pointer", opacity:0.5 }}>✕</button>
+            <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", fontWeight:500, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>Free Gift</div>
+            <div style={{ fontSize:"clamp(22px,4vw,30px)", fontWeight:700, color:"#fdf0e8", lineHeight:1.2, marginBottom:12 }}>I Attract Opportunities Constantly</div>
+            <div style={{ fontSize:13, fontWeight:300, color:"#fdf0e8", opacity:0.65, lineHeight:1.7, marginBottom:28 }}>Free EMDR self hypnosis audio. Download instantly.</div>
+            <a href="/gift" onClick={()=>{ try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
+              style={{ display:"block", padding:"16px 28px", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", borderRadius:12, color:"#000", fontWeight:700, fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", marginBottom:10 }}>
+              Claim Free Gift
+            </a>
+            <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
+              style={{ background:"none", border:"none", color:"#fdf0e8", opacity:0.35, fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+              No thanks
+            </button>
           </div>
         </div>
       )}

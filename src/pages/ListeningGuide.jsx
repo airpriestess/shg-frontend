@@ -9,7 +9,7 @@ const SECTIONS = [
     content: [
       { title: "Morning, first thing on waking", body: "Before you check your phone. Before the day's identity kicks back in. Your subconscious has been active all night and is still in a soft, receptive state. This is the most powerful window for installation." },
       { title: "Evening, last thing before sleep", body: "The threshold of sleep is a theta state, the same brainwave state hypnosis targets. What you feed your subconscious at this moment is what it works on through the night. Make it Reshma's voice." },
-      { title: "Between tasks, in the gap", body: "Not always possible, but if you have 20–30 minutes between calls, on a lunch break, or in the car, use it. Your nervous system softens faster when it has been conditioned through repeated use." },
+      { title: "Between tasks, in the gap", body: "Not always possible, but if you have 20-30 minutes between calls, on a lunch break, or in the car, use it. Your nervous system softens faster when it has been conditioned through repeated use." },
       { title: "After meditation", body: "If you meditate already, play a track immediately after. Your brainwaves are already slowed. The hypnosis installs faster." },
     ]
   },
@@ -28,8 +28,8 @@ const SECTIONS = [
     content: [
       { title: "Daily is ideal", body: "Repetition is how the subconscious installs new programming. Think of each listen as adding one layer. A single listen creates awareness. Thirty consecutive listens creates a new identity. Consistency is the practice." },
       { title: "One desire at a time", body: "Choose one Proof Thread. Listen to one audio. Build the installation in one direction before opening another. Spreading across five desires simultaneously slows all of them." },
-      { title: "Minimum effective dose", body: "Even 20 minutes daily, consistently, will shift something. The full-length tracks (45–60 min) offer deeper sessions but are not required every time. The shorter tracks are specifically designed for daily maintenance." },
-      { title: "How long until results", body: "Most members notice something within 3–7 days. Not always the desire itself, often a feeling of certainty, a shift in mood, or a small sign appearing. The desire typically follows. Average time from first listen to final manifestation across current members is 9–21 days." },
+      { title: "Minimum effective dose", body: "Even 20 minutes daily, consistently, will shift something. The full-length tracks (45-60 min) offer deeper sessions but are not required every time. The shorter tracks are specifically designed for daily maintenance." },
+      { title: "How long until results", body: "Most members notice something within 3-7 days. Not always the desire itself, often a feeling of certainty, a shift in mood, or a small sign appearing. The desire typically follows. Average time from first listen to final manifestation across current members is 9-21 days." },
     ]
   },
   {
@@ -37,7 +37,7 @@ const SECTIONS = [
     content: [
       { title: "Spoken Hypnosis", body: "Reshma's voice guides you through a full induction, progressive relaxation, deepening, identity installation, and emergence. You follow along consciously at first, then drift into theta. The most active form of hypnosis. Best for identity-level shifts and specific desires." },
       { title: "Subliminal", body: "Affirmations and identity statements are layered beneath music at a volume your conscious mind cannot clearly hear, but your subconscious can process. You do not need to focus. Play it while you rest, work, or sleep. Your conscious mind does not resist what it cannot fully hear." },
-      { title: "Sleep Subliminal", body: "Designed to play all night. The subliminals are embedded beneath sleep sounds, rain, or ambient frequency music. Set it as your sleep audio. The installation happens across 6–8 hours of sleep. Extremely effective for deep identity rewiring." },
+      { title: "Sleep Subliminal", body: "Designed to play all night. The subliminals are embedded beneath sleep sounds, rain, or ambient frequency music. Set it as your sleep audio. The installation happens across 6-8 hours of sleep. Extremely effective for deep identity rewiring." },
       { title: "EMDR Hypnosis", body: "Eye Movement Desensitisation and Reprocessing, adapted for audio. Bilateral beats alternate left and right in your headphones, stimulating both hemispheres the way eye movement does in traditional EMDR. This unlocks emotional blocks and outdated beliefs that standard hypnosis cannot always reach. Use when resistance is high or the desire has emotional charge." },
       { title: "Binaural Audio", body: "Two separate tones, one in each ear, that your brain blends into a third perceived frequency. This third frequency matches the target brainwave state: theta for hypnosis and deep relaxation, delta for sleep, alpha for soft focus. Works only with headphones." },
       { title: "Melodic House, Reshma's signature format", body: "Hypnosis layered beneath melodic house music. This is unique to Self Hypnosis Goddess. The music holds your nervous system in a state of pleasurable engagement while Reshma's voice works on the subconscious level. You are not just listening, you are in a ritual. The music is specifically selected to reinforce the frequency of the desire being installed." },

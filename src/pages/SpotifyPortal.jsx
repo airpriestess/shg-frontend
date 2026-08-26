@@ -63,7 +63,7 @@ const dominant = (log,days) => {
 
 // ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
 const AUDIO_URLS = {
-  // Real tracks — titles match D1 database exactly
+  // Real tracks - titles match D1 database exactly
   "Spoilt Goddess":                                     "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
   "Lifetime of Luck":                           "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV",
   "Drop The Tension":                           "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV",
@@ -1607,7 +1607,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               <div key={i} title={d.date} style={{ width:"100%", paddingBottom:"100%", position:"relative", borderRadius:4, background: d.listened ? "#E8B870" : "rgba(232,184,112,0.1)" }}/>
             ))}
           </div>
-          <div style={{ fontSize:12, color:C.mu, marginTop:8 }}>Last 30 days — gold = listened</div>
+          <div style={{ fontSize:12, color:C.mu, marginTop:8 }}>Last 30 days - gold = listened</div>
         </div>
       )}
 
@@ -2211,7 +2211,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever, no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
             </div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
-              <b style={{fontWeight:600}}>Active</b> is different, it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5–10 at a time, so your energy stays focused instead of spread thin.
+              <b style={{fontWeight:600}}>Active</b> is different, it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5-10 at a time, so your energy stays focused instead of spread thin.
             </div>
             <div style={{ fontSize:15,color:PC.text,lineHeight:1.75 }}>
               Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active, pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own, <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
@@ -2244,7 +2244,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
           {activeThreads.filter(t=>!t.done).length >= 5 && (
             <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
-               You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5–10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
+               You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5-10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
             </div>
           )}
 
