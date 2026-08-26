@@ -179,18 +179,18 @@ h1 {
 }
 input[type="email"], input[type="text"] {
   width: 100%; padding: 16px 20px;
-  background: rgba(253,240,232,0.07);
-  border: 1px solid rgba(253,240,232,0.15);
+  background: #fff;
+  border: 1.5px solid rgba(255,255,255,0.9);
   border-radius: 12px;
-  color: var(--cream);
+  color: #000;
   font-family: 'Jost', sans-serif; font-size: 15px;
   outline: none; transition: border-color 0.2s;
   margin-bottom: 12px;
 }
-input::placeholder { color: rgba(253,240,232,0.3); }
-input:focus { border-color: rgba(253,240,232,0.4); }
+input::placeholder { color: rgba(0,0,0,0.35); }
+input:focus { border-background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent; box-shadow: 0 0 0 3px rgba(232,184,112,0.2); }
 #formError {
-  color: #E8B870; font-size: 13px;
+  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent; font-size: 13px;
   min-height: 18px; margin-bottom: 4px;
 }
 .btn-primary {
@@ -322,7 +322,7 @@ input:focus { border-color: rgba(253,240,232,0.4); }
 }
 .tl-day {
   font-size: 11px; letter-spacing: 0.16em;
-  text-transform: uppercase; color: #E8B870;
+  text-transform: uppercase; background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent;
   margin-bottom: 4px; font-weight: 400;
 }
 .tl-text {
@@ -410,17 +410,20 @@ footer a {
 }
 #shg-banner {
   width: 100%;
-  padding: 11px 16px;
+  padding: 9px 16px;
   background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
   background-size: 300% 100%;
   animation: lgDrift 4s ease-in-out infinite;
   text-align: center;
   font-family: 'Jost', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #shg-nav {
   display: flex;
@@ -492,7 +495,7 @@ footer a {
 <body>
 
 <div id="shg-header">
-  <div id="shg-banner">Free Gift. Self Hypnosis Goddess.</div>
+  <div id="shg-banner">Free Gift · Self Hypnosis Goddess</div>
   <div id="shg-nav">
     <a href="https://reshmaoracle.com" class="logo-wrap">
       <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess">
@@ -576,7 +579,7 @@ footer a {
     <p>Enter your details to download instantly.</p>
     <form onsubmit="handleSubmit(event)">
       <div class="form-row">
-        <p id="formError" style="color:#E8B870;font-size:13px;margin-bottom:8px;min-height:18px;"></p>
+        <p id="formError" style="background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:13px;margin-bottom:8px;min-height:18px;"></p>
         <input type="text" id="firstName" placeholder="First name" required autocomplete="given-name">
         <input type="email" id="emailInput" placeholder="Email address" required autocomplete="email">
         <button type="submit" class="btn-primary">Download free →</button>
@@ -688,17 +691,20 @@ footer a {
 }
 #shg-banner {
   width: 100%;
-  padding: 11px 16px;
+  padding: 9px 16px;
   background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
   background-size: 300% 100%;
   animation: lgDrift 4s ease-in-out infinite;
   text-align: center;
   font-family: 'Jost', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #shg-nav {
   display: flex;
