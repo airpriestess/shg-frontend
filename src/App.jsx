@@ -2109,7 +2109,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
           {/* Bottom label */}
           <div style={{ textAlign:"center", marginTop: isMobile?48:64 }}>
-            <div style={{ fontSize: isMobile?13:15, fontWeight:300, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>
+            <div style={{ fontSize: isMobile?18:24, fontWeight:300, fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize:"300% 100%", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", animation:"drift 6s ease-in-out infinite" }}>
               This is not mindset work. This is subconscious reprogramming.
             </div>
           </div>
