@@ -719,83 +719,216 @@ function PhoneShell({ w=200, theme, view }) {
 }
 
 // ── APP PREVIEW SECTION, dashboard + proofos with theme toggle ──────────────
+const YEAR_DATA = {
+  2026: {
+    set:184, manifested:127, avgDays:8, listens:312, streak:47,
+    top:"Lovemaxxing",
+    cats:[
+      { name:"Love",     n:52, done:38, days:7,  col:"#167A6B" },
+      { name:"Rich Girl", n:48, done:31, days:6, col:"#E8B870" },
+      { name:"Beauty",   n:34, done:22, days:9,  col:"#BFA5D8" },
+      { name:"Lucky",    n:28, done:21, days:5,  col:"#2CB7A7" },
+      { name:"Self",     n:22, done:15, days:11, col:"#8a6bb0" },
+    ],
+    proof:[
+      { desire:"He texted me first", days:9,  cat:"Love",     date:"Feb '26" },
+      { desire:"$3,400 came in",     days:6,  cat:"Rich Girl", date:"Mar '26" },
+      { desire:"Skin completely cleared", days:14, cat:"Beauty", date:"Apr '26" },
+      { desire:"Dream job offer",    days:4,  cat:"Lucky",    date:"Jun '26" },
+      { desire:"He said I love you first", days:3, cat:"Love", date:"Jul '26" },
+    ],
+    insight:"You discovered that Love manifests 34% faster when you pair listening with journaling your feelings beforehand.",
+  },
+  2027: {
+    set:211, manifested:168, avgDays:5, listens:489, streak:94,
+    top:"Richgirlmaxxing",
+    cats:[
+      { name:"Rich Girl", n:61, done:52, days:4, col:"#E8B870" },
+      { name:"Love",     n:54, done:44, days:5,  col:"#167A6B" },
+      { name:"Business", n:41, done:31, days:6,  col:"#2CB7A7" },
+      { name:"Beauty",   n:33, done:24, days:7,  col:"#BFA5D8" },
+      { name:"Lucky",    n:22, done:17, days:3,  col:"#8a6bb0" },
+    ],
+    proof:[
+      { desire:"Passive income stream started", days:11, cat:"Business", date:"Jan '27" },
+      { desire:"$10k month",        days:8,  cat:"Rich Girl", date:"Mar '27" },
+      { desire:"He planned a trip for us", days:5, cat:"Love", date:"May '27" },
+      { desire:"New flat, dream location", days:7, cat:"Lucky", date:"Aug '27" },
+      { desire:"Brand deal landed",  days:3,  cat:"Business", date:"Nov '27" },
+    ],
+    insight:"Your money manifestation speed tripled. By mid-year your avg for Rich Girl dropped to 4 days. You noticed it correlates with your morning listen streak.",
+  },
+  2028: {
+    set:238, manifested:202, avgDays:4, listens:671, streak:156,
+    top:"Businessmaxxing",
+    cats:[
+      { name:"Business", n:72, done:64, days:3, col:"#2CB7A7" },
+      { name:"Rich Girl", n:58, done:50, days:3, col:"#E8B870" },
+      { name:"Love",     n:48, done:42, days:4,  col:"#167A6B" },
+      { name:"Lucky",    n:36, done:32, days:2,  col:"#8a6bb0" },
+      { name:"Self",     n:24, done:14, days:8,  col:"#BFA5D8" },
+    ],
+    proof:[
+      { desire:"6-figure launch",   days:14, cat:"Business", date:"Feb '28" },
+      { desire:"He proposed",       days:2,  cat:"Love",     date:"Apr '28" },
+      { desire:"Team of 5 hired",   days:6,  cat:"Business", date:"Jun '28" },
+      { desire:"Viral post, 1M views", days:1, cat:"Lucky",  date:"Sep '28" },
+      { desire:"Investment returned 3×", days:9, cat:"Rich Girl", date:"Dec '28" },
+    ],
+    insight:"Pattern locked in: your Lucky manifestations now average 2 days. ProofOS detected that you log signs within hours of listening — that feedback loop is compounding.",
+  },
+  2029: {
+    set:251, manifested:224, avgDays:3, listens:820, streak:201,
+    top:"Luckygirlmaxxing",
+    cats:[
+      { name:"Lucky",    n:74, done:69, days:2, col:"#8a6bb0" },
+      { name:"Business", n:62, done:56, days:3, col:"#2CB7A7" },
+      { name:"Rich Girl", n:55, done:49, days:2, col:"#E8B870" },
+      { name:"Love",     n:40, done:37, days:3,  col:"#167A6B" },
+      { name:"Health",   n:20, done:13, days:6,  col:"#BFA5D8" },
+    ],
+    proof:[
+      { desire:"7-figure year",     days:21, cat:"Business", date:"Mar '29" },
+      { desire:"Dream home purchased", days:11, cat:"Rich Girl", date:"May '29" },
+      { desire:"Book deal signed",  days:4,  cat:"Lucky",    date:"Jul '29" },
+      { desire:"Feature in Vogue",  days:2,  cat:"Lucky",    date:"Sep '29" },
+      { desire:"Pregnancy — positive test", days:3, cat:"Love", date:"Nov '29" },
+    ],
+    insight:"3 years of data revealed your superpower: Lucky manifestations under 48 hours. You've referenced this record over 200 times. It has become your proof of identity.",
+  },
+  2030: {
+    set:268, manifested:249, avgDays:2, listens:1012, streak:280,
+    top:"Everything",
+    cats:[
+      { name:"Lucky",    n:80, done:76, days:1, col:"#8a6bb0" },
+      { name:"Business", n:65, done:62, days:2, col:"#2CB7A7" },
+      { name:"Rich Girl", n:58, done:55, days:1, col:"#E8B870" },
+      { name:"Love",     n:42, done:40, days:2,  col:"#167A6B" },
+      { name:"Health",   n:23, done:16, days:4,  col:"#BFA5D8" },
+    ],
+    proof:[
+      { desire:"8-figure exit",     days:30, cat:"Business", date:"Jan '30" },
+      { desire:"Woke up, felt perfect peace", days:1, cat:"Self", date:"Feb '30" },
+      { desire:"Completely debt free", days:2, cat:"Rich Girl", date:"Apr '30" },
+      { desire:"Second home abroad", days:8,  cat:"Lucky",    date:"Jul '30" },
+      { desire:"Life feels easy",   days:1,  cat:"Self",     date:"Oct '30" },
+    ],
+    insight:"1,012 listens. 4 years of proof. 93% manifestation rate. ProofOS has become the longest-running record of your identity shift. You refer to it almost daily.",
+  },
+};
+
 function AppPreviewSection({ isMobile }) {
-  const [theme, setTheme] = useState("dark");
-  const [view,  setView]  = useState("home");
-
-  const TABS = [
-    { id:"home",      label:"Home" },
-    { id:"proof",     label:"ProofOS" },
-    { id:"analytics", label:"Analytics" },
-    { id:"library",   label:"Library" },
-  ];
-
-  const mobileW = isMobile ? 240 : 280;
-  const mobileH = Math.round(mobileW * 2.16);
-  const mobileScale = mobileW / 390;
-
-  const desktopW = isMobile ? 0 : 580;
-  const desktopH = Math.round(desktopW * 0.62);
-  const desktopScale = desktopW / 1280;
+  const [year, setYear] = useState(2026);
+  const d = YEAR_DATA[year];
+  const maxCatN = Math.max(...d.cats.map(c=>c.n));
+  const totalManifested = Object.values(YEAR_DATA).reduce((s,y)=>s+y.manifested,0);
+  const yearsShown = Object.keys(YEAR_DATA).map(Number).filter(y=>y<=year);
+  const cumManifested = yearsShown.reduce((s,y)=>s+YEAR_DATA[y].manifested,0);
 
   return (
-    <div style={{ background:"#000", padding: isMobile ? "56px 20px 72px" : "72px 40px 88px", textAlign:"center" }}>
-      <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Live preview</div>
-      <div style={{ fontSize: isMobile ? "clamp(28px,8vw,36px)" : "clamp(32px,3.5vw,48px)", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"#fdf0e8", marginBottom:8, letterSpacing:"-0.01em" }}>
-        See exactly what you're getting
-      </div>
-      <div style={{ fontSize:15, color:"rgba(253,240,232,0.55)", marginBottom:32, fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>
-        Tap the tabs. Switch themes. This is the real dashboard.
+    <div style={{ background:"#000", padding: isMobile?"56px 0 0":"72px 0 0" }}>
+      {/* Heading */}
+      <div style={{ textAlign:"center", padding: isMobile?"0 20px 40px":"0 40px 48px" }}>
+        <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your record. For life.</div>
+        <div style={{ fontSize: isMobile?"clamp(28px,8vw,38px)":"clamp(34px,3.5vw,52px)", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"#fdf0e8", marginBottom:12, letterSpacing:"-0.01em", lineHeight:1.15 }}>
+          Imagine signing up in 2026<br/>and opening this in 2030.
+        </div>
+        <div style={{ fontSize: isMobile?14:16, color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6, maxWidth:520, margin:"0 auto" }}>
+          Every desire you ever set. Every sign you ever logged. Every manifestation, dated and permanent. This is what 4 years of ProofOS looks like.
+        </div>
       </div>
 
-      {/* Controls */}
-      <div style={{ display:"flex", gap:10, justifyContent:"center", flexWrap:"wrap", marginBottom:24 }}>
-        {TABS.map(t => (
-          <button key={t.id} onClick={()=>setView(t.id)} style={{
-            padding:"8px 18px", borderRadius:20, border:"none", cursor:"pointer",
-            fontFamily:"'Jost',sans-serif", fontSize:13, fontWeight:400, letterSpacing:"0.05em",
-            background: view===t.id ? "linear-gradient(135deg,#E8B870,#BFA5D8)" : "rgba(255,255,255,0.07)",
-            color: view===t.id ? "#000" : "rgba(253,240,232,0.6)",
-            transition:"all 0.2s",
-          }}>{t.label}</button>
+      {/* Year tabs */}
+      <div style={{ display:"flex", justifyContent:"center", gap:0, marginBottom:0, borderTop:"1px solid rgba(255,255,255,0.06)", borderBottom:"1px solid rgba(255,255,255,0.06)" }}>
+        {[2026,2027,2028,2029,2030].map(y=>(
+          <button key={y} onClick={()=>setYear(y)} style={{
+            flex:1, padding: isMobile?"14px 0":"18px 0", border:"none", cursor:"pointer",
+            fontFamily:"'Jost',sans-serif", fontSize: isMobile?13:15, fontWeight:400,
+            background: year===y ? "linear-gradient(135deg,rgba(232,184,112,0.15),rgba(191,165,216,0.15))" : "transparent",
+            color: year===y ? "#E8B870" : "rgba(253,240,232,0.35)",
+            borderBottom: year===y ? "2px solid #E8B870" : "2px solid transparent",
+            transition:"all 0.18s",
+          }}>{y}</button>
         ))}
-        <button onClick={()=>setTheme(th=>th==="dark"?"light":"dark")} style={{
-          padding:"8px 18px", borderRadius:20, border:"1px solid rgba(255,255,255,0.15)", background:"none",
-          cursor:"pointer", fontFamily:"'Jost',sans-serif", fontSize:13, color:"rgba(253,240,232,0.6)",
-        }}>{theme==="dark" ? "☀ Light" : "🌙 Dark"}</button>
       </div>
 
-      {/* Mockups */}
-      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?0:32 }}>
-        {/* Mobile phone */}
-        <div style={{ flexShrink:0, position:"relative" }}>
-          <div style={{ width:mobileW+12, height:mobileH+24, borderRadius:36, background:"linear-gradient(145deg,#2a2a2a,#111)", boxShadow:"0 24px 60px rgba(0,0,0,0.7), 0 0 0 1.5px rgba(255,255,255,0.08)", padding:"12px 6px", boxSizing:"border-box", display:"flex", flexDirection:"column" }}>
-            <div style={{ width:40, height:6, borderRadius:3, background:"rgba(255,255,255,0.15)", margin:"0 auto 8px", flexShrink:0 }}/>
-            <div style={{ flex:1, borderRadius:24, overflow:"hidden", position:"relative" }}>
-              <div style={{ width:390, height:Math.round(mobileH/mobileScale), transform:`scale(${mobileScale})`, transformOrigin:"top left", pointerEvents:"none" }}>
-                <SpotifyPortal isPreview={true} forceTheme={theme} initialTab={view} userTier="audio" userName="you" onHome={()=>{}} onSignOut={()=>{}}/>
-              </div>
+      {/* Dashboard card */}
+      <div style={{ padding: isMobile?"0 16px":"0 40px", maxWidth:900, margin:"0 auto" }}>
+
+        {/* Top stats row */}
+        <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(5,1fr)", gap:10, padding:"28px 0 20px" }}>
+          {[
+            [d.manifested, "Manifested", "#2CB7A7"],
+            [d.set,        "Intentions", "#E8B870"],
+            [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", "#BFA5D8"],
+            [`${d.avgDays}d`,  "Avg to manifest", "#167A6B"],
+            [d.listens,    "Total listens", "#8a6bb0"],
+          ].map(([v,l,col],i)=>(
+            (!isMobile || i<3) &&
+            <div key={l} style={{ background:"rgba(255,255,255,0.04)", borderRadius:14, padding:"16px 12px", textAlign:"center", border:`1px solid ${col}33` }}>
+              <div style={{ fontSize: isMobile?22:26, fontWeight:300, color:col, lineHeight:1, letterSpacing:"-0.01em" }}>{v}</div>
+              <div style={{ fontSize:10, color:"rgba(253,240,232,0.4)", marginTop:6, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
             </div>
-          </div>
-          <div style={{ fontSize:11, color:"rgba(253,240,232,0.3)", marginTop:12, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Mobile</div>
+          ))}
         </div>
 
-        {/* Desktop mockup — hidden on mobile */}
-        {!isMobile && (
-          <div style={{ flexShrink:0 }}>
-            <div style={{ width:desktopW+24, height:desktopH+44, borderRadius:16, background:"linear-gradient(145deg,#222,#111)", boxShadow:"0 24px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)", padding:"32px 12px 12px", boxSizing:"border-box" }}>
-              <div style={{ display:"flex", gap:6, marginBottom:8, position:"absolute", top:12, left:20 }}>
-                {["#ff5f57","#febc2e","#28c840"].map(c=><div key={c} style={{ width:10, height:10, borderRadius:"50%", background:c }}/>)}
-              </div>
-              <div style={{ borderRadius:10, overflow:"hidden" }}>
-                <div style={{ width:1280, height:Math.round(desktopH/desktopScale), transform:`scale(${desktopScale})`, transformOrigin:"top left", pointerEvents:"none" }}>
-                  <SpotifyPortal isPreview={true} forceTheme={theme} initialTab={view} userTier="audio" userName="you" onHome={()=>{}} onSignOut={()=>{}}/>
+        <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:14 }}>
+
+          {/* Category bars */}
+          <div style={{ background:"rgba(255,255,255,0.03)", borderRadius:16, padding:"20px 18px", border:"1px solid rgba(255,255,255,0.06)" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(253,240,232,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>By life area</div>
+            {d.cats.map(c=>{
+              const pct = Math.round(c.done/c.n*100);
+              return (
+                <div key={c.name} style={{ marginBottom:13 }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:5 }}>
+                    <span style={{ fontSize:13, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
+                    <div style={{ display:"flex", gap:10 }}>
+                      <span style={{ fontSize:11, color:"rgba(253,240,232,0.35)" }}>{c.done}/{c.n}</span>
+                      <span style={{ fontSize:11, color:c.col, fontWeight:500 }}>{c.days}d avg</span>
+                    </div>
+                  </div>
+                  <div style={{ height:5, borderRadius:3, background:"rgba(255,255,255,0.05)" }}>
+                    <div style={{ height:"100%", width:`${pct}%`, borderRadius:3, background:c.col, transition:"width 0.7s ease" }}/>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Proof entries */}
+          <div style={{ background:"rgba(255,255,255,0.03)", borderRadius:16, padding:"20px 18px", border:"1px solid rgba(255,255,255,0.06)" }}>
+            <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(253,240,232,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Manifested this year ✦</div>
+            {d.proof.map((p,i)=>(
+              <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:10, marginBottom:12, paddingBottom:12, borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none" }}>
+                <div style={{ width:6, height:6, borderRadius:"50%", background:"#2CB7A7", flexShrink:0, marginTop:5 }}/>
+                <div style={{ flex:1 }}>
+                  <div style={{ fontSize:13, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
+                  <div style={{ fontSize:11, color:"rgba(253,240,232,0.35)", marginTop:2 }}>{p.date} · {p.days} day{p.days!==1?"s":""} · {p.cat}</div>
                 </div>
               </div>
-            </div>
-            <div style={{ fontSize:11, color:"rgba(253,240,232,0.3)", marginTop:12, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
+            ))}
           </div>
-        )}
+        </div>
+
+        {/* Pattern insight */}
+        <div style={{ margin:"14px 0 0", background:"linear-gradient(135deg,rgba(232,184,112,0.08),rgba(191,165,216,0.08))", border:"1px solid rgba(232,184,112,0.2)", borderRadius:16, padding:"18px 20px" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"#E8B870", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Pattern recognised · {year}</div>
+          <div style={{ fontSize: isMobile?13:14, color:"rgba(253,240,232,0.75)", lineHeight:1.65, fontFamily:"'Jost',sans-serif", fontStyle:"italic" }}>"{d.insight}"</div>
+        </div>
+
+        {/* Cumulative counter */}
+        <div style={{ textAlign:"center", padding:"28px 0 48px" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(253,240,232,0.3)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>
+            {year===2030 ? "Total across all 5 years" : `Cumulative through ${year}`}
+          </div>
+          <div style={{ fontSize: isMobile?36:52, fontWeight:300, letterSpacing:"-0.02em", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>
+            {cumManifested} manifestations
+          </div>
+          <div style={{ fontSize:14, color:"rgba(253,240,232,0.35)", marginTop:8, fontFamily:"'Jost',sans-serif" }}>
+            {year===2030 ? "This record is yours. Forever." : `Slide to ${year+1} →`}
+          </div>
+        </div>
       </div>
     </div>
   );
