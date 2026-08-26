@@ -99,7 +99,7 @@ const THEMES = {
   },
   // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
   light: {
-    bg:      "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",
+    bg:      "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)",
     bg2:     "#fdf0e8",  // frosted glass cards
     bg3:     "#fdf0e8",  // raised cards
     bg4:     "#fdf0e8",  // highest surface
@@ -119,7 +119,7 @@ const THEMES = {
 };
 
 const R = "#E8B870", P = "#BFA5D8";
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)";
 
 // Per-tab subtle wash, black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
@@ -194,6 +194,7 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 // SHOP_URL is the general storefront for now, swap in real per-product URLs here
 // once individual guide listings exist (e.g. GUIDE_URLS["Richgirlmaxxing"] = "https://...").
 const SHOP_URL = "https://beacons.ai/reshmaoracle";
+const GUIDES_AVAILABLE = new Set(["Lovemaxxing","Luckygirlmaxxing"]);
 const CAT_GUIDE = {
   Lovemaxxing:"Lovemaxxing Guide", Selfmaxxing:"Selfmaxxing Guide", Richgirlmaxxing:"Richgirlmaxxing Guide",
   Sleepmaxxing:"Sleepmaxxing Guide", Beautymaxxing:"Beautymaxxing Guide", DNAmaxxing:"DNAmaxxing Guide",
@@ -516,11 +517,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   }, [userId, isPreview, token]);
   const [theme, setTheme]     = useState(forceTheme || "light");
   const [profileOpen, setProfileOpen] = useState(false);
-  const [listenCount, setListenCount] = useState(47);
-  // Seeded 30-day emotional log, dominant state trends upward on Hawkins scale
+  const [listenCount, setListenCount] = useState(127);
+  // Seeded 30-day emotional log — Reshma's real arc: started in anxiety, shifted decisively to Love/Peace
   const [emoLog, setEmoLog] = useState(()=>{
     const arr=[]; const now=Date.now();
-    const path=["Fear","Fear","Desire","Anger","Pride","Pride","Courage","Neutrality","Willingness","Courage","Willingness","Acceptance","Reason","Acceptance","Love","Willingness","Acceptance","Love","Joy","Reason","Love","Love","Peace","Joy","Love","Peace","Joy","Peace","Love","Love"];
+    const path=["Fear","Desire","Anger","Desire","Pride","Courage","Neutrality","Courage","Willingness","Acceptance","Willingness","Acceptance","Reason","Acceptance","Love","Acceptance","Love","Love","Joy","Love","Love","Peace","Love","Peace","Joy","Peace","Love","Peace","Love","Peace"];
     for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
     return arr;
   });
@@ -1098,13 +1099,23 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                 ))}
               </div>
               {CAT_GUIDE[track.cat] && (
-                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
-                  <span style={{ fontSize:20 }}>📖</span>
-                  <div>
-                    <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:16,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                GUIDES_AVAILABLE.has(track.cat) ? (
+                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
+                    <span style={{ fontSize:20 }}>📖</span>
+                    <div>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:16,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    </div>
+                  </a>
+                ) : (
+                  <div style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,maxWidth:400,opacity:0.6 }}>
+                    <span style={{ fontSize:20 }}>📖</span>
+                    <div>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:15,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                    </div>
                   </div>
-                </a>
+                )
               )}
             </div>
           </div>
@@ -1185,13 +1196,23 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                 ))}
               </div>
               {CAT_GUIDE[track.cat] && (
-                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
-                  <span style={{ fontSize:18 }}>📖</span>
-                  <div style={{ flex:1 }}>
-                    <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:15,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                GUIDES_AVAILABLE.has(track.cat) ? (
+                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
+                    <span style={{ fontSize:18 }}>📖</span>
+                    <div style={{ flex:1 }}>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:15,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    </div>
+                  </a>
+                ) : (
+                  <div style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,opacity:0.6 }}>
+                    <span style={{ fontSize:18 }}>📖</span>
+                    <div style={{ flex:1 }}>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                    </div>
                   </div>
-                </a>
+                )
               )}
             </div>
           ); })()}
@@ -1537,70 +1558,132 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <span style={{ fontSize:24,fontWeight:400,color:C.cr }}>Analytics</span>
       </div>
 
-      {/* EMOTIONAL PATTERN, dominant state today / 7d / 30d */}
-      <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your dominant state</span>
-        </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
-          {[["Today",domToday],["Last 7 days",dom7],["Last 30 days",dom30]].map(([l,d],i)=>(
-            <div key={i} style={{ background:C.card2, borderRadius:12, padding:"16px 10px", textAlign:"center" }}>
-              <div style={{ fontSize:13, color:C.mu, fontWeight:400, letterSpacing:"0.05em", textTransform:"uppercase", marginBottom:8 }}>{l}</div>
-              <div style={{ fontSize:20, fontWeight:400, color:C.text, lineHeight:1.15 }}>{d?.n||","}</div>
-              <div style={{ fontSize:15, color:C.mu, fontWeight:400, marginTop:4 }}>{d?.v||""}</div>
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize:14, color:C.mu, marginTop:14, textAlign:"center", fontWeight:400 }}>
-          {dom7&&dom30 ? (dom7.v>dom30.v ? ` You're climbing. +${dom7.v-dom30.v} points this week.` : dom7.v<dom30.v ? "Log where you are today, the audios pull you back up." : "Steady. Keep listening.") : "Log how you're feeling to see the pattern."}
-        </div>
-      </div>
-
-      {/* PATTERNS, what's actually working, real listen + manifestation correlation */}
-      {!isPreview && patterns && patterns.length > 0 && (
-        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:"linear-gradient(135deg,rgba(245,224,160,0.08),rgba(191,165,216,0.06),rgba(44,183,167,0.08))", border:`1px solid rgba(232,184,112,0.3)` }}>
-          <div style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>What's working for you </div>
-          {patterns.map((p,i) => (
-            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 0", borderBottom: i<patterns.length-1 ? `1px solid ${C.border}` : "none" }}>
-              <div style={{ width:8, height:8, borderRadius:"50%", background: p.type==="category" ? "#E8B870" : "#BFA5D8", flexShrink:0 }}/>
-              <div style={{ flex:1 }}>
-                <div style={{ fontSize:14, color:C.cr }}>{p.name}</div>
-                <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
-                  {p.listens} listen{p.listens!==1?"s":""}, alongside {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} marked manifested
-                </div>
+      {/* MANIFESTATION HERO — the whole point of the app */}
+      <style>{`
+        @keyframes shg-drift {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes shg-count-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+        @keyframes shg-glow-pulse {
+          0%,100% { box-shadow: 0 0 32px rgba(232,184,112,0.5), 0 4px 60px rgba(44,183,167,0.25); }
+          50%      { box-shadow: 0 0 56px rgba(191,165,216,0.6), 0 4px 80px rgba(44,183,167,0.4); }
+        }
+      `}</style>
+      {(() => {
+        const mTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
+        const mDone  = isPreview ? 9  : manifested;
+        const mRate  = Math.round((mDone / mTotal) * 100);
+        const streak = isPreview ? 21 : (streakDays.filter(d=>d.listened).length || 0);
+        const totalL = isPreview ? 127 : (realListens?.total || 0);
+        return (
+          <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
+            background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
+            backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
+            border:"1px solid rgba(255,255,255,0.6)" }}>
+            {/* Rate */}
+            <div style={{ marginBottom:16 }}>
+              <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6, fontWeight:500, opacity:0.7 }}>Manifestation rate</div>
+              <div style={{ display:"flex", alignItems:"baseline", gap:8 }}>
+                <span style={{ fontSize:52, fontWeight:400, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both" }}>{mRate}%</span>
+                <span style={{ fontSize:15, color:"#1a1008", fontWeight:400, opacity:0.8 }}>{mDone} of {mTotal} desires</span>
+              </div>
+              {/* Progress bar */}
+              <div style={{ marginTop:10, height:6, borderRadius:3, background:"rgba(255,255,255,0.4)", overflow:"hidden" }}>
+                <div style={{ height:"100%", width:`${mRate}%`, borderRadius:3, background:"linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7)", transition:"width 1s ease" }}/>
               </div>
             </div>
-          ))}
+            {/* Stat row */}
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
+              {[
+                [streak, "day streak"],
+                [totalL, "total listens"],
+                [isPreview ? 23 : threads.reduce((a,t)=>a+(t.signs?.length||0),0), "signs logged"],
+              ].map(([v,l],i) => (
+                <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.35)", borderRadius:12, padding:"10px 6px", border:"1px solid rgba(255,255,255,0.6)", backdropFilter:"blur(8px)" }}>
+                  <div style={{ fontSize:22, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
+                  <div style={{ fontSize:11, color:"#1a1008", marginTop:4, letterSpacing:"0.05em", opacity:0.75 }}>{l}</div>
+                </div>
+              ))}
+            </div>
+            {isPreview && <div style={{ fontSize:11, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", opacity:0.75 }}>preview data — sign up to track your real numbers</div>}
+          </div>
+        );
+      })()}
+
+      {/* PATTERN RECOGNITION — what's actually moving the needle */}
+      {(isPreview || (patterns && patterns.length > 0)) && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Pattern recognition</span>
+            {isPreview && <span style={{ fontSize:11, color:C.accentGold, opacity:0.5, fontStyle:"italic" }}>preview data</span>}
+          </div>
+          <div style={{ fontSize:13, color:C.mu, marginBottom:12, lineHeight:1.5 }}>
+            {isPreview ? "These categories correlate most with your manifested desires:" : "Your highest-performing categories:"}
+          </div>
+          {(isPreview ? [
+            { type:"category", name:"Lovemaxxing", listens:38, manifestedCount:5 },
+            { type:"category", name:"Richgirlmaxxing", listens:29, manifestedCount:3 },
+            { type:"track",    name:"Money Finds Me First", listens:12, manifestedCount:3 },
+          ] : patterns).map((p,i,arr) => {
+            const convRate = Math.round((p.manifestedCount / Math.max(p.listens,1)) * 100);
+            return (
+              <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ width:36, height:36, borderRadius:10, flexShrink:0, background: p.type==="category" ? "rgba(232,184,112,0.15)" : "rgba(191,165,216,0.15)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>
+                  {p.type==="category" ? "✦" : "♪"}
+                </div>
+                <div style={{ flex:1 }}>
+                  <div style={{ fontSize:14, color:C.cr, fontWeight:400 }}>{p.name}</div>
+                  <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
+                    {p.listens} listens · {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} manifested
+                  </div>
+                </div>
+                <div style={{ textAlign:"right", flexShrink:0 }}>
+                  <div style={{ fontSize:16, fontWeight:400, color: p.type==="category" ? C.accentGold : C.accentLav }}>{convRate}%</div>
+                  <div style={{ fontSize:10, color:C.mu, letterSpacing:"0.05em" }}>conversion</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
 
       {/* AI RECOMMENDATION CARD */}
-      {!isPreview && (
-        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.3)` }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-            <span style={{ fontSize:13, fontWeight:400, color:"#BFA5D8", letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
-            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:12, color:"#BFA5D8", background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+      <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.3)` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+          <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
+          {!isPreview && (
+            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:12, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
               {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
             </button>
-          </div>
-          {recommendation ? (
-            <div>
-              <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{recommendation.title}</div>
-              <div style={{ fontSize:13, color:"#BFA5D8", marginTop:4 }}>{recommendation.category}</div>
-              <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
-            </div>
-          ) : (
-            <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
           )}
         </div>
-      )}
+        {isPreview ? (
+          <div>
+            <div style={{ fontSize:14, color:C.mu, marginBottom:10, lineHeight:1.55 }}>Hi Reshma — based on your 38 Lovemaxxing listens and 5 desires manifested in that area, today's pick is:</div>
+            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
+            <div style={{ fontSize:12, color:C.mu, marginTop:12, opacity:0.55, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+          </div>
+        ) : recommendation ? (
+          <div>
+            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{recommendation.title}</div>
+            <div style={{ fontSize:13, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
+          </div>
+        ) : (
+          <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
+        )}
+      </div>
 
       {/* STREAK CALENDAR */}
       {!isPreview && streakDays.length > 0 && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-            <span style={{ fontSize:13, fontWeight:400, color:"#E8B870", letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
-            <span style={{ fontSize:13, color:"#E8B870" }}>{streakDays.filter(d=>d.listened).length} days</span>
+            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
+            <span style={{ fontSize:13, color:C.accentGold }}>{streakDays.filter(d=>d.listened).length} days</span>
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(10,1fr)", gap:4 }}>
             {streakDays.map((d,i) => (
@@ -1614,7 +1697,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* CATEGORY RADAR */}
       {!isPreview && Object.keys(catCounts).length > 0 && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
-          <div style={{ fontSize:13, fontWeight:400, color:"#2CB7A7", letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
+          <div style={{ fontSize:13, fontWeight:400, color:C.accentTeal, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
           {Object.entries(catCounts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([cat,n],i,arr) => {
             const max = arr[0][1];
             const pct = Math.round((n/max)*100);
@@ -1635,15 +1718,25 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         </div>
       )}
 
-      {/* DAILY REMINDER BELL */}
+
+      {/* DESIRE NUDGE — remind user to update desires / bucket list */}
+      {isPreview && (
+        <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
+          <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:3, lineHeight:1.4 }}>You haven't updated your desire list in 7 days. 3 intentions are still in progress. Want to mark anything manifested?</div>
+          </div>
+        </div>
+      )}
       {!isPreview && (
         <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
-          <span style={{ fontSize:28 }}>🔔</span>
+          <span style={{ fontSize:26, flexShrink:0 }}>🔔</span>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Daily reminder</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Get a nudge at 8pm to listen</div>
           </div>
-          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:13, color: reminderSent ? "#2CB7A7" : "#fdf0e8", background: reminderSent ? "rgba(44,183,167,0.12)" : "rgba(232,184,112,0.15)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":"rgba(232,184,112,0.3)"}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
+          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:13, color: reminderSent ? "#2CB7A7" : C.cr, background: reminderSent ? "rgba(44,183,167,0.1)" : "rgba(0,0,0,0.06)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":C.border}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
             {reminderSent ? "✓ set" : "remind me"}
           </button>
         </div>
@@ -2528,7 +2621,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 {d.track && <span style={{ fontSize:13,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
               </div>
               {d.feelBefore && <div style={{ fontSize:13,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
-              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#E8B870",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
+              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#2CB7A7",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
             <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
               <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:14,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>

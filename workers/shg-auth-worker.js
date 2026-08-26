@@ -201,6 +201,7 @@ var worker_default = {
       }
     }
 
+
     // Everything else (static assets, SPA routes, homepage) — proxy to Pages
     const pagesUrl = new URL(request.url);
     pagesUrl.hostname = "shg-frontend.pages.dev";

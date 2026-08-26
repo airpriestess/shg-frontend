@@ -14,13 +14,12 @@ export default function HamburgerMenu({ onSignIn }) {
     ["Home",               () => navigate("/")],
     ["Free Gift",          () => { window.location.href = "/gift?utm_source=site&utm_medium=hamburger&utm_campaign=free_gift"; }],
     ["About Reshma",       () => navigate("/about")],
-    ["The Science",        () => navigate("/science")],
     ["The Library",        () => navigate("/library")],
-    ["Blocks",             () => navigate("/blocks")],
+    ["Journal",            () => { window.location.href = "/blog"; }],
     ["Guides",             () => { window.location.href = "/guides"; }],
+    ["Find your block",    () => { window.location.href = "/blocks"; }],
+    ["The Science",        () => navigate("/science")],
     ["Preview the Portal", () => navigate("/portal?preview=1&theme=dark")],
-    ["Shop Maxxing Guides",() => window.open("https://beacons.ai/reshmaoracle","_blank")],
-    ["YouTube",            () => window.open("https://youtube.com/@reshmaoracle","_blank")],
   ];
 
   return (
