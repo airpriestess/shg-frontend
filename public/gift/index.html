@@ -3,825 +3,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Attract Opportunities Constantly - Free EMDR Self Hypnosis | Self Hypnosis Goddess</title>
-<meta name="description" content="Free EMDR self hypnosis audio. 9 minutes. Install the belief: I attract opportunities constantly.">
+<title>Free Gift - I Attract Opportunities Constantly | Self Hypnosis Goddess</title>
+<meta name="description" content="Free EMDR self hypnosis audio. Rewire your brain to attract opportunities constantly. Self Hypnosis Goddess by Reshma Oracle.">
 <link rel="icon" href="/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --lg: linear-gradient(135deg, #F5E0A0 0%, #E8B870 22%, #BFA5D8 52%, #2CB7A7 78%, #167A6B 100%);
-  --black: #000;
-  --cream: #fdf0e8;
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000000;
+  --cream:#fdf0e8;
+  --lg:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
 }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--black);
-  color: var(--cream);
-  font-family: 'Jost', sans-serif;
-  min-height: 100vh;
-}
+html,body{background:#000;color:#fdf0e8;font-family:'Jost',sans-serif;min-height:100vh}
 
-/* ANIMATIONS */
-@keyframes lgDrift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-@keyframes formGlow {
-  0%, 100% { box-shadow: 0 0 40px rgba(245,224,160,0.4), 0 0 80px rgba(191,165,216,0.2); }
-  50%       { box-shadow: 0 0 80px rgba(245,224,160,0.7), 0 0 140px rgba(44,183,167,0.35); }
-}
-@keyframes btnShake {
-  0%,85%,100% { transform: translateX(0); }
-  87%  { transform: translateX(-5px); }
-  89%  { transform: translateX(5px); }
-  91%  { transform: translateX(-4px); }
-  93%  { transform: translateX(4px); }
-  95%  { transform: translateX(-2px); }
-  97%  { transform: translateX(2px); }
-}
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* KEYFRAMES */
+@keyframes lgDrift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dotPulse{0%,100%{box-shadow:0 0 8px 3px rgba(232,184,112,.45);transform:scale(1)}50%{box-shadow:0 0 24px 8px rgba(44,183,167,.65);transform:scale(1.1)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes ctaShake{0%,80%,100%{transform:translateX(0)}82%{transform:translateX(-5px)}84%{transform:translateX(5px)}86%{transform:translateX(-4px)}88%{transform:translateX(4px)}90%{transform:translateX(-3px)}92%{transform:translateX(3px)}}
+@keyframes ctaGlow{from{box-shadow:0 0 16px 3px rgba(232,184,112,.5)}to{box-shadow:0 0 40px 12px rgba(44,183,167,.7)}}
+@keyframes gradText{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-
-
-
+/* NAV - INLINE POSITION:FIXED AS FALLBACK */
+#nav-fixed{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:99999;
+  width:100%;
+}
+#nav-banner{
+  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+  background-size:300% 100%;
+  animation:lgDrift 5s ease-in-out infinite;
+  padding:9px 20px;
+  text-align:center;
+  font-size:10px;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:#000;white-space:nowrap;overflow:hidden;
+  position:relative;
+}
+#nav-banner::after{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+  animation:shimmer 3s linear infinite;
+  transform:translateX(-100%);
+}
+#nav-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:56px;
+  background:rgba(0,0,0,0.98);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+#nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+#nav-logo img{height:32px;width:auto;}
+#nav-logo span{font-size:13px;font-weight:300;color:#fdf0e8;letter-spacing:0.02em;white-space:nowrap;}
+#nav-links{display:flex;align-items:center;gap:16px;}
+#nav-links a{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#fdf0e8;text-decoration:none;opacity:0.6;}
+.nav-cta-btn{
+  padding:9px 22px;border-radius:40px;
+  background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  color:#000!important;font-size:11px!important;font-weight:600!important;
+  letter-spacing:0.14em;text-transform:uppercase;
+  text-decoration:none;white-space:nowrap;opacity:1!important;
+}
+#nav-hamburger{
+  display:none;background:none;border:none;cursor:pointer;
+  flex-direction:column;gap:5px;padding:6px;
+}
+#nav-hamburger span{display:block;width:22px;height:2px;background:#fdf0e8;border-radius:2px;}
+#mob-menu{
+  display:none;position:fixed;inset:0;background:#000;z-index:999999;
+  flex-direction:column;padding:28px 24px;
+}
+#mob-menu.open{display:flex;}
+#mob-menu-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
+#mob-close{background:none;border:none;color:#fdf0e8;font-size:28px;cursor:pointer;line-height:1;}
+#mob-menu a{font-size:28px;font-weight:300;color:#fdf0e8;text-decoration:none;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+#mob-join{
+  margin-top:32px;padding:18px;
+  background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  border-radius:40px;color:#000;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;font-size:14px;text-align:center;
+  text-decoration:none;display:block;
+}
+@media(max-width:599px){
+  #nav-hamburger{display:flex;}
+  #nav-links{display:none;}
+  #nav-logo span{display:none;}
+}
 
 /* HERO */
-.hero {
-  padding-top: 110px;
-}
-.hero-image {
-  width: 100%; max-height: 56vw;
-  object-fit: cover; display: block;
-}
+.hero{padding-top:96px;}
+.hero img{width:100%;display:block;max-height:60vw;object-fit:cover;}
 
 /* CONTENT */
-.content {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 64px 24px 80px;
+.content{max-width:760px;margin:0 auto;padding:60px 24px 0;}
+
+.grad-text{
+  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradText 12s ease-in-out infinite;
+}
+.label{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;font-weight:500;display:block;margin-bottom:16px;}
+h1{font-size:clamp(36px,6vw,62px);font-weight:800;line-height:1.05;margin-bottom:10px;}
+.subtitle{font-size:clamp(12px,2vw,15px);font-weight:300;letter-spacing:0.18em;text-transform:uppercase;color:#fdf0e8;opacity:0.7;margin-bottom:40px;}
+.explainer{font-size:clamp(16px,2.2vw,19px);font-weight:300;color:#fdf0e8;line-height:1.8;margin-bottom:48px;}
+
+/* META CARDS */
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:56px;}
+@media(max-width:480px){.meta-grid{grid-template-columns:1fr;}}
+.meta-card{
+  padding:20px 22px;
+  border:1px solid rgba(245,224,160,0.18);
+  border-radius:12px;
+  background:rgba(245,224,160,0.03);
+}
+.meta-card .meta-label{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;display:block;margin-bottom:8px;}
+.meta-card .meta-val{font-size:16px;font-weight:300;color:#fdf0e8;}
+
+/* INSTALLING */
+.section-block{margin-bottom:64px;}
+.affirmation-quote{
+  font-size:clamp(18px,2.8vw,24px);font-weight:300;
+  font-style:italic;line-height:1.7;color:#fdf0e8;
+  padding-left:24px;
+  border-left:3px solid transparent;
+  border-image:linear-gradient(180deg,#F5E0A0,#BFA5D8,#2CB7A7) 1;
+  margin-bottom:0;
 }
 
-/* HEADLINE */
-.headline-block {
-  text-align: center;
-  margin-bottom: 56px;
-  animation: fadeUp 0.7s ease both;
+/* BENEFITS GRID */
+.benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:64px;}
+@media(max-width:480px){.benefit-grid{grid-template-columns:1fr;}}
+.benefit-card{
+  padding:24px 20px;
+  border-radius:12px;
+  background:rgba(245,224,160,0.03);
+  border:1px solid rgba(245,224,160,0.15);
+  border-top:2px solid transparent;
+  border-image:linear-gradient(90deg,#F5E0A0,#2CB7A7) 1;
 }
-.eyebrow {
-  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-  background: var(--lg); -webkit-background-clip: text; background-clip: text; color: transparent;
-  margin-bottom: 20px; font-weight: 500;
+.benefit-title{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;
+  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:10px;display:block;
 }
-h1 {
-  font-size: clamp(36px, 6vw, 60px);
-  font-weight: 800; line-height: 1.05;
-  background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
-  background-size: 300% 100%;
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: lgDrift 10s ease-in-out infinite;
-  margin-bottom: 10px;
-}
-.subtitle {
-  font-size: clamp(13px, 2vw, 16px);
-  font-weight: 300; color: var(--cream); opacity: 0.75;
-  letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 24px;
-}
-.one-liner {
-  font-size: 17px; font-weight: 300;
-  color: var(--cream);
-  line-height: 1.75; max-width: 560px; margin: 0 auto;
-}
-
-/* WHAT YOU'RE INSTALLING */
-.installing-block {
-  margin-bottom: 56px;
-  padding: 36px;
-  border-radius: 16px;
-  border: 1px solid rgba(245,224,160,0.25);
-  background: rgba(245,224,160,0.03);
-  text-align: left;
-  box-shadow: 0 0 40px rgba(191,165,216,0.08);
-}
-.block-label {
-  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
-  background: var(--lg); -webkit-background-clip: text; background-clip: text;
-  color: transparent; margin-bottom: 20px; font-weight: 500;
-}
-.affirmation {
-  font-size: clamp(17px, 2.5vw, 22px);
-  font-weight: 300; line-height: 1.75;
-  color: var(--cream);
-  padding-left: 20px;
-  border-left: 3px solid transparent;
-  border-image: linear-gradient(180deg,#F5E0A0,#BFA5D8,#2CB7A7) 1;
-  font-style: normal;
-}
-
-/* BENEFITS */
-.benefits-block {
-  margin-bottom: 56px;
-}
-.benefits-block .block-label { text-align: left; margin-bottom: 24px; }
-.benefits-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.benefit-item {
-  padding: 24px 20px;
-  border: 1px solid rgba(245,224,160,0.2);
-  border-top: 2px solid transparent;
-  border-image: linear-gradient(90deg,#F5E0A0,#2CB7A7) 1;
-  border-radius: 0 0 12px 12px;
-  background: rgba(253,240,232,0.04);
-  font-size: 14px; color: var(--cream);
-  line-height: 1.7;
-}
-.benefit-item::before {
-  content: attr(data-icon);
-  display: block;
-  font-size: 20px; margin-bottom: 12px;
-}
+.benefit-body{font-size:14px;font-weight:300;color:#fdf0e8;line-height:1.7;}
 
 /* FORM */
-.gate-form-wrap {
-  position: relative;
-  margin-bottom: 64px;
-  border-radius: 24px;
-  padding: 3px;
-  background: linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
-  background-size: 300% 300%;
-  animation: lgDrift 4s ease-in-out infinite, formGlow 3s ease-in-out infinite;
+.form-wrap{
+  background:rgba(245,224,160,0.04);
+  border:1px solid rgba(245,224,160,0.2);
+  border-radius:20px;
+  padding:44px 36px;
+  text-align:center;
+  margin-bottom:64px;
+  box-shadow:0 0 60px rgba(44,183,167,0.08);
 }
-.gate-form {
-  background: #060606;
-  border-radius: 22px;
-  padding: 44px 36px;
-  text-align: center;
+@media(max-width:480px){.form-wrap{padding:32px 20px;}}
+.form-wrap h2{font-size:clamp(28px,4vw,40px);font-weight:700;color:#fdf0e8;margin-bottom:10px;}
+.form-wrap p{font-size:14px;font-weight:300;color:#fdf0e8;opacity:0.7;margin-bottom:32px;}
+.form-wrap input{
+  width:100%;padding:16px 20px;
+  background:#fff;border:1.5px solid rgba(255,255,255,0.9);
+  border-radius:12px;color:#000;
+  font-family:'Jost',sans-serif;font-size:15px;
+  outline:none;margin-bottom:12px;display:block;
 }
-.gate-form h2 {
-  font-size: 26px; font-weight: 700;
-  color: var(--cream); margin-bottom: 8px;
+.form-wrap input::placeholder{color:rgba(0,0,0,0.35);}
+.form-wrap input:focus{border-color:#E8B870;box-shadow:0 0 0 3px rgba(232,184,112,0.25);}
+.form-submit{
+  width:100%;padding:18px;
+  background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  border:none;border-radius:12px;
+  font-family:'Jost',sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;color:#000;
+  cursor:pointer;
+  animation:ctaShake 4s ease-in-out infinite,ctaGlow 2s ease-in-out infinite alternate;
 }
-.gate-form > p {
-  font-size: 14px; color: var(--cream);
-  opacity: 0.82; margin-bottom: 28px;
-}
-input[type="email"], input[type="text"] {
-  width: 100%; padding: 16px 20px;
-  background: #fff;
-  border: 1.5px solid rgba(255,255,255,0.9);
-  border-radius: 12px;
-  color: #000;
-  font-family: 'Jost', sans-serif; font-size: 15px;
-  outline: none; transition: border-color 0.2s;
-  margin-bottom: 12px;
-}
-input::placeholder { color: rgba(0,0,0,0.35); }
-input:focus { border-background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent; box-shadow: 0 0 0 3px rgba(232,184,112,0.2); }
-#formError {
-  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent; font-size: 13px;
-  min-height: 18px; margin-bottom: 4px;
-}
-.btn-primary {
-  width: 100%; padding: 20px 32px;
-  background: linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
-  background-size: 300% 300%;
-  border: none; border-radius: 40px;
-  color: #000; font-family: 'Jost', sans-serif;
-  font-size: 15px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  cursor: pointer;
-  animation: lgDrift 3s ease-in-out infinite, btnShake 5s ease-in-out 3s infinite;
-  margin-top: 4px;
-}
-.btn-primary:hover { opacity: 0.9; }
-.form-note {
-  font-size: 11px; color: var(--cream);
-  opacity: 0.55; margin-top: 14px; letter-spacing: 0.06em;
-}
+.form-submit:disabled{opacity:0.7;animation:none;}
+.form-note{font-size:12px;color:#fdf0e8;opacity:0.45;margin-top:14px;}
+.form-error{font-size:13px;color:#E8B870;margin-top:10px;min-height:18px;}
 
-/* DOWNLOAD REVEALED */
-.download-section {
-  display: none;
-  position: relative;
-  margin-bottom: 64px;
-  border-radius: 24px;
-  padding: 3px;
-  background: linear-gradient(135deg, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B, #2CB7A7, #BFA5D8, #E8B870, #F5E0A0);
-  background-size: 300% 300%;
-  animation: lgDrift 4s ease-in-out infinite, formGlow 3s ease-in-out infinite;
-  text-align: center;
-}
-.download-inner {
-  background: #060606;
-  border-radius: 22px;
-  padding: 48px 36px;
-}
-.download-check {
-  width: 56px; height: 56px;
-  background: var(--lg);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px;
-  font-size: 22px; color: #000; font-weight: 700;
-}
-.download-section h2 {
-  font-size: 24px; font-weight: 700;
-  color: var(--cream); margin-bottom: 8px;
-}
-.download-section p {
-  font-size: 14px; color: var(--cream);
-  opacity: 0.6; margin-bottom: 28px; line-height: 1.6;
-}
-.btn-download {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 18px 40px;
-  background: var(--lg);
-  border-radius: 40px;
-  color: #000; font-family: 'Jost', sans-serif;
-  font-size: 14px; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  text-decoration: none; margin-bottom: 16px;
-}
-.listen-note {
-  font-size: 12px; color: var(--cream); opacity: 0.7; letter-spacing: 0.08em;
-}
-.download-section.visible { display: block; }
-
-/* BOTTOM TWO COLUMNS */
-.bottom-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 64px;
-  align-items: start;
-}
-.bottom-col {
-  padding: 32px 28px;
-  border: 1px solid rgba(253,240,232,0.1);
-  border-radius: 16px;
-  background: rgba(253,240,232,0.03);
-}
-.col-label {
-  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
-  background: var(--lg); -webkit-background-clip: text; background-clip: text;
-  color: transparent; margin-bottom: 24px; font-weight: 500;
-}
-
-/* HOW TO USE */
-.step {
-  display: flex; gap: 16px;
-  margin-bottom: 22px; align-items: flex-start;
-}
-.step-num {
-  width: 36px; height: 36px; min-width: 36px;
-  background: var(--lg);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: #000;
-}
-.step-text {
-  font-size: 14px; color: var(--cream);
-  opacity: 0.8; line-height: 1.7; padding-top: 6px;
+/* DOWNLOAD */
+.download-wrap{display:none;text-align:center;padding:40px 0;}
+.download-wrap.show{display:block;}
+.download-link{
+  display:inline-block;padding:20px 52px;
+  background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  border-radius:12px;color:#000;font-weight:700;
+  font-size:14px;letter-spacing:0.14em;text-transform:uppercase;
+  text-decoration:none;animation:ctaGlow 2s ease-in-out infinite alternate;
 }
 
 /* TIMELINE */
-.timeline {
-  position: relative;
-  padding-left: 24px;
+.timeline-section{padding:72px 24px 80px;max-width:600px;margin:0 auto;}
+.timeline-title{
+  text-align:center;font-size:clamp(22px,4vw,34px);
+  font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradText 10s ease-in-out infinite;margin-bottom:52px;
 }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 6px; top: 8px; bottom: 8px;
-  width: 2px;
-  background: linear-gradient(to bottom, #F5E0A0, #E8B870, #BFA5D8, #2CB7A7, #167A6B);
+.timeline{position:relative;padding-left:56px;}
+.timeline::before{
+  content:'';position:absolute;left:18px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
 }
-.tl-item {
-  position: relative;
-  margin-bottom: 28px;
+.tl-item{position:relative;margin-bottom:36px;opacity:0;transform:translateX(-16px);}
+.tl-item.visible{animation:slideIn .6s ease forwards;}
+.tl-dot{
+  position:absolute;left:-42px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  animation:dotPulse 2.5s ease-in-out infinite;
 }
-.tl-item::before {
-  content: '';
-  position: absolute;
-  left: -21px; top: 6px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--lg);
-}
-.tl-day {
-  font-size: 11px; letter-spacing: 0.16em;
-  text-transform: uppercase; background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent;
-  margin-bottom: 4px; font-weight: 400;
-}
-.tl-text {
-  font-size: 14px; color: var(--cream);
-  opacity: 0.8; line-height: 1.65;
+.tl-text{font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.65;}
+.tl-cta{text-align:center;margin-top:52px;}
+.tl-cta a{
+  display:inline-block;padding:20px 52px;
+  background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
+  border-radius:6px;color:#000;font-family:'Jost',sans-serif;
+  font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  text-decoration:none;
+  animation:ctaShake 4s ease-in-out infinite,ctaGlow 2s ease-in-out infinite alternate;
 }
 
-/* DIVIDER */
-.divider {
-  width: 40px; height: 1px;
-  background: var(--lg);
-  margin: 48px auto; opacity: 0.7;
+/* HOW TO USE */
+.how-block{
+  background:rgba(245,224,160,0.03);
+  border:1px solid rgba(245,224,160,0.15);
+  border-radius:16px;padding:36px;margin-bottom:64px;
 }
+.how-block ol{padding-left:20px;}
+.how-block li{font-size:15px;font-weight:300;color:#fdf0e8;line-height:1.8;margin-bottom:10px;}
 
 /* FOOTER */
-footer {
-  text-align: center;
-  padding: 32px 24px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+footer{
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:32px 24px;text-align:center;
+  font-size:12px;letter-spacing:0.1em;color:#fdf0e8;opacity:0.4;
 }
-footer a {
-  color: var(--cream); opacity: 0.7;
-  text-decoration: none; font-size: 12px; letter-spacing: 0.12em;
-}
-
-/* MOBILE */
-@media(max-width:640px) {
-  .benefits-grid { grid-template-columns: 1fr; }
-  .bottom-grid { grid-template-columns: 1fr; }
-  .gate-form { padding: 32px 20px; }
-  .download-inner { padding: 36px 20px; }
-  .bottom-col { padding: 24px 20px; }
-  .installing-block { padding: 28px 20px; }
-}
-
-  /* EXPLAINER */
-  .explainer { margin-bottom: 48px; text-align: left; }
-  .section-label {
-  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
-  background: var(--lg); -webkit-background-clip: text; background-clip: text;
-  color: transparent; margin-bottom: 24px; font-weight: 500; display: block;
-}
-.explainer-text { font-size: 17px; line-height: 1.8; color: var(--cream); opacity: 0.82; margin-bottom: 18px; font-weight: 300; }
-  .explainer-text em { font-style: normal; color: var(--cream); opacity: 1; }
-
-  /* BENEFITS */
-  .benefits-section { margin-bottom: 56px; text-align: left; }
-  .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .benefit-item { display: flex; gap: 14px; align-items: flex-start; padding: 20px; border: 1px solid rgba(253,240,232,0.08); border-radius: 14px; background: rgba(253,240,232,0.03); }
-  .benefit-icon { font-size: 18px; background: var(--lg); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; margin-top: 1px; }
-  .benefit-text { font-size: 14px; color: var(--cream); opacity: 0.8; line-height: 1.65; }
-
-  /* TWO COL */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; text-align: left; }
-
-  /* TIMELINE */
-  .timeline-section { }
-  .timeline { position: relative; padding-left: 20px; }
-  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(180deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B); opacity: 0.7; }
-  .timeline-item { display: flex; gap: 16px; margin-bottom: 28px; align-items: flex-start; position: relative; }
-  .timeline-dot { width: 13px; height: 13px; min-width: 13px; border-radius: 50%; background: var(--lg); margin-top: 3px; flex-shrink: 0; box-shadow: 0 0 10px rgba(232,184,112,0.5); }
-  .timeline-content { }
-  .timeline-day { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; background: var(--lg); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; margin-bottom: 4px; }
-  .timeline-text { font-size: 14px; color: var(--cream); opacity: 0.78; line-height: 1.6; }
-
-  /* INSTALLING */
-  .installing-section { margin-bottom: 48px; text-align: left; }
-  .section-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream); opacity: 0.5; margin-bottom: 20px; font-weight: 400; }
-  .affirmation-quote { font-size: 19px; font-weight: 300; line-height: 1.75; color: var(--cream); border-left: 2px solid #E8B870; padding-left: 24px; margin: 0; font-style: normal; opacity: 0.9; }
-
-  @media(max-width:680px) {
-    .benefits-grid { grid-template-columns: 1fr; }
-    .two-col { grid-template-columns: 1fr; gap: 40px; }
-  }
-
-
-/* ── NAV FIXED ── */
-#shg-header {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 99999 !important;
-  width: 100%;
-}
-#shg-banner {
-  width: 100%;
-  padding: 9px 16px;
-  background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
-  background-size: 300% 100%;
-  animation: lgDrift 4s ease-in-out infinite;
-  text-align: center;
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #000;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#shg-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  height: 56px;
-  background: rgba(0,0,0,0.97);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-#shg-nav .logo-wrap {
-  display: flex; align-items: center; gap: 10px; text-decoration: none;
-}
-#shg-nav .logo-wrap img { height: 32px; width: auto; }
-#shg-nav .logo-wrap .brand-name {
-  font-size: 13px; font-weight: 300; color: #fdf0e8;
-  letter-spacing: 0.02em; white-space: nowrap;
-}
-#shg-nav .nav-links {
-  display: flex; align-items: center; gap: 16px;
-}
-#shg-nav .nav-links a {
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: #fdf0e8; text-decoration: none; opacity: 0.65;
-}
-#shg-nav .nav-cta {
-  padding: 9px 22px; border-radius: 40px;
-  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
-  color: #000; font-size: 11px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  text-decoration: none; white-space: nowrap;
-}
-#shg-hamburger {
-  display: none; background: none; border: none; cursor: pointer;
-  flex-direction: column; gap: 5px; padding: 6px;
-}
-#shg-hamburger span { display: block; width: 22px; height: 2px; background: #fdf0e8; border-radius: 2px; }
-@media(max-width:599px){
-  #shg-hamburger { display: flex; }
-  #shg-nav .nav-links { display: none; }
-  #shg-nav .nav-cta { display: none; }
-}
-#mob-overlay {
-  display: none; position: fixed; inset: 0;
-  background: #000; z-index: 99999;
-  flex-direction: column; padding: 28px 24px;
-}
-#mob-overlay.open { display: flex; }
-#mob-overlay .mob-top {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;
-}
-#mob-overlay .mob-close {
-  background: none; border: none; color: #fdf0e8; font-size: 28px; cursor: pointer;
-}
-#mob-overlay a {
-  font-size: 26px; font-weight: 300; color: #fdf0e8;
-  text-decoration: none; padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-#mob-overlay .mob-join {
-  margin-top: 28px; padding: 18px;
-  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
-  border-radius: 40px; color: #000; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  font-size: 13px; text-align: center;
-}
+footer a{color:#fdf0e8;text-decoration:none;}
+footer a:hover{opacity:1;}
 </style>
 </head>
 <body>
 
-<div id="shg-header">
-  <div id="shg-banner">Free Gift · Self Hypnosis Goddess</div>
-  <div id="shg-nav">
-    <a href="https://reshmaoracle.com" class="logo-wrap">
+<!-- FIXED HEADER -->
+<div id="nav-fixed">
+  <div id="nav-banner">Free Gift · Self Hypnosis Goddess</div>
+  <div id="nav-bar">
+    <a href="https://reshmaoracle.com" id="nav-logo">
       <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess">
-      <span class="brand-name">Self Hypnosis Goddess</span>
+      <span>Self Hypnosis Goddess</span>
     </a>
-    <div class="nav-links">
+    <div id="nav-links">
       <a href="/blog">Journal</a>
-      <a href="https://reshmaoracle.com/?waitlist=1" class="nav-cta">Join waitlist</a>
+      <a href="https://reshmaoracle.com/?waitlist=1" class="nav-cta-btn">Join waitlist</a>
     </div>
-    <button id="shg-hamburger" onclick="document.getElementById('mob-overlay').classList.add('open')" aria-label="Menu">
+    <button id="nav-hamburger" onclick="document.getElementById('mob-menu').classList.add('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </div>
-<div id="mob-overlay">
-  <div class="mob-top">
+
+<!-- MOBILE MENU -->
+<div id="mob-menu">
+  <div id="mob-menu-top">
     <img src="/logo_transparent_cropped.png" height="34" alt="SHG">
-    <button class="mob-close" onclick="document.getElementById('mob-overlay').classList.remove('open')">&#x2715;</button>
+    <button id="mob-close" onclick="document.getElementById('mob-menu').classList.remove('open')">&#x2715;</button>
   </div>
   <a href="/blog">Journal</a>
-  <a href="https://reshmaoracle.com/?waitlist=1" class="mob-join">Join waitlist</a>
+  <a href="https://reshmaoracle.com/?waitlist=1" id="mob-join">Join waitlist</a>
 </div>
 
-
+<!-- HERO -->
 <div class="hero">
-  <img class="hero-image" src="/gift/hero.png" alt="I Attract Opportunities Constantly - EMDR Self Hypnosis">
+  <img src="/gift/hero.png" alt="I Attract Opportunities Constantly - EMDR Self Hypnosis">
 </div>
 
+<!-- MAIN CONTENT -->
 <div class="content">
 
-  <!-- WHAT YOU GET -->
-  <div class="eyebrow">Free Audio · Self Hypnosis Goddess</div>
-  <h1>I Attract Opportunities Constantly</h1>
-  <p class="subtitle">EMDR Self Hypnosis · 9 min</p>
+  <span class="label grad-text">Free Audio · Self Hypnosis Goddess</span>
+  <h1 class="grad-text">I Attract Opportunities Constantly</h1>
+  <p class="subtitle">EMDR Self Hypnosis · 9 Min</p>
 
   <div class="explainer">
-    <p class="explainer-text">This is a free 9-minute EMDR self hypnosis track. You download it, put headphones in, and listen. That's the whole protocol.</p>
-    <p class="explainer-text">It works by combining three layers - binaural beats that guide your brain into theta state, bilateral EMDR audio that drops resistance, and vocal hypnosis that installs one belief at subconscious depth. The belief is: <em>I attract opportunities constantly.</em></p>
-    <p class="explainer-text">Most people try to think their way into a new identity. This bypasses that entirely. It speaks directly to the layer that runs your filter on reality - the part that decides what you notice, what you reach for, and what feels like it's meant for you.</p>
+    Your brain filters reality through a belief system you did not consciously choose. Most people running on "I'm just not that lucky" do not see opportunities because the filter is set to block them.<br><br>
+    This audio resets the filter. EMDR bilateral audio, theta binaural beats, and vocal hypnosis working together to install one belief at subconscious depth. <em>I attract opportunities constantly.</em><br><br>
+    Listen with headphones, whilst your brain is shifting between alpha and theta. Then notice what you start seeing.
+  </div>
+
+  <!-- META -->
+  <div class="meta-grid">
+    <div class="meta-card"><span class="meta-label grad-text">Format</span><span class="meta-val">EMDR Self Hypnosis</span></div>
+    <div class="meta-card"><span class="meta-label grad-text">Length</span><span class="meta-val">9 minutes</span></div>
+    <div class="meta-card"><span class="meta-label grad-text">Requires</span><span class="meta-val">Headphones (in-ear or over-ear)</span></div>
+    <div class="meta-card"><span class="meta-label grad-text">Best Time</span><span class="meta-val">Upon rising and before sleep</span></div>
   </div>
 
   <!-- WHAT YOU ARE INSTALLING -->
-  <div class="installing-section">
-    <div class="section-label">What you are installing</div>
+  <div class="section-block">
+    <span class="label grad-text">What You Are Installing</span>
     <blockquote class="affirmation-quote">
-      "I attract opportunities constantly. The right people find me. The right doors open for me. I am always in the right place at the right time. Opportunities are drawn to me effortlessly - I don't chase them, they arrive."
+      "I attract opportunities constantly. I am someone things go right for. The right people, places, and moments find me, because my filter is set to receive them. Doors open for me. I am always in the right place at the right time. Opportunities are drawn to me effortlessly. I do not chase them, they arrive."
     </blockquote>
   </div>
 
-  <!-- BENEFITS GRID -->
-  <div class="benefits-section">
-    <div class="section-label">What this does</div>
-    <div class="benefits-grid">
-      <div class="benefit-item">
-        <div class="benefit-icon">◎</div>
-        <div class="benefit-text">Resets the RAS filter - the part of your brain that decides what signals you notice from your environment</div>
-      </div>
-      <div class="benefit-item">
-        <div class="benefit-icon">◎</div>
-        <div class="benefit-text">Installs the identity of someone opportunities move toward - not someone who has to chase them</div>
-      </div>
-      <div class="benefit-item">
-        <div class="benefit-icon">◎</div>
-        <div class="benefit-text">Works during sleep - theta state is the installation window, not conscious effort</div>
-      </div>
-      <div class="benefit-item">
-        <div class="benefit-icon">◎</div>
-        <div class="benefit-text">Bilateral EMDR audio drops subconscious resistance - the part that rejects new beliefs before they land</div>
-      </div>
+  <!-- AFTER CONSISTENT LISTENING -->
+  <span class="label grad-text">After Consistent Listening, Expect</span>
+  <div class="benefit-grid">
+    <div class="benefit-card">
+      <span class="benefit-title">Noticing More</span>
+      <p class="benefit-body">Opportunities that were always there start becoming visible. Doors you did not see before.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-title">Acting Faster</span>
+      <p class="benefit-body">Less hesitation. The instinct to reach, say yes, or make the move arrives before fear does.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-title">Things Lining Up</span>
+      <p class="benefit-body">Coincidences increase. Right timing. Right people appearing. Your environment starts to match your identity.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-title">Default Shift</span>
+      <p class="benefit-body">Your baseline assumption becomes: things work out for me. Not as a belief you hold, as the identity you inhabit.</p>
     </div>
   </div>
 
-  <!-- DOWNLOAD BOX -->
-  <div class="gate-form-wrap">
-  <div class="gate-form" id="gateForm">
+  <!-- FORM -->
+  <div class="form-wrap gate-form-wrap" id="gateForm">
     <h2>Get the free audio</h2>
     <p>Enter your details to download instantly.</p>
     <form onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <p id="formError" style="background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:13px;margin-bottom:8px;min-height:18px;"></p>
-        <input type="text" id="firstName" placeholder="First name" required autocomplete="given-name">
-        <input type="email" id="emailInput" placeholder="Email address" required autocomplete="email">
-        <button type="submit" class="btn-primary">Download free →</button>
-      </div>
-      <p class="form-note">No spam. You'll join the SHG list and can unsubscribe any time.</p>
+      <input type="text" id="firstName" placeholder="First name" autocomplete="given-name" required>
+      <input type="email" id="emailInput" placeholder="Email address" autocomplete="email" required>
+      <button type="submit" class="form-submit" id="submitBtn">Download Free &rarr;</button>
+      <div class="form-error" id="formError"></div>
+      <p class="form-note">No spam. You will join the SHG list and can unsubscribe any time.</p>
     </form>
   </div>
+
+  <!-- DOWNLOAD (hidden until email submitted) -->
+  <div class="download-wrap" id="downloadSection">
+    <span class="label grad-text" style="text-align:center;">Your audio is ready</span>
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:700;color:#fdf0e8;margin-bottom:24px;">Download now</h2>
+    <a href="/gift/I-Attract-Opportunities-Constantly.mp3" download class="download-link">Download Audio &rarr;</a>
+    <p style="font-size:13px;color:#fdf0e8;opacity:0.5;margin-top:20px;">Check your email too. We have sent it there as well.</p>
   </div>
 
-  <div class="download-section" id="downloadSection">
-  <div class="download-section-inner">
-    <div class="download-check">✓</div>
-    <h2>Your audio is ready</h2>
-    <p>Put headphones in. Find somewhere quiet. Press download.</p>
-    <a class="btn-download" href="/gift/attract_opportunities.mp3" download="I_Attract_Opportunities_Constantly_SHG.mp3">
-      ↓ Download audio (MP3)
-    </a>
-    <br>
-    <p class="listen-note">File downloads to your phone or device. Listen with stereo headphones for full effect.</p>
-  </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- HOW TO USE + TIMELINE side by side -->
-  <div class="two-col">
-
-    <div class="instructions">
-      <div class="section-label">How to use this track</div>
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Headphones on. Always. The bilateral audio only works in stereo headphones - not speakers.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">Lie down. Close your eyes. You don't need to do anything except listen. The audio does the work.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Let yourself drift toward sleep. The theta state is the installation window. Don't fight it. In the morning, listen upon waking whilst still in the alpha-theta bridge.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">Repeat for 7-21 days. Once is a taster. Repetition is how the belief moves from foreign to default.</div>
-      </div>
-    </div>
-
-    <div class="timeline-section">
-      <div class="section-label">Results timeline</div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-day">Day 1</div>
-            <div class="timeline-text">Unusually deep sleep. A sense of something shifting you can't quite name.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-day">Day 3-5</div>
-            <div class="timeline-text">Small coincidences. A conversation that leads somewhere. A door that opens without you pushing.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-day">Day 7</div>
-            <div class="timeline-text">You start noticing opportunities that were always there. The filter has shifted.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-day">Day 21</div>
-            <div class="timeline-text">The belief feels normal. Luck stops feeling like luck - it feels like who you are.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-day">One year</div>
-            <div class="timeline-text">You look back and can't remember being the person who thought good things happened to other people.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <!-- HOW TO USE -->
+  <div class="how-block">
+    <span class="label grad-text">How to Use This Track</span>
+    <ol>
+      <li>Put in your headphones, in-ear or over-ear. Both sides must be in.</li>
+      <li>Find somewhere quiet. Lying down is ideal.</li>
+      <li>Close your eyes and let the audio play without doing anything else.</li>
+      <li>Do not analyse or try to make it work. Just listen.</li>
+      <li>Use upon rising or before sleep for fastest results. Daily for the first 21 days.</li>
+    </ol>
   </div>
 
-</div></div>
+</div><!-- /content -->
 
-
-<div style="background:#000;padding:72px 24px 80px;font-family:'Jost',sans-serif;">
-<style>
-@keyframes dotPulse{0%,100%{box-shadow:0 0 8px 2px rgba(232,184,112,.4);transform:scale(1)}50%{box-shadow:0 0 22px 6px rgba(44,183,167,.65);transform:scale(1.1)}}
-@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
-@keyframes ctaShake{0%,100%{transform:translateX(0)}15%{transform:translateX(-4px)}30%{transform:translateX(4px)}45%{transform:translateX(-3px)}60%{transform:translateX(3px)}75%{transform:translateX(-2px)}90%{transform:translateX(2px)}}
-@keyframes ctaGlow{from{box-shadow:0 0 14px 2px rgba(232,184,112,.5)}to{box-shadow:0 0 36px 10px rgba(44,183,167,.7)}}
-
-/* ── NAV FIXED ── */
-#shg-header {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 99999 !important;
-  width: 100%;
-}
-#shg-banner {
-  width: 100%;
-  padding: 9px 16px;
-  background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
-  background-size: 300% 100%;
-  animation: lgDrift 4s ease-in-out infinite;
-  text-align: center;
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #000;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#shg-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  height: 56px;
-  background: rgba(0,0,0,0.97);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-#shg-nav .logo-wrap {
-  display: flex; align-items: center; gap: 10px; text-decoration: none;
-}
-#shg-nav .logo-wrap img { height: 32px; width: auto; }
-#shg-nav .logo-wrap .brand-name {
-  font-size: 13px; font-weight: 300; color: #fdf0e8;
-  letter-spacing: 0.02em; white-space: nowrap;
-}
-#shg-nav .nav-links {
-  display: flex; align-items: center; gap: 16px;
-}
-#shg-nav .nav-links a {
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: #fdf0e8; text-decoration: none; opacity: 0.65;
-}
-#shg-nav .nav-cta {
-  padding: 9px 22px; border-radius: 40px;
-  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
-  color: #000; font-size: 11px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  text-decoration: none; white-space: nowrap;
-}
-#shg-hamburger {
-  display: none; background: none; border: none; cursor: pointer;
-  flex-direction: column; gap: 5px; padding: 6px;
-}
-#shg-hamburger span { display: block; width: 22px; height: 2px; background: #fdf0e8; border-radius: 2px; }
-@media(max-width:599px){
-  #shg-hamburger { display: flex; }
-  #shg-nav .nav-links { display: none; }
-  #shg-nav .nav-cta { display: none; }
-}
-#mob-overlay {
-  display: none; position: fixed; inset: 0;
-  background: #000; z-index: 99999;
-  flex-direction: column; padding: 28px 24px;
-}
-#mob-overlay.open { display: flex; }
-#mob-overlay .mob-top {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;
-}
-#mob-overlay .mob-close {
-  background: none; border: none; color: #fdf0e8; font-size: 28px; cursor: pointer;
-}
-#mob-overlay a {
-  font-size: 26px; font-weight: 300; color: #fdf0e8;
-  text-decoration: none; padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-#mob-overlay .mob-join {
-  margin-top: 28px; padding: 18px;
-  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);
-  border-radius: 40px; color: #000; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  font-size: 13px; text-align: center;
-}
-</style>
-  <div style="max-width:600px;margin:0 auto;">
-    <div style="text-align:center;font-size:clamp(20px,4vw,32px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:lgDrift 8s ease-in-out infinite;margin-bottom:52px;">What people notice</div>
-    <div style="position:relative;padding-left:52px;">
-      <div style="position:absolute;left:18px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);"></div>
-      <div style="opacity:0;transform:translateX(-16px);animation:slideIn .6s .1s ease forwards;margin-bottom:34px;display:flex;align-items:flex-start;gap:0;position:relative;">
-        <div style="position:absolute;left:-38px;top:2px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#F5E0A0,#E8B870);display:flex;align-items:center;justify-content:center;font-size:16px;animation:dotPulse 2.5s 0s ease-in-out infinite;">✦</div>
-        <div style="font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.6;">Opportunities appearing that were always there, suddenly visible</div>
-      </div>
-      <div style="opacity:0;transform:translateX(-16px);animation:slideIn .6s .3s ease forwards;margin-bottom:34px;display:flex;align-items:flex-start;position:relative;">
-        <div style="position:absolute;left:-38px;top:2px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#E8C870,#BFA5D8);display:flex;align-items:center;justify-content:center;font-size:16px;animation:dotPulse 2.5s .4s ease-in-out infinite;">✦</div>
-        <div style="font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.6;">The right person reaching out at exactly the right moment</div>
-      </div>
-      <div style="opacity:0;transform:translateX(-16px);animation:slideIn .6s .5s ease forwards;margin-bottom:34px;display:flex;align-items:flex-start;position:relative;">
-        <div style="position:absolute;left:-38px;top:2px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#BFA5D8,#9A7DC8);display:flex;align-items:center;justify-content:center;font-size:16px;animation:dotPulse 2.5s .8s ease-in-out infinite;">✦</div>
-        <div style="font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.6;">Doors opening without forcing them</div>
-      </div>
-      <div style="opacity:0;transform:translateX(-16px);animation:slideIn .6s .7s ease forwards;margin-bottom:34px;display:flex;align-items:flex-start;position:relative;">
-        <div style="position:absolute;left:-38px;top:2px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#2CB7A7,#1A9A8A);display:flex;align-items:center;justify-content:center;font-size:16px;animation:dotPulse 2.5s 1.2s ease-in-out infinite;">✦</div>
-        <div style="font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.6;">A quiet sense that things are working out, without needing to control how</div>
-      </div>
-      <div style="opacity:0;transform:translateX(-16px);animation:slideIn .6s .9s ease forwards;margin-bottom:34px;display:flex;align-items:flex-start;position:relative;">
-        <div style="position:absolute;left:-38px;top:2px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#2CB7A7,#167A6B);display:flex;align-items:center;justify-content:center;font-size:16px;animation:dotPulse 2.5s 1.6s ease-in-out infinite;">✦</div>
-        <div style="font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.6;">Conversations that lead somewhere, without trying to make them</div>
-      </div>
-      <div style="opacity:0;transform:translateX(-16px);animation:slideIn .6s 1.1s ease forwards;margin-bottom:52px;display:flex;align-items:flex-start;position:relative;">
-        <div style="position:absolute;left:-38px;top:2px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#167A6B,#0E5A50);display:flex;align-items:center;justify-content:center;font-size:16px;animation:dotPulse 2.5s 2s ease-in-out infinite;">✦</div>
-        <div style="font-size:clamp(15px,2.5vw,18px);font-weight:300;color:#fdf0e8;line-height:1.6;">Feeling like the version of you that things just go right for</div>
-      </div>
+<!-- WHAT PEOPLE NOTICE TIMELINE -->
+<div style="background:#000;padding:0 0 80px;">
+<div class="timeline-section">
+  <div class="timeline-title">What people notice</div>
+  <div class="timeline">
+    <div class="tl-item" style="animation-delay:.05s">
+      <div class="tl-dot" style="background:radial-gradient(circle,#F5E0A0,#E8B870);">✦</div>
+      <div class="tl-text">Opportunities appearing that were always there, suddenly visible</div>
     </div>
-    <div style="text-align:center;">
-      <a href="https://reshmaoracle.com/?waitlist=1" style="display:inline-block;padding:20px 52px;background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B);border-radius:4px;color:#000;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;animation:ctaShake .6s ease-in-out infinite,ctaGlow 2s ease-in-out infinite alternate;">Get more inside the app</a>
+    <div class="tl-item" style="animation-delay:.2s">
+      <div class="tl-dot" style="background:radial-gradient(circle,#E8C870,#BFA5D8);">✦</div>
+      <div class="tl-text">The right person reaching out at exactly the right moment</div>
     </div>
+    <div class="tl-item" style="animation-delay:.35s">
+      <div class="tl-dot" style="background:radial-gradient(circle,#BFA5D8,#9A7DC8);">✦</div>
+      <div class="tl-text">Doors opening without forcing them</div>
+    </div>
+    <div class="tl-item" style="animation-delay:.5s">
+      <div class="tl-dot" style="background:radial-gradient(circle,#2CB7A7,#1A9A8A);">✦</div>
+      <div class="tl-text">A quiet sense that things are working out, without needing to control how</div>
+    </div>
+    <div class="tl-item" style="animation-delay:.65s">
+      <div class="tl-dot" style="background:radial-gradient(circle,#2CB7A7,#167A6B);">✦</div>
+      <div class="tl-text">Conversations that lead somewhere, without trying to make them</div>
+    </div>
+    <div class="tl-item" style="animation-delay:.8s">
+      <div class="tl-dot" style="background:radial-gradient(circle,#167A6B,#0E5A50);">✦</div>
+      <div class="tl-text">Feeling like the version of you that things just go right for</div>
+    </div>
+  </div>
+  <div class="tl-cta">
+    <a href="https://reshmaoracle.com/?waitlist=1">Get more inside the app</a>
   </div>
 </div>
+</div>
+
 <footer>
   <a href="https://reshmaoracle.com">reshmaoracle.com</a>
   &nbsp;·&nbsp;
   <a href="/blog">Journal</a>
   &nbsp;·&nbsp;
-  <a href="https://reshmaoracle.com/?waitlist=1">Join waitlist</a>
+  <a href="https://reshmaoracle.com/?waitlist=1">Join Waitlist</a>
 </footer>
 
 <script>
-function isValidEmail(e){ return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e.trim()); }
+// Animate timeline items on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.tl-item').forEach(el => observer.observe(el));
+
+// Email validation
+function isValidEmail(e) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e.trim());
+}
 
 async function handleSubmit(e) {
   e.preventDefault();
   const firstName = document.getElementById('firstName').value.trim();
   const email = document.getElementById('emailInput').value.trim();
-  const btn = e.target.querySelector('button[type="submit"]');
-  const errorEl = document.getElementById('formError');
+  const btn = document.getElementById('submitBtn');
+  const err = document.getElementById('formError');
 
-  if (!firstName) { errorEl.textContent = 'Please enter your first name.'; return; }
-  if (!isValidEmail(email)) { errorEl.textContent = 'Please enter a valid email address.'; return; }
-  errorEl.textContent = '';
+  err.textContent = '';
+  if (!firstName) { err.textContent = 'Please enter your first name.'; return; }
+  if (!isValidEmail(email)) { err.textContent = 'Please enter a valid email address.'; return; }
 
   btn.textContent = 'Getting your audio...';
   btn.disabled = true;
@@ -834,23 +451,23 @@ async function handleSubmit(e) {
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      errorEl.textContent = data.error || 'Something went wrong. Please try again.';
-      btn.textContent = 'Download free \u2192';
+      err.textContent = data.error || 'Something went wrong. Please try again.';
+      btn.textContent = 'Download Free \u2192';
       btn.disabled = false;
       return;
     }
-  } catch(err) {
-    errorEl.textContent = 'Connection error. Please try again.';
-    btn.textContent = 'Download free \u2192';
+  } catch(ex) {
+    err.textContent = 'Connection error. Please try again.';
+    btn.textContent = 'Download Free \u2192';
     btn.disabled = false;
     return;
   }
 
   document.querySelector('.gate-form-wrap').style.display = 'none';
-  document.getElementById('downloadSection').classList.add('visible');
-  document.getElementById('downloadSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const dl = document.getElementById('downloadSection');
+  dl.classList.add('show');
+  dl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 </script>
-
 </body>
 </html>
