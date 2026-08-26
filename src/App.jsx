@@ -1504,7 +1504,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
           <div style={{ fontSize: isMobile?"clamp(28px,8vw,48px)":"clamp(36px,4.5vw,72px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:16, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Spotify for your subconscious mind.</div>
           {/* GRADIENT BOX */}
-          <div style={{ margin:"0 auto 12px", padding: isMobile?"14px 24px":"22px 48px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:40, width: isMobile?"90%":"auto", maxWidth:680, display:"inline-block" }}>
+          <div style={{ margin:"0 auto 12px", padding: isMobile?"14px 24px":"22px 48px", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize:"300% 100%", animation:"drift 5s ease-in-out infinite", boxShadow:"0 0 40px rgba(232,184,112,0.35), 0 0 80px rgba(44,183,167,0.2)", borderRadius:40, width: isMobile?"90%":"auto", maxWidth:680, display:"inline-block" }}>
             <div style={{ fontSize: isMobile?"clamp(18px,5vw,28px)":"clamp(22px,2.8vw,36px)", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.2, color:"#000" }}>Your subconscious. Reprogrammed. Identity installed.</div>
             <div style={{ fontSize: isMobile?13:15, fontFamily:"'Jost',sans-serif", fontWeight:300, marginTop:8, color:"#000" }}>Shift your identity. Shift your reality.</div>
           </div>
