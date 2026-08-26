@@ -113,6 +113,7 @@ const API_ROUTES = {
 // Short redirect links — one per channel, never changes
 const GO_LINKS = {
   // GIFT PAGE
+  "gift-yt-bio":       "/gift?utm_source=youtube&utm_medium=bio&utm_campaign=free_gift",
   "gift-yt-desc":      "/gift?utm_source=youtube&utm_medium=description&utm_campaign=free_gift",
   "gift-yt-comment":   "/gift?utm_source=youtube&utm_medium=comment&utm_campaign=free_gift",
   "gift-yt-community": "/gift?utm_source=youtube&utm_medium=community_post&utm_campaign=free_gift",
@@ -121,6 +122,7 @@ const GO_LINKS = {
   "gift-email":        "/gift?utm_source=email&utm_medium=email&utm_campaign=free_gift",
 
   // WAITLIST
+  "wl-yt-bio":         "/?waitlist=1&utm_source=youtube&utm_medium=bio&utm_campaign=waitlist",
   "wl-yt-desc":        "/?waitlist=1&utm_source=youtube&utm_medium=description&utm_campaign=waitlist",
   "wl-yt-comment":     "/?waitlist=1&utm_source=youtube&utm_medium=comment&utm_campaign=waitlist",
   "wl-yt-community":   "/?waitlist=1&utm_source=youtube&utm_medium=community_post&utm_campaign=waitlist",
