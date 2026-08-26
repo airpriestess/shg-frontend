@@ -802,7 +802,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const openPlayer = () => { if (isDesktop) setShowDesc(true); else setFullP(true); };
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
+      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token}/>)}
@@ -1278,9 +1278,34 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, token, pushDismissed, onDismissPush, openPlayer }) {
+function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, setThreads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, token, pushDismissed, onDismissPush, openPlayer }) {
 
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");  const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");
+  const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
+  const [quickDesire, setQuickDesire] = React.useState("");
+  const [quickListening, setQuickListening] = React.useState(false);
+  const [quickSaved, setQuickSaved] = React.useState(false);
+
+  const saveQuickDesire = () => {
+    if (!quickDesire.trim()) return;
+    const id = Date.now();
+    setThreads(ts => [{ id, desire: quickDesire.trim(), days: 0, done: false, signs: [], track: track?.title || "", category: "", feelBefore: "", feelAfter: "", oldBelief: "", isBucket: false }, ...ts]);
+    setQuickDesire("");
+    setQuickSaved(true);
+    setTimeout(() => setQuickSaved(false), 2000);
+  };
+
+  const startVoice = () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { alert("Voice input isn't supported in this browser. Try Chrome or Safari."); return; }
+    if (quickListening) { setQuickListening(false); return; }
+    const r = new SR(); r.lang = "en-US"; r.interimResults = false; r.maxAlternatives = 1;
+    setQuickListening(true);
+    r.onresult = e => { setQuickDesire(e.results[0][0].transcript); setQuickListening(false); };
+    r.onerror = () => setQuickListening(false);
+    r.onend = () => setQuickListening(false);
+    r.start();
+  };
   return (
     <div style={{ paddingBottom:80 }}>
       {/* HEADER */}
@@ -1329,6 +1354,38 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           ))}
         </div>
         <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore ProofOS →</div>
+      </div>
+
+      {/* QUICK DESIRE CAPTURE */}
+      <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
+          <div style={{ fontSize:13, fontWeight:600, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
+          <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in ProofOS →</button>
+        </div>
+        <div style={{ display:"flex", gap:8, alignItems:"center" }}>
+          <input value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
+            onKeyDown={e=>{ if(e.key==="Enter") saveQuickDesire(); }}
+            placeholder="I receive… I am… I have…"
+            style={{ flex:1, background:isDark?"#111":"#fff", border:`1px solid ${C.border}`, color:C.cr, borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
+          <button onClick={startVoice} title="Speak your desire"
+            style={{ flexShrink:0, width:42, height:42, borderRadius:"50%", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:19,
+              background: quickListening ? "#E8B870" : "transparent",
+              boxShadow: quickListening ? "0 0 14px rgba(232,184,112,0.7)" : "none",
+              transition:"all 0.2s" }}>
+            {quickListening ? "⏹" : "🎙"}
+          </button>
+          <button onClick={saveQuickDesire}
+            style={{ flexShrink:0, padding:"0 16px", height:42, borderRadius:8, border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:500,
+              background: quickSaved ? "#2CB7A7" : "linear-gradient(135deg,#E8B870,#BFA5D8)",
+              color:"#000", transition:"all 0.2s" }}>
+            {quickSaved ? "✓ Saved" : "Add"}
+          </button>
+        </div>
+        {threads.filter(t=>!t.done).length > 0 && (
+          <div style={{ marginTop:10, fontSize:12, color:C.mu }}>
+            {threads.filter(t=>!t.done).length} active desire{threads.filter(t=>!t.done).length!==1?"s":""} · {threads.filter(t=>t.done).length} manifested
+          </div>
+        )}
       </div>
 
       {/* KNOWLEDGE GUIDE, all tiers */}
