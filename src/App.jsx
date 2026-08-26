@@ -1906,6 +1906,149 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <LandingProofWall isMobile={isMobile}/>
 
 
+
+      {/* BRAIN DIAGRAM — before/after filter */}
+      <div style={{ background:"#000", width:"100%", padding: isMobile?"60px 20px":"100px 60px" }}>
+        <div style={{ maxWidth:900, margin:"0 auto" }}>
+
+          {/* Header */}
+          <div style={{ textAlign:"center", marginBottom: isMobile?48:72 }}>
+            <div style={{ fontSize:10, letterSpacing:"0.26em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:14, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>The mechanism</div>
+            <div style={{ fontSize: isMobile?"clamp(26px,7vw,40px)":"clamp(32px,3.5vw,52px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.1 }}>
+              Your brain has a filter.<br/>
+              <span style={{ background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>
+                We change what it lets through.
+              </span>
+            </div>
+          </div>
+
+          {/* Two-panel diagram */}
+          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?40:2, alignItems:"start" }}>
+
+            {/* LEFT — BEFORE */}
+            <div style={{ textAlign:"center" }}>
+              <div style={{ fontSize:9, letterSpacing:"0.24em", textTransform:"uppercase", color:"rgba(253,240,232,0.3)", marginBottom:24, fontFamily:"'Jost',sans-serif" }}>Before</div>
+              <svg viewBox="0 0 320 400" style={{ width:"100%", maxWidth:320, display:"block", margin:"0 auto" }}>
+                <defs>
+                  <radialGradient id="orbGray" cx="50%" cy="30%">
+                    <stop offset="0%" stopColor="rgba(253,240,232,0.25)"/>
+                    <stop offset="100%" stopColor="rgba(253,240,232,0.05)"/>
+                  </radialGradient>
+                </defs>
+
+                {/* 6 opportunity circles at top — all empty/faded */}
+                {[30,82,134,186,238,290].map((x,i) => (
+                  <g key={i}>
+                    <circle cx={x} cy={44} r={18} fill="none" stroke="rgba(253,240,232,0.2)" strokeWidth="1.5"/>
+                    {/* dashed lines dropping */}
+                    <line x1={x} y1={62} x2={x} y2={200} stroke="rgba(253,240,232,0.12)" strokeWidth="1.2" strokeDasharray="4,5"/>
+                  </g>
+                ))}
+
+                {/* FILTER BOX — critical mind */}
+                <rect x={50} y={200} width={220} height={56} rx={6} fill="none" stroke="rgba(253,240,232,0.12)" strokeWidth="1.2"/>
+                <text x={160} y={220} textAnchor="middle" fill="rgba(253,240,232,0.25)" fontSize="9" fontFamily="Jost,sans-serif" letterSpacing="2">CRITICAL MIND</text>
+                <text x={160} y={244} textAnchor="middle" fill="rgba(253,240,232,0.15)" fontSize="9" fontFamily="Jost,sans-serif" letterSpacing="1">blocks new beliefs</text>
+
+                {/* Only 2 small dots pass through */}
+                <line x1={110} y1={256} x2={110} y2={330} stroke="rgba(253,240,232,0.1)" strokeWidth="1.2" strokeDasharray="3,5"/>
+                <line x1={210} y1={256} x2={210} y2={330} stroke="rgba(253,240,232,0.1)" strokeWidth="1.2" strokeDasharray="3,5"/>
+                <circle cx={110} cy={344} r={12} fill="rgba(253,240,232,0.08)" stroke="rgba(253,240,232,0.15)" strokeWidth="1"/>
+                <circle cx={210} cy={344} r={12} fill="rgba(253,240,232,0.08)" stroke="rgba(253,240,232,0.15)" strokeWidth="1"/>
+
+                <text x={160} y={390} textAnchor="middle" fill="rgba(253,240,232,0.2)" fontSize="10" fontFamily="Jost,sans-serif" letterSpacing="1">2 of 6 received</text>
+              </svg>
+
+              <div style={{ marginTop:24, fontSize:13, fontWeight:300, color:"rgba(253,240,232,0.4)", lineHeight:1.8, fontFamily:"'Jost',sans-serif", maxWidth:260, margin:"24px auto 0" }}>
+                Opportunities arrive. Your filter blocks most of them before you ever see them.
+              </div>
+            </div>
+
+            {/* RIGHT — AFTER */}
+            <div style={{ textAlign:"center" }}>
+              <div style={{ fontSize:9, letterSpacing:"0.24em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>After</div>
+              <svg viewBox="0 0 320 400" style={{ width:"100%", maxWidth:320, display:"block", margin:"0 auto" }}>
+                <defs>
+                  <radialGradient id="orb1" cx="40%" cy="30%">
+                    <stop offset="0%" stopColor="#F5E0A0"/>
+                    <stop offset="100%" stopColor="#E8B870" stopOpacity="0.6"/>
+                  </radialGradient>
+                  <radialGradient id="orb2" cx="40%" cy="30%">
+                    <stop offset="0%" stopColor="#E8B870"/>
+                    <stop offset="100%" stopColor="#BFA5D8" stopOpacity="0.6"/>
+                  </radialGradient>
+                  <radialGradient id="orb3" cx="40%" cy="30%">
+                    <stop offset="0%" stopColor="#BFA5D8"/>
+                    <stop offset="100%" stopColor="#2CB7A7" stopOpacity="0.6"/>
+                  </radialGradient>
+                  <radialGradient id="orb4" cx="40%" cy="30%">
+                    <stop offset="0%" stopColor="#2CB7A7"/>
+                    <stop offset="100%" stopColor="#167A6B" stopOpacity="0.6"/>
+                  </radialGradient>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+
+                {/* 6 glowing gradient orbs at top */}
+                {[
+                  {x:30, grad:"url(#orb1)", delay:"0s"},
+                  {x:82, grad:"url(#orb2)", delay:"0.3s"},
+                  {x:134, grad:"url(#orb3)", delay:"0.6s"},
+                  {x:186, grad:"url(#orb4)", delay:"0.9s"},
+                  {x:238, grad:"url(#orb1)", delay:"1.2s"},
+                  {x:290, grad:"url(#orb2)", delay:"1.5s"},
+                ].map((o,i) => (
+                  <g key={i} filter="url(#glow)">
+                    <circle cx={o.x} cy={44} r={18} fill={o.grad}>
+                      <animate attributeName="r" values="16;20;16" dur="2.5s" begin={o.delay} repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" begin={o.delay} repeatCount="indefinite"/>
+                    </circle>
+                    {/* solid glowing lines */}
+                    <line x1={o.x} y1={62} x2={o.x} y2={200} stroke="rgba(44,183,167,0.25)" strokeWidth="1.2">
+                      <animate attributeName="strokeOpacity" values="0.1;0.5;0.1" dur="2.5s" begin={o.delay} repeatCount="indefinite"/>
+                    </line>
+                  </g>
+                ))}
+
+                {/* OPEN gateway — no filter */}
+                <rect x={30} y={200} width={260} height={56} rx={6} fill="rgba(44,183,167,0.04)" stroke="url(#orb3)" strokeWidth="1.2"/>
+                <text x={160} y={220} textAnchor="middle" fill="rgba(44,183,167,0.7)" fontSize="9" fontFamily="Jost,sans-serif" letterSpacing="2">NEW IDENTITY</text>
+                <text x={160} y={244} textAnchor="middle" fill="rgba(191,165,216,0.6)" fontSize="9" fontFamily="Jost,sans-serif" letterSpacing="1">filter open. all received.</text>
+
+                {/* All 6 pass through — glowing */}
+                {[30,82,134,186,238,290].map((x,i) => (
+                  <g key={i}>
+                    <line x1={x} y1={256} x2={x} y2={318} stroke="rgba(44,183,167,0.3)" strokeWidth="1.2">
+                      <animate attributeName="strokeOpacity" values="0.1;0.5;0.1" dur="2s" begin={i*0.25 + "s"} repeatCount="indefinite"/>
+                    </line>
+                    <circle cx={x} cy={332} r={14} fill={["url(#orb1)","url(#orb2)","url(#orb3)","url(#orb4)","url(#orb1)","url(#orb2)"][i]} filter="url(#glow)">
+                      <animate attributeName="r" values="12;16;12" dur="2s" begin={i*0.25 + "s"} repeatCount="indefinite"/>
+                    </circle>
+                  </g>
+                ))}
+
+                <text x={160} y={390} textAnchor="middle" fill="rgba(44,183,167,0.6)" fontSize="10" fontFamily="Jost,sans-serif" letterSpacing="1">all 6 received</text>
+              </svg>
+
+              <div style={{ marginTop:24, fontSize:13, fontWeight:300, color:"rgba(253,240,232,0.8)", lineHeight:1.8, fontFamily:"'Jost',sans-serif", maxWidth:260, margin:"24px auto 0" }}>
+                The same opportunities. A different filter. Now they reach you.
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom label */}
+          <div style={{ textAlign:"center", marginTop: isMobile?48:64 }}>
+            <div style={{ fontSize: isMobile?13:15, fontWeight:300, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>
+              This is not mindset work. This is subconscious reprogramming.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       {/* MELODIC HOUSE USP, LG gradient background */}
       <div style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
