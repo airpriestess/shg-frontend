@@ -266,10 +266,14 @@ async function handleSubscribe(request, env) {
   }
   const id = uuid();
   const created_at = new Date().toISOString();
+  const utm_source = body.utm_source || null;
+  const utm_medium = body.utm_medium || null;
+  const utm_campaign = body.utm_campaign || null;
+
   await env.DB.prepare(
-    `INSERT INTO gift_leads (id, first_name, email, source, created_at) VALUES (?, ?, ?, ?, ?)`
+    `INSERT INTO gift_leads (id, first_name, email, source, utm_source, utm_medium, utm_campaign, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
   )
-    .bind(id, first_name || null, email.toLowerCase(), source || null, created_at)
+    .bind(id, first_name || null, email.toLowerCase(), source || null, utm_source, utm_medium, utm_campaign, created_at)
     .run();
   return json({ success: true, id });
 }

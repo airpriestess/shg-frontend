@@ -439,10 +439,24 @@ async function handleSubmit(e) {
   btn.disabled = true;
 
   try {
+    const p = new URLSearchParams(window.location.search);
+    const source = [
+      p.get('utm_source'),
+      p.get('utm_medium'),
+      p.get('utm_campaign')
+    ].filter(Boolean).join('|') || 'gift_freebie';
+
     const res = await fetch('/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ first_name: firstName, email: email, source: 'gift_freebie' })
+      body: JSON.stringify({
+        first_name: firstName,
+        email: email,
+        source: source,
+        utm_source: p.get('utm_source') || null,
+        utm_medium: p.get('utm_medium') || null,
+        utm_campaign: p.get('utm_campaign') || null
+      })
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
