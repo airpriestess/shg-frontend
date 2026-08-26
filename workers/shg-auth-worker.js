@@ -112,14 +112,35 @@ const API_ROUTES = {
 
 // Short redirect links — one per channel, never changes
 const GO_LINKS = {
-  "yt":    "/gift?utm_source=youtube&utm_medium=referral&utm_campaign=free_gift",
-  "ig":    "/gift?utm_source=instagram&utm_medium=bio&utm_campaign=free_gift",
-  "em":    "/gift?utm_source=email&utm_medium=email&utm_campaign=free_gift",
-  "tk":    "/gift?utm_source=tiktok&utm_medium=bio&utm_campaign=free_gift",
-  "wl-yt": "/?waitlist=1&utm_source=youtube&utm_medium=referral&utm_campaign=waitlist",
-  "wl-ig": "/?waitlist=1&utm_source=instagram&utm_medium=bio&utm_campaign=waitlist",
-  "wl-em": "/?waitlist=1&utm_source=email&utm_medium=email&utm_campaign=waitlist",
-  "wl-tk": "/?waitlist=1&utm_source=tiktok&utm_medium=bio&utm_campaign=waitlist",
+  // GIFT PAGE
+  "gift-yt-desc":      "/gift?utm_source=youtube&utm_medium=description&utm_campaign=free_gift",
+  "gift-yt-comment":   "/gift?utm_source=youtube&utm_medium=comment&utm_campaign=free_gift",
+  "gift-yt-community": "/gift?utm_source=youtube&utm_medium=community_post&utm_campaign=free_gift",
+  "gift-ig-bio":       "/gift?utm_source=instagram&utm_medium=bio&utm_campaign=free_gift",
+  "gift-ig-reply":     "/gift?utm_source=instagram&utm_medium=smart_reply&utm_campaign=free_gift",
+  "gift-email":        "/gift?utm_source=email&utm_medium=email&utm_campaign=free_gift",
+
+  // WAITLIST
+  "wl-yt-desc":        "/?waitlist=1&utm_source=youtube&utm_medium=description&utm_campaign=waitlist",
+  "wl-yt-comment":     "/?waitlist=1&utm_source=youtube&utm_medium=comment&utm_campaign=waitlist",
+  "wl-yt-community":   "/?waitlist=1&utm_source=youtube&utm_medium=community_post&utm_campaign=waitlist",
+  "wl-ig-bio":         "/?waitlist=1&utm_source=instagram&utm_medium=bio&utm_campaign=waitlist",
+  "wl-ig-reply":       "/?waitlist=1&utm_source=instagram&utm_medium=smart_reply&utm_campaign=waitlist",
+  "wl-email":          "/?waitlist=1&utm_source=email&utm_medium=email&utm_campaign=waitlist",
+
+  // LOVEMAXXING WORKBOOK
+  "love-yt-desc":      "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=youtube&utm_medium=description&utm_campaign=lovemaxxing",
+  "love-yt-community": "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=youtube&utm_medium=community_post&utm_campaign=lovemaxxing",
+  "love-ig-bio":       "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=instagram&utm_medium=bio&utm_campaign=lovemaxxing",
+  "love-ig-reply":     "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=instagram&utm_medium=smart_reply&utm_campaign=lovemaxxing",
+  "love-email":        "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=email&utm_medium=email&utm_campaign=lovemaxxing",
+
+  // LUCKYGIRL WORKBOOK
+  "lucky-yt-desc":      "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
+  "lucky-yt-community": "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=community_post&utm_campaign=luckygirlmaxxing",
+  "lucky-ig-bio":       "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=instagram&utm_medium=bio&utm_campaign=luckygirlmaxxing",
+  "lucky-ig-reply":     "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=instagram&utm_medium=smart_reply&utm_campaign=luckygirlmaxxing",
+  "lucky-email":        "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=email&utm_medium=email&utm_campaign=luckygirlmaxxing",
 };
 
 function isApiRoute(method, pathname) {
@@ -154,7 +175,8 @@ var worker_default = {
             "INSERT INTO go_clicks (id, link_key, referrer, user_agent, created_at) VALUES (?, ?, ?, ?, ?)"
           ).bind(crypto.randomUUID(), key, request.headers.get("referer")||null, request.headers.get("user-agent")||null, new Date().toISOString()).run();
         } catch(e) {}
-        return Response.redirect("https://reshmaoracle.com" + dest, 302);
+        const redirectUrl = dest.startsWith("http") ? dest : "https://reshmaoracle.com" + dest;
+        return Response.redirect(redirectUrl, 302);
       }
     }
 
