@@ -1316,7 +1316,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "lgDrift 4s ease-in-out infinite", position: "relative" }}>
+        <div className="glow-banner-wrap" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 44 : 48, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 4s ease-in-out infinite", position: "relative" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 11 : 10, fontWeight: 500, color: "#000", letterSpacing: "0.2em", whiteSpace: "nowrap", textTransform: "uppercase" }}>
             Of Course, Obviously.
           </span>
@@ -2060,7 +2060,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
               style={{ position:"absolute", top:16, right:16, background:"none", border:"none", color:"#fdf0e8", fontSize:22, cursor:"pointer", opacity:0.5 }}>✕</button>
             <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", fontWeight:500, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>Free Gift</div>
-            <div style={{ fontSize:"clamp(22px,4vw,30px)", fontWeight:700, color:"#fdf0e8", lineHeight:1.2, marginBottom:12 }}>I Attract Opportunities Constantly</div>
+            <div style={{ fontSize:"clamp(22px,4vw,30px)", fontWeight:300, color:"#fdf0e8", lineHeight:1.2, marginBottom:12 }}>I Attract Opportunities Constantly</div>
             <div style={{ fontSize:13, fontWeight:300, color:"#fdf0e8", opacity:0.65, lineHeight:1.7, marginBottom:28 }}>Free EMDR self hypnosis audio. Download instantly.</div>
             <a href="/gift" onClick={()=>{ try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
               style={{ display:"block", padding:"16px 28px", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", borderRadius:12, color:"#000", fontWeight:700, fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", marginBottom:10 }}>

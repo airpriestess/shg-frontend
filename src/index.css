@@ -1,3 +1,4 @@
+@keyframes drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700;800&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -66,9 +67,6 @@ select option:hover,select option:checked{background:#1c1828;}
 .comp-table{display:grid;grid-template-columns:1fr 1fr;}
 
 /* ── ANIMATIONS ─────────────────────────────────────────────── */
-@keyframes drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .marquee-track{display:flex;width:max-content;animation:marquee 45s linear infinite;}
 .marquee-track:hover{animation-play-state:paused;}
