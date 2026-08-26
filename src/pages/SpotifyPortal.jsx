@@ -1745,24 +1745,6 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* ASK RESHMA — Goddess tier only */}
       {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
 
-      {/* FULL ANALYTICS BOARD */}
-      <div style={{ margin:"0 16px 20px" }}>
-        <AnalyticsBoard
-          theme={theme}
-          data={isPreview ? DEMO_ANALYTICS : {
-            manifested, inProgress,
-            signs: threads.reduce((a,t)=>a+(t.signs?.length||0),0),
-            listens: realListens.total,
-            streakDays: 0,
-            week: realListens.week,
-            topCats: Object.entries(threads.reduce((m,t)=>{m[t.category]=(m[t.category]||0)+1;return m;},{}))
-              .sort((a,b)=>b[1]-a[1]).slice(0,3)
-              .map(([name,n])=>[name,({"Lovemaxxing":"#167A6B","Rich Girl":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"})[name]||"#E8B870",n]),
-          }}
-          onViewProof={isPreview?null:()=>setTab("proof")}
-          onDrillDown={isPreview?null:onDrillDown}
-        />
-      </div>
 
       {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
