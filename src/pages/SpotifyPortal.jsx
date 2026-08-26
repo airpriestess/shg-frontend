@@ -1584,7 +1584,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             border:"1px solid rgba(255,255,255,0.6)" }}>
             {/* Rate */}
             <div style={{ marginBottom:16 }}>
-              <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6, fontWeight:500, opacity:0.7 }}>Manifestation rate</div>
+              <div style={{ fontSize:12, color:"#1a1008", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6, fontWeight:600 }}>Manifestation rate</div>
               <div style={{ display:"flex", alignItems:"baseline", gap:8 }}>
                 <span style={{ fontSize:52, fontWeight:400, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both" }}>{mRate}%</span>
                 <span style={{ fontSize:15, color:"#1a1008", fontWeight:400, opacity:0.8 }}>{mDone} of {mTotal} desires</span>
@@ -1603,11 +1603,11 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               ].map(([v,l],i) => (
                 <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.35)", borderRadius:12, padding:"10px 6px", border:"1px solid rgba(255,255,255,0.6)", backdropFilter:"blur(8px)" }}>
                   <div style={{ fontSize:22, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
-                  <div style={{ fontSize:11, color:"#1a1008", marginTop:4, letterSpacing:"0.05em", opacity:0.75 }}>{l}</div>
+                  <div style={{ fontSize:12, color:"#1a1008", marginTop:4, letterSpacing:"0.05em", fontWeight:500 }}>{l}</div>
                 </div>
               ))}
             </div>
-            {isPreview && <div style={{ fontSize:11, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", opacity:0.75 }}>preview data — sign up to track your real numbers</div>}
+            {isPreview && <div style={{ fontSize:13, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500 }}>preview data — sign up to track your real numbers</div>}
           </div>
         );
       })()}
@@ -1617,7 +1617,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
             <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Pattern recognition</span>
-            {isPreview && <span style={{ fontSize:11, color:C.accentGold, opacity:0.5, fontStyle:"italic" }}>preview data</span>}
+            {isPreview && <span style={{ fontSize:12, color:C.accentGold, fontWeight:500 }}>preview data</span>}
           </div>
           <div style={{ fontSize:13, color:C.mu, marginBottom:12, lineHeight:1.5 }}>
             {isPreview ? "These categories correlate most with your manifested desires:" : "Your highest-performing categories:"}
@@ -1665,7 +1665,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
-            <div style={{ fontSize:12, color:C.mu, marginTop:12, opacity:0.55, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+            <div style={{ fontSize:13, color:C.cr, marginTop:12, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
           </div>
         ) : recommendation ? (
           <div>
