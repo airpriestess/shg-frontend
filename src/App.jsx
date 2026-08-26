@@ -720,21 +720,85 @@ function PhoneShell({ w=200, theme, view }) {
 
 // ── APP PREVIEW SECTION, dashboard + proofos with theme toggle ──────────────
 function AppPreviewSection({ isMobile }) {
-  const [theme, setTheme] = useState("light");
-  const [view,  setView]  = useState("dashboard");
+  const [theme, setTheme] = useState("dark");
+  const [view,  setView]  = useState("home");
 
-  const desktopPanelContent = (() => {
-    const W = 460; const H = Math.round(W*0.65);
-    const scale = W/1280;
-    const tab = view==="proof"?"proof":view==="analytics"?"analytics":"home";
-    return (
-      <div style={{ width:W, height:H, borderRadius:16, overflow:"hidden", boxShadow:"0 18px 50px rgba(0,0,0,0.55)", border:"1px solid rgba(232,184,112,0.2)", position:"relative" }}>
-        <div style={{ width:1280, height:Math.round(H/scale), transform:`scale(${scale})`, transformOrigin:"top left", pointerEvents:"none" }}>
-          <SpotifyPortal isPreview={true} forceTheme={theme} initialTab={tab} userTier="audio" userName="you" onHome={()=>{}} onSignOut={()=>{}}/>
-        </div>
+  const TABS = [
+    { id:"home",      label:"Home" },
+    { id:"proof",     label:"ProofOS" },
+    { id:"analytics", label:"Analytics" },
+    { id:"library",   label:"Library" },
+  ];
+
+  const mobileW = isMobile ? 240 : 280;
+  const mobileH = Math.round(mobileW * 2.16);
+  const mobileScale = mobileW / 390;
+
+  const desktopW = isMobile ? 0 : 580;
+  const desktopH = Math.round(desktopW * 0.62);
+  const desktopScale = desktopW / 1280;
+
+  return (
+    <div style={{ background:"#000", padding: isMobile ? "56px 20px 72px" : "72px 40px 88px", textAlign:"center" }}>
+      <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Live preview</div>
+      <div style={{ fontSize: isMobile ? "clamp(28px,8vw,36px)" : "clamp(32px,3.5vw,48px)", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"#fdf0e8", marginBottom:8, letterSpacing:"-0.01em" }}>
+        See exactly what you're getting
       </div>
-    );
-  })();
+      <div style={{ fontSize:15, color:"rgba(253,240,232,0.55)", marginBottom:32, fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>
+        Tap the tabs. Switch themes. This is the real dashboard.
+      </div>
+
+      {/* Controls */}
+      <div style={{ display:"flex", gap:10, justifyContent:"center", flexWrap:"wrap", marginBottom:24 }}>
+        {TABS.map(t => (
+          <button key={t.id} onClick={()=>setView(t.id)} style={{
+            padding:"8px 18px", borderRadius:20, border:"none", cursor:"pointer",
+            fontFamily:"'Jost',sans-serif", fontSize:13, fontWeight:400, letterSpacing:"0.05em",
+            background: view===t.id ? "linear-gradient(135deg,#E8B870,#BFA5D8)" : "rgba(255,255,255,0.07)",
+            color: view===t.id ? "#000" : "rgba(253,240,232,0.6)",
+            transition:"all 0.2s",
+          }}>{t.label}</button>
+        ))}
+        <button onClick={()=>setTheme(th=>th==="dark"?"light":"dark")} style={{
+          padding:"8px 18px", borderRadius:20, border:"1px solid rgba(255,255,255,0.15)", background:"none",
+          cursor:"pointer", fontFamily:"'Jost',sans-serif", fontSize:13, color:"rgba(253,240,232,0.6)",
+        }}>{theme==="dark" ? "☀ Light" : "🌙 Dark"}</button>
+      </div>
+
+      {/* Mockups */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?0:32 }}>
+        {/* Mobile phone */}
+        <div style={{ flexShrink:0, position:"relative" }}>
+          <div style={{ width:mobileW+12, height:mobileH+24, borderRadius:36, background:"linear-gradient(145deg,#2a2a2a,#111)", boxShadow:"0 24px 60px rgba(0,0,0,0.7), 0 0 0 1.5px rgba(255,255,255,0.08)", padding:"12px 6px", boxSizing:"border-box", display:"flex", flexDirection:"column" }}>
+            <div style={{ width:40, height:6, borderRadius:3, background:"rgba(255,255,255,0.15)", margin:"0 auto 8px", flexShrink:0 }}/>
+            <div style={{ flex:1, borderRadius:24, overflow:"hidden", position:"relative" }}>
+              <div style={{ width:390, height:Math.round(mobileH/mobileScale), transform:`scale(${mobileScale})`, transformOrigin:"top left", pointerEvents:"none" }}>
+                <SpotifyPortal isPreview={true} forceTheme={theme} initialTab={view} userTier="audio" userName="you" onHome={()=>{}} onSignOut={()=>{}}/>
+              </div>
+            </div>
+          </div>
+          <div style={{ fontSize:11, color:"rgba(253,240,232,0.3)", marginTop:12, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Mobile</div>
+        </div>
+
+        {/* Desktop mockup — hidden on mobile */}
+        {!isMobile && (
+          <div style={{ flexShrink:0 }}>
+            <div style={{ width:desktopW+24, height:desktopH+44, borderRadius:16, background:"linear-gradient(145deg,#222,#111)", boxShadow:"0 24px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)", padding:"32px 12px 12px", boxSizing:"border-box" }}>
+              <div style={{ display:"flex", gap:6, marginBottom:8, position:"absolute", top:12, left:20 }}>
+                {["#ff5f57","#febc2e","#28c840"].map(c=><div key={c} style={{ width:10, height:10, borderRadius:"50%", background:c }}/>)}
+              </div>
+              <div style={{ borderRadius:10, overflow:"hidden" }}>
+                <div style={{ width:1280, height:Math.round(desktopH/desktopScale), transform:`scale(${desktopScale})`, transformOrigin:"top left", pointerEvents:"none" }}>
+                  <SpotifyPortal isPreview={true} forceTheme={theme} initialTab={view} userTier="audio" userName="you" onHome={()=>{}} onSignOut={()=>{}}/>
+                </div>
+              </div>
+            </div>
+            <div style={{ fontSize:11, color:"rgba(253,240,232,0.3)", marginTop:12, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>Desktop</div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 function HeroMarquee() {

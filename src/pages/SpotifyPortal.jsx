@@ -1282,9 +1282,9 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
   const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");
   const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
-  const [quickDesire, setQuickDesire] = React.useState("");
-  const [quickListening, setQuickListening] = React.useState(false);
-  const [quickSaved, setQuickSaved] = React.useState(false);
+  const [quickDesire, setQuickDesire] = useState("");
+  const [quickListening, setQuickListening] = useState(false);
+  const [quickSaved, setQuickSaved] = useState(false);
 
   const saveQuickDesire = () => {
     if (!quickDesire.trim()) return;
