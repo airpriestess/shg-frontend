@@ -968,7 +968,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   // ── MOBILE ───────────────────────────────────────────────────────────────
   return (
-    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden",position:"relative" }}>
+    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
@@ -1003,7 +1003,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
       {!isPreview && !fullP && (
-        <div onClick={()=>setFullP(true)} style={{ position:"absolute",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
+        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
             <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:isDark?"#E8B870":"#000" }}>{track.title}</div>
@@ -2081,9 +2081,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:"rgba(0,0,0,0.08)",
-            border:`1px solid ${view===k?"transparent":"rgba(0,0,0,0.15)"}`,
-            color:view===k?"#000":"#333333", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+            background:view===k?col:"rgba(255,255,255,0.55)",
+            border:`1px solid ${view===k?"transparent":"rgba(255,255,255,0.7)"}`,
+            color:"#000", fontSize:13,fontWeight:view===k?600:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
