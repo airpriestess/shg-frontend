@@ -194,6 +194,7 @@ function Thumb({ title, cat, size=48, radius=4 }) {
 // SHOP_URL is the general storefront for now, swap in real per-product URLs here
 // once individual guide listings exist (e.g. GUIDE_URLS["Richgirlmaxxing"] = "https://...").
 const SHOP_URL = "https://beacons.ai/reshmaoracle";
+const GUIDES_AVAILABLE = new Set(["Lovemaxxing","Luckygirlmaxxing"]);
 const CAT_GUIDE = {
   Lovemaxxing:"Lovemaxxing Guide", Selfmaxxing:"Selfmaxxing Guide", Richgirlmaxxing:"Richgirlmaxxing Guide",
   Sleepmaxxing:"Sleepmaxxing Guide", Beautymaxxing:"Beautymaxxing Guide", DNAmaxxing:"DNAmaxxing Guide",
@@ -516,11 +517,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   }, [userId, isPreview, token]);
   const [theme, setTheme]     = useState(forceTheme || "light");
   const [profileOpen, setProfileOpen] = useState(false);
-  const [listenCount, setListenCount] = useState(47);
-  // Seeded 30-day emotional log, dominant state trends upward on Hawkins scale
+  const [listenCount, setListenCount] = useState(127);
+  // Seeded 30-day emotional log — Reshma's real arc: started in anxiety, shifted decisively to Love/Peace
   const [emoLog, setEmoLog] = useState(()=>{
     const arr=[]; const now=Date.now();
-    const path=["Fear","Fear","Desire","Anger","Pride","Pride","Courage","Neutrality","Willingness","Courage","Willingness","Acceptance","Reason","Acceptance","Love","Willingness","Acceptance","Love","Joy","Reason","Love","Love","Peace","Joy","Love","Peace","Joy","Peace","Love","Love"];
+    const path=["Fear","Desire","Anger","Desire","Pride","Courage","Neutrality","Courage","Willingness","Acceptance","Willingness","Acceptance","Reason","Acceptance","Love","Acceptance","Love","Love","Joy","Love","Love","Peace","Love","Peace","Joy","Peace","Love","Peace","Love","Peace"];
     for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
     return arr;
   });
@@ -1098,13 +1099,23 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                 ))}
               </div>
               {CAT_GUIDE[track.cat] && (
-                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
-                  <span style={{ fontSize:20 }}>📖</span>
-                  <div>
-                    <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:16,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                GUIDES_AVAILABLE.has(track.cat) ? (
+                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
+                    <span style={{ fontSize:20 }}>📖</span>
+                    <div>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:16,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    </div>
+                  </a>
+                ) : (
+                  <div style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,maxWidth:400,opacity:0.6 }}>
+                    <span style={{ fontSize:20 }}>📖</span>
+                    <div>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:15,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                    </div>
                   </div>
-                </a>
+                )
               )}
             </div>
           </div>
@@ -1185,13 +1196,23 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                 ))}
               </div>
               {CAT_GUIDE[track.cat] && (
-                <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
-                  <span style={{ fontSize:18 }}>📖</span>
-                  <div style={{ flex:1 }}>
-                    <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                    <div style={{ fontSize:15,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                GUIDES_AVAILABLE.has(track.cat) ? (
+                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
+                    <span style={{ fontSize:18 }}>📖</span>
+                    <div style={{ flex:1 }}>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:15,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    </div>
+                  </a>
+                ) : (
+                  <div style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,opacity:0.6 }}>
+                    <span style={{ fontSize:18 }}>📖</span>
+                    <div style={{ flex:1 }}>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                    </div>
                   </div>
-                </a>
+                )
               )}
             </div>
           ); })()}

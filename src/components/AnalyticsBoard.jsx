@@ -10,9 +10,9 @@ const PALETTES = {
 };
 
 export const DEMO_ANALYTICS = {
-  manifested: 3, inProgress: 4, signs: 11, listens: 27, streakDays: 14,
-  week: [2,4,3,6,5,4,3],
-  topCats: [ ["Rich Girl","#E8B870",5], ["SP & Love","#BFA5D8",4], ["Identity","#F5E0A0",2] ],
+  manifested: 9, inProgress: 5, signs: 23, listens: 127, streakDays: 21,
+  week: [4,6,5,7,6,5,6],
+  topCats: [ ["Lovemaxxing","#E8B870",38], ["Richgirlmaxxing","#BFA5D8",29], ["Luckygirlmaxxing","#F5E0A0",18] ],
 };
 
 export default function AnalyticsBoard({ data=DEMO_ANALYTICS, theme="dark", compact=false, onViewProof, onDrillDown }) {
