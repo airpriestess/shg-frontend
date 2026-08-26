@@ -2043,9 +2043,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:"#000000",
-            border:"none",
-            color:view===k?"#000":"#000000", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+            background:view===k?col:"rgba(0,0,0,0.08)",
+            border:`1px solid ${view===k?"transparent":"rgba(0,0,0,0.15)"}`,
+            color:view===k?"#000":"#333333", fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
