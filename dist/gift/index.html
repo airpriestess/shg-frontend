@@ -79,21 +79,26 @@ body {
 }
 .eyebrow {
   font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--cream); opacity: 0.5; margin-bottom: 20px; font-weight: 400;
+  background: var(--lg); -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin-bottom: 20px; font-weight: 500;
 }
 h1 {
   font-size: clamp(36px, 6vw, 60px);
   font-weight: 800; line-height: 1.05;
-  color: var(--cream); margin-bottom: 10px;
+  background: linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: lgDrift 10s ease-in-out infinite;
+  margin-bottom: 10px;
 }
 .subtitle {
   font-size: clamp(13px, 2vw, 16px);
-  font-weight: 300; color: var(--cream); opacity: 0.55;
+  font-weight: 300; color: var(--cream); opacity: 0.75;
   letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 24px;
 }
 .one-liner {
   font-size: 17px; font-weight: 300;
-  color: var(--cream); opacity: 0.8;
+  color: var(--cream);
   line-height: 1.75; max-width: 560px; margin: 0 auto;
 }
 
@@ -102,20 +107,23 @@ h1 {
   margin-bottom: 56px;
   padding: 36px;
   border-radius: 16px;
-  border: 1px solid rgba(253,240,232,0.1);
-  background: rgba(253,240,232,0.03);
+  border: 1px solid rgba(245,224,160,0.25);
+  background: rgba(245,224,160,0.03);
   text-align: left;
+  box-shadow: 0 0 40px rgba(191,165,216,0.08);
 }
 .block-label {
   font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--cream); opacity: 0.4; margin-bottom: 20px; font-weight: 400;
+  background: var(--lg); -webkit-background-clip: text; background-clip: text;
+  color: transparent; margin-bottom: 20px; font-weight: 500;
 }
 .affirmation {
   font-size: clamp(17px, 2.5vw, 22px);
   font-weight: 300; line-height: 1.75;
   color: var(--cream);
   padding-left: 20px;
-  border-left: 2px solid #E8B870;
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(180deg,#F5E0A0,#BFA5D8,#2CB7A7) 1;
   font-style: normal;
 }
 
@@ -130,20 +138,19 @@ h1 {
   gap: 12px;
 }
 .benefit-item {
-  padding: 20px;
-  border: 1px solid rgba(253,240,232,0.1);
-  border-radius: 12px;
-  background: rgba(253,240,232,0.03);
+  padding: 24px 20px;
+  border: 1px solid rgba(245,224,160,0.2);
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg,#F5E0A0,#2CB7A7) 1;
+  border-radius: 0 0 12px 12px;
+  background: rgba(253,240,232,0.04);
   font-size: 14px; color: var(--cream);
-  opacity: 0.85; line-height: 1.65;
+  line-height: 1.7;
 }
 .benefit-item::before {
-  content: '';
+  content: attr(data-icon);
   display: block;
-  width: 24px; height: 2px;
-  background: var(--lg);
-  margin-bottom: 10px;
-  border-radius: 2px;
+  font-size: 20px; margin-bottom: 12px;
 }
 
 /* FORM */
@@ -168,7 +175,7 @@ h1 {
 }
 .gate-form > p {
   font-size: 14px; color: var(--cream);
-  opacity: 0.55; margin-bottom: 28px;
+  opacity: 0.82; margin-bottom: 28px;
 }
 input[type="email"], input[type="text"] {
   width: 100%; padding: 16px 20px;
@@ -201,7 +208,7 @@ input:focus { border-color: rgba(253,240,232,0.4); }
 .btn-primary:hover { opacity: 0.9; }
 .form-note {
   font-size: 11px; color: var(--cream);
-  opacity: 0.35; margin-top: 14px; letter-spacing: 0.06em;
+  opacity: 0.55; margin-top: 14px; letter-spacing: 0.06em;
 }
 
 /* DOWNLOAD REVEALED */
@@ -248,7 +255,7 @@ input:focus { border-color: rgba(253,240,232,0.4); }
   text-decoration: none; margin-bottom: 16px;
 }
 .listen-note {
-  font-size: 12px; color: var(--cream); opacity: 0.4; letter-spacing: 0.08em;
+  font-size: 12px; color: var(--cream); opacity: 0.7; letter-spacing: 0.08em;
 }
 .download-section.visible { display: block; }
 
@@ -268,7 +275,8 @@ input:focus { border-color: rgba(253,240,232,0.4); }
 }
 .col-label {
   font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--cream); opacity: 0.4; margin-bottom: 24px; font-weight: 400;
+  background: var(--lg); -webkit-background-clip: text; background-clip: text;
+  color: transparent; margin-bottom: 24px; font-weight: 500;
 }
 
 /* HOW TO USE */
@@ -326,7 +334,7 @@ input:focus { border-color: rgba(253,240,232,0.4); }
 .divider {
   width: 40px; height: 1px;
   background: var(--lg);
-  margin: 48px auto; opacity: 0.4;
+  margin: 48px auto; opacity: 0.7;
 }
 
 /* FOOTER */
@@ -336,7 +344,7 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 footer a {
-  color: var(--cream); opacity: 0.4;
+  color: var(--cream); opacity: 0.7;
   text-decoration: none; font-size: 12px; letter-spacing: 0.12em;
 }
 
@@ -352,7 +360,12 @@ footer a {
 
   /* EXPLAINER */
   .explainer { margin-bottom: 48px; text-align: left; }
-  .explainer-text { font-size: 17px; line-height: 1.8; color: var(--cream); opacity: 0.82; margin-bottom: 18px; font-weight: 300; }
+  .section-label {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  background: var(--lg); -webkit-background-clip: text; background-clip: text;
+  color: transparent; margin-bottom: 24px; font-weight: 500; display: block;
+}
+.explainer-text { font-size: 17px; line-height: 1.8; color: var(--cream); opacity: 0.82; margin-bottom: 18px; font-weight: 300; }
   .explainer-text em { font-style: normal; color: var(--cream); opacity: 1; }
 
   /* BENEFITS */
@@ -368,7 +381,7 @@ footer a {
   /* TIMELINE */
   .timeline-section { }
   .timeline { position: relative; padding-left: 20px; }
-  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(180deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B); opacity: 0.4; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(180deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B); opacity: 0.7; }
   .timeline-item { display: flex; gap: 16px; margin-bottom: 28px; align-items: flex-start; position: relative; }
   .timeline-dot { width: 13px; height: 13px; min-width: 13px; border-radius: 50%; background: var(--lg); margin-top: 3px; flex-shrink: 0; box-shadow: 0 0 10px rgba(232,184,112,0.5); }
   .timeline-content { }
