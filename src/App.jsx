@@ -2051,35 +2051,29 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </div>
         </div>
       )}
-    </div>
 
-    {/* ── FREE GIFT POPUP ── */}
-    {giftPopup && (() => {
-      setTimeout(() => {
-        try { sessionStorage.setItem('shg_gift_seen','1'); } catch(e){}
-      }, 4000);
-      return null;
-    })()}
-    {giftPopup && (
-      <div style={{ position:"fixed", inset:0, zIndex:99999, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding:"24px" }}
-        onClick={e => { if(e.target===e.currentTarget){ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} } }}>
-        <div style={{ background:"#0a0a0a", border:"1px solid rgba(245,224,160,0.3)", borderRadius:20, padding:"40px 32px", maxWidth:420, width:"100%", textAlign:"center", position:"relative", boxShadow:"0 0 80px rgba(44,183,167,0.2)" }}>
-          <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} }}
-            style={{ position:"absolute", top:16, right:16, background:"none", border:"none", color:"#fdf0e8", fontSize:22, cursor:"pointer", lineHeight:1, opacity:0.5 }}>&#x2715;</button>
-          <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", fontWeight:500, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>Free Gift</div>
-          <div style={{ fontSize:"clamp(24px,4vw,32px)", fontWeight:700, color:"#fdf0e8", lineHeight:1.15, marginBottom:12 }}>I Attract Opportunities Constantly</div>
-          <div style={{ fontSize:13, fontWeight:300, color:"#fdf0e8", opacity:0.65, lineHeight:1.7, marginBottom:32 }}>A free EMDR self hypnosis audio. Rewire your filter. Download instantly.</div>
-          <a href="/gift" onClick={()=>{ try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} }}
-            style={{ display:"block", padding:"18px 32px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:12, color:"#000", fontWeight:700, fontSize:14, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", marginBottom:12 }}>
-            Claim Free Gift
-          </a>
-          <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e){} }}
-            style={{ background:"none", border:"none", color:"#fdf0e8", opacity:0.4, fontSize:13, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
-            No thanks
-          </button>
+      {/* ── FREE GIFT POPUP ── */}
+      {giftPopup && (
+        <div style={{ position:"fixed", inset:0, zIndex:99999, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding:"24px" }}
+          onClick={e => { if(e.target===e.currentTarget){ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} } }}>
+          <div style={{ background:"#0a0a0a", border:"1px solid rgba(245,224,160,0.3)", borderRadius:20, padding:"40px 32px", maxWidth:420, width:"100%", textAlign:"center", position:"relative" }}>
+            <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
+              style={{ position:"absolute", top:16, right:16, background:"none", border:"none", color:"#fdf0e8", fontSize:22, cursor:"pointer", opacity:0.5 }}>✕</button>
+            <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", fontWeight:500, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:16 }}>Free Gift</div>
+            <div style={{ fontSize:"clamp(22px,4vw,30px)", fontWeight:700, color:"#fdf0e8", lineHeight:1.2, marginBottom:12 }}>I Attract Opportunities Constantly</div>
+            <div style={{ fontSize:13, fontWeight:300, color:"#fdf0e8", opacity:0.65, lineHeight:1.7, marginBottom:28 }}>Free EMDR self hypnosis audio. Download instantly.</div>
+            <a href="/gift" onClick={()=>{ try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
+              style={{ display:"block", padding:"16px 28px", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)", borderRadius:12, color:"#000", fontWeight:700, fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", marginBottom:10 }}>
+              Claim Free Gift
+            </a>
+            <button onClick={()=>{ setGiftPopup(false); try{sessionStorage.setItem('shg_gift_seen','1');}catch(e2){} }}
+              style={{ background:"none", border:"none", color:"#fdf0e8", opacity:0.35, fontSize:12, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+              No thanks
+            </button>
+          </div>
         </div>
-      </div>
-    )}
+      )}
+    </div>
   );
 }
 
