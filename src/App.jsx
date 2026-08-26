@@ -728,7 +728,7 @@ const YEAR_DATA = {
       { name:"Rich Girl", n:48, done:31, days:6, col:"#E8B870" },
       { name:"Beauty",   n:34, done:22, days:9,  col:"#BFA5D8" },
       { name:"Lucky",    n:28, done:21, days:5,  col:"#2CB7A7" },
-      { name:"Self",     n:22, done:15, days:11, col:"#8a6bb0" },
+      { name:"Self",     n:22, done:15, days:11, col:"#F5E0A0" },
     ],
     proof:[
       { desire:"He texted me first", days:9,  cat:"Love",     date:"Feb '26" },
@@ -747,7 +747,7 @@ const YEAR_DATA = {
       { name:"Love",     n:54, done:44, days:5,  col:"#167A6B" },
       { name:"Business", n:41, done:31, days:6,  col:"#2CB7A7" },
       { name:"Beauty",   n:33, done:24, days:7,  col:"#BFA5D8" },
-      { name:"Lucky",    n:22, done:17, days:3,  col:"#8a6bb0" },
+      { name:"Lucky",    n:22, done:17, days:3,  col:"#F5E0A0" },
     ],
     proof:[
       { desire:"Passive income stream started", days:11, cat:"Business", date:"Jan '27" },
@@ -765,7 +765,7 @@ const YEAR_DATA = {
       { name:"Business", n:72, done:64, days:3, col:"#2CB7A7" },
       { name:"Rich Girl", n:58, done:50, days:3, col:"#E8B870" },
       { name:"Love",     n:48, done:42, days:4,  col:"#167A6B" },
-      { name:"Lucky",    n:36, done:32, days:2,  col:"#8a6bb0" },
+      { name:"Lucky",    n:36, done:32, days:2,  col:"#F5E0A0" },
       { name:"Self",     n:24, done:14, days:8,  col:"#BFA5D8" },
     ],
     proof:[
@@ -781,7 +781,7 @@ const YEAR_DATA = {
     set:251, manifested:224, avgDays:3, listens:820, streak:201,
     top:"Luckygirlmaxxing",
     cats:[
-      { name:"Lucky",    n:74, done:69, days:2, col:"#8a6bb0" },
+      { name:"Lucky",    n:74, done:69, days:2, col:"#F5E0A0" },
       { name:"Business", n:62, done:56, days:3, col:"#2CB7A7" },
       { name:"Rich Girl", n:55, done:49, days:2, col:"#E8B870" },
       { name:"Love",     n:40, done:37, days:3,  col:"#167A6B" },
@@ -800,7 +800,7 @@ const YEAR_DATA = {
     set:268, manifested:249, avgDays:2, listens:1012, streak:280,
     top:"Everything",
     cats:[
-      { name:"Lucky",    n:80, done:76, days:1, col:"#8a6bb0" },
+      { name:"Lucky",    n:80, done:76, days:1, col:"#F5E0A0" },
       { name:"Business", n:65, done:62, days:2, col:"#2CB7A7" },
       { name:"Rich Girl", n:58, done:55, days:1, col:"#E8B870" },
       { name:"Love",     n:42, done:40, days:2,  col:"#167A6B" },
@@ -922,7 +922,7 @@ function AppPreviewSection({ isMobile }) {
             [animSet,        "Intentions set", "#E8B870", 1],
             [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", "#BFA5D8", 2],
             [`${d.avgDays}d`, "Avg to manifest", "#167A6B", 3],
-            [animListens,    "Total listens", "#8a6bb0", 4],
+            [animListens,    "Total listens", "#F5E0A0", 4],
           ].map(([v,l,col,delay],i)=>(
             (!isMobile || i<3) &&
             <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:`${col}0d`, borderRadius:14, padding:"18px 10px", textAlign:"center", border:`1px solid ${col}44` }}>
@@ -968,7 +968,7 @@ function AppPreviewSection({ isMobile }) {
                 style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:13, paddingBottom:13,
                   borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none",
                   animationDelay:`${i*100}ms` }}>
-                <div style={{ width:24, height:24, borderRadius:"50%", background:`${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#8a6bb0"][i%5]}22`, border:`1px solid ${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#8a6bb0"][i%5]}66`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, color:["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#8a6bb0"][i%5], flexShrink:0 }}>✦</div>
+                <div style={{ width:24, height:24, borderRadius:"50%", background:`${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#F5E0A0"][i%5]}22`, border:`1px solid ${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#F5E0A0"][i%5]}66`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, color:["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#F5E0A0"][i%5], flexShrink:0 }}>✦</div>
                 <div style={{ flex:1 }}>
                   <div style={{ fontSize:13, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
                   <div style={{ display:"flex", gap:8, marginTop:3, flexWrap:"wrap" }}>
