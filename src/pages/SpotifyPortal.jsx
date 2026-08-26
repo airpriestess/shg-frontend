@@ -99,10 +99,10 @@ const THEMES = {
   },
   // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
   light: {
-    bg:      "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 20%,#2CB7A7 55%,#167A6B 100%)",
+    bg:      "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)",
     bg2:     "#fdf0e8",  // frosted glass cards
-    bg3:     "#fdf0e8",
-    bg4:     "#fdf0e8",
+    bg3:     "#fdf0e8",  // raised cards
+    bg4:     "#fdf0e8",  // highest surface
     nav:     "#F5E0A0",  // nav bar, solid champagne
     cr:      "#000000",   // primary text, black
     mu:      "#000000",   // muted text, also black (no grey in light mode)
@@ -119,7 +119,7 @@ const THEMES = {
 };
 
 const R = "#E8B870", P = "#BFA5D8";
-const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#BFA5D8 20%,#2CB7A7 55%,#167A6B 100%)";
+const OMBRE = "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)";
 
 // Per-tab subtle wash, black/gold "color experience," varying only by gold intensity per tab. No pink or rose on the dashboard.
 // Dark theme: near-black fading to a faint gold tint, so content stays readable.
@@ -1742,8 +1742,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         </div>
       )}
 
-      {/* ASK RESHMA — Goddess tier only, teaser shown in preview */}
-      <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail} isPreview={isPreview}/>
+      {/* ASK RESHMA — Goddess tier only */}
+      {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
 
       {/* FULL ANALYTICS BOARD */}
       <div style={{ margin:"0 16px 20px" }}>
@@ -1780,7 +1780,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 }
 
 // ── ASK RESHMA CARD ───────────────────────────────────────────────────────────
-function AskReshmaCard({ C, userId, token, userTier, userEmail, isPreview }) {
+function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const [sent, setSent] = useState(false);

@@ -12,6 +12,7 @@ export default function HamburgerMenu({ onSignIn }) {
 
   const items = [
     ["Home",               () => navigate("/")],
+    ["Free Gift",          () => { window.location.href = "/gift?utm_source=site&utm_medium=hamburger&utm_campaign=free_gift"; }],
     ["About Reshma",       () => navigate("/about")],
     ["The Library",        () => navigate("/library")],
     ["Journal",            () => { window.location.href = "/blog"; }],
@@ -52,7 +53,7 @@ export default function HamburgerMenu({ onSignIn }) {
           <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
             {items.map(([label, fn], i) => (
               <button key={i} onClick={()=>go(fn)}
-                style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#fdf0e8",fontSize:"clamp(24px,6vw,38px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>
+                style={{ display:"block",width:"100%",textAlign:"left",padding:"10px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#fdf0e8",fontSize:"clamp(18px,4vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>
                 {label}
               </button>
             ))}
@@ -60,8 +61,8 @@ export default function HamburgerMenu({ onSignIn }) {
 
           {/* Bottom CTAs */}
           <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
-            <button onClick={()=>go(()=>navigate("/"))} style={{ width:"100%",padding:"16px",background:LG,border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
-              Join Now 
+            <button onClick={()=>go(()=>{ navigate("/"); setTimeout(()=>{ const e=new CustomEvent("openWaitlist"); window.dispatchEvent(e); },300); })} style={{ width:"100%",padding:"16px",background:LG,border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.08em",textTransform:"uppercase",WebkitTapHighlightColor:"transparent" }}>
+              Join Waitlist
             </button>
             {onSignIn && (
               <button onClick={()=>go(onSignIn)} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#fdf0e8",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>

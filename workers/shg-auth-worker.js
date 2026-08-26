@@ -110,10 +110,64 @@ const API_ROUTES = {
   "POST /leads":     handleLeads,
 };
 
+// Short redirect links — one per channel, never changes
+const GO_LINKS = {
+  // GIFT PAGE
+  "gift-yt-bio":       "/gift?utm_source=youtube&utm_medium=bio&utm_campaign=free_gift",
+  "gift-yt-desc":      "/gift?utm_source=youtube&utm_medium=description&utm_campaign=free_gift",
+  "gift-yt-comment":   "/gift?utm_source=youtube&utm_medium=comment&utm_campaign=free_gift",
+  "gift-yt-community": "/gift?utm_source=youtube&utm_medium=community_post&utm_campaign=free_gift",
+  "gift-ig-bio":       "/gift?utm_source=instagram&utm_medium=bio&utm_campaign=free_gift",
+  "gift-ig-reply":     "/gift?utm_source=instagram&utm_medium=smart_reply&utm_campaign=free_gift",
+  "gift-email":        "/gift?utm_source=email&utm_medium=email&utm_campaign=free_gift",
+
+  // WAITLIST
+  "wl-yt-bio":         "/?waitlist=1&utm_source=youtube&utm_medium=bio&utm_campaign=waitlist",
+  "wl-yt-desc":        "/?waitlist=1&utm_source=youtube&utm_medium=description&utm_campaign=waitlist",
+  "wl-yt-comment":     "/?waitlist=1&utm_source=youtube&utm_medium=comment&utm_campaign=waitlist",
+  "wl-yt-community":   "/?waitlist=1&utm_source=youtube&utm_medium=community_post&utm_campaign=waitlist",
+  "wl-ig-bio":         "/?waitlist=1&utm_source=instagram&utm_medium=bio&utm_campaign=waitlist",
+  "wl-ig-reply":       "/?waitlist=1&utm_source=instagram&utm_medium=smart_reply&utm_campaign=waitlist",
+  "wl-email":          "/?waitlist=1&utm_source=email&utm_medium=email&utm_campaign=waitlist",
+
+  // LOVEMAXXING WORKBOOK
+  "love-yt-desc":      "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=youtube&utm_medium=description&utm_campaign=lovemaxxing",
+  "love-yt-community": "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=youtube&utm_medium=community_post&utm_campaign=lovemaxxing",
+  "love-ig-bio":       "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=instagram&utm_medium=bio&utm_campaign=lovemaxxing",
+  "love-ig-reply":     "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=instagram&utm_medium=smart_reply&utm_campaign=lovemaxxing",
+  "love-email":        "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=email&utm_medium=email&utm_campaign=lovemaxxing",
+
+  // LUCKYGIRL WORKBOOK
+  "lucky-yt-desc":      "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
+  "lucky-yt-community": "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=community_post&utm_campaign=luckygirlmaxxing",
+  "lucky-ig-bio":       "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=instagram&utm_medium=bio&utm_campaign=luckygirlmaxxing",
+  "lucky-ig-reply":     "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=instagram&utm_medium=smart_reply&utm_campaign=luckygirlmaxxing",
+  "lucky-email":        "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=email&utm_medium=email&utm_campaign=luckygirlmaxxing",
+};
+
 function isApiRoute(method, pathname) {
   return (`${method} ${pathname}`) in API_ROUTES;
 }
 __name(isApiRoute, "isApiRoute");
+
+
+async function notifyReshma(env, subject, body) {
+  try {
+    await fetch("https://api.nitrosend.com/v1/transactional/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${env.NITROSEND_API_KEY}`
+      },
+      body: JSON.stringify({
+        to: "reshma@reshmaoracle.com",
+        from: "noreply@reshmaoracle.com",
+        subject: subject,
+        html: `<div style="font-family:sans-serif;padding:20px;background:#000;color:#fdf0e8;">${body}</div>`
+      })
+    });
+  } catch(e) {}
+}
 
 var worker_default = {
   async fetch(request, env) {
@@ -131,6 +185,22 @@ var worker_default = {
         return json({ error: err.message || "Internal error" }, 500);
       }
     }
+
+    // Short redirect links /go/*
+    if (pathname.startsWith("/go/")) {
+      const key = pathname.slice(4);
+      const dest = GO_LINKS[key];
+      if (dest) {
+        try {
+          await env.DB.prepare(
+            "INSERT INTO go_clicks (id, link_key, referrer, user_agent, created_at) VALUES (?, ?, ?, ?, ?)"
+          ).bind(crypto.randomUUID(), key, request.headers.get("referer")||null, request.headers.get("user-agent")||null, new Date().toISOString()).run();
+        } catch(e) {}
+        const redirectUrl = dest.startsWith("http") ? dest : "https://reshmaoracle.com" + dest;
+        return Response.redirect(redirectUrl, 302);
+      }
+    }
+
 
     // Everything else (static assets, SPA routes, homepage) — proxy to Pages
     const pagesUrl = new URL(request.url);
@@ -261,6 +331,14 @@ async function handleLeads(request, env) {
   )
     .bind(id, resolvedName, email.toLowerCase(), source || null, utm_source, utm_medium, utm_campaign, created_at)
     .run();
+  await notifyReshma(env,
+    "New gift lead: " + email.toLowerCase(),
+    "<h2 style='color:#E8B870;'>New gift download</h2>" +
+    "<p><b>Name:</b> " + (resolvedName || "not given") + "</p>" +
+    "<p><b>Email:</b> " + email.toLowerCase() + "</p>" +
+    "<p><b>Source:</b> " + (source || "direct") + "</p>" +
+    "<p><b>Channel:</b> " + (utm_source || "") + " / " + (utm_medium || "") + "</p>"
+  );
   return json({ success: true, id });
 }
 __name(handleLeads, "handleLeads");
