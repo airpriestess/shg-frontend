@@ -150,6 +150,25 @@ function isApiRoute(method, pathname) {
 }
 __name(isApiRoute, "isApiRoute");
 
+
+async function notifyReshma(env, subject, body) {
+  try {
+    await fetch("https://api.nitrosend.com/v1/transactional/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${env.NITROSEND_API_KEY}`
+      },
+      body: JSON.stringify({
+        to: "reshma@reshmaoracle.com",
+        from: "noreply@reshmaoracle.com",
+        subject: subject,
+        html: `<div style="font-family:sans-serif;padding:20px;background:#000;color:#fdf0e8;">${body}</div>`
+      })
+    });
+  } catch(e) {}
+}
+
 var worker_default = {
   async fetch(request, env) {
     if (request.method === "OPTIONS") {
@@ -311,6 +330,14 @@ async function handleLeads(request, env) {
   )
     .bind(id, resolvedName, email.toLowerCase(), source || null, utm_source, utm_medium, utm_campaign, created_at)
     .run();
+  await notifyReshma(env,
+    "New gift lead: " + email.toLowerCase(),
+    "<h2 style='color:#E8B870;'>New gift download</h2>" +
+    "<p><b>Name:</b> " + (resolvedName || "not given") + "</p>" +
+    "<p><b>Email:</b> " + email.toLowerCase() + "</p>" +
+    "<p><b>Source:</b> " + (source || "direct") + "</p>" +
+    "<p><b>Channel:</b> " + (utm_source || "") + " / " + (utm_medium || "") + "</p>"
+  );
   return json({ success: true, id });
 }
 __name(handleLeads, "handleLeads");

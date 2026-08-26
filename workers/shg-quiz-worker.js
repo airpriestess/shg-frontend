@@ -164,6 +164,25 @@ async function handleBlogSubscribe(request, env) {
 }
 __name(handleBlogSubscribe, "handleBlogSubscribe");
 
+
+async function notifyReshma(env, subject, body) {
+  try {
+    await fetch("https://api.nitrosend.com/v1/transactional/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + env.NITROSEND_API_KEY
+      },
+      body: JSON.stringify({
+        to: "reshma@reshmaoracle.com",
+        from: "noreply@reshmaoracle.com",
+        subject: subject,
+        html: "<div style='font-family:sans-serif;padding:20px;background:#000;color:#fdf0e8;'>" + body + "</div>"
+      })
+    });
+  } catch(e) {}
+}
+
 async function handleWaitlist(request, env) {
   try {
     const { email, first_name, source } = await request.json();
@@ -181,6 +200,15 @@ async function handleWaitlist(request, env) {
       }
     }
     await addToNitrosend(env, email, { source: source || "waitlist" }, first_name);
+    if (!alreadyExists) {
+      await notifyReshma(env,
+        "New waitlist signup: " + email,
+        "<h2 style='color:#BFA5D8;'>New waitlist signup</h2>" +
+        "<p><b>Name:</b> " + (first_name || "not given") + "</p>" +
+        "<p><b>Email:</b> " + email + "</p>" +
+        "<p><b>Source:</b> " + (source || "direct") + "</p>"
+      );
+    }
     return json({ success: true, alreadyExists });
   } catch (err) {
     return json({ error: err.message }, 500);
