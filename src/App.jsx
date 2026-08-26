@@ -817,57 +817,117 @@ const YEAR_DATA = {
   },
 };
 
+function useCountUp(target, duration=900) {
+  const [val, setVal] = useState(0);
+  const prev = useRef(0);
+  useEffect(() => {
+    const start = prev.current;
+    const diff = target - start;
+    const t0 = performance.now();
+    const frame = (now) => {
+      const p = Math.min((now - t0) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setVal(Math.round(start + diff * ease));
+      if (p < 1) requestAnimationFrame(frame);
+      else prev.current = target;
+    };
+    requestAnimationFrame(frame);
+  }, [target, duration]);
+  return val;
+}
+
 function AppPreviewSection({ isMobile }) {
   const [year, setYear] = useState(2026);
+  const [visible, setVisible] = useState(false);
+  const [animKey, setAnimKey] = useState(0);
+  const ref = useRef(null);
   const d = YEAR_DATA[year];
-  const maxCatN = Math.max(...d.cats.map(c=>c.n));
-  const totalManifested = Object.values(YEAR_DATA).reduce((s,y)=>s+y.manifested,0);
   const yearsShown = Object.keys(YEAR_DATA).map(Number).filter(y=>y<=year);
   const cumManifested = yearsShown.reduce((s,y)=>s+YEAR_DATA[y].manifested,0);
 
+  // Intersection observer — start animations when section scrolls into view
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.15 });
+    obs.observe(el); return () => obs.disconnect();
+  }, []);
+
+  const changeYear = (y) => { setYear(y); setAnimKey(k=>k+1); };
+
+  const animManifested = useCountUp(visible ? d.manifested : 0);
+  const animSet        = useCountUp(visible ? d.set : 0);
+  const animListens    = useCountUp(visible ? d.listens : 0);
+  const animCum        = useCountUp(visible ? cumManifested : 0);
+  const animStreak     = useCountUp(visible ? d.streak : 0);
+
+  const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
+
   return (
-    <div style={{ background:"#000", padding: isMobile?"56px 0 0":"72px 0 0" }}>
-      {/* Heading */}
-      <div style={{ textAlign:"center", padding: isMobile?"0 20px 40px":"0 40px 48px" }}>
-        <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", color:"#BFA5D8", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>Your record. For life.</div>
-        <div style={{ fontSize: isMobile?"clamp(28px,8vw,38px)":"clamp(34px,3.5vw,52px)", fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", color:"#fdf0e8", marginBottom:12, letterSpacing:"-0.01em", lineHeight:1.15 }}>
-          Imagine signing up in 2026<br/>and opening this in 2030.
+    <div ref={ref} style={{ background:"#000", padding: isMobile?"56px 0 0":"72px 0 0", overflow:"hidden" }}>
+      <style>{`
+        @keyframes ap-drift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+        @keyframes ap-fade-up { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+        @keyframes ap-bar { from{width:0%} to{width:var(--w)} }
+        @keyframes ap-glow { 0%,100%{box-shadow:0 0 20px rgba(232,184,112,0.15)} 50%{box-shadow:0 0 40px rgba(191,165,216,0.3)} }
+        @keyframes ap-proof-in { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:none} }
+        @keyframes ap-pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+        .ap-stat { animation: ap-fade-up 0.5s ease both; }
+        .ap-bar-fill { animation: ap-bar 1s cubic-bezier(0.34,1.56,0.64,1) both; }
+        .ap-proof-row { animation: ap-proof-in 0.4s ease both; }
+      `}</style>
+
+      {/* Heading — drifting LG gradient headline */}
+      <div style={{ textAlign:"center", padding: isMobile?"0 20px 40px":"0 40px 52px" }}>
+        <div style={{ fontSize:12, fontWeight:500, letterSpacing:"0.26em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>ProofOS · Your record. For life.</div>
+        <div style={{
+          fontSize: isMobile?"clamp(30px,9vw,42px)":"clamp(38px,4vw,58px)",
+          fontFamily:"'Jost',sans-serif", fontWeight:200,
+          lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:16,
+          background: LG, backgroundSize:"300% 300%",
+          animation:"ap-drift 6s ease-in-out infinite",
+          WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
+        }}>
+          Imagine you signed up in 2026.<br/>Now it's 2030.
         </div>
-        <div style={{ fontSize: isMobile?14:16, color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", lineHeight:1.6, maxWidth:520, margin:"0 auto" }}>
-          Every desire you ever set. Every sign you ever logged. Every manifestation, dated and permanent. This is what 4 years of ProofOS looks like.
+        <div style={{ fontSize: isMobile?14:17, color:"#BFA5D8", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:560, margin:"0 auto" }}>
+          Every desire you ever set. Every sign you ever logged. Every manifestation, dated and permanent.<br/>
+          <span style={{ color:"#E8B870" }}>This is what your ProofOS looks like after 4 years.</span>
         </div>
       </div>
 
-      {/* Year tabs */}
-      <div style={{ display:"flex", justifyContent:"center", gap:0, marginBottom:0, borderTop:"1px solid rgba(255,255,255,0.06)", borderBottom:"1px solid rgba(255,255,255,0.06)" }}>
+      {/* Year selector */}
+      <div style={{ display:"flex", gap:0, borderTop:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", marginBottom:0 }}>
         {[2026,2027,2028,2029,2030].map(y=>(
-          <button key={y} onClick={()=>setYear(y)} style={{
-            flex:1, padding: isMobile?"14px 0":"18px 0", border:"none", cursor:"pointer",
-            fontFamily:"'Jost',sans-serif", fontSize: isMobile?13:15, fontWeight:400,
-            background: year===y ? "linear-gradient(135deg,rgba(232,184,112,0.15),rgba(191,165,216,0.15))" : "transparent",
-            color: year===y ? "#E8B870" : "rgba(253,240,232,0.35)",
+          <button key={y} onClick={()=>changeYear(y)} style={{
+            flex:1, padding: isMobile?"16px 0":"20px 0", border:"none", cursor:"pointer",
+            fontFamily:"'Jost',sans-serif", fontSize: isMobile?13:15, fontWeight:year===y?500:300,
+            background: year===y ? "linear-gradient(135deg,rgba(232,184,112,0.12),rgba(191,165,216,0.12))" : "transparent",
+            color: year===y ? "#E8B870" : "#BFA5D8",
             borderBottom: year===y ? "2px solid #E8B870" : "2px solid transparent",
-            transition:"all 0.18s",
-          }}>{y}</button>
+            transition:"all 0.2s",
+            animation: year===y ? "ap-glow 3s ease-in-out infinite" : "none",
+          }}>
+            {y}
+            {year===y && <div style={{ width:4, height:4, borderRadius:"50%", background:"#E8B870", margin:"4px auto 0", animation:"ap-pulse 1.5s ease-in-out infinite" }}/>}
+          </button>
         ))}
       </div>
 
-      {/* Dashboard card */}
-      <div style={{ padding: isMobile?"0 16px":"0 40px", maxWidth:900, margin:"0 auto" }}>
+      <div style={{ padding: isMobile?"0 14px":"0 40px", maxWidth:920, margin:"0 auto" }}>
 
-        {/* Top stats row */}
-        <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(5,1fr)", gap:10, padding:"28px 0 20px" }}>
+        {/* Stats strip */}
+        <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(5,1fr)", gap:10, padding:"28px 0 22px" }}>
           {[
-            [d.manifested, "Manifested", "#2CB7A7"],
-            [d.set,        "Intentions", "#E8B870"],
-            [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", "#BFA5D8"],
-            [`${d.avgDays}d`,  "Avg to manifest", "#167A6B"],
-            [d.listens,    "Total listens", "#8a6bb0"],
-          ].map(([v,l,col],i)=>(
+            [animManifested, "Manifested", "#2CB7A7", 0],
+            [animSet,        "Intentions set", "#E8B870", 1],
+            [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", "#BFA5D8", 2],
+            [`${d.avgDays}d`, "Avg to manifest", "#167A6B", 3],
+            [animListens,    "Total listens", "#8a6bb0", 4],
+          ].map(([v,l,col,delay],i)=>(
             (!isMobile || i<3) &&
-            <div key={l} style={{ background:"rgba(255,255,255,0.04)", borderRadius:14, padding:"16px 12px", textAlign:"center", border:`1px solid ${col}33` }}>
-              <div style={{ fontSize: isMobile?22:26, fontWeight:300, color:col, lineHeight:1, letterSpacing:"-0.01em" }}>{v}</div>
-              <div style={{ fontSize:10, color:"rgba(253,240,232,0.4)", marginTop:6, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
+            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:`${col}0d`, borderRadius:14, padding:"18px 10px", textAlign:"center", border:`1px solid ${col}44` }}>
+              <div style={{ fontSize: isMobile?24:30, fontWeight:300, color:col, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif" }}>{v}</div>
+              <div style={{ fontSize:9, color:"#2CB7A7", marginTop:7, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
             </div>
           ))}
         </div>
@@ -875,59 +935,89 @@ function AppPreviewSection({ isMobile }) {
         <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:14 }}>
 
           {/* Category bars */}
-          <div style={{ background:"rgba(255,255,255,0.03)", borderRadius:16, padding:"20px 18px", border:"1px solid rgba(255,255,255,0.06)" }}>
-            <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(253,240,232,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>By life area</div>
-            {d.cats.map(c=>{
+          <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
+            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>By life area · avg days ↓</div>
+            {d.cats.map((c,ci)=>{
               const pct = Math.round(c.done/c.n*100);
               return (
-                <div key={c.name} style={{ marginBottom:13 }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:5 }}>
+                <div key={`${animKey}-${c.name}`} style={{ marginBottom:14, animation:`ap-fade-up 0.4s ease ${ci*80}ms both` }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:6 }}>
                     <span style={{ fontSize:13, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
-                    <div style={{ display:"flex", gap:10 }}>
-                      <span style={{ fontSize:11, color:"rgba(253,240,232,0.35)" }}>{c.done}/{c.n}</span>
-                      <span style={{ fontSize:11, color:c.col, fontWeight:500 }}>{c.days}d avg</span>
+                    <div style={{ display:"flex", gap:12, alignItems:"center" }}>
+                      <span style={{ fontSize:11, color:"#BFA5D8" }}>{c.done}/{c.n}</span>
+                      <span style={{ fontSize:12, color:c.col, fontWeight:500, background:`${c.col}18`, borderRadius:6, padding:"2px 7px" }}>{c.days}d</span>
                     </div>
                   </div>
-                  <div style={{ height:5, borderRadius:3, background:"rgba(255,255,255,0.05)" }}>
-                    <div style={{ height:"100%", width:`${pct}%`, borderRadius:3, background:c.col, transition:"width 0.7s ease" }}/>
+                  <div style={{ height:6, borderRadius:3, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
+                    <div className="ap-bar-fill" key={`${animKey}-bar-${c.name}`}
+                      style={{ "--w":`${pct}%`, height:"100%", borderRadius:3,
+                        background:`linear-gradient(90deg,${c.col}99,${c.col})`,
+                        animationDelay:`${ci*120+200}ms`,
+                        boxShadow:`0 0 8px ${c.col}66` }}/>
                   </div>
                 </div>
               );
             })}
           </div>
 
-          {/* Proof entries */}
-          <div style={{ background:"rgba(255,255,255,0.03)", borderRadius:16, padding:"20px 18px", border:"1px solid rgba(255,255,255,0.06)" }}>
-            <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(253,240,232,0.35)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Manifested this year ✦</div>
+          {/* Proof wall */}
+          <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
+            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year} ✦</div>
             {d.proof.map((p,i)=>(
-              <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:10, marginBottom:12, paddingBottom:12, borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none" }}>
-                <div style={{ width:6, height:6, borderRadius:"50%", background:"#2CB7A7", flexShrink:0, marginTop:5 }}/>
+              <div key={`${animKey}-${i}`} className="ap-proof-row"
+                style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:13, paddingBottom:13,
+                  borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none",
+                  animationDelay:`${i*100}ms` }}>
+                <div style={{ width:24, height:24, borderRadius:"50%", background:`${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#8a6bb0"][i%5]}22`, border:`1px solid ${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#8a6bb0"][i%5]}66`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, color:["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#8a6bb0"][i%5], flexShrink:0 }}>✦</div>
                 <div style={{ flex:1 }}>
                   <div style={{ fontSize:13, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
-                  <div style={{ fontSize:11, color:"rgba(253,240,232,0.35)", marginTop:2 }}>{p.date} · {p.days} day{p.days!==1?"s":""} · {p.cat}</div>
+                  <div style={{ display:"flex", gap:8, marginTop:3, flexWrap:"wrap" }}>
+                    <span style={{ fontSize:10, color:"#BFA5D8" }}>{p.date}</span>
+                    <span style={{ fontSize:10, color:"#2CB7A7" }}>{p.days} day{p.days!==1?"s":""}</span>
+                    <span style={{ fontSize:10, color:"#BFA5D8" }}>{p.cat}</span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Pattern insight */}
-        <div style={{ margin:"14px 0 0", background:"linear-gradient(135deg,rgba(232,184,112,0.08),rgba(191,165,216,0.08))", border:"1px solid rgba(232,184,112,0.2)", borderRadius:16, padding:"18px 20px" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"#E8B870", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>Pattern recognised · {year}</div>
-          <div style={{ fontSize: isMobile?13:14, color:"rgba(253,240,232,0.75)", lineHeight:1.65, fontFamily:"'Jost',sans-serif", fontStyle:"italic" }}>"{d.insight}"</div>
+        {/* Pattern insight — gold glow card */}
+        <div style={{ margin:"14px 0 0", borderRadius:18, padding:"22px 22px",
+          background:"linear-gradient(135deg,rgba(232,184,112,0.07),rgba(191,165,216,0.07))",
+          border:"1px solid rgba(232,184,112,0.25)",
+          boxShadow:"0 0 40px rgba(232,184,112,0.07)" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
+            <div style={{ width:8, height:8, borderRadius:"50%", background:"#E8B870", boxShadow:"0 0 8px #E8B870", animation:"ap-pulse 2s ease-in-out infinite" }}/>
+            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
+          </div>
+          <div key={animKey} style={{ fontSize: isMobile?14:15, color:"#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", animation:"ap-fade-up 0.6s ease both" }}>
+            "{d.insight}"
+          </div>
         </div>
 
-        {/* Cumulative counter */}
-        <div style={{ textAlign:"center", padding:"28px 0 48px" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(253,240,232,0.3)", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>
-            {year===2030 ? "Total across all 5 years" : `Cumulative through ${year}`}
+        {/* Cumulative counter — big gradient number */}
+        <div style={{ textAlign:"center", padding:"36px 0 56px", position:"relative" }}>
+          <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>
+            {year===2030 ? "Across all 5 years" : `Running total through ${year}`}
           </div>
-          <div style={{ fontSize: isMobile?36:52, fontWeight:300, letterSpacing:"-0.02em", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>
-            {cumManifested} manifestations
+          <div style={{
+            fontSize: isMobile?"clamp(52px,18vw,80px)":"clamp(72px,8vw,110px)",
+            fontWeight:200, letterSpacing:"-0.04em", lineHeight:1,
+            background: LG, backgroundSize:"300% 300%",
+            animation:"ap-drift 6s ease-in-out infinite",
+            WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
+          }}>{animCum}</div>
+          <div style={{ fontSize: isMobile?13:15, color:"#BFA5D8", marginTop:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
+            {year===2030 ? "manifestations. Your proof. Your identity. Forever." : `manifestations logged and counting →`}
           </div>
-          <div style={{ fontSize:14, color:"rgba(253,240,232,0.35)", marginTop:8, fontFamily:"'Jost',sans-serif" }}>
-            {year===2030 ? "This record is yours. Forever." : `Slide to ${year+1} →`}
-          </div>
+          {year===2030 && (
+            <div style={{ marginTop:28, display:"inline-block", padding:"14px 36px", borderRadius:40,
+              background:LG, color:"#000", fontSize:15, fontWeight:500, fontFamily:"'Jost',sans-serif",
+              letterSpacing:"0.05em", cursor:"pointer", animation:"ap-glow 3s ease-in-out infinite" }}>
+              Start your record today →
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -1796,46 +1886,24 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* APP PREVIEW, dashboard mockup with dark/light toggle */}
       <AppPreviewSection isMobile={isMobile} />
 
-      {/* FORMULA */}
-      <div style={{ background:"#000", padding: isMobile?"0 20px 56px":"12px 48px 64px", textAlign:"center" }}>
-        {/* Lucky Girl gradient border via padding trick */}
-        <div style={{ display:"inline-block", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:16, padding:"2px" }}>
-          <div style={{ background:"#000", borderRadius:14, padding: isMobile?"20px 20px":"28px 48px" }}>
-        <div style={{ fontSize: isMobile?"clamp(12px,3.2vw,16px)":"clamp(16px,1.6vw,22px)", fontWeight:400, fontFamily:"'Jost',sans-serif", letterSpacing:"0em", lineHeight:1.5, display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"center", gap: isMobile?"6px 6px":"0 10px" }}>
-          {[
-            { t:"Hypnosis",        c:"#F5E0A0" },
-            { t:"+",               c:"#000", op:true },
-            { t:"Subliminals",     c:"#E8B870" },
-            { t:"+",               c:"#000", op:true },
-            { t:"Melodic House",   c:"#BFA5D8" },
-            { t:"+",               c:"#000", op:true },
-            { t:"EMDR",            c:"#2CB7A7" },
-            { t:"+",               c:"#000", op:true },
-            { t:"Binaural Beats",  c:"#2CB7A7" },
-            { t:"=",               c:"#000", op:true },
-            { t:"Theta on demand.", c:"#fff", result:true },
-          ].map((item,i)=>(
-            item.op
-              ? <span key={i} style={{ color:item.c, fontWeight:300 }}>{item.t}</span>
-              : item.result
-              ? <span key={i} style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:400 }}>{item.t}</span>
-              : <span key={i} style={{ color:item.c }}>{item.t}</span>
-          ))}
-        </div>
-          </div>
-        </div>
-      </div>
 
-            {/* CTAs */}
-      <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"64px 48px 72px", display:"flex", flexDirection:"column", alignItems:"center", gap:16 }}>
-        <button onClick={onDemo} style={{ display:"inline-block", padding: isMobile?"18px 40px":"22px 56px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize: isMobile?"clamp(16px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer" }}>
-          👁 Preview Audio Library
-        </button>
-        <div style={{ fontSize:11, color:"#2CB7A7", letterSpacing:"0.1em", textTransform:"uppercase", marginTop:-6 }}>Growing weekly</div>
-        <button onClick={()=>onLegal?.("science")} style={{ display:"inline-block", padding: isMobile?"14px 36px":"18px 48px", background:"linear-gradient(135deg,rgba(245,224,160,0.55) 0%,rgba(232,184,112,0.55) 20%,rgba(191,165,216,0.55) 52%,rgba(44,183,167,0.55) 78%,rgba(22,122,107,0.55) 100%)", border:"none", borderRadius:40, color:"rgba(253,240,232,0.9)", fontSize: isMobile?"clamp(17px,5vw,20px)":"clamp(18px,2vw,22px)", fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>Read the science behind this →</button>
-        <div style={{ display:"flex", gap:12, flexWrap:"wrap", justifyContent:"center" }}>
-          <button onClick={()=>setWaitlistOpen(true)} style={{ padding:"14px 40px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:30, color:"#000", fontSize:14, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.08em", textTransform:"uppercase", cursor:"pointer" }}>
-            Join Waitlist
+      {/* CTAs — three across, full-width grid */}
+      <div style={{ background:"#000", padding: isMobile?"40px 16px 56px":"52px 40px 64px" }}>
+        <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: isMobile?12:16, maxWidth:900, margin:"0 auto" }}>
+          {/* Preview Audio Library */}
+          <button onClick={onDemo} style={{ padding: isMobile?"18px 12px":"22px 20px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:16, color:"#000", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.02em", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+            <span>👁 Preview Audio Library</span>
+            <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#1a1008" }}>Growing weekly</span>
+          </button>
+          {/* Read the science */}
+          <button onClick={()=>onLegal?.("science")} style={{ padding: isMobile?"18px 12px":"22px 20px", background:"transparent", border:"2px solid #BFA5D8", borderRadius:16, color:"#BFA5D8", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+            <span>Read the science →</span>
+            <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#BFA5D8" }}>Behind this method</span>
+          </button>
+          {/* Join Waitlist */}
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: isMobile?"18px 12px":"22px 20px", background:"transparent", border:"2px solid #E8B870", borderRadius:16, color:"#E8B870", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+            <span>Join Waitlist ✦</span>
+            <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#E8B870" }}>Early access</span>
           </button>
         </div>
       </div>
