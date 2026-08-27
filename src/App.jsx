@@ -918,16 +918,16 @@ function AppPreviewSection({ isMobile }) {
         {/* Stats strip */}
         <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(5,1fr)", gap:10, padding:"28px 0 22px" }}>
           {[
-            [animManifested, "Manifested", "#2CB7A7", 0],
-            [animSet,        "Intentions set", "#E8B870", 1],
-            [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", "#BFA5D8", 2],
-            [`${d.avgDays}d`, "Avg to manifest", "#167A6B", 3],
-            [animListens,    "Total listens", "#F5E0A0", 4],
-          ].map(([v,l,col,delay],i)=>(
+            [animManifested, "Manifested",        0],
+            [animSet,        "Intentions set",    1],
+            [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", 2],
+            [`${d.avgDays}d`, "Avg to manifest",  3],
+            [animListens,    "Total listens",      4],
+          ].map(([v,l,delay],i)=>(
             (!isMobile || i<3) &&
-            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:`${col}0d`, borderRadius:14, padding:"18px 10px", textAlign:"center", border:`1px solid ${col}44` }}>
-              <div style={{ fontSize: isMobile?24:30, fontWeight:300, color:col, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif" }}>{v}</div>
-              <div style={{ fontSize:9, color:"#2CB7A7", marginTop:7, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
+            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"rgba(232,184,112,0.06)", borderRadius:14, padding:"18px 10px", textAlign:"center", border:"1px solid rgba(232,184,112,0.2)" }}>
+              <div style={{ fontSize: isMobile?24:30, fontWeight:300, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"block", animationDelay:`${i*0.4}s` }}>{v}</div>
+              <div style={{ fontSize:9, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginTop:7, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
             </div>
           ))}
         </div>
@@ -968,7 +968,7 @@ function AppPreviewSection({ isMobile }) {
                 style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:13, paddingBottom:13,
                   borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none",
                   animationDelay:`${i*100}ms` }}>
-                <div style={{ width:24, height:24, borderRadius:"50%", background:`${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#F5E0A0"][i%5]}22`, border:`1px solid ${["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#F5E0A0"][i%5]}66`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, color:["#2CB7A7","#E8B870","#BFA5D8","#167A6B","#F5E0A0"][i%5], flexShrink:0 }}>✦</div>
+                <div style={{ width:24, height:24, borderRadius:"50%", background:"rgba(232,184,112,0.1)", border:"1px solid rgba(232,184,112,0.4)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, flexShrink:0, backgroundImage:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", animationDelay:`${i*0.3}s`, WebkitBackgroundClip:"initial", backgroundClip:"initial" }}><span style={{ background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>✦</span></div>
                 <div style={{ flex:1 }}>
                   <div style={{ fontSize:13, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
                   <div style={{ display:"flex", gap:8, marginTop:3, flexWrap:"wrap" }}>
