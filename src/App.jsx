@@ -2076,25 +2076,189 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               The result is not motivation. It is identity. You stop chasing what you want. You become someone for whom it arrives. The lucky girl. The rich girl. The woman things just go right for. Not through effort. Through repetition, delivered at the frequency your subconscious cannot ignore.
             </p>
 
-                        {/* AUDIO FORMATS */}
+                        {/* AUDIO FORMATS — animated SVG diagrams */}
             <div style={{ background:"#000", maxWidth:760, margin:"0 auto 40px", padding:"0 0 8px" }}>
+              <style>{`
+                @keyframes af-drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+                @keyframes af-pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+              `}</style>
               <div style={{ fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Audio formats</div>
               <div style={{ fontSize: isMobile?"clamp(26px,6vw,34px)":"clamp(28px,3vw,38px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, textAlign:"center", marginBottom: isMobile?28:40, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?14:18 }}>
-                {[
-                  { icon:"♩", label:"Melodic House",     grad:"linear-gradient(135deg,#F5E0A0,#E8B870)", glow:"rgba(232,184,112,0.25)", sub:"Reshma's voice layered beneath original melodic house music. You listen like a song, it rewires you beneath the surface." },
-                  { icon:"◎", label:"Voice Only",         grad:"linear-gradient(135deg,#E8B870,#BFA5D8)", glow:"rgba(191,165,216,0.25)", sub:"Pure vocal hypnosis, no music. Just Reshma's voice, speaking directly to your subconscious. Raw and immersive." },
-                  { icon:"◐", label:"Sleep & Rest",       grad:"linear-gradient(135deg,#BFA5D8,#9A7DC8)", glow:"rgba(154,125,200,0.25)", sub:"Calm audio for winding down or sleeping. Subliminals layered throughout. Designed to run all night." },
-                  { icon:"∿", label:"Subliminal",         grad:"linear-gradient(135deg,#9A7DC8,#2CB7A7)", glow:"rgba(44,183,167,0.25)",  sub:"No audible voice. Affirmations encoded beneath the sound. Works while you sleep, rest, or move through your day." },
-                  { icon:"⟳", label:"EMDR Hypnosis",      grad:"linear-gradient(135deg,#2CB7A7,#1A9A8A)", glow:"rgba(44,183,167,0.3)",  sub:"Bilateral audio stimulation dissolves old identity blocks at their root. Deep identity reset in a single session." },
-                  { icon:"✦", label:"Binaural / Reiki",   grad:"linear-gradient(135deg,#167A6B,#2CB7A7)", glow:"rgba(22,122,107,0.3)",   sub:"Two tones syncing both hemispheres into theta, layered with Solfeggio frequencies and Reiki-encoded energy." },
-                ].map((f,i)=>(
-                  <div key={i} style={{ padding:"24px 22px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(255,255,255,0.07)", boxShadow:"0 0 40px " + f.glow, transition:"box-shadow 0.3s" }}>
-                    <div style={{ fontSize:20, marginBottom:14, background:f.grad, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>{f.icon}</div>
-                    <div style={{ fontSize: isMobile?16:18, fontWeight:500, background:f.grad, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.01em" }}>{f.label}</div>
-                    <div style={{ fontSize: isMobile?14:15, color:"rgba(253,240,232,0.75)", lineHeight:1.75, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>{f.sub}</div>
-                  </div>
-                ))}
+
+                {/* 1 — MELODIC HOUSE: animated equalizer */}
+                <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(232,184,112,0.2)", boxShadow:"0 0 40px rgba(232,184,112,0.1)" }}>
+                  <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14,overflow:"visible"}}>
+                    <defs>
+                      <linearGradient id="mh1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset="1" stopColor="#E8B870"/></linearGradient>
+                      <linearGradient id="mh2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#BFA5D8"/><stop offset="1" stopColor="#E8B870"/></linearGradient>
+                      <linearGradient id="mh3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#2CB7A7"/><stop offset="1" stopColor="#BFA5D8"/></linearGradient>
+                      <filter id="mh-glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    {/* 18 equalizer bars */}
+                    {[
+                      [4,38],[20,58],[36,28],[52,72],[68,44],[84,62],[100,32],[116,80],[132,50],
+                      [148,42],[164,68],[180,30],[196,74],[212,46],[228,64],[244,36],[260,70],[276,28]
+                    ].map(([x,h],i)=>(
+                      <rect key={i} x={x} width="11" fill={`url(#mh${(i%3)+1})`} rx="3" y={80-h} height={h} filter="url(#mh-glow)" opacity="0.9">
+                        <animate attributeName="height" values={`${h};${Math.min(Math.round(h*1.35),80)};${Math.round(h*0.45)};${h}`} dur={`${0.5+i*0.07}s`} repeatCount="indefinite"/>
+                        <animate attributeName="y" values={`${80-h};${80-Math.min(Math.round(h*1.35),80)};${80-Math.round(h*0.45)};${80-h}`} dur={`${0.5+i*0.07}s`} repeatCount="indefinite"/>
+                      </rect>
+                    ))}
+                  </svg>
+                  <div style={{ fontSize:17, fontWeight:600, color:"#E8B870", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Melodic House</div>
+                  <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Music + hypnosis layered. You vibe, your subconscious rewires.</div>
+                </div>
+
+                {/* 2 — VOICE ONLY: single sine wave pulse */}
+                <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(191,165,216,0.2)", boxShadow:"0 0 40px rgba(191,165,216,0.1)" }}>
+                  <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
+                    <defs>
+                      <filter id="vo-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <path stroke="#BFA5D8" strokeWidth="2.5" fill="none" filter="url(#vo-glow)" strokeLinecap="round">
+                      <animate attributeName="d"
+                        values="M0,40 C18,10 35,70 52,40 C70,10 87,70 104,40 C122,10 139,70 156,40 C174,10 191,70 208,40 C226,10 243,70 260,40 C268,25 274,32 280,40;M0,40 C18,70 35,10 52,40 C70,70 87,10 104,40 C122,70 139,10 156,40 C174,70 191,10 208,40 C226,70 243,10 260,40 C268,55 274,48 280,40;M0,40 C18,10 35,70 52,40 C70,10 87,70 104,40 C122,10 139,70 156,40 C174,10 191,70 208,40 C226,10 243,70 260,40 C268,25 274,32 280,40"
+                        dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    {/* Mouth pulse at centre */}
+                    <ellipse cx="140" cy="40" rx="22" ry="12" fill="none" stroke="#F5E0A0" strokeWidth="1" opacity="0.4">
+                      <animate attributeName="rx" values="22;32;22" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+                    </ellipse>
+                    <circle cx="140" cy="40" r="5" fill="#F5E0A0" filter="url(#vo-glow)">
+                      <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="140" y="72" textAnchor="middle" fontSize="7" fill="#BFA5D8" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="2">DIRECT · RAW · IMMERSIVE</text>
+                  </svg>
+                  <div style={{ fontSize:17, fontWeight:600, color:"#BFA5D8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Voice Only</div>
+                  <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Just Reshma's voice. Nothing between you and the rewire.</div>
+                </div>
+
+                {/* 3 — SLEEP & REST: beta → delta brainwave transition */}
+                <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(154,125,200,0.2)", boxShadow:"0 0 30px rgba(154,125,200,0.08)" }}>
+                  <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
+                    <defs>
+                      <filter id="sr-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <text x="14" y="13" fontSize="6.5" fill="#BFA5D8" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="1">BETA</text>
+                    <text x="103" y="13" fontSize="6.5" fill="#9A7DC8" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="1">ALPHA</text>
+                    <text x="198" y="13" fontSize="6.5" fill="#2CB7A7" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="1">DELTA</text>
+                    {/* Fast beta */}
+                    <path d="M8,40 C13,26 18,54 23,40 C28,26 33,54 38,40 C43,26 48,54 53,40 C58,26 63,54 68,40 C73,26 78,54 83,40" stroke="#BFA5D8" strokeWidth="1.5" fill="none">
+                      <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2.5s" repeatCount="indefinite"/>
+                    </path>
+                    {/* Medium alpha */}
+                    <path d="M88,40 C101,20 115,60 128,40 C141,20 155,60 168,40 C175,30 180,50 186,40" stroke="#9A7DC8" strokeWidth="2" fill="none">
+                      <animate attributeName="opacity" values="0.8;0.45;0.8" dur="3.5s" repeatCount="indefinite"/>
+                    </path>
+                    {/* Slow delta */}
+                    <path d="M192,40 C210,8 228,72 246,40 C258,22 268,50 280,40" stroke="#2CB7A7" strokeWidth="3" fill="none" filter="url(#sr-glow)">
+                      <animate attributeName="opacity" values="1;0.6;1" dur="5s" repeatCount="indefinite"/>
+                    </path>
+                    {/* Stars */}
+                    <circle cx="250" cy="20" r="1.5" fill="#F5E0A0"><animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/></circle>
+                    <circle cx="264" cy="14" r="1" fill="#BFA5D8"><animate attributeName="opacity" values="0;1;0" dur="2.8s" repeatCount="indefinite"/></circle>
+                    <circle cx="272" cy="22" r="1.2" fill="#2CB7A7"><animate attributeName="opacity" values="1;0;1" dur="3.5s" repeatCount="indefinite"/></circle>
+                  </svg>
+                  <div style={{ fontSize:17, fontWeight:600, color:"#9A7DC8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Sleep & Rest</div>
+                  <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Drops your brain from beta chaos to delta sleep. Rewires all night.</div>
+                </div>
+
+                {/* 4 — SUBLIMINAL: hidden affirmations surfacing */}
+                <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(44,183,167,0.2)", boxShadow:"0 0 30px rgba(44,183,167,0.08)" }}>
+                  <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
+                    <defs>
+                      <filter id="sub-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    {/* Noise bars — surface sound */}
+                    {[4,12,20,28,36,44,52,60,68,76,84,92,100,108,116,124,132,140,148,156,164,172,180,188,196,204,212,220,228,236,244,252,260,268,276].map((x,i)=>{
+                      const heights=[6,14,9,19,7,16,11,5,17,10,13,4,18,8,12,7,15,6,19,10,5,14,9,17,6,12,8,16,11,4,18,7,13,9,15];
+                      const h=heights[i]||8;
+                      return <rect key={i} x={x} y={80-h} width="5" height={h} fill="#2CB7A7" opacity="0.2" rx="1"/>;
+                    })}
+                    {/* Hidden affirmations fading through */}
+                    <text x="140" y="47" textAnchor="middle" fontSize="14" fill="#F5E0A0" fontFamily="Jost,sans-serif" fontWeight="700" letterSpacing="4" filter="url(sub-glow)">
+                      I AM LUCKY
+                      <animate attributeName="opacity" values="0;0;0;0.95;0.95;0;0;0;0;0" dur="4s" repeatCount="indefinite"/>
+                    </text>
+                    <text x="140" y="34" textAnchor="middle" fontSize="10" fill="#BFA5D8" fontFamily="Jost,sans-serif" letterSpacing="3">
+                      I AM WEALTHY
+                      <animate attributeName="opacity" values="0;0.8;0;0;0;0;0;0.7;0;0" dur="5s" repeatCount="indefinite"/>
+                    </text>
+                    <text x="140" y="62" textAnchor="middle" fontSize="9" fill="#2CB7A7" fontFamily="Jost,sans-serif" letterSpacing="3">
+                      IT IS DONE
+                      <animate attributeName="opacity" values="0;0;0;0;0;0;0.85;0;0;0" dur="6s" repeatCount="indefinite"/>
+                    </text>
+                    <text x="140" y="20" textAnchor="middle" fontSize="8" fill="#E8B870" fontFamily="Jost,sans-serif" letterSpacing="2" opacity="0.4">beneath the sound ↓</text>
+                  </svg>
+                  <div style={{ fontSize:17, fontWeight:600, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Subliminal</div>
+                  <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>No audible voice. Affirmations encoded beneath the sound.</div>
+                </div>
+
+                {/* 5 — EMDR: bilateral dot left↔right */}
+                <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(44,183,167,0.25)", boxShadow:"0 0 40px rgba(44,183,167,0.12)" }}>
+                  <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
+                    <defs>
+                      <filter id="emdr-glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="emdr-trail"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    {/* Left hemisphere */}
+                    <ellipse cx="70" cy="42" rx="56" ry="30" fill="none" stroke="#2CB7A7" strokeWidth="1" opacity="0.25"/>
+                    <text x="70" y="46" textAnchor="middle" fontSize="7" fill="#2CB7A7" opacity="0.45" fontFamily="Jost,sans-serif">LEFT</text>
+                    {/* Right hemisphere */}
+                    <ellipse cx="210" cy="42" rx="56" ry="30" fill="none" stroke="#BFA5D8" strokeWidth="1" opacity="0.25"/>
+                    <text x="210" y="46" textAnchor="middle" fontSize="7" fill="#BFA5D8" opacity="0.45" fontFamily="Jost,sans-serif">RIGHT</text>
+                    {/* Bridge */}
+                    <line x1="126" y1="42" x2="154" y2="42" stroke="rgba(245,224,160,0.25)" strokeWidth="1" strokeDasharray="3 3"/>
+                    {/* Glow trail */}
+                    <ellipse rx="28" ry="8" fill="#E8B870" filter="url(#emdr-trail)" opacity="0.18">
+                      <animate attributeName="cx" values="18;262;18" dur="1.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/>
+                      <animate attributeName="cy" values="42;42;42" dur="1.3s" repeatCount="indefinite"/>
+                    </ellipse>
+                    {/* Main dot */}
+                    <circle r="10" fill="#E8B870" filter="url(#emdr-glow)">
+                      <animate attributeName="cx" values="18;262;18" dur="1.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/>
+                      <animate attributeName="cy" values="42;42;42" dur="1.3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle r="5" fill="#fff">
+                      <animate attributeName="cx" values="18;262;18" dur="1.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/>
+                      <animate attributeName="cy" values="42;42;42" dur="1.3s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="140" y="74" textAnchor="middle" fontSize="6.5" fill="#E8B870" opacity="0.5" fontFamily="Jost,sans-serif" letterSpacing="1">BILATERAL STIMULATION</text>
+                  </svg>
+                  <div style={{ fontSize:17, fontWeight:600, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>EMDR Hypnosis</div>
+                  <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Left-right audio syncs both hemispheres. Old blocks dissolve at the root.</div>
+                </div>
+
+                {/* 6 — BINAURAL: two channels → theta beat */}
+                <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(22,122,107,0.25)", boxShadow:"0 0 40px rgba(22,122,107,0.1)" }}>
+                  <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
+                    <defs>
+                      <filter id="bin-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <text x="6" y="18" fontSize="6.5" fill="#2CB7A7" opacity="0.6" fontFamily="Jost,sans-serif">L  200Hz</text>
+                    <path stroke="#2CB7A7" strokeWidth="1.8" fill="none" opacity="0.8">
+                      <animate attributeName="d"
+                        values="M0,22 C12,8 24,36 36,22 C48,8 60,36 72,22 C84,8 96,36 108,22 C120,8 132,36 144,22 C156,8 168,36 180,22 C192,8 204,36 216,22 C228,8 240,36 252,22 C264,8 276,36 280,22;M0,22 C12,36 24,8 36,22 C48,36 60,8 72,22 C84,36 96,8 108,22 C120,36 132,8 144,22 C156,36 168,8 180,22 C192,36 204,8 216,22 C228,36 240,8 252,22 C264,36 276,8 280,22;M0,22 C12,8 24,36 36,22 C48,8 60,36 72,22 C84,8 96,36 108,22 C120,8 132,36 144,22 C156,8 168,36 180,22 C192,8 204,36 216,22 C228,8 240,36 252,22 C264,8 276,36 280,22"
+                        dur="1.5s" repeatCount="indefinite"/>
+                    </path>
+                    <text x="6" y="72" fontSize="6.5" fill="#BFA5D8" opacity="0.6" fontFamily="Jost,sans-serif">R  207Hz</text>
+                    <path stroke="#BFA5D8" strokeWidth="1.8" fill="none" opacity="0.8">
+                      <animate attributeName="d"
+                        values="M0,60 C15,44 31,76 47,60 C63,44 79,76 95,60 C111,44 127,76 143,60 C159,44 175,76 191,60 C207,44 223,76 239,60 C255,44 271,76 280,60;M0,60 C15,76 31,44 47,60 C63,76 79,44 95,60 C111,76 127,44 143,60 C159,76 175,44 191,60 C207,76 223,44 239,60 C255,76 271,44 280,60;M0,60 C15,44 31,76 47,60 C63,44 79,76 95,60 C111,44 127,76 143,60 C159,44 175,76 191,60 C207,44 223,76 239,60 C255,44 271,76 280,60"
+                        dur="1.8s" repeatCount="indefinite"/>
+                    </path>
+                    <line x1="0" y1="41" x2="280" y2="41" stroke="rgba(245,224,160,0.12)" strokeWidth="1" strokeDasharray="4 3"/>
+                    <text x="140" y="45" textAnchor="middle" fontSize="9" fill="#F5E0A0" fontFamily="Jost,sans-serif" letterSpacing="1" fontWeight="600" filter="url(#bin-glow)">
+                      = 7Hz THETA
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+                    </text>
+                  </svg>
+                  <div style={{ fontSize:17, fontWeight:600, color:"#167A6B", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Binaural / Reiki</div>
+                  <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Two tones create a 7Hz theta beat. Your brain syncs. Reprogramming begins.</div>
+                </div>
+
               </div>
             </div>
 
