@@ -966,15 +966,15 @@ function AppPreviewSection({ isMobile }) {
                 style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:15, paddingBottom:15,
                   borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none",
                   animationDelay:`${i*100}ms` }}>
-                <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(232,184,112,0.12)", border:"1.5px solid rgba(232,184,112,0.5)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                  <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>✦</span>
+                <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(0,0,0,0.06)", border:"1.5px solid rgba(0,0,0,0.15)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                  <span style={{ fontSize:12, color:"#000" }}>✦</span>
                 </div>
                 <div style={{ flex:1 }}>
                   <div style={{ fontSize:15, color:"#000", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
                   <div style={{ display:"flex", gap:10, marginTop:5, flexWrap:"wrap" }}>
-                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.date}</span>
-                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
-                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.cat}</span>
+                    <span style={{ fontSize:12, color:"rgba(0,0,0,0.5)", display:"inline-block" }}>{p.date}</span>
+                    <span style={{ fontSize:12, color:"rgba(0,0,0,0.5)", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
+                    <span style={{ fontSize:12, color:"rgba(0,0,0,0.5)", display:"inline-block" }}>{p.cat}</span>
                   </div>
                 </div>
               </div>
