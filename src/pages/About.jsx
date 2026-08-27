@@ -43,8 +43,13 @@ export default function About({ onBack }) {
         .about-orb { position:absolute; border-radius:50%; pointer-events:none; animation:about-float 6s ease-in-out infinite; }
       `}</style>
 
+      {/* TOP BANNER */}
+      <div style={{ position:"fixed", top:0, left:0, right:0, zIndex:200, height:44, background:"#000", borderBottom:"1px solid rgba(232,184,112,0.18)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+        <span style={{ fontFamily:"'Jost',sans-serif", fontSize:10, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize:"300% 100%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", filter:"drop-shadow(0 0 8px rgba(232,184,112,0.5))", whiteSpace:"nowrap" }}>From Hot Mess to Goddess (of course, obviously.)</span>
+      </div>
+
       {/* NAV */}
-      <div style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, background:"rgba(0,0,0,0.9)", backdropFilter:"blur(14px)", borderBottom:"1px solid rgba(232,184,112,0.14)", display:"flex", alignItems:"center", justifyContent:"space-between", padding: isMobile?"14px 20px":"16px 48px" }}>
+      <div style={{ position:"fixed", top:44, left:0, right:0, zIndex:100, background:"rgba(0,0,0,0.9)", backdropFilter:"blur(14px)", borderBottom:"1px solid rgba(232,184,112,0.14)", display:"flex", alignItems:"center", justifyContent:"space-between", padding: isMobile?"14px 20px":"16px 48px" }}>
         <button onClick={()=>navigate("/")} style={{ background:"none", border:"none", cursor:"pointer", color:CREAM, fontSize:14, fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em", opacity:0.6, padding:0 }}>← Back</button>
         <div style={{ fontSize:12, letterSpacing:"0.18em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontWeight:600 }}>Self Hypnosis Goddess</div>
         <HamburgerMenu />
@@ -60,10 +65,10 @@ export default function About({ onBack }) {
         <div style={{ position:"relative", zIndex:1, padding: isMobile?"0 24px":"0 60px" }}>
           <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:20, fontWeight:600 }}>About Reshma</div>
 
-          <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,96px)", fontWeight:400, fontStyle:"italic", lineHeight:1.05, letterSpacing:"-0.02em", margin:"0 auto 20px", maxWidth:860, color:CREAM }}>
+          <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,96px)", fontWeight:400, fontStyle:"normal", lineHeight:1.05, letterSpacing:"-0.02em", margin:"0 auto 20px", maxWidth:860, color:CREAM }}>
             From Hot Mess
           </h1>
-          <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,96px)", fontWeight:400, fontStyle:"italic", lineHeight:1.05, letterSpacing:"-0.02em", margin:"0 auto 40px", maxWidth:860, background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>
+          <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,96px)", fontWeight:400, fontStyle:"normal", lineHeight:1.05, letterSpacing:"-0.02em", margin:"0 auto 40px", maxWidth:860, background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>
             to Goddess.
           </h1>
 
@@ -125,7 +130,7 @@ export default function About({ onBack }) {
             <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.72)", lineHeight:1.85, marginBottom:18 }}>
               When I found the neuroscience behind theta states — the place where the subconscious opens — it confirmed everything I'd already felt. So I built the music. I layered in the hypnosis, the frequencies, the healing. And I watched my own life transform in ways I'd never experienced from trying alone.
             </p>
-            <p style={{ fontSize: isMobile?16:18, color:CREAM, lineHeight:1.85, fontStyle:"italic" }}>
+            <p style={{ fontSize: isMobile?16:18, color:CREAM, lineHeight:1.85, fontStyle:"normal" }}>
               That's what I want for you. Not just the thing you want — but the version of yourself who receives it effortlessly.
             </p>
           </div>
@@ -146,7 +151,7 @@ export default function About({ onBack }) {
           <p style={{ fontSize: isMobile?17:21, color:"rgba(253,240,232,0.75)", lineHeight:1.85, marginBottom:28 }}>
             SHG isn't a fix. It's a fundamental shift in the field you're operating from. When your subconscious is aligned — the right people, the right opportunities, the synchronicities — they don't feel like luck. They feel like finally coming home.
           </p>
-          <p style={{ fontSize: isMobile?18:23, color:CREAM, lineHeight:1.75, fontStyle:"italic", maxWidth:580, margin:"0 auto" }}>
+          <p style={{ fontSize: isMobile?18:23, color:CREAM, lineHeight:1.75, fontStyle:"normal", maxWidth:580, margin:"0 auto" }}>
             "This is the transformation of soul. Not just circumstances — you."
           </p>
         </div>
