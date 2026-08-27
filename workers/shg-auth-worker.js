@@ -118,6 +118,7 @@ const GO_LINKS = {
   "gift-yt-comment":   "/gift?utm_source=youtube&utm_medium=comment&utm_campaign=free_gift",
   "gift-yt-community": "/gift?utm_source=youtube&utm_medium=community_post&utm_campaign=free_gift",
   "gift-ig-bio":       "/gift?utm_source=instagram&utm_medium=bio&utm_campaign=free_gift",
+  "gift-ig-story":     "/gift?utm_source=instagram&utm_medium=story&utm_campaign=free_gift",
   "gift-ig-reply":     "/gift?utm_source=instagram&utm_medium=smart_reply&utm_campaign=free_gift",
   "gift-email":        "/gift?utm_source=email&utm_medium=email&utm_campaign=free_gift",
 
@@ -127,6 +128,7 @@ const GO_LINKS = {
   "wl-yt-comment":     "/?waitlist=1&utm_source=youtube&utm_medium=comment&utm_campaign=waitlist",
   "wl-yt-community":   "/?waitlist=1&utm_source=youtube&utm_medium=community_post&utm_campaign=waitlist",
   "wl-ig-bio":         "/?waitlist=1&utm_source=instagram&utm_medium=bio&utm_campaign=waitlist",
+  "wl-ig-story":       "/?waitlist=1&utm_source=instagram&utm_medium=story&utm_campaign=waitlist",
   "wl-ig-reply":       "/?waitlist=1&utm_source=instagram&utm_medium=smart_reply&utm_campaign=waitlist",
   "wl-email":          "/?waitlist=1&utm_source=email&utm_medium=email&utm_campaign=waitlist",
 
