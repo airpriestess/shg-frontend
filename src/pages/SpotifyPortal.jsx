@@ -1409,8 +1409,13 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             {quickSaved ? "✓ Saved" : "Add"}
           </button>
         </div>
+        {!quickListening && !voiceError && (
+          <div style={{ marginTop:8, fontSize:11, color:C.mu, lineHeight:1.5 }}>
+            Tap 🎙 to speak your desire in full — describe every detail out loud and the app captures it all. Tap ⏹ when done, then hit Add.
+          </div>
+        )}
         {voiceError && <div style={{ marginTop:8, fontSize:12, color:"#E87070" }}>{voiceError}</div>}
-        {quickListening && <div style={{ marginTop:8, fontSize:12, color:"#E8B870" }}>🎙 Listening… tap ⏹ to stop</div>}
+        {quickListening && <div style={{ marginTop:8, fontSize:12, color:"#E8B870" }}>🎙 Listening… keep talking, every word is captured. Tap ⏹ when done.</div>}
         {threads.filter(t=>!t.done).length > 0 && (
           <div style={{ marginTop:10, fontSize:12, color:C.mu }}>
             {threads.filter(t=>!t.done).length} active desire{threads.filter(t=>!t.done).length!==1?"s":""} · {threads.filter(t=>t.done).length} manifested
