@@ -178,12 +178,11 @@ function LibraryBanner({ isMobile, onLegal }) {
         onMouseLeave={startTimer}
         onTouchStart={stopTimer}
         onTouchEnd={startTimer}
-        style={{ width:"100%", padding: isMobile?"32px 24px":"48px 64px", background:LGb, display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?20:48, minHeight: isMobile?140:160, cursor:"pointer" }}
+        style={{ width:"100%", padding: isMobile?"32px 24px":"48px 64px", background:"#000", display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?20:48, minHeight: isMobile?140:160, cursor:"pointer" }}
       >
-        {/* Text, centered, black on Lucky Girl gradient background */}
         <div style={{ flex:1, maxWidth:720, textAlign:"center" }}>
-          <div style={{ fontSize: isMobile?11:12, fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{cat.name}</div>
-          <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(24px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{cat.affirmation}</div>
+          <div style={{ fontSize: isMobile?11:12, fontWeight:400, letterSpacing:"0.22em", textTransform:"uppercase", background:LGb, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:8 }}>{cat.name}</div>
+          <div style={{ fontSize: isMobile?"clamp(20px,5.5vw,28px)":"clamp(24px,2.5vw,36px)", fontWeight:300, background:LGb, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontFamily:"'Jost',sans-serif", lineHeight:1.2, letterSpacing:"-0.01em" }}>{cat.affirmation}</div>
         </div>
 
         {/* Progress dots */}
@@ -863,7 +862,7 @@ function AppPreviewSection({ isMobile }) {
   const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
   return (
-    <div ref={ref} style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"400% 400%", animation:"ap-drift 10s ease-in-out infinite", padding: isMobile?"56px 0 0":"72px 0 0", overflow:"hidden" }}>
+    <div ref={ref} style={{ background:"#000", padding: isMobile?"56px 0 0":"72px 0 0", overflow:"hidden" }}>
       <style>{`
         @keyframes ap-drift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
         @keyframes ap-fade-up { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
@@ -878,34 +877,41 @@ function AppPreviewSection({ isMobile }) {
 
       {/* Heading — drifting LG gradient headline */}
       <div style={{ textAlign:"center", padding: isMobile?"0 20px 40px":"0 40px 52px" }}>
-        <div style={{ fontSize:12, fontWeight:600, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(0,0,0,0.55)", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>ProofOS · Your record. For life.</div>
+        <div style={{ fontSize:12, fontWeight:400, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>ProofOS · Your record. For life.</div>
         <div style={{
           fontSize: isMobile?"clamp(30px,9vw,42px)":"clamp(38px,4vw,58px)",
           fontFamily:"'Jost',sans-serif", fontWeight:200,
           lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:16,
-          color:"#000",
+          background:LG, backgroundSize:"300% 300%",
+          animation:"ap-drift 6s ease-in-out infinite",
+          WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
         }}>
           Imagine you signed up in 2026.<br/>Now it's 2030.
         </div>
-        <div style={{ fontSize: isMobile?14:17, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:560, margin:"0 auto" }}>
+        <div style={{ fontSize: isMobile?14:17, color:"rgba(253,240,232,0.65)", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:560, margin:"0 auto" }}>
           Every desire you ever set. Every sign you ever logged. Every manifestation, dated and permanent.<br/>
-          <span style={{ color:"#000", fontWeight:600 }}>This is what your ProofOS looks like after 4 years.</span>
+          <span style={{ color:"#E8B870" }}>This is what your ProofOS looks like after 4 years.</span>
         </div>
       </div>
 
       {/* Year selector */}
-      <div style={{ display:"flex", gap:0, borderTop:"1px solid rgba(0,0,0,0.1)", borderBottom:"1px solid rgba(0,0,0,0.1)", marginBottom:0 }}>
+      <div style={{ display:"flex", gap:0, borderTop:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", marginBottom:0 }}>
         {[2026,2027,2028,2029,2030].map(y=>(
           <button key={y} onClick={()=>changeYear(y)} style={{
             flex:1, padding: isMobile?"16px 0":"20px 0", border:"none", cursor:"pointer",
-            fontFamily:"'Jost',sans-serif", fontSize: isMobile?14:16, fontWeight:year===y?700:400,
-            background: year===y ? "rgba(255,255,255,0.45)" : "transparent",
-            color: "#000",
-            borderBottom: year===y ? "2px solid #000" : "2px solid transparent",
-            transition:"border-color 0.2s, background 0.2s",
+            fontFamily:"'Jost',sans-serif", fontSize: isMobile?14:16, fontWeight:year===y?600:400,
+            background: year===y ? "linear-gradient(135deg,rgba(232,184,112,0.12),rgba(191,165,216,0.12))" : "transparent",
+            WebkitTextFillColor: year===y ? "transparent" : "#fdf0e8",
+            backgroundImage: year===y ? LG : "none",
+            backgroundSize: year===y ? "300% 300%" : "unset",
+            WebkitBackgroundClip: year===y ? "text" : "unset",
+            backgroundClip: year===y ? "text" : "unset",
+            animation: year===y ? "ap-drift 5s ease-in-out infinite" : "none",
+            borderBottom: year===y ? "2px solid #E8B870" : "2px solid transparent",
+            transition:"border-color 0.2s",
           }}>
             {y}
-            {year===y && <div style={{ width:4, height:4, borderRadius:"50%", background:"#000", margin:"4px auto 0", animation:"ap-pulse 1.5s ease-in-out infinite" }}/>}
+            {year===y && <div style={{ width:4, height:4, borderRadius:"50%", background:"#E8B870", margin:"4px auto 0", animation:"ap-pulse 1.5s ease-in-out infinite" }}/>}
           </button>
         ))}
       </div>
@@ -922,9 +928,9 @@ function AppPreviewSection({ isMobile }) {
             [animListens,    "Total listens",      4],
           ].map(([v,l,delay],i)=>(
             (!isMobile || i<3) &&
-            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:`ap-drift ${5+i*0.7}s ease-in-out infinite`, borderRadius:14, padding:"18px 10px", textAlign:"center", boxShadow:"0 4px 24px rgba(232,184,112,0.25)" }}>
-              <div style={{ fontSize: isMobile?30:40, fontWeight:700, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", color:"#000" }}>{v}</div>
-              <div style={{ fontSize:13, color:"rgba(0,0,0,0.6)", marginTop:8, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
+            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"rgba(232,184,112,0.06)", borderRadius:14, padding:"18px 10px", textAlign:"center", border:"1px solid rgba(232,184,112,0.2)" }}>
+              <div style={{ fontSize: isMobile?30:40, fontWeight:700, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block", animationDelay:`${i*0.4}s` }}>{v}</div>
+              <div style={{ fontSize:13, color:"rgba(253,240,232,0.6)", marginTop:8, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
             </div>
           ))}
         </div>
@@ -932,17 +938,17 @@ function AppPreviewSection({ isMobile }) {
         <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:14 }}>
 
           {/* Category bars */}
-          <div style={{ background:"rgba(255,255,255,0.5)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.8)" }}>
-            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#000", marginBottom:18, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>By life area · avg days ↓</div>
+          <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
+            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>By life area · avg days ↓</div>
             {d.cats.map((c,ci)=>{
               const pct = Math.round(c.done/c.n*100);
               const BAR_GRAD = "linear-gradient(90deg,#F5E0A0,#E8B870)";
               return (
                 <div key={`${animKey}-${c.name}`} style={{ marginBottom:16, animation:`ap-fade-up 0.4s ease ${ci*80}ms both` }}>
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:7 }}>
-                    <span style={{ fontSize:16, color:"#000", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
+                    <span style={{ fontSize:16, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
                     <div style={{ display:"flex", gap:12, alignItems:"center" }}>
-                      <span style={{ fontSize:13, color:"rgba(0,0,0,0.5)" }}>{c.done}/{c.n}</span>
+                      <span style={{ fontSize:13, color:"rgba(253,240,232,0.6)" }}>{c.done}/{c.n}</span>
                       <span style={{ fontSize:13, fontWeight:600, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", border:"1px solid rgba(232,184,112,0.4)", borderRadius:6, padding:"3px 9px", display:"inline-block" }}>{c.days}d</span>
                     </div>
                   </div>
@@ -959,22 +965,22 @@ function AppPreviewSection({ isMobile }) {
           </div>
 
           {/* Proof wall */}
-          <div style={{ background:"rgba(255,255,255,0.5)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.8)" }}>
-            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#000", marginBottom:18, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Proof wall · {year} ✦</div>
+          <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
+            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year} ✦</div>
             {d.proof.map((p,i)=>(
               <div key={`${animKey}-${i}`} className="ap-proof-row"
                 style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:15, paddingBottom:15,
                   borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none",
                   animationDelay:`${i*100}ms` }}>
-                <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(0,0,0,0.06)", border:"1.5px solid rgba(0,0,0,0.15)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                  <span style={{ fontSize:12, color:"#000" }}>✦</span>
+                <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(232,184,112,0.12)", border:"1.5px solid rgba(232,184,112,0.5)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                  <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>✦</span>
                 </div>
                 <div style={{ flex:1 }}>
-                  <div style={{ fontSize:15, color:"#000", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
+                  <div style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
                   <div style={{ display:"flex", gap:10, marginTop:5, flexWrap:"wrap" }}>
-                    <span style={{ fontSize:12, color:"rgba(0,0,0,0.5)", display:"inline-block" }}>{p.date}</span>
-                    <span style={{ fontSize:12, color:"rgba(0,0,0,0.5)", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
-                    <span style={{ fontSize:12, color:"rgba(0,0,0,0.5)", display:"inline-block" }}>{p.cat}</span>
+                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.date}</span>
+                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
+                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.cat}</span>
                   </div>
                 </div>
               </div>
@@ -982,22 +988,23 @@ function AppPreviewSection({ isMobile }) {
           </div>
         </div>
 
-        {/* Pattern insight — white card */}
+        {/* Pattern insight */}
         <div style={{ margin:"14px 0 0", borderRadius:18, padding:"22px 22px",
-          background:"rgba(255,255,255,0.5)",
-          border:"1px solid rgba(255,255,255,0.8)" }}>
+          background:"linear-gradient(135deg,rgba(232,184,112,0.07),rgba(191,165,216,0.07))",
+          border:"1px solid rgba(232,184,112,0.25)",
+          boxShadow:"0 0 40px rgba(232,184,112,0.07)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
-            <div style={{ width:8, height:8, borderRadius:"50%", background:"#000", animation:"ap-pulse 2s ease-in-out infinite" }}/>
-            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"rgba(0,0,0,0.55)", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>ProofOS pattern recognition · {year}</div>
+            <div style={{ width:8, height:8, borderRadius:"50%", background:"#E8B870", boxShadow:"0 0 8px #E8B870", animation:"ap-pulse 2s ease-in-out infinite" }}/>
+            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
           </div>
-          <div key={animKey} style={{ fontSize: isMobile?14:15, color:"#000", lineHeight:1.75, fontFamily:"'Jost',sans-serif", animation:"ap-fade-up 0.6s ease both" }}>
+          <div key={animKey} style={{ fontSize: isMobile?14:15, color:"#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", animation:"ap-fade-up 0.6s ease both" }}>
             "{d.insight}"
           </div>
         </div>
 
         {/* Cumulative counter — big gradient number */}
         <div style={{ textAlign:"center", padding:"36px 0 56px", position:"relative" }}>
-          <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", color:"rgba(0,0,0,0.55)", marginBottom:12, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>
+          <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>
             {year===2030 ? "Across all 5 years" : `Running total through ${year}`}
           </div>
           <div style={{
@@ -1007,7 +1014,7 @@ function AppPreviewSection({ isMobile }) {
             animation:"ap-drift 6s ease-in-out infinite",
             WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
           }}>{animCum}</div>
-          <div style={{ fontSize: isMobile?13:15, color:"rgba(0,0,0,0.6)", marginTop:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
+          <div style={{ fontSize: isMobile?13:15, color:"#BFA5D8", marginTop:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
             {year===2030 ? "manifestations. Your proof. Your identity. Forever." : `manifestations logged and counting →`}
           </div>
           {year===2030 && (
@@ -1902,7 +1909,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           </button>
           {/* Join Waitlist */}
           <button onClick={()=>setWaitlistOpen(true)} style={{ padding: isMobile?"18px 12px":"22px 20px", background:"transparent", border:"2px solid #E8B870", borderRadius:16, color:"#E8B870", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
-            <span>Join Waitlist ✦</span>
+            <span>Join Waitlist</span>
             <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#E8B870" }}>Early access</span>
           </button>
         </div>
@@ -2001,7 +2008,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <circle cx={200} cy={285} r={16} fill="none" stroke="#000" strokeWidth="1.5" strokeOpacity="0.3"/>
             <text x={150} y={318} textAnchor="middle" fill="rgba(0,0,0,0.3)" fontSize="12" fontFamily="'Jost',sans-serif" letterSpacing="1">2 of 6 received</text>
           </svg>
-          <div style={{fontSize:15,fontWeight:300,color:"rgba(0,0,0,0.5)",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:300}}>
+          <div style={{fontSize:15,fontWeight:300,color:"#000",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:300}}>
             Your filter was set before age 7. It runs automatically. You never chose it.
           </div>
         </div>
@@ -2088,20 +2095,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                       <linearGradient id="mh1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset="1" stopColor="#E8B870"/></linearGradient>
                       <linearGradient id="mh2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#BFA5D8"/><stop offset="1" stopColor="#E8B870"/></linearGradient>
                       <linearGradient id="mh3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#2CB7A7"/><stop offset="1" stopColor="#BFA5D8"/></linearGradient>
-                      <filter id="mh-glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="mh-glow"><feGaussianBlur stdDeviation="0.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
                     {/* 18 equalizer bars */}
                     {[
                       [4,38],[20,58],[36,28],[52,72],[68,44],[84,62],[100,32],[116,80],[132,50],
                       [148,42],[164,68],[180,30],[196,74],[212,46],[228,64],[244,36],[260,70],[276,28]
                     ].map(([x,h],i)=>(
-                      <rect key={i} x={x} width="11" fill={`url(#mh${(i%3)+1})`} rx="3" y={80-h} height={h} filter="url(#mh-glow)" opacity="0.9">
+                      <rect key={i} x={x} width="7" fill={`url(#mh${(i%3)+1})`} rx="2" y={80-h} height={h} filter="url(#mh-glow)" opacity="0.85">
                         <animate attributeName="height" values={`${h};${Math.min(Math.round(h*1.35),80)};${Math.round(h*0.45)};${h}`} dur={`${0.5+i*0.07}s`} repeatCount="indefinite"/>
                         <animate attributeName="y" values={`${80-h};${80-Math.min(Math.round(h*1.35),80)};${80-Math.round(h*0.45)};${80-h}`} dur={`${0.5+i*0.07}s`} repeatCount="indefinite"/>
                       </rect>
                     ))}
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:600, color:"#E8B870", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Melodic House</div>
+                  <div style={{ fontSize:17, fontWeight:300, color:"#E8B870", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Melodic House</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Music + hypnosis layered. You vibe, your subconscious rewires.</div>
                 </div>
 
@@ -2109,15 +2116,15 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(191,165,216,0.2)", boxShadow:"0 0 40px rgba(191,165,216,0.1)" }}>
                   <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
                     <defs>
-                      <filter id="vo-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="vo-glow"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
-                    <path stroke="#BFA5D8" strokeWidth="2.5" fill="none" filter="url(#vo-glow)" strokeLinecap="round">
+                    <path stroke="#BFA5D8" strokeWidth="1" fill="none" filter="url(#vo-glow)" strokeLinecap="round">
                       <animate attributeName="d"
                         values="M0,40 C18,10 35,70 52,40 C70,10 87,70 104,40 C122,10 139,70 156,40 C174,10 191,70 208,40 C226,10 243,70 260,40 C268,25 274,32 280,40;M0,40 C18,70 35,10 52,40 C70,70 87,10 104,40 C122,70 139,10 156,40 C174,70 191,10 208,40 C226,70 243,10 260,40 C268,55 274,48 280,40;M0,40 C18,10 35,70 52,40 C70,10 87,70 104,40 C122,10 139,70 156,40 C174,10 191,70 208,40 C226,10 243,70 260,40 C268,25 274,32 280,40"
                         dur="2s" repeatCount="indefinite"/>
                     </path>
                     {/* Mouth pulse at centre */}
-                    <ellipse cx="140" cy="40" rx="22" ry="12" fill="none" stroke="#F5E0A0" strokeWidth="1" opacity="0.4">
+                    <ellipse cx="140" cy="40" rx="22" ry="12" fill="none" stroke="#F5E0A0" strokeWidth="0.5" opacity="0.35">
                       <animate attributeName="rx" values="22;32;22" dur="2s" repeatCount="indefinite"/>
                       <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
                     </ellipse>
@@ -2126,7 +2133,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     </circle>
                     <text x="140" y="72" textAnchor="middle" fontSize="7" fill="#BFA5D8" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="2">DIRECT · RAW · IMMERSIVE</text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:600, color:"#BFA5D8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Voice Only</div>
+                  <div style={{ fontSize:17, fontWeight:300, color:"#BFA5D8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Voice Only</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Just Reshma's voice. Nothing between you and the rewire.</div>
                 </div>
 
@@ -2134,21 +2141,21 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(154,125,200,0.2)", boxShadow:"0 0 30px rgba(154,125,200,0.08)" }}>
                   <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
                     <defs>
-                      <filter id="sr-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="sr-glow"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
                     <text x="14" y="13" fontSize="6.5" fill="#BFA5D8" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="1">BETA</text>
                     <text x="103" y="13" fontSize="6.5" fill="#9A7DC8" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="1">ALPHA</text>
                     <text x="198" y="13" fontSize="6.5" fill="#2CB7A7" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="1">DELTA</text>
                     {/* Fast beta */}
-                    <path d="M8,40 C13,26 18,54 23,40 C28,26 33,54 38,40 C43,26 48,54 53,40 C58,26 63,54 68,40 C73,26 78,54 83,40" stroke="#BFA5D8" strokeWidth="1.5" fill="none">
+                    <path d="M8,40 C13,26 18,54 23,40 C28,26 33,54 38,40 C43,26 48,54 53,40 C58,26 63,54 68,40 C73,26 78,54 83,40" stroke="#BFA5D8" strokeWidth="0.8" fill="none">
                       <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2.5s" repeatCount="indefinite"/>
                     </path>
                     {/* Medium alpha */}
-                    <path d="M88,40 C101,20 115,60 128,40 C141,20 155,60 168,40 C175,30 180,50 186,40" stroke="#9A7DC8" strokeWidth="2" fill="none">
+                    <path d="M88,40 C101,20 115,60 128,40 C141,20 155,60 168,40 C175,30 180,50 186,40" stroke="#9A7DC8" strokeWidth="1" fill="none">
                       <animate attributeName="opacity" values="0.8;0.45;0.8" dur="3.5s" repeatCount="indefinite"/>
                     </path>
                     {/* Slow delta */}
-                    <path d="M192,40 C210,8 228,72 246,40 C258,22 268,50 280,40" stroke="#2CB7A7" strokeWidth="3" fill="none" filter="url(#sr-glow)">
+                    <path d="M192,40 C210,8 228,72 246,40 C258,22 268,50 280,40" stroke="#2CB7A7" strokeWidth="1.2" fill="none" filter="url(#sr-glow)">
                       <animate attributeName="opacity" values="1;0.6;1" dur="5s" repeatCount="indefinite"/>
                     </path>
                     {/* Stars */}
@@ -2156,7 +2163,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     <circle cx="264" cy="14" r="1" fill="#BFA5D8"><animate attributeName="opacity" values="0;1;0" dur="2.8s" repeatCount="indefinite"/></circle>
                     <circle cx="272" cy="22" r="1.2" fill="#2CB7A7"><animate attributeName="opacity" values="1;0;1" dur="3.5s" repeatCount="indefinite"/></circle>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:600, color:"#9A7DC8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Sleep & Rest</div>
+                  <div style={{ fontSize:17, fontWeight:300, color:"#9A7DC8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Sleep & Rest</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Drops your brain from beta chaos to delta sleep. Rewires all night.</div>
                 </div>
 
@@ -2164,7 +2171,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(44,183,167,0.2)", boxShadow:"0 0 30px rgba(44,183,167,0.08)" }}>
                   <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
                     <defs>
-                      <filter id="sub-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="sub-glow"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
                     {/* Noise bars — surface sound */}
                     {[4,12,20,28,36,44,52,60,68,76,84,92,100,108,116,124,132,140,148,156,164,172,180,188,196,204,212,220,228,236,244,252,260,268,276].map((x,i)=>{
@@ -2173,7 +2180,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                       return <rect key={i} x={x} y={80-h} width="5" height={h} fill="#2CB7A7" opacity="0.2" rx="1"/>;
                     })}
                     {/* Hidden affirmations fading through */}
-                    <text x="140" y="47" textAnchor="middle" fontSize="14" fill="#F5E0A0" fontFamily="Jost,sans-serif" fontWeight="700" letterSpacing="4" filter="url(sub-glow)">
+                    <text x="140" y="47" textAnchor="middle" fontSize="11" fill="#F5E0A0" fontFamily="Jost,sans-serif" fontWeight="300" letterSpacing="4" filter="url(sub-glow)">
                       I AM LUCKY
                       <animate attributeName="opacity" values="0;0;0;0.95;0.95;0;0;0;0;0" dur="4s" repeatCount="indefinite"/>
                     </text>
@@ -2187,7 +2194,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     </text>
                     <text x="140" y="20" textAnchor="middle" fontSize="8" fill="#E8B870" fontFamily="Jost,sans-serif" letterSpacing="2" opacity="0.4">beneath the sound ↓</text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:600, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Subliminal</div>
+                  <div style={{ fontSize:17, fontWeight:300, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Subliminal</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>No audible voice. Affirmations encoded beneath the sound.</div>
                 </div>
 
@@ -2195,8 +2202,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(44,183,167,0.25)", boxShadow:"0 0 40px rgba(44,183,167,0.12)" }}>
                   <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
                     <defs>
-                      <filter id="emdr-glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                      <filter id="emdr-trail"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="emdr-glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="emdr-trail"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
                     {/* Left hemisphere */}
                     <ellipse cx="70" cy="42" rx="56" ry="30" fill="none" stroke="#2CB7A7" strokeWidth="1" opacity="0.25"/>
@@ -2212,17 +2219,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                       <animate attributeName="cy" values="42;42;42" dur="1.3s" repeatCount="indefinite"/>
                     </ellipse>
                     {/* Main dot */}
-                    <circle r="10" fill="#E8B870" filter="url(#emdr-glow)">
+                    <circle r="6" fill="#E8B870" filter="url(#emdr-glow)">
                       <animate attributeName="cx" values="18;262;18" dur="1.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/>
                       <animate attributeName="cy" values="42;42;42" dur="1.3s" repeatCount="indefinite"/>
                     </circle>
-                    <circle r="5" fill="#fff">
+                    <circle r="2.5" fill="#fff">
                       <animate attributeName="cx" values="18;262;18" dur="1.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1"/>
                       <animate attributeName="cy" values="42;42;42" dur="1.3s" repeatCount="indefinite"/>
                     </circle>
                     <text x="140" y="74" textAnchor="middle" fontSize="6.5" fill="#E8B870" opacity="0.5" fontFamily="Jost,sans-serif" letterSpacing="1">BILATERAL STIMULATION</text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:600, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>EMDR Hypnosis</div>
+                  <div style={{ fontSize:17, fontWeight:300, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>EMDR Hypnosis</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Left-right audio syncs both hemispheres. Old blocks dissolve at the root.</div>
                 </div>
 
@@ -2230,27 +2237,27 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <div style={{ padding:"22px 20px 20px", background:"#0a0a0a", borderRadius:16, border:"1px solid rgba(22,122,107,0.25)", boxShadow:"0 0 40px rgba(22,122,107,0.1)" }}>
                   <svg viewBox="0 0 280 80" width="100%" style={{display:"block",marginBottom:14}}>
                     <defs>
-                      <filter id="bin-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <filter id="bin-glow"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
                     <text x="6" y="18" fontSize="6.5" fill="#2CB7A7" opacity="0.6" fontFamily="Jost,sans-serif">L  200Hz</text>
-                    <path stroke="#2CB7A7" strokeWidth="1.8" fill="none" opacity="0.8">
+                    <path stroke="#2CB7A7" strokeWidth="0.9" fill="none" opacity="0.8">
                       <animate attributeName="d"
                         values="M0,22 C12,8 24,36 36,22 C48,8 60,36 72,22 C84,8 96,36 108,22 C120,8 132,36 144,22 C156,8 168,36 180,22 C192,8 204,36 216,22 C228,8 240,36 252,22 C264,8 276,36 280,22;M0,22 C12,36 24,8 36,22 C48,36 60,8 72,22 C84,36 96,8 108,22 C120,36 132,8 144,22 C156,36 168,8 180,22 C192,36 204,8 216,22 C228,36 240,8 252,22 C264,36 276,8 280,22;M0,22 C12,8 24,36 36,22 C48,8 60,36 72,22 C84,8 96,36 108,22 C120,8 132,36 144,22 C156,8 168,36 180,22 C192,8 204,36 216,22 C228,8 240,36 252,22 C264,8 276,36 280,22"
                         dur="1.5s" repeatCount="indefinite"/>
                     </path>
                     <text x="6" y="72" fontSize="6.5" fill="#BFA5D8" opacity="0.6" fontFamily="Jost,sans-serif">R  207Hz</text>
-                    <path stroke="#BFA5D8" strokeWidth="1.8" fill="none" opacity="0.8">
+                    <path stroke="#BFA5D8" strokeWidth="0.9" fill="none" opacity="0.8">
                       <animate attributeName="d"
                         values="M0,60 C15,44 31,76 47,60 C63,44 79,76 95,60 C111,44 127,76 143,60 C159,44 175,76 191,60 C207,44 223,76 239,60 C255,44 271,76 280,60;M0,60 C15,76 31,44 47,60 C63,76 79,44 95,60 C111,76 127,44 143,60 C159,76 175,44 191,60 C207,76 223,44 239,60 C255,76 271,44 280,60;M0,60 C15,44 31,76 47,60 C63,44 79,76 95,60 C111,44 127,76 143,60 C159,44 175,76 191,60 C207,44 223,76 239,60 C255,44 271,76 280,60"
                         dur="1.8s" repeatCount="indefinite"/>
                     </path>
                     <line x1="0" y1="41" x2="280" y2="41" stroke="rgba(245,224,160,0.12)" strokeWidth="1" strokeDasharray="4 3"/>
-                    <text x="140" y="45" textAnchor="middle" fontSize="9" fill="#F5E0A0" fontFamily="Jost,sans-serif" letterSpacing="1" fontWeight="600" filter="url(#bin-glow)">
+                    <text x="140" y="45" textAnchor="middle" fontSize="9" fill="#F5E0A0" fontFamily="Jost,sans-serif" letterSpacing="1" fontWeight="300" filter="url(#bin-glow)">
                       = 7Hz THETA
                       <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
                     </text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:600, color:"#167A6B", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Binaural / Reiki</div>
+                  <div style={{ fontSize:17, fontWeight:300, color:"#167A6B", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Binaural / Reiki</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Two tones create a 7Hz theta beat. Your brain syncs. Reprogramming begins.</div>
                 </div>
 
@@ -2429,7 +2436,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 </div>
                 <p style={{ fontSize:isMobile?16:18, color:"#0a0a0a", lineHeight:1.7, fontFamily:"'Jost',sans-serif", fontWeight:400, flex:1 }}>{t.quote}</p>
                 <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-                  <span style={{ fontSize:12, fontWeight:400, color:"rgba(0,0,0,0.5)", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
+                  <span style={{ fontSize:12, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif" }}>{t.name}</span>
                   <span style={{ fontSize:11, padding:"3px 10px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:20, color:"#000", fontWeight:400, letterSpacing:"0.06em", fontFamily:"'Jost',sans-serif" }}>{t.cat}</span>
                 </div>
               </div>

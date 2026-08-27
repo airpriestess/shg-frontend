@@ -263,12 +263,12 @@ export default function Science({ onBack }) {
       </div>
 
       {/* HERO */}
-      <div style={{ background:LG, padding:isMobile?"64px 24px 72px":"96px 24px 104px", textAlign:"center" }}>
-        <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Self Hypnosis Goddess · The Science</div>
-        <div style={{ fontSize:isMobile?"clamp(36px,11vw,52px)":"clamp(48px,7vw,80px)", fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
+      <div style={{ background:"#000", padding:isMobile?"64px 24px 72px":"96px 24px 104px", textAlign:"center" }}>
+        <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess · The Science</div>
+        <div style={{ fontSize:isMobile?"clamp(36px,11vw,52px)":"clamp(48px,7vw,80px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
           This is why<br/><strong style={{ fontWeight:700 }}>it works.</strong>
         </div>
-        <div style={{ fontSize:isMobile?16:19, color:"rgba(0,0,0,0.6)", lineHeight:1.8, maxWidth:520, margin:"0 auto", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+        <div style={{ fontSize:isMobile?17:20, color:"rgba(253,240,232,0.7)", lineHeight:1.8, maxWidth:520, margin:"0 auto", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
           Four mechanisms. Each one targeting a different layer of why the old belief stayed and why the new one is about to land.
         </div>
       </div>
@@ -307,14 +307,14 @@ export default function Science({ onBack }) {
       </div>
 
       {/* CTA */}
-      <div style={{ background:LG, padding:isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
-        <div style={{ fontSize:isMobile?"clamp(32px,9vw,52px)":"clamp(40px,5.5vw,72px)", fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
+      <div style={{ background:"#000", padding:isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
+        <div style={{ fontSize:isMobile?"clamp(32px,9vw,52px)":"clamp(40px,5.5vw,72px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
           Ready to<br/><strong style={{ fontWeight:700 }}>feel the shift?</strong>
         </div>
-        <div style={{ fontSize:17, color:"rgba(0,0,0,0.6)", lineHeight:1.8, marginBottom:40, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+        <div style={{ fontSize:18, color:"rgba(253,240,232,0.65)", lineHeight:1.8, marginBottom:40, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
           Your first session is free.
         </div>
-        <button onClick={onBack} style={{ background:"#000", border:"none", borderRadius:40, padding:isMobile?"18px 44px":"22px 64px", color:CR, fontSize:isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>
+        <button onClick={onBack} style={{ background:LG, border:"none", borderRadius:40, padding:isMobile?"18px 44px":"22px 64px", color:"#000", fontSize:isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:500, cursor:"pointer", letterSpacing:"0.02em" }}>
           Join Self Hypnosis Goddess →
         </button>
       </div>
