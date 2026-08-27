@@ -2218,9 +2218,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     </div>
                     {/* Text */}
                     <div style={{ padding: isMobile?"20px 22px 24px":"22px 26px 26px" }}>
-                      <div style={{ fontSize: isMobile?20:22, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:4, fontFamily:"'Jost',sans-serif", lineHeight:1.2 }}>{f.name}</div>
-                      <div style={{ fontSize:9, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>{f.tag}</div>
-                      <div style={{ fontSize:14, color:"rgba(253,240,232,0.6)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.desc}</div>
+                      <div style={{ fontSize: isMobile?22:24, fontWeight:400, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:6, fontFamily:"'Jost',sans-serif", lineHeight:1.2 }}>{f.name}</div>
+                      <div style={{ fontSize:11, letterSpacing:"0.16em", textTransform:"uppercase", color:"#fdf0e8", opacity:0.7, fontFamily:"'Jost',sans-serif", marginBottom:12 }}>{f.tag}</div>
+                      <div style={{ fontSize: isMobile?15:16, color:"#fdf0e8", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.desc}</div>
                     </div>
                   </div>
                 ))}
