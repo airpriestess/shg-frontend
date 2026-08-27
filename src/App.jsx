@@ -930,8 +930,8 @@ function AppPreviewSection({ isMobile }) {
           ].map(([v,l,delay],i)=>(
             (!isMobile || i<3) &&
             <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"rgba(232,184,112,0.06)", borderRadius:14, padding:"18px 10px", textAlign:"center", border:"1px solid rgba(232,184,112,0.2)" }}>
-              <div style={{ fontSize: isMobile?28:36, fontWeight:600, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block", animationDelay:`${i*0.4}s` }}>{v}</div>
-              <div style={{ fontSize:11, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginTop:7, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
+              <div style={{ fontSize: isMobile?30:40, fontWeight:700, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block", animationDelay:`${i*0.4}s` }}>{v}</div>
+              <div style={{ fontSize:13, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginTop:8, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
             </div>
           ))}
         </div>
@@ -940,25 +940,25 @@ function AppPreviewSection({ isMobile }) {
 
           {/* Category bars */}
           <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
-            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>By life area · avg days ↓</div>
+            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>By life area · avg days ↓</div>
             {d.cats.map((c,ci)=>{
               const pct = Math.round(c.done/c.n*100);
+              const BAR_GRAD = "linear-gradient(90deg,#F5E0A0 0%,#E8B870 30%,#BFA5D8 65%,#2CB7A7 100%)";
               return (
-                <div key={`${animKey}-${c.name}`} style={{ marginBottom:14, animation:`ap-fade-up 0.4s ease ${ci*80}ms both` }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:6 }}>
-                    <span style={{ fontSize:13, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
+                <div key={`${animKey}-${c.name}`} style={{ marginBottom:16, animation:`ap-fade-up 0.4s ease ${ci*80}ms both` }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:7 }}>
+                    <span style={{ fontSize:16, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
                     <div style={{ display:"flex", gap:12, alignItems:"center" }}>
-                      <span style={{ fontSize:11, color:"#fdf0e8" }}>{c.done}/{c.n}</span>
-                      <span style={{ fontSize:12, fontWeight:600, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", border:"1px solid rgba(232,184,112,0.4)", borderRadius:6, padding:"2px 7px", display:"inline-block" }}>{c.days}d</span>
+                      <span style={{ fontSize:13, color:"rgba(253,240,232,0.6)" }}>{c.done}/{c.n}</span>
+                      <span style={{ fontSize:13, fontWeight:600, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", border:"1px solid rgba(232,184,112,0.4)", borderRadius:6, padding:"3px 9px", display:"inline-block" }}>{c.days}d</span>
                     </div>
                   </div>
-                  <div style={{ height:6, borderRadius:3, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
+                  <div style={{ height:7, borderRadius:4, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
                     <div className="ap-bar-fill" key={`${animKey}-bar-${c.name}`}
-                      style={{ "--w":`${pct}%`, height:"100%", borderRadius:3,
-                        background:LG,
-                        backgroundSize:"300% 100%",
+                      style={{ "--w":`${pct}%`, height:"100%", borderRadius:4,
+                        background:BAR_GRAD,
                         animationDelay:`${ci*120+200}ms`,
-                        boxShadow:"0 0 8px rgba(232,184,112,0.4)" }}/>
+                        boxShadow:"0 0 10px rgba(232,184,112,0.35)" }}/>
                   </div>
                 </div>
               );
@@ -967,19 +967,21 @@ function AppPreviewSection({ isMobile }) {
 
           {/* Proof wall */}
           <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
-            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year} ✦</div>
+            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year} ✦</div>
             {d.proof.map((p,i)=>(
               <div key={`${animKey}-${i}`} className="ap-proof-row"
-                style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:13, paddingBottom:13,
+                style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:15, paddingBottom:15,
                   borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none",
                   animationDelay:`${i*100}ms` }}>
-                <div style={{ width:24, height:24, borderRadius:"50%", background:"rgba(232,184,112,0.1)", border:"1px solid rgba(232,184,112,0.4)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:10, flexShrink:0, backgroundImage:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", animationDelay:`${i*0.3}s`, WebkitBackgroundClip:"initial", backgroundClip:"initial" }}><span style={{ background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>✦</span></div>
+                <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(232,184,112,0.12)", border:"1.5px solid rgba(232,184,112,0.5)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                  <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>✦</span>
+                </div>
                 <div style={{ flex:1 }}>
-                  <div style={{ fontSize:13, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
-                  <div style={{ display:"flex", gap:8, marginTop:3, flexWrap:"wrap" }}>
-                    <span style={{ fontSize:10, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.date}</span>
-                    <span style={{ fontSize:10, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 6s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
-                    <span style={{ fontSize:10, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 10s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.cat}</span>
+                  <div style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
+                  <div style={{ display:"flex", gap:10, marginTop:5, flexWrap:"wrap" }}>
+                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.date}</span>
+                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
+                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.cat}</span>
                   </div>
                 </div>
               </div>
