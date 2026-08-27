@@ -2060,23 +2060,96 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* MELODIC HOUSE USP, LG gradient background */}
-      <div style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width: "100%" }}>
+      <div style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "#000", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ fontSize: 13, color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>What makes this different</div>
-            <h2 style={{ fontSize: isMobile?"clamp(24px,6vw,36px)":"clamp(28px,3vw,44px)", lineHeight: 1.2, marginBottom: 20, color: "#0a0a0a", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em" }}>
+            <div style={{ fontSize: 13, background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>What makes this different</div>
+            <h2 style={{ fontSize: isMobile?"clamp(24px,6vw,36px)":"clamp(28px,3vw,44px)", lineHeight: 1.2, marginBottom: 20, color: "#fdf0e8", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em" }}>
               Your beliefs are running your life.<br/>Most people never change them.
             </h2>
-            <p style={{ fontSize: isMobile?17:21, color: "#000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?17:21, color: "rgba(253,240,232,0.82)", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               Affirmations do not work. Willpower does not work. Not because you are not trying. Because none of it reaches your subconscious. The part of your mind that actually controls your experience of physical reality. The unseen is the seed and source of reality shifting.
             </p>
-            <p style={{ fontSize: isMobile?17:21, color: "#000", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?17:21, color: "rgba(253,240,232,0.82)", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               SHG is built on one idea. The subconscious responds to repetition, not effort. EMDR, theta binaural beats, vocal hypnosis, and subliminals, layered beneath melodic house music, designed to keep your mind locked on your desires, dreams, goals and manifestations. Delusional at all times. By design.
             </p>
-            <p style={{ fontSize: isMobile?18:22, color: "#0a0a0a", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?18:22, color: "rgba(253,240,232,0.82)", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               The result is not motivation. It is identity. You stop chasing what you want. You become someone for whom it arrives. The lucky girl. The rich girl. The woman things just go right for. Not through effort. Through repetition, delivered at the frequency your subconscious cannot ignore.
             </p>
+
+            {/* BRAINWAVE DIAGRAM — consciousness → manifestation */}
+            <div style={{ maxWidth:680, margin:"0 auto 48px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:18, padding: isMobile?"22px 16px":"32px 36px" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", textAlign:"center", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>How SHG works</div>
+              <svg viewBox="0 0 560 320" width="100%" style={{ display:"block", overflow:"visible" }}>
+                <defs>
+                  <linearGradient id="bw-lg" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stopColor="#F5E0A0"/>
+                    <stop offset="0.4" stopColor="#BFA5D8"/>
+                    <stop offset="0.75" stopColor="#2CB7A7"/>
+                    <stop offset="1" stopColor="#167A6B"/>
+                  </linearGradient>
+                  <linearGradient id="bw-gold" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stopColor="#F5E0A0"/><stop offset="1" stopColor="#E8B870"/>
+                  </linearGradient>
+                  <filter id="bw-glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  <filter id="bw-soft"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+
+                {/* === CONSCIOUS MIND (top half) === */}
+                <rect x="20" y="20" width="520" height="120" rx="14" fill="rgba(232,184,112,0.06)" stroke="rgba(232,184,112,0.25)" strokeWidth="1"/>
+                <text x="38" y="44" fontSize="9" fill="#E8B870" opacity="0.7" fontFamily="Jost,sans-serif" letterSpacing="2">CONSCIOUS MIND · BETA STATE</text>
+                {/* Fast beta waves */}
+                {[0,1,2,3].map(i=>(
+                  <path key={i} d={`M${40+i*120},95 C${55+i*120},68 ${70+i*120},122 ${85+i*120},95 C${100+i*120},68 ${115+i*120},122 ${130+i*120},95 C${145+i*120},68 ${158+i*120},108 ${160+i*120},95`} stroke="#E8B870" strokeWidth="0.8" fill="none" opacity="0.5">
+                    <animate attributeName="opacity" values="0.5;0.2;0.5" dur={`${1.2+i*0.2}s`} repeatCount="indefinite"/>
+                  </path>
+                ))}
+                <text x="280" y="80" textAnchor="middle" fontSize="13" fill="#fdf0e8" fontFamily="Jost,sans-serif" fontWeight="300" opacity="0.9">Affirmations. Willpower. Motivation.</text>
+                <text x="280" y="100" textAnchor="middle" fontSize="10" fill="rgba(253,240,232,0.45)" fontFamily="Jost,sans-serif">Conscious effort cannot reach the subconscious. It bounces off.</text>
+                {/* Blocked arrows */}
+                {[160,240,320,400].map(x=>(
+                  <g key={x}>
+                    <line x1={x} y1="142" x2={x} y2="162" stroke="rgba(232,184,112,0.3)" strokeWidth="1" strokeDasharray="3 3"/>
+                    <text x={x} y="176" textAnchor="middle" fontSize="14" fill="#E87070" opacity="0.7">✕</text>
+                  </g>
+                ))}
+
+                {/* === BARRIER LINE === */}
+                <line x1="20" y1="188" x2="540" y2="188" stroke="rgba(253,240,232,0.12)" strokeWidth="1" strokeDasharray="6 4"/>
+                <rect x="196" y="179" width="168" height="18" rx="4" fill="#0a0a0a"/>
+                <text x="280" y="191" textAnchor="middle" fontSize="8.5" fill="rgba(253,240,232,0.4)" fontFamily="Jost,sans-serif" letterSpacing="1.5">SUBCONSCIOUS GATE</text>
+
+                {/* === SUBCONSCIOUS (bottom half) === */}
+                <rect x="20" y="196" width="520" height="108" rx="14" fill="url(#bw-lg)" opacity="0.08" stroke="url(#bw-lg)" strokeWidth="1.2"/>
+                <text x="38" y="218" fontSize="9" fill="#2CB7A7" opacity="0.8" fontFamily="Jost,sans-serif" letterSpacing="2">SUBCONSCIOUS MIND · THETA / DELTA STATE</text>
+
+                {/* Slow theta waves */}
+                <path stroke="#2CB7A7" strokeWidth="1.2" fill="none" filter="url(#bw-soft)" opacity="0.7">
+                  <animate attributeName="d"
+                    values="M40,258 C100,228 160,288 220,258 C280,228 340,288 400,258 C450,232 500,270 540,258;M40,258 C100,288 160,228 220,258 C280,288 340,228 400,258 C450,280 500,242 540,258;M40,258 C100,228 160,288 220,258 C280,228 340,288 400,258 C450,232 500,270 540,258"
+                    dur="4s" repeatCount="indefinite"/>
+                </path>
+                <path stroke="#BFA5D8" strokeWidth="0.8" fill="none" opacity="0.4">
+                  <animate attributeName="d"
+                    values="M40,278 C130,256 230,300 330,278 C420,256 490,290 540,278;M40,278 C130,300 230,256 330,278 C420,300 490,262 540,278;M40,278 C130,256 230,300 330,278 C420,256 490,290 540,278"
+                    dur="6s" repeatCount="indefinite"/>
+                </path>
+
+                {/* SHG bypass arrow (glowing gold, goes through) */}
+                <path d="M280,142 L280,196" stroke="url(#bw-gold)" strokeWidth="2.5" filter="url(#bw-glow)">
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
+                </path>
+                <polygon points="274,188 280,200 286,188" fill="#E8B870" filter="url(#bw-glow)">
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
+                </polygon>
+                <rect x="210" y="148" width="140" height="22" rx="5" fill="#0a0a0a"/>
+                <text x="280" y="163" textAnchor="middle" fontSize="9" fill="#E8B870" fontFamily="Jost,sans-serif" letterSpacing="1" fontWeight="400">SHG bypasses the gate</text>
+
+                {/* Identity shift label */}
+                <text x="280" y="298" textAnchor="middle" fontSize="12" fill="url(#bw-lg)" fontFamily="Jost,sans-serif" fontWeight="300" letterSpacing="0.5">New identity installs. Manifestation becomes inevitable.</text>
+              </svg>
+            </div>
 
                         {/* AUDIO FORMATS — animated SVG diagrams */}
             <div style={{ background:"#000", maxWidth:760, margin:"0 auto 40px", padding:"0 0 8px" }}>
@@ -2108,7 +2181,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                       </rect>
                     ))}
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:300, color:"#E8B870", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Melodic House</div>
+                  <div style={{ fontSize:17, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Melodic House</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Music + hypnosis layered. You vibe, your subconscious rewires.</div>
                 </div>
 
@@ -2133,7 +2206,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     </circle>
                     <text x="140" y="72" textAnchor="middle" fontSize="7" fill="#BFA5D8" opacity="0.55" fontFamily="Jost,sans-serif" letterSpacing="2">DIRECT · RAW · IMMERSIVE</text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:300, color:"#BFA5D8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Voice Only</div>
+                  <div style={{ fontSize:17, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Voice Only</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Just Reshma's voice. Nothing between you and the rewire.</div>
                 </div>
 
@@ -2163,7 +2236,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     <circle cx="264" cy="14" r="1" fill="#BFA5D8"><animate attributeName="opacity" values="0;1;0" dur="2.8s" repeatCount="indefinite"/></circle>
                     <circle cx="272" cy="22" r="1.2" fill="#2CB7A7"><animate attributeName="opacity" values="1;0;1" dur="3.5s" repeatCount="indefinite"/></circle>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:300, color:"#9A7DC8", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Sleep & Rest</div>
+                  <div style={{ fontSize:17, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Sleep & Rest</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Drops your brain from beta chaos to delta sleep. Rewires all night.</div>
                 </div>
 
@@ -2194,7 +2267,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     </text>
                     <text x="140" y="20" textAnchor="middle" fontSize="8" fill="#E8B870" fontFamily="Jost,sans-serif" letterSpacing="2" opacity="0.4">beneath the sound ↓</text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:300, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Subliminal</div>
+                  <div style={{ fontSize:17, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Subliminal</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>No audible voice. Affirmations encoded beneath the sound.</div>
                 </div>
 
@@ -2229,7 +2302,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     </circle>
                     <text x="140" y="74" textAnchor="middle" fontSize="6.5" fill="#E8B870" opacity="0.5" fontFamily="Jost,sans-serif" letterSpacing="1">BILATERAL STIMULATION</text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:300, color:"#2CB7A7", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>EMDR Hypnosis</div>
+                  <div style={{ fontSize:17, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>EMDR Hypnosis</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Left-right audio syncs both hemispheres. Old blocks dissolve at the root.</div>
                 </div>
 
@@ -2257,7 +2330,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                       <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
                     </text>
                   </svg>
-                  <div style={{ fontSize:17, fontWeight:300, color:"#167A6B", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Binaural / Reiki</div>
+                  <div style={{ fontSize:17, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:6, fontFamily:"'Jost',sans-serif" }}>Binaural / Reiki</div>
                   <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>Two tones create a 7Hz theta beat. Your brain syncs. Reprogramming begins.</div>
                 </div>
 

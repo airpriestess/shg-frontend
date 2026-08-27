@@ -1394,7 +1394,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <input className="qd-input" value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
             onKeyDown={e=>{ if(e.key==="Enter") saveQuickDesire(); }}
             placeholder="I receive… I am… I have…"
-            style={{ flex:1, background:isDark?"rgba(255,255,255,0.07)":"#fff", border:`1px solid ${isDark?"rgba(232,184,112,0.35)":C.border}`, color:isDark?"#fdf0e8":"#000", borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
+            style={{ flex:1, background:"#000", border:"1px solid rgba(232,184,112,0.4)", color:"#fdf0e8", borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
           <button onClick={startVoice} title="Speak your desire"
             style={{ flexShrink:0, width:42, height:42, borderRadius:"50%", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:19,
               background: quickListening ? "#E8B870" : "transparent",
