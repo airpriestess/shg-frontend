@@ -1706,9 +1706,6 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <button onClick={()=>setWaitlistOpen(true)} style={{ padding:"16px 32px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize:14, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", cursor:"pointer", fontFamily:"'Jost',sans-serif", boxShadow:"0 0 40px rgba(232,184,112,0.3)", whiteSpace:"nowrap" }}>
                   Start Listening →
                 </button>
-                <a href="/gift?utm_source=site&utm_medium=hero&utm_campaign=free_gift" style={{ padding:"16px 28px", background:"none", border:"1px solid rgba(232,184,112,0.35)", borderRadius:40, color:"#E8B870", fontSize:14, fontWeight:400, letterSpacing:"0.1em", textTransform:"uppercase", textDecoration:"none", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap", textAlign:"center" }}>
-                  Try Free
-                </a>
               </div>
               <p style={{ fontFamily:"'Jost',sans-serif", fontSize:12, color:"rgba(253,240,232,0.3)", margin:"20px 0 0", letterSpacing:"0.05em" }}>No app download · Works like Spotify · Plays in background</p>
             </div>
