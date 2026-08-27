@@ -990,12 +990,11 @@ function AppPreviewSection({ isMobile }) {
 
         {/* Pattern insight */}
         <div style={{ margin:"14px 0 0", borderRadius:18, padding:"22px 22px",
-          background:"linear-gradient(135deg,rgba(232,184,112,0.07),rgba(191,165,216,0.07))",
-          border:"1px solid rgba(232,184,112,0.25)",
-          boxShadow:"0 0 40px rgba(232,184,112,0.07)" }}>
+          background:"#000",
+          border:"1px solid rgba(232,184,112,0.2)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
             <div style={{ width:8, height:8, borderRadius:"50%", background:"#E8B870", boxShadow:"0 0 8px #E8B870", animation:"ap-pulse 2s ease-in-out infinite" }}/>
-            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:"#E8B870", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
+            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
           </div>
           <div key={animKey} style={{ fontSize: isMobile?14:15, color:"#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", animation:"ap-fade-up 0.6s ease both" }}>
             "{d.insight}"
@@ -1610,11 +1609,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 10 : 16, overflow: "hidden", background: "#000", borderBottom: "1px solid rgba(232,184,112,0.18)" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 11 : 10, fontWeight: 500, letterSpacing: "0.2em", whiteSpace: "nowrap", textTransform: "uppercase", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 0 8px rgba(232,184,112,0.5))" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 12 : 20, overflow: "hidden", background: "#000", borderBottom: "1px solid rgba(232,184,112,0.18)" }}>
+          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 12, fontWeight: 500, letterSpacing: "0.18em", whiteSpace: "nowrap", textTransform: "uppercase", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 0 8px rgba(232,184,112,0.5))" }}>
             From Hot Mess to Goddess (of course, obviously.)
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"5px 14px":"5px 16px", background: "none", border: "1px solid rgba(232,184,112,0.4)", borderRadius: 20, color: "#E8B870", fontSize: isMobile ? 11 : 10, fontWeight: 400, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"5px 16px", background: "none", border: "1px solid rgba(232,184,112,0.5)", borderRadius: 20, color: "#E8B870", fontSize: isMobile ? 12 : 11, fontWeight: 500, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Join the Waitlist →
           </button>
         </div>
