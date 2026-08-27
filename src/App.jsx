@@ -900,12 +900,16 @@ function AppPreviewSection({ isMobile }) {
         {[2026,2027,2028,2029,2030].map(y=>(
           <button key={y} onClick={()=>changeYear(y)} style={{
             flex:1, padding: isMobile?"16px 0":"20px 0", border:"none", cursor:"pointer",
-            fontFamily:"'Jost',sans-serif", fontSize: isMobile?13:15, fontWeight:year===y?500:300,
+            fontFamily:"'Jost',sans-serif", fontSize: isMobile?14:16, fontWeight:year===y?600:400,
             background: year===y ? "linear-gradient(135deg,rgba(232,184,112,0.12),rgba(191,165,216,0.12))" : "transparent",
-            color: year===y ? "#E8B870" : "#BFA5D8",
+            WebkitTextFillColor: year===y ? "transparent" : "#fdf0e8",
+            backgroundImage: year===y ? LG : "none",
+            backgroundSize: year===y ? "300% 300%" : "unset",
+            WebkitBackgroundClip: year===y ? "text" : "unset",
+            backgroundClip: year===y ? "text" : "unset",
+            animation: year===y ? "ap-drift 5s ease-in-out infinite, ap-glow 3s ease-in-out infinite" : "none",
             borderBottom: year===y ? "2px solid #E8B870" : "2px solid transparent",
-            transition:"all 0.2s",
-            animation: year===y ? "ap-glow 3s ease-in-out infinite" : "none",
+            transition:"border-color 0.2s",
           }}>
             {y}
             {year===y && <div style={{ width:4, height:4, borderRadius:"50%", background:"#E8B870", margin:"4px auto 0", animation:"ap-pulse 1.5s ease-in-out infinite" }}/>}
@@ -926,8 +930,8 @@ function AppPreviewSection({ isMobile }) {
           ].map(([v,l,delay],i)=>(
             (!isMobile || i<3) &&
             <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"rgba(232,184,112,0.06)", borderRadius:14, padding:"18px 10px", textAlign:"center", border:"1px solid rgba(232,184,112,0.2)" }}>
-              <div style={{ fontSize: isMobile?24:30, fontWeight:300, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"block", animationDelay:`${i*0.4}s` }}>{v}</div>
-              <div style={{ fontSize:9, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginTop:7, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
+              <div style={{ fontSize: isMobile?28:36, fontWeight:600, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block", animationDelay:`${i*0.4}s` }}>{v}</div>
+              <div style={{ fontSize:11, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginTop:7, letterSpacing:"0.12em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
             </div>
           ))}
         </div>
@@ -944,16 +948,17 @@ function AppPreviewSection({ isMobile }) {
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:6 }}>
                     <span style={{ fontSize:13, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
                     <div style={{ display:"flex", gap:12, alignItems:"center" }}>
-                      <span style={{ fontSize:11, color:"#BFA5D8" }}>{c.done}/{c.n}</span>
-                      <span style={{ fontSize:12, color:c.col, fontWeight:500, background:`${c.col}18`, borderRadius:6, padding:"2px 7px" }}>{c.days}d</span>
+                      <span style={{ fontSize:11, color:"#fdf0e8" }}>{c.done}/{c.n}</span>
+                      <span style={{ fontSize:12, fontWeight:600, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", border:"1px solid rgba(232,184,112,0.4)", borderRadius:6, padding:"2px 7px", display:"inline-block" }}>{c.days}d</span>
                     </div>
                   </div>
                   <div style={{ height:6, borderRadius:3, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
                     <div className="ap-bar-fill" key={`${animKey}-bar-${c.name}`}
                       style={{ "--w":`${pct}%`, height:"100%", borderRadius:3,
-                        background:`linear-gradient(90deg,${c.col}99,${c.col})`,
+                        background:LG,
+                        backgroundSize:"300% 100%",
                         animationDelay:`${ci*120+200}ms`,
-                        boxShadow:`0 0 8px ${c.col}66` }}/>
+                        boxShadow:"0 0 8px rgba(232,184,112,0.4)" }}/>
                   </div>
                 </div>
               );
@@ -972,9 +977,9 @@ function AppPreviewSection({ isMobile }) {
                 <div style={{ flex:1 }}>
                   <div style={{ fontSize:13, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
                   <div style={{ display:"flex", gap:8, marginTop:3, flexWrap:"wrap" }}>
-                    <span style={{ fontSize:10, color:"#BFA5D8" }}>{p.date}</span>
-                    <span style={{ fontSize:10, color:"#2CB7A7" }}>{p.days} day{p.days!==1?"s":""}</span>
-                    <span style={{ fontSize:10, color:"#BFA5D8" }}>{p.cat}</span>
+                    <span style={{ fontSize:10, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.date}</span>
+                    <span style={{ fontSize:10, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 6s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
+                    <span style={{ fontSize:10, background:LG, backgroundSize:"300% 300%", animation:"ap-drift 10s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.cat}</span>
                   </div>
                 </div>
               </div>
@@ -1406,11 +1411,12 @@ function RotatingStats({ isMobile }) {
   }, []);
   return (
     <div style={{ background: "#000", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: isMobile ? "32px 20px" : "40px 48px" }}>
+      <style>{`@keyframes rs-drift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }`}</style>
       <div style={{ display: "flex", justifyContent: "center", gap: isMobile ? 32 : 72, flexWrap: "wrap" }}>
         {STATS.map((s, i) => (
           <div key={i} style={{ textAlign: "center", transition: "opacity 0.3s", opacity: i === active ? 1 : 0.35 }}>
-            <div style={{ fontSize: isMobile ? 36 : 52, fontWeight: 300, fontFamily: "'Jost',sans-serif", lineHeight: 1, letterSpacing: "-0.03em", background: i === active ? "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)" : "none", WebkitBackgroundClip: i === active ? "text" : "unset", backgroundClip: i === active ? "text" : "unset", WebkitTextFillColor: i === active ? "transparent" : "#fdf0e8", color: i === active ? "transparent" : "#fdf0e8" }}>{s.n}</div>
-            <div style={{ fontSize: isMobile ? 10 : 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#fdf0e8", marginTop: 8, fontFamily: "'Jost',sans-serif", fontWeight: 300 }}>{s.label}</div>
+            <div style={{ fontSize: isMobile ? 42 : 60, fontWeight: 700, fontFamily: "'Jost',sans-serif", lineHeight: 1, letterSpacing: "-0.03em", background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"rs-drift 6s ease-in-out infinite", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>{s.n}</div>
+            <div style={{ fontSize: isMobile ? 11 : 13, letterSpacing: "0.2em", textTransform: "uppercase", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"rs-drift 8s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginTop: 8, fontFamily: "'Jost',sans-serif", fontWeight: 500 }}>{s.label}</div>
           </div>
         ))}
       </div>
