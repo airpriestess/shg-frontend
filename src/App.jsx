@@ -2155,8 +2155,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               The result is not motivation. It is identity. You stop chasing what you want. You become someone for whom it arrives. The lucky girl. The rich girl. The woman things just go right for. Not through effort. Through repetition, delivered at the frequency your subconscious cannot ignore.
             </p>
 
-            {/* AUDIO FORMATS — mood-first editorial cards */}
-            <div style={{ background:"#000", maxWidth:800, margin:"0 auto 40px", padding:"0 0 8px" }}>
+            {/* AUDIO FORMATS — bold visual cards */}
+            <div style={{ background:"#000", maxWidth:820, margin:"0 auto 40px", padding:"0 0 8px" }}>
               <div style={{ fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:12, textAlign:"center", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Audio formats</div>
               <div style={{ fontSize: isMobile?"clamp(26px,6vw,34px)":"clamp(28px,3vw,38px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, textAlign:"center", marginBottom: isMobile?28:40, letterSpacing:"-0.02em", lineHeight:1.1 }}>Each does something different.</div>
               <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?14:16 }}>
@@ -2164,70 +2164,63 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   {
                     name:"Melodic House",
                     tag:"Music + Hypnosis",
-                    desc:"You vibe. Your subconscious rewires. Layered beneath a melodic house beat so your conscious mind never interferes.",
-                    bg:"linear-gradient(135deg,rgba(245,224,160,0.18) 0%,rgba(232,184,112,0.08) 60%,rgba(0,0,0,0) 100%)",
-                    accent:"#E8B870",
-                    glow:"rgba(232,184,112,0.22)",
-                    border:"rgba(232,184,112,0.25)",
-                    icon:"♪"
+                    desc:"You vibe. Your subconscious rewires.",
+                    visualBg:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 40%,#BFA5D8 100%)",
+                    visualGlow:"rgba(232,184,112,0.6)",
+                    label:"♫",
                   },
                   {
                     name:"Voice Only",
                     tag:"Raw · Direct · Immersive",
-                    desc:"Just Reshma's voice. No music. No distraction. Nothing between you and the identity shift.",
-                    bg:"linear-gradient(135deg,rgba(191,165,216,0.18) 0%,rgba(191,165,216,0.06) 60%,rgba(0,0,0,0) 100%)",
-                    accent:"#BFA5D8",
-                    glow:"rgba(191,165,216,0.2)",
-                    border:"rgba(191,165,216,0.25)",
-                    icon:"◉"
+                    desc:"Just Reshma's voice. Nothing between you and the shift.",
+                    visualBg:"linear-gradient(135deg,#BFA5D8 0%,#9B7DC8 50%,#2CB7A7 100%)",
+                    visualGlow:"rgba(191,165,216,0.5)",
+                    label:"◉",
                   },
                   {
                     name:"Sleep & Rest",
                     tag:"Install while you sleep",
-                    desc:"Drops your brain from beta chaos to delta sleep. Reprogramming continues all night. Wake up different.",
-                    bg:"linear-gradient(135deg,rgba(44,183,167,0.12) 0%,rgba(22,122,107,0.06) 60%,rgba(0,0,0,0) 100%)",
-                    accent:"#2CB7A7",
-                    glow:"rgba(44,183,167,0.2)",
-                    border:"rgba(44,183,167,0.22)",
-                    icon:"◐"
+                    desc:"Drops your brain to delta. Rewires all night.",
+                    visualBg:"linear-gradient(135deg,#167A6B 0%,#2CB7A7 50%,#BFA5D8 100%)",
+                    visualGlow:"rgba(44,183,167,0.5)",
+                    label:"◐",
                   },
                   {
                     name:"Subliminal",
                     tag:"Beneath the sound",
-                    desc:"No audible voice. Affirmations encoded beneath the frequency. Your conscious mind hears nothing. Your subconscious hears everything.",
-                    bg:"linear-gradient(135deg,rgba(191,165,216,0.1) 0%,rgba(44,183,167,0.08) 100%)",
-                    accent:"#BFA5D8",
-                    glow:"rgba(191,165,216,0.15)",
-                    border:"rgba(191,165,216,0.2)",
-                    icon:"∿"
+                    desc:"No audible voice. Your conscious mind hears nothing. Your subconscious hears everything.",
+                    visualBg:"linear-gradient(135deg,#BFA5D8 0%,#E8B870 50%,#2CB7A7 100%)",
+                    visualGlow:"rgba(191,165,216,0.4)",
+                    label:"∿",
                   },
                   {
                     name:"EMDR Hypnosis",
                     tag:"Both hemispheres · one session",
-                    desc:"Left-right audio alternation syncs both brain hemispheres simultaneously. Old identity blocks dissolve at the root.",
-                    bg:"linear-gradient(135deg,rgba(232,184,112,0.12) 0%,rgba(191,165,216,0.1) 100%)",
-                    accent:"#E8B870",
-                    glow:"rgba(232,184,112,0.18)",
-                    border:"rgba(232,184,112,0.22)",
-                    icon:"⟺"
+                    desc:"Left-right audio dissolves old identity blocks at the root.",
+                    visualBg:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 30%,#167A6B 100%)",
+                    visualGlow:"rgba(232,184,112,0.5)",
+                    label:"⟺",
                   },
                   {
                     name:"Binaural / Reiki",
                     tag:"528hz · 7Hz Theta",
-                    desc:"Two tones. One per ear. Your brain creates the third — 7Hz theta, the frequency of full subconscious receptivity. Reprogramming begins within minutes.",
-                    bg:"linear-gradient(135deg,rgba(22,122,107,0.18) 0%,rgba(44,183,167,0.08) 100%)",
-                    accent:"#167A6B",
-                    glow:"rgba(22,122,107,0.22)",
-                    border:"rgba(44,183,167,0.22)",
-                    icon:"≋"
+                    desc:"Two tones create the third — 7Hz theta. Full subconscious receptivity.",
+                    visualBg:"linear-gradient(135deg,#2CB7A7 0%,#167A6B 40%,#BFA5D8 100%)",
+                    visualGlow:"rgba(44,183,167,0.5)",
+                    label:"≋",
                   },
                 ].map((f,i)=>(
-                  <div key={i} style={{ borderRadius:20, border:`1px solid ${f.border}`, background:f.bg, boxShadow:`0 0 40px ${f.glow}, inset 0 0 0 1px rgba(255,255,255,0.02)`, padding: isMobile?"28px 22px":"32px 28px", display:"flex", flexDirection:"column", gap:12 }}>
-                    <div style={{ fontSize:32, lineHeight:1, color:f.accent, opacity:0.9 }}>{f.icon}</div>
-                    <div>
-                      <div style={{ fontSize: isMobile?19:21, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:4, fontFamily:"'Jost',sans-serif", lineHeight:1.2 }}>{f.name}</div>
-                      <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:f.accent, opacity:0.7, fontFamily:"'Jost',sans-serif", marginBottom:10 }}>{f.tag}</div>
-                      <div style={{ fontSize:14, color:"rgba(253,240,232,0.65)", lineHeight:1.75, fontFamily:"'Jost',sans-serif" }}>{f.desc}</div>
+                  <div key={i} style={{ borderRadius:20, overflow:"hidden", border:"1px solid rgba(255,255,255,0.06)", background:"#0a0a0a" }}>
+                    {/* Bold visual block */}
+                    <div style={{ height: isMobile?120:140, background:f.visualBg, display:"flex", alignItems:"center", justifyContent:"center", position:"relative", boxShadow:`inset 0 -40px 60px rgba(0,0,0,0.5)` }}>
+                      <div style={{ fontSize: isMobile?56:68, lineHeight:1, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", userSelect:"none" }}>{f.label}</div>
+                      <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,transparent 40%,#0a0a0a 100%)" }}/>
+                    </div>
+                    {/* Text */}
+                    <div style={{ padding: isMobile?"20px 22px 24px":"22px 26px 26px" }}>
+                      <div style={{ fontSize: isMobile?20:22, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:4, fontFamily:"'Jost',sans-serif", lineHeight:1.2 }}>{f.name}</div>
+                      <div style={{ fontSize:9, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:10 }}>{f.tag}</div>
+                      <div style={{ fontSize:14, color:"rgba(253,240,232,0.6)", lineHeight:1.7, fontFamily:"'Jost',sans-serif" }}>{f.desc}</div>
                     </div>
                   </div>
                 ))}
