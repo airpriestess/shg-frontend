@@ -1285,6 +1285,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
   const [quickDesire, setQuickDesire] = useState("");
   const [quickListening, setQuickListening] = useState(false);
   const [quickSaved, setQuickSaved] = useState(false);
+  const [voiceError, setVoiceError] = useState("");
+  const voiceRef = useRef(null);
 
   const saveQuickDesire = () => {
     if (!quickDesire.trim()) return;
@@ -1297,14 +1299,39 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
   const startVoice = () => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) { alert("Voice input isn't supported in this browser. Try Chrome or Safari."); return; }
-    if (quickListening) { setQuickListening(false); return; }
-    const r = new SR(); r.lang = "en-US"; r.interimResults = false; r.maxAlternatives = 1;
+    if (!SR) { setVoiceError("Voice not supported — use Chrome or Safari"); return; }
+    if (quickListening) {
+      if (voiceRef.current) { try { voiceRef.current.stop(); } catch(e){} voiceRef.current = null; }
+      setQuickListening(false);
+      return;
+    }
+    setVoiceError("");
+    const r = new SR();
+    r.lang = "en-US";
+    r.interimResults = true;
+    r.continuous = true;
+    r.maxAlternatives = 1;
+    voiceRef.current = r;
+    let aggregated = "";
     setQuickListening(true);
-    r.onresult = e => { setQuickDesire(e.results[0][0].transcript); setQuickListening(false); };
-    r.onerror = () => setQuickListening(false);
-    r.onend = () => setQuickListening(false);
-    r.start();
+    r.onresult = e => {
+      let interim = "";
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript;
+        if (e.results[i].isFinal) { aggregated += (aggregated ? " " : "") + t.trim(); }
+        else { interim = t; }
+      }
+      setQuickDesire(aggregated + (interim ? " " + interim : ""));
+    };
+    r.onerror = ev => {
+      setQuickListening(false);
+      voiceRef.current = null;
+      if (ev.error === "not-allowed") setVoiceError("Microphone access denied — check browser permissions");
+      else if (ev.error === "no-speech") setVoiceError("No speech detected — try again");
+      else setVoiceError("Voice error: " + ev.error);
+    };
+    r.onend = () => { setQuickListening(false); voiceRef.current = null; };
+    try { r.start(); } catch(e) { setQuickListening(false); voiceRef.current = null; setVoiceError("Could not start microphone"); }
   };
   return (
     <div style={{ paddingBottom:80 }}>
@@ -1362,11 +1389,12 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ fontSize:13, fontWeight:600, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
           <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in ProofOS →</button>
         </div>
+        <style>{`.qd-input::placeholder{color:rgba(253,240,232,0.4)!important}`}</style>
         <div style={{ display:"flex", gap:8, alignItems:"center" }}>
-          <input value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
+          <input className="qd-input" value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
             onKeyDown={e=>{ if(e.key==="Enter") saveQuickDesire(); }}
             placeholder="I receive… I am… I have…"
-            style={{ flex:1, background:isDark?"#111":"#fff", border:`1px solid ${C.border}`, color:C.cr, borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
+            style={{ flex:1, background:isDark?"rgba(255,255,255,0.07)":"#fff", border:`1px solid ${isDark?"rgba(232,184,112,0.35)":C.border}`, color:isDark?"#fdf0e8":"#000", borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
           <button onClick={startVoice} title="Speak your desire"
             style={{ flexShrink:0, width:42, height:42, borderRadius:"50%", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:19,
               background: quickListening ? "#E8B870" : "transparent",
@@ -1381,6 +1409,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             {quickSaved ? "✓ Saved" : "Add"}
           </button>
         </div>
+        {voiceError && <div style={{ marginTop:8, fontSize:12, color:"#E87070" }}>{voiceError}</div>}
+        {quickListening && <div style={{ marginTop:8, fontSize:12, color:"#E8B870" }}>🎙 Listening… tap ⏹ to stop</div>}
         {threads.filter(t=>!t.done).length > 0 && (
           <div style={{ marginTop:10, fontSize:12, color:C.mu }}>
             {threads.filter(t=>!t.done).length} active desire{threads.filter(t=>!t.done).length!==1?"s":""} · {threads.filter(t=>t.done).length} manifested
