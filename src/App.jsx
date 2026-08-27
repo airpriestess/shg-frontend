@@ -76,15 +76,15 @@ function ProofOSBanner({ isMobile }) {
       </div>
 
       {/* Full-width cycling banner */}
-      <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", width:"100%", padding: isMobile?"22px 24px":"28px 48px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:24, minHeight: isMobile?90:96 }}>
-        <div style={{ fontSize: isMobile?48:72, fontWeight:300, color:"#000000", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
+      <div style={{ background:"#000", width:"100%", padding: isMobile?"22px 24px":"28px 48px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:24, minHeight: isMobile?90:96, borderTop:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)" }}>
+        <div style={{ fontSize: isMobile?48:72, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
         <div style={{ flex:1, textAlign: isMobile?"left":"center" }}>
-          <div style={{ fontSize: isMobile?"clamp(18px,5vw,26px)":"clamp(22px,2.5vw,36px)", fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom:6 }}>{s.label}</div>
-          <div style={{ fontSize: isMobile?13:16, color:"#000000", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
+          <div style={{ fontSize: isMobile?"clamp(18px,5vw,26px)":"clamp(22px,2.5vw,36px)", fontWeight:400, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom:6 }}>{s.label}</div>
+          <div style={{ fontSize: isMobile?13:16, color:"rgba(253,240,232,0.65)", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
         </div>
         <div style={{ display:"flex", flexDirection:"column", gap:6, flexShrink:0 }}>
           {STEPS.map((_,i)=>(
-            <div key={i} onClick={()=>setIdx(i)} style={{ width:6, height: i===idx?24:6, borderRadius:3, background: i===idx?"#000000":"#000000", cursor:"pointer", transition:"height 0.3s" }}/>
+            <div key={i} onClick={()=>setIdx(i)} style={{ width:6, height: i===idx?24:6, borderRadius:3, background: i===idx?"#E8B870":"rgba(255,255,255,0.2)", cursor:"pointer", transition:"height 0.3s" }}/>
           ))}
         </div>
       </div>
@@ -637,9 +637,9 @@ function PricingSection({ onJoin }) {
         </div>
 
         {/* THE GUARANTEE */}
-        <div style={{ marginTop: 48, padding: isMobile ? "32px 24px" : "48px 56px", borderRadius: 20, background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", textAlign: "center", maxWidth: 700, marginLeft: "auto", marginRight: "auto" }}>
-          <div style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "#000", marginBottom: 16, fontFamily: "'Jost',sans-serif", fontWeight: 600 }}>The Guarantee</div>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(15px,4vw,18px)" : "clamp(16px,1.6vw,20px)", fontWeight: 400, color: "#000", lineHeight: 1.8, letterSpacing: "-0.01em" }}>
+        <div style={{ marginTop: 48, padding: isMobile ? "32px 24px" : "48px 56px", borderRadius: 20, background: "#0a0a0a", border:"1px solid rgba(232,184,112,0.25)", boxShadow:"0 0 60px rgba(232,184,112,0.08)", textAlign: "center", maxWidth: 700, marginLeft: "auto", marginRight: "auto" }}>
+          <div style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", background:"linear-gradient(135deg,#F5E0A0,#E8B870)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom: 16, fontFamily: "'Jost',sans-serif", fontWeight: 600 }}>The Guarantee</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(15px,4vw,18px)" : "clamp(16px,1.6vw,20px)", fontWeight: 400, color: "rgba(253,240,232,0.85)", lineHeight: 1.8, letterSpacing: "-0.01em" }}>
             What I promise:<br/>
             A brain rewired to expect your desired outcome.<br/>
             Belief that things work out for you, even when the evidence hasn't arrived yet.<br/>
@@ -1914,54 +1914,55 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
       </div>
 
-      {/* HOW IT WORKS, LG gradient background getting darker, white boxes */}
-      <div style={{ background:"linear-gradient(180deg,#F5E0A0 0%,#E8B870 25%,#BFA5D8 55%,#2CB7A7 80%,#167A6B 100%)", width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
+      {/* HOW IT WORKS — black background, LG gradient on text only */}
+      <div style={{ background:"#000", width:"100%", padding: isMobile?"72px 20px 88px":"104px 80px 120px" }}>
+        <style>{`@keyframes mth-drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}`}</style>
         <div style={{ maxWidth:720, margin:"0 auto" }}>
 
           {/* Heading */}
           <div style={{ marginBottom: isMobile?48:72, textAlign:"center", width:"100%" }}>
-            <div style={{ fontSize:"clamp(36px,5vw,64px)", letterSpacing:"-0.02em", color:"#000", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center", fontWeight:300, lineHeight:1 }}>The Method.</div>
-            <div style={{ fontSize: isMobile?15:17, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.7, marginBottom:16, textAlign:"center" }}>Your beliefs are running on old programming. Self hypnosis replaces them at the source - in theta, where the subconscious accepts the upgrade without resistance.</div>
-            <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", textAlign:"center", opacity:0.7 }}>No perfect conditions. No waiting for bedtime. Press play and you're there in minutes.</div>
+            <div style={{ fontSize:"clamp(36px,5vw,64px)", letterSpacing:"-0.02em", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 6s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center", fontWeight:300, lineHeight:1, display:"inline-block" }}>The Method.</div>
+            <div style={{ fontSize: isMobile?15:17, fontWeight:300, color:"rgba(253,240,232,0.8)", fontFamily:"'Jost',sans-serif", lineHeight:1.7, marginBottom:16, textAlign:"center" }}>Your beliefs are running on old programming. Self hypnosis replaces them at the source — in theta, where the subconscious accepts the upgrade without resistance.</div>
+            <div style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", textAlign:"center" }}>No perfect conditions. No waiting for bedtime. Press play and you're there in minutes.</div>
           </div>
 
-          {/* Beta → Theta → Identity boxes - uniform sizing */}
+          {/* Beta → Theta → Identity boxes */}
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?48:72 }}>
 
-            <div style={{ background:"#1a1a1a", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif", opacity:0.5 }}>Where you start</div>
+            <div style={{ background:"#0a0a0a", border:"1px solid rgba(255,255,255,0.08)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(253,240,232,0.4)", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Beta</div>
-              <div style={{ fontSize:12, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:14, opacity:0.5 }}>13-40 Hz</div>
-              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7, opacity:0.8 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
+              <div style={{ fontSize:12, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>13–40 Hz</div>
+              <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
             </div>
 
-            <div style={{ fontSize: isMobile?24:28, color:"rgba(0,0,0,0.4)", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
+            <div style={{ fontSize: isMobile?24:28, color:"rgba(255,255,255,0.2)", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
 
-            <div style={{ background:"linear-gradient(135deg,#0d3b35,#134f47,#1a6b60)", border:"2px solid #2CB7A7", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
+            <div style={{ background:"#0a0a0a", border:"2px solid rgba(44,183,167,0.4)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(44,183,167,0.1)" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Theta</div>
-              <div style={{ fontSize:12, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>4-8 Hz</div>
-              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7, opacity:0.9 }}>The subconscious opens. New beliefs install without resistance.</div>
+              <div style={{ fontSize:12, background:"linear-gradient(135deg,#2CB7A7,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>4–8 Hz</div>
+              <div style={{ fontSize:14, color:"rgba(253,240,232,0.8)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The subconscious opens. New beliefs install without resistance.</div>
             </div>
 
-            <div style={{ fontSize: isMobile?24:28, color:"rgba(0,0,0,0.4)", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
+            <div style={{ fontSize: isMobile?24:28, color:"rgba(255,255,255,0.2)", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
 
-            <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 16px 64px rgba(44,183,167,0.3)" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000", marginBottom:14, fontFamily:"'Jost',sans-serif", opacity:0.6 }}>The result</div>
-              <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
-              <div style={{ fontSize:12, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:14, opacity:0.6 }}>Installed. </div>
-              <div style={{ fontSize:14, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.7, fontWeight:500 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
+            <div style={{ background:"#0a0a0a", border:"1px solid rgba(232,184,112,0.3)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(232,184,112,0.08)" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(253,240,232,0.4)", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>The result</div>
+              <div style={{ fontSize: isMobile?36:44, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
+              <div style={{ fontSize:12, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>Installed.</div>
+              <div style={{ fontSize:14, color:"rgba(253,240,232,0.8)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
             </div>
 
           </div>
 
-          {/* SECTION BREAK before How It Works */}
-          <div style={{ borderTop:"1px solid rgba(0,0,0,0.15)", margin: isMobile?"48px 0":"72px 0", opacity:0.4 }} />
+          {/* SECTION BREAK */}
+          <div style={{ borderTop:"1px solid rgba(255,255,255,0.07)", margin: isMobile?"48px 0":"72px 0" }} />
 
           {/* HOW IT WORKS heading */}
           <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
-            <div style={{ fontSize: isMobile?"clamp(40px,9vw,64px)":"clamp(48px,6vw,80px)", fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.03em", lineHeight:1.0 }}>How it works.</div>
-            <div style={{ fontSize: isMobile?15:17, color:"#000", fontFamily:"'Jost',sans-serif", marginTop:14, opacity:0.7 }}>What happens inside every session, step by step.</div>
+            <div style={{ fontSize: isMobile?"clamp(40px,9vw,64px)":"clamp(48px,6vw,80px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.03em", lineHeight:1.0 }}>How it works.</div>
+            <div style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", marginTop:14 }}>What happens inside every session, step by step.</div>
           </div>
 
           {/* Accordion */}
