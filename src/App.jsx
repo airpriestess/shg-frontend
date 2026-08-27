@@ -1688,88 +1688,9 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* HERO, full viewport carousel, then player */}
       <div style={{ marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))` }}>
 
-        {/* === HERO: value prop + phone mockup === */}
-        <div style={{ minHeight: isMobile?"auto":"calc(100vh - 102px)", display:"flex", alignItems:"center", background:"#000", padding: isMobile?"48px 20px 40px":"0 48px" }}>
-          <div style={{ maxWidth:1100, margin:"0 auto", width:"100%", display:"flex", flexDirection: isMobile?"column":"row", alignItems:"center", gap: isMobile?40:64 }}>
-
-            {/* LEFT: value prop */}
-            <div style={{ flex:"1 1 0", minWidth:0 }}>
-              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Self Hypnosis Goddess</div>
-              <h1 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(36px,10vw,52px)":"clamp(44px,5vw,72px)", lineHeight:1.05, letterSpacing:"-0.02em", color:"#fdf0e8", margin:"0 0 20px" }}>
-                Subconscious reprogramming.<br/>
-                <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Through music.</span>
-              </h1>
-              <p style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?16:19, color:"rgba(253,240,232,0.65)", lineHeight:1.65, margin:"0 0 36px", maxWidth:460 }}>
-                Lucky Girl audio layered with EMDR, binaural beats, and Reshma's voice. Sleep your way into a new identity. Wake up different.
-              </p>
-              <div style={{ display:"flex", flexDirection: isMobile?"column":"row", gap:12, alignItems: isMobile?"stretch":"center" }}>
-                <button onClick={()=>setWaitlistOpen(true)} style={{ padding:"16px 32px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize:14, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", cursor:"pointer", fontFamily:"'Jost',sans-serif", boxShadow:"0 0 40px rgba(232,184,112,0.3)", whiteSpace:"nowrap" }}>
-                  Start Listening →
-                </button>
-              </div>
-              <p style={{ fontFamily:"'Jost',sans-serif", fontSize:12, color:"rgba(253,240,232,0.3)", margin:"20px 0 0", letterSpacing:"0.05em" }}>No app download · Works like Spotify · Plays in background</p>
-            </div>
-
-            {/* RIGHT: phone mockup */}
-            <div style={{ flex:"0 0 auto", display:"flex", justifyContent:"center", alignItems:"center" }}>
-              {/* Phone shell */}
-              <div style={{ width: isMobile?260:300, background:"#0a0a0a", borderRadius:44, border:"2px solid rgba(232,184,112,0.25)", boxShadow:"0 0 80px rgba(44,183,167,0.18), 0 0 160px rgba(232,184,112,0.08), inset 0 0 0 1px rgba(255,255,255,0.04)", padding:"28px 16px 24px", position:"relative", overflow:"hidden" }}>
-                {/* Notch */}
-                <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)", width:90, height:26, background:"#000", borderRadius:"0 0 18px 18px" }}/>
-                {/* Screen content */}
-                <div style={{ paddingTop:12 }}>
-                  {/* App header */}
-                  <div style={{ textAlign:"center", marginBottom:20 }}>
-                    <div style={{ fontSize:9, letterSpacing:"0.22em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Self Hypnosis Goddess</div>
-                    <div style={{ fontSize:8, color:"rgba(253,240,232,0.3)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>NOW PLAYING</div>
-                  </div>
-                  {/* Album art placeholder */}
-                  <div style={{ width:120, height:120, borderRadius:20, margin:"0 auto 16px", background:"linear-gradient(135deg,rgba(245,224,160,0.15),rgba(44,183,167,0.15))", border:"1px solid rgba(232,184,112,0.2)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                    <img src="/logo_transparent_cropped.png" alt="" width={70} height={70} style={{ objectFit:"contain", opacity:0.9 }}/>
-                  </div>
-                  {/* Track info */}
-                  <div style={{ textAlign:"center", marginBottom:16 }}>
-                    <div style={{ fontSize:11, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.3, marginBottom:4 }}>I Am The Luckiest Woman</div>
-                    <div style={{ fontSize:9, color:"#2CB7A7", fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em" }}>Reshma Oracle · 528hz</div>
-                  </div>
-                  {/* Progress bar */}
-                  <div style={{ height:2, background:"rgba(255,255,255,0.08)", borderRadius:1, margin:"0 8px 16px", position:"relative" }}>
-                    <div style={{ position:"absolute", left:0, top:0, height:"100%", width:"38%", background:"linear-gradient(90deg,#E8B870,#2CB7A7)", borderRadius:1 }}/>
-                    <div style={{ position:"absolute", left:"38%", top:"50%", transform:"translate(-50%,-50%)", width:6, height:6, borderRadius:"50%", background:"#E8B870" }}/>
-                  </div>
-                  {/* Controls */}
-                  <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, marginBottom:20 }}>
-                    <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(44,183,167,0.1)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#2CB7A7"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2" height="16" rx="1" fill="#2CB7A7"/></svg>
-                    </div>
-                    <div style={{ width:44, height:44, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 0 20px rgba(232,184,112,0.4)" }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
-                    </div>
-                    <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(44,183,167,0.1)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#2CB7A7"><path d="M5 4l10 8-10 8V4z"/><rect x="17" y="4" width="2" height="16" rx="1" fill="#2CB7A7"/></svg>
-                    </div>
-                  </div>
-                  {/* Category chips */}
-                  <div style={{ display:"flex", gap:6, justifyContent:"center", flexWrap:"wrap" }}>
-                    {["Lucky Girl","Sleep","Hypnosis"].map(c=>(
-                      <div key={c} style={{ fontSize:7, padding:"3px 8px", borderRadius:10, border:"1px solid rgba(44,183,167,0.3)", color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em" }}>{c}</div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              {/* Glow under phone */}
-              <div style={{ position:"absolute", width:200, height:60, background:"radial-gradient(ellipse,rgba(44,183,167,0.2),transparent 70%)", bottom:-30, left:"50%", transform:"translateX(-50%)", pointerEvents:"none" }}/>
-            </div>
-
-          </div>
-        </div>
-
-        {/* IDENTITY CAROUSEL — scrolls below hero */}
-        <div style={{ background:"#000", padding: isMobile?"40px 0 0":"48px 0 0", borderTop:"1px solid rgba(232,184,112,0.08)" }}>
-          <div style={{ textAlign:"center", marginBottom: isMobile?16:20 }}>
-            <span style={{ fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.3)", fontFamily:"'Jost',sans-serif" }}>What women are installing</span>
-          </div>
-          <div style={{ height: isMobile?280:320, overflow:"hidden" }}>
+        {/* FULL SCREEN CAROUSEL */}
+        <div style={{ height: `calc(100vh - ${isMobile?"98px":"102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile?480:560, display:"flex", flexDirection:"column", background:"#000" }}>
+          <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center" }}>
             <IdentityCarousel cats={[
               { label:"Luckygirlmaxxing",   tagline:"Lucky girl? That's just who I am." },
               { label:"Richgirlmaxxing",       tagline:"I make billions in my sleep." },
@@ -1869,13 +1790,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               { label:"Richgirlmaxxing",       tagline:"I open my banking app and smile. Every time." },
               { label:"Erosmaxxing",        tagline:"I know exactly what I want in the bedroom." },
               { label:"Skinnymaxxing",      tagline:"The weight came off like it was never mine to keep." },
-                        ]} fullscreen={false} />
+                        ]} fullscreen={true} />
           </div>
-        </div>
-
-        {/* SECTION LABEL ABOVE PLAYER */}
-        <div style={{ background:"#000", paddingTop: isMobile?24:32, paddingBottom:0, textAlign:"center", width:"100%" }}>
-          <div style={{ fontSize: isMobile?"clamp(22px,6vw,36px)":"clamp(28px,3vw,48px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em", lineHeight:1.05, marginBottom:16, padding: isMobile?"0 16px":"0 20px", width:"100%" }}>Try it now.</div>
         </div>
 
         {/* SPOTIFY-STYLE PLAYER */}
