@@ -922,9 +922,9 @@ function AppPreviewSection({ isMobile }) {
             [animListens,    "Total listens",      4],
           ].map(([v,l,delay],i)=>(
             (!isMobile || i<3) &&
-            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"rgba(255,255,255,0.55)", borderRadius:14, padding:"18px 10px", textAlign:"center", border:"1px solid rgba(255,255,255,0.8)" }}>
+            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:`ap-drift ${5+i*0.7}s ease-in-out infinite`, borderRadius:14, padding:"18px 10px", textAlign:"center", boxShadow:"0 4px 24px rgba(232,184,112,0.25)" }}>
               <div style={{ fontSize: isMobile?30:40, fontWeight:700, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", color:"#000" }}>{v}</div>
-              <div style={{ fontSize:13, color:"rgba(0,0,0,0.55)", marginTop:8, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
+              <div style={{ fontSize:13, color:"rgba(0,0,0,0.6)", marginTop:8, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
             </div>
           ))}
         </div>
