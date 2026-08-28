@@ -139,6 +139,9 @@ const GO_LINKS = {
   "love-ig-reply":     "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=instagram&utm_medium=smart_reply&utm_campaign=lovemaxxing",
   "love-email":        "https://shop.beacons.ai/reshmaoracle/4386c71b-1ba1-4e6c-8b34-c6b8468615db&utm_source=email&utm_medium=email&utm_campaign=lovemaxxing",
 
+  // BLOG
+  "blog-yt-desc":       "/blog?utm_source=youtube&utm_medium=description&utm_campaign=blog",
+
   // LUCKYGIRL WORKBOOK
   "lucky-yt-desc":      "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
   "lucky-yt-community": "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=community_post&utm_campaign=luckygirlmaxxing",
