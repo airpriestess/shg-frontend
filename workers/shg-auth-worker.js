@@ -142,6 +142,9 @@ const GO_LINKS = {
   // BLOG
   "blog-yt-desc":       "/blog?utm_source=youtube&utm_medium=description&utm_campaign=blog",
 
+  // QUIZ
+  "quiz-lucky-yt-desc": "/blocks/luckygirl?utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
+
   // LUCKYGIRL WORKBOOK
   "lucky-yt-desc":      "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
   "lucky-yt-community": "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=community_post&utm_campaign=luckygirlmaxxing",
