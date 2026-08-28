@@ -1610,12 +1610,12 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 12 : 20, overflow: "hidden", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", boxShadow: "0 0 24px rgba(232,184,112,0.4), 0 0 48px rgba(44,183,167,0.2)" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 12, fontWeight: 600, letterSpacing: "0.18em", whiteSpace: "nowrap", textTransform: "uppercase", color: "#000" }}>
-            From Hot Mess to Goddess (of course, obviously.)
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 20, overflow: "hidden", padding: isMobile ? "0 10px" : "0 20px", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", boxShadow: "0 0 24px rgba(232,184,112,0.4), 0 0 48px rgba(44,183,167,0.2)" }}>
+          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 600, letterSpacing: isMobile ? "0.06em" : "0.18em", whiteSpace: "nowrap", textTransform: "uppercase", color: "#000", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>
+            {isMobile ? "Hot Mess to Goddess." : "From Hot Mess to Goddess (of course, obviously.)"}
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"5px 16px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.35)", borderRadius: 20, color: "#000", fontSize: isMobile ? 12 : 11, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            Join the Waitlist →
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"5px 10px":"5px 16px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.35)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: isMobile ? "0.04em" : "0.1em", textTransform: "uppercase" }}>
+            {isMobile ? "Join →" : "Join the Waitlist →"}
           </button>
         </div>
       )}
@@ -1631,8 +1631,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         <div style={{ display: "flex", gap: 8, alignItems: "center", flex: "0 0 auto", justifyContent:"flex-end" }}>
           {/* Free Gift CTA */}
-          <a href="/gift?utm_source=site&utm_medium=nav_cta&utm_campaign=free_gift" style={{ padding:"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
-            Claim Free Gift
+          <a href="/gift?utm_source=site&utm_medium=nav_cta&utm_campaign=free_gift" style={{ padding: isMobile?"7px 12px":"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize: isMobile?9:11, fontWeight:600, letterSpacing: isMobile?"0.06em":"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
+            {isMobile ? "Free Gift" : "Claim Free Gift"}
           </a>
           {/* Hamburger, both mobile and desktop */}
           <button onClick={()=>setMenuOpen(m=>!m)} style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent",touchAction:"manipulation" }} aria-label="Open menu">
