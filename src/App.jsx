@@ -1029,6 +1029,80 @@ function AppPreviewSection({ isMobile }) {
   );
 }
 
+const CAT_SLIDES = [
+  { label:"Luckygirlmaxxing", color:"#E8B870", track:"I Am The Luckiest Woman", value:"Everything works out for me. Always.", desc:"Rewire your brain to expect luck, abundance, and ease — at the identity level. Not affirmations. Not hope. Installation.", tags:["Lucky Girl","Manifestation","528hz"] },
+  { label:"Sleepmaxxing", color:"#BFA5D8", track:"Install While You Dream", value:"Your most powerful sessions happen while you sleep.", desc:"Delta state is where your subconscious accepts the deepest identity upgrades. These tracks are designed for exactly that.", tags:["Sleep","Delta","Subliminals"] },
+  { label:"Richgirlmaxxing", color:"#2CB7A7", track:"Billions Are My Birthright", value:"Money finds you. You stop chasing it.", desc:"Rewire your money story at the root. Your subconscious decides what you allow in. Change what it believes about wealth.", tags:["Rich Girl","Abundance","432hz"] },
+  { label:"Beautymaxxing", color:"#F5E0A0", track:"My Face Is My Proof of Concept", value:"You become the face you used to manifest.", desc:"Beauty is a frequency. Reshape how your nervous system carries itself. People notice before you've said a word.", tags:["Beauty","Confidence","528hz"] },
+  { label:"Lovemaxxing", color:"#BFA5D8", track:"He Can't Stop Thinking About Me", value:"The love you asked for finds its way to you.", desc:"Shift your attachment patterns, your standards, and what you expect from love — all while you sleep or commute.", tags:["Love","Relationships","639hz"] },
+];
+
+function CategorySlider({ isMobile, onWaitlist }) {
+  const [catIdx, setCatIdx] = React.useState(0);
+  const slide = CAT_SLIDES[catIdx];
+  return (
+    <div style={{ background:"#000", padding: isMobile?"48px 0 40px":"64px 0", borderTop:"1px solid rgba(232,184,112,0.08)", overflow:"hidden" }}>
+      <div style={{ maxWidth:1100, margin:"0 auto", padding: isMobile?"0 20px":"0 48px", display:"flex", flexDirection: isMobile?"column":"row", alignItems:"center", gap: isMobile?40:80 }}>
+        <div style={{ flex:"1 1 0", minWidth:0 }}>
+          <div style={{ fontSize:10, letterSpacing:"0.3em", textTransform:"uppercase", color:slide.color, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:500 }}>{slide.label}</div>
+          <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(36px,4vw,56px)", lineHeight:1.1, color:"#fdf0e8", margin:"0 0 8px" }}>{slide.value}</h2>
+          <p style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?15:17, color:"#fdf0e8", lineHeight:1.75, margin:"0 0 36px", maxWidth:420, opacity:0.85 }}>{slide.desc}</p>
+          <button onClick={onWaitlist} style={{ padding:"14px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize:13, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", cursor:"pointer", fontFamily:"'Jost',sans-serif", boxShadow:"0 0 32px rgba(232,184,112,0.25)" }}>
+            Join the Waitlist →
+          </button>
+          <div style={{ display:"flex", gap:8, marginTop:32, alignItems:"center" }}>
+            {CAT_SLIDES.map((_,i)=>(
+              <button key={i} onClick={()=>setCatIdx(i)} style={{ width: i===catIdx?24:8, height:8, borderRadius:4, background: i===catIdx?slide.color:"rgba(253,240,232,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.3s" }}/>
+            ))}
+          </div>
+        </div>
+        <div style={{ flex:"0 0 auto", display:"flex", flexDirection:"column", alignItems:"center", gap:20 }}>
+          <div style={{ width: isMobile?240:280, background:"#0a0a0a", borderRadius:40, border:`2px solid ${slide.color}44`, boxShadow:`0 0 60px ${slide.color}22, inset 0 0 0 1px rgba(255,255,255,0.04)`, padding:"24px 14px 20px", position:"relative", overflow:"hidden" }}>
+            <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)", width:80, height:22, background:"#000", borderRadius:"0 0 14px 14px" }}/>
+            <div style={{ paddingTop:10 }}>
+              <div style={{ textAlign:"center", marginBottom:16 }}>
+                <div style={{ fontSize:8, letterSpacing:"0.22em", textTransform:"uppercase", color:slide.color, fontFamily:"'Jost',sans-serif", marginBottom:3 }}>Self Hypnosis Goddess</div>
+                <div style={{ fontSize:7, color:"rgba(253,240,232,0.35)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>NOW PLAYING</div>
+              </div>
+              <div style={{ width:110, height:110, borderRadius:18, margin:"0 auto 14px", background:`linear-gradient(135deg,${slide.color}22,rgba(44,183,167,0.12))`, border:`1px solid ${slide.color}33`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <img src="/logo_transparent_cropped.png" alt="" width={64} height={64} style={{ objectFit:"contain", opacity:0.9 }}/>
+              </div>
+              <div style={{ textAlign:"center", marginBottom:14 }}>
+                <div style={{ fontSize:10, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.3, marginBottom:3 }}>{slide.track}</div>
+                <div style={{ fontSize:8, color:slide.color, fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em" }}>Reshma Oracle</div>
+              </div>
+              <div style={{ height:2, background:"rgba(255,255,255,0.06)", borderRadius:1, margin:"0 6px 14px", position:"relative" }}>
+                <div style={{ position:"absolute", left:0, top:0, height:"100%", width:"42%", background:`linear-gradient(90deg,${slide.color},#2CB7A7)`, borderRadius:1 }}/>
+                <div style={{ position:"absolute", left:"42%", top:"50%", transform:"translate(-50%,-50%)", width:5, height:5, borderRadius:"50%", background:slide.color }}/>
+              </div>
+              <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:14, marginBottom:16 }}>
+                <div style={{ width:26, height:26, borderRadius:"50%", background:"rgba(255,255,255,0.05)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill={slide.color}><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2" height="16" rx="1" fill={slide.color}/></svg>
+                </div>
+                <div style={{ width:40, height:40, borderRadius:"50%", background:`linear-gradient(135deg,${slide.color},#2CB7A7)`, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:`0 0 16px ${slide.color}55` }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
+                </div>
+                <div style={{ width:26, height:26, borderRadius:"50%", background:"rgba(255,255,255,0.05)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill={slide.color}><path d="M5 4l10 8-10 8V4z"/><rect x="17" y="4" width="2" height="16" rx="1" fill={slide.color}/></svg>
+                </div>
+              </div>
+              <div style={{ display:"flex", gap:5, justifyContent:"center", flexWrap:"wrap" }}>
+                {slide.tags.map(t=>(
+                  <div key={t} style={{ fontSize:6, padding:"2px 7px", borderRadius:8, border:`1px solid ${slide.color}44`, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif" }}>{t}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div style={{ display:"flex", gap:12 }}>
+            <button onClick={()=>setCatIdx(i=>(i-1+CAT_SLIDES.length)%CAT_SLIDES.length)} style={{ width:40, height:40, borderRadius:"50%", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)", color:"#fdf0e8", fontSize:20, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>‹</button>
+            <button onClick={()=>setCatIdx(i=>(i+1)%CAT_SLIDES.length)} style={{ width:40, height:40, borderRadius:"50%", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)", color:"#fdf0e8", fontSize:20, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HeroMarquee() {
   const [lit, setLit] = useState(-1);
   const doubled = [...MARQUEE_ITEMS,...MARQUEE_ITEMS,...MARQUEE_ITEMS];
@@ -1794,87 +1868,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
 
         {/* CATEGORY SLIDER — phone mockup per category */}
-        {(()=>{
-          const CAT_SLIDES = [
-            { label:"Luckygirlmaxxing", color:"#E8B870", track:"I Am The Luckiest Woman", value:"Everything works out for me. Always.", desc:"Rewire your brain to expect luck, abundance, and ease — at the identity level. Not affirmations. Not hope. Installation.", tags:["Lucky Girl","Manifestation","528hz"] },
-            { label:"Sleepmaxxing", color:"#BFA5D8", track:"Install While You Dream", value:"Your most powerful sessions happen while you sleep.", desc:"Delta state is where your subconscious accepts the deepest identity upgrades. These tracks are designed for exactly that.", tags:["Sleep","Delta","Subliminals"] },
-            { label:"Richgirlmaxxing", color:"#2CB7A7", track:"Billions Are My Birthright", value:"Money finds you. You stop chasing it.", desc:"Rewire your money story at the root. Your subconscious decides what you allow in. Change what it believes about wealth.", tags:["Rich Girl","Abundance","432hz"] },
-            { label:"Beautymaxxing", color:"#F5E0A0", track:"My Face Is My Proof of Concept", value:"You become the face you used to manifest.", desc:"Beauty is a frequency. Reshape how your nervous system carries itself. People notice before you've said a word.", tags:["Beauty","Confidence","528hz"] },
-            { label:"Lovemaxxing", color:"#BFA5D8", track:"He Can't Stop Thinking About Me", value:"The love you asked for finds its way to you.", desc:"Shift your attachment patterns, your standards, and what you expect from love — all while you sleep or commute.", tags:["Love","Relationships","639hz"] },
-          ];
-          const [catIdx, setCatIdx] = React.useState(0);
-          const slide = CAT_SLIDES[catIdx];
-          return (
-            <div style={{ background:"#000", padding: isMobile?"48px 0 40px":"64px 0", borderTop:"1px solid rgba(232,184,112,0.08)", overflow:"hidden" }}>
-              <div style={{ maxWidth:1100, margin:"0 auto", padding: isMobile?"0 20px":"0 48px", display:"flex", flexDirection: isMobile?"column":"row", alignItems:"center", gap: isMobile?40:80 }}>
-
-                {/* LEFT: value copy */}
-                <div style={{ flex:"1 1 0", minWidth:0 }}>
-                  <div style={{ fontSize:10, letterSpacing:"0.3em", textTransform:"uppercase", color:slide.color, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:500, transition:"color 0.4s" }}>{slide.label}</div>
-                  <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(28px,8vw,44px)":"clamp(36px,4vw,56px)", lineHeight:1.1, color:"#fdf0e8", margin:"0 0 8px" }}>{slide.value}</h2>
-                  <p style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?15:17, color:"#fdf0e8", lineHeight:1.75, margin:"0 0 36px", maxWidth:420, opacity:0.85 }}>{slide.desc}</p>
-                  <button onClick={()=>setWaitlistOpen(true)} style={{ padding:"14px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize:13, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", cursor:"pointer", fontFamily:"'Jost',sans-serif", boxShadow:"0 0 32px rgba(232,184,112,0.25)" }}>
-                    Join the Waitlist →
-                  </button>
-
-                  {/* Dot nav */}
-                  <div style={{ display:"flex", gap:8, marginTop:32, alignItems:"center" }}>
-                    {CAT_SLIDES.map((_,i)=>(
-                      <button key={i} onClick={()=>setCatIdx(i)} style={{ width: i===catIdx?24:8, height:8, borderRadius:4, background: i===catIdx?slide.color:"rgba(253,240,232,0.2)", border:"none", cursor:"pointer", padding:0, transition:"all 0.3s" }}/>
-                    ))}
-                  </div>
-                </div>
-
-                {/* RIGHT: phone mockup */}
-                <div style={{ flex:"0 0 auto", display:"flex", flexDirection:"column", alignItems:"center", gap:20 }}>
-                  <div style={{ width: isMobile?240:280, background:"#0a0a0a", borderRadius:40, border:`2px solid ${slide.color}44`, boxShadow:`0 0 60px ${slide.color}22, 0 0 120px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.04)`, padding:"24px 14px 20px", position:"relative", overflow:"hidden", transition:"border-color 0.4s, box-shadow 0.4s" }}>
-                    <div style={{ position:"absolute", top:0, left:"50%", transform:"translateX(-50%)", width:80, height:22, background:"#000", borderRadius:"0 0 14px 14px" }}/>
-                    <div style={{ paddingTop:10 }}>
-                      <div style={{ textAlign:"center", marginBottom:16 }}>
-                        <div style={{ fontSize:8, letterSpacing:"0.22em", textTransform:"uppercase", color:slide.color, fontFamily:"'Jost',sans-serif", marginBottom:3 }}>Self Hypnosis Goddess</div>
-                        <div style={{ fontSize:7, color:"rgba(253,240,232,0.35)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>NOW PLAYING</div>
-                      </div>
-                      <div style={{ width:110, height:110, borderRadius:18, margin:"0 auto 14px", background:`linear-gradient(135deg,${slide.color}22,rgba(44,183,167,0.12))`, border:`1px solid ${slide.color}33`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                        <img src="/logo_transparent_cropped.png" alt="" width={64} height={64} style={{ objectFit:"contain", opacity:0.9 }}/>
-                      </div>
-                      <div style={{ textAlign:"center", marginBottom:14 }}>
-                        <div style={{ fontSize:10, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.3, marginBottom:3 }}>{slide.track}</div>
-                        <div style={{ fontSize:8, color:slide.color, fontFamily:"'Jost',sans-serif", letterSpacing:"0.08em" }}>Reshma Oracle</div>
-                      </div>
-                      <div style={{ height:2, background:"rgba(255,255,255,0.06)", borderRadius:1, margin:"0 6px 14px", position:"relative" }}>
-                        <div style={{ position:"absolute", left:0, top:0, height:"100%", width:"42%", background:`linear-gradient(90deg,${slide.color},#2CB7A7)`, borderRadius:1 }}/>
-                        <div style={{ position:"absolute", left:"42%", top:"50%", transform:"translate(-50%,-50%)", width:5, height:5, borderRadius:"50%", background:slide.color }}/>
-                      </div>
-                      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:14, marginBottom:16 }}>
-                        <div style={{ width:26, height:26, borderRadius:"50%", background:"rgba(255,255,255,0.05)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill={slide.color}><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2" height="16" rx="1" fill={slide.color}/></svg>
-                        </div>
-                        <div style={{ width:40, height:40, borderRadius:"50%", background:`linear-gradient(135deg,${slide.color},#2CB7A7)`, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:`0 0 16px ${slide.color}55` }}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><polygon points="7 3 21 12 7 21 7 3"/></svg>
-                        </div>
-                        <div style={{ width:26, height:26, borderRadius:"50%", background:"rgba(255,255,255,0.05)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill={slide.color}><path d="M5 4l10 8-10 8V4z"/><rect x="17" y="4" width="2" height="16" rx="1" fill={slide.color}/></svg>
-                        </div>
-                      </div>
-                      <div style={{ display:"flex", gap:5, justifyContent:"center", flexWrap:"wrap" }}>
-                        {slide.tags.map(t=>(
-                          <div key={t} style={{ fontSize:6, padding:"2px 7px", borderRadius:8, border:`1px solid ${slide.color}44`, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif" }}>{t}</div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Prev / Next arrows */}
-                  <div style={{ display:"flex", gap:12 }}>
-                    <button onClick={()=>setCatIdx(i=>(i-1+CAT_SLIDES.length)%CAT_SLIDES.length)} style={{ width:40, height:40, borderRadius:"50%", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)", color:"#fdf0e8", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>‹</button>
-                    <button onClick={()=>setCatIdx(i=>(i+1)%CAT_SLIDES.length)} style={{ width:40, height:40, borderRadius:"50%", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)", color:"#fdf0e8", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>›</button>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          );
-        })()}
+        <CategorySlider isMobile={isMobile} onWaitlist={()=>setWaitlistOpen(true)} />
 
         {/* SPOTIFY-STYLE PLAYER */}
         <div style={{ background:"#000", padding: isMobile?"12px 14px 20px":"32px 24px 48px" }}>
