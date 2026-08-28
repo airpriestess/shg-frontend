@@ -1805,7 +1805,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Through music.</span>
               </h2>
               <p style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.7, margin:"0 0 36px", maxWidth:440 }}>
-                Lucky Girl audio layered with EMDR, binaural beats, and Reshma's voice. Sleep your way into a new identity. Wake up different.
+                Lucky Girl audio layered with EMDR, binaural beats, and Reshma's voice. Hypnotize your way into a new identity. Shift your reality. Manifest magic.
               </p>
               <button onClick={()=>setWaitlistOpen(true)} style={{ padding:"16px 32px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize:14, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", cursor:"pointer", fontFamily:"'Jost',sans-serif", boxShadow:"0 0 40px rgba(232,184,112,0.3)", whiteSpace:"nowrap" }}>
                 Join the Waitlist →
