@@ -1799,8 +1799,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
             {/* LEFT: tagline + CTA */}
             <div style={{ flex:"1 1 0", minWidth:0 }}>
-              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:20, fontFamily:"'Futura','Century Gothic','Trebuchet MS',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess</div>
-              <h2 style={{ fontFamily:"'Futura','Century Gothic','Trebuchet MS',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,4.5vw,64px)", lineHeight:1.08, letterSpacing:"-0.01em", color:"#fdf0e8", margin:"0 0 20px" }}>
+              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess</div>
+              <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,4.5vw,64px)", lineHeight:1.08, letterSpacing:"-0.01em", color:"#fdf0e8", margin:"0 0 20px" }}>
                 Subconscious reprogramming.<br/>
                 <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Through music.</span>
               </h2>
