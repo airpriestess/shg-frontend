@@ -146,11 +146,11 @@ const GO_LINKS = {
   "quiz-lucky-yt-desc": "/blocks/luckygirl?utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
 
   // LUCKYGIRL WORKBOOK
-  "lucky-yt-desc":      "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
-  "lucky-yt-community": "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=youtube&utm_medium=community_post&utm_campaign=luckygirlmaxxing",
-  "lucky-ig-bio":       "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=instagram&utm_medium=bio&utm_campaign=luckygirlmaxxing",
-  "lucky-ig-reply":     "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=instagram&utm_medium=smart_reply&utm_campaign=luckygirlmaxxing",
-  "lucky-email":        "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f&utm_source=email&utm_medium=email&utm_campaign=luckygirlmaxxing",
+  "lucky-yt-desc":      "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f?utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
+  "lucky-yt-community": "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f?utm_source=youtube&utm_medium=community_post&utm_campaign=luckygirlmaxxing",
+  "lucky-ig-bio":       "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f?utm_source=instagram&utm_medium=bio&utm_campaign=luckygirlmaxxing",
+  "lucky-ig-reply":     "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f?utm_source=instagram&utm_medium=smart_reply&utm_campaign=luckygirlmaxxing",
+  "lucky-email":        "https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f?utm_source=email&utm_medium=email&utm_campaign=luckygirlmaxxing",
 };
 
 function isApiRoute(method, pathname) {
