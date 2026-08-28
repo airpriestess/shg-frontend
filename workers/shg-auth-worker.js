@@ -141,6 +141,7 @@ const GO_LINKS = {
 
   // BLOG
   "blog-yt-desc":       "/blog?utm_source=youtube&utm_medium=description&utm_campaign=blog",
+  "blog-email":         "/blog/timing-windows-lucky-girl?utm_source=email&utm_medium=email&utm_campaign=luckygirlmaxxing",
 
   // QUIZ
   "quiz-lucky-yt-desc": "/blocks/luckygirl?utm_source=youtube&utm_medium=description&utm_campaign=luckygirlmaxxing",
