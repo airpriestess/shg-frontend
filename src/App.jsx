@@ -1609,11 +1609,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
       {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 12 : 20, overflow: "hidden", background: "#000", borderBottom: "1px solid rgba(232,184,112,0.18)" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 12, fontWeight: 500, letterSpacing: "0.18em", whiteSpace: "nowrap", textTransform: "uppercase", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 0 8px rgba(232,184,112,0.5))" }}>
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 12 : 20, overflow: "hidden", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", boxShadow: "0 0 24px rgba(232,184,112,0.4), 0 0 48px rgba(44,183,167,0.2)" }}>
+          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 13 : 12, fontWeight: 600, letterSpacing: "0.18em", whiteSpace: "nowrap", textTransform: "uppercase", color: "#000" }}>
             From Hot Mess to Goddess (of course, obviously.)
           </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"5px 16px", background: "none", border: "1px solid rgba(232,184,112,0.5)", borderRadius: 20, color: "#E8B870", fontSize: isMobile ? 12 : 11, fontWeight: 500, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"6px 16px":"5px 16px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.35)", borderRadius: 20, color: "#000", fontSize: isMobile ? 12 : 11, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Join the Waitlist →
           </button>
         </div>
