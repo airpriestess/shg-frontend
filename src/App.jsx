@@ -1509,7 +1509,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   };
   const [faqOpen, setFaqOpen] = useState(null);
   const [giftPopup, setGiftPopup] = useState(() => {
-    // Show once per session, 4 seconds after load
+    // Don't show gift popup if waitlist modal is opening
+    if (new URLSearchParams(window.location.search).get("waitlist") === "1") return false;
     try { return !sessionStorage.getItem('shg_gift_seen'); } catch(e) { return true; }
   });
   const audioRef = useRef(null);
@@ -2591,3 +2592,5 @@ function SignModal({ open, type, onClose, threadId }) {
 
 
 
+
+ 
