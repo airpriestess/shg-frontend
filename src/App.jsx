@@ -1884,7 +1884,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     </div>
                   </div>
                   <div style={{ display:"flex", gap:6, justifyContent:"center", flexWrap:"wrap" }}>
-                    {["Lucky Girl","Sleep","Hypnosis"].map(c=>(
+                    {["Lucky Girl","Subliminal","Hypnosis"].map(c=>(
                       <div key={c} style={{ fontSize:7, padding:"3px 8px", borderRadius:10, border:"1px solid rgba(44,183,167,0.3)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em" }}>{c}</div>
                     ))}
                   </div>
