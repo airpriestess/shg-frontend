@@ -1636,7 +1636,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {isMobile ? "Hot Mess to Goddess." : "From Hot Mess to Goddess (of course, obviously.)"}
           </span>
           <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"5px 10px":"5px 16px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.35)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: isMobile ? "0.04em" : "0.1em", textTransform: "uppercase" }}>
-            {isMobile ? "Join →" : "Join the Waitlist →"}
+            {isMobile ? "Join Waitlist →" : "Join the Waitlist →"}
           </button>
         </div>
       )}
@@ -1710,7 +1710,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))` }}>
 
         {/* FULL SCREEN CAROUSEL — hero */}
-        <div style={{ height: `calc(100vh - ${isMobile?"98px":"102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile?480:560, display:"flex", flexDirection:"column", background:"#000" }}>
+        <div style={{ height: `calc(var(--vh100) - ${isMobile?"98px":"102px"} - env(safe-area-inset-top,0px))`, minHeight: isMobile?480:560, display:"flex", flexDirection:"column", background:"#000" }}>
           <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center" }}>
             <IdentityCarousel cats={[
               { label:"Luckygirlmaxxing",   tagline:"Lucky girl? That's just who I am." },
