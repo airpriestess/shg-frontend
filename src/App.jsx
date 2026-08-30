@@ -847,11 +847,14 @@ function useCountUp(target, duration=900) {
   return val;
 }
 
+const AP_YEARS = [2026,2027,2028,2029,2030];
+
 function AppPreviewSection({ isMobile, onWaitlist }) {
   const [year, setYear] = useState(2026);
   const [visible, setVisible] = useState(false);
   const [animKey, setAnimKey] = useState(0);
   const ref = useRef(null);
+  const pausedRef = useRef(false);
   const d = YEAR_DATA[year];
   const yearsShown = Object.keys(YEAR_DATA).map(Number).filter(y=>y<=year);
   const cumManifested = yearsShown.reduce((s,y)=>s+YEAR_DATA[y].manifested,0);
@@ -863,7 +866,22 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
     obs.observe(el); return () => obs.disconnect();
   }, []);
 
-  const changeYear = (y) => { setYear(y); setAnimKey(k=>k+1); };
+  // Auto-advance the year every 3s while the section is on screen, so a
+  // reader watching it play out sees the count climb year over year on its own.
+  useEffect(() => {
+    if (!visible) return;
+    const id = setInterval(() => {
+      if (pausedRef.current) return;
+      setYear(prev => {
+        const i = AP_YEARS.indexOf(prev);
+        return AP_YEARS[(i + 1) % AP_YEARS.length];
+      });
+      setAnimKey(k => k + 1);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [visible]);
+
+  const changeYear = (y) => { pausedRef.current = true; setYear(y); setAnimKey(k=>k+1); };
 
   const animManifested = useCountUp(visible ? d.manifested : 0);
   const animSet        = useCountUp(visible ? d.set : 0);
