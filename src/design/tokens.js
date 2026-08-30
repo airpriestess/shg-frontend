@@ -157,7 +157,6 @@ img{max-width:100%;}
   body > #root > * [style*="padding"]:not(.hscroll-ok){max-width:100vw!important;overflow-x:hidden!important;}
   h1{font-size:clamp(32px,9vw,52px)!important;}
   .hero-ctas>button{width:100%!important;}
-  html,body{overflow-x:hidden!important;max-width:100vw!important;}
 }
 
 /* ── SECTION COLOUR BANDS ─────────────── */
