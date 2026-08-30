@@ -6,7 +6,7 @@ import HamburgerMenu from "../components/HamburgerMenu.jsx";
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const BLACK = "#000000";
 const CREAM = "#fdf0e8";
-const MU = "#a09080";
+const MU = "#fdf0e8";
 const TEAL = "#2CB7A7";
 
 const CATEGORIES = [
@@ -244,7 +244,7 @@ export default function Library({ onBack }) {
       </div>
 
       {/* INTRO */}
-      <div style={{ background:BLACK, padding: isMobile?"48px 20px":"64px 24px", textAlign:"center" }}>
+      <div className="reveal" style={{ background:BLACK, padding: isMobile?"48px 20px":"64px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:660, margin:"0 auto" }}>
           <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85, marginBottom:20 }}>
             You don't have to use all of them. You use the one that matches where your gap is right now. The desire you keep circling back to. The thing that feels just slightly out of reach no matter what you do.
@@ -256,7 +256,7 @@ export default function Library({ onBack }) {
       </div>
 
       {/* CATEGORIES GRID */}
-      <div style={{ background:"#080808", padding: isMobile?"32px 16px 80px":"48px 32px 96px" }}>
+      <div className="reveal" style={{ background:"#080808", padding: isMobile?"32px 16px 80px":"48px 32px 96px" }}>
         <div style={{ maxWidth:1100, margin:"0 auto" }}>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr": "1fr 1fr", gap:16 }}>
             {CATEGORIES.map((cat, i) => (
@@ -276,7 +276,7 @@ export default function Library({ onBack }) {
                       <span style={{ color: i%3===0 ? "#fff" : "#000", fontSize:20, lineHeight:1, fontWeight:300 }}>+</span>
                     </div>
                   </div>
-                  <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "#000000" : "rgba(253,240,232,0.65)", lineHeight:1.6, fontFamily:"'Jost',sans-serif", margin:0, fontStyle:"italic" }}>"{cat.tagline}"</p>
+                  <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "#000000" : "#fdf0e8", lineHeight:1.6, fontFamily:"'Jost',sans-serif", margin:0 }}>"{cat.tagline}"</p>
                 </div>
 
                 {/* Expanded content */}
@@ -284,12 +284,12 @@ export default function Library({ onBack }) {
                   <div style={{ borderTop:`1px solid rgba(255,255,255,0.06)` }}>
                     {/* Pain */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
-                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The pain point</div>
+                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#000000" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>The pain point</div>
                       <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "#000000" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.pain}</p>
                     </div>
                     {/* What it does */}
                     <div style={{ padding: isMobile?"20px 20px":"24px 28px", borderBottom:"1px solid rgba(255,255,255,0.04)" }}>
-                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#8a7060" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>What the audio does</div>
+                      <div style={{ fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color: i%3===1||i%3===2 ? "#000000" : MU, marginBottom:12, fontFamily:"'Jost',sans-serif" }}>What the audio does</div>
                       <p style={{ fontSize: isMobile?14:15, color: i%3===1||i%3===2 ? "#000000" : "#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", margin:0 }}>{cat.what}</p>
                     </div>
                     {/* The shift */}
@@ -306,7 +306,7 @@ export default function Library({ onBack }) {
       </div>
 
       {/* CTA */}
-      <div style={{ background:BLACK, padding: isMobile?"56px 20px 72px":"72px 24px 96px", textAlign:"center" }}>
+      <div className="reveal" style={{ background:BLACK, padding: isMobile?"56px 20px 72px":"72px 24px 96px", textAlign:"center" }}>
         <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:MU, marginBottom:28 }}>Find your frequency</div>
         <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(26px,7vw,38px)":"clamp(32px,4vw,48px)", color:CREAM, fontWeight:400, marginBottom:16, lineHeight:1.2 }}>
           Pick the category that's been living rent-free in your head.

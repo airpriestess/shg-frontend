@@ -79,7 +79,7 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== THE LOOP ===== */}
-      <div style={{ background:"#000", borderTop:"1px solid rgba(232,184,112,0.1)", padding: isMobile?"64px 24px":"96px 60px" }}>
+      <div className="reveal" style={{ background:"#000", borderTop:"1px solid rgba(232,184,112,0.1)", padding: isMobile?"64px 24px":"96px 60px" }}>
         <div style={{ maxWidth:760, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600, textAlign:"center" }}>The Pattern I Kept Seeing</div>
 
@@ -94,7 +94,7 @@ export default function About({ onBack }) {
               "Your subconscious is. And it hasn't been told a different story yet. It's running the same script it received before you were seven years old.",
               "Until you break that loop at the root — you will keep recreating the same reality. No matter how hard you want something different.",
             ].map((text, i) => (
-              <p key={i} style={{ fontSize: isMobile?16:19, color:i===3?"rgba(253,240,232,0.9)":"rgba(253,240,232,0.68)", lineHeight:1.8, margin:0, fontWeight:i===3?400:300, borderLeft:i===3?`2px solid #E8B870`:"none", paddingLeft:i===3?18:0 }}>
+              <p key={i} style={{ fontSize: isMobile?16:19, color:"#fdf0e8", lineHeight:1.8, margin:0, fontWeight:i===3?400:300, borderLeft:i===3?`2px solid #E8B870`:"none", paddingLeft:i===3?18:0 }}>
                 {text}
               </p>
             ))}
@@ -103,7 +103,7 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== RESHMA'S STORY ===== */}
-      <div style={{ padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
+      <div className="reveal" style={{ padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
         <div className="about-orb" style={{ width:500, height:500, right:"-10%", top:"20%", background:"radial-gradient(circle,rgba(191,165,216,0.08),transparent 70%)", animationDuration:"12s" }}/>
         <div style={{ maxWidth:860, margin:"0 auto", display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1.3fr", gap: isMobile?40:72, alignItems:"center", position:"relative", zIndex:1 }}>
           {/* Photo */}
@@ -138,7 +138,7 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== EVERYTHING IS CONNECTED ===== */}
-      <div style={{ background:"#000", borderTop:"1px solid rgba(44,183,167,0.15)", borderBottom:"1px solid rgba(44,183,167,0.15)", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
+      <div className="reveal" style={{ background:"#000", borderTop:"1px solid rgba(44,183,167,0.15)", borderBottom:"1px solid rgba(44,183,167,0.15)", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
         <div className="about-orb" style={{ width:400, height:400, left:"50%", top:"50%", transform:"translate(-50%,-50%)", background:"radial-gradient(circle,rgba(44,183,167,0.07),transparent 70%)", animationDuration:"15s" }}/>
         <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center", position:"relative", zIndex:1 }}>
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600 }}>The Bigger Picture</div>
@@ -158,7 +158,7 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== WHAT THIS IS FOR ===== */}
-      <div style={{ padding: isMobile?"64px 24px":"96px 60px" }}>
+      <div className="reveal" style={{ padding: isMobile?"64px 24px":"96px 60px" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600, textAlign:"center" }}>What SHG Is For</div>
           <h2 style={{ fontSize: isMobile?"clamp(26px,6vw,36px)":"clamp(30px,3vw,44px)", fontWeight:300, color:CREAM, textAlign:"center", marginBottom: isMobile?40:56, letterSpacing:"-0.02em", lineHeight:1.2 }}>
@@ -184,7 +184,7 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== ALIGNED VS CHAOS ===== */}
-      <div style={{ background:"#000", borderTop:"1px solid rgba(232,184,112,0.1)", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
+      <div className="reveal" style={{ background:"#000", borderTop:"1px solid rgba(232,184,112,0.1)", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
         <div className="about-orb" style={{ width:600, height:600, left:"-10%", top:"50%", transform:"translateY(-50%)", background:"radial-gradient(circle,rgba(245,224,160,0.06),transparent 70%)", animationDuration:"18s" }}/>
         <div style={{ maxWidth:760, margin:"0 auto", position:"relative", zIndex:1 }}>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?28:48, marginBottom: isMobile?40:64 }}>
@@ -230,7 +230,7 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== CTA ===== */}
-      <div style={{ padding: isMobile?"72px 24px 96px":"104px 60px 120px", textAlign:"center", position:"relative", overflow:"hidden" }}>
+      <div className="reveal" style={{ padding: isMobile?"72px 24px 96px":"104px 60px 120px", textAlign:"center", position:"relative", overflow:"hidden" }}>
         <div className="about-orb" style={{ width:400, height:400, left:"50%", top:"50%", transform:"translate(-50%,-50%)", background:"radial-gradient(circle,rgba(191,165,216,0.1),transparent 70%)", animationDuration:"10s" }}/>
         <div style={{ position:"relative", zIndex:1 }}>
           <h2 style={{ fontSize: isMobile?"clamp(30px,8vw,48px)":"clamp(36px,4vw,64px)", fontWeight:300, color:CREAM, marginBottom:24, letterSpacing:"-0.02em", lineHeight:1.15, maxWidth:720, margin:"0 auto 24px" }}>

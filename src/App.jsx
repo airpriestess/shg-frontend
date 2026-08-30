@@ -251,6 +251,18 @@ export default function App() {
   const playAudio = (a) => { setCurrentAudio(a); setPlayingId(a.id); };
   const goTab = (tab) => setPortalTab(tab);
 
+  // GLOBAL scroll-reveal — works on every route, every page, any content that mounts later
+  useEffect(() => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("reveal-in"); obs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+    const scan = () => { document.querySelectorAll(".reveal:not(.reveal-in)").forEach(el => obs.observe(el)); };
+    scan();
+    const mo = new MutationObserver(scan);
+    mo.observe(document.body, { childList: true, subtree: true });
+    return () => { obs.disconnect(); mo.disconnect(); };
+  }, [location.pathname]);
+
   return (
     <>
       <style>{CSS}</style>
@@ -2050,7 +2062,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         {/* LEFT — WHITE, ALL BLACK */}
         <div className="reveal" style={{ background:"#ffffff", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
-          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>Before</div>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>Before</div>
           <div style={{ fontSize: isMobile?22:32, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.3, textAlign:"center" }}>
             Six opportunities arrived.<br/><strong style={{fontWeight:700}}>You noticed two.</strong>
           </div>
@@ -2077,7 +2089,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         {/* RIGHT — LG GRADIENT, ALL BLACK */}
         <div className="reveal" style={{ transitionDelay:"150ms", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
-          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>After · SHG Theta State</div>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>After · SHG Theta State</div>
           <div style={{ fontSize: isMobile?22:32, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.3, textAlign:"center" }}>
             Six opportunities arrived.<br/><strong style={{fontWeight:700}}>You noticed all six.</strong>
           </div>
@@ -2107,7 +2119,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             ))}
             <text x={150} y={318} textAnchor="middle" fill="rgba(0,0,0,0.55)" fontSize="12" fontFamily="'Jost',sans-serif" letterSpacing="1">6 of 6 received</text>
           </svg>
-          <div style={{fontSize:15,fontWeight:300,color:"rgba(0,0,0,0.65)",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:300}}>
+          <div style={{fontSize:15,fontWeight:300,color:"#000",lineHeight:1.8,fontFamily:"'Jost',sans-serif",textAlign:"center",maxWidth:300}}>
             Same life. Same opportunities. Different filter. This is what we install.
           </div>
         </div>
@@ -2198,7 +2210,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   <div key={i} style={{ borderRadius:20, overflow:"hidden", border:"1px solid rgba(255,255,255,0.06)", background:"#0a0a0a" }}>
                     {/* Bold visual block */}
                     <div style={{ height: isMobile?120:140, background:f.visualBg, display:"flex", alignItems:"center", justifyContent:"center", position:"relative", boxShadow:`inset 0 -40px 60px rgba(0,0,0,0.5)` }}>
-                      <div style={{ fontSize: isMobile?56:68, lineHeight:1, color:"rgba(0,0,0,0.35)", fontFamily:"'Jost',sans-serif", userSelect:"none" }}>{f.label}</div>
+                      <div style={{ fontSize: isMobile?56:68, lineHeight:1, color:"#000", fontFamily:"'Jost',sans-serif", userSelect:"none" }}>{f.label}</div>
                       <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,transparent 40%,#0a0a0a 100%)" }}/>
                     </div>
                     {/* Text */}
@@ -2358,7 +2370,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div className="reveal" style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#fdf6ee" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"rgba(0,0,0,0.45)", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
+            <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"#000", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
             <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize:isMobile?"clamp(32px,8vw,48px)":"clamp(40px,5vw,60px)", fontWeight:400, color:"#0a0a0a", letterSpacing:"0em", lineHeight:1.1, textAlign:"center" }}>
               Wall of Love
             </h2>

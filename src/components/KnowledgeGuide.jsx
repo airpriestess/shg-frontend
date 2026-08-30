@@ -159,7 +159,7 @@ export default function KnowledgeGuide({ onClose, C }) {
   const bg = isDark ? "#0a0a0a" : "#fdf8f2";
   const bg2 = isDark ? "#111111" : "#ffffff";
   const cr = isDark ? "#fdf0e8" : "#1a1008";
-  const mu = isDark ? "rgba(253,240,232,0.7)" : "#3a3028";
+  const mu = isDark ? "#fdf0e8" : "#1a1008";
   const border = isDark ? "rgba(44,183,167,0.15)" : "rgba(180,104,48,0.18)";
 
   const visibleSections = SECTIONS.filter(s =>

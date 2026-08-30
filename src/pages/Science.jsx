@@ -275,7 +275,7 @@ export default function Science({ onBack }) {
 
       {/* BEFORE / AFTER PANELS */}
       {panels.map((p, pi) => (
-        <div key={pi}>
+        <div key={pi} className="reveal">
           <SectionTitle overline={p.overline} title={p.title} body={p.body}/>
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr" }}>
             <Panel label={p.before.label} heading={p.before.heading} sub={p.before.sub} svg={p.before.svg} caption={p.before.caption} dark={true}/>
@@ -286,7 +286,7 @@ export default function Science({ onBack }) {
       ))}
 
       {/* FORMULA */}
-      <div style={{ background:"#000", padding:isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
+      <div className="reveal" style={{ background:"#000", padding:isMobile?"64px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:TEAL, marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>The formula</div>
         <div style={{ fontSize:isMobile?"clamp(24px,7vw,36px)":"clamp(32px,4vw,52px)", fontWeight:300, color:CR, fontFamily:"'Jost',sans-serif", lineHeight:1.2, marginBottom:16 }}>
           Stack all four.<br/><strong style={{ fontWeight:700 }}>Theta on demand.</strong>
@@ -307,7 +307,7 @@ export default function Science({ onBack }) {
       </div>
 
       {/* CTA */}
-      <div style={{ background:"#000", padding:isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
+      <div className="reveal" style={{ background:"#000", padding:isMobile?"64px 24px 80px":"80px 24px 100px", textAlign:"center" }}>
         <div style={{ fontSize:isMobile?"clamp(32px,9vw,52px)":"clamp(40px,5.5vw,72px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
           Ready to<br/><strong style={{ fontWeight:700 }}>feel the shift?</strong>
         </div>

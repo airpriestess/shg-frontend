@@ -57,7 +57,7 @@ export default function Legal({ page = "tos", onBack }) {
         <button onClick={onBack} style={{ background:"none", border:"none", color:"#2CB7A7", cursor:"pointer", fontSize:14, fontFamily:"'Jost',sans-serif", padding:0 }}>← Back</button>
         <div style={{ display:"flex", gap:24, marginLeft:"auto" }}>
           {Object.entries(PAGES).map(([k,v])=>(
-            <a key={k} href={`#${k}`} style={{ fontSize:12, color: page===k?"#2CB7A7":"rgba(253,240,232,0.7)", textDecoration:"none", letterSpacing:"0.08em" }}>{v.title}</a>
+            <a key={k} href={`#${k}`} style={{ fontSize:12, color: page===k?"#2CB7A7":"#fdf0e8", textDecoration:"none", letterSpacing:"0.08em" }}>{v.title}</a>
           ))}
         </div>
       </div>

@@ -63,7 +63,7 @@ function SHGNav() {
 
 function WorkbookCard({ w }) {
   return (
-    <div style={{
+    <div className="reveal" style={{
       background:"#000", borderRadius:20, border:"1px solid rgba(255,255,255,0.08)",
       overflow:"hidden", opacity: w.available ? 1 : 0.55,
     }}>
@@ -81,17 +81,17 @@ function WorkbookCard({ w }) {
             {w.price}
           </div>
         ) : (
-          <div style={{ fontSize:16, color:"#8a7d72" }}>Not available yet</div>
+          <div style={{ fontSize:16, color:"#fdf0e8" }}>Not available yet</div>
         )}
       </div>
 
-      <div style={{ borderTop:"1px solid rgba(255,255,255,0.08)", padding:"32px 28px 28px" }}>
+      <div className="reveal" style={{ borderTop:"1px solid rgba(255,255,255,0.08)", padding:"32px 28px 28px" }}>
         <div style={{ fontSize:11, letterSpacing:".3em", textTransform:"uppercase", background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", textAlign:"center", marginBottom:18 }}>
           What's Inside
         </div>
         <div style={{ display:"flex", gap:12, marginBottom:28 }}>
           <div style={{ width:22, height:22, borderRadius:"50%", background:LG, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, color:"#000", marginTop:2 }}>✓</div>
-          <p style={{ fontSize:15, color:"#c8bcb0", lineHeight:1.6, margin:0 }}>{w.desc}</p>
+          <p style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.6, margin:0 }}>{w.desc}</p>
         </div>
         {w.available ? (
           <a href={w.url} target="_blank" rel="noopener noreferrer" style={{
@@ -104,7 +104,7 @@ function WorkbookCard({ w }) {
         ) : (
           <div style={{
             display:"block", textAlign:"center", padding:"18px 20px", borderRadius:12,
-            border:"1px solid rgba(255,255,255,0.15)", color:"#8a7d72", fontSize:13, fontWeight:500,
+            border:"1px solid rgba(255,255,255,0.15)", color:"#fdf0e8", fontSize:13, fontWeight:500,
             letterSpacing:"0.08em", textTransform:"uppercase",
           }}>
             {w.cta}
@@ -127,7 +127,7 @@ export default function Shop() {
         <h1 style={{ fontSize:"clamp(40px,7vw,72px)", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.05, margin:"0 0 20px" }}>
           The Workbooks
         </h1>
-        <p style={{ fontSize:17, color:"#c8bcb0", maxWidth:480, margin:"0 auto", lineHeight:1.7 }}>
+        <p style={{ fontSize:17, color:"#fdf0e8", maxWidth:480, margin:"0 auto", lineHeight:1.7 }}>
           Every identity, broken down. Pick your install.
         </p>
       </div>

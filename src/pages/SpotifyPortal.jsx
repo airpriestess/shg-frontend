@@ -1373,7 +1373,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </div>
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
-          {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.","#8a6bb0"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
+          {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.","#BFA5D8"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
             <div key={name} style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
               <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
               <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
@@ -1515,7 +1515,7 @@ const DEMO_CAT_STATS = [
   { cat:"Richgirl",     total:54, manifested:38, avgDays:4, color:"#E8B870" },
   { cat:"Luckygirl",    total:16, manifested:14, avgDays:3, color:"#BFA5D8" },
   { cat:"Beauty",       total:16, manifested:10, avgDays:7, color:"#2CB7A7" },
-  { cat:"Business",     total:12, manifested:8,  avgDays:9, color:"#8a6bb0" },
+  { cat:"Business",     total:12, manifested:8,  avgDays:9, color:"#BFA5D8" },
   { cat:"Self",         total:15, manifested:9,  avgDays:6, color:"#F5E0A0" },
 ];
 
@@ -1546,7 +1546,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
     });
     return Object.values(map).sort((a,b)=>b.manifested-a.manifested).slice(0,6).map((r,i) => ({
       ...r, avgDays: r.manifested ? Math.round(r.totalDays/r.manifested) : 0,
-      color: ["#167A6B","#E8B870","#BFA5D8","#2CB7A7","#8a6bb0","#F5E0A0"][i],
+      color: ["#167A6B","#E8B870","#BFA5D8","#2CB7A7","#BFA5D8","#F5E0A0"][i],
     }));
   })();
 
@@ -3064,7 +3064,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
   const bg = isDark ? "#0d0d0d" : "#fff";
   const text = isDark ? "#FDF0E8" : "#111";
-  const sub = isDark ? "rgba(253,240,232,0.55)" : "#555";
+  const sub = isDark ? "#FDF0E8" : "#111";
   const chip = (label, active, onClick) => (
     React.createElement('button', { key: label, onClick, style: {
       padding:"9px 16px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",

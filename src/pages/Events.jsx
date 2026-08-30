@@ -34,12 +34,12 @@ export default function Events() {
         <h1 style={{ fontSize:"clamp(40px,7vw,72px)", fontWeight:400, letterSpacing:"-0.02em", lineHeight:1.05, margin:"0 0 20px" }}>
           Events
         </h1>
-        <p style={{ fontSize:17, color:"#c8bcb0", maxWidth:480, margin:"0 auto", lineHeight:1.7 }}>
+        <p style={{ fontSize:17, color:"#fdf0e8", maxWidth:480, margin:"0 auto", lineHeight:1.7 }}>
           Live sessions, workshops, and in-person gatherings, book your spot below.
         </p>
       </div>
 
-      <div style={{ maxWidth:900, margin:"0 auto", padding:"0 24px 100px" }}>
+      <div className="reveal" style={{ maxWidth:900, margin:"0 auto", padding:"0 24px 100px" }}>
         <div style={{ borderRadius:20, overflow:"hidden", border:"1px solid rgba(255,255,255,0.08)", background:"#0a0a0a", minHeight:600 }}>
           <iframe
             src={LUMA_EMBED_URL}
@@ -52,7 +52,7 @@ export default function Events() {
             title="Self Hypnosis Goddess Events"
           />
         </div>
-        <p style={{ textAlign:"center", fontSize:13, color:"#8a7d72", marginTop:16 }}>
+        <p style={{ textAlign:"center", fontSize:13, color:"#fdf0e8", marginTop:16 }}>
           Powered by Luma
         </p>
       </div>

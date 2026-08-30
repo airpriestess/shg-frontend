@@ -54,7 +54,7 @@ export default function AuthGate({ onSuccess }) {
       <div style={{ width: "100%", maxWidth: 400, textAlign: "center" }}>
         {/* Logo */}
         <div className="wm wm-shimmer" style={{ fontSize: 28, marginBottom: 6 }}>Self Hypnosis Goddess</div>
-        <div style={{ fontSize: 12, color: "#8a6858", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", marginBottom: 36 }}>
+        <div style={{ fontSize: 12, color: "#fdf0e8", fontFamily: "'Jost',sans-serif", letterSpacing: "0.15em", marginBottom: 36 }}>
           {mode === "signin" ? "Welcome back" : mode === "signup" ? "Create your account" : "Reset password"}
         </div>
 
@@ -85,7 +85,7 @@ export default function AuthGate({ onSuccess }) {
               {loading ? "..." : mode === "signin" ? "Sign in" : mode === "signup" ? "Create account" : "Send reset link"}
             </button>
 
-            <div style={{ marginTop: 16, fontSize: 13, color: "#8a6858", fontFamily: "'Jost',sans-serif" }}>
+            <div style={{ marginTop: 16, fontSize: 13, color: "#fdf0e8", fontFamily: "'Jost',sans-serif" }}>
               {mode === "signin" && (
                 <>
                   <span style={{ cursor: "pointer", color: R }} onClick={() => setMode("reset")}>Forgot password?</span>
