@@ -80,7 +80,7 @@ function ProofOSBanner({ isMobile }) {
         <div style={{ fontSize: isMobile?48:72, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", lineHeight:1, flexShrink:0, minWidth: isMobile?60:80 }}>{s.num}</div>
         <div style={{ flex:1, textAlign: isMobile?"left":"center" }}>
           <div style={{ fontSize: isMobile?"clamp(18px,5vw,26px)":"clamp(22px,2.5vw,36px)", fontWeight:400, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom:6 }}>{s.label}</div>
-          <div style={{ fontSize: isMobile?13:16, color:"rgba(253,240,232,0.65)", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
+          <div style={{ fontSize: isMobile?13:16, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.5 }}>{s.body}</div>
         </div>
         <div style={{ display:"flex", flexDirection:"column", gap:6, flexShrink:0 }}>
           {STEPS.map((_,i)=>(
@@ -462,7 +462,7 @@ function CheckoutModal({ onClose, onDemo }) {
                 padding:"8px 20px",borderRadius:50,border:"none",cursor:"pointer",
                 fontSize:12,fontWeight:400,letterSpacing:"0.06em",textTransform:"uppercase",
                 background:billing===b?"#fff":"transparent",
-                color:billing===b?"#2CB7A7":"rgba(253,240,232,0.5)",
+                color:billing===b?"#2CB7A7":"#fdf0e8",
                 boxShadow:billing===b?"0 2px 8px rgba(0,0,0,0.12)":"none",
                 transition:"all 0.2s",display:"flex",alignItems:"center",gap:6
               }}>
@@ -480,7 +480,7 @@ function CheckoutModal({ onClose, onDemo }) {
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
               <div>
                 <div style={{fontSize:16,fontWeight:400,color:"#000000",marginBottom:2}}>Audio Tier</div>
-                <div style={{fontSize:11,color:"rgba(253,240,232,0.55)",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
+                <div style={{fontSize:11,color:"#fdf0e8",fontWeight:400,letterSpacing:"0.06em"}}>The full vault</div>
               </div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.audio.annualPerMonth:TIERS.audio.monthly}</div>
@@ -512,7 +512,7 @@ function CheckoutModal({ onClose, onDemo }) {
               <div style={{textAlign:"right"}}>
                 <div style={{fontSize:26,fontWeight:400,color:"#2CB7A7",lineHeight:1}}>{isAnnual?TIERS.goddess.annualPerMonth:TIERS.goddess.monthly}</div>
                 <div style={{fontSize:11,color:"#2CB7A7"}}>/month</div>
-                {isAnnual && <div style={{fontSize:10,color:"rgba(253,240,232,0.6)"}}>{TIERS.goddess.annualNote}</div>}
+                {isAnnual && <div style={{fontSize:10,color:"#fdf0e8"}}>{TIERS.goddess.annualNote}</div>}
                 <div style={{fontSize:9,fontWeight:500,color:"#F5E0A0",letterSpacing:"0.1em",marginTop:4,textTransform:"uppercase"}}>Coming Soon</div>
               </div>
             </div>
@@ -552,7 +552,7 @@ function CheckoutModal({ onClose, onDemo }) {
           </div>
 
           <button onClick={onDemo} style={{background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",textDecoration:"underline",fontFamily:"'Jost',sans-serif",padding:"4px 0"}}>👁 Preview the portal first, no signup needed</button>
-          <div style={{textAlign:"center",fontSize:11,color:"rgba(253,240,232,0.45)",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
+          <div style={{textAlign:"center",fontSize:11,color:"#fdf0e8",lineHeight:1.7}}>Monthly: cancel anytime · Annual: non-refundable, paid upfront · Stripe secure checkout</div>
         </div>
       </div>
     </div>
@@ -578,7 +578,7 @@ function PricingSection({ onJoin }) {
   ];
 
   return (
-    <div id="pricing" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%", scrollMarginTop: isMobile ? 24 : 0 }}>
+    <div id="pricing" className="reveal" style={{ padding: isMobile ? "56px 18px" : "80px 24px", background: "#000", width: "100%", scrollMarginTop: isMobile ? 24 : 0 }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 400, color: "#fdf0e8", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>Choose your membership</div>
@@ -630,7 +630,7 @@ function PricingSection({ onJoin }) {
           ))}
         </div>
 
-        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color: "rgba(253,240,232,0.5)", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
+        <div style={{ marginTop: 28, textAlign: "center", fontSize: 12, color:"#fdf0e8", lineHeight: 1.9, fontFamily: "'Jost',sans-serif" }}>
           Monthly: cancel anytime · Annual: paid upfront · Stripe secure checkout<br />
           No app to download, works in any browser, iPhone, Android
         </div>
@@ -638,7 +638,7 @@ function PricingSection({ onJoin }) {
         {/* THE GUARANTEE */}
         <div style={{ marginTop: 48, padding: isMobile ? "32px 24px" : "48px 56px", borderRadius: 20, background: "#0a0a0a", border:"1px solid rgba(232,184,112,0.25)", boxShadow:"0 0 60px rgba(232,184,112,0.08)", textAlign: "center", maxWidth: 700, marginLeft: "auto", marginRight: "auto" }}>
           <div style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", background:"linear-gradient(135deg,#F5E0A0,#E8B870)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom: 16, fontFamily: "'Jost',sans-serif", fontWeight: 600 }}>The Guarantee</div>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(15px,4vw,18px)" : "clamp(16px,1.6vw,20px)", fontWeight: 400, color: "rgba(253,240,232,0.85)", lineHeight: 1.8, letterSpacing: "-0.01em" }}>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? "clamp(15px,4vw,18px)" : "clamp(16px,1.6vw,20px)", fontWeight: 400, color:"#fdf0e8", lineHeight: 1.8, letterSpacing: "-0.01em" }}>
             What I promise:<br/>
             A brain rewired to expect your desired outcome.<br/>
             Belief that things work out for you, even when the evidence hasn't arrived yet.<br/>
@@ -877,7 +877,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
 
       {/* Heading */}
       <div style={{ textAlign:"center", padding: isMobile?"0 24px 40px":"0 40px 52px" }}>
-        <div style={{ fontSize:12, fontWeight:400, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>ProofOS · Your record. For life.</div>
+        <div style={{ fontSize:12, fontWeight:400, letterSpacing:"0.3em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>ProofOS · Your record. For life.</div>
         <div style={{
           fontSize: isMobile?"clamp(34px,9.5vw,44px)":"clamp(42px,4.4vw,62px)",
           fontFamily:"'Jost',sans-serif", fontWeight:400,
@@ -891,7 +891,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
             WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
           }}>Now it's 2030.</span>
         </div>
-        <div style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.72)", fontWeight:300, fontFamily:"'Jost',sans-serif", lineHeight:1.6, maxWidth:560, margin:"0 auto" }}>
+        <div style={{ fontSize: isMobile?16:18, color:"#fdf0e8", fontWeight:300, fontFamily:"'Jost',sans-serif", lineHeight:1.6, maxWidth:560, margin:"0 auto" }}>
           Every desire you ever set. Every sign you ever logged. Every manifestation, dated and permanent.
         </div>
       </div>
@@ -905,7 +905,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
           }}>
             <span style={{
               fontFamily:"'Jost',sans-serif", fontSize: isMobile?15:17, fontWeight:year===y?600:400,
-              color: year===y?"#fdf0e8":"rgba(253,240,232,0.4)", transition:"color 0.2s",
+              color: "#fdf0e8", transition:"color 0.2s",
             }}>{y}</span>
             {year===y
               ? <div style={{ width:28, height:3, borderRadius:2, background:LG }}/>
@@ -918,7 +918,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
 
         {/* Hero stat — big gradient number, editorial style */}
         <div style={{ textAlign:"center", padding: isMobile?"40px 0 8px":"52px 0 8px" }}>
-          <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.45)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+          <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
             {year===2030 ? "Across all 5 years" : `Running total through ${year}`}
           </div>
           <div style={{
@@ -928,7 +928,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
             animation:"ap-drift 6s ease-in-out infinite",
             WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
           }}>{animCum}</div>
-          <div style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.7)", marginTop:14, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+          <div style={{ fontSize: isMobile?15:17, color:"#fdf0e8", marginTop:14, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
             {year===2030 ? "manifestations. Your proof. Your identity. Forever." : "manifestations logged and counting →"}
           </div>
         </div>
@@ -947,14 +947,14 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
                 background:LG, backgroundSize:"200% 200%", animation:"ap-drift 6s ease-in-out infinite",
                 WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
               }}>{v}</div>
-              <div style={{ fontSize:12, color:"rgba(253,240,232,0.55)", marginTop:10, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
+              <div style={{ fontSize:12, color:"#fdf0e8", marginTop:10, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
             </div>
           ))}
         </div>
 
         {/* By life area */}
         <div style={{ padding: isMobile?"44px 0 8px":"52px 0 8px" }}>
-          <div style={{ fontSize:13, letterSpacing:"0.24em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:24, fontFamily:"'Jost',sans-serif" }}>By life area · avg days to manifest</div>
+          <div style={{ fontSize:13, letterSpacing:"0.24em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:24, fontFamily:"'Jost',sans-serif" }}>By life area · avg days to manifest</div>
           <div style={{ display:"flex", flexDirection:"column", gap:20 }}>
             {d.cats.map((c,ci)=>{
               const pct = Math.round(c.done/c.n*100);
@@ -962,7 +962,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
                 <div key={`${animKey}-${c.name}`} style={{ animation:`ap-fade-up 0.4s ease ${ci*80}ms both` }}>
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:9 }}>
                     <span style={{ fontSize: isMobile?18:19, fontWeight:400, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
-                    <span style={{ fontSize:14, color:"rgba(253,240,232,0.5)", fontWeight:300, fontFamily:"'Jost',sans-serif" }}>
+                    <span style={{ fontSize:14, color:"#fdf0e8", fontWeight:300, fontFamily:"'Jost',sans-serif" }}>
                       {c.done}/{c.n} <span style={{ color:c.col, fontWeight:500 }}>· {c.days}d avg</span>
                     </span>
                   </div>
@@ -978,7 +978,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
 
         {/* Proof wall — list style with checkmarks */}
         <div style={{ padding: isMobile?"48px 0 8px":"56px 0 8px" }}>
-          <div style={{ fontSize:13, letterSpacing:"0.24em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:22, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year}</div>
+          <div style={{ fontSize:13, letterSpacing:"0.24em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:22, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year}</div>
           <div style={{ display:"flex", flexDirection:"column" }}>
             {d.proof.map((p,i)=>(
               <div key={`${animKey}-${i}`} className="ap-proof-row"
@@ -990,7 +990,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
                 </div>
                 <div style={{ flex:1, minWidth:0 }}>
                   <div style={{ fontSize: isMobile?16:17, color:"#fdf0e8", fontWeight:400, lineHeight:1.3, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
-                  <div style={{ fontSize:13, color:"rgba(253,240,232,0.5)", marginTop:4, fontWeight:300, fontFamily:"'Jost',sans-serif" }}>
+                  <div style={{ fontSize:13, color:"#fdf0e8", marginTop:4, fontWeight:300, fontFamily:"'Jost',sans-serif" }}>
                     {p.date} · {p.days} day{p.days!==1?"s":""} · <span style={{ color:"#E8B870" }}>{p.cat}</span>
                   </div>
                 </div>
@@ -1005,7 +1005,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
           border:"1px solid rgba(232,184,112,0.22)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:16 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8B870" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.5-6.3 4.5 2.3-7.2-6-4.6h7.6z"/></svg>
-            <div style={{ fontSize:12, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(253,240,232,0.6)", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
+            <div style={{ fontSize:12, letterSpacing:"0.2em", textTransform:"uppercase", color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
           </div>
           <div key={animKey} style={{ fontSize: isMobile?17:19, color:"#fdf0e8", fontWeight:400, lineHeight:1.5, fontFamily:"'Jost',sans-serif", animation:"ap-fade-up 0.6s ease both" }}>
             "{d.insight}"
@@ -1217,7 +1217,7 @@ const FAQS = [
 function FAQSection() {
   const [open, setOpen] = useState(null);
   return (
-    <div style={{ background:"#fdf6ee", padding:"0 0 0 0" }}>
+    <div className="reveal" style={{ background:"#fdf6ee", padding:"0 0 0 0" }}>
       <div style={{ padding:"60px clamp(16px,4vw,24px) 80px",maxWidth:760,margin:"0 auto" }}>
       <div style={{ textAlign:"center",marginBottom:40 }}>
         <div style={{ fontSize:11,color:"#2CB7A7",letterSpacing:"0.25em",textTransform:"uppercase",fontWeight:400,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>Everything you need to know</div>
@@ -1565,6 +1565,17 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
     return () => { a.removeEventListener("timeupdate", upd); a.removeEventListener("ended", end); };
   }, [trackIdx]);
 
+  // Scroll-reveal: every section marked .reveal fades/lifts into place as it enters the viewport
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal:not(.reveal-in)");
+    if (!els.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("reveal-in"); obs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   const cats = [
     { label: "Lovemaxxing", tagline: "He's obsessed. Of course he is.", color: T.rose },
     { label: "Richgirlmaxxing", tagline: "Money finds me first. Obviously.", color: "#2CB7A7" },
@@ -1798,7 +1809,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
             {/* LEFT: tagline + CTA */}
             <div style={{ flex:"1 1 0", minWidth:0 }}>
-              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess</div>
+              <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess</div>
               <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,4.5vw,64px)", lineHeight:1.08, letterSpacing:"-0.01em", color:"#fdf0e8", margin:"0 0 20px" }}>
                 Subconscious reprogramming.<br/>
                 <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Through music.</span>
@@ -1818,7 +1829,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                 <div style={{ paddingTop:12 }}>
                   <div style={{ textAlign:"center", marginBottom:20 }}>
                     <div style={{ fontSize:9, letterSpacing:"0.22em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:4 }}>Self Hypnosis Goddess</div>
-                    <div style={{ fontSize:8, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>NOW PLAYING</div>
+                    <div style={{ fontSize:8, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>NOW PLAYING</div>
                   </div>
                   <div style={{ width:120, height:120, borderRadius:20, margin:"0 auto 16px", background:"linear-gradient(135deg,rgba(245,224,160,0.15),rgba(44,183,167,0.15))", border:"1px solid rgba(232,184,112,0.2)", display:"flex", alignItems:"center", justifyContent:"center" }}>
                     <img src="/logo_transparent_cropped.png" alt="" width={70} height={70} style={{ objectFit:"contain", opacity:0.9 }}/>
@@ -1844,7 +1855,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   </div>
                   <div style={{ display:"flex", gap:6, justifyContent:"center", flexWrap:"wrap" }}>
                     {["Lucky Girl","Sleep","Hypnosis"].map(c=>(
-                      <div key={c} style={{ fontSize:7, padding:"3px 8px", borderRadius:10, border:"1px solid rgba(44,183,167,0.3)", color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em" }}>{c}</div>
+                      <div key={c} style={{ fontSize:7, padding:"3px 8px", borderRadius:10, border:"1px solid rgba(44,183,167,0.3)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em" }}>{c}</div>
                     ))}
                   </div>
                 </div>
@@ -1921,7 +1932,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* BRAND BLOCK, immediately after player, so people know what this IS before we explain how it works */}
-      <div id="audio-library" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
+      <div id="audio-library" className="reveal" style={{ background:"#000", padding: isMobile?"40px 24px":"56px 48px", textAlign:"center" }}>
         <div style={{ fontSize: isMobile?"clamp(32px,9vw,44px)":"clamp(44px,5.5vw,64px)", color:"#ffffff", lineHeight:1.0, fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"0em", marginBottom:16 }}>
           Self Hypnosis Goddess
         </div>
@@ -1935,8 +1946,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <RotatingStats isMobile={isMobile}/>
 
       {/* DELULU IS THE SOLULU */}
-      <div style={{ background:"#000", padding: isMobile?"48px 24px 56px":"56px 48px 64px", textAlign:"center" }}>
-        <div style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
+      <div className="reveal" style={{ background:"#000", padding: isMobile?"48px 24px 56px":"56px 48px 64px", textAlign:"center" }}>
+        <div style={{ fontFamily:"'Jost',sans-serif", fontWeight:400, fontSize: isMobile?"clamp(28px,8vw,40px)":"clamp(36px,4.5vw,52px)", background:"linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:"-0.01em" }}>
           Delulu is the solulu.
         </div>
       </div>
@@ -1974,36 +1985,36 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Heading */}
           <div style={{ marginBottom: isMobile?48:72, textAlign:"center", width:"100%" }}>
             <div style={{ fontSize:"clamp(36px,5vw,64px)", letterSpacing:"-0.02em", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 6s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:16, fontFamily:"'Jost',sans-serif", textAlign:"center", fontWeight:300, lineHeight:1, display:"inline-block" }}>The Method.</div>
-            <div style={{ fontSize: isMobile?15:17, fontWeight:300, color:"rgba(253,240,232,0.8)", fontFamily:"'Jost',sans-serif", lineHeight:1.7, marginBottom:16, textAlign:"center" }}>Your beliefs are running on old programming. Self hypnosis replaces them at the source — in theta, where the subconscious accepts the upgrade without resistance.</div>
-            <div style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", textAlign:"center" }}>No perfect conditions. No waiting for bedtime. Press play and you're there in minutes.</div>
+            <div style={{ fontSize: isMobile?15:17, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7, marginBottom:16, textAlign:"center" }}>Your beliefs are running on old programming. Self hypnosis replaces them at the source — in theta, where the subconscious accepts the upgrade without resistance.</div>
+            <div style={{ fontSize: isMobile?15:17, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", textAlign:"center" }}>No perfect conditions. No waiting for bedtime. Press play and you're there in minutes.</div>
           </div>
 
           {/* Beta → Theta → Identity boxes */}
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?48:72 }}>
 
-            <div style={{ background:"#0a0a0a", border:"1px solid rgba(255,255,255,0.08)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(253,240,232,0.4)", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
+            <div className="reveal" style={{ background:"#0a0a0a", border:"1px solid rgba(255,255,255,0.08)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Beta</div>
-              <div style={{ fontSize:12, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>13–40 Hz</div>
-              <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
+              <div style={{ fontSize:12, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>13–40 Hz</div>
+              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
             </div>
 
-            <div style={{ fontSize: isMobile?24:28, color:"rgba(255,255,255,0.2)", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
+            <div style={{ fontSize: isMobile?24:28, color:"#fdf0e8", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
 
-            <div style={{ background:"#0a0a0a", border:"2px solid rgba(44,183,167,0.4)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(44,183,167,0.1)" }}>
+            <div className="reveal" style={{ transitionDelay:"120ms", background:"#0a0a0a", border:"2px solid rgba(44,183,167,0.4)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(44,183,167,0.1)" }}>
               <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Theta</div>
               <div style={{ fontSize:12, background:"linear-gradient(135deg,#2CB7A7,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>4–8 Hz</div>
-              <div style={{ fontSize:14, color:"rgba(253,240,232,0.8)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The subconscious opens. New beliefs install without resistance.</div>
+              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The subconscious opens. New beliefs install without resistance.</div>
             </div>
 
-            <div style={{ fontSize: isMobile?24:28, color:"rgba(255,255,255,0.2)", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
+            <div style={{ fontSize: isMobile?24:28, color:"#fdf0e8", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
 
-            <div style={{ background:"#0a0a0a", border:"1px solid rgba(232,184,112,0.3)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(232,184,112,0.08)" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(253,240,232,0.4)", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>The result</div>
+            <div className="reveal" style={{ transitionDelay:"240ms", background:"#0a0a0a", border:"1px solid rgba(232,184,112,0.3)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(232,184,112,0.08)" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>The result</div>
               <div style={{ fontSize: isMobile?36:44, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
-              <div style={{ fontSize:12, color:"rgba(253,240,232,0.4)", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>Installed.</div>
-              <div style={{ fontSize:14, color:"rgba(253,240,232,0.8)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
+              <div style={{ fontSize:12, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>Installed.</div>
+              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
             </div>
 
           </div>
@@ -2014,7 +2025,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* HOW IT WORKS heading */}
           <div style={{ textAlign:"center", marginBottom: isMobile?40:56 }}>
             <div style={{ fontSize: isMobile?"clamp(40px,9vw,64px)":"clamp(48px,6vw,80px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.03em", lineHeight:1.0 }}>How it works.</div>
-            <div style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.5)", fontFamily:"'Jost',sans-serif", marginTop:14 }}>What happens inside every session, step by step.</div>
+            <div style={{ fontSize: isMobile?15:17, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginTop:14 }}>What happens inside every session, step by step.</div>
           </div>
 
           {/* Accordion */}
@@ -2038,7 +2049,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ width:"100%", display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", minHeight:isMobile?undefined:640 }}>
 
         {/* LEFT — WHITE, ALL BLACK */}
-        <div style={{ background:"#ffffff", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
+        <div className="reveal" style={{ background:"#ffffff", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>Before</div>
           <div style={{ fontSize: isMobile?22:32, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.3, textAlign:"center" }}>
             Six opportunities arrived.<br/><strong style={{fontWeight:700}}>You noticed two.</strong>
@@ -2065,7 +2076,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         </div>
 
         {/* RIGHT — LG GRADIENT, ALL BLACK */}
-        <div style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
+        <div className="reveal" style={{ transitionDelay:"150ms", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", padding: isMobile?"52px 28px":"88px 60px", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"space-between", gap:32 }}>
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.45)", fontFamily:"'Jost',sans-serif", fontWeight:600, textAlign:"center" }}>After · SHG Theta State</div>
           <div style={{ fontSize: isMobile?22:32, fontWeight:300, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.3, textAlign:"center" }}>
             Six opportunities arrived.<br/><strong style={{fontWeight:700}}>You noticed all six.</strong>
@@ -2111,7 +2122,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* MELODIC HOUSE USP, LG gradient background */}
-      <div style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "#000", width: "100%" }}>
+      <div className="reveal" style={{ padding: isMobile ? "72px 20px" : "104px 60px", background: "#000", width: "100%" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -2119,13 +2130,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <h2 style={{ fontSize: isMobile?"clamp(24px,6vw,36px)":"clamp(28px,3vw,44px)", lineHeight: 1.2, marginBottom: 20, color: "#fdf0e8", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em" }}>
               Your beliefs are running your life.<br/>Most people never change them.
             </h2>
-            <p style={{ fontSize: isMobile?17:21, color: "rgba(253,240,232,0.82)", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               Affirmations do not work. Willpower does not work. Not because you are not trying. Because none of it reaches your subconscious. The part of your mind that actually controls your experience of physical reality. The unseen is the seed and source of reality shifting.
             </p>
-            <p style={{ fontSize: isMobile?17:21, color: "rgba(253,240,232,0.82)", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               SHG is built on one idea. The subconscious responds to repetition, not effort. EMDR, theta binaural beats, vocal hypnosis, and subliminals, layered beneath melodic house music, designed to keep your mind locked on your desires, dreams, goals and manifestations. Delusional at all times. By design.
             </p>
-            <p style={{ fontSize: isMobile?18:22, color: "rgba(253,240,232,0.82)", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
+            <p style={{ fontSize: isMobile?18:22, color:"#fdf0e8", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               The result is not motivation. It is identity. You stop chasing what you want. You become someone for whom it arrives. The lucky girl. The rich girl. The woman things just go right for. Not through effort. Through repetition, delivered at the frequency your subconscious cannot ignore.
             </p>
 
@@ -2225,7 +2236,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     <div style={{ flex:1 }}>
                       <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
                         <div style={{ fontSize: isMobile?14:17, fontWeight:400, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{row.name}</div>
-                        <div style={{ fontSize: isMobile?12:14, color:"rgba(253,240,232,0.55)", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
+                        <div style={{ fontSize: isMobile?12:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{row.assoc}</div>
                       </div>
                       <div style={{ height:6, background:"rgba(255,255,255,0.1)", borderRadius:3, overflow:"hidden" }}>
                         <div style={{ width:`${row.pct}%`, height:"100%", background:LGb, borderRadius:3 }}/>
@@ -2235,7 +2246,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                   );
                 })}
               </div>
-              <p style={{ fontSize:12, color:"rgba(253,240,232,0.45)", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
+              <p style={{ fontSize:12, color:"#fdf0e8", textAlign:"center", marginTop:24, lineHeight:1.6, fontFamily:"'Jost',sans-serif" }}>
                 Binaural beats layered beneath every track sync both hemispheres into theta, where the reprogramming begins.
               </p>
             </div>
@@ -2245,7 +2256,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* HAWKINS SCALE, measurement tool shown in the dashboard */}
-      <div style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
+      <div className="reveal" style={{ padding: isMobile?"56px 18px":"88px 24px", background:"#000", width:"100%" }}>
         <div style={{ maxWidth: 720, margin:"0 auto", textAlign:"center" }}>
           <div style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>Your emotional state, measured</div>
           <h2 style={{ fontFamily:"'Jost',sans-serif", fontStyle:"normal", fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#fdf0e8", fontWeight:400, marginBottom:24, lineHeight:1.05, textAlign:"center" }}>
@@ -2297,7 +2308,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* WHAT'S INSIDE, CATEGORY SHOWCASE */}
-      <div style={{ padding: isMobile ? "56px 0 48px" : "88px 0 72px", background: "#000", width: "100%" }}>
+      <div className="reveal" style={{ padding: isMobile ? "56px 0 48px" : "88px 0 72px", background: "#000", width: "100%" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", padding: "0 24px", textAlign: "center", marginBottom: isMobile?36:52 }}>
           <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:20, fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>A growing library</div>
           <div style={{ fontSize: isMobile?"clamp(36px,9vw,52px)":"clamp(48px,5vw,68px)", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"-0.03em", lineHeight:1.0, marginBottom:24 }}>24 categories.<br/>All of them me.</div>
@@ -2331,7 +2342,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* PROOFOS INTRO, MASSIVE STATEMENT */}
-      <div id="proofos" style={{ padding: isMobile?"48px 20px":"80px 24px", textAlign:"center", maxWidth:820, margin:"0 auto" }}>
+      <div id="proofos" className="reveal" style={{ padding: isMobile?"48px 20px":"80px 24px", textAlign:"center", maxWidth:820, margin:"0 auto" }}>
         <p style={{ fontSize: isMobile?"clamp(26px,7vw,36px)":"clamp(36px,4.5vw,58px)", color:"#fdf0e8", lineHeight:1.3, fontWeight:400, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", margin:0 }}>
           Every track links to a desire. Every sign you receive gets logged in <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>ProofOS </span>, dated, stacked, permanent. Your proof wall builds itself while you sleep.
         </p>
@@ -2344,7 +2355,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* WALL OF LOVE */}
-      <div style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#fdf6ee" }}>
+      <div className="reveal" style={{ padding: isMobile?"48px 18px 60px":"70px 24px", background:"#fdf6ee" }}>
         <div style={{ maxWidth:860, margin:"0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 44 }}>
             <div style={{ fontSize: isMobile?13:14, fontWeight:400, color:"rgba(0,0,0,0.45)", letterSpacing:"0.3em", textTransform:"uppercase", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Real results from real members</div>
@@ -2389,7 +2400,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <FAQSection />
 
       {/* INSTAGRAM */}
-      <div style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
+      <div className="reveal" style={{ background:"#000", padding: isMobile?"56px 24px":"80px 24px", textAlign:"center" }}>
         <div style={{ maxWidth:560, margin:"0 auto" }}>
           <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"#2CB7A7", fontFamily:"'Jost',sans-serif", marginBottom:20 }}>Follow along</div>
           <div style={{ fontSize: isMobile?"clamp(32px,8vw,48px)":"clamp(44px,5vw,64px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"-0.02em", lineHeight:1.05, marginBottom:32 }}>
@@ -2420,7 +2431,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* FOOTER */}
-      <div style={{ borderTop: T.border, padding: "64px 24px 28px", textAlign: "center" }}>
+      <div className="reveal" style={{ borderTop: T.border, padding: "64px 24px 28px", textAlign: "center" }}>
         <div style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
           <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={72} height={72} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         </div>
@@ -2463,7 +2474,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               <>
                 <div style={{ fontSize:32, marginBottom:12 }}></div>
                 <div style={{ fontSize:20, fontWeight:400, color:"#fdf0e8", marginBottom:8, fontFamily:"'Jost',sans-serif" }}>You're on the list.</div>
-                <div style={{ fontSize:14, color:"rgba(253,240,232,0.7)", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
+                <div style={{ fontSize:14, color:"#fdf0e8", marginBottom:24, lineHeight:1.6 }}>We'll email you the moment Self Hypnosis Goddess opens.</div>
                 <button onClick={()=>{setWaitlistOpen(false); setWaitlistStatus("idle"); setWaitlistEmail("");}} style={{ padding:"12px 28px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:14, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Close</button>
               </>
             ) : (

@@ -66,12 +66,12 @@ export default function Legal({ page = "tos", onBack }) {
       <div style={{ maxWidth:720, margin:"0 auto", padding:"56px 24px 0" }}>
         <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16 }}>reshmaoracle.com</div>
         <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:"clamp(36px,6vw,52px)", color:"#fdf0e8", fontWeight:400, marginBottom:8, lineHeight:1.1 }}>{P.title}</h1>
-        <p style={{ fontSize:13, color:"rgba(253,240,232,0.7)", marginBottom:48 }}>Last updated: {P.updated}</p>
+        <p style={{ fontSize:13, color:"#fdf0e8", marginBottom:48 }}>Last updated: {P.updated}</p>
         {P.sections.map((s,i)=>(
           <div key={i} style={{ marginBottom:40 }}>
             <h2 style={{ fontSize:18, fontWeight:500, color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>{s.h}</h2>
             {s.body.split('\n').map((line,j)=>(
-              <p key={j} style={{ fontSize:16, color:"rgba(253,240,232,0.7)", lineHeight:1.85, marginBottom: line===''?8:0, fontFamily:"'Jost',sans-serif" }}>{line}</p>
+              <p key={j} style={{ fontSize:16, color:"#fdf0e8", lineHeight:1.85, marginBottom: line===''?8:0, fontFamily:"'Jost',sans-serif" }}>{line}</p>
             ))}
           </div>
         ))}

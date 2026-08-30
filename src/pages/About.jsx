@@ -72,7 +72,7 @@ export default function About({ onBack }) {
             to Goddess.
           </h1>
 
-          <p style={{ fontSize: isMobile?17:22, color:"rgba(253,240,232,0.72)", lineHeight:1.8, maxWidth:600, margin:"0 auto" }}>
+          <p style={{ fontSize: isMobile?17:22, color:"#fdf0e8", lineHeight:1.8, maxWidth:600, margin:"0 auto" }}>
             I built what I couldn't find. For every woman who knows she's more — and can't figure out why nothing is shifting.
           </p>
         </div>
@@ -121,13 +121,13 @@ export default function About({ onBack }) {
             <h2 style={{ fontSize: isMobile?26:34, fontWeight:300, color:CREAM, lineHeight:1.35, marginBottom:24, letterSpacing:"-0.01em" }}>
               I built what I couldn't find.
             </h2>
-            <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.72)", lineHeight:1.85, marginBottom:18 }}>
+            <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85, marginBottom:18 }}>
               I spent years doing the work — reading, affirmations, therapy, vision boards. And underneath all of it, I felt it. Something deeper that no surface-level tool was touching.
             </p>
-            <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.72)", lineHeight:1.85, marginBottom:18 }}>
+            <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85, marginBottom:18 }}>
               I've always known things before they happen. I feel energy. I know when someone's off before they've said a word. That gift — being an energy healer and intuitive — led me to understand that alignment isn't something you think your way into. It's something you <em>feel</em> your way into.
             </p>
-            <p style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.72)", lineHeight:1.85, marginBottom:18 }}>
+            <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85, marginBottom:18 }}>
               When I found the neuroscience behind theta states — the place where the subconscious opens — it confirmed everything I'd already felt. So I built the music. I layered in the hypnosis, the frequencies, the healing. And I watched my own life transform in ways I'd never experienced from trying alone.
             </p>
             <p style={{ fontSize: isMobile?16:18, color:CREAM, lineHeight:1.85, fontStyle:"normal" }}>
@@ -145,10 +145,10 @@ export default function About({ onBack }) {
           <h2 style={{ fontSize: isMobile?"clamp(26px,6vw,38px)":"clamp(32px,3.5vw,50px)", fontWeight:300, color:CREAM, lineHeight:1.3, marginBottom:32, letterSpacing:"-0.02em" }}>
             This isn't just about<br/><span style={{ background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>money. Or love. Or a dream home.</span>
           </h2>
-          <p style={{ fontSize: isMobile?17:21, color:"rgba(253,240,232,0.75)", lineHeight:1.85, marginBottom:28 }}>
+          <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85, marginBottom:28 }}>
             Your life is a web of consciousness. Every decision ripples out — the butterfly effect, made visible. The way you feel about yourself at 7am changes what you attract at noon. What you believe about money changes what you do with love. What you think about your worth changes what you allow in every area.
           </p>
-          <p style={{ fontSize: isMobile?17:21, color:"rgba(253,240,232,0.75)", lineHeight:1.85, marginBottom:28 }}>
+          <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85, marginBottom:28 }}>
             SHG isn't a fix. It's a fundamental shift in the field you're operating from. When your subconscious is aligned — the right people, the right opportunities, the synchronicities — they don't feel like luck. They feel like finally coming home.
           </p>
           <p style={{ fontSize: isMobile?18:23, color:CREAM, lineHeight:1.75, fontStyle:"normal", maxWidth:580, margin:"0 auto" }}>
@@ -176,7 +176,7 @@ export default function About({ onBack }) {
               <div key={title} style={{ background:"rgba(255,255,255,0.02)", border:"1px solid rgba(232,184,112,0.16)", borderRadius:16, padding: isMobile?"22px 18px":"28px 24px" }}>
                 <div style={{ fontSize:20, marginBottom:12, background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{glyph}</div>
                 <div style={{ fontSize:15, fontWeight:500, color:CREAM, marginBottom:10, lineHeight:1.3 }}>{title}</div>
-                <div style={{ fontSize:14, color:"rgba(253,240,232,0.6)", lineHeight:1.75 }}>{body}</div>
+                <div style={{ fontSize:14, color:"#fdf0e8", lineHeight:1.75 }}>{body}</div>
               </div>
             ))}
           </div>
@@ -201,7 +201,7 @@ export default function About({ onBack }) {
               ].map(t => (
                 <div key={t} style={{ display:"flex", alignItems:"flex-start", gap:10, marginBottom:12 }}>
                   <span style={{ color:"rgba(232,184,112,0.3)", flexShrink:0, fontSize:12, marginTop:3 }}>✕</span>
-                  <span style={{ fontSize:15, color:"rgba(253,240,232,0.5)", lineHeight:1.6 }}>{t}</span>
+                  <span style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.6 }}>{t}</span>
                 </div>
               ))}
             </div>
@@ -218,12 +218,12 @@ export default function About({ onBack }) {
               ].map(t => (
                 <div key={t} style={{ display:"flex", alignItems:"flex-start", gap:10, marginBottom:12 }}>
                   <span style={{ background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", flexShrink:0, fontSize:12, marginTop:3 }}>✦</span>
-                  <span style={{ fontSize:15, color:"rgba(253,240,232,0.85)", lineHeight:1.6 }}>{t}</span>
+                  <span style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.6 }}>{t}</span>
                 </div>
               ))}
             </div>
           </div>
-          <p style={{ fontSize: isMobile?17:21, color:"rgba(253,240,232,0.7)", lineHeight:1.85, textAlign:"center", maxWidth:600, margin:"0 auto" }}>
+          <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85, textAlign:"center", maxWidth:600, margin:"0 auto" }}>
             I've lived both sides. The chaos — and the magic. The difference isn't luck. It's the frequency you're operating at. SHG moves you from one to the other while you sleep, work, and live.
           </p>
         </div>
@@ -237,7 +237,7 @@ export default function About({ onBack }) {
             The goddess was always there.<br/>
             <span style={{ background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Now let her run the show.</span>
           </h2>
-          <p style={{ fontSize: isMobile?16:19, color:"rgba(253,240,232,0.6)", lineHeight:1.75, marginBottom:40, maxWidth:480, margin:"0 auto 40px" }}>
+          <p style={{ fontSize: isMobile?16:19, color:"#fdf0e8", lineHeight:1.75, marginBottom:40, maxWidth:480, margin:"0 auto 40px" }}>
             This is for you. Every version of your life — love, money, purpose, peace. All of it is one shift away.
           </p>
           <button onClick={()=>navigate("/")} style={{ padding: isMobile?"16px 40px":"20px 56px", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", border:"none", borderRadius:50, fontSize:15, fontWeight:600, color:"#000", cursor:"pointer", letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", boxShadow:"0 0 40px rgba(232,184,112,0.25)" }}>

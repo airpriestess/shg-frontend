@@ -311,7 +311,7 @@ export default function Library({ onBack }) {
         <h2 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(26px,7vw,38px)":"clamp(32px,4vw,48px)", color:CREAM, fontWeight:400, marginBottom:16, lineHeight:1.2 }}>
           Pick the category that's been living rent-free in your head.
         </h2>
-        <p style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.75)", maxWidth:480, margin:"0 auto 40px", lineHeight:1.7 }}>
+        <p style={{ fontSize: isMobile?15:17, color:"#fdf0e8", maxWidth:480, margin:"0 auto 40px", lineHeight:1.7 }}>
           That's your gap. That's where you start. Everything else follows.
         </p>
         <button onClick={()=>{ navigate("/"); setTimeout(()=>{ const el=document.getElementById("pricing"); if(el) el.scrollIntoView({behavior:"smooth"}); },300); }} style={{ background:LG, border:"none", borderRadius:40, padding: isMobile?"18px 44px":"22px 60px", color:BLACK, fontSize: isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em" }}>

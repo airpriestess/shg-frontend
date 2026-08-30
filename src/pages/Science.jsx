@@ -36,7 +36,7 @@ function SectionTitle({ overline, title, body }) {
     <div style={{ background:"#000", padding:"72px 24px 56px", textAlign:"center" }}>
       <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:TEAL, marginBottom:16, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>{overline}</div>
       <div style={{ fontSize:"clamp(28px,5vw,56px)", fontWeight:300, color:CR, fontFamily:"'Jost',sans-serif", lineHeight:1.15, marginBottom: body?24:0 }}>{title}</div>
-      {body && <div style={{ fontSize:17, color:"rgba(253,240,232,0.7)", lineHeight:1.8, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>{body}</div>}
+      {body && <div style={{ fontSize:17, color:"#fdf0e8", lineHeight:1.8, maxWidth:580, margin:"0 auto", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>{body}</div>}
     </div>
   );
 }
@@ -258,17 +258,17 @@ export default function Science({ onBack }) {
       {/* NAV */}
       <div style={{ position:"sticky", top:0, background:"rgba(0,0,0,0.97)", borderBottom:"1px solid rgba(44,183,167,0.12)", padding:"14px 24px", display:"flex", alignItems:"center", justifyContent:"space-between", zIndex:100 }}>
         <button onClick={onBack} style={{ background:"none", border:"none", color:TEAL, cursor:"pointer", fontSize:14, fontFamily:"'Jost',sans-serif", padding:0 }}>← Back</button>
-        <div style={{ fontSize:12, color:"rgba(253,240,232,0.5)", letterSpacing:"0.1em", textTransform:"uppercase" }}>The Science · reshmaoracle.com</div>
+        <div style={{ fontSize:12, color:"#fdf0e8", letterSpacing:"0.1em", textTransform:"uppercase" }}>The Science · reshmaoracle.com</div>
         <HamburgerMenu/>
       </div>
 
       {/* HERO */}
       <div style={{ background:"#000", padding:isMobile?"64px 24px 72px":"96px 24px 104px", textAlign:"center" }}>
-        <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess · The Science</div>
+        <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess · The Science</div>
         <div style={{ fontSize:isMobile?"clamp(36px,11vw,52px)":"clamp(48px,7vw,80px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
           This is why<br/><strong style={{ fontWeight:700 }}>it works.</strong>
         </div>
-        <div style={{ fontSize:isMobile?17:20, color:"rgba(253,240,232,0.7)", lineHeight:1.8, maxWidth:520, margin:"0 auto", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+        <div style={{ fontSize:isMobile?17:20, color:"#fdf0e8", lineHeight:1.8, maxWidth:520, margin:"0 auto", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
           Four mechanisms. Each one targeting a different layer of why the old belief stayed and why the new one is about to land.
         </div>
       </div>
@@ -291,17 +291,17 @@ export default function Science({ onBack }) {
         <div style={{ fontSize:isMobile?"clamp(24px,7vw,36px)":"clamp(32px,4vw,52px)", fontWeight:300, color:CR, fontFamily:"'Jost',sans-serif", lineHeight:1.2, marginBottom:16 }}>
           Stack all four.<br/><strong style={{ fontWeight:700 }}>Theta on demand.</strong>
         </div>
-        <div style={{ fontSize:16, color:"rgba(253,240,232,0.6)", lineHeight:1.8, maxWidth:520, margin:"0 auto 48px", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+        <div style={{ fontSize:16, color:"#fdf0e8", lineHeight:1.8, maxWidth:520, margin:"0 auto 48px", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
           Every SHG track layers hypnosis, subliminals, melodic house, EMDR, and binaural beats simultaneously. Each targets a different layer. Together they create a condition no single approach can produce alone.
         </div>
         <div style={{ display:"flex", flexWrap:"wrap", gap:isMobile?8:12, justifyContent:"center", alignItems:"center", maxWidth:700, margin:"0 auto 48px" }}>
           {["Hypnosis","Subliminals","Melodic House","EMDR","Binaural Beats"].map((t,i,arr)=>(
             <>
               <span key={t} style={{ background:LG, borderRadius:40, padding:"10px 22px", fontSize:14, fontWeight:500, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>{t}</span>
-              {i < arr.length-1 && <span key={t+"+"} style={{ color:"rgba(253,240,232,0.3)", fontSize:22, fontWeight:300 }}>+</span>}
+              {i < arr.length-1 && <span key={t+"+"} style={{ color:"#fdf0e8", fontSize:22, fontWeight:300 }}>+</span>}
             </>
           ))}
-          <span style={{ color:"rgba(253,240,232,0.3)", fontSize:22, fontWeight:300 }}>=</span>
+          <span style={{ color:"#fdf0e8", fontSize:22, fontWeight:300 }}>=</span>
           <span style={{ background:LG, borderRadius:40, padding:"12px 28px", fontSize:16, fontWeight:700, color:"#000", fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>Theta on demand</span>
         </div>
       </div>
@@ -311,7 +311,7 @@ export default function Science({ onBack }) {
         <div style={{ fontSize:isMobile?"clamp(32px,9vw,52px)":"clamp(40px,5.5vw,72px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
           Ready to<br/><strong style={{ fontWeight:700 }}>feel the shift?</strong>
         </div>
-        <div style={{ fontSize:18, color:"rgba(253,240,232,0.65)", lineHeight:1.8, marginBottom:40, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+        <div style={{ fontSize:18, color:"#fdf0e8", lineHeight:1.8, marginBottom:40, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
           Your first session is free.
         </div>
         <button onClick={onBack} style={{ background:LG, border:"none", borderRadius:40, padding:isMobile?"18px 44px":"22px 64px", color:"#000", fontSize:isMobile?16:18, fontFamily:"'Jost',sans-serif", fontWeight:500, cursor:"pointer", letterSpacing:"0.02em" }}>
