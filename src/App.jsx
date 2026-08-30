@@ -2158,7 +2158,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 13, background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>What makes this different</div>
             <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(36px,5vw,64px)", lineHeight: 1.1, marginBottom: 20, color: "#fdf0e8", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.02em" }}>
-              Your beliefs are running your life.<br/>Most people never change them.
+              Your beliefs are running your life. Most people never change them.
             </h2>
             <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               Affirmations do not work. Willpower does not work. Not because you are not trying. Because none of it reaches your subconscious. The part of your mind that actually controls your experience of physical reality. The unseen is the seed and source of reality shifting.
