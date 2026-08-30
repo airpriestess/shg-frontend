@@ -835,7 +835,7 @@ function useCountUp(target, duration=900) {
   return val;
 }
 
-function AppPreviewSection({ isMobile }) {
+function AppPreviewSection({ isMobile, onWaitlist }) {
   const [year, setYear] = useState(2026);
   const [visible, setVisible] = useState(false);
   const [animKey, setAnimKey] = useState(0);
@@ -862,7 +862,7 @@ function AppPreviewSection({ isMobile }) {
   const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
   return (
-    <div ref={ref} style={{ background:"#000", padding: isMobile?"56px 0 0":"72px 0 0", overflow:"hidden" }}>
+    <div ref={ref} style={{ background:"#000", padding: isMobile?"64px 0 0":"88px 0 0", overflow:"hidden" }}>
       <style>{`
         @keyframes ap-drift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
         @keyframes ap-fade-up { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
@@ -875,112 +875,123 @@ function AppPreviewSection({ isMobile }) {
         .ap-proof-row { animation: ap-proof-in 0.4s ease both; }
       `}</style>
 
-      {/* Heading — drifting LG gradient headline */}
-      <div style={{ textAlign:"center", padding: isMobile?"0 20px 40px":"0 40px 52px" }}>
-        <div style={{ fontSize:12, fontWeight:400, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:16, fontFamily:"'Jost',sans-serif", display:"inline-block" }}>ProofOS · Your record. For life.</div>
+      {/* Heading */}
+      <div style={{ textAlign:"center", padding: isMobile?"0 24px 40px":"0 40px 52px" }}>
+        <div style={{ fontSize:12, fontWeight:400, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:20, fontFamily:"'Jost',sans-serif" }}>ProofOS · Your record. For life.</div>
         <div style={{
-          fontSize: isMobile?"clamp(30px,9vw,42px)":"clamp(38px,4vw,58px)",
-          fontFamily:"'Jost',sans-serif", fontWeight:200,
-          lineHeight:1.1, letterSpacing:"-0.02em", marginBottom:16,
-          background:LG, backgroundSize:"300% 300%",
-          animation:"ap-drift 6s ease-in-out infinite",
-          WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
+          fontSize: isMobile?"clamp(34px,9.5vw,44px)":"clamp(42px,4.4vw,62px)",
+          fontFamily:"'Jost',sans-serif", fontWeight:400,
+          lineHeight:1.14, letterSpacing:"-0.01em", marginBottom:22, color:"#fdf0e8",
         }}>
-          Imagine you signed up in 2026.<br/>Now it's 2030.
+          Imagine you signed up<br/>in 2026.
+          <span style={{
+            display:"block", fontWeight:500,
+            background:LG, backgroundSize:"200% 200%",
+            animation:"ap-drift 6s ease-in-out infinite",
+            WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
+          }}>Now it's 2030.</span>
         </div>
-        <div style={{ fontSize: isMobile?14:17, color:"rgba(253,240,232,0.65)", fontFamily:"'Jost',sans-serif", lineHeight:1.7, maxWidth:560, margin:"0 auto" }}>
-          Every desire you ever set. Every sign you ever logged. Every manifestation, dated and permanent.<br/>
-          <span style={{ color:"#E8B870" }}>This is what your ProofOS looks like after 4 years.</span>
+        <div style={{ fontSize: isMobile?16:18, color:"rgba(253,240,232,0.72)", fontWeight:300, fontFamily:"'Jost',sans-serif", lineHeight:1.6, maxWidth:560, margin:"0 auto" }}>
+          Every desire you ever set. Every sign you ever logged. Every manifestation, dated and permanent.
         </div>
       </div>
 
-      {/* Year selector */}
-      <div style={{ display:"flex", gap:0, borderTop:"1px solid rgba(255,255,255,0.07)", borderBottom:"1px solid rgba(255,255,255,0.07)", marginBottom:0 }}>
+      {/* Year timeline — dotted, editorial */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?18:28, padding: isMobile?"0 20px 8px":"0 40px 8px" }}>
         {[2026,2027,2028,2029,2030].map(y=>(
           <button key={y} onClick={()=>changeYear(y)} style={{
-            flex:1, padding: isMobile?"16px 0":"20px 0", border:"none", cursor:"pointer",
-            fontFamily:"'Jost',sans-serif", fontSize: isMobile?14:16, fontWeight:year===y?600:400,
-            background: year===y ? "linear-gradient(135deg,rgba(232,184,112,0.12),rgba(191,165,216,0.12))" : "transparent",
-            WebkitTextFillColor: year===y ? "transparent" : "#fdf0e8",
-            backgroundImage: year===y ? LG : "none",
-            backgroundSize: year===y ? "300% 300%" : "unset",
-            WebkitBackgroundClip: year===y ? "text" : "unset",
-            backgroundClip: year===y ? "text" : "unset",
-            animation: year===y ? "ap-drift 5s ease-in-out infinite" : "none",
-            borderBottom: year===y ? "2px solid #E8B870" : "2px solid transparent",
-            transition:"border-color 0.2s",
+            background:"none", border:"none", cursor:"pointer", padding:"8px 2px",
+            display:"flex", flexDirection:"column", alignItems:"center", gap:10,
           }}>
-            {y}
-            {year===y && <div style={{ width:4, height:4, borderRadius:"50%", background:"#E8B870", margin:"4px auto 0", animation:"ap-pulse 1.5s ease-in-out infinite" }}/>}
+            <span style={{
+              fontFamily:"'Jost',sans-serif", fontSize: isMobile?15:17, fontWeight:year===y?600:400,
+              color: year===y?"#fdf0e8":"rgba(253,240,232,0.4)", transition:"color 0.2s",
+            }}>{y}</span>
+            {year===y
+              ? <div style={{ width:28, height:3, borderRadius:2, background:LG }}/>
+              : <div style={{ width:4, height:4, borderRadius:"50%", background:"rgba(253,240,232,0.25)" }}/>}
           </button>
         ))}
       </div>
 
-      <div style={{ padding: isMobile?"0 14px":"0 40px", maxWidth:920, margin:"0 auto" }}>
+      <div style={{ padding: isMobile?"0 20px":"0 40px", maxWidth:880, margin:"0 auto" }}>
 
-        {/* Stats strip */}
-        <div style={{ display:"grid", gridTemplateColumns: isMobile?"repeat(3,1fr)":"repeat(5,1fr)", gap:10, padding:"28px 0 22px" }}>
+        {/* Hero stat — big gradient number, editorial style */}
+        <div style={{ textAlign:"center", padding: isMobile?"40px 0 8px":"52px 0 8px" }}>
+          <div style={{ fontSize:12, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.45)", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>
+            {year===2030 ? "Across all 5 years" : `Running total through ${year}`}
+          </div>
+          <div style={{
+            fontSize: isMobile?"clamp(64px,20vw,96px)":"clamp(84px,9vw,124px)",
+            fontWeight:600, letterSpacing:"-0.03em", lineHeight:1,
+            background: LG, backgroundSize:"200% 200%",
+            animation:"ap-drift 6s ease-in-out infinite",
+            WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
+          }}>{animCum}</div>
+          <div style={{ fontSize: isMobile?15:17, color:"rgba(253,240,232,0.7)", marginTop:14, fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+            {year===2030 ? "manifestations. Your proof. Your identity. Forever." : "manifestations logged and counting →"}
+          </div>
+        </div>
+
+        {/* Stat tiles */}
+        <div style={{ display:"flex", flexWrap:"wrap", gap:14, padding: isMobile?"36px 0 8px":"44px 0 8px" }}>
           {[
-            [animManifested, "Manifested",        0],
-            [animSet,        "Intentions set",    1],
-            [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", 2],
-            [`${d.avgDays}d`, "Avg to manifest",  3],
-            [animListens,    "Total listens",      4],
-          ].map(([v,l,delay],i)=>(
-            (!isMobile || i<3) &&
-            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, background:"rgba(232,184,112,0.06)", borderRadius:14, padding:"18px 10px", textAlign:"center", border:"1px solid rgba(232,184,112,0.2)" }}>
-              <div style={{ fontSize: isMobile?30:40, fontWeight:700, lineHeight:1, letterSpacing:"-0.02em", fontFamily:"'Jost',sans-serif", background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block", animationDelay:`${i*0.4}s` }}>{v}</div>
-              <div style={{ fontSize:13, color:"rgba(253,240,232,0.6)", marginTop:8, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", display:"block" }}>{l}</div>
+            [animSet,        "Intentions set",   0],
+            [`${Math.round(d.manifested/d.set*100)}%`, "Success rate", 1],
+            [`${d.avgDays}d`, "Avg to manifest",  2],
+            [animListens,    "Total listens",     3],
+          ].map(([v,l,delay])=>(
+            <div key={l} className="ap-stat" style={{ animationDelay:`${delay*80}ms`, flex: isMobile?"1 1 calc(50% - 7px)":"1 1 calc(25% - 11px)", background:"rgba(232,184,112,0.05)", border:"1px solid rgba(232,184,112,0.18)", borderRadius:18, padding: isMobile?"22px 16px":"26px 18px", textAlign:"center" }}>
+              <div style={{
+                fontSize: isMobile?32:38, fontWeight:600, lineHeight:1, fontFamily:"'Jost',sans-serif",
+                background:LG, backgroundSize:"200% 200%", animation:"ap-drift 6s ease-in-out infinite",
+                WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
+              }}>{v}</div>
+              <div style={{ fontSize:12, color:"rgba(253,240,232,0.55)", marginTop:10, letterSpacing:"0.1em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif" }}>{l}</div>
             </div>
           ))}
         </div>
 
-        <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap:14 }}>
-
-          {/* Category bars */}
-          <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
-            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>By life area · avg days ↓</div>
+        {/* By life area */}
+        <div style={{ padding: isMobile?"44px 0 8px":"52px 0 8px" }}>
+          <div style={{ fontSize:13, letterSpacing:"0.24em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:24, fontFamily:"'Jost',sans-serif" }}>By life area · avg days to manifest</div>
+          <div style={{ display:"flex", flexDirection:"column", gap:20 }}>
             {d.cats.map((c,ci)=>{
               const pct = Math.round(c.done/c.n*100);
-              const BAR_GRAD = "linear-gradient(90deg,#F5E0A0,#E8B870)";
               return (
-                <div key={`${animKey}-${c.name}`} style={{ marginBottom:16, animation:`ap-fade-up 0.4s ease ${ci*80}ms both` }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:7 }}>
-                    <span style={{ fontSize:16, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
-                    <div style={{ display:"flex", gap:12, alignItems:"center" }}>
-                      <span style={{ fontSize:13, color:"rgba(253,240,232,0.6)" }}>{c.done}/{c.n}</span>
-                      <span style={{ fontSize:13, fontWeight:600, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", backgroundSize:"300% 300%", animation:"ap-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", border:"1px solid rgba(232,184,112,0.4)", borderRadius:6, padding:"3px 9px", display:"inline-block" }}>{c.days}d</span>
-                    </div>
+                <div key={`${animKey}-${c.name}`} style={{ animation:`ap-fade-up 0.4s ease ${ci*80}ms both` }}>
+                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:9 }}>
+                    <span style={{ fontSize: isMobile?18:19, fontWeight:400, color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>{c.name}</span>
+                    <span style={{ fontSize:14, color:"rgba(253,240,232,0.5)", fontWeight:300, fontFamily:"'Jost',sans-serif" }}>
+                      {c.done}/{c.n} <span style={{ color:c.col, fontWeight:500 }}>· {c.days}d avg</span>
+                    </span>
                   </div>
-                  <div style={{ height:7, borderRadius:4, background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
+                  <div style={{ height:8, borderRadius:5, background:"rgba(253,240,232,0.08)", overflow:"hidden" }}>
                     <div className="ap-bar-fill" key={`${animKey}-bar-${c.name}`}
-                      style={{ "--w":`${pct}%`, height:"100%", borderRadius:4,
-                        background:BAR_GRAD,
-                        animationDelay:`${ci*120+200}ms`,
-                        boxShadow:"0 0 10px rgba(232,184,112,0.35)" }}/>
+                      style={{ "--w":`${pct}%`, height:"100%", borderRadius:5, background:c.col, animationDelay:`${ci*120+200}ms` }}/>
                   </div>
                 </div>
               );
             })}
           </div>
+        </div>
 
-          {/* Proof wall */}
-          <div style={{ background:"rgba(255,255,255,0.025)", borderRadius:18, padding:"22px 20px", border:"1px solid rgba(255,255,255,0.07)" }}>
-            <div style={{ fontSize:13, letterSpacing:"0.14em", textTransform:"uppercase", color:"#E8B870", marginBottom:18, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year} ✦</div>
+        {/* Proof wall — list style with checkmarks */}
+        <div style={{ padding: isMobile?"48px 0 8px":"56px 0 8px" }}>
+          <div style={{ fontSize:13, letterSpacing:"0.24em", textTransform:"uppercase", color:"rgba(253,240,232,0.5)", marginBottom:22, fontFamily:"'Jost',sans-serif" }}>Proof wall · {year}</div>
+          <div style={{ display:"flex", flexDirection:"column" }}>
             {d.proof.map((p,i)=>(
               <div key={`${animKey}-${i}`} className="ap-proof-row"
-                style={{ display:"flex", alignItems:"flex-start", gap:12, marginBottom:15, paddingBottom:15,
-                  borderBottom:i<d.proof.length-1?"1px solid rgba(255,255,255,0.05)":"none",
+                style={{ display:"flex", alignItems:"center", gap:16, padding: isMobile?"16px 0":"18px 0",
+                  borderBottom:i<d.proof.length-1?"1px solid rgba(232,184,112,0.1)":"none",
                   animationDelay:`${i*100}ms` }}>
-                <div style={{ width:28, height:28, borderRadius:"50%", background:"rgba(232,184,112,0.12)", border:"1.5px solid rgba(232,184,112,0.5)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                  <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>✦</span>
+                <div style={{ flexShrink:0, width:38, height:38, borderRadius:"50%", background:LG, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
-                <div style={{ flex:1 }}>
-                  <div style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.4, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
-                  <div style={{ display:"flex", gap:10, marginTop:5, flexWrap:"wrap" }}>
-                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.date}</span>
-                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#E8B870,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.days} day{p.days!==1?"s":""}</span>
-                    <span style={{ fontSize:12, background:"linear-gradient(135deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", display:"inline-block" }}>{p.cat}</span>
+                <div style={{ flex:1, minWidth:0 }}>
+                  <div style={{ fontSize: isMobile?16:17, color:"#fdf0e8", fontWeight:400, lineHeight:1.3, fontFamily:"'Jost',sans-serif" }}>{p.desire}</div>
+                  <div style={{ fontSize:13, color:"rgba(253,240,232,0.5)", marginTop:4, fontWeight:300, fontFamily:"'Jost',sans-serif" }}>
+                    {p.date} · {p.days} day{p.days!==1?"s":""} · <span style={{ color:"#E8B870" }}>{p.cat}</span>
                   </div>
                 </div>
               </div>
@@ -989,41 +1000,28 @@ function AppPreviewSection({ isMobile }) {
         </div>
 
         {/* Pattern insight */}
-        <div style={{ margin:"14px 0 0", borderRadius:18, padding:"22px 22px",
-          background:"#000",
-          border:"1px solid rgba(232,184,112,0.2)" }}>
-          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
-            <div style={{ width:8, height:8, borderRadius:"50%", background:"#E8B870", boxShadow:"0 0 8px #E8B870", animation:"ap-pulse 2s ease-in-out infinite" }}/>
-            <div style={{ fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
+        <div style={{ margin: isMobile?"44px 0 0":"52px 0 0", borderRadius:22, padding: isMobile?"28px 22px":"32px 26px",
+          background:"linear-gradient(135deg, rgba(245,224,160,0.08), rgba(191,165,216,0.08), rgba(44,183,167,0.08))",
+          border:"1px solid rgba(232,184,112,0.22)" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:16 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8B870" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.5-6.3 4.5 2.3-7.2-6-4.6h7.6z"/></svg>
+            <div style={{ fontSize:12, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(253,240,232,0.6)", fontFamily:"'Jost',sans-serif" }}>ProofOS pattern recognition · {year}</div>
           </div>
-          <div key={animKey} style={{ fontSize: isMobile?14:15, color:"#fdf0e8", lineHeight:1.75, fontFamily:"'Jost',sans-serif", animation:"ap-fade-up 0.6s ease both" }}>
+          <div key={animKey} style={{ fontSize: isMobile?17:19, color:"#fdf0e8", fontWeight:400, lineHeight:1.5, fontFamily:"'Jost',sans-serif", animation:"ap-fade-up 0.6s ease both" }}>
             "{d.insight}"
           </div>
         </div>
 
-        {/* Cumulative counter — big gradient number */}
-        <div style={{ textAlign:"center", padding:"36px 0 56px", position:"relative" }}>
-          <div style={{ fontSize:10, letterSpacing:"0.24em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:12, fontFamily:"'Jost',sans-serif" }}>
-            {year===2030 ? "Across all 5 years" : `Running total through ${year}`}
-          </div>
-          <div style={{
-            fontSize: isMobile?"clamp(52px,18vw,80px)":"clamp(72px,8vw,110px)",
-            fontWeight:200, letterSpacing:"-0.04em", lineHeight:1,
-            background: LG, backgroundSize:"300% 300%",
-            animation:"ap-drift 6s ease-in-out infinite",
-            WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
-          }}>{animCum}</div>
-          <div style={{ fontSize: isMobile?13:15, color:"#BFA5D8", marginTop:10, fontFamily:"'Jost',sans-serif", letterSpacing:"0.02em" }}>
-            {year===2030 ? "manifestations. Your proof. Your identity. Forever." : `manifestations logged and counting →`}
-          </div>
-          {year===2030 && (
-            <div style={{ marginTop:28, display:"inline-block", padding:"14px 36px", borderRadius:40,
-              background:LG, color:"#000", fontSize:15, fontWeight:500, fontFamily:"'Jost',sans-serif",
-              letterSpacing:"0.05em", cursor:"pointer", animation:"ap-glow 3s ease-in-out infinite" }}>
+        {year===2030 && (
+          <div style={{ textAlign:"center", padding: isMobile?"48px 0 56px":"56px 0 64px" }}>
+            <div onClick={onWaitlist} style={{ display:"inline-block", padding:"18px 40px", borderRadius:40,
+              background:LG, color:"#000", fontSize:16, fontWeight:600, fontFamily:"'Jost',sans-serif",
+              letterSpacing:"0.04em", cursor:"pointer", animation:"ap-glow 3s ease-in-out infinite" }}>
               Start your record today →
             </div>
-          )}
-        </div>
+          </div>
+        )}
+        {year!==2030 && <div style={{ height: isMobile?48:56 }}/>}
       </div>
     </div>
   );
@@ -1944,7 +1942,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       </div>
 
       {/* APP PREVIEW, dashboard mockup with dark/light toggle */}
-      <AppPreviewSection isMobile={isMobile} />
+      <AppPreviewSection isMobile={isMobile} onWaitlist={()=>setWaitlistOpen(true)} />
 
 
       {/* CTAs — three across, full-width grid */}

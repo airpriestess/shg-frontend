@@ -47,6 +47,28 @@ it. The steps:
    report the fix as done. If you can't screenshot (no browser access, no
    dev server), say so explicitly instead of claiming it's verified.
 
+### KNOWN LANDMINE — the "nuclear mobile override" in `src/design/tokens.js`
+Around line 154, inside `@media(max-width:680px)`, there is:
+```css
+body [style*="grid-template-columns"]{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;}
+```
+This rule forcibly collapses **any** element anywhere in the app that has an
+inline `grid-template-columns` style into a single column below 680px width —
+no exceptions, no opt-out. It was almost certainly added to firefight one
+specific broken grid and now silently wrecks every other inline CSS grid on
+mobile (this is what broke the 2-column ProofOS stat tiles — they had
+`display:"grid", gridTemplateColumns:"repeat(2,1fr)"` inline and got stomped
+into a single stacked column despite the JSX being correct).
+**Rule: never use an inline `style={{ display:"grid", gridTemplateColumns:... }}`
+for anything that needs to keep more than 1 column below 680px.** Use flexbox
+instead (`display:"flex", flexWrap:"wrap"` with each child sized via
+`flex:"1 1 calc(50% - Npx)"`), which this override does not match. If a grid
+layout is genuinely required, it must use a class name (not inline style) so
+it doesn't match `[style*="grid-template-columns"]` — but check the
+`.grid-2/.grid-3/.grid-4` class rules in the same file first, since those are
+ALSO forced to `display:flex` on mobile by design (lines ~105-108) and may
+need their own review.
+
 ### Working Playwright invocation in this environment
 ```bash
 node -e "
