@@ -847,14 +847,11 @@ function useCountUp(target, duration=900) {
   return val;
 }
 
-const SCRUB_YEARS = [2026,2027,2028,2029,2030];
-
 function AppPreviewSection({ isMobile, onWaitlist }) {
   const [year, setYear] = useState(2026);
   const [visible, setVisible] = useState(false);
   const [animKey, setAnimKey] = useState(0);
   const ref = useRef(null);
-  const sentinelRefs = useRef([]);
   const d = YEAR_DATA[year];
   const yearsShown = Object.keys(YEAR_DATA).map(Number).filter(y=>y<=year);
   const cumManifested = yearsShown.reduce((s,y)=>s+YEAR_DATA[y].manifested,0);
@@ -866,28 +863,7 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
     obs.observe(el); return () => obs.disconnect();
   }, []);
 
-  const changeYear = (y) => {
-    setYear(y); setAnimKey(k=>k+1);
-    const i = SCRUB_YEARS.indexOf(y);
-    sentinelRefs.current[i]?.scrollIntoView({ behavior:"smooth", block:"center" });
-  };
-
-  // SCROLL-SCRUB — as the reader scrolls through this section, the year (and every number)
-  // advances on its own, tied to scroll position, instead of waiting for a click.
-  useEffect(() => {
-    const nodes = sentinelRefs.current.filter(Boolean);
-    if (!nodes.length) return;
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const y = Number(e.target.dataset.year);
-          setYear(prev => { if (prev !== y) { setAnimKey(k=>k+1); return y; } return prev; });
-        }
-      });
-    }, { threshold: 0, rootMargin: "-45% 0px -45% 0px" });
-    nodes.forEach(n => obs.observe(n));
-    return () => obs.disconnect();
-  }, []);
+  const changeYear = (y) => { setYear(y); setAnimKey(k=>k+1); };
 
   const animManifested = useCountUp(visible ? d.manifested : 0);
   const animSet        = useCountUp(visible ? d.set : 0);
@@ -932,16 +908,9 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
         </div>
       </div>
 
-      {/* SCROLL-SCRUB TRACK — scrolling through this advances the year on its own */}
-      <div style={{ position:"relative", height: `${SCRUB_YEARS.length * 62}vh` }}>
-        {SCRUB_YEARS.map((y,i)=>(
-          <div key={y} ref={el=>sentinelRefs.current[i]=el} data-year={y} style={{ position:"absolute", top:`${i*62}vh`, height:1, width:"100%", pointerEvents:"none" }}/>
-        ))}
-        <div style={{ position:"sticky", top: `calc(${isMobile?"44px":"48px"} + 54px + env(safe-area-inset-top,0px))`, paddingBottom: isMobile?24:32 }}>
-
       {/* Year timeline — dotted, editorial */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?18:28, padding: isMobile?"0 20px 8px":"0 40px 8px" }}>
-        {SCRUB_YEARS.map(y=>(
+        {[2026,2027,2028,2029,2030].map(y=>(
           <button key={y} onClick={()=>changeYear(y)} style={{
             background:"none", border:"none", cursor:"pointer", padding:"8px 2px",
             display:"flex", flexDirection:"column", alignItems:"center", gap:10,
@@ -1065,9 +1034,6 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
           </div>
         )}
         {year!==2030 && <div style={{ height: isMobile?48:56 }}/>}
-      </div>
-
-        </div>
       </div>
     </div>
   );
@@ -2056,11 +2022,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
             <div style={{ fontSize: isMobile?24:28, color:"#fdf0e8", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
 
-            <div className="reveal" style={{ transitionDelay:"240ms", background:"#0a0a0a", border:"1px solid rgba(232,184,112,0.3)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(232,184,112,0.08)" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>The result</div>
-              <div style={{ fontSize: isMobile?36:44, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
-              <div style={{ fontSize:12, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>Installed.</div>
-              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
+            <div className="reveal" style={{ transitionDelay:"240ms", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"mth-drift 5s ease-in-out infinite", border:"none", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(232,184,112,0.2)" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.55)", marginBottom:14, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>The result</div>
+              <div style={{ fontSize: isMobile?36:44, fontWeight:400, color:"#000", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Identity</div>
+              <div style={{ fontSize:12, color:"rgba(0,0,0,0.6)", fontFamily:"'Jost',sans-serif", marginBottom:14, fontWeight:500 }}>Installed.</div>
+              <div style={{ fontSize:14, color:"#000", fontFamily:"'Jost',sans-serif", lineHeight:1.7, fontWeight:400 }}>Your new self-concept runs automatically. Reality follows. Of course, obviously.</div>
             </div>
 
           </div>
@@ -2173,7 +2139,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ background: "transparent", border: "none", borderRadius: 20, padding: isMobile?"28px 0":"36px 0", position: "relative" }}>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ fontSize: 13, background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 14, textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:600 }}>What makes this different</div>
-            <h2 style={{ fontSize: isMobile?"clamp(24px,6vw,36px)":"clamp(28px,3vw,44px)", lineHeight: 1.2, marginBottom: 20, color: "#fdf0e8", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em" }}>
+            <h2 style={{ fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(36px,5vw,64px)", lineHeight: 1.1, marginBottom: 20, color: "#fdf0e8", textAlign: "center", fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.02em" }}>
               Your beliefs are running your life.<br/>Most people never change them.
             </h2>
             <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>

@@ -67,29 +67,6 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== THE LOOP ===== */}
-      <div className="reveal" style={{ background:"#000", borderTop:"1px solid rgba(232,184,112,0.1)", padding: isMobile?"64px 24px":"96px 60px" }}>
-        <div style={{ maxWidth:760, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600, textAlign:"center" }}>The Pattern I Kept Seeing</div>
-
-          <h2 style={{ fontSize: isMobile?"clamp(26px,6vw,38px)":"clamp(32px,3.5vw,50px)", fontWeight:300, color:CREAM, lineHeight:1.25, textAlign:"center", marginBottom:36, letterSpacing:"-0.02em" }}>
-            You're not stuck because you're broken.<br/>You're stuck because <span style={{ background:LG, backgroundSize:"100% 100%", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>you haven't broken the loop.</span>
-          </h2>
-
-          <div style={{ display:"flex", flexDirection:"column", gap:20, maxWidth:680, margin:"0 auto" }}>
-            {[
-              "You set intentions. You journal. You manifest. You try. And then — same job. Same relationship dynamic. Same bank balance. Same feeling.",
-              "Not because you're not trying hard enough. Because trying lives in the conscious mind. And the conscious mind is not running your life.",
-              "Your subconscious is. And it hasn't been told a different story yet. It's running the same script it received before you were seven years old.",
-              "Until you break that loop at the root — you will keep recreating the same reality. No matter how hard you want something different.",
-            ].map((text, i) => (
-              <p key={i} style={{ fontSize: isMobile?16:19, color:"#fdf0e8", lineHeight:1.8, margin:0, fontWeight:i===3?400:300, borderLeft:i===3?`2px solid #E8B870`:"none", paddingLeft:i===3?18:0 }}>
-                {text}
-              </p>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ===== RESHMA'S STORY ===== */}
       <div className="reveal" style={{ padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
         <div className="about-orb" style={{ width:500, height:500, right:"-10%", top:"20%", background:"radial-gradient(circle,rgba(191,165,216,0.08),transparent 70%)", animationDuration:"12s" }}/>
