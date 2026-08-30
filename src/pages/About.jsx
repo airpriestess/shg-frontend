@@ -1,7 +1,7 @@
 /* About, Reshma Oracle */
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import HamburgerMenu from "../components/HamburgerMenu.jsx";
+import SiteHeader from "../components/SiteHeader.jsx";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const CREAM = "#fdf0e8";
@@ -43,20 +43,10 @@ export default function About({ onBack }) {
         .about-orb { position:absolute; border-radius:50%; pointer-events:none; animation:about-float 6s ease-in-out infinite; }
       `}</style>
 
-      {/* TOP BANNER */}
-      <div style={{ position:"fixed", top:0, left:0, right:0, zIndex:200, height:44, background:"#000", borderBottom:"1px solid rgba(232,184,112,0.18)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-        <span style={{ fontFamily:"'Jost',sans-serif", fontSize:10, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize:"300% 100%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", filter:"drop-shadow(0 0 8px rgba(232,184,112,0.5))", whiteSpace:"nowrap" }}>From Hot Mess to Goddess (of course, obviously.)</span>
-      </div>
-
-      {/* NAV */}
-      <div style={{ position:"fixed", top:44, left:0, right:0, zIndex:100, background:"rgba(0,0,0,0.9)", backdropFilter:"blur(14px)", borderBottom:"1px solid rgba(232,184,112,0.14)", display:"flex", alignItems:"center", justifyContent:"space-between", padding: isMobile?"14px 20px":"16px 48px" }}>
-        <button onClick={()=>navigate("/")} style={{ background:"none", border:"none", cursor:"pointer", color:CREAM, fontSize:14, fontFamily:"'Jost',sans-serif", letterSpacing:"0.06em", opacity:0.6, padding:0 }}>← Back</button>
-        <div style={{ fontSize:12, letterSpacing:"0.18em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontWeight:600 }}>Self Hypnosis Goddess</div>
-        <HamburgerMenu />
-      </div>
+      <SiteHeader isMobile={isMobile}/>
 
       {/* ===== HERO: FROM HOT MESS TO GODDESS ===== */}
-      <div style={{ position:"relative", paddingTop: isMobile?100:120, paddingBottom: isMobile?72:104, textAlign:"center", overflow:"hidden" }}>
+      <div style={{ position:"relative", paddingTop: `calc(${isMobile?"44px":"48px"} + 54px + ${isMobile?"32px":"56px"} + env(safe-area-inset-top,0px))`, paddingBottom: isMobile?72:104, textAlign:"center", overflow:"hidden" }}>
         {/* Animated orbs */}
         <div className="about-orb" style={{ width:320, height:320, left:"5%", top:"10%", background:"radial-gradient(circle,rgba(245,224,160,0.12),transparent 70%)", animationDuration:"8s" }}/>
         <div className="about-orb" style={{ width:280, height:280, right:"8%", top:"30%", background:"radial-gradient(circle,rgba(191,165,216,0.14),transparent 70%)", animationDuration:"10s", animationDelay:"2s" }}/>
@@ -65,11 +55,9 @@ export default function About({ onBack }) {
         <div style={{ position:"relative", zIndex:1, padding: isMobile?"0 24px":"0 60px" }}>
           <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:20, fontWeight:600 }}>About Reshma</div>
 
-          <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,96px)", fontWeight:400, fontStyle:"normal", lineHeight:1.05, letterSpacing:"-0.02em", margin:"0 auto 20px", maxWidth:860, color:CREAM }}>
-            From Hot Mess
-          </h1>
-          <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(44px,11vw,64px)":"clamp(56px,6vw,96px)", fontWeight:400, fontStyle:"normal", lineHeight:1.05, letterSpacing:"-0.02em", margin:"0 auto 40px", maxWidth:860, background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>
-            to Goddess.
+          <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(34px,9vw,48px)":"clamp(44px,5vw,76px)", fontWeight:400, lineHeight:1.12, letterSpacing:"-0.02em", margin:"0 auto 40px", maxWidth:900, color:CREAM }}>
+            From Hot Mess to{" "}
+            <span style={{ background:LG, backgroundSize:"100% 100%", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>Goddess.</span>
           </h1>
 
           <p style={{ fontSize: isMobile?17:22, color:"#fdf0e8", lineHeight:1.8, maxWidth:600, margin:"0 auto" }}>
@@ -84,7 +72,7 @@ export default function About({ onBack }) {
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600, textAlign:"center" }}>The Pattern I Kept Seeing</div>
 
           <h2 style={{ fontSize: isMobile?"clamp(26px,6vw,38px)":"clamp(32px,3.5vw,50px)", fontWeight:300, color:CREAM, lineHeight:1.25, textAlign:"center", marginBottom:36, letterSpacing:"-0.02em" }}>
-            You're not stuck because you're broken.<br/>You're stuck because <span style={{ background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>you haven't broken the loop.</span>
+            You're not stuck because you're broken.<br/>You're stuck because <span style={{ background:LG, backgroundSize:"100% 100%", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>you haven't broken the loop.</span>
           </h2>
 
           <div style={{ display:"flex", flexDirection:"column", gap:20, maxWidth:680, margin:"0 auto" }}>

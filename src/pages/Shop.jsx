@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import HamburgerMenu from "../components/HamburgerMenu.jsx";
+import { useState, useEffect } from "react";
+import SiteHeader from "../components/SiteHeader.jsx";
 
 const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
@@ -45,21 +45,6 @@ const WORKBOOKS = [
     available: false,
   },
 ];
-
-function SHGNav() {
-  const navigate = useNavigate();
-  return (
-    <nav onClick={()=>navigate("/")} style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 20px", height:54, borderBottom:"1px solid rgba(255,255,255,0.08)", background:"rgba(0,0,0,0.97)", backdropFilter:"blur(20px)", position:"sticky", top:0, zIndex:100, cursor:"pointer" }}>
-      <div style={{ display:"flex", alignItems:"center", gap:9 }}>
-        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
-        <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:14, letterSpacing:"0.02em", color:"#fdf0e8" }}>Self Hypnosis Goddess</span>
-      </div>
-      <div onClick={(e)=>e.stopPropagation()}>
-        <HamburgerMenu/>
-      </div>
-    </nav>
-  );
-}
 
 function WorkbookCard({ w }) {
   return (
@@ -116,11 +101,18 @@ function WorkbookCard({ w }) {
 }
 
 export default function Shop() {
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth <= 768);
+  useEffect(() => {
+    const h = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
+  }, []);
+
   return (
     <div style={{ background:"#000", minHeight:"100vh", color:"#fdf0e8", fontFamily:"'Jost',sans-serif" }}>
-      <SHGNav/>
+      <SiteHeader isMobile={isMobile}/>
 
-      <div style={{ textAlign:"center", padding:"64px 24px 48px" }}>
+      <div style={{ textAlign:"center", padding: `calc(${isMobile?"44px":"48px"} + 54px + 40px + env(safe-area-inset-top,0px)) 24px 48px` }}>
         <div style={{ display:"inline-block", fontSize:10, letterSpacing:".28em", textTransform:"uppercase", marginBottom:20, background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>
           ✦ Shop ✦
         </div>

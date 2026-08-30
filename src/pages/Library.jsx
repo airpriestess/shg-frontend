@@ -1,7 +1,7 @@
 /* Library, The 24 Categories */
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import HamburgerMenu from "../components/HamburgerMenu.jsx";
+import SiteHeader from "../components/SiteHeader.jsx";
 
 const LG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const BLACK = "#000000";
@@ -222,15 +222,10 @@ export default function Library({ onBack }) {
   return (
     <div ref={topRef} style={{ minHeight:"100vh", background:BLACK, color:CREAM, fontFamily:"'Jost',sans-serif" }}>
 
-      {/* NAV */}
-      <div style={{ position:"sticky", top:0, zIndex:50, background:"rgba(0,0,0,0.94)", backdropFilter:"blur(12px)", borderBottom:"1px solid rgba(255,255,255,0.06)", padding:"0 24px", height:52, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <button onClick={onBack} style={{ background:"none", border:"none", color:MU, fontSize:13, cursor:"pointer", display:"flex", alignItems:"center", gap:6, fontFamily:"'Jost',sans-serif", letterSpacing:"0.04em" }}>← Back</button>
-        <span style={{ fontSize:12, color:MU, letterSpacing:"0.18em", textTransform:"uppercase" }}>The Library · reshmaoracle.com</span>
-        <HamburgerMenu/>
-      </div>
+      <SiteHeader isMobile={isMobile}/>
 
       {/* HERO */}
-      <div style={{ background:LG, padding: isMobile?"64px 24px 56px":"88px 24px 72px", textAlign:"center" }}>
+      <div style={{ background:LG, padding: `calc(${isMobile?"44px":"48px"} + 54px + ${isMobile?"32px":"56px"} + env(safe-area-inset-top,0px)) 24px ${isMobile?"56px":"72px"}`, textAlign:"center" }}>
         <div style={{ display:"flex", justifyContent:"center", marginBottom:24 }}>
           <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?56:72} height={isMobile?56:72} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         </div>

@@ -4,8 +4,43 @@
 - Colors: ONLY black (#000/#0a0a0a), cream (#fdf0e8), and the LG gradient
   `linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)`.
   No grey, no solid brown/mauve, no other colors on text or backgrounds.
+- **SOLID (non-gradient, non-black, non-cream) colors are completely banned on this
+  site and in the app.** Never introduce a flat/solid accent color (a plain teal,
+  purple, gold, red, etc. used by itself) anywhere — buttons, badges, headings,
+  icons, borders. If something needs an accent, it is either the LG gradient, or
+  black, or cream. This includes accidental solid colors caused by a bug — see the
+  gradient-text pitfall below.
+- **Gradient-text pitfall (a real bug that shipped and had to be fixed):** applying
+  the LG gradient to *short* text via `backgroundSize:"300% 300%"` + an animated
+  `background-position` drift can render as a near-solid flat color at certain
+  points in the animation cycle — because a 300%-wide gradient viewed through a
+  narrow (short-text) window only shows a thin slice of the spectrum at any given
+  moment, and that slice can land entirely on one or two adjacent stops (e.g. all
+  teal). This is NOT an acceptable multi-hue gradient, it just looks like a solid
+  color bug. For short headline/emphasis text (a few words), use a STATIC
+  full-spectrum gradient instead: `backgroundSize:"100% 100%"` with no animation,
+  which guarantees the complete 5-stop spectrum is always visible across the text.
+  Reserve the animated drift (`backgroundSize:"300% 300%"` + `animation`) for
+  either long-running text (a full sentence/headline that's wide enough to always
+  show multiple stops) or full-width bars/backgrounds (the announcement banner),
+  where the width guarantees the whole spectrum reads at any animation phase.
 - Font: `'Jost',sans-serif` everywhere. No Cormorant Garamond, no italics, no Futura/Century Gothic.
 - Text is always cream or LG gradient — never grey.
+
+## One shared header, everywhere — do not fork this again
+Every page must use `src/components/SiteHeader.jsx` (banner + nav, with the
+Join Waitlist CTA and Claim Free Gift CTA) — this is the ONLY banner/nav
+implementation on the site. It was previously reinvented per-page (About had
+a stale two-line banner with no CTA button; Science/Library used a bare sticky
+nav with no banner at all; Events/Shop had their own inline `SHGNav`), which is
+exactly how the site drifted out of sync with itself and caused a real user
+complaint ("it doesn't align with the homepage or any of the other pages").
+When adding a new page, import and render `<SiteHeader isMobile={isMobile}/>`
+at the top — never write a new banner or nav from scratch. If the shared
+header itself needs to change, change `SiteHeader.jsx` once; every page picks
+it up automatically. Pages using it must reserve top space with padding of
+`calc(${isMobile?"44px":"48px"} + 54px + ...your own spacing... + env(safe-area-inset-top,0px))`
+since the banner+nav are `position:fixed`.
 
 ## SECURITY — hard rule, no exceptions
 `workers/shg-auth-worker.js` GO_LINKS must NEVER be modified.

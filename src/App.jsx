@@ -847,11 +847,14 @@ function useCountUp(target, duration=900) {
   return val;
 }
 
+const SCRUB_YEARS = [2026,2027,2028,2029,2030];
+
 function AppPreviewSection({ isMobile, onWaitlist }) {
   const [year, setYear] = useState(2026);
   const [visible, setVisible] = useState(false);
   const [animKey, setAnimKey] = useState(0);
   const ref = useRef(null);
+  const sentinelRefs = useRef([]);
   const d = YEAR_DATA[year];
   const yearsShown = Object.keys(YEAR_DATA).map(Number).filter(y=>y<=year);
   const cumManifested = yearsShown.reduce((s,y)=>s+YEAR_DATA[y].manifested,0);
@@ -863,7 +866,28 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
     obs.observe(el); return () => obs.disconnect();
   }, []);
 
-  const changeYear = (y) => { setYear(y); setAnimKey(k=>k+1); };
+  const changeYear = (y) => {
+    setYear(y); setAnimKey(k=>k+1);
+    const i = SCRUB_YEARS.indexOf(y);
+    sentinelRefs.current[i]?.scrollIntoView({ behavior:"smooth", block:"center" });
+  };
+
+  // SCROLL-SCRUB — as the reader scrolls through this section, the year (and every number)
+  // advances on its own, tied to scroll position, instead of waiting for a click.
+  useEffect(() => {
+    const nodes = sentinelRefs.current.filter(Boolean);
+    if (!nodes.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const y = Number(e.target.dataset.year);
+          setYear(prev => { if (prev !== y) { setAnimKey(k=>k+1); return y; } return prev; });
+        }
+      });
+    }, { threshold: 0, rootMargin: "-45% 0px -45% 0px" });
+    nodes.forEach(n => obs.observe(n));
+    return () => obs.disconnect();
+  }, []);
 
   const animManifested = useCountUp(visible ? d.manifested : 0);
   const animSet        = useCountUp(visible ? d.set : 0);
@@ -908,9 +932,16 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
         </div>
       </div>
 
+      {/* SCROLL-SCRUB TRACK — scrolling through this advances the year on its own */}
+      <div style={{ position:"relative", height: `${SCRUB_YEARS.length * 62}vh` }}>
+        {SCRUB_YEARS.map((y,i)=>(
+          <div key={y} ref={el=>sentinelRefs.current[i]=el} data-year={y} style={{ position:"absolute", top:`${i*62}vh`, height:1, width:"100%", pointerEvents:"none" }}/>
+        ))}
+        <div style={{ position:"sticky", top: `calc(${isMobile?"44px":"48px"} + 54px + env(safe-area-inset-top,0px))`, paddingBottom: isMobile?24:32 }}>
+
       {/* Year timeline — dotted, editorial */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap: isMobile?18:28, padding: isMobile?"0 20px 8px":"0 40px 8px" }}>
-        {[2026,2027,2028,2029,2030].map(y=>(
+        {SCRUB_YEARS.map(y=>(
           <button key={y} onClick={()=>changeYear(y)} style={{
             background:"none", border:"none", cursor:"pointer", padding:"8px 2px",
             display:"flex", flexDirection:"column", alignItems:"center", gap:10,
@@ -1034,6 +1065,9 @@ function AppPreviewSection({ isMobile, onWaitlist }) {
           </div>
         )}
         {year!==2030 && <div style={{ height: isMobile?48:56 }}/>}
+      </div>
+
+        </div>
       </div>
     </div>
   );

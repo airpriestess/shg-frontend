@@ -1,6 +1,6 @@
 /* Science — Before / After split panels */
 import { useState, useEffect, useRef } from "react";
-import HamburgerMenu from "../components/HamburgerMenu.jsx";
+import SiteHeader from "../components/SiteHeader.jsx";
 
 const LG   = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const TEAL = "#2CB7A7";
@@ -255,15 +255,10 @@ export default function Science({ onBack }) {
   return (
     <div ref={topRef} style={{ minHeight:"100vh", background:"#000", color:CR, fontFamily:"'Jost',sans-serif" }}>
 
-      {/* NAV */}
-      <div style={{ position:"sticky", top:0, background:"rgba(0,0,0,0.97)", borderBottom:"1px solid rgba(44,183,167,0.12)", padding:"14px 24px", display:"flex", alignItems:"center", justifyContent:"space-between", zIndex:100 }}>
-        <button onClick={onBack} style={{ background:"none", border:"none", color:TEAL, cursor:"pointer", fontSize:14, fontFamily:"'Jost',sans-serif", padding:0 }}>← Back</button>
-        <div style={{ fontSize:12, color:"#fdf0e8", letterSpacing:"0.1em", textTransform:"uppercase" }}>The Science · reshmaoracle.com</div>
-        <HamburgerMenu/>
-      </div>
+      <SiteHeader isMobile={isMobile}/>
 
       {/* HERO */}
-      <div style={{ background:"#000", padding:isMobile?"64px 24px 72px":"96px 24px 104px", textAlign:"center" }}>
+      <div style={{ background:"#000", padding: `calc(${isMobile?"44px":"48px"} + 54px + ${isMobile?"40px":"72px"} + env(safe-area-inset-top,0px)) 24px ${isMobile?"72px":"104px"}`, textAlign:"center" }}>
         <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess · The Science</div>
         <div style={{ fontSize:isMobile?"clamp(36px,11vw,52px)":"clamp(48px,7vw,80px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
           This is why<br/><strong style={{ fontWeight:700 }}>it works.</strong>
