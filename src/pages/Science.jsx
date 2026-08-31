@@ -230,6 +230,7 @@ function BrainwaveJourney({ isMobile }) {
   const pathRef = useRef(null);
   const labelRef = useRef(null);
   const beliefRef = useRef(null);
+  const rootRef = useRef(null);
 
   useEffect(() => {
     const N = 44, W = 560, H = 90, MID = 45;
@@ -245,8 +246,8 @@ function BrainwaveJourney({ isMobile }) {
     };
 
     let raf;
-    const start = performance.now();
-    const CYCLE = 17000; // ms for one full beta → theta → beta breath
+    let start = performance.now();
+    const CYCLE = 5200; // ms for one full beta → theta → beta breath — fast enough to read on a quick scroll-by
     const tick = (now) => {
       const el = (now - start) / 1000;
       const phase = ((now - start) % CYCLE) / CYCLE;
@@ -265,11 +266,22 @@ function BrainwaveJourney({ isMobile }) {
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+
+    // whenever this section scrolls into view, restart the cycle from beta
+    // so a fast scroller always sees the full jittery→smooth transformation
+    const el = rootRef.current;
+    let obs;
+    if (el) {
+      obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) start = performance.now(); });
+      }, { threshold: 0.4 });
+      obs.observe(el);
+    }
+    return () => { cancelAnimationFrame(raf); if (obs) obs.disconnect(); };
   }, []);
 
   return (
-    <div className="reveal" style={{ background:"#000", padding: isMobile?"56px 24px 64px":"72px 40px 88px", textAlign:"center" }}>
+    <div ref={rootRef} className="reveal" style={{ background:"#000", padding: isMobile?"56px 24px 64px":"72px 40px 88px", textAlign:"center" }}>
       <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:TEAL, marginBottom:18, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Watch it happen</div>
       <div style={{ fontSize: isMobile?"clamp(26px,7vw,38px)":"clamp(32px,4vw,50px)", fontWeight:300, color:CR, fontFamily:"'Jost',sans-serif", lineHeight:1.2, marginBottom:16 }}>
         Beta to theta,<br/><strong style={{ fontWeight:700 }}>while you just listen.</strong>
