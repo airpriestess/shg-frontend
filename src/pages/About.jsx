@@ -55,9 +55,9 @@ export default function About({ onBack }) {
         <div style={{ position:"relative", zIndex:1, padding: isMobile?"0 24px":"0 60px" }}>
           <div style={{ fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:20, fontWeight:600 }}>About Reshma</div>
 
-          <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(34px,9vw,48px)":"clamp(44px,5vw,76px)", fontWeight:400, lineHeight:1.12, letterSpacing:"-0.02em", margin:"0 auto 40px", maxWidth:900, color:CREAM }}>
+          <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(34px,9vw,48px)":"clamp(44px,5vw,76px)", fontWeight:300, lineHeight:1.12, letterSpacing:"-0.02em", margin:"0 auto 40px", maxWidth:900, color:CREAM }}>
             From Hot Mess to{" "}
-            <span style={{ background:LG, backgroundSize:"100% 100%", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:500 }}>Goddess.</span>
+            <span style={{ background:LG, backgroundSize:"100% 100%", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontWeight:300 }}>Goddess.</span>
           </h1>
 
           <p style={{ fontSize: isMobile?17:22, color:"#fdf0e8", lineHeight:1.8, maxWidth:600, margin:"0 auto" }}>
@@ -87,7 +87,7 @@ export default function About({ onBack }) {
               I built what I couldn't find.
             </h2>
             <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85, marginBottom:18 }}>
-              I spent years doing the work — reading, affirmations, therapy, vision boards. And underneath all of it, I felt it. Something deeper that no surface-level tool was touching.
+              I spent years doing the work — therapy, vision boards. Listening to everyone else's voice, everyone else's answers, everything external. And underneath all of it, I felt it. Something deeper that no surface-level tool was touching.
             </p>
             <p style={{ fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.85, marginBottom:18 }}>
               I've always known things before they happen. I feel energy. I know when someone's off before they've said a word. That gift — being an energy healer and intuitive — led me to understand that alignment isn't something you think your way into. It's something you <em>feel</em> your way into.
@@ -102,94 +102,35 @@ export default function About({ onBack }) {
         </div>
       </div>
 
-      {/* ===== EVERYTHING IS CONNECTED ===== */}
+      {/* ===== HOW IT STARTED ===== */}
       <div className="reveal" style={{ background:"#000", borderTop:"1px solid rgba(44,183,167,0.15)", borderBottom:"1px solid rgba(44,183,167,0.15)", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
         <div className="about-orb" style={{ width:400, height:400, left:"50%", top:"50%", transform:"translate(-50%,-50%)", background:"radial-gradient(circle,rgba(44,183,167,0.07),transparent 70%)", animationDuration:"15s" }}/>
         <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center", position:"relative", zIndex:1 }}>
-          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600 }}>The Bigger Picture</div>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600 }}>How It Started</div>
           <h2 style={{ fontSize: isMobile?"clamp(26px,6vw,38px)":"clamp(32px,3.5vw,50px)", fontWeight:300, color:CREAM, lineHeight:1.3, marginBottom:32, letterSpacing:"-0.02em" }}>
-            This isn't just about<br/><span style={{ background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>money. Or love. Or a dream home.</span>
+            I wasn't trying to build a company.<br/><span style={{ background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>I was trying to fix myself.</span>
           </h2>
           <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85, marginBottom:28 }}>
-            Your life is a web of consciousness. Every decision ripples out — the butterfly effect, made visible. The way you feel about yourself at 7am changes what you attract at noon. What you believe about money changes what you do with love. What you think about your worth changes what you allow in every area.
+            I made the first tracks for me — late at night, layering my own voice with hypnosis and frequencies because nothing else was reaching the part of me that needed to change. I wasn't building a product. I was trying to get my own mind to work with me instead of against me.
           </p>
           <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85, marginBottom:28 }}>
-            SHG isn't a fix. It's a fundamental shift in the field you're operating from. When your subconscious is aligned — the right people, the right opportunities, the synchronicities — they don't feel like luck. They feel like finally coming home.
-          </p>
-          <p style={{ fontSize: isMobile?18:23, color:CREAM, lineHeight:1.75, fontStyle:"normal", maxWidth:580, margin:"0 auto" }}>
-            "This is the transformation of soul. Not just circumstances — you."
+            When it worked on me, I shared it with the women closest to me. Then their friends asked for it. Self Hypnosis Goddess exists because something I made in private, out of necessity, turned out to be needed by a lot more women than just me.
           </p>
         </div>
       </div>
 
-      {/* ===== WHAT THIS IS FOR ===== */}
+      {/* ===== HOW IT'S GOING ===== */}
       <div className="reveal" style={{ padding: isMobile?"64px 24px":"96px 60px" }}>
-        <div style={{ maxWidth:860, margin:"0 auto" }}>
-          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600, textAlign:"center" }}>What SHG Is For</div>
-          <h2 style={{ fontSize: isMobile?"clamp(26px,6vw,36px)":"clamp(30px,3vw,44px)", fontWeight:300, color:CREAM, textAlign:"center", marginBottom: isMobile?40:56, letterSpacing:"-0.02em", lineHeight:1.2 }}>
-            For the woman who is done<br/>operating from chaos.
+        <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
+          <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600 }}>How It's Going</div>
+          <h2 style={{ fontSize: isMobile?"clamp(26px,6vw,36px)":"clamp(30px,3vw,44px)", fontWeight:300, color:CREAM, marginBottom:32, letterSpacing:"-0.02em", lineHeight:1.25 }}>
+            Still me, behind every track.
           </h2>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: isMobile?16:24 }}>
-            {[
-              { glyph:"◈", title:"The one who doubts herself", body:"Even when she's done everything right. Who talks herself out of her own greatness every morning before she even gets out of bed." },
-              { glyph:"◎", title:"The one who can't focus on what she wants", body:"Because the noise is too loud. The fear is too close. The past keeps pulling her back before she can get momentum." },
-              { glyph:"◇", title:"The one stuck in the loop", body:"Same patterns. Different faces. Different jobs, same feeling. She knows exactly what needs to change and can't get herself there." },
-              { glyph:"✦", title:"The one who wants it all", body:"Not just money. Not just love. A life that is completely, unapologetically hers — across every dimension. That's not greedy. That's aligned." },
-              { glyph:"◉", title:"The one who feels things deeply", body:"Who knows there's more to reality than what she can see. Who trusts her intuition but hasn't learned to operate from it yet." },
-              { glyph:"⬡", title:"The one becoming the goddess", body:"Who is done with the hot mess era. Who is ready for the shift to be permanent, not just a good week followed by a crash." },
-            ].map(({ glyph, title, body }) => (
-              <div key={title} style={{ background:"rgba(255,255,255,0.02)", border:"1px solid rgba(232,184,112,0.16)", borderRadius:16, padding: isMobile?"22px 18px":"28px 24px" }}>
-                <div style={{ fontSize:20, marginBottom:12, background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{glyph}</div>
-                <div style={{ fontSize:15, fontWeight:500, color:CREAM, marginBottom:10, lineHeight:1.3 }}>{title}</div>
-                <div style={{ fontSize:14, color:"#fdf0e8", lineHeight:1.75 }}>{body}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ===== ALIGNED VS CHAOS ===== */}
-      <div className="reveal" style={{ background:"#000", borderTop:"1px solid rgba(232,184,112,0.1)", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
-        <div className="about-orb" style={{ width:600, height:600, left:"-10%", top:"50%", transform:"translateY(-50%)", background:"radial-gradient(circle,rgba(245,224,160,0.06),transparent 70%)", animationDuration:"18s" }}/>
-        <div style={{ maxWidth:760, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr", gap: isMobile?28:48, marginBottom: isMobile?40:64 }}>
-            {/* Chaos side */}
-            <div style={{ border:"1px solid rgba(232,184,112,0.12)", borderRadius:18, padding: isMobile?"28px 22px":"36px 32px", background:"rgba(255,255,255,0.02)" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(232,184,112,0.5)", marginBottom:18, fontWeight:600 }}>Out of Alignment</div>
-              {[
-                "Everything feels like effort",
-                "Synchronicities don't reach you",
-                "You attract what you fear, not what you want",
-                "Every win feels like it could be taken away",
-                "Your mind works against you",
-                "Hot mess era — on repeat",
-              ].map(t => (
-                <div key={t} style={{ display:"flex", alignItems:"flex-start", gap:10, marginBottom:12 }}>
-                  <span style={{ color:"rgba(232,184,112,0.3)", flexShrink:0, fontSize:12, marginTop:3 }}>✕</span>
-                  <span style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.6 }}>{t}</span>
-                </div>
-              ))}
-            </div>
-            {/* Aligned side */}
-            <div style={{ border:"1px solid rgba(44,183,167,0.3)", borderRadius:18, padding: isMobile?"28px 22px":"36px 32px", background:"rgba(44,183,167,0.04)", boxShadow:"0 0 60px rgba(44,183,167,0.06)" }}>
-              <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:18, fontWeight:600 }}>In Alignment</div>
-              {[
-                "Opportunities find you",
-                "You know things before they happen",
-                "What you want starts arriving",
-                "You operate from peace, not panic",
-                "Your mind becomes your greatest ally",
-                "Goddess era — permanently",
-              ].map(t => (
-                <div key={t} style={{ display:"flex", alignItems:"flex-start", gap:10, marginBottom:12 }}>
-                  <span style={{ background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", flexShrink:0, fontSize:12, marginTop:3 }}>✦</span>
-                  <span style={{ fontSize:15, color:"#fdf0e8", lineHeight:1.6 }}>{t}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85, textAlign:"center", maxWidth:600, margin:"0 auto" }}>
-            I've lived both sides. The chaos — and the magic. The difference isn't luck. It's the frequency you're operating at. SHG moves you from one to the other while you sleep, work, and live.
+          <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85, marginBottom:28 }}>
+            I still write, record, and produce this myself. Every category — Lucky Girl, Rich Girl, Love, Beauty — comes from something I was working through in my own life first. I'm not scaling a formula I outsourced. I'm building the thing I wished existed, one category at a time, in public, as I grow it.
+          </p>
+          <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight:1.85 }}>
+            This is early. It's mine. And I'm doing it out loud so the women who need it can find it while I'm still building.
           </p>
         </div>
       </div>
