@@ -229,6 +229,7 @@ function smootherstep(x) { x = Math.max(0, Math.min(1, x)); return x*x*x*(x*(x*6
 function BrainwaveJourney({ isMobile }) {
   const pathRef = useRef(null);
   const labelRef = useRef(null);
+  const beliefRef = useRef(null);
 
   useEffect(() => {
     const N = 44, W = 560, H = 90, MID = 45;
@@ -256,6 +257,11 @@ function BrainwaveJourney({ isMobile }) {
       if (pathRef.current) pathRef.current.setAttribute("d", smoothPath(pts));
       const lbl = stage < 0.7 ? "Beta · Scattered" : stage < 1.5 ? "Alpha · Settling" : "Theta · Received";
       if (labelRef.current && labelRef.current.textContent !== lbl) labelRef.current.textContent = lbl;
+      // the belief only installs once the wave has actually settled into theta
+      if (beliefRef.current) {
+        const installed = Math.max(0, (stage - 1.55) / 0.45);
+        beliefRef.current.style.opacity = String(Math.min(1, installed));
+      }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -285,6 +291,12 @@ function BrainwaveJourney({ isMobile }) {
           <path ref={pathRef} fill="none" stroke="url(#bwg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <div ref={labelRef} style={{ marginTop:14, fontSize:11, letterSpacing:"0.24em", textTransform:"uppercase", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Beta · Scattered</div>
+        <div ref={beliefRef} style={{ marginTop:22, minHeight: isMobile?34:40, opacity:0, transition:"opacity 0.6s ease" }}>
+          <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:TEAL, marginBottom:8, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Installed</div>
+          <div style={{ fontSize: isMobile?20:26, fontWeight:400, fontFamily:"'Jost',sans-serif", letterSpacing:"-0.01em", background:LG, WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>
+            "I am the main character. Obviously."
+          </div>
+        </div>
       </div>
     </div>
   );
