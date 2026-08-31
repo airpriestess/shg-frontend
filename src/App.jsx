@@ -2161,10 +2161,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
               Your beliefs are running your life. Most people never change them.
             </h2>
             <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-              Affirmations do not work. Willpower does not work. Not because you are not trying. Because none of it reaches your subconscious. The part of your mind that actually controls your experience of physical reality. The unseen is the seed and source of reality shifting.
+              Affirmations work. This is the law of vibration. Words carry frequency, and repeated at the right frequency, they reach past your conscious mind into your subconscious. The part of you that actually controls your experience of physical reality. The unseen is the seed and source of reality shifting.
             </p>
             <p style={{ fontSize: isMobile?17:21, color:"#fdf0e8", lineHeight: 1.85, marginBottom: 16, maxWidth: 680, textAlign: "center", margin: "0 auto 16px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
-              SHG is built on one idea. The subconscious responds to repetition, not effort. EMDR, theta binaural beats, vocal hypnosis, and subliminals, layered beneath melodic house music, designed to keep your mind locked on your desires, dreams, goals and manifestations. Delusional at all times. By design.
+              SHG is built on one idea. My voice carries vibration, and the subconscious responds to repetition, not effort. EMDR, theta binaural beats, vocal hypnosis, and subliminals, layered beneath melodic house music, designed to keep your mind locked on your desires, dreams, goals and manifestations. Delusional at all times. By design.
             </p>
             <p style={{ fontSize: isMobile?18:22, color:"#fdf0e8", lineHeight: 1.7, marginBottom: 28, maxWidth: 680, textAlign: "center", margin: "0 auto 28px", fontFamily:"'Jost',sans-serif", fontWeight:400 }}>
               The result is not motivation. It is identity. You stop chasing what you want. You become someone for whom it arrives. The lucky girl. The rich girl. The woman things just go right for. Not through effort. Through repetition, delivered at the frequency your subconscious cannot ignore.
