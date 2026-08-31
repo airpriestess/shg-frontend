@@ -356,8 +356,8 @@ export default function Science({ onBack }) {
       {/* HERO */}
       <div style={{ background:"#000", padding: `calc(${isMobile?"44px":"48px"} + 54px + ${isMobile?"40px":"72px"} + env(safe-area-inset-top,0px)) 24px ${isMobile?"72px":"104px"}`, textAlign:"center" }}>
         <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess · The Science</div>
-        <div style={{ fontSize:isMobile?"clamp(36px,11vw,52px)":"clamp(48px,7vw,80px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24 }}>
-          This is why<br/><strong style={{ fontWeight:700 }}>it works.</strong>
+        <div style={{ fontSize:isMobile?"clamp(28px,9vw,48px)":"clamp(48px,7vw,80px)", fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.1, marginBottom:24, whiteSpace: isMobile?"normal":"nowrap" }}>
+          This is why <strong style={{ fontWeight:700 }}>it works.</strong>
         </div>
         <div style={{ fontSize:isMobile?17:20, color:"#fdf0e8", lineHeight:1.8, maxWidth:520, margin:"0 auto", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
           Four mechanisms. Each one targeting a different layer of why the old belief stayed and why the new one is about to land.
