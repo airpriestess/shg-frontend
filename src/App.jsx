@@ -1200,6 +1200,19 @@ function IdentityCarousel({ cats, fullscreen=false }) {
           fontSize: fullscreen ? "clamp(28px,5.5vw,56px)" : "clamp(20px,3.5vw,42px)", lineHeight:1.12, color:"#000",
           fontFamily:"'Jost',sans-serif", fontWeight:300, letterSpacing:"-0.01em"
         }}>{current.tagline}</div>
+        <style>{`
+          @keyframes idc-eq { 0%,100%{ transform:scaleY(0.28); opacity:0.55; } 50%{ transform:scaleY(1); opacity:0.9; } }
+        `}</style>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", gap:3, height: fullscreen?36:26, marginTop: fullscreen?28:20 }}>
+          {Array.from({ length: 18 }).map((_,i) => (
+            <span key={i} style={{
+              width: fullscreen?4:3, height:"100%", borderRadius:2, background:"#000", transformOrigin:"bottom",
+              animation:`idc-eq ${0.9 + (i%5)*0.13}s ease-in-out infinite`,
+              animationDelay:`${(i%7)*0.09}s`,
+              opacity:0.75,
+            }}/>
+          ))}
+        </div>
       </div>
       <div style={{ display:"flex", background:"#000", borderTop:"1px solid #1c1828", borderBottom:"1px solid #1c1828" }}>
         {[next1,next2,next3].map((cat,i) => (
@@ -1368,6 +1381,8 @@ function HowItWorksAccordion({ isMobile }) {
   const [open, setOpen] = useState(0);
   const G = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
   const timerRef = useRef(null);
+  const rootRef = useRef(null);
+  const hasEnteredRef = useRef(false);
 
   const startTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -1379,6 +1394,25 @@ function HowItWorksAccordion({ isMobile }) {
   useEffect(() => {
     startTimer();
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [startTimer]);
+
+  // Reset to step 01 whenever this section scrolls into view, so the
+  // auto-advance timer never leaves it stranded on a later step for a
+  // visitor who only just arrived at it.
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !hasEnteredRef.current) {
+          hasEnteredRef.current = true;
+          setOpen(0);
+          startTimer();
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
   }, [startTimer]);
 
   const handleClick = (i) => {
@@ -1397,7 +1431,7 @@ function HowItWorksAccordion({ isMobile }) {
     { n:"08", title:"Log every sign in ProofOS.", body:"The moment things start shifting, you'll notice signs: a synchronicity, an unexpected call, a number that keeps appearing, something arriving that you'd been holding in your mind. Log every one. ProofOS is your evidence wall - date stamped, searchable, permanent. The reason logging matters is neurological, not motivational. Every time you record a sign, you are training your Reticular Activating System to notice more of the same. You are also building a body of evidence that keeps you in the emotional state that generates further manifestation. The proof wall fills. The state deepens. The loop accelerates.", badge:true },
   ];
   return (
-    <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
+    <div ref={rootRef} style={{ display:"flex", flexDirection:"column", gap:0 }}>
       {steps.map((s,i) => (
         <div key={i}>
           <div
@@ -1463,6 +1497,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
   const [billing, setBilling] = useState("monthly");
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnnual, setMenuAnnual] = useState(false);
+  const [ctaFlashIndex, setCtaFlashIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setCtaFlashIndex(i => (i + 1) % 3), 3000);
+    return () => clearInterval(id);
+  }, []);
   const location = useLocation();
   const [waitlistOpen, setWaitlistOpen] = useState(() => {
     if (forceWaitlist) return true;
@@ -1942,19 +1981,19 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <div style={{ background:"#000", padding: isMobile?"40px 16px 56px":"52px 40px 64px" }}>
         <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr 1fr 1fr", gap: isMobile?12:16, maxWidth:900, margin:"0 auto" }}>
           {/* Preview Audio Library */}
-          <button onClick={onDemo} style={{ padding: isMobile?"18px 12px":"22px 20px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:16, color:"#000", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.02em", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+          <button onClick={onDemo} style={{ padding: isMobile?"18px 12px":"22px 20px", background: ctaFlashIndex===0 ? "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" : "#fdf0e8", border:"none", borderRadius:16, color:"#000", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:500, letterSpacing:"0.02em", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:6, transition:"background 0.5s ease" }}>
             <span>👁 Preview Audio Library</span>
             <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#1a1008" }}>Growing weekly</span>
           </button>
           {/* Read the science */}
-          <button onClick={()=>onLegal?.("science")} style={{ padding: isMobile?"18px 12px":"22px 20px", background:"transparent", border:"2px solid #BFA5D8", borderRadius:16, color:"#BFA5D8", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+          <button onClick={()=>onLegal?.("science")} style={{ padding: isMobile?"18px 12px":"22px 20px", background: ctaFlashIndex===1 ? "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" : "#fdf0e8", border:"none", borderRadius:16, color:"#000", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:400, cursor:"pointer", letterSpacing:"0.02em", display:"flex", flexDirection:"column", alignItems:"center", gap:6, transition:"background 0.5s ease" }}>
             <span>Read the science →</span>
-            <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#BFA5D8" }}>Behind this method</span>
+            <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#1a1008" }}>Behind this method</span>
           </button>
           {/* Join Waitlist */}
-          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: isMobile?"18px 12px":"22px 20px", background:"transparent", border:"2px solid #E8B870", borderRadius:16, color:"#E8B870", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+          <button onClick={()=>setWaitlistOpen(true)} style={{ padding: isMobile?"18px 12px":"22px 20px", background: ctaFlashIndex===2 ? "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" : "#fdf0e8", border:"none", borderRadius:16, color:"#000", fontSize: isMobile?16:17, fontFamily:"'Jost',sans-serif", fontWeight:400, letterSpacing:"0.02em", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:6, transition:"background 0.5s ease" }}>
             <span>Join Waitlist</span>
-            <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#E8B870" }}>Early access</span>
+            <span style={{ fontSize:10, fontWeight:400, letterSpacing:"0.12em", textTransform:"uppercase", color:"#1a1008" }}>Early access</span>
           </button>
         </div>
       </div>

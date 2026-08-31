@@ -206,6 +206,90 @@ const EmdrAfter = (
   </svg>
 );
 
+/* ── smooth catmull-rom curve through points, for a fluid (not jagged) line ── */
+function smoothPath(points) {
+  if (points.length < 2) return "";
+  let d = `M ${points[0][0]},${points[0][1]}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] || points[i];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] || p2;
+    const cp1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const cp1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const cp2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const cp2y = p2[1] - (p3[1] - p1[1]) / 6;
+    d += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2[0]},${p2[1]}`;
+  }
+  return d;
+}
+function smootherstep(x) { x = Math.max(0, Math.min(1, x)); return x*x*x*(x*(x*6-15)+10); }
+
+/* ── BRAINWAVE JOURNEY — a continuously, gently morphing beta → alpha → theta wave ── */
+function BrainwaveJourney({ isMobile }) {
+  const pathRef = useRef(null);
+  const labelRef = useRef(null);
+
+  useEffect(() => {
+    const N = 44, W = 560, H = 90, MID = 45;
+    const xs = Array.from({ length: N }, (_, i) => i / (N - 1) * W);
+
+    // stage 0 = beta (fast, jittery, layered frequencies), 2 = theta (slow, single smooth wave)
+    const waveAt = (stage, x, t) => {
+      const beta  = Math.sin(x*0.11 + t*0.6)*9 + Math.sin(x*0.27 + t*1.3)*6 + Math.sin(x*0.05 + t*0.22)*4;
+      const alpha = Math.sin(x*0.045 + t*0.38)*12 + Math.sin(x*0.09 + t*0.6)*3;
+      const theta = Math.sin(x*0.02 + t*0.22)*11;
+      if (stage <= 1) return beta + (alpha - beta) * stage;
+      return alpha + (theta - alpha) * (stage - 1);
+    };
+
+    let raf;
+    const start = performance.now();
+    const CYCLE = 17000; // ms for one full beta → theta → beta breath
+    const tick = (now) => {
+      const el = (now - start) / 1000;
+      const phase = ((now - start) % CYCLE) / CYCLE;
+      const stage = phase < 0.5
+        ? 2 * smootherstep(phase / 0.5)
+        : 2 * (1 - smootherstep((phase - 0.5) / 0.5));
+      const pts = xs.map(x => [x, MID + waveAt(stage, x, el)]);
+      if (pathRef.current) pathRef.current.setAttribute("d", smoothPath(pts));
+      const lbl = stage < 0.7 ? "Beta · Scattered" : stage < 1.5 ? "Alpha · Settling" : "Theta · Received";
+      if (labelRef.current && labelRef.current.textContent !== lbl) labelRef.current.textContent = lbl;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <div className="reveal" style={{ background:"#000", padding: isMobile?"56px 24px 64px":"72px 40px 88px", textAlign:"center" }}>
+      <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:TEAL, marginBottom:18, fontFamily:"'Jost',sans-serif", fontWeight:600 }}>Watch it happen</div>
+      <div style={{ fontSize: isMobile?"clamp(26px,7vw,38px)":"clamp(32px,4vw,50px)", fontWeight:300, color:CR, fontFamily:"'Jost',sans-serif", lineHeight:1.2, marginBottom:16 }}>
+        Beta to theta,<br/><strong style={{ fontWeight:700 }}>while you just listen.</strong>
+      </div>
+      <div style={{ fontSize:16, color:"#fdf0e8", lineHeight:1.8, maxWidth:520, margin:"0 auto 40px", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+        This is what the binaural layer is doing underneath the music — pulling your brainwaves down from scattered beta, through settling alpha, into the theta state where your subconscious actually listens.
+      </div>
+      <div style={{ maxWidth:560, margin:"0 auto" }}>
+        <svg viewBox="0 0 560 90" style={{ width:"100%", height: isMobile?70:90, display:"block" }}>
+          <defs>
+            <linearGradient id="bwg" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#F5E0A0"/>
+              <stop offset="22%" stopColor="#E8B870"/>
+              <stop offset="52%" stopColor="#BFA5D8"/>
+              <stop offset="78%" stopColor="#2CB7A7"/>
+              <stop offset="100%" stopColor="#167A6B"/>
+            </linearGradient>
+          </defs>
+          <path ref={pathRef} fill="none" stroke="url(#bwg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <div ref={labelRef} style={{ marginTop:14, fontSize:11, letterSpacing:"0.24em", textTransform:"uppercase", color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:500 }}>Beta · Scattered</div>
+      </div>
+    </div>
+  );
+}
+
 /* ══════════════════════════════════════════════════════════
    PAGE
 ══════════════════════════════════════════════════════════ */
@@ -267,6 +351,9 @@ export default function Science({ onBack }) {
           Four mechanisms. Each one targeting a different layer of why the old belief stayed and why the new one is about to land.
         </div>
       </div>
+
+      {/* BRAINWAVE JOURNEY */}
+      <BrainwaveJourney isMobile={isMobile}/>
 
       {/* BEFORE / AFTER PANELS */}
       {panels.map((p, pi) => (
