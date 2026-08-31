@@ -10,16 +10,27 @@ export default function HamburgerMenu({ onSignIn }) {
 
   const go = (fn) => { fn(); setOpen(false); };
 
+  const scrollToPricing = () => {
+    navigate("/");
+    setTimeout(() => {
+      const el = document.getElementById("pricing");
+      if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({ top: y, behavior: "smooth" }); }
+    }, 300);
+  };
+
   const items = [
-    ["Home",               () => navigate("/")],
-    ["Free Gift",          () => { window.location.href = "/gift?utm_source=site&utm_medium=hamburger&utm_campaign=free_gift"; }],
-    ["About Reshma",       () => navigate("/about")],
-    ["The Library",        () => navigate("/library")],
-    ["Journal",            () => { window.location.href = "/blog"; }],
-    ["Guides",             () => { window.location.href = "/guides"; }],
-    ["Find your block",    () => { window.location.href = "/blocks"; }],
-    ["The Science",        () => navigate("/science")],
-    ["Preview the Portal", () => navigate("/portal?preview=1&theme=dark")],
+    ["Home",                 () => navigate("/")],
+    ["About Reshma",         () => navigate("/about")],
+    ["The Science",          () => navigate("/science")],
+    ["Preview SHG",          () => navigate("/portal?preview=1&theme=dark")],
+    ["The Library",          () => navigate("/library")],
+    ["Pricing",              scrollToPricing],
+    ["Blog",                 () => { window.location.href = "/blog"; }],
+    ["Guides",               () => { window.location.href = "/guides"; }],
+    ["Blocks",               () => { window.location.href = "/blocks"; }],
+    ["Shop Maxxing Guides",  () => { window.open("https://beacons.ai/reshmaoracle", "_blank"); }],
+    ["Free Gift",            () => { window.location.href = "/gift?utm_source=site&utm_medium=hamburger&utm_campaign=free_gift"; }],
+    ["Events · Coming Soon", () => { window.location.href = "/events"; }],
   ];
 
   return (
@@ -61,7 +72,7 @@ export default function HamburgerMenu({ onSignIn }) {
 
           {/* Bottom CTAs */}
           <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
-            <button onClick={()=>go(()=>{ navigate("/"); setTimeout(()=>{ const e=new CustomEvent("openWaitlist"); window.dispatchEvent(e); },300); })} style={{ width:"100%",padding:"16px",background:LG,border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.08em",textTransform:"uppercase",WebkitTapHighlightColor:"transparent" }}>
+            <button onClick={()=>go(()=>navigate("/waitlist"))} style={{ width:"100%",padding:"16px",background:LG,border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.08em",textTransform:"uppercase",WebkitTapHighlightColor:"transparent" }}>
               Join Waitlist
             </button>
             {onSignIn && (

@@ -18,6 +18,7 @@ import Shop from "./pages/Shop.jsx";
 import LuckyGirl from "./pages/LuckyGirl.jsx";
 import RichGirl from "./pages/RichGirl.jsx";
 import Blocks from "./pages/Blocks.jsx";
+import HamburgerMenu from "./components/HamburgerMenu.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LandingProofWall from "./components/LandingProofWall.jsx";
 import CreateThreadModal from "./components/CreateThreadModal.jsx";
@@ -1648,16 +1649,14 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       <audio ref={vaultRef} preload="none" />
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
-      {!menuOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 20, overflow: "hidden", padding: isMobile ? "0 10px" : "0 20px", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", boxShadow: "0 0 24px rgba(232,184,112,0.4), 0 0 48px rgba(44,183,167,0.2)" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 600, letterSpacing: isMobile ? "0.06em" : "0.18em", whiteSpace: "nowrap", textTransform: "uppercase", color: "#000", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>
-            {isMobile ? "Hot Mess to Goddess." : "From Hot Mess to Goddess (of course, obviously.)"}
-          </span>
-          <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"5px 10px":"5px 16px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.35)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: isMobile ? "0.04em" : "0.1em", textTransform: "uppercase" }}>
-            {isMobile ? "Join Waitlist →" : "Join the Waitlist →"}
-          </button>
-        </div>
-      )}
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 400, height: isMobile ? 48 : 44, paddingTop: "env(safe-area-inset-top,0px)", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", gap: isMobile ? 8 : 20, overflow: "hidden", padding: isMobile ? "0 10px" : "0 20px", background: "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)", backgroundSize: "300% 100%", animation: "drift 5s ease-in-out infinite", boxShadow: "0 0 24px rgba(232,184,112,0.4), 0 0 48px rgba(44,183,167,0.2)" }}>
+        <span style={{ fontFamily: "'Jost',sans-serif", fontSize: isMobile ? 10 : 12, fontWeight: 600, letterSpacing: isMobile ? "0.06em" : "0.18em", whiteSpace: "nowrap", textTransform: "uppercase", color: "#000", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>
+          {isMobile ? "Hot Mess to Goddess." : "From Hot Mess to Goddess (of course, obviously.)"}
+        </span>
+        <button onClick={() => setWaitlistOpen(true)} style={{ padding: isMobile?"5px 10px":"5px 16px", background: "rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.35)", borderRadius: 20, color: "#000", fontSize: isMobile ? 10 : 11, fontWeight: 600, cursor: "pointer", flexShrink: 0, whiteSpace: "nowrap", fontFamily: "'Jost',sans-serif", letterSpacing: isMobile ? "0.04em" : "0.1em", textTransform: "uppercase" }}>
+          {isMobile ? "Join Waitlist →" : "Join the Waitlist →"}
+        </button>
+      </div>
 
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
@@ -1673,56 +1672,10 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           <a href="/gift?utm_source=site&utm_medium=nav_cta&utm_campaign=free_gift" style={{ padding: isMobile?"7px 12px":"8px 16px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", borderRadius:40, color:"#000", fontSize: isMobile?9:11, fontWeight:600, letterSpacing: isMobile?"0.06em":"0.14em", textTransform:"uppercase", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0 }}>
             {isMobile ? "Free Gift" : "Claim Free Gift"}
           </a>
-          {/* Hamburger, both mobile and desktop */}
-          <button onClick={()=>setMenuOpen(m=>!m)} style={{ width:44,height:44,background:"none",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:5,padding:0,WebkitTapHighlightColor:"transparent",touchAction:"manipulation" }} aria-label="Open menu">
-            <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s,opacity 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,5px)":"none" }}/>
-            <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"opacity 0.2s",opacity:menuOpen?0:1 }}/>
-            <div style={{ width:22,height:2,background:"#ffffff",borderRadius:1,transition:"transform 0.2s",transform:menuOpen?"rotate(-45deg) translate(5px,-5px)":"none" }}/>
-          </button>
+          {/* Hamburger, same shared menu used on every page */}
+          <HamburgerMenu onSignIn={onSignIn}/>
         </div>
       </nav>
-
-      {/* MOBILE MENU, full screen takeover like Steven Bartlett */}
-      {menuOpen && (
-        <div style={{ position:"fixed",inset:0,zIndex:999,background:"#000",display:"flex",flexDirection:"column",padding:"0 32px 48px" }}>
-          {/* Top bar, logo + close */}
-          <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",height:`calc(${isMobile?"98px":"102px"} + env(safe-area-inset-top,0px))`,paddingTop:"env(safe-area-inset-top,0px)" }}>
-            <span onClick={()=>{setMenuOpen(false); window.scrollTo({top:0,behavior:"smooth"});}} style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:18, letterSpacing:"0.02em", color:"#fdf0e8", cursor:"pointer" }}>Self Hypnosis Goddess</span>
-            <button onClick={()=>setMenuOpen(false)} style={{ background:"none",border:"none",cursor:"pointer",padding:8,color:"#fdf0e8",WebkitTapHighlightColor:"transparent" }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
-            </button>
-          </div>
-
-          {/* Main nav items, massive */}
-          <div style={{ flex:1,display:"flex",flexDirection:"column",justifyContent:"center",gap:0 }}>
-            {[
-              ["About Reshma",        ()=>{ onLegal?.("about"); setMenuOpen(false); }],
-              ["The Science",         ()=>{ onLegal?.("science"); setMenuOpen(false); }],
-              ["Preview SHG",         ()=>{ onDemo?.(); setMenuOpen(false); }],
-              ["The Library",         ()=>{ onLegal?.("library"); setMenuOpen(false); }],
-              ["Pricing",             ()=>{ (() => { const el = document.getElementById("pricing"); if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 40; window.scrollTo({top:y, behavior:"smooth"}); } })(); setMenuOpen(false); }],
-              ["Blog",                ()=>{ window.location.href="/blog"; setMenuOpen(false); }],
-              ["Guides",              ()=>{ window.location.href="/guides"; setMenuOpen(false); }],
-              ["Blocks",              ()=>{ window.location.href="/blocks"; setMenuOpen(false); }],
-              ["Shop Maxxing Guides", ()=>{ window.open("https://beacons.ai/reshmaoracle","_blank"); setMenuOpen(false); }],
-              ["Free Gift", ()=>{ window.location.href="/gift?utm_source=site&utm_medium=hamburger&utm_campaign=free_gift"; setMenuOpen(false); }],
-              ["Events · Coming Soon", ()=>{ window.location.href="/events"; setMenuOpen(false); }],
-            ].map(([l,fn],i)=>(
-              <button key={i} onClick={fn} style={{ display:"block",width:"100%",textAlign:"left",padding:"7px 0",background:"none",border:"none",borderBottom:"1px solid rgba(44,183,167,0.12)",color:"#fdf0e8",fontSize:"clamp(17px,4.2vw,26px)",fontWeight:300,letterSpacing:"0.02em",cursor:"pointer",fontFamily:"'Jost',sans-serif",WebkitTapHighlightColor:"transparent",lineHeight:1.15 }}>{l}</button>
-            ))}
-          </div>
-
-          {/* Bottom, join + sign in */}
-          <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <button onClick={()=>{setWaitlistOpen(true);setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:12,color:"#000",fontSize:16,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
-              Join Waitlist
-            </button>
-            <button onClick={()=>{onSignIn?.();setMenuOpen(false);}} style={{ width:"100%",padding:"16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,color:"#fdf0e8",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",letterSpacing:"0.06em",WebkitTapHighlightColor:"transparent" }}>
-              Sign in
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* HERO, full viewport carousel, then player */}
       <div style={{ marginTop: `calc(${isMobile ? "98px" : "102px"} + env(safe-area-inset-top,0px))` }}>
@@ -1841,8 +1794,8 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ flex:"1 1 0", minWidth:0 }}>
               <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess</div>
               <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,4.5vw,64px)", lineHeight:1.08, letterSpacing:"-0.01em", color:"#fdf0e8", margin:"0 0 20px" }}>
-                Subconscious reprogramming.<br/>
-                <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>For manifestation.</span>
+                Subconscious reprogramming{" "}
+                <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>for manifestation.</span>
               </h2>
               <p style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.7, margin:"0 0 36px", maxWidth:440 }}>
                 Melodic house music layered with EMDR, binaural beats, and frequency healing rewires what you believe is possible. Shift your reality from stuck to unstoppable.
