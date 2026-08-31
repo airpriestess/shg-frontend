@@ -1841,11 +1841,11 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             <div style={{ flex:"1 1 0", minWidth:0 }}>
               <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:20, fontFamily:"'Jost',sans-serif", fontWeight:400 }}>Self Hypnosis Goddess</div>
               <h2 style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,4.5vw,64px)", lineHeight:1.08, letterSpacing:"-0.01em", color:"#fdf0e8", margin:"0 0 20px" }}>
-                Manifestation.<br/>
-                <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>Through music.</span>
+                Subconscious reprogramming.<br/>
+                <span style={{ background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"200% 200%", animation:"drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>For manifestation.</span>
               </h2>
               <p style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: isMobile?16:18, color:"#fdf0e8", lineHeight:1.7, margin:"0 0 36px", maxWidth:440 }}>
-                Melodic house music layered with EMDR, binaural beats, and frequency healing. Shift your reality from stuck to unstoppable.
+                Melodic house music layered with EMDR, binaural beats, and frequency healing rewires what you believe is possible. Shift your reality from stuck to unstoppable.
               </p>
               <button onClick={()=>setWaitlistOpen(true)} style={{ padding:"16px 32px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:40, color:"#000", fontSize:14, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", cursor:"pointer", fontFamily:"'Jost',sans-serif", boxShadow:"0 0 40px rgba(232,184,112,0.3)", whiteSpace:"nowrap" }}>
                 Join the Waitlist →
