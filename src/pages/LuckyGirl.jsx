@@ -6,54 +6,55 @@ const LG = "linear-gradient(110deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78
 const CREAM = "#fdf0e8";
 const INK = "#0a0906";
 
+// Visual moods for each option — emoji + short punchy label
 const QUESTIONS = [
   { q: "You just got upgraded to first class. Out of nowhere. Your gut says...", opts: [
-    { t: "Of course. This is just how my life goes.", c: "identity" },
-    { t: "Enjoy it now — it probably won't happen again.", c: "money" },
-    { t: "I hope the person next to me doesn't think I don't belong here.", c: "love" },
-    { t: "I wish I'd worn something better.", c: "body" }
+    { icon: "✦", mood: "Obviously.", sub: "This is just how my life goes.", c: "identity" },
+    { icon: "⏳", mood: "Enjoy it now.", sub: "It probably won't happen again.", c: "money" },
+    { icon: "👁", mood: "Do I belong here?", sub: "I hope no one can tell.", c: "love" },
+    { icon: "🪞", mood: "I wish I'd worn something better.", sub: "Not quite ready for this moment.", c: "body" }
   ]},
   { q: "$10,000 arrives unexpectedly. You feel...", opts: [
-    { t: "Relieved, but already nervous about it running out.", c: "money" },
-    { t: "Shocked — I didn't do anything to deserve this.", c: "identity" },
-    { t: "Happy, then immediately thinking about who else needs some.", c: "love" },
-    { t: "Good. Now I can finally fix the things I've been putting off.", c: "body" }
+    { icon: "😮‍💨", mood: "Relieved. Then scared.", sub: "Waiting for it to disappear.", c: "money" },
+    { icon: "😳", mood: "Shocked.", sub: "I didn't do anything to deserve this.", c: "identity" },
+    { icon: "💝", mood: "Who can I help?", sub: "Already thinking about everyone else.", c: "love" },
+    { icon: "✨", mood: "Finally.", sub: "Now I can fix what I've been putting off.", c: "body" }
   ]},
   { q: "Someone gorgeous, successful, and emotionally available wants you. You think...", opts: [
-    { t: "What's the catch? People like that don't just choose me.", c: "love" },
-    { t: "I wonder how long before they see who I really am.", c: "identity" },
-    { t: "I need to make sure I don't need them too much.", c: "love" },
-    { t: "I'd feel so much more confident once I've sorted myself out.", c: "body" }
+    { icon: "🎭", mood: "What's the catch?", sub: "People like that don't just choose me.", c: "love" },
+    { icon: "⌛", mood: "How long until they see?", sub: "The real me they haven't met yet.", c: "identity" },
+    { icon: "🧊", mood: "Can't need them too much.", sub: "Keep the distance. Stay safe.", c: "love" },
+    { icon: "🌸", mood: "Once I sort myself out.", sub: "Then I'll be ready for this.", c: "body" }
   ]},
-  { q: "You're getting ready for the most important night of your life. You feel...", opts: [
-    { t: "Like I'm still one dress size, one treatment, one fix away.", c: "body" },
-    { t: "Beautiful — then second-guessing it the second I leave the door.", c: "body" },
-    { t: "Excited, then wondering if I actually belong in the room.", c: "identity" },
-    { t: "Ready, but quietly waiting for something to go wrong.", c: "money" }
+  { q: "Getting ready for the most important night of your life. You feel...", opts: [
+    { icon: "📏", mood: "One fix away.", sub: "One size, one treatment, one thing.", c: "body" },
+    { icon: "💭", mood: "Beautiful — then not.", sub: "Second-guessing the moment I leave.", c: "body" },
+    { icon: "🚪", mood: "Do I belong in that room?", sub: "Excited, then that question arrives.", c: "identity" },
+    { icon: "🌩", mood: "Waiting for it to fall apart.", sub: "Ready, but bracing for it.", c: "money" }
   ]},
-  { q: "Life just gave you exactly what you asked for. Your first thought is...", opts: [
-    { t: "Something's about to go wrong. It's always too good to be true.", c: "money" },
-    { t: "I must have done something right for once.", c: "identity" },
-    { t: "I hope this doesn't make people around me feel bad.", c: "love" },
-    { t: "I'll fully enjoy it once I feel better about myself.", c: "body" }
+  { q: "Life just gave you exactly what you asked for. Your first thought...", opts: [
+    { icon: "🕳", mood: "Something's about to go wrong.", sub: "Always too good to be true.", c: "money" },
+    { icon: "🏆", mood: "I must have done something right.", sub: "For once.", c: "identity" },
+    { icon: "🤍", mood: "Will this make people feel bad?", sub: "I hope this doesn't create distance.", c: "love" },
+    { icon: "🔮", mood: "I'll enjoy it when I'm ready.", sub: "Once I feel better about myself.", c: "body" }
   ]},
-  { q: "She has it all — the money, the love, the body, the life. The difference between her and you is...", opts: [
-    { t: "She just believes she deserves it. I'm still working on that.", c: "identity" },
-    { t: "She doesn't panic when good things arrive. I always do.", c: "money" },
-    { t: "She lets people love her without testing it. I can't.", c: "love" },
-    { t: "She's comfortable being seen. I'm not there yet.", c: "body" }
+  { q: "She has the money, the love, the body, the life. The difference between her and you...", opts: [
+    { icon: "👑", mood: "She believes she deserves it.", sub: "I'm still working on that.", c: "identity" },
+    { icon: "🌊", mood: "She doesn't panic.", sub: "When good things arrive, she holds them.", c: "money" },
+    { icon: "🌹", mood: "She lets people love her.", sub: "Without testing it first.", c: "love" },
+    { icon: "🦋", mood: "She's comfortable being seen.", sub: "I'm not there yet.", c: "body" }
   ]},
-  { q: "Your dream life is trying to reach you right now. What's in the way?", opts: [
-    { t: "I keep self-sabotaging the moment things get good.", c: "money" },
-    { t: "I don't fully believe I'm the woman who gets that life.", c: "identity" },
-    { t: "I'm scared of losing the people I love if I change too much.", c: "love" },
-    { t: "I'm waiting until I look like the version of me who deserves it.", c: "body" }
+  { q: "Your dream life is trying to reach you right now. What's blocking it?", opts: [
+    { icon: "🔁", mood: "I self-sabotage.", sub: "The moment things get good.", c: "money" },
+    { icon: "🚧", mood: "I don't believe I'm her.", sub: "The woman who gets that life.", c: "identity" },
+    { icon: "🫂", mood: "I'm scared to change.", sub: "Scared of losing people I love.", c: "love" },
+    { icon: "⏰", mood: "I'm waiting.", sub: "Until I look like the version who deserves it.", c: "body" }
   ]},
-  { q: "In your Lucky Girl era, every day feels lucky — right place, right time. The area where that's still hardest to believe is...", opts: [
-    { t: "Money — I never get the lucky break. It always goes to someone else.", c: "money" },
-    { t: "Love — being chosen freely still feels too good to be true.", c: "love" },
-    { t: "My body — I can't feel lucky in a body I'm still fighting.", c: "body" },
-    { t: "My identity — I don't fully feel like her yet.", c: "identity" }
+  { q: "In your Lucky Girl era — right place, right time, always. The area that still feels hardest to believe...", opts: [
+    { icon: "💸", mood: "Money.", sub: "The lucky break always goes to someone else.", c: "money" },
+    { icon: "💜", mood: "Love.", sub: "Being chosen freely, for no reason. That.", c: "love" },
+    { icon: "🌙", mood: "My body.", sub: "Can't feel lucky in a body I'm still fighting.", c: "body" },
+    { icon: "⭐", mood: "My identity.", sub: "I don't fully feel like her yet.", c: "identity" }
   ]}
 ];
 
@@ -103,14 +104,49 @@ function SHGNav() {
   );
 }
 
+// Visual option card
+function OptCard({ icon, mood, sub, isHovered, onClick, onEnter, onLeave }) {
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      onTouchStart={onEnter}
+      onTouchEnd={onLeave}
+      style={{
+        background: isHovered ? LG : "rgba(253,240,232,0.06)",
+        border: `1px solid ${isHovered ? "transparent" : "rgba(253,240,232,0.13)"}`,
+        borderRadius: 20,
+        padding: "32px 20px 28px",
+        color: isHovered ? INK : CREAM,
+        fontFamily: "'Jost', sans-serif",
+        textAlign: "center",
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 10,
+        transition: "all 0.18s ease",
+        WebkitTapHighlightColor: "transparent",
+        width: "100%",
+        minHeight: 160,
+        justifyContent: "center",
+      }}>
+      <span style={{ fontSize: 36, lineHeight: 1, display: "block" }}>{icon}</span>
+      <span style={{ fontSize: 16, fontWeight: 500, lineHeight: 1.3, display: "block", letterSpacing: "-.01em" }}>{mood}</span>
+      <span style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.5, display: "block", opacity: isHovered ? 0.7 : 0.55, maxWidth: 180 }}>{sub}</span>
+    </button>
+  );
+}
+
 export default function LuckyGirl() {
-  const [phase, setPhase]         = useState("landing");
-  const [name, setName]           = useState("");
-  const [email, setEmail]         = useState("");
+  const [phase, setPhase]           = useState("landing");
+  const [name, setName]             = useState("");
+  const [email, setEmail]           = useState("");
   const [emailError, setEmailError] = useState("");
-  const [step, setStep]           = useState(0);
-  const [scores, setScores]       = useState({});
-  const [result, setResult]       = useState(null);
+  const [step, setStep]             = useState(0);
+  const [scores, setScores]         = useState({});
+  const [result, setResult]         = useState(null);
   const [hoveredOpt, setHoveredOpt] = useState(null);
 
   async function saveLead(n, e, cat) {
@@ -135,7 +171,7 @@ export default function LuckyGirl() {
     if (!name.trim()) { setEmailError("Just need your first name."); return; }
     if (!/\S+@\S+\.\S+/.test(email)) { setEmailError("That email doesn't look right."); return; }
     setEmailError("");
-    saveLead(name, email, null); // capture lead immediately even if they don't finish
+    saveLead(name, email, null);
     setPhase("intro");
     window.scrollTo(0, 0);
   }
@@ -175,9 +211,7 @@ export default function LuckyGirl() {
       {/* ── LANDING ── */}
       {phase === "landing" && (
         <div style={{ background: LG, minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "64px 24px 80px", textAlign: "center" }}>
-          <div style={{ fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", marginBottom: 24, color: INK, fontWeight: 600 }}>
-            Free diagnostic
-          </div>
+          <div style={{ fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", marginBottom: 24, color: INK, fontWeight: 600 }}>Free diagnostic</div>
           <h1 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(36px,7vw,76px)", lineHeight: 1.05, color: INK, marginBottom: 18, letterSpacing: "-.02em", maxWidth: 700, textWrap: "balance" }}>
             What's blocking your Lucky Girl era?
           </h1>
@@ -224,49 +258,41 @@ export default function LuckyGirl() {
 
       {/* ── QUIZ ── */}
       {phase === "quiz" && (
-        <div style={{ background: INK, minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px 80px" }}>
-          <div style={{ maxWidth: 580, width: "100%" }}>
-            {/* Progress bar */}
-            <div style={{ display: "flex", gap: 4, marginBottom: 32 }}>
+        <div style={{ background: INK, minHeight: "calc(100vh - 54px)", display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 20px 80px" }}>
+          <div style={{ maxWidth: 620, width: "100%" }}>
+
+            {/* Progress */}
+            <div style={{ display: "flex", gap: 4, marginBottom: 40 }}>
               {QUESTIONS.map((_, i) => (
                 <div key={i} style={{
                   height: 3, borderRadius: 2, flex: 1,
-                  background: i < step
-                    ? LG
-                    : i === step
-                      ? "rgba(253,240,232,0.35)"
-                      : "rgba(253,240,232,0.1)",
+                  background: i < step ? LG : i === step ? "rgba(253,240,232,0.35)" : "rgba(253,240,232,0.1)",
                   transition: "background .3s"
                 }}/>
               ))}
             </div>
 
-            <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(253,240,232,0.45)", textAlign: "center", marginBottom: 32, fontWeight: 400 }}>
+            <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(253,240,232,0.4)", textAlign: "center", marginBottom: 28, fontWeight: 400 }}>
               {step + 1} of {QUESTIONS.length}
             </div>
 
-            <div style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: "clamp(22px,3.5vw,32px)", textAlign: "center", marginBottom: 44, color: CREAM, lineHeight: 1.45, textWrap: "balance" }}>
+            <div style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300, fontSize: "clamp(20px,3.2vw,28px)", textAlign: "center", marginBottom: 40, color: CREAM, lineHeight: 1.5, textWrap: "balance", maxWidth: 520, margin: "0 auto 40px" }}>
               {QUESTIONS[step].q}
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {/* 2×2 visual grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 8 }}>
               {QUESTIONS[step].opts.map((opt, i) => (
-                <button key={i}
+                <OptCard
+                  key={i}
+                  icon={opt.icon}
+                  mood={opt.mood}
+                  sub={opt.sub}
+                  isHovered={hoveredOpt === i}
                   onClick={() => pickAnswer(opt.c)}
-                  onMouseEnter={() => setHoveredOpt(i)}
-                  onMouseLeave={() => setHoveredOpt(null)}
-                  style={{
-                    background: hoveredOpt === i ? LG : "rgba(253,240,232,0.06)",
-                    border: `1px solid ${hoveredOpt === i ? "transparent" : "rgba(253,240,232,0.14)"}`,
-                    borderRadius: 14, padding: "22px 26px",
-                    color: hoveredOpt === i ? INK : CREAM,
-                    fontFamily: "'Jost', sans-serif", fontSize: 17, fontWeight: 300,
-                    textAlign: "left", cursor: "pointer", lineHeight: 1.6,
-                    width: "100%", display: "block",
-                    transition: "all 0.18s ease", WebkitTapHighlightColor: "transparent"
-                  }}>
-                  {opt.t}
-                </button>
+                  onEnter={() => setHoveredOpt(i)}
+                  onLeave={() => setHoveredOpt(null)}
+                />
               ))}
             </div>
           </div>
@@ -276,7 +302,6 @@ export default function LuckyGirl() {
       {/* ── RESULT ── */}
       {phase === "result" && result && (
         <div style={{ background: INK }}>
-          {/* Hero */}
           <div style={{ background: LG, padding: "72px 24px 56px", textAlign: "center" }}>
             <div style={{ fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", color: INK, marginBottom: 18, fontWeight: 600 }}>Your Lucky Girl block</div>
             <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,8vw,76px)", lineHeight: 1.0, color: INK, letterSpacing: "-.02em", marginBottom: 0 }}>{result.block}</h2>
@@ -284,31 +309,26 @@ export default function LuckyGirl() {
 
           <div style={{ maxWidth: 580, margin: "0 auto", padding: "48px 24px 80px" }}>
 
-            {/* Old assumption */}
             <div style={{ background: "rgba(253,240,232,0.05)", border: "1px solid rgba(253,240,232,0.12)", borderRadius: 16, padding: "28px 28px", marginBottom: 14 }}>
               <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14, fontWeight: 600 }}>The assumption running your life</div>
               <div style={{ fontSize: 18, color: CREAM, fontStyle: "italic", lineHeight: 1.85, fontWeight: 300, opacity: 0.75 }}>"{result.old}"</div>
             </div>
 
-            {/* New assumption */}
             <div style={{ borderRadius: 16, padding: "36px 28px", marginBottom: 14, textAlign: "center", background: LG }}>
               <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: INK, marginBottom: 18, fontWeight: 600 }}>Your new assumption</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(28px,5.5vw,46px)", color: INK, fontWeight: 400, lineHeight: 1.2 }}>{result.new}</div>
             </div>
 
-            {/* Ritual */}
             <div style={{ background: "rgba(253,240,232,0.05)", border: "1px solid rgba(253,240,232,0.12)", borderRadius: 16, padding: "28px 28px", marginBottom: 36 }}>
               <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#2CB7A7", marginBottom: 14, fontWeight: 600 }}>Your 21-night ritual</div>
               <div style={{ fontSize: 17, color: CREAM, lineHeight: 1.85, fontWeight: 300 }}>{RITUAL}</div>
             </div>
 
-            {/* Why SHG audio */}
             <div style={{ textAlign: "center", marginBottom: 36 }}>
               <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(253,240,232,0.45)", marginBottom: 16, fontWeight: 500 }}>Why hypnosis works where willpower doesn't</div>
               <p style={{ fontSize: 17, color: CREAM, lineHeight: 1.85, fontWeight: 300, maxWidth: 480, margin: "0 auto" }}>{result.why}</p>
             </div>
 
-            {/* Workbook CTA */}
             <div style={{ background: LG, borderRadius: 20, padding: "40px 28px", marginBottom: 14, textAlign: "center" }}>
               <div style={{ fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase", color: INK, marginBottom: 14, fontWeight: 600 }}>The next step</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(28px,5vw,46px)", color: INK, fontWeight: 400, lineHeight: 1.1, marginBottom: 10 }}>Lucky Girl Maxxing</div>
@@ -323,7 +343,6 @@ export default function LuckyGirl() {
               </a>
             </div>
 
-            {/* Audio CTA */}
             <div style={{ border: "1px solid rgba(253,240,232,0.12)", borderRadius: 16, padding: "28px 28px", textAlign: "center" }}>
               <div style={{ fontSize: 14, color: CREAM, lineHeight: 1.75, marginBottom: 18, fontWeight: 300 }}>
                 Want the audio that rewires this assumption while you sleep?<br/>
