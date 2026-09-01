@@ -5,6 +5,7 @@ import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
+import LogSignModal, { ManifestCelebration } from "../components/LogSignModal.jsx";
 
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
 
@@ -484,6 +485,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const [libFormat, setLibFormat] = useState("All");
   const [threads, setThreads] = useState(isPreview ? INIT_THREADS : []);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
+  const [logSignOpen, setLogSignOpen] = useState(false);
+  const [celebThread, setCelebThread] = useState(null);
   useEffect(() => {
     if (isPreview || !userId || !token) return;
     let cancelled = false;
@@ -734,14 +737,14 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   const ProfilePanel = () => (
     <>
-      <div style={{ position:"fixed",inset:0,zIndex:998,background:"#000000" }} onClick={()=>setProfileOpen(false)}/>
-      <div style={{ position:"fixed",top:isMobile?0:"auto",right:0,bottom:0,width:isMobile?"100%":320,background:isDark?"#0a0a0a":"#fdf0e8",borderLeft:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.5)" }} onClick={()=>setProfileOpen(false)}/>
+      <div style={{ position:"fixed",top:isMobile?0:0,left:0,bottom:0,width:isMobile?"100%":280,background:isDark?"#0a0a0a":"#fdf0e8",borderRight:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
         {/* Header */}
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
-            <div style={{ width:56,height:56,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center" }}>
-              <a href="https://reshmaoracle.com" style={{display:"block"}}><img src="/shg-logo.png" alt="Reshma Oracle" width="52" height="52" style={{flexShrink:0, objectFit:"contain", display:"block"}} /></a>
-            </div>
+            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:56,height:56,flexShrink:0,borderRadius:12,background:"#fdf0e8",overflow:"hidden" }}>
+              <img src="/shg-logo.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block" }} />
+            </a>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
               <div style={{ fontSize:14,color:C.mu }}>Goddess Tier</div>
@@ -805,7 +808,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
-      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token}/>)}
+      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}
       {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
@@ -895,7 +898,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         {/* Sidebar */}
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-            <a href="https://reshmaoracle.com" style={{display:"block"}}><img src="/shg-logo.png" alt="Reshma Oracle" width="40" height="40" style={{flexShrink:0, objectFit:"contain", display:"block"}} /></a>
+            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:10,background:"#fdf0e8",overflow:"hidden",flexShrink:0 }}>
+              <img src="/shg-logo.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block" }} />
+            </a>
             {isDark ? (
               <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" }}>BETA</span>
             ) : (
@@ -988,7 +993,9 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </div>
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <a href="https://reshmaoracle.com" style={{display:"block"}}><img src="/shg-logo.png" alt="Reshma Oracle" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} /></a>
+        <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:38,height:38,borderRadius:9,background:"#fdf0e8",overflow:"hidden",flexShrink:0 }}>
+          <img src="/shg-logo.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block" }} />
+        </a>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
           <button onClick={()=>setProfileOpen(true)} style={{
@@ -1021,6 +1028,14 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       )}
       {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
       {/* Bottom nav */}
+      {/* Floating log-a-sign button */}
+      {!fullP && (
+        <button
+          onClick={() => setLogSignOpen(true)}
+          style={{ position:"fixed",bottom:isPreview?62:78,right:18,zIndex:70,width:52,height:52,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
+          aria-label="Log a sign"
+        >✦</button>
+      )}
       {!fullP && (
         <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#050505":"#F5E0A0",borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
@@ -1030,6 +1045,31 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             </button>
           ))}
         </div>
+      )}
+      {/* Log Sign Modal */}
+      {logSignOpen && (
+        <LogSignModal
+          onClose={() => setLogSignOpen(false)}
+          onSaved={(sign) => {
+            if (sign?.manifestation_id) {
+              setThreads(ts => ts.map(t => t.id === sign.manifestation_id ? { ...t, signs: [...(t.signs||[]), { text: sign.content, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}) }] } : t));
+            }
+            setLogSignOpen(false);
+          }}
+          userId={userId}
+          token={token}
+          apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}
+          isDark={isDark}
+          activeIntentions={threads.filter(t => !t.done && !t.isBucket).map(t => ({ id: t.id, desire: t.desire }))}
+        />
+      )}
+      {/* Manifest Celebration */}
+      {celebThread && (
+        <ManifestCelebration
+          desire={celebThread.desire}
+          signCount={(celebThread.signs||[]).length}
+          onClose={() => setCelebThread(null)}
+        />
       )}
     </div>
   );
@@ -2348,7 +2388,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
   );
 }
 
-function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter, userId, token }) {
+function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter, userId, token, onManifested }) {
   const [newD, setD]       = useState("");
   const [newBelief, setNewBelief] = useState("");
   const [newCat, setNewCat]   = useState("Richgirlmaxxing");
@@ -2385,7 +2425,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
   const confirmFinish = async (id) => {
     const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(", ");
+    const thread = threads.find(t=>t.id===id);
     setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
+    if (thread && onManifested) onManifested(thread);
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
     if (!isPreview && userId) {
       try {
