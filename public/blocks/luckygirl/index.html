@@ -11,186 +11,172 @@
   --cream: #fdf0e8;
   --ink: #0a0906;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Jost', sans-serif; background: var(--ink); color: var(--cream); min-height: 100vh; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);min-height:100vh;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
 
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 0 24px; height: 54px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(10,9,6,0.96); backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(253,240,232,0.07);
-}
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo span { font-weight: 300; font-size: 14px; letter-spacing: .02em; color: var(--cream); }
-.nav-join {
-  padding: 8px 20px; border-radius: 40px; border: none; cursor: pointer;
-  background: var(--g); color: var(--ink);
-  font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500;
-  letter-spacing: .08em; text-transform: uppercase;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,9,6,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(253,240,232,0.07);}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo span{font-weight:300;font-size:14px;letter-spacing:.02em;color:var(--cream);}
+.nav-join{padding:8px 20px;border-radius:40px;border:none;cursor:pointer;background:var(--g);color:var(--ink);font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;}
 
-.screen { display: none; min-height: 100vh; }
-.screen.active { display: flex; flex-direction: column; }
+.progress-bar{position:fixed;top:54px;left:0;right:0;z-index:99;height:3px;background:rgba(253,240,232,0.08);}
+.progress-fill{height:100%;background:var(--g);transition:width .4s ease;}
 
-/* ── PROGRESS ── */
-.progress-bar {
-  position: fixed; top: 54px; left: 0; right: 0; z-index: 99;
-  height: 3px; background: rgba(253,240,232,0.08);
-}
-.progress-fill {
-  height: 100%; background: var(--g); transition: width .4s ease;
-}
+.screen{display:none;min-height:100vh;}
+.screen.active{display:flex;flex-direction:column;}
 
-/* ── EMAIL SCREEN ── */
-#s-email {
-  align-items: center; justify-content: center; text-align: center;
-  padding: 100px 24px 80px; background: var(--g);
-}
-.email-eyebrow { font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 20px; }
-.email-h1 { font-size: clamp(38px,7vw,80px); font-weight: 400; letter-spacing: -.03em; line-height: .95; color: var(--ink); margin-bottom: 16px; }
-.email-sub { font-size: 17px; font-weight: 300; color: var(--ink); line-height: 1.65; margin-bottom: 44px; max-width: 380px; opacity: .85; }
-.form { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 420px; }
-.form input { background: rgba(10,9,6,0.12); border: 1px solid rgba(10,9,6,0.25); border-radius: 12px; padding: 18px 20px; font-family: 'Jost', sans-serif; font-size: 16px; color: var(--ink); outline: none; transition: border .2s; }
-.form input::placeholder { color: rgba(10,9,6,0.5); }
-.form input:focus { border-color: rgba(10,9,6,0.6); }
-.btn-go { padding: 20px; border-radius: 40px; background: var(--ink); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; }
-.privacy { font-size: 12px; color: var(--ink); margin-top: 4px; opacity: .55; font-weight: 300; }
-.err { font-size: 13px; color: var(--ink); font-weight: 500; background: rgba(10,9,6,0.15); border-radius: 8px; padding: 10px 14px; }
+/* ── EMAIL ── */
+#s-email{align-items:center;justify-content:center;text-align:center;padding:90px 24px 80px;background:var(--g);}
+.email-eyebrow{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:20px;}
+.email-h1{font-size:clamp(44px,9vw,96px);font-weight:400;letter-spacing:-.03em;line-height:.92;color:var(--ink);margin-bottom:20px;}
+.email-sub{font-size:18px;font-weight:300;color:var(--ink);line-height:1.65;margin-bottom:48px;max-width:380px;opacity:.85;}
+.form{display:flex;flex-direction:column;gap:14px;width:100%;max-width:440px;}
+.form input{background:rgba(10,9,6,0.12);border:1px solid rgba(10,9,6,0.25);border-radius:14px;padding:20px 22px;font-family:'Jost',sans-serif;font-size:18px;color:var(--ink);outline:none;transition:border .2s;}
+.form input::placeholder{color:rgba(10,9,6,0.45);}
+.form input:focus{border-color:rgba(10,9,6,0.6);}
+.btn-go{padding:22px;border-radius:40px;background:var(--ink);color:var(--cream);font-family:'Jost',sans-serif;font-size:16px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;}
+.privacy{font-size:13px;color:var(--ink);margin-top:4px;opacity:.5;font-weight:300;}
+.err{font-size:14px;color:var(--ink);font-weight:500;background:rgba(10,9,6,0.15);border-radius:10px;padding:12px 16px;}
 
-/* ── QUESTION SCREENS ── */
-.q-screen { align-items: center; justify-content: center; padding: 90px 24px 80px; }
-.q-inner { max-width: 560px; width: 100%; }
-.q-step { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: rgba(253,240,232,0.35); font-weight: 600; margin-bottom: 20px; text-align: center; }
-.q-text { font-size: clamp(22px,4.5vw,38px); font-weight: 300; color: var(--cream); letter-spacing: -.02em; line-height: 1.25; margin-bottom: 10px; text-align: center; }
-.q-sub { font-size: 15px; font-weight: 300; color: var(--cream); opacity: .5; margin-bottom: 36px; text-align: center; line-height: 1.6; max-width: 420px; margin-left: auto; margin-right: auto; }
-.opt-grid { display: flex; flex-direction: column; gap: 10px; }
-.opt-grid.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.opt-card {
-  background: rgba(253,240,232,0.05); border: 1px solid rgba(253,240,232,0.1);
-  border-radius: 16px; padding: 22px 20px; cursor: pointer;
-  display: flex; align-items: center; gap: 14px;
-  transition: all .18s; -webkit-tap-highlight-color: transparent;
-  position: relative; overflow: hidden;
-}
-.opt-card::before { content:''; position:absolute; inset:0; background:var(--g); opacity:0; transition:opacity .18s; }
-.opt-card:hover::before, .opt-card:active::before { opacity:1; }
-.opt-card:hover, .opt-card:active { border-color: transparent; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-.opt-icon { font-size: 28px; line-height: 1; position: relative; z-index: 1; flex-shrink: 0; }
-.opt-label { font-size: 16px; font-weight: 500; color: var(--cream); position: relative; z-index: 1; transition: color .18s; }
-.opt-card:hover .opt-label, .opt-card:active .opt-label { color: var(--ink); }
-.opt-sub { font-size: 12px; font-weight: 300; color: var(--cream); opacity: .5; position: relative; z-index: 1; transition: color .18s; line-height: 1.4; margin-top: 3px; }
-.opt-card:hover .opt-sub, .opt-card:active .opt-sub { color: var(--ink); opacity: .65; }
-.opt-text-only { font-size: 16px; font-weight: 300; color: var(--cream); position: relative; z-index: 1; transition: color .18s; line-height: 1.5; }
-.opt-card:hover .opt-text-only, .opt-card:active .opt-text-only { color: var(--ink); }
+/* ── QUESTION WRAPPER ── */
+.q-screen{align-items:center;justify-content:center;padding:80px 20px 60px;}
+.q-inner{max-width:680px;width:100%;}
+.q-step{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(253,240,232,0.3);font-weight:600;margin-bottom:22px;text-align:center;}
+.q-text{font-size:clamp(28px,5vw,52px);font-weight:300;color:var(--cream);letter-spacing:-.02em;line-height:1.15;margin-bottom:12px;text-align:center;}
+.q-sub{font-size:17px;font-weight:300;color:var(--cream);opacity:.45;margin-bottom:40px;text-align:center;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto;}
 
-/* ── HAWKINS SCREEN ── */
-.hawkins-list { display: flex; flex-direction: column; gap: 5px; }
-.h-row {
-  display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px;
-  cursor: pointer; border: 1px solid rgba(253,240,232,0.09); background: rgba(253,240,232,0.04);
-  transition: all .15s; -webkit-tap-highlight-color: transparent;
-  position: relative; overflow: hidden;
-}
-.h-row::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity .15s; border-radius:14px; }
-.h-row:hover::before { opacity:1; }
-.h-row:hover { border-color:transparent; transform:translateX(4px); }
-.h-row[data-n="700"]::before { background:linear-gradient(135deg,#fff8e1,#fffde7); }
-.h-row[data-n="700"]:hover { box-shadow:0 0 18px rgba(255,255,200,0.35); }
-.h-row[data-n="600"]::before { background:linear-gradient(135deg,#f3e5f5,#e8eaf6); }
-.h-row[data-n="600"]:hover { box-shadow:0 0 18px rgba(200,180,255,0.3); }
-.h-row[data-n="540"]::before { background:linear-gradient(135deg,#F5E0A0,#E8B870); }
-.h-row[data-n="540"]:hover { box-shadow:0 0 18px rgba(232,184,112,0.4); }
-.h-row[data-n="500"]::before { background:linear-gradient(135deg,#f8bbd0,#f48fb1); }
-.h-row[data-n="500"]:hover { box-shadow:0 0 18px rgba(244,143,177,0.35); }
-.h-row[data-n="400"]::before { background:linear-gradient(135deg,#e3f2fd,#90caf9); }
-.h-row[data-n="400"]:hover { box-shadow:0 0 18px rgba(144,202,249,0.3); }
-.h-row[data-n="350"]::before { background:linear-gradient(135deg,#BFA5D8,#9c72c8); }
-.h-row[data-n="350"]:hover { box-shadow:0 0 18px rgba(191,165,216,0.35); }
-.h-row[data-n="310"]::before { background:linear-gradient(135deg,#2CB7A7,#167A6B); }
-.h-row[data-n="310"]:hover { box-shadow:0 0 18px rgba(44,183,167,0.35); }
-.h-row[data-n="250"]::before { background:linear-gradient(135deg,#b2dfdb,#80cbc4); }
-.h-row[data-n="250"]:hover { box-shadow:0 0 18px rgba(128,203,196,0.3); }
-.h-row[data-n="200"]::before { background:linear-gradient(135deg,#fff9c4,#fff176); }
-.h-row[data-n="200"]:hover { box-shadow:0 0 18px rgba(255,241,118,0.35); }
-.h-row[data-n="175"]::before { background:linear-gradient(135deg,#ffe0b2,#ffcc80); }
-.h-row[data-n="175"]:hover { box-shadow:0 0 18px rgba(255,204,128,0.3); }
-.h-row[data-n="150"]::before { background:linear-gradient(135deg,#ef9a9a,#e57373); }
-.h-row[data-n="150"]:hover { box-shadow:0 0 18px rgba(229,115,115,0.4); }
-.h-row[data-n="125"]::before { background:linear-gradient(135deg,#ff8a65,#ff7043); }
-.h-row[data-n="125"]:hover { box-shadow:0 0 18px rgba(255,112,67,0.35); }
-.h-row[data-n="100"]::before { background:linear-gradient(135deg,#b0bec5,#90a4ae); }
-.h-row[data-n="100"]:hover { box-shadow:0 0 18px rgba(144,164,174,0.25); }
-.h-row[data-n="75"]::before { background:linear-gradient(135deg,#9fa8da,#7986cb); }
-.h-row[data-n="75"]:hover { box-shadow:0 0 18px rgba(121,134,203,0.3); }
-.h-row[data-n="50"]::before { background:linear-gradient(135deg,#616161,#424242); }
-.h-row[data-n="50"]:hover { box-shadow:0 0 18px rgba(97,97,97,0.35); }
-.h-row[data-n="20"]::before { background:linear-gradient(135deg,#37474f,#263238); }
-.h-row[data-n="20"]:hover { box-shadow:0 0 18px rgba(38,50,56,0.5); }
-.h-num { font-size: 20px; font-weight: 600; min-width: 46px; text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; position: relative; z-index: 1; transition: color .15s; }
-.h-row:hover .h-num { color: var(--ink); }
-.h-emotion { font-size: 15px; font-weight: 500; color: var(--cream); position: relative; z-index: 1; transition: color .15s; }
-.h-row:hover .h-emotion { color: var(--ink); }
-.h-desc { font-size: 12px; font-weight: 300; color: var(--cream); opacity: .4; flex: 1; position: relative; z-index: 1; transition: color .15s, opacity .15s; line-height: 1.35; }
-.h-row:hover .h-desc { color: var(--ink); opacity: .6; }
-.h-divider { margin: 10px 0; display: flex; align-items: center; justify-content: center; }
-.h-divider::before, .h-divider::after { content:''; flex:1; height:1px; background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7); }
-.h-divider-label { font-size: 9px; letter-spacing:.26em; text-transform:uppercase; font-weight:700; color:var(--ink); white-space:nowrap; padding:5px 14px; border-radius:20px; background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7); margin:0 12px; }
+/* ── 2×2 GRID CARDS ── */
+.grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.big-card{border-radius:24px;padding:40px 28px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;transition:all .2s;-webkit-tap-highlight-color:transparent;border:1px solid rgba(253,240,232,0.1);background:rgba(253,240,232,0.05);min-height:160px;}
+.big-card:hover,.big-card:active{transform:scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.big-card .card-icon{font-size:52px;line-height:1;}
+.big-card .card-label{font-size:clamp(22px,3.5vw,32px);font-weight:500;color:var(--cream);transition:color .2s;line-height:1.1;}
+.big-card .card-sub{font-size:14px;font-weight:300;color:var(--cream);opacity:.5;transition:color .2s;line-height:1.4;}
+
+/* Area cards — hover gradient */
+.area-card{background:rgba(253,240,232,0.06);border:1px solid rgba(253,240,232,0.12);position:relative;overflow:hidden;}
+.area-card::before{content:'';position:absolute;inset:0;background:var(--g);opacity:0;transition:opacity .2s;}
+.area-card:hover::before{opacity:1;}
+.area-card .card-icon,.area-card .card-label,.area-card .card-sub{position:relative;z-index:1;}
+.area-card:hover .card-label,.area-card:active .card-label{color:var(--ink);}
+.area-card:hover .card-sub,.area-card:active .card-sub{color:var(--ink);opacity:.7;}
+
+/* ── COLOR CARDS ── */
+.color-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.color-card{border-radius:24px;padding:0;cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-start;transition:all .2s;-webkit-tap-highlight-color:transparent;aspect-ratio:1;overflow:hidden;border:2px solid transparent;position:relative;}
+.color-card:hover,.color-card:active{transform:scale(1.03);box-shadow:0 16px 48px rgba(0,0,0,0.5);}
+.color-card-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:24px;}
+.color-word{font-size:clamp(24px,4vw,38px);font-weight:600;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,0.4);}
+.color-phrase{font-size:13px;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.4;margin-top:4px;}
+
+/* ── FULL-WIDTH ANSWER CARDS ── */
+.stack-cards{display:flex;flex-direction:column;gap:12px;}
+.stack-card{border-radius:20px;padding:32px 32px;cursor:pointer;border:1px solid rgba(253,240,232,0.1);background:rgba(253,240,232,0.04);transition:all .18s;-webkit-tap-highlight-color:transparent;position:relative;overflow:hidden;}
+.stack-card::before{content:'';position:absolute;inset:0;background:var(--g);opacity:0;transition:opacity .18s;}
+.stack-card:hover::before,.stack-card:active::before{opacity:1;}
+.stack-card:hover,.stack-card:active{border-color:transparent;transform:translateX(6px);}
+.stack-card .s-text{font-size:clamp(18px,3vw,26px);font-weight:300;color:var(--cream);line-height:1.45;position:relative;z-index:1;transition:color .18s;}
+.stack-card:hover .s-text,.stack-card:active .s-text{color:var(--ink);}
+
+/* ── HAWKINS ── */
+.hawkins-list{display:flex;flex-direction:column;gap:6px;}
+.h-row{display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:16px;cursor:pointer;border:1px solid rgba(253,240,232,0.09);background:rgba(253,240,232,0.04);transition:all .15s;-webkit-tap-highlight-color:transparent;position:relative;overflow:hidden;}
+.h-row::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .15s;border-radius:16px;}
+.h-row:hover::before{opacity:1;}
+.h-row:hover{border-color:transparent;transform:translateX(5px);}
+.h-row[data-n="700"]::before{background:linear-gradient(135deg,#fff8e1,#fffde7);}
+.h-row[data-n="700"]:hover{box-shadow:0 0 20px rgba(255,255,200,0.35);}
+.h-row[data-n="600"]::before{background:linear-gradient(135deg,#f3e5f5,#e8eaf6);}
+.h-row[data-n="600"]:hover{box-shadow:0 0 20px rgba(200,180,255,0.3);}
+.h-row[data-n="540"]::before{background:linear-gradient(135deg,#F5E0A0,#E8B870);}
+.h-row[data-n="540"]:hover{box-shadow:0 0 20px rgba(232,184,112,0.45);}
+.h-row[data-n="500"]::before{background:linear-gradient(135deg,#f8bbd0,#f48fb1);}
+.h-row[data-n="500"]:hover{box-shadow:0 0 20px rgba(244,143,177,0.4);}
+.h-row[data-n="400"]::before{background:linear-gradient(135deg,#e3f2fd,#90caf9);}
+.h-row[data-n="400"]:hover{box-shadow:0 0 20px rgba(144,202,249,0.35);}
+.h-row[data-n="350"]::before{background:linear-gradient(135deg,#BFA5D8,#9c72c8);}
+.h-row[data-n="350"]:hover{box-shadow:0 0 20px rgba(191,165,216,0.4);}
+.h-row[data-n="310"]::before{background:linear-gradient(135deg,#2CB7A7,#167A6B);}
+.h-row[data-n="310"]:hover{box-shadow:0 0 20px rgba(44,183,167,0.4);}
+.h-row[data-n="250"]::before{background:linear-gradient(135deg,#b2dfdb,#80cbc4);}
+.h-row[data-n="250"]:hover{box-shadow:0 0 20px rgba(128,203,196,0.3);}
+.h-row[data-n="200"]::before{background:linear-gradient(135deg,#fff9c4,#fff176);}
+.h-row[data-n="200"]:hover{box-shadow:0 0 20px rgba(255,241,118,0.4);}
+.h-row[data-n="175"]::before{background:linear-gradient(135deg,#ffe0b2,#ffcc80);}
+.h-row[data-n="175"]:hover{box-shadow:0 0 20px rgba(255,204,128,0.3);}
+.h-row[data-n="150"]::before{background:linear-gradient(135deg,#ef9a9a,#e57373);}
+.h-row[data-n="150"]:hover{box-shadow:0 0 20px rgba(229,115,115,0.45);}
+.h-row[data-n="125"]::before{background:linear-gradient(135deg,#ff8a65,#ff7043);}
+.h-row[data-n="125"]:hover{box-shadow:0 0 20px rgba(255,112,67,0.4);}
+.h-row[data-n="100"]::before{background:linear-gradient(135deg,#b0bec5,#90a4ae);}
+.h-row[data-n="100"]:hover{box-shadow:0 0 20px rgba(144,164,174,0.25);}
+.h-row[data-n="75"]::before{background:linear-gradient(135deg,#9fa8da,#7986cb);}
+.h-row[data-n="75"]:hover{box-shadow:0 0 20px rgba(121,134,203,0.3);}
+.h-row[data-n="50"]::before{background:linear-gradient(135deg,#616161,#424242);}
+.h-row[data-n="50"]:hover{box-shadow:0 0 20px rgba(97,97,97,0.35);}
+.h-row[data-n="20"]::before{background:linear-gradient(135deg,#37474f,#263238);}
+.h-row[data-n="20"]:hover{box-shadow:0 0 20px rgba(38,50,56,0.5);}
+.h-num{font-size:22px;font-weight:600;min-width:50px;text-align:right;color:var(--cream);font-variant-numeric:tabular-nums;position:relative;z-index:1;transition:color .15s;}
+.h-row:hover .h-num{color:var(--ink);}
+.h-emotion{font-size:17px;font-weight:500;color:var(--cream);position:relative;z-index:1;transition:color .15s;}
+.h-row:hover .h-emotion{color:var(--ink);}
+.h-desc{font-size:13px;font-weight:300;color:var(--cream);opacity:.4;flex:1;position:relative;z-index:1;transition:color .15s,opacity .15s;line-height:1.35;}
+.h-row:hover .h-desc{color:var(--ink);opacity:.65;}
+.h-divider{margin:10px 0;display:flex;align-items:center;justify-content:center;}
+.h-divider::before,.h-divider::after{content:'';flex:1;height:1px;background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7);}
+.h-divider-label{font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--ink);white-space:nowrap;padding:5px 14px;border-radius:20px;background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7);margin:0 12px;}
 
 /* ── RESULT ── */
-#s-result { flex-direction: column; }
-.result-hero { background: var(--g); padding: 80px 24px 56px; text-align: center; }
-.result-eyebrow { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 14px; }
-.result-h1 { font-size: clamp(36px,7vw,68px); font-weight: 400; color: var(--ink); letter-spacing: -.02em; line-height: 1; margin-bottom: 10px; }
-.result-arch { font-size: 15px; font-weight: 300; color: var(--ink); opacity: .65; }
-.result-body { max-width: 600px; margin: 0 auto; padding: 48px 24px 80px; }
-.result-card { background: rgba(253,240,232,0.05); border: 1px solid rgba(253,240,232,0.12); border-radius: 20px; padding: 32px 28px; margin-bottom: 14px; }
-.card-label { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; font-weight: 600; margin-bottom: 18px; }
-.label-purple { color: #BFA5D8; }
-.label-gold { color: #E8B870; }
-.label-dim { color: rgba(253,240,232,0.4); }
-.label-teal { color: #2CB7A7; }
-.freq-meter { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.freq-num { font-size: 44px; font-weight: 600; line-height: 1; }
-.freq-from { color: #E8B870; }
-.freq-to { color: #2CB7A7; }
-.freq-label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: rgba(253,240,232,0.45); margin-top: 6px; }
-.freq-bar { flex: 1; height: 3px; background: rgba(253,240,232,0.1); border-radius: 2px; overflow: hidden; }
-.freq-fill { height: 100%; background: var(--g); border-radius: 2px; }
-.freq-note { font-size: 15px; color: var(--cream); line-height: 1.75; font-weight: 300; opacity: .8; }
-.pattern-list { display: flex; flex-direction: column; gap: 14px; }
-.pattern-item { display: flex; gap: 12px; align-items: flex-start; }
-.pattern-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g); flex-shrink: 0; margin-top: 9px; }
-.pattern-text { font-size: 16px; color: var(--cream); line-height: 1.65; font-weight: 300; }
-.old-text { font-size: 18px; color: var(--cream); line-height: 1.8; font-weight: 300; opacity: .7; }
-.install-card { background: var(--g); border-radius: 20px; padding: 44px 28px; margin-bottom: 14px; text-align: center; }
-.install-label { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 20px; }
-.install-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,5.5vw,50px); color: var(--ink); font-weight: 400; line-height: 1.15; margin-bottom: 16px; }
-.install-note { font-size: 13px; color: var(--ink); opacity: .6; font-weight: 300; }
-.days-list { display: flex; flex-direction: column; gap: 14px; }
-.days-item { display: flex; gap: 14px; align-items: flex-start; }
-.days-num { font-size: 13px; color: #2CB7A7; font-weight: 600; flex-shrink: 0; margin-top: 2px; min-width: 18px; }
-.days-text { font-size: 16px; color: var(--cream); line-height: 1.65; font-weight: 300; }
-.why-text { font-size: 16px; color: var(--cream); line-height: 1.85; font-weight: 300; opacity: .85; }
-.cta-workbook { background: var(--g); border-radius: 20px; padding: 44px 28px; margin-bottom: 12px; text-align: center; }
-.cta-title { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 14px; }
-.cta-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,5vw,46px); color: var(--ink); font-weight: 400; line-height: 1.1; margin-bottom: 10px; }
-.cta-sub { font-size: 15px; color: var(--ink); line-height: 1.7; font-weight: 300; margin-bottom: 8px; }
-.cta-price { font-size: 22px; color: var(--ink); font-weight: 600; margin-bottom: 6px; }
-.cta-price s { font-size: 14px; font-weight: 300; opacity: .5; }
-.cta-desc { font-size: 14px; color: var(--ink); line-height: 1.7; font-weight: 300; max-width: 360px; margin: 0 auto 28px; }
-.btn-wb { display: inline-block; background: var(--ink); border-radius: 40px; padding: 18px 48px; color: var(--cream); font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
-.cta-audio { border: 1px solid rgba(253,240,232,0.12); border-radius: 16px; padding: 32px 28px; text-align: center; }
-.cta-audio-head { font-size: 16px; color: var(--cream); line-height: 1.75; margin-bottom: 6px; font-weight: 400; }
-.cta-audio-sub { font-size: 13px; color: var(--cream); opacity: .5; margin-bottom: 22px; font-weight: 300; line-height: 1.6; }
-.btn-audio { display: inline-block; background: var(--g); border-radius: 40px; padding: 16px 36px; color: var(--ink); font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+#s-result{flex-direction:column;}
+.result-hero{background:var(--g);padding:90px 24px 64px;text-align:center;}
+.result-eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:14px;}
+.result-h1{font-size:clamp(18px,4vw,28px);font-weight:400;color:var(--ink);letter-spacing:-.01em;line-height:1.2;margin-bottom:8px;max-width:560px;margin-left:auto;margin-right:auto;}
+.result-freq{font-size:clamp(56px,10vw,100px);font-weight:600;color:var(--ink);line-height:1;margin-bottom:6px;}
+.result-emotion{font-size:20px;font-weight:300;color:var(--ink);opacity:.65;}
+.result-body{max-width:600px;margin:0 auto;padding:48px 24px 80px;}
+.result-card{background:rgba(253,240,232,0.05);border:1px solid rgba(253,240,232,0.12);border-radius:20px;padding:32px 28px;margin-bottom:14px;}
+.card-label{font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;margin-bottom:18px;}
+.label-purple{color:#BFA5D8;}
+.label-gold{color:#E8B870;}
+.label-dim{color:rgba(253,240,232,0.4);}
+.label-teal{color:#2CB7A7;}
+.freq-note{font-size:16px;color:var(--cream);line-height:1.8;font-weight:300;opacity:.85;}
+.pattern-list{display:flex;flex-direction:column;gap:16px;}
+.pattern-item{display:flex;gap:14px;align-items:flex-start;}
+.pattern-dot{width:6px;height:6px;border-radius:50%;background:var(--g);flex-shrink:0;margin-top:10px;}
+.pattern-text{font-size:17px;color:var(--cream);line-height:1.65;font-weight:300;}
+.old-text{font-size:18px;color:var(--cream);line-height:1.8;font-weight:300;opacity:.7;}
+.install-card{background:var(--g);border-radius:20px;padding:48px 28px;margin-bottom:14px;text-align:center;}
+.install-label{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:20px;}
+.install-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5.5vw,54px);color:var(--ink);font-weight:400;line-height:1.15;margin-bottom:16px;}
+.install-note{font-size:14px;color:var(--ink);opacity:.6;font-weight:300;}
+.days-list{display:flex;flex-direction:column;gap:16px;}
+.days-item{display:flex;gap:14px;align-items:flex-start;}
+.days-num{font-size:13px;color:#2CB7A7;font-weight:600;flex-shrink:0;margin-top:3px;min-width:20px;}
+.days-text{font-size:17px;color:var(--cream);line-height:1.65;font-weight:300;}
+.why-text{font-size:17px;color:var(--cream);line-height:1.85;font-weight:300;opacity:.85;}
+.cta-workbook{background:var(--g);border-radius:20px;padding:48px 28px;margin-bottom:12px;text-align:center;}
+.cta-title{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:14px;}
+.cta-name{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,50px);color:var(--ink);font-weight:400;line-height:1.1;margin-bottom:10px;}
+.cta-sub{font-size:16px;color:var(--ink);line-height:1.7;font-weight:300;margin-bottom:10px;}
+.cta-price{font-size:24px;color:var(--ink);font-weight:600;margin-bottom:8px;}
+.cta-price s{font-size:15px;font-weight:300;opacity:.5;}
+.cta-desc{font-size:14px;color:var(--ink);line-height:1.7;font-weight:300;max-width:360px;margin:0 auto 32px;}
+.btn-wb{display:inline-block;background:var(--ink);border-radius:40px;padding:20px 52px;color:var(--cream);font-family:'Jost',sans-serif;font-size:16px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;}
+.cta-audio{border:1px solid rgba(253,240,232,0.12);border-radius:16px;padding:36px 28px;text-align:center;}
+.cta-audio-head{font-size:17px;color:var(--cream);line-height:1.75;margin-bottom:8px;font-weight:400;}
+.cta-audio-sub{font-size:14px;color:var(--cream);opacity:.45;margin-bottom:24px;font-weight:300;line-height:1.6;}
+.btn-audio{display:inline-block;background:var(--g);border-radius:40px;padding:18px 40px;color:var(--ink);font-family:'Jost',sans-serif;font-size:15px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;}
 
-@media (max-width: 480px) {
-  .h-desc { display: none; }
-  .h-num { min-width: 40px; font-size: 17px; }
-  .result-card { padding: 24px 20px; }
-  .opt-grid.two-col { grid-template-columns: 1fr; }
+@media(max-width:520px){
+  .grid-2x2,.color-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .big-card{padding:28px 16px;min-height:130px;}
+  .big-card .card-icon{font-size:38px;}
+  .color-card-inner{padding:16px;}
+  .h-desc{display:none;}
+  .h-num{min-width:42px;font-size:18px;}
+  .result-card{padding:24px 20px;}
 }
 </style>
 </head>
@@ -216,32 +202,36 @@ nav {
     <input id="inp-email" type="email" placeholder="Email address" autocomplete="email" inputmode="email">
     <div id="email-err" class="err" style="display:none;"></div>
     <button type="submit" class="btn-go">Start my diagnostic →</button>
-    <p class="privacy">No spam. You'll join the SHG list and can unsubscribe any time.</p>
+    <p class="privacy">No spam. Unsubscribe any time.</p>
   </form>
 </div>
 
 <!-- ── Q1: AREA ── -->
 <div id="s-q1" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 1 of 8</div>
-    <h2 class="q-text">Which area of your life feels most stuck right now?</h2>
-    <p class="q-sub">The one that keeps showing up. Pick the one that's loudest.</p>
-    <div class="opt-grid two-col">
-      <div class="opt-card" onclick="answer('area','money',this)">
-        <div class="opt-icon">💸</div>
-        <div><div class="opt-label">Money</div><div class="opt-sub">Abundance, income, receiving</div></div>
+    <div class="q-step">1 of 8</div>
+    <h2 class="q-text">Where does life feel most blocked right now?</h2>
+    <p class="q-sub">Pick the one that's loudest. You'll know immediately.</p>
+    <div class="grid-2x2">
+      <div class="big-card area-card" onclick="goArea('money')">
+        <div class="card-icon">💸</div>
+        <div class="card-label">Money</div>
+        <div class="card-sub">Abundance, receiving</div>
       </div>
-      <div class="opt-card" onclick="answer('area','love',this)">
-        <div class="opt-icon">💜</div>
-        <div><div class="opt-label">Love</div><div class="opt-sub">Relationships, being chosen</div></div>
+      <div class="big-card area-card" onclick="goArea('love')">
+        <div class="card-icon">💜</div>
+        <div class="card-label">Love</div>
+        <div class="card-sub">Relationships, being chosen</div>
       </div>
-      <div class="opt-card" onclick="answer('area','body',this)">
-        <div class="opt-icon">🌸</div>
-        <div><div class="opt-label">Body</div><div class="opt-sub">Beauty, confidence, presence</div></div>
+      <div class="big-card area-card" onclick="goArea('body')">
+        <div class="card-icon">🌸</div>
+        <div class="card-label">Body</div>
+        <div class="card-sub">Confidence, beauty</div>
       </div>
-      <div class="opt-card" onclick="answer('area','identity',this)">
-        <div class="opt-icon">👑</div>
-        <div><div class="opt-label">Identity</div><div class="opt-sub">Self-concept, worthiness</div></div>
+      <div class="big-card area-card" onclick="goArea('identity')">
+        <div class="card-icon">👑</div>
+        <div class="card-label">Identity</div>
+        <div class="card-sub">Self-concept, worthiness</div>
       </div>
     </div>
   </div>
@@ -250,100 +240,115 @@ nav {
 <!-- ── Q2: HAWKINS ── -->
 <div id="s-q2" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 2 of 8</div>
+    <div class="q-step">2 of 8</div>
     <h2 class="q-text" id="q2-title"></h2>
-    <p class="q-sub">Tap the frequency that matches where you actually are — not where you want to be.</p>
+    <p class="q-sub">Be honest. Tap the frequency where you actually live — not where you want to be.</p>
     <div class="hawkins-list" id="hawkins-list"></div>
   </div>
 </div>
 
-<!-- ── Q3: BODY SENSATION ── -->
+<!-- ── Q3: COLOR ── -->
 <div id="s-q3" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 3 of 8</div>
-    <h2 class="q-text">When you imagine actually having it — what's the first thing your body does?</h2>
-    <p class="q-sub">Your body tells the truth before your mind does.</p>
-    <div class="opt-grid">
-      <div class="opt-card" onclick="answer('body_response','tightens',this)">
-        <div class="opt-text-only">It tightens. Like bracing for the catch.</div>
+    <div class="q-step">3 of 8</div>
+    <h2 class="q-text">Which color matches your energy right now?</h2>
+    <p class="q-sub">Don't overthink it. The first one that pulls you.</p>
+    <div class="color-grid">
+      <div class="color-card" onclick="goNext('color','gold')" style="background:linear-gradient(145deg,#F5E0A0,#C9902A);">
+        <div class="color-card-inner">
+          <div class="color-word">BRIGHT</div>
+          <div class="color-phrase">Warm, ready, almost there</div>
+        </div>
       </div>
-      <div class="opt-card" onclick="answer('body_response','excited_crash',this)">
-        <div class="opt-text-only">Gets excited — then immediately crashes back to reality.</div>
+      <div class="color-card" onclick="goNext('color','purple')" style="background:linear-gradient(145deg,#BFA5D8,#6B4FA0);">
+        <div class="color-card-inner">
+          <div class="color-word">SEEKING</div>
+          <div class="color-phrase">Intuitive, longing, reaching</div>
+        </div>
       </div>
-      <div class="opt-card" onclick="answer('body_response','blank',this)">
-        <div class="opt-text-only">Goes blank. I can't even picture it fully.</div>
+      <div class="color-card" onclick="goNext('color','teal')" style="background:linear-gradient(145deg,#2CB7A7,#0D4F47);">
+        <div class="color-card-inner">
+          <div class="color-word">DEEP</div>
+          <div class="color-phrase">Calm, held back, still waters</div>
+        </div>
       </div>
-      <div class="opt-card" onclick="answer('body_response','open',this)">
-        <div class="opt-text-only">Softens and opens. It feels possible — just not here yet.</div>
+      <div class="color-card" onclick="goNext('color','shadow')" style="background:linear-gradient(145deg,#3a3530,#141210);">
+        <div class="color-card-inner">
+          <div class="color-word">HEAVY</div>
+          <div class="color-phrase">Stuck, tired, going through motions</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── Q4: LIMITING STORY ── -->
+<!-- ── Q4: BODY SENSATION ── -->
 <div id="s-q4" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 4 of 8</div>
-    <h2 class="q-text">The story you repeat most in your head sounds like...</h2>
-    <p class="q-sub">The one you'd be embarrassed to say out loud. Pick the closest.</p>
-    <div class="opt-grid">
-      <div class="opt-card" onclick="answer('story','not_for_me',this)">
-        <div class="opt-text-only">"That kind of thing doesn't happen for people like me."</div>
+    <div class="q-step">4 of 8</div>
+    <h2 class="q-text">When you imagine actually having it — your body...</h2>
+    <p class="q-sub">Before thought. What happens first?</p>
+    <div class="stack-cards">
+      <div class="stack-card" onclick="goNext('body','tightens')">
+        <div class="s-text">Tightens. Like bracing for the catch.</div>
       </div>
-      <div class="opt-card" onclick="answer('story','have_to_earn',this)">
-        <div class="opt-text-only">"I have to work twice as hard to get half as much."</div>
+      <div class="stack-card" onclick="goNext('body','excited_crash')">
+        <div class="s-text">Lights up — then crashes back to earth.</div>
       </div>
-      <div class="opt-card" onclick="answer('story','not_ready',this)">
-        <div class="opt-text-only">"I'll have it once I'm ready / fixed / further along."</div>
+      <div class="stack-card" onclick="goNext('body','blank')">
+        <div class="s-text">Goes blank. I can't even fully picture it.</div>
       </div>
-      <div class="opt-card" onclick="answer('story','too_much',this)">
-        <div class="opt-text-only">"I'm too much / not enough. Either way, it's me."</div>
+      <div class="stack-card" onclick="goNext('body','softens')">
+        <div class="s-text">Softens. It feels possible — just not here yet.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── Q5: HOW LONG ── -->
+<!-- ── Q5: THE STORY ── -->
 <div id="s-q5" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 5 of 8</div>
-    <h2 class="q-text">How long has this felt stuck?</h2>
-    <p class="q-sub">Be honest. There's no wrong answer here.</p>
-    <div class="opt-grid">
-      <div class="opt-card" onclick="answer('duration','months',this)">
-        <div class="opt-text-only">A few months. It's newer.</div>
+    <div class="q-step">5 of 8</div>
+    <h2 class="q-text">The voice in your head sounds most like...</h2>
+    <p class="q-sub">The one you wouldn't say out loud. Pick the closest.</p>
+    <div class="stack-cards">
+      <div class="stack-card" onclick="goNext('story','not_for_me')">
+        <div class="s-text">"That kind of thing doesn't happen for people like me."</div>
       </div>
-      <div class="opt-card" onclick="answer('duration','years',this)">
-        <div class="opt-text-only">One to three years. I keep circling back.</div>
+      <div class="stack-card" onclick="goNext('story','earn_twice')">
+        <div class="s-text">"I have to work twice as hard to get half as much."</div>
       </div>
-      <div class="opt-card" onclick="answer('duration','forever',this)">
-        <div class="opt-text-only">As long as I can remember. It's just always been there.</div>
+      <div class="stack-card" onclick="goNext('story','not_ready')">
+        <div class="s-text">"I'll have it once I'm ready / fixed / further along."</div>
       </div>
-      <div class="opt-card" onclick="answer('duration','waves',this)">
-        <div class="opt-text-only">It comes and goes. Sometimes I think I've cracked it, then it's back.</div>
+      <div class="stack-card" onclick="goNext('story','too_much')">
+        <div class="s-text">"I'm too much. Or not enough. Either way, it's me."</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── Q6: SOMEONE ELSE GETS IT ── -->
+<!-- ── Q6: HOW LONG ── -->
 <div id="s-q6" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 6 of 8</div>
-    <h2 class="q-text">When someone else gets what you want — what actually happens inside you?</h2>
-    <p class="q-sub">Not what you perform. What actually moves in you.</p>
-    <div class="opt-grid">
-      <div class="opt-card" onclick="answer('other_success','inspired',this)">
-        <div class="opt-text-only">Genuinely inspired. If she can, I can.</div>
+    <div class="q-step">6 of 8</div>
+    <h2 class="q-text">How long has this felt stuck?</h2>
+    <div class="grid-2x2" style="margin-top:8px;">
+      <div class="big-card" style="background:rgba(245,224,160,0.12);border-color:rgba(245,224,160,0.2);" onclick="goNext('duration','months')">
+        <div class="card-label" style="font-size:clamp(20px,3vw,28px);color:var(--cream);">A few months</div>
+        <div class="card-sub">It's newer, but it's loud</div>
       </div>
-      <div class="opt-card" onclick="answer('other_success','triggered',this)">
-        <div class="opt-text-only">Triggered. Followed quickly by guilt for being triggered.</div>
+      <div class="big-card" style="background:rgba(191,165,216,0.12);border-color:rgba(191,165,216,0.2);" onclick="goNext('duration','years')">
+        <div class="card-label" style="font-size:clamp(20px,3vw,28px);color:var(--cream);">1–3 years</div>
+        <div class="card-sub">I keep circling back</div>
       </div>
-      <div class="opt-card" onclick="answer('other_success','numb',this)">
-        <div class="opt-text-only">Numb. I scroll past and feel nothing, which feels worse.</div>
+      <div class="big-card" style="background:rgba(44,183,167,0.12);border-color:rgba(44,183,167,0.2);" onclick="goNext('duration','forever')">
+        <div class="card-label" style="font-size:clamp(20px,3vw,28px);color:var(--cream);">Forever</div>
+        <div class="card-sub">It's always just been there</div>
       </div>
-      <div class="opt-card" onclick="answer('other_success','both',this)">
-        <div class="opt-text-only">Inspired and triggered at the same time. Both. Always both.</div>
+      <div class="big-card" style="background:rgba(253,240,232,0.06);border-color:rgba(253,240,232,0.15);" onclick="goNext('duration','waves')">
+        <div class="card-label" style="font-size:clamp(20px,3vw,28px);color:var(--cream);">Comes & goes</div>
+        <div class="card-sub">I think I've cracked it — then it's back</div>
       </div>
     </div>
   </div>
@@ -352,21 +357,20 @@ nav {
 <!-- ── Q7: HER ── -->
 <div id="s-q7" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 7 of 8</div>
+    <div class="q-step">7 of 8</div>
     <h2 class="q-text">The version of you who already has it — where does she live?</h2>
-    <p class="q-sub">How real does she feel to you right now?</p>
-    <div class="opt-grid">
-      <div class="opt-card" onclick="answer('her','real_close',this)">
-        <div class="opt-text-only">She feels real and close. I can almost touch her.</div>
+    <div class="stack-cards">
+      <div class="stack-card" onclick="goNext('her','close')">
+        <div class="s-text">She feels real and close. I can almost touch her.</div>
       </div>
-      <div class="opt-card" onclick="answer('her','far',this)">
-        <div class="opt-text-only">She's far. Like I'm watching her from the other side of a window.</div>
+      <div class="stack-card" onclick="goNext('her','window')">
+        <div class="s-text">She's far. Like watching her through a window.</div>
       </div>
-      <div class="opt-card" onclick="answer('her','fake',this)">
-        <div class="opt-text-only">She feels fake when I try to act as her. Like I'm pretending.</div>
+      <div class="stack-card" onclick="goNext('her','fake')">
+        <div class="s-text">She feels fake when I try to act as her. Like pretending.</div>
       </div>
-      <div class="opt-card" onclick="answer('her','cant_see',this)">
-        <div class="opt-text-only">I can't picture her. That version of me doesn't feel available.</div>
+      <div class="stack-card" onclick="goNext('her','invisible')">
+        <div class="s-text">I can't picture her. That version doesn't feel available.</div>
       </div>
     </div>
   </div>
@@ -375,58 +379,54 @@ nav {
 <!-- ── Q8: NEW BELIEF ── -->
 <div id="s-q8" class="screen q-screen">
   <div class="q-inner">
-    <div class="q-step">Question 8 of 8</div>
+    <div class="q-step">8 of 8</div>
     <h2 class="q-text">What do you most want to believe — but don't quite yet?</h2>
-    <p class="q-sub">The assumption that would change everything, if you could just let it be true.</p>
-    <div class="opt-grid" id="q8-opts"></div>
+    <p class="q-sub">The assumption that would change everything, if you'd just let it be true.</p>
+    <div class="stack-cards" id="q8-opts"></div>
   </div>
 </div>
 
 <!-- ── RESULT ── -->
 <div id="s-result" class="screen">
   <div class="result-hero">
-    <div class="result-eyebrow">Your Lucky Girl block</div>
-    <h1 class="result-h1" id="r-block"></h1>
-    <div class="result-arch" id="r-arch"></div>
+    <div class="result-eyebrow">Your Lucky Girl frequency</div>
+    <div class="result-freq" id="r-fn"></div>
+    <div class="result-emotion" id="r-fl"></div>
+    <div style="margin-top:20px;" class="result-h1" id="r-block"></div>
   </div>
   <div class="result-body">
+
     <div class="result-card">
-      <div class="card-label label-purple">Your Hawkins Frequency</div>
-      <div class="freq-meter">
-        <div>
-          <div class="freq-num freq-from" id="r-fn"></div>
-          <div class="freq-label" id="r-fl"></div>
-        </div>
-        <div class="freq-bar"><div class="freq-fill"></div></div>
-        <div style="color:var(--cream);opacity:.4;font-size:18px;">→</div>
-        <div>
-          <div class="freq-num freq-to" id="r-tn"></div>
-          <div class="freq-label" id="r-tl"></div>
-        </div>
-      </div>
+      <div class="card-label label-purple">What this frequency means for you</div>
       <p class="freq-note" id="r-fnote"></p>
     </div>
+
     <div class="result-card">
       <div class="card-label label-gold">How it's running your life right now</div>
       <div class="pattern-list" id="r-patterns"></div>
     </div>
+
     <div class="result-card">
       <div class="card-label label-dim">The assumption beneath all of it</div>
       <div class="old-text" id="r-old"></div>
     </div>
+
     <div class="install-card">
       <div class="install-label">The install — your new assumption</div>
       <div class="install-quote" id="r-new"></div>
       <div class="install-note">Say this out loud right before sleep. Theta window. Every night. 21 nights.</div>
     </div>
+
     <div class="result-card">
-      <div class="card-label label-teal">What changes in 21 days</div>
+      <div class="card-label label-teal">What shifts in 21 days</div>
       <div class="days-list" id="r-days"></div>
     </div>
+
     <div class="result-card" style="margin-bottom:36px;">
       <div class="card-label label-dim">Why hypnosis works where willpower doesn't</div>
       <p class="why-text" id="r-why"></p>
     </div>
+
     <div class="cta-workbook">
       <div class="cta-title">The next step</div>
       <div class="cta-name">Lucky Girl Maxxing</div>
@@ -435,18 +435,18 @@ nav {
       <div class="cta-desc">The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
       <a class="btn-wb" href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank">Get the workbook — $29</a>
     </div>
+
     <div class="cta-audio">
-      <div class="cta-audio-head">Your recommended track: <strong id="r-track" style="background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;"></strong></div>
-      <div class="cta-audio-sub">Hypnosis + binaural beats + subliminals, layered into music.<br>Theta state. Every night. While you sleep.</div>
+      <div class="cta-audio-head">Ready to install it while you sleep?</div>
+      <div class="cta-audio-sub">Hypnosis + binaural beats + subliminals, layered into music.<br>Theta state. Every night. Your subconscious does the work.</div>
       <a class="btn-audio" href="/">Explore Self Hypnosis Goddess</a>
     </div>
+
   </div>
 </div>
 
 <script>
-var state = { name:"", email:"", area:null, level:null, answers:{} };
-var currentQ = 0; // 0=email, 1-8=questions, 9=result
-var TOTAL_Q = 8;
+var state = { name:"", email:"", area:null, level:null };
 
 var LEVELS = [
   { n:700, e:"Enlightenment", d:"I am life itself. There is no separation." },
@@ -468,6 +468,13 @@ var LEVELS = [
   { n: 20, e:"Shame",         d:"Something is wrong with me at my core." },
 ];
 
+var AREA_TITLES = {
+  money:    "In the area of money, I currently feel...",
+  love:     "In love and relationships, I currently feel...",
+  body:     "About my body and how I show up, I'm at...",
+  identity: "About who I am and who I'm becoming, I'm at...",
+};
+
 var Q8_OPTS = {
   money: [
     "Money flows to me easily. I am the woman abundance finds.",
@@ -477,12 +484,12 @@ var Q8_OPTS = {
   ],
   love: [
     "I am chosen — freely, fully, without conditions.",
-    "Being loved for who I am is available to me. It always was.",
+    "Being loved for who I am is available to me.",
     "I don't have to perform to keep love. I just have to be here.",
     "The right person sees me and stays. That's just how it goes."
   ],
   body: [
-    "Gorgeous is my default state — not something I'm working toward.",
+    "Gorgeous is my default state. Not something I'm working toward.",
     "I am allowed to feel beautiful right now, in this body.",
     "My body is already the body I've been waiting to have.",
     "I show up fully now. The condition is already met."
@@ -495,103 +502,87 @@ var Q8_OPTS = {
   ]
 };
 
-var AREA_TITLES = {
-  money:    "In the area of money, I currently feel...",
-  love:     "In love and relationships, I currently feel...",
-  body:     "About my body and how I'm in it, I'm at...",
-  identity: "About who I am and who I'm becoming, I'm at...",
-};
-
 var RESULTS = {
   money: {
-    block:"The RichGirl Block", arch:"The Woman Who Braces",
-    target:310, target_label:"Willingness",
-    freq_note:"Your nervous system treats money like a threat about to be taken. The install moves you to Willingness — where receiving becomes automatic and abundance is allowed to stay.",
+    block:"You are not blocked from money. You are blocked from believing it's safe to stay.",
+    freq_note:"Your nervous system is running a protection program — scanning for the catch, waiting for good things to leave. This isn't a money problem. It's a safety problem. The install moves you to a frequency where receiving becomes automatic and abundance is allowed to land without being braced against.",
     patterns:[
       "Good news arrives and your first move is calculating what could go wrong",
-      "You work harder than anyone in the room and still feel like you're behind",
-      "Spending on yourself feels unsafe, even when you have the money",
+      "You work harder than anyone around you and still feel like you're behind",
+      "Spending on yourself feels like a risk, even when you have it",
       "You've talked yourself out of opportunities because you weren't 'ready yet'"
     ],
-    old:"\"Good things don't last for people like me. Money is temporary. I have to earn every penny twice. Abundance is for other women.\"",
+    old:"\"Good things don't last for people like me. I have to earn it twice over. Abundance is something other women get to keep.\"",
     new:"I am the woman money finds. Of course I am.",
     days21:[
-      "The panic response when something good arrives gets quieter, then disappears",
-      "You stop calculating the catch. You just receive.",
-      "Opportunities feel like they're for you — not someone else",
-      "Money decisions become lighter. The scarcity story loses its grip."
+      "The bracing response when something good arrives softens, then disappears",
+      "You stop calculating the catch. You let it be simple.",
+      "Opportunities start to feel like they're for you — not someone else",
+      "The scarcity story starts losing its grip. You start expecting good things to stay."
     ],
-    track:"Money Maxxing",
-    why:"Willpower and budgets don't touch the fear response. Hypnosis does. The Money Maxxing tracks work in theta — the state where your subconscious is actually rewritable — installing the assumption that abundance is safe to hold."
+    why:"Willpower and budgets don't reach the nervous system's fear response. Hypnosis does. The theta state — right before sleep — is the one window where your subconscious actually rewrites. That's where the work happens."
   },
   love: {
-    block:"The Earning Loop", arch:"The Woman Who Performs",
-    target:350, target_label:"Acceptance",
-    freq_note:"A quiet, bone-deep belief that being chosen freely isn't available to you. The install moves you to Acceptance — where love lands without a test and being chosen stops feeling like a setup.",
+    block:"You are not unlovable. You are running a belief that being chosen freely isn't available to you.",
+    freq_note:"There's a quiet assumption operating beneath your relationships: that love has to be earned through what you do, not who you are. So you give more than you take, you pull back before they can leave, you wait for the condition to reveal itself. The install moves you to a frequency where being chosen stops feeling like a test.",
     patterns:[
-      "You give more than you receive and call it caring — but it's really insurance",
-      "When someone loves you freely, you search for the condition you haven't found yet",
-      "You've pulled back first, before they could leave",
-      "Being 'too much' or 'not enough' are thoughts you know intimately"
+      "You give more than you receive — and call it love, but it's really insurance",
+      "When someone cares for you freely, you look for the condition you haven't found yet",
+      "You've pre-empted rejection by pulling back first",
+      "'Too much' or 'not enough' — one of those thoughts knows your name"
     ],
-    old:"\"I have to earn love through what I do. Being chosen freely — just for existing — feels like a setup. Real love doesn't just arrive. You have to make it stay.\"",
+    old:"\"I have to earn it. Being chosen freely — just for existing — doesn't feel available to me. Real love doesn't just arrive. You have to make it stay.\"",
     new:"He chooses me. Every time. Obviously.",
     days21:[
       "You stop performing and notice nothing falls apart",
       "Someone chooses you and you let it be simple",
-      "The urge to pull back, test, or pre-empt rejection gets quieter",
-      "You start receiving love the way you always gave it — without conditions"
+      "The reflex to pull back, test, or pre-empt rejection gets quieter",
+      "You start receiving the way you always gave — without running the math on it"
     ],
-    track:"Love Maxxing",
-    why:"Performing for love is a subconscious survival strategy, not a personality trait. It runs beneath conscious choice. The Love Maxxing tracks install the assumption at the level where it actually runs — so being chosen stops feeling like a trap."
+    why:"Performing for love is a subconscious survival strategy. It runs faster than conscious choice. Theta-state hypnosis installs the new assumption at the level where that strategy actually lives — so being chosen stops feeling like a trap."
   },
   body: {
-    block:"The Conditional Beauty Block", arch:"The Woman Who Waits",
-    target:400, target_label:"Reason",
-    freq_note:"A persistent condition running beneath everything — 'once I fix X, I'll feel Y.' The install moves you to Reason, where you stop needing a condition to feel gorgeous. The permission becomes unconditional.",
+    block:"You are not waiting to become beautiful. You are waiting for permission you already have.",
+    freq_note:"There's a condition running beneath everything: once X is fixed, then you're allowed to feel gorgeous. The install interrupts that loop — not by changing the body, but by removing the condition. You stop needing to earn the feeling. The permission becomes unconditional.",
     patterns:[
-      "There's always one more thing to fix before you're allowed to fully show up",
-      "Photos, mirrors, or getting ready carry a verdict you didn't ask for",
-      "You've postponed something — a photo, a trip, a night out — until you 'get there'",
-      "You can see beauty in every woman in the room except, quietly, yourself"
+      "There's always one more thing to sort before you're allowed to fully show up",
+      "Mirrors, photos, or getting ready carry a verdict you didn't sign up for",
+      "You've postponed things — a photo, a night out, a trip — until you 'get there'",
+      "You can see beauty in every woman around you except, quietly, yourself"
     ],
-    old:"\"I have to fix myself before I'm allowed to feel beautiful. Gorgeous is something I'm working towards. Once I sort out [the thing], then I'll feel it.\"",
+    old:"\"I have to fix it first. Gorgeous is something I'm working toward. Once I sort [the thing], then I'll feel it. Then I'll be her.\"",
     new:"Gorgeous is my default. Always has been.",
     days21:[
-      "The condition starts dissolving — you stop needing to earn the feeling",
-      "Getting ready becomes neutral, then easy, then occasionally delicious",
-      "You stop postponing. You show up now, in this body.",
-      "The mirror carries less verdict than it used to. Just less."
+      "The condition starts dissolving — you stop needing to earn the feeling first",
+      "Getting ready becomes neutral, then easy, then occasionally enjoyable",
+      "You stop postponing. You show up now. In this body.",
+      "The mirror carries less verdict. Just less. That's everything."
     ],
-    track:"Body Maxxing",
-    why:"Waiting until you look right to feel confident is a loop that never closes — the standard moves. The Body Maxxing tracks install the felt sense of gorgeous in your body before the condition is met, until the condition stops being the requirement."
+    why:"Confidence isn't built by fixing the body — it's built by changing what the mind believes is allowed. The theta window is the only place that belief actually rewrites. That's where self hypnosis works."
   },
   identity: {
-    block:"The Not-Yet Trap", arch:"The Woman Who Defers",
-    target:500, target_label:"Love",
-    freq_note:"Operating from the gap between who you are and who you believe you need to become. The install moves you to Love — where the upgraded version isn't someone you're chasing. She's who you already are.",
+    block:"You are not behind. You are operating from a version of yourself that hasn't arrived yet.",
+    freq_note:"There's a gap between who you are and who you believe you need to become — and that gap is where your life is on hold. The install moves you to a frequency where the upgraded version isn't someone you're chasing. She's who you already are. The gap closes not because you changed — but because the story did.",
     patterns:[
-      "Your real life starts 'when' — when you lose the weight, make the money, become her",
-      "You consume content about the woman you want to be but don't quite act as her yet",
-      "Opportunities arrive and you hear 'not yet' before you hear anything else",
-      "You know exactly who she is — you just don't fully believe you've become her"
+      "Your real life starts 'when' — when you become her, make the money, get the body",
+      "You consume content about who you want to be but don't quite act as her yet",
+      "Opportunities arrive and 'not yet' lands before anything else does",
+      "You know exactly who she is. You just don't fully believe you've become her."
     ],
     old:"\"I have to become a different version of myself before I'm allowed to have the life I want. Who I am right now isn't quite the woman who gets that.\"",
     new:"I am the upgraded version. She is here now.",
     days21:[
-      "The gap between you and her starts closing — not because you changed, but because the story did",
+      "The gap starts closing — not because you changed, but because the story did",
       "You start acting as her in small moments — and it doesn't feel fake",
       "'Not yet' gets quieter. You start saying yes to things.",
       "The life you want starts moving toward you because you stopped moving the finish line"
     ],
-    track:"Identity Maxxing",
-    why:"The Not-Yet Trap is maintained by a subconscious story that runs 24 hours a day, faster than thought. The Identity Maxxing tracks interrupt that story at the level where it actually lives — in the body, in sleep, in the moments before thought forms."
+    why:"The Not-Yet story runs 24 hours a day, faster than thought. Hypnosis interrupts it at the level where it actually lives — in the body, in sleep, in the moments before thought forms. That's where she installs."
   }
 };
 
-function setProgress(q) {
-  var pct = q === 0 ? 0 : Math.round((q / TOTAL_Q) * 100);
-  document.getElementById('progress').style.width = pct + '%';
+function setProgress(n) {
+  document.getElementById('progress').style.width = Math.round((n/8)*100)+'%';
 }
 
 function show(id) {
@@ -610,7 +601,7 @@ function submitEmail(e) {
   var em = document.getElementById('inp-email').value.trim();
   var errEl = document.getElementById('email-err');
   if (!n) { errEl.textContent='Just need your first name.'; errEl.style.display='block'; return; }
-  if (!em || !isValidEmail(em)) { errEl.textContent="Please enter a real email address."; errEl.style.display='block'; return; }
+  if (!em || !isValidEmail(em)) { errEl.textContent="Please enter a real email address (e.g. you@gmail.com)."; errEl.style.display='block'; return; }
   errEl.style.display='none';
   state.name=n; state.email=em;
   saveLead(n, em, null, null);
@@ -618,29 +609,32 @@ function submitEmail(e) {
   show('s-q1');
 }
 
-function answer(key, val, el) {
-  state.answers[key] = val;
-  if (key === 'area') {
-    state.area = val;
-    document.getElementById('q2-title').textContent = AREA_TITLES[val];
-    buildHawkins();
-    buildQ8();
-    setProgress(2);
-    setTimeout(function(){ show('s-q2'); }, 200);
-  } else if (key === 'hawkins') {
+function goArea(area) {
+  state.area = area;
+  document.getElementById('q2-title').textContent = AREA_TITLES[area];
+  buildHawkins();
+  buildQ8(area);
+  setProgress(2);
+  setTimeout(function(){ show('s-q2'); }, 160);
+}
+
+var Q_FLOW = ['s-q3','s-q4','s-q5','s-q6','s-q7','s-q8'];
+var qIdx = 0;
+
+function goNext(key, val) {
+  if (key === 'hawkins') {
     state.level = val;
+    qIdx = 0;
     setProgress(3);
-    setTimeout(function(){ show('s-q3'); }, 200);
+    setTimeout(function(){ show(Q_FLOW[0]); }, 160);
+    return;
+  }
+  qIdx++;
+  setProgress(qIdx + 2);
+  if (qIdx < Q_FLOW.length) {
+    setTimeout(function(){ show(Q_FLOW[qIdx]); }, 160);
   } else {
-    var qMap = { body_response:'s-q3', story:'s-q4', duration:'s-q5', other_success:'s-q6', her:'s-q7', new_belief:'s-q8' };
-    var nextMap = { body_response:'s-q4', story:'s-q5', duration:'s-q6', other_success:'s-q7', her:'s-q8', new_belief:'result' };
-    var qNum = { body_response:3, story:4, duration:5, other_success:6, her:7, new_belief:8 };
-    setProgress(qNum[key] + 1);
-    if (nextMap[key] === 'result') {
-      setTimeout(showResult, 200);
-    } else {
-      setTimeout(function(){ show(nextMap[key]); }, 200);
-    }
+    setTimeout(showResult, 160);
   }
 }
 
@@ -658,31 +652,25 @@ function buildHawkins() {
     var row = document.createElement('div');
     row.className = 'h-row';
     row.setAttribute('data-n', lv.n);
-    row.innerHTML =
-      '<div class="h-num">'+lv.n+'</div>'+
-      '<div style="flex:1"><div class="h-emotion">'+lv.e+'</div>'+
-      '<div class="h-desc">'+lv.d+'</div></div>';
-    row.onclick = function(){ answer('hawkins', lv, row); };
+    row.innerHTML = '<div class="h-num">'+lv.n+'</div><div style="flex:1"><div class="h-emotion">'+lv.e+'</div><div class="h-desc">'+lv.d+'</div></div>';
+    row.onclick = function(){ goNext('hawkins', lv); };
     list.appendChild(row);
   });
 }
 
-function buildQ8() {
-  var opts = Q8_OPTS[state.area] || Q8_OPTS.money;
+function buildQ8(area) {
+  var opts = Q8_OPTS[area] || Q8_OPTS.money;
   document.getElementById('q8-opts').innerHTML = opts.map(function(o){
-    return '<div class="opt-card" onclick="answer(\'new_belief\',\''+o.replace(/'/g,"\\'")+ '\',this)"><div class="opt-text-only">'+o+'</div></div>';
+    return '<div class="stack-card" onclick="goNext(\'new_belief\',\'1\')"><div class="s-text">'+o+'</div></div>';
   }).join('');
 }
 
 function showResult() {
   var r = RESULTS[state.area];
   var lv = state.level;
-  document.getElementById('r-block').textContent = r.block;
-  document.getElementById('r-arch').textContent = r.arch;
   document.getElementById('r-fn').textContent = lv.n;
   document.getElementById('r-fl').textContent = lv.e;
-  document.getElementById('r-tn').textContent = r.target;
-  document.getElementById('r-tl').textContent = r.target_label;
+  document.getElementById('r-block').textContent = r.block;
   document.getElementById('r-fnote').textContent = r.freq_note;
   document.getElementById('r-patterns').innerHTML = r.patterns.map(function(p){
     return '<div class="pattern-item"><div class="pattern-dot"></div><div class="pattern-text">'+p+'</div></div>';
@@ -693,17 +681,16 @@ function showResult() {
     return '<div class="days-item"><div class="days-num">'+(i+1)+'</div><div class="days-text">'+d+'</div></div>';
   }).join('');
   document.getElementById('r-why').textContent = r.why;
-  document.getElementById('r-track').textContent = r.track;
   setProgress(8);
-  try { history.replaceState(null,'','?block='+state.area+'_'+lv.n); } catch(e){}
+  try{ history.replaceState(null,'','?block='+state.area+'_'+lv.n); }catch(e){}
   saveLead(state.name, state.email, state.area, lv.n);
   show('s-result');
 }
 
 function saveLead(name, email, area, level) {
   var body = JSON.stringify({ name:name, email:email, result_category:area||null, hawkins_level:level||null, source:'luckygirl' });
-  try { fetch('https://shg-quiz-worker.airpriestess.workers.dev',{ method:'POST', headers:{'Content-Type':'application/json'}, body:body }); } catch(e){}
-  try { fetch('https://hooks.zapier.com/hooks/catch/28404567/46bqizc/',{ method:'POST', headers:{'Content-Type':'application/json'}, body:body }); } catch(e){}
+  try{ fetch('https://shg-quiz-worker.airpriestess.workers.dev',{ method:'POST', headers:{'Content-Type':'application/json'}, body:body }); }catch(e){}
+  try{ fetch('https://hooks.zapier.com/hooks/catch/28404567/46bqizc/',{ method:'POST', headers:{'Content-Type':'application/json'}, body:body }); }catch(e){}
 }
 </script>
 </body>
