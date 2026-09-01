@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lucky Girl Block Quiz — Self Hypnosis Goddess</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --g: linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
@@ -22,7 +22,7 @@ nav {
   background: rgba(10,9,6,0.96); backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(253,240,232,0.07);
 }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
 .nav-logo span { font-weight: 300; font-size: 14px; letter-spacing: .02em; color: var(--cream); }
 .nav-join {
   padding: 8px 20px; border-radius: 40px; border: none; cursor: pointer;
@@ -34,13 +34,22 @@ nav {
 .screen { display: none; min-height: 100vh; }
 .screen.active { display: flex; flex-direction: column; }
 
-/* ── EMAIL ── */
+/* ── PROGRESS ── */
+.progress-bar {
+  position: fixed; top: 54px; left: 0; right: 0; z-index: 99;
+  height: 3px; background: rgba(253,240,232,0.08);
+}
+.progress-fill {
+  height: 100%; background: var(--g); transition: width .4s ease;
+}
+
+/* ── EMAIL SCREEN ── */
 #s-email {
   align-items: center; justify-content: center; text-align: center;
   padding: 100px 24px 80px; background: var(--g);
 }
 .email-eyebrow { font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 20px; }
-.email-h1 { font-size: clamp(40px,8vw,88px); font-weight: 400; letter-spacing: -.03em; line-height: .95; color: var(--ink); margin-bottom: 16px; }
+.email-h1 { font-size: clamp(38px,7vw,80px); font-weight: 400; letter-spacing: -.03em; line-height: .95; color: var(--ink); margin-bottom: 16px; }
 .email-sub { font-size: 17px; font-weight: 300; color: var(--ink); line-height: 1.65; margin-bottom: 44px; max-width: 380px; opacity: .85; }
 .form { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 420px; }
 .form input { background: rgba(10,9,6,0.12); border: 1px solid rgba(10,9,6,0.25); border-radius: 12px; padding: 18px 20px; font-family: 'Jost', sans-serif; font-size: 16px; color: var(--ink); outline: none; transition: border .2s; }
@@ -50,114 +59,84 @@ nav {
 .privacy { font-size: 12px; color: var(--ink); margin-top: 4px; opacity: .55; font-weight: 300; }
 .err { font-size: 13px; color: var(--ink); font-weight: 500; background: rgba(10,9,6,0.15); border-radius: 8px; padding: 10px 14px; }
 
-/* ── AREA ── */
-#s-area { align-items: center; justify-content: center; padding: 100px 24px 80px; text-align: center; }
-.section-eyebrow { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: rgba(253,240,232,0.4); font-weight: 600; margin-bottom: 20px; }
-.section-h2 { font-size: clamp(24px,5vw,42px); font-weight: 300; color: var(--cream); letter-spacing: -.02em; line-height: 1.2; margin-bottom: 12px; max-width: 520px; }
-.section-sub { font-size: 16px; font-weight: 300; color: var(--cream); opacity: .6; margin-bottom: 44px; max-width: 400px; line-height: 1.6; }
-.area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 520px; width: 100%; }
-.area-card { background: rgba(253,240,232,0.05); border: 1px solid rgba(253,240,232,0.12); border-radius: 20px; padding: 32px 20px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; transition: all .2s; -webkit-tap-highlight-color: transparent; }
-.area-card:hover, .area-card:active { background: var(--g); border-color: transparent; }
-.area-icon { font-size: 40px; line-height: 1; }
-.area-name { font-size: 18px; font-weight: 500; color: var(--cream); transition: color .2s; }
-.area-card:hover .area-name, .area-card:active .area-name { color: var(--ink); }
-.area-sub { font-size: 12px; font-weight: 300; color: var(--cream); opacity: .5; line-height: 1.4; transition: color .2s; }
-.area-card:hover .area-sub, .area-card:active .area-sub { color: var(--ink); opacity: .65; }
-
-/* ── HAWKINS ── */
-#s-hawkins { align-items: center; padding: 90px 24px 80px; }
-.hawkins-wrap { max-width: 560px; width: 100%; margin: 0 auto; }
-.hawkins-list { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
-
-/* Per-level glow colors */
-.h-row {
-  display: flex; align-items: center; gap: 14px; padding: 15px 20px; border-radius: 14px;
-  cursor: pointer; border: 1px solid rgba(253,240,232,0.09); background: rgba(253,240,232,0.04);
+/* ── QUESTION SCREENS ── */
+.q-screen { align-items: center; justify-content: center; padding: 90px 24px 80px; }
+.q-inner { max-width: 560px; width: 100%; }
+.q-step { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: rgba(253,240,232,0.35); font-weight: 600; margin-bottom: 20px; text-align: center; }
+.q-text { font-size: clamp(22px,4.5vw,38px); font-weight: 300; color: var(--cream); letter-spacing: -.02em; line-height: 1.25; margin-bottom: 10px; text-align: center; }
+.q-sub { font-size: 15px; font-weight: 300; color: var(--cream); opacity: .5; margin-bottom: 36px; text-align: center; line-height: 1.6; max-width: 420px; margin-left: auto; margin-right: auto; }
+.opt-grid { display: flex; flex-direction: column; gap: 10px; }
+.opt-grid.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.opt-card {
+  background: rgba(253,240,232,0.05); border: 1px solid rgba(253,240,232,0.1);
+  border-radius: 16px; padding: 22px 20px; cursor: pointer;
+  display: flex; align-items: center; gap: 14px;
   transition: all .18s; -webkit-tap-highlight-color: transparent;
   position: relative; overflow: hidden;
 }
-.h-row::before {
-  content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .18s; border-radius: 14px;
-}
-.h-row:hover::before, .h-row.selected::before { opacity: 1; }
-.h-row:hover { border-color: transparent; transform: translateX(3px); }
-.h-row.selected { border-color: transparent; transform: translateX(6px); }
+.opt-card::before { content:''; position:absolute; inset:0; background:var(--g); opacity:0; transition:opacity .18s; }
+.opt-card:hover::before, .opt-card:active::before { opacity:1; }
+.opt-card:hover, .opt-card:active { border-color: transparent; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.opt-icon { font-size: 28px; line-height: 1; position: relative; z-index: 1; flex-shrink: 0; }
+.opt-label { font-size: 16px; font-weight: 500; color: var(--cream); position: relative; z-index: 1; transition: color .18s; }
+.opt-card:hover .opt-label, .opt-card:active .opt-label { color: var(--ink); }
+.opt-sub { font-size: 12px; font-weight: 300; color: var(--cream); opacity: .5; position: relative; z-index: 1; transition: color .18s; line-height: 1.4; margin-top: 3px; }
+.opt-card:hover .opt-sub, .opt-card:active .opt-sub { color: var(--ink); opacity: .65; }
+.opt-text-only { font-size: 16px; font-weight: 300; color: var(--cream); position: relative; z-index: 1; transition: color .18s; line-height: 1.5; }
+.opt-card:hover .opt-text-only, .opt-card:active .opt-text-only { color: var(--ink); }
 
-/* Enlightenment */
-.h-row[data-n="700"]::before { background: linear-gradient(135deg,#fff8e1,#fffde7); box-shadow: 0 0 24px rgba(255,255,200,0.4); }
-.h-row[data-n="700"]:hover, .h-row[data-n="700"].selected { box-shadow: 0 0 20px rgba(255,255,200,0.35); }
-/* Peace */
-.h-row[data-n="600"]::before { background: linear-gradient(135deg,#f3e5f5,#e8eaf6); }
-.h-row[data-n="600"]:hover, .h-row[data-n="600"].selected { box-shadow: 0 0 20px rgba(200,180,255,0.35); }
-/* Joy */
-.h-row[data-n="540"]::before { background: linear-gradient(135deg,#F5E0A0,#E8B870); }
-.h-row[data-n="540"]:hover, .h-row[data-n="540"].selected { box-shadow: 0 0 20px rgba(232,184,112,0.45); }
-/* Love */
-.h-row[data-n="500"]::before { background: linear-gradient(135deg,#f8bbd0,#f48fb1); }
-.h-row[data-n="500"]:hover, .h-row[data-n="500"].selected { box-shadow: 0 0 20px rgba(244,143,177,0.4); }
-/* Reason */
-.h-row[data-n="400"]::before { background: linear-gradient(135deg,#e3f2fd,#90caf9); }
-.h-row[data-n="400"]:hover, .h-row[data-n="400"].selected { box-shadow: 0 0 20px rgba(144,202,249,0.35); }
-/* Acceptance */
-.h-row[data-n="350"]::before { background: linear-gradient(135deg,#BFA5D8,#9c72c8); }
-.h-row[data-n="350"]:hover, .h-row[data-n="350"].selected { box-shadow: 0 0 20px rgba(191,165,216,0.4); }
-/* Willingness */
-.h-row[data-n="310"]::before { background: linear-gradient(135deg,#2CB7A7,#167A6B); }
-.h-row[data-n="310"]:hover, .h-row[data-n="310"].selected { box-shadow: 0 0 20px rgba(44,183,167,0.4); }
-/* Neutrality */
-.h-row[data-n="250"]::before { background: linear-gradient(135deg,#b2dfdb,#80cbc4); }
-.h-row[data-n="250"]:hover, .h-row[data-n="250"].selected { box-shadow: 0 0 20px rgba(128,203,196,0.3); }
-/* Courage */
-.h-row[data-n="200"]::before { background: linear-gradient(135deg,#fff9c4,#fff176); }
-.h-row[data-n="200"]:hover, .h-row[data-n="200"].selected { box-shadow: 0 0 20px rgba(255,241,118,0.4); }
-/* Pride */
-.h-row[data-n="175"]::before { background: linear-gradient(135deg,#ffe0b2,#ffcc80); }
-.h-row[data-n="175"]:hover, .h-row[data-n="175"].selected { box-shadow: 0 0 20px rgba(255,204,128,0.35); }
-/* Anger */
-.h-row[data-n="150"]::before { background: linear-gradient(135deg,#ef9a9a,#e57373); }
-.h-row[data-n="150"]:hover, .h-row[data-n="150"].selected { box-shadow: 0 0 20px rgba(229,115,115,0.45); }
-/* Desire */
-.h-row[data-n="125"]::before { background: linear-gradient(135deg,#ff8a65,#ff7043); }
-.h-row[data-n="125"]:hover, .h-row[data-n="125"].selected { box-shadow: 0 0 20px rgba(255,112,67,0.4); }
-/* Fear */
-.h-row[data-n="100"]::before { background: linear-gradient(135deg,#b0bec5,#90a4ae); }
-.h-row[data-n="100"]:hover, .h-row[data-n="100"].selected { box-shadow: 0 0 20px rgba(144,164,174,0.3); }
-/* Grief */
-.h-row[data-n="75"]::before { background: linear-gradient(135deg,#9fa8da,#7986cb); }
-.h-row[data-n="75"]:hover, .h-row[data-n="75"].selected { box-shadow: 0 0 20px rgba(121,134,203,0.35); }
-/* Apathy */
-.h-row[data-n="50"]::before { background: linear-gradient(135deg,#616161,#424242); }
-.h-row[data-n="50"]:hover, .h-row[data-n="50"].selected { box-shadow: 0 0 20px rgba(97,97,97,0.4); }
-/* Shame */
-.h-row[data-n="20"]::before { background: linear-gradient(135deg,#37474f,#263238); }
-.h-row[data-n="20"]:hover, .h-row[data-n="20"].selected { box-shadow: 0 0 20px rgba(38,50,56,0.6); }
-
-.h-num {
-  font-size: 22px; font-weight: 600; min-width: 50px; text-align: right;
-  color: var(--cream); line-height: 1; font-variant-numeric: tabular-nums;
-  transition: color .18s; position: relative; z-index: 1;
+/* ── HAWKINS SCREEN ── */
+.hawkins-list { display: flex; flex-direction: column; gap: 5px; }
+.h-row {
+  display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px;
+  cursor: pointer; border: 1px solid rgba(253,240,232,0.09); background: rgba(253,240,232,0.04);
+  transition: all .15s; -webkit-tap-highlight-color: transparent;
+  position: relative; overflow: hidden;
 }
-.h-row.selected .h-num { color: var(--ink); }
-.h-emotion { font-size: 16px; font-weight: 500; color: var(--cream); transition: color .18s; position: relative; z-index: 1; }
-.h-row.selected .h-emotion { color: var(--ink); }
-.h-desc { font-size: 13px; font-weight: 300; color: var(--cream); opacity: .45; line-height: 1.4; flex: 1; transition: color .18s, opacity .18s; position: relative; z-index: 1; }
-.h-row.selected .h-desc { color: var(--ink); opacity: .7; }
-.h-row:hover .h-emotion, .h-row:hover .h-num { color: var(--ink); }
-.h-row:hover .h-desc { color: var(--ink); opacity: .65; }
-
-/* Lucky Girl threshold — prominent */
-.h-divider {
-  margin: 12px 0; position: relative; display: flex; align-items: center; justify-content: center;
-}
-.h-divider::before, .h-divider::after {
-  content: ''; flex: 1; height: 1px; background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7);
-}
-.h-divider-label {
-  font-size: 9px; letter-spacing: .28em; text-transform: uppercase; font-weight: 700;
-  color: var(--ink); white-space: nowrap; padding: 5px 14px; border-radius: 20px;
-  background: linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7);
-  margin: 0 12px;
-}
+.h-row::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity .15s; border-radius:14px; }
+.h-row:hover::before { opacity:1; }
+.h-row:hover { border-color:transparent; transform:translateX(4px); }
+.h-row[data-n="700"]::before { background:linear-gradient(135deg,#fff8e1,#fffde7); }
+.h-row[data-n="700"]:hover { box-shadow:0 0 18px rgba(255,255,200,0.35); }
+.h-row[data-n="600"]::before { background:linear-gradient(135deg,#f3e5f5,#e8eaf6); }
+.h-row[data-n="600"]:hover { box-shadow:0 0 18px rgba(200,180,255,0.3); }
+.h-row[data-n="540"]::before { background:linear-gradient(135deg,#F5E0A0,#E8B870); }
+.h-row[data-n="540"]:hover { box-shadow:0 0 18px rgba(232,184,112,0.4); }
+.h-row[data-n="500"]::before { background:linear-gradient(135deg,#f8bbd0,#f48fb1); }
+.h-row[data-n="500"]:hover { box-shadow:0 0 18px rgba(244,143,177,0.35); }
+.h-row[data-n="400"]::before { background:linear-gradient(135deg,#e3f2fd,#90caf9); }
+.h-row[data-n="400"]:hover { box-shadow:0 0 18px rgba(144,202,249,0.3); }
+.h-row[data-n="350"]::before { background:linear-gradient(135deg,#BFA5D8,#9c72c8); }
+.h-row[data-n="350"]:hover { box-shadow:0 0 18px rgba(191,165,216,0.35); }
+.h-row[data-n="310"]::before { background:linear-gradient(135deg,#2CB7A7,#167A6B); }
+.h-row[data-n="310"]:hover { box-shadow:0 0 18px rgba(44,183,167,0.35); }
+.h-row[data-n="250"]::before { background:linear-gradient(135deg,#b2dfdb,#80cbc4); }
+.h-row[data-n="250"]:hover { box-shadow:0 0 18px rgba(128,203,196,0.3); }
+.h-row[data-n="200"]::before { background:linear-gradient(135deg,#fff9c4,#fff176); }
+.h-row[data-n="200"]:hover { box-shadow:0 0 18px rgba(255,241,118,0.35); }
+.h-row[data-n="175"]::before { background:linear-gradient(135deg,#ffe0b2,#ffcc80); }
+.h-row[data-n="175"]:hover { box-shadow:0 0 18px rgba(255,204,128,0.3); }
+.h-row[data-n="150"]::before { background:linear-gradient(135deg,#ef9a9a,#e57373); }
+.h-row[data-n="150"]:hover { box-shadow:0 0 18px rgba(229,115,115,0.4); }
+.h-row[data-n="125"]::before { background:linear-gradient(135deg,#ff8a65,#ff7043); }
+.h-row[data-n="125"]:hover { box-shadow:0 0 18px rgba(255,112,67,0.35); }
+.h-row[data-n="100"]::before { background:linear-gradient(135deg,#b0bec5,#90a4ae); }
+.h-row[data-n="100"]:hover { box-shadow:0 0 18px rgba(144,164,174,0.25); }
+.h-row[data-n="75"]::before { background:linear-gradient(135deg,#9fa8da,#7986cb); }
+.h-row[data-n="75"]:hover { box-shadow:0 0 18px rgba(121,134,203,0.3); }
+.h-row[data-n="50"]::before { background:linear-gradient(135deg,#616161,#424242); }
+.h-row[data-n="50"]:hover { box-shadow:0 0 18px rgba(97,97,97,0.35); }
+.h-row[data-n="20"]::before { background:linear-gradient(135deg,#37474f,#263238); }
+.h-row[data-n="20"]:hover { box-shadow:0 0 18px rgba(38,50,56,0.5); }
+.h-num { font-size: 20px; font-weight: 600; min-width: 46px; text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; position: relative; z-index: 1; transition: color .15s; }
+.h-row:hover .h-num { color: var(--ink); }
+.h-emotion { font-size: 15px; font-weight: 500; color: var(--cream); position: relative; z-index: 1; transition: color .15s; }
+.h-row:hover .h-emotion { color: var(--ink); }
+.h-desc { font-size: 12px; font-weight: 300; color: var(--cream); opacity: .4; flex: 1; position: relative; z-index: 1; transition: color .15s, opacity .15s; line-height: 1.35; }
+.h-row:hover .h-desc { color: var(--ink); opacity: .6; }
+.h-divider { margin: 10px 0; display: flex; align-items: center; justify-content: center; }
+.h-divider::before, .h-divider::after { content:''; flex:1; height:1px; background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7); }
+.h-divider-label { font-size: 9px; letter-spacing:.26em; text-transform:uppercase; font-weight:700; color:var(--ink); white-space:nowrap; padding:5px 14px; border-radius:20px; background:linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7); margin:0 12px; }
 
 /* ── RESULT ── */
 #s-result { flex-direction: column; }
@@ -172,7 +151,6 @@ nav {
 .label-gold { color: #E8B870; }
 .label-dim { color: rgba(253,240,232,0.4); }
 .label-teal { color: #2CB7A7; }
-
 .freq-meter { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
 .freq-num { font-size: 44px; font-weight: 600; line-height: 1; }
 .freq-from { color: #E8B870; }
@@ -181,26 +159,20 @@ nav {
 .freq-bar { flex: 1; height: 3px; background: rgba(253,240,232,0.1); border-radius: 2px; overflow: hidden; }
 .freq-fill { height: 100%; background: var(--g); border-radius: 2px; }
 .freq-note { font-size: 15px; color: var(--cream); line-height: 1.75; font-weight: 300; opacity: .8; }
-
 .pattern-list { display: flex; flex-direction: column; gap: 14px; }
 .pattern-item { display: flex; gap: 12px; align-items: flex-start; }
 .pattern-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g); flex-shrink: 0; margin-top: 9px; }
 .pattern-text { font-size: 16px; color: var(--cream); line-height: 1.65; font-weight: 300; }
-
 .old-text { font-size: 18px; color: var(--cream); line-height: 1.8; font-weight: 300; opacity: .7; }
-
 .install-card { background: var(--g); border-radius: 20px; padding: 44px 28px; margin-bottom: 14px; text-align: center; }
 .install-label { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 20px; }
 .install-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,5.5vw,50px); color: var(--ink); font-weight: 400; line-height: 1.15; margin-bottom: 16px; }
 .install-note { font-size: 13px; color: var(--ink); opacity: .6; font-weight: 300; }
-
 .days-list { display: flex; flex-direction: column; gap: 14px; }
 .days-item { display: flex; gap: 14px; align-items: flex-start; }
 .days-num { font-size: 13px; color: #2CB7A7; font-weight: 600; flex-shrink: 0; margin-top: 2px; min-width: 18px; }
 .days-text { font-size: 16px; color: var(--cream); line-height: 1.65; font-weight: 300; }
-
 .why-text { font-size: 16px; color: var(--cream); line-height: 1.85; font-weight: 300; opacity: .85; }
-
 .cta-workbook { background: var(--g); border-radius: 20px; padding: 44px 28px; margin-bottom: 12px; text-align: center; }
 .cta-title { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 14px; }
 .cta-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,5vw,46px); color: var(--ink); font-weight: 400; line-height: 1.1; margin-bottom: 10px; }
@@ -216,10 +188,9 @@ nav {
 
 @media (max-width: 480px) {
   .h-desc { display: none; }
-  .h-num { min-width: 44px; font-size: 18px; }
+  .h-num { min-width: 40px; font-size: 17px; }
   .result-card { padding: 24px 20px; }
-  .area-grid { gap: 8px; }
-  .area-card { padding: 24px 16px; }
+  .opt-grid.two-col { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -233,56 +204,181 @@ nav {
   <button class="nav-join" onclick="location.href='/'">Join waitlist</button>
 </nav>
 
+<div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+
 <!-- ── EMAIL ── -->
 <div id="s-email" class="screen active">
   <div class="email-eyebrow">Free diagnostic</div>
   <h1 class="email-h1">What's blocking<br>your Lucky Girl era?</h1>
-  <p class="email-sub">Two questions. Your block — named, diagnosed, and replaced with the assumption that actually gets her there.</p>
+  <p class="email-sub">8 questions. Your exact block — named, diagnosed, and replaced with the assumption that actually gets her there.</p>
   <form class="form" onsubmit="submitEmail(event)">
     <input id="inp-name" type="text" placeholder="First name" autocomplete="given-name">
     <input id="inp-email" type="email" placeholder="Email address" autocomplete="email" inputmode="email">
     <div id="email-err" class="err" style="display:none;"></div>
-    <button type="submit" class="btn-go">Find my block →</button>
+    <button type="submit" class="btn-go">Start my diagnostic →</button>
     <p class="privacy">No spam. You'll join the SHG list and can unsubscribe any time.</p>
   </form>
 </div>
 
-<!-- ── AREA ── -->
-<div id="s-area" class="screen">
-  <div class="section-eyebrow" style="text-align:center;">Step 1 of 2</div>
-  <h2 class="section-h2" style="text-align:center;margin:0 auto 12px;">Which area is calling you right now?</h2>
-  <p class="section-sub" style="text-align:center;margin:0 auto 44px;">The one that keeps showing up. Tap it — you'll go straight to the scale.</p>
-  <div class="area-grid">
-    <div class="area-card" onclick="selectArea('money',this)">
-      <div class="area-icon">💸</div>
-      <div class="area-name">Money</div>
-      <div class="area-sub">Abundance, income, receiving</div>
-    </div>
-    <div class="area-card" onclick="selectArea('love',this)">
-      <div class="area-icon">💜</div>
-      <div class="area-name">Love</div>
-      <div class="area-sub">Relationships, being chosen</div>
-    </div>
-    <div class="area-card" onclick="selectArea('body',this)">
-      <div class="area-icon">🌸</div>
-      <div class="area-name">Body</div>
-      <div class="area-sub">Beauty, confidence, presence</div>
-    </div>
-    <div class="area-card" onclick="selectArea('identity',this)">
-      <div class="area-icon">👑</div>
-      <div class="area-name">Identity</div>
-      <div class="area-sub">Self-concept, worthiness</div>
+<!-- ── Q1: AREA ── -->
+<div id="s-q1" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 1 of 8</div>
+    <h2 class="q-text">Which area of your life feels most stuck right now?</h2>
+    <p class="q-sub">The one that keeps showing up. Pick the one that's loudest.</p>
+    <div class="opt-grid two-col">
+      <div class="opt-card" onclick="answer('area','money',this)">
+        <div class="opt-icon">💸</div>
+        <div><div class="opt-label">Money</div><div class="opt-sub">Abundance, income, receiving</div></div>
+      </div>
+      <div class="opt-card" onclick="answer('area','love',this)">
+        <div class="opt-icon">💜</div>
+        <div><div class="opt-label">Love</div><div class="opt-sub">Relationships, being chosen</div></div>
+      </div>
+      <div class="opt-card" onclick="answer('area','body',this)">
+        <div class="opt-icon">🌸</div>
+        <div><div class="opt-label">Body</div><div class="opt-sub">Beauty, confidence, presence</div></div>
+      </div>
+      <div class="opt-card" onclick="answer('area','identity',this)">
+        <div class="opt-icon">👑</div>
+        <div><div class="opt-label">Identity</div><div class="opt-sub">Self-concept, worthiness</div></div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ── HAWKINS ── -->
-<div id="s-hawkins" class="screen">
-  <div class="hawkins-wrap">
-    <div class="section-eyebrow" style="text-align:center;">Step 2 of 2</div>
-    <h2 class="section-h2" id="h-title" style="text-align:center;margin:0 auto 12px;"></h2>
-    <p class="section-sub" style="text-align:center;margin:0 auto 32px;">Tap the frequency that matches where you actually are — not where you want to be. Your result loads instantly.</p>
+<!-- ── Q2: HAWKINS ── -->
+<div id="s-q2" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 2 of 8</div>
+    <h2 class="q-text" id="q2-title"></h2>
+    <p class="q-sub">Tap the frequency that matches where you actually are — not where you want to be.</p>
     <div class="hawkins-list" id="hawkins-list"></div>
+  </div>
+</div>
+
+<!-- ── Q3: BODY SENSATION ── -->
+<div id="s-q3" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 3 of 8</div>
+    <h2 class="q-text">When you imagine actually having it — what's the first thing your body does?</h2>
+    <p class="q-sub">Your body tells the truth before your mind does.</p>
+    <div class="opt-grid">
+      <div class="opt-card" onclick="answer('body_response','tightens',this)">
+        <div class="opt-text-only">It tightens. Like bracing for the catch.</div>
+      </div>
+      <div class="opt-card" onclick="answer('body_response','excited_crash',this)">
+        <div class="opt-text-only">Gets excited — then immediately crashes back to reality.</div>
+      </div>
+      <div class="opt-card" onclick="answer('body_response','blank',this)">
+        <div class="opt-text-only">Goes blank. I can't even picture it fully.</div>
+      </div>
+      <div class="opt-card" onclick="answer('body_response','open',this)">
+        <div class="opt-text-only">Softens and opens. It feels possible — just not here yet.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Q4: LIMITING STORY ── -->
+<div id="s-q4" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 4 of 8</div>
+    <h2 class="q-text">The story you repeat most in your head sounds like...</h2>
+    <p class="q-sub">The one you'd be embarrassed to say out loud. Pick the closest.</p>
+    <div class="opt-grid">
+      <div class="opt-card" onclick="answer('story','not_for_me',this)">
+        <div class="opt-text-only">"That kind of thing doesn't happen for people like me."</div>
+      </div>
+      <div class="opt-card" onclick="answer('story','have_to_earn',this)">
+        <div class="opt-text-only">"I have to work twice as hard to get half as much."</div>
+      </div>
+      <div class="opt-card" onclick="answer('story','not_ready',this)">
+        <div class="opt-text-only">"I'll have it once I'm ready / fixed / further along."</div>
+      </div>
+      <div class="opt-card" onclick="answer('story','too_much',this)">
+        <div class="opt-text-only">"I'm too much / not enough. Either way, it's me."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Q5: HOW LONG ── -->
+<div id="s-q5" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 5 of 8</div>
+    <h2 class="q-text">How long has this felt stuck?</h2>
+    <p class="q-sub">Be honest. There's no wrong answer here.</p>
+    <div class="opt-grid">
+      <div class="opt-card" onclick="answer('duration','months',this)">
+        <div class="opt-text-only">A few months. It's newer.</div>
+      </div>
+      <div class="opt-card" onclick="answer('duration','years',this)">
+        <div class="opt-text-only">One to three years. I keep circling back.</div>
+      </div>
+      <div class="opt-card" onclick="answer('duration','forever',this)">
+        <div class="opt-text-only">As long as I can remember. It's just always been there.</div>
+      </div>
+      <div class="opt-card" onclick="answer('duration','waves',this)">
+        <div class="opt-text-only">It comes and goes. Sometimes I think I've cracked it, then it's back.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Q6: SOMEONE ELSE GETS IT ── -->
+<div id="s-q6" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 6 of 8</div>
+    <h2 class="q-text">When someone else gets what you want — what actually happens inside you?</h2>
+    <p class="q-sub">Not what you perform. What actually moves in you.</p>
+    <div class="opt-grid">
+      <div class="opt-card" onclick="answer('other_success','inspired',this)">
+        <div class="opt-text-only">Genuinely inspired. If she can, I can.</div>
+      </div>
+      <div class="opt-card" onclick="answer('other_success','triggered',this)">
+        <div class="opt-text-only">Triggered. Followed quickly by guilt for being triggered.</div>
+      </div>
+      <div class="opt-card" onclick="answer('other_success','numb',this)">
+        <div class="opt-text-only">Numb. I scroll past and feel nothing, which feels worse.</div>
+      </div>
+      <div class="opt-card" onclick="answer('other_success','both',this)">
+        <div class="opt-text-only">Inspired and triggered at the same time. Both. Always both.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Q7: HER ── -->
+<div id="s-q7" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 7 of 8</div>
+    <h2 class="q-text">The version of you who already has it — where does she live?</h2>
+    <p class="q-sub">How real does she feel to you right now?</p>
+    <div class="opt-grid">
+      <div class="opt-card" onclick="answer('her','real_close',this)">
+        <div class="opt-text-only">She feels real and close. I can almost touch her.</div>
+      </div>
+      <div class="opt-card" onclick="answer('her','far',this)">
+        <div class="opt-text-only">She's far. Like I'm watching her from the other side of a window.</div>
+      </div>
+      <div class="opt-card" onclick="answer('her','fake',this)">
+        <div class="opt-text-only">She feels fake when I try to act as her. Like I'm pretending.</div>
+      </div>
+      <div class="opt-card" onclick="answer('her','cant_see',this)">
+        <div class="opt-text-only">I can't picture her. That version of me doesn't feel available.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Q8: NEW BELIEF ── -->
+<div id="s-q8" class="screen q-screen">
+  <div class="q-inner">
+    <div class="q-step">Question 8 of 8</div>
+    <h2 class="q-text">What do you most want to believe — but don't quite yet?</h2>
+    <p class="q-sub">The assumption that would change everything, if you could just let it be true.</p>
+    <div class="opt-grid" id="q8-opts"></div>
   </div>
 </div>
 
@@ -294,7 +390,6 @@ nav {
     <div class="result-arch" id="r-arch"></div>
   </div>
   <div class="result-body">
-
     <div class="result-card">
       <div class="card-label label-purple">Your Hawkins Frequency</div>
       <div class="freq-meter">
@@ -311,33 +406,27 @@ nav {
       </div>
       <p class="freq-note" id="r-fnote"></p>
     </div>
-
     <div class="result-card">
       <div class="card-label label-gold">How it's running your life right now</div>
       <div class="pattern-list" id="r-patterns"></div>
     </div>
-
     <div class="result-card">
       <div class="card-label label-dim">The assumption beneath all of it</div>
       <div class="old-text" id="r-old"></div>
     </div>
-
     <div class="install-card">
       <div class="install-label">The install — your new assumption</div>
       <div class="install-quote" id="r-new"></div>
       <div class="install-note">Say this out loud right before sleep. Theta window. Every night. 21 nights.</div>
     </div>
-
     <div class="result-card">
       <div class="card-label label-teal">What changes in 21 days</div>
       <div class="days-list" id="r-days"></div>
     </div>
-
     <div class="result-card" style="margin-bottom:36px;">
       <div class="card-label label-dim">Why hypnosis works where willpower doesn't</div>
       <p class="why-text" id="r-why"></p>
     </div>
-
     <div class="cta-workbook">
       <div class="cta-title">The next step</div>
       <div class="cta-name">Lucky Girl Maxxing</div>
@@ -346,20 +435,19 @@ nav {
       <div class="cta-desc">The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.</div>
       <a class="btn-wb" href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f" target="_blank">Get the workbook — $29</a>
     </div>
-
     <div class="cta-audio">
       <div class="cta-audio-head">Your recommended track: <strong id="r-track" style="background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;"></strong></div>
       <div class="cta-audio-sub">Hypnosis + binaural beats + subliminals, layered into music.<br>Theta state. Every night. While you sleep.</div>
       <a class="btn-audio" href="/">Explore Self Hypnosis Goddess</a>
     </div>
-
   </div>
 </div>
 
 <script>
-var state = { name:"", email:"", area:null, level:null };
+var state = { name:"", email:"", area:null, level:null, answers:{} };
+var currentQ = 0; // 0=email, 1-8=questions, 9=result
+var TOTAL_Q = 8;
 
-// Full Hawkins Scale of Consciousness
 var LEVELS = [
   { n:700, e:"Enlightenment", d:"I am life itself. There is no separation." },
   { n:600, e:"Peace",         d:"Everything is perfect exactly as it is." },
@@ -379,6 +467,33 @@ var LEVELS = [
   { n: 50, e:"Apathy",        d:"It doesn't even feel worth trying." },
   { n: 20, e:"Shame",         d:"Something is wrong with me at my core." },
 ];
+
+var Q8_OPTS = {
+  money: [
+    "Money flows to me easily. I am the woman abundance finds.",
+    "Receiving is safe. Good things staying is safe.",
+    "I don't have to earn it twice. I am already enough.",
+    "My financial reality is catching up to who I already am."
+  ],
+  love: [
+    "I am chosen — freely, fully, without conditions.",
+    "Being loved for who I am is available to me. It always was.",
+    "I don't have to perform to keep love. I just have to be here.",
+    "The right person sees me and stays. That's just how it goes."
+  ],
+  body: [
+    "Gorgeous is my default state — not something I'm working toward.",
+    "I am allowed to feel beautiful right now, in this body.",
+    "My body is already the body I've been waiting to have.",
+    "I show up fully now. The condition is already met."
+  ],
+  identity: [
+    "I am the upgraded version. She is here now.",
+    "I don't have to become her. I already am her.",
+    "The life I want is available to me as I am today.",
+    "She doesn't start 'when.' She starts now. She is me."
+  ]
+};
 
 var AREA_TITLES = {
   money:    "In the area of money, I currently feel...",
@@ -474,15 +589,19 @@ var RESULTS = {
   }
 };
 
+function setProgress(q) {
+  var pct = q === 0 ? 0 : Math.round((q / TOTAL_Q) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+}
+
 function show(id) {
   document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
 
-function isValidEmail(email) {
-  // Must have local part, @, domain with dot, proper TLD
-  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email.trim());
+function isValidEmail(em) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(em.trim());
 }
 
 function submitEmail(e) {
@@ -494,44 +613,65 @@ function submitEmail(e) {
   if (!em || !isValidEmail(em)) { errEl.textContent="Please enter a real email address."; errEl.style.display='block'; return; }
   errEl.style.display='none';
   state.name=n; state.email=em;
-  saveLead(n,em,null,null);
-  show('s-area');
+  saveLead(n, em, null, null);
+  setProgress(1);
+  show('s-q1');
 }
 
-function selectArea(key, el) {
-  state.area=key;
-  document.getElementById('h-title').textContent = AREA_TITLES[key];
-  buildHawkins();
-  show('s-hawkins');
+function answer(key, val, el) {
+  state.answers[key] = val;
+  if (key === 'area') {
+    state.area = val;
+    document.getElementById('q2-title').textContent = AREA_TITLES[val];
+    buildHawkins();
+    buildQ8();
+    setProgress(2);
+    setTimeout(function(){ show('s-q2'); }, 200);
+  } else if (key === 'hawkins') {
+    state.level = val;
+    setProgress(3);
+    setTimeout(function(){ show('s-q3'); }, 200);
+  } else {
+    var qMap = { body_response:'s-q3', story:'s-q4', duration:'s-q5', other_success:'s-q6', her:'s-q7', new_belief:'s-q8' };
+    var nextMap = { body_response:'s-q4', story:'s-q5', duration:'s-q6', other_success:'s-q7', her:'s-q8', new_belief:'result' };
+    var qNum = { body_response:3, story:4, duration:5, other_success:6, her:7, new_belief:8 };
+    setProgress(qNum[key] + 1);
+    if (nextMap[key] === 'result') {
+      setTimeout(showResult, 200);
+    } else {
+      setTimeout(function(){ show(nextMap[key]); }, 200);
+    }
+  }
 }
 
 function buildHawkins() {
   var list = document.getElementById('hawkins-list');
-  list.innerHTML='';
+  list.innerHTML = '';
   LEVELS.forEach(function(lv){
     if (lv === 'divider') {
       var d = document.createElement('div');
-      d.className='h-divider';
-      d.innerHTML='<span class="h-divider-label">✦ Lucky Girl Threshold ✦</span>';
+      d.className = 'h-divider';
+      d.innerHTML = '<span class="h-divider-label">✦ Lucky Girl Threshold ✦</span>';
       list.appendChild(d);
       return;
     }
     var row = document.createElement('div');
-    row.className='h-row';
+    row.className = 'h-row';
     row.setAttribute('data-n', lv.n);
     row.innerHTML =
-      '<div><div class="h-num">'+lv.n+'</div></div>'+
+      '<div class="h-num">'+lv.n+'</div>'+
       '<div style="flex:1"><div class="h-emotion">'+lv.e+'</div>'+
       '<div class="h-desc">'+lv.d+'</div></div>';
-    row.onclick = function(){
-      document.querySelectorAll('.h-row').forEach(function(r){ r.classList.remove('selected'); });
-      row.classList.add('selected');
-      state.level=lv;
-      // Auto-advance after brief moment so user sees the selection highlight
-      setTimeout(showResult, 320);
-    };
+    row.onclick = function(){ answer('hawkins', lv, row); };
     list.appendChild(row);
   });
+}
+
+function buildQ8() {
+  var opts = Q8_OPTS[state.area] || Q8_OPTS.money;
+  document.getElementById('q8-opts').innerHTML = opts.map(function(o){
+    return '<div class="opt-card" onclick="answer(\'new_belief\',\''+o.replace(/'/g,"\\'")+ '\',this)"><div class="opt-text-only">'+o+'</div></div>';
+  }).join('');
 }
 
 function showResult() {
@@ -554,6 +694,7 @@ function showResult() {
   }).join('');
   document.getElementById('r-why').textContent = r.why;
   document.getElementById('r-track').textContent = r.track;
+  setProgress(8);
   try { history.replaceState(null,'','?block='+state.area+'_'+lv.n); } catch(e){}
   saveLead(state.name, state.email, state.area, lv.n);
   show('s-result');
