@@ -61,31 +61,103 @@ const QUESTIONS = [
 const RESULTS = {
   money: {
     block: "The RichGirl Block",
-    old: "Good things don't last for people like me. Money is temporary. I have to work hard for every penny. Abundance is for other people.",
+    archetype: "The Woman Who Braces",
+    freq_from: 75,
+    freq_label_from: "Fear",
+    freq_to: 310,
+    freq_label_to: "Willingness",
+    freq_note: "You're operating from Fear around abundance — your nervous system treats money like a threat that's about to be taken. The install moves you to Willingness, where receiving becomes automatic.",
+    patterns: [
+      "Good news arrives and your first move is calculating what could go wrong",
+      "You work harder than anyone in the room and still feel like you're behind",
+      "Spending on yourself feels unsafe, even when you have the money",
+      "You've talked yourself out of opportunities because you weren't 'ready yet'"
+    ],
+    old: "Good things don't last for people like me. Money is temporary. I have to earn every penny twice. Abundance is for other women.",
     new: "I am the woman money finds. Of course I am.",
+    days21: [
+      "The panic response when something good arrives — quieter, then gone",
+      "You stop calculating the catch. You just receive.",
+      "Opportunities start feeling like they're for you, not other people",
+      "Money decisions become lighter. The scarcity narrative loses its grip."
+    ],
     track: "Money Maxxing",
-    why: "Your subconscious is wired to reject abundance before it can leave you. The RichGirl tracks rewire the panic response — the moment money arrives, your nervous system learns to hold it."
+    why: "Willpower and budgets don't touch the fear response. Hypnosis does. The Money Maxxing tracks work in theta — the state where your subconscious is actually rewritable — installing the assumption that abundance is safe to hold."
   },
   love: {
     block: "The Earning Loop",
-    old: "I have to earn love through what I do. I'm lovable when I'm useful. Being chosen freely — just for being me — feels too good to be true.",
+    archetype: "The Woman Who Performs",
+    freq_from: 100,
+    freq_label_from: "Grief",
+    freq_to: 350,
+    freq_label_to: "Acceptance",
+    freq_note: "You're operating from Grief around love — a quiet, bone-deep belief that being chosen freely isn't available to you. The install moves you to Acceptance, where love lands without a test.",
+    patterns: [
+      "You give more than you receive and call it caring — but it's really insurance",
+      "When someone loves you freely, you search for the condition you haven't found yet",
+      "You've pulled back first, before they could leave",
+      "Being 'too much' or 'not enough' are thoughts you know very well"
+    ],
+    old: "I have to earn love through what I do. Being chosen freely — just for existing — feels like a setup.",
     new: "He chooses me. Every time. Obviously.",
+    days21: [
+      "You stop performing and notice nothing falls apart",
+      "Someone chooses you and you let it be simple",
+      "The urge to pull back, test, or pre-empt rejection gets quieter",
+      "You start receiving love the way you always gave it — without conditions"
+    ],
     track: "Love Maxxing",
-    why: "You've built a nervous system that expects love to be conditional. The Love Maxxing tracks install the assumption that you are chosen, fully, without earning it — until it stops feeling impossible."
+    why: "Performing for love is a subconscious survival strategy, not a personality trait. It runs beneath conscious choice. The Love Maxxing tracks install the assumption at the level where it actually runs — so being chosen stops feeling like a trap."
   },
   body: {
     block: "The Conditional Beauty Block",
-    old: "I have to fix myself before I'm allowed to feel beautiful. Gorgeous is something I'm working towards, not something I already am.",
+    archetype: "The Woman Who Waits",
+    freq_from: 125,
+    freq_label_from: "Neutrality",
+    freq_to: 400,
+    freq_label_to: "Reason",
+    freq_note: "You're operating from Neutrality around your body — not hatred, but a persistent condition. 'Once I fix X, I'll feel Y.' The install moves you to Reason, where you stop needing a condition to feel gorgeous.",
+    patterns: [
+      "There's always one more thing to fix before you feel allowed to fully show up",
+      "Photos, mirrors, or getting ready are events that carry a verdict",
+      "You've postponed something — a photo, a trip, a date — until you 'get there'",
+      "You can see beauty in every woman except, quietly, yourself"
+    ],
+    old: "I have to fix myself before I'm allowed to feel beautiful. Gorgeous is something I'm working towards.",
     new: "Gorgeous is my default. Always has been.",
+    days21: [
+      "The condition starts to dissolve — you stop needing to earn the feeling",
+      "Getting ready becomes neutral, then easy, then occasionally fun",
+      "You stop postponing. You show up now.",
+      "The verdict from the mirror carries less weight than it used to"
+    ],
     track: "Body Maxxing",
-    why: "You've been postponing confidence until some future version of you arrives. The Body Maxxing tracks dissolve the condition — you stop waiting and start occupying the body you already have."
+    why: "Waiting until you look right to feel confident is a loop that never closes — because the standard moves. The Body Maxxing tracks install the felt sense of gorgeous in your body before the condition is met, until the condition stops being the requirement."
   },
   identity: {
     block: "The Not-Yet Trap",
-    old: "I have to become a different version of myself before I'm allowed to have the life I want. The person I am now isn't quite the woman who gets that.",
+    archetype: "The Woman Who Defers",
+    freq_from: 150,
+    freq_label_from: "Anger",
+    freq_to: 500,
+    freq_label_to: "Love",
+    freq_note: "You're operating from Anger at the gap — between who you are and who you believe you need to become. The install moves you to Love, where the upgraded version isn't someone you're chasing. She's who you already are.",
+    patterns: [
+      "You describe your real life as starting 'when' — when you lose the weight, make the money, become her",
+      "You consume content about the woman you want to be but don't quite act as her yet",
+      "Opportunities arrive and you hear 'not yet' before you hear anything else",
+      "You know exactly who she is — you just don't believe you've become her"
+    ],
+    old: "I have to become a different version of myself before I'm allowed to have the life I want. Who I am now isn't quite the woman who gets that.",
     new: "I am the upgraded version. She is here now.",
+    days21: [
+      "The gap between you and her starts closing — not because you changed, but because the story did",
+      "You start acting as her in small moments — and it doesn't feel fake",
+      "'Not yet' gets quieter. You start saying yes to things.",
+      "The life you want starts moving toward you because you stopped moving the finish line"
+    ],
     track: "Identity Maxxing",
-    why: "You keep pushing your life to a future self who never quite arrives. The Identity Maxxing tracks collapse the gap — you stop being the woman waiting to become her and start being her."
+    why: "The Not-Yet Trap is maintained by a subconscious story that runs 24 hours a day, faster than thought. The Identity Maxxing tracks interrupt that story at the level where it actually lives — in the body, in sleep, in the moments before thought forms."
   }
 };
 
@@ -302,37 +374,86 @@ export default function LuckyGirl() {
       {/* ── RESULT ── */}
       {phase === "result" && result && (
         <div style={{ background: INK }}>
+
+          {/* Hero */}
           <div style={{ background: LG, padding: "72px 24px 56px", textAlign: "center" }}>
-            <div style={{ fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", color: INK, marginBottom: 18, fontWeight: 600 }}>Your Lucky Girl block</div>
-            <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(40px,8vw,76px)", lineHeight: 1.0, color: INK, letterSpacing: "-.02em", marginBottom: 0 }}>{result.block}</h2>
+            <div style={{ fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", color: INK, marginBottom: 12, fontWeight: 600 }}>Your Lucky Girl block</div>
+            <h2 style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400, fontSize: "clamp(38px,7vw,72px)", lineHeight: 1.0, color: INK, letterSpacing: "-.02em", marginBottom: 10 }}>{result.block}</h2>
+            <div style={{ fontSize: 15, color: INK, fontWeight: 300, opacity: 0.7 }}>{result.archetype}</div>
           </div>
 
-          <div style={{ maxWidth: 580, margin: "0 auto", padding: "48px 24px 80px" }}>
+          <div style={{ maxWidth: 600, margin: "0 auto", padding: "48px 24px 80px" }}>
 
-            <div style={{ background: "rgba(253,240,232,0.05)", border: "1px solid rgba(253,240,232,0.12)", borderRadius: 16, padding: "28px 28px", marginBottom: 14 }}>
-              <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#E8B870", marginBottom: 14, fontWeight: 600 }}>The assumption running your life</div>
-              <div style={{ fontSize: 18, color: CREAM, fontStyle: "italic", lineHeight: 1.85, fontWeight: 300, opacity: 0.75 }}>"{result.old}"</div>
+            {/* Hawkins Frequency */}
+            <div style={{ background: "rgba(253,240,232,0.05)", border: "1px solid rgba(253,240,232,0.12)", borderRadius: 20, padding: "32px 28px", marginBottom: 16 }}>
+              <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: "#BFA5D8", marginBottom: 24, fontWeight: 600 }}>Your Hawkins Frequency</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                <div style={{ textAlign: "center", minWidth: 64 }}>
+                  <div style={{ fontSize: 42, fontWeight: 600, color: "#E8B870", lineHeight: 1 }}>{result.freq_from}</div>
+                  <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(253,240,232,0.5)", marginTop: 6 }}>{result.freq_label_from}</div>
+                </div>
+                <div style={{ flex: 1, position: "relative", height: 3, background: "rgba(253,240,232,0.12)", borderRadius: 2 }}>
+                  <div style={{ position: "absolute", inset: 0, background: LG, borderRadius: 2 }}/>
+                  <div style={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)", fontSize: 14, color: CREAM }}>→</div>
+                </div>
+                <div style={{ textAlign: "center", minWidth: 64 }}>
+                  <div style={{ fontSize: 42, fontWeight: 600, color: "#2CB7A7", lineHeight: 1 }}>{result.freq_to}</div>
+                  <div style={{ fontSize: 10, letterSpacing: ".15em", textTransform: "uppercase", color: "rgba(253,240,232,0.5)", marginTop: 6 }}>{result.freq_label_to}</div>
+                </div>
+              </div>
+              <p style={{ fontSize: 15, color: CREAM, lineHeight: 1.75, fontWeight: 300, margin: 0, opacity: 0.8 }}>{result.freq_note}</p>
             </div>
 
-            <div style={{ borderRadius: 16, padding: "36px 28px", marginBottom: 14, textAlign: "center", background: LG }}>
-              <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: INK, marginBottom: 18, fontWeight: 600 }}>Your new assumption</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(28px,5.5vw,46px)", color: INK, fontWeight: 400, lineHeight: 1.2 }}>{result.new}</div>
+            {/* How it shows up */}
+            <div style={{ background: "rgba(253,240,232,0.05)", border: "1px solid rgba(253,240,232,0.12)", borderRadius: 20, padding: "32px 28px", marginBottom: 16 }}>
+              <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: "#E8B870", marginBottom: 20, fontWeight: 600 }}>How it's running your life right now</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {result.patterns.map((p, i) => (
+                  <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: LG, flexShrink: 0, marginTop: 8 }}/>
+                    <div style={{ fontSize: 16, color: CREAM, lineHeight: 1.7, fontWeight: 300 }}>{p}</div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div style={{ background: "rgba(253,240,232,0.05)", border: "1px solid rgba(253,240,232,0.12)", borderRadius: 16, padding: "28px 28px", marginBottom: 36 }}>
-              <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#2CB7A7", marginBottom: 14, fontWeight: 600 }}>Your 21-night ritual</div>
-              <div style={{ fontSize: 17, color: CREAM, lineHeight: 1.85, fontWeight: 300 }}>{RITUAL}</div>
+            {/* Old belief */}
+            <div style={{ background: "rgba(253,240,232,0.04)", border: "1px solid rgba(253,240,232,0.1)", borderRadius: 20, padding: "32px 28px", marginBottom: 16 }}>
+              <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: "rgba(253,240,232,0.4)", marginBottom: 16, fontWeight: 600 }}>The assumption running beneath all of it</div>
+              <div style={{ fontSize: 19, color: CREAM, fontStyle: "italic", lineHeight: 1.8, fontWeight: 300, opacity: 0.7 }}>"{result.old}"</div>
             </div>
 
-            <div style={{ textAlign: "center", marginBottom: 36 }}>
-              <div style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(253,240,232,0.45)", marginBottom: 16, fontWeight: 500 }}>Why hypnosis works where willpower doesn't</div>
-              <p style={{ fontSize: 17, color: CREAM, lineHeight: 1.85, fontWeight: 300, maxWidth: 480, margin: "0 auto" }}>{result.why}</p>
+            {/* New assumption */}
+            <div style={{ borderRadius: 20, padding: "44px 28px", marginBottom: 16, textAlign: "center", background: LG }}>
+              <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: INK, marginBottom: 20, fontWeight: 600 }}>The install — your new assumption</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5.5vw,52px)", color: INK, fontWeight: 400, lineHeight: 1.15, marginBottom: 20 }}>{result.new}</div>
+              <div style={{ fontSize: 13, color: INK, opacity: 0.6, fontWeight: 300 }}>Say this out loud right before sleep. Theta window. Every night. 21 nights.</div>
             </div>
 
-            <div style={{ background: LG, borderRadius: 20, padding: "40px 28px", marginBottom: 14, textAlign: "center" }}>
+            {/* What changes in 21 days */}
+            <div style={{ background: "rgba(253,240,232,0.05)", border: "1px solid rgba(253,240,232,0.12)", borderRadius: 20, padding: "32px 28px", marginBottom: 16 }}>
+              <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: "#2CB7A7", marginBottom: 20, fontWeight: 600 }}>What changes in 21 days</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {result.days21.map((d, i) => (
+                  <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                    <div style={{ fontSize: 13, color: "#2CB7A7", fontWeight: 600, flexShrink: 0, marginTop: 2 }}>{i + 1}</div>
+                    <div style={{ fontSize: 16, color: CREAM, lineHeight: 1.7, fontWeight: 300 }}>{d}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Why hypnosis */}
+            <div style={{ padding: "32px 0", marginBottom: 16, borderBottom: "1px solid rgba(253,240,232,0.1)" }}>
+              <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: "rgba(253,240,232,0.4)", marginBottom: 16, fontWeight: 600 }}>Why hypnosis works where willpower doesn't</div>
+              <p style={{ fontSize: 16, color: CREAM, lineHeight: 1.85, fontWeight: 300, margin: 0, opacity: 0.85 }}>{result.why}</p>
+            </div>
+
+            {/* Workbook CTA */}
+            <div style={{ background: LG, borderRadius: 20, padding: "44px 28px", marginBottom: 12, textAlign: "center" }}>
               <div style={{ fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase", color: INK, marginBottom: 14, fontWeight: 600 }}>The next step</div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(28px,5vw,46px)", color: INK, fontWeight: 400, lineHeight: 1.1, marginBottom: 10 }}>Lucky Girl Maxxing</div>
-              <div style={{ fontSize: 16, color: INK, lineHeight: 1.7, fontWeight: 300, marginBottom: 6 }}>21 days to become the woman good things happen to.</div>
+              <div style={{ fontSize: 15, color: INK, lineHeight: 1.7, fontWeight: 300, marginBottom: 6 }}>21 days to become the woman good things happen to.</div>
               <div style={{ fontSize: 22, color: INK, fontWeight: 600, marginBottom: 6 }}>$19 <span style={{ fontSize: 14, fontWeight: 300, textDecoration: "line-through", opacity: 0.5 }}>$49</span></div>
               <div style={{ fontSize: 14, color: INK, lineHeight: 1.7, fontWeight: 300, marginBottom: 28, maxWidth: 360, margin: "0 auto 28px" }}>
                 The workbook that turns your diagnosis into a daily identity practice. Assumption architecture. 21 days. Every room opens.
@@ -343,11 +464,10 @@ export default function LuckyGirl() {
               </a>
             </div>
 
-            <div style={{ border: "1px solid rgba(253,240,232,0.12)", borderRadius: 16, padding: "28px 28px", textAlign: "center" }}>
-              <div style={{ fontSize: 14, color: CREAM, lineHeight: 1.75, marginBottom: 18, fontWeight: 300 }}>
-                Want the audio that rewires this assumption while you sleep?<br/>
-                <span style={{ opacity: 0.6, fontSize: 13 }}>Hypnosis + binaural beats + subliminals, layered into music. Theta state. Every night.</span>
-              </div>
+            {/* Audio CTA */}
+            <div style={{ border: "1px solid rgba(253,240,232,0.12)", borderRadius: 16, padding: "32px 28px", textAlign: "center" }}>
+              <div style={{ fontSize: 16, color: CREAM, lineHeight: 1.75, marginBottom: 6, fontWeight: 400 }}>Your recommended track: <span style={{ background: LG, WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", fontWeight:600 }}>{result.track}</span></div>
+              <div style={{ fontSize: 13, color: CREAM, lineHeight: 1.75, marginBottom: 20, fontWeight: 300, opacity: 0.6 }}>Hypnosis + binaural beats + subliminals, layered into music. Theta state. Every night.</div>
               <a href="/" style={{ display: "inline-block", background: LG, borderRadius: 40, padding: "16px 36px", color: INK, fontFamily: "'Jost', sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: ".06em", textTransform: "uppercase", cursor: "pointer", textDecoration: "none" }}>
                 Explore Self Hypnosis Goddess
               </a>
