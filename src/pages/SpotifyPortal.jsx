@@ -1747,25 +1747,26 @@ function StatCarousel({ slides }) {
         className="shg-stat-scroll"
         onScroll={onScroll}
         style={{ display:"flex", overflowX:"auto", scrollSnapType:"x mandatory", gap:0,
-          borderRadius:14, overflow:"hidden" }}
+          borderRadius:20, overflow:"hidden" }}
       >
         {slides.map((s, i) => (
           <div key={i} style={{ minWidth:"100%", scrollSnapAlign:"start", flexShrink:0,
-            background:"rgba(255,255,255,0.28)", backdropFilter:"blur(10px)",
-            border:"1px solid rgba(255,255,255,0.5)", borderRadius:14,
-            padding:"20px 20px 16px", boxSizing:"border-box" }}>
-            <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:700, opacity:0.65, marginBottom:6 }}>{s.sub}</div>
-            <div style={{ fontSize:72, fontWeight:300, color:"#1a1008", lineHeight:1, letterSpacing:"-3px", marginBottom:4 }}>{s.value}</div>
-            <div style={{ fontSize:15, color:"#1a1008", fontWeight:600, opacity:0.75, textTransform:"uppercase", letterSpacing:"0.08em" }}>{s.label}</div>
+            background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
+            backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite",
+            padding:"28px 24px 24px", boxSizing:"border-box",
+            display:"flex", flexDirection:"column", justifyContent:"center", minHeight:160 }}>
+            <div style={{ fontSize:11, color:"#0a0906", letterSpacing:"0.22em", textTransform:"uppercase", fontWeight:700, opacity:0.6, marginBottom:8 }}>{s.sub}</div>
+            <div style={{ fontSize:80, fontWeight:300, color:"#0a0906", lineHeight:1, letterSpacing:"-4px", marginBottom:8 }}>{s.value}</div>
+            <div style={{ fontSize:14, color:"#0a0906", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", opacity:0.8 }}>{s.label}</div>
           </div>
         ))}
       </div>
       {/* Dot indicators */}
-      <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:10 }}>
+      <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:8 }}>
         {slides.map((_,i) => (
           <button key={i} onClick={()=>{ scrollTo(i); resetTimer(); }}
-            style={{ width: i===idx ? 20 : 7, height:7, borderRadius:4, border:"none", cursor:"pointer", padding:0,
-              background: i===idx ? "rgba(10,9,6,0.65)" : "rgba(10,9,6,0.22)", transition:"all 0.3s ease" }}/>
+            style={{ width: i===idx ? 22 : 7, height:7, borderRadius:4, border:"none", cursor:"pointer", padding:0,
+              background: i===idx ? "#0a0906" : "rgba(10,9,6,0.25)", transition:"all 0.3s ease" }}/>
         ))}
       </div>
     </div>
@@ -2005,14 +2006,31 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                   )}
                 </div>
               </div>
-              {/* 7-day signs bar chart */}
-              <div style={{ display:"flex", alignItems:"flex-end", gap:4, marginTop:14, height:36 }}>
-                {weeklyAct.map((n,i) => (
-                  <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:3 }}>
-                    <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background: n>0 ? "rgba(10,9,6,0.55)" : "rgba(10,9,6,0.15)", height: n>0 ? `${Math.max(18, Math.round((n/weekMax)*34))}px` : "6px", transition:"height 0.5s ease" }}/>
-                    <div style={{ fontSize:9, color:"#1a1008", opacity:0.6, fontWeight:600 }}>{dayLabels[i]}</div>
-                  </div>
-                ))}
+              {/* 7-day waveform — animated bars like the homepage */}
+              <style>{`
+                @keyframes shg-wave-0{0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.35)}}
+                @keyframes shg-wave-1{0%,100%{transform:scaleY(0.5)}50%{transform:scaleY(1)}}
+                @keyframes shg-wave-2{0%,100%{transform:scaleY(0.8)}40%{transform:scaleY(0.2)}80%{transform:scaleY(1)}}
+                @keyframes shg-wave-3{0%,100%{transform:scaleY(1)}30%{transform:scaleY(0.4)}70%{transform:scaleY(0.7)}}
+                @keyframes shg-wave-4{0%,100%{transform:scaleY(0.4)}50%{transform:scaleY(1)}}
+                @keyframes shg-wave-5{0%,100%{transform:scaleY(0.7)}45%{transform:scaleY(0.25)}85%{transform:scaleY(0.9)}}
+                @keyframes shg-wave-6{0%,100%{transform:scaleY(1)}55%{transform:scaleY(0.3)}}
+              `}</style>
+              <div style={{ display:"flex", alignItems:"flex-end", gap:3, marginTop:14, height:44 }}>
+                {weeklyAct.map((n,i) => {
+                  const baseH = n > 0 ? Math.max(20, Math.round((n/weekMax)*40)) : 8;
+                  const dur = [1.1,0.85,1.3,0.95,1.2,0.75,1.05][i];
+                  return (
+                    <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
+                      <div style={{ width:"100%", height:`${baseH}px`, borderRadius:3,
+                        background: n>0 ? "rgba(10,9,6,0.6)" : "rgba(10,9,6,0.12)",
+                        transformOrigin:"bottom",
+                        animation: n>0 ? `shg-wave-${i} ${dur}s ease-in-out infinite` : "none",
+                        transition:"height 0.5s ease" }}/>
+                      <div style={{ fontSize:9, color:"#0a0906", opacity:0.55, fontWeight:700 }}>{dayLabels[i]}</div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
