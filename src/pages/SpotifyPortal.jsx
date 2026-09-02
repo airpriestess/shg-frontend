@@ -2011,28 +2011,27 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               </div>
               {/* 7-day waveform — animated bars like the homepage */}
               <style>{`
-                @keyframes shg-bar-0{0%,100%{height:100%}25%{height:30%}75%{height:85%}}
-                @keyframes shg-bar-1{0%,100%{height:45%}35%{height:100%}70%{height:55%}}
-                @keyframes shg-bar-2{0%,100%{height:80%}20%{height:25%}60%{height:95%}}
-                @keyframes shg-bar-3{0%,100%{height:60%}40%{height:100%}80%{height:35%}}
-                @keyframes shg-bar-4{0%,100%{height:35%}30%{height:90%}65%{height:55%}}
-                @keyframes shg-bar-5{0%,100%{height:90%}45%{height:30%}80%{height:75%}}
-                @keyframes shg-bar-6{0%,100%{height:55%}25%{height:95%}60%{height:40%}}
+                @keyframes shg-bar-0{0%,100%{transform:scaleY(1)}25%{transform:scaleY(0.2)}75%{transform:scaleY(0.7)}}
+                @keyframes shg-bar-1{0%,100%{transform:scaleY(0.3)}35%{transform:scaleY(1)}70%{transform:scaleY(0.5)}}
+                @keyframes shg-bar-2{0%,100%{transform:scaleY(0.8)}20%{transform:scaleY(0.15)}60%{transform:scaleY(1)}}
+                @keyframes shg-bar-3{0%,100%{transform:scaleY(0.5)}40%{transform:scaleY(1)}80%{transform:scaleY(0.25)}}
+                @keyframes shg-bar-4{0%,100%{transform:scaleY(0.2)}30%{transform:scaleY(0.9)}65%{transform:scaleY(0.55)}}
+                @keyframes shg-bar-5{0%,100%{transform:scaleY(1)}45%{transform:scaleY(0.2)}80%{transform:scaleY(0.75)}}
+                @keyframes shg-bar-6{0%,100%{transform:scaleY(0.6)}25%{transform:scaleY(1)}60%{transform:scaleY(0.3)}}
               `}</style>
               <div style={{ display:"flex", alignItems:"flex-end", gap:4, marginTop:16, height:52 }}>
                 {weeklyAct.map((n,i) => {
-                  const maxH = n > 0 ? Math.max(28, Math.round((n/weekMax)*48)) : 10;
+                  const barH = n > 0 ? Math.max(28, Math.round((n/weekMax)*44)) : 10;
                   const dur = [0.9,0.7,1.1,0.8,1.0,0.65,0.85][i];
                   return (
-                    <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:5, height:"100%" }}>
-                      <div style={{ width:"100%", flex:1, display:"flex", alignItems:"flex-end" }}>
-                        <div style={{
-                          width:"100%", borderRadius:"4px 4px 0 0",
-                          background: n>0 ? "rgba(10,9,6,0.65)" : "rgba(10,9,6,0.1)",
-                          height: n>0 ? `${maxH}px` : "8px",
-                          animation: n>0 ? `shg-bar-${i} ${dur}s ease-in-out infinite` : "none",
-                        }}/>
-                      </div>
+                    <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:5 }}>
+                      <div style={{
+                        width:"100%", borderRadius:"4px 4px 0 0",
+                        background: n>0 ? "rgba(10,9,6,0.65)" : "rgba(10,9,6,0.1)",
+                        height:`${barH}px`,
+                        transformOrigin:"bottom center",
+                        animation: n>0 ? `shg-bar-${i} ${dur}s ease-in-out infinite` : "none",
+                      }}/>
                       <div style={{ fontSize:9, color:"#0a0906", opacity:0.55, fontWeight:700, lineHeight:1 }}>{dayLabels[i]}</div>
                     </div>
                   );
