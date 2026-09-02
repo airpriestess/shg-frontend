@@ -809,7 +809,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email} apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -1699,7 +1699,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
 }
 
 // ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail, apiUrl="https://shg-backend.reshmaoracle.com" }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -1710,6 +1710,44 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
   const [catCounts, setCatCounts] = useState({});
   const [reminderSent, setReminderSent] = useState(false);
   const [listenEvents, setListenEvents] = useState([]);
+
+  // ── REAL BACKEND ANALYTICS ──
+  const [analyticsData, setAnalyticsData] = useState(null);
+  const [weeklyInsight, setWeeklyInsight] = useState(null);
+
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${apiUrl}/analytics`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (!cancelled) setAnalyticsData(data);
+        }
+      } catch (e) { /* non-blocking */ }
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, token, apiUrl]);
+
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${apiUrl}/insight/weekly`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (!cancelled && data.insight) setWeeklyInsight(data.insight);
+        }
+      } catch (e) { /* non-blocking */ }
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, token, apiUrl]);
 
   const fetchRecommendation = async () => {
     if (isPreview || !userId || !token) return;
@@ -1862,9 +1900,11 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {(() => {
         const mTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
         const mDone  = isPreview ? 9  : manifested;
-        const mRate  = Math.round((mDone / mTotal) * 100);
-        const streak = isPreview ? 21 : (streakDays.filter(d=>d.listened).length || 0);
-        const totalL = isPreview ? 127 : (realListens?.total || 0);
+        const backendRate = analyticsData?.manifestation_rate;
+        const mRate  = isPreview ? 64 : (backendRate != null ? Math.round(backendRate) : Math.round((mDone / mTotal) * 100));
+        const streak = isPreview ? 21 : (analyticsData?.streak_days ?? streakDays.filter(d=>d.listened).length ?? 0);
+        const totalL = isPreview ? 127 : (analyticsData?.total_listens ?? realListens?.total ?? 0);
+        const signsLogged = isPreview ? 23 : (analyticsData?.signs_logged ?? threads.reduce((a,t)=>a+(t.signs?.length||0),0));
         return (
           <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
             background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
@@ -1887,7 +1927,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               {[
                 [streak, "day streak"],
                 [totalL, "total listens"],
-                [isPreview ? 23 : threads.reduce((a,t)=>a+(t.signs?.length||0),0), "signs logged"],
+                [signsLogged, "signs logged"],
               ].map(([v,l],i) => (
                 <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.35)", borderRadius:12, padding:"10px 6px", border:"1px solid rgba(255,255,255,0.6)", backdropFilter:"blur(8px)" }}>
                   <div style={{ fontSize:22, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
@@ -1899,6 +1939,26 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           </div>
         );
       })()}
+
+      {/* WEEKLY AI INSIGHT */}
+      {(isPreview || weeklyInsight || analyticsData?.fastest_category) && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.35)` }}>
+          <div style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10 }}>This week's insight ✦</div>
+          {isPreview ? (
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>
+              "You've listened to Lovemaxxing 3× more than any other area this week. Two of your in-progress desires are in this category — momentum is building. Keep going."
+            </div>
+          ) : weeklyInsight ? (
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>"{weeklyInsight}"</div>
+          ) : analyticsData?.fastest_category ? (
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6 }}>
+              Your fastest-manifesting area is <span style={{ color:C.accentGold, fontWeight:500 }}>{analyticsData.fastest_category}</span>.
+              {analyticsData.avg_days_to_manifest != null && ` Average time to manifest: ${analyticsData.avg_days_to_manifest} days.`}
+              {analyticsData.momentum_score != null && ` Momentum score: ${analyticsData.momentum_score}.`}
+            </div>
+          ) : null}
+        </div>
+      )}
 
       {/* PATTERN RECOGNITION — what's actually moving the needle */}
       {(isPreview || (patterns && patterns.length > 0)) && (
