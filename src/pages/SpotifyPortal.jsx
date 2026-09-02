@@ -1698,6 +1698,44 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
   );
 }
 
+// ── STAT CAROUSEL — auto-rotating pill that cycles through stats ──
+function StatCarousel({ slides }) {
+  const [idx, setIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+  useEffect(() => {
+    if (slides.length <= 1) return;
+    const t = setInterval(() => {
+      setFading(true);
+      setTimeout(() => { setIdx(i => (i + 1) % slides.length); setFading(false); }, 200);
+    }, 3000);
+    return () => clearInterval(t);
+  }, [slides.length]);
+  const s = slides[idx] || slides[0];
+  return (
+    <div style={{ marginTop:2 }}>
+      <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+        {/* Dot indicators */}
+        <div style={{ display:"flex", gap:4, flexShrink:0 }}>
+          {slides.map((_,i) => (
+            <button key={i} onClick={()=>{ setFading(true); setTimeout(()=>{setIdx(i);setFading(false);},200); }}
+              style={{ width: i===idx?16:6, height:6, borderRadius:3, border:"none", cursor:"pointer", padding:0,
+                background: i===idx ? "rgba(10,9,6,0.7)" : "rgba(10,9,6,0.25)", transition:"all 0.3s ease" }}/>
+          ))}
+        </div>
+        {/* Stat pill */}
+        <div style={{ flex:1, background:"rgba(255,255,255,0.32)", borderRadius:10, padding:"9px 14px",
+          border:"1px solid rgba(255,255,255,0.55)", backdropFilter:"blur(8px)",
+          opacity: fading ? 0 : 1, transform: fading ? "translateY(4px)" : "none",
+          transition:"opacity 0.2s ease, transform 0.2s ease", display:"flex", alignItems:"baseline", gap:8 }}>
+          <span style={{ fontSize:20, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{s.value}</span>
+          <span style={{ fontSize:11, color:"#1a1008", opacity:0.7, fontWeight:600, textTransform:"uppercase", letterSpacing:"0.08em" }}>{s.label}</span>
+          {s.sub && <span style={{ fontSize:10, color:"#1a1008", opacity:0.5, marginLeft:"auto" }}>{s.sub}</span>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
 function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail, apiUrl="https://shg-backend.reshmaoracle.com" }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
@@ -1942,20 +1980,23 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               </div>
             </div>
 
-            {/* Secondary stats row */}
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:8 }}>
-              {[
-                [streak, "streak"],
-                [totalL, "listens"],
-                [`${mRate}%`, "manifested"],
-                [momentum, "momentum"],
-              ].map(([v,l],i) => (
-                <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.3)", borderRadius:10, padding:"8px 4px", border:"1px solid rgba(255,255,255,0.55)", backdropFilter:"blur(8px)" }}>
-                  <div style={{ fontSize:18, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
-                  <div style={{ fontSize:10, color:"#1a1008", marginTop:3, letterSpacing:"0.05em", fontWeight:600, opacity:0.75, textTransform:"uppercase" }}>{l}</div>
-                </div>
-              ))}
-            </div>
+            {/* Rotating stat carousel */}
+            {(() => {
+              const thisMonth = isPreview ? 3 : (analyticsData?.total_manifested ?? manifested);
+              const thisMonthTotal = isPreview ? 5 : Math.max(manifested + inProgress, 1);
+              const thisYear = isPreview ? 9 : (analyticsData?.total_manifested ?? manifested);
+              const thisYearTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
+              const fastCat = isPreview ? "Lovemaxxing" : (analyticsData?.fastest_category?.category ?? null);
+              const statSlides = [
+                { value: `${streak}`, label: streak === 1 ? "day streak" : "day streak", sub: "listening" },
+                { value: `${totalL}`, label: "total listens", sub: "all time" },
+                { value: `${thisMonth} of ${thisMonthTotal}`, label: "desires manifested", sub: "this month" },
+                { value: `${thisYear} of ${thisYearTotal}`, label: "desires manifested", sub: "this year" },
+                { value: `${momentum}`, label: "momentum score", sub: "this week" },
+                ...(fastCat ? [{ value: fastCat, label: "fastest area", sub: "to manifest" }] : []),
+              ];
+              return <StatCarousel slides={statSlides} />;
+            })()}
             {isPreview && <div style={{ fontSize:12, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500, opacity:0.8 }}>preview data — sign up to track your real signs</div>}
           </div>
         );
