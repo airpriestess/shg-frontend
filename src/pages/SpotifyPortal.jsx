@@ -1011,11 +1011,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
       {!isPreview && !fullP && (
-        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:C.bg4,borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
+        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:"#167A6B",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:isDark?"#E8B870":"#000" }}>{track.title}</div>
-            <div style={{ fontSize:13,color:C.mu }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
+            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#fdf0e8" }}>{track.title}</div>
+            <div style={{ fontSize:13,color:"rgba(253,240,232,0.65)" }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
           </div>
           <button onClick={e=>{e.stopPropagation();toggleLike(track.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
           <button onClick={e=>{e.stopPropagation();setPlay(p=>!p);}} style={{ width:36,height:36,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:0,flexShrink:0 }}>
