@@ -1037,11 +1037,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         >✦</button>
       )}
       {!fullP && (
-        <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#050505":"#F5E0A0",borderTop:`0.5px solid ${C.border}`,display:"flex",zIndex:60 }}>
+        <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#0a0906":"#ffffff",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.08)":"rgba(0,0,0,0.1)"}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
-              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#000000"):C.dim}/>
-              <span style={{ fontSize:11,fontWeight:400,color:tab===n.id?(isDark?"#E8B870":"#000000"):C.dim }}>{n.label}</span>
+              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#0a0906"):(isDark?"rgba(255,255,255,0.35)":"rgba(0,0,0,0.35)")}/>
+              <span style={{ fontSize:11,fontWeight:tab===n.id?600:400,color:tab===n.id?(isDark?"#E8B870":"#0a0906"):(isDark?"rgba(255,255,255,0.35)":"rgba(0,0,0,0.35)") }}>{n.label}</span>
             </button>
           ))}
         </div>
