@@ -1698,39 +1698,75 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
   );
 }
 
-// ── STAT CAROUSEL — auto-rotating pill that cycles through stats ──
+// ── STAT CAROUSEL — full-width snap-scroll cards with massive numbers ──
 function StatCarousel({ slides }) {
+  const scrollRef = useRef(null);
   const [idx, setIdx] = useState(0);
-  const [fading, setFading] = useState(false);
+  const timerRef = useRef(null);
+
+  const scrollTo = (i) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.offsetWidth, behavior: "smooth" });
+    setIdx(i);
+  };
+
+  const resetTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setIdx(prev => {
+        const next = (prev + 1) % slides.length;
+        const el = scrollRef.current;
+        if (el) el.scrollTo({ left: next * el.offsetWidth, behavior: "smooth" });
+        return next;
+      });
+    }, 3200);
+  };
+
   useEffect(() => {
-    if (slides.length <= 1) return;
-    const t = setInterval(() => {
-      setFading(true);
-      setTimeout(() => { setIdx(i => (i + 1) % slides.length); setFading(false); }, 200);
-    }, 3000);
-    return () => clearInterval(t);
+    resetTimer();
+    return () => clearInterval(timerRef.current);
   }, [slides.length]);
-  const s = slides[idx] || slides[0];
+
+  const onScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const i = Math.round(el.scrollLeft / el.offsetWidth);
+    if (i !== idx) { setIdx(i); resetTimer(); }
+  };
+
   return (
-    <div style={{ marginTop:2 }}>
-      <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-        {/* Dot indicators */}
-        <div style={{ display:"flex", gap:4, flexShrink:0 }}>
-          {slides.map((_,i) => (
-            <button key={i} onClick={()=>{ setFading(true); setTimeout(()=>{setIdx(i);setFading(false);},200); }}
-              style={{ width: i===idx?16:6, height:6, borderRadius:3, border:"none", cursor:"pointer", padding:0,
-                background: i===idx ? "rgba(10,9,6,0.7)" : "rgba(10,9,6,0.25)", transition:"all 0.3s ease" }}/>
-          ))}
-        </div>
-        {/* Stat pill */}
-        <div style={{ flex:1, background:"rgba(255,255,255,0.32)", borderRadius:10, padding:"9px 14px",
-          border:"1px solid rgba(255,255,255,0.55)", backdropFilter:"blur(8px)",
-          opacity: fading ? 0 : 1, transform: fading ? "translateY(4px)" : "none",
-          transition:"opacity 0.2s ease, transform 0.2s ease", display:"flex", alignItems:"baseline", gap:8 }}>
-          <span style={{ fontSize:20, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{s.value}</span>
-          <span style={{ fontSize:11, color:"#1a1008", opacity:0.7, fontWeight:600, textTransform:"uppercase", letterSpacing:"0.08em" }}>{s.label}</span>
-          {s.sub && <span style={{ fontSize:10, color:"#1a1008", opacity:0.5, marginLeft:"auto" }}>{s.sub}</span>}
-        </div>
+    <div style={{ marginTop:4 }}>
+      <style>{`
+        .shg-stat-scroll { scrollbar-width:none; }
+        .shg-stat-scroll::-webkit-scrollbar { display:none; }
+      `}</style>
+      {/* Snap-scroll track */}
+      <div
+        ref={scrollRef}
+        className="shg-stat-scroll"
+        onScroll={onScroll}
+        style={{ display:"flex", overflowX:"auto", scrollSnapType:"x mandatory", gap:0,
+          borderRadius:14, overflow:"hidden" }}
+      >
+        {slides.map((s, i) => (
+          <div key={i} style={{ minWidth:"100%", scrollSnapAlign:"start", flexShrink:0,
+            background:"rgba(255,255,255,0.28)", backdropFilter:"blur(10px)",
+            border:"1px solid rgba(255,255,255,0.5)", borderRadius:14,
+            padding:"20px 20px 16px", boxSizing:"border-box" }}>
+            <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.18em", textTransform:"uppercase", fontWeight:700, opacity:0.65, marginBottom:6 }}>{s.sub}</div>
+            <div style={{ fontSize:72, fontWeight:300, color:"#1a1008", lineHeight:1, letterSpacing:"-3px", marginBottom:4 }}>{s.value}</div>
+            <div style={{ fontSize:15, color:"#1a1008", fontWeight:600, opacity:0.75, textTransform:"uppercase", letterSpacing:"0.08em" }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+      {/* Dot indicators */}
+      <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:10 }}>
+        {slides.map((_,i) => (
+          <button key={i} onClick={()=>{ scrollTo(i); resetTimer(); }}
+            style={{ width: i===idx ? 20 : 7, height:7, borderRadius:4, border:"none", cursor:"pointer", padding:0,
+              background: i===idx ? "rgba(10,9,6,0.65)" : "rgba(10,9,6,0.22)", transition:"all 0.3s ease" }}/>
+        ))}
       </div>
     </div>
   );
@@ -1988,12 +2024,12 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               const thisYearTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
               const fastCat = isPreview ? "Lovemaxxing" : (analyticsData?.fastest_category?.category ?? null);
               const statSlides = [
-                { value: `${streak}`, label: streak === 1 ? "day streak" : "day streak", sub: "listening" },
+                { value: `${streak}`, label: "day streak", sub: "listening consistency" },
                 { value: `${totalL}`, label: "total listens", sub: "all time" },
-                { value: `${thisMonth} of ${thisMonthTotal}`, label: "desires manifested", sub: "this month" },
-                { value: `${thisYear} of ${thisYearTotal}`, label: "desires manifested", sub: "this year" },
-                { value: `${momentum}`, label: "momentum score", sub: "this week" },
-                ...(fastCat ? [{ value: fastCat, label: "fastest area", sub: "to manifest" }] : []),
+                { value: `${thisMonth} / ${thisMonthTotal}`, label: "desires manifested", sub: "this month" },
+                { value: `${thisYear} / ${thisYearTotal}`, label: "desires manifested", sub: "this year" },
+                { value: `${momentum}`, label: "momentum", sub: "this week's score" },
+                ...(fastCat ? [{ value: fastCat, label: "fastest to manifest", sub: "your power area" }] : []),
               ];
               return <StatCarousel slides={statSlides} />;
             })()}
