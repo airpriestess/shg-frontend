@@ -1902,40 +1902,61 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         const mDone  = isPreview ? 9  : manifested;
         const backendRate = analyticsData?.manifestation_rate;
         const mRate  = isPreview ? 64 : (backendRate != null ? Math.round(backendRate) : Math.round((mDone / mTotal) * 100));
-        const streak = isPreview ? 21 : (analyticsData?.streak_days ?? streakDays.filter(d=>d.listened).length ?? 0);
+        const streak = isPreview ? 21 : (streakDays.filter(d=>d.listened).length || 0);
         const totalL = isPreview ? 127 : (analyticsData?.total_listens ?? realListens?.total ?? 0);
-        const signsLogged = isPreview ? 23 : (analyticsData?.signs_logged ?? threads.reduce((a,t)=>a+(t.signs?.length||0),0));
+        const totalSigns = isPreview ? 23 : (analyticsData?.total_signs ?? threads.reduce((a,t)=>a+(t.signs?.length||0),0));
+        // Signs this week from weekly_activity
+        const weeklyAct = isPreview
+          ? [1,0,2,3,1,4,2]
+          : (analyticsData?.weekly_activity?.map(d=>d.signs) || [0,0,0,0,0,0,0]);
+        const signsThisWeek = isPreview ? 13 : weeklyAct.reduce((a,b)=>a+b,0);
+        const weekMax = Math.max(...weeklyAct, 1);
+        const dayLabels = ["M","T","W","T","F","S","S"];
+        const momentum = isPreview ? 72 : (analyticsData?.momentum_score ?? 0);
         return (
           <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
             background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
             backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
             border:"1px solid rgba(255,255,255,0.6)" }}>
-            {/* Rate */}
-            <div style={{ marginBottom:16 }}>
-              <div style={{ fontSize:12, color:"#1a1008", letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:6, fontWeight:600 }}>Manifestation rate</div>
-              <div style={{ display:"flex", alignItems:"baseline", gap:8 }}>
-                <span style={{ fontSize:52, fontWeight:400, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both" }}>{mRate}%</span>
-                <span style={{ fontSize:15, color:"#1a1008", fontWeight:400, opacity:0.8 }}>{mDone} of {mTotal} desires</span>
+
+            {/* HERO: Signs this week — the most important metric */}
+            <div style={{ marginBottom:18 }}>
+              <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:6, fontWeight:700, opacity:0.8 }}>Signs noticed this week</div>
+              <div style={{ display:"flex", alignItems:"flex-end", gap:14 }}>
+                <span style={{ fontSize:64, fontWeight:300, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both", letterSpacing:"-2px" }}>{signsThisWeek}</span>
+                <div style={{ paddingBottom:6 }}>
+                  <div style={{ fontSize:13, color:"#1a1008", fontWeight:500, opacity:0.75 }}>{totalSigns} total</div>
+                  {analyticsData?.avg_signs_to_manifest != null && (
+                    <div style={{ fontSize:12, color:"#1a1008", opacity:0.65, marginTop:2 }}>{analyticsData.avg_signs_to_manifest} signs avg. to manifest</div>
+                  )}
+                </div>
               </div>
-              {/* Progress bar */}
-              <div style={{ marginTop:10, height:6, borderRadius:3, background:"rgba(255,255,255,0.4)", overflow:"hidden" }}>
-                <div style={{ height:"100%", width:`${mRate}%`, borderRadius:3, background:"linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7)", transition:"width 1s ease" }}/>
+              {/* 7-day signs bar chart */}
+              <div style={{ display:"flex", alignItems:"flex-end", gap:4, marginTop:14, height:36 }}>
+                {weeklyAct.map((n,i) => (
+                  <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:3 }}>
+                    <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background: n>0 ? "rgba(10,9,6,0.55)" : "rgba(10,9,6,0.15)", height: n>0 ? `${Math.max(18, Math.round((n/weekMax)*34))}px` : "6px", transition:"height 0.5s ease" }}/>
+                    <div style={{ fontSize:9, color:"#1a1008", opacity:0.6, fontWeight:600 }}>{dayLabels[i]}</div>
+                  </div>
+                ))}
               </div>
             </div>
-            {/* Stat row */}
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
+
+            {/* Secondary stats row */}
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:8 }}>
               {[
-                [streak, "day streak"],
-                [totalL, "total listens"],
-                [signsLogged, "signs logged"],
+                [streak, "streak"],
+                [totalL, "listens"],
+                [`${mRate}%`, "manifested"],
+                [momentum, "momentum"],
               ].map(([v,l],i) => (
-                <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.35)", borderRadius:12, padding:"10px 6px", border:"1px solid rgba(255,255,255,0.6)", backdropFilter:"blur(8px)" }}>
-                  <div style={{ fontSize:22, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
-                  <div style={{ fontSize:12, color:"#1a1008", marginTop:4, letterSpacing:"0.05em", fontWeight:500 }}>{l}</div>
+                <div key={i} style={{ textAlign:"center", background:"rgba(255,255,255,0.3)", borderRadius:10, padding:"8px 4px", border:"1px solid rgba(255,255,255,0.55)", backdropFilter:"blur(8px)" }}>
+                  <div style={{ fontSize:18, fontWeight:400, color:"#1a1008", lineHeight:1 }}>{v}</div>
+                  <div style={{ fontSize:10, color:"#1a1008", marginTop:3, letterSpacing:"0.05em", fontWeight:600, opacity:0.75, textTransform:"uppercase" }}>{l}</div>
                 </div>
               ))}
             </div>
-            {isPreview && <div style={{ fontSize:13, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500 }}>preview data — sign up to track your real numbers</div>}
+            {isPreview && <div style={{ fontSize:12, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500, opacity:0.8 }}>preview data — sign up to track your real signs</div>}
           </div>
         );
       })()}
