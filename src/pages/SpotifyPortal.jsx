@@ -104,7 +104,7 @@ const THEMES = {
     bg2:     "#fdf0e8",  // frosted glass cards
     bg3:     "#fdf0e8",  // raised cards
     bg4:     "#fdf0e8",  // highest surface
-    nav:     "#F5E0A0",  // nav bar, solid champagne
+    nav:     "#167A6B",  // nav bar, deep teal
     cr:      "#000000",   // primary text, black
     mu:      "#000000",   // muted text, also black (no grey in light mode)
     dim:     "#000000",   // faint text, also black
@@ -1108,6 +1108,9 @@ function BetaBanner({ C, isDark }) {
 // ── DESKTOP PLAYER ─────────────────────────────────────────────────────────────
 function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, showDesc, setShowDesc }) {
   const d = getDesc(track);
+  // On teal nav bar, text must always be cream regardless of theme
+  const navCr = "#fdf0e8";
+  const navMu = "rgba(253,240,232,0.65)";
   return (
     <>
     {showDesc && (
@@ -1162,34 +1165,34 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
         </div>
       </div>
     )}
-    <div style={{ height:88,background:C.nav,borderTop:`1px solid ${C.border}`,display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
+    <div style={{ height:88,background:C.nav,borderTop:"none",display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
         <div onClick={()=>setShowDesc(true)} style={{ cursor:"pointer" }}><Thumb title={track.title} cat={track.cat} size={52} radius={4}/></div>
         <div style={{ minWidth:0, cursor:"pointer" }} onClick={()=>setShowDesc(true)}>
-          <div style={{ fontSize:15,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:C.cr }}>{track.title}</div>
-          <div style={{ fontSize:13,color:C.mu }}>Reshma Oracle</div>
+          <div style={{ fontSize:15,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:navCr }}>{track.title}</div>
+          <div style={{ fontSize:13,color:navMu }}>Reshma Oracle</div>
         </div>
         <button onClick={()=>setShowDesc(true)} style={{ background:"none",border:"none",lineHeight:0,padding:6,cursor:"pointer" }} title="About this track">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.mu} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={C.mu}/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={navMu} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={navMu}/></svg>
         </button>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",lineHeight:0,padding:8 }}><Ico.Heart on={liked.has(track.id)}/></button>
       </div>
       <div style={{ flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:6 }}>
         <div style={{ display:"flex",alignItems:"center",gap:20 }}>
-          <span style={{ fontSize:16,color:C.dim,cursor:"pointer" }}>⇄</span>
-          <button onClick={prevTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
+          <span style={{ fontSize:16,color:navMu,cursor:"pointer" }}>⇄</span>
+          <button onClick={prevTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={navMu}><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill={navMu}/></svg></button>
           <button onClick={()=>setPlay(p=>!p)} style={{ width:36,height:36,borderRadius:"50%",background:OMBRE,border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",backgroundSize:"200%",backgroundPosition:"left",boxShadow:"0 2px 12px rgba(232,184,112,0.35)" }}>
             {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
           </button>
-          <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={C.mu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.mu}/></svg></button>
-          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#E8B870":C.mu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+          <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={navMu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={navMu}/></svg></button>
+          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#E8B870":navMu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
-          <span style={{ fontSize:13,color:C.dim,width:32,textAlign:"right" }}>,</span>
-          <div style={{ flex:1,height:4,background:C.border,borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
+          <span style={{ fontSize:13,color:navMu,width:32,textAlign:"right" }}>,</span>
+          <div style={{ flex:1,height:4,background:"rgba(253,240,232,0.25)",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
             <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",transition:"width 0.3s" }}/>
           </div>
-          <span style={{ fontSize:13,color:C.dim,width:32 }}>{track.dur}</span>
+          <span style={{ fontSize:13,color:navMu,width:32 }}>{track.dur}</span>
         </div>
       </div>
       <div style={{ width:160,display:"flex",alignItems:"center",gap:8,justifyContent:"flex-end",flexShrink:0 }}>
@@ -2008,26 +2011,29 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               </div>
               {/* 7-day waveform — animated bars like the homepage */}
               <style>{`
-                @keyframes shg-wave-0{0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.35)}}
-                @keyframes shg-wave-1{0%,100%{transform:scaleY(0.5)}50%{transform:scaleY(1)}}
-                @keyframes shg-wave-2{0%,100%{transform:scaleY(0.8)}40%{transform:scaleY(0.2)}80%{transform:scaleY(1)}}
-                @keyframes shg-wave-3{0%,100%{transform:scaleY(1)}30%{transform:scaleY(0.4)}70%{transform:scaleY(0.7)}}
-                @keyframes shg-wave-4{0%,100%{transform:scaleY(0.4)}50%{transform:scaleY(1)}}
-                @keyframes shg-wave-5{0%,100%{transform:scaleY(0.7)}45%{transform:scaleY(0.25)}85%{transform:scaleY(0.9)}}
-                @keyframes shg-wave-6{0%,100%{transform:scaleY(1)}55%{transform:scaleY(0.3)}}
+                @keyframes shg-bar-0{0%,100%{height:100%}25%{height:30%}75%{height:85%}}
+                @keyframes shg-bar-1{0%,100%{height:45%}35%{height:100%}70%{height:55%}}
+                @keyframes shg-bar-2{0%,100%{height:80%}20%{height:25%}60%{height:95%}}
+                @keyframes shg-bar-3{0%,100%{height:60%}40%{height:100%}80%{height:35%}}
+                @keyframes shg-bar-4{0%,100%{height:35%}30%{height:90%}65%{height:55%}}
+                @keyframes shg-bar-5{0%,100%{height:90%}45%{height:30%}80%{height:75%}}
+                @keyframes shg-bar-6{0%,100%{height:55%}25%{height:95%}60%{height:40%}}
               `}</style>
-              <div style={{ display:"flex", alignItems:"flex-end", gap:3, marginTop:14, height:44 }}>
+              <div style={{ display:"flex", alignItems:"flex-end", gap:4, marginTop:16, height:52 }}>
                 {weeklyAct.map((n,i) => {
-                  const baseH = n > 0 ? Math.max(20, Math.round((n/weekMax)*40)) : 8;
-                  const dur = [1.1,0.85,1.3,0.95,1.2,0.75,1.05][i];
+                  const maxH = n > 0 ? Math.max(28, Math.round((n/weekMax)*48)) : 10;
+                  const dur = [0.9,0.7,1.1,0.8,1.0,0.65,0.85][i];
                   return (
-                    <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
-                      <div style={{ width:"100%", height:`${baseH}px`, borderRadius:3,
-                        background: n>0 ? "rgba(10,9,6,0.6)" : "rgba(10,9,6,0.12)",
-                        transformOrigin:"bottom",
-                        animation: n>0 ? `shg-wave-${i} ${dur}s ease-in-out infinite` : "none",
-                        transition:"height 0.5s ease" }}/>
-                      <div style={{ fontSize:9, color:"#0a0906", opacity:0.55, fontWeight:700 }}>{dayLabels[i]}</div>
+                    <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:5, height:"100%" }}>
+                      <div style={{ width:"100%", flex:1, display:"flex", alignItems:"flex-end" }}>
+                        <div style={{
+                          width:"100%", borderRadius:"4px 4px 0 0",
+                          background: n>0 ? "rgba(10,9,6,0.65)" : "rgba(10,9,6,0.1)",
+                          height: n>0 ? `${maxH}px` : "8px",
+                          animation: n>0 ? `shg-bar-${i} ${dur}s ease-in-out infinite` : "none",
+                        }}/>
+                      </div>
+                      <div style={{ fontSize:9, color:"#0a0906", opacity:0.55, fontWeight:700, lineHeight:1 }}>{dayLabels[i]}</div>
                     </div>
                   );
                 })}

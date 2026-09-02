@@ -22,7 +22,7 @@ export default function HamburgerMenu({ onSignIn }) {
     ["Home",                 () => navigate("/")],
     ["About Reshma",         () => navigate("/about")],
     ["The Science",          () => navigate("/science")],
-    ["Preview SHG",          () => navigate("/portal?preview=1&theme=dark")],
+    ["Preview SHG",          () => navigate("/portal?preview=1")],
     ["The Library",          () => navigate("/library")],
     ["Pricing",              scrollToPricing],
     ["Blog",                 () => { window.location.href = "/blog"; }],
