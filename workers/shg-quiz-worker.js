@@ -95,10 +95,24 @@ async function handleQuizLead(request, env) {
     if (!email || !source) {
       return json({ error: "Missing required fields: email, source" }, 400);
     }
-    await env.DB.prepare(
-      `INSERT INTO quiz_leads (name, email, result_category, source) VALUES (?, ?, ?, ?)`
-    ).bind(name || null, email, result_category || null, source).run();
-    await addToNitrosend(env, email, { source, name: name || undefined, result_category: result_category || undefined });
+    const existing = await env.DB.prepare(
+      `SELECT id, result_category FROM quiz_leads WHERE email = ? AND source = ? ORDER BY created_at DESC LIMIT 1`
+    ).bind(email, source).first();
+
+    if (existing && result_category) {
+      // Second call from quiz result screen — update the existing row
+      await env.DB.prepare(
+        `UPDATE quiz_leads SET result_category = ? WHERE id = ?`
+      ).bind(result_category, existing.id).run();
+      await addToNitrosend(env, email, { source, result_category });
+    } else if (!existing) {
+      // New lead — first submission
+      await env.DB.prepare(
+        `INSERT INTO quiz_leads (name, email, result_category, source) VALUES (?, ?, ?, ?)`
+      ).bind(name || null, email, result_category || null, source).run();
+      await addToNitrosend(env, email, { source, name: name || undefined, result_category: result_category || undefined });
+    }
+    // existing already has result_category — idempotent, do nothing
     return json({ success: true });
   } catch (err) {
     return json({ error: err.message }, 500);
