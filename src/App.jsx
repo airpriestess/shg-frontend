@@ -1892,7 +1892,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
         <div style={{ background:"#000", padding: isMobile?"12px 14px 20px":"32px 24px 48px" }}>
           {!playing && (
             <div style={{ textAlign:"center", marginBottom: isMobile?10:16 }}>
-              <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:500, fontSize: isMobile?11:13, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.45)" }}>
+              <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:600, fontSize: isMobile?15:18, letterSpacing:"0.22em", textTransform:"uppercase", color:"#fdf0e8" }}>
                 ↓ &nbsp; Press Play &nbsp; ↓
               </span>
             </div>
