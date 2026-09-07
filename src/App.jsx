@@ -1587,6 +1587,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   // ── HERO PLAYLIST ─────────────────────────────────────────────────────────
   const PLAYLIST = [
+    { title: "Confidence In My Luck",                        sub: "Luckygirlmaxxing",  freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/CONFIDENCE%20IN%20MY%20LUCK%20HYPNOSIS%2002.09.2026.WAV" },
     { title: "I Am The Luckiest Woman In This Universe",     sub: "Luckygirlmaxxing",  freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/LUCKIEST%20GIRL%20UNIVERSE%20HYPNOSIS%2012MINS%2014.08.2026.WAV" },
     { title: "Drop The Tension",                             sub: "Peacemaxxing",      freq: "Hypnosis · Melodic House",                  url: "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV" },
     { title: "Spoilt Goddess",                                       sub: "Goddessmaxxing",    freq: "Hypnosis · 528hz",                          url: "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV" },
@@ -1684,7 +1685,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
   return (
     <div className="hypno-bg" style={{ background: "#000000", minHeight: "100vh" }}>
-      <audio ref={audioRef} src={PLAYLIST[0].url} preload="none" onEnded={nextTrack} />
+      <audio ref={audioRef} src={PLAYLIST[0].url} preload="auto" onEnded={nextTrack} />
       <audio ref={vaultRef} preload="none" />
 
       {/* ANNOUNCEMENT BANNER, fixed height so nav never overlaps it */}
