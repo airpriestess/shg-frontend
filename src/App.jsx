@@ -1890,6 +1890,13 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
         {/* SPOTIFY-STYLE PLAYER */}
         <div style={{ background:"#000", padding: isMobile?"12px 14px 20px":"32px 24px 48px" }}>
+          {!playing && (
+            <div style={{ textAlign:"center", marginBottom: isMobile?10:16 }}>
+              <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:500, fontSize: isMobile?11:13, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(253,240,232,0.45)" }}>
+                ↓ &nbsp; Press Play &nbsp; ↓
+              </span>
+            </div>
+          )}
           <div style={{ background: "#0a0a0a", border: "1px solid rgba(42,168,154,0.35)", borderRadius: isMobile?14:22, padding: isMobile ? "16px" : "36px 44px", maxWidth: isMobile?"100%":780, margin: "0 auto", boxShadow: "0 12px 60px rgba(0,0,0,0.5)", overflow: "visible" }}>
             {/* Top row, track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
