@@ -65,12 +65,21 @@ const dominant = (log,days) => {
 // ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
 const AUDIO_URLS = {
   // Real tracks - titles match D1 database exactly
-  "Spoilt Goddess":                                     "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
+  "Spoilt Goddess":                             "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
   "Lifetime of Luck":                           "https://shg-audio-worker.airpriestess.workers.dev/LIFETIME%20OF%20LUCK%20HYPNOSIS%209MIN%2023.04.2026.WAV",
   "Drop The Tension":                           "https://shg-audio-worker.airpriestess.workers.dev/DROP%20THE%20TENSION%20HYPNOSIS%205MIN%2002.06.2026.WAV",
   "Monica Face":                                "https://shg-audio-worker.airpriestess.workers.dev/MONICA%20FACE%20HYPNOSIS%209MIN%2006.05.2026.WAV",
   "I Am The Luckiest Woman In This Universe":   "https://shg-audio-worker.airpriestess.workers.dev/LUCKIEST%20GIRL%20UNIVERSE%20HYPNOSIS%2012MINS%2014.08.2026.WAV",
   "100 Years of Beauty Sleep":                  "https://shg-audio-worker.airpriestess.workers.dev/100%20YEARS%20OF%20BEAUTY%20SLEEP%20HYPNOSIS%206MIN%2020.04.WAV",
+  "Confidence In My Luck":                      "https://shg-audio-worker.airpriestess.workers.dev/CONFIDENCE%20IN%20MY%20LUCK%20HYPNOSIS%2002.09.2026.WAV",
+  "Attract Opportunities":                      "https://shg-audio-worker.airpriestess.workers.dev/ATTRACT%20OPPORTUNITIES%20HYPNOSIS%2002.09.2026.WAV",
+  "I Align What Serves Me":                     "https://shg-audio-worker.airpriestess.workers.dev/I%20ALIGN%20WHAT%20SERVES%20ME%20HYPNOSIS%2002.09.2026.WAV",
+  "Luck Accelerates Everything":                "https://shg-audio-worker.airpriestess.workers.dev/LUCK%20ACCELERATES%20EVERYTHING%20IG%2002.09.2026.WAV",
+  "Luck Finds Me Everywhere":                   "https://shg-audio-worker.airpriestess.workers.dev/LUCK%20FINDS%20ME%20EVERYWHERE%20HYPNOSIS%2002.09.2026.WAV",
+  "Luck Finds Me Everywhere (Subliminal)":      "https://shg-audio-worker.airpriestess.workers.dev/LUCK%20FINDS%20EVERYWHERE%20SUBLIMINAL%2002.09.2026.WAV",
+  "My Mind Is a Luck Creator":                  "https://shg-audio-worker.airpriestess.workers.dev/MY%20MIND%20IS%20A%20LUCK%20CREATOR%2002.09.2026.WAV",
+  "My Pace Is My Superpower":                   "https://shg-audio-worker.airpriestess.workers.dev/MY%20PACE%20IS%20MY%20SUPERPOWER%2002.09.2026.WAV",
+  "New Chapters Bring Blessings":               "https://shg-audio-worker.airpriestess.workers.dev/NEW%20CHAPTERS%20BRING%20BLESSINGS%2002.09.2026.WAV",
 };
 
 // ── BEACONS STORE ────────────────────────────────────────────────────────────
@@ -259,6 +268,17 @@ function getDesc(track) {
 }
 
 const TRACKS = [
+  // ── NEW TRACKS (Sept 2026) ──────────────────────────────────────────────────
+  { id:201, title:"Confidence In My Luck",              artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:202, title:"Attract Opportunities",              artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:203, title:"Luck Finds Me Everywhere",           artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:204, title:"Luck Finds Me Everywhere (Subliminal)", artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Subliminal", freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
+  { id:205, title:"Luck Accelerates Everything",        artist:"Reshma Oracle", dur:"5:00",  cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:206, title:"My Mind Is a Luck Creator",          artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:207, title:"I Align What Serves Me",             artist:"Reshma Oracle", dur:"10:00", cat:"Selfmaxxing",      format:"Hypnosis",   freq:"432hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:208, title:"My Pace Is My Superpower",           artist:"Reshma Oracle", dur:"10:00", cat:"Selfmaxxing",      format:"Hypnosis",   freq:"432hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:209, title:"New Chapters Bring Blessings",       artist:"Reshma Oracle", dur:"10:00", cat:"Lifemaxxing",      format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  // ── EXISTING TRACKS ─────────────────────────────────────────────────────────
   { id:101, title:"I'm a Living Breathing Masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beautymaxxing",  format:"Melodic House", freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
   { id:102, title:"My Desires Are Obsessed With Me",    artist:"Reshma Oracle", dur:"20:00", cat:"Desiresmaxxing", format:"Melodic House", freq:"EMDR",    tier:"audio", isNew:true, hasAudio:true },
   { id:103, title:"Seduced Focus",                      artist:"Reshma Oracle", dur:"20:00", cat:"Selfmaxxing",    format:"Melodic House", freq:"Binaural", tier:"audio", isNew:true, hasAudio:true },
