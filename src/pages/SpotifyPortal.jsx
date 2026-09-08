@@ -268,22 +268,3114 @@ function getDesc(track) {
 }
 
 const TRACKS = [
-  // Only tracks with real audio files on R2
-  { id:201, title:"Confidence In My Luck",                 artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:202, title:"Attract Opportunities",                 artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:203, title:"Luck Finds Me Everywhere",              artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
+  // ── NEW TRACKS (Sept 2026) ──────────────────────────────────────────────────
+  { id:201, title:"Confidence In My Luck",              artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:202, title:"Attract Opportunities",              artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:203, title:"Luck Finds Me Everywhere",           artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
   { id:204, title:"Luck Finds Me Everywhere (Subliminal)", artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Subliminal", freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:205, title:"Luck Accelerates Everything",           artist:"Reshma Oracle", dur:"5:00",  cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:206, title:"My Mind Is a Luck Creator",             artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:207, title:"I Align What Serves Me",                artist:"Reshma Oracle", dur:"10:00", cat:"Selfmaxxing",      format:"Hypnosis",   freq:"432hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:208, title:"My Pace Is My Superpower",              artist:"Reshma Oracle", dur:"10:00", cat:"Selfmaxxing",      format:"Hypnosis",   freq:"432hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:209, title:"New Chapters Bring Blessings",          artist:"Reshma Oracle", dur:"10:00", cat:"Lifemaxxing",      format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true, hasAudio:true },
-  { id:1,   title:"Spoilt Goddess",                        artist:"Reshma Oracle", dur:"9:00",  cat:"Selfmaxxing",      format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true,  hasAudio:true,
+  { id:205, title:"Luck Accelerates Everything",        artist:"Reshma Oracle", dur:"5:00",  cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:206, title:"My Mind Is a Luck Creator",          artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:207, title:"I Align What Serves Me",             artist:"Reshma Oracle", dur:"10:00", cat:"Selfmaxxing",      format:"Hypnosis",   freq:"432hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:208, title:"My Pace Is My Superpower",           artist:"Reshma Oracle", dur:"10:00", cat:"Selfmaxxing",      format:"Hypnosis",   freq:"432hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:209, title:"New Chapters Bring Blessings",       artist:"Reshma Oracle", dur:"10:00", cat:"Lifemaxxing",      format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  // ── EXISTING TRACKS ─────────────────────────────────────────────────────────
+  { id:101, title:"I'm a Living Breathing Masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beautymaxxing",  format:"Melodic House", freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
+  { id:102, title:"My Desires Are Obsessed With Me",    artist:"Reshma Oracle", dur:"20:00", cat:"Desiresmaxxing", format:"Melodic House", freq:"EMDR",    tier:"audio", isNew:true, hasAudio:true },
+  { id:103, title:"Seduced Focus",                      artist:"Reshma Oracle", dur:"20:00", cat:"Selfmaxxing",    format:"Melodic House", freq:"Binaural", tier:"audio", isNew:true, hasAudio:true },
+  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Selfmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to earn good things happening to you, into feeling like you're already the woman everyone wants to spoil.",
       benefits:["Stop over-giving to feel worthy of receiving","Let people show up for you without guilt","Feel deserving of ease, not just effort"] } },
-  { id:2,   title:"Lifetime of Luck",                      artist:"Reshma Oracle", dur:"9:00",  cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:true,  hasAudio:true },
-  { id:3,   title:"Drop The Tension",                      artist:"Reshma Oracle", dur:"5:00",  cat:"Peacemaxxing",     format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:false, hasAudio:true },
-  { id:4,   title:"Monica Face",                           artist:"Reshma Oracle", dur:"9:00",  cat:"Facemaxxing",      format:"Hypnosis",   freq:"528hz", tier:"audio", isNew:false, hasAudio:true },
-  { id:5,   title:"I Am The Luckiest Woman In This Universe", artist:"Reshma Oracle", dur:"12:00", cat:"Luckygirlmaxxing", format:"Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:true },
-  { id:6,   title:"100 Years of Beauty Sleep",             artist:"Reshma Oracle", dur:"6:00",  cat:"Beautymaxxing",    format:"Hypnosis",   freq:"432hz", tier:"audio", isNew:false, hasAudio:true },
+  { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false,
+    desc:{ shift:"This shifts you from feeling like you have to chase, check your phone, or wonder if he still thinks about you, into feeling secure that he's already finding his way back.",
+      benefits:["Stop the anxious phone-checking loop","Release the need to initiate contact first","Feel settled in the outcome instead of controlling it"] } },
+  { id:3,  title:"Money Finds Me First",     artist:"Reshma Oracle", dur:"25:00", cat:"Richgirlmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
+    desc:{ shift:"This shifts you from feeling like you have to hustle for every pound, into feeling like money is already looking for you.",
+      benefits:["Loosen the grip of financial anxiety","Notice unexpected income without shock","Build the identity of someone money flows toward"] } },
+  { id:4,  title:"While I Sleep I Manifest", artist:"Reshma Oracle", dur:"60:00", cat:"Sleepmaxxing", format:"Sleep & Rest",  tier:"audio",   isNew:false, hasAudio:false,
+    desc:{ shift:"This shifts you from feeling like manifestation requires constant conscious effort, into feeling like your reality can rebuild itself while you're unconscious.",
+      benefits:["Turn sleep into productive reprogramming time","Reduce the pressure to 'do the work' every waking hour","Wake up already closer to who you're becoming"] } },
+  { id:5,  title:"Gorgeous Is My Default",   artist:"Reshma Oracle", dur:"35:00", cat:"Beautymaxxing", format:"528hz",         tier:"audio",   isNew:false, hasAudio:false },
+  { id:6,  title:"DNA Activation Ceremony",  artist:"Reshma Oracle", dur:"45:00", cat:"DNAmaxxing", format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
+  { id:7,  title:"Lucky Girl Summer",        artist:"Reshma Oracle", dur:"22:00", cat:"Luckygirlmaxxing", format:"Subliminal", tier:"audio", isNew:true,  hasAudio:false },
+  { id:8,  title:"10 Years Into One Hour",   artist:"Reshma Oracle", dur:"58:00", cat:"Healthmaxxing", format:"EMDR",          tier:"audio",   isNew:false, hasAudio:true  },
+  { id:9,  title:"Highest Timeline",         artist:"Reshma Oracle", dur:"28:00", cat:"Sovereignmaxxing", format:"Reiki",         tier:"goddess", isNew:false, hasAudio:false },
+  { id:10, title:"My face is his favourite view", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:11, title:"Even my details are exquisite", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:12, title:"My mornings open like a film I star in", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:13, title:"Youth keeps renewing its lease in my body", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:14, title:"His eyes follow me around the room", artist:"Reshma Oracle", dur:"15:00", cat:"Erosmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:15, title:"I make rich decisions on instinct", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:16, title:"I chose me first and he followed", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:17, title:"I take up space like it was saved for me", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:18, title:"Every season of my life outdoes the last", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:19, title:"I am the vision board breathing", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:20, title:"Loving me is the easiest thing he does", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:21, title:"My body and I are in perfect agreement", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:22, title:"Barefaced is my boldest look", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:23, title:"My skin is clear calm and committed", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:24, title:"Every day is a payday somewhere in my life", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:25, title:"Peace is my personality now", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:26, title:"His actions and his words tell the same story", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:27, title:"The right audience found me and keeps growing", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:28, title:"My name gets drawn from every hat", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:29, title:"My biology takes orders from my imagination", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:30, title:"My face belongs in campaigns and it knows it", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:31, title:"My body is the outfit and everything else is accessories", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:32, title:"Love and money arrived holding hands", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:33, title:"Every area of my life said yes at the same time", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:34, title:"Another zero joined my account balance", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:35, title:"He plans our future in present tense", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:36, title:"I negotiate like a woman with options", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:37, title:"Life keeps slipping gifts into my pockets", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:38, title:"My beauty deepens like a vintage year", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:39, title:"I became my own dream girl", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:40, title:"My face belongs in campaigns and it knows it", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:41, title:"He speaks my love language fluently", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:42, title:"My smile is my most expensive feature", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:43, title:"I stumble into blessings on ordinary errands", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:44, title:"My calendar fills with dream clients", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:45, title:"I am the centre of his world and he built it that way", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:46, title:"Strength looks stunning on me", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:47, title:"My standards raised and money rose to meet them", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:48, title:"Compliments follow me like perfume", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:49, title:"My cells drink light like champagne", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:50, title:"I live in the home I once screenshotted", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:51, title:"He looks at me like I hung the moon", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:52, title:"First class is my natural habitat", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:53, title:"My empire pays me in freedom", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:54, title:"I am the muse and the masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:55, title:"My body sculpts itself while I rest", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:56, title:"My face is my fortune and it keeps appreciating", artist:"Reshma Oracle", dur:"20:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:57, title:"Every cell in me is tuned to gorgeous", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:58, title:"Wealth is written into my name", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:59, title:"He looks at me like I hung the moon", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:60, title:"My inner world is a luxury residence", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:61, title:"I fall asleep loved and wake up chosen", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:62, title:"I am lucky in love specifically", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:63, title:"My side profile is a masterpiece", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:64, title:"My whole life entered its golden era", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:65, title:"I am the CEO of a business that adores me", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:66, title:"The best outcomes are reserved under my name", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:67, title:"I am the woman I answer to", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:68, title:"I am on the payroll of the universe", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:69, title:"Golden hour follows me around", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:70, title:"My curves arrived exactly as ordered", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:71, title:"I am his peace and his favourite place", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:72, title:"Money multiplies the moment it reaches my hands", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:73, title:"Vitality pours through every cell of me", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:74, title:"My body speaks a language everyone wants to learn", artist:"Reshma Oracle", dur:"15:00", cat:"Erosmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:75, title:"My body moves like it knows it is admired", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:76, title:"My eyes are the first thing people fall for", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:77, title:"He closes the distance and comes back to me", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:78, title:"He spoils me because he adores me", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:79, title:"I am the name they put on the waitlist for", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:80, title:"I wake up inside the life I used to dream about", artist:"Reshma Oracle", dur:"15:00", cat:"Lifemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:81, title:"The universe treats me like its favourite", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:82, title:"Money is calm and safe in my life now", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:83, title:"A large sum is already on its way to me", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:84, title:"My face looks lifted sculpted and snatched", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:85, title:"He wants forever and he says so out loud", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:86, title:"My phone lights up and it is always him", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:87, title:"Certainty is my natural state now", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:88, title:"My body runs light and burns bright", artist:"Reshma Oracle", dur:"15:00", cat:"Bodymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:89, title:"I won the genetic lottery and it shows", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:90, title:"Every light turns green when I arrive", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:91, title:"Every room notices the moment I walk in", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:92, title:"I am the rich woman I decided to become", artist:"Reshma Oracle", dur:"20:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:93, title:"I wake up prettier than the day before", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:94, title:"He cannot get me out of his head", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:95, title:"I glow up and he falls deeper", artist:"Reshma Oracle", dur:"20:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:96, title:"Unexpected money keeps finding me", artist:"Reshma Oracle", dur:"15:00", cat:"Richgirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:97, title:"My hair is thick and my glow is loud", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:98, title:"I am my own favourite person", artist:"Reshma Oracle", dur:"15:00", cat:"Selfmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:99, title:"Good things chase me down", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:100, title:"Money comes to me for being exactly who I am", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+
+  { id:104, title:"Everything works out in my favour without exception", artist:"Reshma Oracle", dur:"15:00", cat:"Luckygirlmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:105, title:"He is obsessed with coming home to me", artist:"Reshma Oracle", dur:"15:00", cat:"Lovemaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:106, title:"My business is scaling while I sleep", artist:"Reshma Oracle", dur:"20:00", cat:"Businessmaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:107, title:"My face is rearranging itself into perfection", artist:"Reshma Oracle", dur:"15:00", cat:"Facemaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:108, title:"I glow like I am lit from the inside", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
+  { id:109, title:"My cells are rewriting me younger every night", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
 ];
+const FORMATS = ["All","Subliminal","Hypnosis","Melodic Hypnosis","Melodic Subliminal","Calm Hypnosis","Calm Subliminal"];
+
+// Suggests the best-matching track for a saved intention: category match is required,
+// then ranks by keyword overlap between the intention text and the track title.
+const STOPWORDS = new Set(["i","a","the","to","my","me","am","is","are","that","this","of","in","on","for","and","with","it","be","have","has"]);
+function suggestTrack(desireText, category) {
+  const candidates = TRACKS.filter(t => t.cat === category);
+  if (candidates.length === 0) return null;
+  const words = (desireText||"").toLowerCase().match(/[a-z']+/g) || [];
+  const keywords = words.filter(w => w.length > 2 && !STOPWORDS.has(w));
+  if (keywords.length === 0) return candidates[0];
+  let best = candidates[0], bestScore = -1;
+  for (const t of candidates) {
+    const titleWords = t.title.toLowerCase().match(/[a-z']+/g) || [];
+    const score = keywords.reduce((acc,kw) => acc + (titleWords.some(tw => tw.includes(kw) || kw.includes(tw)) ? 1 : 0), 0);
+    if (score > bestScore) { bestScore = score; best = t; }
+  }
+  return best;
+}
+
+const RECENT = TRACKS.slice(0,6).map(t=>t.title);
+
+const INIT_THREADS = [
+  { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"Lovemaxxing",
+    feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
+    createdAt:"6 Jun 2026",
+    signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot, the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note, the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
+  { id:2, desire:"$5,000 arrives",        days:6,  done:false, track:"Money Finds Me First",  category:"Rich Girl",
+    feelBefore:"Tight and worried about money.", feelAfter:"",
+    createdAt:"22 Jun 2026",
+    signs:[ {text:"Got a random refund $180",date:"28 Jun",img:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=400&fit=crop&auto=format"}, {text:"Found $20 in my coat pocket",date:"1 Jul"} ] },
+  { id:3, desire:"10k per day business",  days:9,  done:false, track:"Spoilt Goddess",        category:"Rich Girl",
+    feelBefore:"Doubtful but hopeful.", feelAfter:"",
+    createdAt:"21 Jun 2026",
+    signs:[ {text:"Two new enquiries the same day",date:"30 Jun"} ] },
+  { id:4, desire:"Skin visibly glowing",  days:3,  done:false, track:"Gorgeous Is My Default",category:"Beauty",
+    feelBefore:"Self-conscious without makeup.", feelAfter:"",
+    createdAt:"29 Jun 2026",
+    signs:[ {text:"Colleague asked what I changed",date:"2 Jul"} ] },
+  { id:5, desire:"Fully paid trip to Bali", days:31, done:true, track:"Lucky Girl Summer", category:"Luckygirlmaxxing",
+    feelBefore:"Convinced holidays like this only happened to other people.", feelAfter:"Still processing that this actually happened to me.",
+    createdAt:"14 Feb 2026",
+    signs:[ {text:"Friend mentioned a trip out of nowhere",date:"2 Mar"}, {text:"Won a giveaway I forgot I entered",date:"9 Mar"}, {text:"Screenshot, flights confirmed, fully paid",date:"17 Mar",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"17 Mar 2026" },
+  { id:6, desire:"All 5 desires manifested",     days:22, done:true,  track:"My Desires Are Obsessed With Me", category:"Desiresmaxxing",
+    feelBefore:"Overworked and overlooked. Tired of proving myself.", feelAfter:"Relief. Like I could finally exhale.",
+    createdAt:"3 Nov 2025",
+    signs:[ {text:"Manager asked to lead the project I wanted",date:"14 Nov"}, {text:"Offer letter arrived",date:"25 Nov"} ], manifestedAt:"25 Nov 2025" },
+  { id:7, desire:"Won $850 on a scratch card", days:2, done:true, track:"Money Finds Me First", category:"Rich Girl",
+    feelBefore:"Skeptical this stuff even works.", feelAfter:"Shocked. Genuinely shocked.",
+    createdAt:"8 Sep 2025",
+    signs:[ {text:"Bought it on a whim",date:"9 Sep"}, {text:"Screenshot, the win",date:"10 Sep",img:"https://images.unsplash.com/photo-1518183214770-9cffbec72538?w=400&h=400&fit=crop&auto=format"} ], manifestedAt:"10 Sep 2025" },
+  { id:8, desire:"Best friend reached out first", days:45, done:true, track:"Friendmaxxing Guide", category:"Friendmaxxing",
+    feelBefore:"Grieving a friendship I thought was over.", feelAfter:"Full circle. Grateful.",
+    createdAt:"19 Jan 2026",
+    signs:[ {text:"Saw an old photo of us randomly",date:"14 Feb"}, {text:"She texted, 'I miss you'",date:"5 Mar"} ], manifestedAt:"5 Mar 2026" },
+];
+
+// Category → proof wall colours (matches landing Proof Wall)
+const CAT_GRAD = { "Lovemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Rich Girl":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Beauty":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Identity":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "DNA":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Sleep":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Lovemaxxing2":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Desiresmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Beautymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Facemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Bodymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Richgirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Businessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "DNAmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Selfmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Erosmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Lifemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Luckygirlmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Sovereignmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Healthmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Peacemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Wellnessmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Confidencemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Skinnymaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Singlemaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", "Friendmaxxing":"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" };
+// Lucky Girl gradient stops, cycled in fixed order so category badges read as a deliberate spectrum, not a random clash
+const LG_STOPS = ["#F5E0A0", "#E8B870", "#BFA5D8", "#2CB7A7", "#167A6B"];
+const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Rich Girl":"#E8B870", "Beauty":"#BFA5D8", "Identity":"#2CB7A7", "DNA":"#167A6B", "Sleep":"#F5E0A0", "Beautymaxxing":"#E8B870", "Facemaxxing":"#BFA5D8", "Bodymaxxing":"#2CB7A7", "Richgirlmaxxing":"#167A6B", "Businessmaxxing":"#F5E0A0", "DNAmaxxing":"#E8B870", "Selfmaxxing":"#BFA5D8", "Erosmaxxing":"#2CB7A7", "Lifemaxxing":"#167A6B", "Luckygirlmaxxing":"#F5E0A0", "Sovereignmaxxing":"#E8B870", "Healthmaxxing":"#BFA5D8", "Peacemaxxing":"#2CB7A7", "Wellnessmaxxing":"#167A6B", "Confidencemaxxing":"#F5E0A0", "Skinnymaxxing":"#E8B870", "Singlemaxxing":"#BFA5D8" };
+
+// ── SVG ICONS ────────────────────────────────────────────────────────────────
+const Ico = {
+  Home:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={a?c||"#fff":"none"} stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8"/></svg>,
+  Search: ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
+  Lib:    ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill={a?c||"#fff":"rgba(253,240,232,0.45)"}><path d="M3 3h4v18H3zM9 3h2v18H9zM14 3l7 2.5v13L14 21z"/></svg>,
+  Proof:  ({a})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?R:"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg>,
+  Play:   ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><polygon points="6 3 20 12 6 21"/></svg>,
+  Pause:  ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>,
+  Heart:  ({on})=><svg width="18" height="18" viewBox="0 0 24 24" fill={on?R:"none"} stroke={on?R:"rgba(253,240,232,0.45)"} strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.84-7.84 1.06-1.06a5.5 5.5 0 000-7.72z"/></svg>,
+  Lock:   ()=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={R} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
+  Edit:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
+  Undo:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
+  Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||"rgba(253,240,232,0.45)"} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+  Cog:    ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  Book:   ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
+  Shop:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
+  Stats:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
+};
+
+// ── MAIN ─────────────────────────────────────────────────────────────────────
+export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
+  const { session, token } = useAuth();
+  const userId = session?.user?.id;
+  const [pushDismissed, setPushDismissed] = useState(false);
+  const [tab, setTab]         = useState(initialTab);
+  const [track, setTrack]     = useState(TRACKS[0]);
+  const [playing, setPlay]    = useState(false);
+  const [isLooping, setLooping] = useState(false);
+  const [showUpgradeReminder, setShowUpgradeReminder] = useState(false);
+  useEffect(() => {
+    if (userTier === "audio" && !isPreview) {
+      const t = setTimeout(() => setShowUpgradeReminder(true), 4000);
+      return () => clearTimeout(t);
+    }
+  }, [userTier, isPreview]);
+  const [liked, setLiked]     = useState(new Set([1,3,7]));
+  const [fullP, setFullP]     = useState(false);
+  const [showDesc, setShowDesc] = useState(false);
+  const [prog, setProg]       = useState(0);
+  const [searchQ, setQ]       = useState("");
+  const [libCat, setLibCat]   = useState("All");
+  const [libFormat, setLibFormat] = useState("All");
+  const [threads, setThreads] = useState(isPreview ? INIT_THREADS : []);
+  const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
+  const [logSignOpen, setLogSignOpen] = useState(false);
+  const [celebThread, setCelebThread] = useState(null);
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const data = await quizApi("/threads", token, { method: "GET" });
+        if (cancelled) return;
+        const mapped = (data.threads || []).map(t => ({
+          id: t.id,
+          desire: t.desire,
+          category: t.category || "",
+          track: t.track || "",
+          oldBelief: t.old_belief || "",
+          feelBefore: t.feel_before || "",
+          feelAfter: t.feel_after || "",
+          days: t.created_at ? Math.floor((Date.now() - new Date(t.created_at)) / 86400000) : 0,
+          done: !!t.done,
+          isBucket: !!t.is_bucket,
+          createdAt: t.created_at,
+          manifestedAt: t.manifested_at || null,
+          signs: (t.signs || []).map(s => ({ _sid: s.id, text: s.text || "", date: s.date || "", img: s.img || null, audio: s.audio || null })),
+        }));
+        setThreads(mapped);
+      } catch (err) {
+        console.error("Failed to load threads:", err);
+      } finally {
+        if (!cancelled) setThreadsLoaded(true);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, token]);
+  const [theme, setTheme]     = useState(forceTheme || "light");
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [listenCount, setListenCount] = useState(127);
+  // Seeded 30-day emotional log — Reshma's real arc: started in anxiety, shifted decisively to Love/Peace
+  const [emoLog, setEmoLog] = useState(()=>{
+    const arr=[]; const now=Date.now();
+    const path=["Fear","Desire","Anger","Desire","Pride","Courage","Neutrality","Courage","Willingness","Acceptance","Willingness","Acceptance","Reason","Acceptance","Love","Acceptance","Love","Love","Joy","Love","Love","Peace","Love","Peace","Joy","Peace","Love","Peace","Love","Peace"];
+    for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
+    return arr;
+  });
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onbStep, setOnbStep] = useState(0);
+  const [onbGoals, setOnbGoals] = useState([]);
+  const [onbWhere, setOnbWhere] = useState("");
+  const [onbFreq, setOnbFreq] = useState("");
+  useEffect(() => {
+    if (isPreview || !userId || !threadsLoaded) return;
+    const key = `shg_onboarded_${userId}`;
+    try { if (localStorage.getItem(key)) return; } catch {}
+    setShowOnboarding(true);
+  }, [userId, isPreview, threadsLoaded]);
+  const finishOnboarding = async () => {
+    const key = `shg_onboarded_${userId}`;
+    try { localStorage.setItem(key, "1"); } catch {}
+    setShowOnboarding(false);
+    const email = session?.user?.email;
+    if (email) {
+      try {
+        await quizApi("/", null, {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            name: userName !== "you" ? userName : undefined,
+            result_category: onbGoals.join(", "),
+            source: "onboarding_quiz",
+          }),
+        });
+      } catch {}
+    }
+  };
+  const [showGuide, setShowGuide] = useState(false);
+  const [showEmoLog, setShowEmoLog] = useState(false);
+  const [quickFeel, setQuickFeel] = useState("");
+  const logEmotion = (level) => {
+    const today = new Date().toISOString().slice(0,10);
+    setEmoLog(l=>[...l.filter(e=>e.date!==today),{date:today,level}]);
+    setQuickFeel(level); setTimeout(()=>setShowEmoLog(false),700);
+  };
+  const audioRef = useRef(null);
+  const intervalRef = useRef(null);
+  const playStartRef = useRef(null);
+  const playTrackRef = useRef(null);
+
+  useEffect(() => { if (forceTheme) setTheme(forceTheme); }, [forceTheme]);
+
+  const C = THEMES[theme];
+  const isDark = theme === "dark";
+  const hour = new Date().getHours();
+  const firstName = userName ? userName.charAt(0).toUpperCase() + userName.slice(1).split(" ")[0] : "you";
+  const greet = (hour<12?"Good morning":"Good evening") + (isPreview ? "" : `, ${firstName}`);
+
+  // ── AUDIO PLAYBACK ───────────────────────────────────────────────────────
+  const logPlay = async (trackObj) => {
+    if (isPreview || !userId) return;
+    const trackTitle = typeof trackObj === "string" ? trackObj : trackObj?.title;
+    const trackCat = typeof trackObj === "object" ? trackObj?.cat : "";
+    playStartRef.current = Date.now();
+    playTrackRef.current = { title: trackTitle, cat: trackCat };
+    try {
+      await fetch(`${QUIZ_WORKER_URL}/log-listen`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ title: trackTitle, category: trackCat, duration_seconds: 0, completed: false }),
+      });
+    } catch (e) { /* non-blocking */ }
+  };
+
+  const logListenComplete = async (completed = false) => {
+    if (isPreview || !userId || !playStartRef.current || !playTrackRef.current) return;
+    const dur = Math.round((Date.now() - playStartRef.current) / 1000);
+    const { title, cat } = playTrackRef.current;
+    playStartRef.current = null;
+    playTrackRef.current = null;
+    try {
+      await fetch(`${QUIZ_WORKER_URL}/log-listen`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ title, category: cat, duration_seconds: dur, completed }),
+      });
+    } catch (e) { /* non-blocking */ }
+  };
+  const play = (t) => {
+    const hasUrl = !!AUDIO_URLS[t.title];
+    if (track.id === t.id) {
+      if (hasUrl) setPlay(p => !p);
+      return;
+    }
+    setTrack(t);
+    if (hasUrl) { setPlay(true); if (!isPreview) { setListenCount(n=>n+1); logPlay(t); } }
+    setProg(0);
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const url = AUDIO_URLS[track.title];
+    if (url && audio.src !== url) {
+      audio.src = url;
+      audio.load();
+    }
+    if (playing && url) {
+      audio.play().catch(()=>{});
+    } else {
+      audio.pause();
+    }
+  }, [playing, track]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const update = () => {
+      if (audio.duration) setProg(Math.round((audio.currentTime/audio.duration)*100));
+    };
+    audio.addEventListener("timeupdate", update);
+    const handleEnded = () => {
+      logListenComplete(true);
+      if (isLooping) {
+        audio.currentTime = 0;
+        audio.play().catch(()=>{});
+      } else {
+        nextTrack();
+      }
+    };
+    audio.addEventListener("ended", handleEnded);
+    return () => { audio.removeEventListener("timeupdate", update); audio.removeEventListener("ended", handleEnded); };
+  }, [track, isLooping]);
+
+  const seekTo = (pct, e) => {
+    e?.stopPropagation();
+    const audio = audioRef.current;
+    if (audio && audio.duration) audio.currentTime = (pct/100)*audio.duration;
+    setProg(pct);
+  };
+
+  const toggleLike = (id, e) => {
+    e?.stopPropagation();
+    setLiked(s=>{const n=new Set(s); n.has(id)?n.delete(id):n.add(id); return n;});
+  };
+  const nextTrack = () => { const i=TRACKS.findIndex(t=>t.id===track.id); setTrack(TRACKS[(i+1)%TRACKS.length]); setProg(0); };
+  const prevTrack = () => { const i=TRACKS.findIndex(t=>t.id===track.id); setTrack(TRACKS[(i-1+TRACKS.length)%TRACKS.length]); setProg(0); };
+
+  const [isDesktop, setDesktop] = useState(forceMode ? forceMode==="desktop" : (typeof window!=="undefined" && window.innerWidth>768));
+  useEffect(()=>{
+    if (forceMode) { setDesktop(forceMode==="desktop"); return; }
+    const h=()=>setDesktop(window.innerWidth>768); window.addEventListener("resize",h); return()=>window.removeEventListener("resize",h);
+  },[forceMode]);
+
+  // ── PROFILE PANEL ────────────────────────────────────────────────────────
+  const manifestedCount = threads.filter(t=>t.done).length;
+  const thisMonth = threads.filter(t=>t.done).length; // simplified
+  const [billingOpen, setBillingOpen] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
+  const [proofFilter, setProofFilter] = useState("all"); // "all" | "manifested" | "inProgress"
+
+  const openStripePortal = async () => {
+    if (isPreview) { alert("Sign up to manage your subscription."); return; }
+    setPortalLoading(true);
+    try {
+      const res = await fetch("https://shg-billing-worker.airpriestess.workers.dev/create-portal-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+        body: JSON.stringify({ return_url: window.location.href }),
+      });
+      const { url, error } = await res.json();
+      if (error) throw new Error(error);
+      window.location.href = url;
+    } catch (err) {
+      console.error("Portal error:", err);
+      alert("Could not open billing portal. Please try again.");
+    } finally {
+      setPortalLoading(false);
+    }
+  };
+
+  const BillingPanel = () => (
+    <>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"#000000" }} onClick={()=>setBillingOpen(false)}/>
+      <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:999,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ fontSize:13,color:C.mu,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
+        <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
+          <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
+            <span style={{ fontSize:14,color:C.mu }}>Current plan</span>
+            <span style={{ fontSize:15,color:userTier==="goddess"?R:C.cr }}>{userTier==="goddess"?"Goddess Tier ":userTier==="lifetime"?"Lifetime ♾":"Audio Tier"}</span>
+          </div>
+          <div style={{ display:"flex",justifyContent:"space-between" }}>
+            <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
+            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$79/mo":userTier==="lifetime"?"$1000 one-time":"$49/mo"}</span>
+          </div>
+        </div>
+        {userTier==="audio" && (
+          <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
+            <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier  to unlock ProofOS and Analytics.</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$79/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+              {portalLoading ? "Opening..." : "Upgrade now, instant access "}
+            </button>
+          </div>
+        )}
+        <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:8 }}>
+          {portalLoading ? "Opening..." : "Manage billing, cancel or change plan →"}
+        </button>
+        <div style={{ fontSize:12,color:C.dim,textAlign:"center",marginBottom:12 }}>Managed securely by Stripe · your card is already saved</div>
+        <button onClick={()=>setBillingOpen(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+      </div>
+    </>
+  );
+
+  const ProfilePanel = () => (
+    <>
+      <div style={{ position:"fixed",inset:0,zIndex:998,background:"rgba(0,0,0,0.5)" }} onClick={()=>setProfileOpen(false)}/>
+      <div style={{ position:"fixed",top:isMobile?0:0,left:0,bottom:0,width:isMobile?"100%":280,background:isDark?"#0a0a0a":"#fdf0e8",borderRight:`1px solid ${C.border}`,zIndex:999,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",overflow:"hidden" }}>
+        {/* Header */}
+        <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
+            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:56,height:56,flexShrink:0,borderRadius:12,background:"#fdf0e8",overflow:"hidden" }}>
+              <img src="/shg-logo.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block" }} />
+            </a>
+            <div>
+              <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
+              <div style={{ fontSize:14,color:C.mu }}>Goddess Tier</div>
+              <div style={{ fontSize:13,color:R,fontWeight:400,marginTop:2 }}>reshma@reshmaoracle.com</div>
+            </div>
+          </div>
+          {/* Stats row */}
+          <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8 }}>
+            {[[manifestedCount,"Manifested",R],[listenCount,"Listens",P],[threads.length,"Desires",C.cr]].map(([v,l,c],i)=>(
+              <div key={i} style={{ background:isDark?"#111111":"#fdf0e8",borderRadius:8,padding:"10px 6px",textAlign:"center" }}>
+                <div style={{ fontSize:18,fontWeight:400,color:c }}>{v}</div>
+                <div style={{ fontSize:12,color:C.mu }}>{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Menu items */}
+        <div style={{ flex:1,overflowY:"auto",padding:"8px 0" }}>
+          {[
+            { icon:<Ico.Book c={C.mu}/>, label:"Listening Guide", action:()=>{setShowGuide(true);setProfileOpen(false);} },
+            { icon:<Ico.Edit c={C.mu}/>, label:"Edit profile", action:()=>alert("Edit profile coming soon") },
+            { icon:<Ico.Star c={C.mu}/>, label:"Liked tracks", action:()=>{setTab("library");setLibCat("Liked");setProfileOpen(false);} },
+            { icon:<Ico.Shop c={C.mu}/>, label:"Shop", action:()=>{setTab("shop");setProfileOpen(false);} },
+            { icon:<Ico.Cog c={C.mu}/>, label:"Listening reminders", action:()=>alert("Coming soon: daily push reminders.\n\nThis requires the app to be installed to your home screen (iPhone: Share → Add to Home Screen) so your browser can send notifications even when SHG isn't open. We'll prompt you to enable this once it's live.") },
+            { icon:<Ico.Cog c={C.mu}/>, label:"Manage subscription", action:()=>{setProfileOpen(false);setBillingOpen(true);} },
+            { icon:isDark?<Ico.Cog c={C.mu}/>:<Ico.Cog c={C.mu}/>, label:`Switch to ${isDark?"light":"dark"} mode`, action:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);} },
+          ].map((item,i)=>(
+            <button key={i} onClick={item.action} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.cr,fontSize:16,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"background 0.1s" }}
+              onMouseEnter={e=>e.currentTarget.style.background=C.bg3}
+              onMouseLeave={e=>e.currentTarget.style.background="none"}>
+              {item.icon} {item.label}
+            </button>
+          ))}
+          <div style={{ height:1,background:C.border,margin:"8px 20px" }}/>
+          <PushNotificationToggle userId={userId} token={token} C={C}/>
+          <button onClick={onHome} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:16,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            ← Back to site
+          </button>
+          <button onClick={onSignOut} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",padding:"14px 20px",background:"none",border:"none",color:C.mu,fontSize:16,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            Sign out
+          </button>
+        </div>
+        <button onClick={()=>setProfileOpen(false)} style={{ padding:"16px",background:"none",border:`1px solid ${C.border}`,margin:"12px 16px",borderRadius:10,color:C.mu,fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close</button>
+      </div>
+    </>
+  );
+
+  // ── NAV TABS ────────────────────────────────────────────────────────────
+  const tabs = [
+    { id:"home",      label:"Home",      I:Ico.Home   },
+    { id:"search",    label:"Search",    I:Ico.Search },
+    { id:"library",   label:"Library",   I:Ico.Lib    },
+    { id:"proof",     label:"ProofOS",   I:Ico.Proof  },
+    { id:"analytics", label:"Analytics", I:Ico.Stats  },
+  ];
+
+  const openPlayer = () => { if (isDesktop) setShowDesc(true); else setFullP(true); };
+  const tabContent = (
+    <>
+      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
+      {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
+      {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
+      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email} apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/>)}
+      {tab==="shop"    && <ShopTab C={C}/>}
+    </>
+  );
+
+  const isMobile = !isDesktop;
+
+  // ── DESKTOP ──────────────────────────────────────────────────────────────
+  if (isDesktop) return (
+    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
+      <audio ref={audioRef} preload="none"/>
+      {profileOpen && <ProfilePanel/>}
+      {billingOpen && <BillingPanel/>}
+      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
+      {showEmoLog && (
+        <>
+          <div style={{ position:"fixed",inset:0,zIndex:1000,background:"#000000" }} onClick={()=>setShowEmoLog(false)}/>
+          <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"90%",maxWidth:400,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1001,padding:"22px 20px",fontFamily:"'Jost',sans-serif",maxHeight:"85vh",display:"flex",flexDirection:"column",overflow:"hidden" }}>
+            <div style={{ fontSize:13,color:"#E8B870",letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:4 }}>How are you feeling right now?</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12,lineHeight:1.6 }}>
+              Select your state on the Hawkins scale.{" "}
+              <span onClick={()=>{setShowEmoLog(false);setShowGuide(true);}} style={{ color:"#E8B870",cursor:"pointer",textDecoration:"underline" }}>See Guidebook </span>
+            </div>
+            <div style={{ fontSize:11,color:"#BFA5D8",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>200+ · Expansive · Creates </div>
+            <div style={{ overflowY:"auto",marginBottom:10,maxHeight:190 }}>
+              {HAWKINS.filter(h=>h.v>=200).slice().reverse().map(h=>(
+                <div key={h.n} onClick={()=>logEmotion(h.n)}
+                  style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
+                    background:quickFeel===h.n?`${h.c}22`:"transparent",
+                    border:`1px solid ${quickFeel===h.n?h.c:"#fdf0e8"}` }}>
+                  <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 6px ${h.c}99` }}/>
+                  <span style={{ fontSize:15,color:h.c,flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize:11,color:"rgba(191,165,216,0.8)",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:6 }}>Below 200 · Contractive · Drains</div>
+            <div style={{ overflowY:"auto",maxHeight:170,marginBottom:12 }}>
+              {HAWKINS.filter(h=>h.v<200).slice().reverse().map(h=>(
+                <div key={h.n} onClick={()=>logEmotion(h.n)}
+                  style={{ display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,marginBottom:3,cursor:"pointer",
+                    background:quickFeel===h.n?`${h.c}33`:"transparent",
+                    border:`1px solid ${quickFeel===h.n?h.c:"#fdf0e8"}` }}>
+                  <div style={{ width:12,height:12,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+                  <span style={{ fontSize:15,color:isDark?(h.v>=600?"#F5E0A0":h.v<=30?"#fdf0e8":h.c):"#000000",flex:1 }}>{h.n}</span>
+                  <span style={{ fontSize:13,color:C.mu }}>{h.v}</span>
+                </div>
+              ))}
+            </div>
+            {quickFeel && (()=>{
+              const h = HAWKINS.find(x=>x.n===quickFeel);
+              return h ? (
+                <div style={{ padding:"10px 14px",borderRadius:10,marginBottom:12,display:"flex",alignItems:"center",gap:10,background:`${h.c}22`,border:`1px solid ${h.c}66` }}>
+                  <div style={{ width:14,height:14,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 8px ${h.c}` }}/>
+                  <div>
+                    <div style={{ fontSize:15,color:C.cr }}>{h.n} · {h.v}</div>
+                    <div style={{ fontSize:13,color:C.mu }}>{h.v>=200?"Expansive energy, you're creating from above the line":"Contractive energy, the audio will help lift you"}</div>
+                  </div>
+                </div>
+              ) : null;
+            })()}
+            <button onClick={()=>setShowEmoLog(false)} style={{ width:"100%",padding:"11px",background:"none",border:`1px solid ${C.border}`,borderRadius:10,color:C.mu,fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>Close</button>
+          </div>
+        </>
+      )}
+      {showUpgradeReminder && userTier === "audio" && !isPreview && (
+        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
+            <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+          </div>
+        </div>
+      )}
+      {showOnboarding && <OnboardingQuiz
+        step={onbStep} setStep={setOnbStep}
+        goals={onbGoals} setGoals={setOnbGoals}
+        where={onbWhere} setWhere={setOnbWhere}
+        freq={onbFreq} setFreq={setOnbFreq}
+        onDone={finishOnboarding}
+        isDark={isDark} C={C}
+      />}
+      {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
+      <div style={{ flex:1,display:"flex",overflow:"hidden" }}>
+        {/* Sidebar */}
+        <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
+          <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:10,background:"#fdf0e8",overflow:"hidden",flexShrink:0 }}>
+              <img src="/shg-logo.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block" }} />
+            </a>
+            {isDark ? (
+              <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" }}>BETA</span>
+            ) : (
+              <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,background:"#000",display:"inline-block" }}>
+                <span style={{ backgroundImage:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", backgroundClip:"text", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", color:"transparent" }}>BETA</span>
+              </span>
+            )}
+          </div>
+          {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
+            <button key={n.id} onClick={()=>setTab(n.id)}
+              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(232,184,112,0.14)":"#000000"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#E8B870":"#F5E0A0"):isDark?"rgba(253,240,232,0.45)":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              onMouseEnter={e=>{if(tab!==n.id)e.currentTarget.style.color="#E8B870";}}
+              onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
+              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#F5E0A0"):C.cr}/> {n.label}
+            </button>
+          ))}
+          <div style={{ height:1,background:C.border,margin:"6px 16px" }}/>
+          <button onClick={()=>setShowGuide(true)} style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",background:"none",border:"none",borderLeft:"2px solid transparent",color:C.mu,fontSize:13,cursor:"pointer",textAlign:"left",width:"100%",fontFamily:"'Jost',sans-serif" }}
+            onMouseEnter={e=>e.currentTarget.style.color="#E8B870"}
+            onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
+            <Ico.Book c={C.mu}/> Listening Guide
+          </button>
+          <div style={{ height:1,background:C.border,margin:"6px 16px" }}/>
+          <div style={{ padding:"0 18px 4px",fontSize:11,fontWeight:400,color:C.dim,letterSpacing:"0.12em",textTransform:"uppercase" }}>Recently played</div>
+          {TRACKS.slice(0,5).map(t=>(
+            <button key={t.id} onClick={()=>{play(t); setShowDesc(true);}}
+              style={{ display:"flex",alignItems:"center",gap:9,padding:"4px 18px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:13,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
+              onMouseEnter={e=>e.currentTarget.style.color=C.cr}
+              onMouseLeave={e=>{if(track.id!==t.id)e.currentTarget.style.color=C.mu;}}>
+              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={24} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
+              <span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{t.title}</span>
+            </button>
+          ))}
+          <div style={{ flex:1 }}/>
+          <div style={{ padding:"6px 14px",display:"flex",gap:6 }}>
+            <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ flex:1,padding:"6px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+              {isDark?"☀ Light":"☾ Dark"}
+            </button>
+          </div>
+          <button onClick={()=>setProfileOpen(true)} style={{ margin:"0 14px 6px",padding:"6px 10px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:8,color:C.cr,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",alignItems:"center",gap:9 }}>
+            <div style={{
+              width:24,height:24,borderRadius:"50%",
+              background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",
+              display:"flex",alignItems:"center",justifyContent:"center",
+              fontSize:13,fontWeight:400,color:"#000"
+            }}>R</div>
+            Profile & Settings
+          </button>
+        </div>
+        {/* Main */}
+        <div style={{ flex:1,overflowY:"auto",background:isDark?(TAB_WASH[tab]?.dark||C.bg):C.bg,paddingBottom:20,backgroundImage:isDark?LG_FADE:LG_FADE_LIGHT }}>
+          <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
+            <style>{`.shg-home-search::placeholder{color:${C.cr};opacity:0.55;}`}</style>
+            <div style={{ maxWidth:360,position:"relative" }}>
+              <span style={{ position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",fontSize:16,color:C.dim }}>⌕</span>
+              <input
+                className="shg-home-search"
+                value={searchQ}
+                onChange={e=>{setQ(e.target.value); setTab("search");}}
+                placeholder="What do you want to play?"
+                style={{ width:"100%",padding:"11px 14px 11px 36px",borderRadius:24,background:C.bg3,border:`1px solid ${C.border}`,color:C.cr,fontSize:16,fontFamily:"'Jost',sans-serif",outline:"none" }}
+              />
+            </div>
+          </div>
+          {tabContent}
+        </div>
+      </div>
+      <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} showDesc={showDesc} setShowDesc={setShowDesc}/>
+    </div>
+  );
+
+  // ── MOBILE ───────────────────────────────────────────────────────────────
+  return (
+    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
+      <audio ref={audioRef} preload="none"/>
+      {profileOpen && <ProfilePanel/>}
+      {billingOpen && <BillingPanel/>}
+      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
+      {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
+      <BetaBanner C={C} isDark={isDark}/>
+      {showUpgradeReminder && userTier === "audio" && !isPreview && (
+        <div onClick={()=>setShowUpgradeReminder(false)} style={{ position:"fixed",inset:0,zIndex:1050,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
+            <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
+            <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
+            <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
+            <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
+          </div>
+        </div>
+      )}
+      <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
+        <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:38,height:38,borderRadius:9,background:"#fdf0e8",overflow:"hidden",flexShrink:0 }}>
+          <img src="/shg-logo.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block" }} />
+        </a>
+        <div style={{ display:"flex",alignItems:"center",gap:8 }}>
+          <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
+          <button onClick={()=>setProfileOpen(true)} style={{
+            width:34,height:34,borderRadius:"50%",
+            background:OMBRE,border:"none",
+            display:"flex",alignItems:"center",justifyContent:"center",
+            fontSize:16,fontWeight:400,color:"#000",
+            cursor:"pointer",WebkitTapHighlightColor:"transparent"
+          }}>R</button>
+        </div>
+      </div>
+      {/* Screen */}
+      <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
+      {/* Mini player */}
+      {!isPreview && !fullP && (
+        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:"#167A6B",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
+          <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
+          <div style={{ flex:1,minWidth:0 }}>
+            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#fdf0e8" }}>{track.title}</div>
+            <div style={{ fontSize:13,color:"rgba(253,240,232,0.65)" }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
+          </div>
+          <button onClick={e=>{e.stopPropagation();toggleLike(track.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
+          <button onClick={e=>{e.stopPropagation();setPlay(p=>!p);}} style={{ width:36,height:36,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:0,flexShrink:0 }}>
+            {playing?<Ico.Pause dark={!isDark}/>:<Ico.Play dark={!isDark}/>}
+          </button>
+          <div style={{ position:"absolute",bottom:0,left:0,right:0,height:2,background:C.border,borderRadius:"0 0 10px 10px" }}>
+            <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:"0 0 0 10px",backgroundSize:"200%",backgroundPosition:"left",transition:"width 0.3s" }}/>
+          </div>
+        </div>
+      )}
+      {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
+      {/* Bottom nav */}
+      {/* Floating log-a-sign button */}
+      {!fullP && (
+        <button
+          onClick={() => setLogSignOpen(true)}
+          style={{ position:"fixed",bottom:isPreview?62:78,right:18,zIndex:70,width:52,height:52,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
+          aria-label="Log a sign"
+        >✦</button>
+      )}
+      {!fullP && (
+        <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#0a0906":"#ffffff",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.08)":"rgba(0,0,0,0.1)"}`,display:"flex",zIndex:60 }}>
+          {tabs.map(n=>(
+            <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
+              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#0a0906"):(isDark?"rgba(255,255,255,0.35)":"rgba(0,0,0,0.35)")}/>
+              <span style={{ fontSize:11,fontWeight:tab===n.id?600:400,color:tab===n.id?(isDark?"#E8B870":"#0a0906"):(isDark?"rgba(255,255,255,0.35)":"rgba(0,0,0,0.35)") }}>{n.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+      {/* Log Sign Modal */}
+      {logSignOpen && (
+        <LogSignModal
+          onClose={() => setLogSignOpen(false)}
+          onSaved={(sign) => {
+            if (sign?.manifestation_id) {
+              setThreads(ts => ts.map(t => t.id === sign.manifestation_id ? { ...t, signs: [...(t.signs||[]), { text: sign.content, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}) }] } : t));
+            }
+            setLogSignOpen(false);
+          }}
+          userId={userId}
+          token={token}
+          apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}
+          isDark={isDark}
+          activeIntentions={threads.filter(t => !t.done && !t.isBucket).map(t => ({ id: t.id, desire: t.desire }))}
+        />
+      )}
+      {/* Manifest Celebration */}
+      {celebThread && (
+        <ManifestCelebration
+          desire={celebThread.desire}
+          signCount={(celebThread.signs||[]).length}
+          onClose={() => setCelebThread(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ── PREVIEW BANNER ────────────────────────────────────────────────────────────
+function PreviewBanner({ onSignOut, C }) {
+  return (
+    <div style={{ background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",padding:"9px 16px",textAlign:"center",flexShrink:0 }}>
+      <span style={{ fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>
+        🔒 Preview mode, <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
+      </span>
+    </div>
+  );
+}
+
+function BetaBanner({ C, isDark }) {
+  const [dismissed, setDismissed] = useState(() => {
+    try { return sessionStorage.getItem("shg_beta_dismissed") === "1"; } catch { return false; }
+  });
+  if (dismissed) return null;
+  const close = () => {
+    setDismissed(true);
+    try { sessionStorage.setItem("shg_beta_dismissed", "1"); } catch {}
+  };
+  return (
+    <div style={{ background:isDark?"#0a0a0a":"#000000",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
+      <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",display:"block" }}>
+        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span>, some tracks may not work yet.
+      </span>
+      <button onClick={close} aria-label="Dismiss" style={{ position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",width:22,height:22,borderRadius:"50%",background:"none",border:"none",color:C.mu,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",WebkitTapHighlightColor:"transparent" }}>✕</button>
+    </div>
+  );
+}
+
+// ── DESKTOP PLAYER ─────────────────────────────────────────────────────────────
+function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, showDesc, setShowDesc }) {
+  const d = getDesc(track);
+  // On teal nav bar, text must always be cream regardless of theme
+  const navCr = "#fdf0e8";
+  const navMu = "rgba(253,240,232,0.65)";
+  return (
+    <>
+    {showDesc && (
+      <div style={{ position:"fixed",inset:0,zIndex:1000,background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"24px 48px" }}>
+          <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.cr,display:"flex",alignItems:"center",gap:8,fontSize:15,fontFamily:"'Jost',sans-serif" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg> Back
+          </button>
+          <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
+          <div style={{ width:60 }}/>
+        </div>
+        <div style={{ flex:1,overflowY:"auto",display:"flex",justifyContent:"center",padding:"20px 48px 60px" }}>
+          <div style={{ display:"flex",gap:56,maxWidth:900,width:"100%",alignItems:"flex-start" }}>
+            <div style={{ flexShrink:0 }}>
+              <Thumb title={track.title} cat={track.cat} size={260} radius={16}/>
+            </div>
+            <div style={{ flex:1,minWidth:0 }}>
+              <div style={{ fontSize:32,fontWeight:400,color:C.cr,marginBottom:6 }}>{track.title}</div>
+              <div style={{ fontSize:16,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
+              <div style={{ fontSize:14,color:isDark?"#E8B870":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
+              <div style={{ fontSize:19,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
+              <div style={{ fontSize:14,color:isDark?"#BFA5D8":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
+              <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
+                {d.benefits.map((b,i)=>(
+                  <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
+                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:17,marginTop:2 }}></span>
+                    <span style={{ fontSize:18,lineHeight:1.65,color:C.cr }}>{b}</span>
+                  </div>
+                ))}
+              </div>
+              {CAT_GUIDE[track.cat] && (
+                GUIDES_AVAILABLE.has(track.cat) ? (
+                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
+                    <span style={{ fontSize:20 }}>📖</span>
+                    <div>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:16,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    </div>
+                  </a>
+                ) : (
+                  <div style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,maxWidth:400,opacity:0.6 }}>
+                    <span style={{ fontSize:20 }}>📖</span>
+                    <div>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:15,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    <div style={{ height:88,background:C.nav,borderTop:"none",display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
+      <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
+        <div onClick={()=>setShowDesc(true)} style={{ cursor:"pointer" }}><Thumb title={track.title} cat={track.cat} size={52} radius={4}/></div>
+        <div style={{ minWidth:0, cursor:"pointer" }} onClick={()=>setShowDesc(true)}>
+          <div style={{ fontSize:15,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:navCr }}>{track.title}</div>
+          <div style={{ fontSize:13,color:navMu }}>Reshma Oracle</div>
+        </div>
+        <button onClick={()=>setShowDesc(true)} style={{ background:"none",border:"none",lineHeight:0,padding:6,cursor:"pointer" }} title="About this track">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={navMu} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={navMu}/></svg>
+        </button>
+        <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",lineHeight:0,padding:8 }}><Ico.Heart on={liked.has(track.id)}/></button>
+      </div>
+      <div style={{ flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:6 }}>
+        <div style={{ display:"flex",alignItems:"center",gap:20 }}>
+          <span style={{ fontSize:16,color:navMu,cursor:"pointer" }}>⇄</span>
+          <button onClick={prevTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={navMu}><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill={navMu}/></svg></button>
+          <button onClick={()=>setPlay(p=>!p)} style={{ width:36,height:36,borderRadius:"50%",background:OMBRE,border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",backgroundSize:"200%",backgroundPosition:"left",boxShadow:"0 2px 12px rgba(232,184,112,0.35)" }}>
+            {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
+          </button>
+          <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill={navMu}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={navMu}/></svg></button>
+          <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#E8B870":navMu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+        </div>
+        <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
+          <span style={{ fontSize:13,color:navMu,width:32,textAlign:"right" }}>,</span>
+          <div style={{ flex:1,height:4,background:"rgba(253,240,232,0.25)",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
+            <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",transition:"width 0.3s" }}/>
+          </div>
+          <span style={{ fontSize:13,color:navMu,width:32 }}>{track.dur}</span>
+        </div>
+      </div>
+      <div style={{ width:160,display:"flex",alignItems:"center",gap:8,justifyContent:"flex-end",flexShrink:0 }}>
+        <span style={{ fontSize:16,color:C.dim }}>🔊</span>
+        <div style={{ width:80,height:4,background:C.border,borderRadius:2 }}><div style={{ width:"70%",height:"100%",background:C.cr,borderRadius:2 }}/></div>
+      </div>
+    </div>
+    </>
+  );
+}
+
+// ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
+function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, C, isDark, hasAudio }) {
+  const [view, setView] = useState("desc"); // cover | script | desc
+  return (
+    <div style={{ position:"absolute",inset:0,background:C.bg,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
+      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:52,marginBottom:24 }}>
+        <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
+        <div style={{ display:"flex",gap:10 }}>
+          <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="About this track" title="About this track">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#E8B870":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#E8B870":C.cr}/></svg>
+          </button>
+          <button onClick={()=>setView(v=>v==="script"?"cover":"script")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#E8B870":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+          </button>
+        </div>
+      </div>
+      {view==="desc" ? (
+        <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
+          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
+          <div style={{ fontSize:15,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
+          {(() => { const d = getDesc(track); return (
+            <div style={{ width:"100%",paddingBottom:40 }}>
+              <div style={{ fontSize:13,color:isDark?"#E8B870":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
+              <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
+              <div style={{ fontSize:13,color:isDark?"#BFA5D8":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
+              <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
+                {d.benefits.map((b,i)=>(
+                  <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
+                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:16,marginTop:2 }}></span>
+                    <span style={{ fontSize:17,lineHeight:1.6,color:C.cr }}>{b}</span>
+                  </div>
+                ))}
+              </div>
+              {CAT_GUIDE[track.cat] && (
+                GUIDES_AVAILABLE.has(track.cat) ? (
+                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
+                    <span style={{ fontSize:18 }}>📖</span>
+                    <div style={{ flex:1 }}>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:15,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
+                    </div>
+                  </a>
+                ) : (
+                  <div style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,opacity:0.6 }}>
+                    <span style={{ fontSize:18 }}>📖</span>
+                    <div style={{ flex:1 }}>
+                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
+                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          ); })()}
+        </div>
+      ) : view==="script" ? (
+        <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
+          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
+          <div style={{ fontSize:15,color:C.mu,marginBottom:24 }}>Read along</div>
+          <div style={{ width:"100%",fontSize:19,lineHeight:1.9,color:C.cr,fontWeight:400,textAlign:"center",whiteSpace:"pre-line",paddingBottom:40 }}>
+            {track.script || "Script coming soon, this affirmation script hasn't been added yet."}
+          </div>
+        </div>
+      ) : (
+      <>
+      <Thumb title={track.title} cat={track.cat} size={270} radius={14}/>
+      {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
+      <div style={{ width:"100%",marginTop:24,marginBottom:12 }}>
+        <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{track.title}</div>
+        <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
+      </div>
+      <div style={{ display:"flex",gap:8,width:"100%",marginBottom:20,flexWrap:"wrap" }}>
+        {track.format && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.format}</span>}
+        {track.cat && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.cat}</span>}
+        {track.dur && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.dur}</span>}
+      </div>
+      <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
+        <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
+          <Ico.Heart on={liked.has(track.id)}/>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Like</span>
+        </button>
+        <button style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Save</span>
+        </button>
+        <button onClick={()=>{ if(navigator.share){ navigator.share({title:track.title,url:window.location.href}).catch(()=>{});} }} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Share</span>
+        </button>
+      </div>
+      </>
+      )}
+      <div style={{ width:"100%",marginBottom:8 }}>
+        <div style={{ height:4,background:isDark?"#333333":"#000000",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
+          <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",position:"relative",transition:"width 0.3s" }}>
+            <div style={{ position:"absolute",right:-6,top:"50%",transform:"translateY(-50%)",width:13,height:13,borderRadius:"50%",background:C.cr }}/>
+          </div>
+        </div>
+      </div>
+      <div style={{ display:"flex",justifyContent:"space-between",width:"100%",marginBottom:32 }}>
+        <span style={{ fontSize:13,color:C.dim }}>,</span><span style={{ fontSize:13,color:C.dim }}>{track.dur}</span>
+      </div>
+      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%" }}>
+        <span style={{ fontSize:18,color:C.dim,cursor:"pointer" }}>⇄</span>
+        <button onClick={prevTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="24" height="24" viewBox="0 0 24 24" fill={C.cr}><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2.5" height="16" rx="1" fill={C.cr}/></svg></button>
+        <button onClick={()=>setPlay(p=>!p)} style={{ width:64,height:64,borderRadius:"50%",background:OMBRE,border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",backgroundSize:"200%",backgroundPosition:"left",boxShadow:"0 4px 28px rgba(232,184,112,0.35)" }}>
+          {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
+        </button>
+        <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="24" height="24" viewBox="0 0 24 24" fill={C.cr}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.cr}/></svg></button>
+        <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#E8B870":C.mu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
+      </div>
+    </div>
+  );
+}
+
+// ── HOME TAB ──────────────────────────────────────────────────────────────────
+function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, setThreads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, token, pushDismissed, onDismissPush, openPlayer }) {
+
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");
+  const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
+  const [quickDesire, setQuickDesire] = useState("");
+  const [quickListening, setQuickListening] = useState(false);
+  const [quickSaved, setQuickSaved] = useState(false);
+  const [voiceError, setVoiceError] = useState("");
+  const voiceRef = useRef(null);
+
+  const saveQuickDesire = () => {
+    if (!quickDesire.trim()) return;
+    const id = Date.now();
+    setThreads(ts => [{ id, desire: quickDesire.trim(), days: 0, done: false, signs: [], track: track?.title || "", category: "", feelBefore: "", feelAfter: "", oldBelief: "", isBucket: false }, ...ts]);
+    setQuickDesire("");
+    setQuickSaved(true);
+    setTimeout(() => setQuickSaved(false), 2000);
+  };
+
+  const startVoice = () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { setVoiceError("Voice not supported — use Chrome or Safari"); return; }
+    if (quickListening) {
+      if (voiceRef.current) { try { voiceRef.current.stop(); } catch(e){} voiceRef.current = null; }
+      setQuickListening(false);
+      return;
+    }
+    setVoiceError("");
+    const r = new SR();
+    r.lang = "en-US";
+    r.interimResults = true;
+    r.continuous = true;
+    r.maxAlternatives = 1;
+    voiceRef.current = r;
+    let aggregated = "";
+    setQuickListening(true);
+    r.onresult = e => {
+      let interim = "";
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript;
+        if (e.results[i].isFinal) { aggregated += (aggregated ? " " : "") + t.trim(); }
+        else { interim = t; }
+      }
+      setQuickDesire(aggregated + (interim ? " " + interim : ""));
+    };
+    r.onerror = ev => {
+      setQuickListening(false);
+      voiceRef.current = null;
+      if (ev.error === "not-allowed") setVoiceError("Microphone access denied — check browser permissions");
+      else if (ev.error === "no-speech") setVoiceError("No speech detected — try again");
+      else setVoiceError("Voice error: " + ev.error);
+    };
+    r.onend = () => { setQuickListening(false); voiceRef.current = null; };
+    try { r.start(); } catch(e) { setQuickListening(false); voiceRef.current = null; setVoiceError("Could not start microphone"); }
+  };
+  return (
+    <div style={{ paddingBottom:80 }}>
+      {/* HEADER */}
+      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 6px" }}>
+        <div>
+          <div style={{ fontSize:13,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
+          <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
+            {isPreview?"Goddess":firstName}
+            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
+              {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
+            </span>
+          </span>
+        </div>
+        <button onClick={()=>setTab("shop")} style={{ width:36,height:36,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </button>
+      </div>
+
+      {/* UPGRADE BANNER */}
+      {userTier==="audio"&&!isPreview&&(
+        <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
+          <div>
+            <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3, }}>Goddess offer</div>
+            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics, 10% off</div>
+          </div>
+          <div style={{ fontSize:18,color:"#000",flexShrink:0 }}>→</div>
+        </div>
+      )}
+
+      {/* PUSH PROMPT */}
+      {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} token={token} C={C} onDismiss={onDismissPush}/>}
+
+      {/* PROOFOS TEASER, home tab */}
+      <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
+        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
+          <div style={{ fontSize:13,fontWeight:600,color:"#167A6B",letterSpacing:"0.15em",textTransform:"uppercase",display:"inline-block" }}>ProofOS </div>
+          <span style={{ fontSize:15,color:"#F5E0A0" }}>›</span>
+        </div>
+        <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
+        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
+          {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.","#BFA5D8"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
+            <div key={name} style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
+              <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
+              <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore ProofOS →</div>
+      </div>
+
+      {/* QUICK DESIRE CAPTURE */}
+      <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
+          <div style={{ fontSize:13, fontWeight:600, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
+          <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in ProofOS →</button>
+        </div>
+        <style>{`.qd-input::placeholder{color:rgba(253,240,232,0.4)!important}`}</style>
+        <div style={{ display:"flex", gap:8, alignItems:"center" }}>
+          <input className="qd-input" value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
+            onKeyDown={e=>{ if(e.key==="Enter") saveQuickDesire(); }}
+            placeholder="I receive… I am… I have…"
+            style={{ flex:1, background:"#000", border:"1px solid rgba(232,184,112,0.4)", color:"#fdf0e8", borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
+          <button onClick={startVoice} title="Speak your desire"
+            style={{ flexShrink:0, width:42, height:42, borderRadius:"50%", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:19,
+              background: quickListening ? "#E8B870" : "transparent",
+              boxShadow: quickListening ? "0 0 14px rgba(232,184,112,0.7)" : "none",
+              transition:"all 0.2s" }}>
+            {quickListening ? "⏹" : "🎙"}
+          </button>
+          <button onClick={saveQuickDesire}
+            style={{ flexShrink:0, padding:"0 16px", height:42, borderRadius:8, border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:500,
+              background: quickSaved ? "#2CB7A7" : "linear-gradient(135deg,#E8B870,#BFA5D8)",
+              color:"#000", transition:"all 0.2s" }}>
+            {quickSaved ? "✓ Saved" : "Add"}
+          </button>
+        </div>
+        {quickListening && <div style={{ marginTop:6, fontSize:11, color:"#E8B870" }}>🎙 Listening… tap ⏹ when done.</div>}
+        {voiceError && voiceError !== "Microphone access denied — check browser permissions" && (
+          <div style={{ marginTop:6, fontSize:11, color:"#E87070" }}>{voiceError}</div>
+        )}
+        {threads.filter(t=>!t.done).length > 0 && (
+          <div style={{ marginTop:10, fontSize:12, color:C.mu }}>
+            {threads.filter(t=>!t.done).length} active desire{threads.filter(t=>!t.done).length!==1?"s":""} · {threads.filter(t=>t.done).length} manifested
+          </div>
+        )}
+      </div>
+
+      {/* KNOWLEDGE GUIDE, all tiers */}
+      <div style={{ margin:"12px 16px 4px" }}>
+        <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(44,183,167,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+          <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
+          <span style={{ flex:1 }}>
+            <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook </div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals, all explained.</div>
+          </span>
+          <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
+        </button>
+      </div>
+
+      {/* JUMP BACK IN */}
+      <Sec title="Jump back in" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
+        <HRow>
+          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
+        </HRow>
+      </Sec>
+
+      {/* MADE FOR YOU */}
+      <div style={{ padding:"0 16px 8px" }}>
+        <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12 }}>
+          <span style={{ fontSize:18,fontWeight:400,color:C.cr }}>Made for you</span>
+          <button onClick={()=>setTab("library")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>See all</button>
+        </div>
+        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
+          {FEATURED_CATS.map(cat=>{
+            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
+            const n=TRACKS.filter(t=>t.cat===cat).length;
+            return(
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:isDark?"#0a0a0a":C.bg2,border:`1px solid ${c.accent}`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
+                <div style={{ width:38,height:38,borderRadius:8,background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:c.accent }}>
+                  <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
+                </div>
+                <div>
+                  <div style={{ fontSize:14,fontWeight:400,color:C.cr,lineHeight:1.2 }}>{cat.replace("maxxing","")}</div>
+                  <div style={{ fontSize:12,color:C.mu,marginTop:2 }}>{n} tracks</div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* YOUR FAVOURITES */}
+      <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
+        {TRACKS.filter(t=>liked.has(t.id)).length===0
+          ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track, it lives here.</div>
+          :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
+      </Sec>
+
+      {/* NEW THIS WEEK */}
+      <Sec title="New this week " C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
+        <HRow>
+          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
+        </HRow>
+      </Sec>
+
+      {/* BY DESIRE */}
+      <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
+        <HRow>
+          {Object.keys(CAT_ICONS).map(cat=>{
+            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
+            return(
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
+                <div style={{ width:80,height:80,borderRadius:14,background:"#111",border:`1.5px solid ${c.accent}`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
+                  <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
+                </div>
+                <div style={{ fontSize:12,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
+              </button>
+            );
+          })}
+        </HRow>
+      </Sec>
+
+    </div>
+  );
+}
+
+// ── MANIFESTATION TIMELINE ──
+const DEMO_TIMELINE = [
+  { month:"Jan 26", set:18, manifested:11, listens:42, avgDays:8,  cats:{Lovemaxxing:6,Richgirlmaxxing:5,Beautymaxxing:4,Selfmaxxing:3} },
+  { month:"Feb 26", set:22, manifested:15, listens:58, avgDays:6,  cats:{Lovemaxxing:8,Richgirlmaxxing:6,Beautymaxxing:4,Luckygirlmaxxing:4} },
+  { month:"Mar 26", set:19, manifested:14, listens:63, avgDays:7,  cats:{Richgirlmaxxing:7,Selfmaxxing:5,Lovemaxxing:4,Businessmaxxing:3} },
+  { month:"Apr 26", set:24, manifested:18, listens:71, avgDays:5,  cats:{Lovemaxxing:9,Luckygirlmaxxing:7,Richgirlmaxxing:5,Beautymaxxing:3} },
+  { month:"May 26", set:21, manifested:17, listens:80, avgDays:4,  cats:{Richgirlmaxxing:8,Lovemaxxing:6,Businessmaxxing:4,Selfmaxxing:3} },
+  { month:"Jun 26", set:26, manifested:21, listens:88, avgDays:4,  cats:{Lovemaxxing:10,Richgirlmaxxing:8,Luckygirlmaxxing:5,Beautymaxxing:3} },
+  { month:"Jul 26", set:28, manifested:23, listens:95, avgDays:3,  cats:{Richgirlmaxxing:11,Lovemaxxing:8,Businessmaxxing:5,Selfmaxxing:4} },
+  { month:"Aug 26", set:14, manifested:12, listens:52, avgDays:3,  cats:{Lovemaxxing:5,Richgirlmaxxing:4,Selfmaxxing:3,Beautymaxxing:2} },
+];
+const DEMO_CAT_STATS = [
+  { cat:"Lovemaxxing",  total:56, manifested:41, avgDays:5, color:"#167A6B" },
+  { cat:"Richgirl",     total:54, manifested:38, avgDays:4, color:"#E8B870" },
+  { cat:"Luckygirl",    total:16, manifested:14, avgDays:3, color:"#BFA5D8" },
+  { cat:"Beauty",       total:16, manifested:10, avgDays:7, color:"#2CB7A7" },
+  { cat:"Business",     total:12, manifested:8,  avgDays:9, color:"#BFA5D8" },
+  { cat:"Self",         total:15, manifested:9,  avgDays:6, color:"#F5E0A0" },
+];
+
+function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");
+
+  // Build real data from threads when not in preview
+  const months = isPreview ? DEMO_TIMELINE : (() => {
+    const map = {};
+    threads.forEach(t => {
+      const d = t.createdAt ? new Date(t.createdAt) : new Date();
+      const key = d.toLocaleString("en-GB",{month:"short",year:"2-digit"});
+      if (!map[key]) map[key] = { month:key, set:0, manifested:0, listens:0, avgDays:0, cats:{} };
+      map[key].set++;
+      if (t.done) map[key].manifested++;
+      (t.category||"Other").split(",").forEach(c => { map[key].cats[c.trim()] = (map[key].cats[c.trim()]||0)+1; });
+    });
+    return Object.values(map).slice(-8);
+  })();
+
+  const catStats = isPreview ? DEMO_CAT_STATS : (() => {
+    const map = {};
+    threads.forEach(t => {
+      const cat = t.category || "Other";
+      if (!map[cat]) map[cat] = { cat, total:0, manifested:0, totalDays:0, color:"#BFA5D8" };
+      map[cat].total++;
+      if (t.done) { map[cat].manifested++; map[cat].totalDays += (t.days||0); }
+    });
+    return Object.values(map).sort((a,b)=>b.manifested-a.manifested).slice(0,6).map((r,i) => ({
+      ...r, avgDays: r.manifested ? Math.round(r.totalDays/r.manifested) : 0,
+      color: ["#167A6B","#E8B870","#BFA5D8","#2CB7A7","#BFA5D8","#F5E0A0"][i],
+    }));
+  })();
+
+  const totalSet = months.reduce((s,m)=>s+m.set,0);
+  const totalManifested = months.reduce((s,m)=>s+m.manifested,0);
+  const overallRate = totalSet ? Math.round((totalManifested/totalSet)*100) : 0;
+  const avgDaysAll = isPreview ? 5 : (catStats.reduce((s,c)=>s+c.avgDays*c.manifested,0) / Math.max(catStats.reduce((s,c)=>s+c.manifested,0),1)) || 0;
+  const maxSet = Math.max(...months.map(m=>m.set), 1);
+
+  return (
+    <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif" }}>
+      {/* Header */}
+      <div style={{ marginBottom:16 }}>
+        <div style={{ fontSize:13, fontWeight:600, color:"#BFA5D8", letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:4 }}>Manifestation history</div>
+        <div style={{ fontSize:14, color:C.mu, lineHeight:1.5 }}>
+          {isPreview ? "A record that compounds. The longer you log, the more your patterns emerge." : "Your full manifestation record — every intention, every win, every pattern."}
+        </div>
+      </div>
+
+      {/* Top-line stats */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>
+        {[
+          [totalSet, "Intentions set", "#E8B870"],
+          [totalManifested, "Manifested", "#2CB7A7"],
+          [`${overallRate}%`, "Success rate", "#BFA5D8"],
+          [`${Math.round(avgDaysAll)}d`, "Avg to manifest", "#167A6B"],
+        ].map(([v,l,col])=>(
+          <div key={l} style={{ background:C.bg2, borderRadius:12, padding:"12px 10px", textAlign:"center", border:`1px solid ${col}33` }}>
+            <div style={{ fontSize:20, fontWeight:400, color:col, lineHeight:1 }}>{v}</div>
+            <div style={{ fontSize:10, color:C.mu, marginTop:5, lineHeight:1.3 }}>{l}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Monthly bar chart */}
+      <div style={{ background:C.bg2, borderRadius:16, padding:"18px 16px", marginBottom:14, border:`1px solid ${C.border}` }}>
+        <div style={{ fontSize:12, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>Intentions set vs manifested per month</div>
+        <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:90 }}>
+          {months.map((m,i)=>{
+            const setPct = (m.set/maxSet)*100;
+            const manPct = (m.manifested/maxSet)*100;
+            return (
+              <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:2, height:"100%", justifyContent:"flex-end" }}>
+                <div style={{ width:"100%", position:"relative", display:"flex", flexDirection:"column", justifyContent:"flex-end", height:"100%" }}>
+                  <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background:"rgba(232,184,112,0.2)", height:`${setPct}%`, position:"absolute", bottom:0, left:0 }}/>
+                  <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background:"#2CB7A7", height:`${manPct}%`, position:"absolute", bottom:0, left:0 }}/>
+                </div>
+                <div style={{ fontSize:8.5, color:C.mu, marginTop:4, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", width:"100%", textAlign:"center" }}>{m.month}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ display:"flex", gap:14, marginTop:10 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:5 }}>
+            <div style={{ width:10, height:10, borderRadius:2, background:"rgba(232,184,112,0.4)" }}/>
+            <span style={{ fontSize:11, color:C.mu }}>Set</span>
+          </div>
+          <div style={{ display:"flex", alignItems:"center", gap:5 }}>
+            <div style={{ width:10, height:10, borderRadius:2, background:"#2CB7A7" }}/>
+            <span style={{ fontSize:11, color:C.mu }}>Manifested</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Category breakdown — avg days to manifest */}
+      <div style={{ background:C.bg2, borderRadius:16, padding:"18px 16px", marginBottom:14, border:`1px solid ${C.border}` }}>
+        <div style={{ fontSize:12, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>By life area — time to manifest</div>
+        {catStats.map((r,i) => {
+          const rate = r.total ? Math.round((r.manifested/r.total)*100) : 0;
+          const barPct = Math.min(rate, 100);
+          return (
+            <div key={i} style={{ marginBottom:14 }}>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:5 }}>
+                <span style={{ fontSize:13, color:C.cr, fontWeight:400 }}>{r.cat}</span>
+                <div style={{ display:"flex", gap:10, alignItems:"baseline" }}>
+                  <span style={{ fontSize:11, color:C.mu }}>{r.manifested}/{r.total}</span>
+                  {r.avgDays > 0 && <span style={{ fontSize:11, color:r.color, fontWeight:500 }}>{r.avgDays}d avg</span>}
+                </div>
+              </div>
+              <div style={{ height:6, borderRadius:3, background:`${r.color}22`, overflow:"hidden" }}>
+                <div style={{ height:"100%", width:`${barPct}%`, borderRadius:3, background:r.color, transition:"width 0.8s ease" }}/>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Fastest + most active callouts */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:14 }}>
+        <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(44,183,167,0.3)` }}>
+          <div style={{ fontSize:10, color:"#2CB7A7", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Fastest area</div>
+          <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.cat || "—"}</div>
+          <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.avgDays || "—"}d avg</div>
+        </div>
+        <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(232,184,112,0.3)` }}>
+          <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Most active area</div>
+          <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.cat || "—"}</div>
+          <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.total || "—"} intentions</div>
+        </div>
+      </div>
+
+      {isPreview && (
+        <div style={{ background:`${C.bg2}`, borderRadius:14, padding:"14px 16px", border:`1px solid rgba(191,165,216,0.3)`, textAlign:"center" }}>
+          <div style={{ fontSize:13, color:"#BFA5D8", marginBottom:4, fontWeight:500 }}>Your chart grows with you</div>
+          <div style={{ fontSize:12, color:C.mu, lineHeight:1.5 }}>Log intentions across 2026 → 2030 and watch your manifestation speed and rate compound month by month. Sign up to start your permanent record →</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── STAT CAROUSEL — full-width snap-scroll cards with massive numbers ──
+function StatCarousel({ slides }) {
+  const scrollRef = useRef(null);
+  const [idx, setIdx] = useState(0);
+  const timerRef = useRef(null);
+
+  const scrollTo = (i) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.offsetWidth, behavior: "smooth" });
+    setIdx(i);
+  };
+
+  const resetTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setIdx(prev => {
+        const next = (prev + 1) % slides.length;
+        const el = scrollRef.current;
+        if (el) el.scrollTo({ left: next * el.offsetWidth, behavior: "smooth" });
+        return next;
+      });
+    }, 3200);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => clearInterval(timerRef.current);
+  }, [slides.length]);
+
+  const onScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const i = Math.round(el.scrollLeft / el.offsetWidth);
+    if (i !== idx) { setIdx(i); resetTimer(); }
+  };
+
+  return (
+    <div style={{ marginTop:4 }}>
+      <style>{`
+        .shg-stat-scroll { scrollbar-width:none; }
+        .shg-stat-scroll::-webkit-scrollbar { display:none; }
+      `}</style>
+      {/* Snap-scroll track */}
+      <div
+        ref={scrollRef}
+        className="shg-stat-scroll"
+        onScroll={onScroll}
+        style={{ display:"flex", overflowX:"auto", scrollSnapType:"x mandatory", gap:0,
+          borderRadius:20, overflow:"hidden" }}
+      >
+        {slides.map((s, i) => (
+          <div key={i} style={{ minWidth:"100%", scrollSnapAlign:"start", flexShrink:0,
+            background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",
+            backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite",
+            padding:"28px 24px 24px", boxSizing:"border-box",
+            display:"flex", flexDirection:"column", justifyContent:"center", minHeight:160 }}>
+            <div style={{ fontSize:11, color:"#0a0906", letterSpacing:"0.22em", textTransform:"uppercase", fontWeight:700, opacity:0.6, marginBottom:8 }}>{s.sub}</div>
+            <div style={{ fontSize:80, fontWeight:300, color:"#0a0906", lineHeight:1, letterSpacing:"-4px", marginBottom:8 }}>{s.value}</div>
+            <div style={{ fontSize:14, color:"#0a0906", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", opacity:0.8 }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+      {/* Dot indicators */}
+      <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:8 }}>
+        {slides.map((_,i) => (
+          <button key={i} onClick={()=>{ scrollTo(i); resetTimer(); }}
+            style={{ width: i===idx ? 22 : 7, height:7, borderRadius:4, border:"none", cursor:"pointer", padding:0,
+              background: i===idx ? "#0a0906" : "rgba(10,9,6,0.25)", transition:"all 0.3s ease" }}/>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail, apiUrl="https://shg-backend.reshmaoracle.com" }) {
+  const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
+  const manifested = threads.filter(t=>t.done).length;
+  const inProgress = threads.filter(t=>!t.done).length;
+
+  const [recommendation, setRecommendation] = useState(null);
+  const [recLoading, setRecLoading] = useState(false);
+  const [streakDays, setStreakDays] = useState([]);
+  const [catCounts, setCatCounts] = useState({});
+  const [reminderSent, setReminderSent] = useState(false);
+  const [listenEvents, setListenEvents] = useState([]);
+
+  // ── REAL BACKEND ANALYTICS ──
+  const [analyticsData, setAnalyticsData] = useState(null);
+  const [weeklyInsight, setWeeklyInsight] = useState(null);
+
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${apiUrl}/analytics`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (!cancelled) setAnalyticsData(data);
+        }
+      } catch (e) { /* non-blocking */ }
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, token, apiUrl]);
+
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${apiUrl}/insight/weekly`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (!cancelled && data.insight) setWeeklyInsight(data.insight);
+        }
+      } catch (e) { /* non-blocking */ }
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, token, apiUrl]);
+
+  const fetchRecommendation = async () => {
+    if (isPreview || !userId || !token) return;
+    setRecLoading(true);
+    try {
+      const res = await fetch(`${QUIZ_WORKER_URL}/recommend`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ tracks: TRACKS.map(t=>({title:t.title,cat:t.cat})), recentPlays: listenEvents }),
+      });
+      const data = await res.json();
+      if (data.recommendation) setRecommendation(data.recommendation);
+    } catch (e) { /* non-blocking */ }
+    setRecLoading(false);
+  };
+
+  const sendReminder = async () => {
+    if (isPreview || !userId || !token) return;
+    try {
+      await fetch(`${QUIZ_WORKER_URL}/reminder`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ reminder_time: "20:00" }),
+      });
+      setReminderSent(true);
+    } catch (e) { /* non-blocking */ }
+  };
+
+  // ── PATTERNS: real listen counts per category/track, correlated with manifested desires ──
+  const [patterns, setPatterns] = useState(null); // null = loading/no data yet
+  const [realListens, setRealListens] = useState({ total:0, week:[0,0,0,0,0,0,0] });
+  useEffect(() => {
+    if (isPreview || !userId) { setPatterns([]); return; }
+    let cancelled = false;
+    (async () => {
+      let plays, playsErr;
+      try {
+        const data = await quizApi("/listen-history", token);
+        plays = data.events;
+      } catch (e) {
+        playsErr = e;
+      }
+      if (cancelled) return;
+      if (playsErr || !plays || plays.length === 0) { setPatterns([]); setRealListens({ total:0, week:[0,0,0,0,0,0,0] }); return; }
+
+      // Real weekly play counts (Mon-Sun) from actual played_at timestamps
+      const now = new Date();
+      const dayOfWeek = (now.getDay()+6)%7; // 0=Mon ... 6=Sun
+      const monday = new Date(now); monday.setDate(now.getDate()-dayOfWeek); monday.setHours(0,0,0,0);
+      const weekCounts = [0,0,0,0,0,0,0];
+      plays.forEach(p => {
+        const d = new Date(p.played_at);
+        const diffDays = Math.floor((d - monday) / 86400000);
+        if (diffDays >= 0 && diffDays < 7) weekCounts[diffDays]++;
+      });
+      setRealListens({ total: plays.length, week: weekCounts });
+
+      // Aggregate listens per category and per track
+      const byCategory = {}; // category -> {count, trackTitles:Set}
+      const byTrack = {}; // title -> {count, category}
+      plays.forEach(p => {
+        const cat = p.category;
+        const title = p.title;
+        if (cat) { byCategory[cat] = byCategory[cat] || {count:0}; byCategory[cat].count++; }
+        if (title) { byTrack[title] = byTrack[title] || {count:0, category:cat}; byTrack[title].count++; }
+      });
+
+      // Manifested desires with a category, grouped
+      const manifestedByCategory = {};
+      threads.filter(t=>t.done && t.category).forEach(t => {
+        manifestedByCategory[t.category] = (manifestedByCategory[t.category]||0) + 1;
+      });
+
+      const catInsights = Object.entries(byCategory)
+        .map(([cat,v]) => ({ type:"category", name:cat, listens:v.count, manifestedCount: manifestedByCategory[cat]||0 }))
+        .filter(i => i.manifestedCount > 0)
+        .sort((a,b)=>b.manifestedCount-a.manifestedCount || b.listens-a.listens);
+
+      const trackInsights = Object.entries(byTrack)
+        .map(([title,v]) => ({ type:"track", name:title, listens:v.count, manifestedCount: manifestedByCategory[v.category]||0 }))
+        .filter(i => i.manifestedCount > 0)
+        .sort((a,b)=>b.manifestedCount-a.manifestedCount || b.listens-a.listens);
+
+      setPatterns([...catInsights.slice(0,2), ...trackInsights.slice(0,2)].slice(0,3));
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, threads]);
+
+  // Fetch listening events from quiz worker for streak + category radar + recommendations
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${QUIZ_WORKER_URL}/listen-history`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        const events = data.events || [];
+        if (cancelled) return;
+        setListenEvents(events);
+
+        // Streak: consecutive days with at least one listen
+        const days = new Set(events.map(e => e.played_at?.slice(0,10)));
+        let streak = 0;
+        const today = new Date();
+        for (let i = 0; i < 60; i++) {
+          const d = new Date(today); d.setDate(today.getDate() - i);
+          const key = d.toISOString().slice(0,10);
+          if (days.has(key)) streak++;
+          else if (i > 0) break;
+        }
+        // Last 30 days for calendar
+        const cal = [];
+        for (let i = 29; i >= 0; i--) {
+          const d = new Date(today); d.setDate(today.getDate() - i);
+          cal.push({ date: d.toISOString().slice(0,10), listened: days.has(d.toISOString().slice(0,10)) });
+        }
+        setStreakDays(cal);
+
+        // Category counts
+        const cc = {};
+        events.forEach(e => { if (e.category) cc[e.category] = (cc[e.category]||0) + 1; });
+        setCatCounts(cc);
+      } catch (e) { /* non-blocking */ }
+    })();
+    return () => { cancelled = true; };
+  }, [userId, isPreview, token]);
+
+  return (
+    <div>
+      <div style={{ padding:"20px 16px 12px" }}>
+        <span style={{ fontSize:24,fontWeight:400,color:C.cr }}>Analytics</span>
+      </div>
+
+      {/* MANIFESTATION HERO — the whole point of the app */}
+      <style>{`
+        @keyframes shg-drift {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes shg-count-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+        @keyframes shg-glow-pulse {
+          0%,100% { box-shadow: 0 0 32px rgba(232,184,112,0.5), 0 4px 60px rgba(44,183,167,0.25); }
+          50%      { box-shadow: 0 0 56px rgba(191,165,216,0.6), 0 4px 80px rgba(44,183,167,0.4); }
+        }
+      `}</style>
+      {(() => {
+        const mTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
+        const mDone  = isPreview ? 9  : manifested;
+        const backendRate = analyticsData?.manifestation_rate;
+        const mRate  = isPreview ? 64 : (backendRate != null ? Math.round(backendRate) : Math.round((mDone / mTotal) * 100));
+        const streak = isPreview ? 21 : (streakDays.filter(d=>d.listened).length || 0);
+        const totalL = isPreview ? 127 : (analyticsData?.total_listens ?? realListens?.total ?? 0);
+        const totalSigns = isPreview ? 23 : (analyticsData?.total_signs ?? threads.reduce((a,t)=>a+(t.signs?.length||0),0));
+        // Signs this week from weekly_activity
+        const weeklyAct = isPreview
+          ? [1,0,2,3,1,4,2]
+          : (analyticsData?.weekly_activity?.map(d=>d.signs) || [0,0,0,0,0,0,0]);
+        const signsThisWeek = isPreview ? 13 : weeklyAct.reduce((a,b)=>a+b,0);
+        const weekMax = Math.max(...weeklyAct, 1);
+        const dayLabels = ["M","T","W","T","F","S","S"];
+        const momentum = isPreview ? 72 : (analyticsData?.momentum_score ?? 0);
+        return (
+          <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
+            background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
+            backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
+            border:"1px solid rgba(255,255,255,0.6)" }}>
+
+            {/* HERO: Signs this week — the most important metric */}
+            <div style={{ marginBottom:18 }}>
+              <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:6, fontWeight:700, opacity:0.8 }}>Signs noticed this week</div>
+              <div style={{ display:"flex", alignItems:"flex-end", gap:14 }}>
+                <span style={{ fontSize:64, fontWeight:300, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both", letterSpacing:"-2px" }}>{signsThisWeek}</span>
+                <div style={{ paddingBottom:6 }}>
+                  <div style={{ fontSize:13, color:"#1a1008", fontWeight:500, opacity:0.75 }}>{totalSigns} total</div>
+                  {analyticsData?.avg_signs_to_manifest != null && (
+                    <div style={{ fontSize:12, color:"#1a1008", opacity:0.65, marginTop:2 }}>{analyticsData.avg_signs_to_manifest} signs avg. to manifest</div>
+                  )}
+                </div>
+              </div>
+              {/* 7-day waveform — animated bars like the homepage */}
+              <style>{`
+                @keyframes shg-bar-0{0%,100%{transform:scaleY(1)}25%{transform:scaleY(0.2)}75%{transform:scaleY(0.7)}}
+                @keyframes shg-bar-1{0%,100%{transform:scaleY(0.3)}35%{transform:scaleY(1)}70%{transform:scaleY(0.5)}}
+                @keyframes shg-bar-2{0%,100%{transform:scaleY(0.8)}20%{transform:scaleY(0.15)}60%{transform:scaleY(1)}}
+                @keyframes shg-bar-3{0%,100%{transform:scaleY(0.5)}40%{transform:scaleY(1)}80%{transform:scaleY(0.25)}}
+                @keyframes shg-bar-4{0%,100%{transform:scaleY(0.2)}30%{transform:scaleY(0.9)}65%{transform:scaleY(0.55)}}
+                @keyframes shg-bar-5{0%,100%{transform:scaleY(1)}45%{transform:scaleY(0.2)}80%{transform:scaleY(0.75)}}
+                @keyframes shg-bar-6{0%,100%{transform:scaleY(0.6)}25%{transform:scaleY(1)}60%{transform:scaleY(0.3)}}
+              `}</style>
+              <div style={{ display:"flex", alignItems:"flex-end", gap:4, marginTop:16, height:52 }}>
+                {weeklyAct.map((n,i) => {
+                  const barH = n > 0 ? Math.max(28, Math.round((n/weekMax)*44)) : 10;
+                  const dur = [0.9,0.7,1.1,0.8,1.0,0.65,0.85][i];
+                  return (
+                    <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:5 }}>
+                      <div style={{
+                        width:"100%", borderRadius:"4px 4px 0 0",
+                        background: n>0 ? "rgba(10,9,6,0.65)" : "rgba(10,9,6,0.1)",
+                        height:`${barH}px`,
+                        transformOrigin:"bottom center",
+                        animation: n>0 ? `shg-bar-${i} ${dur}s ease-in-out infinite` : "none",
+                      }}/>
+                      <div style={{ fontSize:9, color:"#0a0906", opacity:0.55, fontWeight:700, lineHeight:1 }}>{dayLabels[i]}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Rotating stat carousel */}
+            {(() => {
+              const thisMonth = isPreview ? 3 : (analyticsData?.total_manifested ?? manifested);
+              const thisMonthTotal = isPreview ? 5 : Math.max(manifested + inProgress, 1);
+              const thisYear = isPreview ? 9 : (analyticsData?.total_manifested ?? manifested);
+              const thisYearTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
+              const fastCat = isPreview ? "Lovemaxxing" : (analyticsData?.fastest_category?.category ?? null);
+              const statSlides = [
+                { value: `${streak}`, label: "day streak", sub: "listening consistency" },
+                { value: `${totalL}`, label: "total listens", sub: "all time" },
+                { value: `${thisMonth} / ${thisMonthTotal}`, label: "desires manifested", sub: "this month" },
+                { value: `${thisYear} / ${thisYearTotal}`, label: "desires manifested", sub: "this year" },
+                { value: `${momentum}`, label: "momentum", sub: "this week's score" },
+                ...(fastCat ? [{ value: fastCat, label: "fastest to manifest", sub: "your power area" }] : []),
+              ];
+              return <StatCarousel slides={statSlides} />;
+            })()}
+            {isPreview && <div style={{ fontSize:12, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500, opacity:0.8 }}>preview data — sign up to track your real signs</div>}
+          </div>
+        );
+      })()}
+
+      {/* WEEKLY AI INSIGHT */}
+      {(isPreview || weeklyInsight || analyticsData?.fastest_category) && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.35)` }}>
+          <div style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10 }}>This week's insight ✦</div>
+          {isPreview ? (
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>
+              "You've listened to Lovemaxxing 3× more than any other area this week. Two of your in-progress desires are in this category — momentum is building. Keep going."
+            </div>
+          ) : weeklyInsight ? (
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>"{weeklyInsight}"</div>
+          ) : analyticsData?.fastest_category ? (
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6 }}>
+              Your fastest-manifesting area is <span style={{ color:C.accentGold, fontWeight:500 }}>{analyticsData.fastest_category}</span>.
+              {analyticsData.avg_days_to_manifest != null && ` Average time to manifest: ${analyticsData.avg_days_to_manifest} days.`}
+              {analyticsData.momentum_score != null && ` Momentum score: ${analyticsData.momentum_score}.`}
+            </div>
+          ) : null}
+        </div>
+      )}
+
+      {/* PATTERN RECOGNITION — what's actually moving the needle */}
+      {(isPreview || (patterns && patterns.length > 0)) && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Pattern recognition</span>
+            {isPreview && <span style={{ fontSize:12, color:C.accentGold, fontWeight:500 }}>preview data</span>}
+          </div>
+          <div style={{ fontSize:13, color:C.mu, marginBottom:12, lineHeight:1.5 }}>
+            {isPreview ? "These categories correlate most with your manifested desires:" : "Your highest-performing categories:"}
+          </div>
+          {(isPreview ? [
+            { type:"category", name:"Lovemaxxing", listens:38, manifestedCount:5 },
+            { type:"category", name:"Richgirlmaxxing", listens:29, manifestedCount:3 },
+            { type:"track",    name:"Money Finds Me First", listens:12, manifestedCount:3 },
+          ] : patterns).map((p,i,arr) => {
+            const convRate = Math.round((p.manifestedCount / Math.max(p.listens,1)) * 100);
+            return (
+              <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ width:36, height:36, borderRadius:10, flexShrink:0, background: p.type==="category" ? "rgba(232,184,112,0.15)" : "rgba(191,165,216,0.15)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>
+                  {p.type==="category" ? "✦" : "♪"}
+                </div>
+                <div style={{ flex:1 }}>
+                  <div style={{ fontSize:14, color:C.cr, fontWeight:400 }}>{p.name}</div>
+                  <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
+                    {p.listens} listens · {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} manifested
+                  </div>
+                </div>
+                <div style={{ textAlign:"right", flexShrink:0 }}>
+                  <div style={{ fontSize:16, fontWeight:400, color: p.type==="category" ? C.accentGold : C.accentLav }}>{convRate}%</div>
+                  <div style={{ fontSize:10, color:C.mu, letterSpacing:"0.05em" }}>conversion</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* AI RECOMMENDATION CARD */}
+      <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.3)` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+          <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
+          {!isPreview && (
+            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:12, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+              {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
+            </button>
+          )}
+        </div>
+        {isPreview ? (
+          <div>
+            <div style={{ fontSize:14, color:C.mu, marginBottom:10, lineHeight:1.55 }}>Hi Reshma — based on your 38 Lovemaxxing listens and 5 desires manifested in that area, today's pick is:</div>
+            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
+            <div style={{ fontSize:13, color:C.cr, marginTop:12, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+          </div>
+        ) : recommendation ? (
+          <div>
+            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{recommendation.title}</div>
+            <div style={{ fontSize:13, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
+          </div>
+        ) : (
+          <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
+        )}
+      </div>
+
+      {/* STREAK CALENDAR */}
+      {!isPreview && streakDays.length > 0 && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
+            <span style={{ fontSize:13, color:C.accentGold }}>{streakDays.filter(d=>d.listened).length} days</span>
+          </div>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(10,1fr)", gap:4 }}>
+            {streakDays.map((d,i) => (
+              <div key={i} title={d.date} style={{ width:"100%", paddingBottom:"100%", position:"relative", borderRadius:4, background: d.listened ? "#E8B870" : "rgba(232,184,112,0.1)" }}/>
+            ))}
+          </div>
+          <div style={{ fontSize:12, color:C.mu, marginTop:8 }}>Last 30 days - gold = listened</div>
+        </div>
+      )}
+
+      {/* CATEGORY RADAR */}
+      {!isPreview && Object.keys(catCounts).length > 0 && (
+        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+          <div style={{ fontSize:13, fontWeight:400, color:C.accentTeal, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
+          {Object.entries(catCounts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([cat,n],i,arr) => {
+            const max = arr[0][1];
+            const pct = Math.round((n/max)*100);
+            const colors = {"Lovemaxxing":"#167A6B","Rich Girl":"#E8B870","Beauty":"#BFA5D8","Identity":"#F5E0A0","DNA":"#2CB7A7","Sleep":"#167A6B"};
+            const col = colors[cat] || "#BFA5D8";
+            return (
+              <div key={cat} style={{ marginBottom:8 }}>
+                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
+                  <span style={{ fontSize:13, color:C.cr }}>{cat}</span>
+                  <span style={{ fontSize:12, color:C.mu }}>{n} listen{n!==1?"s":""}</span>
+                </div>
+                <div style={{ height:6, borderRadius:3, background:"rgba(255,255,255,0.05)", overflow:"hidden" }}>
+                  <div style={{ height:"100%", width:`${pct}%`, borderRadius:3, background:col, transition:"width 0.6s ease" }}/>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+
+      {/* DESIRE NUDGE — remind user to update desires / bucket list */}
+      {isPreview && (
+        <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
+          <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:3, lineHeight:1.4 }}>You haven't updated your desire list in 7 days. 3 intentions are still in progress. Want to mark anything manifested?</div>
+          </div>
+        </div>
+      )}
+      {!isPreview && (
+        <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
+          <span style={{ fontSize:26, flexShrink:0 }}>🔔</span>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Daily reminder</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Get a nudge at 8pm to listen</div>
+          </div>
+          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:13, color: reminderSent ? "#2CB7A7" : C.cr, background: reminderSent ? "rgba(44,183,167,0.1)" : "rgba(0,0,0,0.06)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":C.border}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
+            {reminderSent ? "✓ set" : "remind me"}
+          </button>
+        </div>
+      )}
+
+      {/* ASK RESHMA — Goddess tier only */}
+      {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
+
+      {/* MANIFESTATION TIMELINE */}
+      <ManifestationTimeline threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} />
+
+      {/* KNOWLEDGE GUIDE, available to all tiers */}
+      <div style={{ margin:"0 16px 20px" }}>
+        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(44,183,167,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
+          <span style={{ flex:1 }}>
+            <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook </div>
+            <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals, everything explained.</div>
+          </span>
+          <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── ASK RESHMA CARD ───────────────────────────────────────────────────────────
+function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [history, setHistory] = useState(null);
+  const isGoddess = userTier === "goddess";
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+
+  useEffect(() => {
+    if (!open || !isGoddess || !userId || !token) return;
+    (async () => {
+      try {
+        const data = await quizApi("/ask", token, { method: "GET" });
+        setHistory(data.questions || []);
+      } catch {}
+    })();
+  }, [open, isGoddess, userId, token]);
+
+  const submit = async () => {
+    if (!q.trim() || sending) return;
+    setSending(true);
+    try {
+      await quizApi("/ask", token, {
+        method: "POST",
+        body: JSON.stringify({ question: q.trim(), email: userEmail }),
+      });
+      setSent(true);
+      setQ("");
+      setHistory(h => [{ id: Date.now(), question: q.trim(), status:"pending", answer:null, created_at: new Date().toISOString() }, ...(h||[])]);
+    } catch {}
+    setSending(false);
+  };
+
+  const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+
+  return (
+    <div style={{ margin:"0 16px 14px" }}>
+      {/* Teaser card always visible */}
+      <div style={{ padding:"18px 16px", borderRadius:16, background: isGoddess ? C.bg2 : "rgba(232,184,112,0.06)", border:`1px solid ${isGoddess?"rgba(232,184,112,0.35)":"rgba(232,184,112,0.2)"}` }}>
+        <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom: open&&isGoddess ? 16 : 0 }}>
+          <div style={{ width:46,height:46,borderRadius:14,background:"rgba(232,184,112,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0 }}>✉️</div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:15,fontWeight:500,color:C.cr }}>Ask Reshma directly</div>
+            <div style={{ fontSize:13,color:C.mu,marginTop:2,lineHeight:1.4 }}>
+              {isGoddess
+                ? "Drop a question — about the tracks, hypnosis, or your journey. Answered personally, not by AI."
+                : "Goddess members get direct Q&A with Reshma — answered personally within the app."}
+            </div>
+          </div>
+          {isGoddess ? (
+            <button onClick={()=>setOpen(o=>!o)} style={{ fontSize:13,color:"#E8B870",background:"rgba(232,184,112,0.12)",border:"1px solid rgba(232,184,112,0.3)",borderRadius:10,padding:"7px 13px",cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>
+              {open ? "close" : "ask"}
+            </button>
+          ) : (
+            <span style={{ fontSize:11,padding:"4px 10px",borderRadius:20,background:grad,color:"#000",fontWeight:600,flexShrink:0,whiteSpace:"nowrap" }}>Goddess</span>
+          )}
+        </div>
+
+        {/* Expanded panel for Goddess members */}
+        {open && isGoddess && (
+          <div>
+            <div style={{ fontSize:12,color:C.mu,marginBottom:10,padding:"8px 12px",borderRadius:8,background:isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.04)",lineHeight:1.5 }}>
+              💫 Not live — Reshma answers personally, typically within a few days. Your question stays private.
+            </div>
+            {sent && (
+              <div style={{ fontSize:14,color:"#2CB7A7",marginBottom:12,textAlign:"center",padding:"10px",borderRadius:8,background:"rgba(44,183,167,0.08)",border:"1px solid rgba(44,183,167,0.2)" }}>
+                ✓ Question sent. Reshma will answer you here soon.
+              </div>
+            )}
+            <textarea
+              value={q}
+              onChange={e=>{ setQ(e.target.value); setSent(false); }}
+              placeholder="What would you like to ask?"
+              maxLength={1000}
+              rows={4}
+              style={{ width:"100%",boxSizing:"border-box",padding:"12px 14px",borderRadius:10,border:`1px solid ${C.border}`,background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.04)",color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",resize:"none",outline:"none",lineHeight:1.5,marginBottom:4 }}
+            />
+            <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14 }}>
+              <span style={{ fontSize:12,color:C.mu }}>{q.length}/1000</span>
+              <button onClick={submit} disabled={!q.trim()||sending} style={{ padding:"9px 20px",borderRadius:10,border:"none",background:q.trim()&&!sending?grad:"rgba(128,128,128,0.2)",color:q.trim()&&!sending?"#000":"#888",fontSize:14,fontWeight:600,cursor:q.trim()&&!sending?"pointer":"not-allowed",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>
+                {sending ? "sending…" : "Send question"}
+              </button>
+            </div>
+
+            {/* Previous questions */}
+            {history && history.length > 0 && (
+              <div>
+                <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:8 }}>Your questions</div>
+                {history.slice(0,5).map((item,i) => (
+                  <div key={item.id||i} style={{ marginBottom:10,padding:"12px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.04)":"rgba(0,0,0,0.03)",border:`1px solid ${C.border}` }}>
+                    <div style={{ fontSize:13,color:C.cr,marginBottom:4 }}>{item.question}</div>
+                    {item.answer ? (
+                      <div style={{ fontSize:13,color:"#2CB7A7",marginTop:6,paddingTop:6,borderTop:`1px solid ${C.border}`,lineHeight:1.5 }}>
+                        <span style={{ fontWeight:600 }}>Reshma: </span>{item.answer}
+                      </div>
+                    ) : (
+                      <div style={{ fontSize:12,color:C.mu,fontStyle:"italic" }}>Awaiting answer…</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── SEARCH TAB ────────────────────────────────────────────────────────────────
+function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, toggleLike, isPreview, C, openPlayer }) {
+  const res = searchQ.length>1 ? tracks.filter(t=>{
+    const q = searchQ.toLowerCase();
+    if (t.title.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q)) return true;
+    const d = getDesc(t);
+    const descText = (d.shift + " " + d.benefits.join(" ")).toLowerCase();
+    return descText.includes(q);
+  }) : tracks;
+  return (
+    <div style={{ padding:"16px 16px 0" }}>
+      <style>{`.shg-search-input::placeholder{color:${C.inputCr};opacity:0.55;}`}</style>
+      <div style={{ fontSize:20,fontWeight:400,marginBottom:14,color:C.cr }}>Search</div>
+      <div style={{ display:"flex",alignItems:"center",gap:10,background:C.inputBg,borderRadius:10,padding:"10px 14px",marginBottom:16 }}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.dim} strokeWidth="2.5" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input className="shg-search-input" value={searchQ} onChange={e=>setQ(e.target.value)} placeholder="Tracks, categories, desires…"
+          style={{ border:"none",background:"transparent",flex:1,fontSize:16,color:C.inputCr,outline:"none",fontFamily:"'Jost',sans-serif"}}/>
+        {searchQ && <button onClick={()=>setQ("")} style={{ background:"none",border:"none",color:C.dim,fontSize:18,cursor:"pointer",lineHeight:1 }}>✕</button>}
+      </div>
+      {res.map(t=>{
+        const isP = cur?.id===t.id;
+        return (
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 10px",margin:isP?"0 -10px":0,borderRadius:isP?8:0,background:isP?(C.bg==="#000000"?"rgba(232,184,112,0.12)":"#000000"):"none",borderBottom:isP?"none":`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+          <div style={{ position:"relative",flexShrink:0 }}>
+            <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
+            {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+          </div>
+          <div style={{ flex:1,minWidth:0 }}>
+            <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
+            <div style={{ fontSize:13,color:isP?"#c9c2b8":C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
+          </div>
+          {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
+          {!isPreview && (
+            <>
+              <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0,flexShrink:0 }}><Ico.Heart on={liked.has(t.id)}/></button>
+              <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:32,height:32,borderRadius:"50%",background:isP?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"rgba(232,184,112,0.15)",border:isP?"none":"1px solid rgba(232,184,112,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+                {isP&&playing?<Ico.Pause dark={isP}/>:<Ico.Play dark={isP}/>}
+              </button>
+            </>
+          )}
+        </div>
+      );})}
+    </div>
+  );
+}
+
+// ── LIBRARY TAB ───────────────────────────────────────────────────────────────
+function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C, openPlayer }) {
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
+  const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
+  const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
+  const [catOpen, setCatOpen] = useState(false);
+  const [dropPos, setDropPos] = useState(null);
+  const catRef = useRef(null);
+  const btnRef = useRef(null);
+  const measureDropdown = () => {
+    if (btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setDropPos({ top: r.bottom + 6, left: r.left, width: r.width });
+    }
+  };
+  useEffect(() => {
+    const onClick = e => { if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("touchstart", onClick, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("touchstart", onClick);
+    };
+  }, []);
+  useEffect(() => {
+    if (!catOpen) return;
+    measureDropdown();
+    const onReposition = () => measureDropdown();
+    window.addEventListener("scroll", onReposition, { passive: true, capture: true });
+    window.addEventListener("resize", onReposition, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onReposition, { capture: true });
+      window.removeEventListener("resize", onReposition);
+    };
+  }, [catOpen]);
+  const openDropdown = () => {
+    measureDropdown();
+    setCatOpen(o=>!o);
+  };
+  const catLabel = cat==="All" ? "All categories" : (cat==="Liked" ? "Liked ♡" : cat);
+  const catOptions = ["All","Liked",...cats.filter(c=>c!=="All"&&c!=="Liked")];
+  return (
+    <div>
+      <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+        <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
+        {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
+      </div>
+      <div style={{ padding:"0 16px 14px" }}>
+        <div ref={catRef} style={{ position:"relative" }}>
+          <button
+            ref={btnRef}
+            onClick={openDropdown}
+            style={{
+              width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between",
+              background:"#000", border:"1px solid rgba(232,184,112,0.4)", borderRadius:12,
+              padding:"14px 16px", fontSize:16, fontWeight:400, color:"#E8B870",
+              fontFamily:"'Jost',sans-serif", cursor:"pointer"
+            }}
+          >
+            <span>{catLabel}</span>
+            <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+          </button>
+          {catOpen && dropPos && createPortal(
+            <div onTouchMove={e=>e.stopPropagation()} style={{
+              position:"fixed",
+              top:dropPos.top,
+              left:dropPos.left,
+              width:dropPos.width,
+              zIndex:999999,
+              background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
+              maxHeight:"55vh", overflowY:"scroll", WebkitOverflowScrolling:"touch",
+              boxShadow:"0 12px 40px rgba(0,0,0,0.95)", touchAction:"pan-y"
+            }}>
+              {catOptions.map(c=>{
+                const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
+                const active = cat===c;
+                const catColor = CAT_ICONS[c]?.accent || R;
+                return (
+                  <div key={c} onClick={()=>{setCat(c);setLibFormat("All");setCatOpen(false);}}
+                    style={{
+                      padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
+                      color:active?catColor:"#fdf0e8", background:active?`${catColor}1c`:"#0a0a0a",
+                      cursor:"pointer", fontFamily:"'Jost',sans-serif",
+                      borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?`3px solid ${catColor}`:"3px solid transparent"
+                    }}
+                    onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${catColor}14`; }}
+                    onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "#0a0a0a"; }}
+                  >
+                    {(c!=="All"&&c!=="Liked") ? (
+                      <div style={{ width:10, height:10, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 5px ${catColor}99` }}/>
+                    ) : c==="Liked" ? (
+                      <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:R, fontSize:13 }}>♡</div>
+                    ) : (
+                      <div style={{ width:10, height:10, borderRadius:"50%", background:"linear-gradient(135deg,#F5E0A0,#BFA5D8,#2CB7A7)", flexShrink:0 }}/>
+                    )}
+                    <span>{c==="All"?"All categories":(c==="Liked"?"Liked":label)}</span>
+                  </div>
+                );
+              })}
+            </div>,
+            document.body
+          )}
+        </div>
+      </div>
+      {catOpen && createPortal(
+        <div onClick={()=>setCatOpen(false)} style={{ position:"fixed", inset:0, zIndex:999998, background:"transparent" }}/>,
+        document.body
+      )}
+      {/* FORMAT FILTER, Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
+      <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
+        {FORMATS.map(fm=>(
+          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
+        ))}
+      </div>
+      {shown.length===0 && cat==="Liked" && (
+        <div style={{ padding:"40px 20px",textAlign:"center",color:C.mu }}>
+          <div style={{ fontSize:32,marginBottom:12 }}>♡</div>
+          <div style={{ fontSize:16 }}>Tap the heart on any track to save it here.</div>
+        </div>
+      )}
+      <div style={{ padding:"0 16px" }}>
+        {shown.map(t=>(
+          <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+            <div style={{ position:"relative",flexShrink:0 }}>
+              <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
+              {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+              {!isPreview&&cur?.id===t.id&&playing&&(
+                <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
+                  <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
+                </div>
+              )}
+            </div>
+            <div style={{ flex:1,minWidth:0 }}>
+              <div style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
+                {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
+              </div>
+              <div style={{ fontSize:13,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}> </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+            </div>
+            {!isPreview&&(
+              <>
+                <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:8,lineHeight:0 }}>
+                  <Ico.Heart on={liked.has(t.id)}/>
+                </button>
+                <button onClick={e=>{e.stopPropagation();play(t);}} style={{ width:30,height:30,borderRadius:"50%",background:cur?.id===t.id?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"rgba(232,184,112,0.15)",border:cur?.id===t.id?"none":"1px solid rgba(232,184,112,0.3)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,cursor:"pointer",padding:0 }}>
+                  {cur?.id===t.id&&playing?<Ico.Pause dark={cur?.id===t.id}/>:<Ico.Play dark={cur?.id===t.id}/>}
+                </button>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── PROOFOS TAB ────────────────────────────────────────────────────────────────
+function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
+  return (
+    <div style={{ padding:"48px 24px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:14, minHeight:400, justifyContent:"center" }}>
+      <div style={{ width:72, height:72, borderRadius:22, background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.25)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:30 }}>🔒</div>
+      <div style={{ fontSize:18, color:C.cr }}>{feature} is a Goddess Tier feature</div>
+      <div style={{ fontSize:15, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
+        {feature === "ProofOS"
+          ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
+          : "Track your dominant emotional state, listening streaks, and the evidence building over time. Plus direct Q&A with Reshma — ask anything about the tracks, hypnosis, or your journey."}
+      </div>
+      <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
+        <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
+        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$79<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan, no re-entering card details</div>
+      </div>
+      <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+        Unlock {feature}, upgrade now 
+      </button>
+      <div style={{ fontSize:13, color:C.dim }}>Managed by Stripe · your card is already saved · instant access</div>
+    </div>
+  );
+}
+
+function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter, userId, token, onManifested }) {
+  const [newD, setD]       = useState("");
+  const [newBelief, setNewBelief] = useState("");
+  const [newCat, setNewCat]   = useState("Richgirlmaxxing");
+  const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
+  const [newFeel, setFeel] = useState("");
+  const [newFeelText, setFeelText] = useState("");
+  const [adding, setAdding] = useState(false);
+  const [listening, setListening] = useState(false);
+  const [view, setView] = useState("threads"); // threads | wall | bucket
+  const [signInput, setSignInput] = useState({}); // {threadId: text}
+  const [finishing, setFinishing] = useState(null); // threadId being marked done
+  const [feelAfterInput, setFeelAfterInput] = useState("");
+  const [feelAfterLevel, setFeelAfterLevel] = useState("");
+
+  // ProofOS, always LG gradient background, white cards, black text
+  const isDark = false; // ProofOS always uses light card theme on LG bg
+  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"#000000", inputBg:"rgba(255,255,255,0.9)" };
+  const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+
+  const manifested = threads.filter(t=>t.done);
+  const inProgress = threads.filter(t=>!t.done);
+  const bucketItems = threads.filter(t=>t.isBucket && !t.done);
+  const activeThreads = threads.filter(t=>!t.isBucket);
+  const displayedThreads = proofFilter==="manifested" ? manifested.filter(t=>!t.isBucket) : proofFilter==="inProgress" ? inProgress.filter(t=>!t.isBucket) : activeThreads;
+  const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
+  const [bucketText, setBucketText] = useState("");
+  const [promotingId, setPromotingId] = useState(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const [trackPickerOpen, setTrackPickerOpen] = useState(false);
+  const [catPickerOpen, setCatPickerOpen] = useState(false);
+  const [feelPickerOpen, setFeelPickerOpen] = useState(false);
+  const [promoCatOpen, setPromoCatOpen] = useState(null);
+
+  const startFinish = (id) => { setFinishing(id); setFeelAfterInput(""); };
+  const confirmFinish = async (id) => {
+    const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(", ");
+    const thread = threads.find(t=>t.id===id);
+    setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
+    if (thread && onManifested) onManifested(thread);
+    setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
+    if (!isPreview && userId) {
+      try {
+        await quizApi(`/threads/${id}`, token, {
+          method: "PATCH",
+          body: JSON.stringify({ done: true, manifested_at: new Date().toISOString(), feel_after: after || undefined }),
+        });
+      } catch (err) { console.error("Failed to mark manifested:", err); }
+    }
+  };
+  const undoMarkDone = async (id) => {
+    setThreads(threads.map(t=>t.id===id?{...t,done:false,manifestedAt:null}:t));
+    if (!isPreview && userId) {
+      try {
+        await quizApi(`/threads/${id}`, token, {
+          method: "PATCH",
+          body: JSON.stringify({ done: false, manifested_at: null }),
+        });
+      } catch (err) { console.error("Failed to undo manifested:", err); }
+    }
+  };
+  const deleteThread = (id) => { setConfirmDeleteId(id); };
+  const confirmDeleteNow = async (id) => {
+    setThreads(threads.filter(t=>t.id!==id));
+    setConfirmDeleteId(null);
+    if (!isPreview && userId) {
+      try {
+        await quizApi(`/threads/${id}`, token, { method: "DELETE" });
+      } catch (err) { console.error("Failed to delete desire:", err); }
+    }
+  };
+  const addSign = async (id) => {
+    const text = (signInput[id]||"").trim();
+    if(!text) return;
+    const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+    const tempSid = Date.now()+Math.random();
+    setThreads(threads.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{text,date,_sid:tempSid}]}:t));
+    setSignInput({...signInput,[id]:""});
+    if (!isPreview && userId) {
+      try {
+        const res = await quizApi(`/threads/${id}/signs`, token, {
+          method: "POST",
+          body: JSON.stringify({ text, date }),
+        });
+        // Replace temp _sid with real DB id
+        if (res.id) setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:(t.signs||[]).map(s=>s._sid===tempSid?{...s,_sid:res.id}:s)}:t));
+      } catch (err) { console.error("Failed to save sign:", err); }
+    }
+  };
+  const addMediaSign = (id, media) => {
+    const date = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+    setThreads(ts=>ts.map(t=>t.id===id?{...t,signs:[...(t.signs||[]),{...media,date,_sid:Date.now()+Math.random()}]}:t));
+    if (!isPreview && userId) {
+      quizApi(`/threads/${id}/signs`, token, {
+        method: "POST",
+        body: JSON.stringify({ text: media.text || null, date, img: media.img || null, audio: media.audio || null }),
+      }).catch(err => console.error("Failed to save media sign:", err));
+    }
+  };
+  const deleteSign = (threadId, signKey) => {
+    setThreads(ts=>ts.map(t=>t.id===threadId?{...t,signs:(t.signs||[]).filter(s=>(s._sid??s) !== signKey)}:t));
+    if (!isPreview && userId && typeof signKey === "number") {
+      quizApi(`/threads/${threadId}/signs/${signKey}`, token, { method: "DELETE" })
+        .catch(err => console.error("Failed to delete sign:", err));
+    }
+  };
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState("");
+  const saveEdit = (id) => { if(editText.trim()) setThreads(ts=>ts.map(t=>t.id===id?{...t,desire:editText.trim()}:t)); setEditId(null); };
+  const [recId, setRecId] = useState(null);
+  const [recSecs, setRecSecs] = useState(0);
+  const recRef = useRef(null);
+  const recTimerRef = useRef(null);
+  useEffect(()=>()=>clearInterval(recTimerRef.current), []);
+  const toggleRec = async (id) => {
+    if (recId === id) { recRef.current?.stop(); clearInterval(recTimerRef.current); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+      const mr = new MediaRecorder(stream);
+      const chunks = [];
+      mr.ondataavailable = e => chunks.push(e.data);
+      mr.onstop = () => {
+        const url = URL.createObjectURL(new Blob(chunks,{type:mr.mimeType||"audio/mp4"}));
+        addMediaSign(id,{audio:url,text:"Voice note"});
+        stream.getTracks().forEach(t=>t.stop());
+        setRecId(null);
+        setRecSecs(0);
+        clearInterval(recTimerRef.current);
+      };
+      mr.start(); recRef.current = mr; setRecId(id); setRecSecs(0);
+      recTimerRef.current = setInterval(()=>setRecSecs(s=>s+1), 1000);
+    } catch { alert("Microphone access needed for voice notes."); }
+  };
+
+  return (
+    <div style={{ padding:"16px 16px 120px", background:PAGE_BG, minHeight:"100%", overflowY:"auto" }}>
+      <style>{`@keyframes shgRecPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}@keyframes shgRecButtonPulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0.5);}50%{box-shadow:0 0 0 6px rgba(192,57,43,0);}}`}</style>
+      {confirmDeleteId!==null && (
+        <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ maxWidth:340,width:"100%",borderRadius:16,padding:"24px 22px",background:"#fdf0e8",border:`1px solid ${PC.border}` }}>
+            <div style={{ fontSize:18,fontWeight:400,color:"#000",marginBottom:8,fontFamily:"'Jost',sans-serif" }}>Delete this thread?</div>
+            <div style={{ fontSize:14,color:PC.mu,marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
+            <div style={{ display:"flex",gap:10 }}>
+              <button onClick={()=>setConfirmDeleteId(null)} style={{ flex:1,padding:"12px",background:"none",border:`1px solid ${PC.border}`,borderRadius:10,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Cancel</button>
+              <button onClick={()=>confirmDeleteNow(confirmDeleteId)} style={{ flex:1,padding:"12px",background:"#8a2030",border:"none",borderRadius:10,color:"#fff",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
+      <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#167A6B",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS </div>
+      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured, forever.</div>
+
+      {/* Filter banner, shown when drilled in from Analytics */}
+      {proofFilter!=="all" && (
+        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",background:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14 }}>
+          <span style={{ fontSize:14,color:"#fdf0e8",fontFamily:"'Jost',sans-serif" }}>
+            {proofFilter==="manifested" ? `Showing ${manifested.length} manifested ✓` : `Showing ${inProgress.length} in progress`}
+          </span>
+          <button onClick={()=>setProofFilter?.("all")} style={{ background:"none",border:"1px solid rgba(255,255,255,0.2)",borderRadius:8,color:"#fdf0e8",fontSize:13,padding:"4px 10px",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show all</button>
+        </div>
+      )}
+
+      {/* Stats */}
+      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14 }}>
+        {[[threads.length,"Desires"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
+          <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
+            <div style={{ fontSize:22,fontWeight:400,color:PC.text }}>{v}</div>
+            <div style={{ fontSize:12,color:PC.mu,fontWeight:400 }}>{l}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* View toggle: Bucket List | Active | Proof Wall */}
+      <div style={{ display:"flex",gap:6,marginBottom:15 }}>
+        {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
+          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
+            background:view===k?col:"rgba(255,255,255,0.55)",
+            border:`1px solid ${view===k?"transparent":"rgba(255,255,255,0.7)"}`,
+            color:"#000", fontSize:13,fontWeight:view===k?600:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+        ))}
+      </div>
+
+      {view==="bucket" ? (
+        /* ═══ BUCKET LIST, capture everything, no commitment required ═══ */
+        <div>
+          <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
+            <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}> What's the difference?</div>
+            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
+              <b style={{fontWeight:600}}>Bucket List</b> is everything you want to manifest, ever, no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
+            </div>
+            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
+              <b style={{fontWeight:600}}>Active</b> is different, it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5-10 at a time, so your energy stays focused instead of spread thin.
+            </div>
+            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75 }}>
+              Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active, pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own, <b style={{fontWeight:600}}>you can mark a Bucket List item manifested without ever linking it to an audio.</b> Your Proof Wall doesn't care which list it came from.
+            </div>
+          </div>
+
+          <div style={{ background:PC.card,borderRadius:14,padding:14,marginBottom:14 }}>
+            <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>Add to your bucket list</div>
+            <div style={{ display:"flex", gap:8 }}>
+              <input value={bucketText} onChange={e=>setBucketText(e.target.value)} placeholder="A holiday to... A new car... Whatever it is"
+                style={{ flex:1, padding:"11px 13px", borderRadius:8, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:16, fontFamily:"'Jost',sans-serif", outline:"none" }}/>
+              <button onClick={async ()=>{
+                if(!bucketText.trim()) return;
+                const localId = Date.now()+Math.random().toString(36).slice(2,8);
+                setThreads([{id:localId,desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
+                setBucketText("");
+                if (!isPreview && userId) {
+                  try {
+                    await quizApi("/threads", token, {
+                      method: "POST",
+                      body: JSON.stringify({ id: localId, desire: bucketText, is_bucket: true }),
+                    });
+                  } catch (err) {
+                    console.error("Failed to save bucket item:", err);
+                  }
+                }
+              }} style={{ padding:"11px 18px", background:isDark?"#fff":"#000", border:"none", borderRadius:8, color:isDark?"#000":"#fff", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
+            </div>
+          </div>
+
+          {activeThreads.filter(t=>!t.done).length >= 5 && (
+            <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
+               You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5-10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
+            </div>
+          )}
+
+          {bucketItems.length===0 ? (
+            <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
+              <div style={{ fontSize:26,marginBottom:8 }}></div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest, big or small.</div>
+            </div>
+          ) : (
+            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+              {bucketItems.map(item=>(
+                <div key={item.id} style={{ background:PC.card, borderRadius:12, padding:"15px 16px" }}>
+                  <div style={{ fontSize:17, color:PC.text, marginBottom:11, lineHeight:1.5 }}>{item.desire}</div>
+                  {promotingId===item.id ? (
+                    <div style={{ marginBottom:11, position:"relative" }}>
+                      <div style={{ fontSize:13, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:7 }}>Choose a category to promote this</div>
+                      <div onClick={()=>setPromoCatOpen(o=>o===item.id?null:item.id)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+                        <span>, Select a category,</span>
+                        <span style={{ fontSize:13, color:PC.mu, transform:promoCatOpen===item.id?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                      </div>
+                      {promoCatOpen===item.id && (
+                        <>
+                        <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
+                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                          {Object.keys(CAT_ICONS).map(c=>{
+                            const catColor = CAT_ICONS[c].accent;
+                            return (
+                              <div key={c} onClick={()=>{
+                                const suggested = suggestTrack(item.desire, c);
+                                setThreads(ts => ts.map(t => t.id===item.id ? {...t, isBucket:false, category:c, track:suggested?.title||""} : t));
+                                setPromotingId(null);
+                                setPromoCatOpen(null);
+                              }} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer", borderBottom:`1px solid ${PC.border}` }}
+                                onMouseEnter={e=>e.currentTarget.style.background=`${catColor}14`}
+                                onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+                                <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
+                                <span style={{ fontSize:15, color:PC.text }}>{c}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        </>
+                      )}
+                    </div>
+                  ) : (
+                    <div style={{ display:"flex", gap:8 }}>
+                      <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                        Focus on this now
+                      </button>
+                      <button onClick={async ()=>{
+                        setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t));
+                        if (!isPreview && userId) {
+                          try {
+                            await quizApi(`/threads/${item.id}`, token, {
+                              method: "PATCH",
+                              body: JSON.stringify({ done: true, manifested_at: new Date().toISOString() }),
+                            });
+                          } catch (err) { console.error("Failed to mark manifested:", err); }
+                        }
+                      }} style={{ flex:1, padding:"8px 12px", background:R, border:`1px solid ${R}`, borderRadius:8, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                        ✓ Already manifested
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : view==="wall" ? (
+        /* ═══ PROOF WALL, your wins, forever ═══ */
+        <div>
+          <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
+          <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
+          {manifested.length===0 ? (
+            <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
+              <div style={{ fontSize:26,marginBottom:8 }}></div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here, and stays here for life.</div>
+            </div>
+          ) : (
+            <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
+              {manifested.map(d=>(
+                <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
+                  <span style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
+                  <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
+                  <div style={{ fontSize:12,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
+                  {d.feelAfter && <div style={{ fontSize:12,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
+                  <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"#fdf0e8",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
+                </div>
+              ))}
+              <div style={{ background:PC.card,border:`1px dashed ${PC.border}`,borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
+                <span style={{ fontSize:13,color:PC.mu,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
+              </div>
+              <div style={{ gridColumn:"1/-1" }}>
+              <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
+              <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
+                {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
+                  <div key={s.key} style={{ background:"#fdf0e8",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
+                    {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
+                    {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
+                    <div style={{ fontSize:8.5,fontWeight:400,color:C.mu,marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
+                  </div>
+                ))}
+              </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+      <>
+      {/* ADD NEW THREAD */}
+      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#fdf0e8"),border:"none",borderRadius:12,color:adding?PC.text:(isDark?"#fdf0e8":"#000"),fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+        {adding?"✕ Cancel":"+ New Desire"}
+      </button>
+      {adding && (
+        <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
+          <div style={{ display:"flex",gap:8,marginBottom:11,alignItems:"center" }}>
+            <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
+              style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+            <button onClick={()=>{
+              const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+              if(!SR){ alert("Voice input isn't supported in this browser. Try Chrome or Safari."); return; }
+              if(listening){ setListening(false); return; }
+              const r = new SR(); r.lang="en-US"; r.interimResults=false; r.maxAlternatives=1;
+              setListening(true);
+              r.onresult = e => { setD(e.results[0][0].transcript); setListening(false); };
+              r.onerror = () => setListening(false);
+              r.onend = () => setListening(false);
+              r.start();
+            }} title="Speak your desire" style={{ flexShrink:0,width:44,height:44,borderRadius:"50%",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,background:listening?"#E8B870":"transparent",boxShadow:listening?"0 0 14px rgba(232,184,112,0.6)":"none",transition:"all 0.2s" }}>
+              {listening ? "⏹" : "🎙"}
+            </button>
+          </div>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
+          <input value={newBelief} onChange={e=>setNewBelief(e.target.value)} placeholder="What do you actually believe about this right now? e.g. 'It's never worked out for me before'"
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
+          <div style={{ position:"relative", marginBottom:11 }}>
+            <div onClick={()=>{setTrackPickerOpen(o=>!o); setCatPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+              <span>{linkedTrack || ", Select a track,"}</span>
+              <span style={{ fontSize:13, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+            </div>
+            {trackPickerOpen && (
+              <>
+              <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {TRACKS.map(t=>{
+                  const catColor = CAT_ICONS[t.cat]?.accent || R;
+                  return (
+                    <div key={t.id} onClick={()=>{setLinked(t.title); setTrackPickerOpen(false);}}
+                      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer",
+                        background:linkedTrack===t.title?`${catColor}1c`:"transparent", borderBottom:`1px solid ${PC.border}` }}
+                      onMouseEnter={e=>{if(linkedTrack!==t.title)e.currentTarget.style.background=`${catColor}14`;}}
+                      onMouseLeave={e=>{if(linkedTrack!==t.title)e.currentTarget.style.background="transparent";}}>
+                      <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
+                      <div style={{ flex:1, minWidth:0 }}>
+                        <div style={{ fontSize:15, color:PC.text, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{t.title}</div>
+                        <div style={{ fontSize:13, color:PC.mu }}>{t.cat}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              </>
+            )}
+          </div>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
+          <div style={{ position:"relative", marginBottom:15 }}>
+            {(() => {
+              const catColor = CAT_ICONS[newCat]?.accent || R;
+              return (
+                <div onClick={()=>{setCatPickerOpen(o=>!o); setTrackPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
+                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
+                    <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 4px ${catColor}99` }}/>
+                    {newCat}
+                  </span>
+                  <span style={{ fontSize:13, color:PC.mu, transform:catPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                </div>
+              );
+            })()}
+            {catPickerOpen && (
+              <>
+              <div onClick={()=>setCatPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing"].map(c=>{
+                  const catColor = CAT_ICONS[c]?.accent || R;
+                  const active = newCat===c;
+                  return (
+                    <div key={c} onClick={()=>{setNewCat(c); setCatPickerOpen(false);}}
+                      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer",
+                        background:active?`${catColor}1c`:"transparent", borderBottom:`1px solid ${PC.border}` }}
+                      onMouseEnter={e=>{if(!active)e.currentTarget.style.background=`${catColor}14`;}}
+                      onMouseLeave={e=>{if(!active)e.currentTarget.style.background="transparent";}}>
+                      <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
+                      <span style={{ fontSize:15, color:active?catColor:PC.text }}>{c}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              </>
+            )}
+          </div>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>How am I feeling right now?</div>
+          <div style={{ position:"relative", marginBottom:11 }}>
+            {(() => {
+              const h = HAWKINS.find(x=>x.n===newFeel);
+              return (
+                <div onClick={()=>{setFeelPickerOpen(o=>!o); setTrackPickerOpen(false); setCatPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:h?h.c:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
+                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
+                    {h && <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>}
+                    {h ? `${h.n} · ${h.v}` : ", Select how you feel,"}
+                  </span>
+                  <span style={{ fontSize:13, color:PC.mu, transform:feelPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
+                </div>
+              );
+            })()}
+            {feelPickerOpen && (
+              <>
+              <div onClick={()=>setFeelPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                {HAWKINS.slice().reverse().map(hItem=>(
+                  <div key={hItem.n} onClick={()=>{setFeel(hItem.n); setFeelPickerOpen(false);}}
+                    style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
+                      background:newFeel===hItem.n?`${hItem.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}
+                    onMouseEnter={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background=`${hItem.c}14`;}}
+                    onMouseLeave={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background="transparent";}}>
+                    <div style={{ width:11,height:11,borderRadius:"50%",background:hItem.c,flexShrink:0,boxShadow:`0 0 5px ${hItem.c}99` }}/>
+                    <span style={{ fontSize:16,color:PC.text,flex:1,fontFamily:"'Jost',sans-serif" }}>{hItem.n}</span>
+                    <span style={{ fontSize:14,color:PC.mu }}>{hItem.v}</span>
+                  </div>
+                ))}
+              </div>
+              </>
+            )}
+          </div>
+          {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
+            <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
+              <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
+              <span style={{ fontSize:14,color:PC.text,fontFamily:"'Jost',sans-serif" }}>{h.v >= 200 ? "Expansive, you're above the line " : "Contractive, the audio will lift you"}</span>
+            </div>
+          ) : null; })()}
+          <input value={newFeelText} onChange={e=>setFeelText(e.target.value)} placeholder="In your own words, e.g. 'I'm feeling anxious about this'"
+            style={{ width:"100%", padding:"11px 14px", borderRadius:10, border:`1px solid ${PC.border}`, background:PC.inputBg, color:PC.text, fontSize:15, fontFamily:"'Jost',sans-serif", marginBottom:12, outline:"none" }}/>
+          <button onClick={async ()=>{
+            if(!newD.trim()) return;
+            if(userTier === "audio" && !isPreview) {
+              onUpgrade?.();
+              return;
+            }
+            const before = [newFeel, newFeelText].filter(Boolean).join(", ");
+            const localId = Date.now()+Math.random().toString(36).slice(2,8);
+            const optimistic = {id:localId,desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief};
+            setThreads([optimistic,...threads]);
+            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
+            if (!isPreview && userId) {
+              try {
+                await quizApi("/threads", token, {
+                  method: "POST",
+                  body: JSON.stringify({ id: localId, desire: newD, category: newCat, track: linkedTrack, old_belief: newBelief, feel_before: before }),
+                });
+              } catch (err) {
+                console.error("Failed to save desire:", err);
+              }
+            }
+          }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            {userTier === "audio" && !isPreview ? "Add Desire, Upgrade to Goddess " : "Add Desire"}
+          </button>
+          {userTier === "audio" && !isPreview && (
+            <div style={{ fontSize:13,color:"#fdf0e8",marginTop:8,lineHeight:1.5 }}>
+              You're on Audio Tier. Log your desire, then upgrade to Goddess to save it to your Proof Thread and track every sign.
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* THREAD LIST */}
+      {displayedThreads.length===0 && proofFilter!=="all" && (
+        <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center",marginBottom:10 }}>
+          <div style={{ fontSize:15,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} desires yet.</div>
+        </div>
+      )}
+      {displayedThreads.map(d=>(
+        <div key={d.id} onTouchStart={e=>{window.__sx=e.touches[0].clientX;}} onTouchEnd={e=>{if(window.__sx-e.changedTouches[0].clientX>90)deleteThread(d.id);}} style={{ background:PC.cardSolid,borderRadius:14,padding:"14px 14px",marginBottom:10,position:"relative" }}>
+          <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10 }}>
+            <div style={{ flex:1,minWidth:0 }}>
+              {editId===d.id
+                ? <div style={{ display:"flex",gap:6,marginBottom:4 }}>
+                    <input autoFocus value={editText} onChange={e=>setEditText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&saveEdit(d.id)} style={{ flex:1,background:"#fff",border:"1.5px solid #2CB7A7",color:"#000",borderRadius:8,padding:"7px 10px",fontSize:16,fontWeight:400,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                    <button onClick={()=>saveEdit(d.id)} style={{ padding:"7px 12px",background:"#000",border:"none",borderRadius:8,color:"#fff",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
+                  </div>
+                : <div onClick={()=>{setEditId(d.id);setEditText(d.desire);}} style={{ fontSize:17,fontWeight:400,marginBottom:4,color:PC.text,cursor:"pointer" }}>{d.desire} <span style={{ fontSize:13,opacity:0.45 }}>✎</span></div>}
+              <div style={{ display:"flex",alignItems:"center",gap:6,flexWrap:"wrap" }}>
+                {d.category && <span style={{ fontSize:12,padding:"2px 9px",background:CAT_GRAD[d.category]||CAT_GRAD.Identity,color:"#000",borderRadius:20,fontWeight:400 }}>{d.category}</span>}
+                {d.track && <span style={{ fontSize:13,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
+              </div>
+              {d.feelBefore && <div style={{ fontSize:13,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
+              {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#2CB7A7",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
+            </div>
+            <div style={{ display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0 }}>
+              <button onClick={()=>deleteThread(d.id)} title="Delete" style={{ fontSize:14,width:22,height:22,background:"none",border:"none",color:PC.dim,cursor:"pointer",lineHeight:1 }}>✕</button>
+              {d.done
+                ? <>
+                    <label onClick={()=>undoMarkDone(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
+                      <span style={{ width:21,height:21,borderRadius:6,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:400,color:"#000",boxShadow:"0 0 12px rgba(44,183,167,0.9)" }}>✓</span>
+                      <span style={{ fontSize:13,fontWeight:400,color:PC.text }}>Manifested</span>
+                    </label>
+                    <span style={{ fontSize:11,color:PC.dim,fontWeight:400 }}>tap to undo</span>
+                  </>
+                : <label onClick={()=>startFinish(d.id)} style={{ display:"flex",alignItems:"center",gap:7,cursor:"pointer" }}>
+                    <span style={{ width:21,height:21,borderRadius:6,background:PC.card,border:`2px solid ${PC.border}`,boxShadow:"0 0 10px rgba(44,183,167,0.35)" }}/>
+                    <span style={{ fontSize:13,fontWeight:400,color:PC.text }}>Manifested</span>
+                  </label>
+              }
+            </div>
+          </div>
+
+          {/* Marking manifested, capture feelAfter */}
+          {finishing===d.id && (
+            <div style={{ marginTop:10,background:PC.card,border:`1px solid ${PC.border}`,borderRadius:10,padding:"12px 14px" }}>
+              <div style={{ fontSize:14,color:"#E8B870",fontWeight:500,marginBottom:8 }}>IT ARRIVED ✓, how are you feeling now?</div>
+              <div style={{ display:"flex", gap:6, overflowX:"auto", marginBottom:10, paddingBottom:2, WebkitOverflowScrolling:"touch" }}>
+                {HAWKINS.slice().reverse().map(h=>(
+                  <button key={h.n} onClick={()=>setFeelAfterLevel(h.n)}
+                    style={{ flexShrink:0, padding:"6px 11px", borderRadius:14, background:feelAfterLevel===h.n?h.c:"transparent", border:`1.5px solid ${h.c}`, color:feelAfterLevel===h.n?"#000":h.c, fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>{h.n}</button>
+                ))}
+              </div>
+              <div style={{ display:"flex",gap:6 }}>
+                <input autoFocus value={feelAfterInput} onChange={e=>setFeelAfterInput(e.target.value)} placeholder="Capture this moment, in your own words"
+                  onKeyDown={e=>e.key==="Enter"&&confirmFinish(d.id)}
+                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"10px 12px",fontSize:15,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                <button onClick={()=>confirmFinish(d.id)} style={{ padding:"10px 16px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:8,color:"#000",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save ✓</button>
+              </div>
+            </div>
+          )}
+
+          {/* ═══ SIGNS & SYNCHRONICITY LOG, the heart of ProofOS ═══ */}
+          <div style={{ marginTop:12,paddingTop:10,borderTop:`1px solid ${PC.border}` }}>
+            <div style={{ fontSize:12,color:PC.mu,fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:6 }}>Signs & synchronicities · {d.signs?.length||0}</div>
+            {(d.signs||[]).map((sg,si)=>(
+              <div key={sg._sid??si} style={{ display:"flex",alignItems:"flex-start",gap:8,marginBottom:5 }}>
+                <span style={{ fontSize:13,color:CAT_COLOR[d.category]||"#E8B870",flexShrink:0,marginTop:1 }}>{sg.img?"📷":sg.audio?"🎤":""}</span>
+                <span style={{ fontSize:14,color:PC.text,lineHeight:1.5,flex:1 }}>
+                  {sg.text}
+                  {sg.img && <img src={sg.img} alt="proof" style={{ display:"block",width:64,height:64,objectFit:"cover",borderRadius:8,marginTop:5,border:"1px solid rgba(0,0,0,0.15)" }}/>}
+                  {sg.audio && <audio src={sg.audio} controls style={{ display:"block",width:"100%",maxWidth:220,height:30,marginTop:5 }}/>}
+                </span>
+                <span style={{ fontSize:12,color:PC.dim,flexShrink:0,fontWeight:400 }}>{sg.date}</span>
+                <button onClick={()=>deleteSign(d.id,sg._sid??si)} style={{ background:"none",border:"none",color:PC.dim,cursor:"pointer",fontSize:14,padding:"0 0 0 4px",flexShrink:0,lineHeight:1,marginTop:2, }} title="Remove sign">✕</button>
+              </div>
+            ))}
+            {!d.done && (
+              <>
+              {recId===d.id && (
+                <div style={{ display:"flex",alignItems:"center",gap:6,marginTop:8,marginBottom:2 }}>
+                  <span style={{ width:8,height:8,borderRadius:"50%",background:"#c0392b",animation:"shgRecPulse 1s ease-in-out infinite" }}/>
+                  <span style={{ fontSize:12,color:"#c0392b",fontWeight:500,fontFamily:"'Jost',sans-serif" }}>Recording… {Math.floor(recSecs/60)}:{String(recSecs%60).padStart(2,"0")}</span>
+                </div>
+              )}
+              <div style={{ display:"flex",gap:6,marginTop:8 }}>
+                <input value={signInput[d.id]||""} onChange={e=>setSignInput({...signInput,[d.id]:e.target.value})} placeholder="Log a sign, a synchronicity, a shift…"
+                  onKeyDown={e=>e.key==="Enter"&&addSign(d.id)}
+                  style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"9px 10px",fontSize:14,outline:"none",fontFamily:"'Jost',sans-serif" }}/>
+                <button onClick={()=>addSign(d.id)} style={{ padding:"9px 14px",background:"#000",border:"none",borderRadius:8,color:"#fdf0e8",fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap" }}>+ Add</button>
+                <label style={{ padding:"9px 10px",background:PC.inputBg,border:`1px solid ${PC.border}`,borderRadius:8,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",color:PC.text }}>📷
+                  <input type="file" accept="image/*" style={{ display:"none" }} onChange={e=>{ const f=e.target.files?.[0]; if(f) addMediaSign(d.id,{img:URL.createObjectURL(f),text:"Photo proof"}); e.target.value=""; }}/>
+                </label>
+                <button onClick={()=>toggleRec(d.id)} style={{ padding:"9px 10px",background:recId===d.id?"#c0392b":PC.inputBg,border:`1px solid ${recId===d.id?"#c0392b":PC.border}`,borderRadius:8,fontSize:15,cursor:"pointer",color:recId===d.id?"#fff":PC.text,animation:recId===d.id?"shgRecButtonPulse 1s ease-in-out infinite":"none" }}>{recId===d.id?"⏹":"🎤"}</button>
+              </div>
+              </>
+            )}
+          </div>
+
+          {/* Progress + delete */}
+          <div style={{ marginTop:10,height:3,background:"#000000",borderRadius:2 }}>
+            <div style={{ width:`${Math.min((d.days||0)*5+((d.signs?.length||0)*8),100)}%`,height:"100%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",backgroundSize:"200%",backgroundPosition:"left",borderRadius:2 }}/>
+          </div>
+          <button onClick={()=>deleteThread(d.id)} style={{ fontSize:12,color:"#8a2030",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",marginTop:8,fontWeight:400 }}>Remove desire</button>
+        </div>
+      ))}
+      </>
+      )}
+    </div>
+  );
+}
+
+// ── SHOP TAB ──────────────────────────────────────────────────────────────────
+function ShopTab({ C }) {
+  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+  const products = [
+    { name:"Lovemaxxing Guide",      price:"$29", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing",      available:true },
+    { name:"Luckygirlmaxxing Guide", price:"$29", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing", available:true },
+    { name:"Richgirlmaxxing Guide",     price:"$29", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing",     available:false },
+    { name:"Sovereignmaxxing Guide", price:"$29", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing", available:false },
+    { name:"Confidencemaxxing Guide",price:"$29", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing",available:false },
+    { name:"Beautymaxxing Guide",    price:"$29", desc:"The mirror gap, closed",                             cat:"Beautymaxxing",   available:false },
+    { name:"Healthmaxxing Guide",      price:"$29", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing",     available:false },
+    { name:"Sleepmaxxing Guide",     price:"$29", desc:"The overnight identity-install track",               cat:"Sleepmaxxing",    available:false },
+    { name:"Businessmaxxing Guide",  price:"$29", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing", available:false },
+    { name:"Peacemaxxing Guide",     price:"$29", desc:"Nervous system, regulated",                          cat:"Peacemaxxing",    available:false },
+  ];
+  return (
+    <div style={{ padding:"16px 16px 40px" }}>
+      <div style={{ fontSize:20,fontWeight:400,color:C.cr,marginBottom:4 }}>Shop</div>
+      <div style={{ fontSize:15,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
+      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
+        {products.map((p,i)=>(
+          <div key={i} onClick={()=>p.available && window.open(BEACONS,"_blank")}
+            style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:p.available?1:0.55 }}
+            onMouseEnter={e=>{ if(p.available) e.currentTarget.style.transform="translateY(-2px)"; }}
+            onMouseLeave={e=>e.currentTarget.style.transform="none"}>
+            <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"#000" }}>
+              <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
+            </div>
+            <div style={{ padding:"10px 12px" }}>
+              <div style={{ fontSize:14,fontWeight:400,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
+              <div style={{ fontSize:13,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
+              <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+                <span style={{ fontSize:17,fontWeight:500,color:isDark?R:"#000"}}>{p.available?p.price:""}</span>
+                {p.available
+                  ? <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>Buy on Beacons<ArrowIcon size={10}/></span>
+                  : <span style={{ padding:"4px 10px",background:"transparent",border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif" }}>Coming soon</span>
+                }
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop:14,padding:"12px 14px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:10,textAlign:"center" }}>
+        <div style={{ fontSize:14,color:C.mu }}>All products are delivered instantly via Beacons.ai · One-time payment · No subscription required</div>
+      </div>
+    </div>
+  );
+}
+
+// ── HELPERS ────────────────────────────────────────────────────────────────────
+function Sec({ title, children, C, onShowAll }) {
+  return (
+    <div style={{ marginBottom:24 }}>
+      <div style={{ padding:"0 16px 10px",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+        <span style={{ fontSize:18,fontWeight:400,color:C.cr }}>{title}</span>
+        {onShowAll && <button onClick={onShowAll} style={{ fontSize:14,fontWeight:400,color:R,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",padding:"6px 4px" }}>Show all</button>}
+      </div>
+      {children}
+    </div>
+  );
+}
+function HRow({ children }) {
+  return <div style={{ display:"flex",gap:12,padding:"0 16px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none" }}>{children}</div>;
+}
+function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike, openPlayer }) {
+  const isP = current?.id===t.id;
+  const hasAudio = !!AUDIO_URLS[t.title];
+  const unavail = !hasAudio && !isPreview;
+  return (
+    <div style={{ flexShrink:0,width:140, opacity:unavail?0.5:1, transition:"opacity 0.2s" }}>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed" }}>
+        <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
+        {isPreview&&(
+          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
+        )}
+        {unavail&&(
+          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#fdf0e8",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
+        )}
+        {!isPreview&&isP&&playing&&!unavail&&(
+          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"#000000" }}>
+            <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
+          </div>
+        )}
+        {t.isNew&&hasAudio&&<div style={{ position:"absolute",top:6,right:6,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11,fontWeight:400 }}>NEW</div>}
+        {!isPreview && hasAudio && (
+          <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ position:"absolute",bottom:6,right:6,width:26,height:26,borderRadius:"50%",background:"#000000",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",padding:0 }}>
+            <Ico.Heart on={liked?.has(t.id)}/>
+          </button>
+        )}
+      </div>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ fontSize:16,fontWeight:400,color:unavail?C.mu:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:hasAudio?"pointer":"not-allowed" }}>{t.title}</div>
+      <div style={{ fontSize:14,color:C.mu }}>{t.cat} · {t.dur}</div>
+    </div>
+  );
+}
+
+// ── ONBOARDING QUIZ ────────────────────────────────────────────────────────────
+const OB_GOALS = ["Confidence","Abundance","Love","Sleep","Anxiety","Body","Purpose"];
+const OB_WHERE = ["Stuck and overwhelmed","Building momentum","Ready to go deep","Starting fresh"];
+const OB_FREQ  = ["Daily","A few times a week","Whenever I need it"];
+
+function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
+  const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
+  const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+  const bg = isDark ? "#0d0d0d" : "#fff";
+  const text = isDark ? "#FDF0E8" : "#111";
+  const sub = isDark ? "#FDF0E8" : "#111";
+  const chip = (label, active, onClick) => (
+    React.createElement('button', { key: label, onClick, style: {
+      padding:"9px 16px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",
+      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ccc"}`,
+      background: active ? grad : "none", color: active ? "#000" : text,
+      fontWeight: active ? 600 : 400, transition:"all 0.15s",
+    }}, label)
+  );
+
+  const steps = [
+    {
+      title: "What do you most want to shift?",
+      sub: "Pick up to 3 — we'll tailor your tracks to these.",
+      content: React.createElement('div', { style: { display:"flex",flexWrap:"wrap",gap:10,justifyContent:"center" } },
+        OB_GOALS.map(g => chip(g, goals.includes(g), () => toggleGoal(g)))
+      ),
+      canNext: goals.length > 0,
+      next: () => setStep(1),
+    },
+    {
+      title: "Where are you right now?",
+      sub: "No right answer. Just honest.",
+      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
+        OB_WHERE.map(w => chip(w, where===w, () => setWhere(w)))
+      ),
+      canNext: !!where,
+      next: () => setStep(2),
+    },
+    {
+      title: "How often do you want to listen?",
+      sub: "We'll shape your experience around this.",
+      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
+        OB_FREQ.map(f => chip(f, freq===f, () => setFreq(f)))
+      ),
+      canNext: !!freq,
+      next: onDone,
+    },
+  ];
+
+  const s = steps[step];
+
+  return (
+    <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.75)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
+      <div style={{ maxWidth:400,width:"100%",borderRadius:24,padding:"32px 28px",background:bg,boxShadow:"0 20px 60px rgba(0,0,0,0.4)" }}>
+        <div style={{ textAlign:"center",marginBottom:24 }}>
+          <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:sub,marginBottom:12 }}>Step {step+1} of 3</div>
+          <div style={{ display:"flex",gap:6,justifyContent:"center",marginBottom:20 }}>
+            {steps.map((_,i) => <div key={i} style={{ width:6,height:6,borderRadius:3,background:i===step?"#E8B870":"rgba(128,128,128,0.25)" }}/>)}
+          </div>
+          <div style={{ fontSize:20,fontWeight:400,color:text,marginBottom:8,lineHeight:1.3 }}>{s.title}</div>
+          <div style={{ fontSize:14,color:sub }}>{s.sub}</div>
+        </div>
+        <div style={{ marginBottom:28 }}>{s.content}</div>
+        <button
+          onClick={s.canNext ? s.next : undefined}
+          style={{
+            width:"100%",padding:"14px",border:"none",borderRadius:14,fontSize:16,
+            fontFamily:"'Jost',sans-serif",cursor:s.canNext?"pointer":"not-allowed",
+            background:s.canNext?grad:"rgba(128,128,128,0.2)",
+            color:s.canNext?"#000":"#888",fontWeight:s.canNext?600:400,transition:"all 0.2s",
+          }}
+        >{step < 2 ? "Continue" : "Let's go →"}</button>
+        {step === 0 && (
+          <button onClick={onDone} style={{ display:"block",width:"100%",marginTop:12,padding:"8px",background:"none",border:"none",color:sub,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            Skip for now
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
