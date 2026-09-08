@@ -3,127 +3,517 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why You Keep Missing the Window · Self Hypnosis Goddess</title>
-<meta name="description" content="Your filter isn't broken. It's tuned to the wrong signal. Here's why you miss openings that other people see instantly—and how to retune it.">
-<meta name="keywords" content="recognition filter, lucky girl blocks, opportunity filter, subconscious filter, retune filter">
-<link
-cat > ~/shg-frontend/public/blog/why-you-keep-missing-window/index.html << 'EOF'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why You Keep Missing the Window · Self Hypnosis Goddess</title>
-<meta name="description" content="Your filter isn't broken. It's tuned to the wrong signal. Here's why you miss openings that other people see instantly—and how to retune it.">
-<meta name="keywords" content="recognition filter, lucky girl blocks, opportunity filter, subconscious filter, retune filter">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="canonical" href="https://reshmaoracle.com/blog/why-you-keep-missing-window">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=6">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=6">
-<link rel="apple-touch-icon" href="/favicon-192.png?v=6">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#000000">
+<title>The Journal, Self Hypnosis Goddess</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--g:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);}
 *{box-sizing:border-box;margin:0;padding:0;}
 a{text-decoration:none;color:inherit;}
-body{font-family:'Jost',sans-serif;background:#000;color:#fdf0e8;overflow-x:hidden;font-style:normal;}
-@keyframes shgGrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 40px rgba(232,184,112,.2),0 0 80px rgba(191,165,216,.08)}50%{box-shadow:0 0 80px rgba(191,165,216,.4),0 0 140px rgba(44,183,167,.2)}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-.shg-grad{background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0)!important;background-size:300% 100%!important;animation:shgGrad 14s ease-in-out infinite;}
-.grad-text{background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shgGrad 14s ease-in-out infinite;}
-nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.06);}
-.nav-links{display:flex;align-items:center;gap:36px;}
-.nav-link{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fdf0e8;font-style:normal;}
-.nav-cta{padding:10px 24px;border-radius:40px;background:var(--g);color:#000;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;}
+body{font-family:'Jost',sans-serif;background:#000;color:#fdf0e8;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-cta{padding:10px 24px;border-radius:40px;background:var(--g);color:#000;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;}
+
+/* HERO */
+.hero{padding:158px 48px 40px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);}
+.hero-ey{font-size:11px;letter-spacing:.32em;text-transform:uppercase;background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;font-weight:400;display:block;margin-bottom:20px;}
+.hero h1{font-size:clamp(32px,4vw,40px);font-weight:300;letter-spacing:-.01em;line-height:1.05;color:#fdf0e8;margin-bottom:12px;}
+.hero-sub{font-size:15px;font-weight:300;color:#c9c2ce;line-height:1.6;max-width:640px;margin:0 auto 28px;}
+
+/* FILTER PILLS */
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.pill{padding:8px 20px;border-radius:40px;border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fdf0e8;cursor:pointer;transition:all .2s;}
+.pill:hover,.pill.active{background:var(--g);color:#000;border-color:transparent;font-weight:600;}
+
+/* FEATURED ARTICLE */
+.featured{max-width:1200px;margin:36px auto;padding:0 48px;}
+.feat-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:24px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);}
+.feat-img{height:220px;background:var(--g);position:relative;overflow:hidden;}
+.feat-img-inner{width:100%;height:100%;background:var(--g);display:flex;align-items:center;justify-content:center;}
+.feat-img-placeholder{font-size:80px;}
+.feat-tag{position:absolute;top:24px;left:24px;padding:6px 16px;border-radius:40px;background:#000;color:#fdf0e8;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
+.feat-body{padding:32px 40px;display:flex;flex-direction:column;justify-content:center;}
+.feat-cat{font-size:10px;letter-spacing:.28em;text-transform:uppercase;background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;font-weight:400;margin-bottom:16px;}
+.feat-title{font-size:clamp(22px,2.8vw,32px);font-weight:400;letter-spacing:-.02em;line-height:1.15;color:#fdf0e8;margin-bottom:14px;}
+.feat-excerpt{font-size:16px;font-weight:300;color:#fdf0e8;line-height:1.7;margin-bottom:32px;}
+.feat-meta{font-size:12px;color:#fdf0e8;margin-bottom:24px;}
+.read-more{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;}
+.read-more::after{content:'→';background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;}
+
+/* GRID */
+.grid-section{max-width:1200px;margin:0 auto 80px;padding:0 48px;}
+.grid-label{font-size:clamp(30px,4.5vw,46px);font-weight:300;letter-spacing:-.02em;text-transform:none;font-style:normal;background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:28px;display:inline-block;line-height:1.05;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;transition:transform .3s,border-color .3s;cursor:pointer;}
+.card:hover{transform:translateY(-6px);border-color:rgba(232,184,112,.3);}
+.card-img{height:220px;position:relative;overflow:hidden;}
+.card-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;}
+.card-img-tag{position:absolute;top:16px;left:16px;padding:5px 12px;border-radius:40px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);color:#fdf0e8;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
+.card-body{padding:28px;}
+.card-cat{font-size:9px;letter-spacing:.24em;text-transform:uppercase;background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;font-weight:400;margin-bottom:10px;}
+.card-title{font-size:18px;font-weight:400;letter-spacing:-.01em;line-height:1.25;color:#fdf0e8;margin-bottom:12px;}
+.card-excerpt{font-size:13px;font-weight:300;color:#fdf0e8;line-height:1.6;margin-bottom:20px;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;}
+.card-date{font-size:11px;color:#fdf0e8;}
+.card-read{font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;font-weight:400;}
+
+/* EMAIL CTA */
+.email-cta{background:var(--g);padding:80px 48px;text-align:center;margin:0;}
+.email-cta h2{font-size:clamp(28px,4vw,48px);font-weight:400;color:#000;letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;}
+.email-cta p{font-size:17px;color:#000;font-weight:400;margin-bottom:36px;max-width:460px;margin-left:auto;margin-right:auto;}
+.email-form{display:flex;gap:12px;max-width:460px;margin:0 auto;}
+.email-form input{flex:1;padding:16px 20px;border-radius:10px;border:none;font-family:'Jost',sans-serif;font-size:15px;outline:none;background:rgba(0,0,0,.15);color:#000;}
+.email-form input::placeholder{color:#000;}
+.email-form button{padding:13px 24px;border-radius:10px;background:#000;color:#fdf0e8;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;border:none;cursor:pointer;white-space:nowrap;}
+
+@media(max-width:900px){
+  nav{padding:14px 20px;}
+  .hero{padding:120px 24px 60px;}
+  .featured{padding:0 24px;margin:48px auto;}
+  .feat-card{grid-template-columns:1fr;}
+  .feat-img{height:180px;}
+  .feat-body{padding:24px 24px;}
+  .grid-section{padding:0 24px;}
+  .grid{grid-template-columns:1fr !important;}
+  .email-cta{padding:60px 24px;}
+  section[style*="linear-gradient(135deg,#F5E0A0"] div[style*="repeat(3,1fr)"]{grid-template-columns:1fr !important;}
+  section[style*="linear-gradient(135deg,#F5E0A0"] div[style*="1fr 1fr"]{grid-template-columns:1fr !important;}
+  section[style*="linear-gradient(135deg,#F5E0A0"] > div{padding:48px 24px !important;}
+  section[style*="grid-template-columns:repeat(2,1fr)"] {grid-template-columns: 1fr !important;}
+  .email-form{flex-direction:column;}
+}
+
 .mob-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#fdf0e8;}
 .mob-overlay{display:none;position:fixed;inset:0;background:#000;z-index:500;flex-direction:column;padding:32px 28px;}
 .mob-overlay.open{display:flex;}
 .mob-overlay-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;}
-.mob-nav-item{font-size:26px;font-weight:300;color:#fdf0e8;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.mob-nav-item{font-family:'Jost',sans-serif;font-size:28px;font-weight:300;color:#fdf0e8;text-decoration:none;display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:-.01em;}
 .mob-close{background:none;border:none;color:#fdf0e8;font-size:28px;cursor:pointer;padding:8px;}
-@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta,.nav-links{display:none;}}
-.art-hero{padding:40px 48px 0;max-width:756px;margin:108px auto 0;box-sizing:border-box;}
-.breadcrumb{display:flex;align-items:center;gap:10px;margin-bottom:36px;}
-.breadcrumb a{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#fdf0e8;font-style:normal;}
-.art-num{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#fdf0e8;margin-bottom:12px;display:block;}
-.art-cat{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin-bottom:28px;display:block;}
-.art-title{font-size:clamp(44px,7.5vw,82px);font-weight:400;letter-spacing:-.04em;line-height:.93;color:#fdf0e8;margin-bottom:32px;}
-.art-sub{font-size:clamp(20px,2.4vw,28px);font-weight:300;color:#fdf0e8;line-height:1.6;margin-bottom:44px;max-width:660px;}
-.art-meta{display:flex;align-items:center;gap:28px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1);}
-.art-meta-item{font-size:12px;color:#fdf0e8;letter-spacing:.06em;}
-.hero-img-wrap{max-width:756px;margin:48px auto 0;padding:0 48px;box-sizing:border-box;}
-.hero-img{width:100%;height:280px;border-radius:16px;overflow:hidden;display:flex;align-items:flex-end;animation:glowPulse 5s ease-in-out infinite;}
-.hero-img-quote{padding:44px;font-size:clamp(20px,2.5vw,30px);font-weight:300;color:#000;line-height:1.3;max-width:600px;}
-.art-body{max-width:756px;margin:0 auto;padding:72px 48px;box-sizing:border-box;}
-.art-body p{font-size:19px;font-weight:300;line-height:1.9;color:#fdf0e8;margin-bottom:32px;}
-.art-body h2{font-size:clamp(24px,3.5vw,38px);font-weight:400;letter-spacing:-.025em;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shgGrad 14s ease-in-out infinite;margin:64px 0 22px;line-height:1.1;}
-.art-body strong{font-weight:600;color:#fdf0e8;}
-.pq{border-left:3px solid #E8B870;padding:28px 36px;margin:56px 0;background:rgba(232,184,112,.04);border-radius:0 12px 12px 0;}
-.pq p{font-size:clamp(24px,3vw,36px);font-weight:300;line-height:1.4;margin:0;color:#fdf0e8;}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.visible{opacity:1;transform:none;}
-.diagram-wrap{margin:72px 0;border-radius:24px;overflow:hidden;background:#04040a;border:1px solid rgba(232,184,112,.3);animation:glowPulse 6s ease-in-out infinite;}
-.diagram-head{padding:32px 36px 24px;}
-.diagram-head-title{font-size:clamp(26px,3.5vw,38px);font-weight:500;letter-spacing:-.01em;}
-.diagram-caption{font-size:18px;font-weight:300;color:#fdf0e8;line-height:1.8;padding:20px 36px 36px;}
-.sig-grid{display:flex;flex-direction:column;gap:14px;margin:40px 0;}
-.sig-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:22px 24px;}
-.sig-num{font-size:9px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;margin-bottom:10px;display:block;color:#E8B870;}
-.sig-item p{font-size:18px;font-weight:300;color:#fdf0e8;line-height:1.7;margin:0;}
-.callout{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px;margin:44px 0;}
-.callout-label{font-size:9px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin-bottom:16px;display:block;color:#2CB7A7;}
-.callout p{font-size:18px;font-weight:300;color:#fdf0e8;line-height:1.75;margin:0;}
-.cta-quiz{background:#07070f;border:1px solid rgba(232,184,112,.3);border-radius:24px;padding:52px 44px;margin:80px 0 44px;text-align:center;animation:glowPulse 6s ease-in-out infinite;}
-.cta-quiz-ey{font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:18px;color:#E8B870;}
-.cta-quiz h3{font-size:clamp(28px,4.5vw,46px);font-weight:400;color:#fdf0e8;margin-bottom:18px;letter-spacing:-.02em;line-height:1.1;}
-.cta-quiz p{font-size:18px;font-weight:300;color:#fdf0e8;margin-bottom:36px;line-height:1.75;}
-.cta-quiz a{display:inline-block;padding:22px 56px;border-radius:44px;background:var(--g);color:#000;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
-.cta-wb{border-radius:24px;overflow:hidden;margin:44px 0 80px;}
-.cta-wb-inner{padding:56px 48px;}
-.cta-wb-ey{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#000;display:block;margin-bottom:18px;font-weight:700;}
-.cta-wb h3{font-size:clamp(30px,4.5vw,48px);font-weight:400;color:#000;margin-bottom:20px;letter-spacing:-.02em;line-height:1.05;}
-.cta-wb p{font-size:18px;font-weight:300;color:#000;line-height:1.75;margin-bottom:36px;}
-.cta-wb-items{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;}
-.cta-wb-item{font-size:17px;color:#000;font-weight:300;padding-left:22px;position:relative;}
-.cta-wb-item::before{content:"+";position:absolute;left:0;color:#000;font-size:16px;}
-.cta-wb-price{font-size:28px;color:#000;margin-bottom:24px;font-weight:300;letter-spacing:-.02em;}
-.cta-wb-price s{opacity:.35;margin-right:12px;}
-.cta-wb a{display:inline-block;padding:22px 52px;border-radius:44px;background:#000;color:#fdf0e8;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
-.email-bar{background:#07070f;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:44px;text-align:center;}
-.email-bar-title{font-size:24px;font-weight:300;color:#fdf0e8;margin-bottom:12px;}
-.email-bar-sub{font-size:18px;color:#fdf0e8;margin-bottom:32px;line-height:1.6;}
-.email-bar-row{display:flex;gap:10px;max-width:520px;margin:0 auto;}
-.email-bar-row input{flex:1;padding:18px 20px;background:#111;border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fdf0e8;font-family:Jost,sans-serif;font-size:17px;outline:none;}
-.email-bar-row button{padding:18px 32px;background:var(--g);border:none;border-radius:12px;color:#000;font-family:Jost,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;white-space:nowrap;font-weight:600;}
-.email-msg{font-size:14px;color:#fdf0e8;margin-top:14px;}
-.related{padding:72px 48px;max-width:800px;margin:0 auto;}
-.related-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:32px;color:#E8B870;}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.rel-card{display:block;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:#07070f;}
-.rel-img{height:110px;}
-.rel-body{padding:20px;}
-.rel-cat{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:10px;color:#2CB7A7;}
-.rel-title{font-size:17px;font-weight:300;color:#fdf0e8;line-height:1.55;}
-@media(max-width:640px){.art-hero,.hero-img-wrap,.art-body,.related{padding-left:24px;padding-right:24px;}nav{padding:12px 24px;}.related-grid{grid-template-columns:1fr;}.email-bar-row{flex-direction:column;}.diagram-head,.diagram-caption{padding-left:24px;padding-right:24px;}}
+@media(max-width:768px){.mob-menu-btn{display:block;}.nav-cta{display:none;}}
+
+
+/* Animated brand gradient for thumbnails */
+@keyframes shgGrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.shg-grad{
+  background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0) !important;
+  background-size:300% 100% !important;
+  animation:shgGrad 14s ease-in-out infinite;
+}
+@media(prefers-reduced-motion:reduce){.shg-grad{animation:none}}
+
+
+/* Coming soon rotation */
+.cs-row{transition:all .7s ease;}
+.cs-row.lit{background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0) !important;background-size:300% 100% !important;animation:shgGrad 8s ease-in-out infinite;border-color:transparent !important;transform:translateY(-2px);box-shadow:0 6px 24px rgba(191,165,216,.22);}
+.cs-row.lit span{color:#000 !important;-webkit-text-fill-color:#000 !important;background:none !important;}
+.cs-row.lit svg path{fill:#000 !important;}
+@media(prefers-reduced-motion:reduce){.cs-row{transition:none}}
+
+/* Coming soon cards, matching Archive */
+.cs-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+.cs-grid::-webkit-scrollbar{display:none;}
+.cs-card{min-width:220px;max-width:220px;scroll-snap-align:start;flex-shrink:0;}
+.cs-card{border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);transition:all .6s ease;}
+.cs-card-img{height:110px;background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);opacity:.55;transition:opacity .6s ease;}
+.cs-card.lit{transform:translateY(-4px);border-color:transparent;box-shadow:0 10px 30px rgba(191,165,216,.2);}
+.cs-card.lit .cs-card-img{opacity:1;}
+.cs-card-body{padding:16px 16px 18px;}
+.cs-num{font-size:10px;letter-spacing:.2em;background:linear-gradient(90deg,#E8B870,#BFA5D8,#2CB7A7);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;margin-bottom:9px;}
+.cs-title{font-size:14px;font-weight:400;color:#fdf0e8;line-height:1.4;margin-bottom:12px;min-height:58px;}
+.cs-lock{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#fdf0e8;}
+@media(max-width:600px){.cs-card{min-width:160px;max-width:160px;}}
 </style>
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Self Hypnosis Goddess">
-<meta property="og:title" content="Why You Keep Missing the Window">
-<meta property="og:description" content="Your filter is tuned to the wrong signal. Here's why you miss openings that other people see instantly.">
-<meta property="og:url" content="https://reshmaoracle.com/blog/why-you-keep-missing-window">
-<meta property="og:image" content="https://reshmaoracle.com/logo_black_bg.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Why You Keep Missing the Window · Self Hypnosis Goddess">
-<meta name="twitter:description" content="Your filter is tuned wrong. Here's how to retune it.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Self Hypnosis Goddess">
+  <meta property="og:title" content="The Journal, Self Hypnosis Goddess">
+  <meta property="og:description" content="Identity work, the science of theta, and the copy of everything that changes when the operating system installs.">
+  <meta property="og:url" content="https://reshmaoracle.com/blog">
+  <meta property="og:image" content="https://reshmaoracle.com/logo_black_bg.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Journal, Self Hypnosis Goddess">
+  <meta name="twitter:description" content="Identity work, the science of theta, and the copy of everything that changes when the operating system installs.">
+  <meta name="description" content="Identity work, the science of theta, and the copy of everything that changes when the operating system installs. Self Hypnosis Goddess journal.">
+  <meta name="keywords" content="lucky girl syndrome, self hypnosis, theta brainwaves, identity transformation, lovemaxxing, beautymaxxing, manifestation, subliminals">
+  <link rel="canonical" href="https://reshmaoracle.com/blog">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=6" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=6" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=6" />
+<link rel="apple-touch-icon" href="/favicon-192.png?v=6" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#000000" />
 </head>
 <body>
-<div style="position:fixed;top:0;left:0;right:0;z-index:200;height:48px;background:linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#2CB7A7,#BFA5D8,#E8B870,#F5E0A0);background-size:300% 100%;animation:shgGrad 14s ease-in-out infinite;display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#000;font-weight:600;">Self Hypnosis Goddess</span></div>
-<nav><a href="/"><img src="/logo_transparent_cropped.png" width="36" height="36" style="object-fit:contain;"/></a><div class="nav-links"><a href="/blog" class="nav-link">Journal</a><a href="/guides" class="nav-link">Guides</a><a href="/blocks" class="nav-link">Find your block</a></div><a href="/gift" class="nav-cta">Free Gift</a><button class="mob-menu-btn" onclick="document.getElementById('mobMenu').classList.add('open')"><svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect y="0" width="22" height="2" rx="1" fill="#fdf0e8"/><rect y="7" width="22" height="2" rx="1" fill="#fdf0e8"/><rect y="14" width="22" height="2" rx="1" fill="#fdf0e8"/></svg></button></nav>
-<div class="art-hero"><div class="breadcrumb"><a href="/blog">Journal</a><span style="color:#fdf0e8;opacity:.3;">/</span><a href="/blog?cat=luckygirl" class="grad-text">Luckygirlmaxxing</a></div><span class="art-num">Article 06 · 31 August 2026</span><span class="art-cat grad-text">Luckygirlmaxxing · Filter Tuning</span><h1 class="art-title">Why you keep missing<br>the window.</h1><p class="art-sub">Your filter isn't broken. It's just tuned to the wrong signal. Here's why you miss openings that other people see instantly, and how to retune it.</p><div class="art-meta"><span class="art-meta-item">By <span style="font-weight:600;">Reshma Oracle</span></span><span class="art-meta-item">12 min read</span><span class="art-meta-item grad-text" style="font-weight:700;">Luckygirlmaxxing</span></div></div>
-<div class="hero-img-wrap"><div class="hero-img shg-grad"><div class="hero-img-quote">Your filter catches what it was trained to look for.</div></div></div>
-<div class="art-body"><p>You've felt this before. An opening shows up. Someone else sees it immediately and moves on it. You didn't even notice it was there until after they'd already acted. Same room. Same timing. Same opening. But their filter caught it and yours didn't.</p><p>This isn't about being observant. It's not about being smart or intuitive or sharp. It's about what your filter is currently tuned to recognize.</p><div class="pq reveal"><p class="grad-text">The filter catches what it's trained to look for. If your filter is tuned to lack, you'll miss the opening because you're still scanning for danger.</p></div><h2>The filter you're running</h2><p>Your nervous system learned to scan for danger before anything else. That was adaptive once. It kept you alive. But it also trained your filter to recognize scarcity first, threat second, and opportunity somewhere way down the list.</p><p>So when an opening shows up, your filter is already busy scanning for what could go wrong with it. Your filter is asking: Is this safe? Do I have enough information? What if this doesn't work out? What if I fail?</p><p>Meanwhile, the person next to you, the one running the lucky timeline, their filter caught the opening because their filter is tuned to recognize opportunity first. Same opening. Different filters. Different outcomes.</p><div class="callout reveal"><span class="callout-label">Recognition speed depends on filter tuning</span><p>By the time your conscious mind registers "wait, that might have been something," the window has usually already closed. The other person moved while you were still analyzing.</p></div><h2>Why the window closes while you're deciding</h2><p>This is the part that feels unfair. You see the opening. You're not ignoring it. But by the time you've finished running through all the reasons it might not work out, the person with the differently tuned filter has already acted and the moment is gone.</p><p>The opening was real. The timing was real. Your delay was the variable. And your delay didn't come from hesitation in the moment. It came from a filter that was already trained to scan for obstacles before it scans for possibilities.</p><p>This is why some people can walk into a room and leave with three opportunities, while you leave wondering why nothing happened. It's not that they're luckier. It's that their filter doesn't waste processing power looking for what's wrong before it even acknowledges what could be right.</p><h2>Four signals that your filter is tuned to lack</h2><div class="sig-grid reveal"><div class="sig-item"><span class="sig-num">Signal One</span><p><strong>You see the opening and immediately think of reasons it won't work.</strong> The filter catches the opening, yes. But before you can move on it, it's already running the counter-argument. But I'm not ready. But this person might not like me. But I don't have enough experience. The opening is there. Your filter is there. But the reasons it won't work are already running louder.</p></div><div class="sig-item"><span class="sig-num">Signal Two</span><p><strong>You remember all your reasons to hesitate faster than you remember reasons to move.</strong> Someone invites you to something. Instantly you think of why it might be awkward. Instantly you think of who might be there that makes you uncomfortable. Instantly you think of reasons it's probably not worth your time. The opportunities your filter could catch are being buried under objections your filter catches even faster.</p></div><div class="sig-item"><span class="sig-num">Signal Three</span><p><strong>You ask for more information as a way to delay deciding.</strong> Let me think about it. Can you send me more details? I need to check my calendar. The filter taught you that more information means more safety. But openings don't wait for complete information. By the time you have enough to feel comfortable, the window has closed and you never get to find out what would have happened.</p></div><div class="sig-item"><span class="sig-num">Signal Four</span><p><strong>You notice what you didn't get more than what you did.</strong> After an event, you remember the person who wasn't there, the conversation that didn't happen, the opportunity that passed by. Not the three good conversations that did happen. Not the connections that did form. Your filter is still tuned to what's missing, not what showed up.</p></div></div><h2>How the filter got tuned this way</h2><p>It's not your fault. Your filter learned this from your environment, your past experiences, the feedback your nervous system received about what was actually safe and what wasn't.</p><p>Maybe you grew up in scarcity. Maybe you learned that trusting too fast gets hurt. Maybe you learned that excitement comes right before disappointment, so it's safer to feel the doubt before you let yourself feel the hope. Your filter learned to scan for what's wrong because, in the context you learned it, what's wrong was the more urgent information to have.</p><div class="pq reveal"><p>But that context isn't your current reality. And your filter doesn't know that yet.</p></div><h2>What happens when you retune the filter</h2><p>This is where most advice about taking action misses the point entirely. You can't will a differently tuned filter through sheer determination. You can't force yourself to move faster by deciding to be braver. The filter is running underneath the layer where willpower operates. It's running in theta, in your subconscious identity, in the automatic nervous system response that happens before conscious thought even gets involved.</p><p>But filters can be retrained. Specifically, they can be retrained at the level they were originally trained: in theta, in the subconscious, where automatic responses get their instructions.</p><p>When your filter gets retrained to recognize opportunity first instead of danger first, everything changes. Not because you become reckless. Not because you stop thinking about consequences. But because the opening now registers as a real opening before the objections have had time to bury it.</p><div class="diagram-wrap reveal"><div class="diagram-head"><div class="diagram-head-title grad-text">Filter Retuning in Theta</div></div><svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;min-height:350px;display:block;"><defs><linearGradient id="rtg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#F5E0A0"/><stop offset="50%" stop-color="#2CB7A7"/><stop offset="100%" stop-color="#167A6B"/></linearGradient></defs><text x="200" y="30" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="#E8B870" letter-spacing="3" font-weight="700">BEFORE</text><rect x="120" y="60" width="160" height="180" fill="rgba(232,184,112,0.08)" stroke="rgba(232,184,112,0.3)" stroke-width="2" rx="8"/><text x="200" y="110" text-anchor="middle" font-family="Jost,sans-serif" font-size="16" fill="#E8B870" font-weight="600">Filter tuned to</text><text x="200" y="140" text-anchor="middle" font-family="Jost,sans-serif" font-size="16" fill="#E8B870" font-weight="600">LACK</text><text x="200" y="170" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="#fdf0e8">Opening arrives</text><text x="200" y="190" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="#fdf0e8">Miss it while scanning</text><text x="200" y="210" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="#fdf0e8">for the danger</text><line x1="320" y1="100" x2="480" y2="100" stroke="rgba(255,255,255,.2)" stroke-width="2"/><text x="400" y="85" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(255,255,255,.4)" letter-spacing="2">THETA RETUNING</text><text x="600" y="30" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="url(#rtg)" letter-spacing="3" font-weight="700">AFTER</text><rect x="520" y="60" width="160" height="180" fill="rgba(232,184,112,0.1)" stroke="url(#rtg)" stroke-width="2.5" rx="8"/><text x="600" y="110" text-anchor="middle" font-family="Jost,sans-serif" font-size="16" fill="url(#rtg)" font-weight="600">Filter tuned to</text><text x="600" y="140" text-anchor="middle" font-family="Jost,sans-serif" font-size="16" fill="url(#rtg)" font-weight="600">OPPORTUNITY</text><text x="600" y="170" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="#fdf0e8">Opening arrives</text><text x="600" y="190" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="#fdf0e8">See it fast enough</text><text x="600" y="210" text-anchor="middle" font-family="Jost,sans-serif" font-size="14" fill="#fdf0e8">to move</text></svg><div class="diagram-caption">Same nervous system. Different instructions. The audio works directly on the filter, in the theta state where the old filter was originally trained.</div></div><h2>How the audio does this</h2><p>The audio works on your filter directly. In theta state, where your nervous system learned to scan for danger first, the audio installs a different instruction: scan for the opening first. Notice the possibility before the obstacle. Move toward the opportunity before the doubt has time to finish its argument.</p><p>You don't have to understand why it works while you're listening. You don't have to force yourself to believe anything. The work happens at the level of the filter itself, in the same state where the old filter got trained.</p><p>This is why so many women report that after using the audio, they suddenly start seeing opportunities they swear were never there before. The opportunities were always there. Your filter just wasn't tuned to see them.</p><div class="cta-quiz reveal"><span class="cta-quiz-ey">Find Your Block</span><h3>Take the quiz</h3><p>Eight questions. Two minutes. Your exact filter block identified, with the specific section of the workbook that fixes it.</p><a href="https://reshmaoracle.com/blocks/luckygirl?utm_source=blog&utm_medium=article6&utm_campaign=why_missing_window">Find Out</a></div><div class="cta-wb shg-grad"><div class="cta-wb-inner"><span class="cta-wb-ey">Structured Retuning</span><h3>Get the workbook</h3><p>Work through the Recognition Filter section. Understand how your filter got trained. Practice retuning it at the theta level, the same place the instructions originally landed.</p><div class="cta-wb-items"><div class="cta-wb-item">The four blocks explained</div><div class="cta-wb-item">Theta retuning exercises</div><div class="cta-wb-item">Filter recognition practices</div><div class="cta-wb-item">Manifestation integration</div></div><div class="cta-wb-price" style="color:#000;"><s style="color:#000;">$49</s><strong style="color:#000;">$29</strong></div><a href="https://shop.beacons.ai/reshmaoracle/765f9e37-68f6-4d14-bc86-c952a2ca565f?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Freshmaoracle&show_back_button=true&utm_source=blog&utm_medium=article6&utm_campaign=why_missing_window">Get the Workbook</a></div></div><div class="email-bar reveal"><h3 class="email-bar-title">Get Thursday's email</h3><p class="email-bar-sub">Each article comes with a deeper dive. Join the list to get it straight to your inbox.</p><form action="https://shg-quiz-worker.airpriestess.workers.dev" method="POST" style="display:contents;"><div class="email-bar-row"><input type="email" name="email" placeholder="Your email" required><button type="submit">Notify Me</button></div></form><p class="email-msg">New article, Thursday 11am. No overcommunication, only major releases.</p></div></div><div class="related reveal"><span class="related-label">Related Articles</span><div class="related-grid"><a href="/blog/timing-windows-lucky-girl" class="rel-card"><div class="rel-img shg-grad"></div><div class="rel-body"><span class="rel-cat">Luckygirlmaxxing</span><p class="rel-title">How to recognize the lucky timeline</p></div></a><a href="/blog/body-keeps-score" class="rel-card"><div class="rel-img shg-grad"></div><div class="rel-body"><span class="rel-cat">Timing</span><p class="rel-title">Why timing is muscle memory</p></div></a><a href="/gift" class="rel-card"><div class="rel-img shg-grad"></div><div class="rel-body"><span class="rel-cat">Audio Gift</span><p class="rel-title">Free hypnosis: install recognition</p></div></a></div></div>
-<script>const reveals=document.querySelectorAll('.reveal');const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},{threshold:.1});reveals.forEach(el=>observer.observe(el));document.getElementById('mobMenu')?.addEventListener('click',(e)=>{if(e.target.classList.contains('mob-close')){document.getElementById('mobMenu').classList.remove('open');}});</script>
+<div style="position:fixed;top:0;left:0;right:0;z-index:400;height:48px;padding:0 14px;box-sizing:border-box;background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);display:flex;align-items:center;justify-content:center;gap:16px;overflow:hidden;">
+  <span style="font-family:'Jost',sans-serif;font-size:12px;font-weight:400;color:#000;letter-spacing:0.04em;white-space:nowrap;">Of course, obviously. &#10022;</span>
+  <a href="/?waitlist=1&ref=pg_blog_banner" style="padding:6px 18px;background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.2);border-radius:20px;color:#000;font-size:12px;font-weight:400;text-decoration:none;white-space:nowrap;font-family:'Jost',sans-serif;letter-spacing:0.06em;">Join the waitlist &#8594;</a>
+</div>
+
+
+
+<nav>
+  <a href="https://reshmaoracle.com" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <img src="https://reshmaoracle.com/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style="height:40px;">
+    <span style="font-family:'Jost',sans-serif;font-size:14px;font-weight:300;color:#fdf0e8;letter-spacing:0.02em;">Self Hypnosis Goddess</span>
+  </a>
+  <a href="/blocks/luckygirl" class="nav-cta">Find your block →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="max-width:640px;margin:0 auto 40px;padding:16px 20px;border-radius:20px;background:linear-gradient(135deg,#2CB7A7 0%,#BFA5D8 50%,#167A6B 100%);">
+    <div style="font-size:13px;color:#000;font-family:'Jost',sans-serif;margin-bottom:10px;">Two new articles a week</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+      <input type="text" id="hero-subscribe-name" placeholder="Your first name" style="flex:1;min-width:120px;padding:10px 14px;border-radius:10px;border:none;font-family:'Jost',sans-serif;font-size:14px;outline:none;background:rgba(255,255,255,.6);color:#000;">
+      <input type="email" id="hero-subscribe-email" placeholder="Your email" style="flex:2;min-width:160px;padding:10px 14px;border-radius:10px;border:none;font-family:'Jost',sans-serif;font-size:14px;outline:none;background:rgba(255,255,255,.6);color:#000;">
+      <button id="hero-subscribe-btn" style="padding:10px 20px;border-radius:10px;background:#000;color:#fdf0e8;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;">Subscribe</button>
+    </div>
+  </div>
+  <h1>The Journal.</h1>
+  <p class="hero-sub">Everything you need to understand the install, and why the version of you who starts reading this is not the version who finishes.</p>
+  <div class="filters" id="filters">
+    <div class="pill active" data-filter="all">All</div>
+    <div class="pill" data-filter="luckygirl">Luckygirl</div>
+  </div>
+</section>
+
+<!-- TWO NEW ARTICLES - JUST DROPPED (FIRST) -->
+<section class="grid-section" style="margin-bottom:64px;">
+  <span class="grid-label">Just dropped</span>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+    <a href="/blog/why-you-keep-missing-window" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">Your filter isn't broken. It's tuned to the wrong signal.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">Why You Keep Missing the Window</h3>
+        <p class="card-excerpt">Here's why you miss openings that other people see instantly, and how to retune your recognition filter at theta level.</p>
+        <div class="card-date">4 September 2026</div>
+      </div>
+    </a>
+    <a href="/blog/how-often-listen-subliminals" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">The exact frequency that works. Why 2-3x daily beats once daily.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">How Many Times A Day Should You Listen To Subliminals</h3>
+        <p class="card-excerpt">The exact listening frequency science shows works. Theta dosing for subconscious installation.</p>
+        <div class="card-date">7 September 2026</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ARCHIVE - NOW INCLUDES ARTICLE 5 AND OLDER -->
+<section class="grid-section" data-category="luckygirl" style="margin-bottom:64px;">
+  <span class="grid-label">Archive</span>
+  <div class="grid">
+    <a href="/blog/timing-windows-lucky-girl" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">Two people see the same opening. One of them takes it.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">How to recognize the lucky timeline</h3>
+        <p class="card-excerpt">Same opening, two different outcomes, and the difference was never luck. Six signals that tell you which timeline you're running, and how to move onto the one that works.</p>
+        <div class="card-date">31 August 2026</div>
+      </div>
+    </a>
+    <a href="/blog/am-i-just-not-lucky" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">Luck is real. It is neurological. And it is installable.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">Am I just not lucky? The actual answer.</h3>
+        <p class="card-excerpt">Every woman who has ever wondered why it always seems to work out for her and not for you deserves an honest answer. Here it is.</p>
+        <div class="card-date">25 August 2026</div>
+      </div>
+    </a>
+    <a href="/blog/unlucky-universe-story" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">The story isn't the truth. It's just the version that got repeated the most.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">The Unlucky Universe Story you've been telling yourself for years</h3>
+        <p class="card-excerpt">You have told this story so many times it stopped sounding like a story. It started sounding like a fact. It was never a fact.</p>
+        <div class="card-date">20 August 2026</div>
+      </div>
+    </a>
+    <a href="/blog/interrupt-unlucky-interpretation" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">The event is neutral. The meaning is a choice your subconscious makes so fast it feels like a fact.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">How to interrupt the unlucky interpretation in the half-second before it becomes your story</h3>
+        <p class="card-excerpt">The event happens in a second. The meaning gets assigned in the half-second after. That half-second is where everything is decided.</p>
+        <div class="card-date">17 August 2026</div>
+      </div>
+    </a>
+    <a href="/blog/why-lucky-girls-are-lucky" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">I am the woman good things happen to. Every day, life conspires in my favour.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">Why lucky girls are lucky, and it has nothing to do with luck</h3>
+        <p class="card-excerpt">She is not special. She did not get a different starting point. Her subconscious is simply running a different program.</p>
+        <div class="card-date">10 August 2026</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section class="grid-section" style="margin-bottom:64px;">
+  <span class="grid-label">Coming soon</span>
+  <div class="cs-grid">
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">01</div><div class="cs-title">The state affirmations actually need to work</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">02</div><div class="cs-title">The Domino Effect, why you only need to see the first move</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">03</div><div class="cs-title">She expects upgrades. She expects ease. Why that&#39;s not arrogance.</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">04</div><div class="cs-title">Why feeling lucky doesn&#39;t mean saying yes to everything</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">05</div><div class="cs-title">What 21 pieces of evidence actually does to your subconscious</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">06</div><div class="cs-title">Why she chose the identity before the evidence arrived</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">07</div><div class="cs-title">Life feels sponsored. How that happens.</div><div class="cs-lock">Coming soon</div></div></div>
+  </div>
+</section>
+
+<!-- LOVEMAXXING ARTICLES -->
+<!-- SCIENCE / SELF ARTICLES -->
+<!-- LIBRARY MINI LANDING PAGE -->
+<section style="background:linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%);padding:0;margin:80px 0;">
+  <div style="max-width:900px;margin:0 auto;padding:72px 48px;">
+
+    <!-- Hero -->
+    <div style="text-align:center;margin-bottom:56px;">
+      <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#000;margin-bottom:20px;">The audio library</div>
+      <h2 style="font-size:clamp(34px,6vw,64px);font-weight:300;color:#000;letter-spacing:-.03em;line-height:1;margin-bottom:20px;">Spotify for your<br>subconscious mind.</h2>
+      <p style="font-size:clamp(16px,2vw,20px);font-weight:300;color:#000;line-height:1.5;max-width:520px;margin:0 auto;">I write every script. I record every track. This is where I take you into theta and install the identity you have already decided is yours.</p>
+    </div>
+
+    <!-- The stack -->
+    <div style="background:rgba(0,0,0,.06);border-radius:16px;padding:28px 32px;margin-bottom:20px;text-align:center;">
+      <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#000;margin-bottom:16px;">What I put inside every track</div>
+      <div style="font-size:clamp(14px,2.2vw,18px);font-weight:400;color:#000;line-height:1.7;">Hypnosis &nbsp;+&nbsp; Subliminals &nbsp;+&nbsp; Binaural beats &nbsp;+&nbsp; Melodic house<br>= &nbsp;Theta on demand</div>
+    </div>
+
+    <!-- Three columns -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;">
+      <div style="background:#fff;border-radius:14px;padding:26px 22px;">
+        <div style="font-size:28px;font-weight:300;color:#000;line-height:1;margin-bottom:10px;">24</div>
+        <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#000;margin-bottom:10px;">Categories</div>
+        <div style="font-size:13px;font-weight:300;color:#000;line-height:1.6;">I have built a track for every version of you. Luckygirlmaxxing, Richgirlmaxxing, Lovemaxxing, Beautymaxxing, Selfmaxxing. Whatever you have decided is yours, I have made the audio for it.</div>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:26px 22px;">
+        <div style="font-size:28px;font-weight:300;color:#000;line-height:1;margin-bottom:10px;">4</div>
+        <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#000;margin-bottom:10px;">New tracks weekly</div>
+        <div style="font-size:13px;font-weight:300;color:#000;line-height:1.6;">I write them, I voice them, I produce them. Four new tracks from me every week, and you keep every single one.</div>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:26px 22px;">
+        <div style="font-size:28px;font-weight:300;color:#000;line-height:1;margin-bottom:10px;">6</div>
+        <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#000;margin-bottom:10px;">Formats</div>
+        <div style="font-size:13px;font-weight:300;color:#000;line-height:1.6;">I record each identity six ways. Melodic house, voice only, sleep and rest, subliminal, EMDR, binaural. Same install, however you want to receive it.</div>
+      </div>
+    </div>
+
+    <!-- ProofOS feature -->
+    <div style="background:#000;border-radius:16px;padding:32px;margin-bottom:20px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
+      <div>
+        <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;background:linear-gradient(90deg,#E8B870 0%,#BFA5D8 40%,#2CB7A7 75%,#167A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px;display:inline-block;">ProofOS &#10022; Goddess tier</div>
+        <div style="font-size:clamp(20px,2.6vw,26px);font-weight:300;color:#fdf0e8;line-height:1.25;margin-bottom:12px;">Every sign, logged. Every desire, dated. Permanent.</div>
+        <div style="font-size:14px;font-weight:300;color:#fdf0e8;line-height:1.65;">I built this because I kept forgetting my own evidence. Log your signs as they arrive. Watch your proof wall fill. That evidence is what holds you in the state that makes more of it arrive.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px 16px;font-size:13px;color:#fdf0e8;">Won &euro;850 on a scratch card &nbsp;&middot;&nbsp; Day 6</div>
+        <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px 16px;font-size:13px;color:#fdf0e8;">He texted first &nbsp;&middot;&nbsp; Day 11</div>
+        <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px 16px;font-size:13px;color:#fdf0e8;">Upgraded, didn&#39;t ask &nbsp;&middot;&nbsp; Day 19</div>
+        <div style="background:var(--g);border-radius:10px;padding:12px 16px;font-size:13px;color:#000;">Your first entry &nbsp;&middot;&nbsp; Day 1</div>
+      </div>
+    </div>
+
+    <!-- Close -->
+    <div style="text-align:center;padding-top:16px;">
+      <div style="font-size:clamp(20px,3vw,30px);font-weight:300;color:#000;line-height:1.3;margin-bottom:10px;">Press play. I will take you there.</div>
+      <div style="font-size:15px;font-weight:300;color:#000;margin-bottom:32px;">Become the woman good things happen to. Automatically, always, of course, obviously.</div>
+      <a href="/?waitlist=1&ref=blog_library_lp" style="display:inline-block;padding:18px 44px;border-radius:40px;background:#000;color:#fdf0e8;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;">Join the waitlist &#8594;</a>
+      <div style="font-size:13px;color:#000;margin-top:18px;">From $49 a month. It is not live yet, so I am opening the waitlist first.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BEAUTYMAXXING + SELFMAXXING -->
+<!-- EMAIL CTA -->
+<section class="email-cta">
+  <h2>Get the next article<br>before anyone else.</h2>
+  <p>Two new articles a week. Subscribe and find your block while you're here, it's free.</p>
+  <div class="email-form">
+    <input type="text" id="blog-subscribe-name" placeholder="Your first name">
+      <input type="email" id="blog-subscribe-email" placeholder="Your email address">
+    <button id="blog-subscribe-btn">Subscribe →</button>
+  </div>
+  <p id="blog-subscribe-msg" style="font-size:13px;color:#000;margin-top:14px;min-height:18px;"></p>
+</section>
+
+<script>
+function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());}
+
+(function() {
+  const btn = document.getElementById('hero-subscribe-btn');
+  const input = document.getElementById('hero-subscribe-email');
+  const nameEl = document.getElementById('hero-subscribe-name');
+  if (!btn || !input) return;
+  btn.addEventListener('click', async function() {
+    const email = input.value.trim();
+    if (!isValidEmail(email)) return;
+    if (nameEl && !nameEl.value.trim()) { nameEl.focus(); return; }
+    btn.disabled = true;
+    btn.textContent = '...';
+    try {
+      const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, first_name: nameEl ? nameEl.value.trim() : '', source: 'blog_hero_bar' }),
+      });
+      if (res.ok) { input.value = ''; if (nameEl) nameEl.value = ''; btn.textContent = 'Done'; }
+      else { btn.textContent = 'Try again'; }
+    } catch (err) { btn.textContent = 'Try again'; }
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Subscribe'; }, 2000);
+  });
+  input.addEventListener('keypress', function(e) { if (e.key === 'Enter') btn.click(); });
+})();
+</script>
+
+<script>
+(function() {
+  const btn = document.getElementById('blog-subscribe-btn');
+  const input = document.getElementById('blog-subscribe-email');
+  const nameEl = document.getElementById('blog-subscribe-name');
+  const msg = document.getElementById('blog-subscribe-msg');
+
+  btn.addEventListener('click', async function() {
+    const email = input.value.trim();
+    if (!isValidEmail(email)) {
+      msg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+    try {
+      const res = await fetch('https://shg-quiz-worker.airpriestess.workers.dev/blog-subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, first_name: nameEl ? nameEl.value.trim() : '', source: 'blog_email_cta' }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        msg.textContent = data.alreadyExists ? "You're already subscribed, see you in the next one." : "You're in. See you in the next article.";
+        input.value = ''; if (nameEl) nameEl.value = '';
+      } else {
+        msg.textContent = 'Something went wrong, please try again.';
+      }
+    } catch (err) {
+      msg.textContent = 'Something went wrong, please try again.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe →';
+    }
+  });
+
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') btn.click();
+  });
+})();
+</script>
+
+
+<script>
+document.querySelectorAll('.pill').forEach(pill => {
+  pill.addEventListener('click', function() {
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.grid-section').forEach(section => {
+      if(filter === 'all') {
+        section.style.display = 'block';
+      } else {
+        const cats = section.dataset.category || '';
+        section.style.display = cats.includes(filter) ? 'block' : 'none';
+      }
+    });
+  });
+});
+</script>
+
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  fetch('https://shg-quiz-worker.airpriestess.workers.dev/track-view', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      page: window.location.pathname,
+      referrer: document.referrer || null,
+      utm_source: params.get('utm_source'),
+      utm_medium: params.get('utm_medium'),
+      utm_campaign: params.get('utm_campaign'),
+    }),
+  }).catch(() => {});
+})();
+</script>
+
+<div class="mob-overlay" id="mobMenu">
+  <div class="mob-overlay-top">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="/logo_transparent_cropped.png" width="36" height="36" style="object-fit:contain;"/></a>
+    <button class="mob-close" onclick="document.getElementById('mobMenu').classList.remove('open')">&#x2715;</button>
+  </div>
+  <a href="/" class="mob-nav-item">Home</a>
+  <a href="/about" class="mob-nav-item">About Reshma</a>
+  <a href="/library" class="mob-nav-item">The Library</a>
+  <a href="/blog" class="mob-nav-item">Journal</a>
+  <a href="/guides" class="mob-nav-item">Guides</a>
+  <a href="/blocks" class="mob-nav-item">Find your block</a>
+  <a href="/portal?preview=1&theme=dark" class="mob-nav-item">Preview the portal</a>
+</div>
+<script>
+(function csRotate(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var rows = Array.from(document.querySelectorAll('.cs-row'));
+  if(!rows.length) return;
+  // group rows by their parent so each section cycles independently
+  var groups = [];
+  rows.forEach(function(r){
+    var g = groups.find(function(x){ return x.parent === r.parentNode; });
+    if(!g){ g = {parent:r.parentNode, items:[], i:0}; groups.push(g); }
+    g.items.push(r);
+  });
+  groups.forEach(function(g, gi){
+    setTimeout(function(){
+      setInterval(function(){
+        g.items.forEach(function(el){ el.classList.remove('lit'); });
+        g.items[g.i].classList.add('lit');
+        g.i = (g.i + 1) % g.items.length;
+      }, 1800);
+    }, gi * 450);
+  });
+})();
+</script>
+<script>
+(function csCards(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards=document.querySelectorAll('.cs-card'); if(!cards.length) return;
+  var i=0;
+  setInterval(function(){
+    cards.forEach(function(c){c.classList.remove('lit');});
+    cards[i].classList.add('lit');
+    i=(i+1)%cards.length;
+  },1600);
+})();
+</script>
 </body>
 </html>
