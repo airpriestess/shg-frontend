@@ -75,11 +75,12 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   .feat-img{height:180px;}
   .feat-body{padding:24px 24px;}
   .grid-section{padding:0 24px;}
-  .grid{grid-template-columns:1fr;}
+  .grid{grid-template-columns:1fr !important;}
   .email-cta{padding:60px 24px;}
   section[style*="linear-gradient(135deg,#F5E0A0"] div[style*="repeat(3,1fr)"]{grid-template-columns:1fr !important;}
   section[style*="linear-gradient(135deg,#F5E0A0"] div[style*="1fr 1fr"]{grid-template-columns:1fr !important;}
   section[style*="linear-gradient(135deg,#F5E0A0"] > div{padding:48px 24px !important;}
+  section[style*="grid-template-columns:repeat(2,1fr)"] {grid-template-columns: 1fr !important;}
   .email-form{flex-direction:column;}
 }
 
@@ -177,43 +178,61 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
   </div>
 </section>
 
-<!-- NEW -->
+<!-- TWO NEW ARTICLES - JUST DROPPED (FIRST) -->
 <section class="grid-section" style="margin-bottom:64px;">
-  <span class="grid-label">Latest</span>
-  <a href="/blog/am-i-just-not-lucky" class="feat-card" style="text-decoration:none;color:inherit;">
-    <div class="feat-img shg-grad" style="display:flex;align-items:flex-end;">
-      <div class="feat-tag" style="background:#000;color:#fdf0e8;">New</div>
-      <div style="padding:40px;font-family:'Jost',sans-serif;font-style:normal;font-size:clamp(15px,1.5vw,19px);font-weight:300;color:#000;line-height:1.3;max-width:96%;">Luck is real. It is neurological. And it is installable.</div>
-    </div>
-    <div class="feat-body">
-      <div class="feat-cat">Luckygirlmaxxing</div>
-      <h2 class="feat-title">Am I just not lucky? The actual answer.</h2>
-      <p class="feat-excerpt">Every woman who has ever wondered why it always seems to work out for her and not for you deserves an honest answer. Here it is.</p>
-      <div class="feat-meta">25 August 2026 &middot; 10 min read</div>
-      <span class="read-more">Read the article</span>
-    </div>
-  </a>
-</section>
-
-<!-- COMING SOON -->
-<section class="grid-section" style="margin-bottom:64px;">
-  <span class="grid-label">Coming soon</span>
-  <div class="cs-grid">
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">01</div><div class="cs-title">The state affirmations actually need to work</div><div class="cs-lock">Coming soon</div></div></div>
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">02</div><div class="cs-title">Most opportunities leave before fear finishes speaking</div><div class="cs-lock">Coming soon</div></div></div>
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">03</div><div class="cs-title">The Domino Effect, why you only need to see the first move</div><div class="cs-lock">Coming soon</div></div></div>
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">04</div><div class="cs-title">She expects upgrades. She expects ease. Why that&#39;s not arrogance.</div><div class="cs-lock">Coming soon</div></div></div>
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">05</div><div class="cs-title">Why feeling lucky doesn&#39;t mean saying yes to everything</div><div class="cs-lock">Coming soon</div></div></div>
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">06</div><div class="cs-title">What 21 pieces of evidence actually does to your subconscious</div><div class="cs-lock">Coming soon</div></div></div>
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">07</div><div class="cs-title">Why she chose the identity before the evidence arrived</div><div class="cs-lock">Coming soon</div></div></div>
-    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">08</div><div class="cs-title">Life feels sponsored. How that happens.</div><div class="cs-lock">Coming soon</div></div></div>
+  <span class="grid-label">Just dropped</span>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+    <a href="/blog/why-you-keep-missing-window" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">Your filter isn't broken. It's tuned to the wrong signal.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">Why You Keep Missing the Window</h3>
+        <p class="card-excerpt">Here's why you miss openings that other people see instantly, and how to retune your recognition filter at theta level.</p>
+        <div class="card-date">4 September 2026</div>
+      </div>
+    </a>
+    <a href="/blog/how-often-listen-subliminals" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">The exact frequency that works. Why 2-3x daily beats once daily.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">How Many Times A Day Should You Listen To Subliminals</h3>
+        <p class="card-excerpt">The exact listening frequency science shows works. Theta dosing for subconscious installation.</p>
+        <div class="card-date">7 September 2026</div>
+      </div>
+    </a>
   </div>
 </section>
 
-<!-- ARCHIVE -->
-<section class="grid-section" data-category="luckygirl">
+<!-- ARCHIVE - NOW INCLUDES ARTICLE 5 AND OLDER -->
+<section class="grid-section" data-category="luckygirl" style="margin-bottom:64px;">
   <span class="grid-label">Archive</span>
   <div class="grid">
+    <a href="/blog/timing-windows-lucky-girl" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">Two people see the same opening. One of them takes it.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">How to recognize the lucky timeline</h3>
+        <p class="card-excerpt">Same opening, two different outcomes, and the difference was never luck. Six signals that tell you which timeline you're running, and how to move onto the one that works.</p>
+        <div class="card-date">31 August 2026</div>
+      </div>
+    </a>
+    <a href="/blog/am-i-just-not-lucky" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
+        <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">Luck is real. It is neurological. And it is installable.</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Luckygirlmaxxing</div>
+        <h3 class="card-title">Am I just not lucky? The actual answer.</h3>
+        <p class="card-excerpt">Every woman who has ever wondered why it always seems to work out for her and not for you deserves an honest answer. Here it is.</p>
+        <div class="card-date">25 August 2026</div>
+      </div>
+    </a>
     <a href="/blog/unlucky-universe-story" class="card" style="text-decoration:none;color:inherit;display:block;">
       <div class="card-img shg-grad" style="display:flex;align-items:flex-end;padding:20px;">
         <div style="font-family:'Jost',sans-serif;font-style:normal;font-size:14px;font-weight:300;color:#000;line-height:1.3;">The story isn't the truth. It's just the version that got repeated the most.</div>
@@ -247,6 +266,20 @@ nav{position:fixed;top:48px;left:0;right:0;z-index:100;padding:16px 48px;display
         <div class="card-date">10 August 2026</div>
       </div>
     </a>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section class="grid-section" style="margin-bottom:64px;">
+  <span class="grid-label">Coming soon</span>
+  <div class="cs-grid">
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">01</div><div class="cs-title">The state affirmations actually need to work</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">02</div><div class="cs-title">The Domino Effect, why you only need to see the first move</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">03</div><div class="cs-title">She expects upgrades. She expects ease. Why that&#39;s not arrogance.</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">04</div><div class="cs-title">Why feeling lucky doesn&#39;t mean saying yes to everything</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">05</div><div class="cs-title">What 21 pieces of evidence actually does to your subconscious</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">06</div><div class="cs-title">Why she chose the identity before the evidence arrived</div><div class="cs-lock">Coming soon</div></div></div>
+    <div class="cs-card"><div class="cs-card-img shg-grad"></div><div class="cs-card-body"><div class="cs-num">07</div><div class="cs-title">Life feels sponsored. How that happens.</div><div class="cs-lock">Coming soon</div></div></div>
   </div>
 </section>
 
