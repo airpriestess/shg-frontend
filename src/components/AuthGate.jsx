@@ -54,11 +54,11 @@ export default function AuthGate({ onSuccess }) {
       <div style={{ width: "100%", maxWidth: 400, textAlign: "center" }}>
         {/* Logo */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, marginBottom: 36 }}>
-          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={72} height={72} style={{ objectFit: "contain" }} />
-          <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: "0.3em", color: "#fdf0e8", textTransform: "uppercase" }}>
+          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={120} height={120} style={{ objectFit: "contain" }} />
+          <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 13, letterSpacing: "0.3em", color: "#fdf0e8", textTransform: "uppercase" }}>
             S E L F &nbsp; H Y P N O S I S &nbsp; G O D D E S S
           </div>
-          <div style={{ fontSize: 13, color: "rgba(253,240,232,0.5)", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em" }}>
+          <div style={{ fontSize: 14, color: "rgba(253,240,232,0.5)", fontFamily: "'Jost',sans-serif", letterSpacing: "0.08em" }}>
             {mode === "signin" ? "Welcome back" : mode === "signup" ? "Create your account" : "Reset password"}
           </div>
         </div>
