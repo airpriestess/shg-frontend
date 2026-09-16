@@ -420,6 +420,10 @@ function suggestTrack(desireText, category) {
 
 const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 
+// Strip format suffixes from display titles — format is shown as a tag, not in the title
+const FORMAT_SUFFIXES = /\s*\((Subliminal|Hypnosis|Melodic Hypnosis|Melodic Subliminal|Calm Hypnosis|Calm Subliminal|Self Hypnosis|Sleep & Rest|Reiki|EMDR|528hz|432hz)\)\s*$/i;
+const displayTitle = (title) => title.replace(FORMAT_SUFFIXES, "").trim();
+
 const INIT_THREADS = [
   { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"Lovemaxxing",
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
@@ -951,7 +955,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
               onMouseEnter={e=>e.currentTarget.style.color=C.cr}
               onMouseLeave={e=>{if(track.id!==t.id)e.currentTarget.style.color=C.mu;}}>
               <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={24} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
-              <span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{t.title}</span>
+              <span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{displayTitle(t.title)}</span>
             </button>
           ))}
           <div style={{ flex:1 }}/>
@@ -1034,7 +1038,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:"#167A6B",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#fdf0e8" }}>{track.title}</div>
+            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#fdf0e8" }}>{displayTitle(track.title)}</div>
             <div style={{ fontSize:13,color:"rgba(253,240,232,0.65)" }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
           </div>
           <button onClick={e=>{e.stopPropagation();toggleLike(track.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
@@ -1148,7 +1152,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
               <Thumb title={track.title} cat={track.cat} size={260} radius={16}/>
             </div>
             <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:32,fontWeight:400,color:C.cr,marginBottom:6 }}>{track.title}</div>
+              <div style={{ fontSize:32,fontWeight:400,color:C.cr,marginBottom:6 }}>{displayTitle(track.title)}</div>
               <div style={{ fontSize:16,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
               <div style={{ fontSize:14,color:isDark?"#E8B870":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
               <div style={{ fontSize:19,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
@@ -1189,7 +1193,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
         <div onClick={()=>setShowDesc(true)} style={{ cursor:"pointer" }}><Thumb title={track.title} cat={track.cat} size={52} radius={4}/></div>
         <div style={{ minWidth:0, cursor:"pointer" }} onClick={()=>setShowDesc(true)}>
-          <div style={{ fontSize:15,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:navCr }}>{track.title}</div>
+          <div style={{ fontSize:15,fontWeight:400,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,color:navCr }}>{displayTitle(track.title)}</div>
           <div style={{ fontSize:13,color:navMu }}>Reshma Oracle</div>
         </div>
         <button onClick={()=>setShowDesc(true)} style={{ background:"none",border:"none",lineHeight:0,padding:6,cursor:"pointer" }} title="About this track">
@@ -1243,7 +1247,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       </div>
       {view==="desc" ? (
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
-          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
+          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{displayTitle(track.title)}</div>
           <div style={{ fontSize:15,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
           {(() => { const d = getDesc(track); return (
             <div style={{ width:"100%",paddingBottom:40 }}>
@@ -1282,7 +1286,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
       ) : view==="script" ? (
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
-          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{track.title}</div>
+          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{displayTitle(track.title)}</div>
           <div style={{ fontSize:15,color:C.mu,marginBottom:24 }}>Read along</div>
           <div style={{ width:"100%",fontSize:19,lineHeight:1.9,color:C.cr,fontWeight:400,textAlign:"center",whiteSpace:"pre-line",paddingBottom:40 }}>
             {track.script || "Script coming soon, this affirmation script hasn't been added yet."}
@@ -1293,7 +1297,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       <Thumb title={track.title} cat={track.cat} size={270} radius={14}/>
       {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
       <div style={{ width:"100%",marginTop:24,marginBottom:12 }}>
-        <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{track.title}</div>
+        <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{displayTitle(track.title)}</div>
         <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
       </div>
       <div style={{ display:"flex",gap:8,width:"100%",marginBottom:20,flexWrap:"wrap" }}>
@@ -2158,7 +2162,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           </div>
         ) : recommendation ? (
           <div>
-            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{recommendation.title}</div>
+            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{displayTitle(recommendation.title)}</div>
             <div style={{ fontSize:13, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
           </div>
@@ -2391,8 +2395,8 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
             {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
           </div>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{t.title}</div>
-            <div style={{ fontSize:13,color:isP?"#c9c2b8":C.mu }}>{t.artist} · {t.cat} · {t.dur}</div>
+            <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{displayTitle(t.title)}</div>
+            <div style={{ fontSize:13,color:isP?"#c9c2b8":C.mu }}>{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
           </div>
           {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (
@@ -2544,7 +2548,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             </div>
             <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
-                {t.title}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
+                {displayTitle(t.title)}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
               <div style={{ fontSize:13,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}> </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
             </div>
@@ -3298,45 +3302,117 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
 }
 
 // ── ONBOARDING QUIZ ────────────────────────────────────────────────────────────
-const OB_GOALS = ["Confidence","Abundance","Love","Sleep","Anxiety","Body","Purpose"];
-const OB_WHERE = ["Stuck and overwhelmed","Building momentum","Ready to go deep","Starting fresh"];
-const OB_FREQ  = ["Daily","A few times a week","Whenever I need it"];
+const OB_GOALS = [
+  { label:"Luck & Magnetism", cat:"Luckygirlmaxxing" },
+  { label:"Love & Attraction", cat:"Lovemaxxing" },
+  { label:"Money & Abundance", cat:"Richgirlmaxxing" },
+  { label:"Confidence", cat:"Selfmaxxing" },
+  { label:"Beauty & Glow", cat:"Beautymaxxing" },
+  { label:"Sleep & Rest", cat:"Sleepmaxxing" },
+  { label:"Anxiety & Peace", cat:"Selfmaxxing" },
+  { label:"Body & Health", cat:"Bodymaxxing" },
+  { label:"Business & Purpose", cat:"Businessmaxxing" },
+];
+const OB_WHERE = [
+  { label:"🌑 Stuck and overwhelmed" },
+  { label:"🌒 Building momentum slowly" },
+  { label:"🌓 Making progress but plateaued" },
+  { label:"🌔 Ready to go all in" },
+  { label:"🌕 I'm in my era" },
+];
+const OB_LISTEN = [
+  { label:"Morning ritual ☀️", sub:"Start the day aligned" },
+  { label:"Before sleep 🌙", sub:"Reprogram while you rest" },
+  { label:"Throughout the day 🔁", sub:"Background shift" },
+  { label:"When I need a reset ⚡", sub:"On-demand support" },
+];
+const OB_FORMAT = [
+  { label:"Hypnosis", sub:"Guided deep-state sessions" },
+  { label:"Subliminal", sub:"Silent or music-backed affirmations" },
+  { label:"Melodic", sub:"Music that shifts your field" },
+  { label:"Mix it up", sub:"Surprise me" },
+];
+const OB_BLOCK = [
+  { label:"I don't believe it's possible for me" },
+  { label:"I self-sabotage when things get good" },
+  { label:"I know what to do but can't make myself do it" },
+  { label:"I feel like I'm behind everyone else" },
+  { label:"I keep attracting the same patterns" },
+  { label:"Nothing seems to stick" },
+];
 
 function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
+  const [listenTime, setListenTime] = useState("");
+  const [format, setFormat] = useState("");
+  const [block, setBlock] = useState("");
   const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
+  const TOTAL = 5;
   const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
   const bg = isDark ? "#0d0d0d" : "#fff";
   const text = isDark ? "#FDF0E8" : "#111";
-  const sub = isDark ? "#FDF0E8" : "#111";
-  const chip = (label, active, onClick) => (
+  const dim = isDark ? "rgba(253,240,232,0.55)" : "#777";
+
+  const chip = (label, active, onClick, sub) => (
     <button key={label} onClick={onClick} style={{
-      padding:"9px 16px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",
-      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ccc"}`,
-      background: active ? grad : "none", color: active ? "#000" : text,
+      padding: sub ? "12px 16px" : "10px 18px",
+      borderRadius:14, fontSize:14, fontFamily:"'Jost',sans-serif",
+      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ddd"}`,
+      background: active ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f8f8",
+      color: active ? "#000" : text,
       fontWeight: active ? 600 : 400, transition:"all 0.15s",
-    }}>{label}</button>
+      textAlign:"left", width:"100%",
+    }}>
+      {label}
+      {sub && <div style={{ fontSize:12, marginTop:2, opacity:0.7, fontWeight:400 }}>{sub}</div>}
+    </button>
   );
 
   const steps = [
     {
-      title: "What do you most want to shift?",
-      sub: "Pick up to 3 — we'll tailor your tracks to these.",
-      content: <div style={{ display:"flex",flexWrap:"wrap",gap:10,justifyContent:"center" }}>{OB_GOALS.map(g => chip(g, goals.includes(g), () => toggleGoal(g)))}</div>,
+      title: "What do you most want to call in?",
+      sub: "Pick up to 3 — we'll match your tracks to these.",
+      content: (
+        <div style={{ display:"flex",flexWrap:"wrap",gap:8 }}>
+          {OB_GOALS.map(g => (
+            <button key={g.label} onClick={()=>toggleGoal(g.label)} style={{
+              padding:"10px 14px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",
+              cursor:"pointer", border: goals.includes(g.label) ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ddd"}`,
+              background: goals.includes(g.label) ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f8f8",
+              color: goals.includes(g.label) ? "#000" : text, fontWeight: goals.includes(g.label) ? 600 : 400,
+              transition:"all 0.15s",
+            }}>{g.label}</button>
+          ))}
+        </div>
+      ),
       canNext: goals.length > 0,
       next: () => setStep(1),
     },
     {
-      title: "Where are you right now?",
-      sub: "No right answer. Just honest.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_WHERE.map(w => chip(w, where===w, () => setWhere(w)))}</div>,
-      canNext: !!where,
+      title: "What's your biggest block right now?",
+      sub: "This is between you and the app.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_BLOCK.map(b => chip(b.label, block===b.label, ()=>setBlock(b.label)))}</div>,
+      canNext: !!block,
       next: () => setStep(2),
     },
     {
-      title: "How often do you want to listen?",
-      sub: "We'll shape your experience around this.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_FREQ.map(f => chip(f, freq===f, () => setFreq(f)))}</div>,
-      canNext: !!freq,
+      title: "Where are you on your journey?",
+      sub: "No right answer. Just honest.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_WHERE.map(w => chip(w.label, where===w.label, ()=>setWhere(w.label)))}</div>,
+      canNext: !!where,
+      next: () => setStep(3),
+    },
+    {
+      title: "When do you want to listen?",
+      sub: "We'll build your daily ritual around this.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_LISTEN.map(l => chip(l.label, listenTime===l.label, ()=>setListenTime(l.label), l.sub))}</div>,
+      canNext: !!listenTime,
+      next: () => setStep(4),
+    },
+    {
+      title: "Which format feels right for you?",
+      sub: "You can always switch. We just want to start you strong.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_FORMAT.map(f => chip(f.label, format===f.label, ()=>setFormat(f.label), f.sub))}</div>,
+      canNext: !!format,
       next: onDone,
     },
   ];
@@ -3344,28 +3420,29 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   const s = steps[step];
 
   return (
-    <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.75)",display:"flex",alignItems:"center",justifyContent:"center",padding:20 }}>
-      <div style={{ maxWidth:400,width:"100%",borderRadius:24,padding:"32px 28px",background:bg,boxShadow:"0 20px 60px rgba(0,0,0,0.4)" }}>
-        <div style={{ textAlign:"center",marginBottom:24 }}>
-          <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:sub,marginBottom:12 }}>Step {step+1} of 3</div>
-          <div style={{ display:"flex",gap:6,justifyContent:"center",marginBottom:20 }}>
-            {steps.map((_,i) => <div key={i} style={{ width:6,height:6,borderRadius:3,background:i===step?"#E8B870":"rgba(128,128,128,0.25)" }}/>)}
-          </div>
-          <div style={{ fontSize:20,fontWeight:400,color:text,marginBottom:8,lineHeight:1.3 }}>{s.title}</div>
-          <div style={{ fontSize:14,color:sub }}>{s.sub}</div>
+    <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.82)",display:"flex",alignItems:"flex-end",justifyContent:"center",padding:0 }}>
+      <div style={{ maxWidth:500,width:"100%",borderRadius:"24px 24px 0 0",padding:"28px 22px 36px",background:bg,boxShadow:"0 -20px 60px rgba(0,0,0,0.5)",maxHeight:"88vh",overflowY:"auto" }}>
+        {/* Progress */}
+        <div style={{ display:"flex",gap:4,marginBottom:22 }}>
+          {steps.map((_,i) => (
+            <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?OMBRE:isDark?"rgba(255,255,255,0.12)":"#eee",backgroundSize:"200%",backgroundPosition:"left" }}/>
+          ))}
         </div>
-        <div style={{ marginBottom:28 }}>{s.content}</div>
+        <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:dim,marginBottom:10 }}>Step {step+1} of {TOTAL}</div>
+        <div style={{ fontSize:20,fontWeight:500,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
+        <div style={{ fontSize:14,color:dim,marginBottom:20 }}>{s.sub}</div>
+        <div style={{ marginBottom:24 }}>{s.content}</div>
         <button
           onClick={s.canNext ? s.next : undefined}
           style={{
-            width:"100%",padding:"14px",border:"none",borderRadius:14,fontSize:16,
+            width:"100%",padding:"16px",border:"none",borderRadius:14,fontSize:16,
             fontFamily:"'Jost',sans-serif",cursor:s.canNext?"pointer":"not-allowed",
-            background:s.canNext?grad:"rgba(128,128,128,0.2)",
-            color:s.canNext?"#000":"#888",fontWeight:s.canNext?600:400,transition:"all 0.2s",
+            background:s.canNext?grad:"rgba(128,128,128,0.15)",
+            color:s.canNext?"#000":"#888",fontWeight:s.canNext?700:400,transition:"all 0.2s",
           }}
-        >{step < 2 ? "Continue" : "Let's go →"}</button>
+        >{step < TOTAL-1 ? "Continue →" : "Build my playlist →"}</button>
         {step === 0 && (
-          <button onClick={onDone} style={{ display:"block",width:"100%",marginTop:12,padding:"8px",background:"none",border:"none",color:sub,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          <button onClick={onDone} style={{ display:"block",width:"100%",marginTop:12,padding:"8px",background:"none",border:"none",color:dim,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             Skip for now
           </button>
         )}
