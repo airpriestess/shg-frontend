@@ -3382,14 +3382,19 @@ const OB_BUCKET = [
 ];
 
 function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
-  const [specific, setSpecific]   = useState("");
-  const [block, setBlock]         = useState("");
-  const [timeline, setTimeline]   = useState("");
+  const [specific, setSpecific]     = useState("");
+  const [block, setBlock]           = useState("");
+  const [timeline, setTimeline]     = useState("");
   const [listenTime, setListenTime] = useState("");
-  const [format, setFormat]       = useState("");
+  const [format, setFormat]         = useState("");
   const [listenFreq, setListenFreq] = useState("");
-  const [tried, setTried]         = useState("");
-  const [bucket, setBucket]       = useState("");
+  const [tried, setTried]           = useState("");
+  const [bucket, setBucket]         = useState("");
+  const [voiceNote, setVoiceNote]   = useState("");
+  const [recording, setRecording]   = useState(false);
+  const [recDone, setRecDone]       = useState(false);
+  const mediaRef = React.useRef(null);
+  const chunksRef = React.useRef([]);
 
   const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
   const TOTAL = 10;
@@ -3398,114 +3403,176 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   const text = isDark ? "#FDF0E8" : "#111";
   const dim  = isDark ? "rgba(253,240,232,0.55)" : "#777";
 
+  const startRec = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mr = new MediaRecorder(stream);
+      mediaRef.current = mr;
+      chunksRef.current = [];
+      mr.ondataavailable = e => chunksRef.current.push(e.data);
+      mr.onstop = () => { setRecDone(true); setRecording(false); stream.getTracks().forEach(t=>t.stop()); };
+      mr.start();
+      setRecording(true);
+    } catch { setVoiceNote("mic_denied"); }
+  };
+  const stopRec = () => { if (mediaRef.current) mediaRef.current.stop(); };
+
+  // big tappable chip for mobile
   const chip = (label, active, onClick, sub) => (
     <button key={label} onClick={onClick} style={{
-      padding: sub ? "12px 16px" : "11px 16px",
-      borderRadius:14, fontSize:14, fontFamily:"'Jost',sans-serif",
+      padding: sub ? "15px 18px" : "15px 18px",
+      borderRadius:16, fontSize:15, fontFamily:"'Jost',sans-serif",
       cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#e0d8d0"}`,
       background: active ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f6f3",
       color: active ? "#000" : text,
       fontWeight: active ? 600 : 400, transition:"all 0.15s",
-      textAlign:"left", width:"100%",
+      textAlign:"left", width:"100%", minHeight:54,
     }}>
       {label}
-      {sub && <div style={{ fontSize:12, marginTop:3, opacity:0.7, fontWeight:400 }}>{sub}</div>}
+      {sub && <div style={{ fontSize:13, marginTop:4, opacity:0.7, fontWeight:400 }}>{sub}</div>}
     </button>
   );
 
+  // pill wrap row for multi-select
   const pillRow = (items, selected, toggle) => (
-    <div style={{ display:"flex",flexWrap:"wrap",gap:8 }}>
+    <div style={{ display:"flex",flexWrap:"wrap",gap:10 }}>
       {items.map(g => (
         <button key={g.label} onClick={()=>toggle(g.label)} style={{
-          padding:"10px 14px", borderRadius:20, fontSize:13, fontFamily:"'Jost',sans-serif",
+          padding:"12px 16px", borderRadius:22, fontSize:14, fontFamily:"'Jost',sans-serif",
           cursor:"pointer", border: selected.includes(g.label) ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#e0d8d0"}`,
           background: selected.includes(g.label) ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f6f3",
           color: selected.includes(g.label) ? "#000" : text, fontWeight: selected.includes(g.label) ? 600 : 400,
-          transition:"all 0.15s",
+          transition:"all 0.15s", minHeight:46,
         }}>{g.label}</button>
       ))}
     </div>
   );
 
+  const voiceStep = (
+    <div style={{ display:"flex",flexDirection:"column",gap:14 }}>
+      {!recDone && !recording && voiceNote !== "mic_denied" && (
+        <button onClick={startRec} style={{
+          display:"flex",alignItems:"center",justifyContent:"center",gap:12,
+          padding:"20px",borderRadius:18,border:"none",cursor:"pointer",
+          background:grad,color:"#000",fontSize:16,fontWeight:700,fontFamily:"'Jost',sans-serif",minHeight:64,
+        }}>
+          <span style={{ fontSize:22 }}>🎙</span> Hold to record
+        </button>
+      )}
+      {recording && (
+        <button onClick={stopRec} style={{
+          display:"flex",alignItems:"center",justifyContent:"center",gap:12,
+          padding:"20px",borderRadius:18,border:"none",cursor:"pointer",
+          background:"#cc3333",color:"#fff",fontSize:16,fontWeight:700,fontFamily:"'Jost',sans-serif",minHeight:64,
+          animation:"pulse 1s ease-in-out infinite",
+        }}>
+          <span style={{ fontSize:22 }}>⏹</span> Recording… tap to stop
+        </button>
+      )}
+      {recDone && (
+        <div style={{ padding:"16px",borderRadius:14,background:isDark?"rgba(44,183,167,0.12)":"rgba(22,122,107,0.08)",border:"1px solid #2CB7A7",color:text,fontSize:14,fontFamily:"'Jost',sans-serif" }}>
+          ✓ Voice note saved — we'll use this to personalise your experience.
+          <button onClick={()=>{setRecDone(false);setRecording(false);}} style={{ display:"block",marginTop:8,background:"none",border:"none",color:"#2CB7A7",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif",padding:0 }}>Re-record</button>
+        </div>
+      )}
+      {voiceNote === "mic_denied" && (
+        <div style={{ padding:"14px",borderRadius:14,background:isDark?"rgba(255,255,255,0.05)":"#f2ede7",color:dim,fontSize:14,fontFamily:"'Jost',sans-serif" }}>
+          Mic not available — you can type it instead:
+        </div>
+      )}
+      <textarea
+        value={voiceNote === "mic_denied" ? "" : voiceNote}
+        onChange={e=>setVoiceNote(e.target.value)}
+        placeholder="Or type anything else you want the app to know — your dreams, what you're working through, what you really want…"
+        rows={4}
+        style={{
+          width:"100%",padding:"14px",borderRadius:14,border:`1px solid ${isDark?"rgba(255,255,255,0.15)":"#e0d8d0"}`,
+          background:isDark?"rgba(255,255,255,0.04)":"#f8f6f3",color:text,fontSize:14,
+          fontFamily:"'Jost',sans-serif",resize:"none",outline:"none",lineHeight:1.6,
+        }}
+      />
+    </div>
+  );
+
   const steps = [
     {
-      q:  1,
-      title: "What do you most want to call in?",
-      sub: "Pick up to 3. We'll build your whole experience around this.",
+      q: 1,
+      title: "What's the biggest thing you're manifesting?",
+      sub: "Pick up to 3. Your whole experience will be built around this.",
       content: pillRow(OB_GOALS, goals, toggleGoal),
       canNext: goals.length > 0,
       next: () => setStep(1),
     },
     {
-      q:  2,
+      q: 2,
       title: "Is there something specific you're going for?",
-      sub: "Be honest — the more specific, the better the match.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_SPECIFIC.map(b => chip(b.label, specific===b.label, ()=>setSpecific(b.label)))}</div>,
+      sub: "The more specific you are, the better we can match you.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_SPECIFIC.map(b => chip(b.label, specific===b.label, ()=>setSpecific(b.label)))}</div>,
       canNext: !!specific,
       next: () => setStep(2),
     },
     {
-      q:  3,
+      q: 3,
       title: "What's your biggest block right now?",
       sub: "This is between you and the app. No judgement.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_BLOCK.map(b => chip(b.label, block===b.label, ()=>setBlock(b.label)))}</div>,
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_BLOCK.map(b => chip(b.label, block===b.label, ()=>setBlock(b.label)))}</div>,
       canNext: !!block,
       next: () => setStep(3),
     },
     {
-      q:  4,
-      title: "Where are you right now?",
-      sub: "No right answer. Just honest.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_WHERE.map(w => chip(w.label, where===w.label, ()=>setWhere(w.label)))}</div>,
+      q: 4,
+      title: "Where are you right now, honestly?",
+      sub: "No right answer.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_WHERE.map(w => chip(w.label, where===w.label, ()=>setWhere(w.label)))}</div>,
       canNext: !!where,
       next: () => setStep(4),
     },
     {
-      q:  5,
+      q: 5,
       title: "What's your timeline?",
       sub: "This sets how we pace your tracks and intentions.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_TIMELINE.map(t => chip(t.label, timeline===t.label, ()=>setTimeline(t.label), t.sub))}</div>,
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_TIMELINE.map(t => chip(t.label, timeline===t.label, ()=>setTimeline(t.label), t.sub))}</div>,
       canNext: !!timeline,
       next: () => setStep(5),
     },
     {
-      q:  6,
+      q: 6,
       title: "Have you done this before?",
-      sub: "We use this to calibrate the depth of what we recommend first.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_TRIED.map(t => chip(t.label, tried===t.label, ()=>setTried(t.label)))}</div>,
+      sub: "Helps us calibrate what to give you first.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_TRIED.map(t => chip(t.label, tried===t.label, ()=>setTried(t.label)))}</div>,
       canNext: !!tried,
       next: () => setStep(6),
     },
     {
-      q:  7,
+      q: 7,
       title: "Which format do you want to start with?",
-      sub: "You can change this any time in the Library.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_FORMAT.map(f => chip(f.label, format===f.label, ()=>setFormat(f.label), f.sub))}</div>,
+      sub: "You can always change this in the Library.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_FORMAT.map(f => chip(f.label, format===f.label, ()=>setFormat(f.label), f.sub))}</div>,
       canNext: !!format,
       next: () => setStep(7),
     },
     {
-      q:  8,
+      q: 8,
       title: "When do you want to listen?",
-      sub: "We'll suggest your daily ritual around this.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_LISTEN.map(l => chip(l.label, listenTime===l.label, ()=>setListenTime(l.label), l.sub))}</div>,
+      sub: "We'll build your ritual around this.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_LISTEN.map(l => chip(l.label, listenTime===l.label, ()=>setListenTime(l.label), l.sub))}</div>,
       canNext: !!listenTime,
       next: () => setStep(8),
     },
     {
-      q:  9,
-      title: "How often do you want to listen?",
-      sub: "More is more — but consistency beats intensity.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_FREQ.map(f => chip(f.label, listenFreq===f.label, ()=>setListenFreq(f.label)))}</div>,
-      canNext: !!listenFreq,
+      q: 9,
+      title: "Do you want to set up your desire list now?",
+      sub: "Women who use the List Method manifest 3× faster. You can always do this later in ProofOS.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_BUCKET.map(b => chip(b.label, bucket===b.label, ()=>setBucket(b.label), b.sub))}</div>,
+      canNext: !!bucket,
       next: () => setStep(9),
     },
     {
-      q:  10,
-      title: "Do you want to build your desire list now?",
-      sub: "The List Method is how you track every manifestation. Women with a list manifest 3× faster.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_BUCKET.map(b => chip(b.label, bucket===b.label, ()=>setBucket(b.label), b.sub))}</div>,
-      canNext: !!bucket,
+      q: 10,
+      title: "Anything else you want us to know?",
+      sub: "Voice record your dreams, what you're working through, or what you really want. This stays private.",
+      content: voiceStep,
+      canNext: true,
       next: onDone,
     },
   ];
@@ -3514,27 +3581,27 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
 
   return (
     <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.82)",display:"flex",alignItems:"flex-end",justifyContent:"center",padding:0 }}>
-      <div style={{ maxWidth:500,width:"100%",borderRadius:"24px 24px 0 0",padding:"28px 22px 36px",background:bg,boxShadow:"0 -20px 60px rgba(0,0,0,0.5)",maxHeight:"92vh",overflowY:"auto" }}>
-        <div style={{ display:"flex",gap:3,marginBottom:22 }}>
+      <div style={{ maxWidth:500,width:"100%",borderRadius:"24px 24px 0 0",padding:"24px 20px 40px",background:bg,boxShadow:"0 -20px 60px rgba(0,0,0,0.5)",maxHeight:"92vh",overflowY:"auto" }}>
+        <div style={{ display:"flex",gap:3,marginBottom:20 }}>
           {steps.map((_,i) => (
             <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?OMBRE:isDark?"rgba(255,255,255,0.12)":"#eee" }}/>
           ))}
         </div>
-        <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:dim,marginBottom:10 }}>{s.q} of {TOTAL}</div>
-        <div style={{ fontSize:20,fontWeight:500,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
-        <div style={{ fontSize:14,color:dim,marginBottom:20 }}>{s.sub}</div>
+        <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:dim,marginBottom:8 }}>{s.q} of {TOTAL}</div>
+        <div style={{ fontSize:21,fontWeight:500,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
+        <div style={{ fontSize:14,color:dim,marginBottom:20,lineHeight:1.5 }}>{s.sub}</div>
         <div style={{ marginBottom:24 }}>{s.content}</div>
         <button
           onClick={s.canNext ? s.next : undefined}
           style={{
-            width:"100%",padding:"16px",border:"none",borderRadius:14,fontSize:16,
+            width:"100%",padding:"18px",border:"none",borderRadius:16,fontSize:17,
             fontFamily:"'Jost',sans-serif",cursor:s.canNext?"pointer":"not-allowed",
             background:s.canNext?grad:"rgba(128,128,128,0.15)",
-            color:s.canNext?"#000":"#888",fontWeight:s.canNext?700:400,transition:"all 0.2s",
+            color:s.canNext?"#000":"#888",fontWeight:s.canNext?700:400,transition:"all 0.2s",minHeight:58,
           }}
         >{step < TOTAL-1 ? "Continue →" : "Build my playlist →"}</button>
         {step === 0 && (
-          <button onClick={onDone} style={{ display:"block",width:"100%",marginTop:12,padding:"8px",background:"none",border:"none",color:dim,fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+          <button onClick={onDone} style={{ display:"block",width:"100%",marginTop:14,padding:"10px",background:"none",border:"none",color:dim,fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
             Skip for now
           </button>
         )}
