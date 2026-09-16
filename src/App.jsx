@@ -2023,20 +2023,20 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
           {/* Beta → Theta → Identity boxes */}
           <div style={{ display:"grid", gridTemplateColumns: isMobile?"1fr":"1fr auto 1fr auto 1fr", alignItems:"center", gap: isMobile?12:0, marginBottom: isMobile?48:72 }}>
 
-            <div className="reveal" style={{ background:"#0a0a0a", border:"1px solid rgba(255,255,255,0.08)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"#fdf0e8", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
-              <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Beta</div>
-              <div style={{ fontSize:12, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>13–40 Hz</div>
-              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
+            <div className="reveal" style={{ background:"linear-gradient(135deg,#2a1f0e 0%,#1a1228 50%,#0a1a18 100%)", border:"1px solid rgba(245,224,160,0.2)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(245,224,160,0.7)", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>Where you start</div>
+              <div style={{ fontSize: isMobile?36:44, fontWeight:300, background:"linear-gradient(135deg,#F5E0A0,#E8B870)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Beta</div>
+              <div style={{ fontSize:12, color:"rgba(245,224,160,0.6)", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>13–40 Hz</div>
+              <div style={{ fontSize:14, color:"rgba(253,240,232,0.8)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The critical mind is active. Affirmations bounce off. Nothing installs here.</div>
             </div>
 
             <div style={{ fontSize: isMobile?24:28, color:"#fdf0e8", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
 
-            <div className="reveal" style={{ transitionDelay:"120ms", background:"#0a0a0a", border:"2px solid rgba(44,183,167,0.4)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(44,183,167,0.1)" }}>
-              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", background:"linear-gradient(135deg,#F5E0A0,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
-              <div style={{ fontSize: isMobile?36:44, fontWeight:300, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Theta</div>
-              <div style={{ fontSize:12, background:"linear-gradient(135deg,#2CB7A7,#BFA5D8)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>4–8 Hz</div>
-              <div style={{ fontSize:14, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The subconscious opens. New beliefs install without resistance.</div>
+            <div className="reveal" style={{ transitionDelay:"120ms", background:"linear-gradient(135deg,#1a0f28 0%,#0f1a28 50%,#0a1f1e 100%)", border:"1px solid rgba(191,165,216,0.35)", borderRadius:20, padding: isMobile?"28px 20px":"40px 28px", textAlign:"center", boxShadow:"0 0 40px rgba(191,165,216,0.12)" }}>
+              <div style={{ fontSize:10, letterSpacing:"0.22em", textTransform:"uppercase", background:"linear-gradient(135deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:14, fontFamily:"'Jost',sans-serif" }}>SHG gets you here</div>
+              <div style={{ fontSize: isMobile?36:44, fontWeight:300, background:"linear-gradient(135deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:6, letterSpacing:"-0.02em" }}>Theta</div>
+              <div style={{ fontSize:12, background:"linear-gradient(135deg,#BFA5D8,#2CB7A7)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent", fontFamily:"'Jost',sans-serif", marginBottom:14 }}>4–8 Hz</div>
+              <div style={{ fontSize:14, color:"rgba(253,240,232,0.85)", fontFamily:"'Jost',sans-serif", lineHeight:1.7 }}>The subconscious opens. New beliefs install without resistance.</div>
             </div>
 
             <div style={{ fontSize: isMobile?24:28, color:"#fdf0e8", textAlign:"center", padding: isMobile?"8px 0":"0 16px", fontWeight:300 }}>{isMobile?"↓":"→"}</div>
