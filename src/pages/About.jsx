@@ -103,7 +103,7 @@ export default function About({ onBack }) {
       </div>
 
       {/* ===== HOW IT STARTED ===== */}
-      <div className="reveal" style={{ background:"#000", borderTop:"1px solid rgba(44,183,167,0.15)", borderBottom:"1px solid rgba(44,183,167,0.15)", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
+      <div className="reveal" style={{ background:"#000", padding: isMobile?"64px 24px":"96px 60px", position:"relative", overflow:"hidden" }}>
         <div className="about-orb" style={{ width:400, height:400, left:"50%", top:"50%", transform:"translate(-50%,-50%)", background:"radial-gradient(circle,rgba(44,183,167,0.07),transparent 70%)", animationDuration:"15s" }}/>
         <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center", position:"relative", zIndex:1 }}>
           <div style={{ fontSize:11, letterSpacing:"0.28em", textTransform:"uppercase", background:LG, backgroundSize:"300% 300%", animation:"about-drift 5s ease-in-out infinite", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent", marginBottom:24, fontWeight:600 }}>How It Started</div>
