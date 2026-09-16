@@ -3309,39 +3309,33 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   const text = isDark ? "#FDF0E8" : "#111";
   const sub = isDark ? "#FDF0E8" : "#111";
   const chip = (label, active, onClick) => (
-    React.createElement('button', { key: label, onClick, style: {
+    <button key={label} onClick={onClick} style={{
       padding:"9px 16px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",
       cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ccc"}`,
       background: active ? grad : "none", color: active ? "#000" : text,
       fontWeight: active ? 600 : 400, transition:"all 0.15s",
-    }}, label)
+    }}>{label}</button>
   );
 
   const steps = [
     {
       title: "What do you most want to shift?",
       sub: "Pick up to 3 — we'll tailor your tracks to these.",
-      content: React.createElement('div', { style: { display:"flex",flexWrap:"wrap",gap:10,justifyContent:"center" } },
-        OB_GOALS.map(g => chip(g, goals.includes(g), () => toggleGoal(g)))
-      ),
+      content: <div style={{ display:"flex",flexWrap:"wrap",gap:10,justifyContent:"center" }}>{OB_GOALS.map(g => chip(g, goals.includes(g), () => toggleGoal(g)))}</div>,
       canNext: goals.length > 0,
       next: () => setStep(1),
     },
     {
       title: "Where are you right now?",
       sub: "No right answer. Just honest.",
-      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
-        OB_WHERE.map(w => chip(w, where===w, () => setWhere(w)))
-      ),
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_WHERE.map(w => chip(w, where===w, () => setWhere(w)))}</div>,
       canNext: !!where,
       next: () => setStep(2),
     },
     {
       title: "How often do you want to listen?",
       sub: "We'll shape your experience around this.",
-      content: React.createElement('div', { style: { display:"flex",flexDirection:"column",gap:10 } },
-        OB_FREQ.map(f => chip(f, freq===f, () => setFreq(f)))
-      ),
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_FREQ.map(f => chip(f, freq===f, () => setFreq(f)))}</div>,
       canNext: !!freq,
       next: onDone,
     },
