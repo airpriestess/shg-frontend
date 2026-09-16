@@ -3303,34 +3303,27 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
 
 // ── ONBOARDING QUIZ ────────────────────────────────────────────────────────────
 const OB_GOALS = [
-  { label:"Luck & Magnetism", cat:"Luckygirlmaxxing" },
-  { label:"Love & Attraction", cat:"Lovemaxxing" },
-  { label:"Money & Abundance", cat:"Richgirlmaxxing" },
-  { label:"Confidence", cat:"Selfmaxxing" },
-  { label:"Beauty & Glow", cat:"Beautymaxxing" },
-  { label:"Sleep & Rest", cat:"Sleepmaxxing" },
-  { label:"Anxiety & Peace", cat:"Selfmaxxing" },
-  { label:"Body & Health", cat:"Bodymaxxing" },
-  { label:"Business & Purpose", cat:"Businessmaxxing" },
+  { label:"Luck & Magnetism",    cat:"Luckygirlmaxxing" },
+  { label:"Love & Attraction",   cat:"Lovemaxxing" },
+  { label:"Money & Abundance",   cat:"Richgirlmaxxing" },
+  { label:"Confidence",          cat:"Selfmaxxing" },
+  { label:"Beauty & Glow",       cat:"Beautymaxxing" },
+  { label:"Sleep & Rest",        cat:"Sleepmaxxing" },
+  { label:"Anxiety & Peace",     cat:"Selfmaxxing" },
+  { label:"Body & Health",       cat:"Bodymaxxing" },
+  { label:"Business & Purpose",  cat:"Businessmaxxing" },
+  { label:"Identity Shift",      cat:"Sovereignmaxxing" },
 ];
-const OB_WHERE = [
-  { label:"🌑 Stuck and overwhelmed" },
-  { label:"🌒 Building momentum slowly" },
-  { label:"🌓 Making progress but plateaued" },
-  { label:"🌔 Ready to go all in" },
-  { label:"🌕 I'm in my era" },
-];
-const OB_LISTEN = [
-  { label:"Morning ritual ☀️", sub:"Start the day aligned" },
-  { label:"Before sleep 🌙", sub:"Reprogram while you rest" },
-  { label:"Throughout the day 🔁", sub:"Background shift" },
-  { label:"When I need a reset ⚡", sub:"On-demand support" },
-];
-const OB_FORMAT = [
-  { label:"Hypnosis", sub:"Guided deep-state sessions" },
-  { label:"Subliminal", sub:"Silent or music-backed affirmations" },
-  { label:"Melodic", sub:"Music that shifts your field" },
-  { label:"Mix it up", sub:"Surprise me" },
+const OB_SPECIFIC = [
+  { label:"A specific person texting / coming back",      cat:"Lovemaxxing" },
+  { label:"A sum of money arriving",                      cat:"Richgirlmaxxing" },
+  { label:"A job, raise or client",                       cat:"Businessmaxxing" },
+  { label:"A glow-up — skin, body, energy",               cat:"Beautymaxxing" },
+  { label:"Something lucky happening out of nowhere",     cat:"Luckygirlmaxxing" },
+  { label:"Peace, clarity and emotional reset",           cat:"Selfmaxxing" },
+  { label:"A house, trip or material thing",              cat:"Richgirlmaxxing" },
+  { label:"Becoming someone new entirely",                cat:"Sovereignmaxxing" },
+  { label:"I have a list — I want all of it",             cat:"Luckygirlmaxxing" },
 ];
 const OB_BLOCK = [
   { label:"I don't believe it's possible for me" },
@@ -3339,80 +3332,180 @@ const OB_BLOCK = [
   { label:"I feel like I'm behind everyone else" },
   { label:"I keep attracting the same patterns" },
   { label:"Nothing seems to stick" },
+  { label:"I believe it, but I rush and cancel it out" },
+  { label:"I'm consistent but nothing's moved yet" },
+];
+const OB_WHERE = [
+  { label:"🌑 Rock bottom — starting from scratch" },
+  { label:"🌒 Stuck and overwhelmed" },
+  { label:"🌓 Making progress but plateaued" },
+  { label:"🌔 Ready to go all in right now" },
+  { label:"🌕 Already in my era, just accelerating" },
+];
+const OB_TIMELINE = [
+  { label:"I need a shift this week",          sub:"Urgent — I'm ready" },
+  { label:"Within the next 30 days",           sub:"Building steadily" },
+  { label:"This is a 90-day transformation",   sub:"I'm in it for real" },
+  { label:"I'm playing a long game",           sub:"Identity-level rewire" },
+];
+const OB_LISTEN = [
+  { label:"Morning ritual ☀️",       sub:"Start the day aligned" },
+  { label:"Before sleep 🌙",          sub:"Reprogram while you rest" },
+  { label:"Throughout the day 🔁",    sub:"Background field shift" },
+  { label:"When I need a reset ⚡",   sub:"On-demand support" },
+  { label:"Multiple times a day",     sub:"I'm going all in" },
+];
+const OB_FORMAT = [
+  { label:"Hypnosis",    sub:"Guided deep-state sessions — high impact" },
+  { label:"Subliminal",  sub:"Silent or music-backed affirmations" },
+  { label:"Melodic",     sub:"Music that shifts your frequency" },
+  { label:"Sleep audio", sub:"Works while I rest" },
+  { label:"Mix it up",   sub:"Surprise me — I trust the algorithm" },
+];
+const OB_FREQ = [
+  { label:"Once a day" },
+  { label:"2–3 times a day" },
+  { label:"On loop in the background" },
+  { label:"Whenever I feel called" },
+];
+const OB_TRIED = [
+  { label:"Total beginner — never done this before" },
+  { label:"I've tried affirmations but not hypnosis" },
+  { label:"I've tried subliminals on YouTube" },
+  { label:"I've used hypnosis apps before" },
+  { label:"I'm experienced — I just want better content" },
+];
+const OB_BUCKET = [
+  { label:"Yes — walk me through it now",      sub:"I'll add my desires before I start" },
+  { label:"Maybe later — just start me",       sub:"I'll add desires as I go" },
+  { label:"I already know what I want",        sub:"I'll add them myself in ProofOS" },
 ];
 
 function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
+  const [specific, setSpecific]   = useState("");
+  const [block, setBlock]         = useState("");
+  const [timeline, setTimeline]   = useState("");
   const [listenTime, setListenTime] = useState("");
-  const [format, setFormat] = useState("");
-  const [block, setBlock] = useState("");
+  const [format, setFormat]       = useState("");
+  const [listenFreq, setListenFreq] = useState("");
+  const [tried, setTried]         = useState("");
+  const [bucket, setBucket]       = useState("");
+
   const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
-  const TOTAL = 5;
+  const TOTAL = 10;
   const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
-  const bg = isDark ? "#0d0d0d" : "#fff";
+  const bg   = isDark ? "#0d0d0d" : "#fff";
   const text = isDark ? "#FDF0E8" : "#111";
-  const dim = isDark ? "rgba(253,240,232,0.55)" : "#777";
+  const dim  = isDark ? "rgba(253,240,232,0.55)" : "#777";
 
   const chip = (label, active, onClick, sub) => (
     <button key={label} onClick={onClick} style={{
-      padding: sub ? "12px 16px" : "10px 18px",
+      padding: sub ? "12px 16px" : "11px 16px",
       borderRadius:14, fontSize:14, fontFamily:"'Jost',sans-serif",
-      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ddd"}`,
-      background: active ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f8f8",
+      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#e0d8d0"}`,
+      background: active ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f6f3",
       color: active ? "#000" : text,
       fontWeight: active ? 600 : 400, transition:"all 0.15s",
       textAlign:"left", width:"100%",
     }}>
       {label}
-      {sub && <div style={{ fontSize:12, marginTop:2, opacity:0.7, fontWeight:400 }}>{sub}</div>}
+      {sub && <div style={{ fontSize:12, marginTop:3, opacity:0.7, fontWeight:400 }}>{sub}</div>}
     </button>
+  );
+
+  const pillRow = (items, selected, toggle) => (
+    <div style={{ display:"flex",flexWrap:"wrap",gap:8 }}>
+      {items.map(g => (
+        <button key={g.label} onClick={()=>toggle(g.label)} style={{
+          padding:"10px 14px", borderRadius:20, fontSize:13, fontFamily:"'Jost',sans-serif",
+          cursor:"pointer", border: selected.includes(g.label) ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#e0d8d0"}`,
+          background: selected.includes(g.label) ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f6f3",
+          color: selected.includes(g.label) ? "#000" : text, fontWeight: selected.includes(g.label) ? 600 : 400,
+          transition:"all 0.15s",
+        }}>{g.label}</button>
+      ))}
+    </div>
   );
 
   const steps = [
     {
+      q:  1,
       title: "What do you most want to call in?",
-      sub: "Pick up to 3 — we'll match your tracks to these.",
-      content: (
-        <div style={{ display:"flex",flexWrap:"wrap",gap:8 }}>
-          {OB_GOALS.map(g => (
-            <button key={g.label} onClick={()=>toggleGoal(g.label)} style={{
-              padding:"10px 14px", borderRadius:20, fontSize:14, fontFamily:"'Jost',sans-serif",
-              cursor:"pointer", border: goals.includes(g.label) ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#ddd"}`,
-              background: goals.includes(g.label) ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f8f8",
-              color: goals.includes(g.label) ? "#000" : text, fontWeight: goals.includes(g.label) ? 600 : 400,
-              transition:"all 0.15s",
-            }}>{g.label}</button>
-          ))}
-        </div>
-      ),
+      sub: "Pick up to 3. We'll build your whole experience around this.",
+      content: pillRow(OB_GOALS, goals, toggleGoal),
       canNext: goals.length > 0,
       next: () => setStep(1),
     },
     {
-      title: "What's your biggest block right now?",
-      sub: "This is between you and the app.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_BLOCK.map(b => chip(b.label, block===b.label, ()=>setBlock(b.label)))}</div>,
-      canNext: !!block,
+      q:  2,
+      title: "Is there something specific you're going for?",
+      sub: "Be honest — the more specific, the better the match.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_SPECIFIC.map(b => chip(b.label, specific===b.label, ()=>setSpecific(b.label)))}</div>,
+      canNext: !!specific,
       next: () => setStep(2),
     },
     {
-      title: "Where are you on your journey?",
-      sub: "No right answer. Just honest.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_WHERE.map(w => chip(w.label, where===w.label, ()=>setWhere(w.label)))}</div>,
-      canNext: !!where,
+      q:  3,
+      title: "What's your biggest block right now?",
+      sub: "This is between you and the app. No judgement.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_BLOCK.map(b => chip(b.label, block===b.label, ()=>setBlock(b.label)))}</div>,
+      canNext: !!block,
       next: () => setStep(3),
     },
     {
-      title: "When do you want to listen?",
-      sub: "We'll build your daily ritual around this.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_LISTEN.map(l => chip(l.label, listenTime===l.label, ()=>setListenTime(l.label), l.sub))}</div>,
-      canNext: !!listenTime,
+      q:  4,
+      title: "Where are you right now?",
+      sub: "No right answer. Just honest.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_WHERE.map(w => chip(w.label, where===w.label, ()=>setWhere(w.label)))}</div>,
+      canNext: !!where,
       next: () => setStep(4),
     },
     {
-      title: "Which format feels right for you?",
-      sub: "You can always switch. We just want to start you strong.",
+      q:  5,
+      title: "What's your timeline?",
+      sub: "This sets how we pace your tracks and intentions.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_TIMELINE.map(t => chip(t.label, timeline===t.label, ()=>setTimeline(t.label), t.sub))}</div>,
+      canNext: !!timeline,
+      next: () => setStep(5),
+    },
+    {
+      q:  6,
+      title: "Have you done this before?",
+      sub: "We use this to calibrate the depth of what we recommend first.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_TRIED.map(t => chip(t.label, tried===t.label, ()=>setTried(t.label)))}</div>,
+      canNext: !!tried,
+      next: () => setStep(6),
+    },
+    {
+      q:  7,
+      title: "Which format do you want to start with?",
+      sub: "You can change this any time in the Library.",
       content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_FORMAT.map(f => chip(f.label, format===f.label, ()=>setFormat(f.label), f.sub))}</div>,
       canNext: !!format,
+      next: () => setStep(7),
+    },
+    {
+      q:  8,
+      title: "When do you want to listen?",
+      sub: "We'll suggest your daily ritual around this.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_LISTEN.map(l => chip(l.label, listenTime===l.label, ()=>setListenTime(l.label), l.sub))}</div>,
+      canNext: !!listenTime,
+      next: () => setStep(8),
+    },
+    {
+      q:  9,
+      title: "How often do you want to listen?",
+      sub: "More is more — but consistency beats intensity.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_FREQ.map(f => chip(f.label, listenFreq===f.label, ()=>setListenFreq(f.label)))}</div>,
+      canNext: !!listenFreq,
+      next: () => setStep(9),
+    },
+    {
+      q:  10,
+      title: "Do you want to build your desire list now?",
+      sub: "The List Method is how you track every manifestation. Women with a list manifest 3× faster.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:8 }}>{OB_BUCKET.map(b => chip(b.label, bucket===b.label, ()=>setBucket(b.label), b.sub))}</div>,
+      canNext: !!bucket,
       next: onDone,
     },
   ];
@@ -3421,14 +3514,13 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
 
   return (
     <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.82)",display:"flex",alignItems:"flex-end",justifyContent:"center",padding:0 }}>
-      <div style={{ maxWidth:500,width:"100%",borderRadius:"24px 24px 0 0",padding:"28px 22px 36px",background:bg,boxShadow:"0 -20px 60px rgba(0,0,0,0.5)",maxHeight:"88vh",overflowY:"auto" }}>
-        {/* Progress */}
-        <div style={{ display:"flex",gap:4,marginBottom:22 }}>
+      <div style={{ maxWidth:500,width:"100%",borderRadius:"24px 24px 0 0",padding:"28px 22px 36px",background:bg,boxShadow:"0 -20px 60px rgba(0,0,0,0.5)",maxHeight:"92vh",overflowY:"auto" }}>
+        <div style={{ display:"flex",gap:3,marginBottom:22 }}>
           {steps.map((_,i) => (
-            <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?OMBRE:isDark?"rgba(255,255,255,0.12)":"#eee",backgroundSize:"200%",backgroundPosition:"left" }}/>
+            <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?OMBRE:isDark?"rgba(255,255,255,0.12)":"#eee" }}/>
           ))}
         </div>
-        <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:dim,marginBottom:10 }}>Step {step+1} of {TOTAL}</div>
+        <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:dim,marginBottom:10 }}>{s.q} of {TOTAL}</div>
         <div style={{ fontSize:20,fontWeight:500,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
         <div style={{ fontSize:14,color:dim,marginBottom:20 }}>{s.sub}</div>
         <div style={{ marginBottom:24 }}>{s.content}</div>
