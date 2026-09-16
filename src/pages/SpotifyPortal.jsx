@@ -107,24 +107,24 @@ const THEMES = {
     accentChamp:"#F5E0A0",
     accentDeep: "#167A6B",
   },
-  // ── LIGHT MODE: full LG gradient wall to wall, ALL TEXT BLACK ────────────
+  // ── LIGHT MODE ────────────────────────────────────────────────────────────
   light: {
-    bg:      "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)",
-    bg2:     "#fdf0e8",  // frosted glass cards
-    bg3:     "#fdf0e8",  // raised cards
-    bg4:     "#fdf0e8",  // highest surface
-    nav:     "#167A6B",  // nav bar, deep teal
-    cr:      "#000000",   // primary text, black
-    mu:      "#000000",   // muted text, also black (no grey in light mode)
-    dim:     "#000000",   // faint text, also black
-    border:  "#fdf0e8",
-    inputBg: "#fdf0e8",
-    inputCr: "#000000",
-    accentGold: "#000000",
-    accentLav:  "#000000",
-    accentTeal: "#000000",
-    accentChamp:"#000000",
-    accentDeep: "#000000",
+    bg:      "#f8f6f3",
+    bg2:     "#ffffff",
+    bg3:     "#f2ede7",
+    bg4:     "#ece6de",
+    nav:     "#ffffff",
+    cr:      "#1a1008",
+    mu:      "#6a5a4a",
+    dim:     "#9a8a7a",
+    border:  "#e0d8d0",
+    inputBg: "#ffffff",
+    inputCr: "#1a1008",
+    accentGold: "#a07020",
+    accentLav:  "#7a5a9a",
+    accentTeal: "#167A6B",
+    accentChamp:"#8a6010",
+    accentDeep: "#0f5248",
   },
 };
 
