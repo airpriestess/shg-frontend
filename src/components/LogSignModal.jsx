@@ -55,7 +55,7 @@ export function ManifestCelebration({ intention, signCount, onClose }) {
 
       {/* Gradient headline */}
       <div style={{
-        fontFamily: "'Cormorant Garamond',serif",
+        fontFamily: "'Jost',sans-serif",
         fontSize: "clamp(36px,8vw,60px)",
         fontWeight: 300,
         background: GRAD,
@@ -87,7 +87,7 @@ export function ManifestCelebration({ intention, signCount, onClose }) {
         marginBottom: 40,
       }}>
         <span style={{
-          fontFamily: "'Cormorant Garamond',serif",
+          fontFamily: "'Jost',sans-serif",
           fontSize: 64,
           fontWeight: 300,
           color: "#E8B870",
@@ -419,7 +419,7 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
             <div style={{ textAlign: "center", padding: "20px 0 10px" }}>
               <div style={{ fontSize: 48, marginBottom: 16 }}>✦</div>
               <div style={{
-                fontFamily: "'Cormorant Garamond',serif",
+                fontFamily: "'Jost',sans-serif",
                 fontSize: 32, fontWeight: 300,
                 background: GRAD,
                 WebkitBackgroundClip: "text",

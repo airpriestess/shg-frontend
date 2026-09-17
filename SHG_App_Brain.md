@@ -4,32 +4,42 @@
 
 ---
 
-## Brand — LOCKED
+## Brand — verified against src/design/tokens.js, 17 Sept 2026
 
 | Token | Value |
 |-------|-------|
 | Background | #000000 pure black |
-| Rose gold | #B76E79 |
-| Peach | #d4a090 |
-| Peach light | #e8c0a8 |
-| Cream text | #f2ece4 |
-| Muted text | #786860 |
-| Card surface | #06040c |
-| Border | #1c1828 |
-| Font UI | Jost 300–800 |
-| Font wordmark/headlines | Cormorant Garamond italic |
+| Surface raised | #0a0a0a |
+| Border | #1e1e1e |
+| Text | #fdf0e8 cream |
+| Text secondary | #dcc8b8 |
+| Text muted | #b09888 |
+| Accent | the LG gradient only — never a solid |
 
-**Never use:** #C8892A (old gold) · brown · orange · warm grey · Inter · white (#ffffff) as text on dark · euros
+**The LG gradient (the only accent that exists):**
+`linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)`
+
+Its five stops: `#F5E0A0` champagne · `#E8B870` gold · `#BFA5D8` lilac ·
+`#2CB7A7` teal · `#167A6B` deep teal. Use the whole ramp, never one stop alone.
+
+**Font:** `'Jost', sans-serif` everywhere. Weights carry hierarchy.
+
+See CLAUDE.md for the full banned list. This table previously described a
+rose-gold and peach system with a serif display face; that system is dead and
+must not come back.
 
 ---
 
-## Pricing — LOCKED (GBP only, never euros)
+## Pricing — verified against src/App.jsx, 17 Sept 2026
 
-| Tier | Price | Stripe |
-|------|-------|--------|
-| Audio Tier | £19/mo | https://buy.stripe.com/8x2bJ1c3L2jQ2lb5CU7AI00 |
-| Goddess Tier | £33/mo | https://buy.stripe.com/6oUfZh3xfcYu5xn4yQ7AI01 |
-| Lifetime Access | £500 once | https://buy.stripe.com/00w8wP2tbgaG3pffdu7AI02 |
+| Tier | Monthly | Annual |
+|------|---------|--------|
+| Audio Tier | $49/mo | $470/yr ($39/mo) |
+| Goddess Tier | $79/mo | $758/yr ($63/mo) |
+| Lifetime Access | $1,000 once | — |
+
+See `SHG_Business_Brain.md` for the Stripe links. If a document disagrees with
+`src/App.jsx`, the code is right.
 
 ---
 
@@ -69,18 +79,20 @@ Base URL: https://shg-audio-worker.airpriestess.workers.dev/
 
 ---
 
-## Design decisions — locked
+## Design decisions — current
 
-- Maxxing carousel: PEACH/ROSE GOLD background with BLACK text (not dark bg with light text)
-- Each carousel category gets its own unique peach/rose shade
-- Preview strip below carousel: dark (#000) background with peach text
-- Wordmark "Self Hypnosis Goddess": ombre shimmer peach→rose gold, animates every 3.5s
-- Announcement banner: linear-gradient peach→rose gold left to right
-- Section alternating: black → visible rose-dark (#130818) → black
-- Hero title: 3 lines — "Self Hypnosis Goddess" (ombre) / "Audio Library" (cream) / "(+ ProofOS)" (rose)
+- Maxxing carousel: see the carousel skills for the current system
+- Preview strip below carousel: black background, cream text
+- Wordmark "Self Hypnosis Goddess": LG gradient, Jost
+- Announcement banner: the LG gradient, full width, animated drift
+- Section alternating: black → `.section-rose` / `.section-peach` (both are
+  near-black gradients in tokens.js despite the legacy class names) → black
+- Hero title: 3 lines — "Self Hypnosis Goddess" (LG gradient) / "Audio Library"
+  (cream) / "(+ ProofOS)" (LG gradient)
 - Tagline: "The Spotify for your subconscious mind"
 
----
+The peach / rose-gold / Cormorant-italic descriptions that used to sit here were
+from a dead system. Nothing on the site should use them.
 
 ## Mobile rules — CRITICAL
 

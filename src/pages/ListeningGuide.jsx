@@ -1,7 +1,7 @@
 import { T } from "../design/tokens.js";
 
 const RG = "#2CB7A7";
-const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
+const G = "linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const SECTIONS = [
   {

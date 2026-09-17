@@ -1,6 +1,6 @@
 // ─── SHG Design Tokens - Lucky Girl system ────────────────────────────────
 // Locked gradient: #F5E0A0 → #E8B870 → #BFA5D8 → #2CB7A7 → #167A6B
-// DO NOT substitute old values (#C8960A, #5B8DB8, #C8860A, #B8820A)
+// DO NOT substitute old values (#E8B870, #BFA5D8, #E8B870, #E8B870)
 
 // ── LOCKED LG GRADIENT ───────────────────────────────────────────────────
 export const LG_GRAD = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
@@ -28,7 +28,7 @@ export const T = {
   textPrimary:   "#fdf0e8",
   textSecondary: "#dcc8b8",
   textMuted:     "#b09888",
-  textFaint:     "#786860",
+  textFaint:     "#b09888",
 
   // LG accent colours - used on labels, icons, active states
   gold:      "#E8B870",   // champagne gold
@@ -52,7 +52,7 @@ export const T = {
 };
 
 export const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap');
 
 /* ── RESET ─────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -67,7 +67,7 @@ input:focus,textarea:focus{border-color:#2CB7A766;}
 img{max-width:100%;}
 
 /* ── TYPOGRAPHY ─────────────────── */
-.wm{font-family:'Cormorant Garamond',serif;font-style:italic;}
+.wm{font-family:'Jost',sans-serif;}
 
 /* ── ANIMATIONS ─────────────────── */
 @keyframes drift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}

@@ -174,7 +174,6 @@ export default function About({ onBack }) {
           maxWidth:760, margin:"0 auto", textAlign:"center",
           fontSize: isMobile?"clamp(22px,6vw,32px)":"clamp(26px,3vw,40px)",
           fontWeight:300, lineHeight:1.5, letterSpacing:"-0.01em",
-          fontStyle:"italic",
           background:LG, backgroundSize:"300% 300%", animation:"about-drift 6s ease-in-out infinite",
           WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent",
         }}>

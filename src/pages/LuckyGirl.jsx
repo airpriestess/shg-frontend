@@ -276,7 +276,7 @@ export default function LuckyGirl() {
 
   return (
     <div style={{ background: INK, color: CREAM, fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh", overflowX: "hidden" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 
       <SHGNav/>
 
@@ -420,13 +420,13 @@ export default function LuckyGirl() {
             {/* Old belief */}
             <div style={{ background: "rgba(253,240,232,0.04)", border: "1px solid rgba(253,240,232,0.1)", borderRadius: 20, padding: "32px 28px", marginBottom: 16 }}>
               <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: "rgba(253,240,232,0.4)", marginBottom: 16, fontWeight: 600 }}>The assumption running beneath all of it</div>
-              <div style={{ fontSize: 19, color: CREAM, fontStyle: "italic", lineHeight: 1.8, fontWeight: 300, opacity: 0.7 }}>"{result.old}"</div>
+              <div style={{ fontSize: 19, color: CREAM, lineHeight: 1.8, fontWeight: 300, opacity: 0.7 }}>"{result.old}"</div>
             </div>
 
             {/* New assumption */}
             <div style={{ borderRadius: 20, padding: "44px 28px", marginBottom: 16, textAlign: "center", background: LG }}>
               <div style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", color: INK, marginBottom: 20, fontWeight: 600 }}>The install — your new assumption</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(30px,5.5vw,52px)", color: INK, fontWeight: 400, lineHeight: 1.15, marginBottom: 20 }}>{result.new}</div>
+              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: "clamp(30px,5.5vw,52px)", color: INK, fontWeight: 400, lineHeight: 1.15, marginBottom: 20 }}>{result.new}</div>
               <div style={{ fontSize: 13, color: INK, opacity: 0.6, fontWeight: 300 }}>Say this out loud right before sleep. Theta window. Every night. 21 nights.</div>
             </div>
 
@@ -452,7 +452,7 @@ export default function LuckyGirl() {
             {/* Workbook CTA */}
             <div style={{ background: LG, borderRadius: 20, padding: "44px 28px", marginBottom: 12, textAlign: "center" }}>
               <div style={{ fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase", color: INK, marginBottom: 14, fontWeight: 600 }}>The next step</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(28px,5vw,46px)", color: INK, fontWeight: 400, lineHeight: 1.1, marginBottom: 10 }}>Lucky Girl Maxxing</div>
+              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: "clamp(28px,5vw,46px)", color: INK, fontWeight: 400, lineHeight: 1.1, marginBottom: 10 }}>Lucky Girl Maxxing</div>
               <div style={{ fontSize: 15, color: INK, lineHeight: 1.7, fontWeight: 300, marginBottom: 6 }}>21 days to become the woman good things happen to.</div>
               <div style={{ fontSize: 22, color: INK, fontWeight: 600, marginBottom: 6 }}>$19 <span style={{ fontSize: 14, fontWeight: 300, textDecoration: "line-through", opacity: 0.5 }}>$49</span></div>
               <div style={{ fontSize: 14, color: INK, lineHeight: 1.7, fontWeight: 300, marginBottom: 28, maxWidth: 360, margin: "0 auto 28px" }}>

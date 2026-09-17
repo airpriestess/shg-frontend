@@ -89,7 +89,7 @@ export default function PortalScreenshot({ width=260, theme="dark" }) {
         padding:`${Math.round(4*s)}px ${pad}px ${Math.round(8*s)}px` }}>
         <div>
           <div style={{ fontSize:f.xs, color:C.mu, letterSpacing:"0.06em", textTransform:"uppercase", marginBottom:1 }}>Welcome back</div>
-          <span style={{ fontSize:f.lg, color:C.cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Goddess</span>
+          <span style={{ fontSize:f.lg, color:C.cr, fontFamily:"'Jost',sans-serif", }}>Goddess</span>
         </div>
         {/* Avatar, clover mark */}
         <div style={{ width:Math.round(28*s), height:Math.round(28*s), borderRadius:"50%",
