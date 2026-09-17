@@ -26,7 +26,7 @@ const PAGES = {
       { h: "2. What Data We Collect", body: `We collect:\n\n• Account data: email address, name (if provided), and tier/subscription status when you create an account or subscribe.\n• Payment data: processed entirely by Stripe. We do not store your card details.\n• Usage data: tracks played, ProofOS entries you create, emotional state logs, and sign logs. This data is stored in your account only.\n• Technical data: IP address, browser type, and device information collected automatically when you visit the site.\n• Communications: emails you send us.` },
       { h: "3. How We Use Your Data", body: `We use your data to:\n\n• Provide and maintain your membership access\n• Process payments via Stripe\n• Send transactional emails (receipts, account notices)\n• Send marketing emails if you have opted in (you may unsubscribe at any time)\n• Improve the platform and fix bugs` },
       { h: "4. ProofOS Data", body: `Your intentions, signs, and Proof Wall entries in ProofOS are private to your account. We do not read, share, or use this content for any purpose other than displaying it back to you. You may delete any or all ProofOS data from within the app at any time.` },
-      { h: "5. Data Sharing", body: `We do not sell your personal data. We share data only with:\n\n• Stripe, for payment processing\n• Cloudflare, our infrastructure and database provider\n• Vercel, our hosting provider\n\nAll providers are bound by their own privacy policies and applicable data protection law.` },
+      { h: "5. Data Sharing", body: `We do not sell your personal data. We share data only with:\n\n• Stripe, for payment processing\n• Cloudflare, our hosting, infrastructure and database provider\n• Nitrosend, for transactional and marketing email\n\nAll providers are bound by their own privacy policies and applicable data protection law.` },
       { h: "6. Cookies", body: `We use essential cookies to keep you logged in and maintain your session. We do not use advertising cookies or third-party tracking cookies.` },
       { h: "7. Your Rights", body: `Under UK GDPR and applicable data protection law, you have the right to:\n\n• Access the personal data we hold about you\n• Correct inaccurate data\n• Request deletion of your data\n• Object to or restrict certain processing\n• Data portability\n\nTo exercise any of these rights, contact hello@reshmaoracle.com.` },
       { h: "8. Data Retention", body: `We retain your account data for as long as your account is active. If you delete your account, we will delete your personal data within 30 days, except where we are required by law to retain it.` },
@@ -65,7 +65,7 @@ export default function Legal({ page = "tos", onBack }) {
       {/* Content */}
       <div style={{ maxWidth:720, margin:"0 auto", padding:"56px 24px 0" }}>
         <div style={{ fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:"#2CB7A7", marginBottom:16 }}>reshmaoracle.com</div>
-        <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:"clamp(36px,6vw,52px)", color:"#fdf0e8", fontWeight:400, marginBottom:8, lineHeight:1.1 }}>{P.title}</h1>
+        <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize:"clamp(36px,6vw,52px)", color:"#fdf0e8", fontWeight:400, marginBottom:8, lineHeight:1.1 }}>{P.title}</h1>
         <p style={{ fontSize:13, color:"#fdf0e8", marginBottom:48 }}>Last updated: {P.updated}</p>
         {P.sections.map((s,i)=>(
           <div key={i} style={{ marginBottom:40 }}>

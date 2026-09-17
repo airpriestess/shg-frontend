@@ -153,7 +153,7 @@ export default function DesktopMockup({ width=480, theme="dark" }) {
               <div style={{ fontSize:Math.max(5,Math.round(7*s)), color:C.mu,
                 letterSpacing:"0.08em", textTransform:"uppercase", marginBottom:2 }}>Welcome back</div>
               <div style={{ fontSize:f.lg, color:C.cr,
-                fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Goddess</div>
+                fontFamily:"'Jost',sans-serif", }}>Goddess</div>
             </div>
 
             {/* Jump back in */}

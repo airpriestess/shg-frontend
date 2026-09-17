@@ -70,7 +70,7 @@ export default function Blocks() {
 
   return (
     <div style={{ background: "#000", color: "#fdf0e8", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
       <style>{`
         @keyframes lgGlow {
           0% { box-shadow: 0 0 20px rgba(245,224,160,0.3), 0 0 40px rgba(245,224,160,0.1); }
@@ -115,7 +115,7 @@ export default function Blocks() {
                   </div>
                 </div>
                 <div style={{ textAlign: "center", minWidth: 140 }}>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(13px,1.5vw,16px)", color: block.color, lineHeight: 1.5, marginBottom: 20, maxWidth: 140 }}>{block.assumption}</div>
+                  <div style={{ fontFamily: "'Jost', sans-serif", fontSize: "clamp(13px,1.5vw,16px)", color: block.color, lineHeight: 1.5, marginBottom: 20, maxWidth: 140 }}>{block.assumption}</div>
                   <div style={{ background: LG, borderRadius: 30, padding: "12px 20px", fontSize: 12, fontWeight: 600, color: "#000", letterSpacing: ".04em", textTransform: "uppercase" }}>
                     Find my block →
                   </div>

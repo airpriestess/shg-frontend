@@ -3,7 +3,7 @@
 const DARK  = { bg:"#000000", bg2:"#111111", bg3:"rgba(44,183,167,0.10)", cr:"#2CB7A7", mu:"#fdf0e8", dim:"#fdf0e8", nav:"rgba(0,0,0,0.97)" };
 const LIGHT = { bg:"#fdf8f2", bg2:"#ffffff", bg3:"rgba(44,183,167,0.10)", cr:"#1a1008", mu:"#1a1008", dim:"#3a342c", nav:"rgba(253,248,242,0.97)" };
 const R="#2CB7A7", P="#2CB7A7";
-const OMBRE="linear-gradient(135deg,#fce4c0 0%,#C8960A 50%,#2CB7A7 100%)";
+const OMBRE="linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 
 const THREADS = [
   { desire:"He texts me first", cat:"Lovemaxxing", catColor:"#d4789a", catBg:"rgba(212,120,154,0.12)", days:14, done:true, signs:3, track:"He Finds His Way Back" },

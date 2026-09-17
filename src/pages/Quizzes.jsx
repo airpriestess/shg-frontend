@@ -24,7 +24,7 @@ export default function Quizzes() {
 
   return (
     <div style={{ background: LG, color: "#000", fontFamily: "'Jost', sans-serif", fontWeight: 300, minHeight: "100vh" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
 
       <SHGNav/>
 

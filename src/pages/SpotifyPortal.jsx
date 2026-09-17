@@ -62,7 +62,7 @@ const dominant = (log,days) => {
    · Light/dark theme toggle
    ═══════════════════════════════════════════════════════════════════════ */
 
-// ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
+// ── AUDIO URLS — served by shg-audio-worker (Cloudflare) ─────────────────────
 const AUDIO_URLS = {
   // Real tracks - titles match D1 database exactly
   "Spoilt Goddess":                             "https://shg-audio-worker.airpriestess.workers.dev/SPOILT%20BEACONS%20%20HYPNOSIS%209MIN%2013.04.2026.WAV",
@@ -1179,7 +1179,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
                     <span style={{ fontSize:20 }}>📖</span>
                     <div>
                       <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                      <div style={{ fontSize:15,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                      <div style={{ fontSize:15,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,}}>Coming Soon</span></div>
                     </div>
                   </div>
                 )
@@ -1276,7 +1276,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                     <span style={{ fontSize:18 }}>📖</span>
                     <div style={{ flex:1 }}>
                       <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,}}>Coming Soon</span></div>
                     </div>
                   </div>
                 )
@@ -1406,7 +1406,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 6px" }}>
         <div>
           <div style={{ fontSize:13,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
-          <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
+          <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Jost',sans-serif",}}>
             {isPreview?"Goddess":firstName}
             <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
               {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
@@ -1447,7 +1447,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             </div>
           ))}
         </div>
-        <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore ProofOS →</div>
+        <div style={{ fontSize:13,color:C.mu,}}>Tap to explore ProofOS →</div>
       </div>
 
       {/* QUICK DESIRE CAPTURE */}
@@ -2080,7 +2080,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               ];
               return <StatCarousel slides={statSlides} />;
             })()}
-            {isPreview && <div style={{ fontSize:12, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500, opacity:0.8 }}>preview data — sign up to track your real signs</div>}
+            {isPreview && <div style={{ fontSize:12, color:"#1a1008", marginTop:12, textAlign:"center", fontWeight:500, opacity:0.8 }}>preview data — sign up to track your real signs</div>}
           </div>
         );
       })()}
@@ -2090,11 +2090,11 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.35)` }}>
           <div style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10 }}>This week's insight ✦</div>
           {isPreview ? (
-            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, }}>
               "You've listened to Lovemaxxing 3× more than any other area this week. Two of your in-progress desires are in this category — momentum is building. Keep going."
             </div>
           ) : weeklyInsight ? (
-            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>"{weeklyInsight}"</div>
+            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, }}>"{weeklyInsight}"</div>
           ) : analyticsData?.fastest_category ? (
             <div style={{ fontSize:14, color:C.mu, lineHeight:1.6 }}>
               Your fastest-manifesting area is <span style={{ color:C.accentGold, fontWeight:500 }}>{analyticsData.fastest_category}</span>.
@@ -2158,13 +2158,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
-            <div style={{ fontSize:13, color:C.cr, marginTop:12, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+            <div style={{ fontSize:13, color:C.cr, marginTop:12, }}>Personalised recommendations unlock when you sign up →</div>
           </div>
         ) : recommendation ? (
           <div>
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{displayTitle(recommendation.title)}</div>
             <div style={{ fontSize:13, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, }}>"{recommendation.reason}"</div>
           </div>
         ) : (
           <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
@@ -2354,7 +2354,7 @@ function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
                         <span style={{ fontWeight:600 }}>Reshma: </span>{item.answer}
                       </div>
                     ) : (
-                      <div style={{ fontSize:12,color:C.mu,fontStyle:"italic" }}>Awaiting answer…</div>
+                      <div style={{ fontSize:12,color:C.mu,}}>Awaiting answer…</div>
                     )}
                   </div>
                 ))}

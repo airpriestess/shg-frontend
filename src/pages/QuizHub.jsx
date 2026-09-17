@@ -55,7 +55,7 @@ export default function QuizHub() {
 
   return (
     <div style={{ background: LG, minHeight: "100vh", fontFamily: "'Jost', sans-serif" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
       <SHGNav/>
 
       <div style={{ textAlign: "center", padding: "64px 24px 48px" }}>
