@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brand Lock</title>
+<meta name="description" content="I build your brand's AI operating system — a locked set of rules and skills that make everything AI produces for you look, read and sell like you did it yourself.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!--
+  BRAND LOCK — standalone landing page.
+
+  Deploy: drag this folder into a new Cloudflare Pages project. No build step.
+  Before going live, replace the two placeholders marked TODO below:
+    · CAL_LINK   — your Cal.com / booking URL
+    · FORM_ACTION — a Formspree (or similar) endpoint for the teardown form
+
+  Colour, type and the gradient match the SHG system deliberately: black, cream,
+  the five-stop Lucky Girl ramp, Jost. Gradients on short text run at 90deg so
+  the full spectrum reads across the width instead of showing one flat slice.
+-->
+<style>
+:root{
+  --black:#000;
+  --raised:#0a0a0a;
+  --line:#1e1e1e;
+  --cream:#fdf0e8;
+  --cream-2:#dcc8b8;
+  --cream-3:#b09888;
+  --grad:linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  background:var(--black);color:var(--cream);
+  font-family:'Jost',sans-serif;font-weight:300;line-height:1.65;font-size:17px;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px;}
+section{padding:72px 0;border-top:1px solid var(--line);}
+section:first-of-type{border-top:none;}
+
+.grad{
+  background:var(--grad);background-size:100% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cream-3);margin-bottom:18px;
+}
+h1{font-size:clamp(34px,8vw,62px);font-weight:600;line-height:1.08;letter-spacing:-.02em;margin-bottom:22px;}
+h2{font-size:clamp(26px,6vw,40px);font-weight:500;line-height:1.15;letter-spacing:-.01em;margin-bottom:20px;}
+h3{font-size:20px;font-weight:600;margin-bottom:10px;}
+p{color:var(--cream-2);margin-bottom:16px;}
+p.lead{font-size:clamp(17px,4vw,21px);color:var(--cream);max-width:620px;}
+.muted{color:var(--cream-3);font-size:15px;}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 28px;border-radius:40px;border:1px solid transparent;
+  background:var(--grad);background-size:100% 100%;color:#000;
+  font-family:inherit;font-size:15px;font-weight:600;letter-spacing:.04em;
+  text-decoration:none;cursor:pointer;text-align:center;
+}
+.btn.ghost{background:transparent;color:var(--cream);border-color:var(--line);}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+.btns .btn{flex:1 1 220px;}
+
+/* Flexbox, never grid — matches the app's mobile rules. */
+.cards{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+.card{
+  flex:1 1 260px;min-width:0;background:var(--raised);
+  border:1px solid var(--line);border-radius:16px;padding:26px 22px;
+}
+.card .price{font-size:30px;font-weight:700;line-height:1;margin:14px 0 6px;}
+.card ul{list-style:none;margin-top:16px;}
+.card li{color:var(--cream-2);font-size:15px;padding-left:18px;position:relative;margin-bottom:9px;}
+.card li::before{content:"—";position:absolute;left:0;color:var(--cream-3);}
+.tag{
+  display:inline-block;padding:4px 11px;border-radius:20px;border:1px solid var(--line);
+  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-3);
+}
+.tag.on{background:var(--grad);background-size:100% 100%;color:#000;border-color:transparent;}
+
+.steps{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+.step{flex:1 1 200px;min-width:0;padding:22px 20px;border:1px solid var(--line);border-radius:16px;}
+.step .n{font-size:26px;font-weight:700;line-height:1;margin-bottom:12px;}
+
+form{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;max-width:620px;}
+input{
+  flex:1 1 200px;min-width:0;padding:15px 16px;border-radius:10px;
+  background:#000;border:1px solid var(--line);color:var(--cream);
+  font-family:inherit;font-size:15px;outline:none;
+}
+input::placeholder{color:#6b5a52;}
+input:focus{border-color:#2CB7A7;}
+form .btn{flex:1 1 160px;}
+
+footer{padding:44px 0 60px;border-top:1px solid var(--line);}
+.faq{margin-top:28px;}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0;}
+.faq summary{cursor:pointer;font-size:17px;font-weight:500;list-style:none;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";float:right;color:var(--cream-3);}
+.faq details[open] summary::after{content:"–";}
+.faq p{margin:12px 0 0;}
+
+@media(max-width:680px){
+  section{padding:54px 0;}
+  body{font-size:16px;}
+  .btns .btn{flex:1 1 100%;}
+}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <!-- ── HERO ───────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="eyebrow">Brand Lock</div>
+    <h1>Your AI makes <span class="grad">off-brand</span> work. Then someone redoes it.</h1>
+    <p class="lead">
+      I build your brand's operating system — a locked set of rules and working
+      skills so that everything AI produces for you looks, reads and sells like
+      you made it. First time. Every time.
+    </p>
+    <div class="btns">
+      <!-- TODO: replace with your Cal.com link -->
+      <a class="btn" href="https://cal.com/CAL_LINK">Book a 20-minute call</a>
+      <a class="btn ghost" href="#teardown">Get a free teardown</a>
+    </div>
+    <p class="muted" style="margin-top:20px">No retainer to start. No deck. One call, twenty minutes.</p>
+  </section>
+
+  <!-- ── PROBLEM ────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="eyebrow">The actual problem</div>
+    <h2>It was never that you couldn't make content.</h2>
+    <p>
+      Everyone can make content now. The cost moved somewhere else: the output
+      comes back generic, so a person has to check it, fix it, or throw it away
+      and start again. The tool saved nobody anything.
+    </p>
+    <p>
+      That happens because your brand lives in a PDF nobody opens and in the
+      taste of one or two people. A model cannot read taste. It can read rules.
+    </p>
+    <p style="color:var(--cream)">
+      So I write your taste down as rules a machine will actually follow — and
+      then I build the skills that enforce them.
+    </p>
+  </section>
+
+  <!-- ── HOW ────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="eyebrow">How it works</div>
+    <h2>Three steps. Two to three weeks.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n grad">01</div>
+        <h3>Teardown</h3>
+        <p class="muted">I run your brand through AI and show you exactly where it breaks. Side by side.</p>
+      </div>
+      <div class="step">
+        <div class="n grad">02</div>
+        <h3>Rulebook</h3>
+        <p class="muted">Colour law, type law, voice law, banned words, templates for every asset you repeat.</p>
+      </div>
+      <div class="step">
+        <div class="n grad">03</div>
+        <h3>Skills</h3>
+        <p class="muted">Four to six working skills for the things you make weekly. Tested until the output ships unedited.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OFFERS ─────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="eyebrow">What it costs</div>
+    <h2>Two ways in. One way to keep it running.</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">Start here</span>
+        <h3 style="margin-top:14px">Brand Lock Audit</h3>
+        <div class="price grad">£750</div>
+        <p class="muted">5 working days</p>
+        <ul>
+          <li>Full teardown of where AI breaks your brand</li>
+          <li>Your written Brand Rulebook</li>
+          <li>Yours to keep, whether or not we go further</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag on">Most take this</span>
+        <h3 style="margin-top:14px">Brand Skill Pack</h3>
+        <div class="price grad">£3,500</div>
+        <p class="muted">2–3 weeks</p>
+        <ul>
+          <li>Everything in the Audit</li>
+          <li>4–6 working skills for your weekly assets</li>
+          <li>Walkthrough recording and one revision round</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">Optional</span>
+        <h3 style="margin-top:14px">Content Engine</h3>
+        <div class="price grad">£1,500<span style="font-size:16px;font-weight:400">/mo</span></div>
+        <p class="muted">Rolling, cancel any time</p>
+        <ul>
+          <li>Skills maintained and extended</li>
+          <li>Output wired into your scheduler</li>
+          <li>One async output review a month</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROOF ──────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="eyebrow">Why me</div>
+    <h2>I built this for my own brand first.</h2>
+    <p>
+      Self Hypnosis Goddess runs on twenty-five skills I wrote: carousels,
+      workbooks, thumbnails, guide pages, blog articles, quizzes, captions. A
+      brand rulebook governs all of them, down to which colours are forbidden
+      and which past bug must never ship twice.
+    </p>
+    <p>
+      The site those skills feed is a live React application with its own member
+      portal, payments and audio library — which I also built. That combination
+      is the point: most people who can write brand rules cannot ship the code
+      that enforces them, and most people who ship the code do not have the eye.
+    </p>
+    <div class="btns">
+      <a class="btn ghost" href="https://reshmaoracle.com" target="_blank" rel="noopener">See the brand it runs</a>
+    </div>
+  </section>
+
+  <!-- ── TEARDOWN CTA ───────────────────────────────────────────────────── -->
+  <section id="teardown">
+    <div class="eyebrow">Free, no call</div>
+    <h2>Want to see it done <span class="grad">on your brand?</span></h2>
+    <p class="lead">
+      Send me your brand and I'll make you a three-slide teardown: what AI
+      produces for you now, what it should produce, and the five rules that close
+      the gap. Yours in 24 hours, nothing owed.
+    </p>
+    <!-- TODO: replace FORM_ACTION with your Formspree endpoint -->
+    <form action="https://formspree.io/f/FORM_ACTION" method="POST">
+      <input type="text" name="brand" placeholder="Your brand" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <button class="btn" type="submit">Send me the teardown</button>
+    </form>
+    <p class="muted" style="margin-top:14px">One email back with the teardown. Nothing else, ever.</p>
+  </section>
+
+  <!-- ── FAQ ────────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="eyebrow">Straight answers</div>
+    <h2>Questions people actually ask.</h2>
+    <div class="faq">
+      <details>
+        <summary>Do I need to already have a brand?</summary>
+        <p>Yes. I enforce an identity, I don't invent one from nothing. If you have colours, type and a voice you recognise, that's enough to work with.</p>
+      </details>
+      <details>
+        <summary>Which AI tools does this work with?</summary>
+        <p>The rulebook is tool-agnostic. The skills are built for Claude, and the same rules port to whatever your team already pays for.</p>
+      </details>
+      <details>
+        <summary>What if the output still isn't right?</summary>
+        <p>The Pack includes a revision round, and a skill that produces something you wouldn't publish isn't finished. That's the standard I hold my own work to.</p>
+      </details>
+      <details>
+        <summary>Can my team use this without me?</summary>
+        <p>That's the whole point. The skills go to your team, not to a login you rent from me.</p>
+      </details>
+      <details>
+        <summary>How fast can you start?</summary>
+        <p>Usually the week after the call. I take a small number of Packs at a time so each one gets finished properly.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p class="muted">Brand Lock — Reshma Oracle. London.</p>
+  <div class="btns">
+    <a class="btn" href="https://cal.com/CAL_LINK">Book a 20-minute call</a>
+  </div>
+</footer>
+
+</body>
+</html>
