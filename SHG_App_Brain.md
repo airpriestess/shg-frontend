@@ -35,14 +35,28 @@
 
 ## Tech stack
 
+> Verified against the running code on 17 Sept 2026. Supabase and Vercel were
+> listed here but are NOT used anywhere live — see "Not used" below.
+
 - Frontend: React + Vite — inline JSX styles only, NO Tailwind, NO CSS modules
 - CSS: export const CSS in tokens.js → <style>{CSS}</style> in App.jsx
-- Backend: Node.js + Express
-- Database: Supabase (qtwvslrwmreazmrdktsn)
-- Payments: Stripe
-- Hosting: Vercel
-- Audio: Supabase Storage (bucket: tracks)
-- Email: Beacons.ai → Zapier → Stripe
+- Hosting: Cloudflare Pages (auto-deploys from `main`)
+- Backend: Cloudflare Workers
+  - `shg-auth-worker` — signup / login / logout / me
+  - `shg-quiz-worker` — quiz scoring, uses the Anthropic API
+  - `shg-audio-worker` — serves the track files
+- Database: Cloudflare D1 (bound as `env.DB` in the workers)
+- Audio: served by `shg-audio-worker.airpriestess.workers.dev`
+- Email: Nitrosend (`api.nitrosend.com`) for transactional
+- Shop: Beacons.ai
+- Payments: Stripe payment links
+- One Zapier webhook: LuckyGirl quiz capture (`src/pages/LuckyGirl.jsx`)
+- Code: GitHub (`airpriestess/shg-frontend`, public)
+
+## Not used — do not reintroduce
+- **Supabase.** Never deployed. `shg-backend` is written against it but was
+  never switched on. The real database is D1.
+- **Vercel.** Hosting is Cloudflare Pages.
 
 ---
 
@@ -51,7 +65,7 @@
 - Spoilt Goddess (Melodic House · EMDR · 528hz): SPOILT INSTAGRAM 13.04.2026.WAV
 - Subliminal (music only · Delta): 29.06.2026-6.mp3
 
-Base URL: https://qtwvslrwmreazmrdktsn.supabase.co/storage/v1/object/public/tracks/
+Base URL: https://shg-audio-worker.airpriestess.workers.dev/
 
 ---
 
@@ -92,9 +106,9 @@ export const CSS = `...`; // tokens.js
 - [ ] Mobile grid stacking — still broken on phones
 - [ ] Real images replacing placeholders (hero, problem cards, proof wall, reshma photo)
 - [ ] Conscious/subconscious mind branded diagram
-- [ ] Stripe webhook → Supabase (written, not deployed)
-- [ ] Real Supabase auth (currently demo mode)
-- [ ] Beacons.ai → Zapier → Stripe email automation
+- [ ] Stripe webhook → D1 (not built)
+- [x] Real auth — shg-auth-worker + D1, live
+- [ ] Email automation — Nitrosend sequences
 - [ ] 5-email welcome sequence
 - [ ] Formats section — visual
 - [ ] DNA activation mention on landing
