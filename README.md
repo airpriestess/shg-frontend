@@ -7,4 +7,5 @@ See SHG_App_Brain.md for technical spec, wireframe, and build instructions.
 - Domain: reshmaoracle.com
 - GitHub: airpriestess/shg-frontend
 - Stack: React + Vite + Cloudflare (Pages, Workers, D1) + Stripe
-- Pricing: Audio $49/mo · Goddess $79/mo · Lifetime Access $1,000
+- Pricing: Audio £19/mo · Goddess £33/mo · Lifetime Access £500 once
+  (locked in SHG_Business_Brain.md — GBP only, never euros, never £14.99)
