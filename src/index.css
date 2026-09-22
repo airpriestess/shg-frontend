@@ -26,6 +26,18 @@ input,textarea{
 }
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#2CB7A766;box-shadow:0 0 0 3px rgba(44,183,167,0.08);}
+/* The global input style above is built for the dark marketing site. Inside the
+   portal's light theme those inputs sit on cream cards, where black would read
+   as a hole in the page. */
+[data-portal-theme="light"] input,
+[data-portal-theme="light"] textarea{
+  background:#fdf0e8;border-color:rgba(26,16,8,0.18);color:#1a1008;
+}
+[data-portal-theme="light"] input::placeholder,
+[data-portal-theme="light"] textarea::placeholder{color:#9a8a7a;}
+[data-portal-theme="light"] select{
+  background-color:#fdf0e8;border-color:rgba(26,16,8,0.18);color:#1a1008;
+}
 select{
   background:#000000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f2ece4' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;
   border:1px solid #1c1828;color:#fdf0e8;border-radius:10px;padding:10px 36px 10px 14px;

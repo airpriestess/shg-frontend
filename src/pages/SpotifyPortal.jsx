@@ -87,19 +87,22 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  // ── DARK MODE: pure black, LG colours on accents only ──────────────────
+  // ── DARK MODE: charcoal with lifted card surfaces, LG colours on accents ──
+  // Surfaces step up in lightness (bg → bg2 → bg3 → bg4) so a card reads as a
+  // separate object instead of dissolving into the page, the way Spotify does it.
+  // Text is neutral white, not warm cream, which went muddy against black.
   dark: {
-    bg:      "#000000",
-    bg2:     "#0a0a0a",
-    bg3:     "#111111",
-    bg4:     "#161616",
-    nav:     "#050505",
-    cr:      "#fdf0e8",   // primary text, warm cream
-    mu:      "#fdf0e8",   // muted text, now same as primary, no grey
-    dim:     "#fdf0e8",   // faint text, still near-white, no grey/brown
-    border:  "rgba(232,184,112,0.15)",  // gold-tinted border
-    inputBg: "#1a1a1a",
-    inputCr: "#fdf0e8",
+    bg:      "#0d0d0d",
+    bg2:     "#181818",
+    bg3:     "#1f1f1f",
+    bg4:     "#282828",
+    nav:     "#0a0a0a",
+    cr:      "#ffffff",   // primary text, pure white
+    mu:      "#b8b2ad",   // secondary text, neutral so it never reads brown
+    dim:     "#8a8580",   // faint text
+    border:  "rgba(255,255,255,0.14)",  // neutral outline, separates every card
+    inputBg: "#282828",
+    inputCr: "#ffffff",
     // LG accent colours for labels, icons, active tabs, never backgrounds
     accentGold: "#E8B870",
     accentLav:  "#BFA5D8",
@@ -107,18 +110,20 @@ const THEMES = {
     accentChamp:"#F5E0A0",
     accentDeep: "#167A6B",
   },
-  // ── LIGHT MODE ────────────────────────────────────────────────────────────
+  // ── LIGHT MODE: full LG gradient wall to wall, solid cream cards on top ──
+  // Cards stay opaque (#fdf0e8) so the gradient never bleeds through and text
+  // keeps its contrast; the gradient reads as the room, the cards as the paper.
   light: {
-    bg:      "#f8f6f3",
-    bg2:     "#ffffff",
-    bg3:     "#f2ede7",
-    bg4:     "#ece6de",
-    nav:     "#ffffff",
+    bg:      "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)",
+    bg2:     "#fdf0e8",
+    bg3:     "#fdf0e8",
+    bg4:     "#f7ebe1",
+    nav:     "#fdf0e8",
     cr:      "#1a1008",
     mu:      "#6a5a4a",
     dim:     "#9a8a7a",
-    border:  "#e0d8d0",
-    inputBg: "#ffffff",
+    border:  "rgba(26,16,8,0.10)",
+    inputBg: "#fdf0e8",
     inputCr: "#1a1008",
     accentGold: "#a07020",
     accentLav:  "#7a5a9a",
@@ -187,11 +192,23 @@ const CAT_ICONS = {
   Sovereignmaxxing: { accent:"#BFA5D8", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
 };
 
+// Artwork gradient per accent, kept inside the SHG palette. The icon sits dark on
+// top so tiles read the same on a cream page and a black one.
+const THUMB_GRADS = {
+  "#E8B870": ["#F5E0A0","#E8B870","#BFA5D8"],
+  "#BFA5D8": ["#BFA5D8","#E8B870","#F5E0A0"],
+  "#2CB7A7": ["#2CB7A7","#167A6B","#BFA5D8"],
+  "#F5E0A0": ["#F5E0A0","#2CB7A7","#167A6B"],
+};
+
 function Thumb({ title, cat, size=48, radius=4 }) {
   const c = CAT_ICONS[cat] || { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
+  const stops = THUMB_GRADS[c.accent] || THUMB_GRADS["#E8B870"];
+  // Vary the angle per title so a category's tiles don't all look identical.
+  const angle = 110 + (([...(title||"")].reduce((a,ch)=>a+ch.charCodeAt(0),0)) % 5) * 15;
   return (
-    <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:"#000", position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:c.accent }}>
-      <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" dangerouslySetInnerHTML={{ __html: c.icon }} />
+    <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:`linear-gradient(${angle}deg,${stops.join(",")})`, position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:"#14100a" }}>
+      <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" style={{ opacity:0.82 }} dangerouslySetInnerHTML={{ __html: c.icon }} />
     </div>
   );
 }
@@ -842,7 +859,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   // ── DESKTOP ──────────────────────────────────────────────────────────────
   if (isDesktop) return (
-    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
+    <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
@@ -935,7 +952,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(232,184,112,0.14)":"#000000"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#E8B870":"#F5E0A0"):isDark?"rgba(253,240,232,0.45)":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(255,255,255,0.10)":"#000000"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#ffffff":"#F5E0A0"):isDark?"rgba(255,255,255,0.58)":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
               onMouseEnter={e=>{if(tab!==n.id)e.currentTarget.style.color="#E8B870";}}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
               <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#F5E0A0"):C.cr}/> {n.label}
@@ -998,7 +1015,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 
   // ── MOBILE ───────────────────────────────────────────────────────────────
   return (
-    <div style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
+    <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
@@ -1456,12 +1473,12 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ fontSize:13, fontWeight:600, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
           <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in ProofOS →</button>
         </div>
-        <style>{`.qd-input::placeholder{color:rgba(253,240,232,0.4)!important}`}</style>
+        <style>{`.qd-input::placeholder{color:${isDark?"rgba(253,240,232,0.4)":"rgba(26,16,8,0.4)"}!important}`}</style>
         <div style={{ display:"flex", gap:8, alignItems:"center" }}>
           <input className="qd-input" value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
             onKeyDown={e=>{ if(e.key==="Enter") saveQuickDesire(); }}
             placeholder="I receive… I am… I have…"
-            style={{ flex:1, background:"#000", border:"1px solid rgba(232,184,112,0.4)", color:"#fdf0e8", borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
+            style={{ flex:1, background:C.inputBg, border:"1px solid rgba(232,184,112,0.4)", color:C.inputCr, borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
           <button onClick={startVoice} title="Speak your desire"
             style={{ flexShrink:0, width:42, height:42, borderRadius:"50%", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:19,
               background: quickListening ? "#E8B870" : "transparent",
@@ -3275,16 +3292,16 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
   const unavail = !hasAudio && !isPreview;
   return (
     <div style={{ flexShrink:0,width:140, opacity:unavail?0.5:1, transition:"opacity 0.2s" }}>
-      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed" }}>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed",borderRadius:8,boxShadow:`0 0 0 1px ${C.border}`,fontSize:0 }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
         {isPreview&&(
-          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
+          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
         )}
         {unavail&&(
-          <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#fdf0e8",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
+          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.6)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#fdf0e8",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
         )}
         {!isPreview&&isP&&playing&&!unavail&&(
-          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"#000000" }}>
+          <div style={{ position:"absolute",inset:0,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.5)" }}>
             <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[10,18,12,18,10].map((h,i)=><div key={i} style={{ width:3,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
           </div>
         )}
