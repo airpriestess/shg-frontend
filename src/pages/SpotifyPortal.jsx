@@ -2244,7 +2244,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <div style={{ fontSize:15, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:14 }}>This week's insight ✦</div>
           {isPreview ? (
             <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>
-              "You've listened to Lovemaxxing 3× more than any other area this week. Two of your in-progress desires are in this category — momentum is building. Keep going."
+              "You played your Lovemaxxing tracks 3× more than any other area this week, mostly He Finds His Way Back. Two of your in-progress desires are about love, and you logged 5 signs for them."
             </div>
           ) : weeklyInsight ? (
             <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>"{weeklyInsight}"</div>
