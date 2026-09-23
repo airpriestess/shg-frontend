@@ -580,7 +580,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     try { if (localStorage.getItem(key)) return; } catch {}
     setShowOnboarding(true);
   }, [userId, isPreview, threadsLoaded]);
-  const finishOnboarding = async () => {
+  const finishOnboarding = async (answers = {}) => {
     const key = `shg_onboarded_${userId}`;
     try { localStorage.setItem(key, "1"); } catch {}
     setShowOnboarding(false);
@@ -594,6 +594,26 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             name: userName !== "you" ? userName : undefined,
             result_category: onbGoals.join(", "),
             source: "onboarding_quiz",
+          }),
+        });
+      } catch {}
+    }
+    // The quiz asks ten questions; only the goal list used to survive it. Keep
+    // the rest so analytics can answer a member with their own words later.
+    if (token && answers.specific) {
+      try {
+        await fetch(`${import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/onboarding/intention`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({
+            desire: answers.specific,
+            category: (answers.goals || onbGoals)[0] || null,
+            block: answers.block || null,
+            timeline: answers.timeline || null,
+            tried_before: answers.tried || null,
+            listen_time: answers.listenTime || null,
+            listen_freq: answers.listenFreq || null,
+            bucket_list: answers.bucket || null,
           }),
         });
       } catch {}
@@ -2080,22 +2100,34 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               </div>
             </div>
 
-            {/* Rotating stat carousel */}
+            {/* All the headline numbers at once. These used to rotate one at a
+                time, which meant no number was ever reliably on screen. */}
             {(() => {
-              const thisMonth = isPreview ? 3 : (analyticsData?.total_manifested ?? manifested);
-              const thisMonthTotal = isPreview ? 5 : Math.max(manifested + inProgress, 1);
-              const thisYear = isPreview ? 9 : (analyticsData?.total_manifested ?? manifested);
-              const thisYearTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
               const fastCat = isPreview ? "Lovemaxxing" : (analyticsData?.fastest_category?.category ?? null);
-              const statSlides = [
-                { value: `${streak}`, label: "day streak", sub: "listening consistency" },
-                { value: `${totalL}`, label: "total listens", sub: "all time" },
-                { value: `${thisMonth} / ${thisMonthTotal}`, label: "desires manifested", sub: "this month" },
-                { value: `${thisYear} / ${thisYearTotal}`, label: "desires manifested", sub: "this year" },
-                { value: `${momentum}`, label: "momentum", sub: "this week's score" },
-                ...(fastCat ? [{ value: fastCat, label: "fastest to manifest", sub: "your power area" }] : []),
+              const cells = [
+                [`${streak}`, "day streak"],
+                [`${totalL}`, "total listens"],
+                [`${mDone}/${mTotal}`, "manifested"],
+                [`${momentum}`, "momentum"],
               ];
-              return <StatCarousel slides={statSlides} />;
+              return (
+                <div style={{ marginTop:14 }}>
+                  {fastCat && (
+                    <div style={{ background:"rgba(10,9,6,0.14)", borderRadius:14, padding:"12px 14px", marginBottom:8 }}>
+                      <div style={{ fontSize:10, fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(10,9,6,0.6)", marginBottom:2 }}>Fastest to manifest</div>
+                      <div style={{ fontSize:26, fontWeight:700, color:"#0a0906", lineHeight:1.1 }}>{fastCat}</div>
+                    </div>
+                  )}
+                  <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
+                    {cells.map(([v,l],i)=>(
+                      <div key={i} style={{ flex:"1 1 calc(50% - 4px)", minWidth:0, background:"rgba(10,9,6,0.14)", borderRadius:12, padding:"10px 12px" }}>
+                        <div style={{ fontSize:22, fontWeight:700, color:"#0a0906", lineHeight:1.1 }}>{v}</div>
+                        <div style={{ fontSize:10, fontWeight:600, letterSpacing:"0.1em", textTransform:"uppercase", color:"rgba(10,9,6,0.62)", marginTop:2 }}>{l}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
             })()}
             {isPreview && <div style={{ fontSize:12, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500, opacity:0.8 }}>preview data — sign up to track your real signs</div>}
           </div>
@@ -2145,6 +2177,48 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                 </div>
               </div>
             )}
+
+            {/* HOW FAST EACH AREA MOVES — the comparison is the insight. Knowing
+                you manifest love in 21 days and money in 44 tells you something
+                a listen count never will. */}
+            {(() => {
+              const speeds = isPreview
+                ? [["Lovemaxxing",21],["Luckygirlmaxxing",29],["Beautymaxxing",38],["Richgirlmaxxing",44]]
+                : (analyticsData?.category_speed || []).map(c=>[c.category,c.avg_days]).filter(([,d])=>d!=null);
+              if (!speeds.length) return null;
+              const slowest = Math.max(...speeds.map(s=>s[1]));
+              return (
+                <div style={{ margin:"0 16px 14px", padding:"16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+                  <div style={{ fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:4 }}>How fast each area moves</div>
+                  <div style={{ fontSize:12, color:C.mu, marginBottom:12 }}>Average days from setting a desire to logging it manifested.</div>
+                  {speeds.map(([cat,days],i)=>(
+                    <div key={cat} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:i===speeds.length-1?0:9 }}>
+                      <div style={{ fontSize:12, color:C.cr, width:110, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
+                      <div style={{ flex:1, height:6, background:C.bg4, borderRadius:4, overflow:"hidden" }}>
+                        <div style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: i===0 ? OMBRE : C.accentLav, opacity: i===0?1:0.55 }}/>
+                      </div>
+                      <div style={{ fontSize:12, color:C.mu, width:46, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
+
+            {/* WHAT YOU SAID WAS STOPPING YOU — their own onboarding answer,
+                answered back with what they have actually done since. */}
+            {(() => {
+              const blockText = isPreview ? "I keep getting close, then it slips" : (analyticsData?.onboarding_block || null);
+              if (!blockText) return null;
+              return (
+                <div style={{ margin:"0 16px 14px", padding:"16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.accentLav}55` }}>
+                  <div style={{ fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.accentLav, marginBottom:8 }}>What you said was stopping you</div>
+                  <div style={{ fontSize:15, color:C.cr, lineHeight:1.5, marginBottom:12, fontStyle:"italic" }}>“{blockText}”</div>
+                  <div style={{ fontSize:12, color:C.mu, lineHeight:1.6 }}>
+                    Since you wrote that, you have logged <strong style={{color:C.cr}}>{signsTotal} signs</strong> and manifested <strong style={{color:C.cr}}>{mDone}</strong>. That is the evidence against it.
+                  </div>
+                </div>
+              );
+            })()}
           </>
         );
       })()}
@@ -3637,7 +3711,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
       sub: "Voice record your dreams, what you're working through, or what you really want. This stays private.",
       content: voiceStep,
       canNext: true,
-      next: onDone,
+      next: () => onDone({ specific, block, timeline, listenTime, format, listenFreq, tried, bucket, voiceNote, goals, where, freq }),
     },
   ];
 
