@@ -2102,6 +2102,53 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         );
       })()}
 
+      {/* PROOF SNAPSHOT — the four numbers stay on screen together. The carousel
+          above rotates, so on its own no single stat is ever reliably visible. */}
+      {(() => {
+        const signsTotal = isPreview ? 200 : (analyticsData?.total_signs ?? threads.reduce((a,t)=>a+(t.signs?.length||0),0));
+        const mDone = isPreview ? 100 : manifested;
+        const mOpen = isPreview ? 10 : inProgress;
+        const proofTotal = mDone + signsTotal;
+        const tiles = [
+          [mDone,      "Manifested ✓",  C.accentGold],
+          [mOpen,      "In progress",   C.accentLav],
+          [signsTotal, "Signs logged",  C.cr],
+          [isPreview ? "4.2h" : `${((analyticsData?.weekly_minutes ?? 0)/60).toFixed(1)}h`, "This week", C.accentTeal],
+        ];
+        return (
+          <>
+            <div style={{ display:"flex", flexWrap:"wrap", gap:8, margin:"0 16px 10px" }}>
+              {tiles.map(([v,l,col],i)=>(
+                <div key={i} style={{ flex:"1 1 calc(50% - 4px)", minWidth:0, background:C.bg2, border:`1px solid ${C.border}`, borderRadius:14, padding:"13px 14px" }}>
+                  <div style={{ fontSize:28, fontWeight:700, lineHeight:1, marginBottom:3, color:col }}>{v}</div>
+                  <div style={{ fontSize:11, color:C.mu, fontWeight:500 }}>{l}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* PROOF COMPOUNDS — every logged sign and win is one more piece of
+                evidence. This is the method deck's year-one argument, live. */}
+            {proofTotal > 0 && (
+              <div style={{ margin:"0 16px 14px", padding:"16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+                <div style={{ fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:10 }}>Your proof is compounding</div>
+                <div style={{ display:"flex", alignItems:"baseline", gap:8, marginBottom:10 }}>
+                  <div style={{ fontSize:34, fontWeight:700, lineHeight:1, color:C.cr }}>{proofTotal}</div>
+                  <div style={{ fontSize:13, color:C.mu }}>pieces of proof, dated and kept</div>
+                </div>
+                <div style={{ height:8, borderRadius:5, background:C.bg4, overflow:"hidden", marginBottom:8 }}>
+                  <div style={{ height:"100%", borderRadius:5, width:`${Math.min(100,(proofTotal/365)*100)}%`, minWidth:6, background:OMBRE }}/>
+                </div>
+                <div style={{ fontSize:12, color:C.mu, lineHeight:1.5 }}>
+                  {proofTotal >= 365
+                    ? "A year of evidence. Your proof outweighs your doubt."
+                    : `${365-proofTotal} more to a full year of evidence. Every sign you log counts.`}
+                </div>
+              </div>
+            )}
+          </>
+        );
+      })()}
+
       {/* WEEKLY AI INSIGHT */}
       {(isPreview || weeklyInsight || analyticsData?.fastest_category) && (
         <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.35)` }}>
