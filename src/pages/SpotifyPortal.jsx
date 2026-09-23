@@ -559,7 +559,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     })();
     return () => { cancelled = true; };
   }, [userId, isPreview, token]);
-  const [theme, setTheme]     = useState(forceTheme || "light");
+  const [theme, setTheme]     = useState(forceTheme || "dark");
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(127);
   // Seeded 30-day emotional log — Reshma's real arc: started in anxiety, shifted decisively to Love/Peace
@@ -1397,7 +1397,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
 function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, setThreads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, token, pushDismissed, onDismissPush, openPlayer }) {
 
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");
+  const isDark = C?.cr !== "#000000";
   const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
   const [quickDesire, setQuickDesire] = useState("");
   const [quickListening, setQuickListening] = useState(false);
@@ -1634,7 +1634,7 @@ const DEMO_CAT_STATS = [
 ];
 
 function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || !C?.bg?.startsWith("#f");
+  const isDark = C?.cr !== "#000000";
 
   // Build real data from threads when not in preview
   const months = isPreview ? DEMO_TIMELINE : (() => {
@@ -2451,7 +2451,7 @@ function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
   const [sending, setSending] = useState(false);
   const [history, setHistory] = useState(null);
   const isGoddess = userTier === "goddess";
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+  const isDark = C?.cr !== "#000000";
 
   useEffect(() => {
     if (!open || !isGoddess || !userId || !token) return;
@@ -2602,7 +2602,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C, openPlayer }) {
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+  const isDark = C?.cr !== "#000000";
   const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
@@ -2796,9 +2796,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [feelAfterLevel, setFeelAfterLevel] = useState("");
 
   // ProofOS, always LG gradient background, white cards, black text
-  const isDark = false; // ProofOS always uses light card theme on LG bg
-  const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"#000000", inputBg:"rgba(255,255,255,0.9)" };
-  const PAGE_BG = "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)";
+  // Follow the portal theme: black cards and cream text in dark, like the deck.
+  const isDark = C?.cr !== "#000000";
+  const PC = isDark
+    ? { card:"#0d0d0d", cardSolid:"#0d0d0d", text:"#F2ECE4", mu:"#F2ECE4", dim:"#F2ECE4", border:"rgba(242,236,228,0.22)", inputBg:"#0d0d0d" }
+    : { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#000000", dim:"#111", border:"#000000", inputBg:"rgba(255,255,255,0.9)" };
+  const PAGE_BG = isDark ? "#000000" : "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)";
 
   const manifested = threads.filter(t=>t.done);
   const inProgress = threads.filter(t=>!t.done);
@@ -2956,9 +2959,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
         {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
           <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:"rgba(255,255,255,0.55)",
-            border:`1px solid ${view===k?"transparent":"rgba(255,255,255,0.7)"}`,
-            color:"#000", fontSize:13,fontWeight:view===k?600:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
+            background:view===k?col:(isDark?"#0d0d0d":"rgba(255,255,255,0.55)"),
+            border:`1px solid ${view===k?"transparent":(isDark?"rgba(242,236,228,0.35)":"rgba(255,255,255,0.7)")}`,
+            color:(view===k||!isDark)?"#000":"#F2ECE4", fontSize:13,fontWeight:view===k?600:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
         ))}
       </div>
 
@@ -3394,7 +3397,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
-  const isDark = C?.bg?.startsWith("#0") || C?.bg?.startsWith("#1") || C?.bg === "#080808";
+  const isDark = C?.cr !== "#000000";
   const products = [
     { name:"Lovemaxxing Guide",      price:"$29", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing",      available:true },
     { name:"Luckygirlmaxxing Guide", price:"$29", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing", available:true },
