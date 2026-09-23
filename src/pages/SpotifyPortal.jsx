@@ -119,9 +119,9 @@ const THEMES = {
     bg3:     "#fdf0e8",
     bg4:     "#f7ebe1",
     nav:     "#fdf0e8",
-    cr:      "#1a1008",
-    mu:      "#6a5a4a",
-    dim:     "#9a8a7a",
+    cr:      "#000000",
+    mu:      "#000000",
+    dim:     "#000000",
     border:  "rgba(26,16,8,0.10)",
     inputBg: "#fdf0e8",
     inputCr: "#1a1008",
@@ -2162,11 +2162,11 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         ];
         return (
           <>
-            <div style={{ display:"flex", flexWrap:"wrap", gap:8, margin:"0 16px 10px" }}>
+            <div style={{ display:"flex", flexWrap:"wrap", gap:12, margin:"0 16px 18px" }}>
               {tiles.map(([v,l,col],i)=>(
-                <div key={i} style={{ flex:"1 1 calc(50% - 4px)", minWidth:0, background:C.bg2, border:`1px solid ${C.border}`, borderRadius:14, padding:"13px 14px" }}>
-                  <div style={{ fontSize:28, fontWeight:700, lineHeight:1, marginBottom:3, color:col }}>{v}</div>
-                  <div style={{ fontSize:11, color:C.mu, fontWeight:500 }}>{l}</div>
+                <div key={i} style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, background:C.bg2, border:`2px solid ${col}`, borderRadius:20, padding:"26px 22px", boxShadow:`0 0 28px ${col}55` }}>
+                  <div style={{ fontSize:52, fontWeight:700, lineHeight:1, marginBottom:8, color:col }}>{v}</div>
+                  <div style={{ fontSize:16, color:C.cr, fontWeight:600 }}>{l}</div>
                 </div>
               ))}
             </div>
@@ -2174,16 +2174,16 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             {/* PROOF COMPOUNDS — every logged sign and win is one more piece of
                 evidence. This is the method deck's year-one argument, live. */}
             {proofTotal > 0 && (
-              <div style={{ margin:"0 16px 14px", padding:"16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
-                <div style={{ fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:10 }}>Your proof is compounding</div>
+              <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)" }}>
+                <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:14 }}>Your proof is compounding</div>
                 <div style={{ display:"flex", alignItems:"baseline", gap:8, marginBottom:10 }}>
-                  <div style={{ fontSize:34, fontWeight:700, lineHeight:1, color:C.cr }}>{proofTotal}</div>
-                  <div style={{ fontSize:13, color:C.mu }}>pieces of proof, dated and kept</div>
+                  <div style={{ fontSize:72, fontWeight:700, lineHeight:1, color:C.cr }}>{proofTotal}</div>
+                  <div style={{ fontSize:18, color:C.cr }}>pieces of proof, dated and kept</div>
                 </div>
-                <div style={{ height:8, borderRadius:5, background:C.bg4, overflow:"hidden", marginBottom:8 }}>
+                <div style={{ height:14, borderRadius:8, background:C.bg4, overflow:"hidden", marginBottom:12 }}>
                   <div style={{ height:"100%", borderRadius:5, width:`${Math.min(100,(proofTotal/365)*100)}%`, minWidth:6, background:OMBRE }}/>
                 </div>
-                <div style={{ fontSize:12, color:C.mu, lineHeight:1.5 }}>
+                <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>
                   {proofTotal >= 365
                     ? "A year of evidence. Your proof outweighs your doubt."
                     : `${365-proofTotal} more to a full year of evidence. Every sign you log counts.`}
@@ -2201,16 +2201,16 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               if (!speeds.length) return null;
               const slowest = Math.max(...speeds.map(s=>s[1]));
               return (
-                <div style={{ margin:"0 16px 14px", padding:"16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
-                  <div style={{ fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:4 }}>How fast each area moves</div>
-                  <div style={{ fontSize:12, color:C.mu, marginBottom:12 }}>Average days from setting a desire to logging it manifested.</div>
+                <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", boxShadow:"0 0 32px rgba(191,165,216,0.5)" }}>
+                  <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:6 }}>How fast each area moves</div>
+                  <div style={{ fontSize:16, color:C.cr, marginBottom:20 }}>Average days from setting a desire to logging it manifested.</div>
                   {speeds.map(([cat,days],i)=>(
-                    <div key={cat} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:i===speeds.length-1?0:9 }}>
-                      <div style={{ fontSize:12, color:C.cr, width:110, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
-                      <div style={{ flex:1, height:6, background:C.bg4, borderRadius:4, overflow:"hidden" }}>
+                    <div key={cat} style={{ display:"flex", alignItems:"center", gap:14, marginBottom:i===speeds.length-1?0:16 }}>
+                      <div style={{ fontSize:18, fontWeight:600, color:C.cr, width:130, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
+                      <div style={{ flex:1, height:14, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
                         <div style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: i===0 ? OMBRE : C.accentLav, opacity: i===0?1:0.55 }}/>
                       </div>
-                      <div style={{ fontSize:12, color:C.mu, width:46, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
+                      <div style={{ fontSize:22, fontWeight:700, color:C.cr, width:64, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
                     </div>
                   ))}
                 </div>
@@ -2223,10 +2223,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               const blockText = isPreview ? "I keep getting close, then it slips" : (analyticsData?.onboarding_block || null);
               if (!blockText) return null;
               return (
-                <div style={{ margin:"0 16px 14px", padding:"16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.accentLav}55` }}>
-                  <div style={{ fontSize:11, fontWeight:600, letterSpacing:"0.14em", textTransform:"uppercase", color:C.accentLav, marginBottom:8 }}>What you said was stopping you</div>
-                  <div style={{ fontSize:15, color:C.cr, lineHeight:1.5, marginBottom:12, fontStyle:"italic" }}>“{blockText}”</div>
-                  <div style={{ fontSize:12, color:C.mu, lineHeight:1.6 }}>
+                <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #E8B870", boxShadow:"0 0 32px rgba(232,184,112,0.5)" }}>
+                  <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:12 }}>What you said was stopping you</div>
+                  <div style={{ fontSize:28, fontWeight:600, color:C.cr, lineHeight:1.3, marginBottom:16 }}>“{blockText}”</div>
+                  <div style={{ fontSize:18, color:C.cr, lineHeight:1.6 }}>
                     Since you wrote that, you have logged <strong style={{color:C.cr}}>{signsTotal} signs</strong> and manifested <strong style={{color:C.cr}}>{mDone}</strong>. That is the evidence against it.
                   </div>
                 </div>
