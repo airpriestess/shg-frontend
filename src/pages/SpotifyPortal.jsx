@@ -575,6 +575,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const [onbWhere, setOnbWhere] = useState("");
   const [onbFreq, setOnbFreq] = useState("");
   useEffect(() => {
+    // ?onboarding=1 forces the quiz open, so the flow can be demoed from a
+    // preview link. Preview otherwise skips it — a cold visitor shouldn't hit
+    // ten questions before seeing anything.
+    const forced = new URLSearchParams(window.location.search).get("onboarding") === "1";
+    if (forced) { setShowOnboarding(true); return; }
     if (isPreview || !userId || !threadsLoaded) return;
     const key = `shg_onboarded_${userId}`;
     try { if (localStorage.getItem(key)) return; } catch {}
@@ -1040,6 +1045,14 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {profileOpen && <ProfilePanel/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
+      {showOnboarding && <OnboardingQuiz
+        step={onbStep} setStep={setOnbStep}
+        goals={onbGoals} setGoals={setOnbGoals}
+        where={onbWhere} setWhere={setOnbWhere}
+        freq={onbFreq} setFreq={setOnbFreq}
+        onDone={finishOnboarding}
+        isDark={isDark} C={C}
+      />}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
       <BetaBanner C={C} isDark={isDark}/>
       {showUpgradeReminder && userTier === "audio" && !isPreview && (
@@ -3531,8 +3544,8 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   const [voiceNote, setVoiceNote]   = useState("");
   const [recording, setRecording]   = useState(false);
   const [recDone, setRecDone]       = useState(false);
-  const mediaRef = React.useRef(null);
-  const chunksRef = React.useRef([]);
+  const mediaRef = useRef(null);
+  const chunksRef = useRef([]);
 
   const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
   const TOTAL = 10;
