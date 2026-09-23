@@ -2038,6 +2038,44 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ fontSize:22, fontWeight:500, color:"#000", marginTop:8 }}>Here are today's insights.</div>
       </div>
 
+      {/* PROGRESS OVER TIME — the reason to come back: each period against the
+          one before it. Preview shows sample figures; real members see it once
+          the backend returns period totals. */}
+      {(() => {
+        const periods = isPreview ? {
+          week:  { label:"This week vs last week",   rows:[["Signs logged",13,8],["Desires manifested",2,1],["Belief (avg /10)",7.4,6.1]] },
+          month: { label:"This month vs last month", rows:[["Signs logged",41,29],["Desires manifested",6,4],["Belief (avg /10)",7.1,5.8]] },
+          year:  { label:"This year vs last year",   rows:[["Signs logged",200,64],["Desires manifested",100,31],["Belief (avg /10)",6.9,4.2]] },
+        } : analyticsData?.periods;
+        if (!periods) return null;
+        return (
+          <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)" }}>
+            <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:20 }}>Your progress over time</div>
+            <div style={{ display:"flex", flexWrap:"wrap", gap:16 }}>
+              {["week","month","year"].map(k => periods[k] && (
+                <div key={k} style={{ flex:"1 1 260px", minWidth:0, border:`1px solid ${C.border}`, borderRadius:18, padding:"18px 18px" }}>
+                  <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:14 }}>{periods[k].label}</div>
+                  {periods[k].rows.map(([name, now, before]) => {
+                    const up = now > before, same = now === before;
+                    const diff = Math.round((now - before) * 10) / 10;
+                    return (
+                      <div key={name} style={{ marginBottom:14 }}>
+                        <div style={{ fontSize:15, color:C.cr, marginBottom:4 }}>{name}</div>
+                        <div style={{ display:"flex", alignItems:"baseline", gap:10, flexWrap:"wrap" }}>
+                          <span style={{ fontSize:38, fontWeight:700, color:C.cr, lineHeight:1 }}>{now}</span>
+                          <span style={{ fontSize:16, color:C.cr }}>from {before}</span>
+                          {!same && <span style={{ fontSize:16, fontWeight:700, color: up ? C.accentTeal : "#8a2030" }}>{up ? "▲" : "▼"} {up ? "+" : ""}{diff}</span>}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       {/* MANIFESTATION HERO — the whole point of the app */}
       <style>{`
         @keyframes shg-drift {
@@ -2071,7 +2109,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
             background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
             backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
-            border:"1px solid rgba(255,255,255,0.6)" }}>
+            border:"1px solid rgba(255,255,255,0.6)", zoom:1.35 }}>
 
             {/* HERO: Signs this week — the most important metric */}
             <div style={{ marginBottom:18 }}>
@@ -2295,7 +2333,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       )}
 
       {/* AI RECOMMENDATION CARD */}
-      <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.3)` }}>
+      <div style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", boxShadow:"0 0 32px rgba(191,165,216,0.5)", zoom:1.45 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
           <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
           {!isPreview && (
@@ -2366,7 +2404,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* DESIRE NUDGE — remind user to update desires / bucket list */}
       {isPreview && (
-        <div style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
+        <div style={{ margin:"0 16px 18px", padding:"16px 16px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)", display:"flex", alignItems:"center", gap:14, zoom:1.45 }}>
           <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
