@@ -87,22 +87,22 @@ const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
-  // ── DARK MODE: charcoal with lifted card surfaces, LG colours on accents ──
-  // Surfaces step up in lightness (bg → bg2 → bg3 → bg4) so a card reads as a
-  // separate object instead of dissolving into the page, the way Spotify does it.
-  // Text is neutral white, not warm cream, which went muddy against black.
+  // ── DARK MODE: the deck and workbook system. Black page, cream text, no grey,
+  // gradient only as accent. Surfaces still step up (bg → bg2 → bg3 → bg4) so a
+  // card reads as its own object — that was the real legibility problem, not the
+  // cream. Hierarchy comes from size and weight, never from greying text down.
   dark: {
-    bg:      "#0d0d0d",
-    bg2:     "#181818",
-    bg3:     "#1f1f1f",
-    bg4:     "#282828",
-    nav:     "#0a0a0a",
-    cr:      "#ffffff",   // primary text, pure white
-    mu:      "#b8b2ad",   // secondary text, neutral so it never reads brown
-    dim:     "#8a8580",   // faint text
-    border:  "rgba(255,255,255,0.14)",  // neutral outline, separates every card
-    inputBg: "#282828",
-    inputCr: "#ffffff",
+    bg:      "#000000",
+    bg2:     "#0d0d0d",
+    bg3:     "#141414",
+    bg4:     "#1c1c1c",
+    nav:     "#000000",
+    cr:      "#F2ECE4",
+    mu:      "#F2ECE4",
+    dim:     "#F2ECE4",
+    border:  "rgba(242,236,228,0.22)",  // cream rule, as on the deck's cards
+    inputBg: "#0d0d0d",
+    inputCr: "#F2ECE4",
     // LG accent colours for labels, icons, active tabs, never backgrounds
     accentGold: "#E8B870",
     accentLav:  "#BFA5D8",
@@ -977,7 +977,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
           {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)}
-              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(255,255,255,0.10)":"#000000"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#ffffff":"#F5E0A0"):isDark?"rgba(255,255,255,0.58)":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
+              style={{ display:"flex",alignItems:"center",gap:11,padding:"6px 18px",margin:tab===n.id?"0 8px":0,width:tab===n.id?"calc(100% - 16px)":"100%",background:tab===n.id?(isDark?"rgba(242,236,228,0.10)":"#000000"):"none",border:"none",borderRadius:tab===n.id?8:0,borderLeft:tab===n.id&&!isDark?"none":tab===n.id?"3px solid #E8B870":"3px solid transparent",color:tab===n.id?(isDark?"#F2ECE4":"#F5E0A0"):isDark?"#F2ECE4":"#000000",fontSize:13,fontWeight:400,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",transition:"color 0.15s" }}
               onMouseEnter={e=>{if(tab!==n.id)e.currentTarget.style.color="#E8B870";}}
               onMouseLeave={e=>{if(tab!==n.id)e.currentTarget.style.color=C.mu;}}>
               <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#F5E0A0"):C.cr}/> {n.label}
@@ -1676,8 +1676,8 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
   return (
     <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif" }}>
       {/* Header */}
-      <div style={{ marginBottom:16 }}>
-        <div style={{ fontSize:13, fontWeight:600, color:"#BFA5D8", letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:4 }}>Manifestation history</div>
+      <div style={{ marginBottom:12, background:C.bg2, border:`1px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
+        <div style={{ fontSize:13, fontWeight:600, color:C.cr, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:4 }}>Manifestation history</div>
         <div style={{ fontSize:14, color:C.mu, lineHeight:1.5 }}>
           {isPreview ? "A record that compounds. The longer you log, the more your patterns emerge." : "Your full manifestation record — every intention, every win, every pattern."}
         </div>
@@ -1686,21 +1686,21 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
       {/* Top-line stats */}
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:8, marginBottom:16 }}>
         {[
-          [totalSet, "Intentions set", "#E8B870"],
-          [totalManifested, "Manifested", "#2CB7A7"],
-          [`${overallRate}%`, "Success rate", "#BFA5D8"],
-          [`${Math.round(avgDaysAll)}d`, "Avg to manifest", "#167A6B"],
+          [totalSet, "Intentions set", C.accentGold],
+          [totalManifested, "Manifested", C.accentTeal],
+          [`${overallRate}%`, "Success rate", C.accentLav],
+          [`${Math.round(avgDaysAll)}d`, "Avg to manifest", C.accentDeep],
         ].map(([v,l,col])=>(
           <div key={l} style={{ background:C.bg2, borderRadius:12, padding:"12px 10px", textAlign:"center", border:`1px solid ${col}33` }}>
-            <div style={{ fontSize:20, fontWeight:400, color:col, lineHeight:1 }}>{v}</div>
-            <div style={{ fontSize:10, color:C.mu, marginTop:5, lineHeight:1.3 }}>{l}</div>
+            <div style={{ fontSize:24, fontWeight:700, color:col, lineHeight:1 }}>{v}</div>
+            <div style={{ fontSize:11, fontWeight:500, color:C.cr, marginTop:6, lineHeight:1.3 }}>{l}</div>
           </div>
         ))}
       </div>
 
       {/* Monthly bar chart */}
       <div style={{ background:C.bg2, borderRadius:16, padding:"18px 16px", marginBottom:14, border:`1px solid ${C.border}` }}>
-        <div style={{ fontSize:12, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>Intentions set vs manifested per month</div>
+        <div style={{ fontSize:12, fontWeight:600, color:C.cr, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>Intentions set vs manifested per month</div>
         <div style={{ display:"flex", alignItems:"flex-end", gap:6, height:90 }}>
           {months.map((m,i)=>{
             const setPct = (m.set/maxSet)*100;
@@ -1711,7 +1711,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
                   <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background:"rgba(232,184,112,0.2)", height:`${setPct}%`, position:"absolute", bottom:0, left:0 }}/>
                   <div style={{ width:"100%", borderRadius:"3px 3px 0 0", background:"#2CB7A7", height:`${manPct}%`, position:"absolute", bottom:0, left:0 }}/>
                 </div>
-                <div style={{ fontSize:8.5, color:C.mu, marginTop:4, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", width:"100%", textAlign:"center" }}>{m.month}</div>
+                <div style={{ fontSize:9, color:C.cr, marginTop:4, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", width:"100%", textAlign:"center" }}>{m.month}</div>
               </div>
             );
           })}
@@ -1719,18 +1719,18 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
         <div style={{ display:"flex", gap:14, marginTop:10 }}>
           <div style={{ display:"flex", alignItems:"center", gap:5 }}>
             <div style={{ width:10, height:10, borderRadius:2, background:"rgba(232,184,112,0.4)" }}/>
-            <span style={{ fontSize:11, color:C.mu }}>Set</span>
+            <span style={{ fontSize:11, color:C.cr }}>Set</span>
           </div>
           <div style={{ display:"flex", alignItems:"center", gap:5 }}>
             <div style={{ width:10, height:10, borderRadius:2, background:"#2CB7A7" }}/>
-            <span style={{ fontSize:11, color:C.mu }}>Manifested</span>
+            <span style={{ fontSize:11, color:C.cr }}>Manifested</span>
           </div>
         </div>
       </div>
 
       {/* Category breakdown — avg days to manifest */}
       <div style={{ background:C.bg2, borderRadius:16, padding:"18px 16px", marginBottom:14, border:`1px solid ${C.border}` }}>
-        <div style={{ fontSize:12, color:C.mu, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>By life area — time to manifest</div>
+        <div style={{ fontSize:12, fontWeight:600, color:C.cr, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:14 }}>By life area — time to manifest</div>
         {catStats.map((r,i) => {
           const rate = r.total ? Math.round((r.manifested/r.total)*100) : 0;
           const barPct = Math.min(rate, 100);
@@ -1740,7 +1740,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
                 <span style={{ fontSize:13, color:C.cr, fontWeight:400 }}>{r.cat}</span>
                 <div style={{ display:"flex", gap:10, alignItems:"baseline" }}>
                   <span style={{ fontSize:11, color:C.mu }}>{r.manifested}/{r.total}</span>
-                  {r.avgDays > 0 && <span style={{ fontSize:11, color:r.color, fontWeight:500 }}>{r.avgDays}d avg</span>}
+                  {r.avgDays > 0 && <span style={{ fontSize:11, color:C.cr, fontWeight:600 }}>{r.avgDays}d avg</span>}
                 </div>
               </div>
               <div style={{ height:6, borderRadius:3, background:`${r.color}22`, overflow:"hidden" }}>
@@ -1754,12 +1754,12 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
       {/* Fastest + most active callouts */}
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:14 }}>
         <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(44,183,167,0.3)` }}>
-          <div style={{ fontSize:10, color:"#2CB7A7", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Fastest area</div>
+          <div style={{ fontSize:10, fontWeight:600, color:C.accentTeal, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Fastest area</div>
           <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.cat || "—"}</div>
           <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.avgDays || "—"}d avg</div>
         </div>
         <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(232,184,112,0.3)` }}>
-          <div style={{ fontSize:10, color:"#E8B870", letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Most active area</div>
+          <div style={{ fontSize:10, fontWeight:600, color:C.accentGold, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Most active area</div>
           <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.cat || "—"}</div>
           <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.total || "—"} intentions</div>
         </div>
@@ -1767,7 +1767,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
 
       {isPreview && (
         <div style={{ background:`${C.bg2}`, borderRadius:14, padding:"14px 16px", border:`1px solid rgba(191,165,216,0.3)`, textAlign:"center" }}>
-          <div style={{ fontSize:13, color:"#BFA5D8", marginBottom:4, fontWeight:500 }}>Your chart grows with you</div>
+          <div style={{ fontSize:13, color:C.accentLav, marginBottom:4, fontWeight:600 }}>Your chart grows with you</div>
           <div style={{ fontSize:12, color:C.mu, lineHeight:1.5 }}>Log intentions across 2026 → 2030 and watch your manifestation speed and rate compound month by month. Sign up to start your permanent record →</div>
         </div>
       )}
