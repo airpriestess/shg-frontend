@@ -2204,7 +2204,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               const slowest = Math.max(...speeds.map(s=>s[1]));
               return (
                 <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", boxShadow:"0 0 32px rgba(191,165,216,0.5)" }}>
-                  <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:6 }}>How fast each area moves</div>
+                  <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:6 }}>How fast each area shifts</div>
                   <div style={{ fontSize:16, color:C.cr, marginBottom:20 }}>Average days from setting a desire to logging it manifested.</div>
                   {speeds.map(([cat,days],i)=>(
                     <div key={cat} style={{ display:"flex", alignItems:"center", gap:14, marginBottom:i===speeds.length-1?0:16 }}>
