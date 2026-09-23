@@ -2763,7 +2763,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   // ProofOS, always LG gradient background, white cards, black text
   const isDark = false; // ProofOS always uses light card theme on LG bg
   const PC = { card:"#ffffff", cardSolid:"#ffffff", text:"#000000", mu:"#555555", dim:"#111", border:"#000000", inputBg:"rgba(255,255,255,0.9)" };
-  const PAGE_BG = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
+  const PAGE_BG = "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)";
 
   const manifested = threads.filter(t=>t.done);
   const inProgress = threads.filter(t=>!t.done);
