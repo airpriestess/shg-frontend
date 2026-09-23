@@ -213,3 +213,13 @@ select option:hover,select option:checked{background:#1c1828;}
 
 
 /* v2 */
+
+/* Lucky Girl glow: border and halo cycle through the brand gradient. */
+@keyframes shg-lg-glow{
+  0%  {border-color:#F5E0A0;box-shadow:0 0 30px rgba(245,224,160,.75)}
+  25% {border-color:#E8B870;box-shadow:0 0 30px rgba(232,184,112,.75)}
+  50% {border-color:#BFA5D8;box-shadow:0 0 30px rgba(191,165,216,.8)}
+  75% {border-color:#2CB7A7;box-shadow:0 0 30px rgba(44,183,167,.75)}
+  100%{border-color:#F5E0A0;box-shadow:0 0 30px rgba(245,224,160,.75)}
+}
+@media(prefers-reduced-motion:reduce){[style*="shg-lg-glow"]{animation:none!important}}

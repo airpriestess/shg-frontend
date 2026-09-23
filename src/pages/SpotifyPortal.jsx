@@ -1451,20 +1451,17 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
     try { r.start(); } catch(e) { setQuickListening(false); voiceRef.current = null; setVoiceError("Could not start microphone"); }
   };
   return (
-    <div style={{ paddingBottom:80 }}>
-      {/* HEADER */}
-      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"20px 16px 6px" }}>
-        <div>
-          <div style={{ fontSize:13,color:C.mu,fontWeight:400,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:2 }}>Welcome back</div>
-          <span onClick={openProfile} style={{ fontSize:22,fontWeight:400,color:C.cr,cursor:"pointer",display:"inline-flex",alignItems:"center",gap:8,fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic" }}>
-            {isPreview?"Goddess":firstName}
-            <span style={{ width:28,height:28,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif",fontStyle:"normal" }}>
-              {isPreview?"G":(firstName?.[0]||"R").toUpperCase()}
-            </span>
-          </span>
+    <div style={{ paddingBottom:80, zoom:1.3 }}>
+      {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
+      <div style={{ margin:"16px 16px 14px", padding:"22px 20px", borderRadius:22, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12,
+        background:"linear-gradient(120deg,#BFA5D8 0%,#2CB7A7 40%,#F5E0A0 50%,#2CB7A7 60%,#BFA5D8 100%)", backgroundSize:"250% 250%",
+        border:"2px solid #BFA5D8", animation:"shg-drift 4s ease-in-out infinite, shg-lg-glow 3s linear infinite" }}>
+        <div onClick={openProfile} style={{ cursor:"pointer" }}>
+          <div style={{ fontSize:34, fontWeight:700, color:"#000", lineHeight:1.1 }}>Hello, {isPreview ? "Reshma" : firstName}</div>
+          <div style={{ fontSize:16, fontWeight:500, color:"#000", marginTop:6 }}>Welcome back. Pick up where you left off.</div>
         </div>
-        <button onClick={()=>setTab("shop")} style={{ width:36,height:36,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <button onClick={()=>setTab("shop")} style={{ width:40,height:40,borderRadius:"50%",background:"rgba(0,0,0,0.12)",border:"1px solid rgba(0,0,0,0.35)",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         </button>
       </div>
 
@@ -1490,7 +1487,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </div>
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
-          {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.","#BFA5D8"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
+          {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.","#5a3a7a"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
             <div key={name} style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
               <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
               <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
@@ -1503,7 +1500,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* QUICK DESIRE CAPTURE */}
       <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
-          <div style={{ fontSize:13, fontWeight:600, color:"#E8B870", letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
+          <div style={{ fontSize:13, fontWeight:700, color:C.cr, letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
           <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in ProofOS →</button>
         </div>
         <style>{`.qd-input::placeholder{color:${isDark?"rgba(253,240,232,0.4)":"rgba(26,16,8,0.4)"}!important}`}</style>
@@ -2033,7 +2030,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
   return (
     <div>
       {/* Greeting: the board opens on her, not on a page title. */}
-      <div style={{ margin:"20px 16px 18px", padding:"30px 26px", borderRadius:24, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite", boxShadow:"0 0 40px rgba(191,165,216,0.6), 0 0 80px rgba(44,183,167,0.35)" }}>
+      <div style={{ margin:"20px 16px 18px", padding:"30px 26px", borderRadius:24, background:"linear-gradient(120deg,#BFA5D8 0%,#2CB7A7 40%,#F5E0A0 50%,#2CB7A7 60%,#BFA5D8 100%)", backgroundSize:"250% 250%", border:"2px solid #BFA5D8", animation:"shg-drift 4s ease-in-out infinite, shg-lg-glow 3s linear infinite" }}>
         <div style={{ fontSize:46, fontWeight:700, color:"#000", lineHeight:1.1 }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
         <div style={{ fontSize:22, fontWeight:500, color:"#000", marginTop:8 }}>Here are today's insights.</div>
       </div>
@@ -2043,13 +2040,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           the backend returns period totals. */}
       {(() => {
         const periods = isPreview ? {
-          week:  { label:"This week vs last week",   rows:[["Signs logged",13,8],["Desires manifested",2,1],["Belief (avg /10)",7.4,6.1]] },
-          month: { label:"This month vs last month", rows:[["Signs logged",41,29],["Desires manifested",6,4],["Belief (avg /10)",7.1,5.8]] },
-          year:  { label:"This year vs last year",   rows:[["Signs logged",200,64],["Desires manifested",100,31],["Belief (avg /10)",6.9,4.2]] },
+          week:  { label:"This week vs last week",   rows:[["Signs logged",13,8],["Desires manifested",2,1],["Belief shift (avg /10)",7.4,6.1],["Emotional level (Hawkins)",420,310]] },
+          month: { label:"This month vs last month", rows:[["Signs logged",41,29],["Desires manifested",6,4],["Belief shift (avg /10)",7.1,5.8],["Emotional level (Hawkins)",400,290]] },
+          year:  { label:"This year vs last year",   rows:[["Signs logged",200,64],["Desires manifested",100,31],["Belief shift (avg /10)",6.9,4.2],["Emotional level (Hawkins)",380,175]] },
         } : analyticsData?.periods;
         if (!periods) return null;
         return (
-          <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)" }}>
+          <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
             <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:20 }}>Your progress over time</div>
             <div style={{ display:"flex", flexWrap:"wrap", gap:16 }}>
               {["week","month","year"].map(k => periods[k] && (
@@ -2198,13 +2195,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           [mDone,      "Manifested ✓",  C.accentGold],
           [mOpen,      "In progress",   C.accentLav],
           [signsTotal, "Signs logged",  C.cr],
-          [isPreview ? "4.2h" : `${((analyticsData?.weekly_minutes ?? 0)/60).toFixed(1)}h`, "This week", C.accentTeal],
+          [isPreview ? "4.2h" : `${((analyticsData?.weekly_minutes ?? 0)/60).toFixed(1)}h`, "Listening this week", C.accentTeal],
         ];
         return (
           <>
             <div style={{ display:"flex", flexWrap:"wrap", gap:12, margin:"0 16px 18px" }}>
               {tiles.map(([v,l,col],i)=>(
-                <div key={i} style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, background:C.bg2, border:`2px solid ${col}`, borderRadius:20, padding:"26px 22px", boxShadow:`0 0 28px ${col}55` }}>
+                <div key={i} style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, background:C.bg2, border:"2px solid #BFA5D8", borderRadius:20, padding:"26px 22px", animation:"shg-lg-glow 3s linear infinite" }}>
                   <div style={{ fontSize:52, fontWeight:700, lineHeight:1, marginBottom:8, color:col }}>{v}</div>
                   <div style={{ fontSize:16, color:C.cr, fontWeight:600 }}>{l}</div>
                 </div>
@@ -2214,7 +2211,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             {/* PROOF COMPOUNDS — every logged sign and win is one more piece of
                 evidence. This is the method deck's year-one argument, live. */}
             {proofTotal > 0 && (
-              <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)" }}>
+              <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
                 <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:14 }}>Your proof is compounding</div>
                 <div style={{ display:"flex", alignItems:"baseline", gap:8, marginBottom:10 }}>
                   <div style={{ fontSize:72, fontWeight:700, lineHeight:1, color:C.cr }}>{proofTotal}</div>
@@ -2241,7 +2238,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               if (!speeds.length) return null;
               const slowest = Math.max(...speeds.map(s=>s[1]));
               return (
-                <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", boxShadow:"0 0 32px rgba(191,165,216,0.5)" }}>
+                <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
                   <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:6 }}>How fast each area shifts</div>
                   <div style={{ fontSize:16, color:C.cr, marginBottom:20 }}>Average days from setting a desire to logging it manifested.</div>
                   {speeds.map(([cat,days],i)=>(
@@ -2263,7 +2260,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               const blockText = isPreview ? "I keep getting close, then it slips" : (analyticsData?.onboarding_block || null);
               if (!blockText) return null;
               return (
-                <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #E8B870", boxShadow:"0 0 32px rgba(232,184,112,0.5)" }}>
+                <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
                   <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:12 }}>What you said was stopping you</div>
                   <div style={{ fontSize:28, fontWeight:600, color:C.cr, lineHeight:1.3, marginBottom:16 }}>“{blockText}”</div>
                   <div style={{ fontSize:18, color:C.cr, lineHeight:1.6 }}>
@@ -2278,7 +2275,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* WEEKLY AI INSIGHT */}
       {(isPreview || weeklyInsight || analyticsData?.fastest_category) && (
-        <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", boxShadow:"0 0 32px rgba(191,165,216,0.5)" }}>
+        <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
           <div style={{ fontSize:15, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:14 }}>This week's insight ✦</div>
           {isPreview ? (
             <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>
@@ -2298,7 +2295,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* PATTERN RECOGNITION — what's actually moving the needle */}
       {(isPreview || (patterns && patterns.length > 0)) && (
-        <div style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)", zoom:1.45 }}>
+        <div style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", zoom:1.45 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
             <span style={{ fontSize:13, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase" }}>Pattern recognition</span>
             {isPreview && <span style={{ fontSize:12, color:C.accentGold, fontWeight:500 }}>preview data</span>}
@@ -2333,7 +2330,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       )}
 
       {/* AI RECOMMENDATION CARD */}
-      <div style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", boxShadow:"0 0 32px rgba(191,165,216,0.5)", zoom:1.45 }}>
+      <div style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", zoom:1.45 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
           <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
           {!isPreview && (
@@ -2404,7 +2401,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* DESIRE NUDGE — remind user to update desires / bucket list */}
       {isPreview && (
-        <div style={{ margin:"0 16px 18px", padding:"16px 16px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)", display:"flex", alignItems:"center", gap:14, zoom:1.45 }}>
+        <div style={{ margin:"0 16px 18px", padding:"16px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", display:"flex", alignItems:"center", gap:14, zoom:1.45 }}>
           <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
