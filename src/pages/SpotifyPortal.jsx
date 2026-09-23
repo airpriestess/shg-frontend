@@ -122,7 +122,7 @@ const THEMES = {
     cr:      "#000000",
     mu:      "#000000",
     dim:     "#000000",
-    border:  "rgba(26,16,8,0.10)",
+    border:  "rgba(0,0,0,0.22)",
     inputBg: "#fdf0e8",
     inputCr: "#1a1008",
     accentGold: "#a07020",
@@ -484,21 +484,21 @@ const CAT_COLOR = { "Lovemaxxing":"#F5E0A0", "Rich Girl":"#E8B870", "Beauty":"#B
 
 // ── SVG ICONS ────────────────────────────────────────────────────────────────
 const Ico = {
-  Home:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={a?c||"#fff":"none"} stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8"/></svg>,
-  Search: ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
-  Lib:    ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill={a?c||"#fff":"rgba(253,240,232,0.45)"}><path d="M3 3h4v18H3zM9 3h2v18H9zM14 3l7 2.5v13L14 21z"/></svg>,
-  Proof:  ({a})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?R:"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg>,
+  Home:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" fill={a?c||"#fff":"none"} stroke={a?c||"#fff":(c||"rgba(253,240,232,0.45)")} strokeWidth="1.8"/></svg>,
+  Search: ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":(c||"rgba(253,240,232,0.45)")} strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
+  Lib:    ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill={a?c||"#fff":(c||"rgba(253,240,232,0.45)")}><path d="M3 3h4v18H3zM9 3h2v18H9zM14 3l7 2.5v13L14 21z"/></svg>,
+  Proof:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?R:(c||"rgba(253,240,232,0.45)")} strokeWidth="1.8" strokeLinecap="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg>,
   Play:   ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><polygon points="6 3 20 12 6 21"/></svg>,
   Pause:  ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>,
   Heart:  ({on})=><svg width="18" height="18" viewBox="0 0 24 24" fill={on?R:"none"} stroke={on?R:"rgba(253,240,232,0.45)"} strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.84-7.84 1.06-1.06a5.5 5.5 0 000-7.72z"/></svg>,
   Lock:   ()=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={R} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
-  Edit:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
-  Undo:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
-  Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||"rgba(253,240,232,0.45)"} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
-  Cog:    ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
-  Book:   ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
-  Shop:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
-  Stats:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":"rgba(253,240,232,0.45)"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
+  Edit:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||(c||"rgba(253,240,232,0.45)")} strokeWidth="2" strokeLinecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
+  Undo:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||(c||"rgba(253,240,232,0.45)")} strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
+  Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||(c||"rgba(253,240,232,0.45)")} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+  Cog:    ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||(c||"rgba(253,240,232,0.45)")} strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  Book:   ({c})=><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={c||(c||"rgba(253,240,232,0.45)")} strokeWidth="1.8" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
+  Shop:   ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":(c||"rgba(253,240,232,0.45)")} strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
+  Stats:  ({a,c})=><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={a?c||"#fff":(c||"rgba(253,240,232,0.45)")} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
 };
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
@@ -808,8 +808,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         {/* Header */}
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
-            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:56,height:56,flexShrink:0,borderRadius:12,background:"#fdf0e8",overflow:"hidden" }}>
-              <img src="/shg-logo.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block" }} />
+            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:56,height:56,flexShrink:0,borderRadius:12,background:"none",overflow:"hidden" }}>
+              <img src="/shg-logo-clear.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block" }} />
             </a>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
@@ -872,11 +872,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const tabContent = (
     <>
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
-      {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
-      {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
-      {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}
+      {tab==="search"  && <div className="shg-tab-glow" style={{zoom:1.3}}><SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
+      {tab==="library" && <div className="shg-tab-glow" style={{zoom:1.3}}><LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
+      {tab==="proof"   && <div className="shg-tab-glow" style={{zoom:1.3}}>{(userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}</div>}
       {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email} userName={userName} apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/>)}
-      {tab==="shop"    && <ShopTab C={C}/>}
+      {tab==="shop"    && <div className="shg-tab-glow" style={{zoom:1.3}}><ShopTab C={C}/></div>}
     </>
   );
 
@@ -964,8 +964,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         {/* Sidebar */}
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:10,background:"#fdf0e8",overflow:"hidden",flexShrink:0 }}>
-              <img src="/shg-logo.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block" }} />
+            <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:10,background:"none",overflow:"hidden",flexShrink:0 }}>
+              <img src="/shg-logo-clear.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block" }} />
             </a>
             {isDark ? (
               <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" }}>BETA</span>
@@ -1067,8 +1067,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </div>
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
-        <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:38,height:38,borderRadius:9,background:"#fdf0e8",overflow:"hidden",flexShrink:0 }}>
-          <img src="/shg-logo.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block" }} />
+        <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:38,height:38,borderRadius:9,background:"none",overflow:"hidden",flexShrink:0 }}>
+          <img src="/shg-logo-clear.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block" }} />
         </a>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>{isDark?"☀":"🌙"}</button>
@@ -1183,8 +1183,8 @@ function BetaBanner({ C, isDark }) {
 function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, showDesc, setShowDesc }) {
   const d = getDesc(track);
   // On teal nav bar, text must always be cream regardless of theme
-  const navCr = "#fdf0e8";
-  const navMu = "rgba(253,240,232,0.65)";
+  const navCr = C.cr;
+  const navMu = C.cr;
   return (
     <>
     {showDesc && (
@@ -1451,7 +1451,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
     try { r.start(); } catch(e) { setQuickListening(false); voiceRef.current = null; setVoiceError("Could not start microphone"); }
   };
   return (
-    <div style={{ paddingBottom:80, zoom:1.3 }}>
+    <div className="shg-tab-glow" style={{ paddingBottom:80, zoom:1.3 }}>
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
       <div style={{ margin:"16px 16px 14px", padding:"22px 20px", borderRadius:22, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12,
         background:"linear-gradient(120deg,#BFA5D8 0%,#2CB7A7 40%,#F5E0A0 50%,#2CB7A7 60%,#BFA5D8 100%)", backgroundSize:"250% 250%",
@@ -2050,13 +2050,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:20 }}>Your progress over time</div>
             <div style={{ display:"flex", flexWrap:"wrap", gap:16 }}>
               {["week","month","year"].map(k => periods[k] && (
-                <div key={k} style={{ flex:"1 1 260px", minWidth:0, border:`1px solid ${C.border}`, borderRadius:18, padding:"18px 18px" }}>
+                <div key={k} style={{ flex:"1 1 260px", minWidth:0 }}>
                   <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:14 }}>{periods[k].label}</div>
                   {periods[k].rows.map(([name, now, before]) => {
                     const up = now > before, same = now === before;
                     const diff = Math.round((now - before) * 10) / 10;
                     return (
-                      <div key={name} style={{ marginBottom:14 }}>
+                      <div key={name} style={{ marginBottom:12, background:C.bg3, border:`1.5px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
                         <div style={{ fontSize:15, color:C.cr, marginBottom:4 }}>{name}</div>
                         <div style={{ display:"flex", alignItems:"baseline", gap:10, flexWrap:"wrap" }}>
                           <span style={{ fontSize:38, fontWeight:700, color:C.cr, lineHeight:1 }}>{now}</span>
@@ -2583,7 +2583,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
           </div>
           <div style={{ flex:1,minWidth:0 }}>
             <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{displayTitle(t.title)}</div>
-            <div style={{ fontSize:13,color:isP?"#c9c2b8":C.mu }}>{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+            <div style={{ fontSize:13,color:C.cr }}>{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
           </div>
           {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (

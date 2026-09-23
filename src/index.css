@@ -223,3 +223,18 @@ select option:hover,select option:checked{background:#1c1828;}
   100%{border-color:#F5E0A0;box-shadow:0 0 30px rgba(245,224,160,.75)}
 }
 @media(prefers-reduced-motion:reduce){[style*="shg-lg-glow"]{animation:none!important}}
+
+/* Portal placeholders: readable in both themes. Several inputs set their own
+   pale placeholder inline or with an opacity, so these win with !important. */
+[data-portal-theme="light"] input::placeholder,
+[data-portal-theme="light"] textarea::placeholder{color:#1a1008!important;opacity:.7!important;}
+[data-portal-theme="dark"] input::placeholder,
+[data-portal-theme="dark"] textarea::placeholder{color:#F2ECE4!important;opacity:.7!important;}
+
+/* The Analytics card treatment on every other tab: outermost cream / white /
+   black cards get the Lucky Girl glow. Cards nested inside a glowing card are
+   left alone so boxes don't glow inside boxes. */
+.shg-tab-glow :is(div,button)[style*="border-radius: 1"]:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"]):not(:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"]) *){
+  border:2px solid #BFA5D8!important;
+  animation:shg-lg-glow 3s linear infinite;
+}
