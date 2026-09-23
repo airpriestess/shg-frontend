@@ -875,7 +875,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {tab==="search"  && <SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="library" && <LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/>}
       {tab==="proof"   && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}
-      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email} apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/>)}
+      {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email} userName={userName} apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/>)}
       {tab==="shop"    && <ShopTab C={C}/>}
     </>
   );
@@ -1674,7 +1674,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
   const maxSet = Math.max(...months.map(m=>m.set), 1);
 
   return (
-    <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif" }}>
+    <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif", zoom:1.45 }}>
       {/* Header */}
       <div style={{ marginBottom:12, background:C.bg2, border:`1px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
         <div style={{ fontSize:13, fontWeight:600, color:C.cr, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:4 }}>Manifestation history</div>
@@ -1851,7 +1851,7 @@ function StatCarousel({ slides }) {
 }
 
 // ── ANALYTICS TAB, dominant emotional state + full analytics board, its own destination ──
-function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail, apiUrl="https://shg-backend.reshmaoracle.com" }) {
+function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], theme="dark", onDrillDown, openGuide, userId, token, userTier="audio", userEmail, userName, apiUrl="https://shg-backend.reshmaoracle.com" }) {
   const domToday = dominant(emoLog,1), dom7 = dominant(emoLog,7), dom30 = dominant(emoLog,30);
   const manifested = threads.filter(t=>t.done).length;
   const inProgress = threads.filter(t=>!t.done).length;
@@ -2032,8 +2032,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
   return (
     <div>
-      <div style={{ padding:"20px 16px 12px" }}>
-        <span style={{ fontSize:24,fontWeight:400,color:C.cr }}>Analytics</span>
+      {/* Greeting: the board opens on her, not on a page title. */}
+      <div style={{ margin:"20px 16px 18px", padding:"30px 26px", borderRadius:24, background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 20%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite", boxShadow:"0 0 40px rgba(191,165,216,0.6), 0 0 80px rgba(44,183,167,0.35)" }}>
+        <div style={{ fontSize:46, fontWeight:700, color:"#000", lineHeight:1.1 }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
+        <div style={{ fontSize:22, fontWeight:500, color:"#000", marginTop:8 }}>Here are today's insights.</div>
       </div>
 
       {/* MANIFESTATION HERO — the whole point of the app */}
@@ -2238,16 +2240,16 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* WEEKLY AI INSIGHT */}
       {(isPreview || weeklyInsight || analyticsData?.fastest_category) && (
-        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid rgba(191,165,216,0.35)` }}>
-          <div style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:10 }}>This week's insight ✦</div>
+        <div style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", boxShadow:"0 0 32px rgba(191,165,216,0.5)" }}>
+          <div style={{ fontSize:15, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:14 }}>This week's insight ✦</div>
           {isPreview ? (
-            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>
+            <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>
               "You've listened to Lovemaxxing 3× more than any other area this week. Two of your in-progress desires are in this category — momentum is building. Keep going."
             </div>
           ) : weeklyInsight ? (
-            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6, fontStyle:"italic" }}>"{weeklyInsight}"</div>
+            <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>"{weeklyInsight}"</div>
           ) : analyticsData?.fastest_category ? (
-            <div style={{ fontSize:14, color:C.mu, lineHeight:1.6 }}>
+            <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>
               Your fastest-manifesting area is <span style={{ color:C.accentGold, fontWeight:500 }}>{analyticsData.fastest_category}</span>.
               {analyticsData.avg_days_to_manifest != null && ` Average time to manifest: ${analyticsData.avg_days_to_manifest} days.`}
               {analyticsData.momentum_score != null && ` Momentum score: ${analyticsData.momentum_score}.`}
@@ -2258,34 +2260,33 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* PATTERN RECOGNITION — what's actually moving the needle */}
       {(isPreview || (patterns && patterns.length > 0)) && (
-        <div style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
+        <div style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22, background:C.bg2, border:"2px solid #2CB7A7", boxShadow:"0 0 32px rgba(44,183,167,0.45)", zoom:1.45 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Pattern recognition</span>
+            <span style={{ fontSize:13, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase" }}>Pattern recognition</span>
             {isPreview && <span style={{ fontSize:12, color:C.accentGold, fontWeight:500 }}>preview data</span>}
           </div>
-          <div style={{ fontSize:13, color:C.mu, marginBottom:12, lineHeight:1.5 }}>
-            {isPreview ? "These categories correlate most with your manifested desires:" : "Your highest-performing categories:"}
-          </div>
-          {(isPreview ? [
-            { type:"category", name:"Lovemaxxing", listens:38, manifestedCount:5 },
-            { type:"category", name:"Richgirlmaxxing", listens:29, manifestedCount:3 },
-            { type:"track",    name:"Money Finds Me First", listens:12, manifestedCount:3 },
-          ] : patterns).map((p,i,arr) => {
+          {isPreview ? (
+            // Patterns join what she does (signs, belief ratings, listening
+            // time) to what happens. Illustrative in preview; each one is a
+            // comparison her own logged data can support once it exists.
+            [
+              ["Signs come before wins", "In the 7 days before each of your manifestations you logged 3× more signs than in an average week."],
+              ["Belief rises after you log", "Your belief rating is 2 points higher on days after you log a sign than on days after you don't."],
+              ["Evening listening works for you", "Desires you listened to at night manifested in 18 days on average. Morning-only: 31 days."],
+              ["Your block is loosening", "You named “it slips” as your block. 4 of your last 5 desires reached manifested."],
+            ].map(([head, body], i, arr) => (
+              <div key={i} style={{ padding:"14px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:4 }}>✦ {head}</div>
+                <div style={{ fontSize:14, color:C.cr, lineHeight:1.5 }}>{body}</div>
+              </div>
+            ))
+          ) : patterns.map((p,i,arr) => {
             const convRate = Math.round((p.manifestedCount / Math.max(p.listens,1)) * 100);
             return (
-              <div key={i} style={{ display:"flex", alignItems:"center", gap:12, padding:"12px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
-                <div style={{ width:36, height:36, borderRadius:10, flexShrink:0, background: p.type==="category" ? "rgba(232,184,112,0.15)" : "rgba(191,165,216,0.15)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>
-                  {p.type==="category" ? "✦" : "♪"}
-                </div>
-                <div style={{ flex:1 }}>
-                  <div style={{ fontSize:14, color:C.cr, fontWeight:400 }}>{p.name}</div>
-                  <div style={{ fontSize:12, color:C.mu, marginTop:2 }}>
-                    {p.listens} listens · {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} manifested
-                  </div>
-                </div>
-                <div style={{ textAlign:"right", flexShrink:0 }}>
-                  <div style={{ fontSize:16, fontWeight:400, color: p.type==="category" ? C.accentGold : C.accentLav }}>{convRate}%</div>
-                  <div style={{ fontSize:10, color:C.mu, letterSpacing:"0.05em" }}>conversion</div>
+              <div key={i} style={{ padding:"14px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:4 }}>✦ {p.name}</div>
+                <div style={{ fontSize:14, color:C.cr, lineHeight:1.5 }}>
+                  {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} manifested across {p.listens} listens — {convRate}% of listens ended in a win.
                 </div>
               </div>
             );
