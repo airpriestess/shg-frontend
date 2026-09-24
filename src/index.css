@@ -26,6 +26,18 @@ input,textarea{
 }
 input::placeholder,textarea::placeholder{color:#3a3430;}
 input:focus,textarea:focus{border-color:#2CB7A766;box-shadow:0 0 0 3px rgba(44,183,167,0.08);}
+/* The global input style above is built for the dark marketing site. Inside the
+   portal's light theme those inputs sit on cream cards, where black would read
+   as a hole in the page. */
+[data-portal-theme="light"] input,
+[data-portal-theme="light"] textarea{
+  background:#fdf0e8;border-color:rgba(26,16,8,0.18);color:#1a1008;
+}
+[data-portal-theme="light"] input::placeholder,
+[data-portal-theme="light"] textarea::placeholder{color:#9a8a7a;}
+[data-portal-theme="light"] select{
+  background-color:#fdf0e8;border-color:rgba(26,16,8,0.18);color:#1a1008;
+}
 select{
   background:#000000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f2ece4' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;
   border:1px solid #1c1828;color:#fdf0e8;border-radius:10px;padding:10px 36px 10px 14px;
@@ -201,3 +213,28 @@ select option:hover,select option:checked{background:#1c1828;}
 
 
 /* v2 */
+
+/* Lucky Girl glow: border and halo cycle through the brand gradient. */
+@keyframes shg-lg-glow{
+  0%  {border-color:#F5E0A0;box-shadow:0 0 30px rgba(245,224,160,.75)}
+  25% {border-color:#E8B870;box-shadow:0 0 30px rgba(232,184,112,.75)}
+  50% {border-color:#BFA5D8;box-shadow:0 0 30px rgba(191,165,216,.8)}
+  75% {border-color:#2CB7A7;box-shadow:0 0 30px rgba(44,183,167,.75)}
+  100%{border-color:#F5E0A0;box-shadow:0 0 30px rgba(245,224,160,.75)}
+}
+@media(prefers-reduced-motion:reduce){[style*="shg-lg-glow"]{animation:none!important}}
+
+/* Portal placeholders: readable in both themes. Several inputs set their own
+   pale placeholder inline or with an opacity, so these win with !important. */
+[data-portal-theme="light"] input::placeholder,
+[data-portal-theme="light"] textarea::placeholder{color:#1a1008!important;opacity:.7!important;}
+[data-portal-theme="dark"] input::placeholder,
+[data-portal-theme="dark"] textarea::placeholder{color:#F2ECE4!important;opacity:.7!important;}
+
+/* The Analytics card treatment on every other tab: outermost cream / white /
+   black cards get the Lucky Girl glow. Cards nested inside a glowing card are
+   left alone so boxes don't glow inside boxes. */
+.shg-tab-glow :is(div,button)[style*="border-radius: 1"]:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"]):not(:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"]) *){
+  border:2px solid #BFA5D8!important;
+  animation:shg-lg-glow 3s linear infinite;
+}

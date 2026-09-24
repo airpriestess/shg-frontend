@@ -67,7 +67,7 @@ export const SAMPLE_TRACKS = [
 export const SAMPLE_DESIRES = [
   {
     id: "d1",
-    title: "Manifest £10,000 this month",
+    title: "Manifest $10,000 this month",
     category: "Richgirlmaxxing",
     intention: "I am a money magnet. Wealth flows to me effortlessly from expected and unexpected sources.",
     startDate: "2026-06-24",
