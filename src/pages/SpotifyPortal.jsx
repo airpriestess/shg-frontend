@@ -1018,7 +1018,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </button>
         </div>
         {/* Main */}
-        <div style={{ flex:1,overflowY:"auto",background:isDark?(TAB_WASH[tab]?.dark||C.bg):C.bg,paddingBottom:20,backgroundImage:isDark?LG_FADE:LG_FADE_LIGHT }}>
+        <div style={{ flex:1,overflowY:"auto",background:isDark?(TAB_WASH[tab]?.dark||C.bg):C.bg,paddingBottom:20,backgroundImage:isDark?"none":LG_FADE_LIGHT }}>
           <div style={{ position:"sticky",top:0,zIndex:50,padding:"16px 24px 12px",background:C.bg2 }}>
             <style>{`.shg-home-search::placeholder{color:${C.cr};opacity:0.55;}`}</style>
             <div style={{ maxWidth:360,position:"relative" }}>

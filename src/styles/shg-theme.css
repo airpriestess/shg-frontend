@@ -58,3 +58,5 @@
 /* Focused fields go white so she can see what she is typing, in both themes. */
 [data-portal-theme] input:focus,[data-portal-theme] textarea:focus,[data-portal-theme] [contenteditable]:focus{background:#FFFFFF!important;color:#000!important;-webkit-text-fill-color:#000!important;caret-color:#000;outline:none;box-shadow:0 0 0 2px #BFA5D8!important}
 [data-portal-theme] input:focus::placeholder,[data-portal-theme] textarea:focus::placeholder{color:#000!important;opacity:.55!important}
+/* Matte black dark mode: no warm wash, cards neutral, glow kept thin so nothing reads brown. */
+[data-portal-theme="dark"]{--shg-card:#0E0E0E;--shg-glow:0 0 0 1px rgba(0,0,0,0),0 0 18px rgba(191,165,216,.16),0 0 28px rgba(44,183,167,.10);background-image:none!important}
