@@ -281,7 +281,7 @@ const CAT_DESC = {
     benefits:["Reduce the anxiety of being overlooked","Speak up for what you're actually worth","Feel confident taking up space in the room"] },
 };
 function getDesc(track) {
-  return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively, no active effort required","Track the shift in ProofOS as signs come in"] };
+  return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively, no active effort required","Track the shift in proofOS as signs come in"] };
 }
 
 const TRACKS = [
@@ -785,7 +785,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         </div>
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
-            <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier  to unlock ProofOS and Analytics.</div>
+            <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier  to unlock proofOS and Analytics.</div>
             <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$79/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now, instant access "}
@@ -864,7 +864,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
     { id:"home",      label:"Home",      I:Ico.Home   },
     { id:"search",    label:"Search",    I:Ico.Search },
     { id:"library",   label:"Library",   I:Ico.Lib    },
-    { id:"proof",     label:"ProofOS",   I:Ico.Proof  },
+    { id:"proof",     label:"proofOS",   I:Ico.Proof  },
     { id:"analytics", label:"Analytics", I:Ico.Stats  },
   ];
 
@@ -874,7 +874,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
       {tab==="search"  && <div className="shg-tab-glow" style={{zoom:1.1}}><SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
       {tab==="library" && <div className="shg-tab-glow" style={{zoom:1.1}}><LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
-      {tab==="proof"   && <div className="shg-tab-glow" style={{zoom:1.1}}>{(userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="ProofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}</div>}
+      {tab==="proof"   && <div className="shg-tab-glow" style={{zoom:1.1}}>{(userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="proofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}</div>}
       {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email} userName={userName} apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/>)}
       {tab==="shop"    && <div className="shg-tab-glow" style={{zoom:1.1}}><ShopTab C={C}/></div>}
     </>
@@ -945,7 +945,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
-            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. proofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
             <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
@@ -989,6 +989,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
             onMouseLeave={e=>e.currentTarget.style.color=C.mu}>
             <Ico.Book c={C.mu}/> Listening Guide
           </button>
+          <div style={{ padding:"2px 18px 6px",fontSize:11,lineHeight:1.4,color:C.cr }}>Headphones on. Never while driving. Avoid if you have epilepsy.</div>
           <div style={{ height:1,background:C.border,margin:"6px 16px" }}/>
           <div style={{ padding:"0 18px 4px",fontSize:11,fontWeight:400,color:C.dim,letterSpacing:"0.12em",textTransform:"uppercase" }}>Recently played</div>
           {TRACKS.slice(0,5).map(t=>(
@@ -1060,7 +1061,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
-            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. ProofOS, early access, and the full Guide, unlocked.</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. proofOS, early access, and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
             <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
@@ -1392,6 +1393,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         {["EMDR","Theta","Subliminal","Reiki"].map(l=><span key={l} className="shg-tag">{l}</span>)}
       </div>
       <button className="shg-cta" onClick={()=>{ onClose?.(); onLogSign?.(); }} style={{ marginBottom:28 }}>Log a sign in proofOS</button>
+          <div style={{ textAlign:"center",fontSize:12,marginTop:10,color:C.cr }}>Headphones on. Never while driving. Avoid if you have epilepsy.</div>
     </div>
   );
 }
@@ -1472,7 +1474,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <div onClick={onUpgradeClick} style={{ margin:"12px 16px",padding:"14px 18px",borderRadius:14,background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}>
           <div>
             <div style={{ fontSize:12,fontWeight:400,color:"#000",letterSpacing:"0.14em",textTransform:"uppercase",marginBottom:3, }}>Goddess offer</div>
-            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock ProofOS + Analytics, 10% off</div>
+            <div style={{ fontSize:16,fontWeight:400,color:"#000" }}>Unlock proofOS + Analytics, 10% off</div>
           </div>
           <div style={{ fontSize:18,color:"#000",flexShrink:0 }}>→</div>
         </div>
@@ -1484,7 +1486,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* PROOFOS TEASER, home tab */}
       <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
-          <div style={{ fontSize:13,fontWeight:600,color:"#167A6B",letterSpacing:"0.15em",textTransform:"uppercase",display:"inline-block" }}>ProofOS </div>
+          <div style={{ fontSize:20,fontWeight:500,color:C.cr }}><span style={{ fontSize:"0.75em",fontWeight:400 }}>proof</span>OS</div>
           <span style={{ fontSize:15,color:"#F5E0A0" }}>›</span>
         </div>
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
@@ -1496,14 +1498,14 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             </div>
           ))}
         </div>
-        <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore ProofOS →</div>
+        <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore proofOS →</div>
       </div>
 
       {/* QUICK DESIRE CAPTURE */}
       <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
           <div style={{ fontSize:13, fontWeight:700, color:C.cr, letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
-          <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in ProofOS →</button>
+          <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in proofOS →</button>
         </div>
         <style>{`.qd-input::placeholder{color:${isDark?"rgba(253,240,232,0.4)":"rgba(26,16,8,0.4)"}!important}`}</style>
         <div style={{ display:"flex", gap:8, alignItems:"center" }}>
@@ -1519,9 +1521,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             {quickListening ? "⏹" : "🎙"}
           </button>
           <button onClick={saveQuickDesire}
-            style={{ flexShrink:0, padding:"0 16px", height:42, borderRadius:8, border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:500,
-              background: quickSaved ? "#2CB7A7" : "linear-gradient(135deg,#E8B870,#BFA5D8)",
-              color:"#000", transition:"all 0.2s" }}>
+            className="shg-gfill" style={{ padding:"0 24px",minHeight:44,borderRadius:999,border:"none",color:"#000",fontSize:15,fontWeight:500,cursor:"pointer" }}>
             {quickSaved ? "✓ Saved" : "Add"}
           </button>
         </div>
@@ -2798,13 +2798,13 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
 }
 
 // ── PROOFOS TAB ────────────────────────────────────────────────────────────────
-function ProofLockedScreen({ C, onUpgrade, feature="ProofOS" }) {
+function ProofLockedScreen({ C, onUpgrade, feature="proofOS" }) {
   return (
     <div style={{ padding:"48px 24px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:14, minHeight:400, justifyContent:"center" }}>
       <div style={{ width:72, height:72, borderRadius:22, background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.25)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:30 }}>🔒</div>
       <div style={{ fontSize:18, color:C.cr }}>{feature} is a Goddess Tier feature</div>
       <div style={{ fontSize:15, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
-        {feature === "ProofOS"
+        {feature === "proofOS"
           ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
           : "Track your dominant emotional state, listening streaks, and the evidence building over time. Plus direct Q&A with Reshma — ask anything about the tracks, hypnosis, or your journey."}
       </div>
@@ -3652,7 +3652,7 @@ const OB_TRIED = [
 const OB_BUCKET = [
   { label:"Yes — walk me through it now",      sub:"I'll add my desires before I start" },
   { label:"Maybe later — just start me",       sub:"I'll add desires as I go" },
-  { label:"I already know what I want",        sub:"I'll add them myself in ProofOS" },
+  { label:"I already know what I want",        sub:"I'll add them myself in proofOS" },
 ];
 
 function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
@@ -3836,7 +3836,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
     {
       q: 9,
       title: "Do you want to set up your desire list now?",
-      sub: "Women who use the List Method manifest 3× faster. You can always do this later in ProofOS.",
+      sub: "Women who use the List Method manifest 3× faster. You can always do this later in proofOS.",
       content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_BUCKET.map(b => chip(b.label, bucket===b.label, ()=>setBucket(b.label), b.sub))}</div>,
       canNext: !!bucket,
       next: () => setStep(9),
