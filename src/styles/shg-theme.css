@@ -8,7 +8,7 @@
   --grad:linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%);
   --grad-diag:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
   --radius-card:20px; --radius-pill:999px; --radius-phone:44px;
-  --font:'Jost',sans-serif;
+  --font:'Futura','Futura PT','Jost',sans-serif;
 }
 
 /* ===== Reference helper classes, prefixed so they never clash with site CSS ===== */
@@ -49,5 +49,9 @@
 [data-portal-theme="dark"] [style*="text-transform: uppercase"]:not(button):not(.shg-pill),
 [data-portal-theme="dark"] [style*="letter-spacing: 0.15em"],[data-portal-theme="dark"] [style*="letter-spacing: 0.2em"]{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important;display:inline-block}
 .shg-hero{box-shadow:var(--shg-glow)}
-@media (max-width:600px){.shg-hero-clover{opacity:.35;right:-30px!important}}
+@media (max-width:600px){.shg-hero-clover{display:none}}
 [data-portal-theme="light"] [style*="color: rgb(122, 90, 154)"],[data-portal-theme="light"] [style*="color: rgb(160, 112, 32)"]{color:#000!important}
+
+/* elegant: lighter, smaller headings */
+[data-portal-theme] .shg-hero .shg-gt{font-size:28px!important;font-weight:400!important}
+[data-portal-theme] h1,[data-portal-theme] [style*="font-size: 34px"],[data-portal-theme] [style*="font-size: 38px"]{font-size:26px!important;font-weight:400!important}
