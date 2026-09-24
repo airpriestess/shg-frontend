@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHG App Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== SHG DESIGN TOKENS: copy these into the app as-is ===== */
+:root{
+  --black:#000000;
+  --surface:#0a0a0a;      /* phone / page panels */
+  --card:#141414;         /* cards on black */
+  --cream:#F2ECE4;        /* all body text on black, light panels */
+  --g1:#F5E0A0; --g2:#E8B870; --g3:#BFA5D8; --g4:#2CB7A7; --g5:#167A6B;
+  --grad:linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%);
+  --grad-diag:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+  --radius-card:20px; --radius-pill:999px; --radius-phone:44px;
+  --font:'Jost',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--cream);font-family:var(--font);font-weight:400;padding:48px 16px}
+h1{font-weight:400;font-size:40px;letter-spacing:.14em;text-transform:uppercase;text-align:center;
+   background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{text-align:center;font-size:20px;margin:12px 0 48px}
+
+/* gradient text + gradient border helpers */
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gb{border:1.5px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box}
+
+/* soft Lucky Girl glow behind a phone or hero element. Never a single colour, never a hard circle */
+.glow{position:relative;border-radius:var(--radius-phone)}
+.glow::before{content:"";position:absolute;inset:-6px;border-radius:inherit;background:var(--grad-diag);filter:blur(26px);opacity:.7;z-index:0}
+.glow>.phone{position:relative;z-index:1}
+
+.row{display:flex;flex-wrap:wrap;gap:56px;justify-content:center}
+.step{display:flex;flex-direction:column;align-items:center;gap:18px}
+.step .h{font-size:26px}
+.step .sd{font-size:18px;text-align:center;line-height:1.35}
+
+/* ===== PHONE ===== */
+.phone{width:300px;height:620px;border-radius:var(--radius-phone);background:var(--surface);padding:22px 18px;
+  border:3px solid transparent;background:linear-gradient(var(--surface),var(--surface)) padding-box,var(--grad) border-box}
+.notch{width:90px;height:10px;border-radius:5px;background:#1a1a1a;margin:0 auto 18px}
+.title{font-size:20px;font-weight:500;margin-bottom:14px}
+
+/* Library */
+.stat{border-radius:var(--radius-card);background:var(--grad);color:#000;padding:14px 16px;display:flex;justify-content:space-between;margin-bottom:14px}
+.stat b{font-weight:500;font-size:30px;display:block}.stat small{font-size:12px}
+.track{display:flex;align-items:center;gap:12px;border-radius:16px;padding:10px;margin-bottom:10px}
+.track .art{width:44px;height:44px;border-radius:10px;background:var(--grad);flex:none}
+.track .t{font-size:15px}.track .c{font-size:12px}
+.track .play{margin-left:auto;width:26px;height:26px;border-radius:50%;background:var(--grad)}
+
+/* Player */
+.np{font-size:12px;letter-spacing:.2em;text-align:center;margin-bottom:12px}
+.cover{height:190px;border-radius:24px;background:var(--grad);display:grid;place-items:center;margin-bottom:16px}
+.cover svg{width:150px}
+.tt{text-align:center;font-size:17px}.ts{text-align:center;font-size:12px;margin:6px 0 16px}
+.bar{height:5px;border-radius:3px;background:#2a2a2a;position:relative}.bar i{position:absolute;inset:0 40% 0 0;border-radius:3px;background:var(--grad)}
+.times{display:flex;justify-content:space-between;font-size:11px;margin:6px 0 18px}
+.ctrl{display:flex;justify-content:center;align-items:center;gap:34px}
+.pp{width:60px;height:60px;border-radius:50%;background:var(--grad);display:grid;place-items:center}
+.pp i{width:18px;height:22px;border-left:6px solid #000;border-right:6px solid #000}
+.tags{display:flex;gap:6px;justify-content:center;margin:18px 0 14px}
+.tag{font-size:11px;border:1px solid var(--cream);border-radius:var(--radius-pill);padding:3px 9px}
+.cta{display:block;text-align:center;border-radius:var(--radius-pill);background:var(--grad);color:#000;font-size:16px;font-weight:500;padding:14px}
+
+/* proofOS */
+.log{border-radius:var(--radius-card);padding:14px;margin-bottom:12px}
+.pill{display:inline-block;font-size:10px;letter-spacing:.08em;border-radius:var(--radius-pill);background:var(--grad);color:#000;padding:3px 10px;margin-bottom:8px}
+.log .t{font-size:15px}.log .d{font-size:12px;margin-top:4px}
+
+/* Progress */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.two div{border-radius:18px;padding:12px;text-align:center}.two b{font-weight:500;font-size:28px;display:block}
+.label{font-size:11px;letter-spacing:.18em;margin:6px 0 10px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:110px;margin-bottom:16px}.bars i{flex:1;border-radius:5px;background:var(--grad)}
+
+/* Intention list: graph paper on cream */
+.paper{width:min(900px,100%);margin:0 auto;border-radius:28px;background-color:var(--cream);color:#000;padding:28px 32px;
+  background-image:linear-gradient(rgba(191,165,216,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.3) 1px,transparent 1px);background-size:30px 30px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.colh{font-size:16px;letter-spacing:.06em;padding-bottom:10px;margin-bottom:14px;border-bottom:3px solid;border-image:var(--grad) 1}
+.it{display:flex;align-items:center;gap:12px;font-size:17px;margin-bottom:16px}
+.it .days{margin-left:auto;font-weight:500}
+.chk{width:30px;height:30px;border-radius:50%;background:var(--grad);flex:none;display:grid;place-items:center}
+.chk::after{content:"";width:10px;height:6px;border-left:3px solid #000;border-bottom:3px solid #000;transform:rotate(-45deg) translateY(-2px)}
+.open{width:30px;height:30px;border-radius:50%;background:var(--grad);flex:none}  /* solid gradient, NO tick */
+.foot{margin-top:10px;font-size:16px}
+@media (max-width:640px){.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<h1>How it works</h1>
+<p class="sub">The four core screens. Build the app to look exactly like this.</p>
+
+<div class="row">
+  <!-- 1 LIBRARY -->
+  <div class="step">
+    <div class="glow"><div class="phone">
+      <div class="notch"></div>
+      <div class="title gt">My Library</div>
+      <div class="stat"><div><b>21</b><small>day streak</small></div><div style="text-align:right"><b>127</b><small>listens</small></div></div>
+      <div class="track gb"><div class="art"></div><div><div class="t">Number One Priority</div><div class="c">LoveMaxxing</div></div><div class="play"></div></div>
+      <div class="track gb"><div class="art"></div><div><div class="t">I Get Paid To Exist</div><div class="c">RichGirlMaxxing</div></div><div class="play"></div></div>
+      <div class="track gb"><div class="art"></div><div><div class="t">Luck Finds Me</div><div class="c">LuckyGirlMaxxing</div></div><div class="play"></div></div>
+      <div class="track gb"><div class="art"></div><div><div class="t">Sleep Into It</div><div class="c">SleepMaxxing</div></div><div class="play"></div></div>
+      <div class="track gb"><div class="art"></div><div><div class="t">My New Identity</div><div class="c">Identity</div></div><div class="play"></div></div>
+    </div></div>
+    <div class="h gt">She picks her goal</div>
+    <div class="sd">tracks in the library,<br>by goal and category</div>
+  </div>
+
+  <!-- 2 PLAYER -->
+  <div class="step">
+    <div class="glow"><div class="phone">
+      <div class="notch"></div>
+      <div class="np gt">NOW PLAYING</div>
+      <div class="cover"><svg viewBox="0 0 100 100" fill="none" stroke="#000" stroke-width="1.4"><circle cx="38" cy="38" r="22"/><circle cx="62" cy="38" r="22"/><circle cx="38" cy="62" r="22"/><circle cx="62" cy="62" r="22"/></svg></div>
+      <div class="tt">I Attract Opportunities Constantly</div>
+      <div class="ts">LuckyGirlMaxxing · Hypnosis · 12 min</div>
+      <div class="bar"><i></i></div>
+      <div class="times"><span>7:12</span><span>12:00</span></div>
+      <div class="ctrl"><span>&#9198;</span><div class="pp"><i></i></div><span>&#9197;</span></div>
+      <div class="tags"><span class="tag">EMDR</span><span class="tag">Theta</span><span class="tag">Subliminal</span><span class="tag">Reiki</span></div>
+      <a class="cta">Log a sign in proofOS</a>
+    </div></div>
+    <div class="h gt">She listens</div>
+    <div class="sd">self hypnosis<br>and subliminals</div>
+  </div>
+
+  <!-- 3 proofOS -->
+  <div class="step">
+    <div class="glow"><div class="phone">
+      <div class="notch"></div>
+      <div class="title"><span style="font-size:.8em">proof</span>OS</div>
+      <div class="log gb"><span class="pill">MONEY</span><div class="t">$1,000 refund arrived</div><div class="d">Intention: $1K a day. 34 days.</div></div>
+      <div class="log gb"><span class="pill">LOVE</span><div class="t">He booked dinner, unprompted</div><div class="d">Intention: his priority. 12 days.</div></div>
+      <div class="log gb"><span class="pill">LUCK</span><div class="t">Upgraded, for free</div><div class="d">Sign logged 22:10.</div></div>
+      <a class="cta" style="margin-top:22px">+ Log a sign</a>
+    </div></div>
+    <div class="h gt">She logs every sign</div>
+    <div class="sd">proofOS,<br>the evidence tracker</div>
+  </div>
+
+  <!-- 4 PROGRESS -->
+  <div class="step">
+    <div class="glow"><div class="phone">
+      <div class="notch"></div>
+      <div class="title gt">Progress</div>
+      <div class="two"><div style="background:var(--grad);color:#000"><b>142</b>proofs</div><div class="gb"><b class="gt">12</b>manifested</div></div>
+      <div class="label gt">SIGNS PER WEEK</div>
+      <div class="bars"><i style="height:25%"></i><i style="height:35%"></i><i style="height:42%"></i><i style="height:40%"></i><i style="height:55%"></i><i style="height:62%"></i><i style="height:60%"></i><i style="height:75%"></i><i style="height:88%"></i><i style="height:100%"></i></div>
+      <div class="label gt">HAWKINS LEVEL</div>
+      <div class="bar" style="height:12px;margin-bottom:8px"><i style="inset:0 28% 0 0"></i></div>
+      <div style="font-size:12px;margin-bottom:14px">Courage to Love, 200 to 500</div>
+      <div class="log gb" style="text-align:center"><div class="t">Her fastest area: Luck</div><div class="d">about 3 days per sign</div></div>
+    </div></div>
+    <div class="h gt">She sees her proof</div>
+    <div class="sd">the AI learns how fast<br>she manifests</div>
+  </div>
+</div>
+
+<p class="sub gt" style="margin-top:40px">The more she logs, the more the AI learns.</p>
+
+<h1 style="margin-top:80px">Her intention list</h1>
+<p class="sub">Inside proofOS. Cream graph paper, gradient ticks for arrived, solid gradient circles for open.</p>
+<div class="paper">
+  <div class="cols">
+    <div>
+      <div class="colh">ARRIVED, WITH PROOF</div>
+      <div class="it"><span class="chk"></span>Invited to Marbella<span class="days">12 days</span></div>
+      <div class="it"><span class="chk"></span>He booked dinner, unprompted<span class="days">12 days</span></div>
+      <div class="it"><span class="chk"></span>$1,000 refund arrived<span class="days">34 days</span></div>
+      <div class="it"><span class="chk"></span>A boat party in Ibiza<span class="days">5 months</span></div>
+    </div>
+    <div>
+      <div class="colh">STILL OPEN, BEING LOGGED</div>
+      <div class="it"><span class="open"></span>$10K to speak in London</div>
+      <div class="it"><span class="open"></span>I make $10K a day</div>
+      <div class="it"><span class="open"></span>Paid cash for my home by the sea</div>
+      <div class="it"><span class="open"></span>I am chosen first, always</div>
+    </div>
+  </div>
+  <div class="foot">Every intention written first. Every arrival dated.</div>
+</div>
+
+</body>
+</html>

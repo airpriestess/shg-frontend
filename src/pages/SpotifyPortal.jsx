@@ -93,9 +93,9 @@ const THEMES = {
   // cream. Hierarchy comes from size and weight, never from greying text down.
   dark: {
     bg:      "#000000",
-    bg2:     "#0d0d0d",
-    bg3:     "#141414",
-    bg4:     "#1c1c1c",
+    bg2:     "#141414",   // --card in docs/design/shg-app-design.html
+    bg3:     "#1a1a1a",
+    bg4:     "#242424",
     nav:     "#000000",
     cr:      "#F2ECE4",
     mu:      "#F2ECE4",
@@ -114,20 +114,20 @@ const THEMES = {
   // Cards stay opaque (#fdf0e8) so the gradient never bleeds through and text
   // keeps its contrast; the gradient reads as the room, the cards as the paper.
   light: {
-    bg:      "linear-gradient(135deg,#EEE8F8 0%,#BFA5D8 28%,#2CB7A7 62%,#167A6B 100%)",
-    bg2:     "#fdf0e8",
-    bg3:     "#fdf0e8",
-    bg4:     "#f7ebe1",
-    nav:     "#fdf0e8",
+    bg:      "radial-gradient(60% 40% at 0% 0%,rgba(245,224,160,.55),transparent 70%),radial-gradient(55% 45% at 100% 30%,rgba(191,165,216,.45),transparent 70%),radial-gradient(60% 45% at 30% 100%,rgba(44,183,167,.30),transparent 70%),#F2ECE4",
+    bg2:     "#F2ECE4",
+    bg3:     "#F2ECE4",
+    bg4:     "#F2ECE4",
+    nav:     "#F2ECE4",
     cr:      "#000000",
     mu:      "#000000",
     dim:     "#000000",
-    border:  "rgba(0,0,0,0.22)",
-    inputBg: "#fdf0e8",
-    inputCr: "#1a1008",
-    accentGold: "#a07020",
-    accentLav:  "#7a5a9a",
-    accentTeal: "#167A6B",
+    border:  "#000000",
+    inputBg: "#F2ECE4",
+    inputCr: "#000000",
+    accentGold: "#000000",
+    accentLav:  "#000000",
+    accentTeal: "#000000",
     accentChamp:"#8a6010",
     accentDeep: "#0f5248",
   },
@@ -491,7 +491,7 @@ const Ico = {
   Play:   ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><polygon points="6 3 20 12 6 21"/></svg>,
   Pause:  ({dark})=><svg width="18" height="18" viewBox="0 0 24 24" fill={dark?"#000":"#fff"}><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>,
   Heart:  ({on})=><svg width="18" height="18" viewBox="0 0 24 24" fill={on?R:"none"} stroke={on?R:"rgba(253,240,232,0.45)"} strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.84-7.84 1.06-1.06a5.5 5.5 0 000-7.72z"/></svg>,
-  Lock:   ()=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={R} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
+  Lock:   ()=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F2ECE4" strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
   Edit:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||(c||"rgba(253,240,232,0.45)")} strokeWidth="2" strokeLinecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
   Undo:   ({c})=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={c||(c||"rgba(253,240,232,0.45)")} strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>,
   Star:   ({on,c})=><svg width="16" height="16" viewBox="0 0 24 24" fill={on?P:"none"} stroke={on?P:c||(c||"rgba(253,240,232,0.45)")} strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
@@ -1085,11 +1085,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
       <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
       {!isPreview && !fullP && (
-        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:"#167A6B",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
+        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:"linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#fdf0e8" }}>{displayTitle(track.title)}</div>
-            <div style={{ fontSize:13,color:"rgba(253,240,232,0.65)" }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
+            <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#000000" }}>{displayTitle(track.title)}</div>
+            <div style={{ fontSize:13,color:"#000000" }}>{AUDIO_URLS[track.title]?"● Live audio":"○ Coming soon"}</div>
           </div>
           <button onClick={e=>{e.stopPropagation();toggleLike(track.id,e);}} style={{ background:"none",border:"none",padding:6,lineHeight:0 }}><Ico.Heart on={liked.has(track.id)}/></button>
           <button onClick={e=>{e.stopPropagation();setPlay(p=>!p);}} style={{ width:36,height:36,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:0,flexShrink:0 }}>
@@ -1100,7 +1100,7 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
           </div>
         </div>
       )}
-      {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
+      {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} onLogSign={()=>setTab("proof")} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
       {/* Bottom nav */}
       {/* Floating log-a-sign button */}
       {!fullP && (
@@ -1111,11 +1111,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
         >✦</button>
       )}
       {!fullP && (
-        <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#0a0906":"#ffffff",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.08)":"rgba(0,0,0,0.1)"}`,display:"flex",zIndex:60 }}>
+        <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#000000":"#F2ECE4",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.08)":"rgba(0,0,0,0.1)"}`,display:"flex",zIndex:60 }}>
           {tabs.map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
-              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#E8B870":"#0a0906"):(isDark?"rgba(255,255,255,0.35)":"rgba(0,0,0,0.35)")}/>
-              <span style={{ fontSize:11,fontWeight:tab===n.id?600:400,color:tab===n.id?(isDark?"#E8B870":"#0a0906"):(isDark?"rgba(255,255,255,0.35)":"rgba(0,0,0,0.35)") }}>{n.label}</span>
+              <n.I a={tab===n.id} c={tab===n.id?(isDark?"#F2ECE4":"#000000"):(isDark?"#F2ECE4":"#000000")}/>
+              <span style={{ fontSize:11,fontWeight:tab===n.id?600:400,color:tab===n.id?(isDark?"#F2ECE4":"#000000"):(isDark?"#F2ECE4":"#000000") }}>{n.label}</span>
             </button>
           ))}
         </div>
@@ -1170,11 +1170,11 @@ function BetaBanner({ C, isDark }) {
     try { sessionStorage.setItem("shg_beta_dismissed", "1"); } catch {}
   };
   return (
-    <div style={{ background:isDark?"#0a0a0a":"#000000",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
-      <span style={{ fontSize:12,fontWeight:400,color:C.mu,fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",display:"block" }}>
-        <span style={{ fontWeight:600,letterSpacing:"0.08em",color:"#E8B870" }}>BETA</span>, some tracks may not work yet.
+    <div style={{ background:"#000000",borderBottom:`1px solid ${C.border}`,padding:"6px 36px 6px 16px",textAlign:"center",flexShrink:0,position:"relative" }}>
+      <span style={{ fontSize:12,fontWeight:400,color:"#F2ECE4",fontFamily:"'Jost',sans-serif",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",display:"block" }}>
+        <span className="shg-gt" style={{ fontWeight:500,letterSpacing:"0.08em" }}>BETA</span>, some tracks may not work yet.
       </span>
-      <button onClick={close} aria-label="Dismiss" style={{ position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",width:22,height:22,borderRadius:"50%",background:"none",border:"none",color:C.mu,fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",WebkitTapHighlightColor:"transparent" }}>✕</button>
+      <button onClick={close} aria-label="Dismiss" style={{ position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",width:22,height:22,borderRadius:"50%",background:"none",border:"none",color:"#F2ECE4",fontSize:15,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",WebkitTapHighlightColor:"transparent" }}>✕</button>
     </div>
   );
 }
@@ -1193,7 +1193,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
           <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.cr,display:"flex",alignItems:"center",gap:8,fontSize:15,fontFamily:"'Jost',sans-serif" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg> Back
           </button>
-          <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
+          <span className="shg-gt" style={{ fontSize:13,fontWeight:500,letterSpacing:"0.2em",textTransform:"uppercase" }}>Now Playing</span>
           <div style={{ width:60 }}/>
         </div>
         <div style={{ flex:1,overflowY:"auto",display:"flex",justifyContent:"center",padding:"20px 48px 60px" }}>
@@ -1279,8 +1279,8 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
 }
 
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
-function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, C, isDark, hasAudio }) {
-  const [view, setView] = useState("desc"); // cover | script | desc
+function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, onLogSign, C, isDark, hasAudio }) {
+  const [view, setView] = useState("cover"); // cover | script | desc
   return (
     <div style={{ position:"absolute",inset:0,background:C.bg,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
       <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:52,marginBottom:24 }}>
@@ -1344,16 +1344,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
       ) : (
       <>
-      <Thumb title={track.title} cat={track.cat} size={270} radius={14}/>
-      {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
-      <div style={{ width:"100%",marginTop:24,marginBottom:12 }}>
-        <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr }}>{displayTitle(track.title)}</div>
-        <div style={{ fontSize:16,color:C.mu }}>Reshma Oracle</div>
+      <div className="shg-gfill" style={{ width:"100%",maxWidth:320,aspectRatio:"1.4",borderRadius:24,display:"grid",placeItems:"center" }}>
+        <svg viewBox="0 0 100 100" width="58%" fill="none" stroke="#000" strokeWidth="1.4"><circle cx="38" cy="38" r="22"/><circle cx="62" cy="38" r="22"/><circle cx="38" cy="62" r="22"/><circle cx="62" cy="62" r="22"/></svg>
       </div>
-      <div style={{ display:"flex",gap:8,width:"100%",marginBottom:20,flexWrap:"wrap" }}>
-        {track.format && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.format}</span>}
-        {track.cat && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.cat}</span>}
-        {track.dur && <span style={{ fontSize:11,padding:"5px 12px",borderRadius:20,background:C.bg3,color:C.mu,fontFamily:"'Jost',sans-serif" }}>{track.dur}</span>}
+      {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
+      <div style={{ width:"100%",marginTop:22,marginBottom:14,textAlign:"center" }}>
+        <div style={{ fontSize:21,fontWeight:400,marginBottom:6,color:C.cr }}>{displayTitle(track.title)}</div>
+        <div style={{ fontSize:14,color:C.cr }}>{[track.cat, track.format, track.dur].filter(Boolean).join(" · ")}</div>
       </div>
       <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
@@ -1390,6 +1387,11 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         <button onClick={nextTrack} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="24" height="24" viewBox="0 0 24 24" fill={C.cr}><path d="M5 4l10 8-10 8V4z"/><rect x="16.5" y="4" width="2.5" height="16" rx="1" fill={C.cr}/></svg></button>
         <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#E8B870":C.mu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
       </div>
+      {/* The five-layer method, visible on every track. */}
+      <div style={{ display:"flex",gap:6,justifyContent:"center",flexWrap:"wrap",margin:"22px 0 14px",color:C.cr }}>
+        {["EMDR","Theta","Subliminal","Reiki"].map(l=><span key={l} className="shg-tag">{l}</span>)}
+      </div>
+      <button className="shg-cta" onClick={()=>{ onClose?.(); onLogSign?.(); }} style={{ marginBottom:28 }}>Log a sign in proofOS</button>
     </div>
   );
 }
@@ -2035,6 +2037,37 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ fontSize:22, fontWeight:500, color:"#000", marginTop:8 }}>Here are today's insights.</div>
       </div>
 
+      {/* PROGRESS — the reference's Progress screen (docs/design/shg-app-design.html) */}
+      {(() => {
+        const proofs = isPreview ? 142 : threads.reduce((a,t)=>a+(t.signs?.length||0),0) + manifested;
+        const done = isPreview ? 12 : manifested;
+        const weeks = isPreview ? [25,35,42,40,55,62,60,75,88,100] : null; // real: signs grouped by week, needs backend
+        const hawk = isPreview ? { pct:72, label:"Courage to Love, 200 to 500" } : null;  // real: from emoLog trend
+        const fast = isPreview ? { area:"Luck", note:"about 3 days per sign" } : (analyticsData?.category_speed?.[0] ? { area:analyticsData.category_speed[0].category.replace("maxxing",""), note:`about ${analyticsData.category_speed[0].avg_days} days to manifest` } : null);
+        return (
+          <div className="shg-gb" style={{ margin:"0 16px 18px",borderRadius:22,padding:"24px 22px" }}>
+            <div className="shg-gt" style={{ fontSize:28,fontWeight:500,marginBottom:16,display:"inline-block" }}>Progress</div>
+            <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:20 }}>
+              <div className="shg-gfill" style={{ borderRadius:18,padding:"16px",textAlign:"center" }}><div style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{proofs}</div><div style={{ fontSize:15 }}>proofs</div></div>
+              <div className="shg-gb" style={{ borderRadius:18,padding:"16px",textAlign:"center",color:C.cr }}><div className="shg-gt" style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{done}</div><div style={{ fontSize:15 }}>manifested</div></div>
+            </div>
+            {weeks && <>
+              <div className="shg-gt" style={{ fontSize:12,letterSpacing:"0.18em",marginBottom:10 }}>SIGNS PER WEEK</div>
+              <div style={{ display:"flex",alignItems:"flex-end",gap:8,height:130,marginBottom:20 }}>
+                {weeks.map((h,i)=><i key={i} className="shg-gfill" style={{ flex:1,borderRadius:6,height:`${h}%` }}/>)}
+              </div>
+            </>}
+            {hawk && <>
+              <div className="shg-gt" style={{ fontSize:12,letterSpacing:"0.18em",marginBottom:10 }}>HAWKINS LEVEL</div>
+              <div style={{ height:14,borderRadius:8,background:"#2a2a2a",marginBottom:8,overflow:"hidden" }}><div className="shg-gfill" style={{ height:"100%",width:`${hawk.pct}%`,borderRadius:8 }}/></div>
+              <div style={{ fontSize:14,color:C.cr,marginBottom:18 }}>{hawk.label}</div>
+            </>}
+            {fast && <div className="shg-gb" style={{ borderRadius:18,padding:"14px",textAlign:"center",color:C.cr }}><div style={{ fontSize:17 }}>Her fastest area: {fast.area}</div><div style={{ fontSize:14,marginTop:4 }}>{fast.note}</div></div>}
+            <div className="shg-gt" style={{ fontSize:17,textAlign:"center",marginTop:18 }}>The more she logs, the more the AI learns.</div>
+          </div>
+        );
+      })()}
+
       {/* PROGRESS OVER TIME — the reason to come back: each period against the
           one before it. Preview shows sample figures; real members see it once
           the backend returns period totals. */}
@@ -2644,7 +2677,14 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const catOptions = ["All","Liked",...cats.filter(c=>c!=="All"&&c!=="Liked")];
   return (
     <div>
-      <div style={{ padding:"16px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+      <div style={{ padding:"18px 16px 12px" }}>
+        <div className="shg-gt" style={{ fontSize:28,fontWeight:500,marginBottom:14,display:"inline-block" }}>My Library</div>
+        <div className="shg-gfill" style={{ borderRadius:20,padding:"16px 20px",display:"flex",justifyContent:"space-between" }}>
+          <div><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?21:tracks.filter(t=>liked.has(t.id)).length}</div><div style={{ fontSize:13 }}>{isPreview?"day streak":"favourites"}</div></div>
+          <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
+        </div>
+      </div>
+      <div style={{ padding:"4px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
@@ -2723,7 +2763,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       )}
       <div style={{ padding:"0 16px" }}>
         {shown.map(t=>(
-          <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 0",borderBottom:`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+          <div key={t.id} className="shg-gb" onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:10,borderRadius:16,marginBottom:10,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
               <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
               {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
@@ -2737,8 +2777,9 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               <div style={{ fontSize:16,fontWeight:400,color:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>
                 {displayTitle(t.title)}{t.isNew&&<span style={{ marginLeft:6,fontSize:11,background:OMBRE,color:"#000",padding:"1px 5px",borderRadius:8,fontWeight:400,verticalAlign:"middle" }}>NEW</span>}
               </div>
-              <div style={{ fontSize:13,color:C.mu }}>{t.tier==="goddess"&&<span style={{ color:R }}> </span>}{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+              <div style={{ fontSize:13,color:C.cr }}>{t.cat}</div>
             </div>
+            <div className="shg-gfill" aria-hidden="true" style={{ width:30,height:30,borderRadius:"50%",flexShrink:0,display:"grid",placeItems:"center",fontSize:11 }}>▶</div>
             {!isPreview&&(
               <>
                 <button onClick={e=>{e.stopPropagation();toggleLike(t.id,e);}} style={{ background:"none",border:"none",padding:8,lineHeight:0 }}>
@@ -2932,8 +2973,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
         </div>
       )}
-      <div style={{ fontSize:22,fontWeight:600,marginBottom:2,color:"#167A6B",fontFamily:"'Jost',sans-serif",display:"inline-block" }}>ProofOS </div>
-      <div style={{ fontSize:15,color:PC.mu,marginBottom:14,fontWeight:400 }}>Your manifestation tracker for life. Every sign captured, forever.</div>
+      <div style={{ fontSize:30,fontWeight:500,marginBottom:2,color:PC.text }}><span style={{ fontSize:"0.8em" }}>proof</span>OS</div>
+      <div style={{ fontSize:16,color:PC.text,marginBottom:16,fontWeight:400 }}>proofOS, the evidence tracker.</div>
 
       {/* Filter banner, shown when drilled in from Analytics */}
       {proofFilter!=="all" && (
@@ -2946,14 +2987,57 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       )}
 
       {/* Stats */}
-      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:14 }}>
+      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,marginBottom:18 }}>
         {[[threads.length,"Desires"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
-          <div key={i} style={{ background:PC.card,borderRadius:12,padding:"12px 6px",textAlign:"center" }}>
-            <div style={{ fontSize:22,fontWeight:400,color:PC.text }}>{v}</div>
-            <div style={{ fontSize:12,color:PC.mu,fontWeight:400 }}>{l}</div>
+          <div key={i} className={i===0?"shg-gfill":"shg-gb"} style={{ borderRadius:20,padding:"16px 8px",textAlign:"center",color:i===0?"#000":PC.text }}>
+            <div className={i===0?"":"shg-gt"} style={{ fontSize:32,fontWeight:500,lineHeight:1.1 }}>{v}</div>
+            <div style={{ fontSize:13,fontWeight:400 }}>{l}</div>
           </div>
         ))}
       </div>
+
+      {/* SIGN FEED — latest signs as gradient-border cards (reference: .log .pill) */}
+      {(() => {
+        const short = c => ({Lovemaxxing:"LOVE","Rich Girl":"MONEY",Richgirlmaxxing:"MONEY",Luckygirlmaxxing:"LUCK",Beautymaxxing:"BEAUTY",Beauty:"BEAUTY"}[c] || String(c||"SIGN").replace(/maxxing/i,"").toUpperCase());
+        const feed = threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))).slice(-3).reverse();
+        if (!feed.length) return null;
+        return (
+          <div style={{ marginBottom:18 }}>
+            {feed.map(({sg,t},i)=>(
+              <div key={i} className="shg-gb" style={{ borderRadius:20,padding:"14px 16px",marginBottom:12 }}>
+                <span className="shg-pill">{short(t.category)}</span>
+                <div style={{ fontSize:16,color:PC.text,marginTop:8 }}>{sg.text}</div>
+                <div style={{ fontSize:13,color:PC.text,marginTop:4 }}>Intention: {t.desire}.{t.days!=null?` ${t.days} days.`:""}{sg.date?` Logged ${sg.date}.`:""}</div>
+              </div>
+            ))}
+            <button className="shg-cta" onClick={()=>setView("threads")}>+ Log a sign</button>
+          </div>
+        );
+      })()}
+
+      {/* INTENTION LIST — cream graph paper (reference: .paper .chk .open) */}
+      {threads.length>0 && (
+        <div style={{ borderRadius:28,backgroundColor:"#F2ECE4",color:"#000",padding:"24px 22px",marginBottom:20,
+          backgroundImage:"linear-gradient(rgba(191,165,216,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.3) 1px,transparent 1px)",backgroundSize:"30px 30px" }}>
+          <div style={{ fontSize:20,fontWeight:500,marginBottom:16 }}>Her intention list</div>
+          <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:28 }}>
+            {[["ARRIVED, WITH PROOF",manifested,true],["STILL OPEN, BEING LOGGED",inProgress,false]].map(([h,list,arrived])=>(
+              <div key={h}>
+                <div style={{ fontSize:15,letterSpacing:"0.06em",paddingBottom:10,marginBottom:14,borderBottom:"3px solid",borderImage:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B) 1" }}>{h}</div>
+                {list.length===0 && <div style={{ fontSize:15 }}>Nothing here yet.</div>}
+                {list.map(t=>(
+                  <div key={t.id} style={{ display:"flex",alignItems:"center",gap:12,fontSize:16,marginBottom:14 }}>
+                    <span className="shg-gfill" style={{ width:28,height:28,borderRadius:"50%",flexShrink:0,display:"grid",placeItems:"center",fontSize:14 }}>{arrived?"✓":""}</span>
+                    <span style={{ flex:1 }}>{t.desire}</span>
+                    {arrived && t.days!=null && <span style={{ fontWeight:500,whiteSpace:"nowrap" }}>{t.days} days</span>}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop:6,fontSize:15 }}>Every intention written first. Every arrival dated.</div>
+        </div>
+      )}
 
       {/* View toggle: Bucket List | Active | Proof Wall */}
       <div style={{ display:"flex",gap:6,marginBottom:15 }}>
@@ -3031,7 +3115,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                       {promoCatOpen===item.id && (
                         <>
                         <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
-                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                           {Object.keys(CAT_ICONS).map(c=>{
                             const catColor = CAT_ICONS[c].accent;
                             return (
@@ -3106,7 +3190,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
               <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
                 {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
-                  <div key={s.key} style={{ background:"#fdf0e8",borderRadius:10,padding:6,border:"1px solid rgba(0,0,0,0.12)" }}>
+                  <div key={s.key} style={{ background:"#F2ECE4",borderRadius:10,padding:6,border:"1px solid #000" }}>
                     {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
                     {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
                     <div style={{ fontSize:8.5,fontWeight:400,color:C.mu,marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
@@ -3155,7 +3239,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {trackPickerOpen && (
               <>
               <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {TRACKS.map(t=>{
                   const catColor = CAT_ICONS[t.cat]?.accent || R;
                   return (
@@ -3193,7 +3277,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {catPickerOpen && (
               <>
               <div onClick={()=>setCatPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing"].map(c=>{
                   const catColor = CAT_ICONS[c]?.accent || R;
                   const active = newCat===c;
@@ -3229,7 +3313,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             {feelPickerOpen && (
               <>
               <div onClick={()=>setFeelPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#0a0a0a":"#ffffff", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
+              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
                 {HAWKINS.slice().reverse().map(hItem=>(
                   <div key={hItem.n} onClick={()=>{setFeel(hItem.n); setFeelPickerOpen(false);}}
                     style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",

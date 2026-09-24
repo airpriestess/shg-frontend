@@ -238,3 +238,36 @@ select option:hover,select option:checked{background:#1c1828;}
   border:2px solid #BFA5D8!important;
   animation:shg-lg-glow 3s linear infinite;
 }
+
+/* ===== SHG design tokens (docs/design/shg-app-design.html) ===== */
+:root{
+  --shg-card:#141414; --shg-cream:#F2ECE4;
+  --shg-grad:linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%);
+  --shg-grad-diag:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+  /* soft glow built from the gradient's own colours: never a single colour */
+  --shg-glow:-10px -8px 28px rgba(245,224,160,.22),0 0 30px rgba(191,165,216,.28),10px 8px 28px rgba(44,183,167,.24);
+}
+[data-portal-theme="light"]{--shg-card:#F2ECE4;--shg-glow:-10px -8px 26px rgba(245,224,160,.45),0 0 26px rgba(191,165,216,.4),10px 8px 26px rgba(44,183,167,.3)}
+
+/* Cards: gradient border (the spec's .gb) plus the gradient glow. This replaces
+   the old cycling single-colour border wherever a card opted into the glow. */
+[data-portal-theme] [style*="shg-lg-glow"]:not([style*="shg-drift"]),
+.shg-tab-glow :is(div,button)[style*="border-radius: 1"]:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"],[style*="background: rgb(20, 20, 20)"]):not(:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"],[style*="background: rgb(20, 20, 20)"]) *){
+  animation:none!important;
+  border:1.5px solid transparent!important;
+  background:linear-gradient(var(--shg-card),var(--shg-card)) padding-box,var(--shg-grad) border-box!important;
+  box-shadow:var(--shg-glow)!important;
+}
+/* Hero greetings keep their gradient fill; only the edge and glow change. */
+[data-portal-theme] [style*="shg-drift"][style*="shg-lg-glow"]{
+  animation:shg-drift 4s ease-in-out infinite!important;
+  border-color:transparent!important;
+  box-shadow:var(--shg-glow)!important;
+}
+
+/* Spec helpers: .gt gradient text, .gb gradient-border card, .gfill gradient fill */
+.shg-gt{background:var(--shg-grad);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.shg-gb{border:1.5px solid transparent!important;background:linear-gradient(var(--shg-card),var(--shg-card)) padding-box,var(--shg-grad) border-box!important}
+.shg-gfill{background:var(--shg-grad)!important;color:#000!important}
+.shg-tag{font-size:12px;border:1px solid currentColor;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.shg-cta{display:block;width:100%;text-align:center;border:none;border-radius:999px;background:var(--shg-grad);color:#000;font:500 16px Jost,sans-serif;padding:14px;cursor:pointer}
