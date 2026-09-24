@@ -42,3 +42,12 @@
 [data-portal-theme="dark"] [style*="color: rgb(22, 122, 107)"],[data-portal-theme="dark"] [style*="color: rgb(44, 183, 167)"],[data-portal-theme="dark"] [style*="color: rgb(232, 184, 112)"],[data-portal-theme="dark"] [style*="color: rgb(191, 165, 216)"]{color:#F2ECE4!important}
 [data-portal-theme="light"] .shg-gt{background:none!important;color:#000!important;-webkit-text-fill-color:#000!important}
 [data-portal-theme="light"] [style*="background: rgb(0, 0, 0)"] .shg-gt{background:linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+
+/* ===== Method deck language: spaced-caps gradient labels, blurred gradient glow ===== */
+[data-portal-theme="dark"]{background-image:radial-gradient(40% 30% at 85% 10%,rgba(191,165,216,.14),transparent 70%),radial-gradient(40% 30% at 10% 90%,rgba(44,183,167,.12),transparent 70%)!important}
+/* uppercase section labels (PROOFOS, STATE A DESIRE, SIGNS PER WEEK...) become gradient spaced caps */
+[data-portal-theme="dark"] [style*="text-transform: uppercase"]:not(button):not(.shg-pill),
+[data-portal-theme="dark"] [style*="letter-spacing: 0.15em"],[data-portal-theme="dark"] [style*="letter-spacing: 0.2em"]{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important;display:inline-block}
+.shg-hero{box-shadow:var(--shg-glow)}
+@media (max-width:600px){.shg-hero-clover{opacity:.35;right:-30px!important}}
+[data-portal-theme="light"] [style*="color: rgb(122, 90, 154)"],[data-portal-theme="light"] [style*="color: rgb(160, 112, 32)"]{color:#000!important}

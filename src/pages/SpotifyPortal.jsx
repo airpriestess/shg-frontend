@@ -1152,8 +1152,8 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
 // ── PREVIEW BANNER ────────────────────────────────────────────────────────────
 function PreviewBanner({ onSignOut, C }) {
   return (
-    <div style={{ background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",padding:"9px 16px",textAlign:"center",flexShrink:0 }}>
-      <span style={{ fontSize:14,fontWeight:400,color:"#000",fontFamily:"'Jost',sans-serif" }}>
+    <div style={{ background:"#000",borderTop:"4px solid transparent",borderImage:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B) 1",padding:"8px 16px",textAlign:"center",flexShrink:0 }}>
+      <span style={{ fontSize:14,fontWeight:400,color:"#F2ECE4",fontFamily:"'Jost',sans-serif" }}>
         🔒 Preview mode, <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
       </span>
     </div>
@@ -1455,14 +1455,14 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
   return (
     <div className="shg-tab-glow" style={{ paddingBottom:80, zoom:1.3 }}>
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
-      <div style={{ margin:"16px 16px 14px", padding:"22px 20px", borderRadius:22, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12,
-        background:"linear-gradient(120deg,#BFA5D8 0%,#2CB7A7 40%,#F5E0A0 50%,#2CB7A7 60%,#BFA5D8 100%)", backgroundSize:"250% 250%",
-        border:"2px solid #BFA5D8", animation:"shg-drift 4s ease-in-out infinite, shg-lg-glow 3s linear infinite" }}>
-        <div onClick={openProfile} style={{ cursor:"pointer" }}>
-          <div style={{ fontSize:34, fontWeight:700, color:"#000", lineHeight:1.1 }}>Hello, {isPreview ? "Reshma" : firstName}</div>
-          <div style={{ fontSize:16, fontWeight:500, color:"#000", marginTop:6 }}>Welcome back. Pick up where you left off.</div>
+      <div className="shg-gb shg-hero" style={{ margin:"16px 16px 14px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
+        <svg aria-hidden="true" width="150" height="150" viewBox="0 0 40 40" className="shg-hero-clover" style={{ position:"absolute", right:64, top:"50%", transform:"translateY(-50%)", pointerEvents:"none" }}><defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".25" stopColor="#E8B870"/><stop offset=".52" stopColor="#BFA5D8"/><stop offset=".8" stopColor="#2CB7A7"/><stop offset="1" stopColor="#167A6B"/></linearGradient><filter id="hb" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter></defs><circle cx="20" cy="20" r="16" fill="url(#hg)" filter="url(#hb)" opacity=".35"/>{[[14,14],[26,14],[14,26],[26,26]].map(([x,y])=><circle key={x+"-"+y} cx={x} cy={y} r="8" fill="none" stroke="url(#hg)" strokeWidth="1"/>)}</svg>
+        <div onClick={openProfile} style={{ cursor:"pointer", position:"relative" }}>
+          <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>WELCOME BACK</div>
+          <div className="shg-gt" style={{ fontSize:34, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : firstName}</div>
+          <div style={{ fontSize:16, fontWeight:400, color:C.cr, marginTop:8 }}>Pick up where you left off.</div>
         </div>
-        <button onClick={()=>setTab("shop")} style={{ width:40,height:40,borderRadius:"50%",background:"rgba(0,0,0,0.12)",border:"1px solid rgba(0,0,0,0.35)",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
+        <button onClick={()=>setTab("shop")} className="shg-gfill" style={{ position:"relative",width:44,height:44,borderRadius:"50%",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         </button>
       </div>
@@ -2032,9 +2032,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
   return (
     <div>
       {/* Greeting: the board opens on her, not on a page title. */}
-      <div style={{ margin:"20px 16px 18px", padding:"30px 26px", borderRadius:24, background:"linear-gradient(120deg,#BFA5D8 0%,#2CB7A7 40%,#F5E0A0 50%,#2CB7A7 60%,#BFA5D8 100%)", backgroundSize:"250% 250%", border:"2px solid #BFA5D8", animation:"shg-drift 4s ease-in-out infinite, shg-lg-glow 3s linear infinite" }}>
-        <div style={{ fontSize:46, fontWeight:700, color:"#000", lineHeight:1.1 }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
-        <div style={{ fontSize:22, fontWeight:500, color:"#000", marginTop:8 }}>Here are today's insights.</div>
+      <div className="shg-gb shg-hero" style={{ margin:"20px 16px 18px", padding:"26px 22px", borderRadius:20 }}>
+        <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:38, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
+        <div style={{ fontSize:17, fontWeight:400, color:C.cr, marginTop:8 }}>Here are today's insights.</div>
       </div>
 
       {/* PROGRESS — the reference's Progress screen (docs/design/shg-app-design.html) */}
