@@ -872,11 +872,11 @@ export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forc
   const tabContent = (
     <>
       {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
-      {tab==="search"  && <div className="shg-tab-glow" style={{zoom:1.1}}><SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
-      {tab==="library" && <div className="shg-tab-glow" style={{zoom:1.1}}><LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
-      {tab==="proof"   && <div className="shg-tab-glow" style={{zoom:1.1}}>{(userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="proofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}</div>}
+      {tab==="search"  && <div className="shg-tab-glow" style={{zoom:1}}><SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
+      {tab==="library" && <div className="shg-tab-glow" style={{zoom:1}}><LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
+      {tab==="proof"   && <div className="shg-tab-glow" style={{zoom:1}}>{(userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="proofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}</div>}
       {tab==="analytics" && (userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="Analytics"/> : <AnalyticsTab threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} setTab={setTab} emoLog={emoLog} theme={theme} onDrillDown={(filter)=>{ setProofFilter(filter); setTab("proof"); }} openGuide={()=>setShowGuide(true)} userId={userId} token={token} userTier={userTier} userEmail={session?.user?.email} userName={userName} apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}/>)}
-      {tab==="shop"    && <div className="shg-tab-glow" style={{zoom:1.1}}><ShopTab C={C}/></div>}
+      {tab==="shop"    && <div className="shg-tab-glow" style={{zoom:1}}><ShopTab C={C}/></div>}
     </>
   );
 
@@ -1455,7 +1455,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
     try { r.start(); } catch(e) { setQuickListening(false); voiceRef.current = null; setVoiceError("Could not start microphone"); }
   };
   return (
-    <div className="shg-tab-glow" style={{ paddingBottom:80, zoom:1.1 }}>
+    <div className="shg-tab-glow" style={{ paddingBottom:80, zoom:1 }}>
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
       <div className="shg-gb shg-hero" style={{ margin:"16px 16px 14px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
         <img src="/logo_transparent_cropped.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
@@ -2139,7 +2139,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
             background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
             backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
-            border:"1px solid rgba(255,255,255,0.6)", zoom:1.15 }}>
+            border:"1px solid rgba(255,255,255,0.6)", zoom:15 }}>
 
             {/* HERO: Signs this week — the most important metric */}
             <div style={{ marginBottom:18 }}>

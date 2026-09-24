@@ -60,3 +60,8 @@
 [data-portal-theme] input:focus::placeholder,[data-portal-theme] textarea:focus::placeholder{color:#000!important;opacity:.55!important}
 /* Matte black dark mode: no warm wash, cards neutral, glow kept thin so nothing reads brown. */
 [data-portal-theme="dark"]{--shg-card:#0E0E0E;--shg-glow:0 0 0 1px rgba(0,0,0,0),0 0 18px rgba(191,165,216,.16),0 0 28px rgba(44,183,167,.10);background-image:none!important}
+/* Elegant type scale: small, light, spaced. Caps oversized inline sizes. */
+[data-portal-theme] [style*="font-size: 4"],[data-portal-theme] [style*="font-size: 5"],[data-portal-theme] [style*="font-size: 6"],[data-portal-theme] [style*="font-size: 7"],[data-portal-theme] [style*="font-size: 8"]{font-size:34px!important;font-weight:400!important;letter-spacing:-.01em}
+[data-portal-theme] [style*="font-size: 3"]:not([style*="font-size: 3px"]){font-size:24px!important;font-weight:400!important}
+[data-portal-theme] [style*="font-size: 2"]:not([style*="font-size: 2px"]){font-size:18px!important;font-weight:400!important}
+[data-portal-theme] .shg-hero .shg-gt{font-size:24px!important}
