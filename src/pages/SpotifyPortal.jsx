@@ -1038,7 +1038,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           {tabContent}
         </div>
       </div>
-      <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} showDesc={showDesc} setShowDesc={setShowDesc}/>
+      <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} showDesc={showDesc} setShowDesc={setShowDesc} onLogSign={()=>{setShowDesc(false);setTab("proof");}}/>
     </div>
   );
 
@@ -1184,65 +1184,136 @@ function BetaBanner({ C, isDark }) {
 }
 
 // ── DESKTOP PLAYER ─────────────────────────────────────────────────────────────
-function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, showDesc, setShowDesc }) {
+// Time helpers: "10:00" or "12 min" to seconds, and elapsed time from progress %.
+const durSecs = (d) => { const m = String(d||"").match(/(\d+):(\d{2})/); if (m) return (+m[1])*60 + (+m[2]); const n = String(d||"").match(/(\d+)/); return n ? (+n[1])*60 : 0; };
+const mmss = (s) => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+const elapsed = (d, p) => mmss(durSecs(d) * (p||0) / 100);
+
+// ── FULL PLAYER (desktop, opened from the player bar) ─────────────────────────
+// A real player on the left, the track's story and her own notes on the right.
+function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, onClose, onLogSign }) {
+  const d = getDesc(track);
+  const [pane, setPane] = useState("about");
+  const key = `shg_notes_${track.id}`;
+  const [notes, setNotes] = useState(() => { try { return JSON.parse(localStorage.getItem(key) || "[]"); } catch { return []; } });
+  const [draft, setDraft] = useState("");
+  const rKey = `shg_rating_${track.id}`;
+  const [rating, setRating] = useState(() => { try { return +localStorage.getItem(rKey) || 0; } catch { return 0; } });
+  useEffect(() => { try { setRating(+localStorage.getItem(rKey) || 0); } catch { setRating(0); } }, [rKey]);
+  const rate = (n) => { setRating(n); try { localStorage.setItem(rKey, String(n)); } catch {} };
+  useEffect(() => { try { setNotes(JSON.parse(localStorage.getItem(key) || "[]")); } catch { setNotes([]); } }, [key]);
+  useEffect(() => { const k = (e) => { if (e.key === "Escape") onClose(); }; window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [onClose]);
+  const saveNotes = (list) => { setNotes(list); try { localStorage.setItem(key, JSON.stringify(list)); } catch {} };
+  const addNote = () => { const t = draft.trim(); if (!t) return; saveNotes([{ t, at: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}), pos: elapsed(track.dur, prog) }, ...notes]); setDraft(""); };
+  const G = "linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)";
+  const ink = C.cr, line = isDark ? "#222" : "rgba(0,0,0,.14)";
+  const iconBtn = { background:"none", border:"none", cursor:"pointer", lineHeight:0, padding:8, color:ink };
+  const tab = (id, label) => (
+    <button role="tab" aria-selected={pane===id} onClick={()=>setPane(id)} style={{ background:pane===id?G:"transparent", color:pane===id?"#000":ink, border:pane===id?"none":`1px solid ${line}`, borderRadius:999, padding:"8px 16px", fontSize:13, cursor:"pointer", fontFamily:"inherit" }}>{label}</button>
+  );
+  return (
+    <div role="dialog" aria-modal="true" aria-label="Now playing" style={{ position:"fixed",inset:0,zIndex:1000,background:C.bg,display:"flex",flexDirection:"column",color:ink }}>
+      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"22px 40px" }}>
+        <button onClick={onClose} style={{ ...iconBtn, display:"flex", alignItems:"center", gap:8, fontSize:15, lineHeight:1, fontFamily:"inherit" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><polyline points="15 18 9 12 15 6"/></svg> Back
+        </button>
+        <span style={{ fontSize:11,letterSpacing:".3em" }}>NOW PLAYING</span>
+        <div style={{ width:70 }}/>
+      </div>
+      <div style={{ flex:1,overflowY:"auto",padding:"8px 40px 48px" }}>
+        <div style={{ display:"flex",gap:56,maxWidth:1040,margin:"0 auto",alignItems:"flex-start",flexWrap:"wrap" }}>
+          {/* PLAYER */}
+          <div style={{ flex:"0 0 380px",maxWidth:"100%",textAlign:"center" }}>
+            <div style={{ width:"100%",aspectRatio:"1",borderRadius:24,background:G,display:"grid",placeItems:"center",boxShadow:playing?"0 0 26px rgba(44,183,167,.35),0 0 40px rgba(191,165,216,.25)":"none",transition:"box-shadow .6s" }}>
+              <img src="/logo_transparent_cropped.png" alt="" style={{ width:"42%",animation:playing?"shg-fp-breathe 4.5s ease-in-out infinite":"none" }}/>
+            </div>
+            <div style={{ fontSize:24,marginTop:22 }}>{displayTitle(track.title)}</div>
+            <div style={{ fontSize:13,marginTop:6 }}>{[track.cat, track.format, track.dur].filter(Boolean).join(" · ")}</div>
+            <div style={{ display:"flex",alignItems:"center",gap:10,marginTop:20 }}>
+              <span style={{ fontSize:12,width:40,textAlign:"right" }}>{elapsed(track.dur, prog)}</span>
+              <div role="slider" aria-label="Position" aria-valuenow={Math.round(prog)} aria-valuemin={0} aria-valuemax={100} tabIndex={0}
+                onKeyDown={e=>{ if(e.key==="ArrowRight") seekTo(Math.min(100,prog+2),e); if(e.key==="ArrowLeft") seekTo(Math.max(0,prog-2),e); }}
+                onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}
+                style={{ flex:1,height:4,borderRadius:4,background:line,cursor:"pointer",position:"relative" }}>
+                <div style={{ width:`${prog}%`,height:"100%",borderRadius:4,background:G }}/>
+              </div>
+              <span style={{ fontSize:12,width:40,textAlign:"left" }}>{track.dur}</span>
+            </div>
+            <div style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:26,marginTop:18 }}>
+              <button onClick={()=>setLooping(l=>!l)} aria-pressed={isLooping} aria-label="Repeat" style={{ ...iconBtn, opacity:isLooping?1:.55 }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/></svg>
+              </button>
+              <button onClick={prevTrack} aria-label="Previous" style={iconBtn}><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 20L9 12l10-8v16z"/><rect x="5" y="4" width="2" height="16" rx="1"/></svg></button>
+              <button onClick={()=>setPlay(p=>!p)} aria-label={playing?"Pause":"Play"} style={{ width:68,height:68,borderRadius:"50%",border:"none",background:G,display:"grid",placeItems:"center",cursor:"pointer",boxShadow:"0 0 18px rgba(44,183,167,.35)" }}>
+                {playing?<Ico.Pause dark/>:<Ico.Play dark/>}
+              </button>
+              <button onClick={nextTrack} aria-label="Next" style={iconBtn}><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 4l10 8-10 8V4z"/><rect x="17" y="4" width="2" height="16" rx="1"/></svg></button>
+              <button onClick={e=>toggleLike(track.id,e)} aria-label="Favourite" style={iconBtn}><Ico.Heart on={liked.has(track.id)}/></button>
+            </div>
+            <div style={{ display:"flex",gap:6,justifyContent:"center",flexWrap:"wrap",marginTop:18 }}>
+              {["Affirmations","EMDR","Theta","Subliminal","Reiki"].map(t=><span key={t} className="shg-tag">{t}</span>)}
+            </div>
+            <button className="shg-cta" onClick={onLogSign} style={{ marginTop:20 }}>Log a sign in proofOS</button>
+            <div style={{ fontSize:12,marginTop:12 }}>Headphones on. Never while driving. Avoid if you have epilepsy.</div>
+          </div>
+          {/* STORY + NOTES */}
+          <div style={{ flex:"1 1 360px",minWidth:0 }}>
+            <div role="tablist" style={{ display:"flex",gap:8,marginBottom:22 }}>{tab("about","About this track")}{tab("notes",`My notes${notes.length?` · ${notes.length}`:""}`)}</div>
+            {pane==="about" ? (
+              <>
+                <div style={{ fontSize:11,letterSpacing:".26em",marginBottom:10 }}>THE SHIFT</div>
+                <div style={{ fontSize:18,lineHeight:1.7,marginBottom:28,maxWidth:560 }}>{d.shift}</div>
+                <div style={{ fontSize:11,letterSpacing:".26em",marginBottom:10 }}>WHAT CHANGES</div>
+                <div style={{ display:"grid",gap:10,marginBottom:28 }}>
+                  {d.benefits.map((b,i)=>(<div key={i} style={{ display:"flex",gap:12,alignItems:"baseline",fontSize:16,lineHeight:1.6 }}><span style={{ width:8,height:8,borderRadius:"50%",background:G,flexShrink:0,transform:"translateY(-1px)" }}/>{b}</div>))}
+                </div>
+                <div style={{ fontSize:11,letterSpacing:".26em",marginBottom:10 }}>FIVE LAYERS IN THIS TRACK</div>
+                <div style={{ fontSize:14,lineHeight:1.7,marginBottom:28,maxWidth:560 }}>Specific affirmations in Reshma's voice, EMDR bilateral sound, binaural beats for the theta state, subliminals, and Reiki.</div>
+                {CAT_GUIDE[track.cat] && (GUIDES_AVAILABLE.has(track.cat)
+                  ? <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" className="shg-gb" style={{ display:"inline-flex",flexDirection:"column",gap:2,padding:"14px 20px",borderRadius:16,textDecoration:"none",color:ink }}><span style={{ fontSize:10,letterSpacing:".24em" }}>RELATED GUIDE</span><span style={{ fontSize:16 }}>{CAT_GUIDE[track.cat]} →</span></a>
+                  : <div style={{ display:"inline-flex",flexDirection:"column",gap:2,padding:"14px 20px",borderRadius:16,border:`1px dashed ${line}` }}><span style={{ fontSize:10,letterSpacing:".24em" }}>RELATED GUIDE</span><span style={{ fontSize:15 }}>{CAT_GUIDE[track.cat]}, coming soon</span></div>)}
+              </>
+            ) : (
+              <>
+                <div style={{ fontSize:11,letterSpacing:".26em",marginBottom:8 }}>HOW DID IT FEEL?</div>
+                <div role="radiogroup" aria-label="Rate this track" style={{ display:"flex",gap:6,marginBottom:22 }}>
+                  {[1,2,3,4,5].map(n=>(
+                    <button key={n} role="radio" aria-checked={rating===n} aria-label={`${n} of 5`} onClick={()=>rate(n)} style={{ ...iconBtn, padding:2 }}>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill={n<=rating?"url(#fpstar)":"none"} stroke="currentColor" strokeWidth="1"><defs><linearGradient id="fpstar" x1="0" x2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".5" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient></defs><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>
+                    </button>
+                  ))}
+                </div>
+                <div style={{ fontSize:14,lineHeight:1.6,marginBottom:12 }}>What came up while you listened? A feeling, an image, a word. Only you can see these.</div>
+                <textarea id="fp-note" value={draft} onChange={e=>setDraft(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"&&(e.metaKey||e.ctrlKey)) addNote(); }} rows={4} placeholder="I felt lighter at the part about…"
+                  style={{ width:"100%",boxSizing:"border-box",borderRadius:14,padding:14,fontSize:15,lineHeight:1.5,fontFamily:"inherit",border:`1px solid ${ink}`,background:"transparent",color:ink,resize:"vertical" }}/>
+                <button className="shg-cta" onClick={addNote} disabled={!draft.trim()} style={{ marginTop:10,opacity:draft.trim()?1:.6 }}>Save note at {elapsed(track.dur, prog)}</button>
+                <div style={{ marginTop:22 }}>
+                  {notes.length===0 && <div style={{ fontSize:14 }}>No notes yet for this track.</div>}
+                  {notes.map((n,i)=>(
+                    <div key={i} style={{ display:"flex",gap:12,alignItems:"flex-start",padding:"12px 0",borderBottom:`1px solid ${line}` }}>
+                      <div style={{ flex:1 }}><div style={{ fontSize:11,letterSpacing:".16em",marginBottom:4 }}>{n.at.toUpperCase()} · AT {n.pos}</div><div style={{ fontSize:15,lineHeight:1.55 }}>{n.t}</div></div>
+                      <button onClick={()=>saveNotes(notes.filter((_,k)=>k!==i))} aria-label="Delete note" style={{ ...iconBtn, padding:4, fontSize:16, lineHeight:1 }}>×</button>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+      <style>{`@keyframes shg-fp-breathe{50%{transform:scale(1.05)}}@media(prefers-reduced-motion:reduce){[aria-label="Now playing"] *{animation:none!important}}`}</style>
+    </div>
+  );
+}
+
+function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, showDesc, setShowDesc, onLogSign }) {
   const d = getDesc(track);
   // On teal nav bar, text must always be cream regardless of theme
   const navCr = C.cr;
   const navMu = C.cr;
   return (
     <>
-    {showDesc && (
-      <div style={{ position:"fixed",inset:0,zIndex:1000,background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif" }}>
-        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",padding:"24px 48px" }}>
-          <button onClick={()=>setShowDesc(false)} style={{ background:"none",border:"none",cursor:"pointer",color:C.cr,display:"flex",alignItems:"center",gap:8,fontSize:15,fontFamily:"'Jost',sans-serif" }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg> Back
-          </button>
-          <span className="shg-gt" style={{ fontSize:13,fontWeight:500,letterSpacing:"0.2em",textTransform:"uppercase" }}>Now Playing</span>
-          <div style={{ width:60 }}/>
-        </div>
-        <div style={{ flex:1,overflowY:"auto",display:"flex",justifyContent:"center",padding:"20px 48px 60px" }}>
-          <div style={{ display:"flex",gap:56,maxWidth:900,width:"100%",alignItems:"flex-start" }}>
-            <div style={{ flexShrink:0 }}>
-              <Thumb title={track.title} cat={track.cat} size={260} radius={16}/>
-            </div>
-            <div style={{ flex:1,minWidth:0 }}>
-              <div style={{ fontSize:32,fontWeight:400,color:C.cr,marginBottom:6 }}>{displayTitle(track.title)}</div>
-              <div style={{ fontSize:16,color:C.mu,marginBottom:32 }}>Reshma Oracle</div>
-              <div style={{ fontSize:14,color:isDark?"#E8B870":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>The shift</div>
-              <div style={{ fontSize:19,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:32,maxWidth:560 }}>{d.shift}</div>
-              <div style={{ fontSize:14,color:isDark?"#BFA5D8":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:10 }}>Benefits</div>
-              <div style={{ display:"flex",flexDirection:"column",gap:10,marginBottom:32 }}>
-                {d.benefits.map((b,i)=>(
-                  <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:17,marginTop:2 }}></span>
-                    <span style={{ fontSize:18,lineHeight:1.65,color:C.cr }}>{b}</span>
-                  </div>
-                ))}
-              </div>
-              {CAT_GUIDE[track.cat] && (
-                GUIDES_AVAILABLE.has(track.cat) ? (
-                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none",maxWidth:400 }}>
-                    <span style={{ fontSize:20 }}>📖</span>
-                    <div>
-                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                      <div style={{ fontSize:16,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
-                    </div>
-                  </a>
-                ) : (
-                  <div style={{ display:"inline-flex",alignItems:"center",gap:10,padding:"14px 22px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,maxWidth:400,opacity:0.6 }}>
-                    <span style={{ fontSize:20 }}>📖</span>
-                    <div>
-                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                      <div style={{ fontSize:15,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    )}
+    {showDesc && <FullPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} onClose={()=>setShowDesc(false)} onLogSign={onLogSign}/>}
     <div style={{ height:88,background:C.nav,borderTop:"none",display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
         <div onClick={()=>setShowDesc(true)} style={{ cursor:"pointer" }}><Thumb title={track.title} cat={track.cat} size={52} radius={4}/></div>
@@ -1266,7 +1337,7 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
           <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:16,color:isLooping?"#E8B870":navMu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
         </div>
         <div style={{ display:"flex",alignItems:"center",gap:8,width:"100%",maxWidth:520 }}>
-          <span style={{ fontSize:13,color:navMu,width:32,textAlign:"right" }}>,</span>
+          <span style={{ fontSize:13,color:navMu,width:36,textAlign:"right" }}>{elapsed(track.dur,prog)}</span>
           <div style={{ flex:1,height:4,background:"rgba(253,240,232,0.25)",borderRadius:2,cursor:"pointer" }} onClick={e=>{const r=e.currentTarget.getBoundingClientRect();seekTo(Math.round(((e.clientX-r.left)/r.width)*100),e);}}>
             <div style={{ width:`${prog}%`,height:"100%",background:OMBRE,borderRadius:2,backgroundSize:"200%",backgroundPosition:"left",transition:"width 0.3s" }}/>
           </div>
