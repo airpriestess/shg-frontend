@@ -285,7 +285,7 @@ export default function App() {
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
         <Route path="/auth"    element={<AuthGate onSuccess={() => goPortal()} />} />
-        <Route path="/portal"  element={
+        <Route path="/portal/*"  element={
           authCtx.loading
             ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <div style={{display:"flex",alignItems:"center",gap:8}}>

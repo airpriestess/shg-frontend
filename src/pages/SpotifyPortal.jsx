@@ -523,6 +523,22 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const [liked, setLiked]     = useState(new Set([1,3,7]));
   const [fullP, setFullP]     = useState(false);
   const [showDesc, setShowDesc] = useState(false);
+  // Every track has its own address: /portal/track/<name>. Opening the player sets it,
+  // and visiting it opens that track straight in the player.
+  const slugOf = (t) => (t?.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  useEffect(() => {
+    const m = window.location.pathname.match(/^\/portal\/track\/([^/?#]+)/);
+    if (!m) return;
+    const found = TRACKS.find(t => slugOf(t) === decodeURIComponent(m[1]));
+    if (!found) return;
+    setTrack(found);
+    if (window.innerWidth > 768) setShowDesc(true); else setFullP(true);
+  }, []);
+  useEffect(() => {
+    const open = showDesc || fullP;
+    const want = open ? `/portal/track/${slugOf(track)}` : "/portal";
+    if (window.location.pathname !== want) window.history.replaceState(null, "", want + window.location.search);
+  }, [showDesc, fullP, track]);
   const [prog, setProg]       = useState(0);
   const [searchQ, setQ]       = useState("");
   const [libCat, setLibCat]   = useState("All");
