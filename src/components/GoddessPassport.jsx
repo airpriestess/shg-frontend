@@ -32,6 +32,46 @@ const toAvatar = (file) => new Promise((resolve, reject) => {
 
 const Label = ({ children }) => <div style={{ fontSize: 9, letterSpacing: ".24em", marginBottom: 4 }}>{children}</div>;
 
+
+// A passport stamp: double ring, words set around the rim, the SHG clover in
+// the middle, gradient ink with a slightly worn edge like a real rubber stamp.
+function Stamp({ s, i }) {
+  const id = `st${i}`;
+  const ink = s.earned ? `url(#${id}g)` : "#000";
+  const mid = String(s.mid);
+  return (
+    <svg viewBox="0 0 200 200" role="img" aria-label={`${s.top} ${mid} ${s.bottom}`} style={{ width: "100%", display: "block", transform: `rotate(${s.earned ? [-8, 6, -3, 9, -6, 4][i % 6] : 0}deg)`, opacity: s.earned ? 1 : 0.35 }}>
+      <defs>
+        <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#E8B870" /><stop offset=".45" stopColor="#BFA5D8" /><stop offset=".8" stopColor="#2CB7A7" /><stop offset="1" stopColor="#167A6B" />
+        </linearGradient>
+        <filter id={`${id}f`}>
+          <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed={i + 3} result="n" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" result="d" />
+          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.7" result="m" />
+          <feComposite in="d" in2="m" operator="in" />
+        </filter>
+        <path id={`${id}t`} d="M 30 100 A 70 70 0 0 1 170 100" />
+        <path id={`${id}b`} d="M 26 100 A 74 74 0 0 0 174 100" />
+      </defs>
+      <g filter={s.earned ? `url(#${id}f)` : undefined} fill="none" stroke={ink} strokeDasharray={s.earned ? undefined : "4 5"}>
+        <circle cx="100" cy="100" r="94" strokeWidth="4" />
+        <circle cx="100" cy="100" r="86" strokeWidth="1.5" />
+        <circle cx="100" cy="100" r="54" strokeWidth="1.5" />
+        <g transform="translate(78 62) scale(1.1)" strokeWidth="2.6">
+          <circle cx="14" cy="14" r="8" /><circle cx="26" cy="14" r="8" /><circle cx="14" cy="26" r="8" /><circle cx="26" cy="26" r="8" />
+        </g>
+        <g fill={ink} stroke="none" style={{ fontFamily: "'Futura','Jost',sans-serif" }}>
+          <text fontSize="13" letterSpacing="3" textAnchor="middle"><textPath href={`#${id}t`} startOffset="50%">{s.top} ★</textPath></text>
+          <text fontSize="11" letterSpacing="3" textAnchor="middle" dominantBaseline="hanging"><textPath href={`#${id}b`} startOffset="50%">{s.bottom}</textPath></text>
+          <text x="100" y="124" fontSize={mid.length > 14 ? 10 : 14} fontWeight="600" textAnchor="middle">{mid.length > 22 ? mid.slice(0, 21) + "…" : mid}</text>
+          <text x="100" y="140" fontSize="7" letterSpacing="2.5" textAnchor="middle">S H G</text>
+        </g>
+      </g>
+    </svg>
+  );
+}
+
 export default function GoddessPassport({ onClose, userId, firstName, email, threads = [], listenCount = 0, isPreview, tierLabel, isDark, actions }) {
   const key = `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
   const [p, setP] = useState(() => load(key) || (isPreview
@@ -78,7 +118,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
     + "\n" + `${callingIn.toUpperCase().replace(/[^A-Z]+/g, "<")}<<${p.entered.slice(0, 4)}<<PROOF<${String(signs).padStart(3, "0")}`.padEnd(40, "<").slice(0, 40);
 
   const shell = { position: "fixed", inset: 0, zIndex: 1200, background: "#000", color: "#F2ECE4", overflowY: "auto", fontFamily: "'Futura','Jost',sans-serif" };
-  const inner = { maxWidth: 440, margin: "0 auto", padding: "calc(env(safe-area-inset-top,0px) + 18px) 18px 40px" };
+  const inner = { maxWidth: 920, margin: "0 auto", padding: "calc(env(safe-area-inset-top,0px) + 18px) 18px 40px" };
   const pill = { border: "none", borderRadius: 999, minHeight: 44, padding: "0 18px", fontSize: 14, fontFamily: "inherit", cursor: "pointer" };
   const field = { width: "100%", boxSizing: "border-box", border: "1px solid #000", borderRadius: 10, padding: "10px 12px", fontSize: 14, fontFamily: "inherit", background: "#fff", color: "#000" };
   const tabs = ["Identity", "Stamps", "Ritual", "Settings"];
@@ -166,11 +206,9 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             {page === 1 && (
               <div style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
                 <Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 8 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 18, marginTop: 12 }}>
                   {stamps.map((s, i) => (
-                    <div key={i} style={{ width: "calc(50% - 6px)", height: "auto", flex: "0 0 calc(50% - 6px)", boxSizing: "border-box", aspectRatio: "1", borderRadius: "50%", border: `1.2px ${s.earned ? "solid" : "dashed"} #000`, display: "grid", placeItems: "center", textAlign: "center", padding: 14, fontSize: 9.5, letterSpacing: ".14em", transform: `rotate(${s.earned ? (i % 2 ? 6 : -7) : 0}deg)` }}>
-                      <div>{s.top}<b style={{ fontWeight: 500, fontSize: 13, letterSpacing: ".02em", margin: "4px 0", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>{s.mid}</b>{s.bottom}</div>
-                    </div>
+                    <div key={i}><Stamp s={s} i={i} /></div>
                   ))}
                 </div>
               </div>
@@ -183,7 +221,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                     <div key={l} style={{ border: "1px solid #000", borderRadius: 12, padding: "10px 4px" }}><div style={{ fontSize: 22 }}>{v}</div><div style={{ fontSize: 11 }}>{l}</div></div>
                   ))}
                 </div>
-                <div><Label>HOW SHE LISTENS</Label><div style={{ fontSize: 14, lineHeight: 1.6 }}>Headphones on. Never while driving. Avoid if you have epilepsy. Best before sleep or first thing in the morning.</div></div>
+                <div><Label>HOW YOU LISTEN</Label><div style={{ fontSize: 14, lineHeight: 1.6 }}>Headphones on. Never while driving. Avoid if you have epilepsy. Best before sleep or first thing in the morning.</div></div>
                 <button onClick={actions.guide} style={{ ...pill, background: "#000", color: "#F2ECE4" }}>Open the listening guide</button>
                 <button onClick={actions.liked} style={{ ...pill, background: "transparent", color: "#000", border: "1px solid #000" }}>My favourite tracks</button>
                 <button onClick={actions.shop} style={{ ...pill, background: "transparent", color: "#000", border: "1px solid #000" }}>Shop workbooks and guides</button>
@@ -191,7 +229,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 3 && (
-              <div style={{ borderRadius: 18, padding: 6, display: "grid", gap: 4 }}>
+              <div style={{ ...PAPER, borderRadius: 18, padding: 10, display: "grid", gap: 4, color: "#000" }}>
                 <div style={{ fontSize: 13, padding: "8px 10px" }}>{tierLabel}{email ? ` · ${email}` : ""}</div>
                 {[
                   ["Manage membership", actions.billing],
@@ -200,7 +238,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                   ["Back to the website", actions.site],
                   ["Sign out", actions.signOut],
                 ].map(([l, fn]) => (
-                  <button key={l} onClick={fn} style={{ all: "unset", cursor: "pointer", padding: "14px 10px", fontSize: 15, borderBottom: "1px solid #1e1e1e" }}>{l}</button>
+                  <button key={l} onClick={fn} style={{ all: "unset", cursor: "pointer", padding: "14px 10px", fontSize: 15, color: "#000", borderBottom: "1px solid #000" }}>{l}</button>
                 ))}
                 <div style={{ fontSize: 12, padding: "12px 10px", lineHeight: 1.5 }}>Your passport is saved on this device.</div>
               </div>
