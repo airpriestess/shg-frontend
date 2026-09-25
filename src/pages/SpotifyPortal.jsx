@@ -1,4 +1,5 @@
 import ShgSplash from "../components/ShgSplash.jsx";
+import SpeakToProof from "../components/SpeakToProof.jsx";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
@@ -1469,6 +1470,9 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         </button>
       </div>
+
+      {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
+      <SpeakToProof C={C} isDark={C?.cr !== "#000000"} threads={threads} setThreads={setThreads} token={token} isPreview={isPreview} firstName={isPreview ? "Reshma" : firstName}/>
 
       {/* UPGRADE BANNER */}
       {userTier==="audio"&&!isPreview&&(
