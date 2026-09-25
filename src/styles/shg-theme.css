@@ -67,3 +67,8 @@
 [data-portal-theme] .shg-hero .shg-gt{font-size:24px!important}
 /* Labels sitting on a gradient-filled card stay black and readable. */
 [data-portal-theme] [style*="background: linear-gradient"] [style*="text-transform: uppercase"],[data-portal-theme] .shg-gfill [style*="text-transform: uppercase"]{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
+/* Readability on black: small section labels in cream, not dim gradient. */
+[data-portal-theme="dark"] [style*="text-transform: uppercase"]:not(button):not(.shg-pill):not([style*="background: linear-gradient"] *),
+[data-portal-theme="dark"] [style*="letter-spacing: 0.15em"],[data-portal-theme="dark"] [style*="letter-spacing: 0.2em"]{background:none!important;-webkit-text-fill-color:#F2ECE4!important;color:#F2ECE4!important}
+[data-portal-theme="dark"] input,[data-portal-theme="dark"] textarea{background:#111!important;color:#F2ECE4!important;border-color:#F2ECE4!important}
+[data-portal-theme="dark"] input:focus,[data-portal-theme="dark"] textarea:focus{background:#fff!important;color:#000!important}
