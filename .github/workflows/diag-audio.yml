@@ -13,6 +13,6 @@ jobs:
         run: |
           while read -r u; do
             [ -z "$u" ] && continue
-            h=$(curl -s -o /dev/null -r 0-1023 -w "%{http_code} %{content_type} %{size_download}" "$u")
+            h=$(curl -s -o /dev/null --max-time 4 -r 0-1023 -w "%{http_code} %{content_type} %{size_download}" "$u")
             echo "$h  $u"
           done < .github/audio-urls.txt
