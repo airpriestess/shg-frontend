@@ -112,6 +112,7 @@ const API_ROUTES = {
 
 // Short redirect links — one per channel, never changes
 const GO_LINKS = {
+  "shop-yt-desc":      "https://beacons.ai/reshmaoracle?utm_source=youtube&utm_medium=description&utm_campaign=shop",
   // GIFT PAGE
   "gift-yt-bio":       "/gift?utm_source=youtube&utm_medium=bio&utm_campaign=free_gift",
   "gift-yt-desc":      "/gift?utm_source=youtube&utm_medium=description&utm_campaign=free_gift",
