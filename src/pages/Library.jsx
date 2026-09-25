@@ -23,7 +23,7 @@ const CATEGORIES = [
     accent: "#F5E0A0",
     tagline: "Being single is not a waiting room. It's an identity. Make it one worth inhabiting.",
     pain: "You feel the pressure, from everyone, from yourself. You're either rushing toward something or feeling like you're falling behind. The version of you that's thriving alone feels like a performance. The version that's honest about wanting more feels like a wound.",
-    what: "Singlemaxxing installs the frequency of someone who is complete right now. Not someone pretending to be fine. Someone who is actually fine, and from that place, magnetic. The tracks work on the belief that you need someone else to complete the picture.",
+    what: "Singlemaxxing installs the frequency of someone who is complete right now. Not someone pretending to be fine. Someone who is actually fine and from that place, magnetic. The tracks work on the belief that you need someone else to complete the picture.",
     shift: "From waiting to begin, to feeling like your life is already full."
   },
   {
@@ -46,7 +46,7 @@ const CATEGORIES = [
     name: "Beautymaxxing",
     accent: "#F5E0A0",
     tagline: "The mirror doesn't show you what others see. It shows you what you believe.",
-    pain: "You pick yourself apart. You zoom in on every flaw. You know rationally that you're being harsh, and still you can't stop. You've spent money on products, procedures, routines, and the mirror still feels hostile. The gap between how you look and how you feel you should look seems permanent.",
+    pain: "You pick yourself apart. You zoom in on every flaw. You know rationally that you're being harsh and still you can't stop. You've spent money on products, procedures, routines and the mirror still feels hostile. The gap between how you look and how you feel you should look seems permanent.",
     what: "Beautymaxxing doesn't tell you you're beautiful. It installs the felt sense of it, the way it lives in the body, not just the thoughts. The tracks run while you sleep, while you rest, shifting the subconscious belief underneath the scrutiny.",
     shift: "From picking yourself apart, to actually seeing what other people already see."
   },
@@ -71,7 +71,7 @@ const CATEGORIES = [
     accent: "#2CB7A7",
     tagline: "Restriction is not a belief system. Install a new one.",
     pain: "You think about food constantly. You cycle through phases of control and giving up. The number on the scale has too much power over how the day feels. You've done the diets. You know what to do. The problem isn't knowledge, it's what's running underneath it.",
-    what: "Skinnymaxxing targets the subconscious identity around food, body, and control, replacing restriction with a felt sense of ease. The belief that your body already knows what it's doing. The tracks install this while the critical mind is offline.",
+    what: "Skinnymaxxing targets the subconscious identity around food, body and control, replacing restriction with a felt sense of ease. The belief that your body already knows what it's doing. The tracks install this while the critical mind is offline.",
     shift: "From fighting yourself through restriction, to feeling like your body already knows what it's doing."
   },
   {
@@ -95,7 +95,7 @@ const CATEGORIES = [
     accent: "#F5E0A0",
     tagline: "Confidence in your body. Ease in your desire. You're allowed to want what you want.",
     pain: "You perform confidence in certain rooms and feel yourself collapse in others. Intimacy is where the old stories get the loudest, about whether you're enough, whether your desire is too much, whether you're doing it right. You've disconnected from parts of yourself without realising it.",
-    what: "Erosmaxxing installs ease in the body, permission in desire, and the identity of someone who is settled in their own magnetism. The tracks work on the layers underneath the performance.",
+    what: "Erosmaxxing installs ease in the body, permission in desire and the identity of someone who is settled in their own magnetism. The tracks work on the layers underneath the performance.",
     shift: "From performing confidence, to actually feeling it, in the moments that used to make you shrink."
   },
   {
@@ -103,7 +103,7 @@ const CATEGORIES = [
     accent: "#2CB7A7",
     tagline: "You don't have to be awake for it to work. Your subconscious never sleeps.",
     pain: "You want to do the work but life is full. By the time you get to bed, you're too tired for rituals. You fall asleep mid-affirmation. You wonder if you're doing enough, if you're consistent enough, if you're ever going to see it move.",
-    what: "Sleepmaxxing is designed for the moment between waking and sleep, when the critical mind goes offline and the subconscious is completely open. You press play, you drift off, and the installation continues without you. This is the most powerful window of the day. These tracks are built for it.",
+    what: "Sleepmaxxing is designed for the moment between waking and sleep, when the critical mind goes offline and the subconscious is completely open. You press play, you drift off and the installation continues without you. This is the most powerful window of the day. These tracks are built for it.",
     shift: "From feeling like manifestation requires constant conscious effort, to feeling like your reality rebuilds itself while you rest."
   },
   {
@@ -111,7 +111,7 @@ const CATEGORIES = [
     accent: "#BFA5D8",
     tagline: "Your mind is not the problem. Your belief about your mind is.",
     pain: "You blank in exams. You can't retain what you read. You compare yourself to people who seem to absorb everything effortlessly and wonder what's wrong with you. The anxiety about performance kills the performance.",
-    what: "Studymaxxing installs the belief in your own mind's capability. The tracks run subliminals targeting retention, focus, and the identity of someone who finds this easy, because ease is a frequency before it's a result.",
+    what: "Studymaxxing installs the belief in your own mind's capability. The tracks run subliminals targeting retention, focus and the identity of someone who finds this easy, because ease is a frequency before it's a result.",
     shift: "From feeling like you have to grind to keep up, to feeling like the information already makes sense to you."
   },
   {
@@ -166,7 +166,7 @@ const CATEGORIES = [
     name: "Luckygirlmaxxing",
     accent: "#2CB7A7",
     tagline: "Luck is a frequency. Some people are tuned to it by default. You can install it.",
-    pain: "Things work out for other people. You work hard, you plan, you do everything right, and still there's always a catch. You've stopped expecting things to just go your way because they usually don't. The belief that life is a struggle has become so background you've stopped noticing it.",
+    pain: "Things work out for other people. You work hard, you plan, you do everything right and still there's always a catch. You've stopped expecting things to just go your way because they usually don't. The belief that life is a struggle has become so background you've stopped noticing it.",
     what: "Luckygirlmaxxing installs the frequency of expectation, the deep subconscious assumption that things work out, that doors open, that you are someone good things happen to. This is not manifestation positivity. This is a belief system installed at the theta level.",
     shift: "From feeling like good things happen to other people, to expecting things to work out for you by default."
   },
@@ -199,7 +199,7 @@ const CATEGORIES = [
     accent: "#F5E0A0",
     tagline: "Your desires are not too much. They are the pull. Follow it.",
     pain: "You feel guilty for wanting what you want. You've been told you're greedy, unrealistic, too much. You've learned to moderate your desires before you even let yourself feel them fully. You want things you don't let yourself want.",
-    what: "Desiresmaxxing installs the identity of someone whose desires are valid, specific, and already in motion toward her. Not someone who chases, someone who is chased back. The tracks work on the guilt and the belief of unworthiness underneath it.",
+    what: "Desiresmaxxing installs the identity of someone whose desires are valid, specific and already in motion toward her. Not someone who chases, someone who is chased back. The tracks work on the guilt and the belief of unworthiness underneath it.",
     shift: "From chasing your desires, to feeling like they are already chasing you back."
   },
 ];

@@ -49,7 +49,7 @@ export const PROOF_ASSETS = [
     label: "Mirror Photo",
     type: "Photo Proof",
     color: "#C8956A",
-    thread: "My skin looks clear, smooth, and luminous",
+    thread: "My skin looks clear, smooth and luminous",
     audio: "Gorgeous Is My Default Setting",
     date: "2026-06-29",
     render: (size = 56) => ({
@@ -135,7 +135,7 @@ export const PROOF_ASSETS = [
     label: "Skin Progress",
     type: "Photo Proof",
     color: "#C8956A",
-    thread: "My skin looks clear, smooth, and luminous",
+    thread: "My skin looks clear, smooth and luminous",
     audio: "Gorgeous Is My Default Setting",
     date: "2026-06-22",
     render: (size = 56) => ({

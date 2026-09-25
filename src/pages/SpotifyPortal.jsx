@@ -994,7 +994,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
-            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. proofOS, early access, and the full Guide, unlocked.</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. proofOS, early access and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
             <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
@@ -1110,7 +1110,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:380,width:"100%",borderRadius:20,padding:"28px 24px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",textAlign:"center" }}>
             <div style={{ fontSize:13,fontWeight:400,color:"#000",letterSpacing:"0.16em",textTransform:"uppercase",marginBottom:10, }}>Member-Exclusive · Not Open To The Public</div>
             <div style={{ fontSize:19,fontWeight:400,color:"#000",marginBottom:8 }}>10% off Goddess Tier, this once</div>
-            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. proofOS, early access, and the full Guide, unlocked.</div>
+            <div style={{ fontSize:15,color:"#000",marginBottom:20,lineHeight:1.5 }}>This offer only exists because you're already a member. proofOS, early access and the full Guide, unlocked.</div>
             <button onClick={()=>{setShowUpgradeReminder(false); setBillingOpen(true);}} style={{ width:"100%",padding:"13px",background:"#000",border:"none",borderRadius:12,color:"#fff",fontSize:16,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",marginBottom:10 }}>Claim 10% Off</button>
             <button onClick={()=>setShowUpgradeReminder(false)} style={{ width:"100%",padding:"8px",background:"none",border:"none",color:"#000",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Maybe later</button>
           </div>
@@ -1230,7 +1230,7 @@ function BetaBanner({ C, isDark }) {
 }
 
 // ── DESKTOP PLAYER ─────────────────────────────────────────────────────────────
-// Time helpers: "10:00" or "12 min" to seconds, and elapsed time from progress %.
+// Time helpers: "10:00" or "12 min" to seconds and elapsed time from progress %.
 const durSecs = (d) => { const m = String(d||"").match(/(\d+):(\d{2})/); if (m) return (+m[1])*60 + (+m[2]); const n = String(d||"").match(/(\d+)/); return n ? (+n[1])*60 : 0; };
 const mmss = (s) => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
 const elapsed = (d, p) => mmss(durSecs(d) * (p||0) / 100);
@@ -1317,7 +1317,7 @@ function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, 
                   {d.benefits.map((b,i)=>(<div key={i} style={{ display:"flex",gap:12,alignItems:"baseline",fontSize:16,lineHeight:1.6 }}><span style={{ width:8,height:8,borderRadius:"50%",background:G,flexShrink:0,transform:"translateY(-1px)" }}/>{b}</div>))}
                 </div>
                 <div style={{ fontSize:11,letterSpacing:".26em",marginBottom:10 }}>FIVE LAYERS IN THIS TRACK</div>
-                <div style={{ fontSize:14,lineHeight:1.7,marginBottom:28,maxWidth:560 }}>Specific affirmations in Reshma's voice, EMDR bilateral sound, binaural beats for the theta state, subliminals, and Reiki.</div>
+                <div style={{ fontSize:14,lineHeight:1.7,marginBottom:28,maxWidth:560 }}>Specific affirmations in Reshma's voice, EMDR bilateral sound, binaural beats for the theta state, subliminals and Reiki.</div>
                 {CAT_GUIDE[track.cat] && (GUIDES_AVAILABLE.has(track.cat)
                   ? <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" className="shg-gb" style={{ display:"inline-flex",flexDirection:"column",gap:2,padding:"14px 20px",borderRadius:16,textDecoration:"none",color:ink }}><span style={{ fontSize:10,letterSpacing:".24em" }}>RELATED GUIDE</span><span style={{ fontSize:16 }}>{CAT_GUIDE[track.cat]} →</span></a>
                   : <div style={{ display:"inline-flex",flexDirection:"column",gap:2,padding:"14px 20px",borderRadius:16,border:`1px dashed ${line}` }}><span style={{ fontSize:10,letterSpacing:".24em" }}>RELATED GUIDE</span><span style={{ fontSize:15 }}>{CAT_GUIDE[track.cat]}, coming soon</span></div>)}
@@ -2459,7 +2459,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <div style={{ fontSize:15, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:14 }}>This week's insight ✦</div>
           {isPreview ? (
             <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>
-              "You played your Lovemaxxing tracks 3× more than any other area this week, mostly He Finds His Way Back. Two of your in-progress desires are about love, and you logged 5 signs for them."
+              "You played your Lovemaxxing tracks 3× more than any other area this week, mostly He Finds His Way Back. Two of your in-progress desires are about love and you logged 5 signs for them."
             </div>
           ) : weeklyInsight ? (
             <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>"{weeklyInsight}"</div>
@@ -2952,8 +2952,8 @@ function ProofLockedScreen({ C, onUpgrade, feature="proofOS" }) {
       <div style={{ fontSize:18, color:C.cr }}>{feature} is a Goddess Tier feature</div>
       <div style={{ fontSize:15, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
         {feature === "proofOS"
-          ? "Log your desires, capture signs and synchronicities, and mark each manifestation as it lands. Everything, documented forever."
-          : "Track your dominant emotional state, listening streaks, and the evidence building over time. Plus direct Q&A with Reshma — ask anything about the tracks, hypnosis, or your journey."}
+          ? "Log your desires, capture signs and synchronicities and mark each manifestation as it lands. Everything, documented forever."
+          : "Track your dominant emotional state, listening streaks and the evidence building over time. Plus direct Q&A with Reshma — ask anything about the tracks, hypnosis, or your journey."}
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
@@ -3316,7 +3316,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}></div>
-              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here, and stays here for life.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here and stays here for life.</div>
             </div>
           ) : (
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>

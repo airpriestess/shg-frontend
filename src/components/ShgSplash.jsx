@@ -16,7 +16,7 @@ const AFFIRMATIONS = [
   "Beauty is my default.",
   "I get paid to exist.",
   "What is meant for me cannot miss me.",
-  "I sleep, and I manifest.",
+  "I sleep and I manifest.",
   "Today, something wonderful finds me.",
   "I am already her.",
   "Doubt leaves. Proof stays.",

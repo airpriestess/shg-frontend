@@ -398,7 +398,7 @@ export default function Science({ onBack }) {
           Stack all four.<br/><strong style={{ fontWeight:700 }}>Theta on demand.</strong>
         </div>
         <div style={{ fontSize:16, color:"#fdf0e8", lineHeight:1.8, maxWidth:520, margin:"0 auto 48px", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
-          Every SHG track layers hypnosis, subliminals, melodic house, EMDR, and binaural beats simultaneously. Each targets a different layer. Together they create a condition no single approach can produce alone.
+          Every SHG track layers hypnosis, subliminals, melodic house, EMDR and binaural beats simultaneously. Each targets a different layer. Together they create a condition no single approach can produce alone.
         </div>
         <div style={{ display:"flex", flexWrap:"wrap", gap:isMobile?8:12, justifyContent:"center", alignItems:"center", maxWidth:700, margin:"0 auto 48px" }}>
           {["Hypnosis","Subliminals","Melodic House","EMDR","Binaural Beats"].map((t,i,arr)=>(

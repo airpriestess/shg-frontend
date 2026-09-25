@@ -153,7 +153,7 @@ export function LockCard({ onUpgrade }) {
       <div style={{ fontSize: 28, marginBottom: 12 }}>🔒</div>
       <div style={{ fontSize: 17, fontWeight: 700, color: T.textPrimary, marginBottom: 8 }}>Unlock Goddess Vault</div>
       <div style={{ fontSize: 14, color: T.textMuted, lineHeight: 1.7, marginBottom: 20, maxWidth: 280, margin: "0 auto 20px" }}>
-        Access deeper audios, more storage, and the full evidence vault.
+        Access deeper audios, more storage and the full evidence vault.
       </div>
       <Btn onClick={onUpgrade} variant="champagne" size="sm">Upgrade</Btn>
     </Card>
