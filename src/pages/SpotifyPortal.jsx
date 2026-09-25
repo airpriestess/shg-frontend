@@ -290,7 +290,7 @@ function getDesc(track) {
   return track.desc || CAT_DESC[track.cat] || { shift:"This track is designed to shift the belief underneath the desire it's tied to.", benefits:["Reprogram the belief, not just the behaviour","Listen passively, no active effort required","Track the shift in proofOS as signs come in"] };
 }
 
-const TRACKS = [
+const ALL_TRACKS = [
   // ── NEW TRACKS (Sept 2026) ──────────────────────────────────────────────────
   { id:201, title:"Confidence In My Luck",              artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
   { id:202, title:"Attract Opportunities",              artist:"Reshma Oracle", dur:"10:00", cat:"Luckygirlmaxxing", format:"Hypnosis",   freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
@@ -424,6 +424,9 @@ const TRACKS = [
   { id:108, title:"I glow like I am lit from the inside", artist:"Reshma Oracle", dur:"15:00", cat:"Beautymaxxing", format:"Self Hypnosis", freq:"528hz", tier:"audio", isNew:false, hasAudio:false },
   { id:109, title:"My cells are rewriting me younger every night", artist:"Reshma Oracle", dur:"15:00", cat:"DNAmaxxing", format:"Self Hypnosis", freq:"432hz", tier:"audio", isNew:false, hasAudio:false },
 ];
+// Only tracks that can actually be played. Nothing unavailable is shown.
+const TRACKS = ALL_TRACKS.filter(t => AUDIO_URLS[t.title]);
+const LIVE_CATS = new Set(TRACKS.map(t => t.cat));
 const FORMATS = ["All","Subliminal","Hypnosis","Melodic Hypnosis","Melodic Subliminal","Calm Hypnosis","Calm Subliminal"];
 
 // Suggests the best-matching track for a saved intention: category match is required,
@@ -1701,7 +1704,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <button onClick={()=>setTab("library")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>See all</button>
         </div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
-          {FEATURED_CATS.map(cat=>{
+          {FEATURED_CATS.filter(c=>LIVE_CATS.has(c)).map(cat=>{
             const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             const n=TRACKS.filter(t=>t.cat===cat).length;
             return(
@@ -1736,7 +1739,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* BY DESIRE */}
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
         <HRow>
-          {Object.keys(CAT_ICONS).map(cat=>{
+          {Object.keys(CAT_ICONS).filter(c=>LIVE_CATS.has(c)).map(cat=>{
             const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
             return(
               <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
@@ -2699,7 +2702,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C, openPlayer }) {
   const isDark = C?.cr !== "#000000";
-  const cats = ["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"];
+  const cats = (["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"]).filter(c=>c==="All"||c==="Liked"||LIVE_CATS.has(c));
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
   const [catOpen, setCatOpen] = useState(false);
@@ -3151,7 +3154,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                         <>
                         <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
                         <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
-                          {Object.keys(CAT_ICONS).map(c=>{
+                          {Object.keys(CAT_ICONS).filter(c=>LIVE_CATS.has(c)).map(c=>{
                             const catColor = CAT_ICONS[c].accent;
                             return (
                               <div key={c} onClick={()=>{
