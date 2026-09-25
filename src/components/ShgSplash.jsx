@@ -24,14 +24,12 @@ const AFFIRMATIONS = [
 ];
 
 export default function ShgSplash({ theme = "dark" }) {
-  const [phase, setPhase] = useState(() => {
-    try { return sessionStorage.getItem("shg_splash_seen") ? "done" : "in"; } catch { return "in"; }
-  });
+  // Shows on every visit to the portal (members and the beta preview alike).
+  const [phase, setPhase] = useState("in");
   const [line] = useState(() => AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)]);
 
   useEffect(() => {
     if (phase === "done") return;
-    try { sessionStorage.setItem("shg_splash_seen", "1"); } catch {}
     const t1 = setTimeout(() => setPhase("out"), 4000);
     const t2 = setTimeout(() => setPhase("done"), 4700);
     return () => { clearTimeout(t1); clearTimeout(t2); };
