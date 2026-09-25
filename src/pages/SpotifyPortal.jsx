@@ -564,14 +564,23 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   }, [userId, isPreview, token]);
   const [theme, setTheme]     = useState(forceTheme || "dark");
   const [profileOpen, setProfileOpen] = useState(false);
-  const [listenCount, setListenCount] = useState(127);
+  const [listenCount, setListenCount] = useState(isPreview ? 127 : 0);
   // Seeded 30-day emotional log — Reshma's real arc: started in anxiety, shifted decisively to Love/Peace
   const [emoLog, setEmoLog] = useState(()=>{
+    // Real members start empty; only the preview shows a sample 30-day arc.
+    if (!isPreview) return [];
     const arr=[]; const now=Date.now();
     const path=["Fear","Desire","Anger","Desire","Pride","Courage","Neutrality","Courage","Willingness","Acceptance","Willingness","Acceptance","Reason","Acceptance","Love","Acceptance","Love","Love","Joy","Love","Love","Peace","Love","Peace","Joy","Peace","Love","Peace","Love","Peace"];
     for (let i=29;i>=0;i--) arr.push({date:new Date(now-i*86400000).toISOString().slice(0,10),level:path[29-i]});
     return arr;
   });
+  const emoKey = userId ? `shg_emo_${userId}` : null;
+  useEffect(() => { if (isPreview || !emoKey) return; try { const saved = JSON.parse(localStorage.getItem(emoKey) || "[]"); if (Array.isArray(saved)) setEmoLog(saved); } catch {} }, [emoKey, isPreview]);
+  useEffect(() => { if (isPreview || !emoKey) return; try { localStorage.setItem(emoKey, JSON.stringify(emoLog)); } catch {} }, [emoLog, emoKey, isPreview]);
+  useEffect(() => {
+    if (isPreview || !userId || !token) return;
+    quizApi("/listen-history", token, { method: "GET" }).then(d => setListenCount((d.events || []).length)).catch(() => {});
+  }, [userId, token, isPreview]);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onbStep, setOnbStep] = useState(0);
   const [onbGoals, setOnbGoals] = useState([]);
@@ -1750,7 +1759,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
   const maxSet = Math.max(...months.map(m=>m.set), 1);
 
   return (
-    <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif", zoom:1.45 }}>
+    <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif" }}>
       {/* Header */}
       <div style={{ marginBottom:12, background:C.bg2, border:`1px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
         <div style={{ fontSize:13, fontWeight:600, color:C.cr, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:4 }}>Manifestation history</div>
@@ -2118,8 +2127,28 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {(() => {
         const proofs = isPreview ? 142 : threads.reduce((a,t)=>a+(t.signs?.length||0),0) + manifested;
         const done = isPreview ? 12 : manifested;
-        const weeks = isPreview ? [25,35,42,40,55,62,60,75,88,100] : null; // real: signs grouped by week, needs backend
-        const hawk = isPreview ? { pct:72, label:"Courage to Love, 200 to 500" } : null;  // real: from emoLog trend
+        const weeks = isPreview ? [25,35,42,40,55,62,60,75,88,100] : (() => {
+          // Signs are stored with short dates like "12 Jun"; read them as this year (or last year if that is in the future).
+          const now = Date.now(), counts = Array(10).fill(0);
+          threads.forEach(t => (t.signs||[]).forEach(sg => {
+            let d = new Date(`${sg.date} ${new Date().getFullYear()}`);
+            if (isNaN(d)) return;
+            if (d.getTime() > now + 86400000) d.setFullYear(d.getFullYear() - 1);
+            const w = Math.floor((now - d.getTime()) / (7*86400000));
+            if (w >= 0 && w < 10) counts[9 - w]++;
+          }));
+          const max = Math.max(...counts);
+          return max ? counts.map(c => Math.max(4, Math.round(c / max * 100))) : null;
+        })();
+        const hawk = isPreview ? { pct:72, label:"Courage to Love, 200 to 500" } : (() => {
+          // Her own check-ins: first and latest level in the last 30 days.
+          const recent = (emoLog||[]).filter(e => Date.now() - new Date(e.date).getTime() < 30*86400000);
+          if (!recent.length) return null;
+          const val = n => (HAWKINS.find(h => h.n === n) || {}).v;
+          const a = recent[0].level, b = recent[recent.length-1].level, vb = val(b), va = val(a);
+          if (!vb) return null;
+          return { pct: Math.min(100, Math.round(vb / 1000 * 100)), label: a === b ? `${b}, ${vb}` : `${a} to ${b}, ${va} to ${vb}` };
+        })();
         const fast = isPreview ? { area:"Luck", note:"about 3 days per sign" } : (analyticsData?.category_speed?.[0] ? { area:analyticsData.category_speed[0].category.replace("maxxing",""), note:`about ${analyticsData.category_speed[0].avg_days} days to manifest` } : null);
         return (
           <div className="shg-gb" style={{ margin:"0 16px 18px",borderRadius:22,padding:"24px 22px" }}>
@@ -2128,6 +2157,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               <div className="shg-gfill" style={{ borderRadius:18,padding:"16px",textAlign:"center" }}><div style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{proofs}</div><div style={{ fontSize:15 }}>proofs</div></div>
               <div className="shg-gb" style={{ borderRadius:18,padding:"16px",textAlign:"center",color:C.cr }}><div className="shg-gt" style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{done}</div><div style={{ fontSize:15 }}>manifested</div></div>
             </div>
+            {!weeks && !isPreview && <div style={{ fontSize:14,color:C.cr,marginBottom:18 }}>Log your first sign in proofOS and your weeks start filling in here.</div>}
             {weeks && <>
               <div className="shg-gt" style={{ fontSize:12,letterSpacing:"0.18em",marginBottom:10 }}>SIGNS PER WEEK</div>
               <div style={{ display:"flex",alignItems:"flex-end",gap:8,height:130,marginBottom:20 }}>
@@ -2216,7 +2246,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
             background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
             backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
-            border:"1px solid rgba(255,255,255,0.6)", zoom:15 }}>
+            border:"1px solid rgba(255,255,255,0.6)" }}>
 
             {/* HERO: Signs this week — the most important metric */}
             <div style={{ marginBottom:18 }}>
@@ -2405,7 +2435,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* PATTERN RECOGNITION — what's actually moving the needle */}
       {(isPreview || (patterns && patterns.length > 0)) && (
-        <div style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", zoom:1.45 }}>
+        <div style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
             <span style={{ fontSize:13, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase" }}>Pattern recognition</span>
             {isPreview && <span style={{ fontSize:12, color:C.accentGold, fontWeight:500 }}>preview data</span>}
@@ -2440,7 +2470,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       )}
 
       {/* AI RECOMMENDATION CARD */}
-      <div style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", zoom:1.45 }}>
+      <div style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
           <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
           {!isPreview && (
@@ -2511,7 +2541,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* DESIRE NUDGE — remind user to update desires / bucket list */}
       {isPreview && (
-        <div style={{ margin:"0 16px 18px", padding:"16px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", display:"flex", alignItems:"center", gap:14, zoom:1.45 }}>
+        <div style={{ margin:"0 16px 18px", padding:"16px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", display:"flex", alignItems:"center", gap:14 }}>
           <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
