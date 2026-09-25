@@ -519,6 +519,23 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const userId = session?.user?.id;
   const [pushDismissed, setPushDismissed] = useState(false);
   const [tab, setTab]         = useState(initialTab);
+  // Every dark card in the main area becomes cream graph paper, so the whole
+  // portal reads the same way. Runs after each render of the current tab.
+  useEffect(() => {
+    const dark = /rgb\((1[0-9]|2[0-4]), (1[0-9]|2[0-4]), (1[0-9]|2[0-4])\)/;
+    const paint = () => document.querySelectorAll('[data-portal-theme] div, [data-portal-theme] button').forEach(el => {
+      if (el.classList.contains('shg-paper') || el.closest('.shg-paper') || el.closest('.shg-no-paper')) return;
+      const cs = getComputedStyle(el); if (parseFloat(cs.borderTopLeftRadius) < 10) return;
+      const r = el.getBoundingClientRect(); if (r.width < 150 || r.height < 56) return;
+      if (window.innerWidth > 900 && r.right < 300) return;
+      // Skip the player bar and other small fixed strips, not the full-screen shell.
+      for (let a = el; a && a !== document.body; a = a.parentElement) { if (getComputedStyle(a).position === 'fixed' && a.getBoundingClientRect().height < 400) return; }
+      if (dark.test(cs.backgroundColor) || dark.test(cs.backgroundImage)) el.classList.add('shg-paper');
+    });
+    paint(); const mo = new MutationObserver(() => requestAnimationFrame(paint));
+    mo.observe(document.body, { childList:true, subtree:true });
+    return () => mo.disconnect();
+  }, [tab]);
   const [track, setTrack]     = useState(TRACKS[0]);
   const [playing, setPlay]    = useState(false);
   const [isLooping, setLooping] = useState(false);
@@ -1596,7 +1613,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </div>
 
       {/* OPEN YOUR PASSPORT */}
-      <button onClick={openProfile} className="shg-gb" style={{ display:"flex",alignItems:"center",gap:16,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={openProfile} className="shg-gb shg-paper" style={{ display:"flex",alignItems:"center",gap:16,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
         <span className="shg-gfill" style={{ width:52,height:68,borderRadius:8,flexShrink:0,display:"grid",placeItems:"center" }}>
           <svg width="30" viewBox="0 0 40 40" fill="none" stroke="#000" strokeWidth="1.6" aria-hidden="true"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></svg>
         </span>
@@ -1634,7 +1651,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
           {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.",isDark?"#BFA5D8":"#5a3a7a"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
-            <div key={name} style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
+            <div key={name} className="shg-paper" style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
               <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
               <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
             </div>
@@ -3535,10 +3552,10 @@ function ShopTab({ C }) {
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
         {products.map((p,i)=>(
           <div key={i} onClick={()=>p.available && window.open(BEACONS,"_blank")}
-            style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:p.available?1:0.55 }}
+            className="shg-paper" style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:1 }}
             onMouseEnter={e=>{ if(p.available) e.currentTarget.style.transform="translateY(-2px)"; }}
             onMouseLeave={e=>e.currentTarget.style.transform="none"}>
-            <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"#000" }}>
+            <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"transparent" }}>
               <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
             </div>
             <div style={{ padding:"10px 12px" }}>
