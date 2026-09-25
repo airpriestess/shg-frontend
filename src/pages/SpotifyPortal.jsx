@@ -713,6 +713,21 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
     }
   }, [playing, track]);
 
+  // Tell her when a track can't load or is still buffering, instead of sitting at 0:00.
+  const [audioState, setAudioState] = useState("");
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    setAudioState("");
+    const onErr = () => setAudioState("error");
+    const onWait = () => setAudioState(s => s === "error" ? s : "loading");
+    const onPlay = () => setAudioState("");
+    audio.addEventListener("error", onErr);
+    audio.addEventListener("waiting", onWait);
+    audio.addEventListener("playing", onPlay);
+    return () => { audio.removeEventListener("error", onErr); audio.removeEventListener("waiting", onWait); audio.removeEventListener("playing", onPlay); };
+  }, [track]);
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -1047,7 +1062,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           {tabContent}
         </div>
       </div>
-      <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} showDesc={showDesc} setShowDesc={setShowDesc} onLogSign={()=>{setShowDesc(false);setTab("proof");}}/>
+      <DesktopPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} showDesc={showDesc} setShowDesc={setShowDesc} onLogSign={()=>{setShowDesc(false);setTab("proof");}} audioState={audioState}/>
     </div>
   );
 
@@ -1200,7 +1215,7 @@ const elapsed = (d, p) => mmss(durSecs(d) * (p||0) / 100);
 
 // ── FULL PLAYER (desktop, opened from the player bar) ─────────────────────────
 // A real player on the left, the track's story and her own notes on the right.
-function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, onClose, onLogSign }) {
+function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, onClose, onLogSign, audioState }) {
   const d = getDesc(track);
   const [pane, setPane] = useState("about");
   const key = `shg_notes_${track.id}`;
@@ -1238,6 +1253,9 @@ function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, 
             </div>
             <div style={{ fontSize:24,marginTop:22 }}>{displayTitle(track.title)}</div>
             <div style={{ fontSize:13,marginTop:6 }}>{[track.cat, track.format, track.dur].filter(Boolean).join(" · ")}</div>
+            {!AUDIO_URLS[track.title] && <div role="status" style={{ fontSize:13,marginTop:10 }}>This track is coming soon.</div>}
+            {AUDIO_URLS[track.title] && audioState==="loading" && playing && <div role="status" style={{ fontSize:13,marginTop:10 }}>Loading the track…</div>}
+            {audioState==="error" && <div role="alert" style={{ fontSize:13,marginTop:10 }}>This track couldn't load. Check your connection and press play again.</div>}
             <div style={{ display:"flex",alignItems:"center",gap:10,marginTop:20 }}>
               <span style={{ fontSize:12,width:40,textAlign:"right" }}>{elapsed(track.dur, prog)}</span>
               <div role="slider" aria-label="Position" aria-valuenow={Math.round(prog)} aria-valuemin={0} aria-valuemax={100} tabIndex={0}
@@ -1315,14 +1333,14 @@ function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, 
   );
 }
 
-function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, showDesc, setShowDesc, onLogSign }) {
+function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, C, isDark, showDesc, setShowDesc, onLogSign, audioState }) {
   const d = getDesc(track);
   // On teal nav bar, text must always be cream regardless of theme
   const navCr = C.cr;
   const navMu = C.cr;
   return (
     <>
-    {showDesc && <FullPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} onClose={()=>setShowDesc(false)} onLogSign={onLogSign}/>}
+    {showDesc && <FullPlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} C={C} isDark={isDark} onClose={()=>setShowDesc(false)} onLogSign={onLogSign} audioState={audioState}/>}
     <div style={{ height:88,background:C.nav,borderTop:"none",display:"flex",alignItems:"center",padding:"0 16px",gap:0,flexShrink:0 }}>
       <div style={{ width:220,display:"flex",alignItems:"center",gap:12,flexShrink:0 }}>
         <div onClick={()=>setShowDesc(true)} style={{ cursor:"pointer" }}><Thumb title={track.title} cat={track.cat} size={52} radius={4}/></div>
