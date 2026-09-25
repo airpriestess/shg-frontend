@@ -186,12 +186,12 @@ export default function KnowledgeGuide({ onClose, C }) {
           </div>
 
           {/* Category pills */}
-          <div style={{ display:"flex", gap:6, marginTop:14, overflowX:"auto", paddingBottom:2 }}>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))", gap:8, marginTop:14 }}>
             {CATEGORIES.map(c=>(
               <button key={c.label} onClick={()=>{setCat(c.label);setOpen(null);}}
-                style={{ flexShrink:0, padding:"6px 14px", borderRadius:20, border:`1px solid ${cat===c.label?"#2CB7A7":border}`,
-                  background:cat===c.label?"#2CB7A7":"none", color:cat===c.label?"#000":cr,
-                  fontSize:13, cursor:"pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
+                style={{ padding:"14px 10px", borderRadius:14, border:cat===c.label?"none":"1px solid transparent",
+                  background:cat===c.label?OMBRE:`linear-gradient(#0d0d0d,#0d0d0d) padding-box,${OMBRE} border-box`, color:cat===c.label?"#000":cr,
+                  fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif", minHeight:52 }}>
                 {c.label}
               </button>
             ))}

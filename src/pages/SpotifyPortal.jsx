@@ -1592,6 +1592,19 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </button>
       </div>
 
+      {/* OPEN YOUR PASSPORT */}
+      <button onClick={openProfile} className="shg-gb" style={{ display:"flex",alignItems:"center",gap:16,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
+        <span className="shg-gfill" style={{ width:52,height:68,borderRadius:8,flexShrink:0,display:"grid",placeItems:"center" }}>
+          <svg width="30" viewBox="0 0 40 40" fill="none" stroke="#000" strokeWidth="1.6" aria-hidden="true"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></svg>
+        </span>
+        <span style={{ flex:1 }}>
+          <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Goddess Passport</span>
+          <span style={{ display:"block",fontSize:19,fontWeight:500,marginTop:4 }}>Open your passport</span>
+          <span style={{ display:"block",fontSize:13,marginTop:2 }}>Your identity, stamps and ritual</span>
+        </span>
+        <span style={{ fontSize:22 }}>›</span>
+      </button>
+
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
       <SpeakToProof C={C} isDark={C?.cr !== "#000000"} threads={threads} setThreads={setThreads} token={token} isPreview={isPreview} firstName={isPreview ? "Reshma" : firstName}/>
 
@@ -2209,8 +2222,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               <div style={{ height:14,borderRadius:8,background:"#2a2a2a",marginBottom:8,overflow:"hidden" }}><div className="shg-gfill" style={{ height:"100%",width:`${hawk.pct}%`,borderRadius:8 }}/></div>
               <div style={{ fontSize:14,color:C.cr,marginBottom:18 }}>{hawk.label}</div>
             </>}
-            {fast && <div className="shg-gb" style={{ borderRadius:18,padding:"14px",textAlign:"center",color:C.cr }}><div style={{ fontSize:17 }}>Her fastest area: {fast.area}</div><div style={{ fontSize:14,marginTop:4 }}>{fast.note}</div></div>}
-            <div className="shg-gt" style={{ fontSize:17,textAlign:"center",marginTop:18 }}>The more she logs, the more the AI learns.</div>
+            {fast && <div className="shg-gb" style={{ borderRadius:18,padding:"14px",textAlign:"center",color:C.cr }}><div style={{ fontSize:17 }}>Your fastest area: {fast.area}</div><div style={{ fontSize:14,marginTop:4 }}>{fast.note}</div></div>}
+            <div style={{ fontSize:15,textAlign:"center",marginTop:18,color:C.cr }}>The more you log, the more the AI learns.</div>
           </div>
         );
       })()}
@@ -2266,103 +2279,6 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           50%      { box-shadow: 0 0 56px rgba(191,165,216,0.6), 0 4px 80px rgba(44,183,167,0.4); }
         }
       `}</style>
-      {(() => {
-        const mTotal = isPreview ? 14 : Math.max(manifested + inProgress, 1);
-        const mDone  = isPreview ? 9  : manifested;
-        const backendRate = analyticsData?.manifestation_rate;
-        const mRate  = isPreview ? 64 : (backendRate != null ? Math.round(backendRate) : Math.round((mDone / mTotal) * 100));
-        const streak = isPreview ? 21 : (streakDays.filter(d=>d.listened).length || 0);
-        const totalL = isPreview ? 127 : (analyticsData?.total_listens ?? realListens?.total ?? 0);
-        const totalSigns = isPreview ? 23 : (analyticsData?.total_signs ?? threads.reduce((a,t)=>a+(t.signs?.length||0),0));
-        // Signs this week from weekly_activity
-        const weeklyAct = isPreview
-          ? [1,0,2,3,1,4,2]
-          : (analyticsData?.weekly_activity?.map(d=>d.signs) || [0,0,0,0,0,0,0]);
-        const signsThisWeek = isPreview ? 13 : weeklyAct.reduce((a,b)=>a+b,0);
-        const weekMax = Math.max(...weeklyAct, 1);
-        const dayLabels = ["M","T","W","T","F","S","S"];
-        const momentum = isPreview ? 72 : (analyticsData?.momentum_score ?? 0);
-        return (
-          <div style={{ margin:"0 16px 16px", padding:"22px 18px 18px", borderRadius:20, position:"relative", overflow:"hidden",
-            background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 18%,#BFA5D8 48%,#2CB7A7 74%,#167A6B 100%)",
-            backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite, shg-glow-pulse 4s ease-in-out infinite",
-            border:"1px solid rgba(255,255,255,0.6)" }}>
-
-            {/* HERO: Signs this week — the most important metric */}
-            <div style={{ marginBottom:18 }}>
-              <div style={{ fontSize:11, color:"#1a1008", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:6, fontWeight:700, opacity:0.8 }}>Signs noticed this week</div>
-              <div style={{ display:"flex", alignItems:"flex-end", gap:14 }}>
-                <span style={{ fontSize:64, fontWeight:300, color:"#1a1008", lineHeight:1, animation:"shg-count-in 0.6s ease both", letterSpacing:"-2px" }}>{signsThisWeek}</span>
-                <div style={{ paddingBottom:6 }}>
-                  <div style={{ fontSize:13, color:"#1a1008", fontWeight:500, opacity:0.75 }}>{totalSigns} total</div>
-                  {analyticsData?.avg_signs_to_manifest != null && (
-                    <div style={{ fontSize:12, color:"#1a1008", opacity:0.65, marginTop:2 }}>{analyticsData.avg_signs_to_manifest} signs avg. to manifest</div>
-                  )}
-                </div>
-              </div>
-              {/* 7-day waveform — animated bars like the homepage */}
-              <style>{`
-                @keyframes shg-bar-0{0%,100%{transform:scaleY(1)}25%{transform:scaleY(0.2)}75%{transform:scaleY(0.7)}}
-                @keyframes shg-bar-1{0%,100%{transform:scaleY(0.3)}35%{transform:scaleY(1)}70%{transform:scaleY(0.5)}}
-                @keyframes shg-bar-2{0%,100%{transform:scaleY(0.8)}20%{transform:scaleY(0.15)}60%{transform:scaleY(1)}}
-                @keyframes shg-bar-3{0%,100%{transform:scaleY(0.5)}40%{transform:scaleY(1)}80%{transform:scaleY(0.25)}}
-                @keyframes shg-bar-4{0%,100%{transform:scaleY(0.2)}30%{transform:scaleY(0.9)}65%{transform:scaleY(0.55)}}
-                @keyframes shg-bar-5{0%,100%{transform:scaleY(1)}45%{transform:scaleY(0.2)}80%{transform:scaleY(0.75)}}
-                @keyframes shg-bar-6{0%,100%{transform:scaleY(0.6)}25%{transform:scaleY(1)}60%{transform:scaleY(0.3)}}
-              `}</style>
-              <div style={{ display:"flex", alignItems:"flex-end", gap:4, marginTop:16, height:52 }}>
-                {weeklyAct.map((n,i) => {
-                  const barH = n > 0 ? Math.max(28, Math.round((n/weekMax)*44)) : 10;
-                  const dur = [0.9,0.7,1.1,0.8,1.0,0.65,0.85][i];
-                  return (
-                    <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:5 }}>
-                      <div style={{
-                        width:"100%", borderRadius:"4px 4px 0 0",
-                        background: n>0 ? "rgba(10,9,6,0.65)" : "rgba(10,9,6,0.1)",
-                        height:`${barH}px`,
-                        transformOrigin:"bottom center",
-                        animation: n>0 ? `shg-bar-${i} ${dur}s ease-in-out infinite` : "none",
-                      }}/>
-                      <div style={{ fontSize:9, color:"#0a0906", opacity:0.55, fontWeight:700, lineHeight:1 }}>{dayLabels[i]}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* All the headline numbers at once. These used to rotate one at a
-                time, which meant no number was ever reliably on screen. */}
-            {(() => {
-              const fastCat = isPreview ? "Lovemaxxing" : (analyticsData?.fastest_category?.category ?? null);
-              const cells = [
-                [`${streak}`, "day streak"],
-                [`${totalL}`, "total listens"],
-                [`${mDone}/${mTotal}`, "manifested"],
-                [`${momentum}`, "momentum"],
-              ];
-              return (
-                <div style={{ marginTop:14 }}>
-                  {fastCat && (
-                    <div style={{ background:"rgba(10,9,6,0.14)", borderRadius:14, padding:"12px 14px", marginBottom:8 }}>
-                      <div style={{ fontSize:10, fontWeight:700, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(10,9,6,0.6)", marginBottom:2 }}>Fastest to manifest</div>
-                      <div style={{ fontSize:26, fontWeight:700, color:"#0a0906", lineHeight:1.1 }}>{fastCat}</div>
-                    </div>
-                  )}
-                  <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
-                    {cells.map(([v,l],i)=>(
-                      <div key={i} style={{ flex:"1 1 calc(50% - 4px)", minWidth:0, background:"rgba(10,9,6,0.14)", borderRadius:12, padding:"10px 12px" }}>
-                        <div style={{ fontSize:22, fontWeight:700, color:"#0a0906", lineHeight:1.1 }}>{v}</div>
-                        <div style={{ fontSize:10, fontWeight:600, letterSpacing:"0.1em", textTransform:"uppercase", color:"rgba(10,9,6,0.62)", marginTop:2 }}>{l}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })()}
-            {isPreview && <div style={{ fontSize:12, color:"#1a1008", marginTop:12, textAlign:"center", fontStyle:"italic", fontWeight:500, opacity:0.8 }}>preview data — sign up to track your real signs</div>}
-          </div>
-        );
-      })()}
 
       {/* PROOF SNAPSHOT — the four numbers stay on screen together. The carousel
           above rotates, so on its own no single stat is ever reliably visible. */}
@@ -2425,7 +2341,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                     <div key={cat} style={{ display:"flex", alignItems:"center", gap:14, marginBottom:i===speeds.length-1?0:16 }}>
                       <div style={{ fontSize:18, fontWeight:600, color:C.cr, width:130, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
                       <div style={{ flex:1, height:14, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
-                        <div style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: i===0 ? OMBRE : C.accentLav, opacity: i===0?1:0.55 }}/>
+                        <div style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: OMBRE }}/>
                       </div>
                       <div style={{ fontSize:22, fontWeight:700, color:C.cr, width:64, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
                     </div>
@@ -3133,70 +3049,42 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         </div>
       )}
 
-      {/* Stats */}
-      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,marginBottom:18 }}>
-        {[[threads.length,"Desires"],[manifested.length,"Manifested"],[totalSigns,"Signs logged"]].map(([v,l],i)=>(
-          <div key={i} className={i===0?"shg-gfill":"shg-gb"} style={{ borderRadius:20,padding:"16px 8px",textAlign:"center",color:i===0?"#000":PC.text }}>
-            <div className={i===0?"":"shg-gt"} style={{ fontSize:32,fontWeight:500,lineHeight:1.1 }}>{v}</div>
-            <div style={{ fontSize:13,fontWeight:400 }}>{l}</div>
-          </div>
-        ))}
+      {/* FOUR BLOCKS: Intentions | Signs | Proof Wall | Bucket List */}
+      <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,marginBottom:14 }}>
+        {[["threads","Intentions",inProgress.length,"What I'm calling in now"],["signs","Signs",totalSigns,"Every sign I've noticed"],["wall","Proof Wall",manifested.length,"What has arrived"],["bucket","Bucket List",bucketItems.length,"Someday wishes"]].map(([k,l,n,sub])=>{
+          const on = view===k;
+          return (
+            <button key={k} onClick={()=>{ setView(k); setAdding(false); }} aria-pressed={on}
+              className={on?"shg-gfill":"shg-gb"}
+              style={{ borderRadius:18,padding:"16px 14px",textAlign:"left",cursor:"pointer",minHeight:96,display:"flex",flexDirection:"column",justifyContent:"space-between",color:on?"#000":PC.text,fontFamily:"'Jost',sans-serif" }}>
+              <span style={{ display:"flex",justifyContent:"space-between",alignItems:"baseline",width:"100%" }}>
+                <span style={{ fontSize:16,fontWeight:500 }}>{l}</span>
+                <span className={on?"":"shg-gt"} style={{ fontSize:24,fontWeight:500 }}>{n}</span>
+              </span>
+              <span style={{ fontSize:12,fontWeight:400,marginTop:8 }}>{sub} ›</span>
+            </button>
+          );
+        })}
       </div>
 
-      {/* SIGN FEED — latest signs as gradient-border cards (reference: .log .pill) */}
-      {(() => {
-        const short = c => ({Lovemaxxing:"LOVE","Rich Girl":"MONEY",Richgirlmaxxing:"MONEY",Luckygirlmaxxing:"LUCK",Beautymaxxing:"BEAUTY",Beauty:"BEAUTY"}[c] || String(c||"SIGN").replace(/maxxing/i,"").toUpperCase());
-        const feed = threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))).slice(-3).reverse();
-        if (!feed.length) return null;
-        return (
-          <div style={{ marginBottom:18 }}>
-            {feed.map(({sg,t},i)=>(
-              <div key={i} className="shg-gb" style={{ borderRadius:20,padding:"14px 16px",marginBottom:12 }}>
-                <span className="shg-pill">{short(t.category)}</span>
-                <div style={{ fontSize:16,color:PC.text,marginTop:8 }}>{sg.text}</div>
-                <div style={{ fontSize:13,color:PC.text,marginTop:4 }}>Intention: {t.desire}.{t.days!=null?` ${t.days} days.`:""}{sg.date?` Logged ${sg.date}.`:""}</div>
-              </div>
-            ))}
-            <button className="shg-cta" onClick={()=>setView("threads")}>+ Log a sign</button>
-          </div>
-        );
-      })()}
+      <button className="shg-cta" onClick={()=>{ setView("threads"); setAdding(a=>!a); }} style={{ marginBottom:18 }}>
+        {adding?"✕ Cancel":"+ Add a new intention"}
+      </button>
 
-      {/* INTENTION LIST — cream graph paper (reference: .paper .chk .open) */}
-      {threads.length>0 && (
-        <div style={{ borderRadius:28,backgroundColor:"#F2ECE4",color:"#000",padding:"24px 22px",marginBottom:20,
-          backgroundImage:"linear-gradient(rgba(191,165,216,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.3) 1px,transparent 1px)",backgroundSize:"30px 30px" }}>
-          <div style={{ fontSize:20,fontWeight:500,marginBottom:16 }}>Her intention list</div>
-          <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:28 }}>
-            {[["ARRIVED, WITH PROOF",manifested,true],["STILL OPEN, BEING LOGGED",inProgress,false]].map(([h,list,arrived])=>(
-              <div key={h}>
-                <div style={{ fontSize:15,letterSpacing:"0.06em",paddingBottom:10,marginBottom:14,borderBottom:"3px solid",borderImage:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B) 1" }}>{h}</div>
-                {list.length===0 && <div style={{ fontSize:15 }}>Nothing here yet.</div>}
-                {list.map(t=>(
-                  <div key={t.id} style={{ display:"flex",alignItems:"center",gap:12,fontSize:16,marginBottom:14 }}>
-                    <span className="shg-gfill" style={{ width:28,height:28,borderRadius:"50%",flexShrink:0,display:"grid",placeItems:"center",fontSize:14 }}>{arrived?"✓":""}</span>
-                    <span style={{ flex:1 }}>{t.desire}</span>
-                    {arrived && t.days!=null && <span style={{ fontWeight:500,whiteSpace:"nowrap" }}>{t.days} days</span>}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-          <div style={{ marginTop:6,fontSize:15 }}>Every intention written first. Every arrival dated.</div>
+      {view==="signs" ? (
+        <div>
+          {threads.every(t=>!(t.signs||[]).length) && <div style={{ fontSize:15,color:PC.text,padding:"8px 2px" }}>No signs yet. Open an intention and tap "Log a sign".</div>}
+          {threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))).reverse().map(({sg,t},i)=>(
+            <div key={i} className="shg-gb" style={{ borderRadius:18,padding:"14px 16px",marginBottom:10 }}>
+              <div style={{ fontSize:16,color:PC.text }}>{sg.text}</div>
+              {sg.img && <img src={sg.img} alt="" style={{ marginTop:8,maxWidth:160,borderRadius:10,display:"block" }}/>}
+              {sg.audio && <audio src={sg.audio} controls style={{ marginTop:8,height:32 }}/>}
+              <div style={{ fontSize:13,color:PC.text,marginTop:4 }}>For: {t.desire}{sg.date?` · ${sg.date}`:""}</div>
+            </div>
+          ))}
+          <button className="shg-cta2" onClick={()=>setView("threads")} style={{ marginTop:8 }}>+ Log a sign on an intention</button>
         </div>
-      )}
-
-      {/* View toggle: Bucket List | Active | Proof Wall */}
-      <div style={{ display:"flex",gap:6,marginBottom:15 }}>
-        {[["bucket",`Bucket List (${bucketItems.length})`,"#F5E0A0"],["threads","Active","#BFA5D8"],["wall",`Proof Wall (${manifested.length})`,"#2CB7A7"]].map(([k,l,col])=>(
-          <button key={k} onClick={()=>setView(k)} style={{ flex:1,padding:"11px 6px",borderRadius:10,
-            background:view===k?col:(isDark?"#0d0d0d":"rgba(255,255,255,0.55)"),
-            border:`1px solid ${view===k?"transparent":(isDark?"rgba(242,236,228,0.35)":"rgba(255,255,255,0.7)")}`,
-            color:(view===k||!isDark)?"#000":"#F2ECE4", fontSize:13,fontWeight:view===k?600:400,cursor:"pointer",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>{l}</button>
-        ))}
-      </div>
-
-      {view==="bucket" ? (
+      ) : view==="bucket" ? (
         /* ═══ BUCKET LIST, capture everything, no commitment required ═══ */
         <div>
           <div style={{ background:PC.card,borderRadius:14,padding:16,marginBottom:14 }}>
@@ -3350,10 +3238,6 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         </div>
       ) : (
       <>
-      {/* ADD NEW THREAD */}
-      <button onClick={()=>setAdding(a=>!a)} style={{ width:"100%",padding:12,background:adding?PC.card:(isDark?"#000":"#fdf0e8"),border:"none",borderRadius:12,color:adding?PC.text:(isDark?"#fdf0e8":"#000"),fontSize:15,fontWeight:400,marginBottom:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-        {adding?"✕ Cancel":"+ New Desire"}
-      </button>
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>

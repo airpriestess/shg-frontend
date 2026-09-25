@@ -117,7 +117,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
               <div style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
                 <div style={{ display: "flex", gap: 14 }}>
                   <label style={{ width: 108, height: 136, borderRadius: 10, flexShrink: 0, overflow: "hidden", cursor: "pointer", display: "grid", placeItems: "center", background: p.photo ? "#000" : G, fontSize: 11 }}>
-                    {p.photo ? <img src={p.photo} alt="Her passport photo" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : "+ Add photo"}
+                    {p.photo ? <img src={p.photo} alt="Your passport photo" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : "+ Add photo"}
                     <input type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files?.[0]; if (f) set({ photo: await toAvatar(f) }); e.target.value = ""; }} />
                   </label>
                   <div style={{ flex: 1, minWidth: 0, display: "grid", gap: 8, alignContent: "start" }}>
