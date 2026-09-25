@@ -2252,7 +2252,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                     const up = now > before, same = now === before;
                     const diff = Math.round((now - before) * 10) / 10;
                     return (
-                      <div key={name} style={{ marginBottom:12, background:C.bg3, border:`1.5px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
+                      <div key={name} className="shg-paper" style={{ marginBottom:12, background:C.bg3, border:`1.5px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
                         <div style={{ fontSize:15, color:C.cr, marginBottom:4 }}>{name}</div>
                         <div style={{ display:"flex", alignItems:"baseline", gap:10, flexWrap:"wrap" }}>
                           <span style={{ fontSize:38, fontWeight:700, color:C.cr, lineHeight:1 }}>{now}</span>
@@ -2300,7 +2300,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <>
             <div style={{ display:"flex", flexWrap:"wrap", gap:12, margin:"0 16px 18px" }}>
               {tiles.map(([v,l,col],i)=>(
-                <div key={i} style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, background:C.bg2, border:"2px solid #BFA5D8", borderRadius:20, padding:"26px 22px", animation:"shg-lg-glow 3s linear infinite" }}>
+                <div key={i} className="shg-paper" style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, background:C.bg2, border:"2px solid #BFA5D8", borderRadius:20, padding:"26px 22px", animation:"shg-lg-glow 3s linear infinite" }}>
                   <div style={{ fontSize:52, fontWeight:700, lineHeight:1, marginBottom:8, color:col }}>{v}</div>
                   <div style={{ fontSize:16, color:C.cr, fontWeight:600 }}>{l}</div>
                 </div>
@@ -2316,7 +2316,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                   <div style={{ fontSize:72, fontWeight:700, lineHeight:1, color:C.cr }}>{proofTotal}</div>
                   <div style={{ fontSize:18, color:C.cr }}>pieces of proof, dated and kept</div>
                 </div>
-                <div style={{ height:14, borderRadius:8, background:C.bg4, overflow:"hidden", marginBottom:12 }}>
+                <div className="shg-paper" style={{ height:14, borderRadius:8, background:C.bg4, overflow:"hidden", marginBottom:12 }}>
                   <div style={{ height:"100%", borderRadius:5, width:`${Math.min(100,(proofTotal/365)*100)}%`, minWidth:6, background:OMBRE }}/>
                 </div>
                 <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>
@@ -2343,7 +2343,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                   {speeds.map(([cat,days],i)=>(
                     <div key={cat} style={{ display:"flex", alignItems:"center", gap:14, marginBottom:i===speeds.length-1?0:16 }}>
                       <div style={{ fontSize:18, fontWeight:600, color:C.cr, width:130, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
-                      <div style={{ flex:1, height:14, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
+                      <div className="shg-paper" style={{ flex:1, height:14, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
                         <div style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: OMBRE }}/>
                       </div>
                       <div style={{ fontSize:22, fontWeight:700, color:C.cr, width:64, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
