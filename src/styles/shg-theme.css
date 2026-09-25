@@ -65,3 +65,19 @@
 [data-portal-theme] [style*="font-size: 3"]:not([style*="font-size: 3px"]){font-size:24px!important;font-weight:400!important}
 [data-portal-theme] [style*="font-size: 2"]:not([style*="font-size: 2px"]){font-size:18px!important;font-weight:400!important}
 [data-portal-theme] .shg-hero .shg-gt{font-size:24px!important}
+/* Labels sitting on a gradient-filled card stay black and readable. */
+[data-portal-theme] [style*="background: linear-gradient"] [style*="text-transform: uppercase"],[data-portal-theme] .shg-gfill [style*="text-transform: uppercase"]{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
+/* Readability on black: small section labels in cream, not dim gradient. */
+[data-portal-theme="dark"] [style*="text-transform: uppercase"]:not(button):not(.shg-pill):not([style*="background: linear-gradient"] *),
+[data-portal-theme="dark"] [style*="letter-spacing: 0.15em"],[data-portal-theme="dark"] [style*="letter-spacing: 0.2em"]{background:none!important;-webkit-text-fill-color:#F2ECE4!important;color:#F2ECE4!important}
+[data-portal-theme="dark"] input,[data-portal-theme="dark"] textarea{background:#111!important;color:#F2ECE4!important;border-color:#F2ECE4!important}
+[data-portal-theme="dark"] input:focus,[data-portal-theme="dark"] textarea:focus{background:#fff!important;color:#000!important}
+/* Gradient text: a little room on the right so the last letter is never clipped (Futura). */
+.shg-gt{padding-right:.12em;margin-right:-.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* Cream graph paper cards: black text, gradient edge, easy to read */
+div.shg-paper.shg-paper.shg-paper.shg-paper.shg-paper{background:linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px) padding-box,linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px) padding-box,linear-gradient(#F2ECE4,#F2ECE4) padding-box,var(--grad) border-box!important;background-size:22px 22px,22px 22px,auto,auto!important;border:1.5px solid transparent!important;animation:none!important;box-shadow:none!important;color:#000!important}
+.shg-paper *{color:#000!important;-webkit-text-fill-color:#000}
+.shg-paper [style*="background: rgb(0, 0, 0)"],.shg-paper [style*="background: rgb(0, 0, 0)"] *{color:#F2ECE4!important;-webkit-text-fill-color:#F2ECE4}
+.shg-paper input,.shg-paper textarea{background:#fff!important}
+[data-portal-theme] div.shg-paper.shg-paper [style*="letter-spacing"],[data-portal-theme] div.shg-paper.shg-paper .shg-gt{background:none!important;color:#000!important;-webkit-text-fill-color:#000!important}

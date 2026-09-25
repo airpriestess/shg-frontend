@@ -215,7 +215,7 @@ export default function About({ onBack }) {
               Still me, behind every track.
             </h2>
             <p style={{ fontSize: isMobile?15:17, lineHeight:1.9, color:"rgba(253,240,232,0.7)", marginBottom:18 }}>
-              I still write, record, and produce this myself. Every category — Lucky Girl, Rich Girl, Love, Beauty — comes from something I was working through in my own life first.
+              I still write, record and produce this myself. Every category — Lucky Girl, Rich Girl, Love, Beauty — comes from something I was working through in my own life first.
             </p>
             <p style={{ fontSize: isMobile?15:17, lineHeight:1.9, color:"rgba(253,240,232,0.7)" }}>
               This is early. It's mine. And I'm doing it out loud so the women who need it can find it while I'm still building.

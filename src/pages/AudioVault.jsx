@@ -132,7 +132,7 @@ export default function AudioVault({ userTier, onCreateThread, onPlayAudio, play
           <div style={{ padding: "60px 0", textAlign: "center" }}>
             <div style={{ fontSize: 28, marginBottom: 12, opacity: 0.3 }}>◈</div>
             <div style={{ fontSize: 14, fontWeight: 600, color: T.textPrimary, marginBottom: 8 }}>Select an audio</div>
-            <div style={{ fontSize: 13, color: T.textMuted, lineHeight: 1.65 }}>Select an audio to see its Proof Threads, receipts, and listening history.</div>
+            <div style={{ fontSize: 13, color: T.textMuted, lineHeight: 1.65 }}>Select an audio to see its Proof Threads, receipts and listening history.</div>
           </div>
         ) : (
           <SelectedPanel audio={sel} userTier={userTier} onCreateThread={onCreateThread} onPlay={() => onPlayAudio(sel)} isPlaying={playingId === sel.id} canPlay={canPlay(sel)} onUpgrade={onUpgrade} />

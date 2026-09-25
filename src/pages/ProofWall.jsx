@@ -120,7 +120,7 @@ export default function ProofWall({ onAddProof }) {
               Proof Wall
             </h1>
             <p style={{ fontSize:15, color:T.textMuted, lineHeight:1.6 }}>
-              Every photo, voice note, sign, and synchronicity you have captured. Your evidence vault.
+              Every photo, voice note, sign and synchronicity you have captured. Your evidence vault.
             </p>
           </div>
           <div style={{ display:"flex", gap:8 }}>

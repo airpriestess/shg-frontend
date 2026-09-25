@@ -237,7 +237,7 @@ const WALL = [
     ]
   },
   {
-    desire: "I started trusting my gut, and it kept being right.",
+    desire: "I started trusting my gut and it kept being right.",
     category: "Intuitionmaxxing", days: 13, signs: 4,
     track: "an Intuitionmaxxing track", feel: "The signal was always there. I just learned to stop second-guessing it.",
     log: [

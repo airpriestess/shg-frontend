@@ -33,14 +33,22 @@ const toJpeg = (file) => new Promise((resolve, reject) => {
   img.src = URL.createObjectURL(file);
 });
 
-// What the preview shows, so the flow can be tried without an account.
-function sampleItems(text, threads) {
-  const he = threads.find(t => /text/i.test(t.desire));
-  return [
-    { type: "sign", text: "Saw 111 three times today", category: "Luckygirlmaxxing", thread_id: he?.id ?? null, date: null, date_label: "today" },
-    { type: "intention", text: "I am booked for a paid speaking gig in London", category: "Richgirlmaxxing", thread_id: null, date: null, date_label: null },
-    { type: "arrived", text: "Fully paid trip to Bali", category: "Luckygirlmaxxing", thread_id: null, date: null, date_label: "last year" },
-  ];
+// Preview has no account, so no AI: split what she said into separate
+// intentions with plain rules, so she still sees her own words sorted.
+function localItems(text) {
+  const cleaned = text
+    .replace(/^\s*(hey|hi|hello|ok|okay)[,!.\s]+/i, "")
+    .replace(/^(what\s+)?i\s+(really\s+)?(want|would like|wish)\s+(to\s+(manifest|call in|attract))?\s*(right now\s+)?(is|are)?\s*/i, "")
+    .replace(/^(add this intention|add|please add)[,:\s]+/i, "");
+  // Speech has no commas, so also break before common new wishes ("a husband", "a house"...).
+  const spoken = cleaned.replace(/\s+(?=(?:a|an|my)\s+(?:husband|wife|partner|boyfriend|girlfriend|house|home|flat|apartment|car|job|career|baby|business|trip|holiday|body|glow)\b)/gi, ", ");
+  return spoken
+    .split(/\s*(?:[.;!?\n]+|,\s*(?:and\s+)?|\band\b(?=\s+(?:a|an|my|the|i|to)\b))\s*/i)
+    .map(t => t.trim().replace(/^(and|also|then)\s+/i, "").replace(/\s+(and|also)$/i, ""))
+    .filter(t => t.length > 3)
+    .slice(0, 12)
+    .map(t => ({ type: /\b(saw|noticed|happened|today|yesterday|got|received|texted|called)\b/i.test(t) ? "sign" : "intention",
+      text: t.charAt(0).toUpperCase() + t.slice(1), category: "", thread_id: null, date: null, date_label: null }));
 }
 
 export default function SpeakToProof({ C, isDark, threads = [], setThreads, token, isPreview, firstName }) {
@@ -70,7 +78,7 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
       }
       setText(base.current + finalText + interim);
     };
-    r.onerror = (e) => { if (e.error === "not-allowed") setNote("Allow the microphone to talk to proofOS."); setListening(false); };
+    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") setNote("Your browser blocked the microphone. Tap the lock icon next to the web address, allow Microphone, then try again. Or type, or use your keyboard's microphone."); setListening(false); };
     r.onend = () => setListening(false);
     rec.current = r; r.start(); setListening(true);
   };
@@ -88,9 +96,9 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
     setBusy(true); setNote("");
     try {
       const list = isPreview || !token
-        ? sampleItems(text, threads)
+        ? localItems(text)
         : (await post("/organize", token, { text, images, threads: threads.map(t => ({ id: t.id, desire: t.desire })) })).items;
-      setItems(list.map(i => ({ ...i, keep: true })));
+      setItems(list.map(i => ({ ...i, keep: true, detail: "" })));
       if (!list.length) setNote("Nothing to add found. Try saying it another way.");
     } catch {
       setNote("That didn't go through. Check your connection and try again.");
@@ -103,6 +111,7 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
     const jobs = [];
     const makeThread = (i, extra = {}) => {
       const id = newId();
+      if (i.detail && i.detail.trim()) i = { ...i, text: `${i.text}. ${i.detail.trim()}` };
       const createdAt = i.date ? new Date(i.date).toISOString() : new Date().toISOString();
       next.push({ id, desire: i.text, category: i.category || "", track: "", oldBelief: "", feelBefore: "", feelAfter: "", days: 0, done: false, isBucket: i.type === "bucket", createdAt, manifestedAt: null, signs: [], ...extra });
       if (!isPreview && token) jobs.push(post("/threads", token, { id, desire: i.text, category: i.category || "", is_bucket: i.type === "bucket" }));
@@ -175,7 +184,8 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
 
       {items && items.length > 0 && (
         <div style={{ marginTop: 14 }}>
-          <div style={{ fontSize: 11, letterSpacing: ".26em", marginBottom: 8 }}>CHECK AND SAVE</div>
+          <div style={{ fontSize: 11, letterSpacing: ".26em", marginBottom: 6 }}>CHECK AND SAVE</div>
+          <div style={{ fontSize: 13, lineHeight: 1.5, marginBottom: 8 }}>The more specific, the stronger. Not "a job", but "a job I love paying $200,000 a year, remote, starting by spring".</div>
           {items.map((i, n) => {
             const linked = threads.find(t => t.id === i.thread_id);
             return (
@@ -191,6 +201,11 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
                     {linked && <span>for “{linked.desire}”</span>}
                     {i.date_label && <span>· {i.date_label}</span>}
                   </div>
+                  {(i.type === "intention" || i.type === "bucket") && (
+                    <input value={i.detail} aria-label={`Details for ${i.text}`} onChange={(e) => setItems(items.map((x, k) => k === n ? { ...x, detail: e.target.value } : x))}
+                      placeholder="Make it specific: how much, where, when, how it feels"
+                      style={{ marginTop: 8, width: "100%", boxSizing: "border-box", borderRadius: 10, padding: "8px 10px", fontSize: 13, fontFamily: "inherit", border: `1px solid ${cr}`, background: "transparent", color: cr }} />
+                  )}
                 </div>
               </div>
             );

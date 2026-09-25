@@ -20,7 +20,7 @@ const QUESTIONS = [
     { icon: "💝", mood: "Who can I help?", sub: "Already thinking about everyone else.", c: "love" },
     { icon: "✨", mood: "Finally.", sub: "Now I can fix what I've been putting off.", c: "body" }
   ]},
-  { q: "Someone gorgeous, successful, and emotionally available wants you. You think...", opts: [
+  { q: "Someone gorgeous, successful and emotionally available wants you. You think...", opts: [
     { icon: "🎭", mood: "What's the catch?", sub: "People like that don't just choose me.", c: "love" },
     { icon: "⌛", mood: "How long until they see?", sub: "The real me they haven't met yet.", c: "identity" },
     { icon: "🧊", mood: "Can't need them too much.", sub: "Keep the distance. Stay safe.", c: "love" },
@@ -288,7 +288,7 @@ export default function LuckyGirl() {
             What's blocking your Lucky Girl era?
           </h1>
           <p style={{ fontSize: 17, color: INK, lineHeight: 1.75, maxWidth: 420, margin: "0 auto 48px", fontWeight: 300 }}>
-            8 questions. Your invisible block — named, and replaced with the assumption that actually gets her there.
+            8 questions. Your invisible block — named and replaced with the assumption that actually gets her there.
           </p>
           <form onSubmit={submitEmail} style={{ maxWidth: 440, width: "100%" }}>
             <input style={inputStyle} placeholder="First name" value={name} onChange={e => setName(e.target.value)} autoComplete="given-name"/>

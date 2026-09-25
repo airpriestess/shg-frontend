@@ -7,9 +7,9 @@ const CATEGORIES = ["Rich Girl", "Beauty", "Body", "Love", "Desires", "Home", "P
 const LISTENING_MODES = ["Morning", "Day", "Night", "Sleep", "Loop", "Custom"];
 const EXAMPLES = [
   "I receive $5,000 from an unexpected source.",
-  "My skin looks clear, smooth, and luminous.",
+  "My skin looks clear, smooth and luminous.",
   "He sends me a loving message and asks to see me.",
-  "My body looks softer, slimmer, and more feminine.",
+  "My body looks softer, slimmer and more feminine.",
   "My business receives three aligned buyers this week.",
   "My desired person appears with clear romantic interest.",
 ];

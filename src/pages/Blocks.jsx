@@ -88,7 +88,7 @@ export default function Blocks() {
         <div style={{ fontSize: 11, letterSpacing: ".28em", textTransform: "uppercase", color: "#000000", marginBottom: 20 }}> Free diagnostics </div>
         <h1 style={{ fontSize: "clamp(48px,8vw,96px)", fontWeight: 700, color: "#000", letterSpacing: "-.04em", lineHeight: 1, marginBottom: 20 }}>Find your block.</h1>
         <p style={{ fontSize: "clamp(16px,2vw,20px)", color: "#000000", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
-          8 questions. Your invisible block, named, and replaced.
+          8 questions. Your invisible block, named and replaced.
         </p>
       </div>
 

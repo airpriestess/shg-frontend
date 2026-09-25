@@ -35,7 +35,7 @@ const SECTIONS = [
   {
     heading: "Understanding the formats",
     content: [
-      { title: "Spoken Hypnosis", body: "Reshma's voice guides you through a full induction, progressive relaxation, deepening, identity installation, and emergence. You follow along consciously at first, then drift into theta. The most active form of hypnosis. Best for identity-level shifts and specific desires." },
+      { title: "Spoken Hypnosis", body: "Reshma's voice guides you through a full induction, progressive relaxation, deepening, identity installation and emergence. You follow along consciously at first, then drift into theta. The most active form of hypnosis. Best for identity-level shifts and specific desires." },
       { title: "Subliminal", body: "Affirmations and identity statements are layered beneath music at a volume your conscious mind cannot clearly hear, but your subconscious can process. You do not need to focus. Play it while you rest, work, or sleep. Your conscious mind does not resist what it cannot fully hear." },
       { title: "Sleep Subliminal", body: "Designed to play all night. The subliminals are embedded beneath sleep sounds, rain, or ambient frequency music. Set it as your sleep audio. The installation happens across 6-8 hours of sleep. Extremely effective for deep identity rewiring." },
       { title: "EMDR Hypnosis", body: "Eye Movement Desensitisation and Reprocessing, adapted for audio. Bilateral beats alternate left and right in your headphones, stimulating both hemispheres the way eye movement does in traditional EMDR. This unlocks emotional blocks and outdated beliefs that standard hypnosis cannot always reach. Use when resistance is high or the desire has emotional charge." },
@@ -76,7 +76,7 @@ export default function ListeningGuide() {
             Listening Guide
           </h1>
           <p style={{ fontSize: 18, color: T.textMuted, lineHeight: 1.85, maxWidth: 580 }}>
-            Everything you need to listen effectively, build your Proof Thread, and shift into the identity where your desires are already real.
+            Everything you need to listen effectively, build your Proof Thread and shift into the identity where your desires are already real.
           </p>
           <div style={{ height: 1, background: "linear-gradient(90deg,#2CB7A744,transparent)", marginTop: 32 }} />
         </div>

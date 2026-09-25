@@ -64,7 +64,7 @@ export default function QuizHub() {
           Find your block.
         </h1>
         <p style={{ fontSize: 18, color: "#000000", lineHeight: 1.7, maxWidth: 420, margin: "0 auto" }}>
-          8 questions. Your invisible block, named, and replaced.
+          8 questions. Your invisible block, named and replaced.
         </p>
       </div>
 

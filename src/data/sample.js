@@ -59,7 +59,7 @@ export const SAMPLE_TRACKS = [
     tier: "audio",
     duration: 360,
     frequency: "Hypnosis · Sleep · 432hz",
-    description: "8-hour sleep subliminal for beauty, radiance, and self-image. 432hz harmony frequency. Plays throughout the night while your subconscious installs the new self-concept.",
+    description: "8-hour sleep subliminal for beauty, radiance and self-image. 432hz harmony frequency. Plays throughout the night while your subconscious installs the new self-concept.",
     tags: ["beauty", "sleep", "subliminal"],
   },
 ];
@@ -74,7 +74,7 @@ export const SAMPLE_DESIRES = [
     dayNumber: 26,
     isFulfilled: false,
     proofEntries: [
-      { id: 101, type: "Sign", stage: "Evidence Appearing", title: "Saw 555 three times in one hour", description: "On my phone, a receipt, and a door number. All within an hour of waking.", happenedAt: "2026-06-24", noticedAt: "2026-06-24", dayNumber: 1 },
+      { id: 101, type: "Sign", stage: "Evidence Appearing", title: "Saw 555 three times in one hour", description: "On my phone, a receipt and a door number. All within an hour of waking.", happenedAt: "2026-06-24", noticedAt: "2026-06-24", dayNumber: 1 },
       { id: 102, type: "Voice Proof", stage: "Evidence Appearing", title: "I woke up feeling certain before anything happened", description: "Recorded this first thing. No reason to feel this certain. But I did.", happenedAt: "2026-06-26", noticedAt: "2026-06-26", dayNumber: 3 },
       { id: 103, type: "Partial Proof", stage: "Evidence Appearing", title: "A client asked for the exact offer I had been visualising", description: "She asked unprompted. I had not mentioned it. The number was close.", happenedAt: "2026-06-29", noticedAt: "2026-06-29", dayNumber: 6 },
       { id: 104, type: "Photo Proof", stage: "Evidence Appearing", title: "Bank notification arrived this morning", description: "Transfer from someone I hadn't spoken to in months.", happenedAt: "2026-07-01", noticedAt: "2026-07-01", dayNumber: 8 },
@@ -92,7 +92,7 @@ export const SAMPLE_DESIRES = [
       { id: 201, type: "Symptom", stage: "Evidence Appearing", title: "My body felt warm and calm after the night audio", description: "A physical warmth I can only describe as recognition. Like my cells agreed.", happenedAt: "2026-06-12", noticedAt: "2026-06-12", dayNumber: 2 },
       { id: 202, type: "Sign", stage: "Evidence Appearing", title: "Someone asked what I was doing differently", description: "Sarah asked unprompted during coffee. She said I looked different. Glowing.", happenedAt: "2026-06-18", noticedAt: "2026-06-18", dayNumber: 8 },
       { id: 203, type: "Photo Proof", stage: "Evidence Appearing", title: "Comparison photo, week 1 vs week 2", description: "I can see it myself now.", happenedAt: "2026-06-22", noticedAt: "2026-06-22", dayNumber: 12 },
-      { id: 204, type: "Final Manifestation", stage: "Final Proof", title: "Three separate people commented in one day", description: "A stranger, my sister, and someone from work. All on the same day. It is done.", happenedAt: "2026-07-01", noticedAt: "2026-07-01", dayNumber: 21, isFinal: true },
+      { id: 204, type: "Final Manifestation", stage: "Final Proof", title: "Three separate people commented in one day", description: "A stranger, my sister and someone from work. All on the same day. It is done.", happenedAt: "2026-07-01", noticedAt: "2026-07-01", dayNumber: 21, isFinal: true },
     ],
   },
   {

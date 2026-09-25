@@ -48,7 +48,7 @@ export default function VaultSettings({ userTier, onSignOut, onUpgrade }) {
         <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,46px)", background: G, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginBottom: 6 }}>
           Vault Settings
         </h1>
-        <p style={{ fontSize: 15, color: T.textMuted }}>Account, subscription, storage, and listening preferences.</p>
+        <p style={{ fontSize: 15, color: T.textMuted }}>Account, subscription, storage and listening preferences.</p>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
