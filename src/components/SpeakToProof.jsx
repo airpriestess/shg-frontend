@@ -70,7 +70,7 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
       }
       setText(base.current + finalText + interim);
     };
-    r.onerror = (e) => { if (e.error === "not-allowed") setNote("Allow the microphone to talk to proofOS."); setListening(false); };
+    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") setNote("Your browser blocked the microphone. Tap the lock icon next to the web address, allow Microphone, then try again. Or type, or use your keyboard's microphone."); setListening(false); };
     r.onend = () => setListening(false);
     rec.current = r; r.start(); setListening(true);
   };
