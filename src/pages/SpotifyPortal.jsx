@@ -1286,7 +1286,7 @@ function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, 
                 <div style={{ fontSize:14,lineHeight:1.6,marginBottom:12 }}>What came up while you listened? A feeling, an image, a word. Only you can see these.</div>
                 <textarea id="fp-note" value={draft} onChange={e=>setDraft(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"&&(e.metaKey||e.ctrlKey)) addNote(); }} rows={4} placeholder="I felt lighter at the part about…"
                   style={{ width:"100%",boxSizing:"border-box",borderRadius:14,padding:14,fontSize:15,lineHeight:1.5,fontFamily:"inherit",border:`1px solid ${ink}`,background:"transparent",color:ink,resize:"vertical" }}/>
-                <button className="shg-cta" onClick={addNote} disabled={!draft.trim()} style={{ marginTop:10,opacity:draft.trim()?1:.6 }}>Save note at {elapsed(track.dur, prog)}</button>
+                <button className={draft.trim()?"shg-cta":"shg-cta2"} onClick={addNote} disabled={!draft.trim()} style={{ marginTop:10, color:draft.trim()?"#000":ink, background:draft.trim()?undefined:`linear-gradient(${C.bg},${C.bg}) padding-box,linear-gradient(90deg,#F5E0A0,#BFA5D8,#2CB7A7) border-box` }}>Save note at {elapsed(track.dur, prog)}</button>
                 <div style={{ marginTop:22 }}>
                   {notes.length===0 && <div style={{ fontSize:14 }}>No notes yet for this track.</div>}
                   {notes.map((n,i)=>(
