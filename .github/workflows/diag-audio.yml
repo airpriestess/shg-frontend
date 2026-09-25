@@ -6,13 +6,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: List bucket
-        run: curl -s https://shg-audio-worker.airpriestess.workers.dev/_list
-      - name: Check each track link
+      - name: Live site version
         run: |
-          while read -r u; do
-            [ -z "$u" ] && continue
-            h=$(curl -s -o /dev/null --max-time 3 -w "%{http_code}" "$u" || true)
-            echo "$h  $u"
-          done < .github/audio-urls.txt
+          curl -s https://reshmaoracle.com/shop | grep -o 'assets/index-[A-Za-z0-9_-]*\.js' | head -1
+          js=$(curl -s https://reshmaoracle.com/ | grep -o '/assets/index-[A-Za-z0-9_-]*\.js' | head -1); echo "$js"
+          curl -s "https://reshmaoracle.com$js" | grep -o 'beacons.ai/reshmaoracle")' | head -1 || true
+          curl -s "https://reshmaoracle.com$js" | grep -c 'shg-splash-line' || true
