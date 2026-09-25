@@ -54,7 +54,7 @@ export default function AuthGate({ onSuccess }) {
       <div style={{ width: "100%", maxWidth: 400, textAlign: "center" }}>
         {/* Logo */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, marginBottom: 36 }}>
-          <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={120} height={120} style={{ objectFit: "contain" }} />
+          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={120} height={120} style={{ objectFit: "contain" }} />
           <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 500, fontSize: 12, letterSpacing: "0.22em", color: "#fdf0e8", textTransform: "uppercase" }}>
             Self Hypnosis Goddess
           </div>

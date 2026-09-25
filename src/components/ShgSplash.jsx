@@ -69,7 +69,7 @@ export default function ShgSplash({ theme = "dark" }) {
       opacity: phase === "out" ? 0 : 1, transition: "opacity .7s ease", cursor: "pointer",
     }}>
       <canvas ref={cv} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
-      <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" style={{ position: "relative", width: "clamp(88px, 11vw, 170px)", height: "clamp(88px, 11vw, 170px)", filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.55)) drop-shadow(6px 6px 16px rgba(44,183,167,.5)) drop-shadow(0 0 10px rgba(191,165,216,.5))", animation: "shg-splash-breathe 3s ease-in-out infinite" }} />
+      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style={{ position: "relative", width: "clamp(88px, 11vw, 170px)", height: "clamp(88px, 11vw, 170px)", filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.55)) drop-shadow(6px 6px 16px rgba(44,183,167,.5)) drop-shadow(0 0 10px rgba(191,165,216,.5))", animation: "shg-splash-breathe 3s ease-in-out infinite" }} />
       <div className="shg-splash-line" style={{ position: "relative", fontSize: "clamp(19px, 3.3vw, 50px)", lineHeight: 1.45, fontWeight: 400, maxWidth: "min(760px, 88vw)", textShadow: "0 0 14px #000, 0 0 4px #000", animation: "shg-splash-rise 1.2s ease .4s both" }}>{line}</div>
       <div style={{ position: "relative", fontSize: "clamp(11px, 1.55vw, 23px)", letterSpacing: ".4em", lineHeight: 1.8, maxWidth: "90vw", textShadow: "0 0 10px #000, 0 0 3px #000", animation: "shg-splash-rise 1.2s ease .8s both" }}>WELCOME TO THE SELF HYPNOSIS GODDESS UNIVERSE</div>
       <style>{`@keyframes shg-splash-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}

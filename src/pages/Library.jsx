@@ -227,7 +227,7 @@ export default function Library({ onBack }) {
       {/* HERO */}
       <div style={{ background:LG, padding: `calc(${isMobile?"44px":"48px"} + 54px + ${isMobile?"32px":"56px"} + env(safe-area-inset-top,0px)) 24px ${isMobile?"56px":"72px"}`, textAlign:"center" }}>
         <div style={{ display:"flex", justifyContent:"center", marginBottom:24 }}>
-          <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={isMobile?56:72} height={isMobile?56:72} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?56:72} height={isMobile?56:72} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         </div>
         <div style={{ fontSize:12, letterSpacing:"0.22em", textTransform:"uppercase", color:"#000000", marginBottom:16, fontFamily:"'Jost',sans-serif" }}>Self Hypnosis Goddess</div>
         <h1 style={{ fontFamily:"'Jost',sans-serif", fontSize: isMobile?"clamp(32px,9vw,48px)":"clamp(40px,5vw,64px)", color:BLACK, margin:"0 0 20px", lineHeight:1.1, fontWeight:400 }}>

@@ -96,7 +96,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             <button onClick={() => setOpened(true)} aria-label="Open passport" style={{ all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 22, width: "100%", boxSizing: "border-box", height: "min(560px,68vh)", borderRadius: "14px 26px 26px 14px", border: "1px solid transparent", background: `linear-gradient(#060606,#060606) padding-box,${G} border-box`, textAlign: "center", position: "relative" }}>
               <span style={{ position: "absolute", left: 18, top: 0, bottom: 0, width: 1, background: "#1e1e1e" }} />
               <span style={{ fontSize: 10, letterSpacing: ".32em" }}>SELF HYPNOSIS GODDESS</span>
-              <img src="/shg-logo-clear.png" alt="" style={{ width: 110, filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.5)) drop-shadow(6px 6px 16px rgba(44,183,167,.45))" }} />
+              <img src="/logo_transparent_cropped.png" alt="" style={{ width: 110, filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.5)) drop-shadow(6px 6px 16px rgba(44,183,167,.45))" }} />
               <span style={{ fontSize: 24, letterSpacing: ".24em" }}>PASSPORT</span>
               <span style={{ fontSize: 10, letterSpacing: ".32em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
             </button>

@@ -289,7 +289,7 @@ export default function App() {
           authCtx.loading
             ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <div style={{display:"flex",alignItems:"center",gap:8}}>
-                  <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+                  <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
                   <span style={{fontFamily:"'Jost',sans-serif",fontWeight:300,fontSize:"clamp(11px,3.2vw,14px)",color:"#fdf0e8",letterSpacing:"0.02em"}}>Self Hypnosis Goddess</span>
                 </div>
               </div>
@@ -1703,7 +1703,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* NAV */}
       <nav style={{ position: "fixed", top: `calc(${isMobile ? "44px" : "48px"} + env(safe-area-inset-top,0px))`, left: 0, right: 0, zIndex: 300, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", background: "rgba(0,0,0,0.97)", borderBottom: "1px solid #1c1828", backdropFilter: "blur(20px)" }}>
           <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile ? "0 0 auto" : "1 1 0" }}>
-            <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+            <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} />
             <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize: "clamp(11px,3.2vw,14px)", letterSpacing: "0.02em", cursor: "pointer", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", maxWidth: isMobile ? "68vw" : "none", color:"#fdf0e8" }} onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>Self Hypnosis Goddess</span>
           </div>
 
@@ -1856,7 +1856,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
                     <div style={{ fontSize:8, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", letterSpacing:"0.1em" }}>NOW PLAYING</div>
                   </div>
                   <div style={{ width:120, height:120, borderRadius:20, margin:"0 auto 16px", background:"linear-gradient(135deg,rgba(245,224,160,0.15),rgba(44,183,167,0.15))", border:"1px solid rgba(232,184,112,0.2)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                    <img src="/shg-logo-clear.png" alt="" width={70} height={70} style={{ objectFit:"contain", opacity:0.9 }}/>
+                    <img src="/logo_transparent_cropped.png" alt="" width={70} height={70} style={{ objectFit:"contain", opacity:0.9 }}/>
                   </div>
                   <div style={{ textAlign:"center", marginBottom:16 }}>
                     <div style={{ fontSize:11, color:"#fdf0e8", fontFamily:"'Jost',sans-serif", fontWeight:400, lineHeight:1.3, marginBottom:4 }}>I Am The Luckiest Woman</div>
@@ -1903,7 +1903,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {/* Top row, track info + waveform */}
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
               <div style={{ width:isMobile?52:88, height:isMobile?52:88, borderRadius:isMobile?10:16, background:"#0a0a0a", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", border:"1px solid rgba(42,168,154,0.15)" }}>
-                <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={isMobile?34:64} height={isMobile?34:64} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+                <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?34:64} height={isMobile?34:64} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: isMobile ? 15 : 24, fontWeight: 400, color: "#fdf0e8", marginBottom: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{currentTrack?.title || "I Am The Luckiest Woman In This Universe"}</div>
@@ -1920,7 +1920,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {/* Logo mark, replaces progress bar */}
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", marginBottom:14, gap:12 }}>
               <div style={{ flex:1, height:1, background:"#fdf0e8" }}/>
-              <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={44} height={44} style={{ opacity: playing ? 1 : 0.6, transition:"opacity 0.4s", objectFit:"contain", display:"block"}} />
+              <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={44} height={44} style={{ opacity: playing ? 1 : 0.6, transition:"opacity 0.4s", objectFit:"contain", display:"block"}} />
               <div style={{ flex:1, height:1, background:"#fdf0e8" }}/>
             </div>
             {/* Controls */}
@@ -1959,7 +1959,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
 
       {/* LOGO, mark above Self Hypnosis Goddess / Audio Library */}
       <div style={{ background:"#000", paddingTop: isMobile?32:48, display:"flex", justifyContent:"center", alignItems:"center" }}>
-        <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={isMobile?100:140} height={isMobile?100:140} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={isMobile?100:140} height={isMobile?100:140} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
       </div>
 
       {/* BRAND BLOCK, immediately after player, so people know what this IS before we explain how it works */}
@@ -2369,7 +2369,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* ─── Section divider ─── */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
-        <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={22} height={22} style={{opacity:0.5, objectFit:"contain", display:"block"}} />
+        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={22} height={22} style={{opacity:0.5, objectFit:"contain", display:"block"}} />
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* PROOFOS INTRO, MASSIVE STATEMENT */}
@@ -2382,7 +2382,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* ─── Section divider ─── */}
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, padding:"8px 0", background:"#000" }}>
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,transparent,rgba(44,183,167,0.2))", maxWidth:200 }}/>
-        <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={18} height={18} style={{opacity:0.5, objectFit:"contain", display:"block"}} />
+        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={18} height={18} style={{opacity:0.5, objectFit:"contain", display:"block"}} />
         <div style={{ flex:1, height:"1px", background:"linear-gradient(90deg,rgba(44,183,167,0.2),transparent)", maxWidth:200 }}/>
       </div>
       {/* WALL OF LOVE */}
@@ -2464,7 +2464,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
       {/* FOOTER */}
       <div className="reveal" style={{ borderTop: T.border, padding: "64px 24px 28px", textAlign: "center" }}>
         <div style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
-          <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width={72} height={72} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
+          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width={72} height={72} style={{flexShrink:0, objectFit:"contain", display:"block"}} />
         </div>
         <div style={{ marginBottom:16 }}>
           <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:22, color:"#fdf0e8", letterSpacing:"0.02em" }}>Self Hypnosis Goddess</span>
