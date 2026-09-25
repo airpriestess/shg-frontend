@@ -249,7 +249,7 @@ const CAT_DESC = {
   DNAmaxxing: { shift:"This shifts you from feeling like ageing and genetics are happening to you, into feeling like your body is listening to what you tell it.",
     benefits:["Support your body's natural repair rhythms","Shift the belief that decline is inevitable","Feel more at home in your own skin"] },
   Luckygirlmaxxing: { shift:"This shifts you from feeling like good things happen to other people, into expecting things to work out for you by default.",
-    benefits:["Notice small wins you'd normally dismiss","Stop bracing for the worst-case outcome","Build the identity of someone things go right for"] },
+    benefits:["Notice small wins you'd normally dismiss","Stop expecting the worst","Build the identity of someone things go right for"] },
   Healthmaxxing: { shift:"This shifts you from carrying old pain as part of your identity, into feeling like the version of you that's already moved through it.",
     benefits:["Process without having to relive every detail","Loosen the grip of stories that no longer serve you","Feel lighter without needing a reason why"] },
   Sovereignmaxxing: { shift:"This shifts you from seeking approval before you act, into trusting your own judgement as enough.",
