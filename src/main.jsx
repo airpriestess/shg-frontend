@@ -5,6 +5,10 @@ import { AuthProvider } from './contexts/AuthContext.jsx'
 import App from './App.jsx'
 import './index.css'
 import './styles/shg-theme.css'
+// Short investor links: /demo and /beta open the live beta portal in preview.
+if (/^\/+(demo|beta)\/?$/i.test(window.location.pathname)) {
+  window.history.replaceState(null, "", "/portal?preview=1");
+}
 // Tidy links with stray double slashes (e.g. reshmaoracle.com//portal) so they still open the right page.
 if (/\/\/+/.test(window.location.pathname)) {
   window.history.replaceState(null, "", window.location.pathname.replace(/\/\/+/g, "/") + window.location.search + window.location.hash);

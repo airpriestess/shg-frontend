@@ -1,5 +1,3 @@
-/demo /portal/track/confidence-in-my-luck?preview=1 302
-/beta /portal?preview=1 302
 /portal/* /index.html 200
 /portal /index.html 200
 /luckygirl/* /index.html 200
