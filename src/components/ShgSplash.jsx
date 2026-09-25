@@ -32,8 +32,8 @@ export default function ShgSplash({ theme = "dark" }) {
   useEffect(() => {
     if (phase === "done") return;
     try { sessionStorage.setItem("shg_splash_seen", "1"); } catch {}
-    const t1 = setTimeout(() => setPhase("out"), 3400);
-    const t2 = setTimeout(() => setPhase("done"), 4100);
+    const t1 = setTimeout(() => setPhase("out"), 4000);
+    const t2 = setTimeout(() => setPhase("done"), 4700);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
