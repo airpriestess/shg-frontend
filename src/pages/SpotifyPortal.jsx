@@ -1271,7 +1271,7 @@ function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, 
           {/* PLAYER */}
           <div style={{ flex:"0 0 380px",maxWidth:"100%",textAlign:"center" }}>
             <div style={{ width:"100%",aspectRatio:"1",borderRadius:24,background:G,display:"grid",placeItems:"center",boxShadow:playing?"0 0 26px rgba(44,183,167,.35),0 0 40px rgba(191,165,216,.25)":"none",transition:"box-shadow .6s" }}>
-              <img src="/logo_transparent_cropped.png" alt="" style={{ width:"42%",animation:playing?"shg-fp-breathe 4.5s ease-in-out infinite":"none" }}/>
+              <img src="/shg-logo-clear.png" alt="" style={{ width:"42%",animation:playing?"shg-fp-breathe 4.5s ease-in-out infinite":"none" }}/>
             </div>
             <div style={{ fontSize:24,marginTop:22 }}>{displayTitle(track.title)}</div>
             <div style={{ fontSize:13,marginTop:6 }}>{[track.cat, track.format, track.dur].filter(Boolean).join(" · ")}</div>
@@ -1581,7 +1581,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
     <div className="shg-tab-glow" style={{ paddingBottom:80, zoom:1 }}>
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
       <div className="shg-gb shg-hero" style={{ margin:"16px 16px 14px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
-        <img src="/logo_transparent_cropped.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
+        <img src="/shg-logo-clear.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
         <div onClick={openProfile} style={{ cursor:"pointer", position:"relative" }}>
           <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>WELCOME BACK</div>
           <div className="shg-gt" style={{ fontSize:34, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : firstName}</div>

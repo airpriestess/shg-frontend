@@ -19,7 +19,7 @@ export default function SiteHeader({ isMobile }) {
       {/* NAV */}
       <nav style={{ position:"fixed", top:`calc(${isMobile?"44px":"48px"} + env(safe-area-inset-top,0px))`, left:0, right:0, zIndex:300, height:54, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 20px", background:"rgba(0,0,0,0.97)", borderBottom:"1px solid #1c1828", backdropFilter:"blur(20px)" }}>
         <div style={{ display:"flex", alignItems:"center", gap:9, flex: isMobile?"0 0 auto":"1 1 0" }}>
-          <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} onClick={()=>navigate("/")} />
+          <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain", display:"block"}} onClick={()=>navigate("/")} />
           <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:"clamp(11px,3.2vw,14px)", letterSpacing:"0.02em", cursor:"pointer", whiteSpace:"nowrap", flexShrink:1, minWidth:0, overflow:"hidden", textOverflow:"ellipsis", maxWidth: isMobile?"68vw":"none", color:"#fdf0e8" }} onClick={()=>navigate("/")}>Self Hypnosis Goddess</span>
         </div>
         <div style={{ display:"flex", gap:8, alignItems:"center", flex:"0 0 auto", justifyContent:"flex-end" }}>

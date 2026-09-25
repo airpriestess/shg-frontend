@@ -168,7 +168,7 @@ function SHGNav() {
   return (
     <nav style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 20px", height:54, borderBottom:"1px solid rgba(255,255,255,0.08)", background:"rgba(10,9,6,0.97)", backdropFilter:"blur(20px)" }}>
       <div onClick={()=>navigate("/")} style={{ display:"flex", alignItems:"center", gap:9, cursor:"pointer" }}>
-        <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain"}} />
+        <img src="/shg-logo-clear.png" alt="Self Hypnosis Goddess" width="38" height="38" style={{flexShrink:0, objectFit:"contain"}} />
         <span style={{ fontFamily:"'Jost',sans-serif", fontWeight:300, fontSize:"clamp(11px,3.2vw,14px)", letterSpacing:"0.02em", color:CREAM, whiteSpace:"nowrap" }}>Self Hypnosis Goddess</span>
       </div>
       <HamburgerMenu/>
