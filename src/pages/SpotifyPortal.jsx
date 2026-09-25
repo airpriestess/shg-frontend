@@ -1,5 +1,6 @@
 import ShgSplash from "../components/ShgSplash.jsx";
 import SpeakToProof from "../components/SpeakToProof.jsx";
+import GoddessPassport from "../components/GoddessPassport.jsx";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
@@ -888,7 +889,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   if (isDesktop) return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <ProfilePanel/>}
+      {profileOpen && <GoddessPassport onClose={()=>setProfileOpen(false)} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:onHome, signOut:onSignOut }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {showEmoLog && (
@@ -1045,7 +1046,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <ProfilePanel/>}
+      {profileOpen && <GoddessPassport onClose={()=>setProfileOpen(false)} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:onHome, signOut:onSignOut }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {showOnboarding && <OnboardingQuiz
