@@ -71,15 +71,7 @@ export default function ShgSplash({ theme = "dark" }) {
       opacity: phase === "out" ? 0 : 1, transition: "opacity .7s ease", cursor: "pointer",
     }}>
       <canvas ref={cv} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
-      {[["#F5E0A0",-70,-60,0],["#E8B870",-20,-90,.6],["#BFA5D8",40,10,1.2],["#2CB7A7",80,70,1.8],["#167A6B",-60,90,2.4]].map(([c,x,y,d]) => (
-        <div key={c} style={{ position: "absolute", width: 170, height: 170, borderRadius: "50%", background: c, filter: "blur(46px)", opacity: .55,
-          mixBlendMode: "screen", transform: `translate(${x}px,${y}px)`, animation: `shg-splash-drift 6s ease-in-out ${d}s infinite alternate` }} />
-      ))}
-      <svg aria-hidden="true" width="300" height="300" viewBox="0 0 300 300" style={{ position: "absolute", animation: "shg-splash-rise 1.4s ease both" }}>
-        <defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".25" stopColor="#E8B870"/><stop offset=".52" stopColor="#BFA5D8"/><stop offset=".8" stopColor="#2CB7A7"/><stop offset="1" stopColor="#167A6B"/></linearGradient></defs>
-        <circle cx="150" cy="150" r="138" fill="none" stroke="url(#sg)" strokeWidth="1" strokeDasharray="1 9" strokeLinecap="round"/>
-      </svg>
-      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style={{ position: "relative", width: 96, height: 96, animation: "shg-splash-breathe 3s ease-in-out infinite" }} />
+      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style={{ position: "relative", width: 96, height: 96, filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.55)) drop-shadow(6px 6px 16px rgba(44,183,167,.5)) drop-shadow(0 0 10px rgba(191,165,216,.5))", animation: "shg-splash-breathe 3s ease-in-out infinite" }} />
       <div style={{ position: "relative", fontSize: 18, lineHeight: 1.5, fontWeight: 400, maxWidth: 320, textShadow: "0 0 14px #000, 0 0 4px #000", animation: "shg-splash-rise 1.2s ease .4s both" }}>{line}</div>
       <div style={{ position: "relative", fontSize: 10, letterSpacing: ".4em", textShadow: "0 0 10px #000, 0 0 3px #000", animation: "shg-splash-rise 1.2s ease .8s both" }}>WELCOME TO THE SELF HYPNOSIS GODDESS UNIVERSE</div>
       <style>{`@keyframes shg-splash-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
