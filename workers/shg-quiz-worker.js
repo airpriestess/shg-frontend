@@ -74,6 +74,9 @@ var worker_default = {
       const parts = url.pathname.split("/");
       return handleDeleteSign(request, env, parts[2], parts[4]);
     }
+    if (url.pathname === "/organize" && request.method === "POST") {
+      return handleOrganize(request, env);
+    }
     if (url.pathname === "/ask" && request.method === "POST") {
       return handleAskReshma(request, env);
     }
@@ -86,6 +89,66 @@ var worker_default = {
     return json({ error: "Not found" }, 404);
   },
 };
+
+// ── ORGANIZE: voice notes and journal photos into intentions, signs, arrivals ──
+// Reads what she said (or photos of her journal pages) and returns a list for
+// her to confirm. Nothing is saved here; the app saves only what she ticks.
+const ORGANIZE_CATEGORIES = ["Luckygirlmaxxing","Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Sleepmaxxing","Healthmaxxing","Bodymaxxing","Businessmaxxing","Friendmaxxing","DNAmaxxing","Sovereignmaxxing","Lifemaxxing"];
+async function handleOrganize(request, env) {
+  const userId = await authUser(request, env);
+  if (!userId) return json({ error: "Not authenticated" }, 401);
+  if (!env.ANTHROPIC_API_KEY) return json({ error: "AI not configured" }, 503);
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
+  const text = String(body.text || "").slice(0, 8000);
+  const images = Array.isArray(body.images) ? body.images.slice(0, 6) : [];
+  const threads = Array.isArray(body.threads) ? body.threads.slice(0, 80) : [];
+  if (!text && !images.length) return json({ error: "Nothing to organize" }, 400);
+  const today = new Date().toISOString().slice(0, 10);
+  const prompt = `You organise entries for proofOS, a manifestation evidence tracker. Today is ${today}.
+She has ${images.length ? "uploaded photos of her handwritten journal or wish list" : "spoken a voice note"}. Split it into separate items. For each item decide:
+- "intention": something she wants or is calling in (write it in present tense, as she would, e.g. "He texts me first").
+- "sign": something that happened that she sees as a sign or synchronicity for an intention.
+- "arrived": an intention that has already come true.
+- "bucket": a loose wish with no active focus yet.
+Match signs and arrivals to one of her existing intentions when it clearly fits; use its id as thread_id. Otherwise thread_id is null.
+Pick one category from: ${ORGANIZE_CATEGORIES.join(", ")}.
+date: YYYY-MM-DD if she gave or implied a date (today, yesterday, last year becomes ${Number(today.slice(0,4)) - 1}-01-01), else null. date_label: her words for the time ("last year", "this morning") or null.
+Keep her wording. Do not invent anything she did not say or write.
+Her existing intentions: ${JSON.stringify(threads.map(t => ({ id: t.id, desire: t.desire })))}
+${text ? `What she said:\n"""${text}"""` : ""}
+Reply with ONLY JSON: {"items":[{"type":"intention|sign|arrived|bucket","text":"...","category":"...","thread_id":null,"date":null,"date_label":null}]}`;
+  const content = [
+    ...images.map(d => {
+      const m = /^data:(image\/(?:jpeg|png|webp|gif));base64,(.+)$/.exec(String(d));
+      return m ? { type: "image", source: { type: "base64", media_type: m[1], data: m[2] } } : null;
+    }).filter(Boolean),
+    { type: "text", text: prompt },
+  ];
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      body: JSON.stringify({ model: "claude-haiku-4-5-20251001", max_tokens: 2000, messages: [{ role: "user", content }] }),
+    });
+    const data = await res.json();
+    const raw = data.content?.[0]?.text || "";
+    const match = raw.match(/\{[\s\S]*\}/);
+    const parsed = JSON.parse(match ? match[0] : raw);
+    const ids = new Set(threads.map(t => t.id));
+    const items = (parsed.items || []).filter(i => i && i.text && ["intention","sign","arrived","bucket"].includes(i.type)).slice(0, 40).map(i => ({
+      type: i.type, text: String(i.text).slice(0, 300),
+      category: ORGANIZE_CATEGORIES.includes(i.category) ? i.category : "",
+      thread_id: ids.has(i.thread_id) ? i.thread_id : null,
+      date: /^\d{4}-\d{2}-\d{2}$/.test(i.date || "") ? i.date : null,
+      date_label: i.date_label ? String(i.date_label).slice(0, 40) : null,
+    }));
+    return json({ items });
+  } catch (err) {
+    return json({ error: "Could not organize that", detail: err.message }, 500);
+  }
+}
+__name(handleOrganize, "handleOrganize");
 
 // ── EXISTING HANDLERS ─────────────────────────────────────────────────────────
 

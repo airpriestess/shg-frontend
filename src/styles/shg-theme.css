@@ -1,0 +1,67 @@
+/* SHG design tokens — copied word for word from docs/design/shg-app-design.html */
+:root{
+  --black:#000000;
+  --surface:#0a0a0a;      /* phone / page panels */
+  --card:#141414;         /* cards on black */
+  --cream:#F2ECE4;        /* all body text on black, light panels */
+  --g1:#F5E0A0; --g2:#E8B870; --g3:#BFA5D8; --g4:#2CB7A7; --g5:#167A6B;
+  --grad:linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%);
+  --grad-diag:linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%);
+  --radius-card:20px; --radius-pill:999px; --radius-phone:44px;
+  --font:'Futura','Futura PT','Jost',sans-serif;
+}
+
+/* ===== Reference helper classes, prefixed so they never clash with site CSS ===== */
+.shg-gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.shg-gb{border:1.5px solid transparent!important;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box!important}
+.shg-gfill{background:var(--grad)!important;color:#000!important}
+.shg-cta{display:block;width:100%;text-align:center;border:none;border-radius:var(--radius-pill);background:var(--grad);color:#000;font:500 16px var(--font);padding:14px;min-height:44px;cursor:pointer}
+.shg-cta2{display:block;width:100%;text-align:center;border:1.5px solid transparent;border-radius:var(--radius-pill);background:linear-gradient(var(--black),var(--black)) padding-box,var(--grad) border-box;color:var(--cream);font:500 16px var(--font);padding:14px;min-height:44px;cursor:pointer}
+.shg-tag{font-size:12px;border:1px solid currentColor;border-radius:var(--radius-pill);padding:3px 10px;white-space:nowrap}
+.shg-pill{display:inline-block;font-size:11px;letter-spacing:.08em;border-radius:var(--radius-pill);background:var(--grad);color:#000;padding:3px 10px;font-weight:500}
+.shg-glow{position:relative}
+.shg-glow::before{content:"";position:absolute;inset:-6px;border-radius:inherit;background:var(--grad-diag);filter:blur(26px);opacity:.55;z-index:-1}
+
+/* ===== Brand hard rules, enforced inside the portal ===== */
+[data-portal-theme] *{font-family:var(--font)!important;font-style:normal!important}
+[data-portal-theme] [style*="font-weight: 600"],[data-portal-theme] [style*="font-weight: 700"],[data-portal-theme] [style*="font-weight: 800"]{font-weight:500!important}
+
+/* Light (Lucky Girl) theme: cream cards, gradient borders, black text. */
+.shg-gb{background:linear-gradient(var(--shg-card,var(--card)),var(--shg-card,var(--card))) padding-box,var(--grad) border-box!important}
+[data-portal-theme="light"] .shg-cta2{background:linear-gradient(#F2ECE4,#F2ECE4) padding-box,var(--grad) border-box;color:#000}
+[data-portal-theme="light"] .shg-gb,[data-portal-theme="light"] .shg-gb *{color:#000}
+[data-portal-theme="light"] .shg-gb .shg-gt{color:transparent!important}
+[data-portal-theme="light"] input,[data-portal-theme="light"] textarea{color:#000!important;background:#F2ECE4!important}
+[data-portal-theme="light"] ::placeholder{color:#000!important;opacity:1}
+[data-portal-theme="dark"] ::placeholder{color:#F2ECE4!important;opacity:1}
+/* Gradient text is too pale on cream: light theme headings go black, gradient stays in borders and fills. */
+[data-portal-theme="light"] .shg-gt{background:none!important;color:#000!important}
+[data-portal-theme="light"] [style*="color: rgb(22, 122, 107)"],[data-portal-theme="light"] [style*="color: rgb(44, 183, 167)"],[data-portal-theme="light"] [style*="color: rgb(232, 184, 112)"],[data-portal-theme="light"] [style*="color: rgb(191, 165, 216)"]{color:#000!important}
+[data-portal-theme="light"] :is([style*="background: rgb(0, 0, 0)"],[style*="background-color: rgb(0, 0, 0)"]) :is([style*="color: rgb(22, 122, 107)"],[style*="color: rgb(44, 183, 167)"],[style*="color: rgb(232, 184, 112)"],[style*="color: rgb(191, 165, 216)"]),[data-portal-theme="light"] [style*="background: rgb(0, 0, 0)"][style*="color: rgb(232, 184, 112)"]{color:#F2ECE4!important}
+/* No single-stop accent text in dark either: flat teal/gold/lavender labels go cream. */
+[data-portal-theme="dark"] [style*="color: rgb(22, 122, 107)"],[data-portal-theme="dark"] [style*="color: rgb(44, 183, 167)"],[data-portal-theme="dark"] [style*="color: rgb(232, 184, 112)"],[data-portal-theme="dark"] [style*="color: rgb(191, 165, 216)"]{color:#F2ECE4!important}
+[data-portal-theme="light"] .shg-gt{background:none!important;color:#000!important;-webkit-text-fill-color:#000!important}
+[data-portal-theme="light"] [style*="background: rgb(0, 0, 0)"] .shg-gt{background:linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+
+/* ===== Method deck language: spaced-caps gradient labels, blurred gradient glow ===== */
+[data-portal-theme="dark"]{background-image:radial-gradient(40% 30% at 85% 10%,rgba(191,165,216,.14),transparent 70%),radial-gradient(40% 30% at 10% 90%,rgba(44,183,167,.12),transparent 70%)!important}
+/* uppercase section labels (PROOFOS, STATE A DESIRE, SIGNS PER WEEK...) become gradient spaced caps */
+[data-portal-theme="dark"] [style*="text-transform: uppercase"]:not(button):not(.shg-pill),
+[data-portal-theme="dark"] [style*="letter-spacing: 0.15em"],[data-portal-theme="dark"] [style*="letter-spacing: 0.2em"]{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important;display:inline-block}
+.shg-hero{box-shadow:var(--shg-glow)}
+@media (max-width:600px){.shg-hero-clover{display:none}}
+[data-portal-theme="light"] [style*="color: rgb(122, 90, 154)"],[data-portal-theme="light"] [style*="color: rgb(160, 112, 32)"]{color:#000!important}
+
+/* elegant: lighter, smaller headings */
+[data-portal-theme] .shg-hero .shg-gt{font-size:28px!important;font-weight:400!important}
+[data-portal-theme] h1,[data-portal-theme] [style*="font-size: 34px"],[data-portal-theme] [style*="font-size: 38px"]{font-size:26px!important;font-weight:400!important}
+/* Focused fields go white so she can see what she is typing, in both themes. */
+[data-portal-theme] input:focus,[data-portal-theme] textarea:focus,[data-portal-theme] [contenteditable]:focus{background:#FFFFFF!important;color:#000!important;-webkit-text-fill-color:#000!important;caret-color:#000;outline:none;box-shadow:0 0 0 2px #BFA5D8!important}
+[data-portal-theme] input:focus::placeholder,[data-portal-theme] textarea:focus::placeholder{color:#000!important;opacity:.55!important}
+/* Matte black dark mode: no warm wash, cards neutral, glow kept thin so nothing reads brown. */
+[data-portal-theme="dark"]{--shg-card:#0E0E0E;--shg-glow:0 0 0 1px rgba(0,0,0,0),0 0 18px rgba(191,165,216,.16),0 0 28px rgba(44,183,167,.10);background-image:none!important}
+/* Elegant type scale: small, light, spaced. Caps oversized inline sizes. */
+[data-portal-theme] [style*="font-size: 4"],[data-portal-theme] [style*="font-size: 5"],[data-portal-theme] [style*="font-size: 6"],[data-portal-theme] [style*="font-size: 7"],[data-portal-theme] [style*="font-size: 8"]{font-size:34px!important;font-weight:400!important;letter-spacing:-.01em}
+[data-portal-theme] [style*="font-size: 3"]:not([style*="font-size: 3px"]){font-size:24px!important;font-weight:400!important}
+[data-portal-theme] [style*="font-size: 2"]:not([style*="font-size: 2px"]){font-size:18px!important;font-weight:400!important}
+[data-portal-theme] .shg-hero .shg-gt{font-size:24px!important}
