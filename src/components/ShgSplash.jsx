@@ -69,9 +69,9 @@ export default function ShgSplash({ theme = "dark" }) {
       opacity: phase === "out" ? 0 : 1, transition: "opacity .7s ease", cursor: "pointer",
     }}>
       <canvas ref={cv} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
-      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style={{ position: "relative", width: 96, height: 96, filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.55)) drop-shadow(6px 6px 16px rgba(44,183,167,.5)) drop-shadow(0 0 10px rgba(191,165,216,.5))", animation: "shg-splash-breathe 3s ease-in-out infinite" }} />
-      <div style={{ position: "relative", fontSize: 18, lineHeight: 1.5, fontWeight: 400, maxWidth: 320, textShadow: "0 0 14px #000, 0 0 4px #000", animation: "shg-splash-rise 1.2s ease .4s both" }}>{line}</div>
-      <div style={{ position: "relative", fontSize: 10, letterSpacing: ".4em", textShadow: "0 0 10px #000, 0 0 3px #000", animation: "shg-splash-rise 1.2s ease .8s both" }}>WELCOME TO THE SELF HYPNOSIS GODDESS UNIVERSE</div>
+      <img src="/logo_transparent_cropped.png" alt="Self Hypnosis Goddess" style={{ position: "relative", width: "clamp(88px, 11vw, 170px)", height: "clamp(88px, 11vw, 170px)", filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.55)) drop-shadow(6px 6px 16px rgba(44,183,167,.5)) drop-shadow(0 0 10px rgba(191,165,216,.5))", animation: "shg-splash-breathe 3s ease-in-out infinite" }} />
+      <div style={{ position: "relative", fontSize: "clamp(19px, 3.3vw, 50px)", lineHeight: 1.45, fontWeight: 400, maxWidth: "min(760px, 88vw)", textShadow: "0 0 14px #000, 0 0 4px #000", animation: "shg-splash-rise 1.2s ease .4s both" }}>{line}</div>
+      <div style={{ position: "relative", fontSize: "clamp(11px, 1.55vw, 23px)", letterSpacing: ".4em", lineHeight: 1.8, maxWidth: "90vw", textShadow: "0 0 10px #000, 0 0 3px #000", animation: "shg-splash-rise 1.2s ease .8s both" }}>WELCOME TO THE SELF HYPNOSIS GODDESS UNIVERSE</div>
       <style>{`@keyframes shg-splash-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 @keyframes shg-splash-drift{to{margin-left:24px;margin-top:-18px}}
 @keyframes shg-splash-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
