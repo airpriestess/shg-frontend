@@ -1,3 +1,4 @@
+import ShgSplash from "../components/ShgSplash.jsx";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
@@ -502,7 +503,7 @@ const Ico = {
 };
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
-export default function SpotifyPortal({ onHome, onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
+function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null, forceTheme=null, initialTab="home", userTier="audio", userName="you" }) {
   const { session, token } = useAuth();
   const userId = session?.user?.id;
   const [pushDismissed, setPushDismissed] = useState(false);
@@ -3882,4 +3883,10 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
       </div>
     </div>
   );
+}
+
+export default function SpotifyPortal(props) {
+  let theme = props.forceTheme || "dark";
+  try { theme = props.forceTheme || localStorage.getItem("shg_theme") || "dark"; } catch {}
+  return (<><ShgSplash theme={theme}/><SpotifyPortalInner {...props}/></>);
 }
