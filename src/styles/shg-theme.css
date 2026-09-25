@@ -72,3 +72,5 @@
 [data-portal-theme="dark"] [style*="letter-spacing: 0.15em"],[data-portal-theme="dark"] [style*="letter-spacing: 0.2em"]{background:none!important;-webkit-text-fill-color:#F2ECE4!important;color:#F2ECE4!important}
 [data-portal-theme="dark"] input,[data-portal-theme="dark"] textarea{background:#111!important;color:#F2ECE4!important;border-color:#F2ECE4!important}
 [data-portal-theme="dark"] input:focus,[data-portal-theme="dark"] textarea:focus{background:#fff!important;color:#000!important}
+/* Gradient text: a little room on the right so the last letter is never clipped (Futura). */
+.shg-gt{padding-right:.12em;margin-right:-.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
