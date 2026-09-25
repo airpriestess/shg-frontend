@@ -3058,11 +3058,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           const on = view===k;
           return (
             <button key={k} onClick={()=>{ setView(k); setAdding(false); }} aria-pressed={on}
-              className={on?"shg-gfill":"shg-gb"}
-              style={{ borderRadius:18,padding:"16px 14px",textAlign:"left",cursor:"pointer",minHeight:96,display:"flex",flexDirection:"column",justifyContent:"space-between",color:on?"#000":PC.text,fontFamily:"'Jost',sans-serif" }}>
+              className="shg-gfill"
+              style={{ borderRadius:18,padding:"16px 14px",textAlign:"left",cursor:"pointer",minHeight:96,display:"flex",flexDirection:"column",justifyContent:"space-between",color:"#000",fontFamily:"'Jost',sans-serif",border:"none",boxShadow:on?"inset 0 0 0 3px #000":"none",opacity:on?1:0.85 }}>
               <span style={{ display:"flex",justifyContent:"space-between",alignItems:"baseline",width:"100%" }}>
                 <span style={{ fontSize:16,fontWeight:500 }}>{l}</span>
-                <span className={on?"":"shg-gt"} style={{ fontSize:24,fontWeight:500 }}>{n}</span>
+                <span style={{ fontSize:24,fontWeight:500 }}>{n}</span>
               </span>
               <span style={{ fontSize:12,fontWeight:400,marginTop:8 }}>{sub} ›</span>
             </button>
