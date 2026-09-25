@@ -72,13 +72,13 @@ function Stamp({ s, i }) {
   );
 }
 
-export default function GoddessPassport({ onClose, userId, firstName, email, threads = [], listenCount = 0, isPreview, tierLabel, isDark, actions }) {
+export default function GoddessPassport({ onClose, userId, firstName, email, threads = [], listenCount = 0, isPreview, tierLabel, isDark, actions, startPage = null }) {
   const key = `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
   const [p, setP] = useState(() => load(key) || (isPreview
     ? { name: "Reshma", goddessName: "The Lucky One", colours: ["#F5E0A0", "#BFA5D8", "#2CB7A7", "#000000"], words: ["chosen", "magnetic", "abundant", "soft"], belief: "Everything is always working out for me.", photo: null, entered: "2026-09-25" }
     : { name: firstName && firstName !== "you" ? firstName : "", goddessName: "", colours: [], words: [], belief: "", photo: null, entered: new Date().toISOString().slice(0, 10) }));
-  const [opened, setOpened] = useState(false);
-  const [page, setPage] = useState(0);
+  const [opened, setOpened] = useState(startPage !== null);
+  const [page, setPage] = useState(startPage ?? 0);
   const [editing, setEditing] = useState(false);
   const [customWord, setCustomWord] = useState("");
 
@@ -121,7 +121,9 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const inner = { maxWidth: 920, margin: "0 auto", padding: "calc(env(safe-area-inset-top,0px) + 18px) 18px 40px" };
   const pill = { border: "none", borderRadius: 999, minHeight: 44, padding: "0 18px", fontSize: 14, fontFamily: "inherit", cursor: "pointer" };
   const field = { width: "100%", boxSizing: "border-box", border: "1px solid #000", borderRadius: 10, padding: "10px 12px", fontSize: 14, fontFamily: "inherit", background: "#fff", color: "#000" };
-  const tabs = ["Identity", "Stamps", "Ritual", "Settings"];
+  const tabs = ["Identity", "My Life", "Stamps", "Ritual", "Settings"];
+  const life = p.life || { want: "", desires: "", blocks: "", needs: "", becoming: "", uploads: [] };
+  const setLife = (patch) => set({ life: { ...life, ...patch } });
 
   return (
     <div role="dialog" aria-modal="true" aria-label="Goddess Passport" style={shell}>
@@ -133,16 +135,20 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
         {!opened ? (
           <>
-            <button onClick={() => setOpened(true)} aria-label="Open passport" style={{ all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 22, width: "100%", boxSizing: "border-box", height: "min(560px,68vh)", borderRadius: "14px 26px 26px 14px", border: "1px solid transparent", background: `linear-gradient(#060606,#060606) padding-box,${G} border-box`, textAlign: "center", position: "relative" }}>
-              <span style={{ position: "absolute", left: 18, top: 0, bottom: 0, width: 1, background: "#1e1e1e" }} />
-              <span style={{ fontSize: 10, letterSpacing: ".32em" }}>SELF HYPNOSIS GODDESS</span>
-              <img src="/logo_transparent_cropped.png" alt="" style={{ width: 110, filter: "drop-shadow(-6px -4px 14px rgba(245,224,160,.5)) drop-shadow(6px 6px 16px rgba(44,183,167,.45))" }} />
-              <span style={{ fontSize: 24, letterSpacing: ".24em" }}>PASSPORT</span>
-              <span style={{ fontSize: 10, letterSpacing: ".32em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
+            <button onClick={() => setOpened(true)} aria-label="Open passport" className="pp-cover" style={{ all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(360px,82vw)", aspectRatio: "0.71", margin: "0 auto", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), inset 1px 0 0 rgba(242,236,228,.08), 0 24px 50px rgba(0,0,0,.6)", textAlign: "center", position: "relative" }}>
+              <span aria-hidden="true" style={{ position: "absolute", left: 14, top: 10, bottom: 10, width: 1, background: "rgba(242,236,228,.08)" }} />
+              <span style={{ fontSize: 11, letterSpacing: ".38em", paddingLeft: ".38em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
+              <span style={{ display: "grid", justifyItems: "center", gap: 18 }}>
+                <img src="/logo_transparent_cropped.png" alt="" style={{ width: 120 }} />
+                <span style={{ fontSize: 13, letterSpacing: ".42em", paddingLeft: ".42em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>SELF HYPNOSIS GODDESS</span>
+                <span style={{ fontSize: 34, letterSpacing: ".3em", paddingLeft: ".3em", fontWeight: 500, background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>PASSPORT</span>
+              </span>
+              <svg aria-hidden="true" width="44" height="30" viewBox="0 0 44 30" fill="none" stroke="#E8B870" strokeWidth="1.4"><rect x="1" y="1" width="42" height="28" rx="5" /><circle cx="22" cy="15" r="7" /><path d="M1 15h14M29 15h14" /></svg>
             </button>
-            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} style={{ ...pill, width: "100%", marginTop: 18, background: G, color: "#000", fontWeight: 500 }}>
+            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} style={{ ...pill, display: "block", width: "min(360px,82vw)", margin: "20px auto 0", background: G, color: "#000", fontWeight: 500 }}>
               {p.goddessName ? "Open my passport" : "Build my passport"}
             </button>
+            <button onClick={() => { setOpened(true); setPage(4); }} style={{ ...pill, display: "block", margin: "10px auto 0", background: "transparent", color: "#F2ECE4", textDecoration: "underline", textUnderlineOffset: 3 }}>Settings</button>
           </>
         ) : (
           <div style={{ animation: "shg-pp-open .5s cubic-bezier(.2,.8,.2,1) both" }}>
@@ -204,6 +210,33 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 1 && (
+              <div style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
+                <div style={{ fontSize: 15, lineHeight: 1.6 }}>Tell me about you. The more you share, the more I learn about you every day: your needs, your desires, your blocks. Edit it whenever you like.</div>
+                {[["want", "WHAT I WANT FROM LIFE", "Love, money, body, home, career, freedom…"], ["desires", "MY DESIRES RIGHT NOW", "What I'm calling in this season"], ["blocks", "MY BLOCKS", "What gets in my way, the stories I tell myself"], ["needs", "MY NEEDS", "What I need to feel safe, loved and supported"], ["becoming", "WHO I'M BECOMING", "Her habits, her style, her life"]].map(([k, l, ph]) => (
+                  <div key={k}><Label>{l}</Label><textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} /></div>
+                ))}
+                <div>
+                  <Label>MY UPLOADS · journal pages, notes, goals, documents</Label>
+                  <label style={{ ...pill, display: "flex", alignItems: "center", justifyContent: "center", background: "#000", color: "#F2ECE4", cursor: "pointer" }}>
+                    + Upload about me
+                    <input type="file" multiple accept="image/*,.txt,.md,.pdf,.doc,.docx" hidden onChange={async (e) => {
+                      const files = [...(e.target.files || [])];
+                      const added = await Promise.all(files.map(async (f) => ({ name: f.name, type: f.type, date: new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }), text: /^text\//.test(f.type) || /\.(txt|md)$/i.test(f.name) ? (await f.text()).slice(0, 5000) : "" })));
+                      setLife({ uploads: [...added, ...(life.uploads || [])].slice(0, 50) }); e.target.value = "";
+                    }} />
+                  </label>
+                  {(life.uploads || []).map((u, i) => (
+                    <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 10, fontSize: 13, padding: "8px 2px", borderBottom: "1px solid rgba(0,0,0,.2)" }}>
+                      <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{u.name}</span>
+                      <span style={{ display: "flex", gap: 10, flexShrink: 0 }}>{u.date}<button onClick={() => setLife({ uploads: life.uploads.filter((_, j) => j !== i) })} aria-label={`Remove ${u.name}`} style={{ all: "unset", cursor: "pointer" }}>✕</button></span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ fontSize: 12, lineHeight: 1.5 }}>Saved on this device for now. Only you can see it.</div>
+              </div>
+            )}
+
+            {page === 2 && (
               <div style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
                 <Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 18, marginTop: 12 }}>
@@ -214,7 +247,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
               </div>
             )}
 
-            {page === 2 && (
+            {page === 3 && (
               <div style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, textAlign: "center" }}>
                   {[[listenCount, "listens"], [signs, "signs"], [arrived.length, "arrived"]].map(([v, l]) => (
@@ -228,7 +261,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
               </div>
             )}
 
-            {page === 3 && (
+            {page === 4 && (
               <div style={{ ...PAPER, borderRadius: 18, padding: 10, display: "grid", gap: 4, color: "#000" }}>
                 <div style={{ fontSize: 13, padding: "8px 10px" }}>{tierLabel}{email ? ` · ${email}` : ""}</div>
                 {[
@@ -246,7 +279,8 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
           </div>
         )}
       </div>
-      <style>{`[aria-label="Goddess Passport"] input::placeholder{color:#000!important;opacity:.45!important}
+      <style>{`[data-portal-theme] [aria-label="Goddess Passport"] input,[data-portal-theme] [aria-label="Goddess Passport"] textarea{background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;border-color:#000!important}
+[aria-label="Goddess Passport"] input::placeholder,[aria-label="Goddess Passport"] textarea::placeholder{color:#000!important;opacity:.45!important}
 @keyframes shg-pp-open{from{opacity:0;transform:perspective(900px) rotateY(-14deg) translateX(-10px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){[aria-label="Goddess Passport"] *{animation:none!important}}`}</style>
     </div>
