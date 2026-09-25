@@ -1,0 +1,18 @@
+name: Diagnose audio
+on:
+  push:
+    branches: [diag-audio]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List bucket
+        run: curl -s https://shg-audio-worker.airpriestess.workers.dev/_list
+      - name: Check each track link
+        run: |
+          while read -r u; do
+            [ -z "$u" ] && continue
+            h=$(curl -s -o /dev/null -r 0-1023 -w "%{http_code} %{content_type} %{size_download}" "$u")
+            echo "$h  $u"
+          done < .github/audio-urls.txt
