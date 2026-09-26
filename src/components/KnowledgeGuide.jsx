@@ -46,6 +46,10 @@ const SECTIONS = [
     body:"The words in my tracks aren't written like a script from a template. They come through me, from Source, for the desire each track is made for.\n\nI then add the layers that help them go in: EMDR, binaural beats and isochronic tones, subliminals and Reiki." },
   { k:"reshma-youtube", icon:"▶", title:"Where else can I find Reshma?",
     body:"On my YouTube channel, where I share free tracks and videos about manifestation and self hypnosis. Many members first found me there.\n\nThe full library, proofOS and everything in this app are only here, for members." },
+  { k:"why-built", icon:"◈", title:"Why did Reshma build this app?",
+    body:"Because the method worked for her and for the women she worked with, and she wanted it in one place: the tracks to shift the belief, and proofOS to collect the evidence that it's working. Most people give up on manifesting because they can't see it happening. This app makes it visible." },
+  { k:"reshma-approach", icon:"◐", title:"What is Reshma's approach?",
+    body:"Belief first, then evidence. The tracks work on the subconscious while you relax or sleep. Then you train your attention: write the intention, notice the signs, log them, and mark what arrives. Intuition and energy work sit alongside the science, never instead of it." },
   { k:"personal-track", icon:"≈", title:"What is a Personalised Track?", shop:true,
     body:"A track made only for you. You tell me exactly what you want and what's in your way, and I create a self hypnosis track written in your words and recorded in my voice.\n\nIt's the most powerful option if your desire is very specific, or if general tracks haven't reached the belief underneath it." },
   { k:"one-to-one", icon:"◐", title:"What happens in a 1:1 session?", shop:true,
@@ -248,7 +252,6 @@ const SLIDES = {
   "Signs & synchronicities": ["signs-synchronicity","what-counts","signs-stories","why-222","read-a-sign","ask-for-sign","signs-build"],
   "Proof": ["hope-or-evidence","why-track","listen-notice-log","what-you-track","proof-chart"],
   "Bucket List": ["bucket-list"],
-  "About Reshma": ["meet-oracle","channelled","how-i-connect"],
   "Extra support": ["path-with-me","why-work","track-for-you"],
   "The Hawkins Scale": ["hawkins-scale"],
 };
@@ -264,7 +267,7 @@ const CATEGORIES = [
   { label:"The mechanism", keys:["what-hypnosis","brainwaves","binaural","isochronic","solfeggio","reiki-energy","sats","emdr","subliminals-what","subliminals-all","visualization","one-method","therapy","emotional"] },
   { label:"Results & troubleshooting", keys:["results","working","not-working","tell-anyone"] },
   { label:"The Hawkins Scale", keys:["hawkins","hawkins-how"] },
-  { label:"About Reshma", keys:["who-reshma","reshma-psychic","reshma-channel","reshma-youtube","not-medical"] },
+  { label:"About Reshma", keys:["who-reshma","why-built","reshma-approach","reshma-psychic","reshma-channel","reshma-youtube","not-medical"] },
   { label:"Extra support", keys:["personal-track","one-to-one","email-coaching","how-to-book","ask-reshma"] },
 ];
 

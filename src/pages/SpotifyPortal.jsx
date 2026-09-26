@@ -1,9 +1,10 @@
 import ShgSplash from "../components/ShgSplash.jsx";
 import SpeakToProof from "../components/SpeakToProof.jsx";
 import GoddessPassport from "../components/GoddessPassport.jsx";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
+import MyQuestions, { fetchMyQuestions, unreadCount } from "../components/MyQuestions.jsx";
 import KnowledgeGuide, { GuideIcon } from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
@@ -614,6 +615,11 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   }, []);
   // The mini player appears the first time a track plays and then stays, even when paused.
   const [everPlayed, setEverPlayed] = useState(false);
+  // Log every play start (library, player, resume) for the streak; ignores re-logs of the same track within 10 minutes.
+  useEffect(() => {
+    if (!playing || isPreview || !track) return;
+    try { const l = JSON.parse(localStorage.getItem("shg_listen_log") || "[]"); const lastE = l[l.length - 1]; if (!(lastE && lastE.title === track.title && Date.now() - new Date(lastE.d) < 600000)) { l.push({ d:new Date().toISOString(), title:track.title, cat:track.cat }); localStorage.setItem("shg_listen_log", JSON.stringify(l.slice(-2000))); } } catch {}
+  }, [playing, track?.title, isPreview]);
   useEffect(() => { if (playing) setEverPlayed(true); }, [playing]);
   const [logSignOpen, setLogSignOpen] = useState(false);
   const [hideFab, setHideFab] = useState(() => { try { return localStorage.getItem("shg_hide_fab") === "1"; } catch { return false; } });
@@ -646,7 +652,8 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           signs: (t.signs || []).map(s => ({ _sid: s.id, text: s.text || "", date: s.date || "", img: s.img || null, audio: s.audio || null })),
         }));
         // Keep the local copy if the server has nothing yet (e.g. saves made offline).
-        setThreads(prev => (mapped.length || !prev.length) ? mapped : prev);
+        // Merge by id: server copy wins for items it has; local-only items (not yet synced) are kept.
+        setThreads(prev => { const ids = new Set(mapped.map(t => String(t.id))); const localOnly = prev.filter(t => !ids.has(String(t.id))); return [...localOnly, ...mapped.map(m => { const l = prev.find(t => String(t.id) === String(m.id)); return l ? { ...l, ...m, bucketCat: l.bucketCat, addedOn: l.addedOn, createdTs: l.createdTs || m.createdTs } : m; })]; });
       } catch (err) {
         console.error("Failed to load threads:", err);
       } finally {
@@ -661,7 +668,16 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(() => { if (isPreview) return 127; try { return (JSON.parse(localStorage.getItem("shg_listen_log") || "[]")).length; } catch { return 0; } });
   // Local copy of real intentions so Analytics has data even offline or before the server answers.
-  useEffect(() => { if (isPreview) return; try { localStorage.setItem(threadsCacheKey, JSON.stringify(threads.map(t => ({ ...t, signs:(t.signs||[]).map(sg => ({ ...sg, img: sg.img && String(sg.img).startsWith("data:") ? undefined : sg.img, audio: sg.audio && String(sg.audio).startsWith("data:") ? undefined : sg.audio })) })))); } catch {} }, [threads, isPreview, threadsCacheKey]);
+  // When the user id arrives (key changes from guest → user), merge that key's saved items in before saving,
+  // so a late-loading session never overwrites saved items with an empty list.
+  const cacheLoadedKey = useRef(threadsCacheKey);
+  useEffect(() => {
+    if (isPreview || cacheLoadedKey.current === threadsCacheKey) return;
+    let saved = []; try { saved = JSON.parse(localStorage.getItem(threadsCacheKey) || "[]") || []; } catch {}
+    cacheLoadedKey.current = threadsCacheKey;
+    if (saved.length) setThreads(prev => { const ids = new Set(prev.map(t => String(t.id))); return [...prev, ...saved.filter(t => !ids.has(String(t.id)))]; });
+  }, [threadsCacheKey, isPreview]);
+  useEffect(() => { if (isPreview || cacheLoadedKey.current !== threadsCacheKey) return; try { localStorage.setItem(threadsCacheKey, JSON.stringify(threads.map(t => ({ ...t, signs:(t.signs||[]).map(sg => ({ ...sg, img: sg.img && String(sg.img).startsWith("data:") ? undefined : sg.img, audio: sg.audio && String(sg.audio).startsWith("data:") ? undefined : sg.audio })) })))); } catch {} }, [threads, isPreview, threadsCacheKey]);
   // Seeded 30-day emotional log — Reshma's real arc: started in anxiety, shifted decisively to Love/Peace
   const [emoLog, setEmoLog] = useState(()=>{
     // Real members start empty; only the preview shows a sample 30-day arc.
@@ -795,7 +811,8 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       return;
     }
     setTrack(t);
-    if (hasUrl) { setPlay(true); if (!isPreview) { setListenCount(n=>n+1); logPlay(t); try { const l = JSON.parse(localStorage.getItem("shg_listen_log") || "[]"); l.push({ d:new Date().toISOString(), title:t.title, cat:t.cat }); localStorage.setItem("shg_listen_log", JSON.stringify(l.slice(-2000))); } catch {} } }
+    try { localStorage.setItem("shg_last_track", JSON.stringify({ id:t.id, title:t.title })); } catch {}
+    if (hasUrl) { setPlay(true); if (!isPreview) { setListenCount(n=>n+1); logPlay(t);  } }
     setProg(0);
   };
 
@@ -1798,19 +1815,19 @@ function HomeTab({ userEmail, greet, firstName, track, play, liked, toggleLike, 
         <div onClick={()=>openPlayer?.()} style={{ cursor:"pointer", position:"relative" }}>
           <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:400, color:"#000", marginBottom:10 }}>WELCOME BACK</div>
           <div style={{ display:"flex", alignItems:"center", gap:12 }}>{passportPhoto && <img src={passportPhoto} alt="" style={{ width:48, height:48, borderRadius:"50%", objectFit:"cover", border:"2px solid #000", flexShrink:0 }}/>}<div style={{ color:"#000", fontSize:34, fontWeight:400, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {passportName || (isPreview ? "Reshma" : firstName)}</div></div>
-          <div style={{ fontSize:16, fontWeight:300, color:"#000", marginTop:8 }}>Pick up where you left off.</div>
+          <LastPlayed play={play} isPreview={isPreview}/>
         </div>
 
       </div>
 
       {/* OPEN YOUR PASSPORT: a small passport, drawn as a banner */}
-      <button onClick={openProfile} aria-label="Open your passport" className="shg-no-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:"6px 16px 16px 6px",cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",backgroundColor:"#000",backgroundImage:"linear-gradient(rgba(191,165,216,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.2) 1px,transparent 1px)",backgroundSize:"16px 16px",border:"1px solid #E8B870",boxShadow:"inset 8px 0 10px -8px rgba(0,0,0,.9),0 0 18px rgba(191,165,216,.35)" }}>
+      <button onClick={openProfile} aria-label="Open your passport" className="shg-no-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:"6px 16px 16px 6px",cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px)",backgroundSize:"80px 80px,80px 80px,16px 16px,16px 16px",border:"1px solid #000",boxShadow:"inset 8px 0 10px -8px rgba(0,0,0,.25)" }}>
         <img src="/logo_transparent_cropped.png" alt="" style={{ width:44,height:44,flexShrink:0 }}/>
         <span style={{ flex:1 }}>
-          <span className="shg-gt" style={{ display:"block",fontSize:17,letterSpacing:".3em" }}>PASSPORT</span>
-          <span style={{ display:"block",fontSize:11,letterSpacing:".2em",color:"#F2ECE4",marginTop:3 }}>SELF HYPNOSIS GODDESS</span>
+          <span style={{ display:"inline-block",fontSize:18,fontWeight:400,letterSpacing:".3em",background:"linear-gradient(90deg,#E8B870,#BFA5D8 45%,#2CB7A7 75%,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",color:"transparent",WebkitTextFillColor:"transparent" }}>PASSPORT</span>
+          <style>{`body .shg-ppb-sub.shg-ppb-sub{display:block;font-size:11px;letter-spacing:.2em;margin-top:3px;color:#000!important;-webkit-text-fill-color:#000!important;background:none!important;opacity:1!important}`}</style><span className="shg-ppb-sub">SELF HYPNOSIS GODDESS</span>
         </span>
-        <span style={{ fontSize:13,color:"#F2ECE4",whiteSpace:"nowrap" }}>Tap to open ›</span>
+        <span style={{ fontSize:13,fontWeight:300,color:"#000",WebkitTextFillColor:"#000",whiteSpace:"nowrap" }}>Tap to open ›</span>
       </button>
 
       {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
@@ -1872,7 +1889,7 @@ function HomeTab({ userEmail, greet, firstName, track, play, liked, toggleLike, 
 
 
 
-      <HomeAskCard email={userEmail}/>
+      <HomeAskCard email={userEmail} isPreview={isPreview}/>
     </div>
   );
 }
@@ -3124,6 +3141,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const displayedThreads = proofFilter==="manifested" ? manifested.filter(t=>!t.isBucket) : proofFilter==="inProgress" ? inProgress.filter(t=>!t.isBucket) : activeThreads;
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
   const [bucketText, setBucketText] = useState("");
+  const [bucketCatPick, setBucketCatPick] = useState("");
   const [promotingId, setPromotingId] = useState(null);
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [trackPickerOpen, setTrackPickerOpen] = useState(false);
@@ -3275,7 +3293,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           );
         })}
       </div>
-      <button onClick={()=>{ setView("journal"); setAdding(false); }} style={{ display:"block",width:"100%",marginBottom:14,background:view==="journal"?"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"transparent",color:view==="journal"?"#000":"#F2ECE4",border:"1px solid #F2ECE4",borderRadius:999,padding:"10px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Journal ›</button>
+      <style>{`@keyframes shg-jglow{0%,100%{box-shadow:0 0 14px rgba(191,165,216,.45)}50%{box-shadow:0 0 28px rgba(44,183,167,.55),0 0 44px rgba(245,224,160,.35)}}.shg-jblock{animation:shg-jglow 3.4s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.shg-jblock{animation:none}}`}</style>
+      <button onClick={()=>{ setView("journal"); setAdding(false); }} className="shg-paper shg-jblock" aria-pressed={view==="journal"} style={{ display:"flex",alignItems:"center",gap:14,width:"100%",marginBottom:14,borderRadius:20,padding:"16px 18px",cursor:"pointer",fontFamily:"'Jost',sans-serif",color:"#000",textAlign:"left" }}>
+        <span style={{ fontSize:26 }}>✎</span>
+        <span style={{ flex:1 }}><span style={{ display:"block",fontSize:18,fontWeight:300 }}>Journal</span><span style={{ display:"block",fontSize:13,fontWeight:300 }}>{readJournal(userId, isPreview).length} entries</span></span>
+        <span style={{ fontSize:14,fontWeight:300 }}>{view==="journal" ? "Open" : "Open ›"}</span>
+      </button>
 
       {(()=>{
         const G = {
@@ -3303,11 +3326,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       </button>}
 
       {view==="journal" ? (
-        <div>
-          <div style={{ fontSize:20,fontWeight:300,color:PC.text,marginBottom:10 }}>Journal</div>
-          {(()=>{ const j = readJournal(userId, isPreview); if (!j.length) return <div style={{ fontSize:15,fontWeight:300,color:PC.text }}>No entries yet. Write one in "What's on your mind?" on Home.</div>;
-            return j.map(e => <details key={e.id} className="shg-paper" style={{ borderRadius:14,padding:"12px 14px",marginBottom:8,color:"#000" }}><summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,listStyle:"none" }}>{new Date(e.date).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}{e.areas?.length ? ` · ${e.areas.join(", ")}` : ""} ›</summary><div style={{ fontSize:15,fontWeight:300,lineHeight:1.6,marginTop:8,whiteSpace:"pre-line" }}>{e.text}</div></details>); })()}
-        </div>
+        <JournalBoard userId={userId} isPreview={isPreview}/>
       ) : view==="signs" ? (
         <div>
           <button className="shg-cta" onClick={()=>window.dispatchEvent(new Event("shg-log-sign"))} style={{ marginBottom:8 }}>✦ Log a sign</button>
@@ -3337,7 +3356,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               <button onClick={async ()=>{
                 if(!bucketText.trim()) return;
                 const localId = Date.now()+Math.random().toString(36).slice(2,8);
-                setThreads([{id:localId,desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true},...threads]);
+                setThreads([{id:localId,desire:bucketText,days:0,done:false,signs:[],track:"",category:"",feelBefore:"",feelAfter:"",oldBelief:"",isBucket:true,bucketCat:bucketCatPick||detectBucketCat(bucketText),addedOn:new Date().toDateString(),createdTs:Date.now()},...threads]);
+                setBucketCatPick("");
                 setBucketText("");
                 if (!isPreview && userId) {
                   try {
@@ -3350,6 +3370,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   }
                 }
               }} style={{ padding:"11px 18px", background:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)", border:"none", borderRadius:999, color:"#000", fontSize:15, fontWeight:400, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>+ Add</button>
+            </div>
+            <div style={{ display:"flex",flexWrap:"wrap",gap:6,marginTop:10 }}>
+              {BUCKET_CATS.map(([c,ic]) => { const on = (bucketCatPick || (bucketText ? detectBucketCat(bucketText) : "")) === c; return <button key={c} onClick={()=>setBucketCatPick(bucketCatPick===c?"":c)} style={{ fontSize:12,fontWeight:300,padding:"4px 10px",borderRadius:999,border:"1px solid #000",background:on?"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"transparent",color:"#000",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{ic} {c}</button>; })}
             </div>
             <details style={{ marginTop:10,color:PC.text }}>
               <summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,listStyle:"none" }}>How the bucket list works ›</summary>
@@ -3374,77 +3397,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             </details>
           </div>
 
-          {activeThreads.filter(t=>!t.done).length >= 5 && (
-            <div style={{ fontSize:13, color:"#E8B870", background:"rgba(232,184,112,0.08)", border:"1px solid rgba(232,184,112,0.2)", borderRadius:10, padding:"10px 14px", marginBottom:14, lineHeight:1.5 }}>
-               You've got {activeThreads.filter(t=>!t.done).length} active desires. We recommend focusing on 5-10 at once, more than that and it's easy to spread your energy too thin. Not a hard rule, just a nudge.
-            </div>
-          )}
-
-          {bucketItems.length===0 ? (
-            <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
-              <div style={{ fontSize:26,marginBottom:8 }}></div>
-              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Your bucket list is empty.<br/>Add anything you want to manifest, big or small.</div>
-            </div>
-          ) : (
-            <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
-              {bucketItems.map(item=>(
-                <div key={item.id} style={{ background:PC.card, borderRadius:12, padding:"15px 16px" }}>
-                  <div style={{ fontSize:17, color:PC.text, marginBottom:11, lineHeight:1.5 }}>{item.desire}</div>
-                  {promotingId===item.id ? (
-                    <div style={{ marginBottom:11, position:"relative" }}>
-                      <div style={{ fontSize:13, color:PC.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:7 }}>Choose a category to promote this</div>
-                      <div onClick={()=>setPromoCatOpen(o=>o===item.id?null:item.id)} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-                        <span>, Select a category,</span>
-                        <span style={{ fontSize:13, color:PC.mu, transform:promoCatOpen===item.id?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
-                      </div>
-                      {promoCatOpen===item.id && (
-                        <>
-                        <div onClick={()=>setPromoCatOpen(null)} style={{ position:"fixed", inset:0, zIndex:9998 }}/>
-                        <div style={{ position:"fixed", top:"auto", left:"5%", right:"5%", zIndex:9999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
-                          {Object.keys(CAT_ICONS).filter(c=>LIVE_CATS.has(c)).map(c=>{
-                            const catColor = CAT_ICONS[c].accent;
-                            return (
-                              <div key={c} onClick={()=>{
-                                const suggested = suggestTrack(item.desire, c);
-                                setThreads(ts => ts.map(t => t.id===item.id ? {...t, isBucket:false, category:c, track:suggested?.title||""} : t));
-                                setPromotingId(null);
-                                setPromoCatOpen(null);
-                              }} style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer", borderBottom:`1px solid ${PC.border}` }}
-                                onMouseEnter={e=>e.currentTarget.style.background=`${catColor}14`}
-                                onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-                                <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
-                                <span style={{ fontSize:15, color:PC.text }}>{c}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                        </>
-                      )}
-                    </div>
-                  ) : (
-                    <div style={{ display:"flex", gap:8 }}>
-                      <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"10px 12px", background:"#000", border:"none", borderRadius:999, color:"#F2ECE4", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
-                        Focus on this now
-                      </button>
-                      <button onClick={async ()=>{
-                        setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true, days:t.createdTs?Math.max(1,Math.round((Date.now()-t.createdTs)/86400000)):(t.days||1), manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})} : t));
-                        if (!isPreview && userId) {
-                          try {
-                            await quizApi(`/threads/${item.id}`, token, {
-                              method: "PATCH",
-                              body: JSON.stringify({ done: true, manifested_at: new Date().toISOString() }),
-                            });
-                          } catch (err) { console.error("Failed to mark manifested:", err); }
-                        }
-                      }} style={{ flex:1, padding:"10px 12px", background:OMBRE, border:"none", borderRadius:999, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
-                        ✓ Already manifested
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+          <BucketBoard items={bucketItems} setThreads={setThreads}/>
         </div>
       ) : view==="wall" ? (
         /* ═══ PROOF WALL, your wins, forever ═══ */
@@ -3465,7 +3418,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   <div style={{ fontSize:12,color:"#000",fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
                   <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{` · Took ${d.days||1} day${(d.days||1)===1?"":"s"}`}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:"#000",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
-                  {d.shared ? <div style={{ marginTop:8,fontSize:12,fontWeight:600 }}>Shared with the community ✓</div> : (
+                  {d.shared ? <details style={{ marginTop:8 }}><summary style={{ fontSize:12,fontWeight:300,cursor:"pointer",listStyle:"none" }}>Shared with the community ✓ · change ›</summary><div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}><ShareWinOptions d={d} userId={userId} isPreview={isPreview} onShared={()=>{}}/></div></details> : (
                     <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}>
                       <ShareWinOptions d={d} userId={userId} isPreview={isPreview} onShared={()=>setThreads(ts=>ts.map(t=>t.id===d.id?{...t,shared:true}:t))}/>
                     </div>
@@ -3701,8 +3654,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 // server, a member sees the wins she has shared from this phone; preview adds
 // clearly-labelled examples so the page shows how it will look.
 const EXAMPLE_WINS = [
-  { name:"Maya", desire:"He texts me first, consistently, without me reaching out.", belief:"I always have to chase.", track:"He Finds His Way Back", cats:["Lovemaxxing"], days:9, feelBefore:"Fear (100)", feelAfter:"Love (500)", manifestedAt:"14 Sept 2026",
-    signs:[{ text:"Heard our song in a café I'd never been to", date:"7 Sept" },{ text:"His name came up twice in one day", date:"9 Sept" },{ text:"Dreamt we were laughing on a beach", date:"11 Sept" },{ text:"Saw a couple with our exact initials on a cake", date:"12 Sept" },{ text:"He texted: 'I've been thinking about you'", date:"14 Sept" }] },
+  { name:"Maya", desire:"I got the job offer at the studio I love, with a higher salary.", belief:"People like me don't get picked.", track:"Chosen", cats:["Businessmaxxing"], days:12, feelBefore:"Fear (100)", feelAfter:"Joy (540)", manifestedAt:"14 Sept 2026",
+    signs:[{ text:"Their logo kept popping up everywhere", date:"3 Sept" },{ text:"A stranger said 'you'd be great there'", date:"6 Sept" },{ text:"Recruiter emailed out of nowhere", date:"9 Sept" },{ text:"Offer arrived, above my ask", date:"14 Sept" }] },
+  { name:"Lina", desire:"A month in Bali, fully paid, with time to rest.", belief:"Rest is for other people.", track:"Luck Accelerates Everything", cats:["Luckygirlmaxxing"], days:40, feelBefore:"Desire (125)", feelAfter:"Peace (600)", manifestedAt:"30 Aug 2026",
+    signs:[{ text:"Saw Bali three times in one day", date:"25 Jul" },{ text:"Won a flight voucher at work", date:"10 Aug" },{ text:"Friend offered her villa for September", date:"30 Aug" }] },
+  { name:"", anon:true, desire:"My skin is clear and glowing, and I feel it.", belief:"I'll always have bad skin.", track:"Glass Skin", cats:["Beautymaxxing"], days:21, feelBefore:"Shame (20)", feelAfter:"Love (500)", manifestedAt:"2 Sept 2026",
+    signs:[{ text:"Three compliments in one week", date:"20 Aug" },{ text:"Stopped checking the mirror", date:"26 Aug" },{ text:"No makeup photo I actually loved", date:"2 Sept" }] },
   { name:"", anon:true, desire:"I receive $5,000 in one day.", belief:"Money only comes from hard work.", track:"Money Finds Me First", cats:["Richgirlmaxxing"], days:31, feelBefore:"Desire (125)", feelAfter:"Joy (540)", manifestedAt:"2 Sept 2026",
     signs:[{ text:"Found £20 in an old coat", date:"5 Aug" },{ text:"Kept seeing 5000 on receipts", date:"12 Aug" },{ text:"An old client asked about my rates", date:"20 Aug" },{ text:"Invoice paid, $5,200, same day", date:"2 Sept" }] },
 ];
@@ -3712,27 +3669,55 @@ function readPassportFor(userId, isPreview) { try { return JSON.parse(localStora
 function downscaleImg(src, max = 160) {
   return new Promise(res => { if (!src) return res(null); const img = new Image(); img.onload = () => { const s = Math.min(img.width, img.height), c = document.createElement("canvas"); c.width = c.height = Math.min(max, s); c.getContext("2d").drawImage(img, (img.width-s)/2, (img.height-s)/2, s, s, 0, 0, c.width, c.height); try { res(c.toDataURL("image/jpeg", 0.7)); } catch { res(null); } }; img.onerror = () => res(null); img.src = src; });
 }
+// Keeps the aspect ratio; for win photos (max 800px, jpeg 0.75).
+function downscaleWide(src, max = 800, q = 0.75) {
+  return new Promise(res => { if (!src) return res(null); const img = new Image(); img.onload = () => { const k = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement("canvas"); c.width = Math.round(img.width*k); c.height = Math.round(img.height*k); c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); try { res(c.toDataURL("image/jpeg", q)); } catch { res(null); } }; img.onerror = () => res(null); img.src = src; });
+}
+const fileToDataUrl = (f) => new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.onerror = () => r(null); fr.readAsDataURL(f); });
 function ShareWinOptions({ d, userId, isPreview, onShared }) {
-  const pp = readPassportFor(userId, isPreview);
-  const name = (pp.name || "").trim().split(/\s+/)[0] || (isPreview ? "Reshma" : "");
-  const [noPhoto, setNoPhoto] = useState(false);
+  const key = `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
+  const [photo, setPhoto] = useState(() => readPassportFor(userId, isPreview).photo || null);
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState("");
+  // Add or change the face photo right here; it also becomes the passport photo.
+  const pickPhoto = async (f) => {
+    if (!f) return; const raw = await fileToDataUrl(f); const small = await downscaleImg(raw, 360); if (!small) return;
+    try { const p = JSON.parse(localStorage.getItem(key) || "null") || {}; p.photo = small; localStorage.setItem(key, JSON.stringify(p)); window.dispatchEvent(new CustomEvent("shg-passport-updated")); } catch {}
+    setPhoto(small);
+  };
   const share = async (display) => {
-    if (display === "face" && !pp.photo) { setNoPhoto(true); return; }
-    const photo = display === "face" ? await downscaleImg(pp.photo, 160) : null;
+    // Read the passport now, not when the page first rendered (the photo may have been added since).
+    const pp = readPassportFor(userId, isPreview);
+    const face = photo || pp.photo || null;
+    if (display === "face" && !face) { setNote("Add a photo first ↓"); return; }
+    setBusy(true);
+    const name = (pp.name || "").trim().split(/\s+/)[0] || (isPreview ? "Reshma" : "");
+    const facePhoto = display === "face" ? await downscaleImg(face, 160) : null;
+    // Attachments: the proof photo and voice note, if the win has them.
+    const srcImg = d.proofImg || d.img || (d.signs || []).map(x => x.img).filter(Boolean).slice(-1)[0] || null;
+    const srcAudio = d.audio || (d.signs || []).map(x => x.audio).filter(Boolean).slice(-1)[0] || null;
+    const img = srcImg ? await downscaleWide(srcImg, 800, 0.75) : null;
+    const isData = srcAudio && String(srcAudio).startsWith("data:");
+    const audio = !srcAudio ? null : !isData ? (/^https?:/.test(srcAudio) ? srcAudio : null) : srcAudio.length < 1.5 * 1024 * 1024 * 1.37 ? srcAudio : null;
+    const entry = { id:d.id, display, anon: display === "anon", name: display === "anon" ? "" : name, photo: facePhoto, img, audio, audioSkipped: !!isData && !audio, desire:d.desire, details:d.details||"", belief:d.oldBelief||"", track:d.track||"", cat:(d.categories||[d.category])[0], cats:d.categories||[d.category], days:d.days||1, feelBefore:d.feelBefore||"", feelAfter:d.feelAfter||"", signs:(d.signs||[]).map(x=>({ text:x.text, date:x.date })), manifestedAt:d.manifestedAt||"", date:new Date().toISOString() };
     try {
-      const l = JSON.parse(localStorage.getItem("shg_shared_wins") || "[]");
-      if (!l.some(w => w.id === d.id)) {
-        l.push({ id:d.id, display, anon: display === "anon", name: display === "anon" ? "" : name, photo, desire:d.desire, details:d.details||"", belief:d.oldBelief||"", track:d.track||"", cat:(d.categories||[d.category])[0], cats:d.categories||[d.category], days:d.days||1, feelBefore:d.feelBefore||"", feelAfter:d.feelAfter||"", signs:(d.signs||[]).map(x=>({ text:x.text, date:x.date })), manifestedAt:d.manifestedAt||"", date:new Date().toISOString() });
-        localStorage.setItem("shg_shared_wins", JSON.stringify(l));
-      }
+      const l = JSON.parse(localStorage.getItem("shg_shared_wins") || "[]").filter(w => w.id !== d.id);
+      l.push(entry);
+      try { localStorage.setItem("shg_shared_wins", JSON.stringify(l)); }
+      catch { entry.audio = null; entry.audioSkipped = !!srcAudio; localStorage.setItem("shg_shared_wins", JSON.stringify(l)); }
     } catch {}
+    setBusy(false);
     onShared?.();
   };
   const btn = { background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"6px 12px",fontSize:12,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" };
   return (
     <>
-      {[["Name and face","face"],["Name only","name"],["Anonymous","anon"]].map(([lab,v]) => <button key={v} onClick={()=>share(v)} style={btn}>{lab}</button>)}
-      {noPhoto && <button onClick={()=>window.dispatchEvent(new Event("shg-open-passport"))} style={{ ...btn, background:"transparent", color:"#000", border:"1px solid #000" }}>Add a photo in your passport first ›</button>}
+      {[["Name and face","face"],["Name only","name"],["Anonymous","anon"]].map(([lab,v]) => <button key={v} disabled={busy} onClick={()=>share(v)} style={btn}>{busy ? "Sharing…" : lab}</button>)}
+      <label style={{ ...btn, background:"transparent", color:"#000", border:"1px solid #000", display:"inline-flex", alignItems:"center", gap:6 }}>
+        {photo && <img src={photo} alt="" style={{ width:18,height:18,borderRadius:"50%",objectFit:"cover" }}/>}{photo ? "Change photo" : "Add a photo"}
+        <input type="file" accept="image/*" hidden onChange={e=>{ pickPhoto(e.target.files?.[0]); e.target.value=""; setNote(""); }}/>
+      </label>
+      {note && <span style={{ fontSize:12,fontWeight:300 }}>{note}</span>}
     </>
   );
 }
@@ -3746,10 +3731,16 @@ async function renderWinImage(w) {
   x.textAlign = "center"; x.fillStyle = grad(200,0,880,0); x.font = "400 34px Jost, sans-serif";
   const spaced = "S E L F   H Y P N O S I S   G O D D E S S"; x.fillText(spaced, W/2, 150);
   x.fillStyle = "#F2ECE4"; x.font = "300 30px Jost, sans-serif"; x.fillText("MANIFESTED" + (w.manifestedAt ? " · " + String(w.manifestedAt).toUpperCase() : ""), W/2, 215);
+  // The win photo, if there is one
+  let top = 560, fs = 64;
+  if (w.img) {
+    const im = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = w.img; });
+    if (im) { const bx = 140, by = 260, bw = W - 280, bh = 420; const k = Math.max(bw/im.width, bh/im.height); const dw = im.width*k, dh = im.height*k; x.save(); x.beginPath(); x.roundRect ? x.roundRect(bx,by,bw,bh,28) : x.rect(bx,by,bw,bh); x.clip(); x.drawImage(im, bx+(bw-dw)/2, by+(bh-dh)/2, dw, dh); x.restore(); top = 800; fs = 50; }
+  }
   // Wrap the win text
-  x.font = "300 64px Jost, sans-serif"; const words = `\u201C${w.desire}\u201D`.split(" "); const lines = []; let line = "";
+  x.fillStyle = "#F2ECE4"; x.font = `300 ${fs}px Jost, sans-serif`; const words = `\u201C${w.desire}\u201D`.split(" "); const lines = []; let line = "";
   words.forEach(wd => { const t = line ? line + " " + wd : wd; if (x.measureText(t).width > W - 220) { lines.push(line); line = wd; } else line = t; }); if (line) lines.push(line);
-  const shown = lines.slice(0, 8); const lh = 84; let y = 560 - (shown.length * lh) / 2 + 60;
+  const shown = lines.slice(0, w.img ? 3 : 8); const lh = Math.round(fs * 1.3); let y = w.img ? top : top - (shown.length * lh) / 2 + 60;
   shown.forEach(l => { x.fillText(l, W/2, y); y += lh; });
   x.font = "300 32px Jost, sans-serif"; x.fillText(`Took ${w.days||1} day${(w.days||1)===1?"":"s"} · ${(w.signs||[]).length} signs logged`, W/2, y + 30);
   // Who
@@ -3765,25 +3756,29 @@ async function renderWinImage(w) {
 }
 function ShareInstagram({ w }) {
   const [busy, setBusy] = useState(false);
-  const [url, setUrl] = useState(null);
-  const go = async () => {
+  const [img, setImg] = useState(null); // { url, file }
+  const make = async () => {
     setBusy(true);
-    try {
-      const blob = await renderWinImage(w);
-      const file = new File([blob], "my-win.png", { type:"image/png" });
-      if (navigator.canShare && navigator.canShare({ files:[file] })) { try { await navigator.share({ files:[file], title:"My win" }); setBusy(false); return; } catch (e) { if (e && e.name === "AbortError") { setBusy(false); return; } } }
-      setUrl(URL.createObjectURL(blob));
-    } catch {}
+    try { const blob = await renderWinImage(w); setImg({ url: URL.createObjectURL(blob), file: new File([blob], "my-win.png", { type:"image/png" }) }); } catch {}
     setBusy(false);
   };
+  const close = () => { if (img) URL.revokeObjectURL(img.url); setImg(null); };
+  const shareFile = async () => {
+    if (!img) return;
+    if (navigator.canShare && navigator.canShare({ files:[img.file] })) { try { await navigator.share({ files:[img.file] }); } catch {} }
+    else alert("Press and hold the image to save it, then post it on Instagram.");
+  };
+  const b = { border:"none",borderRadius:999,padding:"12px 18px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif",width:"100%",maxWidth:340 };
   return (
     <>
-      <button onClick={go} className="shg-ig-share" style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"8px 14px",fontSize:13,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{busy ? "Making your image…" : "Share to Instagram"}</button>
-      {url && (
-        <div role="dialog" aria-modal="true" aria-label="Your win image" onClick={()=>{ URL.revokeObjectURL(url); setUrl(null); }} style={{ position:"fixed",inset:0,zIndex:1500,background:"rgba(0,0,0,.94)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"20px 16px",gap:14,fontFamily:"'Jost',sans-serif" }}>
-          <img src={url} alt="Your win, ready to share" onClick={e=>e.stopPropagation()} style={{ maxWidth:"100%",maxHeight:"70vh",borderRadius:12,WebkitTouchCallout:"default" }}/>
-          <div style={{ color:"#F2ECE4",fontSize:15,fontWeight:300,textAlign:"center",lineHeight:1.5 }}>Press and hold the image to save it, then post it on Instagram.</div>
-          <button onClick={()=>{ URL.revokeObjectURL(url); setUrl(null); }} style={{ background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"8px 20px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close ×</button>
+      <button onClick={make} className="shg-ig-share" style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"8px 14px",fontSize:13,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{busy ? "Making your image…" : "Share to Instagram"}</button>
+      {img && (
+        <div role="dialog" aria-modal="true" aria-label="Your win image" style={{ position:"fixed",inset:0,zIndex:1500,background:"#000",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"20px 16px",gap:12,fontFamily:"'Jost',sans-serif",overflowY:"auto" }}>
+          <img src={img.url} alt="Your win, ready to share" style={{ maxWidth:"100%",maxHeight:"58vh",borderRadius:12,WebkitTouchCallout:"default" }}/>
+          <button onClick={shareFile} style={{ ...b, background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",WebkitTextFillColor:"#000" }}>Share to Stories / Post</button>
+          <button onClick={shareFile} style={{ ...b, background:"transparent",color:"#F2ECE4",border:"1px solid #F2ECE4" }}>Save image</button>
+          <div style={{ color:"#F2ECE4",fontSize:13,fontWeight:300,textAlign:"center",lineHeight:1.5,maxWidth:340 }}>In the share sheet, swipe the app row to Instagram, then pick Stories or Post. To save, tap Save Image (or press and hold the picture).</div>
+          <button onClick={close} style={{ background:"none",border:"none",color:"#F2ECE4",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif",textDecoration:"underline" }}>Close ×</button>
         </div>
       )}
     </>
@@ -3796,7 +3791,14 @@ function WinCard({ w, mine }) {
   const [open, setOpen] = useState(false);
   const [cheered, setCheered] = useState(false);
   return (
-    <div className="shg-paper" style={{ borderRadius:18,padding:16 }}>
+    <div className="shg-paper" style={{ borderRadius:18,padding:16,position:"relative" }}>
+      <style>{`@keyframes shg-wstamp{0%,100%{filter:drop-shadow(0 0 4px rgba(245,224,160,.7))}50%{filter:drop-shadow(0 0 10px rgba(44,183,167,.8)) drop-shadow(0 0 16px rgba(191,165,216,.6))}}.shg-wstamp{animation:shg-wstamp 3s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.shg-wstamp{animation:none}}`}</style>
+      <svg className="shg-wstamp" width="62" height="62" viewBox="0 0 62 62" aria-hidden="true" style={{ position:"absolute",top:-10,right:-6,transform:"rotate(12deg)" }}>
+        <defs><linearGradient id="wsg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".3" stopColor="#E8B870"/><stop offset=".6" stopColor="#BFA5D8"/><stop offset=".85" stopColor="#2CB7A7"/><stop offset="1" stopColor="#167A6B"/></linearGradient><path id="wsc" d="M31 31 m-22 0 a22 22 0 1 1 44 0 a22 22 0 1 1 -44 0"/></defs>
+        <circle cx="31" cy="31" r="29" fill="#000" stroke="url(#wsg)" strokeWidth="2"/><circle cx="31" cy="31" r="17" fill="none" stroke="url(#wsg)" strokeWidth="1"/>
+        <text fontSize="6.5" letterSpacing="1.6" fill="url(#wsg)" fontFamily="Jost,sans-serif"><textPath href="#wsc">MANIFESTED ✦ MANIFESTED ✦</textPath></text>
+        <text x="31" y="35" textAnchor="middle" fontSize="11" fill="url(#wsg)">✦</text>
+      </svg>
       <div style={{ display:"flex",gap:12,alignItems:"center" }}>
         {w.display === "face" && w.photo ? <img src={w.photo} alt="" style={{ width:56,height:56,borderRadius:"50%",objectFit:"cover",flexShrink:0,border:"2px solid #000" }}/> : <Thumb cat={(w.cats||[w.cat])[0]} size={56} radius={10}/>}
         <div style={{ flex:1,minWidth:0 }}>
@@ -3804,6 +3806,9 @@ function WinCard({ w, mine }) {
           <div style={{ fontSize:17,fontWeight:400,lineHeight:1.35,marginTop:4 }}>"{w.desire}"</div>
         </div>
       </div>
+      {w.img && <img src={w.img} alt="Proof photo" style={{ width:"100%",borderRadius:14,marginTop:12,display:"block",objectFit:"cover",maxHeight:320 }}/>}
+      {w.audio && <audio src={w.audio} controls style={{ width:"100%",marginTop:10,height:36 }}/>}
+      {w.audioSkipped && <div style={{ fontSize:12,fontWeight:300,marginTop:6 }}>Voice note too long to share here.</div>}
       <div style={{ display:"flex",flexWrap:"wrap",gap:6,marginTop:12 }}>
         {(w.cats||[w.cat]).filter(Boolean).map(c=><span key={c} style={{ fontSize:12,padding:"3px 10px",border:"1px solid #000",borderRadius:999 }}>{String(c).replace("maxxing","")}</span>)}
         <span style={{ fontSize:12,padding:"3px 10px",background:"#000",color:"#F2ECE4",borderRadius:999 }}>Took {w.days||1} day{(w.days||1)===1?"":"s"}</span>
@@ -3868,9 +3873,10 @@ function CommunityTab({ C, isPreview }) {
       <button onClick={()=>window.dispatchEvent(new Event("shg-go-wall"))} style={{ display:"block",margin:"0 auto 20px",background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"12px 24px",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Share my win ›</button>
       <div style={{ display:"grid",gap:14,textAlign:"left" }}>
         {mine.slice().reverse().map((w,i)=><WinCard key={"m"+i} w={w} mine/>)}
-        {EXAMPLE_WINS.map((w,i)=><WinCard key={"e"+i} w={w}/>)}
+        {isPreview && EXAMPLE_WINS.map((w,i)=><WinCard key={"e"+i} w={w}/>)}
       </div>
-      <div style={{ fontSize:13,fontWeight:300,color:C.cr,marginTop:12 }}>{mine.length ? "Your shared wins are at the top, followed by example wins." : "These are example wins. Yours appear at the top when you share one."}</div>
+      {!isPreview && !mine.length && <div className="shg-paper" style={{ borderRadius:18,padding:"22px 16px",fontSize:16,fontWeight:300,color:"#000" }}>Be the first to share a win ✦</div>}
+      {isPreview && <div style={{ fontSize:13,fontWeight:300,color:C.cr,marginTop:12 }}>Preview shows example wins.</div>}
     </div>
   );
 }
@@ -3949,11 +3955,95 @@ function HowFarCard({ threads, isPreview, userId }) {
   );
 }
 
+// Welcome card: resume the last track (or start a suggested one).
+function LastPlayed({ play, isPreview }) {
+  let last = null; try { last = JSON.parse(localStorage.getItem("shg_last_track") || "null"); } catch {}
+  const t = (last && TRACKS.find(x => x.id === last.id || x.title === last.title)) || null;
+  const pick = t || TRACKS[Math.floor(Date.now() / 86400000) % Math.max(TRACKS.length, 1)];
+  if (!pick) return null;
+  return (
+    <button onClick={e=>{ e.stopPropagation(); play?.(pick); }} style={{ display:"flex",alignItems:"center",gap:10,marginTop:12,background:"rgba(255,255,255,.55)",border:"1px solid #000",borderRadius:14,padding:"6px 10px 6px 6px",cursor:"pointer",fontFamily:"'Jost',sans-serif",color:"#000",maxWidth:"100%" }}>
+      <Thumb title={pick.title} cat={pick.cat} size={36} radius={8}/>
+      <span style={{ textAlign:"left",minWidth:0 }}>
+        <span style={{ display:"block",fontSize:10,letterSpacing:".2em" }}>{t ? "LAST PLAYED" : "TODAY'S TRACK"}</span>
+        <span style={{ display:"block",fontSize:14,fontWeight:300,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",maxWidth:180 }}>{displayTitle(pick.title)}</span>
+      </span>
+      <span style={{ fontSize:16,marginLeft:4 }}>▶</span>
+    </button>
+  );
+}
+
+// ── BUCKET BOARD: the vision board from the deck ────────────────────────────
+const BUCKET_CATS = [["Travel","✈",/\b(travel|trip|holiday|bali|paris|flight|beach|italy|japan|month in|visit|business class|balloon)\b/i],["Home","⌂",/\b(home|house|flat|apartment|studio|wardrobe|garden|sea view|kitchen)\b/i],["Money","$",/(\$|£|€|\b(money|savings|income|debt|paid|rich|salary|10k|k a month)\b)/i],["Love","♡",/\b(partner|love|husband|boyfriend|texts|date|wedding|marry|soul ?mate)\b/i],["Glow","✧",/\b(skin|glow|hair|body|beauty|fit|nails)\b/i],["Self","◎",/\b(confiden|myself|calm|peace|healing|sisters|friends|course|learn|fashion week|upgrade)\b/i]];
+const detectBucketCat = (t) => (BUCKET_CATS.find(([, , re]) => re.test(t || "")) || ["Self"])[0];
+function BucketBoard({ items, setThreads }) {
+  if (!items.length) return <div className="shg-paper" style={{ borderRadius:16,padding:"22px 16px",textAlign:"center",fontSize:15,fontWeight:300,color:"#000" }}>Your board is empty. Add anything you want, ever.</div>;
+  const mark = (id) => setThreads(ts => ts.map(t => t.id === id ? { ...t, done:true, manifestedAt:new Date().toLocaleDateString("en-GB",{ day:"numeric", month:"short", year:"numeric" }) } : t));
+  const focus = (id) => setThreads(ts => ts.map(t => t.id === id ? { ...t, isBucket:false } : t));
+  const del = (id) => setThreads(ts => ts.filter(t => t.id !== id));
+  return (
+    <>
+      <style>{`body .shg-bb.shg-bb{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:10px}`}</style>
+      <div className="shg-bb">
+        {items.map(it => { const cat = it.bucketCat || detectBucketCat(it.desire); const ic = (BUCKET_CATS.find(c => c[0] === cat) || ["", "◎"])[1]; return (
+          <div key={it.id} className="shg-paper" style={{ position:"relative",borderRadius:16,padding:"12px 10px 10px",color:"#000",fontFamily:"'Jost',sans-serif",minHeight:120,display:"flex",flexDirection:"column" }}>
+            <span style={{ alignSelf:"flex-start",fontSize:11,fontWeight:300,padding:"2px 8px",borderRadius:999,border:"1px solid #000" }}>{ic} {cat}</span>
+            <button onClick={()=>del(it.id)} aria-label={`Remove ${it.desire}`} style={{ position:"absolute",top:6,right:8,background:"none",border:"none",fontSize:15,cursor:"pointer",color:"#000" }}>×</button>
+            <div style={{ fontSize:14,fontWeight:300,lineHeight:1.35,margin:"10px 0 8px",flex:1 }}>{it.desire}</div>
+            <div style={{ display:"flex",gap:6 }}>
+              <button onClick={()=>mark(it.id)} aria-label="Mark manifested" style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",border:"none",borderRadius:999,padding:"5px 0",fontSize:12,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"inherit" }}>✓ Arrived</button>
+              <button onClick={()=>focus(it.id)} style={{ background:"transparent",border:"1px solid #000",borderRadius:999,padding:"5px 8px",fontSize:12,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"inherit" }}>Focus</button>
+            </div>
+          </div>
+        ); })}
+      </div>
+    </>
+  );
+}
+
+// ── JOURNAL BOARD (proofOS) ─────────────────────────────────────────────────
+function JournalBoard({ userId, isPreview }) {
+  const [entries, setEntries] = useState(() => readJournal(userId, isPreview));
+  const [area, setArea] = useState(""); const [q, setQ] = useState(""); const [open, setOpen] = useState(null);
+  useEffect(() => { const f = () => setEntries(readJournal(userId, isPreview)); window.addEventListener("shg-passport-updated", f); window.addEventListener("storage", f); return () => { window.removeEventListener("shg-passport-updated", f); window.removeEventListener("storage", f); }; }, [userId, isPreview]);
+  const areas = [...new Set(entries.flatMap(e => e.areas || []))];
+  const shown = entries.filter(e => (!area || (e.areas || []).includes(area)) && (!q || e.text.toLowerCase().includes(q.toLowerCase())));
+  const groups = shown.reduce((m, e) => { const k = new Date(e.date).toLocaleDateString("en-GB",{ month:"long", year:"numeric" }); (m[k] = m[k] || []).push(e); return m; }, {});
+  const chip = (on) => ({ fontSize:12,fontWeight:300,padding:"4px 10px",borderRadius:999,border:"1px solid #000",background:on ? "linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" : "transparent",color:"#000",cursor:"pointer",fontFamily:"'Jost',sans-serif" });
+  return (
+    <div className="shg-paper" style={{ borderRadius:18,padding:"16px 14px",color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <div style={{ fontSize:20,fontWeight:300,marginBottom:10 }}>Journal</div>
+      <input id="shg-journal-search" value={q} onChange={e=>setQ(e.target.value)} placeholder="Search your journal" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:"9px 12px",fontSize:14,fontWeight:300,fontFamily:"inherit" }}/>
+      {areas.length > 0 && <div style={{ display:"flex",flexWrap:"wrap",gap:6,marginTop:10 }}><button onClick={()=>setArea("")} style={chip(!area)}>All</button>{areas.map(a => <button key={a} onClick={()=>setArea(a)} style={chip(area===a)}>{a}</button>)}</div>}
+      {!entries.length && <div style={{ fontSize:15,marginTop:12 }}>No entries yet. Write one in "what's on your mind?" on Home.</div>}
+      {Object.entries(groups).map(([m, es]) => (
+        <div key={m} style={{ marginTop:14 }}>
+          <div style={{ fontSize:11,letterSpacing:".24em",marginBottom:6 }}>{m.toUpperCase()}</div>
+          {es.map(e => (
+            <button key={e.id} onClick={()=>setOpen(open===e.id?null:e.id)} style={{ display:"block",width:"100%",textAlign:"left",background:"#fff",border:"1px solid #000",borderRadius:12,padding:"10px 12px",marginBottom:6,cursor:"pointer",fontFamily:"inherit",color:"#000" }}>
+              <div style={{ display:"flex",justifyContent:"space-between",gap:8,fontSize:12 }}><span>{new Date(e.date).toLocaleDateString("en-GB",{ weekday:"short", day:"numeric", month:"short" })}</span><span>{(e.areas||[]).join(" · ")}</span></div>
+              <div style={{ fontSize:14,fontWeight:300,lineHeight:1.5,marginTop:4,whiteSpace:open===e.id?"pre-line":"nowrap",overflow:"hidden",textOverflow:"ellipsis" }}>{e.text}</div>
+            </button>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ── JOURNAL ─────────────────────────────────────────────────────────────────
 const AREA_WORDS = [["Love","Lovemaxxing",/\b(love|relationship|boyfriend|husband|partner|him|her|text(ed|s)?|date|dating|crush|ex)\b/i],["Money","Richgirlmaxxing",/\b(money|income|rent|client|clients|debt|salary|paid|pay|cash|rich|bills?)\b/i],["Luck","Luckygirlmaxxing",/\b(luck|lucky)\b/i],["Beauty","Beautymaxxing",/\b(skin|body|glow|hair|weight|face|beauty)\b/i],["Confidence","Selfmaxxing",/\b(confident|confidence|self|worth|myself)\b/i],["Business","Businessmaxxing",/\b(job|business|career|work|boss|promotion)\b/i],["Peace","Sleepmaxxing",/\b(sleep|anxious|anxiety|stress|stressed|frustrated|tired|overwhelmed|calm)\b/i]];
 const detectAreas = (text) => AREA_WORDS.filter(([, , re]) => re.test(text || ""));
 const ppKeyFor = (userId, isPreview) => `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
-function readJournal(userId, isPreview) { try { return (JSON.parse(localStorage.getItem(ppKeyFor(userId, isPreview)) || "null") || {}).journal || []; } catch { return []; } }
+const jKeyFor = (userId, isPreview) => `shg_journal_${userId || (isPreview ? "preview" : "guest")}`;
+// Journal lives in the passport (synced to the account) and in its own key as a backup; merged by id.
+function readJournal(userId, isPreview) {
+  let a = [], b = [];
+  try { a = (JSON.parse(localStorage.getItem(ppKeyFor(userId, isPreview)) || "null") || {}).journal || []; } catch {}
+  try { b = JSON.parse(localStorage.getItem(jKeyFor(userId, isPreview)) || "[]"); } catch {}
+  const m = new Map(); [...a, ...b].forEach(e => e && e.id && m.set(e.id, e));
+  return [...m.values()].sort((x, y) => new Date(y.date) - new Date(x.date));
+}
 function JournalCard({ name, threads, setThreads, isPreview, userId, token, play }) {
   const [text, setText] = useState("");
   const [reply, setReply] = useState(null);
@@ -3962,7 +4052,9 @@ function JournalCard({ name, threads, setThreads, isPreview, userId, token, play
     const v = text.trim(); if (!v) return;
     const areas = detectAreas(v);
     const entry = { id: Date.now(), date: new Date().toISOString(), text: v, areas: areas.map(a => a[0]) };
-    try { const k = ppKeyFor(userId, isPreview); const p = JSON.parse(localStorage.getItem(k) || "null") || {}; p.journal = [entry, ...(p.journal || [])].slice(0, 500); localStorage.setItem(k, JSON.stringify(p)); window.dispatchEvent(new CustomEvent("shg-passport-updated")); } catch {}
+    try { const k = ppKeyFor(userId, isPreview); const p = JSON.parse(localStorage.getItem(k) || "null") || {}; p.journal = [entry, ...(p.journal || [])].slice(0, 500); localStorage.setItem(k, JSON.stringify(p)); } catch {}
+    try { const jk = jKeyFor(userId, isPreview); const l = JSON.parse(localStorage.getItem(jk) || "[]"); localStorage.setItem(jk, JSON.stringify([entry, ...l].slice(0, 500))); } catch {}
+    try { window.dispatchEvent(new CustomEvent("shg-passport-updated")); } catch {}
     setText(""); setReply(areas);
   };
   const [open, setOpen] = useState(false);
@@ -3977,10 +4069,11 @@ function JournalCard({ name, threads, setThreads, isPreview, userId, token, play
         <button onClick={toggleMic} style={{ flex:1,background:"transparent",color:"#000",border:"1px solid #000",borderRadius:999,padding:"9px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
         <button onClick={save} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"9px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Save</button>
       </div>
+      <div style={{ fontSize:12,fontWeight:300,marginTop:8,textAlign:"center" }}>Private. Saved to your journal in proofOS and to your account.</div>
       {reply && (
         <div style={{ marginTop:12,padding:"12px",borderRadius:12,background:"#fff",border:"1px solid #000",position:"relative" }}>
           <button onClick={()=>setReply(null)} aria-label="Close" style={{ position:"absolute",top:6,right:8,background:"none",border:"none",fontSize:18,cursor:"pointer",color:"#000" }}>×</button>
-          <div style={{ fontSize:14,fontWeight:300,paddingRight:20 }}>Saved to your journal ✓{names.length ? ` I see you're calling in ${names.length > 1 ? names.slice(0,-1).join(", ") + " and " + names.slice(-1) : names[0]}.` : ""}</div>
+          <div style={{ fontSize:14,fontWeight:300,paddingRight:20 }}>Saved to your journal ✓{names.length ? ` I see you're calling in ${names.length > 1 ? names.slice(0,-1).join(", ") + " and " + names.slice(-1) : names[0]}.` : ""} Find it any time in proofOS › Journal.</div>
           {reply.map(([area, cat]) => {
             const tr = TRACKS.find(t => t.cat === cat);
             return (
@@ -4029,22 +4122,32 @@ function QuickAdd({ kind, threads, setThreads, isPreview, userId, token, onClose
 // ── BUCKET LIST BAND ────────────────────────────────────────────────────────
 // Encourages ten bucket-list ideas a day, added right from Home.
 // Ask Reshma, right on Home: saved locally and sent to the worker (fire-and-forget).
-function HomeAskCard({ email }) {
+function HomeAskCard({ email, isPreview }) {
   const [q, setQ] = useState(""); const [sent, setSent] = useState(false); const [open, setOpen] = useState(false);
-  const send = () => {
+  const [qs, setQs] = useState([]);
+  const signedIn = !isPreview && (() => { try { return !!localStorage.getItem("shg_auth_token"); } catch { return false; } })();
+  const refetch = useCallback(() => { if (signedIn) fetchMyQuestions().then(setQs).catch(() => {}); }, [signedIn]);
+  useEffect(() => { refetch(); }, [refetch]);
+  const unread = signedIn ? unreadCount(qs) : 0;
+  const send = async () => {
     const question = q.trim(); if (!question) return;
     try { const l = JSON.parse(localStorage.getItem("shg_questions") || "[]"); l.push({ question, date:new Date().toISOString() }); localStorage.setItem("shg_questions", JSON.stringify(l.slice(-200))); } catch {}
-    try { fetch("https://shg-auth-worker.airpriestess.workers.dev/ask", { method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify(email ? { question, email } : { question }) }).catch(() => {}); } catch {}
-    setQ(""); setSent(true);
+    let tok = null; try { tok = localStorage.getItem("shg_auth_token"); } catch {}
+    try { await fetch("https://shg-auth-worker.airpriestess.workers.dev/ask", { method:"POST", headers:{ "Content-Type":"application/json", ...(tok && !isPreview ? { Authorization:`Bearer ${tok}` } : {}) }, body:JSON.stringify(email ? { question, email } : { question }) }); } catch {}
+    setQ(""); setSent(true); refetch();
   };
   return (
-    <div className="shg-paper" style={{ margin:"14px 16px 24px",padding:"18px 16px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+    <div className="shg-paper shg-askglow" style={{ textAlign:"center",margin:"14px 16px 24px",padding:"18px 16px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <style>{`@keyframes shg-askb{0%,100%{box-shadow:0 0 10px rgba(245,224,160,.35)}50%{box-shadow:0 0 26px rgba(191,165,216,.6),0 0 40px rgba(44,183,167,.3)}}.shg-askglow{animation:shg-askb 4s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.shg-askglow{animation:none}}`}</style>
       <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"block",width:"100%",cursor:"pointer",fontSize:17,fontWeight:300,textAlign:"center" }}>Ask Reshma a question</button>
-      {open && <div style={{ marginTop:10 }}><div style={{ fontSize:14,fontWeight:300,margin:"0 0 10px",lineHeight:1.5 }}>Your question goes straight to Reshma. She'll reply by email.</div>
-      {sent ? <div style={{ fontSize:15,fontWeight:300 }}>Sent ✓ Reshma will reply by email.</div> : (<>
-        <textarea id="shg-home-ask" rows={3} value={q} onChange={e=>setQ(e.target.value)} placeholder="Your question…" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:12,fontSize:15,fontWeight:300,fontFamily:"inherit",resize:"vertical" }}/>
+      {!open && unread > 0 && <div style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:8,marginTop:6,fontSize:13,fontWeight:300 }}><span style={{ width:10,height:10,borderRadius:"50%",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" }}/>Reshma answered you</div>}
+      {open && <div style={{ marginTop:10 }}>
+        <div style={{ fontSize:14,fontWeight:300,margin:"0 0 10px",lineHeight:1.5 }}>Your question goes straight to Reshma. Her answer appears here and by email.</div>
+        {sent && <div style={{ fontSize:15,fontWeight:300,marginBottom:10 }}>Sent ✓ Reshma will reply here and by email.</div>}
+        <textarea id="shg-home-ask" rows={3} value={q} onChange={e=>{ setQ(e.target.value); setSent(false); }} placeholder="Your question…" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:12,fontSize:15,fontWeight:300,fontFamily:"inherit",resize:"vertical" }}/>
         <button onClick={send} style={{ marginTop:8,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px 24px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Send</button>
-      </>)}</div>}
+        {signedIn && <MyQuestions questions={qs} onRead={refetch}/>}
+      </div>}
     </div>
   );
 }
@@ -4072,11 +4175,11 @@ function BucketBand({ threads, setThreads, isPreview, userId, token }) {
     </span>
   );
   if (!open) return (
-    <button onClick={()=>setOpen(true)} className="shg-no-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 14px",padding:"20px 16px",borderRadius:22,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",color:"#F2ECE4",border:"1px solid transparent",background:"linear-gradient(#000,#000) padding-box, linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) border-box" }}>
+    <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 14px",padding:"20px 16px",borderRadius:22,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",color:"#000" }}>
       <img src="/icons/lucky.webp" alt="" style={{ width:56,height:56,borderRadius:"50%",flexShrink:0 }}/>
       <span style={{ flex:1,minWidth:0 }}>
-        <span style={{ display:"block",fontSize:17,fontWeight:300,color:"#F2ECE4" }}>Add 10 ideas every day</span>
-        {dots(true)}
+        <span style={{ display:"block",fontSize:17,fontWeight:300,color:"#000" }}>Add 10 ideas every day</span>
+        {dots(false)}
         <span style={{ display:"inline-block",fontSize:14,fontWeight:300,color:"#000",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",borderRadius:999,padding:"7px 16px",marginTop:12 }}>Tap to add</span>
       </span>
     </button>
@@ -4609,7 +4712,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   return (
     <div className="shg-onb-paper" style={{ position:"fixed",inset:0,zIndex:2000,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"20px 20px",overflowY:"auto",WebkitOverflowScrolling:"touch",color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
       <style>{`.shg-onb-paper input,.shg-onb-paper textarea{background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;border:1px solid #000!important}.shg-onb-paper input::placeholder,.shg-onb-paper textarea::placeholder{color:#000!important;opacity:.45}`}</style>
-      <div style={{ maxWidth:500,width:"100%",margin:"0 auto",boxSizing:"border-box",padding:"calc(env(safe-area-inset-top,0px) + 28px) 20px 48px",background:"transparent" }}>
+      <div style={{ maxWidth:500,width:"100%",margin:"0 auto",boxSizing:"border-box",padding:"calc(env(safe-area-inset-top,0px) + 28px) 20px 0",background:"transparent" }}>
         <div style={{ display:"flex",gap:3,marginBottom:20 }}>
           {steps.map((_,i) => (
             <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(191,165,216,.45)" }}/>
@@ -4619,6 +4722,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
         <div style={{ fontSize:21,fontWeight:300,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
         <div style={{ fontSize:14,color:dim,marginBottom:20,lineHeight:1.5 }}>{s.sub}</div>
         <div style={{ marginBottom:24 }}>{s.content}</div>
+        <div style={{ position:"sticky",bottom:0,zIndex:2,margin:"0 -20px",padding:"12px 20px calc(env(safe-area-inset-bottom,0px) + 12px)",backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"20px 20px",boxShadow:"0 -8px 16px rgba(242,236,228,.9)" }}>
         <button
           onClick={s.canNext ? s.next : undefined}
           style={{
@@ -4633,6 +4737,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
             Skip for now
           </button>
         )}
+        </div>
       </div>
     </div>
   );

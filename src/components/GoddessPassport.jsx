@@ -34,14 +34,21 @@ const toAvatar = (file) => new Promise((resolve, reject) => {
 // MY LIFE: one check-in at a time. One box (type or speak), one optional
 // photo. Past check-ins, including older multi-field ones, are listed below.
 const LIFE_FIELDS = [["want", "What I want from life"], ["desires", "My desires"], ["blocks", "My blocks"], ["needs", "My needs"], ["becoming", "Who I'm becoming"]];
-const AI_PROMPT = "Hi, I want you to extract every single detail you know about me that defines: my current desires, what you think my blocks are in achieving these desires, my current emotional needs, and who I'm becoming. Put it under those four headings.";
-const SUM_KEYS = [["desires", "Desires", /desires?/i], ["blocks", "Blocks", /blocks?/i], ["needs", "Emotional needs", /emotional\s+needs?|needs?/i], ["becoming", "Becoming", /becoming/i]];
+const AI_PROMPT = `I'm doing a monthly check-in with my manifestation app. Only use what I've shared with you in the LAST 30 DAYS — ignore anything older. Based on this month only, write it under these headings:
+1. My desires this month — the specific things I've said I want (relationships, money, career, home, body, lifestyle).
+2. What I've already received or seen progress on this month.
+3. My blocks — the fears, doubts, limiting beliefs or patterns that showed up this month, in my own words where possible.
+4. My emotional needs right now — what I've been craving to feel (safe, chosen, free, calm, confident…).
+5. Who I'm becoming — how I've been describing the woman I'm growing into.
+6. One sentence summary of my month.
+Keep it honest and specific, use bullet points, no advice.`;
+const SUM_KEYS = [["desires", "Desires this month", /desires?/i], ["received", "Received / progress", /received|progress/i], ["blocks", "Blocks", /blocks?/i], ["needs", "Emotional needs", /emotional\s+needs?|needs?/i], ["becoming", "Who I'm becoming", /becoming/i], ["summary", "My month in one line", /summary|one sentence/i]];
 // Split an AI answer under the four headings; else the first few sentences.
 function summarise(text) {
   const out = {}; let cur = null;
   String(text || "").split(/\r?\n/).forEach((line) => {
     const clean = line.replace(/^[#*\s\d.)-]+/, "").replace(/[*:]+\s*$/, "").trim();
-    const head = clean.length < 60 && SUM_KEYS.find(([, , re]) => re.test(clean) && clean.split(/\s+/).length <= 7);
+    const head = clean.length < 90 && SUM_KEYS.find(([, , re]) => re.test(clean.split(/[—–:-]/)[0]) && clean.split(/[—–:-]/)[0].split(/\s+/).length <= 8);
     if (head) { cur = head[0]; const rest = line.split(":").slice(1).join(":").trim(); out[cur] = rest ? [rest] : []; return; }
     if (cur && line.trim()) out[cur].push(line.trim().replace(/^[-*•]\s*/, ""));
   });
@@ -82,17 +89,19 @@ function MyLife({ savedWhere, life, setLife, pill, field }) {
   const boxes = cur ? (cur.summary ? Object.entries(cur.summary).map(([k, v]) => [(SUM_KEYS.find(([x]) => x === k) || [k, "Overview"])[1], v]) : cur.text ? [["Check-in", cur.text]] : LIFE_FIELDS.filter(([k]) => cur[k]).map(([k, l]) => [l, cur[k]])) : [];
   return (
     <div className="pp-page" data-page="02 · MY LIFE" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
-      <div style={{ background: "#000", color: "#F2ECE4", borderRadius: 14, padding: "16px 14px", display: "grid", gap: 10 }}>
-        <div style={{ fontSize: 20, fontWeight: 400 }}>Monthly AI check-in</div>
+      <div style={{ background: "#fff", color: "#000", border: "1px solid #000", borderRadius: 14, padding: "16px 14px", display: "grid", gap: 10 }}>
+        <div style={{ fontSize: 20, fontWeight: 300 }}>Monthly AI check-in</div>
         <div style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.5 }}>Once a month, ask ChatGPT or Claude what it knows about you, then upload or paste its answer here. Share only what you want to.</div>
-        <div style={{ border: "1px solid rgba(242,236,228,.35)", borderRadius: 12, padding: "12px", fontSize: 13, fontWeight: 300, lineHeight: 1.55 }}>{AI_PROMPT}</div>
+        <details><summary style={{ cursor: "pointer", fontSize: 14, fontWeight: 300, textDecoration: "underline", textUnderlineOffset: 3, listStyle: "none" }}>Tap to see your prompt ›</summary>
+          <div style={{ marginTop: 8, border: "1px solid #000", borderRadius: 12, padding: "12px", fontSize: 13, fontWeight: 300, lineHeight: 1.55, whiteSpace: "pre-line" }}>{AI_PROMPT}</div>
+        </details>
         <button onClick={copy} style={{ ...pill, minHeight: 38, fontSize: 14, background: G, color: "#000" }}>{copied ? "Copied ✓" : "Copy prompt"}</button>
-        <label style={{ ...pill, minHeight: 38, fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", color: "#F2ECE4", border: "1px solid #F2ECE4" }}>
+        <label style={{ ...pill, minHeight: 38, fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", color: "#000", border: "1px solid #000" }}>
           {file ? `${file.name}${file.pdf ? " · PDF saved" : " ✓"}` : "Upload its answer (.txt, .md, .pdf)"}
           <input type="file" accept=".txt,.md,.pdf,text/plain,text/markdown,application/pdf" hidden onChange={async (e) => { await onFile(e.target.files?.[0]); e.target.value = ""; }} />
         </label>
         <textarea id="pp-ai-text" rows={5} style={{ ...field, resize: "vertical", lineHeight: 1.5, fontSize: 15, fontWeight: 300 }} placeholder="…or paste the answer here" value={text} onChange={(e) => setText(e.target.value)} />
-        <button onClick={save} style={{ ...pill, background: "#F2ECE4", color: "#000" }}>{saved ? "Saved ✓" : "Save this month's check-in"}</button>
+        <button onClick={save} style={{ ...pill, background: G, color: "#000" }}>{saved ? "Saved ✓" : "Save this month's check-in"}</button>
       </div>
       <div>
         <Label>MY CHECK-INS · {all.length}</Label>
@@ -146,14 +155,17 @@ function AreaDonut({ areas, threads }) {
   const total = weights.reduce((a, b) => a + b, 0);
   const R = 34, C = 2 * Math.PI * R; let off = 0;
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 12 }}>
+    <div style={{ marginTop: 12 }}>
+    <div style={{ fontSize: 12, fontWeight: 300, marginBottom: 6 }}>Your manifesting mix, from your bucket list</div>
+    <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
       <svg width="96" height="96" viewBox="0 0 96 96" aria-label="Your mix of areas" role="img" style={{ flexShrink: 0 }}>
         <circle cx="48" cy="48" r={R} fill="none" stroke="rgba(0,0,0,.08)" strokeWidth="14" />
         {areas.map((a, i) => { const len = (weights[i] / total) * C; const el = <circle key={a} cx="48" cy="48" r={R} fill="none" stroke={AREA_COL[i % AREA_COL.length]} strokeWidth="14" strokeDasharray={`${Math.max(len - 1.5, 0.5)} ${C}`} strokeDashoffset={-off} transform="rotate(-90 48 48)" />; off += len; return el; })}
       </svg>
       <div style={{ display: "grid", gap: 4 }}>
-        {areas.map((a, i) => <div key={a} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 300 }}><span style={{ width: 10, height: 10, borderRadius: "50%", background: AREA_COL[i % AREA_COL.length], border: "1px solid rgba(0,0,0,.2)" }} />{a} · {Math.round((weights[i] / total) * 100)}%</div>)}
+        {areas.map((a, i) => <div key={a} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 300 }}><span style={{ width: 10, height: 10, borderRadius: "50%", background: AREA_COL[i % AREA_COL.length], border: "1px solid rgba(0,0,0,.2)" }} />{a}</div>)}
       </div>
+    </div>
     </div>
   );
 }
@@ -211,10 +223,12 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const [themeMsg, setThemeMsg] = useState("");
   const [lifeEdit, setLifeEdit] = useState(false);
   const [pastWin, setPastWin] = useState("");
+  const [pastYear, setPastYear] = useState(String(new Date().getFullYear() - 1));
+  const [pastPhoto, setPastPhoto] = useState(null);
   const areas = (p.onboarding && Array.isArray(p.onboarding.areas)) ? p.onboarding.areas : [];
   const savedWhere = isPreview || !userId ? "Saved on this device. Only you can see it." : "Saved to your account. Only you can see it.";
   // Cover look: black graph paper (default) or white graph paper; ?cover=white previews the other.
-  const coverStyle = (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("cover")) || "black";
+  const coverStyle = (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("cover")) || "white";
 
   useEffect(() => { store(key, p); try { window.dispatchEvent(new CustomEvent("shg-passport-updated", { detail: { name: p.name, goddessName: p.goddessName } })); } catch {} }, [key, p]);
   useEffect(() => {
@@ -314,7 +328,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
         {!opened ? (
           <>
-            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(440px, 88vw, calc((100svh - 150px) * 0.71))", aspectRatio: "0.71", margin: "4vh auto 0", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: coverStyle === "white" ? "#F2ECE4" : "#000", backgroundImage: coverStyle === "white" ? "linear-gradient(rgba(191,165,216,.45) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.45) 1px,transparent 1px)" : "linear-gradient(rgba(191,165,216,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.2) 1px,transparent 1px)", backgroundSize: "20px 20px", boxShadow: coverStyle === "white" ? "inset 10px 0 14px -8px rgba(0,0,0,.25), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)" : "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
+            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: coverStyle === "white" ? "none" : "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(440px, 88vw, calc((100svh - 150px) * 0.71))", aspectRatio: "0.71", margin: "4vh auto 0", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: coverStyle === "white" ? "#F2ECE4" : "#000", backgroundImage: coverStyle === "white" ? "linear-gradient(rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px)" : "linear-gradient(rgba(191,165,216,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.2) 1px,transparent 1px)", backgroundSize: coverStyle === "white" ? "100px 100px,100px 100px,20px 20px,20px 20px" : "20px 20px", boxShadow: coverStyle === "white" ? "inset 10px 0 14px -8px rgba(0,0,0,.18), 0 0 0 1px #000, 0 10px 30px rgba(0,0,0,.35)" : "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
               <span aria-hidden="true" style={{ position: "absolute", left: 14, top: 10, bottom: 10, width: 1, background: "rgba(242,236,228,.08)" }} />
               <span style={{ fontSize: 11, letterSpacing: ".38em", paddingLeft: ".38em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
               <span style={{ display: "grid", justifyItems: "center", gap: 18 }}>
@@ -368,16 +382,30 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
                 <div style={{ marginTop: 14 }}><Label>ALREADY MANIFESTED · BEFORE SELF HYPNOSIS GODDESS</Label>
                   <div style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.5, marginBottom: 8 }}>Wins you'd written in a journal before the app. They count.</div>
-                  <form onSubmit={(e) => { e.preventDefault(); const v = pastWin.trim(); if (!v) return; set({ pastWins: [{ text: v, ts: Date.now() }, ...(p.pastWins || [])].slice(0, 200) }); setPastWin(""); }} style={{ display: "flex", gap: 6 }}>
-                    <input id="pp-pastwin" style={field} placeholder="e.g. Got the flat I wanted, 2024" value={pastWin} onChange={(e) => setPastWin(e.target.value)} />
-                    <button style={{ ...pill, minHeight: 40, background: "#000", color: "#F2ECE4" }}>Add</button>
-                  </form>
-                  {(p.pastWins || []).map((w, i) => (
-                    <div key={w.ts || i} style={{ display: "flex", justifyContent: "space-between", gap: 10, fontSize: 14, fontWeight: 300, padding: "8px 2px", borderBottom: "1px solid rgba(0,0,0,.2)" }}>
-                      <span>✦ {w.text}</span>
-                      <button onClick={() => set({ pastWins: p.pastWins.filter((_, j) => j !== i) })} aria-label={`Remove ${w.text}`} style={{ all: "unset", cursor: "pointer", flexShrink: 0 }}>✕</button>
+                  <div style={{ display: "grid", gap: 6 }}>
+                    <input id="pp-pastwin" style={field} placeholder="What arrived? e.g. Got the flat I wanted" value={pastWin} onChange={(e) => setPastWin(e.target.value)} />
+                    <div style={{ display: "flex", gap: 6 }}>
+                      <select id="pp-pastyear" style={{ ...field, flex: 1 }} value={pastYear} onChange={(e) => setPastYear(e.target.value)}>
+                        {Array.from({ length: 30 }, (_, i) => String(new Date().getFullYear() - i)).map((y) => <option key={y}>{y}</option>)}
+                      </select>
+                      <label style={{ ...pill, minHeight: 40, flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", color: "#000", border: "1px solid #000", fontSize: 13 }}>
+                        {pastPhoto ? "Photo added ✓" : "+ Photo (optional)"}
+                        <input type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files?.[0]; if (f) { try { setPastPhoto(await toAvatar(f)); } catch {} } e.target.value = ""; }} />
+                      </label>
                     </div>
-                  ))}
+                    <button onClick={() => { const v = pastWin.trim(); if (!v) return; set({ pastWins: [{ text: v, year: pastYear, photo: pastPhoto, ts: Date.now() }, ...(p.pastWins || [])].slice(0, 200) }); setPastWin(""); setPastPhoto(null); }} style={{ ...pill, minHeight: 40, background: G, color: "#000" }}>Add to my past wins</button>
+                  </div>
+                  <style>{`body .pp-pw.pp-pw{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:8px;margin-top:10px}`}</style>
+                  <div className="pp-pw">
+                    {(p.pastWins || []).map((w, i) => (
+                      <div key={w.ts || i} style={{ position: "relative", background: "#fff", border: "1px solid #000", borderRadius: 12, padding: 8, fontSize: 13, fontWeight: 300 }}>
+                        {w.photo && <img src={w.photo} alt="" style={{ width: "100%", aspectRatio: "1", objectFit: "cover", borderRadius: 8, display: "block", marginBottom: 6 }} />}
+                        <div style={{ fontSize: 11, letterSpacing: ".2em" }}>{w.year || ""}</div>
+                        <div style={{ lineHeight: 1.4, marginTop: 2 }}>✦ {w.text}</div>
+                        <button onClick={() => set({ pastWins: p.pastWins.filter((_, j) => j !== i) })} aria-label={`Remove ${w.text}`} style={{ position: "absolute", top: 4, right: 6, background: "#fff", border: "none", borderRadius: "50%", cursor: "pointer", fontSize: 13 }}>✕</button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <pre className="pp-mrz" style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 9, letterSpacing: ".06em", margin: "10px 0 0", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>{mrz}</pre>
@@ -391,21 +419,24 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
             {page === 2 && (
               <div className="pp-page" data-page="03 · VISAS & STAMPS" style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
-<div className="pp-earned" style={{ fontSize: 13, letterSpacing: ".3em", marginBottom: 6, background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</div>
+<div style={{ fontSize: 13, letterSpacing: ".3em", marginBottom: 8, color: "#000" }}>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</div>
+                <div className="pp-stampbook" style={{ background: "#000", backgroundImage: "linear-gradient(rgba(242,236,228,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,228,.10) 1px,transparent 1px)", backgroundSize: "20px 20px", borderRadius: 16, padding: "14px 12px 18px", color: "#F2ECE4" }}>
                 <style>{`body .pp-stamps.pp-stamps{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important;gap:18px;margin-top:12px}@media(max-width:700px){body .pp-stamps.pp-stamps{grid-template-columns:1fr 1fr!important}}`}</style><div className="pp-stamps">
                   {stamps.filter(x => x.earned).map((s0, i) => { const s = s0.k && stampDates[s0.k] ? { ...s0, bottom: String(stampDates[s0.k]).toUpperCase() } : s0; return (
-                    <div key={i} style={{ textAlign: "center" }}><Stamp s={s} i={i} /></div>
+                    <div key={i} className="pp-glowstamp" style={{ textAlign: "center", animationDelay: `${(i % 6) * 0.4}s` }}><Stamp s={s} i={i} /></div>
                   ); })}
+                  <div style={{ textAlign: "center", opacity: .9 }}><div style={{ width: "100%", maxWidth: 130, aspectRatio: "1", margin: "0 auto", borderRadius: "50%", border: "2px dashed #BFA5D8", display: "grid", placeItems: "center", fontSize: 12, fontWeight: 300, color: "#F2ECE4", letterSpacing: ".15em" }}>NEXT<br/>STAMP</div></div>
                 </div>
-                <div style={{ marginTop: 22 }}><Label>MILESTONES YET TO EARN · {stamps.filter((s) => !s.earned).length}</Label></div>
+                <div style={{ marginTop: 22, fontSize: 11, letterSpacing: ".24em", color: "#F2ECE4" }}>MILESTONES YET TO EARN · {stamps.filter((s) => !s.earned).length}</div>
                 {Object.entries(stamps.filter((x) => !x.earned).reduce((m, x) => { const g = x.g || "Milestones"; (m[g] = m[g] || []).push(x); return m; }, {})).map(([g, list]) => (
                   <div key={g} style={{ marginTop: 12 }}>
-                    <div style={{ fontSize: 12, letterSpacing: ".2em", marginBottom: 6 }}>{g.toUpperCase()}</div>
+                    <div style={{ fontSize: 12, letterSpacing: ".2em", marginBottom: 6, color: "#F2ECE4" }}>{g.toUpperCase()}</div>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                      {list.map((x, i) => <span key={i} style={{ fontSize: 13, fontWeight: 300, padding: "5px 10px", border: "1px dashed #000", borderRadius: 999 }}>○ {x.how || `${x.top} ${x.mid}`}</span>)}
+                      {list.map((x, i) => <span key={i} style={{ fontSize: 13, fontWeight: 300, padding: "5px 10px", border: "1px dashed #BFA5D8", borderRadius: 999, color: "#F2ECE4" }}>○ {x.how || `${x.top} ${x.mid}`}</span>)}
                     </div>
                   </div>
                 ))}
+                </div>
               </div>
             )}
 
@@ -446,6 +477,8 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 .pp-tap{animation:pp-blink 1.6s ease-in-out infinite}@keyframes pp-blink{50%{opacity:.35}}
 @keyframes shg-pp-open{from{opacity:0;transform:perspective(1200px) rotateY(-70deg);transform-origin:left center}to{opacity:1;transform:none;transform-origin:left center}}
 @keyframes pp-glow{0%,100%{filter:drop-shadow(0 0 6px rgba(232,184,112,.55))}50%{filter:drop-shadow(0 0 18px rgba(44,183,167,.7))}}
+.pp-stampbook{animation:pp-in .7s cubic-bezier(.2,.8,.2,1) both}@keyframes pp-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pp-glowstamp{animation:pp-shim 3.2s ease-in-out infinite}@keyframes pp-shim{0%,100%{filter:drop-shadow(0 0 6px rgba(245,224,160,.55)) drop-shadow(0 0 2px rgba(232,184,112,.6))}33%{filter:drop-shadow(0 0 12px rgba(191,165,216,.85))}66%{filter:drop-shadow(0 0 12px rgba(44,183,167,.8)) drop-shadow(0 0 20px rgba(22,122,107,.5))}}
 .pp-earned{animation:pp-earned 3s ease-in-out infinite}@keyframes pp-earned{0%,100%{filter:drop-shadow(0 0 3px rgba(232,184,112,.5))}50%{filter:drop-shadow(0 0 10px rgba(191,165,216,.9)) drop-shadow(0 0 16px rgba(44,183,167,.5))}}
 @media(prefers-reduced-motion:reduce){[aria-label="Goddess Passport"] *{animation:none!important}}`}</style>
     </div>
