@@ -251,13 +251,13 @@ const CAT_DESC = {
   Lovemaxxing: { shift:"This shifts you from feeling like you have to chase, prove, or wonder where you stand, into feeling like the security you want is already yours.",
     benefits:["Stop checking your phone for reassurance","Release anxious attachment patterns","Feel chosen without needing constant proof"] },
   Selfmaxxing: { shift:"This shifts you from shrinking to fit into rooms, into taking up the space you were always allowed to take.",
-    benefits:["Stop over-explaining your boundaries","Build quiet, unshakeable self-trust","Feel like yourself even under pressure"] },
+    benefits:["Stop over-explaining your boundaries","Build calm, unshakeable self-trust","Feel like yourself even under pressure"] },
   Richgirlmaxxing: { shift:"This shifts you from feeling like money is something you have to fight for, into feeling like it's already looking for you.",
     benefits:["Loosen the grip of financial anxiety","Notice unexpected income without shock","Build the identity of someone money flows toward"] },
   Sleepmaxxing: { shift:"This shifts you from feeling like manifestation takes constant conscious effort, into feeling like your reality rebuilds itself while you're unconscious.",
     benefits:["Turn sleep into productive reprogramming time","Reduce pressure to 'do the work' every waking hour","Wake up already closer to who you're becoming"] },
   Beautymaxxing: { shift:"This shifts you from picking yourself apart in the mirror, into actually seeing what other people already see.",
-    benefits:["Quiet the inner critic before it starts","Stop comparing your reflection to old photos","Let compliments land instead of deflecting them"] },
+    benefits:["Quiet the inner critic before it starts","Stop comparing your reflection to old photos","Let compliments in instead of deflecting them"] },
   DNAmaxxing: { shift:"This shifts you from feeling like ageing and genetics are happening to you, into feeling like your body is listening to what you tell it.",
     benefits:["Support your body's natural repair rhythms","Shift the belief that decline is inevitable","Feel more at home in your own skin"] },
   Luckygirlmaxxing: { shift:"This shifts you from feeling like good things happen to other people, into expecting things to work out for you by default.",
@@ -1501,19 +1501,16 @@ const HOW_IT_WORKS = [
   ["Reiki energy","Each track is recorded with Reiki intention, so it carries a calm, healing energy while you listen."],
 ];
 const EXTRA_SHIFTS = [
-  "You stop needing proof before you feel it's yours",
-  "Old doubts get quieter, without you fighting them",
-  "You notice signs and coincidences more often",
-  "Your body relaxes around the desire instead of tensing",
-  "You act like it's already yours, without forcing it",
-  "Other people start treating you like the new version of you",
-  "You fall asleep calmer and wake up clearer",
+  "You notice more signs and coincidences",
+  "Old doubts lose their grip",
+  "You act like it's already yours",
+  "You sleep calmer, wake clearer",
 ];
 function TrackGuide({ track, onBack, onLogSign }) {
   const d = getDesc(track);
   const area = String(track.cat||"").replace("maxxing","");
   const wb = PRODUCTS.find(p => p.name === track.cat);
-  const lines = String(track.script||"").split("\n").map(l=>l.trim()).filter(Boolean).slice(0,6);
+  const lines = String(track.script||"").split("\n").map(l=>l.trim()).filter(Boolean).slice(0,8);
   const H = ({ children }) => <div style={{ fontSize:12,letterSpacing:".28em",textTransform:"uppercase",margin:"0 0 10px",textAlign:"center" }}>{children}</div>;
   return (
     <div style={{ position:"fixed",inset:0,zIndex:400,background:"#000",overflowY:"auto",WebkitOverflowScrolling:"touch",padding:"calc(env(safe-area-inset-top,0px) + 20px) 20px 48px",textAlign:"center",fontFamily:"'Jost',sans-serif" }}>
@@ -1523,50 +1520,57 @@ function TrackGuide({ track, onBack, onLogSign }) {
       <div style={{ fontSize:24,color:"#F2ECE4",lineHeight:1.25 }}>{displayTitle(track.title)}</div>
       <div style={{ fontSize:14,color:"#F2ECE4",margin:"6px 0 20px" }}>{[area, track.format, track.dur].filter(Boolean).join(" · ")}</div>
       <div style={{ display:"grid",gap:14 }}>
+        {/* WHAT YOU'RE INSTALLING: the script itself */}
         <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
-          <H>About this track</H>
-          <div style={{ fontSize:16,lineHeight:1.65 }}>{displayTitle(track.title)} is a {String(track.format||"").toLowerCase().includes("sublim") ? "subliminal" : "self hypnosis"} track for {area}. It combines my voice, theta music, binaural beats, EMDR left-right movement, subliminal affirmations and Reiki intention, so your subconscious hears the new belief from every angle while you relax. Listen daily and log what you notice in proofOS.</div>
+          <H>What you're installing</H>
+          {lines.length ? lines.map((l,i)=><div key={i} style={{ fontSize:16,fontWeight:300,lineHeight:1.5,padding:"6px 0" }}>{l}</div>)
+            : <div style={{ fontSize:15,fontWeight:300 }}>The script for this track is coming soon.</div>}
         </div>
-        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
-          <H>The shift</H>
-          <div style={{ fontSize:17,lineHeight:1.65 }}>{d.shift}</div>
-        </div>
+        {/* THE SHIFT: from → to */}
+        {(()=>{ const m = String(d.shift).match(/from (.*?),? into (.*?)\.?$/i); const from = m ? m[1] : "the old belief"; const to = m ? m[2] : d.shift; return (
+          <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+            <H>The shift</H>
+            <div style={{ display:"grid",gap:8 }}>
+              <div style={{ border:"1px solid #000",borderRadius:14,padding:"12px",fontSize:15,fontWeight:300,lineHeight:1.45,textDecoration:"line-through",textDecorationThickness:1 }}>{from.charAt(0).toUpperCase()+from.slice(1)}</div>
+              <div style={{ fontSize:22 }}>↓</div>
+              <div style={{ background:OMBRE,borderRadius:14,padding:"12px",fontSize:15,fontWeight:400,lineHeight:1.45 }}>{to.charAt(0).toUpperCase()+to.slice(1)}</div>
+            </div>
+          </div>
+        ); })()}
+        {/* SHIFTS YOU'LL NOTICE: one line each */}
         <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
           <H>Shifts you'll notice</H>
-          {[...d.benefits, ...EXTRA_SHIFTS].slice(0,10).map((b,i,arr)=>(
-            <div key={i} style={{ padding:"10px 0",borderBottom:i<arr.length-1?"1px solid rgba(191,165,216,.55)":"none",fontSize:16,lineHeight:1.5 }}>{b}</div>
+          {[...d.benefits, ...EXTRA_SHIFTS].slice(0,5).map((b,i,arr)=>(
+            <div key={i} style={{ padding:"8px 0",borderBottom:i<arr.length-1?"1px solid rgba(191,165,216,.55)":"none",fontSize:15,fontWeight:300,lineHeight:1.4 }}>✦ {b}</div>
           ))}
         </div>
-        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+        {/* HOW THIS TRACK WORKS: the audio formula slide */}
+        <div className="shg-paper" style={{ borderRadius:20,padding:"16px" }}>
           <H>How this track works</H>
-          {HOW_IT_WORKS.map(([h,t])=>(
-            <div key={h} style={{ padding:"8px 0" }}>
-              <div style={{ fontSize:16,fontWeight:500 }}>{h}</div>
-              <div style={{ fontSize:15,lineHeight:1.55,marginTop:2 }}>{t}</div>
-            </div>
-          ))}
+          <img src="/deck/audio-formula.webp" alt="The SHG audio formula: channelled words, EMDR bilateral, binaural beats, subliminals and Reiki, all playing at once." style={{ width:"100%",aspectRatio:"16/9",borderRadius:12,display:"block" }}/>
+          <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"brainwaves" } }))} style={{ marginTop:12,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"inherit" }}>Find out more ›</button>
         </div>
-        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+        {/* HOW TO LISTEN: the when-to-listen slide */}
+        <div className="shg-paper" style={{ borderRadius:20,padding:"16px" }}>
           <H>How to listen</H>
-          {[["Headphones on","The left-right movement needs both ears."],["Once a day, ideally at night","Just before sleep, or the first 20 minutes after waking."],["Give it 21 days","Repetition is the method. Log signs as they arrive."]].map(([h,t],i)=>(
-            <div key={h} style={{ padding:"8px 0" }}><div style={{ fontSize:16,fontWeight:500 }}>{i+1}. {h}</div><div style={{ fontSize:15,lineHeight:1.5,marginTop:2 }}>{t}</div></div>
-          ))}
-          <div style={{ fontSize:13,marginTop:8 }}>Never while driving. Avoid if you have epilepsy.</div>
+          <img src="/deck/when-to-listen.webp" alt="When to listen: morning and night, 7 to 20 minutes, headphones on, never while driving." style={{ width:"100%",aspectRatio:"16/9",borderRadius:12,display:"block" }}/>
+          <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"listen-ritual" } }))} style={{ marginTop:12,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"inherit" }}>The full listening guide ›</button>
         </div>
-        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+        {/* OTHER TRACKS: visual day plan */}
+        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 16px" }}>
           <H>Can I listen to other tracks too?</H>
-          <div style={{ fontSize:15,lineHeight:1.6,marginBottom:10 }}>Yes. Give this track your main focus for 7 days in a row, so it has time to land. Around it, you can add others like this:</div>
-          {[["Morning","Subliminal version while you get ready. No need to focus."],["Daytime","Subliminals for your other desires, in the background."],["Night","This track's hypnosis version as you fall asleep. This is your main one."],["After 7 days","Keep it, or rotate to your next desire. Log signs throughout."]].map(([h,t])=>(
-            <div key={h} style={{ padding:"8px 0",borderBottom:"1px solid rgba(191,165,216,.55)" }}><div style={{ fontSize:15,fontWeight:500 }}>{h}</div><div style={{ fontSize:15,lineHeight:1.5 }}>{t}</div></div>
-          ))}
-          <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"listen-plan" } }))} style={{ marginTop:12,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"inherit" }}>The full listening guide ›</button>
-        </div>
-        {lines.length > 0 && (
-          <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
-            <H>A taste of what's inside</H>
-            {lines.map((l,i)=><div key={i} style={{ fontSize:16,lineHeight:1.5,padding:"6px 0" }}>{l}</div>)}
+          <div style={{ fontSize:15,fontWeight:300,marginBottom:14 }}>Yes. Make this your main track for 7 days.</div>
+          <div style={{ display:"flex",gap:8 }}>
+            {[["☀","Morning","Subliminal"],["◐","Daytime","Other desires"],["☾","Night","This track"]].map(([ic,h,t])=>(
+              <div key={h} style={{ flex:1,borderRadius:14,padding:"12px 6px",background:h==="Night"?OMBRE:"transparent",border:h==="Night"?"none":"1px solid #000" }}>
+                <div style={{ fontSize:22 }}>{ic}</div>
+                <div style={{ fontSize:14,fontWeight:500,marginTop:4 }}>{h}</div>
+                <div style={{ fontSize:13,fontWeight:300,marginTop:2 }}>{t}</div>
+              </div>
+            ))}
           </div>
-        )}
+          <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"listen-multi" } }))} style={{ marginTop:14,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"inherit" }}>How to combine tracks ›</button>
+        </div>
         {wb && (
           <div className="shg-no-paper" style={{ background:"#000",borderRadius:20,padding:"18px",border:"1px solid rgba(242,236,228,.2)" }}>
             <div style={{ fontSize:12,letterSpacing:".28em",color:"#F2ECE4",marginBottom:12 }}>THE COMPANION WORKBOOK</div>
@@ -1584,6 +1588,8 @@ function TrackGuide({ track, onBack, onLogSign }) {
 
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
 function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, onLogSign, C, isDark, hasAudio }) {
+  const [savedTick, setSavedTick] = useState(0);
+  const isSaved = (()=>{ try { return JSON.parse(localStorage.getItem("shg_saved")||"[]").includes(track.id); } catch { return false; } })();
   const [view, setView] = useState("cover"); // cover | script | desc
   return (
     <div className="shg-mp" style={{ position:"fixed",inset:0,background:C.bg,zIndex:300,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto",WebkitOverflowScrolling:"touch" }}>
@@ -1591,9 +1597,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
         <div style={{ display:"flex",gap:10 }}>
-          <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="About this track" title="About this track">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="desc"?"#E8B870":C.cr} strokeWidth="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11"/><circle cx="12" cy="8" r="0.5" fill={view==="desc"?"#E8B870":C.cr}/></svg>
-          </button>
+          <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} aria-label="Open everything about this track" style={{ background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"5px 12px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Open me</button>
           <button onClick={()=>setView(v=>v==="script"?"cover":"script")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#E8B870":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
           </button>
@@ -1618,18 +1622,17 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       <div style={{ width:"100%",marginTop:22,marginBottom:14,textAlign:"center" }}>
         <div style={{ fontSize:21,fontWeight:400,marginBottom:6,color:C.cr }}>{displayTitle(track.title)}</div>
         <div style={{ fontSize:14,color:C.cr }}>{[track.cat, track.format, track.dur].filter(Boolean).join(" · ")}</div>
-        <button onClick={()=>setView("desc")} style={{ marginTop:14,background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"10px 22px",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Open me · everything about this track ›</button>
       </div>
       <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
           <Ico.Heart on={liked.has(track.id)}/>
           <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Like</span>
         </button>
-        <button style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Save</span>
+        <button onClick={()=>{ let l=[]; try{ l=JSON.parse(localStorage.getItem("shg_saved")||"[]"); }catch{} l = l.includes(track.id) ? l.filter(x=>x!==track.id) : [track.id,...l]; try{ localStorage.setItem("shg_saved",JSON.stringify(l)); }catch{} setSavedTick(t=>t+1); }} aria-pressed={isSaved} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:isSaved?"#E8B870":C.mu }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill={isSaved?"currentColor":"none"} stroke="currentColor" strokeWidth="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>{isSaved?"Saved":"Save"}</span>
         </button>
-        <button onClick={()=>{ if(navigator.share){ navigator.share({title:track.title,url:window.location.href}).catch(()=>{});} }} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
+        <button onClick={async ()=>{ const url = `${window.location.origin}/portal/track/${track.id}`; const text = `Listen to ${displayTitle(track.title)} on Self Hypnosis Goddess`; if(navigator.share){ navigator.share({ title:displayTitle(track.title), text, url }).catch(()=>{}); } else { try { await navigator.clipboard.writeText(`${text}: ${url}`); alert("Link copied. Send it to a friend and they can listen to this track."); } catch { prompt("Copy this link:", url); } } }} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:C.mu }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
           <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Share</span>
         </button>
@@ -2931,7 +2934,7 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
       <div className="shg-four hscroll-ok" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"],["Lifemaxxing","Life"]].map(([c,name])=>(
           <button key={c} onClick={()=>{setCat(c);setLibFormat("All");setTimeout(()=>document.getElementById("shg-browse")?.scrollIntoView({behavior:"smooth",block:"start"}),60);}} className="shg-no-paper" style={{ padding:0,border:"none",background:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
-            <div style={{ borderRadius:14,overflow:"hidden",outline:cat===c?"2px solid #F2ECE4":"none",outlineOffset:2,aspectRatio:"1" }}><Thumb cat={c} size="100%" radius={14}/></div>
+            <div style={{ borderRadius:14,overflow:"hidden",aspectRatio:"1" }}><Thumb cat={c} size="100%" radius={14}/></div>
             <div style={{ marginTop:8,fontSize:15,color:C.cr }}>{name}</div>
           </button>
         ))}
@@ -2955,6 +2958,9 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
         <Sec title="Made for you" C={C}>
           <HRow>{recs.map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>
         </Sec>) : null; })()}
+      {/* SAVED FOR LATER */}
+      {(()=>{ let ids=[]; try{ ids=JSON.parse(localStorage.getItem("shg_saved")||"[]"); }catch{} const saved = ids.map(id=>TRACKS.find(t=>t.id===id)).filter(Boolean); return saved.length ? (
+        <Sec title="Saved for later" C={C}><HRow>{saved.map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow></Sec>) : null; })()}
       {/* YOUR FAVOURITES */}
       <Sec title="Your favourites ♡" C={C}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
@@ -3034,7 +3040,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="proofOS" }) {
       <div style={{ fontSize:18, color:C.cr }}>{feature} is a Goddess Tier feature</div>
       <div style={{ fontSize:15, color:C.mu, maxWidth:300, lineHeight:1.7 }}>
         {feature === "proofOS"
-          ? "Log your desires, capture signs and synchronicities and mark each manifestation as it lands. Everything, documented forever."
+          ? "Log your desires, capture signs and synchronicities and mark each manifestation as it arrives. Everything, documented forever."
           : "Track your dominant emotional state, listening streaks and the evidence building over time. Plus direct Q&A with Reshma — ask anything about the tracks, hypnosis, or your journey."}
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
@@ -3396,7 +3402,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}></div>
-              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win lands here and stays here for life.</div>
+              <div style={{ fontSize:15,color:PC.mu,lineHeight:1.7,fontWeight:400 }}>Nothing manifested yet.<br/>Your first win shows up here and stays here for life.</div>
             </div>
           ) : (
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
@@ -3817,7 +3823,7 @@ const REMINDERS = [
     ["Sign to watch for","Someone treats you like the version of you you're becoming. Log how it felt."],
   ]},
   { eq:"Less Grip + More Space = Arrival", body:[
-    ["What it means","Things arrive faster when you stop squeezing them. Grip is checking, chasing, over-planning, needing to know how. Space is room in your day, your mind and your life for the thing to actually land."],
+    ["What it means","Things arrive faster when you stop squeezing them. Grip is checking, chasing, over-planning, needing to know how. Space is room in your day, your mind and your life for the thing to actually arrive."],
     ["Why letting go works","Grip keeps your body in survival mode. In survival mode you can only see threats, not opportunities. Letting go isn't giving up. It's trusting enough to stop blocking the door."],
     ["What space looks like","A cleared evening. An empty drawer for the new clothes. A saved seat. A calendar with room in it. Space is a physical message: I'm ready for this."],
     ["Do this today","Clear one small space for your desire to arrive into, in your calendar, your inbox or your home. Then do something that has nothing to do with it."],

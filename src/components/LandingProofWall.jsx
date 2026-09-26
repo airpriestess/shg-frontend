@@ -44,7 +44,7 @@ const WALL = [
     track: "a Richgirlmaxxing track", feel: "Money really does find me first.",
     log: [
       "Day 1: Old belief, \"It's so hard to attract money out of thin air.\" Started listening to a Richgirlmaxxing track.",
-      "Day 2: $1,800 landed in my account as a refund. Still don't know what it was for.",
+      "Day 2: $1,800 arrived in my account as a refund. Still don't know what it was for.",
       "Day 4: Marked manifested.",
     ]
   },
@@ -75,7 +75,7 @@ const WALL = [
     track: "a Desiresmaxxing track", feel: "I stopped shrinking in meetings. People noticed before I said anything.",
     log: [
       "Day 1: Old belief, \"I have to overwork just to be seen as good enough.\" Started listening to a Desiresmaxxing track.",
-      "Day 6: My manager asked me to lead the project I'd been quietly wanting.",
+      "Day 6: My manager asked me to lead the project I'd been secretly wanting.",
       "Day 18: Offered the promotion. They said it was 'obvious' I was ready.",
     ]
   },
@@ -138,7 +138,7 @@ const WALL = [
     log: [
       "Day 1: Old belief, \"I'll always be anxious. It's just who I am.\" Started listening to a Peacemaxxing track.",
       "Day 4: Hard conversation happened. I stayed regulated the whole way through.",
-      "Day 10: Someone else's chaos didn't land in my body.",
+      "Day 10: Someone else's chaos didn't stay in my body.",
     ]
   },
   {
