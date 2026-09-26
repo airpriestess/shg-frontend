@@ -581,7 +581,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const [libCat, setLibCat]   = useState("All");
   const [libFormat, setLibFormat] = useState("All");
   const threadsCacheKey = `shg_threads_cache_${userId || "guest"}`;
-  const [threads, setThreads] = useState(() => { if (!isPreview) { try { const c = JSON.parse(localStorage.getItem(threadsCacheKey) || "null"); if (Array.isArray(c)) return c; } catch {} return []; } try { const saved = JSON.parse(localStorage.getItem("shg_preview_threads") || "null"); if (Array.isArray(saved) && saved.length) return saved; } catch {} return INIT_THREADS; });
+  const [threads, setThreads] = useState(() => { if (!isPreview) { try { const c = JSON.parse(localStorage.getItem(threadsCacheKey) || "null"); if (Array.isArray(c)) return c; } catch {} return []; } try { const saved = JSON.parse(localStorage.getItem("shg_preview_threads") || "null"); if (Array.isArray(saved) && saved.length) return withSampleBucket(saved); } catch {} return withSampleBucket(INIT_THREADS); });
   // The beta keeps what you add on this device, so a new intention doesn't vanish when you move around.
   useEffect(() => { if (!isPreview) return; try { localStorage.setItem("shg_preview_threads", JSON.stringify(threads.map(t => ({ ...t, signs: (t.signs || []).map(sg => ({ ...sg, img: sg.img && sg.img.startsWith("blob:") ? null : sg.img, audio: sg.audio && sg.audio.startsWith("blob:") ? null : sg.audio })) })))); } catch {} }, [threads, isPreview]);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
@@ -591,6 +591,11 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
     const goWall = () => { setProofFilter?.("all"); setTab("proof"); setTimeout(()=>window.dispatchEvent(new Event("shg-view-wall")),50); };
     window.addEventListener("shg-go-wall", goWall);
     return () => { window.removeEventListener("shg-go-wall", goWall); window.removeEventListener("shg-go-bucket", goBucket); };
+  }, []);
+  useEffect(() => {
+    const f = () => setLogSignOpen(true);
+    window.addEventListener("shg-log-sign", f);
+    return () => window.removeEventListener("shg-log-sign", f);
   }, []);
   useEffect(() => {
     const openPp = () => { setFullP(false); setPassportPage(0); setProfileOpen(true); };
@@ -1036,7 +1041,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const openPlayer = () => { if (isDesktop) setShowDesc(true); else setFullP(true); };
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={(pg)=>{setPassportPage(typeof pg==="number"?pg:null);setProfileOpen(true);}} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
+      {tab==="home"    && <HomeTab userEmail={session?.user?.email} greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={(pg)=>{setPassportPage(typeof pg==="number"?pg:null);setProfileOpen(true);}} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
       {tab==="search"  && <div className="shg-tab-glow" style={{zoom:1}}><SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
       {tab==="community" && <div className="shg-tab-glow" style={{zoom:1}}><CommunityTab C={C} isPreview={isPreview}/></div>}
       {tab==="library" && <div className="shg-tab-glow" style={{zoom:1}}><LibraryTab threads={threads} searchQ={searchQ} setQ={setQ} tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
@@ -1715,7 +1720,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
 }
 
 // ── HOME TAB ──────────────────────────────────────────────────────────────────
-function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, setThreads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, token, pushDismissed, onDismissPush, openPlayer }) {
+function HomeTab({ userEmail, greet, firstName, track, play, liked, toggleLike, playing, isPreview, C, threads, setThreads, listenCount, setTab, setLibCat, openProfile, emoLog=[], openGuide, openEmoLog, userTier="audio", onUpgradeClick, userId, token, pushDismissed, onDismissPush, openPlayer }) {
 
   const isDark = C?.cr !== "#000000";
   const FEATURED_CATS = ["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Selfmaxxing","Luckygirlmaxxing","Businessmaxxing"];
@@ -1791,7 +1796,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <div className="shg-hero shg-lucky shg-no-paper" style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#BFA5D8,#F5E0A0)", backgroundSize:"300% 300%", animation:"shg-lucky 6s ease-in-out infinite", margin:"20px 16px 18px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
         <img src="/logo_transparent_cropped.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
         <div onClick={()=>openPlayer?.()} style={{ cursor:"pointer", position:"relative" }}>
-          <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:"#000", marginBottom:10 }}>WELCOME BACK</div>
+          <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:400, color:"#000", marginBottom:10 }}>WELCOME BACK</div>
           <div style={{ display:"flex", alignItems:"center", gap:12 }}>{passportPhoto && <img src={passportPhoto} alt="" style={{ width:48, height:48, borderRadius:"50%", objectFit:"cover", border:"2px solid #000", flexShrink:0 }}/>}<div style={{ color:"#000", fontSize:34, fontWeight:400, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {passportName || (isPreview ? "Reshma" : firstName)}</div></div>
           <div style={{ fontSize:16, fontWeight:300, color:"#000", marginTop:8 }}>Pick up where you left off.</div>
         </div>
@@ -1823,10 +1828,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
-      <FoldCard title={`${isPreview ? "Reshma" : firstName}, what's happening?`} sub="Talk, journal or add anything you want me to know">
-      <SpeakToProof C={C} isDark={C?.cr !== "#000000"} threads={threads} setThreads={setThreads} token={token} isPreview={isPreview} firstName={isPreview ? "Reshma" : firstName}/>
-        <KeepAdding userId={userId} isPreview={isPreview}/>
-      </FoldCard>
+      <JournalCard threads={threads} setThreads={setThreads} isPreview={isPreview} userId={userId} token={token} play={play}/>
 
       {/* UPGRADE BANNER */}
       {userTier==="audio"&&!isPreview&&(
@@ -1844,17 +1846,13 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* QUICK DESIRE CAPTURE */}
       <FoldCard title="State a desire" sub="Say it in the present tense and save it">
-      <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
-          <div style={{ fontSize:22, fontWeight:500, color:C.cr }}>State a desire</div>
-          <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in proofOS →</button>
-        </div>
+      <div style={{ margin:"4px 12px", padding:"8px 4px" }}>
         <style>{`.qd-input::placeholder{color:${isDark?"rgba(253,240,232,0.4)":"rgba(26,16,8,0.4)"}!important}`}</style>
         <div style={{ display:"flex", gap:8, alignItems:"center" }}>
           <input className="qd-input" value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
             onKeyDown={e=>{ if(e.key==="Enter") saveQuickDesire(); }}
             placeholder="I receive… I am… I have…"
-            style={{ flex:1, background:C.inputBg, border:"1px solid rgba(232,184,112,0.4)", color:C.inputCr, borderRadius:8, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
+            style={{ flex:1, minWidth:0, background:"#fff", border:"1px solid #000", color:"#000", fontWeight:300, borderRadius:10, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
           <button onClick={startVoice} title="Speak your desire"
             style={{ flexShrink:0, width:42, height:42, borderRadius:"50%", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:19,
               background: quickListening ? "#E8B870" : "transparent",
@@ -1863,7 +1861,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             {quickListening ? "⏹" : "🎙"}
           </button>
           <button onClick={saveQuickDesire}
-            className="shg-gfill" style={{ padding:"0 24px",minHeight:44,borderRadius:999,border:"none",color:"#000",fontSize:15,fontWeight:500,cursor:"pointer" }}>
+            style={{ padding:"0 20px",minHeight:44,borderRadius:999,border:"none",color:"#000",fontSize:15,fontWeight:300,cursor:"pointer",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",fontFamily:"'Jost',sans-serif" }}>
             {quickSaved ? "✓ Saved" : "Add"}
           </button>
         </div>
@@ -1872,7 +1870,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ marginTop:6, fontSize:11, color:"#E87070" }}>{voiceError}</div>
         )}
         {threads.filter(t=>!t.done).length > 0 && (
-          <div style={{ marginTop:10, fontSize:12, color:C.mu }}>
+          <div style={{ marginTop:10, fontSize:12, fontWeight:300, color:"#000" }}>
             {threads.filter(t=>!t.done).length} active desire{threads.filter(t=>!t.done).length!==1?"s":""} · {threads.filter(t=>t.done).length} manifested
           </div>
         )}
@@ -1885,7 +1883,6 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <GuideIcon k="guide" size={52}/>
           <span style={{ flex:1 }}><span style={{ display:"block", fontSize:16, color:"#F2ECE4" }}>Guidebook</span><span style={{ display:"block", fontSize:13, color:"#F2ECE4", marginTop:2 }}>Tap me to open ›</span></span>
         </button>
-        <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"ask-reshma" } }))} style={{ display:"block", margin:"8px auto 0", background:"none", border:"none", color:"#F2ECE4", fontSize:14, fontWeight:300, cursor:"pointer", fontFamily:"'Jost',sans-serif", textDecoration:"underline", textUnderlineOffset:3 }}>Ask Reshma a question ›</button>
       </div>
 
       {/* PROOFOS GUIDES: four square blocks with Reshma's icons, like the Library tiles */}
@@ -1906,6 +1903,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
 
 
+      <HomeAskCard email={userEmail}/>
     </div>
   );
 }
@@ -2352,6 +2350,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ fontSize:11, letterSpacing:".3em", fontWeight:400, color:C.cr, marginBottom:6 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:20, fontWeight:400, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
         <div style={{ fontSize:14, fontWeight:300, color:C.cr, marginTop:4 }}>{isPreview ? "Preview: these are sample numbers." : "Here are today's insights."}</div>
       </div>
+
+      <HowFarCard threads={threads} isPreview={isPreview} userId={userId}/>
 
       {/* IMAGINE IT IS 2030 — live chart: bars rise, a light sweeps across them, sparks drift up */}
       <div className="shg-no-paper shg-2030" style={{ margin:"0 16px 14px", background:"#000", borderRadius:18, padding:"14px 14px 12px", border:"1px solid rgba(242,236,228,.18)", textAlign:"center", position:"relative", overflow:"hidden" }}>
@@ -3297,13 +3297,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           return (
             <button key={k} onClick={()=>{ setView(k); setAdding(false); }} aria-pressed={on} className="shg-no-paper"
               style={{ position:"relative",aspectRatio:"1",borderRadius:20,cursor:"pointer",padding:0,overflow:"hidden",fontFamily:"'Jost',sans-serif",border:on?"2px solid transparent":"1px solid transparent",background:"linear-gradient(#000,#000) padding-box, linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) border-box",boxShadow:on?"0 0 22px rgba(191,165,216,.55)":"none" }}>
-              <img src={`/icons/${ic}.webp`} alt="" style={{ position:"absolute",left:"24%",top:"10%",width:"52%",height:"52%",objectFit:"cover",borderRadius:"50%" }}/>
-              <span style={{ position:"absolute",top:10,right:14,fontSize:18,fontWeight:300,color:"#F2ECE4" }}>{n}</span>
-              <span style={{ position:"absolute",left:0,right:0,bottom:14,textAlign:"center",fontSize:16,fontWeight:300,color:"#F2ECE4" }}>{l}</span>
+              <span style={{ position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:6 }}>
+                <img src={`/icons/${ic}.webp`} alt="" style={{ width:"48%",aspectRatio:"1",objectFit:"cover",borderRadius:"50%" }}/>
+                <span style={{ fontSize:16,fontWeight:300,color:"#F2ECE4" }}>{l}</span>
+                <span style={{ fontSize:12,fontWeight:300,color:"#F2ECE4" }}>{n} · {on ? "open" : "tap to open ›"}</span>
+              </span>
             </button>
           );
         })}
       </div>
+      <button onClick={()=>{ setView("journal"); setAdding(false); }} style={{ display:"block",width:"100%",marginBottom:14,background:view==="journal"?"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"transparent",color:view==="journal"?"#000":"#F2ECE4",border:"1px solid #F2ECE4",borderRadius:999,padding:"10px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Journal ›</button>
 
       {(()=>{
         const G = {
@@ -3312,12 +3315,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           wall:{ t:"Your Proof Wall is your evidence log", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, with how many days it took.","Tap Share with my name or Share anonymously to post it to Community wins."], key:"proof-wall-forever", img:"hope-or-evidence" },
           bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, as much as you want, as many times a day as you like.","Make it a daily habit. The more you release random desires, the more some of them arrive so fast it will shock you.","Some things manifest by themselves, no hypnosis needed. When one arrives, mark it manifested straight from here.","When you're ready to focus on one, move it into Intentions."], key:"bucket-vs-active", img:"bucket-list" },
         }[view];
-        if (!G || view === "bucket") return null;
-        if (hiddenGuides[view]) return <button onClick={()=>toggleGuide(view)} style={{ background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"8px 16px",fontSize:14,marginBottom:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show: {G.t}</button>;
+        if (!G || view === "bucket" || view === "signs") return null;
+        if (hiddenGuides[view]) return <button onClick={()=>toggleGuide(view)} className="shg-paper" style={{ borderRadius:999,padding:"10px 18px",fontSize:14,fontWeight:300,marginBottom:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",color:"#000",boxShadow:"0 0 18px rgba(191,165,216,.6),0 0 30px rgba(44,183,167,.3)" }}>Show: {G.t}</button>;
         return (
           <div style={{ background:"#F2ECE4",color:"#000",borderRadius:18,padding:"16px 18px",marginBottom:14 }}>
             <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10,marginBottom:10 }}>
-              <div style={{ fontSize:17,fontWeight:500 }}>{G.t}</div>
+              <div style={{ fontSize:17,fontWeight:300 }}>{G.t}</div>
               <button onClick={()=>toggleGuide(view)} aria-label="Hide this guide" style={{ background:"none",border:"1px solid #000",borderRadius:999,padding:"4px 12px",fontSize:13,cursor:"pointer",color:"#000",flexShrink:0,fontFamily:"'Jost',sans-serif" }}>Hide ✕</button>
             </div>
             {G.img && <img src={`/deck/${G.img}.webp`} alt="" loading="lazy" style={{ width:"100%",aspectRatio:"16/9",borderRadius:12,display:"block",marginBottom:12 }}/>}
@@ -3326,12 +3329,22 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
         );
       })()}
-      {view!=="bucket" && <button className="shg-cta" onClick={()=>{ setView("threads"); setAdding(a=>!a); }} style={{ marginBottom:18 }}>
+      {view!=="bucket" && view!=="wall" && view!=="signs" && view!=="journal" && <button className="shg-cta" onClick={()=>{ setView("threads"); setAdding(a=>!a); }} style={{ marginBottom:18 }}>
         {adding?"✕ Cancel":"+ Add a new intention"}
       </button>}
 
-      {view==="signs" ? (
+      {view==="journal" ? (
         <div>
+          <div style={{ fontSize:20,fontWeight:300,color:PC.text,marginBottom:10 }}>Journal</div>
+          {(()=>{ const j = readJournal(userId, isPreview); if (!j.length) return <div style={{ fontSize:15,fontWeight:300,color:PC.text }}>No entries yet. Write one in "What's on your mind?" on Home.</div>;
+            return j.map(e => <details key={e.id} className="shg-paper" style={{ borderRadius:14,padding:"12px 14px",marginBottom:8,color:"#000" }}><summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,listStyle:"none" }}>{new Date(e.date).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}{e.areas?.length ? ` · ${e.areas.join(", ")}` : ""} ›</summary><div style={{ fontSize:15,fontWeight:300,lineHeight:1.6,marginTop:8,whiteSpace:"pre-line" }}>{e.text}</div></details>); })()}
+        </div>
+      ) : view==="signs" ? (
+        <div>
+          <button className="shg-cta" onClick={()=>window.dispatchEvent(new Event("shg-log-sign"))} style={{ marginBottom:8 }}>✦ Log a sign</button>
+          <details style={{ marginBottom:14,color:PC.text }}><summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,listStyle:"none" }}>How to spot a sign ›</summary>
+            <ol style={{ margin:"10px 0",paddingLeft:20,display:"grid",gap:6,fontSize:15,fontWeight:300,lineHeight:1.5 }}><li>A sign is a coincidence that answers your desire: a word, a song, a stranger, an exact amount.</li><li>Ask for something rare and personal, then watch for it.</li><li>Log it the moment it happens, and link it to its intention.</li></ol>
+          </details>
           {(()=>{ try { return localStorage.getItem("shg_hide_fab")==="1"; } catch { return false; } })() && <button onClick={e=>{ window.dispatchEvent(new Event("shg-show-fab")); e.currentTarget.remove(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,marginBottom:12,cursor:"pointer",fontFamily:"inherit" }}>✦ Show the sign button again</button>}
           {threads.every(t=>!(t.signs||[]).length) && !(()=>{ try { return JSON.parse(localStorage.getItem("shg_loose_signs")||"[]").length; } catch { return 0; } })() && <div style={{ fontSize:15,color:PC.text,padding:"8px 2px" }}>No signs yet. Open an intention and tap "Log a sign".</div>}
           {(()=>{ let loose=[]; try { loose = JSON.parse(localStorage.getItem("shg_loose_signs")||"[]"); } catch {} return [...threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))), ...loose.map(sg=>({ sg, t:{ desire:"No specific intention" } }))]; })().reverse().map(({sg,t},i)=>(
@@ -3807,6 +3820,9 @@ function ShareInstagram({ w }) {
     </>
   );
 }
+// Preview only: a starter bucket list so the section isn't empty.
+const SAMPLE_BUCKET = ["A month in Bali","A home by the sea with big windows","$10,000 in my savings","Business class to Paris","A partner who texts first","Glowing, clear skin","A walk-in wardrobe","Front row at fashion week","Paid off my credit card","A surprise upgrade","Sunrise hot air balloon ride","My own studio"];
+function withSampleBucket(ts) { if (ts.some(t => t.isBucket)) return ts; return [...ts, ...SAMPLE_BUCKET.map((d,i) => ({ id:"sb"+i, desire:d, days:0, done:false, signs:[], track:"", category:"", feelBefore:"", feelAfter:"", oldBelief:"", isBucket:true, createdTs:Date.now()-i*86400000 }))]; }
 function WinCard({ w, mine }) {
   const [open, setOpen] = useState(false);
   const [cheered, setCheered] = useState(false);
@@ -3899,22 +3915,26 @@ function FoldCard({ title, sub, children }) {
   const [open, setOpen] = useState(false);
   if (!open) return (
     <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:18,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
-      <span style={{ display:"block",fontSize:16,fontWeight:500 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:13,marginTop:2 }}>{sub}</span>}
-      <span style={{ display:"block",fontSize:13,marginTop:4 }}>Tap me to open ›</span>
+      <span style={{ display:"block",fontSize:16,fontWeight:300 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:13,fontWeight:300,marginTop:2 }}>{sub}</span>}
+      <span style={{ display:"block",fontSize:12,fontWeight:300,marginTop:4 }}>Tap to open ›</span>
     </button>
   );
   return (
     <div style={{ animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",marginBottom:16,position:"relative" }}>
       <button onClick={()=>setOpen(false)} aria-expanded="true" className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 10px",padding:"10px 16px",borderRadius:18,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
-        <span style={{ display:"block",fontSize:16,fontWeight:400 }}>{title}</span>
-        <span style={{ display:"block",fontSize:13,fontWeight:300,marginTop:2 }}>Tap to close ⌃</span>
+        <span style={{ display:"block",fontSize:16,fontWeight:300 }}>{title}</span>
+        <span style={{ display:"block",fontSize:12,fontWeight:300,marginTop:2 }}>Tap to close ⌃</span>
       </button>
-      {children}
+      <div className="shg-paper shg-fold-body" style={{ margin:"0 16px",borderRadius:18,padding:"8px 0",color:"#000",fontWeight:300 }}>{children}</div>
       <button onClick={()=>setOpen(false)} style={{ display:"block",margin:"-6px auto 0",background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"6px 16px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close ⌃</button>
     </div>
   );
 }
 
+// One-line voice control label: never wraps.
+const MicLabel = ({ on }) => on
+  ? <span style={{ display:"inline-flex",alignItems:"center",gap:8,whiteSpace:"nowrap" }}><span style={{ width:8,height:8,borderRadius:"50%",background:"#167A6B",animation:"shg-mic 1s ease-in-out infinite" }}/><span style={{ fontWeight:300 }}>Listening</span><span aria-label="Stop" style={{ width:22,height:22,borderRadius:"50%",background:"#000",color:"#F2ECE4",display:"inline-grid",placeItems:"center",fontSize:9 }}>■</span><style>{`@keyframes shg-mic{50%{opacity:.3}}`}</style></span>
+  : <span style={{ whiteSpace:"nowrap" }}>🎙 Speak it</span>;
 // Speak into a text box (Web Speech API), same pattern as SpeakToProof.
 function useMic(onText) {
   const [on, setOn] = useState(false); const ref = useRef(null);
@@ -3929,32 +3949,107 @@ function useMic(onText) {
   };
   return [on, toggle];
 }
-const saveThread = ({ v, bucket, setThreads, isPreview, userId, token }) => {
+const saveThread = ({ v, cat="", bucket, setThreads, isPreview, userId, token }) => {
   const id = Date.now()+Math.random().toString(36).slice(2,6);
   if (!isPreview && userId && token) quizApi("/threads", token, { method:"POST", body: JSON.stringify(bucket ? { id, desire:v, is_bucket:true } : { id, desire:v }) }).catch(() => {});
-  setThreads(ts => [{ id, desire:v, days:0, done:false, signs:[], track:"", category:"", feelBefore:"", feelAfter:"", oldBelief:"", isBucket:!!bucket, addedOn:new Date().toDateString(), createdTs:Date.now(), createdAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}) }, ...ts]);
+  setThreads(ts => [{ id, desire:v, days:0, done:false, signs:[], track:"", feelBefore:"", feelAfter:"", oldBelief:"", category:cat, isBucket:!!bucket, addedOn:new Date().toDateString(), createdTs:Date.now(), createdAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}) }, ...ts]);
 };
+// Analytics: an old journal entry next to what's been logged in that area since.
+function HowFarCard({ threads, isPreview, userId }) {
+  let line = null;
+  if (isPreview) line = "On 26 May you were stressed about money. Since then you've logged 3 money signs. Do you remember?";
+  else {
+    const old = readJournal(userId, isPreview).filter(e => e.areas?.length && Date.now() - new Date(e.date) >= 7*86400000);
+    const e = old[old.length - 1];
+    if (e) {
+      const [area, cat] = AREA_WORDS.find(([a]) => a === e.areas[0]) || [];
+      const since = new Date(e.date).getTime();
+      const ts = threads.filter(t => String(t.category || "").includes(cat));
+      const signs = ts.reduce((n, t) => n + (t.signs || []).length, 0);
+      const done = threads.filter(t => t.done && String(t.category || "").includes(cat) && (!t.manifestedAt || new Date(String(t.manifestedAt).replace("Sept","Sep")).getTime() >= since)).length;
+      const feel = /stress|anxious|frustrat|worr/i.test(e.text) ? "stressed about" : "thinking about";
+      line = `On ${new Date(e.date).toLocaleDateString("en-GB",{ day:"numeric", month:"long" })} you were ${feel} ${area.toLowerCase()}. Since then you've logged ${signs} ${area.toLowerCase()} sign${signs===1?"":"s"}${done ? ` and ${done} arrived` : ""}. Do you remember?`;
+    }
+  }
+  if (!line) return null;
+  return (
+    <div className="shg-paper" style={{ margin:"0 16px 14px",padding:"16px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",boxShadow:"0 0 20px rgba(191,165,216,.35)" }}>
+      <div style={{ fontSize:11,letterSpacing:".28em",marginBottom:6 }}>LOOK HOW FAR YOU'VE COME{isPreview ? " · SAMPLE" : ""}</div>
+      <div style={{ fontSize:16,fontWeight:300,lineHeight:1.55 }}>{line}</div>
+    </div>
+  );
+}
+
+// ── JOURNAL ─────────────────────────────────────────────────────────────────
+const AREA_WORDS = [["Love","Lovemaxxing",/\b(love|relationship|boyfriend|husband|partner|him|her|text(ed|s)?|date|dating|crush|ex)\b/i],["Money","Richgirlmaxxing",/\b(money|income|rent|client|clients|debt|salary|paid|pay|cash|rich|bills?)\b/i],["Luck","Luckygirlmaxxing",/\b(luck|lucky)\b/i],["Beauty","Beautymaxxing",/\b(skin|body|glow|hair|weight|face|beauty)\b/i],["Confidence","Selfmaxxing",/\b(confident|confidence|self|worth|myself)\b/i],["Business","Businessmaxxing",/\b(job|business|career|work|boss|promotion)\b/i],["Peace","Sleepmaxxing",/\b(sleep|anxious|anxiety|stress|stressed|frustrated|tired|overwhelmed|calm)\b/i]];
+const detectAreas = (text) => AREA_WORDS.filter(([, , re]) => re.test(text || ""));
+const ppKeyFor = (userId, isPreview) => `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
+function readJournal(userId, isPreview) { try { return (JSON.parse(localStorage.getItem(ppKeyFor(userId, isPreview)) || "null") || {}).journal || []; } catch { return []; } }
+function JournalCard({ threads, setThreads, isPreview, userId, token, play }) {
+  const [text, setText] = useState("");
+  const [reply, setReply] = useState(null);
+  const [mic, toggleMic] = useMic(t => setText(x => (x ? x + " " : "") + t));
+  const save = () => {
+    const v = text.trim(); if (!v) return;
+    const areas = detectAreas(v);
+    const entry = { id: Date.now(), date: new Date().toISOString(), text: v, areas: areas.map(a => a[0]) };
+    try { const k = ppKeyFor(userId, isPreview); const p = JSON.parse(localStorage.getItem(k) || "null") || {}; p.journal = [entry, ...(p.journal || [])].slice(0, 500); localStorage.setItem(k, JSON.stringify(p)); window.dispatchEvent(new CustomEvent("shg-passport-updated")); } catch {}
+    setText(""); setReply(areas);
+  };
+  const hasIntention = (cat) => threads.some(t => !t.isBucket && !t.done && String(t.category || "").includes(cat));
+  const names = (reply || []).map(a => a[0].toLowerCase());
+  return (
+    <div className="shg-paper" style={{ margin:"0 16px 14px",padding:"16px 14px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <div style={{ fontSize:17,fontWeight:300 }}>What's on your mind?</div>
+      <div style={{ fontSize:13,fontWeight:300,margin:"2px 0 10px" }}>A journal entry, just for you. Type or speak.</div>
+      <textarea id="shg-journal" rows={3} value={text} onChange={e=>setText(e.target.value)} placeholder="Today I…" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:12,fontSize:15,fontWeight:300,fontFamily:"inherit",resize:"vertical" }}/>
+      <div style={{ display:"flex",gap:8,marginTop:8 }}>
+        <button onClick={toggleMic} style={{ flex:1,background:"transparent",color:"#000",border:"1px solid #000",borderRadius:999,padding:"9px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
+        <button onClick={save} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"9px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Save</button>
+      </div>
+      {reply && (
+        <div style={{ marginTop:12,padding:"12px",borderRadius:12,background:"#fff",border:"1px solid #000",position:"relative" }}>
+          <button onClick={()=>setReply(null)} aria-label="Close" style={{ position:"absolute",top:6,right:8,background:"none",border:"none",fontSize:18,cursor:"pointer",color:"#000" }}>×</button>
+          <div style={{ fontSize:14,fontWeight:300,paddingRight:20 }}>Saved to your journal ✓{names.length ? ` I see you're calling in ${names.length > 1 ? names.slice(0,-1).join(", ") + " and " + names.slice(-1) : names[0]}.` : ""}</div>
+          {reply.map(([area, cat]) => {
+            const tr = TRACKS.find(t => t.cat === cat);
+            return (
+              <div key={area} style={{ marginTop:10,display:"flex",flexWrap:"wrap",gap:6,alignItems:"center" }}>
+                <span style={{ fontSize:13,letterSpacing:".15em" }}>{area.toUpperCase()}</span>
+                {hasIntention(cat) ? <span style={{ fontSize:13 }}>Already an intention ✓</span>
+                  : <button onClick={()=>saveThread({ v:`I'm calling in ${area.toLowerCase()}`, cat, bucket:false, setThreads, isPreview, userId, token })} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"5px 12px",fontSize:12,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add as intention</button>}
+                {tr && <button onClick={()=>play?.(tr)} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"5px 12px",fontSize:12,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>▶ Today: {displayTitle(tr.title)}</button>}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Home action panel for the Intentions / Bucket List tiles.
 function QuickAdd({ kind, threads, setThreads, isPreview, userId, token, onClose }) {
   const bucket = kind === "bucket";
   const [text, setText] = useState("");
   const [mic, toggleMic] = useMic(t => setText(x => (x ? x + " " : "") + t));
-  const recent = threads.filter(t => bucket ? t.isBucket && !t.done : !t.isBucket && !t.done).slice(0, 5);
+  const today = new Date().toDateString();
+  const recent = threads.filter(t => (bucket ? t.isBucket : !t.isBucket) && !t.done && t.addedOn === today).slice(0, 5);
   const add = () => { const v = text.trim(); if (!v) return; saveThread({ v, bucket, setThreads, isPreview, userId, token }); setText(""); };
   return (
-    <div className="shg-no-paper" style={{ position:"relative",marginTop:12,padding:"16px 14px",borderRadius:18,background:"#000",border:"1px solid rgba(242,236,228,.25)",color:"#F2ECE4",fontFamily:"'Jost',sans-serif" }}>
-      <CloseX onClick={onClose} dark/>
+    <div className="shg-paper" style={{ position:"relative",marginTop:12,padding:"16px 14px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <CloseX onClick={onClose}/>
       <div style={{ fontSize:18,fontWeight:300,marginBottom:10 }}>{bucket ? "Add to your bucket list" : "Add an intention"}</div>
-      <input id="shg-quick-add" value={text} onChange={e=>setText(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); } }} placeholder={bucket ? "Anything you want, ever" : "Write it as if it's already done"} style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"none",borderRadius:12,padding:"12px",fontSize:16,fontFamily:"inherit",fontWeight:300 }}/>
+      <input id="shg-quick-add" value={text} onChange={e=>setText(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); } }} placeholder={bucket ? "Anything you want, ever" : "Write it as if it's already done"} style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:"12px",fontSize:16,fontFamily:"inherit",fontWeight:300 }}/>
       <div style={{ display:"flex",gap:8,marginTop:8 }}>
-        <button onClick={toggleMic} style={{ flex:1,background:"transparent",color:"#F2ECE4",border:"1px solid #F2ECE4",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>{mic ? "Listening… tap to stop" : "🎙 Speak it"}</button>
-        <button onClick={add} style={{ flex:1,background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
+        <button onClick={toggleMic} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
+        <button onClick={add} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
       </div>
-      {recent.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{recent.map(t => <div key={t.id} style={{ fontSize:14,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid rgba(242,236,228,.2)" }}>✦ {t.desire}</div>)}</div>}
+      {recent.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{recent.map(t => <div key={t.id} style={{ fontSize:14,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid #000",background:"#fff" }}>✦ {t.desire}</div>)}</div>}
       <details style={{ marginTop:12 }}>
         <summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,listStyle:"none" }}>How it works ›</summary>
         <div style={{ fontSize:14,fontWeight:300,lineHeight:1.6,marginTop:8 }}>{bucket ? "Write anything you want, ever. One line is enough. Aim for ten a day. When one arrives, mark it manifested in proofOS. When you want to focus on one, promote it to an intention." : "Write it in the present tense, as if it's already done: \"I live in my home by the sea.\" Then log every sign under it in proofOS, and mark it manifested when it arrives."}</div>
-        <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key: bucket ? "bucket-how" : "how-to-write-intention" } }))} style={{ marginTop:8,background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"6px 14px",fontSize:13,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Read more in the Guidebook ›</button>
+        <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key: bucket ? "bucket-how" : "how-to-write-intention" } }))} style={{ marginTop:8,background:"none",border:"1px solid #000",color:"#000",borderRadius:999,padding:"6px 14px",fontSize:13,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Read more in the Guidebook ›</button>
       </details>
     </div>
   );
@@ -3962,6 +4057,27 @@ function QuickAdd({ kind, threads, setThreads, isPreview, userId, token, onClose
 
 // ── BUCKET LIST BAND ────────────────────────────────────────────────────────
 // Encourages ten bucket-list ideas a day, added right from Home.
+// Ask Reshma, right on Home: saved locally and sent to the worker (fire-and-forget).
+function HomeAskCard({ email }) {
+  const [q, setQ] = useState(""); const [sent, setSent] = useState(false);
+  const send = () => {
+    const question = q.trim(); if (!question) return;
+    try { const l = JSON.parse(localStorage.getItem("shg_questions") || "[]"); l.push({ question, date:new Date().toISOString() }); localStorage.setItem("shg_questions", JSON.stringify(l.slice(-200))); } catch {}
+    try { fetch("https://shg-auth-worker.airpriestess.workers.dev/ask", { method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify(email ? { question, email } : { question }) }).catch(() => {}); } catch {}
+    setQ(""); setSent(true);
+  };
+  return (
+    <div className="shg-paper" style={{ margin:"8px 16px 20px",padding:"18px 16px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <div style={{ fontSize:18,fontWeight:300 }}>Ask Reshma a question</div>
+      <div style={{ fontSize:14,fontWeight:300,margin:"4px 0 10px",lineHeight:1.5 }}>Your question goes straight to Reshma. She'll reply by email.</div>
+      {sent ? <div style={{ fontSize:15,fontWeight:300 }}>Sent ✓ Reshma will reply by email.</div> : (<>
+        <textarea id="shg-home-ask" rows={3} value={q} onChange={e=>setQ(e.target.value)} placeholder="Your question…" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:12,fontSize:15,fontWeight:300,fontFamily:"inherit",resize:"vertical" }}/>
+        <button onClick={send} style={{ marginTop:8,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px 24px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Send</button>
+      </>)}
+    </div>
+  );
+}
+
 function BucketBand({ threads, setThreads, isPreview, userId, token }) {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
@@ -3979,30 +4095,29 @@ function BucketBand({ threads, setThreads, isPreview, userId, token }) {
     setText("");
   };
   return (
-    <div className="shg-no-paper" style={{ margin:"0 16px 14px",background:"linear-gradient(#000,#000) padding-box, linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) border-box",borderRadius:22,border:"1px solid transparent",padding:"34px 18px",fontFamily:"'Jost',sans-serif",color:"#F2ECE4",boxShadow:"0 0 22px rgba(191,165,216,.22)",position:"relative" }}>
+    <div className="shg-no-paper" style={{ margin:"0 16px 14px",background:"linear-gradient(#000,#000) padding-box, linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) border-box",borderRadius:22,border:"1px solid transparent",padding:"24px 16px",fontFamily:"'Jost',sans-serif",color:"#F2ECE4",boxShadow:"0 0 22px rgba(191,165,216,.22)",position:"relative" }}>
       {open && <CloseX onClick={()=>setOpen(false)} dark/>}
       <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"flex",alignItems:"center",gap:16,width:"100%",cursor:"pointer" }}>
-        <img src="/icons/lucky.webp" alt="" style={{ width:72,height:72,borderRadius:"50%",flexShrink:0,boxShadow:"0 0 18px rgba(245,224,160,.35)" }}/>
+        <img src="/icons/lucky.webp" alt="" style={{ width:60,height:60,borderRadius:"50%",flexShrink:0,boxShadow:"0 0 18px rgba(245,224,160,.35)" }}/>
         <span style={{ flex:1,minWidth:0 }}>
           <span style={{ display:"block",fontSize:11,letterSpacing:".28em",fontWeight:400,color:"#F2ECE4",marginBottom:6 }}>BUCKET LIST</span>
-          <span style={{ display:"block",fontSize:20,fontWeight:300,lineHeight:1.25,color:"#F2ECE4" }}>Add 10 ideas to your bucket list today</span>
+          <span style={{ display:"block",fontSize:16,fontWeight:300,lineHeight:1.3,color:"#F2ECE4" }}>Add 10 ideas to your bucket list today</span>
           <span style={{ display:"flex",alignItems:"center",gap:10,marginTop:10 }}>
             <span style={{ flex:1,height:4,borderRadius:2,background:"rgba(242,236,228,.15)",overflow:"hidden" }}><span style={{ display:"block",height:"100%",width:`${Math.min(100,todayCount*10)}%`,background:OMBRE }}/></span>
             <span style={{ fontSize:14,fontWeight:300,color:"#F2ECE4",whiteSpace:"nowrap" }}>{todayCount}/10</span>
           </span>
-          <span style={{ display:"inline-block",fontSize:15,fontWeight:300,color:"#000",background:OMBRE,borderRadius:999,padding:"8px 16px",marginTop:12 }}>{open ? "Tap to close ⌃" : "Tap to add to your bucket list ›"}</span>
+          <span style={{ display:"inline-block",fontSize:15,fontWeight:300,color:"#000",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",borderRadius:999,padding:"8px 16px",marginTop:12 }}>{open ? "Tap to close ⌃" : "Tap to add to your bucket list ›"}</span>
         </span>
       </button>
       {open && (
-        <div style={{ marginTop:14 }}>
+        <div className="shg-paper" style={{ marginTop:14,borderRadius:16,padding:"14px 12px",color:"#000" }}>
           <div style={{ display:"flex",gap:8 }}>
-            <input id="shg-bucket-quick" value={text} onChange={e=>setText(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); } }} placeholder="Anything you want, ever" style={{ flex:1,minWidth:0,background:"#fff",color:"#000",border:"none",borderRadius:12,padding:"11px 12px",fontSize:15,fontFamily:"inherit" }}/>
-            <button onClick={add} style={{ background:OMBRE,color:"#000",border:"none",borderRadius:12,padding:"0 16px",fontSize:15,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
+            <input id="shg-bucket-quick" value={text} onChange={e=>setText(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); } }} placeholder="Anything you want, ever" style={{ flex:1,minWidth:0,background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:"11px 12px",fontSize:15,fontWeight:300,fontFamily:"inherit" }}/>
+            <button onClick={add} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:12,padding:"0 16px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
           </div>
-          <button onClick={toggleMic} style={{ marginTop:8,width:"100%",background:"transparent",color:"#F2ECE4",border:"1px solid #F2ECE4",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>{mic ? "Listening… tap to stop" : "🎙 Speak it"}</button>
-          {todayItems.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{todayItems.map(t => <div key={t.id} style={{ fontSize:15,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid rgba(242,236,228,.2)" }}>✦ {t.desire}</div>)}</div>}
-          <button onClick={()=>window.dispatchEvent(new Event("shg-go-bucket"))} style={{ marginTop:10,background:"none",border:"none",color:"#F2ECE4",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,cursor:"pointer",fontFamily:"inherit",padding:0 }}>See my whole bucket list in proofOS ›</button>
-          <div style={{ fontSize:13,fontWeight:300,marginTop:10,lineHeight:1.5 }}>No rules, no pressure. Short is fine. The more you release, the faster some of them arrive. They're saved in proofOS › Bucket List.</div>
+          <button onClick={toggleMic} style={{ marginTop:8,width:"100%",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
+          {todayItems.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{todayItems.map(t => <div key={t.id} style={{ fontSize:15,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid #000",background:"#fff" }}>✦ {t.desire}</div>)}</div>}
+
         </div>
       )}
     </div>
@@ -4310,7 +4425,8 @@ const OB_BUCKET = [
   { label:"I already know what I want",        sub:"I'll add them myself in proofOS" },
 ];
 
-function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, onSkip, isDark, C }) {
+function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, onSkip, C }) {
+  const isDark = false; // always on the cream graph paper
   const [specific, setSpecific]     = useState("");
   const [block, setBlock]           = useState("");
   const [timeline, setTimeline]     = useState("");
@@ -4327,9 +4443,9 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
 
   const toggleGoal = (g) => setGoals(prev => prev.includes(g) ? prev.filter(x=>x!==g) : prev.length<3 ? [...prev,g] : prev);
   const TOTAL = 10;
-  const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
-  const bg   = isDark ? "#0d0d0d" : "#fff";
-  const text = isDark ? "#FDF0E8" : "#111";
+  const grad = "linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)";
+  const bg   = "#F2ECE4";
+  const text = "#000";
   const dim  = isDark ? "#F2ECE4" : "#000";
 
   const startRec = async () => {
@@ -4351,10 +4467,10 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
     <button key={label} onClick={onClick} style={{
       padding: sub ? "15px 18px" : "15px 18px",
       borderRadius:16, fontSize:15, fontFamily:"'Jost',sans-serif",
-      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#e0d8d0"}`,
-      background: active ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f6f3",
+      cursor:"pointer", border: active ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#000"}`,
+      background: active ? grad : isDark ? "rgba(255,255,255,0.04)" : "transparent",
       color: active ? "#000" : text,
-      fontWeight: active ? 600 : 400, transition:"all 0.15s",
+      fontWeight:300, transition:"all 0.15s",
       textAlign:"left", width:"100%", minHeight:54,
     }}>
       {label}
@@ -4368,9 +4484,9 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
       {items.map(g => (
         <button key={g.label} onClick={()=>toggle(g.label)} style={{
           padding:"12px 16px", borderRadius:22, fontSize:14, fontFamily:"'Jost',sans-serif",
-          cursor:"pointer", border: selected.includes(g.label) ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#e0d8d0"}`,
-          background: selected.includes(g.label) ? grad : isDark ? "rgba(255,255,255,0.04)" : "#f8f6f3",
-          color: selected.includes(g.label) ? "#000" : text, fontWeight: selected.includes(g.label) ? 600 : 400,
+          cursor:"pointer", border: selected.includes(g.label) ? "none" : `1px solid ${isDark?"rgba(255,255,255,0.18)":"#000"}`,
+          background: selected.includes(g.label) ? grad : isDark ? "rgba(255,255,255,0.04)" : "transparent",
+          color: selected.includes(g.label) ? "#000" : text, fontWeight:300,
           transition:"all 0.15s", minHeight:46,
         }}>{g.label}</button>
       ))}
@@ -4383,7 +4499,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
         <button onClick={startRec} style={{
           display:"flex",alignItems:"center",justifyContent:"center",gap:12,
           padding:"20px",borderRadius:18,border:"none",cursor:"pointer",
-          background:grad,color:"#000",fontSize:16,fontWeight:700,fontFamily:"'Jost',sans-serif",minHeight:64,
+          background:grad,color:"#000",fontSize:16,fontWeight:300,fontFamily:"'Jost',sans-serif",minHeight:64,
         }}>
           <span style={{ fontSize:22 }}>🎙</span> Hold to record
         </button>
@@ -4392,10 +4508,10 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
         <button onClick={stopRec} style={{
           display:"flex",alignItems:"center",justifyContent:"center",gap:12,
           padding:"20px",borderRadius:18,border:"none",cursor:"pointer",
-          background:"#cc3333",color:"#fff",fontSize:16,fontWeight:700,fontFamily:"'Jost',sans-serif",minHeight:64,
+          background:"#000",color:"#F2ECE4",fontSize:16,fontWeight:300,fontFamily:"'Jost',sans-serif",minHeight:64,
           animation:"pulse 1s ease-in-out infinite",
         }}>
-          <span style={{ fontSize:22 }}>⏹</span> Recording… tap to stop
+          <span style={{ fontSize:22 }}>⏹</span> Stop
         </button>
       )}
       {recDone && (
@@ -4405,7 +4521,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
         </div>
       )}
       {voiceNote === "mic_denied" && (
-        <div style={{ padding:"14px",borderRadius:14,background:isDark?"rgba(255,255,255,0.05)":"#f2ede7",color:dim,fontSize:14,fontFamily:"'Jost',sans-serif" }}>
+        <div style={{ padding:"14px",borderRadius:14,background:isDark?"rgba(255,255,255,0.05)":"#fff",color:dim,fontSize:14,fontFamily:"'Jost',sans-serif" }}>
           Mic not available — you can type it instead:
         </div>
       )}
@@ -4415,8 +4531,8 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
         placeholder="Or type anything else you want the app to know — your dreams, what you're working through, what you really want…"
         rows={4}
         style={{
-          width:"100%",padding:"14px",borderRadius:14,border:`1px solid ${isDark?"rgba(255,255,255,0.15)":"#e0d8d0"}`,
-          background:isDark?"rgba(255,255,255,0.04)":"#f8f6f3",color:text,fontSize:14,
+          width:"100%",padding:"14px",borderRadius:14,border:`1px solid ${isDark?"rgba(255,255,255,0.15)":"#000"}`,
+          background:isDark?"rgba(255,255,255,0.04)":"transparent",color:text,fontSize:14,
           fontFamily:"'Jost',sans-serif",resize:"none",outline:"none",lineHeight:1.6,
         }}
       />
@@ -4509,15 +4625,16 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   const s = steps[step];
 
   return (
-    <div style={{ position:"fixed",inset:0,zIndex:2000,background:"rgba(0,0,0,0.82)",display:"flex",alignItems:"flex-end",justifyContent:"center",padding:0 }}>
-      <div style={{ maxWidth:500,width:"100%",borderRadius:"24px 24px 0 0",padding:"24px 20px 40px",background:bg,boxShadow:"0 -20px 60px rgba(0,0,0,0.5)",maxHeight:"92vh",overflowY:"auto" }}>
+    <div className="shg-onb-paper" style={{ position:"fixed",inset:0,zIndex:2000,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"20px 20px",overflowY:"auto",WebkitOverflowScrolling:"touch",color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <style>{`.shg-onb-paper input,.shg-onb-paper textarea{background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;border:1px solid #000!important}.shg-onb-paper input::placeholder,.shg-onb-paper textarea::placeholder{color:#000!important;opacity:.45}`}</style>
+      <div style={{ maxWidth:500,width:"100%",margin:"0 auto",boxSizing:"border-box",padding:"calc(env(safe-area-inset-top,0px) + 28px) 20px 48px",background:"transparent" }}>
         <div style={{ display:"flex",gap:3,marginBottom:20 }}>
           {steps.map((_,i) => (
-            <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?OMBRE:isDark?"rgba(255,255,255,0.12)":"#eee" }}/>
+            <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(191,165,216,.45)" }}/>
           ))}
         </div>
         <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:dim,marginBottom:8 }}>{s.q} of {TOTAL}</div>
-        <div style={{ fontSize:21,fontWeight:500,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
+        <div style={{ fontSize:21,fontWeight:300,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
         <div style={{ fontSize:14,color:dim,marginBottom:20,lineHeight:1.5 }}>{s.sub}</div>
         <div style={{ marginBottom:24 }}>{s.content}</div>
         <button
@@ -4525,8 +4642,8 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
           style={{
             width:"100%",padding:"18px",border:"none",borderRadius:16,fontSize:17,
             fontFamily:"'Jost',sans-serif",cursor:s.canNext?"pointer":"not-allowed",
-            background:s.canNext?grad:"rgba(128,128,128,0.15)",
-            color:s.canNext?"#000":"#888",fontWeight:s.canNext?700:400,transition:"all 0.2s",minHeight:58,
+            background:grad,opacity:s.canNext?1:.45,
+            color:"#000",fontWeight:300,transition:"all 0.2s",minHeight:58,
           }}
         >{step < TOTAL-1 ? "Continue →" : "Build my playlist →"}</button>
         {step === 0 && (

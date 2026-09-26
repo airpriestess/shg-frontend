@@ -152,7 +152,7 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <button onClick={listening ? stopTalking : startTalking} aria-pressed={listening} style={{ ...btn, background: G, color: "#000", flex: "1 1 160px", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: listening ? "0 0 0 4px rgba(191,165,216,.35)" : "none" }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.6" strokeLinecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
-          {listening ? "Listening… tap to stop" : "Tap and talk"}
+          {listening ? "● Listening  ■ Stop" : "Tap and talk"}
         </button>
         <label style={{ ...btn, background: "#000", color: "#F2ECE4", border: "none", borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, flex: "1 1 140px", justifyContent: "center" }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-6-6-8 8"/></svg>
