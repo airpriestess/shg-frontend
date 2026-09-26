@@ -9,6 +9,7 @@ import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import LogSignModal, { ManifestCelebration } from "../components/LogSignModal.jsx";
+import { usePushNotifications } from "../components/PushNotifications.jsx";
 import ShopGrid, { PRODUCTS, buyProduct, WorkWithReshma } from "../components/ShopGrid.jsx";
 
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
@@ -1482,6 +1483,77 @@ function DesktopPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekT
   );
 }
 
+// ── TRACK GUIDE ─────────────────────────────────────────────────────────────
+// Full page behind the ⓘ button: the shift, benefits, how it works, how to
+// listen, what's inside and the companion workbook. Built from each track's
+// data, so it works for every track without designing pages by hand.
+const HOW_IT_WORKS = [
+  ["Self hypnosis","My voice speaks the new identity to you as if it's already true, while you're relaxed enough to accept it."],
+  ["Theta brainwaves","The music guides your brain toward theta, the state just before sleep where your subconscious is most open to change."],
+  ["EMDR","Sound moving left to right helps your brain process old beliefs so they stop running the show."],
+  ["Subliminals","Affirmations sit under the music, below conscious hearing, so your subconscious takes them in without your inner critic arguing."],
+];
+function TrackGuide({ track, onBack, onLogSign }) {
+  const d = getDesc(track);
+  const area = String(track.cat||"").replace("maxxing","");
+  const wb = PRODUCTS.find(p => p.name === track.cat);
+  const lines = String(track.script||"").split("\n").map(l=>l.trim()).filter(Boolean).slice(0,6);
+  const H = ({ children }) => <div style={{ fontSize:12,letterSpacing:".28em",textTransform:"uppercase",margin:"0 0 10px",textAlign:"center" }}>{children}</div>;
+  return (
+    <div style={{ position:"fixed",inset:0,zIndex:400,background:"#000",overflowY:"auto",WebkitOverflowScrolling:"touch",padding:"calc(env(safe-area-inset-top,0px) + 20px) 20px 48px",textAlign:"center",fontFamily:"'Jost',sans-serif" }}>
+      <div style={{ maxWidth:560,margin:"0 auto" }}>
+      <button onClick={onBack} style={{ display:"block",margin:"0 auto 16px",background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"7px 16px",fontSize:14,cursor:"pointer",fontFamily:"inherit" }}>‹ Back to the player</button>
+      <div style={{ width:140,margin:"0 auto 14px" }}><Thumb cat={track.cat} size={140} radius={20}/></div>
+      <div style={{ fontSize:24,color:"#F2ECE4",lineHeight:1.25 }}>{displayTitle(track.title)}</div>
+      <div style={{ fontSize:14,color:"#F2ECE4",margin:"6px 0 20px" }}>{[area, track.format, track.dur].filter(Boolean).join(" · ")}</div>
+      <div style={{ display:"grid",gap:14 }}>
+        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+          <H>The shift</H>
+          <div style={{ fontSize:17,lineHeight:1.65 }}>{d.shift}</div>
+        </div>
+        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+          <H>What you'll notice</H>
+          {d.benefits.map((b,i)=>(
+            <div key={i} style={{ padding:"10px 0",borderBottom:i<d.benefits.length-1?"1px solid rgba(191,165,216,.55)":"none",fontSize:16,lineHeight:1.5 }}>{b}</div>
+          ))}
+        </div>
+        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+          <H>How this track works</H>
+          {HOW_IT_WORKS.map(([h,t])=>(
+            <div key={h} style={{ padding:"8px 0" }}>
+              <div style={{ fontSize:16,fontWeight:500 }}>{h}</div>
+              <div style={{ fontSize:15,lineHeight:1.55,marginTop:2 }}>{t}</div>
+            </div>
+          ))}
+        </div>
+        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+          <H>How to listen</H>
+          {[["Headphones on","The left-right movement needs both ears."],["Once a day, ideally at night","Just before sleep, or the first 20 minutes after waking."],["Give it 21 days","Repetition is the method. Log signs as they arrive."]].map(([h,t],i)=>(
+            <div key={h} style={{ padding:"8px 0" }}><div style={{ fontSize:16,fontWeight:500 }}>{i+1}. {h}</div><div style={{ fontSize:15,lineHeight:1.5,marginTop:2 }}>{t}</div></div>
+          ))}
+          <div style={{ fontSize:13,marginTop:8 }}>Never while driving. Avoid if you have epilepsy.</div>
+        </div>
+        {lines.length > 0 && (
+          <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+            <H>A taste of what's inside</H>
+            {lines.map((l,i)=><div key={i} style={{ fontSize:16,lineHeight:1.5,padding:"6px 0" }}>{l}</div>)}
+          </div>
+        )}
+        {wb && (
+          <div className="shg-no-paper" style={{ background:"#000",borderRadius:20,padding:"18px",border:"1px solid rgba(242,236,228,.2)" }}>
+            <div style={{ fontSize:12,letterSpacing:".28em",color:"#F2ECE4",marginBottom:12 }}>THE COMPANION WORKBOOK</div>
+            <img src={wb.img} alt={wb.name} style={{ width:"70%",maxWidth:240,aspectRatio:"1",objectFit:"cover",borderRadius:14,display:"block",margin:"0 auto" }}/>
+            <div style={{ fontSize:18,color:"#F2ECE4",margin:"12px 0 10px" }}>{wb.name} · {wb.price}</div>
+            <button onClick={()=>buyProduct(wb)} style={{ background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"11px 24px",fontSize:15,cursor:"pointer",fontFamily:"inherit" }}>Get the workbook</button>
+          </div>
+        )}
+        <button onClick={onLogSign} style={{ background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"14px",fontSize:16,cursor:"pointer",fontFamily:"inherit" }}>Log a sign in proofOS</button>
+      </div>
+      </div>
+    </div>
+  );
+}
+
 // ── MOBILE FULL PLAYER ────────────────────────────────────────────────────────
 function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, prevTrack, nextTrack, isLooping, setLooping, onClose, onLogSign, C, isDark, hasAudio }) {
   const [view, setView] = useState("cover"); // cover | script | desc
@@ -1500,57 +1572,20 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
       </div>
       {view==="desc" ? (
-        <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
-          <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{displayTitle(track.title)}</div>
-          <div style={{ fontSize:15,color:C.mu,marginBottom:24,letterSpacing:"0.1em",textTransform:"uppercase" }}>About this track</div>
-          {(() => { const d = getDesc(track); return (
-            <div style={{ width:"100%",paddingBottom:40 }}>
-              <div style={{ fontSize:13,color:isDark?"#E8B870":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>The shift</div>
-              <div style={{ fontSize:17,lineHeight:1.75,color:C.cr,fontWeight:400,marginBottom:24 }}>{d.shift}</div>
-              <div style={{ fontSize:13,color:isDark?"#BFA5D8":"#000000",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>Benefits</div>
-              <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:28 }}>
-                {d.benefits.map((b,i)=>(
-                  <div key={i} style={{ display:"flex",gap:10,alignItems:"flex-start" }}>
-                    <span style={{ color:isDark?"#E8B870":"#000000",fontSize:16,marginTop:2 }}></span>
-                    <span style={{ fontSize:17,lineHeight:1.6,color:C.cr }}>{b}</span>
-                  </div>
-                ))}
-              </div>
-              {CAT_GUIDE[track.cat] && (
-                GUIDES_AVAILABLE.has(track.cat) ? (
-                  <a href="#" onClick={e=>{e.preventDefault();buyWorkbook(track.cat);}} style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
-                    <span style={{ fontSize:18 }}>📖</span>
-                    <div style={{ flex:1 }}>
-                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                      <div style={{ fontSize:15,color:C.cr,fontWeight:400 }}>{CAT_GUIDE[track.cat]} →</div>
-                    </div>
-                  </a>
-                ) : (
-                  <div style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(150,150,150,0.25)",borderRadius:12,opacity:0.6 }}>
-                    <span style={{ fontSize:18 }}>📖</span>
-                    <div style={{ flex:1 }}>
-                      <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          ); })()}
-        </div>
+        <TrackGuide track={track} onBack={()=>setView("cover")} onLogSign={onLogSign}/>
       ) : view==="script" ? (
         <div style={{ width:"100%",flex:1,display:"flex",flexDirection:"column",alignItems:"center",padding:"20px 0" }}>
           <div style={{ fontSize:22,fontWeight:400,marginBottom:4,color:C.cr,textAlign:"center" }}>{displayTitle(track.title)}</div>
           <div style={{ fontSize:15,color:C.mu,marginBottom:24 }}>Read along</div>
-          <div style={{ width:"100%",fontSize:19,lineHeight:1.9,color:C.cr,fontWeight:400,textAlign:"center",whiteSpace:"pre-line",paddingBottom:40 }}>
-            {track.script || "Script coming soon, this affirmation script hasn't been added yet."}
+          <div className="shg-paper" style={{ width:"100%",borderRadius:20,padding:"22px 18px",marginBottom:40,textAlign:"center" }}>
+            {(track.script || "Script coming soon.").split("\n").map(l=>l.trim()).filter(Boolean).map((l,i)=>(
+              <div key={i} style={{ fontSize:18,lineHeight:1.5,padding:"10px 0",borderBottom:"1px solid rgba(191,165,216,.55)" }}>{l}</div>
+            ))}
           </div>
         </div>
       ) : (
       <>
-      <div className="shg-gfill" style={{ width:"100%",maxWidth:320,aspectRatio:"1.4",borderRadius:24,display:"grid",placeItems:"center" }}>
-        <svg viewBox="0 0 100 100" width="58%" fill="none" stroke="#000" strokeWidth="1.4"><circle cx="38" cy="38" r="22"/><circle cx="62" cy="38" r="22"/><circle cx="38" cy="62" r="22"/><circle cx="62" cy="62" r="22"/></svg>
-      </div>
+      <div style={{ width:"100%",maxWidth:300,aspectRatio:"1" }}><Thumb cat={track.cat} size="100%" radius={24}/></div>
       {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
       <div style={{ width:"100%",marginTop:22,marginBottom:14,textAlign:"center" }}>
         <div style={{ fontSize:21,fontWeight:400,marginBottom:6,color:C.cr }}>{displayTitle(track.title)}</div>
@@ -1686,7 +1721,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </button>
 
       {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
-      <DailyReminder/>
+      <DailyReminder userId={userId} token={token}/>
 
       {/* WEEKLY NUDGE: prompt to update intentions */}
       {(()=>{ const last = Math.max(0,...threads.map(t=>t.createdTs||0)); const stale = isPreview || (threads.length && last && Date.now()-last > 7*86400000); const open = threads.filter(t=>!t.done).length; return stale ? (
@@ -2876,9 +2911,9 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
 
       {/* NEW THIS WEEK */}
       <Sec title="New this week " C={C}>
-        <HRow>
-          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
-        </HRow>
+        <div className="shg-nw" style={{ padding:"0 16px" }}><style>{`body .shg-nw.shg-nw{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:14px}body .shg-nw.shg-nw>div{width:auto!important}@media(min-width:900px){body .shg-nw.shg-nw{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+          {TRACKS.filter(t=>t.isNew).slice(0,4).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
+        </div>
       </Sec>
 
       {/* RECOMMENDED FOR YOU: tracks in the categories of her open intentions */}
@@ -3701,7 +3736,9 @@ const REMINDERS = [
     ["Sign to watch for","A conversation you overhear, or a stranger who knows exactly the person you needed. Log it."],
   ]},
 ];
-function DailyReminder() {
+function DailyReminder({ userId, token }) {
+  const push = usePushNotifications(userId, token);
+  const standalone = typeof window !== "undefined" && (window.matchMedia?.("(display-mode: standalone)").matches || window.navigator.standalone);
   const [open, setOpen] = useState(false);
   const r = REMINDERS[Math.floor(Date.now()/86400000) % REMINDERS.length];
   return (
@@ -3712,7 +3749,12 @@ function DailyReminder() {
         <div style={{ fontSize:14,marginTop:10 }}>{open ? "Tap to close ⌃" : "Tap me to open ›"}</div>
       </button>
       {open && (
-        <div style={{ marginTop:14,textAlign:"left",maxHeight:"55vh",overflowY:"auto",WebkitOverflowScrolling:"touch",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",paddingRight:4 }}>
+        <div style={{ marginTop:14,textAlign:"center",maxHeight:"55vh",overflowY:"auto",WebkitOverflowScrolling:"touch",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",paddingRight:4 }}>
+          <div style={{ textAlign:"center",marginBottom:16 }}>
+            {push.subscribed ? <div style={{ fontSize:14 }}>🔔 You'll receive your equation every morning</div>
+              : !standalone && /iPhone|iPad/.test(navigator.userAgent) ? <div style={{ fontSize:14,lineHeight:1.5 }}>🔔 To receive your equation every day, add this app to your Home Screen first (Share › Add to Home Screen), then open it from there and tap here again.</div>
+              : <button onClick={e=>{ e.stopPropagation(); if (!userId) { alert("Sign in to receive your daily equation."); return; } push.subscribe(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{push.loading?"Turning on…":"🔔 Receive your equation every day"}</button>}
+          </div>
           {r.body.map(([h,t])=>(
             <div key={h} style={{ marginBottom:14 }}>
               <div style={{ fontSize:12,letterSpacing:".22em",textTransform:"uppercase",marginBottom:4 }}>{h}</div>
@@ -3783,8 +3825,8 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
           </button>
         )}
       </div>
-      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ fontSize:16,fontWeight:400,color:unavail?C.mu:C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2,cursor:hasAudio?"pointer":"not-allowed" }}>{t.title}</div>
-      <div style={{ fontSize:14,color:C.mu,display:"flex",alignItems:"center",gap:6 }}>{t.cat.replace("maxxing","")} · {t.dur}{t.isNew&&hasAudio&&<span style={{ padding:"1px 7px",background:OMBRE,color:"#000",borderRadius:20,fontSize:11 }}>NEW</span>}</div>
+      <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ fontSize:14,fontWeight:500,lineHeight:1.3,color:unavail?C.mu:C.cr,display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical",overflow:"hidden",minHeight:"2.6em",marginBottom:2,cursor:hasAudio?"pointer":"not-allowed" }}>{t.title}</div>
+      <div style={{ fontSize:14,color:C.mu,display:"flex",alignItems:"center",gap:6 }}>{t.cat.replace("maxxing","")} · {t.dur}</div>
     </div>
   );
 }
