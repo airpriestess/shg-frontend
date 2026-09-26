@@ -5,6 +5,9 @@ import { WorkWithReshma } from "./ShopGrid.jsx";
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
 const SECTIONS = [
+  { k:"listen-ritual", icon:"◈", title:"Your listening ritual, step by step",
+    body:"1. Headphones on. The sound moves left to right, and your brain needs both ears to follow it.\n\n2. Pick your window. Just before sleep or the first 20 minutes after waking are best, because you're already drifting into theta.\n\n3. Get comfortable. Lie down or sit back, somewhere you won't be interrupted. Never while driving.\n\n4. Set your intention. Before you press play, think of the one desire this track is for. You don't need to force it, just name it.\n\n5. Press play and let go. You don't have to concentrate. If your mind wanders, or you fall asleep, it still works.\n\n6. Afterwards, notice. Over the next days, write down any sign, however small, in proofOS.\n\n7. Repeat for 21 days. Repetition is the method. The subconscious learns by hearing the same thing again and again, not by effort." },
+
   { k:"formula", icon:"◈", title:"The formula in every SHG audio",
     body:"Every track combines two things at once. My spoken self-hypnosis, the new identity, spoken as if it's already yours and subliminals layered beneath the music at a volume your conscious mind cannot hear, but your subconscious receives clearly. On top of that: melodic house, EMDR bilateral stimulation, 528hz or whichever frequency the track needs. You're not listening to a track. You're being installed with a new self-concept while you enjoy music." },
 
@@ -153,12 +156,13 @@ const SLIDES = {
 };
 
 const CATEGORIES = [
+  { label:"How to listen", keys:["listen-ritual","headphones","when","how-long-session","how-often","focus","fell-asleep","stop"] },
   { label:"Intentions", keys:["how-to-write-intention","choosing-your-emotion","multiple-intentions","multiple-desires","same-track-multiple"] },
   { label:"Signs & synchronicities", keys:["spotting-signs","signs"] },
   { label:"Proof Wall, your evidence log", keys:["knowing-manifested","proof-wall-forever","proofos-not-journal"] },
   { label:"Bucket List", keys:["bucket-vs-active"] },
-  { label:"Getting started", keys:["formula","when","how-long-session","how-often","headphones","focus","fell-asleep","believe","state"] },
-  { label:"Tracks & listening", keys:["how-many-tracks","stop","hyp-vs-sub","music-only","vocals-only","hypno-vs-sub-versions","frequencies","frequencies-types","reiki"] },
+  { label:"Getting started", keys:["formula","believe","state"] },
+  { label:"Tracks & listening", keys:["how-many-tracks","hyp-vs-sub","music-only","vocals-only","hypno-vs-sub-versions","frequencies","frequencies-types","reiki"] },
   { label:"The mechanism", keys:["brainwaves","sats","emdr","subliminals-what","subliminals-all","visualization","one-method","therapy","emotional"] },
   { label:"Results & troubleshooting", keys:["results","working","not-working","tell-anyone"] },
   { label:"The Hawkins Scale", keys:["hawkins","hawkins-how"] },

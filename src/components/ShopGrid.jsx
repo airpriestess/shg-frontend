@@ -35,7 +35,7 @@ function Card({ p, busy, setBusy }) {
       style={{ background:"#000", border:"1px solid rgba(242,236,228,0.18)", borderRadius:16, overflow:"hidden", padding:0, cursor:"pointer", textAlign:"left", fontFamily:"inherit", display:"flex", flexDirection:"column" }}>
       <img src={p.img} alt={p.name} loading="lazy" style={{ width:"100%", aspectRatio:"1", objectFit:"cover", display:"block" }}/>
       <div style={{ padding:"10px 12px 12px", display:"flex", flexDirection:"column", gap:8, flex:1, textAlign:"center" }}>
-        <div style={{ fontSize:15, fontWeight:500, color:"#F2ECE4" }}>{p.name}</div>
+        <div style={{ fontSize:15, fontWeight:400, color:"#F2ECE4" }}>{p.name}</div>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:10, marginTop:"auto" }}>
           {p.price && <span style={{ fontSize:16, color:"#F2ECE4" }}>{p.price}</span>}
           <span style={{ padding:"7px 14px", background:G, borderRadius:999, color:"#000", fontSize:13 }}>{busy===p.name ? "Opening…" : p.price==="Free" ? "Get it" : p.price ? "Buy" : "View"}</span>
@@ -53,7 +53,7 @@ export default function ShopGrid() {
       <style>{`body .shg-shop-grid.shg-shop-grid{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))!important;gap:12px}@media(max-width:700px){body .shg-shop-grid.shg-shop-grid{grid-template-columns:1fr 1fr!important}}.shg-shop-label{color:#F2ECE4!important}body .shg-shop-grid.shg-shop-grid[style*="max-width"]{grid-template-columns:1fr!important}`}</style>
       {groups.map(([title, kind]) => (
         <div key={kind} className="shg-no-paper" style={{ marginBottom:16, padding:"16px 12px", borderRadius:20, background:"#000", border:"1px solid transparent", backgroundImage:`linear-gradient(#000,#000),${G}`, backgroundOrigin:"border-box", backgroundClip:"padding-box, border-box" }}>
-          <div className="shg-shop-label" style={{ fontSize:12, letterSpacing:".3em", textTransform:"uppercase", color:"#F2ECE4", margin:"0 0 12px", textAlign:"center" }}>{title}</div>
+          <div id={`shg-shop-${kind}`} className="shg-shop-label" style={{ display:"block", width:"100%", fontSize:13, fontWeight:400, letterSpacing:".3em", textTransform:"uppercase", color:"#F2ECE4", margin:"0 0 14px", textAlign:"center" }}>{title}</div>
           <div className="shg-shop-grid shg-no-paper" style={kind==="Freebie"?{ maxWidth:220, margin:"0 auto" }:undefined}>
             {PRODUCTS.filter(p => p.kind === kind).map(p => <Card key={p.name} p={p} busy={busy} setBusy={setBusy}/>)}
           </div>
@@ -68,11 +68,11 @@ export function WorkWithReshma() {
   const offers = [{ name:"Workbooks", img:"/shop/lovemaxxing.webp", go:true }, ...PRODUCTS.filter(p => p.kind === "Service")];
   return (
     <div className="shg-no-paper" style={{ background:"#000", color:"#F2ECE4", borderRadius:20, padding:"20px 14px", border:"1.5px solid transparent", backgroundImage:`linear-gradient(#000,#000),${G}`, backgroundOrigin:"border-box", backgroundClip:"padding-box, border-box", boxShadow:"0 0 26px rgba(191,165,216,.35)" }}>
-      <div className="shg-shop-label" style={{ fontSize:20, fontWeight:500, textAlign:"center", marginBottom:14, letterSpacing:0, textTransform:"none" }}>Stuck? I'm here for you.</div>
+      <div className="shg-shop-label" style={{ fontSize:13, fontWeight:400, letterSpacing:".3em", textTransform:"uppercase", textAlign:"center", marginBottom:14 }}>Stuck? I'm here for you</div>
       <style>{`body .shg-wwr.shg-wwr{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:8px}@media(max-width:700px){body .shg-wwr.shg-wwr{grid-template-columns:1fr 1fr!important}}`}</style>
       <div className="shg-wwr">
         {offers.map(p => (
-          <button key={p.name} onClick={() => p.go ? window.dispatchEvent(new Event("shg-go-shop")) : buyProduct(p)} style={{ background:"#000", border:"1px solid rgba(242,236,228,.2)", borderRadius:14, overflow:"hidden", padding:0, cursor:"pointer", fontFamily:"inherit" }}>
+          <button key={p.name} onClick={() => { if (!p.go) return buyProduct(p); const el = document.getElementById("shg-shop-Workbook"); if (el) el.scrollIntoView({ behavior:"smooth", block:"start" }); else window.dispatchEvent(new Event("shg-go-shop")); }} style={{ background:"#000", border:"1px solid rgba(242,236,228,.2)", borderRadius:14, overflow:"hidden", padding:0, cursor:"pointer", fontFamily:"inherit" }}>
             <img src={p.img} alt="" loading="lazy" style={{ width:"100%", aspectRatio:"1", objectFit:"cover", display:"block" }}/>
             <div className="shg-shop-label" style={{ fontSize:13, padding:"8px 6px 10px", lineHeight:1.3, letterSpacing:0, textTransform:"none" }}>{p.name}</div>
           </button>

@@ -1992,25 +1992,16 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
       </div>
 
       {/* Fastest + most active callouts */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:14 }}>
-        <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(44,183,167,0.3)` }}>
-          <div style={{ fontSize:10, fontWeight:600, color:C.accentTeal, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Fastest area</div>
-          <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.cat || "—"}</div>
-          <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0]?.avgDays || "—"}d avg</div>
-        </div>
-        <div style={{ background:C.bg2, borderRadius:14, padding:"14px 12px", border:`1px solid rgba(232,184,112,0.3)` }}>
-          <div style={{ fontSize:10, fontWeight:600, color:C.accentGold, letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:6 }}>Most active area</div>
-          <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.cat || "—"}</div>
-          <div style={{ fontSize:12, color:C.mu, marginTop:3 }}>{catStats.sort((a,b)=>b.total-a.total)[0]?.total || "—"} intentions</div>
-        </div>
+      <div style={{ display:"flex", gap:10, marginBottom:14 }}>
+        {[["Fastest area", (catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0])?.cat, `${(catStats.filter(c=>c.avgDays>0).sort((a,b)=>a.avgDays-b.avgDays)[0])?.avgDays || "—"} days average`],["Most active area", (catStats.slice().sort((a,b)=>b.total-a.total)[0])?.cat, `${(catStats.slice().sort((a,b)=>b.total-a.total)[0])?.total || "—"} intentions`]].map(([h,v,sub])=>(
+          <div key={h} className="shg-paper shg-glowedge" style={{ flex:1, borderRadius:16, padding:"16px 10px", textAlign:"center" }}>
+            <div style={{ fontSize:11, letterSpacing:".2em", textTransform:"uppercase" }}>{h}</div>
+            <div style={{ fontSize:20, fontWeight:500, margin:"6px 0 2px" }}>{String(v||"—").replace("maxxing","")}</div>
+            <div style={{ fontSize:14 }}>{sub}</div>
+          </div>
+        ))}
       </div>
 
-      {isPreview && (
-        <div style={{ background:`${C.bg2}`, borderRadius:14, padding:"14px 16px", border:`1px solid rgba(191,165,216,0.3)`, textAlign:"center" }}>
-          <div style={{ fontSize:13, color:C.accentLav, marginBottom:4, fontWeight:600 }}>Your chart grows with you</div>
-          <div style={{ fontSize:12, color:C.mu, lineHeight:1.5 }}>Log intentions across 2026 → 2030 and watch your manifestation speed and rate compound month by month. Sign up to start your permanent record →</div>
-        </div>
-      )}
     </div>
   );
 }
@@ -2285,10 +2276,20 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ fontSize:17, fontWeight:400, color:C.cr, marginTop:8 }}>Here are today's insights.</div>
       </div>
 
-      {/* IMAGINE IT IS 2030 — from the method deck */}
-      <div style={{ margin:"0 16px 18px" }}>
-        <img src="/deck/imagine-2030.webp" alt="Imagine it is 2030: from 900 proofs in 2026 to 5,500 in 2030. Keep going." style={{ width:"100%",aspectRatio:"16/9",borderRadius:16,display:"block",border:"1px solid rgba(242,236,228,.18)" }}/>
-        <div style={{ textAlign:"center",fontSize:15,color:C.cr,marginTop:8 }}>Imagine how many desires you'll have logged by 2030. Keep going.</div>
+      {/* IMAGINE IT IS 2030 — the method deck chart, drawn live so it's readable on a phone */}
+      <div className="shg-no-paper" style={{ margin:"0 16px 18px", background:"#000", borderRadius:20, padding:"20px 16px 16px", border:"1px solid rgba(242,236,228,.18)", textAlign:"center" }}>
+        <div className="shg-gt" style={{ fontSize:22, fontWeight:500, letterSpacing:".12em", display:"inline-block" }}>IMAGINE IT IS 2030</div>
+        <div style={{ fontSize:15, color:"#F2ECE4", margin:"6px 0 18px" }}>You joined in 2026. Look how much proof you're holding now.</div>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"space-between", gap:10, height:190 }}>
+          {[["2026",900],["2027",1900],["2028",3000],["2029",4200],["2030",5500]].map(([y,v],i)=>(
+            <div key={y} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-end", height:"100%" }}>
+              <div style={{ fontSize:14, color:"#F2ECE4", marginBottom:6 }}>{v.toLocaleString()}</div>
+              <div className="shg-bar-v" style={{ width:"100%", height:`${(v/5500)*140}px`, borderRadius:10, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", animationDelay:`${i*120}ms`, boxShadow: i===4 ? "0 0 22px rgba(245,224,160,.55)" : "none" }}/>
+              <div className="shg-gt" style={{ fontSize:14, marginTop:6, display:"inline-block" }}>{y}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:15, color:"#F2ECE4", marginTop:14, lineHeight:1.5 }}>From 900 to 5,500 proofs on your Proof Wall. Doubt kills manifestation. We kill the doubt. Keep going.</div>
       </div>
 
       {/* PROGRESS — the reference's Progress screen (docs/design/shg-app-design.html) */}
@@ -2892,26 +2893,26 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
           <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
         </div>
       </div>
-      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;scroll-padding:0 16px;display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}body .shg-four.shg-four{display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-auto-columns:112px!important;justify-content:start!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}body .shg-four.shg-four>*{scroll-snap-align:start}body .shg-four.shg-four::-webkit-scrollbar{display:none}`}</style>
+      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:10px;max-width:560px}`}</style>
       <div style={{ padding:"0 16px 10px",fontSize:18,color:C.cr }}>Browse by category</div>
       <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
           <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ padding:0,border:"none",background:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
-            <div style={{ borderRadius:14,overflow:"hidden",outline:cat===c?"2px solid #F2ECE4":"none",outlineOffset:2 }}><Thumb cat={c} size={112} radius={14}/></div>
+            <div style={{ borderRadius:14,overflow:"hidden",outline:cat===c?"2px solid #F2ECE4":"none",outlineOffset:2,aspectRatio:"1" }}><Thumb cat={c} size="100%" radius={14}/></div>
             <div style={{ marginTop:8,fontSize:15,color:C.cr }}>{name}</div>
           </button>
         ))}
       </div>
       {/* JUMP BACK IN */}
       <Sec title="Jump back in" C={C}>
-        <HRow>
-          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
-        </HRow>
+        <div className="shg-nw" style={{ padding:"0 16px" }}>
+          {TRACKS.slice(0,4).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
+        </div>
       </Sec>
 
       {/* NEW THIS WEEK */}
       <Sec title="New this week " C={C}>
-        <div className="shg-nw" style={{ padding:"0 16px" }}><style>{`body .shg-nw.shg-nw{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:14px}body .shg-nw.shg-nw>div{width:auto!important}@media(min-width:900px){body .shg-nw.shg-nw{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+        <div className="shg-nw" style={{ padding:"0 16px" }}><style>{`body .shg-nw.shg-nw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:10px;max-width:560px}body .shg-nw.shg-nw>div{width:auto!important}body .shg-nw.shg-nw>div>div:nth-child(2){font-size:12px!important}body .shg-nw.shg-nw>div>div:nth-child(3){display:none!important}`}</style>
           {TRACKS.filter(t=>t.isNew).slice(0,4).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </div>
       </Sec>
@@ -3641,28 +3642,34 @@ function WinCard({ w, mine }) {
 }
 function CommunityTab({ C, isPreview }) {
   let mine = []; try { mine = JSON.parse(localStorage.getItem("shg_shared_wins") || "[]"); } catch {}
-  const steps = [["Set it","Write your intention in proofOS"],["Track it","Log every sign as it arrives"],["Receive it","Mark it manifested, dated"],["Share it","Show someone what's possible"]];
+  const [step, setStep] = useState(null);
+  const steps = [
+    ["Set it","Write your intention in proofOS, in the present tense, as if it's already done. Pick its categories and how you honestly feel. That feeling is your starting point, and it's what makes the change visible later."],
+    ["Track it","Every sign goes under that intention the moment it happens: a word, a song, a stranger, an exact amount. Add a photo or a voice note. The trail of signs is what turns hope into evidence."],
+    ["Receive it","When the real outcome arrives, open the intention and mark it manifested. The date, the days it took, the track you listened to and every sign are saved together, forever."],
+    ["Share it","On your Proof Wall, tap Share. Choose your first name or stay anonymous. Your whole proof is shared exactly as you logged it, and nobody can edit it. Someone scrolling tonight needs to see that it's possible."],
+  ];
+  const PAPER_DARK = { backgroundColor:"#000", backgroundImage:"linear-gradient(rgba(191,165,216,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.18) 1px,transparent 1px)", backgroundSize:"22px 22px" };
   return (
-    <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:900,margin:"0 auto" }}>
+    <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:900,margin:"0 auto",textAlign:"center" }}>
       <div className="shg-gt" style={{ fontSize:28,fontWeight:500,display:"inline-block" }}>Community wins</div>
-      <div style={{ fontSize:16,color:C.cr,margin:"6px 0 16px",lineHeight:1.5 }}>Real proof from real members. When hers arrives, you see what's possible for you.</div>
-      {/* How it works, drawn like the method deck */}
-      <div className="shg-no-paper" style={{ background:"#000",borderRadius:18,padding:"20px 12px",marginBottom:18,border:"1px solid rgba(242,236,228,.18)" }}>
-        <div style={{ textAlign:"center",fontSize:12,letterSpacing:".3em",color:"#F2ECE4",marginBottom:14 }}>HOW COMMUNITY WINS WORK</div>
+      <div style={{ fontSize:16,fontWeight:300,color:C.cr,margin:"6px 0 16px",lineHeight:1.5 }}>Real proof from real members. When hers arrives, you see what's possible for you.</div>
+      <div className="shg-no-paper" style={{ ...PAPER_DARK,borderRadius:18,padding:"20px 12px",marginBottom:18,border:"1px solid rgba(242,236,228,.18)" }}>
+        <div style={{ fontSize:13,fontWeight:500,letterSpacing:".3em",color:"#F2ECE4",marginBottom:16 }}>HOW COMMUNITY WINS WORK</div>
         <style>{`body .shg-cw.shg-cw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:6px}`}</style>
         <div className="shg-cw">
-          {steps.map(([t,d],i)=>(
-            <div key={t} style={{ textAlign:"center",color:"#F2ECE4" }}>
-              <div style={{ width:54,height:54,margin:"0 auto 8px",borderRadius:"50%",display:"grid",placeItems:"center",fontSize:22,fontWeight:400,background:"#000",border:"1.5px solid transparent",backgroundImage:"linear-gradient(#000,#000),linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)",backgroundOrigin:"border-box",backgroundClip:"padding-box,border-box",boxShadow:"0 0 16px rgba(191,165,216,.35)" }}><span className="shg-gt">{i+1}</span></div>
-              <div style={{ fontSize:14,fontWeight:500 }}>{t}</div>
-              <div style={{ fontSize:12,lineHeight:1.35,marginTop:3 }}>{d}</div>
-            </div>
+          {steps.map(([t],i)=>(
+            <button key={t} onClick={()=>setStep(step===i?null:i)} aria-expanded={step===i} style={{ background:"none",border:"none",cursor:"pointer",color:"#F2ECE4",fontFamily:"'Jost',sans-serif",padding:0 }}>
+              <div style={{ width:54,height:54,margin:"0 auto 8px",borderRadius:"50%",display:"grid",placeItems:"center",fontSize:22,color:"#000",background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)",boxShadow:step===i?"0 0 22px rgba(245,224,160,.7)":"0 0 14px rgba(191,165,216,.35)" }}>{i+1}</div>
+              <div style={{ fontSize:15,fontWeight:500 }}>{t}</div>
+              <div style={{ fontSize:12,fontWeight:300,marginTop:3 }}>Tap me ›</div>
+            </button>
           ))}
         </div>
-        <div style={{ textAlign:"center",fontSize:13,color:"#F2ECE4",marginTop:14,lineHeight:1.5 }}>Share from proofOS › Proof Wall. Choose your name or stay anonymous. Your full proof is shared exactly as you logged it. Nobody can edit it.</div>
+        {step!==null && <div style={{ fontSize:15,fontWeight:300,color:"#F2ECE4",lineHeight:1.6,marginTop:16,padding:"0 6px",animation:"shg-spin-in .5s both" }}>{steps[step][1]}</div>}
       </div>
       {mine.length === 0 && !isPreview && <div style={{ color:C.cr,fontSize:15,marginBottom:12 }}>No wins shared yet. Be the first.</div>}
-      <div style={{ display:"grid",gap:14 }}>
+      <div style={{ display:"grid",gap:14,textAlign:"left" }}>
         {mine.slice().reverse().map((w,i)=><WinCard key={"m"+i} w={w} mine/>)}
         {isPreview && EXAMPLE_WINS.map((w,i)=><WinCard key={"e"+i} w={w}/>)}
       </div>
