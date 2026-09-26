@@ -335,7 +335,7 @@ async function handleSignup(request, env) {
   const id = uuid();
   const passwordHash = await hashPassword(password);
   await env.DB.prepare(
-    `INSERT INTO users (id, email, password_hash, full_name, tier) VALUES (?, ?, ?, ?, 'free')`
+    `INSERT INTO users (id, email, password_hash, full_name, tier, cohort) VALUES (?, ?, ?, ?, 'free', 'beta')`
   )
     .bind(id, email.toLowerCase(), passwordHash, full_name || null)
     .run();
