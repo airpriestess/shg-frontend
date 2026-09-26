@@ -135,7 +135,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
         {!opened ? (
           <>
-            <button onClick={() => setOpened(true)} aria-label="Open passport" className="pp-cover" style={{ all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(360px,82vw)", aspectRatio: "0.71", margin: "0 auto", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), inset 1px 0 0 rgba(242,236,228,.08), 0 24px 50px rgba(0,0,0,.6)", textAlign: "center", position: "relative" }}>
+            <button onClick={() => setOpened(true)} aria-label="Open passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite", all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(360px,82vw)", aspectRatio: "0.71", margin: "0 auto", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), inset 1px 0 0 rgba(242,236,228,.08), 0 24px 50px rgba(0,0,0,.6)", textAlign: "center", position: "relative" }}>
               <span aria-hidden="true" style={{ position: "absolute", left: 14, top: 10, bottom: 10, width: 1, background: "rgba(242,236,228,.08)" }} />
               <span style={{ fontSize: 11, letterSpacing: ".38em", paddingLeft: ".38em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
               <span style={{ display: "grid", justifyItems: "center", gap: 18 }}>
@@ -143,7 +143,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 <span style={{ fontSize: 13, letterSpacing: ".42em", paddingLeft: ".42em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>SELF HYPNOSIS GODDESS</span>
                 <span style={{ fontSize: 34, letterSpacing: ".3em", paddingLeft: ".3em", fontWeight: 500, background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>PASSPORT</span>
               </span>
-              <svg aria-hidden="true" width="44" height="30" viewBox="0 0 44 30" fill="none" stroke="#E8B870" strokeWidth="1.4"><rect x="1" y="1" width="42" height="28" rx="5" /><circle cx="22" cy="15" r="7" /><path d="M1 15h14M29 15h14" /></svg>
+              <span style={{ display: "grid", justifyItems: "center", gap: 14 }}><svg aria-hidden="true" width="44" height="30" viewBox="0 0 44 30" fill="none" stroke="#E8B870" strokeWidth="1.4"><rect x="1" y="1" width="42" height="28" rx="5" /><circle cx="22" cy="15" r="7" /><path d="M1 15h14M29 15h14" /></svg><span className="pp-tap" style={{ fontSize: 11, letterSpacing: ".3em", paddingLeft: ".3em", color: "#F2ECE4" }}>TAP TO OPEN</span></span>
             </button>
             <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} style={{ ...pill, display: "block", width: "min(360px,82vw)", margin: "20px auto 0", background: G, color: "#000", fontWeight: 500 }}>
               {p.goddessName ? "Open my passport" : "Build my passport"}
@@ -151,7 +151,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             <button onClick={() => { setOpened(true); setPage(4); }} style={{ ...pill, display: "block", margin: "10px auto 0", background: "transparent", color: "#F2ECE4", textDecoration: "underline", textUnderlineOffset: 3 }}>Settings</button>
           </>
         ) : (
-          <div style={{ animation: "shg-pp-open .5s cubic-bezier(.2,.8,.2,1) both" }}>
+          <div style={{ animation: "shg-pp-open .8s cubic-bezier(.2,.8,.2,1) both", transformOrigin: "left center" }}>
             <div role="tablist" style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
               {tabs.map((t, i) => (
                 <button key={t} role="tab" aria-selected={page === i} onClick={() => { setPage(i); setEditing(false); }}
@@ -160,7 +160,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             </div>
 
             {page === 0 && (
-              <div style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
+              <div className="pp-page" data-page="01 · IDENTITY" style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
                 <div style={{ display: "flex", gap: 14 }}>
                   <label style={{ width: 108, height: 136, borderRadius: 10, flexShrink: 0, overflow: "hidden", cursor: "pointer", display: "grid", placeItems: "center", background: p.photo ? "#000" : G, fontSize: 11 }}>
                     {p.photo ? <img src={p.photo} alt="Your passport photo" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : "+ Add photo"}
@@ -210,7 +210,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 1 && (
-              <div style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
+              <div className="pp-page" data-page="02 · MY LIFE" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
                 <div style={{ fontSize: 15, lineHeight: 1.6 }}>Tell me about you. The more you share, the more I learn about you every day: your needs, your desires, your blocks. Edit it whenever you like.</div>
                 {[["want", "WHAT I WANT FROM LIFE", "Love, money, body, home, career, freedom…"], ["desires", "MY DESIRES RIGHT NOW", "What I'm calling in this season"], ["blocks", "MY BLOCKS", "What gets in my way, the stories I tell myself"], ["needs", "MY NEEDS", "What I need to feel safe, loved and supported"], ["becoming", "WHO I'M BECOMING", "Her habits, her style, her life"]].map(([k, l, ph]) => (
                   <div key={k}><Label>{l}</Label><textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} /></div>
@@ -237,7 +237,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 2 && (
-              <div style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
+              <div className="pp-page" data-page="03 · VISAS & STAMPS" style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
                 <Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 18, marginTop: 12 }}>
                   {stamps.map((s, i) => (
@@ -248,7 +248,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 3 && (
-              <div style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
+              <div className="pp-page" data-page="04 · RITUAL" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, textAlign: "center" }}>
                   {[[listenCount, "listens"], [signs, "signs"], [arrived.length, "arrived"]].map(([v, l]) => (
                     <div key={l} style={{ border: "1px solid #000", borderRadius: 12, padding: "10px 4px" }}><div style={{ fontSize: 22 }}>{v}</div><div style={{ fontSize: 11 }}>{l}</div></div>
@@ -262,7 +262,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 4 && (
-              <div style={{ ...PAPER, borderRadius: 18, padding: 10, display: "grid", gap: 4, color: "#000" }}>
+              <div className="pp-page" data-page="05 · SETTINGS" style={{ ...PAPER, borderRadius: 18, padding: 10, display: "grid", gap: 4, color: "#000" }}>
                 <div style={{ fontSize: 13, padding: "8px 10px" }}>{tierLabel}{email ? ` · ${email}` : ""}</div>
                 {[
                   ["Manage membership", actions.billing],
@@ -281,7 +281,14 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
       </div>
       <style>{`[data-portal-theme] [aria-label="Goddess Passport"] input,[data-portal-theme] [aria-label="Goddess Passport"] textarea{background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;border-color:#000!important}
 [aria-label="Goddess Passport"] input::placeholder,[aria-label="Goddess Passport"] textarea::placeholder{color:#000!important;opacity:.45!important}
-@keyframes shg-pp-open{from{opacity:0;transform:perspective(900px) rotateY(-14deg) translateX(-10px)}to{opacity:1;transform:none}}
+
+.pp-page{position:relative;border-radius:6px 16px 16px 6px!important;padding-top:46px!important;padding-bottom:40px!important;box-shadow:inset 14px 0 18px -14px rgba(0,0,0,.45),0 18px 40px rgba(0,0,0,.5);outline:1px solid rgba(0,0,0,.15);outline-offset:-10px}
+.pp-page::before{content:"SELF HYPNOSIS GODDESS  ·  PASSPORT  ·  PASSEPORT";position:absolute;left:0;right:0;top:14px;text-align:center;font-size:9px;letter-spacing:.32em;color:#000;opacity:.7}
+.pp-page::after{content:attr(data-page);position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:9px;letter-spacing:.3em;color:#000;opacity:.7}
+.pp-page{background-image:linear-gradient(rgba(191,165,216,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.28) 1px,transparent 1px),repeating-radial-gradient(circle at 50% 120%,transparent 0 14px,rgba(44,183,167,.10) 14px 15px)!important;background-size:20px 20px,20px 20px,auto!important}
+@keyframes pp-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+.pp-tap{animation:pp-blink 1.6s ease-in-out infinite}@keyframes pp-blink{50%{opacity:.35}}
+@keyframes shg-pp-open{from{opacity:0;transform:perspective(1200px) rotateY(-70deg);transform-origin:left center}to{opacity:1;transform:none;transform-origin:left center}}
 @media(prefers-reduced-motion:reduce){[aria-label="Goddess Passport"] *{animation:none!important}}`}</style>
     </div>
   );
