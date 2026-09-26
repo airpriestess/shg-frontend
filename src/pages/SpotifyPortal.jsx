@@ -217,31 +217,12 @@ const THUMB_GRADS = {
 // Track and category art: a crop of the matching cover (heart, diamond, clover),
 // so tracks, Library tiles and the category list all share one icon set.
 const CAT_COVER = { Lovemaxxing:"/shop/lovemaxxing.webp", Richgirlmaxxing:"/shop/richgirlmaxxing.webp", Luckygirlmaxxing:"/shop/luckygirlmaxxing.webp" };
-// Category art, drawn to match the workbook covers: soft ombre halo, dotted
-// gradient ring, and the icon in a translucent ombre fill with a gradient edge.
-const THUMB_ICON = {
-  Lovemaxxing: '<path d="M50 74 C28 58 22 46 26 37 C30 28 43 27 50 38 C57 27 70 28 74 37 C78 46 72 58 50 74 Z"/>',
-  Richgirlmaxxing: '<path d="M36 30 H64 L74 42 L50 72 L26 42 Z"/><path d="M26 42 H74 M42 30 L46 42 L50 72 L54 42 L58 30" fill="none"/>',
-  Luckygirlmaxxing: '<circle cx="42" cy="42" r="12"/><circle cx="58" cy="42" r="12"/><circle cx="42" cy="58" r="12"/><circle cx="58" cy="58" r="12"/>',
-  Selfmaxxing: '<ellipse cx="50" cy="44" rx="15" ry="19"/><path d="M50 63 V76 M43 76 H57" fill="none"/>',
-};
+// Category art: the icon discs extracted from Reshma's own covers.
+const CAT_ICON_IMG = { Lovemaxxing:"/icons/love.webp", Richgirlmaxxing:"/icons/money.webp", Luckygirlmaxxing:"/icons/lucky.webp", Selfmaxxing:"/icons/session.webp", Lifemaxxing:"/icons/track.webp" };
 function Thumb({ cat, size=48, radius=4 }) {
-  const icon = THUMB_ICON[cat] || '<path d="M50 28 C52 44 56 48 72 50 C56 52 52 56 50 72 C48 56 44 52 28 50 C44 48 48 44 50 28 Z"/>';
-  const id = "t" + String(cat||"x").replace(/[^a-z]/gi,"");
   return (
-    <div aria-hidden="true" style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", position:"relative", background:"#000", boxShadow:"inset 0 0 0 1px rgba(242,236,228,0.12)" }}>
-      <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%" }}>
-        <defs>
-          <radialGradient id={`${id}h`} cx="50%" cy="50%" r="50%"><stop offset="0" stopColor="#6b5a4a" stopOpacity=".9"/><stop offset=".55" stopColor="#3a3346" stopOpacity=".6"/><stop offset="1" stopColor="#000" stopOpacity="0"/></radialGradient>
-          <linearGradient id={`${id}w`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#E8B870" stopOpacity=".35"/><stop offset=".5" stopColor="#BFA5D8" stopOpacity=".15"/><stop offset="1" stopColor="#2CB7A7" stopOpacity=".35"/></linearGradient>
-          <linearGradient id={`${id}s`} x1="1" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".35" stopColor="#E8B870"/><stop offset=".65" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient>
-          <linearGradient id={`${id}f`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F5E0A0" stopOpacity=".55"/><stop offset=".4" stopColor="#E8B870" stopOpacity=".4"/><stop offset=".7" stopColor="#BFA5D8" stopOpacity=".45"/><stop offset="1" stopColor="#2CB7A7" stopOpacity=".55"/></linearGradient>
-        </defs>
-        <circle cx="50" cy="50" r="44" fill={`url(#${id}h)`}/>
-        <circle cx="50" cy="50" r="44" fill={`url(#${id}w)`}/>
-        <circle cx="50" cy="50" r="38" fill="none" stroke={`url(#${id}s)`} strokeWidth=".9" strokeDasharray=".5 2.6" strokeLinecap="round"/>
-        <g transform="translate(50 50) scale(.78) translate(-50 -50)" fill={`url(#${id}f)`} stroke={`url(#${id}s)`} strokeWidth="2.6" strokeLinejoin="round" strokeLinecap="round" dangerouslySetInnerHTML={{ __html: icon }}/>
-      </svg>
+    <div aria-hidden="true" style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", position:"relative", background:"#000" }}>
+      <img src={CAT_ICON_IMG[cat] || "/icons/lucky.webp"} alt="" loading="lazy" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
     </div>
   );
 }
@@ -1704,28 +1685,23 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <span style={{ fontSize:22 }}>›</span>
       </button>
 
-      {/* TODAY'S LINE: one delusional affirmation a day, same for everyone that day */}
-      {(()=>{
-        const LINES = ["Life conspires in my favour. Of course. Obviously.","I get paid to exist.","Money finds me in my sleep.","Everything is always working out for me. Especially the money.","I'm the main character of my own economy.","Luck finds me everywhere. It's embarrassing, really.","He texts first. The money lands. Obviously.","I'm always in the right place at the right time.","Good things chase me down.","The universe is obsessed with me."];
-        const line = LINES[Math.floor(Date.now()/86400000) % LINES.length];
-        return (
-          <div className="shg-no-paper" style={{ margin:"0 16px 16px",padding:"22px 20px",borderRadius:20,background:"#000",border:"1.5px solid transparent",backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)",backgroundOrigin:"border-box",backgroundClip:"padding-box,border-box",textAlign:"center" }}>
-            <div style={{ fontSize:11,letterSpacing:".3em",color:"#F2ECE4",marginBottom:10 }}>TODAY'S TRUTH</div>
-            <div className="shg-gt" style={{ fontSize:24,fontWeight:500,lineHeight:1.3,display:"inline-block" }}>{line}</div>
-          </div>
-        );
-      })()}
+      {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
+      <DailyReminder/>
 
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
+      <FoldCard title="Tell me about you" sub="Tap to open">
       <button onClick={()=>openProfile(1)} className="shg-gb" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
         <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Tell me about you</span>
         <span style={{ display:"block",fontSize:17,fontWeight:500,marginTop:6 }}>Upload anything about yourself so I can learn more about you every day.</span>
         <span style={{ display:"block",fontSize:13,marginTop:4 }}>Your needs, your desires, your blocks. Journal pages, notes, even your ChatGPT or Claude summary.</span>
         <span style={{ display:"inline-block",marginTop:12,background:"#000",color:"#F2ECE4",borderRadius:999,padding:"10px 20px",fontSize:14,fontWeight:500 }}>+ Upload about me</span>
       </button>
+      </FoldCard>
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
+      <FoldCard title={`${isPreview ? "Reshma" : firstName}, what's happening?`} sub="Tap to talk and journal">
       <SpeakToProof C={C} isDark={C?.cr !== "#000000"} threads={threads} setThreads={setThreads} token={token} isPreview={isPreview} firstName={isPreview ? "Reshma" : firstName}/>
+      </FoldCard>
 
       {/* UPGRADE BANNER */}
       {userTier==="audio"&&!isPreview&&(
@@ -1760,6 +1736,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </div>
 
       {/* QUICK DESIRE CAPTURE */}
+      <FoldCard title="State a desire" sub="Tap to say it and save it">
       <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
           <div style={{ fontSize:22, fontWeight:500, color:C.cr }}>State a desire</div>
@@ -1793,6 +1770,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           </div>
         )}
       </div>
+      </FoldCard>
 
       {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
@@ -1802,22 +1780,14 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </button>
       </div>
 
-      {/* PROOFOS GUIDES: four square blocks, same look as the Library tiles */}
+      {/* PROOFOS GUIDES: four square blocks with Reshma's icons, like the Library tiles */}
       <div style={{ padding:"4px 16px 14px" }}>
         <style>{`body .shg-howto.shg-howto{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-howto.shg-howto{grid-template-columns:repeat(4,1fr)!important}}`}</style>
         <div className="shg-howto">
-          {[["Intentions","how-to-write-intention",'<circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="10"/><path d="M50 18v8M50 74v8M18 50h8M74 50h8"/>'],
-            ["Bucket List","bucket-vs-active",'<path d="M34 30h32l-4 44H38z"/><path d="M30 30h40"/><path d="M42 44h16M42 54h16M42 64h10"/>'],
-            ["Signs","spotting-signs",'<path d="M50 24 C52 42 58 48 76 50 C58 52 52 58 50 76 C48 58 42 52 24 50 C42 48 48 42 50 24 Z"/>'],
-            ["Evidence","proof-wall-forever",'<rect x="30" y="26" width="40" height="48" rx="4"/><path d="M40 50l7 7 14-15"/>']].map(([t,k,ic])=>(
+          {[["Intentions","how-to-write-intention","lucky"],["Bucket List","bucket-vs-active","email"],["Signs","spotting-signs","track"],["Evidence","proof-wall-forever","session"]].map(([t,k,ic])=>(
             <button key={k} onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:k } }))} className="shg-no-paper" style={{ position:"relative",aspectRatio:"1",background:"#000",border:"1px solid rgba(242,236,228,0.18)",borderRadius:16,overflow:"hidden",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif" }}>
-              <svg viewBox="0 0 100 100" style={{ position:"absolute",inset:0,width:"100%",height:"100%" }} aria-hidden="true">
-                <defs><linearGradient id={`hg${k}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".35" stopColor="#E8B870"/><stop offset=".6" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient><radialGradient id={`hr${k}`}><stop offset="0" stopColor="#BFA5D8" stopOpacity=".3"/><stop offset="1" stopColor="#000" stopOpacity="0"/></radialGradient></defs>
-                <circle cx="50" cy="46" r="38" fill={`url(#hr${k})`}/>
-                <circle cx="50" cy="46" r="32" fill="none" stroke={`url(#hg${k})`} strokeWidth=".8" strokeDasharray=".6 3" strokeLinecap="round"/>
-                <g transform="translate(14 10) scale(.72)" fill="none" stroke={`url(#hg${k})`} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{__html:ic}}/>
-              </svg>
-              <span style={{ position:"absolute",left:0,right:0,bottom:12,textAlign:"center",fontSize:18,fontWeight:500,color:"#F2ECE4" }}>{t}</span>
+              <img src={`/icons/${ic}.webp`} alt="" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }}/>
+              <span style={{ position:"absolute",left:0,right:0,bottom:10,textAlign:"center",fontSize:16,fontWeight:500,color:"#F2ECE4",textShadow:"0 1px 6px #000" }}>{t}</span>
             </button>
           ))}
         </div>
@@ -2867,7 +2837,7 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
           <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
         </div>
       </div>
-      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;scroll-padding:0 16px;display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}body .shg-four.shg-four{display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-auto-columns:calc(50% - 6px)!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}body .shg-four.shg-four>*{scroll-snap-align:start}body .shg-four.shg-four::-webkit-scrollbar{display:none}@media(min-width:900px){body .shg-four.shg-four{grid-auto-columns:calc(25% - 9px)!important}}`}</style>
+      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;scroll-padding:0 16px;display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}body .shg-four.shg-four{display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-auto-columns:min(calc(50% - 6px),200px)!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}body .shg-four.shg-four>*{scroll-snap-align:start}body .shg-four.shg-four::-webkit-scrollbar{display:none}@media(min-width:900px){body .shg-four.shg-four{grid-auto-columns:calc(25% - 9px)!important}}`}</style>
       <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
           <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ position:"relative",padding:0,border:cat===c?"2px solid #F2ECE4":"1px solid rgba(242,236,228,0.18)",borderRadius:14,overflow:"hidden",cursor:"pointer",background:"#000",aspectRatio:"1",fontFamily:"'Jost',sans-serif" }}>
@@ -3597,6 +3567,49 @@ function CommunityTab({ C, isPreview }) {
   );
 }
 
+// A home card that shows only its title until tapped, then spins open.
+function FoldCard({ title, sub, children }) {
+  const [open, setOpen] = useState(false);
+  if (!open) return (
+    <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+      <span><span style={{ display:"block",fontSize:19,fontWeight:500 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:14,marginTop:4 }}>{sub}</span>}</span>
+      <span style={{ fontSize:22 }}>›</span>
+    </button>
+  );
+  return (
+    <div style={{ position:"relative",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both" }}>
+      <button onClick={()=>setOpen(false)} aria-label="Close" style={{ position:"absolute",top:10,right:26,zIndex:2,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"4px 12px",fontSize:13,cursor:"pointer" }}>Close ✕</button>
+      {children}
+    </div>
+  );
+}
+
+// ── DAILY REMINDER ────────────────────────────────────────────────────────────
+const REMINDERS = [
+  { line:"Life conspires in my favour. Of course. Obviously.", note:"Today, notice every small thing that goes your way: the green light, the last table, the reply that came fast. Count them. Your brain can only find what you've told it to look for." },
+  { line:"The right people are already on their way to me.", note:"Someone is thinking about you right now: a client, a love, a collaborator. You don't have to chase them today. Just be easy to find. Say yes to the random invite." },
+  { line:"I'm always in the right place at the right time.", note:"If you're running late today, you're not. If plans change, they're rerouting you. Watch for the conversation you overhear or the stranger who knows someone. That's the sign. Log it." },
+  { line:"Everything I asked for is already rearranging itself.", note:"The in-between feels like nothing is happening. It isn't. Play your track today, then write one sign down, however small. Evidence is how the doubt quiets down." },
+  { line:"I don't chase. I attract. Then I receive.", note:"Today, do one thing that the version of you who already has it would do. Book it, wear it, say it. Then let go of how it arrives." },
+  { line:"My desires are obsessed with me.", note:"You wanted it, so it's looking for you too. Make it easy: clear one small space today, in your calendar, your inbox or your home, for it to land." },
+  { line:"I'm the luckiest person I know. It's a little unfair.", note:"Start keeping score. Every lucky moment today goes in proofOS. By the end of the month you won't be able to argue with yourself." },
+  { line:"I trust the timing of my life.", note:"If something didn't happen yesterday, it doesn't mean no. It means not like that. Look back at your Proof Wall today and remember how the last one arrived." },
+];
+function DailyReminder() {
+  const [open, setOpen] = useState(false);
+  const r = REMINDERS[Math.floor(Date.now()/86400000) % REMINDERS.length];
+  return (
+    <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000",perspective:900 }}>
+      <div key={open?"b":"f"} style={{ animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both" }}>
+        <div style={{ fontSize:12,letterSpacing:".3em",marginBottom:10 }}>TODAY'S REMINDER</div>
+        <div style={{ fontSize:21,lineHeight:1.35 }}>{r.line}</div>
+        {open ? <div style={{ fontSize:15,lineHeight:1.6,marginTop:12 }}>{r.note}</div> : <div style={{ fontSize:13,marginTop:10 }}>Tap to open ✦</div>}
+      </div>
+      <style>{`@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}@media(prefers-reduced-motion:reduce){[style*="shg-spin-in"]{animation:none!important}}`}</style>
+    </button>
+  );
+}
+
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
   const purchase = new URLSearchParams(window.location.search).get("purchase");
@@ -3636,7 +3649,7 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
   const hasAudio = !!AUDIO_URLS[t.title];
   const unavail = !hasAudio && !isPreview;
   return (
-    <div style={{ flexShrink:0,width:big?"min(calc(50vw - 22px),240px)":112, opacity:unavail?0.5:1, transition:"opacity 0.2s" }}>
+    <div style={{ flexShrink:0,width:big?"min(calc(50vw - 22px),200px)":112, opacity:unavail?0.5:1, transition:"opacity 0.2s" }}>
       <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed",borderRadius:8,boxShadow:`0 0 0 1px ${C.border}`,fontSize:0 }}>
         <div style={{ width:"100%",aspectRatio:"1" }}><Thumb title={t.title} cat={t.cat} size="100%" radius={big?16:8}/></div>
         {unavail&&(

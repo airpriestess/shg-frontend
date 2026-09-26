@@ -193,6 +193,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                           <option value="">Choose</option><option>Woman</option><option>Man</option><option>Non-binary</option><option>Prefer to self-describe</option><option>Prefer not to say</option>
                         </select>
                       : <div style={{ fontSize: 15 }}>{p.identity || "Not chosen yet"}</div>}</div>
+                    <div><Label>BIRTHDAY</Label>{editing ? <input id="pp-birthday" type="date" style={field} value={p.birthday || ""} onChange={(e) => set({ birthday: e.target.value })} /> : <div style={{ fontSize: 15 }}>{p.birthday ? new Date(p.birthday + "T00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long" }) : "Add it so we can celebrate you"}</div>}</div>
                     <div><Label>CALLING IN</Label><div style={{ fontSize: 14 }}>{callingIn.charAt(0).toUpperCase() + callingIn.slice(1)}</div></div>
                     <div><Label>ENTERED</Label><div style={{ fontSize: 14 }}>{enteredLabel}</div></div>
                   </div>
