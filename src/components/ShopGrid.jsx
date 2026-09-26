@@ -35,7 +35,7 @@ function Card({ p, busy, setBusy }) {
       style={{ background:"#000", border:"1px solid rgba(242,236,228,0.18)", borderRadius:16, overflow:"hidden", padding:0, cursor:"pointer", textAlign:"left", fontFamily:"inherit", display:"flex", flexDirection:"column" }}>
       <img src={p.img} alt={p.name} loading="lazy" style={{ width:"100%", aspectRatio:"1", objectFit:"cover", display:"block" }}/>
       <div style={{ padding:"10px 12px 12px", display:"flex", flexDirection:"column", gap:8, flex:1, textAlign:"center" }}>
-        <div style={{ fontSize:15, fontWeight:400, color:"#F2ECE4" }}>{p.name}</div>
+        <div style={{ fontSize:15, fontWeight:300, color:"#F2ECE4" }}>{p.name}</div>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:10, marginTop:"auto" }}>
           {p.price && <span style={{ fontSize:16, color:"#F2ECE4" }}>{p.price}</span>}
           <span style={{ padding:"7px 14px", background:G, borderRadius:999, color:"#000", fontSize:13 }}>{busy===p.name ? "Opening…" : p.price==="Free" ? "Get it" : p.price ? "Buy" : "View"}</span>

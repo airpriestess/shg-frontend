@@ -169,19 +169,9 @@ const GI = {
   hawkins: '<path d="M36 72V28M36 34h24M36 46h20M36 58h14"/><circle cx="64" cy="34" r="3"/>',
   guide: '<path d="M50 34c-6-4-14-5-20-4v36c6-1 14 0 20 4 6-4 14-5 20-4V30c-6-1-14 0-20 4z"/><path d="M50 34v36"/>',
 };
-export function GuideIcon({ k, size = 64 }) {
-  const id = "gi" + k;
-  return (
-    <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true" style={{ flexShrink:0, display:"block" }}>
-      <defs>
-        <radialGradient id={`${id}h`}><stop offset="0" stopColor="#6b5a4a" stopOpacity=".8"/><stop offset=".6" stopColor="#2f2a38" stopOpacity=".6"/><stop offset="1" stopColor="#000" stopOpacity="0"/></radialGradient>
-        <linearGradient id={`${id}s`} x1="1" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".35" stopColor="#E8B870"/><stop offset=".65" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient>
-      </defs>
-      <circle cx="50" cy="50" r="46" fill={`url(#${id}h)`}/>
-      <circle cx="50" cy="50" r="42" fill="none" stroke={`url(#${id}s)`} strokeWidth=".8" strokeDasharray=".5 2.6" strokeLinecap="round"/>
-      <g fill="none" stroke={`url(#${id}s)`} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: GI[k] || GI.guide }}/>
-    </svg>
-  );
+export function GuideIcon({ size = 64 }) {
+  // One elegant icon for every topic: the two circles from the 1:1 Session cover.
+  return <img src="/icons/session.webp" alt="" aria-hidden="true" width={size} height={size} style={{ flexShrink:0, display:"block", borderRadius:"50%" }}/>;
 }
 const CAT_ICON = { "How to listen":"listen","Intentions":"intentions","Signs & synchronicities":"signs","Proof Wall, your evidence log":"proof","Bucket List":"bucket","Getting started":"start","Tracks & listening":"tracks","The mechanism":"mechanism","Results & troubleshooting":"results","The Hawkins Scale":"hawkins" };
 

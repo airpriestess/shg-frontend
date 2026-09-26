@@ -81,6 +81,8 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const [page, setPage] = useState(startPage ?? 0);
   const [editing, setEditing] = useState(false);
   const [customWord, setCustomWord] = useState("");
+  const [themeMsg, setThemeMsg] = useState("");
+  const [lifeEdit, setLifeEdit] = useState(false);
 
   useEffect(() => { store(key, p); }, [key, p]);
   useEffect(() => {
@@ -133,7 +135,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
     + "\n" + `${callingIn.toUpperCase().replace(/[^A-Z]+/g, "<")}<<${p.entered.slice(0, 4)}<<PROOF<${String(signs).padStart(3, "0")}`.padEnd(40, "<").slice(0, 40);
 
   const shell = { position: "fixed", inset: 0, zIndex: 1200, background: "#000", color: "#F2ECE4", overflowY: "auto", fontFamily: "'Futura','Jost',sans-serif" };
-  const inner = { maxWidth: 920, margin: "0 auto", padding: "calc(env(safe-area-inset-top,0px) + 18px) 18px 40px" };
+  const inner = { maxWidth: 920, margin: "0 auto", padding: "calc(env(safe-area-inset-top,0px) + 18px) 16px calc(env(safe-area-inset-bottom,0px) + 90px)", boxSizing: "border-box" };
   const pill = { border: "none", borderRadius: 999, minHeight: 44, padding: "0 18px", fontSize: 14, fontFamily: "inherit", cursor: "pointer" };
   const field = { width: "100%", boxSizing: "border-box", border: "1px solid #000", borderRadius: 10, padding: "10px 12px", fontSize: 14, fontFamily: "inherit", background: "#fff", color: "#000" };
   const tabs = ["Identity", "My Life", "Stamps", "Shop", "Settings"];
@@ -164,7 +166,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
         {!opened ? (
           <>
-            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(360px,82vw)", aspectRatio: "0.71", margin: "0 auto", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
+            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(440px, 88vw, calc((100svh - 150px) * 0.71))", aspectRatio: "0.71", margin: "4vh auto 0", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
               <span aria-hidden="true" style={{ position: "absolute", left: 14, top: 10, bottom: 10, width: 1, background: "rgba(242,236,228,.08)" }} />
               <span style={{ fontSize: 11, letterSpacing: ".38em", paddingLeft: ".38em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
               <span style={{ display: "grid", justifyItems: "center", gap: 18 }}>
@@ -242,27 +244,54 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             {page === 1 && (
               <div className="pp-page" data-page="02 · MY LIFE" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
                 {(() => {
-                  const all = Object.values(life.log || {}).flat();
+                  const all = [...Object.values(life.log || {}).flat(), ...(life.checkins || [])];
                   const last = Math.max(0, ...all.map((e) => e.ts || 0));
                   const msg = !all.length ? "This is your big picture: what you want from life, your desires, your blocks, who you're becoming. Fill it in once to start, then come back once a month, or whenever something big shifts. Daily things go in \"What's happening\" on Home. Every saved answer is kept with its date."
                     : last && Date.now() - last > 30 * 86400000 ? "It's been a month. Has anything changed? Update your answers so you can see how far you've come."
                     : "Your monthly check-in. Come back once a month, or whenever you change your mind about something. Every saved answer is kept with its date.";
                   return <div style={{ background: "#000", color: "#F2ECE4", borderRadius: 12, padding: "12px 14px", fontSize: 14, lineHeight: 1.5 }}>{msg}</div>;
                 })()}
-                <div style={{ fontSize: 15, lineHeight: 1.6 }}>Tell me about you. The more you share, the more I learn about you every day: your needs, your desires, your blocks. Edit it whenever you like.</div>
-                {[["want", "WHAT I WANT FROM LIFE", "Love, money, body, home, career, freedom…"], ["desires", "MY DESIRES RIGHT NOW", "What I'm calling in this season"], ["blocks", "MY BLOCKS", "What gets in my way, the stories I tell myself"], ["needs", "MY NEEDS", "What I need to feel safe, loved and supported"], ["becoming", "WHO I'M BECOMING", "Her habits, her style, her life"]].map(([k, l, ph]) => (
-                  <div key={k}><Label>{l}</Label><textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} />
-                    <span style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                      <button onClick={() => saveEntry(k)} style={{ ...pill, minHeight: 34, marginTop: 6, background: "#000", color: "#F2ECE4", fontSize: 13 }}>Save entry</button>
-                      <button onClick={() => dictate(k)} style={{ ...pill, minHeight: 34, marginTop: 6, background: dictating === k ? "#000" : "transparent", color: dictating === k ? "#F2ECE4" : "#000", border: "1px solid #000", fontSize: 13 }}>{dictating === k ? "Listening… tap to stop" : "🎙 Speak it"}</button>
-                    </span>
-                    {((life.log || {})[k] || []).length > 0 && (
-                      <details style={{ marginTop: 8, fontSize: 13 }}><summary style={{ cursor: "pointer" }}>My entries over time ({life.log[k].length})</summary>
-                        {life.log[k].map((e, i) => <div key={i} style={{ padding: "6px 0", borderBottom: "1px solid rgba(0,0,0,.15)" }}><b style={{ fontWeight: 500 }}>{e.date}</b> · {e.text}</div>)}
-                      </details>
-                    )}
-                  </div>
-                ))}
+                {(() => {
+                  const F = [["want", "What I want from life", "Love, money, body, home, career, freedom…"], ["desires", "My desires right now", "What I'm calling in this season"], ["blocks", "My blocks", "What gets in my way, the stories I tell myself"], ["needs", "My needs", "What I need to feel safe, loved and supported"], ["becoming", "Who I'm becoming", "Her habits, her style, her life"]];
+                  const checkins = life.checkins || [];
+                  const latest = checkins[0];
+                  const editing = lifeEdit || !latest;
+                  const saveCheckin = () => {
+                    const vals = Object.fromEntries(F.map(([k]) => [k, (life[k] || "").trim()]));
+                    if (!Object.values(vals).some(Boolean)) return;
+                    setLife({ checkins: [{ date: new Date().toLocaleDateString("en-GB", { month: "long", year: "numeric" }), ts: Date.now(), ...vals }, ...checkins].slice(0, 60) });
+                    setLifeEdit(false);
+                  };
+                  if (!editing) return (
+                    <div style={{ display: "grid", gap: 12 }}>
+                      <Label>MY CHECK-IN · {latest.date.toUpperCase()}</Label>
+                      {F.map(([k, l]) => latest[k] ? <div key={k}><Label>{l.toUpperCase()}</Label><div style={{ fontSize: 15, lineHeight: 1.55, marginTop: 2, whiteSpace: "pre-line" }}>{latest[k]}</div></div> : null)}
+                      <button onClick={() => { setLife(Object.fromEntries(F.map(([k]) => [k, latest[k] || ""]))); setLifeEdit(true); }} style={{ ...pill, background: "#000", color: "#F2ECE4" }}>Update my check-in</button>
+                      {checkins.length > 1 && (
+                        <details style={{ fontSize: 14 }}><summary style={{ cursor: "pointer" }}>Past check-ins ({checkins.length - 1})</summary>
+                          {checkins.slice(1).map((c, i) => (
+                            <div key={i} style={{ padding: "10px 0", borderBottom: "1px solid rgba(0,0,0,.15)" }}>
+                              <div style={{ fontWeight: 500, marginBottom: 4 }}>{c.date}</div>
+                              {F.map(([k, l]) => c[k] ? <div key={k} style={{ fontSize: 13, lineHeight: 1.5 }}>{l}: {c[k]}</div> : null)}
+                            </div>
+                          ))}
+                        </details>
+                      )}
+                    </div>
+                  );
+                  return (
+                    <div style={{ display: "grid", gap: 12 }}>
+                      {F.map(([k, l, ph]) => (
+                        <div key={k}><Label>{l.toUpperCase()}</Label>
+                          <textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} />
+                          <button onClick={() => dictate(k)} style={{ ...pill, minHeight: 32, marginTop: 6, background: dictating === k ? "#000" : "transparent", color: dictating === k ? "#F2ECE4" : "#000", border: "1px solid #000", fontSize: 13 }}>{dictating === k ? "Listening… tap to stop" : "🎙 Speak it"}</button>
+                        </div>
+                      ))}
+                      <button onClick={saveCheckin} style={{ ...pill, background: "#000", color: "#F2ECE4" }}>Save this month's check-in</button>
+                      {latest && <button onClick={() => setLifeEdit(false)} style={{ ...pill, background: "transparent", color: "#000", border: "1px solid #000" }}>Cancel</button>}
+                    </div>
+                  );
+                })()}
                 <div>
                   <Label>MY UPLOADS</Label>
                   <div style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 10 }}>Upload anything that helps me know you: journal pages, notes, goals. <b style={{ fontWeight: 500 }}>Tip:</b> ask ChatGPT or Claude <i>"Summarise everything you know about me, my dreams, my desires and my blocks"</i>, save the answer and upload it here. Add more whenever you like.</div>
@@ -318,13 +347,13 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 <div style={{ fontSize: 13, padding: "8px 10px" }}>{tierLabel}{email ? ` · ${email}` : ""}</div>
                 {[
                   ["Manage membership", actions.billing],
-                  [`Switch to ${isDark ? "light" : "dark"} mode`, actions.theme],
+                  [`Switch to ${isDark ? "light" : "dark"} mode`, () => { actions.theme(); setThemeMsg(`${isDark ? "Light" : "Dark"} mode is on. You'll see it when you close your passport.`); }],
                   ["Listening guide", actions.guide],
-                  ["Back to the website", actions.site],
                   ["Sign out", actions.signOut],
                 ].map(([l, fn]) => (
                   <button key={l} onClick={fn} style={{ all: "unset", cursor: "pointer", padding: "14px 10px", fontSize: 15, color: "#000", borderBottom: "1px solid #000" }}>{l}</button>
                 ))}
+                {themeMsg && <div style={{ fontSize: 13, padding: "10px", lineHeight: 1.5 }}>{themeMsg}</div>}
                 <div style={{ fontSize: 12, padding: "12px 10px", lineHeight: 1.5 }}>Your passport is saved on this device.</div>
               </div>
             )}
@@ -335,7 +364,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 [aria-label="Goddess Passport"] input::placeholder,[aria-label="Goddess Passport"] textarea::placeholder{color:#000!important;opacity:.45!important}
 
 .pp-page{position:relative;border-radius:6px 16px 16px 6px!important;padding-top:46px!important;padding-bottom:40px!important;box-shadow:inset 14px 0 18px -14px rgba(0,0,0,.45),0 18px 40px rgba(0,0,0,.5);outline:1px solid rgba(0,0,0,.15);outline-offset:-10px}
-.pp-page::before{content:"SELF HYPNOSIS GODDESS  ·  PASSPORT  ·  PASSEPORT";position:absolute;left:0;right:0;top:14px;text-align:center;font-size:9px;letter-spacing:.32em;color:#000;opacity:.7}
+.pp-page::before{content:"PASSPORT · PASSEPORT";position:absolute;left:0;right:0;top:14px;text-align:center;font-size:9px;letter-spacing:.18em;color:#000;opacity:.7}
 .pp-page::after{content:attr(data-page);position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:9px;letter-spacing:.3em;color:#000;opacity:.7}
 .pp-page{background-image:linear-gradient(rgba(191,165,216,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.28) 1px,transparent 1px),repeating-radial-gradient(circle at 50% 120%,transparent 0 14px,rgba(44,183,167,.10) 14px 15px)!important;background-size:20px 20px,20px 20px,auto!important}
 @keyframes pp-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}

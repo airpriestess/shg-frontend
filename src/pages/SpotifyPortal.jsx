@@ -899,8 +899,8 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
 
   const BillingPanel = () => (
     <>
-      <div style={{ position:"fixed",inset:0,zIndex:998,background:"#000000" }} onClick={()=>setBillingOpen(false)}/>
-      <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:999,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
+      <div style={{ position:"fixed",inset:0,zIndex:1398,background:"rgba(0,0,0,.85)" }} onClick={()=>setBillingOpen(false)}/>
+      <div style={{ position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:isMobile?"90%":380,maxWidth:380,background:C.bg2,border:`1px solid ${C.border}`,borderRadius:18,zIndex:1399,padding:"26px 24px",fontFamily:"'Jost',sans-serif" }}>
         <div style={{ fontSize:13,color:C.mu,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:16 }}>Your subscription</div>
         <div style={{ background:C.bg3,borderRadius:12,padding:"14px 16px",marginBottom:16 }}>
           <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
@@ -1016,7 +1016,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   if (isDesktop) return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>setShowGuide(true), liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/portal"; } }}/>}
+      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>setShowGuide(true), liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>setBillingOpen(true), theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/portal"; } }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C} start={typeof showGuide==="object"?showGuide:null}/>}
       {showEmoLog && (
@@ -1173,7 +1173,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>setShowGuide(true), liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/portal"; } }}/>}
+      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>setShowGuide(true), liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>setBillingOpen(true), theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/portal"; } }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C} start={typeof showGuide==="object"?showGuide:null}/>}
       {showOnboarding && <OnboardingQuiz
@@ -2293,25 +2293,27 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
   return (
     <div>
       {/* Greeting: the board opens on her, not on a page title. */}
-      <div className="shg-gb shg-hero" style={{ margin:"20px 16px 18px", padding:"26px 22px", borderRadius:20 }}>
-        <div style={{ fontSize:15, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:26, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
-        <div style={{ fontSize:17, fontWeight:400, color:C.cr, marginTop:8 }}>Here are today's insights.</div>
+      <div className="shg-gb shg-hero" style={{ margin:"16px 16px 14px", padding:"16px 18px", borderRadius:18 }}>
+        <div style={{ fontSize:11, letterSpacing:".3em", fontWeight:400, color:C.cr, marginBottom:6 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:20, fontWeight:400, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
+        <div style={{ fontSize:14, fontWeight:300, color:C.cr, marginTop:4 }}>Here are today's insights.</div>
       </div>
 
-      {/* IMAGINE IT IS 2030 — the method deck chart, drawn live so it's readable on a phone */}
-      <div className="shg-no-paper" style={{ margin:"0 16px 18px", background:"#000", borderRadius:20, padding:"20px 16px 16px", border:"1px solid rgba(242,236,228,.18)", textAlign:"center" }}>
-        <div className="shg-gt" style={{ fontSize:22, fontWeight:500, letterSpacing:".12em", display:"inline-block" }}>IMAGINE IT IS 2030</div>
-        <div style={{ fontSize:15, color:"#F2ECE4", margin:"6px 0 18px" }}>You joined in 2026. Look how much proof you're holding now.</div>
-        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"space-between", gap:10, height:190 }}>
+      {/* IMAGINE IT IS 2030 — live chart: bars rise, a light sweeps across them, sparks drift up */}
+      <div className="shg-no-paper shg-2030" style={{ margin:"0 16px 14px", background:"#000", borderRadius:18, padding:"14px 14px 12px", border:"1px solid rgba(242,236,228,.18)", textAlign:"center", position:"relative", overflow:"hidden" }}>
+        <style>{`.shg-2030 .bar{position:relative;overflow:hidden;transform-origin:bottom;animation:shg-rise 1.4s cubic-bezier(.2,.8,.2,1) both}.shg-2030 .bar::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);animation:shg-sweep 3.2s ease-in-out 1.4s infinite}.shg-2030 .spark{position:absolute;bottom:14px;width:4px;height:4px;border-radius:50%;background:#F5E0A0;box-shadow:0 0 8px #F5E0A0;opacity:0;animation:shg-spark 3.6s ease-in infinite}@keyframes shg-rise{from{transform:scaleY(0)}to{transform:scaleY(1)}}@keyframes shg-sweep{0%{transform:translateX(-120%)}60%,100%{transform:translateX(120%)}}@keyframes shg-spark{0%{opacity:0;transform:translateY(0)}15%{opacity:1}100%{opacity:0;transform:translateY(-120px)}}@media(prefers-reduced-motion:reduce){.shg-2030 .bar,.shg-2030 .bar::after,.shg-2030 .spark{animation:none}}`}</style>
+        {[12,30,52,71,88].map((l,i)=><span key={i} className="spark" style={{ left:`${l}%`, animationDelay:`${i*0.7}s` }}/>)}
+        <div className="shg-gt" style={{ fontSize:13, fontWeight:400, letterSpacing:".3em", display:"inline-block" }}>IMAGINE IT IS 2030</div>
+        <div style={{ fontSize:13, fontWeight:300, color:"#F2ECE4", margin:"4px 0 12px" }}>You joined in 2026. Look how much proof you're holding now.</div>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"space-between", gap:8, height:120 }}>
           {[["2026",900],["2027",1900],["2028",3000],["2029",4200],["2030",5500]].map(([y,v],i)=>(
             <div key={y} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-end", height:"100%" }}>
-              <div style={{ fontSize:14, color:"#F2ECE4", marginBottom:6 }}>{v.toLocaleString()}</div>
-              <div className="shg-bar-v" style={{ width:"100%", height:`${(v/5500)*140}px`, borderRadius:10, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", animationDelay:`${i*120}ms`, boxShadow: i===4 ? "0 0 22px rgba(245,224,160,.55)" : "none" }}/>
-              <div className="shg-gt" style={{ fontSize:14, marginTop:6, display:"inline-block" }}>{y}</div>
+              <div style={{ fontSize:12, color:"#F2ECE4", marginBottom:4 }}>{v.toLocaleString()}</div>
+              <div className="bar" style={{ width:"100%", height:`${(v/5500)*84}px`, borderRadius:8, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)", animationDelay:`${i*150}ms` }}/>
+              <div className="shg-gt" style={{ fontSize:12, marginTop:4, display:"inline-block" }}>{y}</div>
             </div>
           ))}
         </div>
-        <div style={{ fontSize:14, fontWeight:300, color:"#F2ECE4", marginTop:14, lineHeight:1.5 }}>From 900 to 5,500 proofs on your Proof Wall. Doubt kills manifestation. We kill the doubt. Keep going.</div>
+        <div style={{ fontSize:13, fontWeight:300, color:"#F2ECE4", marginTop:10 }}>Doubt kills manifestation. We kill the doubt. Keep going.</div>
       </div>
 
       {/* PROGRESS — the reference's Progress screen (docs/design/shg-app-design.html) */}
@@ -2484,11 +2486,11 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               return (
                 <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"22px 20px", borderRadius:22 }}>
                   <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.18em", textTransform:"uppercase", color:C.cr, marginBottom:6 }}>How fast each area shifts</div>
-                  <div style={{ fontSize:16, color:C.cr, marginBottom:20 }}>Average days from setting a desire to logging it manifested.</div>
+                  <div style={{ fontSize:14, fontWeight:300, color:C.cr, marginBottom:14 }}>Average days from setting a desire to logging it manifested.</div>
                   {speeds.map(([cat,days],i)=>(
                     <div key={cat} style={{ display:"flex", alignItems:"center", gap:14, marginBottom:i===speeds.length-1?0:16 }}>
-                      <div style={{ fontSize:18, fontWeight:500, color:C.cr, width:130, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
-                      <div className="shg-paper" style={{ flex:1, height:14, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
+                      <div style={{ fontSize:14, fontWeight:400, color:C.cr, width:90, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
+                      <div className="shg-paper" style={{ flex:1, height:10, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
                         <div className="shg-bar-h" style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: OMBRE }}/>
                       </div>
                       <div style={{ fontSize:22, fontWeight:500, color:C.cr, width:64, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
@@ -3205,8 +3207,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           </div>
         </div>
       )}
-      <div style={{ fontSize:30,fontWeight:500,marginBottom:2,color:PC.text }}><span style={{ fontSize:"0.8em" }}>proof</span>OS</div>
-      <div style={{ fontSize:16,color:PC.text,marginBottom:16,fontWeight:400 }}>proofOS, the evidence tracker.</div>
+      <div style={{ fontSize:22,fontWeight:400,marginBottom:14,color:PC.text }}><span style={{ fontSize:"0.85em" }}>proof</span>OS · <span style={{ fontWeight:300 }}>the evidence tracker</span></div>
 
       {/* Filter banner, shown when drilled in from Analytics */}
       {proofFilter!=="all" && (
@@ -3698,7 +3699,7 @@ function CommunityTab({ C, isPreview }) {
   return (
     <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:900,margin:"0 auto",textAlign:"center" }}>
       <div className="shg-gt" style={{ fontSize:28,fontWeight:500,display:"inline-block" }}>Community wins</div>
-      <div style={{ fontSize:16,fontWeight:300,color:C.cr,margin:"6px 0 16px",lineHeight:1.5 }}>Real proof from real members. When hers arrives, you see what's possible for you.</div>
+      <div style={{ fontSize:15,fontWeight:300,color:C.cr,margin:"6px 0 16px",lineHeight:1.5,WebkitTextStroke:0 }}>Real proof from real members. When hers arrives, you see what's possible for you.</div>
       <button onClick={()=>setStep(step===null?0:null)} aria-expanded={step!==null} className="shg-paper" style={{ display:"block",width:"100%",borderRadius:18,padding:"20px 12px",marginBottom:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",color:"#000" }}>
         <div style={{ fontSize:13,fontWeight:500,letterSpacing:".3em",marginBottom:16 }}>HOW COMMUNITY WINS WORK</div>
         <style>{`body .shg-cw.shg-cw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:6px}`}</style>
