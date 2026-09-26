@@ -338,7 +338,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
             {page === 3 && (
               <div className="pp-page" data-page="04 · SHOP" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 12 }}>
-                <div style={{ fontSize: 15, lineHeight: 1.6 }}>Workbooks, the method deck and working with me.</div>
+                <div style={{ fontSize: 15, lineHeight: 1.6 }}>Workbooks, freebies and working with me.</div>
                 <div style={{ background: "#000", borderRadius: 14, padding: 10 }}><ShopGrid /></div>
                 <WorkWithReshma />
               </div>

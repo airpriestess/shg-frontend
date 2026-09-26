@@ -1741,22 +1741,17 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </div>
 
       {/* OPEN YOUR PASSPORT */}
-      <button onClick={openProfile} className="shg-gb shg-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:18,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
-        <span className="shg-gfill" style={{ width:40,height:52,borderRadius:7,flexShrink:0,display:"grid",placeItems:"center" }}>
-          <svg width="30" viewBox="0 0 40 40" fill="none" stroke="#000" strokeWidth="1.6" aria-hidden="true"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></svg>
-        </span>
-        <span style={{ flex:1 }}>
-          <span style={{ display:"block",fontSize:19,fontWeight:500,marginTop:4 }}>Open your passport</span>
-          <span style={{ display:"block",fontSize:13,marginTop:2 }}>Your identity, stamps and journal</span>
-        </span>
-        <span style={{ fontSize:22 }}>›</span>
+      <button onClick={openProfile} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:18,cursor:"pointer",textAlign:"center",color:"#000",fontFamily:"'Jost',sans-serif" }}>
+        <span style={{ display:"block",fontSize:16,fontWeight:500 }}>Open your passport</span>
+        <span style={{ display:"block",fontSize:13,marginTop:2 }}>Your identity, stamps and journal</span>
+        <span style={{ display:"block",fontSize:13,marginTop:4 }}>Tap me to open ›</span>
       </button>
 
       {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
       <DailyReminder userId={userId} token={token}/>
 
       {/* WEEKLY NUDGE: prompt to update intentions */}
-      {(()=>{ const last = Math.max(0,...threads.map(t=>t.createdTs||0)); const stale = isPreview || (threads.length && last && Date.now()-last > 7*86400000); const open = threads.filter(t=>!t.done).length; return stale ? (
+      {(()=>{ const last = Math.max(0,...threads.map(t=>t.createdTs||0)); const stale = !isPreview && (threads.length && last && Date.now()-last > 7*86400000); const open = threads.filter(t=>!t.done).length; return stale ? (
         <button onClick={()=>setTab("proof")} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
           <span style={{ display:"block",fontSize:15 }}>Has anything arrived? Update proofOS ›</span>
         </button>) : null; })()}
@@ -1784,24 +1779,6 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* PUSH PROMPT */}
       {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} token={token} C={C} onDismiss={onDismissPush}/>}
-
-      {/* PROOFOS TEASER, home tab */}
-      <div onClick={()=>setTab("proof")} style={{ margin:"12px 16px 4px",padding:"18px 16px",background:C.bg2,border:`1px solid rgba(191,165,216,0.3)`,borderRadius:14,cursor:"pointer" }}>
-        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
-          <div style={{ fontSize:20,fontWeight:500,color:C.cr }}><span style={{ fontSize:"0.75em",fontWeight:400 }}>proof</span>OS</div>
-          <span style={{ fontSize:15,color:"#F5E0A0" }}>›</span>
-        </div>
-        <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
-        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
-          {[["Bucket List","Add your dreams"],["Active","Intentions now"],["Proof Wall","Your evidence"]].map(([name,desc])=>(
-            <button key={name} onClick={e=>{e.stopPropagation();setTab("proof");}} className="shg-gfill" style={{ borderRadius:14,padding:"16px 10px",border:"none",cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",minHeight:78 }}>
-              <div style={{ fontSize:17,fontWeight:500,marginBottom:4 }}>{name}</div>
-              <div style={{ fontSize:12 }}>{desc} ›</div>
-            </button>
-          ))}
-        </div>
-        <div style={{ fontSize:14,fontWeight:500 }}>Open proofOS →</div>
-      </div>
 
       {/* QUICK DESIRE CAPTURE */}
       <FoldCard title="State a desire" sub="Say it in the present tense and save it">
