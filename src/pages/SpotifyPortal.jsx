@@ -4,7 +4,7 @@ import GoddessPassport from "../components/GoddessPassport.jsx";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
-import KnowledgeGuide from "../components/KnowledgeGuide.jsx";
+import KnowledgeGuide, { GuideIcon } from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
@@ -1698,7 +1698,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
     try { r.start(); } catch(e) { setQuickListening(false); voiceRef.current = null; setVoiceError("Could not start microphone"); }
   };
   return (
-    <div className="shg-tab-glow" style={{ paddingBottom:80, zoom:1 }}>
+    <div className="shg-tab-glow shg-home" style={{ paddingBottom:80, zoom:1 }}>
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
       <style>{`@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 24px rgba(245,224,160,.55),0 0 60px rgba(191,165,216,.35)}50%{background-position:100% 50%;box-shadow:0 0 40px rgba(44,183,167,.6),0 0 90px rgba(232,184,112,.45)}100%{background-position:0% 50%;box-shadow:0 0 24px rgba(245,224,160,.55),0 0 60px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-lucky{animation:none!important}}`}</style>
       <div className="shg-hero shg-lucky shg-no-paper" style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#BFA5D8,#F5E0A0)", backgroundSize:"300% 300%", animation:"shg-lucky 6s ease-in-out infinite", margin:"20px 16px 18px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
@@ -1714,8 +1714,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </div>
 
       {/* OPEN YOUR PASSPORT */}
-      <button onClick={openProfile} className="shg-gb shg-paper" style={{ display:"flex",alignItems:"center",gap:16,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
-        <span className="shg-gfill" style={{ width:52,height:68,borderRadius:8,flexShrink:0,display:"grid",placeItems:"center" }}>
+      <button onClick={openProfile} className="shg-gb shg-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:18,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
+        <span className="shg-gfill" style={{ width:40,height:52,borderRadius:7,flexShrink:0,display:"grid",placeItems:"center" }}>
           <svg width="30" viewBox="0 0 40 40" fill="none" stroke="#000" strokeWidth="1.6" aria-hidden="true"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></svg>
         </span>
         <span style={{ flex:1 }}>
@@ -1730,9 +1730,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* WEEKLY NUDGE: prompt to update intentions */}
       {(()=>{ const last = Math.max(0,...threads.map(t=>t.createdTs||0)); const stale = isPreview || (threads.length && last && Date.now()-last > 7*86400000); const open = threads.filter(t=>!t.done).length; return stale ? (
-        <button onClick={()=>setTab("proof")} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
-          <span style={{ display:"block",fontSize:17,fontWeight:500 }}>It's been a week, {isPreview?"Reshma":firstName}</span>
-          <span style={{ display:"block",fontSize:14,marginTop:4 }}>{open} intention{open===1?"":"s"} still in progress. Has anything arrived? Update proofOS ›</span>
+        <button onClick={()=>setTab("proof")} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+          <span style={{ display:"block",fontSize:15 }}>Has anything arrived? Update proofOS ›</span>
         </button>) : null; })()}
 
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
@@ -1816,10 +1815,9 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
-        <button onClick={()=>openGuide()} className="shg-paper" style={{ display:"block", width:"100%", padding:"20px", borderRadius:20, cursor:"pointer", fontFamily:"'Jost',sans-serif", textAlign:"center", color:"#000" }}>
-          <span style={{ display:"block", fontSize:19, fontWeight:500 }}>Guidebook</span>
-          <span style={{ display:"block", fontSize:14, marginTop:4 }}>Everything explained, with visuals</span>
-          <span style={{ display:"block", fontSize:14, marginTop:8 }}>Tap me to open ›</span>
+        <button onClick={()=>openGuide()} className="shg-no-paper" style={{ display:"flex", alignItems:"center", gap:14, width:"100%", padding:"12px 16px", borderRadius:16, cursor:"pointer", fontFamily:"'Jost',sans-serif", background:"#000", border:"1px solid rgba(242,236,228,0.18)", textAlign:"left" }}>
+          <GuideIcon k="guide" size={52}/>
+          <span style={{ flex:1 }}><span style={{ display:"block", fontSize:16, color:"#F2ECE4" }}>Guidebook</span><span style={{ display:"block", fontSize:13, color:"#F2ECE4", marginTop:2 }}>Tap me to open ›</span></span>
         </button>
       </div>
 
@@ -2669,10 +2667,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={()=>openGuide()} className="shg-paper" style={{ display:"block", width:"100%", padding:"20px", borderRadius:20, cursor:"pointer", fontFamily:"'Jost',sans-serif", textAlign:"center", color:"#000" }}>
-          <span style={{ display:"block", fontSize:19, fontWeight:500 }}>Guidebook</span>
-          <span style={{ display:"block", fontSize:14, marginTop:4 }}>Everything explained, with visuals</span>
-          <span style={{ display:"block", fontSize:14, marginTop:8 }}>Tap me to open ›</span>
+        <button onClick={()=>openGuide()} className="shg-no-paper" style={{ display:"flex", alignItems:"center", gap:14, width:"100%", padding:"12px 16px", borderRadius:16, cursor:"pointer", fontFamily:"'Jost',sans-serif", background:"#000", border:"1px solid rgba(242,236,228,0.18)", textAlign:"left" }}>
+          <GuideIcon k="guide" size={52}/>
+          <span style={{ flex:1 }}><span style={{ display:"block", fontSize:16, color:"#F2ECE4" }}>Guidebook</span><span style={{ display:"block", fontSize:13, color:"#F2ECE4", marginTop:2 }}>Tap me to open ›</span></span>
         </button>
       </div>
     </div>
@@ -3700,15 +3697,15 @@ function CommunityTab({ C, isPreview }) {
 }
 
 // Soft pulsing glow for the Guidebook entry.
-if (typeof document !== "undefined" && !document.getElementById("shg-guide-glow-css")) { const st = document.createElement("style"); st.id = "shg-guide-glow-css"; st.textContent = `@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}50%{background-position:100% 50%;box-shadow:0 0 32px rgba(44,183,167,.55)}100%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}}@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}.shg-guide-glow{animation:shg-gg 3.6s ease-in-out infinite}@keyframes shg-gg{0%,100%{box-shadow:0 0 16px rgba(232,184,112,.35),0 0 40px rgba(191,165,216,.2)}50%{box-shadow:0 0 28px rgba(44,183,167,.5),0 0 64px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-guide-glow{animation:none}}`; document.head.appendChild(st); }
+if (typeof document !== "undefined" && !document.getElementById("shg-guide-glow-css")) { const st = document.createElement("style"); st.id = "shg-guide-glow-css"; st.textContent = `.shg-home :is(div,button).shg-paper.shg-paper.shg-paper.shg-paper.shg-paper.shg-paper{border-width:1px!important}@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}50%{background-position:100% 50%;box-shadow:0 0 32px rgba(44,183,167,.55)}100%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}}@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}.shg-guide-glow{animation:shg-gg 3.6s ease-in-out infinite}@keyframes shg-gg{0%,100%{box-shadow:0 0 16px rgba(232,184,112,.35),0 0 40px rgba(191,165,216,.2)}50%{box-shadow:0 0 28px rgba(44,183,167,.5),0 0 64px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-guide-glow{animation:none}}`; document.head.appendChild(st); }
 
 // A home card that shows only its title until tapped, then spins open.
 function FoldCard({ title, sub, children }) {
   const [open, setOpen] = useState(false);
   if (!open) return (
-    <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
-      <span style={{ display:"block",fontSize:19,fontWeight:500 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:14,marginTop:4 }}>{sub}</span>}
-      <span style={{ display:"block",fontSize:14,marginTop:8 }}>Tap me to open ›</span>
+    <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:18,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+      <span style={{ display:"block",fontSize:16,fontWeight:500 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:13,marginTop:2 }}>{sub}</span>}
+      <span style={{ display:"block",fontSize:13,marginTop:4 }}>Tap me to open ›</span>
     </button>
   );
   return (
@@ -3809,11 +3806,11 @@ function DailyReminder({ userId, token }) {
   const [open, setOpen] = useState(false);
   const r = REMINDERS[Math.floor(Date.now()/86400000) % REMINDERS.length];
   return (
-    <div className="shg-paper" style={{ margin:"0 16px 16px",padding:"20px 18px",borderRadius:20,textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+    <div className="shg-paper" style={{ margin:"0 16px 12px",padding:"12px 16px",borderRadius:18,textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
       <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"block",width:"100%",cursor:"pointer" }}>
-        <div style={{ fontSize:12,letterSpacing:".3em",marginBottom:10 }}>TODAY'S EQUATION</div>
-        <div style={{ fontSize:"clamp(17px,5vw,23px)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis" }}>{r.eq}</div>
-        <div style={{ fontSize:14,marginTop:10 }}>{open ? "Tap to close ⌃" : "Tap me to open ›"}</div>
+        <div style={{ fontSize:11,letterSpacing:".3em",marginBottom:6 }}>TODAY'S EQUATION</div>
+        <div style={{ fontSize:"clamp(15px,4.4vw,19px)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis" }}>{r.eq}</div>
+        <div style={{ fontSize:13,marginTop:6 }}>{open ? "Tap to close ⌃" : "Tap me to open ›"}</div>
       </button>
       {open && (
         <div style={{ marginTop:14,textAlign:"center",maxHeight:"55vh",overflowY:"auto",WebkitOverflowScrolling:"touch",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",paddingRight:4 }}>

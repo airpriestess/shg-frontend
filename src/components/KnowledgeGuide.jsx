@@ -146,6 +146,38 @@ const SECTIONS = [
 
 ];
 
+
+// Elegant line icons in the workbook style: soft ombre halo, dotted gradient
+// ring, thin gradient strokes. One per Guidebook topic.
+const GI = {
+  listen: '<path d="M30 56v-6a20 20 0 0 1 40 0v6"/><rect x="26" y="54" width="10" height="16" rx="4"/><rect x="64" y="54" width="10" height="16" rx="4"/>',
+  intentions: '<circle cx="50" cy="50" r="18"/><circle cx="50" cy="50" r="8"/><path d="M50 24v8M50 68v8M24 50h8M68 50h8"/>',
+  signs: '<path d="M50 28 C52 44 56 48 72 50 C56 52 52 56 50 72 C48 56 44 52 28 50 C44 48 48 44 50 28 Z"/><path d="M70 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>',
+  proof: '<rect x="32" y="28" width="36" height="44" rx="4"/><path d="M41 52l6 6 12-13"/>',
+  bucket: '<path d="M36 34h28l-3 38H39z"/><path d="M32 34h36"/><path d="M43 46h14M43 55h14M43 64h8"/>',
+  start: '<circle cx="50" cy="50" r="20"/><path d="M58 42l-5 12-11 4 5-12z"/>',
+  tracks: '<path d="M30 50v0M36 44v12M42 38v24M48 32v36M54 40v20M60 36v28M66 44v12M72 48v4"/>',
+  mechanism: '<path d="M50 30c-10 0-16 6-16 14 0 5 3 8 3 12s-3 6-3 10h32c0-4-3-6-3-10s3-7 3-12c0-8-6-14-16-14z"/><path d="M50 30v36"/>',
+  results: '<path d="M30 70h40"/><rect x="34" y="54" width="7" height="16" rx="2"/><rect x="46.5" y="44" width="7" height="26" rx="2"/><rect x="59" y="32" width="7" height="38" rx="2"/>',
+  hawkins: '<path d="M36 72V28M36 34h24M36 46h20M36 58h14"/><circle cx="64" cy="34" r="3"/>',
+  guide: '<path d="M50 34c-6-4-14-5-20-4v36c6-1 14 0 20 4 6-4 14-5 20-4V30c-6-1-14 0-20 4z"/><path d="M50 34v36"/>',
+};
+export function GuideIcon({ k, size = 64 }) {
+  const id = "gi" + k;
+  return (
+    <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true" style={{ flexShrink:0, display:"block" }}>
+      <defs>
+        <radialGradient id={`${id}h`}><stop offset="0" stopColor="#6b5a4a" stopOpacity=".8"/><stop offset=".6" stopColor="#2f2a38" stopOpacity=".6"/><stop offset="1" stopColor="#000" stopOpacity="0"/></radialGradient>
+        <linearGradient id={`${id}s`} x1="1" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".35" stopColor="#E8B870"/><stop offset=".65" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="46" fill={`url(#${id}h)`}/>
+      <circle cx="50" cy="50" r="42" fill="none" stroke={`url(#${id}s)`} strokeWidth=".8" strokeDasharray=".5 2.6" strokeLinecap="round"/>
+      <g fill="none" stroke={`url(#${id}s)`} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: GI[k] || GI.guide }}/>
+    </svg>
+  );
+}
+const CAT_ICON = { "How to listen":"listen","Intentions":"intentions","Signs & synchronicities":"signs","Proof Wall, your evidence log":"proof","Bucket List":"bucket","Getting started":"start","Tracks & listening":"tracks","The mechanism":"mechanism","Results & troubleshooting":"results","The Hawkins Scale":"hawkins" };
+
 // Slides from the Inside Your Brain method deck, shown above each topic's answers.
 const SLIDES = {
   "Intentions": ["intention-to-manifestation","intention-list"],
@@ -195,8 +227,8 @@ export default function KnowledgeGuide({ onClose, start = null }) {
           <><style>{`body .shg-kg.shg-kg{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:10px}@media(min-width:700px){body .shg-kg.shg-kg{grid-template-columns:repeat(3,1fr)!important}}`}</style><div className="shg-kg">
             {CATEGORIES.map(c => (
               <button key={c.label} onClick={()=>setCat(c.label)} style={{ background:"#000", color:"#F2ECE4", border:"1px solid transparent", boxShadow:"0 0 18px rgba(191,165,216,.25)", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:16, minHeight:72, textAlign:"center", alignItems:"center", padding:"14px 12px", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"center" }}>
-                <span style={{ fontSize:17, fontWeight:300, letterSpacing:".04em", lineHeight:1.25, background:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{c.label}</span>
-                <span style={{ fontSize:11, fontWeight:300, letterSpacing:".2em", marginTop:4 }}>{c.keys.length} {c.keys.length===1?"ANSWER":"ANSWERS"}</span>
+                <GuideIcon k={CAT_ICON[c.label]} size={60}/><span style={{ fontSize:15, fontWeight:300, letterSpacing:".03em", lineHeight:1.25, marginTop:8, background:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{c.label}</span>
+                
               </button>
             ))}
             <div style={{ gridColumn:"1/-1", marginTop:8 }}><WorkWithReshma onShop={()=>{ onClose(); window.dispatchEvent(new Event("shg-go-shop")); }}/></div>
