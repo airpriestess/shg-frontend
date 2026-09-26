@@ -4371,13 +4371,17 @@ const OB_SPECIFIC = [
 ];
 const OB_BLOCK = [
   { label:"I don't believe it's possible for me" },
+  { label:"I don't feel worthy or good enough" },
+  { label:"Doubt creeps in" },
+  { label:"Impatience, I want it now" },
+  { label:"I try so hard and see no result" },
+  { label:"I try to control every outcome" },
+  { label:"Someone shows interest, I get excited, then nothing happens" },
   { label:"I self-sabotage when things get good" },
-  { label:"I know what to do but can't make myself do it" },
-  { label:"I feel like I'm behind everyone else" },
-  { label:"I keep attracting the same patterns" },
-  { label:"Nothing seems to stick" },
-  { label:"I believe it, but I rush and cancel it out" },
-  { label:"I'm consistent but nothing's moved yet" },
+  { label:"I feel behind everyone else" },
+  { label:"I'm stuck in a loop" },
+  { label:"I lack confidence" },
+  { label:"I'm consistent but nothing's shifted yet" },
 ];
 const OB_WHERE = [
   { label:"🌑 Rock bottom — starting from scratch" },
@@ -4400,11 +4404,9 @@ const OB_LISTEN = [
   { label:"Multiple times a day",     sub:"I'm going all in" },
 ];
 const OB_FORMAT = [
-  { label:"Hypnosis",    sub:"Guided deep-state sessions — high impact" },
-  { label:"Subliminal",  sub:"Silent or music-backed affirmations" },
-  { label:"Melodic",     sub:"Music that shifts your frequency" },
-  { label:"Sleep audio", sub:"Works while I rest" },
-  { label:"Mix it up",   sub:"Surprise me — I trust the algorithm" },
+  { label:"Hypnosis",    sub:"Guided deep-state sessions" },
+  { label:"Subliminal",  sub:"Music-backed affirmations" },
+  { label:"Mix it up",   sub:"A bit of everything" },
 ];
 const OB_FREQ = [
   { label:"Once a day" },
@@ -4424,6 +4426,12 @@ const OB_BUCKET = [
   { label:"Maybe later — just start me",       sub:"I'll add desires as I go" },
   { label:"I already know what I want",        sub:"I'll add them myself in proofOS" },
 ];
+
+const obToggle = (setter) => (label) => setter(prev => {
+  const cur = prev ? prev.split("; ") : [];
+  return (cur.includes(label) ? cur.filter(x => x !== label) : cur.length < 3 ? [...cur, label] : cur).join("; ");
+});
+const obHas = (val, label) => (val ? val.split("; ") : []).includes(label);
 
 function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, onSkip, C }) {
   const isDark = false; // always on the cream graph paper
@@ -4551,16 +4559,16 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
     {
       q: 2,
       title: "Is there something specific you're going for?",
-      sub: "The more specific you are, the better we can match you.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_SPECIFIC.map(b => chip(b.label, specific===b.label, ()=>setSpecific(b.label)))}</div>,
+      sub: "Pick up to 3. The more specific, the better we can match you.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_SPECIFIC.map(b => chip(b.label, obHas(specific, b.label), ()=>obToggle(setSpecific)(b.label)))}</div>,
       canNext: !!specific,
       next: () => setStep(2),
     },
     {
       q: 3,
       title: "What's your biggest block right now?",
-      sub: "This is between you and the app. No judgement.",
-      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_BLOCK.map(b => chip(b.label, block===b.label, ()=>setBlock(b.label)))}</div>,
+      sub: "Pick up to 3. This is between you and the app, no judgement.",
+      content: <div style={{ display:"flex",flexDirection:"column",gap:10 }}>{OB_BLOCK.map(b => chip(b.label, obHas(block, b.label), ()=>obToggle(setBlock)(b.label)))}</div>,
       canNext: !!block,
       next: () => setStep(3),
     },
