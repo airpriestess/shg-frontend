@@ -83,6 +83,8 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const [customWord, setCustomWord] = useState("");
   const [themeMsg, setThemeMsg] = useState("");
   const [lifeEdit, setLifeEdit] = useState(false);
+  // Cover look: black graph paper (default) or white graph paper; ?cover=white previews the other.
+  const coverStyle = (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("cover")) || "black";
 
   useEffect(() => { store(key, p); }, [key, p]);
   useEffect(() => {
@@ -166,7 +168,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
         {!opened ? (
           <>
-            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(440px, 88vw, calc((100svh - 150px) * 0.71))", aspectRatio: "0.71", margin: "4vh auto 0", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
+            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(440px, 88vw, calc((100svh - 150px) * 0.71))", aspectRatio: "0.71", margin: "4vh auto 0", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: coverStyle === "white" ? "#F2ECE4" : "#000", backgroundImage: coverStyle === "white" ? "linear-gradient(rgba(191,165,216,.45) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.45) 1px,transparent 1px)" : "linear-gradient(rgba(191,165,216,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.2) 1px,transparent 1px)", backgroundSize: "20px 20px", boxShadow: coverStyle === "white" ? "inset 10px 0 14px -8px rgba(0,0,0,.25), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)" : "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
               <span aria-hidden="true" style={{ position: "absolute", left: 14, top: 10, bottom: 10, width: 1, background: "rgba(242,236,228,.08)" }} />
               <span style={{ fontSize: 11, letterSpacing: ".38em", paddingLeft: ".38em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
               <span style={{ display: "grid", justifyItems: "center", gap: 18 }}>
@@ -174,7 +176,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 <span style={{ fontSize: 13, letterSpacing: ".42em", paddingLeft: ".42em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>SELF HYPNOSIS GODDESS</span>
                 <span style={{ fontSize: 34, letterSpacing: ".3em", paddingLeft: ".3em", fontWeight: 500, background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>PASSPORT</span>
               </span>
-              <span style={{ display: "grid", justifyItems: "center", gap: 14 }}><svg aria-hidden="true" width="44" height="30" viewBox="0 0 44 30" fill="none" stroke="#E8B870" strokeWidth="1.4"><rect x="1" y="1" width="42" height="28" rx="5" /><circle cx="22" cy="15" r="7" /><path d="M1 15h14M29 15h14" /></svg><span className="pp-tap" style={{ fontSize: 11, letterSpacing: ".3em", paddingLeft: ".3em", color: "#F2ECE4" }}>TAP TO OPEN</span></span>
+              <span style={{ display: "grid", justifyItems: "center", gap: 14 }}><svg aria-hidden="true" width="44" height="30" viewBox="0 0 44 30" fill="none" stroke="#E8B870" strokeWidth="1.4"><rect x="1" y="1" width="42" height="28" rx="5" /><circle cx="22" cy="15" r="7" /><path d="M1 15h14M29 15h14" /></svg><span className="pp-tap" style={{ fontSize: 11, letterSpacing: ".3em", paddingLeft: ".3em", color: coverStyle === "white" ? "#000" : "#F2ECE4" }}>TAP TO OPEN</span></span>
             </button>
             <button onClick={() => { setOpened(true); setPage(4); }} style={{ ...pill, display: "block", margin: "10px auto 0", background: "transparent", color: "#F2ECE4", textDecoration: "underline", textUnderlineOffset: 3 }}>Settings</button>
           </>

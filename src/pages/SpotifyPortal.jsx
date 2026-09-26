@@ -1593,11 +1593,11 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
   const [view, setView] = useState("cover"); // cover | script | desc
   return (
     <div className="shg-mp" style={{ position:"fixed",inset:0,background:C.bg,zIndex:300,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto",WebkitOverflowScrolling:"touch" }}>
-      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:"calc(env(safe-area-inset-top,0px) + 44px)",marginBottom:20 }}>
+      <div className="shg-mp-head" style={{ display:"grid",gridTemplateColumns:"1fr auto 1fr",alignItems:"center",width:"100%",paddingTop:"calc(env(safe-area-inset-top,0px) + 44px)",marginBottom:20 }}>
         <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
-        <div style={{ display:"flex",gap:10 }}>
-          <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} aria-label="Open everything about this track" style={{ background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"5px 12px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Open me</button>
+        <div style={{ display:"flex",gap:10,justifySelf:"end",alignItems:"center" }}>
+          <button onClick={()=>setView(v=>v==="desc"?"cover":"desc")} aria-label="Open everything about this track" style={{ background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"5px 10px",fontSize:12,whiteSpace:"nowrap",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Open me</button>
           <button onClick={()=>setView(v=>v==="script"?"cover":"script")} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }} aria-label="Read along" title="Read along">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={view==="script"?"#E8B870":C.cr} strokeWidth="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
           </button>
@@ -3741,7 +3741,7 @@ function CommunityTab({ C, isPreview }) {
 }
 
 // Soft pulsing glow for the Guidebook entry.
-if (typeof document !== "undefined" && !document.getElementById("shg-guide-glow-css")) { const st = document.createElement("style"); st.id = "shg-guide-glow-css"; st.textContent = `.shg-mp>*{flex-shrink:0}.shg-home :is(div,button).shg-paper.shg-paper.shg-paper.shg-paper.shg-paper.shg-paper{border-width:1px!important}@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}50%{background-position:100% 50%;box-shadow:0 0 32px rgba(44,183,167,.55)}100%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}}@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}.shg-guide-glow{animation:shg-gg 3.6s ease-in-out infinite}@keyframes shg-gg{0%,100%{box-shadow:0 0 16px rgba(232,184,112,.35),0 0 40px rgba(191,165,216,.2)}50%{box-shadow:0 0 28px rgba(44,183,167,.5),0 0 64px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-guide-glow{animation:none}}`; document.head.appendChild(st); }
+if (typeof document !== "undefined" && !document.getElementById("shg-guide-glow-css")) { const st = document.createElement("style"); st.id = "shg-guide-glow-css"; st.textContent = `body .shg-mp-head.shg-mp-head{display:grid!important;grid-template-columns:1fr auto 1fr!important;flex-direction:initial!important}.shg-mp-head>:first-child{justify-self:start}.shg-mp>*{flex-shrink:0}.shg-home :is(div,button).shg-paper.shg-paper.shg-paper.shg-paper.shg-paper.shg-paper{border-width:1px!important}@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}50%{background-position:100% 50%;box-shadow:0 0 32px rgba(44,183,167,.55)}100%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}}@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}.shg-guide-glow{animation:shg-gg 3.6s ease-in-out infinite}@keyframes shg-gg{0%,100%{box-shadow:0 0 16px rgba(232,184,112,.35),0 0 40px rgba(191,165,216,.2)}50%{box-shadow:0 0 28px rgba(44,183,167,.5),0 0 64px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-guide-glow{animation:none}}`; document.head.appendChild(st); }
 
 // A home card that shows only its title until tapped, then spins open.
 function FoldCard({ title, sub, children }) {
