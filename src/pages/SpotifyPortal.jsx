@@ -1813,8 +1813,11 @@ function HomeTab({ userEmail, greet, firstName, track, play, liked, toggleLike, 
       <div className="shg-hero shg-lucky shg-no-paper" style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#BFA5D8,#F5E0A0)", backgroundSize:"300% 300%", animation:"shg-lucky 6s ease-in-out infinite", margin:"20px 16px 18px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
         <img src="/logo_transparent_cropped.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
         <div onClick={()=>openPlayer?.()} style={{ cursor:"pointer", position:"relative" }}>
-          <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:400, color:"#000", marginBottom:10 }}>WELCOME BACK</div>
-          <div style={{ display:"flex", alignItems:"center", gap:12 }}>{passportPhoto && <img src={passportPhoto} alt="" style={{ width:48, height:48, borderRadius:"50%", objectFit:"cover", border:"2px solid #000", flexShrink:0 }}/>}<div style={{ color:"#000", fontSize:34, fontWeight:400, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {passportName || (isPreview ? "Reshma" : firstName)}</div></div>
+          <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:300, color:"#000", marginBottom:10 }}>WELCOME BACK</div>
+          <div style={{ display:"flex", alignItems:"center", gap:12 }}>{passportPhoto && <img src={passportPhoto} alt="" style={{ width:48, height:48, borderRadius:"50%", objectFit:"cover", border:"2px solid #000", flexShrink:0 }}/>}<div style={{ color:"#000", fontSize:34, fontWeight:300, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {passportName || (isPreview ? "Reshma" : firstName)}</div></div>
+          {(()=>{ const dream = threads.filter(t => !t.done).slice().sort((a,b)=>(b.createdTs||0)-(a.createdTs||0))[0]?.desire; return (
+            <div style={{ fontSize:15, fontWeight:300, color:"#000", marginTop:8, lineHeight:1.45, maxWidth:320 }}>Of course. Obviously. You said it, so it is done{dream ? <>: <span style={{ fontWeight:300, background:"#000", color:"#F2ECE4", padding:"1px 8px", borderRadius:8, boxDecorationBreak:"clone", WebkitBoxDecorationBreak:"clone" }}>{dream}</span></> : "."}</div>
+          ); })()}
           <LastPlayed play={play} isPreview={isPreview}/>
         </div>
 
@@ -3336,11 +3339,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           {(()=>{ try { return localStorage.getItem("shg_hide_fab")==="1"; } catch { return false; } })() && <button onClick={e=>{ window.dispatchEvent(new Event("shg-show-fab")); e.currentTarget.remove(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,marginBottom:12,cursor:"pointer",fontFamily:"inherit" }}>✦ Show the sign button again</button>}
           {threads.every(t=>!(t.signs||[]).length) && !(()=>{ try { return JSON.parse(localStorage.getItem("shg_loose_signs")||"[]").length; } catch { return 0; } })() && <div style={{ fontSize:15,color:PC.text,padding:"8px 2px" }}>No signs yet. Open an intention and tap "Log a sign".</div>}
           {(()=>{ let loose=[]; try { loose = JSON.parse(localStorage.getItem("shg_loose_signs")||"[]"); } catch {} return [...threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))), ...loose.map(sg=>({ sg, t:{ desire:"No specific intention" } }))]; })().reverse().map(({sg,t},i)=>(
-            <div key={i} className="shg-gb" style={{ borderRadius:18,padding:"14px 16px",marginBottom:10 }}>
-              <div style={{ fontSize:16,color:PC.text }}>{sg.text}</div>
-              {sg.img && <img src={sg.img} alt="" style={{ marginTop:8,maxWidth:160,borderRadius:10,display:"block" }}/>}
+            <div key={i} style={{ borderRadius:18,padding:"12px 14px",marginBottom:10,display:"flex",gap:12,alignItems:"flex-start",...AREA_TINT(t.category || (sg.cats||[])[0]) }}>
+              {sg.img && <img src={sg.img} alt="" onError={e=>{ e.currentTarget.style.display="none"; }} style={{ width:64,height:64,objectFit:"cover",borderRadius:10,flexShrink:0 }}/>}
+              <div style={{ flex:1,minWidth:0 }}>
+              <div style={{ fontSize:16,fontWeight:300,color:PC.text }}>{sg.text}</div>
               {sg.audio && <audio src={sg.audio} controls style={{ marginTop:8,height:32 }}/>}
-              <div style={{ fontSize:13,color:PC.text,marginTop:4 }}>For: {t.desire}{sg.date?` · ${sg.date}`:""}</div>
+              <div style={{ fontSize:13,fontWeight:300,color:PC.text,marginTop:4 }}>For: {t.desire}{sg.date?` · ${sg.date}`:""}</div>
+              </div>
             </div>
           ))}
           <button className="shg-cta2" onClick={()=>setView("threads")} style={{ marginTop:8 }}>+ Log a sign on an intention</button>
@@ -3414,9 +3419,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               {manifested.map(d=>(
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
                   <span style={{ display:"flex",flexWrap:"wrap",gap:4,paddingRight:44 }}>{(d.categories||[d.category]).filter(Boolean).map(c=><span key={c} style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20 }}>✓ {String(c).replace("maxxing","")}</span>)}</span>
-                  <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
+                  {(()=>{ const im = d.proofImg || (d.signs||[]).map(x=>x.img).filter(Boolean).slice(-1)[0]; return im ? <img src={im} alt="" onError={e=>{ e.currentTarget.style.display="none"; }} style={{ width:"100%",height:110,objectFit:"cover",borderRadius:10,marginTop:6,display:"block" }}/> : null; })()}
+                  <div style={{ fontSize:15,fontWeight:300,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
                   <div style={{ fontSize:12,color:"#000",fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
-                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{` · Took ${d.days||1} day${(d.days||1)===1?"":"s"}`}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:300,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{` · Took ${d.days||1} day${(d.days||1)===1?"":"s"}`}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:"#000",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   {d.shared ? <details style={{ marginTop:8 }}><summary style={{ fontSize:12,fontWeight:300,cursor:"pointer",listStyle:"none" }}>Shared with the community ✓ · change ›</summary><div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}><ShareWinOptions d={d} userId={userId} isPreview={isPreview} onShared={()=>{}}/></div></details> : (
                     <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}>
@@ -3965,13 +3971,16 @@ function LastPlayed({ play, isPreview }) {
     <button onClick={e=>{ e.stopPropagation(); play?.(pick); }} style={{ display:"flex",alignItems:"center",gap:10,marginTop:12,background:"rgba(255,255,255,.55)",border:"1px solid #000",borderRadius:14,padding:"6px 10px 6px 6px",cursor:"pointer",fontFamily:"'Jost',sans-serif",color:"#000",maxWidth:"100%" }}>
       <Thumb title={pick.title} cat={pick.cat} size={36} radius={8}/>
       <span style={{ textAlign:"left",minWidth:0 }}>
-        <span style={{ display:"block",fontSize:10,letterSpacing:".2em" }}>{t ? "LAST PLAYED" : "TODAY'S TRACK"}</span>
+        <style>{`body .shg-lp-lab.shg-lp-lab{display:block;font-size:10px;letter-spacing:.2em;color:#000!important;-webkit-text-fill-color:#000!important;background:none!important}`}</style><span className="shg-lp-lab">{t ? "LAST PLAYED" : "TODAY'S TRACK"}</span>
         <span style={{ display:"block",fontSize:14,fontWeight:300,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",maxWidth:180 }}>{displayTitle(pick.title)}</span>
       </span>
       <span style={{ fontSize:16,marginLeft:4 }}>▶</span>
     </button>
   );
 }
+
+// Soft per-area tints, built only from the gradient stops.
+const AREA_TINT = (cat) => { const c = String(cat||""); const m = /Love/i.test(c) ? "191,165,216" : /Rich|Money/i.test(c) ? "232,184,112" : /Luck/i.test(c) ? "245,224,160" : /Beauty|Face|Body|Glow/i.test(c) ? "191,165,216" : /Self|Confiden/i.test(c) ? "44,183,167" : /Business|Career/i.test(c) ? "22,122,107" : /Sleep|Peace|Health/i.test(c) ? "44,183,167" : "191,165,216"; return { background:`rgba(${m},.16)`, border:`1.5px solid rgba(${m},.85)` }; };
 
 // ── BUCKET BOARD: the vision board from the deck ────────────────────────────
 const BUCKET_CATS = [["Travel","✈",/\b(travel|trip|holiday|bali|paris|flight|beach|italy|japan|month in|visit|business class|balloon)\b/i],["Home","⌂",/\b(home|house|flat|apartment|studio|wardrobe|garden|sea view|kitchen)\b/i],["Money","$",/(\$|£|€|\b(money|savings|income|debt|paid|rich|salary|10k|k a month)\b)/i],["Love","♡",/\b(partner|love|husband|boyfriend|texts|date|wedding|marry|soul ?mate)\b/i],["Glow","✧",/\b(skin|glow|hair|body|beauty|fit|nails)\b/i],["Self","◎",/\b(confiden|myself|calm|peace|healing|sisters|friends|course|learn|fashion week|upgrade)\b/i]];
@@ -4711,14 +4720,14 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
 
   return (
     <div className="shg-onb-paper" style={{ position:"fixed",inset:0,zIndex:2000,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"20px 20px",overflowY:"auto",WebkitOverflowScrolling:"touch",color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
-      <style>{`.shg-onb-paper input,.shg-onb-paper textarea{background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;border:1px solid #000!important}.shg-onb-paper input::placeholder,.shg-onb-paper textarea::placeholder{color:#000!important;opacity:.45}`}</style>
+      <style>{`body .shg-onb-paper .shg-onb-count.shg-onb-count{color:#000!important;-webkit-text-fill-color:#000!important;background:none!important;opacity:1!important}.shg-onb-paper input,.shg-onb-paper textarea{background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;border:1px solid #000!important}.shg-onb-paper input::placeholder,.shg-onb-paper textarea::placeholder{color:#000!important;opacity:.45}`}</style>
       <div style={{ maxWidth:500,width:"100%",margin:"0 auto",boxSizing:"border-box",padding:"calc(env(safe-area-inset-top,0px) + 28px) 20px 0",background:"transparent" }}>
         <div style={{ display:"flex",gap:3,marginBottom:20 }}>
           {steps.map((_,i) => (
             <div key={i} style={{ flex:1,height:3,borderRadius:2,background:i<=step?"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"rgba(191,165,216,.45)" }}/>
           ))}
         </div>
-        <div style={{ fontSize:11,letterSpacing:"0.18em",textTransform:"uppercase",color:dim,marginBottom:8 }}>{s.q} of {TOTAL}</div>
+        <div className="shg-onb-count" style={{ fontSize:11,letterSpacing:"0.18em",color:"#000",WebkitTextFillColor:"#000",marginBottom:8 }}>{s.q} OF {TOTAL}</div>
         <div style={{ fontSize:21,fontWeight:300,color:text,marginBottom:6,lineHeight:1.3 }}>{s.title}</div>
         <div style={{ fontSize:14,color:dim,marginBottom:20,lineHeight:1.5 }}>{s.sub}</div>
         <div style={{ marginBottom:24 }}>{s.content}</div>
