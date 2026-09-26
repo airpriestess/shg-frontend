@@ -142,18 +142,29 @@ const SECTIONS = [
 
 ];
 
+// Slides from the Inside Your Brain method deck, shown above each topic's answers.
+const SLIDES = {
+  "Intentions": ["intention-to-manifestation","intention-list"],
+  "Signs & synchronicities": ["signs-synchronicity","what-counts","signs-stories","why-222","read-a-sign","ask-for-sign","signs-build"],
+  "Proof Wall, your evidence log": ["hope-or-evidence","why-track","listen-notice-log","what-you-track","proof-chart"],
+  "Bucket List": ["bucket-list"],
+};
+
 const CATEGORIES = [
+  { label:"Intentions", keys:["how-to-write-intention","choosing-your-emotion","multiple-intentions","multiple-desires","same-track-multiple"] },
+  { label:"Signs & synchronicities", keys:["spotting-signs","signs"] },
+  { label:"Proof Wall, your evidence log", keys:["knowing-manifested","proof-wall-forever","proofos-not-journal"] },
+  { label:"Bucket List", keys:["bucket-vs-active"] },
   { label:"Getting started", keys:["formula","when","how-long-session","how-often","headphones","focus","fell-asleep","believe","state"] },
+  { label:"Tracks & listening", keys:["how-many-tracks","stop","hyp-vs-sub","music-only","vocals-only","hypno-vs-sub-versions","frequencies","frequencies-types","reiki"] },
   { label:"The mechanism", keys:["brainwaves","sats","emdr","subliminals-what","subliminals-all","visualization","one-method","therapy","emotional"] },
-  { label:"Tracks & listening", keys:["how-many-tracks","multiple-intentions","same-track-multiple","multiple-desires","stop","hyp-vs-sub","music-only","vocals-only","hypno-vs-sub-versions","frequencies","frequencies-types","reiki"] },
-  { label:"ProofOS", keys:["bucket-vs-active","how-to-write-intention","choosing-your-emotion","spotting-signs","signs","knowing-manifested","proof-wall-forever","proofos-not-journal"] },
   { label:"Results & troubleshooting", keys:["results","working","not-working","tell-anyone"] },
   { label:"The Hawkins Scale", keys:["hawkins","hawkins-how"] },
 ];
 
 export default function KnowledgeGuide({ onClose, start = null }) {
   // Home screen: one big block per topic. Tapping a block opens that topic on its own page.
-  const [cat, setCat] = useState(start?.cat || null);
+  const [cat, setCat] = useState(start?.key ? (CATEGORIES.find(c => c.keys.includes(start.key))?.label || null) : (start?.cat || null));
   const [open, setOpen] = useState(start?.key || null);
   const PAPER = { backgroundColor:"#F2ECE4", backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)", backgroundSize:"22px 22px", color:"#000" };
   const visibleSections = SECTIONS.filter(s => CATEGORIES.find(c => c.label === cat)?.keys.includes(s.k));
@@ -161,9 +172,7 @@ export default function KnowledgeGuide({ onClose, start = null }) {
   useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+    return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
   return (
@@ -177,10 +186,10 @@ export default function KnowledgeGuide({ onClose, start = null }) {
         </div>
 
         {!cat ? (
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))", gap:12 }}>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:12 }}>
             {CATEGORIES.map(c => (
-              <button key={c.label} onClick={()=>setCat(c.label)} style={{ ...PAPER, border:"none", borderRadius:20, padding:"20px 16px", minHeight:120, textAlign:"left", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
-                <span style={{ fontSize:19, fontWeight:500, lineHeight:1.25 }}>{c.label}</span>
+              <button key={c.label} onClick={()=>setCat(c.label)} style={{ ...PAPER, border:"none", borderRadius:20, padding:"20px 16px", minHeight:130, textAlign:"left", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
+                <span style={{ fontSize:22, fontWeight:500, lineHeight:1.25 }}>{c.label}</span>
                 <span style={{ fontSize:14 }}>{c.keys.length} answers ›</span>
               </button>
             ))}
@@ -188,6 +197,11 @@ export default function KnowledgeGuide({ onClose, start = null }) {
         ) : (
           <>
             <div style={{ fontSize:26, fontWeight:500, marginBottom:16 }}>{cat}</div>
+            {(SLIDES[cat] || []).length > 0 && (
+              <div style={{ display:"grid", gap:12, marginBottom:18 }}>
+                {SLIDES[cat].map(n => <img key={n} src={`/deck/${n}.webp`} alt="" loading="lazy" style={{ width:"100%", aspectRatio:"16/9", borderRadius:14, display:"block", border:"1px solid rgba(242,236,228,0.18)" }}/>)}
+              </div>
+            )}
             <div style={{ display:"grid", gap:10 }}>
               {visibleSections.map(s => (
                 <div key={s.k} style={{ ...PAPER, borderRadius:16, overflow:"hidden" }}>

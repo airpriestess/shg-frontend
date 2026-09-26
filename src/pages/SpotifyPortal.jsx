@@ -220,25 +220,14 @@ const THUMB_GRADS = {
   "#F5E0A0": ["#F5E0A0","#2CB7A7","#167A6B"],
 };
 
-// Track art in the style of the workbook covers: black, a soft gradient halo,
-// a dotted gradient ring and the category icon drawn in the brand gradient.
-// The halo angle and ring shift per title so every track looks distinct.
-function Thumb({ title, cat, size=48, radius=4 }) {
-  const c = CAT_ICONS[cat] || { icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
-  const h = [...(title||"")].reduce((a,ch)=>(a*31+ch.charCodeAt(0))>>>0,7);
-  const angle = 90 + (h % 6) * 30;
-  const ringDash = [2,3,4][h % 3];
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" color="#000" fill="none" stroke="#000">${c.icon}</svg>`;
-  const mask = `url("data:image/svg+xml,${encodeURIComponent(svg)}") center/contain no-repeat`;
-  const G = `linear-gradient(${angle}deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)`;
+// Track and category art: a crop of the matching cover (heart, diamond, clover),
+// so tracks, Library tiles and the category list all share one icon set.
+const CAT_COVER = { Lovemaxxing:"/shop/lovemaxxing.webp", Richgirlmaxxing:"/shop/richgirlmaxxing.webp", Luckygirlmaxxing:"/shop/luckygirlmaxxing.webp" };
+function Thumb({ cat, size=48, radius=4 }) {
+  const src = CAT_COVER[cat] || "/shop/method-deck.png";
   return (
     <div aria-hidden="true" style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", position:"relative", background:"#000", boxShadow:"inset 0 0 0 1px rgba(242,236,228,0.12)" }}>
-      <div style={{ position:"absolute", inset:"12%", borderRadius:"50%", background:G, opacity:0.28, filter:`blur(${Math.max(3,size*0.08)}px)` }}/>
-      <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%" }}>
-        <defs><linearGradient id={`tg${h}`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".5" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient></defs>
-        <circle cx="50" cy="50" r="40" fill="none" stroke={`url(#tg${h})`} strokeWidth={size<60?2:1.2} strokeDasharray={`0.5 ${ringDash}`} strokeLinecap="round" transform={`rotate(${angle} 50 50)`}/>
-      </svg>
-      <div style={{ position:"absolute", left:"22%", top:"22%", width:"56%", height:"56%", background:G, WebkitMask:mask, mask }}/>
+      <img src={src} alt="" loading="lazy" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", transform:"scale(2.4)", transformOrigin: CAT_COVER[cat] ? "50% 56%" : "50% 54%" }}/>
     </div>
   );
 }
@@ -332,7 +321,7 @@ const ALL_TRACKS = [
   { id:101, title:"I'm a Living Breathing Masterpiece", artist:"Reshma Oracle", dur:"20:00", cat:"Beautymaxxing",  format:"Melodic House", freq:"528hz",   tier:"audio", isNew:true, hasAudio:true },
   { id:102, title:"My Desires Are Obsessed With Me",    artist:"Reshma Oracle", dur:"20:00", cat:"Desiresmaxxing", format:"Melodic House", freq:"EMDR",    tier:"audio", isNew:true, hasAudio:true },
   { id:103, title:"Seduced Focus",                      artist:"Reshma Oracle", dur:"20:00", cat:"Selfmaxxing",    format:"Melodic House", freq:"Binaural", tier:"audio", isNew:true, hasAudio:true },
-  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Selfmaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
+  { id:1,  title:"Spoilt Goddess",           artist:"Reshma Oracle", dur:"4:32",  cat:"Lovemaxxing", format:"Melodic House", tier:"audio",   isNew:true,  hasAudio:true,
     desc:{ shift:"This shifts you from feeling like you have to earn good things happening to you, into feeling like you're already the woman everyone wants to spoil.",
       benefits:["Stop over-giving to feel worthy of receiving","Let people show up for you without guilt","Feel deserving of ease, not just effort"] } },
   { id:2,  title:"He Finds His Way Back",    artist:"Reshma Oracle", dur:"30:00", cat:"Lovemaxxing", format:"Subliminal",    tier:"audio",   isNew:false, hasAudio:false,
@@ -607,6 +596,9 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
     window.addEventListener("shg-open-guide", onGuide);
     return () => window.removeEventListener("shg-open-guide", onGuide);
   }, []);
+  // The mini player appears the first time a track plays and then stays, even when paused.
+  const [everPlayed, setEverPlayed] = useState(false);
+  useEffect(() => { if (playing) setEverPlayed(true); }, [playing]);
   const [logSignOpen, setLogSignOpen] = useState(false);
   const [hideFab, setHideFab] = useState(() => { try { return localStorage.getItem("shg_hide_fab") === "1"; } catch { return false; } });
   useEffect(() => {
@@ -847,6 +839,28 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   };
   const nextTrack = () => { const i=TRACKS.findIndex(t=>t.id===track.id); setTrack(TRACKS[(i+1)%TRACKS.length]); setProg(0); };
   const prevTrack = () => { const i=TRACKS.findIndex(t=>t.id===track.id); setTrack(TRACKS[(i-1+TRACKS.length)%TRACKS.length]); setProg(0); };
+  // Lock screen and Control Centre: cover art, track name and controls, like Spotify.
+  const nextRef = useRef(nextTrack); nextRef.current = nextTrack;
+  const prevRef = useRef(prevTrack); prevRef.current = prevTrack;
+  useEffect(() => {
+    if (!("mediaSession" in navigator) || !track) return;
+    const art = new URL(CAT_COVER[track.cat] || "/shop/method-deck.png", window.location.origin).href;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: displayTitle(track.title),
+        artist: "Reshma Oracle",
+        album: `Self Hypnosis Goddess · ${String(track.cat||"").replace("maxxing","maxxing")}`,
+        artwork: [{ src: art, sizes: "512x512" }, { src: art, sizes: "1024x1024" }],
+      });
+      navigator.mediaSession.setActionHandler("play", () => setPlay(true));
+      navigator.mediaSession.setActionHandler("pause", () => setPlay(false));
+      navigator.mediaSession.setActionHandler("nexttrack", () => nextRef.current());
+      navigator.mediaSession.setActionHandler("previoustrack", () => prevRef.current());
+      navigator.mediaSession.setActionHandler("seekbackward", null);
+      navigator.mediaSession.setActionHandler("seekforward", null);
+    } catch {}
+  }, [track]);
+  useEffect(() => { if ("mediaSession" in navigator) navigator.mediaSession.playbackState = playing ? "playing" : "paused"; }, [playing]);
 
   const [isDesktop, setDesktop] = useState(forceMode ? forceMode==="desktop" : (typeof window!=="undefined" && window.innerWidth>768));
   useEffect(()=>{
@@ -1198,7 +1212,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {/* Screen */}
       <div style={{ flex:1,overflowY:"auto",paddingBottom:150,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
-      {!fullP && playing && (
+      {!fullP && everPlayed && (
         <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:isPreview?60:76,left:8,right:8,zIndex:50,background:"linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
@@ -1220,7 +1234,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {!fullP && !hideFab && (
         <button
           onClick={() => setLogSignOpen(true)}
-          style={{ position:"fixed",bottom:playing?(isPreview?130:146):(isPreview?66:84),right:14,zIndex:70,width:46,height:46,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
+          style={{ position:"fixed",bottom:everPlayed?(isPreview?130:146):(isPreview?66:84),right:14,zIndex:70,width:46,height:46,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
           aria-label="Log a sign"
         >✦</button>
       )}
@@ -1760,27 +1774,25 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </button>
       </div>
 
+      {/* PROOFOS GUIDES: four simple blocks */}
+      <div style={{ padding:"4px 16px 14px" }}>
+        <style>{`body .shg-howto.shg-howto{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-howto.shg-howto{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+        <div className="shg-howto">
+          {[["Intentions","how-to-write-intention"],["Bucket List","bucket-vs-active"],["Signs","spotting-signs"],["Evidence","proof-wall-forever"]].map(([t,k])=>(
+            <button key={k} onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:k } }))} className="shg-no-paper" style={{ background:"#F2ECE4",color:"#000",border:"none",borderRadius:18,padding:"18px 16px",textAlign:"left",cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",justifyContent:"space-between",alignItems:"center",minHeight:76 }}>
+              <span style={{ fontSize:18,fontWeight:500 }}>{t}</span><span style={{ fontSize:20 }}>›</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+
       {/* YOUR FAVOURITES */}
       <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
           ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track, it lives here.</div>
           :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
-
-      {/* HOW TO WRITE IT: quick guides */}
-      <div style={{ padding:"4px 16px 8px" }}>
-        <div style={{ fontSize:20,fontWeight:400,color:C.cr,marginBottom:12 }}>How to write it</div>
-        <style>{`body .shg-howto.shg-howto{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-howto.shg-howto{grid-template-columns:repeat(4,1fr)!important}}`}</style>
-        <div className="shg-howto">
-          {[["An intention","Present or past tense, as if it's done: \"He texted me first.\"","how-to-write-intention"],["Your bucket list","Anything you want, ever. No rules, just write it down.","bucket-vs-active"],["A sign","What you noticed, where, and which desire it points to.","spotting-signs"],["Your proof","The real outcome, dated, with a photo if you have one.","knowing-manifested"]].map(([t,d,k])=>(
-            <button key={k} onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ cat:"ProofOS", key:k } }))} className="shg-no-paper" style={{ background:"#F2ECE4",color:"#000",border:"none",borderRadius:18,padding:"16px",textAlign:"left",cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",flexDirection:"column",gap:8,minHeight:140 }}>
-              <span style={{ fontSize:17,fontWeight:500 }}>{t}</span>
-              <span style={{ fontSize:14,lineHeight:1.45 }}>{d}</span>
-              <span style={{ fontSize:14,marginTop:"auto" }}>Read the guide ›</span>
-            </button>
-          ))}
-        </div>
-      </div>
 
 
 
@@ -2785,12 +2797,12 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
         </div>
       </div>
-      <style>{`body .shg-four.shg-four{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-four.shg-four{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+      <style>{`body .shg-four.shg-four{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}body .shg-four.shg-four{grid-template-columns:repeat(4,1fr)!important;gap:10px}@media(min-width:900px){body .shg-four.shg-four{max-width:640px}}`}</style>
       <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
-          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ position:"relative",padding:0,border:cat===c?"2px solid #F2ECE4":"1px solid rgba(242,236,228,0.18)",borderRadius:18,overflow:"hidden",cursor:"pointer",background:"#000",aspectRatio:"1",fontFamily:"'Jost',sans-serif" }}>
+          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ position:"relative",padding:0,border:cat===c?"2px solid #F2ECE4":"1px solid rgba(242,236,228,0.18)",borderRadius:14,overflow:"hidden",cursor:"pointer",background:"#000",aspectRatio:"1",fontFamily:"'Jost',sans-serif" }}>
             <img src={{Lovemaxxing:"/shop/lovemaxxing.webp",Richgirlmaxxing:"/shop/richgirlmaxxing.webp",Luckygirlmaxxing:"/shop/luckygirlmaxxing.webp",Selfmaxxing:"/shop/method-deck.png"}[c]} alt="" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",transform:"scale(2.4)",transformOrigin:c==="Selfmaxxing"?"50% 54%":"50% 56%" }}/>
-            <span style={{ position:"absolute",left:0,right:0,bottom:12,textAlign:"center",fontSize:18,fontWeight:500,color:"#F2ECE4",letterSpacing:".04em" }}>{name}</span>
+            <span style={{ position:"absolute",left:0,right:0,bottom:6,textAlign:"center",fontSize:13,fontWeight:500,color:"#F2ECE4" }}>{name}</span>
           </button>
         ))}
       </div>
@@ -2856,7 +2868,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                     onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "transparent"; }}
                   >
                     {(c!=="All"&&c!=="Liked") ? (
-                      <div style={{ width:10, height:10, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 5px ${catColor}99` }}/>
+                      <Thumb cat={c} size={28} radius={6}/>
                     ) : c==="Liked" ? (
                       <div style={{ width:10, height:10, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", color:R, fontSize:13 }}>♡</div>
                     ) : (
@@ -2992,7 +3004,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const confirmFinish = async (id) => {
     const after = [feelAfterLevel, feelAfterInput].filter(Boolean).join(", ");
     const thread = threads.find(t=>t.id===id);
-    setThreads(threads.map(t=>t.id===id?{...t,done:true,feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
+    setThreads(threads.map(t=>t.id===id?{...t,done:true,days:t.createdTs?Math.max(1,Math.round((Date.now()-t.createdTs)/86400000)):(t.days||1),feelAfter:after||t.feelAfter,createdAt:t.createdAt||new Date(Date.now()-t.days*86400000).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}:t));
     if (thread && onManifested) onManifested(thread);
     setFinishing(null); setFeelAfterInput(""); setFeelAfterLevel("");
     if (!isPreview && userId) {
@@ -3136,15 +3148,16 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
       {(()=>{
         const G = {
-          threads:{ t:"How to set an intention", steps:["Write it as if it has already happened: \"He texts me first\", not \"I want him to text me\".","Pick the category and how you honestly feel right now.","Play the suggested track daily, then log every sign under this intention."], key:"how-to-write-intention" },
-          signs:{ t:"How to spot a sign", steps:["A sign is anything that points to your desire: a number, a song, a comment, a coincidence.","Log it the moment you notice it, even if it feels small.","Link it to the intention it belongs to, so the trail builds up."], key:"spotting-signs" },
-          wall:{ t:"How the Proof Wall works", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, so you can see what you called in."], key:"proof-wall-forever" },
-          bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, ever. No pressure, no category.","When you're ready to focus, move it into Intentions.","If it arrives on its own, mark it manifested straight from here."], key:"bucket-vs-active" },
+          threads:{ t:"How to set an intention", steps:["Write it as if it has already happened: \"He texts me first\", not \"I want him to text me\".","Pick the category and how you honestly feel right now.","Play the suggested track daily, then log every sign under this intention."], key:"how-to-write-intention", img:"intention-list" },
+          signs:{ t:"How to spot a sign", steps:["A sign is anything that points to your desire: a number, a song, a comment, a coincidence.","Log it the moment you notice it, even if it feels small.","Link it to the intention it belongs to, so the trail builds up."], key:"spotting-signs", img:"ask-for-sign" },
+          wall:{ t:"Your Proof Wall is your evidence log", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, so you can see what you called in."], key:"proof-wall-forever", img:"hope-or-evidence" },
+          bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, ever. No pressure, no category.","When you're ready to focus, move it into Intentions.","Some things manifest by themselves, no hypnosis needed. If it arrives, mark it manifested straight from here."], key:"bucket-vs-active", img:"bucket-list" },
         }[view];
         if (!G) return null;
         return (
           <div style={{ background:"#F2ECE4",color:"#000",borderRadius:18,padding:"16px 18px",marginBottom:14 }}>
             <div style={{ fontSize:17,fontWeight:500,marginBottom:10 }}>{G.t}</div>
+            {G.img && <img src={`/deck/${G.img}.webp`} alt="" loading="lazy" style={{ width:"100%",aspectRatio:"16/9",borderRadius:12,display:"block",marginBottom:12 }}/>}
             <ol style={{ margin:0,paddingLeft:20,display:"grid",gap:6,fontSize:15,lineHeight:1.5 }}>{G.steps.map(x=><li key={x}>{x}</li>)}</ol>
             <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ cat:"ProofOS", key:G.key } }))} style={{ marginTop:12,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Read more in the Guidebook ›</button>
           </div>
@@ -3261,7 +3274,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                         Focus on this now
                       </button>
                       <button onClick={async ()=>{
-                        setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true} : t));
+                        setThreads(ts => ts.map(t => t.id===item.id ? {...t, done:true, days:t.createdTs?Math.max(1,Math.round((Date.now()-t.createdTs)/86400000)):(t.days||1), manifestedAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})} : t));
                         if (!isPreview && userId) {
                           try {
                             await quizApi(`/threads/${item.id}`, token, {
@@ -3294,10 +3307,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:8 }}>
               {manifested.map(d=>(
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
-                  <span style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
+                  <span style={{ display:"flex",flexWrap:"wrap",gap:4,paddingRight:44 }}>{(d.categories||[d.category]).filter(Boolean).map(c=><span key={c} style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20 }}>✓ {String(c).replace("maxxing","")}</span>)}</span>
                   <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
                   <div style={{ fontSize:12,color:"#000",fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
-                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{` · Took ${d.days||1} day${(d.days||1)===1?"":"s"}`}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:"#000",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"#fdf0e8",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
@@ -3380,7 +3393,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(", ");
             const localId = Date.now()+Math.random().toString(36).slice(2,8);
-            const optimistic = {id:localId,desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCats[0]||newCat,categories:newCats.length?newCats:[newCat],feelBefore:before,feelAfter:"",oldBelief:newBelief};
+            const optimistic = {id:localId,createdTs:Date.now(),createdAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCats[0]||newCat,categories:newCats.length?newCats:[newCat],feelBefore:before,feelAfter:"",oldBelief:newBelief};
             setThreads([optimistic,...threads]);
             setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewCats([]); setNewBelief(""); setAdding(false);
             if (!isPreview && userId) {
