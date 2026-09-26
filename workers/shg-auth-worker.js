@@ -108,7 +108,89 @@ const API_ROUTES = {
   "GET /me":         handleMe,
   "POST /subscribe": handleSubscribe,
   "POST /leads":     handleLeads,
+  "POST /shop/checkout": handleShopCheckout,
+  "GET /shop/download":  handleShopDownload,
+  "GET /shop/purchases": handleShopPurchases,
 };
+
+// ── In-app shop (Stripe Checkout + private PDFs in R2 bucket shg-products) ──
+const SHOP_PRODUCTS = {
+  luckygirlmaxxing: { name: "Luckygirlmaxxing Workbook", amount: 2900, file: "SHG_LuckyGirlMaxxing_Workbook.pdf" },
+  richgirlmaxxing:  { name: "Richgirlmaxxing Workbook",  amount: 2900, file: "SHG_RichGirlMaxxing_Workbook.pdf" },
+};
+
+async function stripeApi(env, path, form) {
+  const res = await fetch("https://api.stripe.com/v1/" + path, {
+    method: form ? "POST" : "GET",
+    headers: {
+      Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
+      ...(form ? { "Content-Type": "application/x-www-form-urlencoded" } : {}),
+    },
+    body: form ? new URLSearchParams(form).toString() : undefined,
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data?.error?.message || "Stripe error");
+  return data;
+}
+__name(stripeApi, "stripeApi");
+
+async function handleShopCheckout(request, env) {
+  if (!env.STRIPE_SECRET_KEY) return json({ error: "Shop is not switched on yet" }, 503);
+  const { sku } = await request.json().catch(() => ({}));
+  const p = SHOP_PRODUCTS[sku];
+  if (!p) return json({ error: "Unknown product" }, 400);
+  const user = await getUserFromToken(env, (request.headers.get("Authorization") || "").replace("Bearer ", ""));
+  const origin = new URL(request.url).origin;
+  const form = {
+    mode: "payment",
+    "line_items[0][quantity]": "1",
+    "line_items[0][price_data][currency]": "usd",
+    "line_items[0][price_data][unit_amount]": String(p.amount),
+    "line_items[0][price_data][product_data][name]": p.name,
+    "metadata[sku]": sku,
+    success_url: `${origin}/portal?purchase={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${origin}/portal?shop=cancel`,
+  };
+  if (user?.email) form.customer_email = user.email;
+  const session = await stripeApi(env, "checkout/sessions", form);
+  return json({ url: session.url });
+}
+__name(handleShopCheckout, "handleShopCheckout");
+
+// Verifies the Stripe session is paid, records it, then streams the PDF.
+async function handleShopDownload(request, env) {
+  const sid = new URL(request.url).searchParams.get("session_id") || "";
+  if (!/^cs_[A-Za-z0-9_]+$/.test(sid)) return json({ error: "Missing purchase" }, 400);
+  const session = await stripeApi(env, "checkout/sessions/" + sid);
+  const sku = session.metadata?.sku;
+  const p = SHOP_PRODUCTS[sku];
+  if (session.payment_status !== "paid" || !p) return json({ error: "Payment not found" }, 402);
+  try {
+    await env.DB.prepare(
+      "INSERT OR IGNORE INTO purchases (id, stripe_session_id, email, sku, amount, created_at) VALUES (?, ?, ?, ?, ?, ?)"
+    ).bind(uuid(), sid, (session.customer_details?.email || "").toLowerCase(), sku, session.amount_total, new Date().toISOString()).run();
+  } catch (e) {}
+  const obj = await env.PRODUCTS.get(p.file);
+  if (!obj) return json({ error: "File not uploaded yet" }, 404);
+  return new Response(obj.body, {
+    headers: {
+      "Content-Type": "application/pdf",
+      "Content-Disposition": `attachment; filename="${p.file}"`,
+      ...CORS_HEADERS,
+    },
+  });
+}
+__name(handleShopDownload, "handleShopDownload");
+
+async function handleShopPurchases(request, env) {
+  const user = await getUserFromToken(env, (request.headers.get("Authorization") || "").replace("Bearer ", ""));
+  if (!user) return json({ purchases: [] });
+  const { results } = await env.DB.prepare(
+    "SELECT stripe_session_id, sku, created_at FROM purchases WHERE email = ? ORDER BY created_at DESC"
+  ).bind(user.email.toLowerCase()).all();
+  return json({ purchases: results || [] });
+}
+__name(handleShopPurchases, "handleShopPurchases");
 
 // Short redirect links — one per channel, never changes
 const GO_LINKS = {

@@ -7,3 +7,7 @@ account_id = "28963e29ce046d75be64994ba4fb8b1d"
 binding = "DB"
 database_name = "shg-database"
 database_id = "e02632fe-b709-4bb0-8b8d-ace23795556a"
+
+[[r2_buckets]]
+binding = "PRODUCTS"
+bucket_name = "shg-products"

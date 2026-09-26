@@ -1164,7 +1164,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {/* Screen */}
       <div style={{ flex:1,overflowY:"auto",paddingBottom:150,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
-      {!fullP && (playing || prog > 0) && (
+      {!fullP && playing && (
         <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:isPreview?60:76,left:8,right:8,zIndex:50,background:"linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
@@ -1186,7 +1186,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {!fullP && !hideFab && (
         <button
           onClick={() => setLogSignOpen(true)}
-          style={{ position:"fixed",bottom:isPreview?130:146,right:18,zIndex:70,width:52,height:52,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
+          style={{ position:"fixed",bottom:playing?(isPreview?130:146):(isPreview?66:84),right:14,zIndex:70,width:46,height:46,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
           aria-label="Log a sign"
         >✦</button>
       )}
@@ -2710,14 +2710,14 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
-        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 10px",margin:isP?"0 -10px":0,borderRadius:isP?8:0,background:isP?(C.bg==="#000000"?"rgba(232,184,112,0.12)":"#000000"):"none",borderBottom:isP?"none":`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:10,borderRadius:16,marginBottom:10,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"22px 22px",color:"#000",outline:isP?"2px solid #BFA5D8":"none",cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
             
           </div>
           <div style={{ flex:1,minWidth:0 }}>
-            <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{displayTitle(t.title)}</div>
-            <div style={{ fontSize:13,color:C.cr }}>{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
+            <div style={{ fontSize:15,fontWeight:400,color:"#000",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{displayTitle(t.title)}</div>
+            <div style={{ fontSize:13,color:"#000" }}>{t.artist} · {t.cat} · {t.format} · {t.dur}</div>
           </div>
           {t.isNew&&<span style={{ fontSize:11,padding:"2px 7px",background:OMBRE,color:"#000",borderRadius:20,fontWeight:400,flexShrink:0 }}>NEW</span>}
           {!isPreview && (
@@ -3554,46 +3554,56 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 function ShopTab({ C }) {
   const isDark = C?.cr !== "#000000";
   const products = [
-    { name:"Lovemaxxing Guide",      price:"$29", desc:"The specific person, or how you show up in love", cat:"Lovemaxxing",      available:true },
-    { name:"Luckygirlmaxxing Guide", price:"$29", desc:"General good-fortune installation",                 cat:"Luckygirlmaxxing", available:true },
-    { name:"Richgirlmaxxing Guide",     price:"$29", desc:"Belief work underneath receiving and earning",     cat:"Richgirlmaxxing",     available:false },
-    { name:"Sovereignmaxxing Guide", price:"$29", desc:"Answering to no one but you",                       cat:"Sovereignmaxxing", available:false },
-    { name:"Confidencemaxxing Guide",price:"$29", desc:"Walking in like you already belong there",          cat:"Confidencemaxxing",available:false },
-    { name:"Beautymaxxing Guide",    price:"$29", desc:"The mirror gap, closed",                             cat:"Beautymaxxing",   available:false },
-    { name:"Healthmaxxing Guide",      price:"$29", desc:"Physical or emotional pain, released",               cat:"Healthmaxxing",     available:false },
-    { name:"Sleepmaxxing Guide",     price:"$29", desc:"The overnight identity-install track",               cat:"Sleepmaxxing",    available:false },
-    { name:"Businessmaxxing Guide",  price:"$29", desc:"Entrepreneur-specific belief work",                  cat:"Businessmaxxing", available:false },
-    { name:"Peacemaxxing Guide",     price:"$29", desc:"Nervous system, regulated",                          cat:"Peacemaxxing",    available:false },
+    { name:"Lovemaxxing",        kind:"Workbook", price:"$29", img:"/shop/lovemaxxing.webp" },
+    { name:"Luckygirlmaxxing",   sku:"luckygirlmaxxing", kind:"Workbook", price:"$29", img:"/shop/luckygirlmaxxing.webp" },
+    { name:"Richgirlmaxxing",    sku:"richgirlmaxxing", kind:"Workbook", price:"$29", img:"/shop/richgirlmaxxing.webp" },
+    { name:"Inside your brain",  kind:"Method deck", price:"", img:"/shop/method-deck.png" },
+    { name:"Personalised Track", kind:"Service", price:"", img:"/shop/personalised-track.webp" },
+    { name:"1:1 Session",        kind:"Service", price:"", img:"/shop/session.webp" },
+    { name:"Email Coaching",     kind:"Service", price:"", img:"/shop/email-coaching.webp" },
   ];
+  const [busy, setBusy] = useState("");
+  const [err, setErr] = useState("");
+  const purchase = new URLSearchParams(window.location.search).get("purchase");
+  const buy = async p => {
+    if (!p.sku) { window.open(BEACONS,"_blank"); return; }
+    setBusy(p.sku); setErr("");
+    try {
+      let tok = ""; try { tok = localStorage.getItem("shg_auth_token") || ""; } catch {}
+      const r = await fetch("/shop/checkout", { method:"POST", headers:{ "Content-Type":"application/json", ...(tok?{Authorization:"Bearer "+tok}:{}) }, body:JSON.stringify({ sku:p.sku }) });
+      const d = await r.json();
+      if (d.url) { window.location.href = d.url; return; }
+      setErr(d.error || "Checkout didn't open. Try again.");
+    } catch { setErr("Checkout didn't open. Try again."); }
+    setBusy("");
+  };
   return (
-    <div style={{ padding:"16px 16px 40px" }}>
-      <div style={{ fontSize:20,fontWeight:400,color:C.cr,marginBottom:4 }}>Shop</div>
-      <div style={{ fontSize:15,color:C.mu,marginBottom:20 }}>Digital rituals & resources · One-time purchase</div>
-      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
-        {products.map((p,i)=>(
-          <div key={i} onClick={()=>p.available && window.open(BEACONS,"_blank")}
-            className="shg-paper" style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:1 }}
-            onMouseEnter={e=>{ if(p.available) e.currentTarget.style.transform="translateY(-2px)"; }}
-            onMouseLeave={e=>e.currentTarget.style.transform="none"}>
-            <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"transparent" }}>
-              <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
-            </div>
-            <div style={{ padding:"10px 12px" }}>
-              <div style={{ fontSize:14,fontWeight:400,color:C.cr,marginBottom:3,lineHeight:1.3 }}>{p.name}</div>
-              <div style={{ fontSize:13,color:C.mu,marginBottom:8,lineHeight:1.4 }}>{p.desc}</div>
-              <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-                <span style={{ fontSize:17,fontWeight:500,color:isDark?R:"#000"}}>{p.available?p.price:""}</span>
-                {p.available
-                  ? <span style={{ padding:"4px 10px",background:OMBRE,backgroundSize:"200%",backgroundPosition:"left",borderRadius:8,color:"#000",fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif",display:"inline-flex",alignItems:"center",gap:4 }}>Buy on Beacons<ArrowIcon size={10}/></span>
-                  : <span style={{ padding:"4px 10px",background:"transparent",border:`0.5px solid ${C.border}`,borderRadius:8,color:C.mu,fontSize:12,fontWeight:400,fontFamily:"'Jost',sans-serif" }}>Coming soon</span>
-                }
+    <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:1100,margin:"0 auto" }}>
+      {purchase && (
+        <div style={{ background:"#F2ECE4",color:"#000",borderRadius:16,padding:"16px 18px",marginBottom:18 }}>
+          <div style={{ fontSize:17,marginBottom:6 }}>Thank you, it's yours ✦</div>
+          <div style={{ fontSize:14,marginBottom:12 }}>Your receipt is in your email. Download your workbook here.</div>
+          <a href={"/shop/download?session_id="+encodeURIComponent(purchase)} style={{ display:"inline-block",background:"#000",color:"#F2ECE4",borderRadius:999,padding:"10px 18px",fontSize:14,textDecoration:"none" }}>Download PDF</a>
+        </div>
+      )}
+      {err && <div style={{ background:"#F2ECE4",color:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14,fontSize:14 }}>{err}</div>}
+      <div style={{ fontSize:22,fontWeight:400,color:C.cr,marginBottom:4 }}>Shop</div>
+      <div style={{ fontSize:15,color:C.cr,marginBottom:20 }}>Workbooks, the method deck and working with me</div>
+      <style>{`body .shg-shop-grid.shg-shop-grid{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))!important;gap:12px}@media(max-width:700px){body .shg-shop-grid.shg-shop-grid{grid-template-columns:1fr 1fr!important}}`}</style>
+      <div className="shg-shop-grid">
+        {products.map(p=>(
+          <button key={p.name} onClick={()=>buy(p)} disabled={busy===p.sku&&!!p.sku}
+            style={{ background:"#000",border:"1px solid rgba(242,236,228,0.18)",borderRadius:16,overflow:"hidden",padding:0,cursor:"pointer",textAlign:"left",fontFamily:"inherit",display:"flex",flexDirection:"column" }}>
+            <img src={p.img} alt={p.name} loading="lazy" style={{ width:"100%",aspectRatio:"1",objectFit:"cover",display:"block" }}/>
+            <div style={{ padding:"10px 12px 12px",display:"flex",flexDirection:"column",gap:8,flex:1 }}>
+              <div style={{ fontSize:11,letterSpacing:"0.2em",textTransform:"uppercase",color:"#F2ECE4" }}>{p.kind}</div>
+              <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,marginTop:"auto" }}>
+                <span style={{ fontSize:17,color:"#F2ECE4" }}>{p.price}</span>
+                <span style={{ padding:"7px 14px",background:OMBRE,borderRadius:999,color:"#000",fontSize:13 }}>{busy&&busy===p.sku?"Opening…":p.price?"Buy":"View"}</span>
               </div>
             </div>
-          </div>
+          </button>
         ))}
-      </div>
-      <div style={{ marginTop:14,padding:"12px 14px",background:C.bg3,border:`0.5px solid ${C.border}`,borderRadius:10,textAlign:"center" }}>
-        <div style={{ fontSize:14,color:C.mu }}>All products are delivered instantly via Beacons.ai · One-time payment · No subscription required</div>
       </div>
     </div>
   );
