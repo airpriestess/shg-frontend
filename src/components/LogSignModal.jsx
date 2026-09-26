@@ -6,6 +6,7 @@ const GRAD = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 
 const CATEGORIES = [
   { id: "money",    label: "Money",    icon: "💰" },
   { id: "love",     label: "Love",     icon: "💜" },
+  { id: "home",     label: "Home",     icon: "⌂" },
   { id: "body",     label: "Body",     icon: "✨" },
   { id: "identity", label: "Identity", icon: "⭐" },
   { id: "general",  label: "General",  icon: "◈" },
@@ -195,10 +196,11 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
 
   const handleSave = async () => {
     if (!userId || !token) {
-      // Preview mode — just show success
+      // Preview: save on this device so it shows in proofOS straight away
+      const linked = activeIntentions.find(i => i.id === parsed?.matched_intention_id);
+      setSavedCount(linked ? (linked.signCount || 0) + 1 : 1);
       setStep("saved");
-      setSavedCount(1);
-      setTimeout(onClose, 2000);
+      onSaved?.({ content: text.trim(), manifestation_id: parsed?.matched_intention_id ?? null, categories: parsed?.categories || [parsed?.category || "general"] });
       return;
     }
     setSaving(true);
@@ -210,6 +212,7 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
           content: text.trim(),
           manifestation_id: parsed?.matched_intention_id || null,
           category: parsed?.category || "general",
+          categories: parsed?.categories || [parsed?.category || "general"],
         }),
       });
       const data = await res.json();
@@ -226,7 +229,7 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
         setSavedCount(1);
       }
       setStep("saved");
-      onSaved?.(data);
+      onSaved?.({ ...data, content: data?.content || text.trim(), manifestation_id: data?.manifestation_id ?? parsed?.matched_intention_id ?? null });
       setTimeout(onClose, 2000);
     } catch {
       setSaving(false);
@@ -352,54 +355,34 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
                 </div>
               </div>
 
-              {/* Category */}
-              <div style={{ marginBottom: 16 }}>
-                <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.mu, marginBottom: 10 }}>Category</div>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  {CATEGORIES.map(cat => (
-                    <button key={cat.id} onClick={() => setParsed(p => ({ ...p, category: cat.id }))} style={{
-                      padding: "7px 14px", borderRadius: 100, fontSize: 13, fontWeight: 500,
-                      border: parsed.category === cat.id ? "none" : `1px solid ${C.border}`,
-                      background: parsed.category === cat.id ? GRAD : "transparent",
-                      color: parsed.category === cat.id ? "#0a0906" : C.mu,
-                      cursor: "pointer", fontFamily: "'Jost',sans-serif",
-                    }}>
-                      {cat.icon} {cat.label}
-                    </button>
-                  ))}
-                </div>
+              {/* Linked intention: only intentions she has added in proofOS */}
+              <div style={{ marginBottom: 18 }}>
+                <label htmlFor="shg-sign-intention" style={{ display: "block", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#000", marginBottom: 8 }}>Which intention is this a sign for?</label>
+                <select id="shg-sign-intention" value={parsed.matched_intention_id == null ? "" : String(parsed.matched_intention_id)}
+                  onChange={e => { const v = e.target.value; setParsed(p => ({ ...p, matched_intention_id: v === "" ? null : (activeIntentions.find(i => String(i.id) === v)?.id ?? v) })); }}
+                  style={{ width: "100%", padding: "14px 12px", borderRadius: 12, border: "1.5px solid #000", background: "#fff", color: "#000", fontSize: 16, fontFamily: "'Jost',sans-serif" }}>
+                  <option value="">No specific intention</option>
+                  {activeIntentions.map(i => <option key={i.id} value={String(i.id)}>{i.desire}</option>)}
+                </select>
+                {activeIntentions.length === 0 && <div style={{ fontSize: 13, marginTop: 6, color: "#000" }}>Add an intention in proofOS to link signs to it.</div>}
               </div>
 
-              {/* Matched intention */}
-              {activeIntentions.length > 0 && (
-                <div style={{ marginBottom: 20 }}>
-                  <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.mu, marginBottom: 10 }}>
-                    Linked intention
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    <button onClick={() => setParsed(p => ({ ...p, matched_intention_id: null }))} style={{
-                      padding: "10px 14px", borderRadius: 10, textAlign: "left", fontSize: 13, fontWeight: 400,
-                      background: !parsed.matched_intention_id ? "rgba(44,183,167,0.12)" : "transparent",
-                      border: !parsed.matched_intention_id ? "1px solid rgba(44,183,167,0.4)" : `1px solid ${C.border}`,
-                      color: "#000",
-                      cursor: "pointer", fontFamily: "'Jost',sans-serif",
-                    }}>
-                      No specific intention
-                    </button>
-                    {activeIntentions.map(intention => (
-                      <button key={intention.id} onClick={() => setParsed(p => ({ ...p, matched_intention_id: intention.id }))} style={{
-                        padding: "10px 14px", borderRadius: 10, textAlign: "left", fontSize: 13, fontWeight: 400,
-                        background: parsed.matched_intention_id === intention.id ? "rgba(44,183,167,0.12)" : "transparent",
-                        border: parsed.matched_intention_id === intention.id ? "1px solid rgba(44,183,167,0.4)" : `1px solid ${C.border}`,
-                        color: "#000",
-                        cursor: "pointer", fontFamily: "'Jost',sans-serif",
-                      }}>
-                        ✦ {intention.desire}
-                      </button>
-                    ))}
-                  </div>
+              {/* Categories: pick as many as fit */}
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#000", marginBottom: 10 }}>Categories (pick any)</div>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {CATEGORIES.map(cat => {
+                    const on = (parsed.categories || [parsed.category]).includes(cat.id);
+                    return (
+                      <button key={cat.id} aria-pressed={on} onClick={() => setParsed(p => { const cur = p.categories || [p.category].filter(Boolean); const next = on ? cur.filter(x => x !== cat.id) : [...cur.filter(x => x !== "general"), cat.id]; return { ...p, categories: next.length ? next : ["general"], category: (next[0] || "general") }; })} style={{
+                        padding: "8px 14px", borderRadius: 100, fontSize: 14, fontWeight: 500,
+                        border: on ? "none" : "1px solid #000", background: on ? "#000" : "transparent",
+                        color: on ? "#F2ECE4" : "#000", cursor: "pointer", fontFamily: "'Jost',sans-serif",
+                      }}>{cat.label}</button>
+                    );
+                  })}
                 </div>
-              )}
+              </div>
 
               {/* Actions */}
               <div style={{ display: "flex", gap: 10, marginTop: 8 }}>

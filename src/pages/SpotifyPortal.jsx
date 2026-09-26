@@ -1240,16 +1240,20 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           onClose={() => setLogSignOpen(false)}
           onHideButton={() => { try { localStorage.setItem("shg_hide_fab","1"); } catch {} setHideFab(true); setLogSignOpen(false); }}
           onSaved={(sign) => {
-            if (sign?.manifestation_id) {
-              setThreads(ts => ts.map(t => t.id === sign.manifestation_id ? { ...t, signs: [...(t.signs||[]), { text: sign.content, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}) }] } : t));
+            const entry = { text: sign.content, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}), cats: sign.categories };
+            if (sign?.manifestation_id != null) {
+              setThreads(ts => ts.map(t => String(t.id) === String(sign.manifestation_id) ? { ...t, signs: [...(t.signs||[]), entry] } : t));
+            } else {
+              // Signs with no intention still belong in proofOS › Signs
+              try { const loose = JSON.parse(localStorage.getItem("shg_loose_signs") || "[]"); localStorage.setItem("shg_loose_signs", JSON.stringify([...loose, entry].slice(-500))); } catch {}
             }
-            setLogSignOpen(false);
+            setTimeout(() => setLogSignOpen(false), 1600);
           }}
           userId={userId}
           token={token}
           apiUrl={import.meta.env.VITE_API_URL || "https://shg-backend.reshmaoracle.com"}
           isDark={isDark}
-          activeIntentions={threads.filter(t => !t.done && !t.isBucket).map(t => ({ id: t.id, desire: t.desire }))}
+          activeIntentions={threads.filter(t => !t.done && !t.isBucket).map(t => ({ id: t.id, desire: t.desire, signCount: (t.signs||[]).length }))}
         />
       )}
       {/* Manifest Celebration */}
@@ -1269,7 +1273,7 @@ function PreviewBanner({ onSignOut, C }) {
   return (
     <div style={{ background:"#000",borderTop:"4px solid transparent",borderImage:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B) 1",padding:"8px 16px",textAlign:"center",flexShrink:0 }}>
       <span style={{ fontSize:14,fontWeight:400,color:"#F2ECE4",fontFamily:"'Jost',sans-serif" }}>
-        🔒 Preview mode, <span onClick={onSignOut} style={{ textDecoration:"underline",cursor:"pointer" }}>join to unlock all tracks</span>
+        Preview mode
       </span>
     </div>
   );
@@ -2950,6 +2954,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [newD, setD]       = useState("");
   const [newBelief, setNewBelief] = useState("");
   const [newCat, setNewCat]   = useState("Richgirlmaxxing");
+  const [newCats, setNewCats] = useState([]);
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
   const [newFeel, setFeel] = useState("");
   const [newFeelText, setFeelText] = useState("");
@@ -3152,8 +3157,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {view==="signs" ? (
         <div>
           {(()=>{ try { return localStorage.getItem("shg_hide_fab")==="1"; } catch { return false; } })() && <button onClick={e=>{ window.dispatchEvent(new Event("shg-show-fab")); e.currentTarget.remove(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,marginBottom:12,cursor:"pointer",fontFamily:"inherit" }}>✦ Show the sign button again</button>}
-          {threads.every(t=>!(t.signs||[]).length) && <div style={{ fontSize:15,color:PC.text,padding:"8px 2px" }}>No signs yet. Open an intention and tap "Log a sign".</div>}
-          {threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))).reverse().map(({sg,t},i)=>(
+          {threads.every(t=>!(t.signs||[]).length) && !(()=>{ try { return JSON.parse(localStorage.getItem("shg_loose_signs")||"[]").length; } catch { return 0; } })() && <div style={{ fontSize:15,color:PC.text,padding:"8px 2px" }}>No signs yet. Open an intention and tap "Log a sign".</div>}
+          {(()=>{ let loose=[]; try { loose = JSON.parse(localStorage.getItem("shg_loose_signs")||"[]"); } catch {} return [...threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))), ...loose.map(sg=>({ sg, t:{ desire:"No specific intention" } }))]; })().reverse().map(({sg,t},i)=>(
             <div key={i} className="shg-gb" style={{ borderRadius:18,padding:"14px 16px",marginBottom:10 }}>
               <div style={{ fontSize:16,color:PC.text }}>{sg.text}</div>
               {sg.img && <img src={sg.img} alt="" style={{ marginTop:8,maxWidth:160,borderRadius:10,display:"block" }}/>}
@@ -3341,105 +3346,24 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
           <input value={newBelief} onChange={e=>setNewBelief(e.target.value)} placeholder="What do you actually believe about this right now? e.g. 'It's never worked out for me before'"
             style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
-          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio</div>
-          <div style={{ position:"relative", marginBottom:11 }}>
-            <div onClick={()=>{setTrackPickerOpen(o=>!o); setCatPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:linkedTrack?PC.text:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-              <span>{linkedTrack || ", Select a track,"}</span>
-              <span style={{ fontSize:13, color:PC.mu, transform:trackPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
-            </div>
-            {trackPickerOpen && (
-              <>
-              <div onClick={()=>setTrackPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:260, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
-                {TRACKS.map(t=>{
-                  const catColor = CAT_ICONS[t.cat]?.accent || R;
-                  return (
-                    <div key={t.id} onClick={()=>{setLinked(t.title); setTrackPickerOpen(false);}}
-                      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer",
-                        background:linkedTrack===t.title?`${catColor}1c`:"transparent", borderBottom:`1px solid ${PC.border}` }}
-                      onMouseEnter={e=>{if(linkedTrack!==t.title)e.currentTarget.style.background=`${catColor}14`;}}
-                      onMouseLeave={e=>{if(linkedTrack!==t.title)e.currentTarget.style.background="transparent";}}>
-                      <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0 }}/>
-                      <div style={{ flex:1, minWidth:0 }}>
-                        <div style={{ fontSize:15, color:PC.text, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{t.title}</div>
-                        <div style={{ fontSize:13, color:PC.mu }}>{t.cat}</div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              </>
-            )}
+          {/* Native pickers: they scroll properly on phones and never get cut off */}
+          <label htmlFor="shg-int-track" style={{ display:"block",fontSize:14,color:"#000",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Link to audio (optional)</label>
+          <select id="shg-int-track" value={linkedTrack} onChange={e=>setLinked(e.target.value)} style={{ width:"100%",background:"#fff",border:"1.5px solid #000",color:"#000",borderRadius:10,padding:"12px",fontSize:16,marginBottom:14,fontFamily:"'Jost',sans-serif" }}>
+            <option value="">No track yet</option>
+            {TRACKS.map(t=><option key={t.id} value={t.title}>{displayTitle(t.title)} · {t.cat.replace("maxxing","")} · {t.format}</option>)}
+          </select>
+          <div style={{ fontSize:14,color:"#000",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>Categories (pick any)</div>
+          <div style={{ display:"flex",flexWrap:"wrap",gap:8,marginBottom:16 }}>
+            {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"],["Homemaxxing","Home"],["Beautymaxxing","Beauty"],["Bodymaxxing","Body"],["Businessmaxxing","Business"],["Healthmaxxing","Health"],["Confidencemaxxing","Confidence"],["Peacemaxxing","Peace"],["Lifemaxxing","Life"]].map(([c,l])=>{
+              const on = newCats.includes(c);
+              return <button key={c} type="button" aria-pressed={on} onClick={()=>setNewCats(cs=>{ const n = on ? cs.filter(x=>x!==c) : [...cs,c]; if (n.length) setNewCat(n[0]); return n; })} style={{ padding:"9px 14px",borderRadius:999,border:"1px solid #000",background:on?"#000":"transparent",color:on?"#F2ECE4":"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{l}</button>;
+            })}
           </div>
-          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Category</div>
-          <div style={{ position:"relative", marginBottom:15 }}>
-            {(() => {
-              const catColor = CAT_ICONS[newCat]?.accent || R;
-              return (
-                <div onClick={()=>{setCatPickerOpen(o=>!o); setTrackPickerOpen(false); setFeelPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
-                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
-                    <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 4px ${catColor}99` }}/>
-                    {newCat}
-                  </span>
-                  <span style={{ fontSize:13, color:PC.mu, transform:catPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
-                </div>
-              );
-            })()}
-            {catPickerOpen && (
-              <>
-              <div onClick={()=>setCatPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
-                {["Lovemaxxing","Richgirlmaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Sleepmaxxing","Businessmaxxing","Desiresmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing","Confidencemaxxing","Wellnessmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing"].map(c=>{
-                  const catColor = CAT_ICONS[c]?.accent || R;
-                  const active = newCat===c;
-                  return (
-                    <div key={c} onClick={()=>{setNewCat(c); setCatPickerOpen(false);}}
-                      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 13px", cursor:"pointer",
-                        background:active?`${catColor}1c`:"transparent", borderBottom:`1px solid ${PC.border}` }}
-                      onMouseEnter={e=>{if(!active)e.currentTarget.style.background=`${catColor}14`;}}
-                      onMouseLeave={e=>{if(!active)e.currentTarget.style.background="transparent";}}>
-                      <div style={{ width:9, height:9, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:active?`0 0 4px ${catColor}99`:"none" }}/>
-                      <span style={{ fontSize:15, color:active?catColor:PC.text }}>{c}</span>
-                    </div>
-                  );
-                })}
-              </div>
-              </>
-            )}
-          </div>
-          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8 }}>How am I feeling right now?</div>
-          <div style={{ position:"relative", marginBottom:11 }}>
-            {(() => {
-              const h = HAWKINS.find(x=>x.n===newFeel);
-              return (
-                <div onClick={()=>{setFeelPickerOpen(o=>!o); setTrackPickerOpen(false); setCatPickerOpen(false);}} style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:h?h.c:PC.mu,borderRadius:8,padding:"11px 13px",fontSize:16,fontFamily:"'Jost',sans-serif",boxSizing:"border-box",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8 }}>
-                  <span style={{ display:"flex",alignItems:"center",gap:8 }}>
-                    {h && <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0,boxShadow:`0 0 5px ${h.c}99` }}/>}
-                    {h ? `${h.n} · ${h.v}` : ", Select how you feel,"}
-                  </span>
-                  <span style={{ fontSize:13, color:PC.mu, transform:feelPickerOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
-                </div>
-              );
-            })()}
-            {feelPickerOpen && (
-              <>
-              <div onClick={()=>setFeelPickerOpen(false)} style={{ position:"fixed", inset:0, zIndex:998 }}/>
-              <div style={{ position:"absolute", top:"calc(100% + 6px)", left:0, right:0, zIndex:999, background:isDark?"#141414":"#F2ECE4", border:`1px solid ${PC.border}`, borderRadius:10, maxHeight:280, overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", touchAction:"pan-y", boxShadow:"0 12px 40px rgba(0,0,0,0.5)" }}>
-                {HAWKINS.slice().reverse().map(hItem=>(
-                  <div key={hItem.n} onClick={()=>{setFeel(hItem.n); setFeelPickerOpen(false);}}
-                    style={{ display:"flex",alignItems:"center",gap:11,padding:"10px 13px",cursor:"pointer",
-                      background:newFeel===hItem.n?`${hItem.c}22`:"transparent",borderBottom:`1px solid ${PC.border}` }}
-                    onMouseEnter={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background=`${hItem.c}14`;}}
-                    onMouseLeave={e=>{if(newFeel!==hItem.n)e.currentTarget.style.background="transparent";}}>
-                    <div style={{ width:11,height:11,borderRadius:"50%",background:hItem.c,flexShrink:0,boxShadow:`0 0 5px ${hItem.c}99` }}/>
-                    <span style={{ fontSize:16,color:PC.text,flex:1,fontFamily:"'Jost',sans-serif" }}>{hItem.n}</span>
-                    <span style={{ fontSize:14,color:PC.mu }}>{hItem.v}</span>
-                  </div>
-                ))}
-              </div>
-              </>
-            )}
-          </div>
+          <label htmlFor="shg-int-feel" style={{ display:"block",fontSize:14,color:"#000",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>How am I feeling right now?</label>
+          <select id="shg-int-feel" value={newFeel} onChange={e=>setFeel(e.target.value)} style={{ width:"100%",background:"#fff",border:"1.5px solid #000",color:"#000",borderRadius:10,padding:"12px",fontSize:16,marginBottom:12,fontFamily:"'Jost',sans-serif" }}>
+            <option value="">Choose the closest feeling</option>
+            {HAWKINS.slice().reverse().map(h=><option key={h.n} value={h.n}>{h.n} ({h.v})</option>)}
+          </select>
           {newFeel && (() => { const h = HAWKINS.find(x=>x.n===newFeel); return h ? (
             <div style={{ display:"flex",alignItems:"center",gap:8,padding:"9px 13px",borderRadius:8,background:`${h.c}22`,border:`1px solid ${h.c}55`,marginBottom:11 }}>
               <div style={{ width:11,height:11,borderRadius:"50%",background:h.c,flexShrink:0 }}/>
@@ -3456,14 +3380,14 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(", ");
             const localId = Date.now()+Math.random().toString(36).slice(2,8);
-            const optimistic = {id:localId,desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCat,feelBefore:before,feelAfter:"",oldBelief:newBelief};
+            const optimistic = {id:localId,desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCats[0]||newCat,categories:newCats.length?newCats:[newCat],feelBefore:before,feelAfter:"",oldBelief:newBelief};
             setThreads([optimistic,...threads]);
-            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewBelief(""); setAdding(false);
+            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewCats([]); setNewBelief(""); setAdding(false);
             if (!isPreview && userId) {
               try {
                 await quizApi("/threads", token, {
                   method: "POST",
-                  body: JSON.stringify({ id: localId, desire: newD, category: newCat, track: linkedTrack, old_belief: newBelief, feel_before: before }),
+                  body: JSON.stringify({ id: localId, desire: newD, category: newCats[0]||newCat, categories: newCats, track: linkedTrack, old_belief: newBelief, feel_before: before }),
                 });
               } catch (err) {
                 console.error("Failed to save desire:", err);
