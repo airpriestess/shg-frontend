@@ -65,7 +65,7 @@ const dominant = (log,days) => {
    · Light/dark theme toggle
    ═══════════════════════════════════════════════════════════════════════ */
 
-// ── SUPABASE AUDIO URLS ──────────────────────────────────────────────────────
+// ── AUDIO URLS — served by shg-audio-worker (Cloudflare) ─────────────────────
 const AUDIO_URLS = {
   "The Universe Supports Me": "https://shg-audio-worker.airpriestess.workers.dev/UNIVERS%20SUPPORTS%20ME%20HYPNOSIS%2010MIN%2023.08.2026.WAV",
   "The Universe Supports Me (Subliminal)": "https://shg-audio-worker.airpriestess.workers.dev/UNIVERS%20SUPPORTS%20ME%20SUBLIMINAL%2010MIN%2023.08.2026.WAV",
@@ -1472,7 +1472,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
                     <span style={{ fontSize:18 }}>📖</span>
                     <div style={{ flex:1 }}>
                       <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
-                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,fontStyle:"italic" }}>Coming Soon</span></div>
+                      <div style={{ fontSize:14,color:C.mu,fontWeight:400 }}>{CAT_GUIDE[track.cat]} — <span style={{ fontSize:12,}}>Coming Soon</span></div>
                     </div>
                   </div>
                 )
@@ -1666,7 +1666,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
             </div>
           ))}
         </div>
-        <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore proofOS →</div>
+        <div style={{ fontSize:13,color:C.mu }}>Tap to explore proofOS →</div>
       </div>
 
       {/* QUICK DESIRE CAPTURE */}
@@ -2470,13 +2470,13 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
             <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
-            <div style={{ fontSize:13, color:C.cr, marginTop:12, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+            <div style={{ fontSize:13, color:C.cr, marginTop:12, }}>Personalised recommendations unlock when you sign up →</div>
           </div>
         ) : recommendation ? (
           <div>
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{displayTitle(recommendation.title)}</div>
             <div style={{ fontSize:13, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
+            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, }}>"{recommendation.reason}"</div>
           </div>
         ) : (
           <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
@@ -2666,7 +2666,7 @@ function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
                         <span style={{ fontWeight:600 }}>Reshma: </span>{item.answer}
                       </div>
                     ) : (
-                      <div style={{ fontSize:12,color:C.mu,fontStyle:"italic" }}>Awaiting answer…</div>
+                      <div style={{ fontSize:12,color:C.mu,}}>Awaiting answer…</div>
                     )}
                   </div>
                 ))}

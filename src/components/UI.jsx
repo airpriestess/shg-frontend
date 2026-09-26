@@ -19,8 +19,8 @@ export function ExternalArrowIcon({ size = 12, style, color = "currentColor" }) 
 export function Btn({ children, onClick, variant = "primary", size = "md", full, disabled, style: extra }) {
   const sizes = { sm: { padding: "8px 16px", fontSize: 13 }, md: { padding: "11px 22px", fontSize: 14 }, lg: { padding: "14px 28px", fontSize: 15 } };
   const variants = {
-    primary: { background: "linear-gradient(135deg,#5B8DB8,#2CB7A7)", color: "#000", border: "none" },
-    champagne: { background: "linear-gradient(135deg,#5B8DB8,#2CB7A7)", color: "#000", border: "none" },
+    primary: { background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", border: "none" },
+    champagne: { background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", color: "#000", border: "none" },
     ghost: { background: "transparent", color: "#2CB7A7", border: "1px solid #2CB7A766" },
     soft: { background: "#060410", color: T.textMuted, border: `1px solid #1e1c0a` },
     danger: { background: "transparent", color: T.rose, border: `1px solid ${T.rose}44` },

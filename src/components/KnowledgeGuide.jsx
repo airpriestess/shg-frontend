@@ -179,7 +179,7 @@ export default function KnowledgeGuide({ onClose, C }) {
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
             <div>
               <div style={{ fontSize:12, color:"#2CB7A7", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook </div>
-              <div style={{ fontSize:18, color:cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Everything you need to know</div>
+              <div style={{ fontSize:18, color:cr, fontFamily:"'Jost',sans-serif", }}>Everything you need to know</div>
               <div style={{ fontSize:14, color:cr, marginTop:4,  }}>{SECTIONS.length} questions answered</div>
             </div>
             <button onClick={onClose} style={{ background:"none", border:"none", fontSize:20, cursor:"pointer", color:mu, padding:4 }}>✕</button>

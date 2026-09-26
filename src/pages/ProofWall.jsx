@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContext.jsx";
 
 const PROOF_WORKER_URL = "https://shg-proof-worker.airpriestess.workers.dev";
 
-const G = "linear-gradient(90deg,#5B8DB8,#2CB7A7)";
+const G = "linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)";
 const RG = "#2CB7A7";
 
 const TYPE_LABEL = {

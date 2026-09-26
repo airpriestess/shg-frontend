@@ -27,6 +27,49 @@
 - Font: `'Jost',sans-serif` everywhere. No Cormorant Garamond, no italics, no Futura/Century Gothic.
 - Text is always cream or LG gradient — never grey.
 
+## BANNED — check this list before writing anything
+
+Every item here was live somewhere at some point, got superseded, and then came
+back because a stale file still named it. Treat any appearance as a bug.
+
+### Colours — banned
+| Value | What it was |
+|---|---|
+| `#B76E79` | old "rose gold" |
+| `#d4a090`, `#e8c0a8` | old "peach" / "peach light" |
+| `#C8892A`, `#C8960A`, `#C8860A`, `#B8820A` | old golds |
+| `#5B8DB8` | steel blue — never part of this brand |
+| `#786860` | old muted brown-grey |
+| any grey | text is cream or the gradient, never grey |
+| any solid non-black, non-cream colour | see the solid-colour ban above |
+
+Allowed: `#000000` / `#0a0a0a` black, `#fdf0e8` cream (with `#dcc8b8` and
+`#b09888` as cream tints), and the LG gradient. Nothing else.
+
+### Fonts — banned
+`Cormorant Garamond` · any serif · any italic display face · Futura ·
+Century Gothic · Inter. **`'Jost', sans-serif` everywhere**, weights carry
+hierarchy.
+
+### Currency — banned
+**Pounds and euros are both banned for SHG member pricing. USD only.**
+Audio `$49/mo` · Goddess `$79/mo` · Lifetime `$1,000`, plus the annual plans.
+The source of truth is `src/App.jsx` (lines ~430–448) — **not** the brain
+files, which carried wrong prices in the wrong currency for a long time and got
+copied. If a document disagrees with the app, the app wins. Never quote a price
+without checking the code.
+
+### Services — banned
+**Supabase** and **Vercel**. Neither is used. The stack is Cloudflare (Pages,
+Workers, D1) plus Nitrosend for email, Beacons for the shop, Stripe for
+payments, and GitHub. `shg-backend` is written against Supabase but was never
+deployed — do not treat it as live.
+
+### The rule behind the rule
+A confident-sounding document is not evidence. Every one of these errors
+survived because a file said "LOCKED" next to something that had already
+changed. **Check the running code before trusting any doc, including this one.**
+
 ## One shared header, everywhere — do not fork this again
 Every page must use `src/components/SiteHeader.jsx` (banner + nav, with the
 Join Waitlist CTA and Claim Free Gift CTA) — this is the ONLY banner/nav

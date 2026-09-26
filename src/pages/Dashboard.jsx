@@ -89,8 +89,8 @@ export default function Dashboard({ userTier, onNavigate, onAddProof, onCreateTh
         {/* ── PAGE HEADER ── */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 28 }}>
           <div>
-            <div className="wm" style={{ fontSize: 16, color: "#2CB7A7", fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, fontStyle: "italic" }}>ProofOS</div>
-            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#5B8DB8,#2CB7A7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            <div className="wm" style={{ fontSize: 16, color: "#2CB7A7", fontWeight: 500, letterSpacing: "0.04em", marginBottom: 6, }}>ProofOS</div>
+            <h1 className="wm" style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 600, margin: 0, lineHeight: 1.1, background: "linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               {USER.name}'s Vault
             </h1>
           </div>

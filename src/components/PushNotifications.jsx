@@ -173,7 +173,7 @@ export function PushPromptBanner({ userId, token, C, onDismiss }) {
           onClick={subscribe}
           disabled={loading}
           style={{
-            background: "linear-gradient(135deg,#C8860A,#C8960A)", border: "none", borderRadius: 8,
+            background: "linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)", border: "none", borderRadius: 8,
             padding: "7px 14px", fontSize: 12, fontWeight: 700, color: "#000", cursor: "pointer",
           }}
         >

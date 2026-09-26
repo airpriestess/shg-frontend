@@ -411,7 +411,7 @@ export default function LandingProofWall({ isMobile }) {
               </div>
 
               {/* Feel */}
-              <div style={{ fontSize: 13, color: S.mu, fontStyle: "italic", fontFamily: "'Jost',sans-serif", lineHeight: 1.5, borderTop: `1px solid ${S.border}`, paddingTop: 12 }}>
+              <div style={{ fontSize: 13, color: S.mu, fontFamily: "'Jost',sans-serif", lineHeight: 1.5, borderTop: `1px solid ${S.border}`, paddingTop: 12 }}>
                 ✦ {entry.feel}
               </div>
 
