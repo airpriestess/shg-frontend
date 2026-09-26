@@ -529,7 +529,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       const r = el.getBoundingClientRect(); if (r.width < 150 || r.height < 56) return;
       if (window.innerWidth > 900 && r.right < 300) return;
       // Skip the player bar and other small fixed strips, not the full-screen shell.
-      for (let a = el; a && a !== document.body; a = a.parentElement) { if (getComputedStyle(a).position === 'fixed' && a.getBoundingClientRect().height < 400) return; }
+      for (let a = el; a && a !== document.body; a = a.parentElement) { if (getComputedStyle(a).position === 'fixed') return; }
       if (dark.test(cs.backgroundColor) || dark.test(cs.backgroundImage)) el.classList.add('shg-paper');
     });
     paint(); const mo = new MutationObserver(() => requestAnimationFrame(paint));
