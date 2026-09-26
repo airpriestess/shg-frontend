@@ -1828,7 +1828,7 @@ function HomeTab({ userEmail, greet, firstName, track, play, liked, toggleLike, 
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
-      <JournalCard threads={threads} setThreads={setThreads} isPreview={isPreview} userId={userId} token={token} play={play}/>
+      <JournalCard name={passportName || (isPreview ? "Reshma" : firstName)} threads={threads} setThreads={setThreads} isPreview={isPreview} userId={userId} token={token} play={play}/>
 
       {/* UPGRADE BANNER */}
       {userTier==="audio"&&!isPreview&&(
@@ -1844,44 +1844,13 @@ function HomeTab({ userEmail, greet, firstName, track, play, liked, toggleLike, 
       {/* PUSH PROMPT */}
       {!isPreview&&!pushDismissed&&<PushPromptBanner userId={userId} token={token} C={C} onDismiss={onDismissPush}/>}
 
-      {/* QUICK DESIRE CAPTURE */}
-      <FoldCard title="State a desire" sub="Say it in the present tense and save it">
-      <div style={{ margin:"4px 12px", padding:"8px 4px" }}>
-        <style>{`.qd-input::placeholder{color:${isDark?"rgba(253,240,232,0.4)":"rgba(26,16,8,0.4)"}!important}`}</style>
-        <div style={{ display:"flex", gap:8, alignItems:"center" }}>
-          <input className="qd-input" value={quickDesire} onChange={e=>setQuickDesire(e.target.value)}
-            onKeyDown={e=>{ if(e.key==="Enter") saveQuickDesire(); }}
-            placeholder="I receive… I am… I have…"
-            style={{ flex:1, minWidth:0, background:"#fff", border:"1px solid #000", color:"#000", fontWeight:300, borderRadius:10, padding:"11px 13px", fontSize:15, outline:"none", fontFamily:"'Jost',sans-serif", boxSizing:"border-box" }}/>
-          <button onClick={startVoice} title="Speak your desire"
-            style={{ flexShrink:0, width:42, height:42, borderRadius:"50%", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:19,
-              background: quickListening ? "#E8B870" : "transparent",
-              boxShadow: quickListening ? "0 0 14px rgba(232,184,112,0.7)" : "none",
-              transition:"all 0.2s" }}>
-            {quickListening ? "⏹" : "🎙"}
-          </button>
-          <button onClick={saveQuickDesire}
-            style={{ padding:"0 20px",minHeight:44,borderRadius:999,border:"none",color:"#000",fontSize:15,fontWeight:300,cursor:"pointer",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",fontFamily:"'Jost',sans-serif" }}>
-            {quickSaved ? "✓ Saved" : "Add"}
-          </button>
-        </div>
-        {quickListening && <div style={{ marginTop:6, fontSize:11, color:"#E8B870" }}>🎙 Listening… tap ⏹ when done.</div>}
-        {voiceError && voiceError !== "Microphone access denied — check browser permissions" && (
-          <div style={{ marginTop:6, fontSize:11, color:"#E87070" }}>{voiceError}</div>
-        )}
-        {threads.filter(t=>!t.done).length > 0 && (
-          <div style={{ marginTop:10, fontSize:12, fontWeight:300, color:"#000" }}>
-            {threads.filter(t=>!t.done).length} active desire{threads.filter(t=>!t.done).length!==1?"s":""} · {threads.filter(t=>t.done).length} manifested
-          </div>
-        )}
-      </div>
-      </FoldCard>
+
 
       {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
         <button onClick={()=>openGuide()} className="shg-no-paper" style={{ display:"flex", alignItems:"center", gap:14, width:"100%", padding:"12px 16px", borderRadius:16, cursor:"pointer", fontFamily:"'Jost',sans-serif", background:"#000", border:"1px solid rgba(242,236,228,0.18)", textAlign:"left" }}>
           <GuideIcon k="guide" size={52}/>
-          <span style={{ flex:1 }}><span style={{ display:"block", fontSize:16, color:"#F2ECE4" }}>Guidebook</span><span style={{ display:"block", fontSize:13, color:"#F2ECE4", marginTop:2 }}>Tap me to open ›</span></span>
+          <span style={{ flex:1 }}><span style={{ display:"block", fontSize:17, fontWeight:300, color:"#F2ECE4" }}>Guidebook</span></span>
         </button>
       </div>
 
@@ -3985,7 +3954,7 @@ const AREA_WORDS = [["Love","Lovemaxxing",/\b(love|relationship|boyfriend|husban
 const detectAreas = (text) => AREA_WORDS.filter(([, , re]) => re.test(text || ""));
 const ppKeyFor = (userId, isPreview) => `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
 function readJournal(userId, isPreview) { try { return (JSON.parse(localStorage.getItem(ppKeyFor(userId, isPreview)) || "null") || {}).journal || []; } catch { return []; } }
-function JournalCard({ threads, setThreads, isPreview, userId, token, play }) {
+function JournalCard({ name, threads, setThreads, isPreview, userId, token, play }) {
   const [text, setText] = useState("");
   const [reply, setReply] = useState(null);
   const [mic, toggleMic] = useMic(t => setText(x => (x ? x + " " : "") + t));
@@ -3996,12 +3965,13 @@ function JournalCard({ threads, setThreads, isPreview, userId, token, play }) {
     try { const k = ppKeyFor(userId, isPreview); const p = JSON.parse(localStorage.getItem(k) || "null") || {}; p.journal = [entry, ...(p.journal || [])].slice(0, 500); localStorage.setItem(k, JSON.stringify(p)); window.dispatchEvent(new CustomEvent("shg-passport-updated")); } catch {}
     setText(""); setReply(areas);
   };
+  const [open, setOpen] = useState(false);
   const hasIntention = (cat) => threads.some(t => !t.isBucket && !t.done && String(t.category || "").includes(cat));
   const names = (reply || []).map(a => a[0].toLowerCase());
   return (
     <div className="shg-paper" style={{ margin:"0 16px 14px",padding:"16px 14px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
-      <div style={{ fontSize:17,fontWeight:300 }}>What's on your mind?</div>
-      <div style={{ fontSize:13,fontWeight:300,margin:"2px 0 10px" }}>A journal entry, just for you. Type or speak.</div>
+      <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"block",width:"100%",cursor:"pointer",fontSize:17,fontWeight:300,textAlign:"center" }}>{name ? `${name}, what's on your mind?` : "What's on your mind?"}</button>
+      {open && <div style={{ marginTop:12 }}>
       <textarea id="shg-journal" rows={3} value={text} onChange={e=>setText(e.target.value)} placeholder="Today I…" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:12,fontSize:15,fontWeight:300,fontFamily:"inherit",resize:"vertical" }}/>
       <div style={{ display:"flex",gap:8,marginTop:8 }}>
         <button onClick={toggleMic} style={{ flex:1,background:"transparent",color:"#000",border:"1px solid #000",borderRadius:999,padding:"9px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
@@ -4024,6 +3994,7 @@ function JournalCard({ threads, setThreads, isPreview, userId, token, play }) {
           })}
         </div>
       )}
+      </div>}
     </div>
   );
 }
@@ -4059,7 +4030,7 @@ function QuickAdd({ kind, threads, setThreads, isPreview, userId, token, onClose
 // Encourages ten bucket-list ideas a day, added right from Home.
 // Ask Reshma, right on Home: saved locally and sent to the worker (fire-and-forget).
 function HomeAskCard({ email }) {
-  const [q, setQ] = useState(""); const [sent, setSent] = useState(false);
+  const [q, setQ] = useState(""); const [sent, setSent] = useState(false); const [open, setOpen] = useState(false);
   const send = () => {
     const question = q.trim(); if (!question) return;
     try { const l = JSON.parse(localStorage.getItem("shg_questions") || "[]"); l.push({ question, date:new Date().toISOString() }); localStorage.setItem("shg_questions", JSON.stringify(l.slice(-200))); } catch {}
@@ -4067,13 +4038,13 @@ function HomeAskCard({ email }) {
     setQ(""); setSent(true);
   };
   return (
-    <div className="shg-paper" style={{ margin:"8px 16px 20px",padding:"18px 16px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
-      <div style={{ fontSize:18,fontWeight:300 }}>Ask Reshma a question</div>
-      <div style={{ fontSize:14,fontWeight:300,margin:"4px 0 10px",lineHeight:1.5 }}>Your question goes straight to Reshma. She'll reply by email.</div>
+    <div className="shg-paper" style={{ margin:"14px 16px 24px",padding:"18px 16px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"block",width:"100%",cursor:"pointer",fontSize:17,fontWeight:300,textAlign:"center" }}>Ask Reshma a question</button>
+      {open && <div style={{ marginTop:10 }}><div style={{ fontSize:14,fontWeight:300,margin:"0 0 10px",lineHeight:1.5 }}>Your question goes straight to Reshma. She'll reply by email.</div>
       {sent ? <div style={{ fontSize:15,fontWeight:300 }}>Sent ✓ Reshma will reply by email.</div> : (<>
         <textarea id="shg-home-ask" rows={3} value={q} onChange={e=>setQ(e.target.value)} placeholder="Your question…" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:12,fontSize:15,fontWeight:300,fontFamily:"inherit",resize:"vertical" }}/>
         <button onClick={send} style={{ marginTop:8,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px 24px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Send</button>
-      </>)}
+      </>)}</div>}
     </div>
   );
 }
@@ -4094,32 +4065,35 @@ function BucketBand({ threads, setThreads, isPreview, userId, token }) {
     setThreads(ts => [{ id, desire:v, days:0, done:false, signs:[], track:"", category:"", feelBefore:"", feelAfter:"", oldBelief:"", isBucket:true, addedOn:todayKey, createdTs:Date.now() }, ...ts]);
     setText("");
   };
+  const dots = (dark) => (
+    <span style={{ display:"flex",alignItems:"center",gap:6,marginTop:10 }}>
+      {Array.from({ length:10 }, (_, i) => <span key={i} style={{ width:14,height:14,borderRadius:"50%",flexShrink:0,background:i < todayCount ? "linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" : "transparent",border:`1px solid ${dark ? "#F2ECE4" : "#000"}` }}/>)}
+      <span style={{ fontSize:14,fontWeight:300,marginLeft:4,whiteSpace:"nowrap",color:dark ? "#F2ECE4" : "#000" }}>{Math.min(todayCount,10)}/10 today</span>
+    </span>
+  );
+  if (!open) return (
+    <button onClick={()=>setOpen(true)} className="shg-no-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 14px",padding:"20px 16px",borderRadius:22,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",color:"#F2ECE4",border:"1px solid transparent",background:"linear-gradient(#000,#000) padding-box, linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) border-box" }}>
+      <img src="/icons/lucky.webp" alt="" style={{ width:56,height:56,borderRadius:"50%",flexShrink:0 }}/>
+      <span style={{ flex:1,minWidth:0 }}>
+        <span style={{ display:"block",fontSize:17,fontWeight:300,color:"#F2ECE4" }}>Add 10 ideas every day</span>
+        {dots(true)}
+        <span style={{ display:"inline-block",fontSize:14,fontWeight:300,color:"#000",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",borderRadius:999,padding:"7px 16px",marginTop:12 }}>Tap to add</span>
+      </span>
+    </button>
+  );
   return (
-    <div className="shg-no-paper" style={{ margin:"0 16px 14px",background:"linear-gradient(#000,#000) padding-box, linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) border-box",borderRadius:22,border:"1px solid transparent",padding:"24px 16px",fontFamily:"'Jost',sans-serif",color:"#F2ECE4",boxShadow:"0 0 22px rgba(191,165,216,.22)",position:"relative" }}>
-      {open && <CloseX onClick={()=>setOpen(false)} dark/>}
-      <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"flex",alignItems:"center",gap:16,width:"100%",cursor:"pointer" }}>
-        <img src="/icons/lucky.webp" alt="" style={{ width:60,height:60,borderRadius:"50%",flexShrink:0,boxShadow:"0 0 18px rgba(245,224,160,.35)" }}/>
-        <span style={{ flex:1,minWidth:0 }}>
-          <span style={{ display:"block",fontSize:11,letterSpacing:".28em",fontWeight:400,color:"#F2ECE4",marginBottom:6 }}>BUCKET LIST</span>
-          <span style={{ display:"block",fontSize:16,fontWeight:300,lineHeight:1.3,color:"#F2ECE4" }}>Add 10 ideas to your bucket list today</span>
-          <span style={{ display:"flex",alignItems:"center",gap:10,marginTop:10 }}>
-            <span style={{ flex:1,height:4,borderRadius:2,background:"rgba(242,236,228,.15)",overflow:"hidden" }}><span style={{ display:"block",height:"100%",width:`${Math.min(100,todayCount*10)}%`,background:OMBRE }}/></span>
-            <span style={{ fontSize:14,fontWeight:300,color:"#F2ECE4",whiteSpace:"nowrap" }}>{todayCount}/10</span>
-          </span>
-          <span style={{ display:"inline-block",fontSize:15,fontWeight:300,color:"#000",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",borderRadius:999,padding:"8px 16px",marginTop:12 }}>{open ? "Tap to close ⌃" : "Tap to add to your bucket list ›"}</span>
-        </span>
+    <div className="shg-paper" style={{ position:"relative",margin:"0 16px 14px",padding:"18px 14px",borderRadius:22,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <CloseX onClick={()=>setOpen(false)}/>
+      <button onClick={()=>setOpen(false)} style={{ all:"unset",display:"block",cursor:"pointer",paddingRight:40 }}>
+        <span style={{ display:"block",fontSize:17,fontWeight:300 }}>Add 10 ideas every day</span>
       </button>
-      {open && (
-        <div className="shg-paper" style={{ marginTop:14,borderRadius:16,padding:"14px 12px",color:"#000" }}>
-          <div style={{ display:"flex",gap:8 }}>
-            <input id="shg-bucket-quick" value={text} onChange={e=>setText(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); } }} placeholder="Anything you want, ever" style={{ flex:1,minWidth:0,background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:"11px 12px",fontSize:15,fontWeight:300,fontFamily:"inherit" }}/>
-            <button onClick={add} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:12,padding:"0 16px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
-          </div>
-          <button onClick={toggleMic} style={{ marginTop:8,width:"100%",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
-          {todayItems.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{todayItems.map(t => <div key={t.id} style={{ fontSize:15,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid #000",background:"#fff" }}>✦ {t.desire}</div>)}</div>}
-
-        </div>
-      )}
+      {dots(false)}
+      <div style={{ display:"flex",gap:8,marginTop:14 }}>
+        <input id="shg-bucket-quick" value={text} onChange={e=>setText(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); } }} placeholder="Anything you want, ever" style={{ flex:1,minWidth:0,background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:"11px 12px",fontSize:15,fontWeight:300,fontFamily:"inherit" }}/>
+        <button onClick={add} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:12,padding:"0 16px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
+      </div>
+      <button onClick={toggleMic} style={{ marginTop:8,width:"100%",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
+      {todayItems.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{todayItems.map(t => <div key={t.id} style={{ fontSize:15,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid #000",background:"#fff" }}>✦ {t.desire}</div>)}</div>}
     </div>
   );
 }
