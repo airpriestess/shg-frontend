@@ -1735,9 +1735,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <div style={{ color:"#000", fontSize:34, fontWeight:500, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {isPreview ? "Reshma" : firstName}</div>
           <div style={{ fontSize:16, fontWeight:400, color:"#000", marginTop:8 }}>Pick up where you left off.</div>
         </div>
-        <button onClick={()=>setTab("shop")} style={{ background:"#000", position:"relative",width:44,height:44,borderRadius:"50%",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2ECE4" strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        </button>
+
       </div>
 
       {/* OPEN YOUR PASSPORT */}
@@ -1750,6 +1748,9 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
       <DailyReminder userId={userId} token={token}/>
 
+      {/* BUCKET LIST BAND: ten ideas a day */}
+      <BucketBand threads={threads} setThreads={setThreads}/>
+
       {/* WEEKLY NUDGE: prompt to update intentions */}
       {(()=>{ const last = Math.max(0,...threads.map(t=>t.createdTs||0)); const stale = !isPreview && (threads.length && last && Date.now()-last > 7*86400000); const open = threads.filter(t=>!t.done).length; return stale ? (
         <button onClick={()=>setTab("proof")} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
@@ -1757,13 +1758,11 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </button>) : null; })()}
 
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
-      <FoldCard title="Keep adding" sub="The more you share, the better I know you">
-        <KeepAdding userId={userId} isPreview={isPreview}/>
-      </FoldCard>
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
-      <FoldCard title={`${isPreview ? "Reshma" : firstName}, what's happening?`} sub="Talk or journal: a sign, a win, a worry, a desire">
+      <FoldCard title={`${isPreview ? "Reshma" : firstName}, what's happening?`} sub="Talk, journal or add anything you want me to know">
       <SpeakToProof C={C} isDark={C?.cr !== "#000000"} threads={threads} setThreads={setThreads} token={token} isPreview={isPreview} firstName={isPreview ? "Reshma" : firstName}/>
+        <KeepAdding userId={userId} isPreview={isPreview}/>
       </FoldCard>
 
       {/* UPGRADE BANNER */}
@@ -1829,7 +1828,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <div style={{ padding:"4px 16px 14px" }}>
         <style>{`body .shg-howto.shg-howto{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-howto.shg-howto{grid-template-columns:repeat(4,1fr)!important}}`}</style>
         <div className="shg-howto">
-          {[["Intentions","how-to-write-intention","lucky"],["Bucket List","bucket-vs-active","email"],["Signs","spotting-signs","track"],["Evidence","proof-wall-forever","session"]].map(([t,k,ic])=>(
+          {[["Intentions","how-to-write-intention","lucky"],["Bucket List","bucket-vs-active","money"],["Signs","spotting-signs","track"],["Evidence","proof-wall-forever","session"]].map(([t,k,ic])=>(
             <button key={k} onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:k } }))} className="shg-no-paper" style={{ position:"relative",aspectRatio:"1",background:"#000",border:"1px solid rgba(242,236,228,0.18)",borderRadius:16,overflow:"hidden",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif" }}>
               <img src={`/icons/${ic}.webp`} alt="" style={{ position:"absolute",left:"22%",top:"10%",width:"56%",height:"56%",objectFit:"cover",borderRadius:"50%" }}/>
               <span style={{ position:"absolute",left:0,right:0,bottom:14,textAlign:"center",fontSize:16,fontWeight:500,color:"#F2ECE4" }}>{t}</span>
@@ -3733,6 +3732,41 @@ function FoldCard({ title, sub, children }) {
     <div style={{ animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",marginBottom:16 }}>
       {children}
       <button onClick={()=>setOpen(false)} style={{ display:"block",margin:"-6px auto 0",background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"6px 16px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close ⌃</button>
+    </div>
+  );
+}
+
+// ── BUCKET LIST BAND ────────────────────────────────────────────────────────
+// Encourages ten bucket-list ideas a day, added right from Home.
+function BucketBand({ threads, setThreads }) {
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+  const todayKey = new Date().toDateString();
+  const todayCount = threads.filter(t => t.isBucket && t.addedOn === todayKey).length;
+  const add = () => {
+    const v = text.trim(); if (!v) return;
+    setThreads(ts => [{ id: Date.now()+Math.random().toString(36).slice(2,6), desire:v, days:0, done:false, signs:[], track:"", category:"", feelBefore:"", feelAfter:"", oldBelief:"", isBucket:true, addedOn:todayKey, createdTs:Date.now() }, ...ts]);
+    setText("");
+  };
+  return (
+    <div className="shg-no-paper" style={{ margin:"0 16px 12px",background:"#000",borderRadius:18,border:"1px solid rgba(242,236,228,.18)",padding:"12px 14px",fontFamily:"'Jost',sans-serif",color:"#F2ECE4" }}>
+      <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"flex",alignItems:"center",gap:12,width:"100%",cursor:"pointer" }}>
+        <img src="/icons/lucky.webp" alt="" style={{ width:48,height:48,borderRadius:"50%",flexShrink:0 }}/>
+        <span style={{ flex:1 }}>
+          <span style={{ display:"block",fontSize:16,color:"#F2ECE4" }}>Add 10 ideas to your bucket list today</span>
+          <span style={{ display:"block",fontSize:13,fontWeight:300,color:"#F2ECE4",marginTop:2 }}>{todayCount}/10 today · {open ? "Tap to close ⌃" : "Tap me to open ›"}</span>
+        </span>
+      </button>
+      {open && (
+        <div style={{ marginTop:12 }}>
+          <div style={{ height:6,borderRadius:3,background:"rgba(242,236,228,.15)",overflow:"hidden",marginBottom:12 }}><div style={{ height:"100%",width:`${Math.min(100,todayCount*10)}%`,background:OMBRE,transition:"width .4s" }}/></div>
+          <div style={{ display:"flex",gap:8 }}>
+            <input id="shg-bucket-quick" value={text} onChange={e=>setText(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter"){ e.preventDefault(); add(); } }} placeholder="Anything you want, ever" style={{ flex:1,minWidth:0,background:"#fff",color:"#000",border:"none",borderRadius:12,padding:"11px 12px",fontSize:15,fontFamily:"inherit" }}/>
+            <button onClick={add} style={{ background:OMBRE,color:"#000",border:"none",borderRadius:12,padding:"0 16px",fontSize:15,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
+          </div>
+          <div style={{ fontSize:13,fontWeight:300,marginTop:10,lineHeight:1.5 }}>No rules, no pressure. Short is fine. The more you release, the faster some of them arrive. They're saved in proofOS › Bucket List.</div>
+        </div>
+      )}
     </div>
   );
 }

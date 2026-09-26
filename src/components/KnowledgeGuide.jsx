@@ -5,6 +5,37 @@ import { WorkWithReshma } from "./ShopGrid.jsx";
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
 const SECTIONS = [
+  { k:"bucket-how", icon:"◈", title:"How to write your bucket list",
+    body:"Write anything you want, ever. Big, small, silly, serious. A number in your account, a trip, a bag, a feeling, a person, a view from your window.\n\nKeep each one short, one line is enough. You're not setting an intention yet, you're releasing a wish.\n\nThe habit is the magic: add 10 ideas a day. The more you release, the more your brain starts noticing them around you, and some will arrive so fast it will shock you." },
+  { k:"bucket-detail", icon:"◉", title:"Do I need to add lots of detail?",
+    body:"No. Your bucket list is for speed, not detail. One line per wish is perfect.\n\nDetail belongs to intentions. When a wish becomes important enough to focus on, move it into Intentions, and there you describe exactly what you want in \"Add more about it\": where, who, how it feels, the details." },
+  { k:"bucket-often", icon:"◐", title:"How often should I add to my bucket list?",
+    body:"Every day, if you can. The goal is 10 ideas a day, and Home shows how many you've added today.\n\nIt takes two minutes: in the queue, before bed, on the train. Don't judge your ideas. Repeats are fine, and wishes can change.\n\nOnce a week, scroll back through your list. Anything that has already arrived? Mark it manifested. Anything you want to focus on? Move it to Intentions." },
+  { k:"bucket-signs", icon:"✧", title:"How do I add a sign to a bucket list wish?",
+    body:"Signs are logged against intentions, so if you start seeing signs for a bucket list wish, that's your cue: move it into Intentions. Then every sign you log can be linked to it.\n\nIf a bucket list wish simply arrives, open proofOS › Bucket List and mark it manifested. It goes straight to your Proof Wall, even without signs." },
+  { k:"forgot-sign", icon:"◈", title:"What if I forget to log a sign?",
+    body:"It's never too late. Log it when you remember and write when it happened, for example \"On Tuesday I saw…\". A late sign is still evidence.\n\nTo remember in the moment: keep the ✦ button on your Home screen, use voice so it takes five seconds, or take a photo and add it later.\n\nA nice habit: before bed, ask yourself \"What did I notice today?\" and log anything that comes up." },
+  { k:"who-reshma", icon:"✦", title:"Who is Reshma Oracle?",
+    body:"I'm Reshma Oracle, the founder of Self Hypnosis Goddess and the voice on every track.\n\nI'm a psychic, healer and channel. I created this brand to bring together self hypnosis, subliminals, energy work and a way to track your proof, so you don't just hope it's working, you can see it.\n\nEverything in this app, the tracks, the workbooks, the guidebook and proofOS, comes from my method." },
+  { k:"reshma-psychic", icon:"◉", title:"What are Reshma's gifts?",
+    body:"Claircognizant: I know things before they happen.\nClairvoyant: I see what is around you.\nRemote sensing: I feel people and places from far away.\nEnergy healer: I clear what is stuck and detox your energy.\nA channel: every track comes through me, from Source.\n\nThese are spiritual gifts, not medical or professional advice." },
+  { k:"reshma-channel", icon:"◈", title:"What does \"channelled\" mean?",
+    body:"The words in my tracks aren't written like a script from a template. They come through me, from Source, for the desire each track is made for.\n\nI then add the layers that help them go in: EMDR, binaural beats and isochronic tones, subliminals and Reiki." },
+  { k:"reshma-youtube", icon:"▶", title:"Where else can I find Reshma?",
+    body:"On my YouTube channel, where I share free tracks and videos about manifestation and self hypnosis. Many members first found me there.\n\nThe full library, proofOS and everything in this app are only here, for members." },
+  { k:"personal-track", icon:"≈", title:"What is a personalised track?",
+    body:"A track made only for you. You tell me exactly what you want and what's in your way, and I create a self hypnosis track written in your words and recorded in my voice.\n\nIt's the most powerful option if your desire is very specific, or if general tracks haven't reached the belief underneath it." },
+  { k:"one-to-one", icon:"◐", title:"What happens in a 1:1 session with Reshma?",
+    body:"One live session with me, focused on your goals. We look at what you want, what's blocking it and what to do next. I use my intuition and energy work alongside the method in this app.\n\nYou leave with a clear plan, and you can keep tracking everything in proofOS." },
+  { k:"email-coaching", icon:"✉", title:"What is email coaching?",
+    body:"Five weeks of support by email: daily prompts and direct access to me. You share what's happening, I reply with guidance.\n\nIt's ideal if you want ongoing support without booking live sessions." },
+  { k:"how-to-book", icon:"›", title:"How do I book or buy?",
+    body:"Open the Shop, or tap an offer below. For now, some bookings open my booking page. Booking directly inside the app is coming soon." },
+  { k:"ask-reshma", icon:"?", title:"Can I ask Reshma a question?",
+    body:"Yes. Goddess members can send me a question from Analytics › Ask Reshma, and I answer inside the app. For anything deeper, a 1:1 session or email coaching is the best way to work with me." },
+  { k:"not-medical", icon:"!", title:"Is this medical or professional advice?",
+    body:"No. My tracks and guidance are spiritual support. They're not a replacement for medical, psychological or financial advice. If you're struggling, please reach out to a professional or a local support line." },
+
   { k:"what-hypnosis", icon:"◈", title:"What is self hypnosis?",
     body:"Hypnosis is a natural, relaxed state where your attention narrows and your critical mind steps back. You pass through it every night as you fall asleep and every morning as you wake.\n\nIn that state, your subconscious accepts new ideas without arguing. That's why a sentence like \"I am chosen\" can feel impossible when you're wide awake, but can settle in when you're relaxed.\n\nSelf hypnosis means you choose what goes in. My voice guides you into the state, then speaks the new identity as if it's already true. You stay in control the whole time. You can't get stuck, and you can open your eyes whenever you like." },
   { k:"binaural", icon:"≈", title:"What are binaural beats?",
@@ -110,7 +141,7 @@ const SECTIONS = [
   { k:"proof-wall-forever", icon:"", title:"Your Proof Wall is for life, never lose a manifestation again", isNew:true,
     body:"Every manifestation you log stays on your Proof Wall permanently, not for a month, not until you clear your history, forever. This is the whole point.\n\nMost people manifest things constantly and never realise it, because they don't write it down. A win happens, life moves on and a few months later when doubt creeps back in, there's nothing to point to. The evidence existed, it just wasn't kept anywhere.\n\nYour Proof Wall replaces that gap entirely. Every intention shows exactly when you added it and exactly when it manifested, so you can see, in black and white, how long it actually took. Some things take two days. Some take months. There's no average that means anything, because it depends entirely on the desire, but seeing your own real timeline, across everything you've ever manifested, is the actual point. It becomes undeniable. This isn't a journal you'll lose or a note you'll forget to reread. It's permanent, dated proof that this works, built by you, for you, for as long as you use the app." },
 
-  { k:"bucket-vs-active", icon:"◈", title:"Bucket List vs Active, how the two work together", isNew:true,
+  { k:"bucket-vs-active", icon:"◈", title:"Bucket list vs active intentions", isNew:true,
     body:"ProofOS has two different lists and they're not the same thing.\n\nYour Bucket List is everything you want to manifest, ever, no limit, no pressure. Write something down the second it occurs to you. No category needed, no audio needed, no commitment. It's just a place to capture desires before you forget them, the way you'd jot something in your notes app. A holiday, a number in your bank account, a relationship, a body you want, a job, all of it goes here first.\n\nActive is different. This is where you're actually focusing your energy right now, the desires you've chosen to work on deliberately, with audio, with a Hawkins state logged before and after, with signs being tracked. We recommend keeping this list to around 5-10 at a time. Not because there's a hard limit, but because trying to actively manifest fifty things at once spreads your energy so thin that none of them get the focus they need. Depth beats breadth here.\n\nHere's the method: keep adding to your Bucket List constantly, with no filter. Then, when you're ready to actually focus, open your Bucket List and promote a handful of items into Active, that's when you pick a category and get a track suggested. Everything else stays in your Bucket List, waiting, still valid, still yours. Nothing is lost by not focusing on it yet.\n\nAnd here's the part most people miss: you can mark a Bucket List item as manifested without it ever becoming Active. Sometimes the act of writing a desire down clearly, once, is enough, you don't always need the audio to manifest something. If it happens, mark it. Your Proof Wall doesn't care which list it came from." },
 
   { k:"how-to-write-intention", icon:"✧", title:"How to write a good intention in ProofOS",
@@ -184,7 +215,7 @@ export function GuideIcon({ size = 64 }) {
   // One elegant icon for every topic: the two circles from the 1:1 Session cover.
   return <img src="/icons/session.webp" alt="" aria-hidden="true" width={size} height={size} style={{ flexShrink:0, display:"block", borderRadius:"50%" }}/>;
 }
-const CAT_ICON = { "How to listen":"listen","Intentions":"intentions","Signs & synchronicities":"signs","Proof Wall, your evidence log":"proof","Bucket List":"bucket","Getting started":"start","Tracks & listening":"tracks","The mechanism":"mechanism","Results & troubleshooting":"results","The Hawkins Scale":"hawkins" };
+const CAT_ICON = { "About Reshma & extra support":"guide", "How to listen":"listen","Intentions":"intentions","Signs & synchronicities":"signs","Proof Wall, your evidence log":"proof","Bucket List":"bucket","Getting started":"start","Tracks & listening":"tracks","The mechanism":"mechanism","Results & troubleshooting":"results","The Hawkins Scale":"hawkins" };
 
 // Slides from the Inside Your Brain method deck, shown above each topic's answers.
 const SLIDES = {
@@ -194,15 +225,17 @@ const SLIDES = {
   "Signs & synchronicities": ["signs-synchronicity","what-counts","signs-stories","why-222","read-a-sign","ask-for-sign","signs-build"],
   "Proof Wall, your evidence log": ["hope-or-evidence","why-track","listen-notice-log","what-you-track","proof-chart"],
   "Bucket List": ["bucket-list"],
+  "About Reshma & extra support": ["meet-oracle","channelled","how-i-connect","path-with-me","why-work","track-for-you","workbooks"],
   "The Hawkins Scale": ["hawkins-scale"],
 };
 
 const CATEGORIES = [
   { label:"How to listen", keys:["listen-ritual","listen-plan","listen-multi","hyp-sub-when","headphones","when","how-long-session","how-often","focus","fell-asleep","stop"] },
   { label:"Intentions", keys:["how-to-write-intention","choosing-your-emotion","multiple-intentions","multiple-desires","same-track-multiple"] },
-  { label:"Signs & synchronicities", keys:["spotting-signs","signs"] },
+  { label:"Signs & synchronicities", keys:["spotting-signs","signs","forgot-sign"] },
   { label:"Proof Wall, your evidence log", keys:["knowing-manifested","proof-wall-forever","proofos-not-journal"] },
-  { label:"Bucket List", keys:["bucket-vs-active"] },
+  { label:"Bucket List", keys:["bucket-how","bucket-vs-active","bucket-detail","bucket-often","bucket-signs"] },
+  { label:"About Reshma & extra support", keys:["who-reshma","reshma-psychic","reshma-channel","reshma-youtube","personal-track","one-to-one","email-coaching","how-to-book","ask-reshma","not-medical"] },
   { label:"Getting started", keys:["formula","believe","state"] },
   { label:"Tracks & listening", keys:["how-many-tracks","hyp-vs-sub","music-only","vocals-only","hypno-vs-sub-versions","frequencies","frequencies-types","reiki"] },
   { label:"The mechanism", keys:["what-hypnosis","brainwaves","binaural","isochronic","solfeggio","reiki-energy","sats","emdr","subliminals-what","subliminals-all","visualization","one-method","therapy","emotional"] },
@@ -241,7 +274,6 @@ export default function KnowledgeGuide({ onClose, start = null }) {
                 
               </button>
             ))}
-            <div style={{ gridColumn:"1/-1", marginTop:8 }}><WorkWithReshma onShop={()=>{ onClose(); window.dispatchEvent(new Event("shg-go-shop")); }}/></div>
           </div></>
         ) : (
           <>
@@ -251,6 +283,7 @@ export default function KnowledgeGuide({ onClose, start = null }) {
                 {SLIDES[cat].map(n => <img key={n} src={`/deck/${n}.webp`} alt="" loading="lazy" style={{ width:"100%", aspectRatio:"16/9", borderRadius:14, display:"block", border:"1px solid rgba(242,236,228,0.18)" }}/>)}
               </div>
             )}
+            {cat === "About Reshma & extra support" && <div style={{ marginBottom:14 }}><WorkWithReshma/></div>}
             <div style={{ display:"grid", gap:10 }}>
               {visibleSections.map(s => (
                 <div key={s.k} style={{ ...PAPER, borderRadius:16, overflow:"hidden" }}>
