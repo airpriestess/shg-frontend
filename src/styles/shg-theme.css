@@ -76,8 +76,8 @@
 .shg-gt{padding-right:.12em;margin-right:-.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 
 /* Cream graph paper cards: black text, gradient edge, easy to read */
-div.shg-paper.shg-paper.shg-paper.shg-paper.shg-paper{background:linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px) padding-box,linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px) padding-box,linear-gradient(#F2ECE4,#F2ECE4) padding-box,var(--grad) border-box!important;background-size:22px 22px,22px 22px,auto,auto!important;border:1.5px solid transparent!important;animation:none!important;box-shadow:none!important;color:#000!important}
+:is(div,button).shg-paper.shg-paper.shg-paper.shg-paper.shg-paper{background:linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px) padding-box,linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px) padding-box,linear-gradient(#F2ECE4,#F2ECE4) padding-box,var(--grad) border-box!important;background-size:22px 22px,22px 22px,auto,auto!important;border:1.5px solid transparent!important;animation:none!important;box-shadow:none!important;color:#000!important}
 .shg-paper *{color:#000!important;-webkit-text-fill-color:#000}
 .shg-paper [style*="background: rgb(0, 0, 0)"],.shg-paper [style*="background: rgb(0, 0, 0)"] *{color:#F2ECE4!important;-webkit-text-fill-color:#F2ECE4}
 .shg-paper input,.shg-paper textarea{background:#fff!important}
-[data-portal-theme] div.shg-paper.shg-paper [style*="letter-spacing"],[data-portal-theme] div.shg-paper.shg-paper .shg-gt{background:none!important;color:#000!important;-webkit-text-fill-color:#000!important}
+[data-portal-theme] :is(div,button).shg-paper.shg-paper [style*="letter-spacing"],[data-portal-theme] :is(div,button).shg-paper.shg-paper .shg-gt{background:none!important;color:#000!important;-webkit-text-fill-color:#000!important}

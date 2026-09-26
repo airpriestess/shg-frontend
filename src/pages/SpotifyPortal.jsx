@@ -120,7 +120,7 @@ const THEMES = {
   // Cards stay opaque (#fdf0e8) so the gradient never bleeds through and text
   // keeps its contrast; the gradient reads as the room, the cards as the paper.
   light: {
-    bg:      "radial-gradient(60% 40% at 0% 0%,rgba(245,224,160,.55),transparent 70%),radial-gradient(55% 45% at 100% 30%,rgba(191,165,216,.45),transparent 70%),radial-gradient(60% 45% at 30% 100%,rgba(44,183,167,.30),transparent 70%),#F2ECE4",
+    bg:      "#F2ECE4",
     bg2:     "#F2ECE4",
     bg3:     "#F2ECE4",
     bg4:     "#F2ECE4",
@@ -519,6 +519,23 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const userId = session?.user?.id;
   const [pushDismissed, setPushDismissed] = useState(false);
   const [tab, setTab]         = useState(initialTab);
+  // Every dark card in the main area becomes cream graph paper, so the whole
+  // portal reads the same way. Runs after each render of the current tab.
+  useEffect(() => {
+    const dark = /rgb\((1[0-9]|2[0-4]), (1[0-9]|2[0-4]), (1[0-9]|2[0-4])\)/;
+    const paint = () => document.querySelectorAll('[data-portal-theme] div, [data-portal-theme] button').forEach(el => {
+      if (el.classList.contains('shg-paper') || el.closest('.shg-paper') || el.closest('.shg-no-paper')) return;
+      const cs = getComputedStyle(el); if (parseFloat(cs.borderTopLeftRadius) < 10) return;
+      const r = el.getBoundingClientRect(); if (r.width < 150 || r.height < 56) return;
+      if (window.innerWidth > 900 && r.right < 300) return;
+      // Skip the player bar and other small fixed strips, not the full-screen shell.
+      for (let a = el; a && a !== document.body; a = a.parentElement) { if (getComputedStyle(a).position === 'fixed' && a.getBoundingClientRect().height < 400) return; }
+      if (dark.test(cs.backgroundColor) || dark.test(cs.backgroundImage)) el.classList.add('shg-paper');
+    });
+    paint(); const mo = new MutationObserver(() => requestAnimationFrame(paint));
+    mo.observe(document.body, { childList:true, subtree:true });
+    return () => mo.disconnect();
+  }, [tab]);
   const [track, setTrack]     = useState(TRACKS[0]);
   const [playing, setPlay]    = useState(false);
   const [isLooping, setLooping] = useState(false);
@@ -587,7 +604,9 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
     })();
     return () => { cancelled = true; };
   }, [userId, isPreview, token]);
-  const [theme, setTheme]     = useState(forceTheme || "dark");
+  const [passportPage, setPassportPage] = useState(null);
+  const [theme, setTheme]     = useState(() => { try { return forceTheme || localStorage.getItem("shg_theme") || "dark"; } catch { return forceTheme || "dark"; } });
+  useEffect(() => { try { localStorage.setItem("shg_theme", theme); } catch {} }, [theme]);
   const [profileOpen, setProfileOpen] = useState(false);
   const [listenCount, setListenCount] = useState(isPreview ? 127 : 0);
   // Seeded 30-day emotional log — Reshma's real arc: started in anxiety, shifted decisively to Love/Peace
@@ -832,13 +851,13 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           </div>
           <div style={{ display:"flex",justifyContent:"space-between" }}>
             <span style={{ fontSize:14,color:C.mu }}>Monthly rate</span>
-            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$79/mo":userTier==="lifetime"?"$1000 one-time":"$49/mo"}</span>
+            <span style={{ fontSize:15,color:C.cr }}>{userTier==="goddess"?"$49/mo":userTier==="lifetime"?"$1000 one-time":"$29/mo"}</span>
           </div>
         </div>
         {userTier==="audio" && (
           <div style={{ background:`${R}18`,border:`1px solid ${R}44`,borderRadius:12,padding:"14px 16px",marginBottom:14 }}>
             <div style={{ fontSize:14,color:C.cr,marginBottom:8 }}>Upgrade to Goddess Tier  to unlock proofOS and Analytics.</div>
-            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$79/month · cancel anytime · your card on file will be charged the difference immediately</div>
+            <div style={{ fontSize:13,color:C.mu,marginBottom:12 }}>$49/month · cancel anytime · your card on file will be charged the difference immediately</div>
             <button onClick={openStripePortal} disabled={portalLoading} style={{ width:"100%",padding:"12px",background:`linear-gradient(135deg,${OMBRE})`,border:"none",borderRadius:10,color:"#000",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
               {portalLoading ? "Opening..." : "Upgrade now, instant access "}
             </button>
@@ -923,7 +942,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const openPlayer = () => { if (isDesktop) setShowDesc(true); else setFullP(true); };
   const tabContent = (
     <>
-      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={()=>setProfileOpen(true)} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
+      {tab==="home"    && <HomeTab greet={greet} firstName={firstName} track={track} play={play} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} threads={threads} setThreads={setThreads} listenCount={listenCount} setTab={setTab} setLibCat={setLibCat} openProfile={(pg)=>{setPassportPage(typeof pg==="number"?pg:null);setProfileOpen(true);}} emoLog={emoLog} openGuide={()=>setShowGuide(true)} openEmoLog={()=>setShowEmoLog(true)} userTier={userTier} onUpgradeClick={()=>setBillingOpen(true)} userId={userId} token={token} pushDismissed={pushDismissed} onDismissPush={()=>setPushDismissed(true)} openPlayer={openPlayer}/>}
       {tab==="search"  && <div className="shg-tab-glow" style={{zoom:1}}><SearchTab tracks={TRACKS} searchQ={searchQ} setQ={setQ} play={play} track={track} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
       {tab==="library" && <div className="shg-tab-glow" style={{zoom:1}}><LibraryTab tracks={TRACKS} cat={libCat} setCat={setLibCat} libFormat={libFormat} setLibFormat={setLibFormat} play={play} track={track} liked={liked} toggleLike={toggleLike} playing={playing} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
       {tab==="proof"   && <div className="shg-tab-glow" style={{zoom:1}}>{(userTier === "audio" && !isPreview ? <ProofLockedScreen C={C} onUpgrade={()=>setBillingOpen(true)} feature="proofOS"/> : <ProofTab threads={threads} setThreads={setThreads} isPreview={isPreview} C={C} currentTrack={track} userTier={userTier} onUpgrade={()=>setBillingOpen(true)} proofFilter={proofFilter} setProofFilter={setProofFilter} userId={userId} token={token} onManifested={(t)=>setCelebThread(t)}/>)}</div>}
@@ -938,7 +957,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   if (isDesktop) return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <GoddessPassport onClose={()=>setProfileOpen(false)} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:onHome, signOut:onSignOut }}/>}
+      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);}, site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/"; } }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {showEmoLog && (
@@ -1095,7 +1114,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <GoddessPassport onClose={()=>setProfileOpen(false)} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:onHome, signOut:onSignOut }}/>}
+      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);}, site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/"; } }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
       {showOnboarding && <OnboardingQuiz
@@ -1596,7 +1615,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </div>
 
       {/* OPEN YOUR PASSPORT */}
-      <button onClick={openProfile} className="shg-gb" style={{ display:"flex",alignItems:"center",gap:16,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={openProfile} className="shg-gb shg-paper" style={{ display:"flex",alignItems:"center",gap:16,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
         <span className="shg-gfill" style={{ width:52,height:68,borderRadius:8,flexShrink:0,display:"grid",placeItems:"center" }}>
           <svg width="30" viewBox="0 0 40 40" fill="none" stroke="#000" strokeWidth="1.6" aria-hidden="true"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></svg>
         </span>
@@ -1606,6 +1625,13 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <span style={{ display:"block",fontSize:13,marginTop:2 }}>Your identity, stamps and ritual</span>
         </span>
         <span style={{ fontSize:22 }}>›</span>
+      </button>
+
+      {/* TELL ME ABOUT YOU: uploads that build her profile */}
+      <button onClick={()=>openProfile(1)} className="shg-gb" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
+        <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Tell me about you</span>
+        <span style={{ display:"block",fontSize:17,fontWeight:500,marginTop:6 }}>Upload anything about yourself so I can learn more about you every day.</span>
+        <span style={{ display:"block",fontSize:13,marginTop:4 }}>Your needs, your desires, your blocks. Journal pages, notes, goals ›</span>
       </button>
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
@@ -1634,7 +1660,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
           {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.",isDark?"#BFA5D8":"#5a3a7a"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
-            <div key={name} style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
+            <div key={name} className="shg-paper" style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
               <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
               <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
             </div>
@@ -2876,7 +2902,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="proofOS" }) {
       </div>
       <div style={{ background:"rgba(44,183,167,0.08)", border:"1px solid rgba(44,183,167,0.2)", borderRadius:14, padding:"14px 20px", maxWidth:280 }}>
         <div style={{ fontSize:13, color:C.mu, letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:8 }}>Upgrade to Goddess Tier</div>
-        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$79<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
+        <div style={{ fontSize:22, color:"#E8B870", marginBottom:4 }}>$49<span style={{ fontSize:15, color:C.mu }}>/month</span></div>
         <div style={{ fontSize:13, color:C.mu }}>You pay the difference from your current plan, no re-entering card details</div>
       </div>
       <button onClick={onUpgrade} style={{ padding:"14px 36px", background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)", border:"none", borderRadius:14, color:"#000", fontSize:16, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
@@ -3535,10 +3561,10 @@ function ShopTab({ C }) {
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
         {products.map((p,i)=>(
           <div key={i} onClick={()=>p.available && window.open(BEACONS,"_blank")}
-            style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:p.available?1:0.55 }}
+            className="shg-paper" style={{ background:C.bg2,border:`0.5px solid ${C.border}`,borderRadius:12,overflow:"hidden",cursor:p.available?"pointer":"default",transition:"transform 0.15s",opacity:1 }}
             onMouseEnter={e=>{ if(p.available) e.currentTarget.style.transform="translateY(-2px)"; }}
             onMouseLeave={e=>e.currentTarget.style.transform="none"}>
-            <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"#000" }}>
+            <div style={{ height:100,overflow:"hidden",position:"relative",display:"flex",alignItems:"center",justifyContent:"center",background:"transparent" }}>
               <Thumb title={p.name} cat={p.cat} size={64} radius={12}/>
             </div>
             <div style={{ padding:"10px 12px" }}>
