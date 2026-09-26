@@ -1234,7 +1234,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} onLogSign={()=>setTab("proof")} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
       {/* Bottom nav */}
       {/* Floating log-a-sign button */}
-      {!fullP && !hideFab && (
+      {!fullP && !hideFab && tab==="home" && (
         <button
           onClick={() => setLogSignOpen(true)}
           style={{ position:"fixed",bottom:everPlayed?(isPreview?130:146):(isPreview?66:84),right:14,zIndex:70,width:46,height:46,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
@@ -2900,11 +2900,11 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
           <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
         </div>
       </div>
-      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;display:grid!important;flex-direction:initial!important;grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:calc((100% - 30px) / 4.4)!important;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}body .shg-four.shg-four::-webkit-scrollbar{display:none}@media(min-width:900px){body .shg-four.shg-four{grid-auto-columns:120px!important}}`}</style>
+      <style>{`body .shg-four.shg-four{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px;padding:4px 16px 18px!important;overflow-x:auto!important;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x pan-y}body .shg-four.shg-four::-webkit-scrollbar{display:none}body .shg-four.shg-four>*{flex:0 0 calc((100vw - 62px) / 4.4)!important;max-width:120px}`}</style>
       <div style={{ padding:"0 16px 10px",fontSize:18,color:C.cr }}>Browse by category</div>
-      <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
+      <div className="shg-four hscroll-ok" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"],["Lifemaxxing","Life"]].map(([c,name])=>(
-          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ padding:0,border:"none",background:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
+          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");setTimeout(()=>document.getElementById("shg-browse")?.scrollIntoView({behavior:"smooth",block:"start"}),60);}} className="shg-no-paper" style={{ padding:0,border:"none",background:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
             <div style={{ borderRadius:14,overflow:"hidden",outline:cat===c?"2px solid #F2ECE4":"none",outlineOffset:2,aspectRatio:"1" }}><Thumb cat={c} size="100%" radius={14}/></div>
             <div style={{ marginTop:8,fontSize:15,color:C.cr }}>{name}</div>
           </button>
@@ -2912,14 +2912,14 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
       </div>
       {/* JUMP BACK IN */}
       <Sec title="Jump back in" C={C}>
-        <div className="shg-nw shg-nw-scroll" style={{ padding:"0 16px" }}>
+        <div className="shg-nw shg-nw-scroll hscroll-ok" style={{ padding:"0 16px" }}>
           {TRACKS.slice(0,8).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </div>
       </Sec>
 
       {/* NEW THIS WEEK */}
       <Sec title="New this week " C={C}>
-        <div className="shg-nw" style={{ padding:"0 16px" }}><style>{`body .shg-nw.shg-nw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:10px;max-width:560px}body .shg-nw.shg-nw>div{width:auto!important}body .shg-nw.shg-nw>div>div:nth-child(2){font-size:12px!important}body .shg-nw.shg-nw>div>div:nth-child(3){display:none!important}body .shg-nw.shg-nw.shg-nw-scroll{grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:calc((100% - 30px) / 4.4)!important;overflow-x:auto;scrollbar-width:none;max-width:none}body .shg-nw-scroll::-webkit-scrollbar{display:none}`}</style>
+        <div className="shg-nw" style={{ padding:"0 16px" }}><style>{`body .shg-nw.shg-nw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:10px;max-width:560px;padding-top:3px!important}body .shg-nw.shg-nw>div{width:auto!important}body .shg-nw.shg-nw>div>div:nth-child(2){font-size:12px!important}body .shg-nw.shg-nw>div>div:nth-child(3){display:none!important}body .shg-nw.shg-nw.shg-nw-scroll{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:none;padding:3px 16px 6px!important;touch-action:pan-x pan-y}body .shg-nw.shg-nw.shg-nw-scroll>div{flex:0 0 calc((100vw - 62px) / 4.4)!important;max-width:130px}body .shg-nw-scroll::-webkit-scrollbar{display:none}`}</style>
           {TRACKS.filter(t=>t.isNew).slice(0,4).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </div>
       </Sec>
@@ -2936,7 +2936,7 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
           :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
       <div style={{ padding:"4px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-        <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by desire</span>
+        <span id="shg-browse" style={{ fontSize:20,fontWeight:400,color:C.cr,scrollMarginTop:90 }}>Browse by desire</span>
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
@@ -3027,6 +3027,7 @@ function ProofLockedScreen({ C, onUpgrade, feature="proofOS" }) {
 function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="goddess", onUpgrade, proofFilter="all", setProofFilter, userId, token, onManifested }) {
   const [newD, setD]       = useState("");
   const [newBelief, setNewBelief] = useState("");
+  const [newDetails, setNewDetails] = useState("");
   const [newCat, setNewCat]   = useState("Richgirlmaxxing");
   const [newCats, setNewCats] = useState([]);
   const [linkedTrack, setLinked] = useState(currentTrack?.title || "");
@@ -3384,7 +3385,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   {d.shared ? <div style={{ marginTop:8,fontSize:12,fontWeight:600 }}>Shared with the community ✓</div> : (
                     <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}>
                       {[["Share with my name",false],["Share anonymously",true]].map(([lab,anon])=>(
-                        <button key={lab} onClick={()=>{ try { const l = JSON.parse(localStorage.getItem("shg_shared_wins")||"[]"); if (!l.some(w=>w.id===d.id)) { l.push({ id:d.id, anon, name:anon?"":(isPreview?"Reshma":""), desire:d.desire, belief:d.oldBelief||"", track:d.track||"", cat:(d.categories||[d.category])[0], cats:d.categories||[d.category], days:d.days||1, feelBefore:d.feelBefore||"", feelAfter:d.feelAfter||"", signs:(d.signs||[]).map(x=>({ text:x.text, date:x.date })), manifestedAt:d.manifestedAt||"", date:new Date().toISOString() }); localStorage.setItem("shg_shared_wins", JSON.stringify(l)); } } catch {} setThreads(ts=>ts.map(t=>t.id===d.id?{...t,shared:true}:t)); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"6px 12px",fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{lab}</button>
+                        <button key={lab} onClick={()=>{ try { const l = JSON.parse(localStorage.getItem("shg_shared_wins")||"[]"); if (!l.some(w=>w.id===d.id)) { l.push({ id:d.id, anon, name:anon?"":(isPreview?"Reshma":""), desire:d.desire, details:d.details||"", belief:d.oldBelief||"", track:d.track||"", cat:(d.categories||[d.category])[0], cats:d.categories||[d.category], days:d.days||1, feelBefore:d.feelBefore||"", feelAfter:d.feelAfter||"", signs:(d.signs||[]).map(x=>({ text:x.text, date:x.date })), manifestedAt:d.manifestedAt||"", date:new Date().toISOString() }); localStorage.setItem("shg_shared_wins", JSON.stringify(l)); } } catch {} setThreads(ts=>ts.map(t=>t.id===d.id?{...t,shared:true}:t)); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"6px 12px",fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{lab}</button>
                       ))}
                     </div>
                   )}
@@ -3413,9 +3414,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       <>
       {adding && (
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
-          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
+          <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:4 }}>Your intention, in 6 words or less</div>
+          <div style={{ fontSize:13,color:PC.mu,marginBottom:8 }}>Short and present tense. {newD.trim() ? `${newD.trim().split(/\s+/).length} word${newD.trim().split(/\s+/).length===1?"":"s"}` : ""}</div>
           <div style={{ display:"flex",gap:8,marginBottom:11,alignItems:"center" }}>
-            <input value={newD} onChange={e=>setD(e.target.value)} enterKeyHint="done" onKeyDown={e=>{if(e.key==="Enter"){e.preventDefault();document.getElementById("shg-save-intent")?.click();}}} placeholder="I receive… I am… I have…"
+            <input value={newD} onChange={e=>setD(e.target.value)} enterKeyHint="done" onKeyDown={e=>{if(e.key==="Enter"){e.preventDefault();document.getElementById("shg-save-intent")?.click();}}} placeholder="I live by the sea"
+              maxLength={60}
               style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
             <button onClick={()=>document.getElementById("shg-save-intent")?.click()} aria-label="Save intention" style={{ width:44,height:44,flexShrink:0,borderRadius:"50%",border:"none",background:"#000",color:"#F2ECE4",fontSize:20,cursor:"pointer" }}>✓</button>
             <button onClick={()=>{
@@ -3432,6 +3435,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               {listening ? "⏹" : "🎙"}
             </button>
           </div>
+          <label htmlFor="shg-int-details" style={{ display:"block",fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Add more about it</label>
+          <textarea id="shg-int-details" rows={4} value={newDetails} onChange={e=>setNewDetails(e.target.value)} placeholder="Describe exactly what you want, like a journal entry: where, who, how it feels, the details. The more specific, the better."
+            style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:15,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box",resize:"vertical",lineHeight:1.5 }}/>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:6 }}>Current belief about this</div>
           <input value={newBelief} onChange={e=>setNewBelief(e.target.value)} placeholder="What do you actually believe about this right now? e.g. 'It's never worked out for me before'"
             style={{ width:"100%",background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,marginBottom:11,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
@@ -3469,9 +3475,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             }
             const before = [newFeel, newFeelText].filter(Boolean).join(", ");
             const localId = Date.now()+Math.random().toString(36).slice(2,8);
-            const optimistic = {id:localId,createdTs:Date.now(),createdAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCats[0]||newCat,categories:newCats.length?newCats:[newCat],feelBefore:before,feelAfter:"",oldBelief:newBelief};
+            const optimistic = {id:localId,createdTs:Date.now(),createdAt:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}),desire:newD,days:0,done:false,signs:[],track:linkedTrack,category:newCats[0]||newCat,categories:newCats.length?newCats:[newCat],feelBefore:before,feelAfter:"",oldBelief:newBelief,details:newDetails.trim()};
             setThreads([optimistic,...threads]);
-            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewCats([]); setNewBelief(""); setAdding(false);
+            setD(""); setLinked(""); setFeel(""); setFeelText(""); setNewCat("Richgirlmaxxing"); setNewCats([]); setNewBelief(""); setNewDetails(""); setAdding(false);
             if (!isPreview && userId) {
               try {
                 await quizApi("/threads", token, {
@@ -3513,6 +3519,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 {d.category && <span style={{ fontSize:12,padding:"2px 9px",background:CAT_GRAD[d.category]||CAT_GRAD.Identity,color:"#000",borderRadius:20,fontWeight:400 }}>{d.category}</span>}
                 {d.track && <span style={{ fontSize:13,color:PC.mu,fontWeight:400 }}>♪ {d.track}</span>}
               </div>
+              {d.details && (
+                <details style={{ marginTop:6 }}>
+                  <summary style={{ fontSize:13,color:PC.text,cursor:"pointer" }}>Read more ›</summary>
+                  <div style={{ fontSize:14,color:PC.text,lineHeight:1.6,marginTop:6,whiteSpace:"pre-line" }}>{d.details}</div>
+                </details>
+              )}
               {d.feelBefore && <div style={{ fontSize:13,color:PC.dim,marginTop:6,lineHeight:1.5 }}><b style={{color:PC.mu}}>Before:</b> "{d.feelBefore}"</div>}
               {d.done && d.feelAfter && <div style={{ fontSize:13,color:"#2CB7A7",marginTop:2,lineHeight:1.5,fontWeight:400 }}><b>After:</b> "{d.feelAfter}"</div>}
             </div>
@@ -3636,6 +3648,7 @@ function WinCard({ w, mine }) {
       {w.belief && <div style={{ fontSize:14,marginTop:4 }}>Old belief: "{w.belief}"</div>}
       {open && (
         <div style={{ marginTop:12,borderTop:"1px solid #000",paddingTop:10 }}>
+          {w.details && <div style={{ fontSize:14,lineHeight:1.6,marginBottom:12,whiteSpace:"pre-line" }}>{w.details}</div>}
           <div style={{ fontSize:12,letterSpacing:".2em",marginBottom:6 }}>SIGNS SHE LOGGED</div>
           {(w.signs||[]).map((sg,i)=><div key={i} style={{ fontSize:14,lineHeight:1.5,padding:"4px 0" }}>✦ {sg.text} <span style={{ fontSize:12 }}>· {sg.date}</span></div>)}
         </div>
@@ -3865,7 +3878,7 @@ function Sec({ title, children, C, onShowAll }) {
   );
 }
 function HRow({ children }) {
-  return <div style={{ display:"flex",gap:12,padding:"3px 16px 6px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none" }}>{children}</div>;
+  return <div className="hscroll-ok" style={{ display:"flex",gap:12,padding:"3px 16px 6px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none" }}>{children}</div>;
 }
 function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike, openPlayer, big=false }) {
   const isP = current?.id===t.id;
