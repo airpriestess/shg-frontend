@@ -192,15 +192,15 @@ export default function KnowledgeGuide({ onClose, start = null }) {
         </div>
 
         {!cat ? (
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:12 }}>
+          <><style>{`body .shg-kg.shg-kg{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:10px}@media(min-width:700px){body .shg-kg.shg-kg{grid-template-columns:repeat(3,1fr)!important}}`}</style><div className="shg-kg">
             {CATEGORIES.map(c => (
-              <button key={c.label} onClick={()=>setCat(c.label)} style={{ background:"#000", color:"#F2ECE4", border:"1px solid transparent", boxShadow:"0 0 18px rgba(191,165,216,.25)", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:20, padding:"20px 16px", minHeight:96, textAlign:"center", alignItems:"center", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
-                <span style={{ fontSize:20, fontWeight:400, letterSpacing:".02em", lineHeight:1.25, background:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{c.label}</span>
-                <span style={{ fontSize:13, letterSpacing:".12em" }}>{c.keys.length} ANSWERS</span>
+              <button key={c.label} onClick={()=>setCat(c.label)} style={{ background:"#000", color:"#F2ECE4", border:"1px solid transparent", boxShadow:"0 0 18px rgba(191,165,216,.25)", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:16, minHeight:72, textAlign:"center", alignItems:"center", padding:"14px 12px", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+                <span style={{ fontSize:17, fontWeight:300, letterSpacing:".04em", lineHeight:1.25, background:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{c.label}</span>
+                <span style={{ fontSize:11, fontWeight:300, letterSpacing:".2em", marginTop:4 }}>{c.keys.length} {c.keys.length===1?"ANSWER":"ANSWERS"}</span>
               </button>
             ))}
             <div style={{ gridColumn:"1/-1", marginTop:8 }}><WorkWithReshma onShop={()=>{ onClose(); window.dispatchEvent(new Event("shg-go-shop")); }}/></div>
-          </div>
+          </div></>
         ) : (
           <>
             <div style={{ fontSize:26, fontWeight:500, marginBottom:16 }}>{cat}</div>

@@ -584,6 +584,11 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   useEffect(() => { if (!isPreview) return; try { localStorage.setItem("shg_preview_threads", JSON.stringify(threads.map(t => ({ ...t, signs: (t.signs || []).map(sg => ({ ...sg, img: sg.img && sg.img.startsWith("blob:") ? null : sg.img, audio: sg.audio && sg.audio.startsWith("blob:") ? null : sg.audio })) })))); } catch {} }, [threads, isPreview]);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
   useEffect(() => {
+    const goWall = () => { setProofFilter?.("all"); setTab("proof"); setTimeout(()=>window.dispatchEvent(new Event("shg-view-wall")),50); };
+    window.addEventListener("shg-go-wall", goWall);
+    return () => window.removeEventListener("shg-go-wall", goWall);
+  }, []);
+  useEffect(() => {
     const goShop = () => { setFullP(false); setTab("shop"); };
     window.addEventListener("shg-go-shop", goShop);
     return () => window.removeEventListener("shg-go-shop", goShop);
@@ -2358,16 +2363,17 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                 <div key={k} style={{ flex:"1 1 260px", minWidth:0 }}>
                   <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:14 }}>{periods[k].label}</div>
                   {periods[k].rows.map(([name, now, before]) => {
-                    const up = now > before, same = now === before;
-                    const diff = Math.round((now - before) * 10) / 10;
+                    const max = Math.max(now, before) || 1;
                     return (
-                      <div key={name} className="shg-paper shg-glowedge shg-stat" style={{ marginBottom:12, borderRadius:14, padding:"14px 16px" }}>
-                        <div style={{ fontSize:15, color:C.cr, marginBottom:4 }}>{name}</div>
-                        <div style={{ display:"flex", alignItems:"baseline", gap:10, flexWrap:"wrap" }}>
-                          <span className="shg-gt" style={{ fontSize:30, fontWeight:600, lineHeight:1 }}>{now}</span>
-                          <span style={{ fontSize:16, color:C.cr }}>from {before}</span>
-                          {!same && <span style={{ fontSize:16, fontWeight:700, color:"#000" }}>{up ? "▲" : "▼"} {up ? "+" : ""}{diff}</span>}
-                        </div>
+                      <div key={name} style={{ marginBottom:14 }}>
+                        <div style={{ fontSize:14, color:C.cr, marginBottom:6 }}>{name}</div>
+                        {[["Before",before,false],["Now",now,true]].map(([lab,v,hi])=>(
+                          <div key={lab} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
+                            <span style={{ fontSize:12, color:C.cr, width:46, flexShrink:0 }}>{lab}</span>
+                            <div style={{ flex:1, height:12, borderRadius:6, background:"rgba(0,0,0,.08)", overflow:"hidden" }}><div className={hi?"shg-bar-h":""} style={{ height:"100%", width:`${(v/max)*100}%`, borderRadius:6, background: hi ? "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)" : "rgba(0,0,0,.25)" }}/></div>
+                            <span style={{ fontSize:14, fontWeight:hi?600:400, color:C.cr, width:44, textAlign:"right", flexShrink:0 }}>{v}</span>
+                          </div>
+                        ))}
                       </div>
                     );
                   })}
@@ -2433,18 +2439,14 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             {proofTotal > 0 && (
               <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"22px 20px", borderRadius:22 }}>
                 <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.18em", textTransform:"uppercase", color:C.cr, marginBottom:14 }}>Your proof is compounding</div>
-                <div style={{ display:"flex", alignItems:"baseline", gap:8, marginBottom:10 }}>
-                  <div style={{ fontSize:72, fontWeight:700, lineHeight:1, color:C.cr }}>{proofTotal}</div>
-                  <div style={{ fontSize:18, color:C.cr }}>pieces of proof, dated and kept</div>
+                <div style={{ textAlign:"center", marginBottom:12 }}>
+                  <div style={{ fontSize:52, fontWeight:500, lineHeight:1, color:C.cr }}>{proofTotal}</div>
+                  <div style={{ fontSize:14, color:C.cr, marginTop:4 }}>pieces of proof</div>
                 </div>
                 <div className="shg-paper" style={{ height:14, borderRadius:8, background:C.bg4, overflow:"hidden", marginBottom:12 }}>
                   <div className="shg-bar-h" style={{ height:"100%", borderRadius:5, width:`${Math.min(100,(proofTotal/365)*100)}%`, minWidth:6, background:OMBRE }}/>
                 </div>
-                <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>
-                  {proofTotal >= 365
-                    ? "A year of evidence. Your proof outweighs your doubt."
-                    : `${365-proofTotal} more to a full year of evidence. Every sign you log counts.`}
-                </div>
+                <div style={{ display:"flex", justifyContent:"space-between", fontSize:13, color:C.cr }}><span>0</span><span>{proofTotal >= 365 ? "A year of evidence ✦" : `${365-proofTotal} to a year of evidence`}</span><span>365</span></div>
               </div>
             )}
 
@@ -2482,10 +2484,17 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               return (
                 <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"22px 20px", borderRadius:22 }}>
                   <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.18em", textTransform:"uppercase", color:C.cr, marginBottom:12 }}>What you said was stopping you</div>
-                  <div style={{ fontSize:28, fontWeight:600, color:C.cr, lineHeight:1.3, marginBottom:16 }}>“{blockText}”</div>
-                  <div style={{ fontSize:18, color:C.cr, lineHeight:1.6 }}>
-                    Since you wrote that, you have logged <strong style={{color:C.cr}}>{signsTotal} signs</strong> and manifested <strong style={{color:C.cr}}>{mDone}</strong>. That is the evidence against it.
+                  <div style={{ fontSize:19, fontWeight:400, color:C.cr, lineHeight:1.35, textAlign:"center", textDecoration:"line-through", textDecorationThickness:1, marginBottom:16 }}>“{blockText}”</div>
+                  <div style={{ display:"flex", gap:10 }}>
+                    {[[signsTotal,"signs logged","track"],[mDone,"manifested","lucky"]].map(([v,l,ic])=>(
+                      <div key={l} style={{ flex:1, textAlign:"center" }}>
+                        <img src={`/icons/${ic}.webp`} alt="" style={{ width:54, height:54, borderRadius:"50%", display:"block", margin:"0 auto 6px" }}/>
+                        <div style={{ fontSize:26, fontWeight:500, color:C.cr, lineHeight:1 }}>{v}</div>
+                        <div style={{ fontSize:13, color:C.cr, marginTop:3 }}>{l}</div>
+                      </div>
+                    ))}
                   </div>
+                  <div style={{ fontSize:14, color:C.cr, textAlign:"center", marginTop:12 }}>The evidence against it.</div>
                 </div>
               );
             })()}
@@ -2498,8 +2507,14 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"22px 20px", borderRadius:22 }}>
           <div style={{ fontSize:13, fontWeight:500, color:C.cr, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:14 }}>This week's insight ✦</div>
           {isPreview ? (
-            <div style={{ fontSize:17, color:C.cr, lineHeight:1.55 }}>
-              "You played your Lovemaxxing tracks 3× more than any other area this week, mostly He Finds His Way Back. Two of your in-progress desires are about love and you logged 5 signs for them."
+            <div style={{ display:"flex", gap:10 }}>
+              {[["love","3×","more Love listens"],["track","5","signs for love"],["session","2","love desires open"]].map(([ic,v,l])=>(
+                <div key={l} style={{ flex:1, textAlign:"center" }}>
+                  <img src={`/icons/${ic}.webp`} alt="" style={{ width:50, height:50, borderRadius:"50%", display:"block", margin:"0 auto 6px" }}/>
+                  <div style={{ fontSize:24, fontWeight:500, color:C.cr, lineHeight:1 }}>{v}</div>
+                  <div style={{ fontSize:13, color:C.cr, marginTop:3, lineHeight:1.3 }}>{l}</div>
+                </div>
+              ))}
             </div>
           ) : weeklyInsight ? (
             <div style={{ fontSize:17, color:C.cr, lineHeight:1.55 }}>"{weeklyInsight}"</div>
@@ -2561,7 +2576,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* AI RECOMMENDATION CARD */}
       <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-          <span style={{ fontSize:13, fontWeight:500, color:C.cr, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
+          <span style={{ fontSize:13, fontWeight:500, color:C.cr, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next recommended listen ✦</span>
           {!isPreview && (
             <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:15, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
               {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
@@ -3023,6 +3038,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [adding, setAdding] = useState(false);
   const [listening, setListening] = useState(false);
   const [view, setView] = useState("threads"); // threads | wall | bucket
+  useEffect(() => { const f = () => setView("wall"); window.addEventListener("shg-view-wall", f); return () => window.removeEventListener("shg-view-wall", f); }, []);
   const [hiddenGuides, setHiddenGuides] = useState(() => { try { return JSON.parse(localStorage.getItem("shg_hidden_guides") || "{}"); } catch { return {}; } });
   const toggleGuide = v => setHiddenGuides(h => { const n = { ...h, [v]: !h[v] }; try { localStorage.setItem("shg_hidden_guides", JSON.stringify(n)); } catch {} return n; });
   const [signInput, setSignInput] = useState({}); // {threadId: text}
@@ -3202,7 +3218,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         const G = {
           threads:{ t:"How to set an intention", steps:["Write it in the present tense, never the future: \"I live in my home by the sea\", not \"I will\". Past tense can work too, but for most people faking that it already happened creates conflict.","Pick the category and how you honestly feel right now. Your emotions are what make the tracking meaningful.","Play the suggested track daily, then log every sign under that intention."], key:"how-to-write-intention", img:"intention-list" },
           signs:{ t:"How to spot a sign", steps:["A sign is a coincidence that answers your desire: a word, a song, a stranger, an exact amount.","Ask for something rare and personal, not 111. Then watch for it.","Log it the moment it happens, with a photo, a voice note or a line of text, and link it to its intention."], key:"spotting-signs", img:"ask-for-sign" },
-          wall:{ t:"Your Proof Wall is your evidence log", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, with how many days it took."], key:"proof-wall-forever", img:"hope-or-evidence" },
+          wall:{ t:"Your Proof Wall is your evidence log", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, with how many days it took.","Tap Share with my name or Share anonymously to post it to Community wins."], key:"proof-wall-forever", img:"hope-or-evidence" },
           bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, as much as you want, as many times a day as you like.","Make it a daily habit. The more you release random desires, the more some of them arrive so fast it will shock you.","Some things manifest by themselves, no hypnosis needed. When one arrives, mark it manifested straight from here.","When you're ready to focus on one, move it into Intentions."], key:"bucket-vs-active", img:"bucket-list" },
         }[view];
         if (!G) return null;
@@ -3649,20 +3665,30 @@ function CommunityTab({ C, isPreview }) {
     <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:900,margin:"0 auto",textAlign:"center" }}>
       <div className="shg-gt" style={{ fontSize:28,fontWeight:500,display:"inline-block" }}>Community wins</div>
       <div style={{ fontSize:16,fontWeight:300,color:C.cr,margin:"6px 0 16px",lineHeight:1.5 }}>Real proof from real members. When hers arrives, you see what's possible for you.</div>
-      <div className="shg-no-paper" style={{ ...PAPER_DARK,borderRadius:18,padding:"20px 12px",marginBottom:18,border:"1px solid rgba(242,236,228,.18)" }}>
-        <div style={{ fontSize:13,fontWeight:500,letterSpacing:".3em",color:"#F2ECE4",marginBottom:16 }}>HOW COMMUNITY WINS WORK</div>
+      <button onClick={()=>setStep(step===null?0:null)} aria-expanded={step!==null} className="shg-paper" style={{ display:"block",width:"100%",borderRadius:18,padding:"20px 12px",marginBottom:14,cursor:"pointer",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+        <div style={{ fontSize:13,fontWeight:500,letterSpacing:".3em",marginBottom:16 }}>HOW COMMUNITY WINS WORK</div>
         <style>{`body .shg-cw.shg-cw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:6px}`}</style>
         <div className="shg-cw">
           {steps.map(([t],i)=>(
-            <button key={t} onClick={()=>setStep(step===i?null:i)} aria-expanded={step===i} style={{ background:"none",border:"none",cursor:"pointer",color:"#F2ECE4",fontFamily:"'Jost',sans-serif",padding:0 }}>
-              <div style={{ width:54,height:54,margin:"0 auto 8px",borderRadius:"50%",display:"grid",placeItems:"center",fontSize:22,color:"#000",background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)",boxShadow:step===i?"0 0 22px rgba(245,224,160,.7)":"0 0 14px rgba(191,165,216,.35)" }}>{i+1}</div>
+            <div key={t}>
+              <div style={{ width:52,height:52,margin:"0 auto 8px",borderRadius:"50%",display:"grid",placeItems:"center",fontSize:22,color:"#000",background:"linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)" }}>{i+1}</div>
               <div style={{ fontSize:15,fontWeight:500 }}>{t}</div>
-              <div style={{ fontSize:12,fontWeight:300,marginTop:3 }}>Tap me ›</div>
-            </button>
+            </div>
           ))}
         </div>
-        {step!==null && <div style={{ fontSize:15,fontWeight:300,color:"#F2ECE4",lineHeight:1.6,marginTop:16,padding:"0 6px",animation:"shg-spin-in .5s both" }}>{steps[step][1]}</div>}
-      </div>
+        <div style={{ fontSize:14,marginTop:14 }}>{step===null ? "Tap me to see how it works ›" : "Tap to close ⌃"}</div>
+        {step!==null && (
+          <div style={{ marginTop:22,textAlign:"left",animation:"shg-spin-in .5s both" }}>
+            {steps.map(([t,d],i)=>(
+              <div key={t} style={{ marginBottom:16 }}>
+                <div style={{ fontSize:15,fontWeight:500,marginBottom:4 }}>{i+1}. {t}</div>
+                <div style={{ fontSize:15,fontWeight:300,lineHeight:1.6 }}>{d}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </button>
+      <button onClick={()=>window.dispatchEvent(new Event("shg-go-wall"))} style={{ display:"block",margin:"0 auto 20px",background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"12px 24px",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Share my win ›</button>
       {mine.length === 0 && !isPreview && <div style={{ color:C.cr,fontSize:15,marginBottom:12 }}>No wins shared yet. Be the first.</div>}
       <div style={{ display:"grid",gap:14,textAlign:"left" }}>
         {mine.slice().reverse().map((w,i)=><WinCard key={"m"+i} w={w} mine/>)}
