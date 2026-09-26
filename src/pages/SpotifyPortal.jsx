@@ -3686,6 +3686,7 @@ function ShopTab({ C }) {
         </div>
       )}
       <ShopGrid/>
+      <WorkWithReshma/>
     </div>
   );
 }

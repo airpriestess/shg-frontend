@@ -81,3 +81,5 @@
 .shg-paper [style*="background: rgb(0, 0, 0)"],.shg-paper [style*="background: rgb(0, 0, 0)"] *{color:#F2ECE4!important;-webkit-text-fill-color:#F2ECE4}
 .shg-paper input,.shg-paper textarea{background:#fff!important}
 [data-portal-theme] :is(div,button).shg-paper.shg-paper [style*="letter-spacing"],[data-portal-theme] :is(div,button).shg-paper.shg-paper .shg-gt{background:none!important;color:#000!important;-webkit-text-fill-color:#000!important}
+/* Section labels on black shop boxes stay cream, even inside paper pages */
+[data-portal-theme] .shg-shop-label.shg-shop-label.shg-shop-label.shg-shop-label,.shg-shop-label.shg-shop-label.shg-shop-label{color:#F2ECE4!important;-webkit-text-fill-color:#F2ECE4!important;text-align:center!important}

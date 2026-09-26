@@ -14,6 +14,7 @@ export const PRODUCTS = [
   { name:"Inside your brain",  kind:"Freebie", price:"Free",    img:"/shop/method-deck.png",         link:`https://shop.beacons.ai/reshmaoracle/e787f0e8-83b9-45a2-9cae-4fc70decae25?${UTM}&utm_campaign=brain_guide` },
   { name:"Personalised Track", kind:"Service",     price:"",    img:"/shop/personalised-track.webp", link:BEACONS },
   { name:"1:1 Session",        kind:"Service",     price:"",    img:"/shop/session.webp",            link:BEACONS },
+  { name:"Email Coaching",     kind:"Service",     price:"",    img:"/shop/email-coaching.webp",     link:BEACONS },
 ];
 
 export async function buyProduct(p) {
@@ -46,14 +47,14 @@ function Card({ p, busy, setBusy }) {
 
 export default function ShopGrid() {
   const [busy, setBusy] = useState("");
-  const groups = [["Workbooks","Workbook"],["Freebies","Freebie"],["Working with Reshma","Service"]];
+  const groups = [["Workbooks","Workbook"],["Freebies","Freebie"]];
   return (
     <>
-      <style>{`body .shg-shop-grid.shg-shop-grid{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))!important;gap:12px}@media(max-width:700px){body .shg-shop-grid.shg-shop-grid{grid-template-columns:1fr 1fr!important}}`}</style>
+      <style>{`body .shg-shop-grid.shg-shop-grid{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))!important;gap:12px}@media(max-width:700px){body .shg-shop-grid.shg-shop-grid{grid-template-columns:1fr 1fr!important}}.shg-shop-label{color:#F2ECE4!important}body .shg-shop-grid.shg-shop-grid[style*="max-width"]{grid-template-columns:1fr!important}`}</style>
       {groups.map(([title, kind]) => (
-        <div key={kind} style={{ marginBottom:22 }}>
-          <div style={{ fontSize:12, letterSpacing:".3em", textTransform:"uppercase", color:"#F2ECE4", margin:"0 0 10px", textAlign:"center" }}>{title}</div>
-          <div className="shg-shop-grid shg-no-paper">
+        <div key={kind} className="shg-no-paper" style={{ marginBottom:16, padding:"16px 12px", borderRadius:20, background:"#000", border:"1px solid transparent", backgroundImage:`linear-gradient(#000,#000),${G}`, backgroundOrigin:"border-box", backgroundClip:"padding-box, border-box" }}>
+          <div className="shg-shop-label" style={{ fontSize:12, letterSpacing:".3em", textTransform:"uppercase", color:"#F2ECE4", margin:"0 0 12px", textAlign:"center" }}>{title}</div>
+          <div className="shg-shop-grid shg-no-paper" style={kind==="Freebie"?{ maxWidth:220, margin:"0 auto" }:undefined}>
             {PRODUCTS.filter(p => p.kind === kind).map(p => <Card key={p.name} p={p} busy={busy} setBusy={setBusy}/>)}
           </div>
         </div>
@@ -71,7 +72,7 @@ export function WorkWithReshma({ onShop }) {
         <div style={{ fontSize:11, letterSpacing:".3em" }}>WORKING WITH RESHMA</div>
         <div style={{ fontSize:20, fontWeight:500, marginTop:6 }}>Stuck? I'm here for you.</div>
       </div>
-      <style>{`body .shg-wwr.shg-wwr{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(2,1fr)!important;gap:10px}`}</style>
+      <style>{`body .shg-wwr.shg-wwr{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(3,1fr)!important;gap:10px}`}</style>
       <div className="shg-wwr">
         {services.map(p => (
           <button key={p.name} onClick={() => buyProduct(p)} style={{ background:"#000", border:"1px solid rgba(242,236,228,.2)", borderRadius:14, overflow:"hidden", padding:0, cursor:"pointer", fontFamily:"inherit", color:"#F2ECE4" }}>
