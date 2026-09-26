@@ -346,3 +346,33 @@ export default function KnowledgeGuide({ onClose, start = null }) {
     </div>
   );
 }
+
+// A whole Guidebook topic (slides + Q&As) as a collapsible block on graph paper, for use inside proofOS.
+export function GuideBlock({ cat, title }) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState(null);
+  const c = CATEGORIES.find(x => x.label === cat);
+  if (!c) return null;
+  const secs = c.keys.map(k => SECTIONS.find(s => s.k === k)).filter(Boolean);
+  const PAPER = { backgroundColor:"#F2ECE4", backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)", backgroundSize:"20px 20px" };
+  return (
+    <div style={{ ...PAPER, borderRadius:18, padding:"14px 14px", margin:"0 0 14px", color:"#000", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
+      <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset", display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%", cursor:"pointer", fontSize:16, fontWeight:300 }}>
+        <span>{title || `The ${cat} guide`}</span><span style={{ fontSize:14 }}>{open ? "Close ⌃" : "Open ›"}</span>
+      </button>
+      {open && (
+        <div style={{ marginTop:12, display:"grid", gap:10 }}>
+          {(SLIDES[cat] || []).map(n => <img key={n} src={`/deck/${n}.webp`} alt="" loading="lazy" style={{ width:"100%", aspectRatio:"16/9", borderRadius:12, display:"block", objectFit:"cover" }}/>)}
+          {secs.map(s => (
+            <div key={s.k} style={{ background:"#fff", border:"1px solid #000", borderRadius:12 }}>
+              <button onClick={()=>setQ(q===s.k?null:s.k)} style={{ all:"unset", display:"flex", justifyContent:"space-between", gap:8, width:"100%", boxSizing:"border-box", padding:"12px 14px", cursor:"pointer", fontSize:15, fontWeight:300 }}>
+                <span>{s.title}</span><span>{q===s.k ? "⌃" : "⌄"}</span>
+              </button>
+              {q===s.k && <div style={{ padding:"0 14px 14px", fontSize:15, fontWeight:300, lineHeight:1.7, whiteSpace:"pre-line" }}>{s.body}</div>}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

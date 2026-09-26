@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import AnalyticsBoard, { DEMO_ANALYTICS } from "../components/AnalyticsBoard.jsx";
 import MyQuestions, { fetchMyQuestions, unreadCount } from "../components/MyQuestions.jsx";
-import KnowledgeGuide, { GuideIcon } from "../components/KnowledgeGuide.jsx";
+import KnowledgeGuide, { GuideIcon, GuideBlock } from "../components/KnowledgeGuide.jsx";
 import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
@@ -465,6 +465,15 @@ const RECENT = TRACKS.slice(0,6).map(t=>t.title);
 const FORMAT_SUFFIXES = /\s*\((Subliminal|Hypnosis|Melodic Hypnosis|Melodic Subliminal|Calm Hypnosis|Calm Subliminal|Self Hypnosis|Sleep & Rest|Reiki|EMDR|528hz|432hz)\)\s*$/i;
 const displayTitle = (title) => title.replace(FORMAT_SUFFIXES, "").trim();
 
+// One date format everywhere: "26 Sep 2026" or "26 Sep 2026 · 18:39" when a time is known.
+function fmtDT(v, ts) {
+  const src = ts || v; if (!src) return "";
+  const d = typeof src === "number" ? new Date(src) : new Date(String(src).replace("Sept","Sep"));
+  if (isNaN(d)) return String(v || "");
+  const hasTime = !!ts || (typeof src === "string" && /T\d\d:\d\d/.test(src)) || typeof src === "number";
+  const day = d.toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric" }).replace("Sept","Sep");
+  return hasTime ? `${day} · ${d.toLocaleTimeString("en-GB", { hour:"2-digit", minute:"2-digit" })}` : day;
+}
 const INIT_THREADS = [
   { id:1, desire:"He texts me first",     days:14, done:true,  track:"The Universe Supports Me", category:"Lovemaxxing",
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
@@ -583,7 +592,8 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const [libCat, setLibCat]   = useState("All");
   const [libFormat, setLibFormat] = useState("All");
   const threadsCacheKey = `shg_threads_cache_${userId || "guest"}`;
-  const [threads, setThreads] = useState(() => { if (!isPreview) { try { const c = JSON.parse(localStorage.getItem(threadsCacheKey) || "null"); if (Array.isArray(c)) return c; } catch {} return []; } try { const saved = JSON.parse(localStorage.getItem("shg_preview_threads") || "null"); if (Array.isArray(saved) && saved.length) return withSampleBucket(saved); } catch {} return withSampleBucket(INIT_THREADS); });
+  if (isPreview) seedDemoJournal();
+  const [threads, setThreads] = useState(() => { if (!isPreview) { try { const c = JSON.parse(localStorage.getItem(threadsCacheKey) || "null"); if (Array.isArray(c)) return c; } catch {} return []; } try { const saved = JSON.parse(localStorage.getItem("shg_preview_threads") || "null"); if (Array.isArray(saved) && saved.length) return withDemoData(withSampleBucket(saved)); } catch {} return withDemoData(withSampleBucket(INIT_THREADS)); });
   // The beta keeps what you add on this device, so a new intention doesn't vanish when you move around.
   useEffect(() => { if (!isPreview) return; try { localStorage.setItem("shg_preview_threads", JSON.stringify(threads.map(t => ({ ...t, signs: (t.signs || []).map(sg => ({ ...sg, img: sg.img && sg.img.startsWith("blob:") ? null : sg.img, audio: sg.audio && sg.audio.startsWith("blob:") ? null : sg.audio })) })))); } catch {} }, [threads, isPreview]);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
@@ -1326,7 +1336,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           onClose={() => setLogSignOpen(false)}
           onHideButton={() => { try { localStorage.setItem("shg_hide_fab","1"); } catch {} setHideFab(true); setLogSignOpen(false); }}
           onSaved={(sign) => {
-            const entry = { text: sign.content, img: sign.img || undefined, audio: sign.audio || undefined, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}), cats: sign.categories };
+            const entry = { text: sign.content, img: sign.img || undefined, audio: sign.audio || undefined, date: fmtDT(null, Date.now()), ts: Date.now(), cats: sign.categories };
             if (sign?.manifestation_id != null) {
               setThreads(ts => ts.map(t => String(t.id) === String(sign.manifestation_id) ? { ...t, signs: [...(t.signs||[]), entry] } : t));
             } else {
@@ -2766,6 +2776,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {!isPreview && <AskReshmaCard C={C} userId={userId} token={token} userTier={userTier} userEmail={userEmail}/>}
 
       {/* MANIFESTATION TIMELINE */}
+      <BucketAnalytics threads={threads} C={C}/>
       <ManifestationTimeline threads={threads} listenCount={listenCount} isPreview={isPreview} C={C} />
 
       {/* KNOWLEDGE GUIDE, available to all tiers */}
@@ -3165,9 +3176,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const activeThreads = threads.filter(t=>!t.isBucket);
   const displayedThreads = proofFilter==="manifested" ? manifested.filter(t=>!t.isBucket) : proofFilter==="inProgress" ? inProgress.filter(t=>!t.isBucket) : activeThreads;
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
+  const looseSignCount = (()=>{ try { return JSON.parse(localStorage.getItem("shg_loose_signs")||"[]").length; } catch { return 0; } })();
   const [bucketText, setBucketText] = useState("");
   const [bucketCatPick, setBucketCatPick] = useState("");
   const [pastOpen, setPastOpen] = useState(false);
+  const [wallOpen, setWallOpen] = useState(null);
   const [promotingId, setPromotingId] = useState(null);
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [trackPickerOpen, setTrackPickerOpen] = useState(false);
@@ -3305,10 +3318,10 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       {/* FOUR BLOCKS: Intentions | Signs | Proof Wall | Bucket List */}
       <style>{`body .shg-p4.shg-p4{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px;margin-bottom:14px}`}</style>
       <div className="shg-p4">
-        {[["threads","Intentions",inProgress.length,"lucky"],["signs","Signs",totalSigns,"track"],["wall","Proof Wall",manifested.length,"session"],["bucket","Bucket List",bucketItems.length,"money"]].map(([k,l,n,ic])=>{
+        {[["threads","Intentions",inProgress.filter(t=>!t.isBucket).length,"lucky"],["signs","Signs",totalSigns + looseSignCount,"track"],["wall","Proof Wall",manifested.length,"session"],["bucket","Bucket List",bucketItems.length,"money"]].map(([k,l,n,ic])=>{
           const on = view===k;
           return (
-            <button key={k} onClick={()=>{ setView(k); setAdding(false); }} aria-pressed={on} className="shg-no-paper"
+            <button key={k} onClick={()=>{ setView(k); setAdding(false); setProofFilter?.("all"); }} aria-pressed={on} className="shg-no-paper"
               style={{ position:"relative",aspectRatio:"1",borderRadius:20,cursor:"pointer",padding:0,overflow:"hidden",fontFamily:"'Jost',sans-serif",border:on?"2px solid transparent":"1px solid transparent",background:"linear-gradient(#000,#000) padding-box, linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B) border-box",boxShadow:on?"0 0 22px rgba(191,165,216,.55)":"none" }}>
               <span style={{ position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:6 }}>
                 <img src={`/icons/${ic}.webp`} alt="" style={{ width:"48%",aspectRatio:"1",objectFit:"cover",borderRadius:"50%" }}/>
@@ -3330,7 +3343,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         const G = {
           threads:{ t:"How to set an intention", steps:["Write it in the present tense, never the future: \"I live in my home by the sea\", not \"I will\". Past tense can work too, but for most people faking that it already happened creates conflict.","Pick the category and how you honestly feel right now. Your emotions are what make the tracking meaningful.","Play the suggested track daily, then log every sign under that intention."], key:"how-to-write-intention", img:"intention-list" },
           signs:{ t:"How to spot a sign", steps:["A sign is a coincidence that answers your desire: a word, a song, a stranger, an exact amount.","Ask for something rare and personal, not 111. Then watch for it.","Log it the moment it happens, with a photo, a voice note or a line of text, and link it to its intention."], key:"spotting-signs", img:"ask-for-sign" },
-          wall:{ t:"Your Proof Wall is your evidence log", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, with how many days it took.","Tap Share with my name or Share anonymously to post it to Community wins."], key:"proof-wall-forever", img:"hope-or-evidence" },
+          wall:{ t:"How the Proof Wall works", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, with how many days it took.","Tap Share with my name or Share anonymously to post it to Community wins."], key:"proof-wall-forever", img:"hope-or-evidence" },
           bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, as much as you want, as many times a day as you like.","Make it a daily habit. The more you release random desires, the more some of them arrive so fast it will shock you.","Some things manifest by themselves, no hypnosis needed. When one arrives, mark it manifested straight from here.","When you're ready to focus on one, move it into Intentions."], key:"bucket-vs-active", img:"bucket-list" },
         }[view];
         if (!G || view === "bucket" || view === "signs") return null;
@@ -3358,9 +3371,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
           <button className="shg-cta" onClick={()=>window.dispatchEvent(new Event("shg-log-sign"))} style={{ marginBottom:8 }}>✦ Log a sign</button>
           <button onClick={()=>setPastOpen(true)} style={{ display:"block",width:"100%",marginBottom:10,background:"transparent",color:PC.text,border:`1px solid ${PC.text}`,borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>+ Log a past sign</button>
           {pastOpen && <PastSignSheet intentions={threads.filter(t=>!t.isBucket)} onClose={()=>setPastOpen(false)} onSave={(sg, target)=>{ if (target) setThreads(ts=>ts.map(t=>String(t.id)===String(target)?{ ...t, signs:[...(t.signs||[]), sg] }:t)); else { try { const loose = JSON.parse(localStorage.getItem("shg_loose_signs")||"[]"); localStorage.setItem("shg_loose_signs", JSON.stringify([...loose, sg].slice(-500))); } catch {} } }}/>}
-          <details style={{ marginBottom:14,color:PC.text }}><summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,listStyle:"none" }}>How to spot a sign ›</summary>
-            <ol style={{ margin:"10px 0",paddingLeft:20,display:"grid",gap:6,fontSize:15,fontWeight:300,lineHeight:1.5 }}><li>A sign is a coincidence that answers your desire: a word, a song, a stranger, an exact amount.</li><li>Ask for something rare and personal, then watch for it.</li><li>Log it the moment it happens, and link it to its intention.</li></ol>
-          </details>
+          <GuideBlock cat="Signs & synchronicities" title="How to spot a sign: the full guide"/>
           {(()=>{ try { return localStorage.getItem("shg_hide_fab")==="1"; } catch { return false; } })() && <button onClick={e=>{ window.dispatchEvent(new Event("shg-show-fab")); e.currentTarget.remove(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,marginBottom:12,cursor:"pointer",fontFamily:"inherit" }}>✦ Show the sign button again</button>}
           {threads.every(t=>!(t.signs||[]).length) && !(()=>{ try { return JSON.parse(localStorage.getItem("shg_loose_signs")||"[]").length; } catch { return 0; } })() && <div style={{ fontSize:15,color:PC.text,padding:"8px 2px" }}>No signs yet. Open an intention and tap "Log a sign".</div>}
           {(()=>{ let loose=[]; try { loose = JSON.parse(localStorage.getItem("shg_loose_signs")||"[]"); } catch {} return [...threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))), ...loose.map(sg=>({ sg, t:{ desire:"No specific intention" } }))]; })().reverse().map(({sg,t},i)=>(
@@ -3369,7 +3380,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               <div style={{ flex:1,minWidth:0 }}>
               <div style={{ fontSize:16,fontWeight:300,color:PC.text }}>{sg.text}</div>
               {sg.audio && <audio src={sg.audio} controls style={{ marginTop:8,height:32 }}/>}
-              <div style={{ fontSize:13,fontWeight:300,color:PC.text,marginTop:4 }}>For: {t.desire}{sg.date?` · ${sg.date}`:""}</div>
+              <div style={{ fontSize:13,fontWeight:300,color:PC.text,marginTop:4 }}>For: {t.desire}{(sg.ts||sg.date)?` · ${fmtDT(sg.date, sg.ts)}`:""}</div>
               </div>
             </div>
           ))}
@@ -3404,27 +3415,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
             <div style={{ display:"flex",flexWrap:"wrap",gap:6,marginTop:10 }}>
               {BUCKET_CATS.map(([c,ic]) => { const on = (bucketCatPick || (bucketText ? detectBucketCat(bucketText) : "")) === c; return <button key={c} onClick={()=>setBucketCatPick(bucketCatPick===c?"":c)} style={{ fontSize:12,fontWeight:300,padding:"4px 10px",borderRadius:999,border:"1px solid #000",background:on?"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)":"transparent",color:"#000",cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{ic} {c}</button>; })}
             </div>
-            <details style={{ marginTop:10,color:PC.text }}>
-              <summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,listStyle:"none" }}>How the bucket list works ›</summary>
-              <ol style={{ margin:"12px 0",paddingLeft:20,display:"grid",gap:6,fontSize:15,fontWeight:300,lineHeight:1.5 }}>
-                <li>Write down anything you want, as much as you want, as many times a day as you like.</li>
-                <li>Make it a daily habit. The more you release, the more some of them arrive on their own.</li>
-                <li>When one arrives, mark it manifested. When you want to focus on one, promote it to an intention.</li>
-              </ol>
-              <div style={{ borderRadius:14,paddingTop:4 }}>
-            <div style={{ fontSize:14,color:"#E8B870",fontWeight:400,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:10 }}> What's the difference?</div>
-            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
-              <span>Bucket List</span> is everything you want to manifest, ever, no limit, no category, no audio required. Write something down the moment it occurs to you, the way you'd jot a note. Nothing here is a commitment.
-            </div>
-            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75,marginBottom:12 }}>
-              <span>Active</span> is different, it's what you're actually focusing on right now, with audio, with your emotional state tracked before and after. We recommend keeping this to around 5-10 at a time, so your energy stays focused instead of spread thin.
-            </div>
-            <div style={{ fontSize:15,color:PC.text,lineHeight:1.75 }}>
-              Add to your Bucket List constantly. When you're ready to actually focus on something, promote it into Active, pick a category, get a track suggested. Everything else just waits, still valid. And sometimes writing something down clearly is enough on its own, <span>you can mark a Bucket List item manifested without ever linking it to an audio.</span> Your Proof Wall doesn't care which list it came from.
-            </div>
-          </div>
-
-            </details>
+            <div style={{ marginTop:12 }}><GuideBlock cat="Bucket List" title="The bucket list guide"/></div>
           </div>
 
           <BucketBoard items={bucketItems} setThreads={setThreads}/>
@@ -3433,7 +3424,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         /* ═══ PROOF WALL, your wins, forever ═══ */
         <div>
           <div style={{ fontSize:13,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:6 }}>✓ Your proof wall</div>
-          <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your proof wall for life. Never lose a single manifestation again.</div>
+          <div style={{ fontSize:14,color:PC.mu,lineHeight:1.6,marginBottom:14 }}>Your Proof Wall is your evidence. Every sign and win you log shows here. Tap a win to see its story.</div>
           {manifested.length===0 ? (
             <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center" }}>
               <div style={{ fontSize:26,marginBottom:8 }}></div>
@@ -3445,9 +3436,19 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
                   <span style={{ display:"flex",flexWrap:"wrap",gap:4,paddingRight:44 }}>{(d.categories||[d.category]).filter(Boolean).map(c=><span key={c} style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20 }}>✓ {String(c).replace("maxxing","")}</span>)}</span>
                   {(()=>{ const im = d.proofImg || (d.signs||[]).map(x=>x.img).filter(Boolean).slice(-1)[0]; return im ? <img src={im} alt="" onError={e=>{ e.currentTarget.style.display="none"; }} style={{ width:"100%",height:110,objectFit:"cover",borderRadius:10,marginTop:6,display:"block" }}/> : null; })()}
-                  <div style={{ fontSize:15,fontWeight:300,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
+                  <button onClick={()=>setWallOpen(o=>o===d.id?null:d.id)} aria-expanded={wallOpen===d.id} style={{ all:"unset",display:"block",cursor:"pointer",fontSize:15,fontWeight:300,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire} <span style={{ fontSize:12 }}>{wallOpen===d.id ? "⌃" : "›"}</span></button>
+                  {wallOpen===d.id && (
+                    <div style={{ marginTop:8,background:"rgba(255,255,255,.75)",borderRadius:10,padding:"8px 10px",color:"#000" }}>
+                      {(d.signs||[]).length ? (d.signs||[]).map((sg,i)=>(
+                        <div key={i} style={{ display:"flex",gap:8,alignItems:"flex-start",padding:"5px 0",borderBottom:"1px solid rgba(0,0,0,.12)" }}>
+                          {sg.img && <img src={sg.img} alt="" onError={e=>{ e.currentTarget.style.display="none"; }} style={{ width:36,height:36,objectFit:"cover",borderRadius:6,flexShrink:0 }}/>}
+                          <div style={{ fontSize:13,fontWeight:300,lineHeight:1.4 }}>{sg.text}<div style={{ fontSize:11 }}>{fmtDT(sg.date, sg.ts)}</div></div>
+                        </div>
+                      )) : <div style={{ fontSize:13,fontWeight:300 }}>No signs logged for this one.</div>}
+                    </div>
+                  )}
                   <div style={{ fontSize:12,color:"#000",fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
-                  <div style={{ fontSize:12,color:"#000",fontWeight:300,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{` · Took ${d.days||1} day${(d.days||1)===1?"":"s"}`}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:300,marginTop:5, }}>{d.createdAt?`${fmtDT(d.createdAt)} → `:""}{fmtDT(d.manifestedAt, d.manifestedTs)}{` · Took ${d.days||1} day${(d.days||1)===1?"":"s"}`}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:"#000",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   {d.shared ? <details style={{ marginTop:8 }}><summary style={{ fontSize:12,fontWeight:300,cursor:"pointer",listStyle:"none" }}>Shared with the community ✓ · change ›</summary><div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}><ShareWinOptions d={d} userId={userId} isPreview={isPreview} onShared={()=>{}}/></div></details> : (
                     <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}>
@@ -3458,7 +3459,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 </div>
               ))}
               <div style={{ background:PC.card,border:`1px dashed ${PC.border}`,borderRadius:12,padding:12,display:"flex",alignItems:"center",justifyContent:"center",minHeight:80 }}>
-                <span style={{ fontSize:13,color:PC.mu,textAlign:"center",fontWeight:400,lineHeight:1.4 }}>Your next<br/>manifestation</span>
+                <button onClick={()=>setView("threads")} style={{ all:"unset",cursor:"pointer",fontSize:13,color:PC.text,textAlign:"center",fontWeight:300,lineHeight:1.4 }}>Your next win goes here.<br/>When one arrives, open it in Intentions and tap "Manifested" ›</button>
               </div>
               <div style={{ gridColumn:"1/-1" }}>
               <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
@@ -3565,6 +3566,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       )}
 
       {/* THREAD LIST */}
+      {view==="threads" && displayedThreads.length===0 && proofFilter==="all" && !adding && (
+        <div className="shg-paper" style={{ borderRadius:14,padding:"22px 16px",textAlign:"center",marginBottom:10,color:"#000",fontSize:15,fontWeight:300 }}>No intentions yet. Tap "+ Add a new intention", or tap Focus on a bucket list card.</div>
+      )}
       {displayedThreads.length===0 && proofFilter!=="all" && (
         <div style={{ background:PC.card,borderRadius:14,padding:"28px 18px",textAlign:"center",marginBottom:10 }}>
           <div style={{ fontSize:15,color:PC.text,fontFamily:"'Jost',sans-serif" }}>No {proofFilter==="manifested"?"manifested":"in progress"} desires yet.</div>
@@ -3815,6 +3819,68 @@ function ShareInstagram({ w }) {
     </>
   );
 }
+
+// Analytics: bucket list by category, arrived vs dreaming. Always shows, empty for day zero.
+function BucketAnalytics({ threads }) {
+  const items = threads.filter(t => t.isBucket || (String(t.id).startsWith("demo-b")));
+  const cats = BUCKET_CATS.map(([c, ic]) => { const mine = items.filter(t => (t.bucketCat || detectBucketCat(t.desire)) === c); return { c, ic, total: mine.length, arrived: mine.filter(t => t.done).length }; });
+  const max = Math.max(1, ...cats.map(x => x.total));
+  const arrived = items.filter(t => t.done).length, dreaming = items.length - arrived;
+  return (
+    <div className="shg-paper" style={{ margin:"0 16px 14px",padding:"16px",borderRadius:18,color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
+      <div className="shg-bl-lab">BUCKET LIST</div>
+      <div style={{ display:"flex",gap:16,margin:"6px 0 12px",fontSize:14 }}><span>✦ {arrived} arrived</span><span>○ {dreaming} dreaming</span><span>{items.length} total</span></div>
+      <div style={{ display:"grid",gap:6 }}>
+        {cats.map(x => (
+          <div key={x.c} style={{ display:"flex",alignItems:"center",gap:8,fontSize:13 }}>
+            <span style={{ width:78,flexShrink:0 }}>{x.ic} {x.c}</span>
+            <span style={{ flex:1,height:10,borderRadius:6,border:"1px solid #000",overflow:"hidden",background:"#fff",position:"relative" }}>
+              <span style={{ position:"absolute",left:0,top:0,bottom:0,width:`${(x.total/max)*100}%`,background:"rgba(191,165,216,.55)" }}/>
+              <span style={{ position:"absolute",left:0,top:0,bottom:0,width:`${(x.arrived/max)*100}%`,background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" }}/>
+            </span>
+            <span style={{ width:34,textAlign:"right" }}>{x.arrived}/{x.total}</span>
+          </div>
+        ))}
+      </div>
+      {!items.length && <div style={{ fontSize:13,marginTop:10 }}>Add your first bucket list ideas and this fills in.</div>}
+      <style>{`body .shg-bl-lab.shg-bl-lab{display:block;font-size:10px;letter-spacing:.28em;margin-bottom:4px;color:#000!important;-webkit-text-fill-color:#000!important;background:none!important}`}</style>
+    </div>
+  );
+}
+
+// ── DEMO ACCOUNT (preview only) ─────────────────────────────────────────────
+// Makes the preview look like a well-used account: intentions across areas, ~30 dated
+// signs over 60 days, ~20 bucket items, a few journal entries. Added once, by id.
+const DAY = 86400000;
+const DEMO_INTENTIONS = [
+  ["I am booked out with dream clients","Businessmaxxing",40,false],["He texts me first","Lovemaxxing",55,true],["My dream home by the sea","Lifemaxxing",60,false],
+  ["£10k months, every month","Richgirlmaxxing",50,false],["Glowing clear skin","Beautymaxxing",35,true],["Soul sisters around me","Selfmaxxing",45,false],
+  ["A professional track produced","Businessmaxxing",30,true],["Lucky in everything I do","Luckygirlmaxxing",28,false],["My body at 58 kilo, strong and soft","Bodymaxxing",42,false],
+  ["A surprise upgrade on my next flight","Luckygirlmaxxing",20,true],["I sleep deeply every night","Sleepmaxxing",18,false],["I'm confident on camera","Selfmaxxing",25,false],
+];
+const DEMO_SIGN_TEXT = ["Saw 111 three times today","A stranger complimented my skin","Their logo popped up on a billboard","Heard our song in the café","Got an email from an old client","Found £20 in my coat","Someone said 'you look so lucky'","Dreamt of the sea house again","A friend booked a call with me","He liked my photo at 2am","A coach asked for my rates","Won a small raffle at work","The exact dress was on sale","Saw a house with blue shutters","My name came up in a meeting","Upgraded seat at the cinema","Three new followers from my niche","Woke up rested for once","A voice note from my best friend","Money arrived from a refund"];
+function withDemoData(ts) {
+  const have = new Set(ts.map(t => String(t.id)));
+  const now = Date.now();
+  const add = DEMO_INTENTIONS.map(([desire, category, age, done], i) => {
+    const created = now - age * DAY;
+    const nSigns = [3,4,2,3,2,2,3,2,3,2,2,2][i];
+    const signs = Array.from({ length:nSigns }, (_, k) => { const ts2 = created + Math.round(((k + 1) / (nSigns + 1)) * age * DAY) + (9 + (i + k) % 11) * 3600000; return { text: DEMO_SIGN_TEXT[(i * 3 + k) % DEMO_SIGN_TEXT.length], ts: ts2, date: fmtDT(null, ts2) }; });
+    const manTs = created + Math.round(age * 0.8) * DAY;
+    return { id:"demo-i"+i, desire, category, categories:[category], days: done ? Math.round(age*0.8) : age, done, signs, track:"", feelBefore:"Desire (125)", feelAfter: done ? "Joy (540)" : "", oldBelief:"", isBucket:false, createdTs:created, createdAt: fmtDT(null, created), ...(done ? { manifestedAt: fmtDT(null, manTs), manifestedTs: manTs } : {}) };
+  }).filter(t => !have.has(t.id));
+  const moreBucket = ["Front row at Paris fashion week","Learn to surf in Portugal","A garden full of roses","Paid off my credit card","A red convertible","Teach a retreat in Bali","Pilates 4x a week","Soft glowing hair","My own studio","A kitchen with an island","First-class to Tokyo","A £1k surprise"].map((d, i) => ({ id:"demo-b"+i, desire:d, days:0, done: i % 5 === 0, signs:[], track:"", category:"", feelBefore:"", feelAfter:"", oldBelief:"", isBucket:true, createdTs: now - (i + 3) * DAY, ...(i % 5 === 0 ? { manifestedAt: fmtDT(null, now - i * DAY) } : {}) })).filter(t => !have.has(t.id));
+  return [...ts, ...add, ...moreBucket];
+}
+function seedDemoJournal() {
+  try {
+    const k = "shg_journal_preview"; if (JSON.parse(localStorage.getItem(k) || "[]").length) return;
+    const now = Date.now();
+    const e = [["Felt so anxious about money this morning. Rent is due and I keep checking my account.",["Money","Peace"],32],["He texted first today. I didn't even have to think about it.",["Love"],18],["Booked two new clients from one post. The track is working.",["Business","Money"],9],["Skin looks so clear today, three compliments already.",["Beauty"],4],["Slept 8 hours. I feel lucky and calm.",["Peace","Luck"],1]];
+    localStorage.setItem(k, JSON.stringify(e.map(([text, areas, ago], i) => ({ id: now - ago * DAY + i, date: new Date(now - ago * DAY).toISOString(), text, areas }))));
+  } catch {}
+}
+
 // Preview only: a starter bucket list so the section isn't empty.
 const SAMPLE_BUCKET = ["A month in Bali","A home by the sea with big windows","$10,000 in my savings","Business class to Paris","A partner who texts first","Glowing, clear skin","A walk-in wardrobe","Front row at fashion week","Paid off my credit card","A surprise upgrade","Sunrise hot air balloon ride","My own studio"];
 function withSampleBucket(ts) { if (ts.some(t => t.isBucket)) return ts; return [...ts, ...SAMPLE_BUCKET.map((d,i) => ({ id:"sb"+i, desire:d, days:0, done:false, signs:[], track:"", category:"", feelBefore:"", feelAfter:"", oldBelief:"", isBucket:true, createdTs:Date.now()-i*86400000 }))]; }
@@ -4031,7 +4097,7 @@ function PastSignSheet({ title, intentions, onSave, onClose }) {
   const [text, setText] = useState(""); const [img, setImg] = useState(null);
   const [target, setTarget] = useState(intentions?.[0]?.id ?? "");
   const [n, setN] = useState(0);
-  const save = () => { const v = text.trim(); if (!v) return; onSave({ text:v, date:new Date(date+"T12:00").toLocaleDateString("en-GB",{ day:"numeric", month:"short", year:"numeric" }), img: img || undefined }, target); setText(""); setImg(null); setN(x=>x+1); };
+  const save = () => { const v = text.trim(); if (!v) return; onSave({ text:v, date:fmtDT(date), img: img || undefined }, target); setText(""); setImg(null); setN(x=>x+1); };
   return (
     <div role="dialog" aria-modal="true" aria-label="Log a past sign" onClick={onClose} style={{ position:"fixed",inset:0,zIndex:1400,background:"rgba(0,0,0,.7)",display:"flex",alignItems:"flex-end",justifyContent:"center" }}>
       <div className="shg-paper" onClick={e=>e.stopPropagation()} style={{ position:"relative",width:"100%",maxWidth:520,borderRadius:"20px 20px 0 0",padding:"20px 16px calc(env(safe-area-inset-bottom,0px) + 20px)",color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300,maxHeight:"88vh",overflowY:"auto" }}>
@@ -4058,15 +4124,15 @@ function PastSignSheet({ title, intentions, onSave, onClose }) {
 }
 
 // ── BUCKET BOARD: the vision board from the deck ────────────────────────────
-const BUCKET_CATS = [["Travel","✈",/\b(travel|trip|holiday|bali|paris|flight|beach|italy|japan|month in|visit|business class|balloon)\b/i],["Home","⌂",/\b(home|house|flat|apartment|studio|wardrobe|garden|sea view|kitchen)\b/i],["Money","$",/(\$|£|€|\b(money|savings|income|debt|paid|rich|salary|10k|k a month)\b)/i],["Love","♡",/\b(partner|love|husband|boyfriend|texts|date|wedding|marry|soul ?mate)\b/i],["Glow","✧",/\b(skin|glow|hair|body|beauty|fit|nails)\b/i],["Self","◎",/\b(confiden|myself|calm|peace|healing|sisters|friends|course|learn|fashion week|upgrade)\b/i]];
+const BUCKET_CATS = [["Travel","✈",/\b(travel|trip|holiday|bali|paris|flight|beach|italy|japan|month in|visit|business class|balloon)\b/i],["Home","⌂",/\b(home|house|flat|apartment|studio|wardrobe|garden|sea view|kitchen)\b/i],["Money","$",/(\$|£|€|\b(money|savings|income|debt|paid|rich|salary|10k|k a month)\b)/i],["Love","♡",/\b(partner|love|husband|boyfriend|texts|date|wedding|marry|soul ?mate)\b/i],["Body","◍",/\b(body|kilo|kg|weight|fit|gym|abs|toned|healthy)\b/i],["Beauty","✧",/\b(skin|glow|glowing|hair|beauty|nails|face|lashes)\b/i],["Business","◆",/\b(business|clients?|booked|brand|launch|career|job|promotion|track produced|professional)\b/i],["Luck","☘",/\b(luck|lucky|win|won|lottery|upgrade|surprise)\b/i],["Self","◎",/\b(confiden|myself|calm|peace|healing|sisters|friends|course|learn|fashion week|upgrade)\b/i]];
 const detectBucketCat = (t) => (BUCKET_CATS.find(([, , re]) => re.test(t || "")) || ["Self"])[0];
-const CAT_OF_BUCKET = { Travel:"Luckygirlmaxxing", Home:"Lifemaxxing", Money:"Richgirlmaxxing", Love:"Lovemaxxing", Glow:"Beautymaxxing", Self:"Selfmaxxing" };
+const CAT_OF_BUCKET = { Body:"Bodymaxxing", Beauty:"Beautymaxxing", Business:"Businessmaxxing", Luck:"Luckygirlmaxxing", Travel:"Luckygirlmaxxing", Home:"Lifemaxxing", Money:"Richgirlmaxxing", Love:"Lovemaxxing", Self:"Selfmaxxing" };
 function BucketBoard({ items, setThreads }) {
   const [toast, setToast] = useState("");
   const [askCat, setAskCat] = useState(null);
   const [backlog, setBacklog] = useState(null);
   const say = (m) => { setToast(m); setTimeout(() => setToast(""), 2800); };
-  const mark = (it) => { setThreads(ts => ts.map(t => t.id === it.id ? { ...t, done:true, manifestedAt:new Date().toLocaleDateString("en-GB",{ day:"numeric", month:"short", year:"numeric" }) } : t)); setBacklog(it); };
+  const mark = (it) => { setThreads(ts => ts.map(t => t.id === it.id ? { ...t, done:true, manifestedAt:fmtDT(null, Date.now()), manifestedTs:Date.now() } : t)); setBacklog(it); };
   const focusAs = (id, cat) => { setThreads(ts => ts.map(t => t.id === id ? { ...t, isBucket:false, category:cat, createdTs:t.createdTs||Date.now() } : t)); setAskCat(null); say("Now an intention ✓ — find it in Intentions"); };
   const focus = (it) => { const bc = it.bucketCat || detectBucketCat(it.desire); const known = it.bucketCat || BUCKET_CATS.some(([, , re]) => re.test(it.desire || "")); if (known && CAT_OF_BUCKET[bc]) focusAs(it.id, CAT_OF_BUCKET[bc]); else setAskCat(it); };
   const del = (id) => setThreads(ts => ts.filter(t => t.id !== id));
