@@ -5,6 +5,16 @@ import { AuthProvider } from './contexts/AuthContext.jsx'
 import App from './App.jsx'
 import './index.css'
 import './styles/shg-theme.css'
+// Opened from the home screen icon: go straight to the portal (the last one used, e.g. the beta).
+try {
+  const standalone = window.navigator.standalone || window.matchMedia("(display-mode: standalone)").matches;
+  if (standalone && window.location.pathname === "/") {
+    window.location.replace(localStorage.getItem("shg_last_portal") || "/portal");
+  }
+} catch {}
+if (window.location.pathname.startsWith("/portal")) {
+  try { localStorage.setItem("shg_last_portal", window.location.pathname + window.location.search); } catch {}
+}
 // The shop lives on Beacons.
 if (/^\/+shop\/?$/i.test(window.location.pathname)) {
   window.location.replace("https://beacons.ai/reshmaoracle");

@@ -3057,7 +3057,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         <div onClick={()=>setConfirmDeleteId(null)} style={{ position:"fixed",inset:0,zIndex:1100,background:"#000000",display:"flex",alignItems:"center",justifyContent:"center",padding:24 }}>
           <div onClick={e=>e.stopPropagation()} style={{ maxWidth:340,width:"100%",borderRadius:16,padding:"24px 22px",background:"#fdf0e8",border:`1px solid ${PC.border}` }}>
             <div style={{ fontSize:18,fontWeight:400,color:"#000",marginBottom:8,fontFamily:"'Jost',sans-serif" }}>Delete this thread?</div>
-            <div style={{ fontSize:14,color:PC.mu,marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
+            <div style={{ fontSize:14,color:"#000",marginBottom:20,lineHeight:1.5,fontFamily:"'Jost',sans-serif" }}>This removes the desire and every sign you logged for it. This can't be undone.</div>
             <div style={{ display:"flex",gap:10 }}>
               <button onClick={()=>setConfirmDeleteId(null)} style={{ flex:1,padding:"12px",background:"none",border:`1px solid ${PC.border}`,borderRadius:10,color:"#000",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Cancel</button>
               <button onClick={()=>confirmDeleteNow(confirmDeleteId)} style={{ flex:1,padding:"12px",background:"#8a2030",border:"none",borderRadius:10,color:"#fff",fontSize:15,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Delete</button>
@@ -3241,9 +3241,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 <div key={d.id} style={{ background:CAT_GRAD[d.category]||CAT_GRAD.Identity, borderRadius:12, padding:"12px 12px", position:"relative" }}>
                   <span style={{ fontSize:11,padding:"2px 8px",background:"#fdf0e8",color:"#000",borderRadius:20,fontWeight:400 }}>✓ {d.category}</span>
                   <div style={{ fontSize:15,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.3 }}>{d.desire}</div>
-                  <div style={{ fontSize:12,color:C.cr,fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
+                  <div style={{ fontSize:12,color:"#000",fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
                   <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{d.days?` · Took ${d.days} day${d.days===1?"":"s"}`:""}</div>
-                  {d.feelAfter && <div style={{ fontSize:12,color:C.cr,marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
+                  {d.feelAfter && <div style={{ fontSize:12,color:"#000",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"#fdf0e8",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
               ))}
@@ -3257,7 +3257,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   <div key={s.key} style={{ background:"#F2ECE4",borderRadius:10,padding:6,border:"1px solid #000" }}>
                     {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
                     {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
-                    <div style={{ fontSize:8.5,fontWeight:400,color:C.mu,marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
+                    <div style={{ fontSize:10,fontWeight:400,color:"#000",marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
                   </div>
                 ))}
               </div>

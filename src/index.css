@@ -254,8 +254,6 @@ select option:hover,select option:checked{background:#1c1828;}
 [data-portal-theme] [style*="shg-lg-glow"]:not([style*="shg-drift"]),
 .shg-tab-glow :is(div,button)[style*="border-radius: 1"]:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"],[style*="background: rgb(20, 20, 20)"]):not(:is([style*="background: rgb(253, 240, 232)"],[style*="background: rgb(255, 255, 255)"],[style*="background: rgb(13, 13, 13)"],[style*="background: rgb(20, 20, 20)"]) *){
   animation:none!important;
-  border:1.5px solid transparent!important;
-  background:linear-gradient(var(--shg-card),var(--shg-card)) padding-box,var(--shg-grad) border-box!important;
   box-shadow:var(--shg-glow)!important;
 }
 /* Hero greetings keep their gradient fill; only the edge and glow change. */
