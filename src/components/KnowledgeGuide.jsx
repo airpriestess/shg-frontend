@@ -1,5 +1,5 @@
 /* KnowledgeGuide, comprehensive listening guide covering every question */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
@@ -151,83 +151,57 @@ const CATEGORIES = [
   { label:"The Hawkins Scale", keys:["hawkins","hawkins-how"] },
 ];
 
-export default function KnowledgeGuide({ onClose, C }) {
-  const [open, setOpen] = useState(null);
-  const [cat, setCat] = useState("Getting started");
+export default function KnowledgeGuide({ onClose, start = null }) {
+  // Home screen: one big block per topic. Tapping a block opens that topic on its own page.
+  const [cat, setCat] = useState(start?.cat || null);
+  const [open, setOpen] = useState(start?.key || null);
+  const PAPER = { backgroundColor:"#F2ECE4", backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)", backgroundSize:"22px 22px", color:"#000" };
+  const visibleSections = SECTIONS.filter(s => CATEGORIES.find(c => c.label === cat)?.keys.includes(s.k));
 
-  const isDark = C?.bg === "#080808" || C?.bg === "#0f0f0f" || !C?.bg?.startsWith("#f");
-  const bg = isDark ? "#0a0a0a" : "#fdf8f2";
-  const bg2 = isDark ? "#111111" : "#ffffff";
-  const cr = isDark ? "#fdf0e8" : "#1a1008";
-  const mu = isDark ? "#fdf0e8" : "#1a1008";
-  const border = isDark ? "rgba(44,183,167,0.15)" : "rgba(180,104,48,0.18)";
-
-  const visibleSections = SECTIONS.filter(s =>
-    CATEGORIES.find(c => c.label === cat)?.keys.includes(s.k)
-  );
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [onClose]);
 
   return (
-    <>
-      <div style={{ position:"fixed", inset:0, zIndex:1000, background:"#000000" }} onClick={onClose}/>
-      <div style={{ position:"fixed", top:"4%", left:"50%", transform:"translateX(-50%)", width:"94%", maxWidth:580,
-        maxHeight:"92vh", overflowY:"auto", background:bg, border:`1px solid ${border}`,
-        borderRadius:20, zIndex:1001, fontFamily:"'Jost',sans-serif", boxShadow:"0 30px 80px rgba(0,0,0,0.6)" }}>
+    <div role="dialog" aria-modal="true" aria-label="Guidebook" className="shg-no-paper" style={{ position:"fixed", inset:0, zIndex:1001, background:"#000", color:"#F2ECE4", overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", fontFamily:"'Futura','Jost',sans-serif" }}>
+      <div style={{ maxWidth:720, margin:"0 auto", padding:"calc(env(safe-area-inset-top,0px) + 16px) 16px 60px" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
+          {cat
+            ? <button onClick={()=>{ setCat(null); setOpen(null); }} style={{ background:"none", border:"1px solid #F2ECE4", color:"#F2ECE4", borderRadius:999, padding:"8px 16px", fontSize:15, cursor:"pointer", fontFamily:"inherit" }}>‹ Guidebook</button>
+            : <span style={{ fontSize:28, fontWeight:500 }}>Guidebook</span>}
+          <button onClick={onClose} aria-label="Close guidebook" style={{ background:"none", border:"1px solid #F2ECE4", color:"#F2ECE4", borderRadius:999, padding:"8px 16px", fontSize:15, cursor:"pointer", fontFamily:"inherit" }}>Close</button>
+        </div>
 
-        {/* Header */}
-        <div style={{ padding:"20px 20px 14px", position:"sticky", top:0, background:bg,
-          borderBottom:`1px solid ${border}`, zIndex:2 }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
-            <div>
-              <div style={{ fontSize:12, color:"#2CB7A7", letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:4 }}>Guidebook </div>
-              <div style={{ fontSize:18, color:cr, fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic" }}>Everything you need to know</div>
-              <div style={{ fontSize:14, color:cr, marginTop:4,  }}>{SECTIONS.length} questions answered</div>
-            </div>
-            <button onClick={onClose} style={{ background:"none", border:"none", fontSize:20, cursor:"pointer", color:mu, padding:4 }}>✕</button>
-          </div>
-
-          {/* Category pills */}
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))", gap:8, marginTop:14 }}>
-            {CATEGORIES.map(c=>(
-              <button key={c.label} onClick={()=>{setCat(c.label);setOpen(null);}}
-                style={{ padding:"14px 10px", borderRadius:14, border:cat===c.label?"none":"1px solid transparent",
-                  background:cat===c.label?OMBRE:`linear-gradient(#0d0d0d,#0d0d0d) padding-box,${OMBRE} border-box`, color:cat===c.label?"#000":cr,
-                  fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif", minHeight:52 }}>
-                {c.label}
+        {!cat ? (
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))", gap:12 }}>
+            {CATEGORIES.map(c => (
+              <button key={c.label} onClick={()=>setCat(c.label)} style={{ ...PAPER, border:"none", borderRadius:20, padding:"20px 16px", minHeight:120, textAlign:"left", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
+                <span style={{ fontSize:19, fontWeight:500, lineHeight:1.25 }}>{c.label}</span>
+                <span style={{ fontSize:14 }}>{c.keys.length} answers ›</span>
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Sections */}
-        <div style={{ padding:"12px 16px 24px" }}>
-          {visibleSections.map(s=>(
-            <div key={s.k} style={{ marginBottom:6, border:`1px solid ${border}`, borderRadius:12,
-              overflow:"hidden", background:open===s.k?`rgba(44,183,167,0.06)`:bg2 }}>
-              <button onClick={()=>setOpen(open===s.k?null:s.k)}
-                style={{ width:"100%", padding:"13px 14px", background:"none", border:"none", cursor:"pointer",
-                  display:"flex", alignItems:"center", justifyContent:"space-between", gap:10, fontFamily:"'Jost',sans-serif" }}>
-                <span style={{ display:"flex", alignItems:"center", gap:10, flex:1, textAlign:"left" }}>
-                  <span style={{ width:28, height:28, borderRadius:7, background:OMBRE, display:"flex",
-                    alignItems:"center", justifyContent:"center", fontSize:14, color:"#000", flexShrink:0 }}>{s.icon}</span>
-                  <span style={{ fontSize:15, color:cr, lineHeight:1.3 }}>{s.title}</span>
-                </span>
-                <span style={{ fontSize:16, color:mu, flexShrink:0, transition:"transform 0.2s",
-                  transform:open===s.k?"rotate(180deg)":"none" }}>⌄</span>
-              </button>
-              {open===s.k && (
-                <div style={{ padding:"0 14px 16px 52px", fontSize:15, lineHeight:1.85, color:cr,
-                  whiteSpace:"pre-line" }}>{s.body}</div>
-              )}
+        ) : (
+          <>
+            <div style={{ fontSize:26, fontWeight:500, marginBottom:16 }}>{cat}</div>
+            <div style={{ display:"grid", gap:10 }}>
+              {visibleSections.map(s => (
+                <div key={s.k} style={{ ...PAPER, borderRadius:16, overflow:"hidden" }}>
+                  <button onClick={()=>setOpen(open===s.k?null:s.k)} aria-expanded={open===s.k} style={{ width:"100%", padding:"16px", background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, fontFamily:"inherit", color:"#000", textAlign:"left" }}>
+                    <span style={{ fontSize:17, fontWeight:500, lineHeight:1.35 }}>{s.title}</span>
+                    <span style={{ fontSize:20, transform:open===s.k?"rotate(180deg)":"none", transition:"transform .2s" }}>⌄</span>
+                  </button>
+                  {open===s.k && <div style={{ padding:"0 16px 18px", fontSize:16, lineHeight:1.75, whiteSpace:"pre-line", color:"#000" }}>{s.body}</div>}
+                </div>
+              ))}
             </div>
-          ))}
-
-          {/* Footer CTA */}
-          <div style={{ marginTop:12, padding:"12px 14px", background:OMBRE, borderRadius:12,
-            fontSize:14, color:"#000", textAlign:"center" }}>
-            Come back to this any time, tap Guidebook on your home screen.
-          </div>
-        </div>
+          </>
+        )}
       </div>
-    </>
+    </div>
   );
 }

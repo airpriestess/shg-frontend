@@ -90,6 +90,19 @@ const AUDIO_URLS = {
 
 // ── BEACONS STORE ────────────────────────────────────────────────────────────
 const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
+// Workbooks sold in the app. Categories without a PDF yet go to the in-app Shop tab.
+const WORKBOOK_SKU = { Luckygirlmaxxing:"luckygirlmaxxing", Richgirlmaxxing:"richgirlmaxxing" };
+async function buyWorkbook(cat) {
+  const sku = WORKBOOK_SKU[cat];
+  if (!sku) { window.dispatchEvent(new Event("shg-go-shop")); return; }
+  try {
+    let tok = ""; try { tok = localStorage.getItem("shg_auth_token") || ""; } catch {}
+    const r = await fetch("/shop/checkout", { method:"POST", headers:{ "Content-Type":"application/json", ...(tok?{Authorization:"Bearer "+tok}:{}) }, body:JSON.stringify({ sku }) });
+    const d = await r.json();
+    if (d.url) { window.location.href = d.url; return; }
+  } catch {}
+  window.dispatchEvent(new Event("shg-go-shop"));
+}
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
 const THEMES = {
@@ -177,7 +190,7 @@ const CAT_ICONS = {
   Facemaxxing: { accent:"#E8B870", icon:'<ellipse cx="30" cy="30" rx="16" ry="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="26" r="2" fill="currentColor"/><circle cx="36" cy="26" r="2" fill="currentColor"/><path d="M24 38 Q30 42 36 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
   Bodymaxxing: { accent:"#2CB7A7", icon:'<circle cx="30" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 38 M20 26 L40 26 M30 38 L22 50 M30 38 L38 50" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
   Skinnymaxxing: { accent:"#2CB7A7", icon:'<path d="M22 14 Q30 10 38 14 L36 26 Q30 22 24 26 Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 26 Q22 38 26 48 L34 48 Q38 38 36 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
-  Richgirlmaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="17" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 20 L30 40 M25 24 Q25 20 30 20 Q35 20 35 24 Q35 28 30 28 Q25 28 25 32 Q25 36 30 36 Q35 36 35 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
+  Richgirlmaxxing: { accent:"#E8B870", icon:'<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><path d="M18 16 H42 L52 27 L30 52 L8 27 Z"/><path d="M8 27 H52 M22 16 L26 27 L30 52 L34 27 L38 16"/></g>' },
   Businessmaxxing: { accent:"#E8B870", icon:'<rect x="14" y="24" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M22 24 L22 18 Q22 15 25 15 L35 15 Q38 15 38 18 L38 24" fill="none" stroke="currentColor" stroke-width="3"/>' },
   Desiresmaxxing: { accent:"#E8B870", icon:'<path d="M32 14 C32 14 20 22 20 32 C20 38.6 25.4 44 32 44 C38.6 44 44 38.6 44 32 C44 22 32 14 32 14Z M26 30 L32 24 L38 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' },
   DNAmaxxing: { accent:"#2CB7A7", icon:'<path d="M20 12 Q30 20 20 28 Q10 36 20 44 Q30 52 20 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(10,0)"/><path d="M40 12 Q30 20 40 28 Q50 36 40 44 Q30 52 40 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" transform="translate(-10,0)"/>' },
@@ -194,7 +207,7 @@ const CAT_ICONS = {
   Healthmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 44 C30 44 16 34 16 22 C16 15 22 12 27 15 C29 16.5 30 19 30 19 C30 19 31 16.5 33 15 C38 12 44 15 44 22 C44 34 30 44 30 44 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>' },
   Intuitionmaxxing: { accent:"#BFA5D8", icon:'<circle cx="30" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
   Lifemaxxing: { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="10" fill="currentColor"/><path d="M30 10 L30 4 M30 56 L30 50 M10 30 L4 30 M56 30 L50 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>' },
-  Luckygirlmaxxing: { accent:"#F5E0A0", icon:'<path d="M30 30 C30 30 22 22 16 24 C11 26 11 32 16 34 C22 36 30 30 30 30 C30 30 38 22 44 24 C49 26 49 32 44 34 C38 36 30 30 30 30" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="30" r="3" fill="currentColor"/>' },
+  Luckygirlmaxxing: { accent:"#F5E0A0", icon:'<g fill="none" stroke="currentColor" stroke-width="3"><circle cx="23" cy="23" r="11"/><circle cx="37" cy="23" r="11"/><circle cx="23" cy="37" r="11"/><circle cx="37" cy="37" r="11"/></g>' },
   Sovereignmaxxing: { accent:"#BFA5D8", icon:'<path d="M14 40 L14 24 L22 32 L30 16 L38 32 L46 24 L46 40 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>' },
 };
 
@@ -584,6 +597,16 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   // The beta keeps what you add on this device, so a new intention doesn't vanish when you move around.
   useEffect(() => { if (!isPreview) return; try { localStorage.setItem("shg_preview_threads", JSON.stringify(threads.map(t => ({ ...t, signs: (t.signs || []).map(sg => ({ ...sg, img: sg.img && sg.img.startsWith("blob:") ? null : sg.img, audio: sg.audio && sg.audio.startsWith("blob:") ? null : sg.audio })) })))); } catch {} }, [threads, isPreview]);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
+  useEffect(() => {
+    const goShop = () => { setFullP(false); setTab("shop"); };
+    window.addEventListener("shg-go-shop", goShop);
+    return () => window.removeEventListener("shg-go-shop", goShop);
+  }, []);
+  useEffect(() => {
+    const onGuide = e => setShowGuide(e.detail || true);
+    window.addEventListener("shg-open-guide", onGuide);
+    return () => window.removeEventListener("shg-open-guide", onGuide);
+  }, []);
   const [logSignOpen, setLogSignOpen] = useState(false);
   const [hideFab, setHideFab] = useState(() => { try { return localStorage.getItem("shg_hide_fab") === "1"; } catch { return false; } });
   useEffect(() => {
@@ -978,7 +1001,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);}, site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/"; } }}/>}
       {billingOpen && <BillingPanel/>}
-      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
+      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C} start={typeof showGuide==="object"?showGuide:null}/>}
       {showEmoLog && (
         <>
           <div style={{ position:"fixed",inset:0,zIndex:1000,background:"#000000" }} onClick={()=>setShowEmoLog(false)}/>
@@ -1135,7 +1158,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       <audio ref={audioRef} preload="none"/>
       {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);}, site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/"; } }}/>}
       {billingOpen && <BillingPanel/>}
-      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C}/>}
+      {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C} start={typeof showGuide==="object"?showGuide:null}/>}
       {showOnboarding && <OnboardingQuiz
         step={onbStep} setStep={setOnbStep}
         goals={onbGoals} setGoals={setOnbGoals}
@@ -1361,7 +1384,7 @@ function FullPlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo, 
                 <div style={{ fontSize:11,letterSpacing:".26em",marginBottom:10 }}>FIVE LAYERS IN THIS TRACK</div>
                 <div style={{ fontSize:14,lineHeight:1.7,marginBottom:28,maxWidth:560 }}>Specific affirmations in Reshma's voice, EMDR bilateral sound, binaural beats for the theta state, subliminals and Reiki.</div>
                 {CAT_GUIDE[track.cat] && (GUIDES_AVAILABLE.has(track.cat)
-                  ? <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" className="shg-gb" style={{ display:"inline-flex",flexDirection:"column",gap:2,padding:"14px 20px",borderRadius:16,textDecoration:"none",color:ink }}><span style={{ fontSize:10,letterSpacing:".24em" }}>RELATED GUIDE</span><span style={{ fontSize:16 }}>{CAT_GUIDE[track.cat]} →</span></a>
+                  ? <a href="#" onClick={e=>{e.preventDefault();buyWorkbook(track.cat);}} className="shg-gb" style={{ display:"inline-flex",flexDirection:"column",gap:2,padding:"14px 20px",borderRadius:16,textDecoration:"none",color:ink }}><span style={{ fontSize:10,letterSpacing:".24em" }}>RELATED GUIDE</span><span style={{ fontSize:16 }}>{CAT_GUIDE[track.cat]} →</span></a>
                   : <div style={{ display:"inline-flex",flexDirection:"column",gap:2,padding:"14px 20px",borderRadius:16,border:`1px dashed ${line}` }}><span style={{ fontSize:10,letterSpacing:".24em" }}>RELATED GUIDE</span><span style={{ fontSize:15 }}>{CAT_GUIDE[track.cat]}, coming soon</span></div>)}
               </>
             ) : (
@@ -1480,7 +1503,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
               </div>
               {CAT_GUIDE[track.cat] && (
                 GUIDES_AVAILABLE.has(track.cat) ? (
-                  <a href={SHOP_URL} target="_blank" rel="noopener noreferrer" style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
+                  <a href="#" onClick={e=>{e.preventDefault();buyWorkbook(track.cat);}} style={{ display:"flex",alignItems:"center",gap:10,padding:"14px 16px",background:"none",border:"1px solid rgba(44,183,167,0.4)",borderRadius:12,textDecoration:"none" }}>
                     <span style={{ fontSize:18 }}>📖</span>
                     <div style={{ flex:1 }}>
                       <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:2 }}>Related guide</div>
@@ -1727,22 +1750,11 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
-        <button onClick={openGuide} style={{ width:"100%", padding:"14px 16px", background:C.bg2, border:`1px solid rgba(44,183,167,0.25)`, borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center", gap:12, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
-          <span style={{ fontSize:20, flexShrink:0 }}>📖</span>
-          <span style={{ flex:1 }}>
-            <div style={{ fontSize:16, fontWeight:400, color:C.cr }}>Guidebook </div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Hawkins scale, brainwaves, EMDR, subliminals, all explained.</div>
-          </span>
-          <span style={{ fontSize:18, color:"#F5E0A0" }}>›</span>
+        <button onClick={()=>openGuide()} className="shg-no-paper" style={{ width:"100%", minHeight:130, padding:"24px 22px", background:"linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", border:"none", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left", color:"#000" }}>
+          <span style={{ fontSize:30, fontWeight:500 }}>Guidebook</span>
+          <span style={{ fontSize:30 }}>›</span>
         </button>
       </div>
-
-      {/* JUMP BACK IN */}
-      <Sec title="Jump back in" C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
-        <HRow>
-          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
-        </HRow>
-      </Sec>
 
       {/* YOUR FAVOURITES */}
       <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
@@ -1751,28 +1763,21 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
 
-      {/* NEW THIS WEEK */}
-      <Sec title="New this week " C={C} onShowAll={()=>{setLibCat("All");setTab("library");}}>
-        <HRow>
-          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={track} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
-        </HRow>
-      </Sec>
-
-      {/* BY DESIRE */}
-      <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
-        <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))",gap:12,padding:"0 16px" }}>
-          {Object.keys(CAT_ICONS).filter(c=>LIVE_CATS.has(c)).map(cat=>{
-            const c=CAT_ICONS[cat]||{icon:''};
-            const name={Luckygirlmaxxing:"Lucky Girl",Richgirlmaxxing:"Money",Lovemaxxing:"Love"}[cat]||cat.replace("maxxing","");
-            return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} className="shg-paper" style={{ display:"flex",alignItems:"center",gap:14,padding:"18px 16px",borderRadius:18,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",minHeight:84 }}>
-                <span className="shg-gfill" style={{ width:48,height:48,borderRadius:14,flexShrink:0,display:"grid",placeItems:"center" }}><svg width="28" height="28" viewBox="0 0 60 60" style={{ color:"#000" }} dangerouslySetInnerHTML={{__html:c.icon}}/></span>
-                <span style={{ fontSize:19,fontWeight:500 }}>{name}</span>
-              </button>
-            );
-          })}
+      {/* HOW TO WRITE IT: quick guides */}
+      <div style={{ padding:"4px 16px 8px" }}>
+        <div style={{ fontSize:20,fontWeight:400,color:C.cr,marginBottom:12 }}>How to write it</div>
+        <style>{`body .shg-howto.shg-howto{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-howto.shg-howto{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+        <div className="shg-howto">
+          {[["An intention","Present or past tense, as if it's done: \"He texted me first.\"","how-to-write-intention"],["Your bucket list","Anything you want, ever. No rules, just write it down.","bucket-vs-active"],["A sign","What you noticed, where, and which desire it points to.","spotting-signs"],["Your proof","The real outcome, dated, with a photo if you have one.","knowing-manifested"]].map(([t,d,k])=>(
+            <button key={k} onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ cat:"ProofOS", key:k } }))} className="shg-no-paper" style={{ background:"#F2ECE4",color:"#000",border:"none",borderRadius:18,padding:"16px",textAlign:"left",cursor:"pointer",fontFamily:"'Jost',sans-serif",display:"flex",flexDirection:"column",gap:8,minHeight:140 }}>
+              <span style={{ fontSize:17,fontWeight:500 }}>{t}</span>
+              <span style={{ fontSize:14,lineHeight:1.45 }}>{d}</span>
+              <span style={{ fontSize:14,marginTop:"auto" }}>Read the guide ›</span>
+            </button>
+          ))}
         </div>
-      </Sec>
+      </div>
+
 
 
     </div>
@@ -2551,13 +2556,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={openGuide} style={{ width:"100%", padding:"18px 18px", background:C.bg2, border:`1px solid rgba(44,183,167,0.3)`, borderRadius:16, cursor:"pointer", display:"flex", alignItems:"center", gap:14, fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
-          <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
-          <span style={{ flex:1 }}>
-            <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook </div>
-            <div style={{ fontSize:16, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals, everything explained.</div>
-          </span>
-          <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
+        <button onClick={()=>openGuide()} className="shg-no-paper" style={{ width:"100%", minHeight:130, padding:"24px 22px", background:"linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", border:"none", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left", color:"#000" }}>
+          <span style={{ fontSize:30, fontWeight:500 }}>Guidebook</span>
+          <span style={{ fontSize:30 }}>›</span>
         </button>
       </div>
     </div>
@@ -2783,12 +2784,26 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       <style>{`body .shg-four.shg-four{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-four.shg-four{grid-template-columns:repeat(4,1fr)!important}}`}</style>
       <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
-          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-paper" style={{ display:"flex",flexDirection:"column",alignItems:"flex-start",gap:12,padding:"16px",borderRadius:18,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",minHeight:110,outline:cat===c?"2px solid #000":"none" }}>
-            <span className="shg-gfill" style={{ width:44,height:44,borderRadius:12,display:"grid",placeItems:"center" }}><svg width="26" height="26" viewBox="0 0 60 60" style={{ color:"#000" }} dangerouslySetInnerHTML={{__html:(CAT_ICONS[c]||{icon:""}).icon}}/></span>
-            <span style={{ fontSize:19,fontWeight:500,color:"#000" }}>{name}</span>
+          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ position:"relative",padding:0,border:cat===c?"2px solid #F2ECE4":"1px solid rgba(242,236,228,0.18)",borderRadius:18,overflow:"hidden",cursor:"pointer",background:"#000",aspectRatio:"1",fontFamily:"'Jost',sans-serif" }}>
+            <img src={{Lovemaxxing:"/shop/lovemaxxing.webp",Richgirlmaxxing:"/shop/richgirlmaxxing.webp",Luckygirlmaxxing:"/shop/luckygirlmaxxing.webp",Selfmaxxing:"/shop/method-deck.png"}[c]} alt="" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",transform:"scale(2.4)",transformOrigin:c==="Selfmaxxing"?"50% 54%":"50% 56%" }}/>
+            <span style={{ position:"absolute",left:0,right:0,bottom:12,textAlign:"center",fontSize:18,fontWeight:500,color:"#F2ECE4",letterSpacing:".04em" }}>{name}</span>
           </button>
         ))}
       </div>
+      {/* JUMP BACK IN */}
+      <Sec title="Jump back in" C={C} onShowAll={()=>{setCat("All");setLibFormat("All");}}>
+        <HRow>
+          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
+        </HRow>
+      </Sec>
+
+      {/* NEW THIS WEEK */}
+      <Sec title="New this week " C={C} onShowAll={()=>{setCat("All");setLibFormat("All");}}>
+        <HRow>
+          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
+        </HRow>
+      </Sec>
+
       <div style={{ padding:"4px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by desire</span>
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
@@ -3114,6 +3129,22 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         })}
       </div>
 
+      {(()=>{
+        const G = {
+          threads:{ t:"How to set an intention", steps:["Write it as if it has already happened: \"He texts me first\", not \"I want him to text me\".","Pick the category and how you honestly feel right now.","Play the suggested track daily, then log every sign under this intention."], key:"how-to-write-intention" },
+          signs:{ t:"How to spot a sign", steps:["A sign is anything that points to your desire: a number, a song, a comment, a coincidence.","Log it the moment you notice it, even if it feels small.","Link it to the intention it belongs to, so the trail builds up."], key:"spotting-signs" },
+          wall:{ t:"How the Proof Wall works", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, so you can see what you called in."], key:"proof-wall-forever" },
+          bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, ever. No pressure, no category.","When you're ready to focus, move it into Intentions.","If it arrives on its own, mark it manifested straight from here."], key:"bucket-vs-active" },
+        }[view];
+        if (!G) return null;
+        return (
+          <div style={{ background:"#F2ECE4",color:"#000",borderRadius:18,padding:"16px 18px",marginBottom:14 }}>
+            <div style={{ fontSize:17,fontWeight:500,marginBottom:10 }}>{G.t}</div>
+            <ol style={{ margin:0,paddingLeft:20,display:"grid",gap:6,fontSize:15,lineHeight:1.5 }}>{G.steps.map(x=><li key={x}>{x}</li>)}</ol>
+            <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ cat:"ProofOS", key:G.key } }))} style={{ marginTop:12,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Read more in the Guidebook ›</button>
+          </div>
+        );
+      })()}
       <button className="shg-cta" onClick={()=>{ setView("threads"); setAdding(a=>!a); }} style={{ marginBottom:18 }}>
         {adding?"✕ Cancel":"+ Add a new intention"}
       </button>
