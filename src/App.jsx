@@ -27,6 +27,7 @@ import { requestNotificationPermission, scheduleReminders } from "./utils/notifi
 import { useAuth } from "./contexts/AuthContext.jsx";
 import { BetaAuth } from "./components/Onboarding";
 import { fetchProfile, saveProfile, startPassportSync } from "./utils/profileSync";
+import Answers from "./pages/Answers";
 import AuthGate from "./components/AuthGate.jsx";
 
 const _BUILD = "v2-20260824";
@@ -321,6 +322,7 @@ export default function App() {
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
+        <Route path="/answers" element={<Answers/>} />
         <Route path="/auth"    element={<Navigate to="/beta" replace />} />
         <Route path="/beta"    element={authCtx.loading ? null : authCtx.isAuthenticated ? <Navigate to="/portal" replace /> : <BetaAuth onAuthed={() => navigate("/portal")} />} />
         <Route path="/portal/*"  element={

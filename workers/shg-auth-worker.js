@@ -114,6 +114,10 @@ const API_ROUTES = {
   "GET /profile":    handleProfileGet,
   "POST /profile":   handleProfileSave,
   "POST /ask":       handleAsk,
+  "GET /questions":  handleMyQuestions,
+  "POST /questions/read": handleQuestionsRead,
+  "GET /admin/questions": handleAdminQuestions,
+  "POST /admin/answer":   handleAdminAnswer,
 };
 
 // ── In-app shop (Stripe Checkout + private PDFs in R2 bucket shg-products) ──
@@ -500,12 +504,89 @@ async function handleAsk(request, env) {
   if (!question) return json({ error: "Question required" }, 400);
   const user = await authedUser(request, env);
   const email = user?.email || (isValidEmail(body.email || "") ? body.email.toLowerCase() : null);
-  await env.DB.prepare(`INSERT INTO questions (id, user_id, email, question, created_at) VALUES (?, ?, ?, ?, ?)`)
-    .bind(uuid(), user?.id || null, email, question, new Date().toISOString()).run();
+  const name = user?.full_name || (body.name ? String(body.name).slice(0, 100) : null);
+  await env.DB.prepare(`INSERT INTO questions (id, user_id, email, name, question, created_at) VALUES (?, ?, ?, ?, ?, ?)`)
+    .bind(uuid(), user?.id || null, email, name, question, new Date().toISOString()).run();
   await notifyReshma(env, "New question for Reshma", "<p><b>From:</b> " + escapeHtml(email || "preview visitor") + "</p><p>" + escapeHtml(question) + "</p>");
   return json({ success: true });
 }
 __name(handleAsk, "handleAsk");
+
+// ── Ask Reshma inbox: members see answers in the app; Reshma (or a helper signed in
+// with an admin email) answers at reshmaoracle.com/answers ──
+const ADMIN_EMAILS = ["reshma@reshmaoracle.com", "reshmaoracle1@gmail.com"];
+
+async function handleMyQuestions(request, env) {
+  const user = await authedUser(request, env);
+  if (!user) return json({ questions: [] });
+  const { results } = await env.DB.prepare(
+    `SELECT id, question, answer, answered_at, read_at, created_at FROM questions WHERE user_id = ? ORDER BY created_at DESC LIMIT 50`
+  ).bind(user.id).all();
+  return json({ questions: results || [] });
+}
+__name(handleMyQuestions, "handleMyQuestions");
+
+async function handleQuestionsRead(request, env) {
+  const user = await authedUser(request, env);
+  if (!user) return json({ error: "Not authenticated" }, 401);
+  await env.DB.prepare(`UPDATE questions SET read_at = ? WHERE user_id = ? AND answer IS NOT NULL AND read_at IS NULL`)
+    .bind(new Date().toISOString(), user.id).run();
+  return json({ success: true });
+}
+__name(handleQuestionsRead, "handleQuestionsRead");
+
+async function adminUser(request, env) {
+  const user = await authedUser(request, env);
+  return user && ADMIN_EMAILS.includes((user.email || "").toLowerCase()) ? user : null;
+}
+__name(adminUser, "adminUser");
+
+async function handleAdminQuestions(request, env) {
+  if (!(await adminUser(request, env))) return json({ error: "Not allowed" }, 403);
+  const { results } = await env.DB.prepare(
+    `SELECT q.id, q.question, q.answer, q.answered_at, q.created_at, q.email,
+            COALESCE(q.name, u.full_name) AS name, p.onboarding
+       FROM questions q LEFT JOIN users u ON u.id = q.user_id LEFT JOIN profiles p ON p.user_id = q.user_id
+      ORDER BY (q.answer IS NOT NULL), q.created_at DESC LIMIT 200`
+  ).all();
+  return json({ questions: (results || []).map(r => ({ ...r, onboarding: r.onboarding ? JSON.parse(r.onboarding) : null })) });
+}
+__name(handleAdminQuestions, "handleAdminQuestions");
+
+async function handleAdminAnswer(request, env) {
+  if (!(await adminUser(request, env))) return json({ error: "Not allowed" }, 403);
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON body" }, 400); }
+  const answer = String(body.answer || "").trim().slice(0, 8000);
+  if (!body.id || !answer) return json({ error: "Answer required" }, 400);
+  const q = await env.DB.prepare(`SELECT email, name, question FROM questions WHERE id = ?`).bind(body.id).first();
+  if (!q) return json({ error: "Question not found" }, 404);
+  await env.DB.prepare(`UPDATE questions SET answer = ?, answered_at = ?, read_at = NULL WHERE id = ?`)
+    .bind(answer, new Date().toISOString(), body.id).run();
+  if (q.email) {
+    await sendEmail(env, q.email, "Reshma answered your question",
+      "<p>Hi " + escapeHtml(q.name || "lovely") + ",</p>" +
+      "<p>Reshma answered your question inside the app:</p>" +
+      "<p><i>" + escapeHtml(q.question) + "</i></p>" +
+      "<p><a href='https://reshmaoracle.com/portal' style='color:#E8B870;'>Open the app to read it</a></p>");
+  }
+  return json({ success: true });
+}
+__name(handleAdminAnswer, "handleAdminAnswer");
+
+async function sendEmail(env, to, subject, body) {
+  try {
+    await fetch("https://api.nitrosend.com/v1/transactional/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${env.NITROSEND_API_KEY}` },
+      body: JSON.stringify({
+        to, from: "noreply@reshmaoracle.com", subject,
+        html: `<div style="font-family:sans-serif;padding:20px;background:#000;color:#fdf0e8;">${body}</div>`
+      })
+    });
+  } catch (e) {}
+}
+__name(sendEmail, "sendEmail");
 
 function escapeHtml(v) {
   return String(v).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
