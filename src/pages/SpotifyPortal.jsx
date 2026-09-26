@@ -427,7 +427,7 @@ const ALL_TRACKS = [
 // Only tracks that can actually be played. Nothing unavailable is shown.
 const TRACKS = ALL_TRACKS.filter(t => AUDIO_URLS[t.title]);
 const LIVE_CATS = new Set(TRACKS.map(t => t.cat));
-const FORMATS = ["All","Subliminal","Hypnosis","Melodic Hypnosis","Melodic Subliminal","Calm Hypnosis","Calm Subliminal"];
+const FORMATS = ["All","Hypnosis","Subliminal"];
 
 // Suggests the best-matching track for a saved intention: category match is required,
 // then ranks by keyword overlap between the intention text and the track title.
@@ -454,7 +454,7 @@ const FORMAT_SUFFIXES = /\s*\((Subliminal|Hypnosis|Melodic Hypnosis|Melodic Subl
 const displayTitle = (title) => title.replace(FORMAT_SUFFIXES, "").trim();
 
 const INIT_THREADS = [
-  { id:1, desire:"He texts me first",     days:14, done:true,  track:"He Finds His Way Back", category:"Lovemaxxing",
+  { id:1, desire:"He texts me first",     days:14, done:true,  track:"The Universe Supports Me", category:"Lovemaxxing",
     feelBefore:"Anxious. Checking my phone constantly.", feelAfter:"Calm. It was always inevitable.",
     createdAt:"6 Jun 2026",
     signs:[ {text:"Saw his name 3 times in one day",date:"12 Jun"}, {text:"Dreamt we were talking",date:"15 Jun"}, {text:"Screenshot, the text arrived",date:"19 Jun",img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=400&fit=crop&auto=format"}, {text:"Voice note, the moment I found out",date:"20 Jun",audio:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"} ], manifestedAt:"20 Jun 2026" },
@@ -524,7 +524,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   useEffect(() => {
     const dark = /rgb\((1[0-9]|2[0-4]), (1[0-9]|2[0-4]), (1[0-9]|2[0-4])\)/;
     const paint = () => document.querySelectorAll('[data-portal-theme] div, [data-portal-theme] button').forEach(el => {
-      if (el.classList.contains('shg-paper') || el.closest('.shg-paper') || el.closest('.shg-no-paper')) return;
+      if (el.classList.contains('shg-paper') || el.closest('.shg-no-paper')) return;
       const cs = getComputedStyle(el); if (parseFloat(cs.borderTopLeftRadius) < 10) return;
       const r = el.getBoundingClientRect(); if (r.width < 150 || r.height < 56) return;
       if (window.innerWidth > 900 && r.right < 300) return;
@@ -880,7 +880,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
             <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:56,height:56,flexShrink:0,borderRadius:12,background:"none",overflow:"hidden" }}>
-              <img src="/shg-logo-clear.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block" }} />
+              <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block" }} />
             </a>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
@@ -1036,7 +1036,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
             <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:10,background:"none",overflow:"hidden",flexShrink:0 }}>
-              <img src="/shg-logo-clear.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block" }} />
+              <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block" }} />
             </a>
             {isDark ? (
               <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" }}>BETA</span>
@@ -1068,7 +1068,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
               style={{ display:"flex",alignItems:"center",gap:9,padding:"4px 18px",background:"none",border:"none",color:track.id===t.id?C.cr:C.mu,fontSize:13,cursor:"pointer",width:"100%",textAlign:"left",fontFamily:"'Jost',sans-serif" }}
               onMouseEnter={e=>e.currentTarget.style.color=C.cr}
               onMouseLeave={e=>{if(track.id!==t.id)e.currentTarget.style.color=C.mu;}}>
-              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={24} radius={2}/>{isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}</div>
+              <div style={{ position:"relative" }}><Thumb title={t.title} cat={t.cat} size={24} radius={2}/></div>
               <span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{displayTitle(t.title)}</span>
             </button>
           ))}
@@ -1140,7 +1140,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
         <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:38,height:38,borderRadius:9,background:"none",overflow:"hidden",flexShrink:0 }}>
-          <img src="/shg-logo-clear.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block" }} />
+          <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block" }} />
         </a>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent",color:C.cr }}>{isDark?"☀":"🌙"}</button>
@@ -1154,10 +1154,10 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
         </div>
       </div>
       {/* Screen */}
-      <div style={{ flex:1,overflowY:"auto",paddingBottom:!isPreview?130:60,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
+      <div style={{ flex:1,overflowY:"auto",paddingBottom:150,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
-      {!isPreview && !fullP && (
-        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:68,left:8,right:8,zIndex:50,background:"linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
+      {!fullP && (
+        <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:isPreview?60:76,left:8,right:8,zIndex:50,background:"linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
             <div style={{ fontSize:15,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",color:"#000000" }}>{displayTitle(track.title)}</div>
@@ -1178,13 +1178,13 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {!fullP && (
         <button
           onClick={() => setLogSignOpen(true)}
-          style={{ position:"fixed",bottom:isPreview?62:78,right:18,zIndex:70,width:52,height:52,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
+          style={{ position:"fixed",bottom:isPreview?130:146,right:18,zIndex:70,width:52,height:52,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
           aria-label="Log a sign"
         >✦</button>
       )}
       {!fullP && (
         <div style={{ position:"fixed",bottom:0,left:0,right:0,height:isPreview?52:68,paddingBottom:"env(safe-area-inset-bottom,0px)",boxSizing:"content-box",background:isDark?"#000000":"#F2ECE4",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.08)":"rgba(0,0,0,0.1)"}`,display:"flex",zIndex:60 }}>
-          {tabs.map(n=>(
+          {[...tabs,{id:"shop",label:"Shop",I:Ico.Shop}].map(n=>(
             <button key={n.id} onClick={()=>setTab(n.id)} style={{ flex:1,background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:3,paddingBottom:isPreview?4:6,cursor:"pointer",WebkitTapHighlightColor:"transparent" }}>
               <n.I a={tab===n.id} c={tab===n.id?(isDark?"#F2ECE4":"#000000"):(isDark?"#F2ECE4":"#000000")}/>
               <span style={{ fontSize:11,fontWeight:tab===n.id?600:400,color:tab===n.id?(isDark?"#F2ECE4":"#000000"):(isDark?"#F2ECE4":"#000000") }}>{n.label}</span>
@@ -1604,9 +1604,9 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
       <div className="shg-gb shg-hero" style={{ margin:"16px 16px 14px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
         <img src="/logo_transparent_cropped.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
-        <div onClick={openProfile} style={{ cursor:"pointer", position:"relative" }}>
+        <div onClick={()=>openPlayer?.()} style={{ cursor:"pointer", position:"relative" }}>
           <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>WELCOME BACK</div>
-          <div className="shg-gt" style={{ fontSize:34, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : firstName}</div>
+          <div className="shg-gt" style={{ fontSize:34, fontWeight:500, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {isPreview ? "Reshma" : firstName}</div>
           <div style={{ fontSize:16, fontWeight:400, color:C.cr, marginTop:8 }}>Pick up where you left off.</div>
         </div>
         <button onClick={()=>setTab("shop")} className="shg-gfill" style={{ position:"relative",width:44,height:44,borderRadius:"50%",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
@@ -1631,7 +1631,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       <button onClick={()=>openProfile(1)} className="shg-gb" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
         <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Tell me about you</span>
         <span style={{ display:"block",fontSize:17,fontWeight:500,marginTop:6 }}>Upload anything about yourself so I can learn more about you every day.</span>
-        <span style={{ display:"block",fontSize:13,marginTop:4 }}>Your needs, your desires, your blocks. Journal pages, notes, goals ›</span>
+        <span style={{ display:"block",fontSize:13,marginTop:4 }}>Your needs, your desires, your blocks. Journal pages, notes, even your ChatGPT or Claude summary.</span>
+        <span style={{ display:"inline-block",marginTop:12,background:"#000",color:"#F2ECE4",borderRadius:999,padding:"10px 20px",fontSize:14,fontWeight:500 }}>+ Upload about me</span>
       </button>
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
@@ -1659,20 +1660,20 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </div>
         <div style={{ fontSize:16,fontWeight:400,color:C.cr,marginBottom:10,lineHeight:1.4 }}>Your manifestation record. Every desire. Every sign. Every win.</div>
         <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12 }}>
-          {[["Bucket List","Write it down. All of it. No limit.","#167A6B"],["Active","What you're focusing on right now with audio.",isDark?"#BFA5D8":"#5a3a7a"],["Proof Wall","Every manifestation. Dated. Permanent.","#167A6B"]].map(([name,desc,color])=>(
-            <div key={name} className="shg-paper" style={{ background:C.bg3,borderRadius:10,padding:"10px 8px",border:`1px solid ${color}22` }}>
-              <div style={{ fontSize:12,fontWeight:500,color,marginBottom:4,fontFamily:"'Jost',sans-serif" }}>{name}</div>
-              <div style={{ fontSize:11,color:C.mu,lineHeight:1.4,fontFamily:"'Jost',sans-serif" }}>{desc}</div>
-            </div>
+          {[["Bucket List","Add your dreams"],["Active","Intentions now"],["Proof Wall","Your evidence"]].map(([name,desc])=>(
+            <button key={name} onClick={e=>{e.stopPropagation();setTab("proof");}} className="shg-gfill" style={{ borderRadius:14,padding:"16px 10px",border:"none",cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",minHeight:78 }}>
+              <div style={{ fontSize:17,fontWeight:500,marginBottom:4 }}>{name}</div>
+              <div style={{ fontSize:12 }}>{desc} ›</div>
+            </button>
           ))}
         </div>
-        <div style={{ fontSize:13,color:C.mu,fontStyle:"italic" }}>Tap to explore proofOS →</div>
+        <div style={{ fontSize:14,fontWeight:500 }}>Open proofOS →</div>
       </div>
 
       {/* QUICK DESIRE CAPTURE */}
       <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
-          <div style={{ fontSize:13, fontWeight:700, color:C.cr, letterSpacing:"0.15em", textTransform:"uppercase" }}>State a desire</div>
+          <div style={{ fontSize:22, fontWeight:500, color:C.cr }}>State a desire</div>
           <button onClick={()=>setTab("proof")} style={{ fontSize:12, color:C.mu, background:"none", border:"none", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>See all in proofOS →</button>
         </div>
         <style>{`.qd-input::placeholder{color:${isDark?"rgba(253,240,232,0.4)":"rgba(26,16,8,0.4)"}!important}`}</style>
@@ -1764,19 +1765,18 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* BY DESIRE */}
       <Sec title="By desire" C={C} onShowAll={()=>setTab("library")}>
-        <HRow>
+        <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))",gap:12,padding:"0 16px" }}>
           {Object.keys(CAT_ICONS).filter(c=>LIVE_CATS.has(c)).map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
+            const c=CAT_ICONS[cat]||{icon:''};
+            const name={Luckygirlmaxxing:"Lucky Girl",Richgirlmaxxing:"Money",Lovemaxxing:"Love"}[cat]||cat.replace("maxxing","");
             return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ flexShrink:0,width:80,background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
-                <div style={{ width:80,height:80,borderRadius:14,background:"#111",border:`1.5px solid ${c.accent}`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:6,color:c.accent }}>
-                  <svg width="36" height="36" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
-                </div>
-                <div style={{ fontSize:12,fontWeight:400,color:C.mu,lineHeight:1.3 }}>{cat.replace("maxxing","")}</div>
+              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} className="shg-paper" style={{ display:"flex",alignItems:"center",gap:14,padding:"18px 16px",borderRadius:18,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",minHeight:84 }}>
+                <span className="shg-gfill" style={{ width:48,height:48,borderRadius:14,flexShrink:0,display:"grid",placeItems:"center" }}><svg width="28" height="28" viewBox="0 0 60 60" style={{ color:"#000" }} dangerouslySetInnerHTML={{__html:c.icon}}/></span>
+                <span style={{ fontSize:19,fontWeight:500 }}>{name}</span>
               </button>
             );
           })}
-        </HRow>
+        </div>
       </Sec>
 
     </div>
@@ -2704,7 +2704,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
         <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:"8px 10px",margin:isP?"0 -10px":0,borderRadius:isP?8:0,background:isP?(C.bg==="#000000"?"rgba(232,184,112,0.12)":"#000000"):"none",borderBottom:isP?"none":`0.5px solid ${C.border}`,cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
-            {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+            
           </div>
           <div style={{ flex:1,minWidth:0 }}>
             <div style={{ fontSize:15,fontWeight:400,color:isP?(C.bg==="#000000"?R:"#F5E0A0"):C.cr,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2 }}>{displayTitle(t.title)}</div>
@@ -2730,7 +2730,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
   const isDark = C?.cr !== "#000000";
   const cats = (["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"]).filter(c=>c==="All"||c==="Liked"||LIVE_CATS.has(c));
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
-  const shown = libFormat==="All" ? byCat : byCat.filter(t=>t.format===libFormat);
+  const shown = libFormat==="All" ? byCat : byCat.filter(t=>String(t.format||"").includes(libFormat));
   const [catOpen, setCatOpen] = useState(false);
   const [dropPos, setDropPos] = useState(null);
   const catRef = useRef(null);
@@ -2742,7 +2742,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
     }
   };
   useEffect(() => {
-    const onClick = e => { if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
+    const onClick = e => { if (e.target.closest && e.target.closest("[data-cat-drop]")) return; if (catRef.current && !catRef.current.contains(e.target)) setCatOpen(false); };
     document.addEventListener("mousedown", onClick);
     document.addEventListener("touchstart", onClick, { passive: true });
     return () => {
@@ -2796,13 +2796,13 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
           {catOpen && dropPos && createPortal(
-            <div onTouchMove={e=>e.stopPropagation()} style={{
+            <div data-cat-drop="1" onTouchMove={e=>e.stopPropagation()} style={{
               position:"fixed",
               top:dropPos.top,
               left:dropPos.left,
               width:dropPos.width,
               zIndex:999999,
-              background:"#0a0a0a", border:`1px solid ${R}66`, borderRadius:12,
+              backgroundColor:"#F2ECE4", backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)", backgroundSize:"20px 20px", border:"1.5px solid #000", borderRadius:12,
               maxHeight:"55vh", overflowY:"scroll", WebkitOverflowScrolling:"touch",
               boxShadow:"0 12px 40px rgba(0,0,0,0.95)", touchAction:"pan-y"
             }}>
@@ -2814,12 +2814,12 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
                   <div key={c} onClick={()=>{setCat(c);setLibFormat("All");setCatOpen(false);}}
                     style={{
                       padding:"11px 16px", fontSize:16, fontWeight:400, display:"flex", alignItems:"center", gap:10,
-                      color:active?catColor:"#fdf0e8", background:active?`${catColor}1c`:"#0a0a0a",
+                      color:"#000", background:active?"rgba(0,0,0,.08)":"transparent", fontWeight:active?500:400,
                       cursor:"pointer", fontFamily:"'Jost',sans-serif",
-                      borderBottom:"1px solid rgba(255,255,255,0.06)", borderLeft:active?`3px solid ${catColor}`:"3px solid transparent"
+                      borderBottom:"1px solid rgba(0,0,0,0.12)", borderLeft:active?"3px solid #000":"3px solid transparent"
                     }}
-                    onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = `${catColor}14`; }}
-                    onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "#0a0a0a"; }}
+                    onMouseEnter={e=>{ if(!active) e.currentTarget.style.background = "rgba(0,0,0,.05)"; }}
+                    onMouseLeave={e=>{ if(!active) e.currentTarget.style.background = "transparent"; }}
                   >
                     {(c!=="All"&&c!=="Liked") ? (
                       <div style={{ width:10, height:10, borderRadius:"50%", background:catColor, flexShrink:0, boxShadow:`0 0 5px ${catColor}99` }}/>
@@ -2844,7 +2844,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       {/* FORMAT FILTER, Subliminal / Hypnosis / Melodic / Reiki / 528hz */}
       <div style={{ display:"flex",gap:6,padding:"0 16px 14px",overflowX:"auto",WebkitOverflowScrolling:"touch" }}>
         {FORMATS.map(fm=>(
-          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All formats":fm}</button>
+          <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All":fm}</button>
         ))}
       </div>
       {shown.length===0 && cat==="Liked" && (
@@ -2858,7 +2858,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:10,borderRadius:16,marginBottom:10,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"22px 22px",color:"#000",cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
               <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
-              {isPreview&&<div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>}
+              
               {!isPreview&&cur?.id===t.id&&playing&&(
                 <div style={{ position:"absolute",inset:0,background:"#000000",borderRadius:6,display:"flex",alignItems:"center",justifyContent:"center" }}>
                   <div style={{ display:"flex",alignItems:"flex-end",gap:2 }}>{[8,14,10,14,8].map((h,i)=><div key={i} style={{ width:2,height:h,background:["#F5E0A0","#E8B870","#BFA5D8","#2CB7A7","#167A6B"][i],borderRadius:1 }}/>)}</div>
@@ -3202,7 +3202,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                     </div>
                   ) : (
                     <div style={{ display:"flex", gap:8 }}>
-                      <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"8px 12px", background:"none", border:`1px solid ${PC.border}`, borderRadius:8, color:PC.text, fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                      <button onClick={()=>setPromotingId(item.id)} style={{ flex:1, padding:"10px 12px", background:"#000", border:"none", borderRadius:999, color:"#F2ECE4", fontSize:14, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         Focus on this now
                       </button>
                       <button onClick={async ()=>{
@@ -3215,7 +3215,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                             });
                           } catch (err) { console.error("Failed to mark manifested:", err); }
                         }
-                      }} style={{ flex:1, padding:"8px 12px", background:R, border:`1px solid ${R}`, borderRadius:8, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+                      }} style={{ flex:1, padding:"10px 12px", background:OMBRE, border:"none", borderRadius:999, color:"#000", fontSize:14, fontWeight:500, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
                         ✓ Already manifested
                       </button>
                     </div>
@@ -3271,8 +3271,9 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
         <div style={{ background:PC.cardSolid,borderRadius:14,padding:16,marginBottom:14 }}>
           <div style={{ fontSize:14,color:PC.mu,fontWeight:400,letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:8 }}>State your desire</div>
           <div style={{ display:"flex",gap:8,marginBottom:11,alignItems:"center" }}>
-            <input value={newD} onChange={e=>setD(e.target.value)} placeholder="I receive… I am… I have…"
+            <input value={newD} onChange={e=>setD(e.target.value)} enterKeyHint="done" onKeyDown={e=>{if(e.key==="Enter"){e.preventDefault();document.getElementById("shg-save-intent")?.click();}}} placeholder="I receive… I am… I have…"
               style={{ flex:1,background:PC.inputBg,border:`1px solid ${PC.border}`,color:PC.text,borderRadius:8,padding:"11px 13px",fontSize:16,outline:"none",fontFamily:"'Jost',sans-serif",boxSizing:"border-box" }}/>
+            <button onClick={()=>document.getElementById("shg-save-intent")?.click()} aria-label="Save intention" style={{ width:44,height:44,flexShrink:0,borderRadius:"50%",border:"none",background:"#000",color:"#F2ECE4",fontSize:20,cursor:"pointer" }}>✓</button>
             <button onClick={()=>{
               const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
               if(!SR){ alert("Voice input isn't supported in this browser. Try Chrome or Safari."); return; }
@@ -3418,8 +3419,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                 console.error("Failed to save desire:", err);
               }
             }
-          }} style={{ padding:"11px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:10,color:"#000",fontSize:15,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
-            {userTier === "audio" && !isPreview ? "Add Desire, Upgrade to Goddess " : "Add Desire"}
+          }} id="shg-save-intent" style={{ width:"100%",padding:"16px 22px",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)",border:"none",borderRadius:999,color:"#000",fontSize:17,fontWeight:500,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>
+            {userTier === "audio" && !isPreview ? "✓ Save intention, upgrade to Goddess" : "✓ Save intention"}
           </button>
           {userTier === "audio" && !isPreview && (
             <div style={{ fontSize:13,color:"#fdf0e8",marginTop:8,lineHeight:1.5 }}>
@@ -3611,9 +3612,6 @@ function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLik
     <div style={{ flexShrink:0,width:140, opacity:unavail?0.5:1, transition:"opacity 0.2s" }}>
       <div onClick={()=>{if(hasAudio){play(t); openPlayer?.();}}} style={{ position:"relative",marginBottom:8,cursor:hasAudio?"pointer":"not-allowed",borderRadius:8,boxShadow:`0 0 0 1px ${C.border}`,fontSize:0 }}>
         <Thumb title={t.title} cat={t.cat} size={140} radius={8}/>
-        {isPreview&&(
-          <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.55)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center" }}><Ico.Lock/></div>
-        )}
         {unavail&&(
           <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.6)",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,color:"#fdf0e8",fontWeight:500,fontFamily:"'Jost',sans-serif",textAlign:"center",padding:"8px" }}>Coming soon</div>
         )}

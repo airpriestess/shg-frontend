@@ -154,7 +154,7 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.6" strokeLinecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
           {listening ? "Listening… tap to stop" : "Tap and talk"}
         </button>
-        <label style={{ ...btn, background: "transparent", color: cr, border: `1px solid ${cr}`, display: "flex", alignItems: "center", gap: 8, flex: "1 1 140px", justifyContent: "center" }}>
+        <label style={{ ...btn, background: "#000", color: "#F2ECE4", border: "none", borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, flex: "1 1 140px", justifyContent: "center" }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-6-6-8 8"/></svg>
           Journal pages
           <input type="file" accept="image/*" multiple hidden onChange={(e) => { if (e.target.files?.length) addPhotos(e.target.files); e.target.value = ""; }} />

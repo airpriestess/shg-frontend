@@ -121,8 +121,11 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const inner = { maxWidth: 920, margin: "0 auto", padding: "calc(env(safe-area-inset-top,0px) + 18px) 18px 40px" };
   const pill = { border: "none", borderRadius: 999, minHeight: 44, padding: "0 18px", fontSize: 14, fontFamily: "inherit", cursor: "pointer" };
   const field = { width: "100%", boxSizing: "border-box", border: "1px solid #000", borderRadius: 10, padding: "10px 12px", fontSize: 14, fontFamily: "inherit", background: "#fff", color: "#000" };
-  const tabs = ["Identity", "My Life", "Stamps", "Ritual", "Settings"];
-  const life = p.life || { want: "", desires: "", blocks: "", needs: "", becoming: "", uploads: [] };
+  const tabs = ["Identity", "My Life", "Stamps", "Shop", "Settings"];
+  const life = { want: "", desires: "", blocks: "", needs: "", becoming: "", uploads: [], log: {}, ...(p.life || {}) };
+  const today = () => new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  // Every saved answer is kept with its date, so changes over time are visible (and usable for patterns).
+  const saveEntry = (k) => { const v = (life[k] || "").trim(); const prev = (life.log && life.log[k]) || []; if (!v || (prev[0] && prev[0].text === v)) return; setLife({ log: { ...(life.log || {}), [k]: [{ date: today(), text: v }, ...prev].slice(0, 100) } }); };
   const setLife = (patch) => set({ life: { ...life, ...patch } });
 
   return (
@@ -213,10 +216,18 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
               <div className="pp-page" data-page="02 · MY LIFE" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
                 <div style={{ fontSize: 15, lineHeight: 1.6 }}>Tell me about you. The more you share, the more I learn about you every day: your needs, your desires, your blocks. Edit it whenever you like.</div>
                 {[["want", "WHAT I WANT FROM LIFE", "Love, money, body, home, career, freedom…"], ["desires", "MY DESIRES RIGHT NOW", "What I'm calling in this season"], ["blocks", "MY BLOCKS", "What gets in my way, the stories I tell myself"], ["needs", "MY NEEDS", "What I need to feel safe, loved and supported"], ["becoming", "WHO I'M BECOMING", "Her habits, her style, her life"]].map(([k, l, ph]) => (
-                  <div key={k}><Label>{l}</Label><textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} /></div>
+                  <div key={k}><Label>{l}</Label><textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} />
+                    <button onClick={() => saveEntry(k)} style={{ ...pill, minHeight: 34, marginTop: 6, background: "#000", color: "#F2ECE4", fontSize: 13 }}>Save entry</button>
+                    {((life.log || {})[k] || []).length > 0 && (
+                      <details style={{ marginTop: 8, fontSize: 13 }}><summary style={{ cursor: "pointer" }}>My entries over time ({life.log[k].length})</summary>
+                        {life.log[k].map((e, i) => <div key={i} style={{ padding: "6px 0", borderBottom: "1px solid rgba(0,0,0,.15)" }}><b style={{ fontWeight: 500 }}>{e.date}</b> · {e.text}</div>)}
+                      </details>
+                    )}
+                  </div>
                 ))}
                 <div>
-                  <Label>MY UPLOADS · journal pages, notes, goals, documents</Label>
+                  <Label>MY UPLOADS</Label>
+                  <div style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 10 }}>Upload anything that helps me know you: journal pages, notes, goals. <b style={{ fontWeight: 500 }}>Tip:</b> ask ChatGPT or Claude <i>"Summarise everything you know about me, my dreams, my desires and my blocks"</i>, save the answer and upload it here. Add more whenever you like.</div>
                   <label style={{ ...pill, display: "flex", alignItems: "center", justifyContent: "center", background: "#000", color: "#F2ECE4", cursor: "pointer" }}>
                     + Upload about me
                     <input type="file" multiple accept="image/*,.txt,.md,.pdf,.doc,.docx" hidden onChange={async (e) => {
@@ -248,16 +259,14 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 3 && (
-              <div className="pp-page" data-page="04 · RITUAL" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, textAlign: "center" }}>
-                  {[[listenCount, "listens"], [signs, "signs"], [arrived.length, "arrived"]].map(([v, l]) => (
-                    <div key={l} style={{ border: "1px solid #000", borderRadius: 12, padding: "10px 4px" }}><div style={{ fontSize: 22 }}>{v}</div><div style={{ fontSize: 11 }}>{l}</div></div>
-                  ))}
-                </div>
-                <div><Label>HOW YOU LISTEN</Label><div style={{ fontSize: 14, lineHeight: 1.6 }}>Headphones on. Never while driving. Avoid if you have epilepsy. Best before sleep or first thing in the morning.</div></div>
-                <button onClick={actions.guide} style={{ ...pill, background: "#000", color: "#F2ECE4" }}>Open the listening guide</button>
-                <button onClick={actions.liked} style={{ ...pill, background: "transparent", color: "#000", border: "1px solid #000" }}>My favourite tracks</button>
-                <button onClick={actions.shop} style={{ ...pill, background: "transparent", color: "#000", border: "1px solid #000" }}>Shop workbooks and guides</button>
+              <div className="pp-page" data-page="04 · SHOP" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 12 }}>
+                <div style={{ fontSize: 15, lineHeight: 1.6 }}>Workbooks and guides to go deeper on your desire.</div>
+                {[["Lovemaxxing Workbook", "The specific person, or how you show up in love"], ["Luckygirlmaxxing Workbook", "General good-fortune installation"], ["Richgirlmaxxing Workbook", "Belief work underneath receiving and earning"]].map(([n, d]) => (
+                  <button key={n} onClick={actions.shop} style={{ all: "unset", cursor: "pointer", border: "1px solid #000", borderRadius: 14, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                    <span><span style={{ display: "block", fontSize: 15, fontWeight: 500 }}>{n}</span><span style={{ display: "block", fontSize: 13, marginTop: 2 }}>{d}</span></span><span style={{ fontSize: 15 }}>$29 ›</span>
+                  </button>
+                ))}
+                <button onClick={actions.shop} style={{ ...pill, background: G, color: "#000", fontWeight: 500 }}>Open the shop</button>
               </div>
             )}
 
