@@ -1688,8 +1688,15 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
       <DailyReminder/>
 
+      {/* WEEKLY NUDGE: prompt to update intentions */}
+      {(()=>{ const last = Math.max(0,...threads.map(t=>t.createdTs||0)); const stale = isPreview || (threads.length && last && Date.now()-last > 7*86400000); const open = threads.filter(t=>!t.done).length; return stale ? (
+        <button onClick={()=>setTab("proof")} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+          <span style={{ display:"block",fontSize:17,fontWeight:500 }}>It's been a week, {isPreview?"Reshma":firstName}</span>
+          <span style={{ display:"block",fontSize:14,marginTop:4 }}>{open} intention{open===1?"":"s"} still in progress. Has anything arrived? Update proofOS ›</span>
+        </button>) : null; })()}
+
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
-      <FoldCard title="Tell me about you" sub="Tap to open">
+      <FoldCard title="Keep adding" sub="The more you share, the better I know you">
       <button onClick={()=>openProfile(1)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",color:"#000",fontFamily:"'Jost',sans-serif" }}>
         <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Tell me about you</span>
         <span style={{ display:"block",fontSize:17,fontWeight:500,marginTop:6 }}>Upload anything about yourself so I can learn more about you every day.</span>
@@ -1699,7 +1706,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </FoldCard>
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
-      <FoldCard title={`${isPreview ? "Reshma" : firstName}, what's happening?`} sub="Tap to talk and journal">
+      <FoldCard title={`${isPreview ? "Reshma" : firstName}, what's happening?`} sub="Talk or journal: a sign, a win, a worry, a desire">
       <SpeakToProof C={C} isDark={C?.cr !== "#000000"} threads={threads} setThreads={setThreads} token={token} isPreview={isPreview} firstName={isPreview ? "Reshma" : firstName}/>
       </FoldCard>
 
@@ -1736,7 +1743,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
       </div>
 
       {/* QUICK DESIRE CAPTURE */}
-      <FoldCard title="State a desire" sub="Tap to say it and save it">
+      <FoldCard title="State a desire" sub="Say it in the present tense and save it">
       <div style={{ margin:"12px 16px 4px", background:C.bg2, border:`1px solid rgba(232,184,112,0.3)`, borderRadius:14, padding:"16px" }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:10 }}>
           <div style={{ fontSize:22, fontWeight:500, color:C.cr }}>State a desire</div>
@@ -1774,9 +1781,10 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
-        <button onClick={()=>openGuide()} className="shg-no-paper shg-guide-glow" style={{ width:"100%", minHeight:96, padding:"22px", background:"#000", border:"1.5px solid transparent", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
-          <span className="shg-gt" style={{ fontSize:30, fontWeight:500 }}>Guidebook</span>
-          <span className="shg-gt" style={{ fontSize:30 }}>›</span>
+        <button onClick={()=>openGuide()} className="shg-paper" style={{ display:"block", width:"100%", padding:"20px", borderRadius:20, cursor:"pointer", fontFamily:"'Jost',sans-serif", textAlign:"center", color:"#000" }}>
+          <span style={{ display:"block", fontSize:19, fontWeight:500 }}>Guidebook</span>
+          <span style={{ display:"block", fontSize:14, marginTop:4 }}>Everything explained, with visuals</span>
+          <span style={{ display:"block", fontSize:14, marginTop:8 }}>Tap me to open ›</span>
         </button>
       </div>
 
@@ -1862,7 +1870,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
     <div style={{ margin:"0 16px 20px", fontFamily:"'Jost',sans-serif" }}>
       {/* Header */}
       <div style={{ marginBottom:12, background:C.bg2, border:`1px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
-        <div style={{ fontSize:13, fontWeight:600, color:C.cr, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:4 }}>Manifestation history</div>
+        <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:6 }}><Thumb cat="Luckygirlmaxxing" size={48} radius={12}/><div className="shg-gt" style={{ fontSize:22, fontWeight:500, display:"inline-block" }}>Manifestation history</div></div>
         <div style={{ fontSize:14, color:C.mu, lineHeight:1.5 }}>
           {isPreview ? "A record that compounds. The longer you log, the more your patterns emerge." : "Your full manifestation record — every intention, every win, every pattern."}
         </div>
@@ -1941,7 +1949,7 @@ function ManifestationTimeline({ threads, listenCount, isPreview, C }) {
                 </div>
               </div>
               <div style={{ height:6, borderRadius:3, background:`${r.color}22`, overflow:"hidden" }}>
-                <div style={{ height:"100%", width:`${barPct}%`, borderRadius:3, background:r.color, transition:"width 0.8s ease" }}/>
+                <div className="shg-bar-h" style={{ height:"100%", width:`${barPct}%`, borderRadius:3, background:"linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)" }}/>
               </div>
             </div>
           );
@@ -2242,6 +2250,12 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         <div style={{ fontSize:17, fontWeight:400, color:C.cr, marginTop:8 }}>Here are today's insights.</div>
       </div>
 
+      {/* IMAGINE IT IS 2030 — from the method deck */}
+      <div style={{ margin:"0 16px 18px" }}>
+        <img src="/deck/imagine-2030.webp" alt="Imagine it is 2030: from 900 proofs in 2026 to 5,500 in 2030. Keep going." style={{ width:"100%",aspectRatio:"16/9",borderRadius:16,display:"block",border:"1px solid rgba(242,236,228,.18)" }}/>
+        <div style={{ textAlign:"center",fontSize:15,color:C.cr,marginTop:8 }}>Imagine how many desires you'll have logged by 2030. Keep going.</div>
+      </div>
+
       {/* PROGRESS — the reference's Progress screen (docs/design/shg-app-design.html) */}
       {(() => {
         const proofs = isPreview ? 142 : threads.reduce((a,t)=>a+(t.signs?.length||0),0) + manifested;
@@ -2286,9 +2300,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             {hawk && <>
               <div className="shg-gt" style={{ fontSize:15,letterSpacing:"0.18em",marginBottom:10 }}>HAWKINS LEVEL</div>
               <div style={{ height:14,borderRadius:8,background:"#2a2a2a",marginBottom:8,overflow:"hidden" }}><div className="shg-gfill shg-bar-h" style={{ height:"100%",width:`${hawk.pct}%`,borderRadius:8 }}/></div>
-              <div style={{ fontSize:16,color:C.cr,marginBottom:18 }}>{hawk.label}</div>
+              <div style={{ fontSize:16,color:C.cr,marginBottom:6 }}>{hawk.label}</div>
+              <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"hawkins" } }))} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"7px 14px",fontSize:13,cursor:"pointer",marginBottom:18,fontFamily:"'Jost',sans-serif" }}>What is the Hawkins scale? ›</button>
             </>}
-            {fast && <div className="shg-gb shg-paper shg-pop" style={{ borderRadius:18,padding:"14px",textAlign:"center",color:C.cr }}><div style={{ fontSize:17 }}>Your fastest area: {fast.area}</div><div style={{ fontSize:16,marginTop:4 }}>{fast.note}</div></div>}
+            {fast && <div className="shg-paper shg-glowedge shg-pop" style={{ borderRadius:18,padding:"16px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}><div><div style={{ fontSize:12,letterSpacing:".22em" }}>YOUR FASTEST AREA</div><div style={{ fontSize:26,fontWeight:500,marginTop:4 }}>{fast.area}</div></div><div style={{ textAlign:"right" }}><div style={{ fontSize:30,fontWeight:600,lineHeight:1 }}>{(fast.note.match(/\d+/)||["?"])[0]}</div><div style={{ fontSize:13 }}>days on average</div></div></div>}
             <div style={{ fontSize:15,textAlign:"center",marginTop:18,color:C.cr }}>The more you log, the more the AI learns.</div>
           </div>
         );
@@ -2479,16 +2494,25 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             // time) to what happens. Illustrative in preview; each one is a
             // comparison her own logged data can support once it exists.
             [
-              ["Signs come before wins", "In the 7 days before each of your manifestations you logged 3× more signs than in an average week."],
-              ["Belief rises after you log", "Your belief rating is 2 points higher on days after you log a sign than on days after you don't."],
-              ["Evening listening works for you", "Desires you listened to at night manifested in 18 days on average. Morning-only: 31 days."],
-              ["Your block is loosening", "You named “it slips” as your block. 4 of your last 5 desires reached manifested."],
-            ].map(([head, body], i, arr) => (
-              <div key={i} style={{ padding:"14px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
-                <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:4 }}>✦ {head}</div>
-                <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>{body}</div>
-              </div>
-            ))
+              ["Signs come before wins", "Average week", 2, "Week before a win", 6, " signs"],
+              ["Belief rises after you log", "Day without a sign", 5.1, "Day after a sign", 7.1, "/10"],
+              ["Night listening is faster", "Morning only", 31, "Listened at night", 18, " days"],
+              ["Your block is loosening", "Before", 1, "Last 5 desires", 4, " manifested"],
+            ].map(([head, la, lv, ra, rv, unit], i) => {
+              const max = Math.max(lv, rv);
+              return (
+                <div key={i} style={{ padding:"12px 0" }}>
+                  <div style={{ fontSize:15, fontWeight:600, color:C.cr, marginBottom:8 }}>✦ {head}</div>
+                  {[[la,lv,false],[ra,rv,true]].map(([lab,v,hi])=>(
+                    <div key={lab} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+                      <span style={{ fontSize:13, color:C.cr, width:104, flexShrink:0 }}>{lab}</span>
+                      <div style={{ flex:1, height:12, borderRadius:6, background:"rgba(0,0,0,.08)", overflow:"hidden" }}><div className={hi?"shg-bar-h":""} style={{ height:"100%", width:`${(v/max)*100}%`, borderRadius:6, background: hi ? "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)" : "rgba(0,0,0,.28)" }}/></div>
+                      <span style={{ fontSize:14, fontWeight:hi?600:400, color:C.cr, textAlign:"right", width:84, flexShrink:0 }}>{v}{unit}</span>
+                    </div>
+                  ))}
+                </div>
+              );
+            })
           ) : patterns.map((p,i,arr) => {
             const convRate = Math.round((p.manifestedCount / Math.max(p.listens,1)) * 100);
             return (
@@ -2504,24 +2528,28 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       )}
 
       {/* AI RECOMMENDATION CARD */}
-      <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
+      <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-          <span style={{ fontSize:15, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
+          <span style={{ fontSize:13, fontWeight:500, color:C.cr, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
           {!isPreview && (
             <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:15, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
               {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
             </button>
           )}
         </div>
-        {isPreview ? (
-          <div>
-            <div style={{ fontSize:16, color:C.mu, marginBottom:10, lineHeight:1.55 }}>Hi Reshma — based on your 38 Lovemaxxing listens and 5 desires manifested in that area, today's pick is:</div>
-            <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
-            <div style={{ fontSize:15, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
-            <div style={{ fontSize:15, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
-            <div style={{ fontSize:15, color:C.cr, marginTop:12, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+        {isPreview ? (()=>{ const t = TRACKS.find(x=>x.cat==="Luckygirlmaxxing") || TRACKS[0]; return (
+          <div style={{ display:"flex", gap:14, alignItems:"center" }}>
+            <Thumb cat={t.cat} size={88} radius={14}/>
+            <div style={{ flex:1, minWidth:0 }}>
+              <div style={{ fontSize:18, fontWeight:500, color:C.cr, lineHeight:1.3 }}>{displayTitle(t.title)}</div>
+              <div style={{ fontSize:14, color:C.cr, marginTop:4 }}>{t.cat.replace("maxxing","")} · {t.format} · {t.dur}</div>
+              <div style={{ display:"flex", flexWrap:"wrap", gap:6, marginTop:8 }}>
+                {["Your fastest area","Best at night","3 open intentions"].map(x=><span key={x} style={{ fontSize:12, padding:"3px 10px", border:"1px solid #000", borderRadius:999 }}>{x}</span>)}
+              </div>
+            </div>
           </div>
-        ) : recommendation ? (
+        ); })()
+        : recommendation ? (
           <div>
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{displayTitle(recommendation.title)}</div>
             <div style={{ fontSize:15, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
@@ -2573,16 +2601,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       )}
 
 
-      {/* DESIRE NUDGE — remind user to update desires / bucket list */}
-      {isPreview && (
-        <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"16px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite", display:"flex", alignItems:"center", gap:14 }}>
-          <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
-          <div style={{ flex:1 }}>
-            <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
-            <div style={{ fontSize:15, color:C.mu, marginTop:3, lineHeight:1.4 }}>You haven't updated your desire list in 7 days. 3 intentions are still in progress. Want to mark anything manifested?</div>
-          </div>
-        </div>
-      )}
+      {/* DESIRE NUDGE moved to Home */}
       {!isPreview && (
         <div className="shg-paper" style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
           <span style={{ fontSize:26, flexShrink:0 }}>🔔</span>
@@ -2604,9 +2623,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={()=>openGuide()} className="shg-no-paper shg-guide-glow" style={{ width:"100%", minHeight:96, padding:"22px", background:"#000", border:"1.5px solid transparent", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
-          <span className="shg-gt" style={{ fontSize:30, fontWeight:500 }}>Guidebook</span>
-          <span className="shg-gt" style={{ fontSize:30 }}>›</span>
+        <button onClick={()=>openGuide()} className="shg-paper" style={{ display:"block", width:"100%", padding:"20px", borderRadius:20, cursor:"pointer", fontFamily:"'Jost',sans-serif", textAlign:"center", color:"#000" }}>
+          <span style={{ display:"block", fontSize:19, fontWeight:500 }}>Guidebook</span>
+          <span style={{ display:"block", fontSize:14, marginTop:4 }}>Everything explained, with visuals</span>
+          <span style={{ display:"block", fontSize:14, marginTop:8 }}>Tap me to open ›</span>
         </button>
       </div>
     </div>
@@ -3598,7 +3618,7 @@ function CommunityTab({ C, isPreview }) {
         <div className="shg-cw">
           {steps.map(([t,d],i)=>(
             <div key={t} style={{ textAlign:"center",color:"#F2ECE4" }}>
-              <div style={{ width:54,height:54,margin:"0 auto 8px",borderRadius:"50%",display:"grid",placeItems:"center",fontSize:20,fontWeight:500,background:"radial-gradient(circle at 35% 30%,rgba(245,224,160,.55),rgba(191,165,216,.35) 55%,rgba(44,183,167,.45))",border:"1.5px solid #E8B870",boxShadow:"0 0 18px rgba(191,165,216,.45)" }}>{i+1}</div>
+              <div style={{ width:54,height:54,margin:"0 auto 8px",borderRadius:"50%",display:"grid",placeItems:"center",fontSize:22,fontWeight:400,background:"#000",border:"1.5px solid transparent",backgroundImage:"linear-gradient(#000,#000),linear-gradient(135deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)",backgroundOrigin:"border-box",backgroundClip:"padding-box,border-box",boxShadow:"0 0 16px rgba(191,165,216,.35)" }}><span className="shg-gt">{i+1}</span></div>
               <div style={{ fontSize:14,fontWeight:500 }}>{t}</div>
               <div style={{ fontSize:12,lineHeight:1.35,marginTop:3 }}>{d}</div>
             </div>
@@ -3625,49 +3645,84 @@ function FoldCard({ title, sub, children }) {
   if (!open) return (
     <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
       <span style={{ display:"block",fontSize:19,fontWeight:500 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:14,marginTop:4 }}>{sub}</span>}
+      <span style={{ display:"block",fontSize:14,marginTop:8 }}>Tap me to open ›</span>
     </button>
   );
   return (
-    <div style={{ position:"relative",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both" }}>
-      <button onClick={()=>setOpen(false)} aria-label="Close" style={{ position:"absolute",top:8,right:24,zIndex:2,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"4px 12px",fontSize:13,cursor:"pointer" }}>Close ✕</button>
+    <div style={{ animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",marginBottom:16 }}>
       {children}
+      <button onClick={()=>setOpen(false)} style={{ display:"block",margin:"-6px auto 0",background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"6px 16px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close ⌃</button>
     </div>
   );
 }
 
 // ── DAILY REMINDER ────────────────────────────────────────────────────────────
 const REMINDERS = [
-  { line:"Life conspires in my favour.", eq:"Expectation + Attention = Evidence",
-    note:["Your brain has a filter, the reticular activating system. It only shows you what you've told it matters. Today, you tell it that things go your way.","Count every small win: the green light, the last table, the reply that came fast. Write down three before bed.","Signs to watch for: an unexpected yes, a perfect-timing coincidence, a stranger who says exactly what you needed to hear."] },
-  { line:"I'm always right on time.", eq:"Trust + Detour = Divine Timing",
-    note:["If you're running late today, you're not. If plans change, you're being rerouted to something better.","Notice the conversation you overhear, the person who 'happens' to know someone, the queue that puts you next to the right stranger.","Log it the moment it happens. One line, dated. That's how the timing becomes proof."] },
-  { line:"It's already on its way.", eq:"Decision + Repetition = Identity",
-    note:["The in-between feels like nothing is happening. It isn't. Every listen is a vote for the new version of you.","Play your track today, even for ten minutes. Then do one thing she would do: book it, wear it, say it.","Watch for the first sign that it's moving. It usually looks small and slightly funny."] },
-  { line:"I don't chase. I receive.", eq:"Less Grip + More Space = Arrival",
-    note:["Chasing tells your nervous system it isn't yours yet. Receiving tells it that it is.","Clear one small space today, in your calendar, your inbox or your home, for your desire to land in.","If it shows up in a different form than you pictured, still say yes. Log it anyway."] },
-  { line:"My desires find me first.", eq:"Clarity + Calm = Magnetism",
-    note:["You wanted it, so it's looking for you too. The clearer you are, the easier you are to find.","Rewrite one intention today in the present tense, as if it's done. Read it out loud once.","Notice who reaches out first today. A message, a call, an offer. That's the pull working."] },
-  { line:"Luck follows me around.", eq:"Noticing + Logging = More Luck",
-    note:["Lucky people aren't luckier. They notice more, so they act on more.","Say yes to one random invitation or detour today. Luck needs a door to walk through.","Every lucky moment goes in proofOS. By the end of the month, you won't be able to argue with yourself."] },
+  { eq:"Clarity + Calm = Magnetism", body:[
+    ["What it means","Magnetism isn't a personality trait. It's what happens when you know exactly what you want and you're not panicking about it. Clarity tells the universe, and your brain, precisely what to look for. Calm tells your nervous system it's safe to receive it. Put the two together and you stop pushing things away without realising."],
+    ["Why clarity comes first","A vague desire gives your brain nothing to lock onto. \"I want more money\" could mean anything. \"I receive $3,000 from a new client this month\" gives your reticular activating system a target. The filter that decides what you notice switches on. Suddenly you see the opportunity that was always there."],
+    ["Why calm is the multiplier","When you want something desperately, your body reads the wanting as lack. Lack makes you grip, check, chase and over-explain. Calm is the signal that says: this is already mine, I don't need to force it. People, money and chances move toward calm energy the same way you move toward a calm person in a room."],
+    ["Do this today","Rewrite one intention so it's specific: a number, a name, a feeling, a date. Read it once, out loud. Then put it down. Play your track and let the calm part happen while you listen."],
+    ["Sign to watch for","Someone reaches out first today: a message, an offer, a reply that came fast. That's the pull. Log it in proofOS."],
+  ]},
+  { eq:"Expectation + Attention = Evidence", body:[
+    ["What it means","Evidence doesn't appear because you finally deserve it. It appears because you expected it and then looked for it. Expectation sets the direction. Attention catches what arrives. Evidence is the result, and evidence is what kills doubt."],
+    ["The science part","Your brain filters out most of what's around you. It keeps only what it's been told matters. When you expect good things, the filter starts flagging them: the parking space, the discount, the compliment, the perfect-timing call. They were always there. Now you can see them."],
+    ["Why most people miss it","They expect the big thing all at once, so they ignore the small signs on the way. Then they decide it isn't working. The small signs are the proof that it is."],
+    ["Do this today","Before you leave the house, say: \"Today things go my way.\" Then count every small win until bedtime. Write down three, however tiny."],
+    ["Sign to watch for","A coincidence that makes you laugh out loud. That one goes straight into proofOS."],
+  ]},
+  { eq:"Decision + Repetition = Identity", body:[
+    ["What it means","You don't become her by wishing. You become her by deciding once and repeating until your subconscious stops arguing. Decision is the moment you choose. Repetition is how the new identity becomes the default."],
+    ["Why repetition works","Your subconscious learns the way you learned to drive: through repetition, not effort. Every listen is another vote for the new version of you. Thirty days of ten minutes beats one hour once."],
+    ["The trap","Deciding again every morning. \"Maybe this time it'll work.\" That's not a decision, it's a question. Decide once. Then just press play."],
+    ["Do this today","Do one small thing the new you would do without thinking: book it, wear it, say it, send it. Your behaviour tells your brain who you are."],
+    ["Sign to watch for","Someone treats you like the version of you you're becoming. Log how it felt."],
+  ]},
+  { eq:"Less Grip + More Space = Arrival", body:[
+    ["What it means","Things arrive faster when you stop squeezing them. Grip is checking, chasing, over-planning, needing to know how. Space is room in your day, your mind and your life for the thing to actually land."],
+    ["Why letting go works","Grip keeps your body in survival mode. In survival mode you can only see threats, not opportunities. Letting go isn't giving up. It's trusting enough to stop blocking the door."],
+    ["What space looks like","A cleared evening. An empty drawer for the new clothes. A saved seat. A calendar with room in it. Space is a physical message: I'm ready for this."],
+    ["Do this today","Clear one small space for your desire to arrive into, in your calendar, your inbox or your home. Then do something that has nothing to do with it."],
+    ["Sign to watch for","It shows up in a form you didn't expect. Say yes anyway, and log it."],
+  ]},
+  { eq:"Noticing + Logging = More Luck", body:[
+    ["What it means","Lucky people aren't luckier. They notice more, so they act on more. Logging turns each lucky moment into proof, and proof makes you expect more luck. It's a loop, and it compounds."],
+    ["Why logging matters","Your memory keeps the disappointments and forgets the wins. Without a record, you'll swear nothing ever works out. With a record, you can scroll back and see it has been working the whole time."],
+    ["The luck loop","Notice a small win, log it, feel it, expect the next one, notice sooner. By month three the loop runs without you trying."],
+    ["Do this today","Say yes to one random invitation or detour. Luck needs a door to walk through."],
+    ["Sign to watch for","Something you'd almost forgotten about turns up again. Log it with today's date."],
+  ]},
+  { eq:"Trust + Detour = Divine Timing", body:[
+    ["What it means","The detour isn't a mistake. It's the route. When plans change, when you're late, when the thing you wanted falls through, trust says: I'm being moved somewhere better."],
+    ["Why timing feels wrong","You can only see this week. Your desire is arriving on a longer timeline, lined up with people and moments you can't see yet. Trust fills the gap between what you can see and what's coming."],
+    ["How to tell the difference","A detour feels irritating at first and makes sense later. Keep notes. In a month, look back and you'll see why it happened."],
+    ["Do this today","The next time something changes plan, say out loud: \"Thank you, this is taking me somewhere better.\" Then watch."],
+    ["Sign to watch for","A conversation you overhear, or a stranger who knows exactly the person you needed. Log it."],
+  ]},
 ];
 function DailyReminder() {
   const [open, setOpen] = useState(false);
   const r = REMINDERS[Math.floor(Date.now()/86400000) % REMINDERS.length];
   return (
-    <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px 18px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000",perspective:900 }}>
-      <div key={open?"b":"f"} style={{ animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both" }}>
-        <div style={{ fontSize:12,letterSpacing:".3em",marginBottom:10 }}>TODAY'S MANTRA</div>
-        <div style={{ fontSize:"clamp(17px,5.2vw,24px)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis" }}>{r.line}</div>
-        {open ? (
-          <div style={{ marginTop:14,textAlign:"left" }}>
-            <div style={{ fontSize:12,letterSpacing:".3em",textAlign:"center" }}>TODAY'S EQUATION</div>
-            <div style={{ fontSize:18,fontWeight:500,textAlign:"center",margin:"6px 0 12px" }}>{r.eq}</div>
-            {r.note.map((n,i)=><p key={i} style={{ fontSize:15,lineHeight:1.6,margin:"0 0 10px" }}>{n}</p>)}
-          </div>
-        ) : <div style={{ fontSize:13,marginTop:10 }}>Tap for today's equation ✦</div>}
-      </div>
+    <div className="shg-paper" style={{ margin:"0 16px 16px",padding:"20px 18px",borderRadius:20,textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+      <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} style={{ all:"unset",display:"block",width:"100%",cursor:"pointer" }}>
+        <div style={{ fontSize:12,letterSpacing:".3em",marginBottom:10 }}>TODAY'S EQUATION</div>
+        <div style={{ fontSize:"clamp(17px,5vw,23px)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis" }}>{r.eq}</div>
+        <div style={{ fontSize:14,marginTop:10 }}>{open ? "Tap to close ⌃" : "Tap me to open ›"}</div>
+      </button>
+      {open && (
+        <div style={{ marginTop:14,textAlign:"left",maxHeight:"55vh",overflowY:"auto",WebkitOverflowScrolling:"touch",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",paddingRight:4 }}>
+          {r.body.map(([h,t])=>(
+            <div key={h} style={{ marginBottom:14 }}>
+              <div style={{ fontSize:12,letterSpacing:".22em",textTransform:"uppercase",marginBottom:4 }}>{h}</div>
+              <div style={{ fontSize:15,lineHeight:1.65 }}>{t}</div>
+            </div>
+          ))}
+        </div>
+      )}
       <style>{`@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}`}</style>
-    </button>
+    </div>
   );
 }
 
@@ -3704,7 +3759,7 @@ function Sec({ title, children, C, onShowAll }) {
   );
 }
 function HRow({ children }) {
-  return <div style={{ display:"flex",gap:12,padding:"0 16px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none" }}>{children}</div>;
+  return <div style={{ display:"flex",gap:12,padding:"3px 16px 6px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none" }}>{children}</div>;
 }
 function TCard({ track:t, current, play, playing, isPreview, C, liked, toggleLike, openPlayer, big=false }) {
   const isP = current?.id===t.id;

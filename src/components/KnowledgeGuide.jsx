@@ -149,6 +149,7 @@ const SLIDES = {
   "Signs & synchronicities": ["signs-synchronicity","what-counts","signs-stories","why-222","read-a-sign","ask-for-sign","signs-build"],
   "Proof Wall, your evidence log": ["hope-or-evidence","why-track","listen-notice-log","what-you-track","proof-chart"],
   "Bucket List": ["bucket-list"],
+  "The Hawkins Scale": ["hawkins-scale"],
 };
 
 const CATEGORIES = [

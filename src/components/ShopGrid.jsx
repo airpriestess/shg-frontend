@@ -64,24 +64,20 @@ export default function ShopGrid() {
 }
 
 // "Working with Reshma": her services, so members know she's there for them.
-export function WorkWithReshma({ onShop }) {
-  const services = PRODUCTS.filter(p => p.kind === "Service");
+export function WorkWithReshma() {
+  const offers = [{ name:"Workbooks", img:"/shop/lovemaxxing.webp", go:true }, ...PRODUCTS.filter(p => p.kind === "Service")];
   return (
-    <div className="shg-no-paper" style={{ background:"#000", color:"#F2ECE4", borderRadius:20, padding:"20px 16px", border:"1.5px solid transparent", backgroundImage:`linear-gradient(#000,#000),${G}`, backgroundOrigin:"border-box", backgroundClip:"padding-box, border-box", boxShadow:"0 0 26px rgba(191,165,216,.35)" }}>
-      <div style={{ textAlign:"center", marginBottom:14 }}>
-        <div style={{ fontSize:11, letterSpacing:".3em" }}>WORKING WITH RESHMA</div>
-        <div style={{ fontSize:20, fontWeight:500, marginTop:6 }}>Stuck? I'm here for you.</div>
-      </div>
-      <style>{`body .shg-wwr.shg-wwr{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(3,1fr)!important;gap:10px}`}</style>
+    <div className="shg-no-paper" style={{ background:"#000", color:"#F2ECE4", borderRadius:20, padding:"20px 14px", border:"1.5px solid transparent", backgroundImage:`linear-gradient(#000,#000),${G}`, backgroundOrigin:"border-box", backgroundClip:"padding-box, border-box", boxShadow:"0 0 26px rgba(191,165,216,.35)" }}>
+      <div className="shg-shop-label" style={{ fontSize:20, fontWeight:500, textAlign:"center", marginBottom:14, letterSpacing:0, textTransform:"none" }}>Stuck? I'm here for you.</div>
+      <style>{`body .shg-wwr.shg-wwr{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:8px}@media(max-width:700px){body .shg-wwr.shg-wwr{grid-template-columns:1fr 1fr!important}}`}</style>
       <div className="shg-wwr">
-        {services.map(p => (
-          <button key={p.name} onClick={() => buyProduct(p)} style={{ background:"#000", border:"1px solid rgba(242,236,228,.2)", borderRadius:14, overflow:"hidden", padding:0, cursor:"pointer", fontFamily:"inherit", color:"#F2ECE4" }}>
+        {offers.map(p => (
+          <button key={p.name} onClick={() => p.go ? window.dispatchEvent(new Event("shg-go-shop")) : buyProduct(p)} style={{ background:"#000", border:"1px solid rgba(242,236,228,.2)", borderRadius:14, overflow:"hidden", padding:0, cursor:"pointer", fontFamily:"inherit" }}>
             <img src={p.img} alt="" loading="lazy" style={{ width:"100%", aspectRatio:"1", objectFit:"cover", display:"block" }}/>
-            <div style={{ fontSize:13, padding:"8px 6px 10px", textAlign:"center", lineHeight:1.3 }}>{p.name}</div>
+            <div className="shg-shop-label" style={{ fontSize:13, padding:"8px 6px 10px", lineHeight:1.3, letterSpacing:0, textTransform:"none" }}>{p.name}</div>
           </button>
         ))}
       </div>
-      {onShop && <button onClick={onShop} style={{ display:"block", margin:"14px auto 0", background:G, color:"#000", border:"none", borderRadius:999, padding:"11px 22px", fontSize:15, cursor:"pointer", fontFamily:"inherit" }}>See the workbooks ›</button>}
     </div>
   );
 }
