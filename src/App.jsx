@@ -25,8 +25,8 @@ import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
 import { useAuth } from "./contexts/AuthContext.jsx";
-import Onboarding, { BetaAuth } from "./components/Onboarding";
-import { fetchProfile, saveProfile, startPassportSync, passportKey } from "./utils/profileSync";
+import { BetaAuth } from "./components/Onboarding";
+import { fetchProfile, startPassportSync } from "./utils/profileSync";
 import AuthGate from "./components/AuthGate.jsx";
 
 const _BUILD = "v2-20260824";
@@ -221,25 +221,13 @@ function LibraryBanner({ isMobile, onLegal }) {
   );
 }
 
-// Everyone sees onboarding first. Members' answers + passport are saved to their account;
-// the investor/demo preview can skip and nothing is sent anywhere.
-function mergePassport(key, patch) {
-  try {
-    const cur = JSON.parse(localStorage.getItem(key) || "{}");
-    localStorage.setItem(key, JSON.stringify({ ...cur, ...patch }));
-    window.dispatchEvent(new Event("shg-passport-updated"));
-  } catch {}
-}
-
 function OnboardingGate({ children }) {
+  // Keeps a member's passport + onboarding in sync with their account. The 10-question
+  // onboarding quiz itself lives in SpotifyPortal.
   const authCtx = useAuth();
   const preview = new URLSearchParams(window.location.search).get("preview") === "1" || !authCtx.isAuthenticated;
   const userId = authCtx.user?.id;
-  const [state, setState] = useState(() => {
-    if (!preview) return "loading";
-    try { return localStorage.getItem("shg_preview_onboarded") ? "done" : "ask"; } catch { return "ask"; }
-  });
-
+  const [ready, setReady] = useState(preview);
   useEffect(() => {
     if (preview || !userId) return;
     let stop = () => {};
@@ -247,32 +235,14 @@ function OnboardingGate({ children }) {
     fetchProfile()
       .then((pr) => {
         if (!alive) return;
+        if (pr?.onboarded_at) { try { localStorage.setItem(`shg_onboarded_${userId}`, "1"); } catch {} }
         stop = startPassportSync(userId, pr?.passport);
-        setState(pr?.onboarded_at ? "done" : "ask");
       })
-      .catch(() => { if (alive) { stop = startPassportSync(userId, null); setState("done"); } });
+      .catch(() => { if (alive) stop = startPassportSync(userId, null); })
+      .finally(() => { if (alive) setReady(true); });
     return () => { alive = false; stop(); };
   }, [preview, userId]);
-
-  if (state === "loading") return <div style={{ minHeight: "100vh", background: "#000" }} />;
-  if (state === "ask") {
-    return <Onboarding
-      preview={preview}
-      initialName={authCtx.user?.full_name || ""}
-      onSkip={() => { try { localStorage.setItem("shg_preview_onboarded", "1"); } catch {} setState("done"); }}
-      onDone={async (answers) => {
-        const key = preview ? "shg_passport_preview" : passportKey(userId);
-        mergePassport(key, { name: answers.name, birthday: answers.birthday || undefined, onboarding: answers });
-        if (preview) { try { localStorage.setItem("shg_preview_onboarded", "1"); } catch {} }
-        else {
-          let passport = null;
-          try { passport = JSON.parse(localStorage.getItem(key)); } catch {}
-          await saveProfile({ onboarding: answers, passport });
-        }
-        setState("done");
-      }}
-    />;
-  }
+  if (!ready) return <div style={{ minHeight: "100vh", background: "#000" }} />;
   return children;
 }
 

@@ -10,6 +10,7 @@ import { PushNotificationToggle, PushPromptBanner } from "../components/PushNoti
 import { useAuth } from "../contexts/AuthContext.jsx";
 import LogSignModal, { ManifestCelebration } from "../components/LogSignModal.jsx";
 import { usePushNotifications } from "../components/PushNotifications.jsx";
+import { saveProfile } from "../utils/profileSync";
 import ShopGrid, { PRODUCTS, buyProduct, WorkWithReshma } from "../components/ShopGrid.jsx";
 
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
@@ -683,15 +684,19 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
     // ten questions before seeing anything.
     const forced = new URLSearchParams(window.location.search).get("onboarding") === "1";
     if (forced) { setShowOnboarding(true); return; }
-    if (isPreview || !userId || !threadsLoaded) return;
-    const key = `shg_onboarded_${userId}`;
+    // Preview (investors) sees the quiz once too, with a Skip button.
+    if (!isPreview && (!userId || !threadsLoaded)) return;
+    const key = `shg_onboarded_${isPreview ? "preview" : userId}`;
     try { if (localStorage.getItem(key)) return; } catch {}
     setShowOnboarding(true);
   }, [userId, isPreview, threadsLoaded]);
   const finishOnboarding = async (answers = {}) => {
-    const key = `shg_onboarded_${userId}`;
+    const key = `shg_onboarded_${isPreview ? "preview" : userId}`;
     try { localStorage.setItem(key, "1"); } catch {}
     setShowOnboarding(false);
+    if (isPreview) return;
+    // Every answer is kept on the member's account (survives upgrades and new phones).
+    try { await saveProfile({ onboarding: { ...answers, goals: answers.goals || onbGoals, completed_at: new Date().toISOString() } }); } catch {}
     const email = session?.user?.email;
     if (email) {
       try {
@@ -1118,6 +1123,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
         where={onbWhere} setWhere={setOnbWhere}
         freq={onbFreq} setFreq={setOnbFreq}
         onDone={finishOnboarding}
+        onSkip={isPreview ? () => finishOnboarding({}) : undefined}
         isDark={isDark} C={C}
       />}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
@@ -1213,6 +1219,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
         where={onbWhere} setWhere={setOnbWhere}
         freq={onbFreq} setFreq={setOnbFreq}
         onDone={finishOnboarding}
+        onSkip={isPreview ? () => finishOnboarding({}) : undefined}
         isDark={isDark} C={C}
       />}
       {isPreview && <PreviewBanner onSignOut={onSignOut} C={C}/>}
@@ -4303,7 +4310,7 @@ const OB_BUCKET = [
   { label:"I already know what I want",        sub:"I'll add them myself in proofOS" },
 ];
 
-function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, isDark, C }) {
+function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq, setFreq, onDone, onSkip, isDark, C }) {
   const [specific, setSpecific]     = useState("");
   const [block, setBlock]           = useState("");
   const [timeline, setTimeline]     = useState("");
@@ -4323,7 +4330,7 @@ function OnboardingQuiz({ step, setStep, goals, setGoals, where, setWhere, freq,
   const grad = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
   const bg   = isDark ? "#0d0d0d" : "#fff";
   const text = isDark ? "#FDF0E8" : "#111";
-  const dim  = isDark ? "rgba(253,240,232,0.55)" : "#777";
+  const dim  = isDark ? "#F2ECE4" : "#000";
 
   const startRec = async () => {
     try {
