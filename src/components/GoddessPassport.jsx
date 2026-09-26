@@ -132,7 +132,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const tabs = ["Identity", "My Life", "Stamps", "Shop", "Settings"];
   const life = { want: "", desires: "", blocks: "", needs: "", becoming: "", uploads: [], log: {}, ...(p.life || {}) };
   // Every saved answer is kept with its date, so changes over time are visible (and usable for patterns).
-  const saveEntry = (k) => { const v = (life[k] || "").trim(); const prev = (life.log && life.log[k]) || []; if (!v || (prev[0] && prev[0].text === v)) return; setLife({ log: { ...(life.log || {}), [k]: [{ date: today(), text: v }, ...prev].slice(0, 100) } }); };
+  const saveEntry = (k) => { const v = (life[k] || "").trim(); const prev = (life.log && life.log[k]) || []; if (!v || (prev[0] && prev[0].text === v)) return; setLife({ log: { ...(life.log || {}), [k]: [{ date: today(), ts: Date.now(), text: v }, ...prev].slice(0, 100) } }); };
   // Voice: speak an answer and it is written into the field.
   const [dictating, setDictating] = useState(null);
   const recogRef = useRef(null);
@@ -233,6 +233,14 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
             {page === 1 && (
               <div className="pp-page" data-page="02 · MY LIFE" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
+                {(() => {
+                  const all = Object.values(life.log || {}).flat();
+                  const last = Math.max(0, ...all.map((e) => e.ts || 0));
+                  const msg = !all.length ? "Save each answer below to make it your first entry. Your history starts today."
+                    : last && Date.now() - last > 30 * 86400000 ? "It's been a month. Update your answers so you can see how far you've come."
+                    : "Update this every month. Every saved answer is kept with its date.";
+                  return <div style={{ background: "#000", color: "#F2ECE4", borderRadius: 12, padding: "12px 14px", fontSize: 14, lineHeight: 1.5 }}>{msg}</div>;
+                })()}
                 <div style={{ fontSize: 15, lineHeight: 1.6 }}>Tell me about you. The more you share, the more I learn about you every day: your needs, your desires, your blocks. Edit it whenever you like.</div>
                 {[["want", "WHAT I WANT FROM LIFE", "Love, money, body, home, career, freedom…"], ["desires", "MY DESIRES RIGHT NOW", "What I'm calling in this season"], ["blocks", "MY BLOCKS", "What gets in my way, the stories I tell myself"], ["needs", "MY NEEDS", "What I need to feel safe, loved and supported"], ["becoming", "WHO I'M BECOMING", "Her habits, her style, her life"]].map(([k, l, ph]) => (
                   <div key={k}><Label>{l}</Label><textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} />
