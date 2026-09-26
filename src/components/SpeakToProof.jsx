@@ -144,7 +144,7 @@ export default function SpeakToProof({ C, isDark, threads = [], setThreads, toke
   const btn = { border: "none", borderRadius: 999, minHeight: 44, padding: "0 18px", fontSize: 14, fontFamily: "inherit", cursor: "pointer" };
 
   return (
-    <div style={{ margin: "16px 16px 12px", borderRadius: 20, padding: 18, border: "1px solid transparent", background: `linear-gradient(${card},${card}) padding-box,${G} border-box`, color: cr }}>
+    <div className="shg-paper" style={{ margin: "0 16px 16px", borderRadius: 20, padding: 20, color: "#000", textAlign: "center" }}>
       <div style={{ fontSize: 11, letterSpacing: ".3em", marginBottom: 8 }}>TALK TO PROOFOS</div>
       <div style={{ fontSize: 20, lineHeight: 1.3, marginBottom: 6 }}>{firstName ? `${firstName}, what's` : "What's"} happening in your world?</div>
       <div style={{ fontSize: 13, lineHeight: 1.5, marginBottom: 14 }}>Say your intentions, signs and synchronicities out loud, or upload your journal pages. We sort it all for you.</div>

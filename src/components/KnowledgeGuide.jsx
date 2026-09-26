@@ -189,9 +189,9 @@ export default function KnowledgeGuide({ onClose, start = null }) {
         {!cat ? (
           <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:12 }}>
             {CATEGORIES.map(c => (
-              <button key={c.label} onClick={()=>setCat(c.label)} style={{ background:"#000", color:"#F2ECE4", border:"1.5px solid transparent", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:20, padding:"20px 16px", minHeight:130, textAlign:"left", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
-                <span style={{ fontSize:22, fontWeight:500, lineHeight:1.25, background:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{c.label}</span>
-                <span style={{ fontSize:14 }}>{c.keys.length} answers ›</span>
+              <button key={c.label} onClick={()=>setCat(c.label)} style={{ background:"#000", color:"#F2ECE4", border:"1px solid transparent", boxShadow:"0 0 18px rgba(191,165,216,.25)", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:20, padding:"20px 16px", minHeight:96, textAlign:"center", alignItems:"center", cursor:"pointer", fontFamily:"inherit", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
+                <span style={{ fontSize:20, fontWeight:400, letterSpacing:".02em", lineHeight:1.25, background:"linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)", WebkitBackgroundClip:"text", backgroundClip:"text", color:"transparent" }}>{c.label}</span>
+                <span style={{ fontSize:13, letterSpacing:".12em" }}>{c.keys.length} ANSWERS</span>
               </button>
             ))}
             <div style={{ gridColumn:"1/-1", marginTop:8 }}><WorkWithReshma onShop={()=>{ onClose(); window.dispatchEvent(new Event("shg-go-shop")); }}/></div>

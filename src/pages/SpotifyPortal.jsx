@@ -222,7 +222,7 @@ const CAT_ICON_IMG = { Lovemaxxing:"/icons/love.webp", Richgirlmaxxing:"/icons/m
 function Thumb({ cat, size=48, radius=4 }) {
   return (
     <div aria-hidden="true" style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", position:"relative", background:"#000" }}>
-      <img src={CAT_ICON_IMG[cat] || "/icons/lucky.webp"} alt="" loading="lazy" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
+      <img src={CAT_ICON_IMG[cat] || "/icons/lucky.webp"} alt="" loading="lazy" style={{ position:"absolute", inset:"12%", width:"76%", height:"76%", objectFit:"cover", display:"block", borderRadius:"50%" }}/>
     </div>
   );
 }
@@ -1690,7 +1690,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
       <FoldCard title="Tell me about you" sub="Tap to open">
-      <button onClick={()=>openProfile(1)} className="shg-gb" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"18px 20px",borderRadius:20,cursor:"pointer",textAlign:"left",color:C.cr,fontFamily:"'Jost',sans-serif" }}>
+      <button onClick={()=>openProfile(1)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",color:"#000",fontFamily:"'Jost',sans-serif" }}>
         <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Tell me about you</span>
         <span style={{ display:"block",fontSize:17,fontWeight:500,marginTop:6 }}>Upload anything about yourself so I can learn more about you every day.</span>
         <span style={{ display:"block",fontSize:13,marginTop:4 }}>Your needs, your desires, your blocks. Journal pages, notes, even your ChatGPT or Claude summary.</span>
@@ -1774,7 +1774,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* KNOWLEDGE GUIDE, all tiers */}
       <div style={{ margin:"12px 16px 4px" }}>
-        <button onClick={()=>openGuide()} className="shg-no-paper" style={{ width:"100%", minHeight:110, padding:"22px", background:"#000", border:"1.5px solid transparent", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+        <button onClick={()=>openGuide()} className="shg-no-paper shg-guide-glow" style={{ width:"100%", minHeight:96, padding:"22px", background:"#000", border:"1.5px solid transparent", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span className="shg-gt" style={{ fontSize:30, fontWeight:500 }}>Guidebook</span>
           <span className="shg-gt" style={{ fontSize:30 }}>›</span>
         </button>
@@ -1786,8 +1786,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         <div className="shg-howto">
           {[["Intentions","how-to-write-intention","lucky"],["Bucket List","bucket-vs-active","email"],["Signs","spotting-signs","track"],["Evidence","proof-wall-forever","session"]].map(([t,k,ic])=>(
             <button key={k} onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:k } }))} className="shg-no-paper" style={{ position:"relative",aspectRatio:"1",background:"#000",border:"1px solid rgba(242,236,228,0.18)",borderRadius:16,overflow:"hidden",cursor:"pointer",padding:0,fontFamily:"'Jost',sans-serif" }}>
-              <img src={`/icons/${ic}.webp`} alt="" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover" }}/>
-              <span style={{ position:"absolute",left:0,right:0,bottom:10,textAlign:"center",fontSize:16,fontWeight:500,color:"#F2ECE4",textShadow:"0 1px 6px #000" }}>{t}</span>
+              <img src={`/icons/${ic}.webp`} alt="" style={{ position:"absolute",left:"22%",top:"10%",width:"56%",height:"56%",objectFit:"cover",borderRadius:"50%" }}/>
+              <span style={{ position:"absolute",left:0,right:0,bottom:14,textAlign:"center",fontSize:16,fontWeight:500,color:"#F2ECE4" }}>{t}</span>
             </button>
           ))}
         </div>
@@ -2604,7 +2604,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* KNOWLEDGE GUIDE, available to all tiers */}
       <div style={{ margin:"0 16px 20px" }}>
-        <button onClick={()=>openGuide()} className="shg-no-paper" style={{ width:"100%", minHeight:110, padding:"22px", background:"#000", border:"1.5px solid transparent", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
+        <button onClick={()=>openGuide()} className="shg-no-paper shg-guide-glow" style={{ width:"100%", minHeight:96, padding:"22px", background:"#000", border:"1.5px solid transparent", backgroundImage:"linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)", backgroundOrigin:"border-box", backgroundClip:"padding-box,border-box", borderRadius:22, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", fontFamily:"'Jost',sans-serif", textAlign:"left" }}>
           <span className="shg-gt" style={{ fontSize:30, fontWeight:500 }}>Guidebook</span>
           <span className="shg-gt" style={{ fontSize:30 }}>›</span>
         </button>
@@ -3616,18 +3616,20 @@ function CommunityTab({ C, isPreview }) {
   );
 }
 
+// Soft pulsing glow for the Guidebook entry.
+if (typeof document !== "undefined" && !document.getElementById("shg-guide-glow-css")) { const st = document.createElement("style"); st.id = "shg-guide-glow-css"; st.textContent = `.shg-guide-glow{animation:shg-gg 3.6s ease-in-out infinite}@keyframes shg-gg{0%,100%{box-shadow:0 0 16px rgba(232,184,112,.35),0 0 40px rgba(191,165,216,.2)}50%{box-shadow:0 0 28px rgba(44,183,167,.5),0 0 64px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-guide-glow{animation:none}}`; document.head.appendChild(st); }
+
 // A home card that shows only its title until tapped, then spins open.
 function FoldCard({ title, sub, children }) {
   const [open, setOpen] = useState(false);
   if (!open) return (
-    <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",color:"#000" }}>
-      <span><span style={{ display:"block",fontSize:19,fontWeight:500 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:14,marginTop:4 }}>{sub}</span>}</span>
-      <span style={{ fontSize:22 }}>›</span>
+    <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+      <span style={{ display:"block",fontSize:19,fontWeight:500 }}>{title}</span>{sub && <span style={{ display:"block",fontSize:14,marginTop:4 }}>{sub}</span>}
     </button>
   );
   return (
     <div style={{ position:"relative",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both" }}>
-      <button onClick={()=>setOpen(false)} aria-label="Close" style={{ position:"absolute",top:10,right:26,zIndex:2,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"4px 12px",fontSize:13,cursor:"pointer" }}>Close ✕</button>
+      <button onClick={()=>setOpen(false)} aria-label="Close" style={{ position:"absolute",top:8,right:24,zIndex:2,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"4px 12px",fontSize:13,cursor:"pointer" }}>Close ✕</button>
       {children}
     </div>
   );
@@ -3635,26 +3637,36 @@ function FoldCard({ title, sub, children }) {
 
 // ── DAILY REMINDER ────────────────────────────────────────────────────────────
 const REMINDERS = [
-  { line:"Life conspires in my favour. Of course. Obviously.", note:"Today, notice every small thing that goes your way: the green light, the last table, the reply that came fast. Count them. Your brain can only find what you've told it to look for." },
-  { line:"The right people are already on their way to me.", note:"Someone is thinking about you right now: a client, a love, a collaborator. You don't have to chase them today. Just be easy to find. Say yes to the random invite." },
-  { line:"I'm always in the right place at the right time.", note:"If you're running late today, you're not. If plans change, they're rerouting you. Watch for the conversation you overhear or the stranger who knows someone. That's the sign. Log it." },
-  { line:"Everything I asked for is already rearranging itself.", note:"The in-between feels like nothing is happening. It isn't. Play your track today, then write one sign down, however small. Evidence is how the doubt quiets down." },
-  { line:"I don't chase. I attract. Then I receive.", note:"Today, do one thing that the version of you who already has it would do. Book it, wear it, say it. Then let go of how it arrives." },
-  { line:"My desires are obsessed with me.", note:"You wanted it, so it's looking for you too. Make it easy: clear one small space today, in your calendar, your inbox or your home, for it to land." },
-  { line:"I'm the luckiest person I know. It's a little unfair.", note:"Start keeping score. Every lucky moment today goes in proofOS. By the end of the month you won't be able to argue with yourself." },
-  { line:"I trust the timing of my life.", note:"If something didn't happen yesterday, it doesn't mean no. It means not like that. Look back at your Proof Wall today and remember how the last one arrived." },
+  { line:"Life conspires in my favour.", eq:"Expectation + Attention = Evidence",
+    note:["Your brain has a filter, the reticular activating system. It only shows you what you've told it matters. Today, you tell it that things go your way.","Count every small win: the green light, the last table, the reply that came fast. Write down three before bed.","Signs to watch for: an unexpected yes, a perfect-timing coincidence, a stranger who says exactly what you needed to hear."] },
+  { line:"I'm always right on time.", eq:"Trust + Detour = Divine Timing",
+    note:["If you're running late today, you're not. If plans change, you're being rerouted to something better.","Notice the conversation you overhear, the person who 'happens' to know someone, the queue that puts you next to the right stranger.","Log it the moment it happens. One line, dated. That's how the timing becomes proof."] },
+  { line:"It's already on its way.", eq:"Decision + Repetition = Identity",
+    note:["The in-between feels like nothing is happening. It isn't. Every listen is a vote for the new version of you.","Play your track today, even for ten minutes. Then do one thing she would do: book it, wear it, say it.","Watch for the first sign that it's moving. It usually looks small and slightly funny."] },
+  { line:"I don't chase. I receive.", eq:"Less Grip + More Space = Arrival",
+    note:["Chasing tells your nervous system it isn't yours yet. Receiving tells it that it is.","Clear one small space today, in your calendar, your inbox or your home, for your desire to land in.","If it shows up in a different form than you pictured, still say yes. Log it anyway."] },
+  { line:"My desires find me first.", eq:"Clarity + Calm = Magnetism",
+    note:["You wanted it, so it's looking for you too. The clearer you are, the easier you are to find.","Rewrite one intention today in the present tense, as if it's done. Read it out loud once.","Notice who reaches out first today. A message, a call, an offer. That's the pull working."] },
+  { line:"Luck follows me around.", eq:"Noticing + Logging = More Luck",
+    note:["Lucky people aren't luckier. They notice more, so they act on more.","Say yes to one random invitation or detour today. Luck needs a door to walk through.","Every lucky moment goes in proofOS. By the end of the month, you won't be able to argue with yourself."] },
 ];
 function DailyReminder() {
   const [open, setOpen] = useState(false);
   const r = REMINDERS[Math.floor(Date.now()/86400000) % REMINDERS.length];
   return (
-    <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000",perspective:900 }}>
+    <button onClick={()=>setOpen(o=>!o)} aria-expanded={open} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px 18px",borderRadius:20,cursor:"pointer",textAlign:"center",fontFamily:"'Jost',sans-serif",color:"#000",perspective:900 }}>
       <div key={open?"b":"f"} style={{ animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both" }}>
-        <div style={{ fontSize:12,letterSpacing:".3em",marginBottom:10 }}>TODAY'S REMINDER</div>
-        <div style={{ fontSize:21,lineHeight:1.35 }}>{r.line}</div>
-        {open ? <div style={{ fontSize:15,lineHeight:1.6,marginTop:12 }}>{r.note}</div> : <div style={{ fontSize:13,marginTop:10 }}>Tap to open ✦</div>}
+        <div style={{ fontSize:12,letterSpacing:".3em",marginBottom:10 }}>TODAY'S MANTRA</div>
+        <div style={{ fontSize:"clamp(17px,5.2vw,24px)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis" }}>{r.line}</div>
+        {open ? (
+          <div style={{ marginTop:14,textAlign:"left" }}>
+            <div style={{ fontSize:12,letterSpacing:".3em",textAlign:"center" }}>TODAY'S EQUATION</div>
+            <div style={{ fontSize:18,fontWeight:500,textAlign:"center",margin:"6px 0 12px" }}>{r.eq}</div>
+            {r.note.map((n,i)=><p key={i} style={{ fontSize:15,lineHeight:1.6,margin:"0 0 10px" }}>{n}</p>)}
+          </div>
+        ) : <div style={{ fontSize:13,marginTop:10 }}>Tap for today's equation ✦</div>}
       </div>
-      <style>{`@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}@media(prefers-reduced-motion:reduce){[style*="shg-spin-in"]{animation:none!important}}`}</style>
+      <style>{`@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}`}</style>
     </button>
   );
 }
