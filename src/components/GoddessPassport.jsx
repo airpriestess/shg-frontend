@@ -40,7 +40,7 @@ function Stamp({ s, i }) {
   const ink = s.earned ? `url(#${id}g)` : "#000";
   const mid = String(s.mid);
   return (
-    <svg viewBox="0 0 200 200" role="img" aria-label={`${s.top} ${mid} ${s.bottom}`} style={{ width: "100%", display: "block", transform: `rotate(${s.earned ? [-8, 6, -3, 9, -6, 4][i % 6] : 0}deg)`, opacity: s.earned ? 1 : 0.35 }}>
+    <svg viewBox="0 0 200 200" role="img" aria-label={`${s.top} ${mid} ${s.bottom}`} style={{ width: "100%", display: "block", transform: `rotate(${s.earned ? [-8, 6, -3, 9, -6, 4][i % 6] : 0}deg)`, opacity: s.earned ? 1 : 0.22, filter: s.earned ? "saturate(1.4) contrast(1.15)" : "grayscale(1)" }}>
       <defs>
         <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#E8B870" /><stop offset=".45" stopColor="#BFA5D8" /><stop offset=".8" stopColor="#2CB7A7" /><stop offset="1" stopColor="#167A6B" />
@@ -55,7 +55,7 @@ function Stamp({ s, i }) {
         <path id={`${id}b`} d="M 26 100 A 74 74 0 0 0 174 100" />
       </defs>
       <g filter={s.earned ? `url(#${id}f)` : undefined} fill="none" stroke={ink} strokeDasharray={s.earned ? undefined : "4 5"}>
-        <circle cx="100" cy="100" r="94" strokeWidth="4" />
+        <circle cx="100" cy="100" r="94" strokeWidth={s.earned ? 6 : 3} />
         <circle cx="100" cy="100" r="86" strokeWidth="1.5" />
         <circle cx="100" cy="100" r="54" strokeWidth="1.5" />
         <g transform="translate(78 62) scale(1.1)" strokeWidth="2.6">
@@ -81,6 +81,20 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const [page, setPage] = useState(startPage ?? 0);
   const [editing, setEditing] = useState(false);
   const [customWord, setCustomWord] = useState("");
+  const [buying, setBuying] = useState("");
+  const [buyErr, setBuyErr] = useState("");
+  const buyNow = async (sku) => {
+    if (!sku) { window.open("https://beacons.ai/reshmaoracle", "_blank"); return; }
+    setBuying(sku); setBuyErr("");
+    try {
+      let tok = ""; try { tok = localStorage.getItem("shg_auth_token") || ""; } catch {}
+      const r = await fetch("/shop/checkout", { method: "POST", headers: { "Content-Type": "application/json", ...(tok ? { Authorization: "Bearer " + tok } : {}) }, body: JSON.stringify({ sku }) });
+      const d = await r.json();
+      if (d.url) { window.location.href = d.url; return; }
+      setBuyErr(d.error || "Checkout didn't open. Try again.");
+    } catch { setBuyErr("Checkout didn't open. Try again."); }
+    setBuying("");
+  };
 
   useEffect(() => { store(key, p); }, [key, p]);
   useEffect(() => {
@@ -89,6 +103,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const today = () => new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   const set = (patch) => setP((prev) => ({ ...prev, ...patch }));
   const toggle = (field, v, max) => setP((prev) => {
     const has = prev[field].includes(v);
@@ -104,15 +119,22 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const enteredLabel = new Date(p.entered).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
   const stamps = [
-    { top: "ENTERED", mid: "The Portal", bottom: enteredLabel.toUpperCase(), earned: true },
-    { top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.goddessName && p.words.length && p.colours.length) },
-    { top: "FIRST", mid: "Intention", bottom: "WRITTEN", earned: threads.length > 0 },
-    { top: "FIRST SIGN", mid: "Logged", bottom: `${signs} SO FAR`, earned: signs > 0 },
-    { top: "LISTENED", mid: "10 times", bottom: "RITUAL", earned: listenCount >= 10 },
-    { top: "LISTENED", mid: "100 times", bottom: "DEVOTION", earned: listenCount >= 100 },
+    { k: "entered", top: "ENTERED", mid: "The Portal", bottom: enteredLabel.toUpperCase(), earned: true },
+    { k: "built", top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.goddessName && p.words.length && p.colours.length) },
+    { k: "intention", top: "FIRST", mid: "Intention", bottom: "WRITTEN", earned: threads.length > 0 },
+    { k: "sign", top: "FIRST SIGN", mid: "Logged", bottom: `${signs} SO FAR`, earned: signs > 0 },
+    { k: "l10", top: "LISTENED", mid: "10 times", bottom: "RITUAL", earned: listenCount >= 10 },
+    { k: "l100", top: "LISTENED", mid: "100 times", bottom: "DEVOTION", earned: listenCount >= 100 },
     ...arrived.slice(0, 6).map((t) => ({ top: "ARRIVED", mid: t.desire, bottom: t.days ? `${t.days} DAYS` : "WITH PROOF", earned: true })),
     { top: "NEXT", mid: "Arrival", bottom: "LOCKED", earned: arrived.length > 0 ? null : false },
   ].filter((s) => s.earned !== null);
+  // The first time a stamp is earned, remember the date so it can be printed on it.
+  const stampDates = { entered: enteredLabel, ...(p.stampDates || {}) };
+  const newlyEarned = stamps.filter((s) => s.k && s.earned && !stampDates[s.k]).map((s) => s.k).join(",");
+  useEffect(() => {
+    if (!newlyEarned) return;
+    setP((prev) => ({ ...prev, stampDates: { ...(prev.stampDates || {}), ...Object.fromEntries(newlyEarned.split(",").map((k) => [k, today()])) } }));
+  }, [newlyEarned]);
 
   const mrz = `P<SHG<${(p.name || "GODDESS").toUpperCase().replace(/[^A-Z]/g, "")}<<${(p.goddessName || "").toUpperCase().replace(/[^A-Z]+/g, "<")}`.padEnd(40, "<").slice(0, 40)
     + "\n" + `${callingIn.toUpperCase().replace(/[^A-Z]+/g, "<")}<<${p.entered.slice(0, 4)}<<PROOF<${String(signs).padStart(3, "0")}`.padEnd(40, "<").slice(0, 40);
@@ -123,7 +145,6 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const field = { width: "100%", boxSizing: "border-box", border: "1px solid #000", borderRadius: 10, padding: "10px 12px", fontSize: 14, fontFamily: "inherit", background: "#fff", color: "#000" };
   const tabs = ["Identity", "My Life", "Stamps", "Shop", "Settings"];
   const life = { want: "", desires: "", blocks: "", needs: "", becoming: "", uploads: [], log: {}, ...(p.life || {}) };
-  const today = () => new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   // Every saved answer is kept with its date, so changes over time are visible (and usable for patterns).
   const saveEntry = (k) => { const v = (life[k] || "").trim(); const prev = (life.log && life.log[k]) || []; if (!v || (prev[0] && prev[0].text === v)) return; setLife({ log: { ...(life.log || {}), [k]: [{ date: today(), text: v }, ...prev].slice(0, 100) } }); };
   const setLife = (patch) => set({ life: { ...life, ...patch } });
@@ -132,13 +153,13 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
     <div role="dialog" aria-modal="true" aria-label="Goddess Passport" style={shell}>
       <div style={inner}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
-          <div style={{ fontSize: 10, letterSpacing: ".32em" }}>GODDESS PASSPORT</div>
+          <span />
           <button onClick={onClose} aria-label="Close passport" style={{ ...pill, minHeight: 36, padding: "0 14px", background: "transparent", color: "#F2ECE4", border: "1px solid #F2ECE4" }}>Close</button>
         </div>
 
         {!opened ? (
           <>
-            <button onClick={() => setOpened(true)} aria-label="Open passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite", all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(360px,82vw)", aspectRatio: "0.71", margin: "0 auto", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), inset 1px 0 0 rgba(242,236,228,.08), 0 24px 50px rgba(0,0,0,.6)", textAlign: "center", position: "relative" }}>
+            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(360px,82vw)", aspectRatio: "0.71", margin: "0 auto", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: "radial-gradient(120% 90% at 30% 20%,#1b1b1b,#070707 70%)", boxShadow: "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
               <span aria-hidden="true" style={{ position: "absolute", left: 14, top: 10, bottom: 10, width: 1, background: "rgba(242,236,228,.08)" }} />
               <span style={{ fontSize: 11, letterSpacing: ".38em", paddingLeft: ".38em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
               <span style={{ display: "grid", justifyItems: "center", gap: 18 }}>
@@ -147,9 +168,6 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 <span style={{ fontSize: 34, letterSpacing: ".3em", paddingLeft: ".3em", fontWeight: 500, background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>PASSPORT</span>
               </span>
               <span style={{ display: "grid", justifyItems: "center", gap: 14 }}><svg aria-hidden="true" width="44" height="30" viewBox="0 0 44 30" fill="none" stroke="#E8B870" strokeWidth="1.4"><rect x="1" y="1" width="42" height="28" rx="5" /><circle cx="22" cy="15" r="7" /><path d="M1 15h14M29 15h14" /></svg><span className="pp-tap" style={{ fontSize: 11, letterSpacing: ".3em", paddingLeft: ".3em", color: "#F2ECE4" }}>TAP TO OPEN</span></span>
-            </button>
-            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} style={{ ...pill, display: "block", width: "min(360px,82vw)", margin: "20px auto 0", background: G, color: "#000", fontWeight: 500 }}>
-              {p.goddessName ? "Open my passport" : "Build my passport"}
             </button>
             <button onClick={() => { setOpened(true); setPage(4); }} style={{ ...pill, display: "block", margin: "10px auto 0", background: "transparent", color: "#F2ECE4", textDecoration: "underline", textUnderlineOffset: 3 }}>Settings</button>
           </>
@@ -252,7 +270,12 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 <Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 18, marginTop: 12 }}>
                   {stamps.map((s, i) => (
-                    <div key={i}><Stamp s={s} i={i} /></div>
+                    <div key={i} style={{ textAlign: "center" }}>
+                      <Stamp s={s} i={i} />
+                      <div style={{ marginTop: 8, fontSize: 13, fontWeight: s.earned ? 700 : 400, color: "#000" }}>
+                        {s.earned ? (s.k ? stampDates[s.k] : "") || "Earned" : "Not yet"}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -261,12 +284,13 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             {page === 3 && (
               <div className="pp-page" data-page="04 · SHOP" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 12 }}>
                 <div style={{ fontSize: 15, lineHeight: 1.6 }}>Workbooks and guides to go deeper on your desire.</div>
-                {[["Lovemaxxing Workbook", "The specific person, or how you show up in love"], ["Luckygirlmaxxing Workbook", "General good-fortune installation"], ["Richgirlmaxxing Workbook", "Belief work underneath receiving and earning"]].map(([n, d]) => (
-                  <button key={n} onClick={actions.shop} style={{ all: "unset", cursor: "pointer", border: "1px solid #000", borderRadius: 14, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-                    <span><span style={{ display: "block", fontSize: 15, fontWeight: 500 }}>{n}</span><span style={{ display: "block", fontSize: 13, marginTop: 2 }}>{d}</span></span><span style={{ fontSize: 15 }}>$29 ›</span>
+                {[["Lovemaxxing Workbook", "The specific person, or how you show up in love", ""], ["Luckygirlmaxxing Workbook", "General good-fortune installation", "luckygirlmaxxing"], ["Richgirlmaxxing Workbook", "Belief work underneath receiving and earning", "richgirlmaxxing"]].map(([n, d, sku]) => (
+                  <button key={n} onClick={() => buyNow(sku)} style={{ all: "unset", cursor: "pointer", border: "1px solid #000", borderRadius: 14, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                    <span><span style={{ display: "block", fontSize: 15, fontWeight: 500 }}>{n}</span><span style={{ display: "block", fontSize: 13, marginTop: 2 }}>{d}</span></span><span style={{ fontSize: 15, fontWeight: 600, background: "#000", color: "#F2ECE4", borderRadius: 999, padding: "8px 14px", whiteSpace: "nowrap" }}>{buying === sku && sku ? "Opening…" : "Buy $29"}</span>
                   </button>
                 ))}
-                <button onClick={actions.shop} style={{ ...pill, background: G, color: "#000", fontWeight: 500 }}>Open the shop</button>
+                {buyErr && <div style={{ fontSize: 14 }}>{buyErr}</div>}
+                <div style={{ fontSize: 12 }}>Secure checkout by Stripe. Your PDF downloads straight after paying.</div>
               </div>
             )}
 
@@ -298,6 +322,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 @keyframes pp-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
 .pp-tap{animation:pp-blink 1.6s ease-in-out infinite}@keyframes pp-blink{50%{opacity:.35}}
 @keyframes shg-pp-open{from{opacity:0;transform:perspective(1200px) rotateY(-70deg);transform-origin:left center}to{opacity:1;transform:none;transform-origin:left center}}
+@keyframes pp-glow{0%,100%{filter:drop-shadow(0 0 6px rgba(232,184,112,.55))}50%{filter:drop-shadow(0 0 18px rgba(44,183,167,.7))}}
 @media(prefers-reduced-motion:reduce){[aria-label="Goddess Passport"] *{animation:none!important}}`}</style>
     </div>
   );

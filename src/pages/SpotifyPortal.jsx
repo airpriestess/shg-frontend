@@ -207,14 +207,25 @@ const THUMB_GRADS = {
   "#F5E0A0": ["#F5E0A0","#2CB7A7","#167A6B"],
 };
 
+// Track art in the style of the workbook covers: black, a soft gradient halo,
+// a dotted gradient ring and the category icon drawn in the brand gradient.
+// The halo angle and ring shift per title so every track looks distinct.
 function Thumb({ title, cat, size=48, radius=4 }) {
-  const c = CAT_ICONS[cat] || { accent:"#E8B870", icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
-  const stops = THUMB_GRADS[c.accent] || THUMB_GRADS["#E8B870"];
-  // Vary the angle per title so a category's tiles don't all look identical.
-  const angle = 110 + (([...(title||"")].reduce((a,ch)=>a+ch.charCodeAt(0),0)) % 5) * 15;
+  const c = CAT_ICONS[cat] || { icon:'<circle cx="30" cy="30" r="14" fill="none" stroke="currentColor" stroke-width="3"/>' };
+  const h = [...(title||"")].reduce((a,ch)=>(a*31+ch.charCodeAt(0))>>>0,7);
+  const angle = 90 + (h % 6) * 30;
+  const ringDash = [2,3,4][h % 3];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" color="#000" fill="none" stroke="#000">${c.icon}</svg>`;
+  const mask = `url("data:image/svg+xml,${encodeURIComponent(svg)}") center/contain no-repeat`;
+  const G = `linear-gradient(${angle}deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)`;
   return (
-    <div style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", background:`linear-gradient(${angle}deg,${stops.join(",")})`, position:"relative", display:"flex", alignItems:"center", justifyContent:"center", color:"#14100a" }}>
-      <svg width={Math.round(size*0.55)} height={Math.round(size*0.55)} viewBox="0 0 60 60" style={{ opacity:0.82 }} dangerouslySetInnerHTML={{ __html: c.icon }} />
+    <div aria-hidden="true" style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", position:"relative", background:"#000", boxShadow:"inset 0 0 0 1px rgba(242,236,228,0.12)" }}>
+      <div style={{ position:"absolute", inset:"12%", borderRadius:"50%", background:G, opacity:0.28, filter:`blur(${Math.max(3,size*0.08)}px)` }}/>
+      <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%" }}>
+        <defs><linearGradient id={`tg${h}`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".5" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient></defs>
+        <circle cx="50" cy="50" r="40" fill="none" stroke={`url(#tg${h})`} strokeWidth={size<60?2:1.2} strokeDasharray={`0.5 ${ringDash}`} strokeLinecap="round" transform={`rotate(${angle} 50 50)`}/>
+      </svg>
+      <div style={{ position:"absolute", left:"22%", top:"22%", width:"56%", height:"56%", background:G, WebkitMask:mask, mask }}/>
     </div>
   );
 }
@@ -1611,15 +1622,16 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
   return (
     <div className="shg-tab-glow" style={{ paddingBottom:80, zoom:1 }}>
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
-      <div className="shg-gb shg-hero" style={{ margin:"16px 16px 14px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
+      <style>{`@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 24px rgba(245,224,160,.55),0 0 60px rgba(191,165,216,.35)}50%{background-position:100% 50%;box-shadow:0 0 40px rgba(44,183,167,.6),0 0 90px rgba(232,184,112,.45)}100%{background-position:0% 50%;box-shadow:0 0 24px rgba(245,224,160,.55),0 0 60px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-lucky{animation:none!important}}`}</style>
+      <div className="shg-hero shg-lucky shg-no-paper" style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#BFA5D8,#F5E0A0)", backgroundSize:"300% 300%", animation:"shg-lucky 6s ease-in-out infinite", margin:"20px 16px 18px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
         <img src="/logo_transparent_cropped.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
         <div onClick={()=>openPlayer?.()} style={{ cursor:"pointer", position:"relative" }}>
-          <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>WELCOME BACK</div>
-          <div className="shg-gt" style={{ fontSize:34, fontWeight:500, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {isPreview ? "Reshma" : firstName}</div>
-          <div style={{ fontSize:16, fontWeight:400, color:C.cr, marginTop:8 }}>Pick up where you left off.</div>
+          <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:"#000", marginBottom:10 }}>WELCOME BACK</div>
+          <div style={{ color:"#000", fontSize:34, fontWeight:500, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {isPreview ? "Reshma" : firstName}</div>
+          <div style={{ fontSize:16, fontWeight:400, color:"#000", marginTop:8 }}>Pick up where you left off.</div>
         </div>
-        <button onClick={()=>setTab("shop")} className="shg-gfill" style={{ position:"relative",width:44,height:44,borderRadius:"50%",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <button onClick={()=>setTab("shop")} style={{ background:"#000", position:"relative",width:44,height:44,borderRadius:"50%",border:"none",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",flexShrink:0 }} aria-label="Shop">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2ECE4" strokeWidth="1.8" strokeLinecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         </button>
       </div>
 
@@ -1629,9 +1641,8 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           <svg width="30" viewBox="0 0 40 40" fill="none" stroke="#000" strokeWidth="1.6" aria-hidden="true"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></svg>
         </span>
         <span style={{ flex:1 }}>
-          <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Goddess Passport</span>
           <span style={{ display:"block",fontSize:19,fontWeight:500,marginTop:4 }}>Open your passport</span>
-          <span style={{ display:"block",fontSize:13,marginTop:2 }}>Your identity, stamps and ritual</span>
+          <span style={{ display:"block",fontSize:13,marginTop:2 }}>Your identity, stamps and journal</span>
         </span>
         <span style={{ fontSize:22 }}>›</span>
       </button>
@@ -1733,31 +1744,6 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
         </HRow>
       </Sec>
 
-      {/* MADE FOR YOU */}
-      <div style={{ padding:"0 16px 8px" }}>
-        <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12 }}>
-          <span style={{ fontSize:18,fontWeight:400,color:C.cr }}>Made for you</span>
-          <button onClick={()=>setTab("library")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>See all</button>
-        </div>
-        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:10 }}>
-          {FEATURED_CATS.filter(c=>LIVE_CATS.has(c)).map(cat=>{
-            const c=CAT_ICONS[cat]||{accent:"#E8B870",icon:''};
-            const n=TRACKS.filter(t=>t.cat===cat).length;
-            return(
-              <button key={cat} onClick={()=>{setLibCat(cat);setTab("library");}} style={{ background:isDark?"#0a0a0a":C.bg2,border:`1px solid ${c.accent}`,borderRadius:12,padding:"12px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:10,fontFamily:"'Jost',sans-serif" }}>
-                <div style={{ width:38,height:38,borderRadius:8,background:`linear-gradient(135deg,${c.accent}33,${c.accent}66)`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:c.accent }}>
-                  <svg width="20" height="20" viewBox="0 0 60 60" dangerouslySetInnerHTML={{__html:c.icon}}/>
-                </div>
-                <div>
-                  <div style={{ fontSize:14,fontWeight:400,color:C.cr,lineHeight:1.2 }}>{cat.replace("maxxing","")}</div>
-                  <div style={{ fontSize:12,color:C.mu,marginTop:2 }}>{n} tracks</div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* YOUR FAVOURITES */}
       <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setLibCat("Liked");setTab("library");}}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
@@ -1787,6 +1773,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
           })}
         </div>
       </Sec>
+
 
     </div>
   );
@@ -2008,9 +1995,9 @@ function StatCarousel({ slides }) {
             backgroundSize:"300% 300%", animation:"shg-drift 8s ease-in-out infinite",
             padding:"28px 24px 24px", boxSizing:"border-box",
             display:"flex", flexDirection:"column", justifyContent:"center", minHeight:160 }}>
-            <div style={{ fontSize:11, color:"#0a0906", letterSpacing:"0.22em", textTransform:"uppercase", fontWeight:700, opacity:0.6, marginBottom:8 }}>{s.sub}</div>
+            <div style={{ fontSize:13, color:"#0a0906", letterSpacing:"0.22em", textTransform:"uppercase", fontWeight:700, opacity:0.6, marginBottom:8 }}>{s.sub}</div>
             <div style={{ fontSize:80, fontWeight:300, color:"#0a0906", lineHeight:1, letterSpacing:"-4px", marginBottom:8 }}>{s.value}</div>
-            <div style={{ fontSize:14, color:"#0a0906", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", opacity:0.8 }}>{s.label}</div>
+            <div style={{ fontSize:16, color:"#0a0906", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", opacity:0.8 }}>{s.label}</div>
           </div>
         ))}
       </div>
@@ -2210,7 +2197,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
     <div>
       {/* Greeting: the board opens on her, not on a page title. */}
       <div className="shg-gb shg-hero" style={{ margin:"20px 16px 18px", padding:"26px 22px", borderRadius:20 }}>
-        <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:38, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
+        <div style={{ fontSize:15, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:38, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
         <div style={{ fontSize:17, fontWeight:400, color:C.cr, marginTop:8 }}>Here are today's insights.</div>
       </div>
 
@@ -2248,19 +2235,19 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               <div className="shg-gfill" style={{ borderRadius:18,padding:"16px",textAlign:"center" }}><div style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{proofs}</div><div style={{ fontSize:15 }}>proofs</div></div>
               <div className="shg-gb shg-paper" style={{ borderRadius:18,padding:"16px",textAlign:"center",color:C.cr }}><div className="shg-gt" style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{done}</div><div style={{ fontSize:15 }}>manifested</div></div>
             </div>
-            {!weeks && !isPreview && <div style={{ fontSize:14,color:C.cr,marginBottom:18 }}>Log your first sign in proofOS and your weeks start filling in here.</div>}
+            {!weeks && !isPreview && <div style={{ fontSize:16,color:C.cr,marginBottom:18 }}>Log your first sign in proofOS and your weeks start filling in here.</div>}
             {weeks && <>
-              <div className="shg-gt" style={{ fontSize:12,letterSpacing:"0.18em",marginBottom:10 }}>SIGNS PER WEEK</div>
+              <div className="shg-gt" style={{ fontSize:15,letterSpacing:"0.18em",marginBottom:10 }}>SIGNS PER WEEK</div>
               <div style={{ display:"flex",alignItems:"flex-end",gap:8,height:130,marginBottom:20 }}>
                 {weeks.map((h,i)=><i key={i} className="shg-gfill" style={{ flex:1,borderRadius:6,height:`${h}%` }}/>)}
               </div>
             </>}
             {hawk && <>
-              <div className="shg-gt" style={{ fontSize:12,letterSpacing:"0.18em",marginBottom:10 }}>HAWKINS LEVEL</div>
+              <div className="shg-gt" style={{ fontSize:15,letterSpacing:"0.18em",marginBottom:10 }}>HAWKINS LEVEL</div>
               <div style={{ height:14,borderRadius:8,background:"#2a2a2a",marginBottom:8,overflow:"hidden" }}><div className="shg-gfill" style={{ height:"100%",width:`${hawk.pct}%`,borderRadius:8 }}/></div>
-              <div style={{ fontSize:14,color:C.cr,marginBottom:18 }}>{hawk.label}</div>
+              <div style={{ fontSize:16,color:C.cr,marginBottom:18 }}>{hawk.label}</div>
             </>}
-            {fast && <div className="shg-gb shg-paper" style={{ borderRadius:18,padding:"14px",textAlign:"center",color:C.cr }}><div style={{ fontSize:17 }}>Your fastest area: {fast.area}</div><div style={{ fontSize:14,marginTop:4 }}>{fast.note}</div></div>}
+            {fast && <div className="shg-gb shg-paper" style={{ borderRadius:18,padding:"14px",textAlign:"center",color:C.cr }}><div style={{ fontSize:17 }}>Your fastest area: {fast.area}</div><div style={{ fontSize:16,marginTop:4 }}>{fast.note}</div></div>}
             <div style={{ fontSize:15,textAlign:"center",marginTop:18,color:C.cr }}>The more you log, the more the AI learns.</div>
           </div>
         );
@@ -2431,8 +2418,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {(isPreview || (patterns && patterns.length > 0)) && (
         <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-            <span style={{ fontSize:13, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase" }}>Pattern recognition</span>
-            {isPreview && <span style={{ fontSize:12, color:C.accentGold, fontWeight:500 }}>preview data</span>}
+            <span style={{ fontSize:15, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase" }}>Pattern recognition</span>
+            {isPreview && <span style={{ fontSize:15, color:C.accentGold, fontWeight:500 }}>preview data</span>}
           </div>
           {isPreview ? (
             // Patterns join what she does (signs, belief ratings, listening
@@ -2446,7 +2433,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             ].map(([head, body], i, arr) => (
               <div key={i} style={{ padding:"14px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
                 <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:4 }}>✦ {head}</div>
-                <div style={{ fontSize:14, color:C.cr, lineHeight:1.5 }}>{body}</div>
+                <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>{body}</div>
               </div>
             ))
           ) : patterns.map((p,i,arr) => {
@@ -2454,7 +2441,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             return (
               <div key={i} style={{ padding:"14px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
                 <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:4 }}>✦ {p.name}</div>
-                <div style={{ fontSize:14, color:C.cr, lineHeight:1.5 }}>
+                <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>
                   {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} manifested across {p.listens} listens — {convRate}% of listens ended in a win.
                 </div>
               </div>
@@ -2466,29 +2453,29 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* AI RECOMMENDATION CARD */}
       <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-          <span style={{ fontSize:13, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
+          <span style={{ fontSize:15, fontWeight:400, color:C.accentLav, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next listen ✦</span>
           {!isPreview && (
-            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:12, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
+            <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:15, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
               {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
             </button>
           )}
         </div>
         {isPreview ? (
           <div>
-            <div style={{ fontSize:14, color:C.mu, marginBottom:10, lineHeight:1.55 }}>Hi Reshma — based on your 38 Lovemaxxing listens and 5 desires manifested in that area, today's pick is:</div>
+            <div style={{ fontSize:16, color:C.mu, marginBottom:10, lineHeight:1.55 }}>Hi Reshma — based on your 38 Lovemaxxing listens and 5 desires manifested in that area, today's pick is:</div>
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>She Already Has Him</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
-            <div style={{ fontSize:13, color:C.cr, marginTop:12, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
+            <div style={{ fontSize:15, color:C.mu, marginTop:2 }}>Lovemaxxing · 20 min</div>
+            <div style={{ fontSize:15, color:C.mu, marginTop:8, lineHeight:1.55 }}>You're 140 points above your 30-day average this week. This track is calibrated for where you are right now — it reinforces the "already chosen" identity at the Love level.</div>
+            <div style={{ fontSize:15, color:C.cr, marginTop:12, fontStyle:"italic" }}>Personalised recommendations unlock when you sign up →</div>
           </div>
         ) : recommendation ? (
           <div>
             <div style={{ fontSize:16, color:C.cr, fontWeight:400 }}>{displayTitle(recommendation.title)}</div>
-            <div style={{ fontSize:13, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
+            <div style={{ fontSize:15, color:C.accentLav, marginTop:4 }}>{recommendation.category}</div>
+            <div style={{ fontSize:15, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
           </div>
         ) : (
-          <div style={{ fontSize:14, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
+          <div style={{ fontSize:16, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
         )}
       </div>
 
@@ -2496,22 +2483,22 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {!isPreview && streakDays.length > 0 && (
         <div className="shg-paper" style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-            <span style={{ fontSize:13, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
-            <span style={{ fontSize:13, color:C.accentGold }}>{streakDays.filter(d=>d.listened).length} days</span>
+            <span style={{ fontSize:15, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak</span>
+            <span style={{ fontSize:15, color:C.accentGold }}>{streakDays.filter(d=>d.listened).length} days</span>
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(10,1fr)", gap:4 }}>
             {streakDays.map((d,i) => (
               <div key={i} title={d.date} style={{ width:"100%", paddingBottom:"100%", position:"relative", borderRadius:4, background: d.listened ? "#E8B870" : "rgba(232,184,112,0.1)" }}/>
             ))}
           </div>
-          <div style={{ fontSize:12, color:C.mu, marginTop:8 }}>Last 30 days - gold = listened</div>
+          <div style={{ fontSize:15, color:C.mu, marginTop:8 }}>Last 30 days - gold = listened</div>
         </div>
       )}
 
       {/* CATEGORY RADAR */}
       {!isPreview && Object.keys(catCounts).length > 0 && (
         <div className="shg-paper" style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
-          <div style={{ fontSize:13, fontWeight:400, color:C.accentTeal, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
+          <div style={{ fontSize:15, fontWeight:400, color:C.accentTeal, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:12 }}>Desire areas</div>
           {Object.entries(catCounts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([cat,n],i,arr) => {
             const max = arr[0][1];
             const pct = Math.round((n/max)*100);
@@ -2520,8 +2507,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             return (
               <div key={cat} style={{ marginBottom:8 }}>
                 <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
-                  <span style={{ fontSize:13, color:C.cr }}>{cat}</span>
-                  <span style={{ fontSize:12, color:C.mu }}>{n} listen{n!==1?"s":""}</span>
+                  <span style={{ fontSize:15, color:C.cr }}>{cat}</span>
+                  <span style={{ fontSize:15, color:C.mu }}>{n} listen{n!==1?"s":""}</span>
                 </div>
                 <div style={{ height:6, borderRadius:3, background:"rgba(255,255,255,0.05)", overflow:"hidden" }}>
                   <div style={{ height:"100%", width:`${pct}%`, borderRadius:3, background:col, transition:"width 0.6s ease" }}/>
@@ -2539,7 +2526,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <span style={{ fontSize:26, flexShrink:0 }}>📋</span>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Hi Reshma — it's been a week</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:3, lineHeight:1.4 }}>You haven't updated your desire list in 7 days. 3 intentions are still in progress. Want to mark anything manifested?</div>
+            <div style={{ fontSize:15, color:C.mu, marginTop:3, lineHeight:1.4 }}>You haven't updated your desire list in 7 days. 3 intentions are still in progress. Want to mark anything manifested?</div>
           </div>
         </div>
       )}
@@ -2548,9 +2535,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <span style={{ fontSize:26, flexShrink:0 }}>🔔</span>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Daily reminder</div>
-            <div style={{ fontSize:13, color:C.mu, marginTop:2 }}>Get a nudge at 8pm to listen</div>
+            <div style={{ fontSize:15, color:C.mu, marginTop:2 }}>Get a nudge at 8pm to listen</div>
           </div>
-          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:13, color: reminderSent ? "#2CB7A7" : C.cr, background: reminderSent ? "rgba(44,183,167,0.1)" : "rgba(0,0,0,0.06)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":C.border}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
+          <button onClick={reminderSent ? undefined : sendReminder} style={{ fontSize:15, color: reminderSent ? "#2CB7A7" : C.cr, background: reminderSent ? "rgba(44,183,167,0.1)" : "rgba(0,0,0,0.06)", border:`1px solid ${reminderSent?"rgba(44,183,167,0.3)":C.border}`, borderRadius:10, padding:"8px 14px", cursor: reminderSent ? "default" : "pointer", fontFamily:"'Jost',sans-serif", whiteSpace:"nowrap" }}>
             {reminderSent ? "✓ set" : "remind me"}
           </button>
         </div>
@@ -2568,7 +2555,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <span style={{ width:48, height:48, borderRadius:14, background:"rgba(44,183,167,0.12)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>📖</span>
           <span style={{ flex:1 }}>
             <div style={{ fontSize:17, fontWeight:400, color:C.cr }}>Guidebook </div>
-            <div style={{ fontSize:14, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals, everything explained.</div>
+            <div style={{ fontSize:16, color:C.mu, fontWeight:400, marginTop:3, lineHeight:1.4 }}>How the audios work, brainwaves, Hawkins scale, EMDR, subliminals, everything explained.</div>
           </span>
           <span style={{ fontSize:20, color:"#F5E0A0", flexShrink:0 }}>›</span>
         </button>
@@ -2622,29 +2609,29 @@ function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
           <div style={{ width:46,height:46,borderRadius:14,background:"rgba(232,184,112,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0 }}>✉️</div>
           <div style={{ flex:1 }}>
             <div style={{ fontSize:15,fontWeight:500,color:C.cr }}>Ask Reshma directly</div>
-            <div style={{ fontSize:13,color:C.mu,marginTop:2,lineHeight:1.4 }}>
+            <div style={{ fontSize:15,color:C.mu,marginTop:2,lineHeight:1.4 }}>
               {isGoddess
                 ? "Drop a question — about the tracks, hypnosis, or your journey. Answered personally, not by AI."
                 : "Goddess members get direct Q&A with Reshma — answered personally within the app."}
             </div>
           </div>
           {isGoddess ? (
-            <button onClick={()=>setOpen(o=>!o)} style={{ fontSize:13,color:"#E8B870",background:"rgba(232,184,112,0.12)",border:"1px solid rgba(232,184,112,0.3)",borderRadius:10,padding:"7px 13px",cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>
+            <button onClick={()=>setOpen(o=>!o)} style={{ fontSize:15,color:"#E8B870",background:"rgba(232,184,112,0.12)",border:"1px solid rgba(232,184,112,0.3)",borderRadius:10,padding:"7px 13px",cursor:"pointer",fontFamily:"'Jost',sans-serif",flexShrink:0 }}>
               {open ? "close" : "ask"}
             </button>
           ) : (
-            <span style={{ fontSize:11,padding:"4px 10px",borderRadius:20,background:grad,color:"#000",fontWeight:600,flexShrink:0,whiteSpace:"nowrap" }}>Goddess</span>
+            <span style={{ fontSize:13,padding:"4px 10px",borderRadius:20,background:grad,color:"#000",fontWeight:600,flexShrink:0,whiteSpace:"nowrap" }}>Goddess</span>
           )}
         </div>
 
         {/* Expanded panel for Goddess members */}
         {open && isGoddess && (
           <div>
-            <div style={{ fontSize:12,color:C.mu,marginBottom:10,padding:"8px 12px",borderRadius:8,background:isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.04)",lineHeight:1.5 }}>
+            <div style={{ fontSize:15,color:C.mu,marginBottom:10,padding:"8px 12px",borderRadius:8,background:isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.04)",lineHeight:1.5 }}>
               💫 Not live — Reshma answers personally, typically within a few days. Your question stays private.
             </div>
             {sent && (
-              <div style={{ fontSize:14,color:"#2CB7A7",marginBottom:12,textAlign:"center",padding:"10px",borderRadius:8,background:"rgba(44,183,167,0.08)",border:"1px solid rgba(44,183,167,0.2)" }}>
+              <div style={{ fontSize:16,color:"#2CB7A7",marginBottom:12,textAlign:"center",padding:"10px",borderRadius:8,background:"rgba(44,183,167,0.08)",border:"1px solid rgba(44,183,167,0.2)" }}>
                 ✓ Question sent. Reshma will answer you here soon.
               </div>
             )}
@@ -2654,11 +2641,11 @@ function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
               placeholder="What would you like to ask?"
               maxLength={1000}
               rows={4}
-              style={{ width:"100%",boxSizing:"border-box",padding:"12px 14px",borderRadius:10,border:`1px solid ${C.border}`,background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.04)",color:C.cr,fontSize:14,fontFamily:"'Jost',sans-serif",resize:"none",outline:"none",lineHeight:1.5,marginBottom:4 }}
+              style={{ width:"100%",boxSizing:"border-box",padding:"12px 14px",borderRadius:10,border:`1px solid ${C.border}`,background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.04)",color:C.cr,fontSize:16,fontFamily:"'Jost',sans-serif",resize:"none",outline:"none",lineHeight:1.5,marginBottom:4 }}
             />
             <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14 }}>
-              <span style={{ fontSize:12,color:C.mu }}>{q.length}/1000</span>
-              <button onClick={submit} disabled={!q.trim()||sending} style={{ padding:"9px 20px",borderRadius:10,border:"none",background:q.trim()&&!sending?grad:"rgba(128,128,128,0.2)",color:q.trim()&&!sending?"#000":"#888",fontSize:14,fontWeight:600,cursor:q.trim()&&!sending?"pointer":"not-allowed",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>
+              <span style={{ fontSize:15,color:C.mu }}>{q.length}/1000</span>
+              <button onClick={submit} disabled={!q.trim()||sending} style={{ padding:"9px 20px",borderRadius:10,border:"none",background:q.trim()&&!sending?grad:"rgba(128,128,128,0.2)",color:q.trim()&&!sending?"#000":"#888",fontSize:16,fontWeight:600,cursor:q.trim()&&!sending?"pointer":"not-allowed",fontFamily:"'Jost',sans-serif",transition:"all 0.2s" }}>
                 {sending ? "sending…" : "Send question"}
               </button>
             </div>
@@ -2666,16 +2653,16 @@ function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
             {/* Previous questions */}
             {history && history.length > 0 && (
               <div>
-                <div style={{ fontSize:12,color:C.mu,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:8 }}>Your questions</div>
+                <div style={{ fontSize:15,color:C.mu,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:8 }}>Your questions</div>
                 {history.slice(0,5).map((item,i) => (
                   <div key={item.id||i} style={{ marginBottom:10,padding:"12px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.04)":"rgba(0,0,0,0.03)",border:`1px solid ${C.border}` }}>
-                    <div style={{ fontSize:13,color:C.cr,marginBottom:4 }}>{item.question}</div>
+                    <div style={{ fontSize:15,color:C.cr,marginBottom:4 }}>{item.question}</div>
                     {item.answer ? (
-                      <div style={{ fontSize:13,color:"#2CB7A7",marginTop:6,paddingTop:6,borderTop:`1px solid ${C.border}`,lineHeight:1.5 }}>
+                      <div style={{ fontSize:15,color:"#2CB7A7",marginTop:6,paddingTop:6,borderTop:`1px solid ${C.border}`,lineHeight:1.5 }}>
                         <span style={{ fontWeight:600 }}>Reshma: </span>{item.answer}
                       </div>
                     ) : (
-                      <div style={{ fontSize:12,color:C.mu,fontStyle:"italic" }}>Awaiting answer…</div>
+                      <div style={{ fontSize:15,color:C.mu,fontStyle:"italic" }}>Awaiting answer…</div>
                     )}
                   </div>
                 ))}
@@ -2707,6 +2694,14 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
           style={{ border:"none",background:"transparent",flex:1,fontSize:16,color:C.inputCr,outline:"none",fontFamily:"'Jost',sans-serif"}}/>
         {searchQ && <button onClick={()=>setQ("")} style={{ background:"none",border:"none",color:C.dim,fontSize:18,cursor:"pointer",lineHeight:1 }}>✕</button>}
       </div>
+      <div style={{ display:"flex",flexWrap:"wrap",gap:8,marginBottom:16 }}>
+        {(searchQ
+          ? [...new Set(tracks.flatMap(t=>[displayTitle(t.title),t.cat]).filter(x=>x&&x.toLowerCase().includes(searchQ.toLowerCase())&&x.toLowerCase()!==searchQ.toLowerCase()))].slice(0,6)
+          : ["Luck","Money","Love","Confidence","Opportunities","Sleep","Hypnosis","Subliminal"]
+        ).map(sug=>(
+          <button key={sug} onClick={()=>setQ(sug)} style={{ background:"#F2ECE4",color:"#000",border:"none",borderRadius:999,padding:"8px 14px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{sug}</button>
+        ))}
+      </div>
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
@@ -2737,7 +2732,7 @@ function SearchTab({ tracks, searchQ, setQ, play, track:cur, playing, liked, tog
 // ── LIBRARY TAB ───────────────────────────────────────────────────────────────
 function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:cur, liked, toggleLike, playing, isPreview, C, openPlayer }) {
   const isDark = C?.cr !== "#000000";
-  const cats = (["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"]).filter(c=>c==="All"||c==="Liked"||LIVE_CATS.has(c));
+  const cats = (["All","Liked","Lovemaxxing","Beautymaxxing","Facemaxxing","Bodymaxxing","Skinnymaxxing","Richgirlmaxxing","Businessmaxxing","Desiresmaxxing","DNAmaxxing","Selfmaxxing","Erosmaxxing","Singlemaxxing","Wellnessmaxxing","Sleepmaxxing","Studymaxxing","Friendmaxxing","Peacemaxxing","Confidencemaxxing","Stylemaxxing","Healthmaxxing","Intuitionmaxxing","Lifemaxxing","Luckygirlmaxxing","Sovereignmaxxing"]).filter(c=>c==="All"||c==="Liked"||c==="Lovemaxxing"||c==="Richgirlmaxxing"||LIVE_CATS.has(c));
   const byCat = cat==="Liked" ? tracks.filter(t=>liked.has(t.id)) : (cat==="All" ? tracks : tracks.filter(t=>t.cat===cat));
   const shown = libFormat==="All" ? byCat : byCat.filter(t=>String(t.format||"").includes(libFormat));
   const [catOpen, setCatOpen] = useState(false);
@@ -2785,8 +2780,17 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
         </div>
       </div>
+      <style>{`body .shg-four.shg-four{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}@media(min-width:900px){body .shg-four.shg-four{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+      <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
+        {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
+          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-paper" style={{ display:"flex",flexDirection:"column",alignItems:"flex-start",gap:12,padding:"16px",borderRadius:18,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",minHeight:110,outline:cat===c?"2px solid #000":"none" }}>
+            <span className="shg-gfill" style={{ width:44,height:44,borderRadius:12,display:"grid",placeItems:"center" }}><svg width="26" height="26" viewBox="0 0 60 60" style={{ color:"#000" }} dangerouslySetInnerHTML={{__html:(CAT_ICONS[c]||{icon:""}).icon}}/></span>
+            <span style={{ fontSize:19,fontWeight:500,color:"#000" }}>{name}</span>
+          </button>
+        ))}
+      </div>
       <div style={{ padding:"4px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-        <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by Desire</span>
+        <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by desire</span>
         {cat!=="All" && <button onClick={()=>setCat("All")} style={{ fontSize:14,color:C.mu,background:"none",border:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",fontWeight:400 }}>Clear ✕</button>}
       </div>
       <div style={{ padding:"0 16px 14px" }}>
@@ -2804,6 +2808,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
             <span>{catLabel}</span>
             <span style={{ fontSize:13, transform:catOpen?"rotate(180deg)":"none", transition:"transform 0.15s" }}>▾</span>
           </button>
+          {catOpen && createPortal(<div onClick={()=>setCatOpen(false)} style={{ position:"fixed",inset:0,zIndex:999998,background:"rgba(0,0,0,0.35)" }}/>, document.body)}
           {catOpen && dropPos && createPortal(
             <div data-cat-drop="1" onTouchMove={e=>e.stopPropagation()} style={{
               position:"fixed",
@@ -2815,6 +2820,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
               maxHeight:"55vh", overflowY:"scroll", WebkitOverflowScrolling:"touch",
               boxShadow:"0 12px 40px rgba(0,0,0,0.95)", touchAction:"pan-y"
             }}>
+              <div onClick={()=>setCatOpen(false)} style={{ padding:"11px 16px",fontSize:15,color:"#000",cursor:"pointer",textAlign:"right",borderBottom:"1px solid rgba(0,0,0,0.12)" }}>Close ✕</div>
               {catOptions.map(c=>{
                 const label = c==="All" ? "All categories" : (c==="Liked" ? "Liked ♡" : c);
                 const active = cat===c;
@@ -2856,6 +2862,9 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
           <button key={fm} onClick={()=>setLibFormat(fm)} style={{ flexShrink:0,padding:"4px 12px",borderRadius:20,background:libFormat===fm?"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)":"none",border:`1px solid ${libFormat===fm?"transparent":C.border}`,color:libFormat===fm?"#000":C.mu,fontSize:13,fontWeight:400,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{fm==="All"?"All":fm}</button>
         ))}
       </div>
+      {shown.length===0 && cat!=="Liked" && (
+        <div style={{ margin:"0 16px 16px",padding:"18px",borderRadius:16,background:"#F2ECE4",color:"#000",fontSize:15,lineHeight:1.5 }}>{cat.replace("maxxing","maxxing ")}tracks are being recorded now. They'll appear here as soon as they're live.</div>
+      )}
       {shown.length===0 && cat==="Liked" && (
         <div style={{ padding:"40px 20px",textAlign:"center",color:C.mu }}>
           <div style={{ fontSize:32,marginBottom:12 }}>♡</div>
