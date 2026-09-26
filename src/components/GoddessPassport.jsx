@@ -244,9 +244,9 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 {(() => {
                   const all = Object.values(life.log || {}).flat();
                   const last = Math.max(0, ...all.map((e) => e.ts || 0));
-                  const msg = !all.length ? "Save each answer below to make it your first entry. Your history starts today."
-                    : last && Date.now() - last > 30 * 86400000 ? "It's been a month. Update your answers so you can see how far you've come."
-                    : "Update this every month. Every saved answer is kept with its date.";
+                  const msg = !all.length ? "This is your big picture: what you want from life, your desires, your blocks, who you're becoming. Fill it in once to start, then come back once a month, or whenever something big shifts. Daily things go in \"What's happening\" on Home. Every saved answer is kept with its date."
+                    : last && Date.now() - last > 30 * 86400000 ? "It's been a month. Has anything changed? Update your answers so you can see how far you've come."
+                    : "Your monthly check-in. Come back once a month, or whenever you change your mind about something. Every saved answer is kept with its date.";
                   return <div style={{ background: "#000", color: "#F2ECE4", borderRadius: 12, padding: "12px 14px", fontSize: 14, lineHeight: 1.5 }}>{msg}</div>;
                 })()}
                 <div style={{ fontSize: 15, lineHeight: 1.6 }}>Tell me about you. The more you share, the more I learn about you every day: your needs, your desires, your blocks. Edit it whenever you like.</div>

@@ -933,7 +933,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
         <div style={{ padding:"24px 20px 16px",borderBottom:`1px solid ${C.border}` }}>
           <div style={{ display:"flex",alignItems:"center",gap:14,marginBottom:16 }}>
             <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:56,height:56,flexShrink:0,borderRadius:12,background:"none",overflow:"hidden" }}>
-              <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block" }} />
+              <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="48" height="48" style={{ objectFit:"contain", display:"block", background:"#000", borderRadius:"50%", padding:3, boxSizing:"border-box" }} />
             </a>
             <div>
               <div style={{ fontSize:18,fontWeight:400,color:C.cr }}>Reshma Oracle</div>
@@ -1090,7 +1090,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
         <div style={{ width:220,background:C.bg,display:"flex",flexDirection:"column",padding:"20px 0 8px",paddingBottom:96,flexShrink:0,borderRight:`1px solid ${C.border}`,overflowY:"auto" }}>
           <div style={{ padding:"0 20px 20px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
             <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:10,background:"none",overflow:"hidden",flexShrink:0 }}>
-              <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block" }} />
+              <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="36" height="36" style={{ objectFit:"contain", display:"block", background:"#000", borderRadius:"50%", padding:3, boxSizing:"border-box" }} />
             </a>
             {isDark ? (
               <span style={{ fontSize:13,fontWeight:700,letterSpacing:"0.14em",padding:"5px 14px",borderRadius:20,fontFamily:"'Jost',sans-serif",flexShrink:0,color:"#000",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)" }}>BETA</span>
@@ -1194,7 +1194,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       )}
       <div style={{ height:46,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 16px",flexShrink:0,borderBottom:`0.5px solid ${C.border}` }}>
         <a href="https://reshmaoracle.com" style={{ display:"flex",alignItems:"center",justifyContent:"center",width:38,height:38,borderRadius:9,background:"none",overflow:"hidden",flexShrink:0 }}>
-          <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block" }} />
+          <img src="/logo_transparent_cropped.png" alt="Reshma Oracle" width="34" height="34" style={{ objectFit:"contain", display:"block", background:"#000", borderRadius:"50%", padding:3, boxSizing:"border-box" }} />
         </a>
         <div style={{ display:"flex",alignItems:"center",gap:8 }}>
           <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:30,height:30,borderRadius:"50%",background:"none",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer",WebkitTapHighlightColor:"transparent",color:C.cr }}>{isDark?"☀":"🌙"}</button>
@@ -1732,12 +1732,7 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       {/* TELL ME ABOUT YOU: uploads that build her profile */}
       <FoldCard title="Keep adding" sub="The more you share, the better I know you">
-      <button onClick={()=>openProfile(1)} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 16px",padding:"20px",borderRadius:20,cursor:"pointer",textAlign:"center",color:"#000",fontFamily:"'Jost',sans-serif" }}>
-        <span style={{ display:"block",fontSize:12,letterSpacing:"0.22em",textTransform:"uppercase" }}>Tell me about you</span>
-        <span style={{ display:"block",fontSize:17,fontWeight:500,marginTop:6 }}>Upload anything about yourself so I can learn more about you every day.</span>
-        <span style={{ display:"block",fontSize:13,marginTop:4 }}>Your needs, your desires, your blocks. Journal pages, notes, even your ChatGPT or Claude summary.</span>
-        <span style={{ display:"inline-block",marginTop:12,background:"#000",color:"#F2ECE4",borderRadius:999,padding:"10px 20px",fontSize:14,fontWeight:500 }}>+ Upload about me</span>
-      </button>
+        <KeepAdding userId={userId} isPreview={isPreview}/>
       </FoldCard>
 
       {/* TALK TO PROOFOS: voice or journal photos, sorted by AI */}
@@ -2811,7 +2806,7 @@ function SearchTab({ embedded=false, tracks, searchQ, setQ, play, track:cur, pla
       {res.map(t=>{
         const isP = cur?.id===t.id;
         return (
-        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:10,borderRadius:16,marginBottom:10,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"22px 22px",color:"#000",outline:isP?"2px solid #BFA5D8":"none",cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+        <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:10,borderRadius:16,marginBottom:10,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"22px 22px",color:"#000",border:"1px solid #BFA5D8",outline:isP?"2px solid #BFA5D8":"none",cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
           <div style={{ position:"relative",flexShrink:0 }}>
             <Thumb title={t.title} cat={t.cat} size={48} radius={6}/>
             
@@ -2888,15 +2883,15 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
           {searchQ && <button onClick={()=>setQ("")} aria-label="Clear search" style={{ background:"none",border:"none",fontSize:16,cursor:"pointer",color:"#000" }}>✕</button>}
         </div>
         {searchQ && <div style={{ margin:"0 -16px" }}><SearchTab embedded tracks={tracks} searchQ={searchQ} setQ={setQ} play={play} track={cur} playing={playing} liked={liked} toggleLike={toggleLike} isPreview={isPreview} C={C} openPlayer={openPlayer}/></div>}
-        <div className="shg-gfill" style={{ borderRadius:20,padding:"16px 20px",display:"flex",justifyContent:"space-between" }}>
+        <div className="shg-lucky" style={{ borderRadius:20,padding:"16px 20px",display:"flex",justifyContent:"space-between",color:"#000",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#BFA5D8,#F5E0A0)",backgroundSize:"300% 300%",animation:"shg-lucky 6s ease-in-out infinite" }}>
           <div><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?21:tracks.filter(t=>liked.has(t.id)).length}</div><div style={{ fontSize:13 }}>{isPreview?"day streak":"favourites"}</div></div>
           <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
         </div>
       </div>
-      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:10px;max-width:560px}`}</style>
+      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;display:grid!important;flex-direction:initial!important;grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:calc((100% - 30px) / 4.4)!important;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}body .shg-four.shg-four::-webkit-scrollbar{display:none}@media(min-width:900px){body .shg-four.shg-four{grid-auto-columns:120px!important}}`}</style>
       <div style={{ padding:"0 16px 10px",fontSize:18,color:C.cr }}>Browse by category</div>
       <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
-        {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
+        {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"],["Lifemaxxing","Life"]].map(([c,name])=>(
           <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ padding:0,border:"none",background:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
             <div style={{ borderRadius:14,overflow:"hidden",outline:cat===c?"2px solid #F2ECE4":"none",outlineOffset:2,aspectRatio:"1" }}><Thumb cat={c} size="100%" radius={14}/></div>
             <div style={{ marginTop:8,fontSize:15,color:C.cr }}>{name}</div>
@@ -2905,14 +2900,14 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
       </div>
       {/* JUMP BACK IN */}
       <Sec title="Jump back in" C={C}>
-        <div className="shg-nw" style={{ padding:"0 16px" }}>
-          {TRACKS.slice(0,4).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
+        <div className="shg-nw shg-nw-scroll" style={{ padding:"0 16px" }}>
+          {TRACKS.slice(0,8).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </div>
       </Sec>
 
       {/* NEW THIS WEEK */}
       <Sec title="New this week " C={C}>
-        <div className="shg-nw" style={{ padding:"0 16px" }}><style>{`body .shg-nw.shg-nw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:10px;max-width:560px}body .shg-nw.shg-nw>div{width:auto!important}body .shg-nw.shg-nw>div>div:nth-child(2){font-size:12px!important}body .shg-nw.shg-nw>div>div:nth-child(3){display:none!important}`}</style>
+        <div className="shg-nw" style={{ padding:"0 16px" }}><style>{`body .shg-nw.shg-nw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:10px;max-width:560px}body .shg-nw.shg-nw>div{width:auto!important}body .shg-nw.shg-nw>div>div:nth-child(2){font-size:12px!important}body .shg-nw.shg-nw>div>div:nth-child(3){display:none!important}body .shg-nw.shg-nw.shg-nw-scroll{grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:calc((100% - 30px) / 4.4)!important;overflow-x:auto;scrollbar-width:none;max-width:none}body .shg-nw-scroll::-webkit-scrollbar{display:none}`}</style>
           {TRACKS.filter(t=>t.isNew).slice(0,4).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </div>
       </Sec>
@@ -2959,7 +2954,7 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
       )}
       <div style={{ padding:"0 16px" }}>
         {shown.map(t=>(
-          <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:10,borderRadius:16,marginBottom:10,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"22px 22px",color:"#000",cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
+          <div key={t.id} onClick={()=>{play(t); openPlayer?.();}} style={{ display:"flex",alignItems:"center",gap:12,padding:10,borderRadius:16,marginBottom:10,backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",backgroundSize:"22px 22px",color:"#000",border:"1px solid #BFA5D8",cursor:AUDIO_URLS[t.title]?"pointer":"not-allowed" }}>
             <div style={{ position:"relative",flexShrink:0 }}>
               <Thumb title={t.title} cat={t.cat} size={50} radius={6}/>
               
@@ -3679,7 +3674,7 @@ function CommunityTab({ C, isPreview }) {
 }
 
 // Soft pulsing glow for the Guidebook entry.
-if (typeof document !== "undefined" && !document.getElementById("shg-guide-glow-css")) { const st = document.createElement("style"); st.id = "shg-guide-glow-css"; st.textContent = `.shg-guide-glow{animation:shg-gg 3.6s ease-in-out infinite}@keyframes shg-gg{0%,100%{box-shadow:0 0 16px rgba(232,184,112,.35),0 0 40px rgba(191,165,216,.2)}50%{box-shadow:0 0 28px rgba(44,183,167,.5),0 0 64px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-guide-glow{animation:none}}`; document.head.appendChild(st); }
+if (typeof document !== "undefined" && !document.getElementById("shg-guide-glow-css")) { const st = document.createElement("style"); st.id = "shg-guide-glow-css"; st.textContent = `@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}50%{background-position:100% 50%;box-shadow:0 0 32px rgba(44,183,167,.55)}100%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}}@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}.shg-guide-glow{animation:shg-gg 3.6s ease-in-out infinite}@keyframes shg-gg{0%,100%{box-shadow:0 0 16px rgba(232,184,112,.35),0 0 40px rgba(191,165,216,.2)}50%{box-shadow:0 0 28px rgba(44,183,167,.5),0 0 64px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-guide-glow{animation:none}}`; document.head.appendChild(st); }
 
 // A home card that shows only its title until tapped, then spins open.
 function FoldCard({ title, sub, children }) {
@@ -3694,6 +3689,45 @@ function FoldCard({ title, sub, children }) {
     <div style={{ animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",marginBottom:16 }}>
       {children}
       <button onClick={()=>setOpen(false)} style={{ display:"block",margin:"-6px auto 0",background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"6px 16px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Close ⌃</button>
+    </div>
+  );
+}
+
+// ── KEEP ADDING ─────────────────────────────────────────────────────────────
+// Anything she wants the app to learn: a note, a journal page, a ChatGPT or
+// Claude summary. Saved into her passport (My Life › My uploads) with the date,
+// so the history builds up without opening the passport.
+function KeepAdding({ userId, isPreview }) {
+  const key = `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
+  const read = () => { try { return JSON.parse(localStorage.getItem(key) || "null") || {}; } catch { return {}; } };
+  const [note, setNote] = useState("");
+  const [items, setItems] = useState(() => (read().life?.uploads || []).slice(0, 5));
+  const today = () => new Date().toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric" });
+  const save = (added) => {
+    const p = read(); const life = { ...(p.life || {}) };
+    life.uploads = [...added, ...(life.uploads || [])].slice(0, 50);
+    try { localStorage.setItem(key, JSON.stringify({ ...p, life })); } catch {}
+    setItems(life.uploads.slice(0, 5));
+  };
+  return (
+    <div className="shg-paper" style={{ margin:"0 16px 16px",padding:"20px",borderRadius:20,textAlign:"center" }}>
+      <div style={{ fontSize:19,fontWeight:500 }}>Keep adding</div>
+      <div style={{ fontSize:15,lineHeight:1.55,margin:"6px 0 14px" }}>Anything that helps me know you: a thought, a journal page, a goal. Tip: ask ChatGPT or Claude "Summarise everything you know about me, my goals and my blocks" and paste it here.</div>
+      <textarea id="shg-keep-note" rows={4} value={note} onChange={e=>setNote(e.target.value)} placeholder="Write or paste anything…" style={{ width:"100%",boxSizing:"border-box",border:"1px solid #000",borderRadius:12,padding:"12px",fontSize:15,fontFamily:"'Jost',sans-serif",background:"#fff",color:"#000",resize:"vertical" }}/>
+      <div style={{ display:"flex",gap:8,justifyContent:"center",flexWrap:"wrap",marginTop:10 }}>
+        <button onClick={()=>{ if(!note.trim()) return; save([{ name:"Note", type:"text/plain", date:today(), text:note.trim() }]); setNote(""); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Save</button>
+        <label style={{ background:"transparent",color:"#000",border:"1px solid #000",borderRadius:999,padding:"10px 18px",fontSize:14,cursor:"pointer" }}>
+          + Upload a file or photo
+          <input type="file" multiple accept="image/*,.txt,.md,.pdf,.doc,.docx" hidden onChange={async e=>{ const files=[...(e.target.files||[])]; const added=await Promise.all(files.map(async f=>({ name:f.name, type:f.type, date:today(), text:/^text\//.test(f.type)||/\.(txt|md)$/i.test(f.name) ? (await f.text()).slice(0,20000) : "" }))); save(added); e.target.value=""; }}/>
+        </label>
+      </div>
+      {items.length > 0 && (
+        <div style={{ marginTop:14,textAlign:"left" }}>
+          <div style={{ fontSize:12,letterSpacing:".22em",textAlign:"center",marginBottom:6 }}>RECENTLY ADDED</div>
+          {items.map((u,i)=><div key={i} style={{ fontSize:14,padding:"6px 0",borderBottom:"1px solid rgba(191,165,216,.55)",display:"flex",justifyContent:"space-between",gap:10 }}><span style={{ overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }}>{u.text ? u.text.slice(0,60) : u.name}</span><span style={{ flexShrink:0 }}>{u.date}</span></div>)}
+          <div style={{ fontSize:13,textAlign:"center",marginTop:8 }}>Everything is kept in your passport, with its date.</div>
+        </div>
+      )}
     </div>
   );
 }
@@ -3757,17 +3791,17 @@ function DailyReminder({ userId, token }) {
       </button>
       {open && (
         <div style={{ marginTop:14,textAlign:"center",maxHeight:"55vh",overflowY:"auto",WebkitOverflowScrolling:"touch",animation:"shg-spin-in .6s cubic-bezier(.2,.8,.2,1) both",paddingRight:4 }}>
-          <div style={{ textAlign:"center",marginBottom:16 }}>
-            {push.subscribed ? <div style={{ fontSize:14 }}>🔔 You'll receive your equation every morning</div>
-              : !standalone && /iPhone|iPad/.test(navigator.userAgent) ? <div style={{ fontSize:14,lineHeight:1.5 }}>🔔 To receive your equation every day, add this app to your Home Screen first (Share › Add to Home Screen), then open it from there and tap here again.</div>
-              : <button onClick={e=>{ e.stopPropagation(); if (!userId) { alert("Sign in to receive your daily equation."); return; } push.subscribe(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{push.loading?"Turning on…":"🔔 Receive your equation every day"}</button>}
-          </div>
           {r.body.map(([h,t])=>(
             <div key={h} style={{ marginBottom:14 }}>
               <div style={{ fontSize:12,letterSpacing:".22em",textTransform:"uppercase",marginBottom:4 }}>{h}</div>
               <div style={{ fontSize:15,lineHeight:1.65 }}>{t}</div>
             </div>
           ))}
+          <div style={{ textAlign:"center",marginTop:4,paddingTop:14,borderTop:"1px solid rgba(191,165,216,.55)" }}>
+            {push.subscribed ? <div style={{ fontSize:14 }}>🔔 You'll receive your equation every morning</div>
+              : !standalone && /iPhone|iPad/.test(navigator.userAgent) ? <div style={{ fontSize:14,lineHeight:1.5 }}>🔔 To receive your equation every day, add this app to your Home Screen first (Share › Add to Home Screen), then open it from there and tap here again.</div>
+              : <button onClick={e=>{ e.stopPropagation(); if (!userId) { alert("Sign in to receive your daily equation."); return; } push.subscribe(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{push.loading?"Turning on…":"🔔 Receive your equation every day"}</button>}
+          </div>
         </div>
       )}
       <style>{`@keyframes shg-spin-in{from{transform:rotateY(-90deg);opacity:0}to{transform:none;opacity:1}}`}</style>
