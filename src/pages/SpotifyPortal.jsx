@@ -569,9 +569,17 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   const [searchQ, setQ]       = useState("");
   const [libCat, setLibCat]   = useState("All");
   const [libFormat, setLibFormat] = useState("All");
-  const [threads, setThreads] = useState(isPreview ? INIT_THREADS : []);
+  const [threads, setThreads] = useState(() => { if (!isPreview) return []; try { const saved = JSON.parse(localStorage.getItem("shg_preview_threads") || "null"); if (Array.isArray(saved) && saved.length) return saved; } catch {} return INIT_THREADS; });
+  // The beta keeps what you add on this device, so a new intention doesn't vanish when you move around.
+  useEffect(() => { if (!isPreview) return; try { localStorage.setItem("shg_preview_threads", JSON.stringify(threads.map(t => ({ ...t, signs: (t.signs || []).map(sg => ({ ...sg, img: sg.img && sg.img.startsWith("blob:") ? null : sg.img, audio: sg.audio && sg.audio.startsWith("blob:") ? null : sg.audio })) })))); } catch {} }, [threads, isPreview]);
   const [threadsLoaded, setThreadsLoaded] = useState(isPreview);
   const [logSignOpen, setLogSignOpen] = useState(false);
+  const [hideFab, setHideFab] = useState(() => { try { return localStorage.getItem("shg_hide_fab") === "1"; } catch { return false; } });
+  useEffect(() => {
+    const show = () => { try { localStorage.removeItem("shg_hide_fab"); } catch {} setHideFab(false); };
+    window.addEventListener("shg-show-fab", show);
+    return () => window.removeEventListener("shg-show-fab", show);
+  }, []);
   const [celebThread, setCelebThread] = useState(null);
   useEffect(() => {
     if (isPreview || !userId || !token) return;
@@ -1156,7 +1164,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {/* Screen */}
       <div style={{ flex:1,overflowY:"auto",paddingBottom:150,WebkitOverflowScrolling:"touch",background:TAB_WASH[tab]?.[isDark?"dark":"light"]||"none" }}>{tabContent}</div>
       {/* Mini player */}
-      {!fullP && (
+      {!fullP && (playing || prog > 0) && (
         <div onClick={()=>setFullP(true)} style={{ position:"fixed",bottom:isPreview?60:76,left:8,right:8,zIndex:50,background:"linear-gradient(90deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B 100%)",borderRadius:10,display:"flex",alignItems:"center",gap:10,padding:"8px 10px",cursor:"pointer",boxShadow:`0 -4px 24px rgba(0,0,0,0.4)` }}>
           <Thumb title={track.title} cat={track.cat} size={42} radius={6}/>
           <div style={{ flex:1,minWidth:0 }}>
@@ -1175,7 +1183,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {fullP && <MobilePlayer track={track} playing={playing} setPlay={setPlay} liked={liked} toggleLike={toggleLike} prog={prog} seekTo={seekTo} prevTrack={prevTrack} nextTrack={nextTrack} isLooping={isLooping} setLooping={setLooping} onClose={()=>setFullP(false)} onLogSign={()=>setTab("proof")} C={C} isDark={isDark} hasAudio={!!AUDIO_URLS[track.title]} isPreview={isPreview}/>}
       {/* Bottom nav */}
       {/* Floating log-a-sign button */}
-      {!fullP && (
+      {!fullP && !hideFab && (
         <button
           onClick={() => setLogSignOpen(true)}
           style={{ position:"fixed",bottom:isPreview?130:146,right:18,zIndex:70,width:52,height:52,borderRadius:"50%",background:"linear-gradient(135deg,#F5E0A0 0%,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B 100%)",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 20px rgba(0,0,0,0.45)",fontSize:22,color:"#0a0906",fontFamily:"'Jost',sans-serif" }}
@@ -1196,6 +1204,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
       {logSignOpen && (
         <LogSignModal
           onClose={() => setLogSignOpen(false)}
+          onHideButton={() => { try { localStorage.setItem("shg_hide_fab","1"); } catch {} setHideFab(true); setLogSignOpen(false); }}
           onSaved={(sign) => {
             if (sign?.manifestation_id) {
               setThreads(ts => ts.map(t => t.id === sign.manifestation_id ? { ...t, signs: [...(t.signs||[]), { text: sign.content, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}) }] } : t));
@@ -3102,6 +3111,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
       {view==="signs" ? (
         <div>
+          {(()=>{ try { return localStorage.getItem("shg_hide_fab")==="1"; } catch { return false; } })() && <button onClick={e=>{ window.dispatchEvent(new Event("shg-show-fab")); e.currentTarget.remove(); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"10px 18px",fontSize:14,marginBottom:12,cursor:"pointer",fontFamily:"inherit" }}>✦ Show the sign button again</button>}
           {threads.every(t=>!(t.signs||[]).length) && <div style={{ fontSize:15,color:PC.text,padding:"8px 2px" }}>No signs yet. Open an intention and tap "Log a sign".</div>}
           {threads.flatMap(t => (t.signs||[]).map(sg => ({ sg, t }))).reverse().map(({sg,t},i)=>(
             <div key={i} className="shg-gb" style={{ borderRadius:18,padding:"14px 16px",marginBottom:10 }}>
@@ -3252,12 +3262,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
               </div>
               <div style={{ gridColumn:"1/-1" }}>
               <div style={{ fontSize:13,fontWeight:400,color:PC.mu,letterSpacing:"0.15em",textTransform:"uppercase",margin:"18px 0 8px" }}>All captured proof · newest last</div>
-              <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(90px,1fr))",gap:8 }}>
+              <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))",gap:12 }}>
                 {threads.flatMap(t=>(t.signs||[]).filter(s=>s.img||s.audio).map((s,ix)=>({...s,desire:t.desire,key:t.id+"-"+ix}))).map(s=>(
                   <div key={s.key} style={{ background:"#F2ECE4",borderRadius:10,padding:6,border:"1px solid #000" }}>
-                    {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:72,objectFit:"cover",borderRadius:7 }}/>}
+                    {s.img && <img src={s.img} alt="proof" style={{ width:"100%",height:"auto",maxHeight:320,objectFit:"cover",borderRadius:7,display:"block" }}/>}
                     {s.audio && <div style={{ height:72,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:4 }}><span style={{fontSize:22}}>🎤</span><audio src={s.audio} controls style={{ width:"100%",height:24 }}/></div>}
-                    <div style={{ fontSize:10,fontWeight:400,color:"#000",marginTop:4,lineHeight:1.3,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical" }}>{s.desire} · {s.date}</div>
+                    <div style={{ fontSize:13,fontWeight:400,color:"#000",marginTop:6,lineHeight:1.4 }}>{s.text ? <b style={{ fontWeight:500 }}>{s.text}</b> : null}{s.text?<br/>:null}{s.desire} · {s.date}</div>
                   </div>
                 ))}
               </div>

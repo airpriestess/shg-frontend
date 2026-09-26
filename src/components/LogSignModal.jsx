@@ -126,7 +126,7 @@ export function ManifestCelebration({ intention, signCount, onClose }) {
   );
 }
 
-export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, isDark, activeIntentions = [] }) {
+export default function LogSignModal({ onHideButton, onClose, onSaved, userId, token, apiUrl, isDark, activeIntentions = [] }) {
   const [step, setStep]         = useState("input"); // input | confirm | saved
   const [text, setText]         = useState("");
   const [listening, setListening] = useState(false);
@@ -137,9 +137,8 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
   const recognitionRef          = useRef(null);
   const textareaRef             = useRef(null);
 
-  const C = isDark
-    ? { bg: "#0e0c0a", surface: "#1a1714", text: "#fdf0e8", mu: "rgba(253,240,232,0.45)", border: "rgba(253,240,232,0.1)" }
-    : { bg: "#fdf0e8", surface: "#fff",    text: "#0a0906", mu: "rgba(10,9,6,0.45)",      border: "rgba(10,9,6,0.12)" };
+  // Always cream graph paper with black text, in both themes
+  const C = { bg: "#F2ECE4", surface: "#F2ECE4", text: "#000", mu: "#000", border: "rgba(0,0,0,0.25)" };
 
   // Auto-focus textarea
   useEffect(() => {
@@ -249,7 +248,10 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
       {/* Sheet */}
       <div style={{
         position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 8001,
-        background: C.surface,
+        backgroundColor: "#F2ECE4", color: "#000",
+        backgroundImage: "linear-gradient(rgba(191,165,216,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.35) 1px,transparent 1px)",
+        backgroundSize: "20px 20px",
+        borderTop: "2px solid #BFA5D8",
         borderRadius: "20px 20px 0 0",
         padding: "8px 0 0",
         maxHeight: "90vh",
@@ -272,7 +274,7 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
               <div style={{ marginBottom: 20 }}>
                 <div style={{
                   fontSize: 11, fontWeight: 600, letterSpacing: "0.14em",
-                  textTransform: "uppercase", color: "rgba(44,183,167,0.9)",
+                  textTransform: "uppercase", color: "#000",
                   marginBottom: 8,
                 }}>Log a sign ✦</div>
                 <div style={{ fontSize: 22, fontWeight: 300, color: C.text, lineHeight: 1.3 }}>
@@ -287,7 +289,7 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
                 placeholder="Describe the sign, synchronicity, or shift you noticed…"
                 style={{
                   width: "100%", minHeight: 120,
-                  background: isDark ? "rgba(253,240,232,0.04)" : "rgba(10,9,6,0.04)",
+                  background: "#fff",
                   border: `1px solid ${C.border}`,
                   borderRadius: 12, padding: "14px 16px",
                   color: C.text, fontSize: 16, fontFamily: "'Jost',sans-serif",
@@ -304,7 +306,7 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
                 background: listening ? "rgba(44,183,167,0.15)" : "transparent",
                 border: `1px solid ${listening ? "#2CB7A7" : C.border}`,
                 borderRadius: 100, padding: "8px 16px",
-                color: listening ? "#2CB7A7" : C.mu,
+                color: "#000",
                 fontSize: 13, fontWeight: 500, cursor: "pointer",
                 marginTop: 10, transition: "all 0.15s",
               }}>
@@ -330,6 +332,11 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
                   {parsing ? "Reading sign…" : "Next →"}
                 </button>
               </div>
+              {onHideButton && (
+                <button onClick={onHideButton} style={{ display: "block", margin: "18px auto 0", background: "none", border: "none", color: "#000", fontSize: 13, textDecoration: "underline", cursor: "pointer", fontFamily: "'Jost',sans-serif" }}>
+                  Hide the ✦ button (bring it back in proofOS › Signs)
+                </button>
+              )}
             </>
           )}
 
@@ -337,7 +344,7 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
           {step === "confirm" && parsed && (
             <>
               <div style={{ marginBottom: 20 }}>
-                <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(44,183,167,0.9)", marginBottom: 8 }}>
+                <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", marginBottom: 8 }}>
                   Confirm sign ✦
                 </div>
                 <div style={{ fontSize: 18, fontWeight: 300, color: C.text, lineHeight: 1.4, marginBottom: 16 }}>
@@ -374,7 +381,7 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
                       padding: "10px 14px", borderRadius: 10, textAlign: "left", fontSize: 13, fontWeight: 400,
                       background: !parsed.matched_intention_id ? "rgba(44,183,167,0.12)" : "transparent",
                       border: !parsed.matched_intention_id ? "1px solid rgba(44,183,167,0.4)" : `1px solid ${C.border}`,
-                      color: !parsed.matched_intention_id ? "#2CB7A7" : C.mu,
+                      color: "#000",
                       cursor: "pointer", fontFamily: "'Jost',sans-serif",
                     }}>
                       No specific intention
@@ -384,7 +391,7 @@ export default function LogSignModal({ onClose, onSaved, userId, token, apiUrl, 
                         padding: "10px 14px", borderRadius: 10, textAlign: "left", fontSize: 13, fontWeight: 400,
                         background: parsed.matched_intention_id === intention.id ? "rgba(44,183,167,0.12)" : "transparent",
                         border: parsed.matched_intention_id === intention.id ? "1px solid rgba(44,183,167,0.4)" : `1px solid ${C.border}`,
-                        color: parsed.matched_intention_id === intention.id ? "#2CB7A7" : C.text,
+                        color: "#000",
                         cursor: "pointer", fontFamily: "'Jost',sans-serif",
                       }}>
                         ✦ {intention.desire}
