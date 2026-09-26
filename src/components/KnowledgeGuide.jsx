@@ -1,5 +1,6 @@
 /* KnowledgeGuide, comprehensive listening guide covering every question */
 import { useEffect, useState } from "react";
+import { WorkWithReshma } from "./ShopGrid.jsx";
 
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
@@ -176,7 +177,7 @@ export default function KnowledgeGuide({ onClose, start = null }) {
   }, [onClose]);
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="Guidebook" className="shg-no-paper" style={{ position:"fixed", inset:0, zIndex:1001, background:"#000", color:"#F2ECE4", overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", fontFamily:"'Futura','Jost',sans-serif" }}>
+    <div role="dialog" aria-modal="true" aria-label="Guidebook" className="shg-no-paper" style={{ position:"fixed", inset:0, zIndex:1300, background:"#000", color:"#F2ECE4", overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", fontFamily:"'Futura','Jost',sans-serif" }}>
       <div style={{ maxWidth:720, margin:"0 auto", padding:"calc(env(safe-area-inset-top,0px) + 16px) 16px 60px" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
           {cat
@@ -193,6 +194,7 @@ export default function KnowledgeGuide({ onClose, start = null }) {
                 <span style={{ fontSize:14 }}>{c.keys.length} answers ›</span>
               </button>
             ))}
+            <div style={{ gridColumn:"1/-1", marginTop:8 }}><WorkWithReshma onShop={()=>{ onClose(); window.dispatchEvent(new Event("shg-go-shop")); }}/></div>
           </div>
         ) : (
           <>

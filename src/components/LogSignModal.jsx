@@ -127,6 +127,15 @@ export function ManifestCelebration({ intention, signCount, onClose }) {
   );
 }
 
+// Keep photos small enough to save on the phone.
+function shrinkImage(file, max = 900) {
+  return new Promise(res => {
+    const r = new FileReader();
+    r.onload = () => { const im = new Image(); im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement("canvas"); c.width = im.width * k; c.height = im.height * k; c.getContext("2d").drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL("image/jpeg", 0.8)); }; im.src = r.result; };
+    r.readAsDataURL(file);
+  });
+}
+
 export default function LogSignModal({ onHideButton, onClose, onSaved, userId, token, apiUrl, isDark, activeIntentions = [] }) {
   const [step, setStep]         = useState("input"); // input | confirm | saved
   const [text, setText]         = useState("");
@@ -136,6 +145,20 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
   const [saving, setSaving]     = useState(false);
   const [savedCount, setSavedCount] = useState(null);
   const recognitionRef          = useRef(null);
+  const [img, setImg]           = useState(null);
+  const [audio, setAudio]       = useState(null);
+  const [recording, setRecording] = useState(false);
+  const recRef                  = useRef(null);
+  const startNote = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mr = new MediaRecorder(stream); const chunks = [];
+      mr.ondataavailable = e => chunks.push(e.data);
+      mr.onstop = () => { stream.getTracks().forEach(t => t.stop()); const r = new FileReader(); r.onload = () => setAudio(r.result); r.readAsDataURL(new Blob(chunks, { type: mr.mimeType || "audio/webm" })); };
+      mr.start(); recRef.current = mr; setRecording(true);
+    } catch { alert("Allow microphone access to record a voice note."); }
+  };
+  const stopNote = () => { recRef.current?.stop(); setRecording(false); };
   const textareaRef             = useRef(null);
 
   // Always cream graph paper with black text, in both themes
@@ -171,7 +194,7 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
   };
 
   const handleParse = async () => {
-    if (!text.trim()) return;
+    if (!text.trim() && !img && !audio) return;
     if (!userId || !token) {
       // No auth — go straight to confirm with manual category pick
       setParsed({ matched_intention_id: null, category: "general", summary: text.slice(0, 60) });
@@ -200,7 +223,7 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
       const linked = activeIntentions.find(i => i.id === parsed?.matched_intention_id);
       setSavedCount(linked ? (linked.signCount || 0) + 1 : 1);
       setStep("saved");
-      onSaved?.({ content: text.trim(), manifestation_id: parsed?.matched_intention_id ?? null, categories: parsed?.categories || [parsed?.category || "general"] });
+      onSaved?.({ content: text.trim() || (img ? "Photo sign" : "Voice note sign"), img, audio, manifestation_id: parsed?.matched_intention_id ?? null, categories: parsed?.categories || [parsed?.category || "general"] });
       return;
     }
     setSaving(true);
@@ -264,12 +287,14 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
       }}>
         <style>{`
           @keyframes sheetUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
+          @keyframes signFlip { from { transform:perspective(900px) rotateY(-90deg); opacity:0 } to { transform:perspective(900px) rotateY(0); opacity:1 } }
+          @media (prefers-reduced-motion: reduce) { .shg-sign-step { animation:none !important } }
         `}</style>
 
         {/* Drag handle */}
         <div style={{ width: 40, height: 4, borderRadius: 2, background: C.border, margin: "0 auto 20px" }} />
 
-        <div style={{ padding: "0 24px 40px" }}>
+        <div key={step} className="shg-sign-step" style={{ padding: "0 24px 40px", animation: "signFlip .55s cubic-bezier(.2,.8,.2,1) both", transformOrigin: "left center" }}>
 
           {/* ── STEP: INPUT ── */}
           {step === "input" && (
@@ -314,8 +339,25 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
                 marginTop: 10, transition: "all 0.15s",
               }}>
                 <span style={{ fontSize: 16 }}>{listening ? "⏹" : "🎙"}</span>
-                {listening ? "Stop recording…" : "Speak instead"}
+                {listening ? "Stop…" : "Speak it (writes it for you)"}
               </button>
+
+              {/* Photo and voice note: add either or both, alongside the text */}
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
+                <label style={{ display: "flex", alignItems: "center", gap: 8, border: "1px solid #000", borderRadius: 100, padding: "8px 16px", fontSize: 13, fontWeight: 500, cursor: "pointer", color: "#000" }}>
+                  📷 {img ? "Change photo" : "Add a photo"}
+                  <input type="file" accept="image/*" hidden onChange={e => { const f = e.target.files?.[0]; if (f) shrinkImage(f).then(setImg); e.target.value = ""; }} />
+                </label>
+                <button onClick={recording ? stopNote : startNote} style={{ display: "flex", alignItems: "center", gap: 8, background: recording ? "#000" : "transparent", color: recording ? "#F2ECE4" : "#000", border: "1px solid #000", borderRadius: 100, padding: "8px 16px", fontSize: 13, fontWeight: 500, cursor: "pointer" }}>
+                  {recording ? "⏹ Stop voice note" : audio ? "🎤 Re-record voice note" : "🎤 Record a voice note"}
+                </button>
+              </div>
+              {(img || audio) && (
+                <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 12, flexWrap: "wrap" }}>
+                  {img && <img src={img} alt="Your sign" style={{ width: 96, height: 96, objectFit: "cover", borderRadius: 10, border: "1px solid #000" }} />}
+                  {audio && <audio src={audio} controls style={{ height: 36, maxWidth: "100%" }} />}
+                </div>
+              )}
 
               {/* Actions */}
               <div style={{ display: "flex", gap: 10, marginTop: 24 }}>
@@ -324,9 +366,9 @@ export default function LogSignModal({ onHideButton, onClose, onSaved, userId, t
                   background: "transparent", border: `1px solid ${C.border}`,
                   color: C.mu, fontSize: 15, cursor: "pointer", fontFamily: "'Jost',sans-serif",
                 }}>Cancel</button>
-                <button onClick={handleParse} disabled={!text.trim() || parsing} style={{
+                <button onClick={handleParse} disabled={!(text.trim() || img || audio) || parsing} style={{
                   flex: 2, padding: "14px", borderRadius: 12,
-                  background: text.trim() ? GRAD : C.border,
+                  background: (text.trim() || img || audio) ? GRAD : C.border,
                   border: "none", color: text.trim() ? "#0a0906" : C.mu,
                   fontSize: 15, fontWeight: 600, cursor: text.trim() ? "pointer" : "default",
                   fontFamily: "'Jost',sans-serif", transition: "opacity 0.15s",

@@ -9,7 +9,7 @@ import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import LogSignModal, { ManifestCelebration } from "../components/LogSignModal.jsx";
-import ShopGrid, { PRODUCTS, buyProduct } from "../components/ShopGrid.jsx";
+import ShopGrid, { PRODUCTS, buyProduct, WorkWithReshma } from "../components/ShopGrid.jsx";
 
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
 
@@ -218,10 +218,25 @@ const THUMB_GRADS = {
 // so tracks, Library tiles and the category list all share one icon set.
 const CAT_COVER = { Lovemaxxing:"/shop/lovemaxxing.webp", Richgirlmaxxing:"/shop/richgirlmaxxing.webp", Luckygirlmaxxing:"/shop/luckygirlmaxxing.webp" };
 function Thumb({ cat, size=48, radius=4 }) {
-  const src = CAT_COVER[cat] || "/shop/method-deck.png";
+  const src = CAT_COVER[cat];
+  const box = { width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", position:"relative", background:"#000", boxShadow:"inset 0 0 0 1px rgba(242,236,228,0.12)" };
+  if (src) return (
+    <div aria-hidden="true" style={box}>
+      <img src={src} alt="" loading="lazy" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", transform:"scale(1.7)", transformOrigin:"50% 55%" }}/>
+    </div>
+  );
+  // Self and other categories: a gradient star in the same glow style as the covers.
   return (
-    <div aria-hidden="true" style={{ width:size, height:size, borderRadius:radius, flexShrink:0, overflow:"hidden", position:"relative", background:"#000", boxShadow:"inset 0 0 0 1px rgba(242,236,228,0.12)" }}>
-      <img src={src} alt="" loading="lazy" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", transform:"scale(2.4)", transformOrigin: CAT_COVER[cat] ? "50% 56%" : "50% 54%" }}/>
+    <div aria-hidden="true" style={box}>
+      <svg viewBox="0 0 100 100" style={{ position:"absolute", inset:0, width:"100%", height:"100%" }}>
+        <defs>
+          <linearGradient id="ths" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".35" stopColor="#E8B870"/><stop offset=".6" stopColor="#BFA5D8"/><stop offset="1" stopColor="#2CB7A7"/></linearGradient>
+          <radialGradient id="thg"><stop offset="0" stopColor="#BFA5D8" stopOpacity=".35"/><stop offset="1" stopColor="#000" stopOpacity="0"/></radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="url(#thg)"/>
+        <circle cx="50" cy="50" r="34" fill="none" stroke="url(#ths)" strokeWidth="1" strokeDasharray="0.6 3" strokeLinecap="round"/>
+        <path d="M50 30 C52 44 56 48 70 50 C56 52 52 56 50 70 C48 56 44 52 30 50 C44 48 48 44 50 30 Z" fill="none" stroke="url(#ths)" strokeWidth="2.6" strokeLinejoin="round"/>
+      </svg>
     </div>
   );
 }
@@ -1007,7 +1022,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   if (isDesktop) return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);}, site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/"; } }}/>}
+      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>setShowGuide(true), liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/portal"; } }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C} start={typeof showGuide==="object"?showGuide:null}/>}
       {showEmoLog && (
@@ -1164,7 +1179,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
   return (
     <div data-portal-theme={theme} style={{ width:"100%",height:"100vh",background:C.bg,display:"flex",flexDirection:"column",fontFamily:"'Jost',sans-serif",color:C.cr,overflow:"hidden" }}>
       <audio ref={audioRef} preload="none"/>
-      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>{setProfileOpen(false);setShowGuide(true);}, liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>{setTheme(t=>t==="dark"?"light":"dark");setProfileOpen(false);}, site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/"; } }}/>}
+      {profileOpen && <GoddessPassport startPage={passportPage} onClose={()=>{setProfileOpen(false);setPassportPage(null);}} userId={userId} firstName={firstName} email={session?.user?.email} threads={threads} listenCount={listenCount} isPreview={isPreview} isDark={isDark} tierLabel={userTier==="goddess"?"Goddess membership":"Audio membership"} actions={{ guide:()=>setShowGuide(true), liked:()=>{setProfileOpen(false);setTab("library");setLibCat("Liked");}, shop:()=>{setProfileOpen(false);setTab("shop");}, billing:()=>{setProfileOpen(false);setBillingOpen(true);}, theme:()=>setTheme(t=>t==="dark"?"light":"dark"), site:()=>{ if(onHome) onHome(); else window.location.href="/"; }, signOut:()=>{ if(onSignOut) onSignOut(); else window.location.href="/portal"; } }}/>}
       {billingOpen && <BillingPanel/>}
       {showGuide && <KnowledgeGuide onClose={()=>setShowGuide(false)} C={C} start={typeof showGuide==="object"?showGuide:null}/>}
       {showOnboarding && <OnboardingQuiz
@@ -1248,7 +1263,7 @@ function SpotifyPortalInner({ onHome, onSignOut, isPreview=false, forceMode=null
           onClose={() => setLogSignOpen(false)}
           onHideButton={() => { try { localStorage.setItem("shg_hide_fab","1"); } catch {} setHideFab(true); setLogSignOpen(false); }}
           onSaved={(sign) => {
-            const entry = { text: sign.content, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}), cats: sign.categories };
+            const entry = { text: sign.content, img: sign.img || undefined, audio: sign.audio || undefined, date: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"}), cats: sign.categories };
             if (sign?.manifestation_id != null) {
               setThreads(ts => ts.map(t => String(t.id) === String(sign.manifestation_id) ? { ...t, signs: [...(t.signs||[]), entry] } : t));
             } else {
@@ -2254,12 +2269,12 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             {weeks && <>
               <div className="shg-gt" style={{ fontSize:15,letterSpacing:"0.18em",marginBottom:10 }}>SIGNS PER WEEK</div>
               <div style={{ display:"flex",alignItems:"flex-end",gap:8,height:130,marginBottom:20 }}>
-                {weeks.map((h,i)=><i key={i} className="shg-gfill" style={{ flex:1,borderRadius:6,height:`${h}%` }}/>)}
+                {weeks.map((h,i)=><i key={i} className="shg-gfill shg-bar-v" style={{ flex:1,borderRadius:6,height:`${h}%`,animationDelay:`${i*60}ms` }}/>)}
               </div>
             </>}
             {hawk && <>
               <div className="shg-gt" style={{ fontSize:15,letterSpacing:"0.18em",marginBottom:10 }}>HAWKINS LEVEL</div>
-              <div style={{ height:14,borderRadius:8,background:"#2a2a2a",marginBottom:8,overflow:"hidden" }}><div className="shg-gfill" style={{ height:"100%",width:`${hawk.pct}%`,borderRadius:8 }}/></div>
+              <div style={{ height:14,borderRadius:8,background:"#2a2a2a",marginBottom:8,overflow:"hidden" }}><div className="shg-gfill shg-bar-h" style={{ height:"100%",width:`${hawk.pct}%`,borderRadius:8 }}/></div>
               <div style={{ fontSize:16,color:C.cr,marginBottom:18 }}>{hawk.label}</div>
             </>}
             {fast && <div className="shg-gb shg-paper" style={{ borderRadius:18,padding:"14px",textAlign:"center",color:C.cr }}><div style={{ fontSize:17 }}>Your fastest area: {fast.area}</div><div style={{ fontSize:16,marginTop:4 }}>{fast.note}</div></div>}
@@ -2279,7 +2294,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         } : analyticsData?.periods;
         if (!periods) return null;
         return (
-          <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
+          <div className="shg-blackglow" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22 }}>
             <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:20 }}>Your progress over time</div>
             <div style={{ display:"flex", flexWrap:"wrap", gap:16 }}>
               {["week","month","year"].map(k => periods[k] && (
@@ -2289,12 +2304,12 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                     const up = now > before, same = now === before;
                     const diff = Math.round((now - before) * 10) / 10;
                     return (
-                      <div key={name} className="shg-paper" style={{ marginBottom:12, background:C.bg3, border:`1.5px solid ${C.border}`, borderRadius:14, padding:"14px 16px" }}>
+                      <div key={name} className="shg-glowcard" style={{ marginBottom:12, borderRadius:14, padding:"14px 16px" }}>
                         <div style={{ fontSize:15, color:C.cr, marginBottom:4 }}>{name}</div>
                         <div style={{ display:"flex", alignItems:"baseline", gap:10, flexWrap:"wrap" }}>
                           <span style={{ fontSize:38, fontWeight:700, color:C.cr, lineHeight:1 }}>{now}</span>
                           <span style={{ fontSize:16, color:C.cr }}>from {before}</span>
-                          {!same && <span style={{ fontSize:16, fontWeight:700, color: up ? C.accentTeal : "#8a2030" }}>{up ? "▲" : "▼"} {up ? "+" : ""}{diff}</span>}
+                          {!same && <span style={{ fontSize:16, fontWeight:700, color:"#000" }}>{up ? "▲" : "▼"} {up ? "+" : ""}{diff}</span>}
                         </div>
                       </div>
                     );
@@ -2308,6 +2323,18 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* MANIFESTATION HERO — the whole point of the app */}
       <style>{`
+        .shg-glowcard{background:linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#BFA5D8,#F5E0A0)!important;background-size:300% 300%!important;animation:shg-lucky 7s ease-in-out infinite;border:none!important}
+        .shg-glowcard,.shg-glowcard *{color:#000!important}
+        .shg-blackglow{background:#000!important;border:1.5px solid transparent!important;background-image:linear-gradient(#000,#000),linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)!important;background-origin:border-box!important;background-clip:padding-box,border-box!important;animation:shg-bg-pulse 4s ease-in-out infinite}
+        .shg-blackglow,.shg-blackglow *:not(.shg-glowcard):not(.shg-glowcard *){color:#F2ECE4}
+        @keyframes shg-bg-pulse{0%,100%{box-shadow:0 0 22px rgba(232,184,112,.45),0 0 50px rgba(191,165,216,.25)}50%{box-shadow:0 0 36px rgba(44,183,167,.6),0 0 80px rgba(191,165,216,.4)}}
+        @keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}50%{background-position:100% 50%;box-shadow:0 0 32px rgba(44,183,167,.55)}100%{background-position:0% 50%;box-shadow:0 0 18px rgba(245,224,160,.5)}}
+        .shg-bar-h{transform-origin:left center;animation:shg-grow-x 1.2s cubic-bezier(.2,.8,.2,1) both,shg-bar-glow 2.6s ease-in-out 1.2s infinite}
+        .shg-bar-v{transform-origin:bottom center;animation:shg-grow-y 1s cubic-bezier(.2,.8,.2,1) both,shg-bar-glow 2.6s ease-in-out 1s infinite}
+        @keyframes shg-grow-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+        @keyframes shg-grow-y{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+        @keyframes shg-bar-glow{0%,100%{box-shadow:0 0 6px rgba(232,184,112,.6)}50%{box-shadow:0 0 16px rgba(44,183,167,.9)}}
+        @media (prefers-reduced-motion: reduce){.shg-glowcard,.shg-blackglow,.shg-bar-h,.shg-bar-v{animation:none!important}}
         @keyframes shg-drift {
           0%   { background-position: 0% 50%; }
           50%  { background-position: 100% 50%; }
@@ -2337,8 +2364,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
           <>
             <div style={{ display:"flex", flexWrap:"wrap", gap:12, margin:"0 16px 18px" }}>
               {tiles.map(([v,l,col],i)=>(
-                <div key={i} className="shg-paper" style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, background:C.bg2, border:"2px solid #BFA5D8", borderRadius:20, padding:"26px 22px", animation:"shg-lg-glow 3s linear infinite" }}>
-                  <div style={{ fontSize:52, fontWeight:700, lineHeight:1, marginBottom:8, color:col }}>{v}</div>
+                <div key={i} className="shg-glowcard" style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, borderRadius:20, padding:"26px 22px", animationDelay:`${i*0.4}s` }}>
+                  <div style={{ fontSize:52, fontWeight:700, lineHeight:1, marginBottom:8 }}>{v}</div>
                   <div style={{ fontSize:16, color:C.cr, fontWeight:600 }}>{l}</div>
                 </div>
               ))}
@@ -2347,14 +2374,14 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             {/* PROOF COMPOUNDS — every logged sign and win is one more piece of
                 evidence. This is the method deck's year-one argument, live. */}
             {proofTotal > 0 && (
-              <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
+              <div className="shg-blackglow" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22 }}>
                 <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:14 }}>Your proof is compounding</div>
                 <div style={{ display:"flex", alignItems:"baseline", gap:8, marginBottom:10 }}>
                   <div style={{ fontSize:72, fontWeight:700, lineHeight:1, color:C.cr }}>{proofTotal}</div>
                   <div style={{ fontSize:18, color:C.cr }}>pieces of proof, dated and kept</div>
                 </div>
                 <div className="shg-paper" style={{ height:14, borderRadius:8, background:C.bg4, overflow:"hidden", marginBottom:12 }}>
-                  <div style={{ height:"100%", borderRadius:5, width:`${Math.min(100,(proofTotal/365)*100)}%`, minWidth:6, background:OMBRE }}/>
+                  <div className="shg-bar-h" style={{ height:"100%", borderRadius:5, width:`${Math.min(100,(proofTotal/365)*100)}%`, minWidth:6, background:OMBRE }}/>
                 </div>
                 <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>
                   {proofTotal >= 365
@@ -2374,14 +2401,14 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               if (!speeds.length) return null;
               const slowest = Math.max(...speeds.map(s=>s[1]));
               return (
-                <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
+                <div className="shg-blackglow" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22 }}>
                   <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:6 }}>How fast each area shifts</div>
                   <div style={{ fontSize:16, color:C.cr, marginBottom:20 }}>Average days from setting a desire to logging it manifested.</div>
                   {speeds.map(([cat,days],i)=>(
                     <div key={cat} style={{ display:"flex", alignItems:"center", gap:14, marginBottom:i===speeds.length-1?0:16 }}>
                       <div style={{ fontSize:18, fontWeight:600, color:C.cr, width:130, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
                       <div className="shg-paper" style={{ flex:1, height:14, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
-                        <div style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: OMBRE }}/>
+                        <div className="shg-bar-h" style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: OMBRE }}/>
                       </div>
                       <div style={{ fontSize:22, fontWeight:700, color:C.cr, width:64, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
                     </div>
@@ -2396,7 +2423,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               const blockText = isPreview ? "I keep getting close, then it slips" : (analyticsData?.onboarding_block || null);
               if (!blockText) return null;
               return (
-                <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
+                <div className="shg-blackglow" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22 }}>
                   <div style={{ fontSize:15, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", color:C.cr, marginBottom:12 }}>What you said was stopping you</div>
                   <div style={{ fontSize:28, fontWeight:600, color:C.cr, lineHeight:1.3, marginBottom:16 }}>“{blockText}”</div>
                   <div style={{ fontSize:18, color:C.cr, lineHeight:1.6 }}>
@@ -2411,7 +2438,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* WEEKLY AI INSIGHT */}
       {(isPreview || weeklyInsight || analyticsData?.fastest_category) && (
-        <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
+        <div className="shg-blackglow" style={{ margin:"0 16px 18px", padding:"28px 24px", borderRadius:22 }}>
           <div style={{ fontSize:15, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:14 }}>This week's insight ✦</div>
           {isPreview ? (
             <div style={{ fontSize:22, color:C.cr, lineHeight:1.5 }}>
@@ -2431,7 +2458,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
 
       {/* PATTERN RECOGNITION — what's actually moving the needle */}
       {(isPreview || (patterns && patterns.length > 0)) && (
-        <div className="shg-paper" style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22, background:C.bg2, border:"2px solid #BFA5D8", animation:"shg-lg-glow 3s linear infinite" }}>
+        <div className="shg-blackglow" style={{ margin:"0 16px 18px", padding:"20px 18px", borderRadius:22 }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
             <span style={{ fontSize:15, fontWeight:700, color:C.cr, letterSpacing:"0.14em", textTransform:"uppercase" }}>Pattern recognition</span>
             {isPreview && <span style={{ fontSize:15, color:C.accentGold, fontWeight:500 }}>preview data</span>}
@@ -2795,7 +2822,7 @@ function LibraryTab({ tracks, cat, setCat, libFormat, setLibFormat, play, track:
       <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
           <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ position:"relative",padding:0,border:cat===c?"2px solid #F2ECE4":"1px solid rgba(242,236,228,0.18)",borderRadius:14,overflow:"hidden",cursor:"pointer",background:"#000",aspectRatio:"1",fontFamily:"'Jost',sans-serif" }}>
-            <img src={{Lovemaxxing:"/shop/lovemaxxing.webp",Richgirlmaxxing:"/shop/richgirlmaxxing.webp",Luckygirlmaxxing:"/shop/luckygirlmaxxing.webp",Selfmaxxing:"/shop/method-deck.png"}[c]} alt="" style={{ position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",transform:"scale(2.4)",transformOrigin:c==="Selfmaxxing"?"50% 54%":"50% 56%" }}/>
+            <div style={{ position:"absolute",inset:0 }}><Thumb cat={c} size="100%" radius={0}/></div>
             <span style={{ position:"absolute",left:0,right:0,bottom:6,textAlign:"center",fontSize:13,fontWeight:500,color:"#F2ECE4" }}>{name}</span>
           </button>
         ))}
@@ -2967,6 +2994,8 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const [adding, setAdding] = useState(false);
   const [listening, setListening] = useState(false);
   const [view, setView] = useState("threads"); // threads | wall | bucket
+  const [hiddenGuides, setHiddenGuides] = useState(() => { try { return JSON.parse(localStorage.getItem("shg_hidden_guides") || "{}"); } catch { return {}; } });
+  const toggleGuide = v => setHiddenGuides(h => { const n = { ...h, [v]: !h[v] }; try { localStorage.setItem("shg_hidden_guides", JSON.stringify(n)); } catch {} return n; });
   const [signInput, setSignInput] = useState({}); // {threadId: text}
   const [finishing, setFinishing] = useState(null); // threadId being marked done
   const [feelAfterInput, setFeelAfterInput] = useState("");
@@ -3142,15 +3171,19 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
       {(()=>{
         const G = {
-          threads:{ t:"How to set an intention", steps:["Write it as if it has already happened: \"He texts me first\", not \"I want him to text me\".","Pick the category and how you honestly feel right now.","Play the suggested track daily, then log every sign under this intention."], key:"how-to-write-intention", img:"intention-list" },
-          signs:{ t:"How to spot a sign", steps:["A sign is anything that points to your desire: a number, a song, a comment, a coincidence.","Log it the moment you notice it, even if it feels small.","Link it to the intention it belongs to, so the trail builds up."], key:"spotting-signs", img:"ask-for-sign" },
-          wall:{ t:"Your Proof Wall is your evidence log", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, so you can see what you called in."], key:"proof-wall-forever", img:"hope-or-evidence" },
-          bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, ever. No pressure, no category.","When you're ready to focus, move it into Intentions.","Some things manifest by themselves, no hypnosis needed. If it arrives, mark it manifested straight from here."], key:"bucket-vs-active", img:"bucket-list" },
+          threads:{ t:"How to set an intention", steps:["Write it in the present tense, never the future: \"I live in my home by the sea\", not \"I will\". Past tense can work too, but for most people faking that it already happened creates conflict.","Pick the category and how you honestly feel right now. Your emotions are what make the tracking meaningful.","Play the suggested track daily, then log every sign under that intention."], key:"how-to-write-intention", img:"intention-list" },
+          signs:{ t:"How to spot a sign", steps:["A sign is a coincidence that answers your desire: a word, a song, a stranger, an exact amount.","Ask for something rare and personal, not 111. Then watch for it.","Log it the moment it happens, with a photo, a voice note or a line of text, and link it to its intention."], key:"spotting-signs", img:"ask-for-sign" },
+          wall:{ t:"Your Proof Wall is your evidence log", steps:["When the real outcome arrives, open the intention and mark it manifested.","Add a screenshot or photo as proof.","It stays here forever, dated, with how many days it took."], key:"proof-wall-forever", img:"hope-or-evidence" },
+          bucket:{ t:"How the Bucket List works", steps:["Write down anything you want, as much as you want, as many times a day as you like.","Make it a daily habit. The more you release random desires, the more some of them arrive so fast it will shock you.","Some things manifest by themselves, no hypnosis needed. When one arrives, mark it manifested straight from here.","When you're ready to focus on one, move it into Intentions."], key:"bucket-vs-active", img:"bucket-list" },
         }[view];
         if (!G) return null;
+        if (hiddenGuides[view]) return <button onClick={()=>toggleGuide(view)} style={{ background:"none",border:"1px solid #F2ECE4",color:"#F2ECE4",borderRadius:999,padding:"8px 16px",fontSize:14,marginBottom:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Show: {G.t}</button>;
         return (
           <div style={{ background:"#F2ECE4",color:"#000",borderRadius:18,padding:"16px 18px",marginBottom:14 }}>
-            <div style={{ fontSize:17,fontWeight:500,marginBottom:10 }}>{G.t}</div>
+            <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10,marginBottom:10 }}>
+              <div style={{ fontSize:17,fontWeight:500 }}>{G.t}</div>
+              <button onClick={()=>toggleGuide(view)} aria-label="Hide this guide" style={{ background:"none",border:"1px solid #000",borderRadius:999,padding:"4px 12px",fontSize:13,cursor:"pointer",color:"#000",flexShrink:0,fontFamily:"'Jost',sans-serif" }}>Hide ✕</button>
+            </div>
             {G.img && <img src={`/deck/${G.img}.webp`} alt="" loading="lazy" style={{ width:"100%",aspectRatio:"16/9",borderRadius:12,display:"block",marginBottom:12 }}/>}
             <ol style={{ margin:0,paddingLeft:20,display:"grid",gap:6,fontSize:15,lineHeight:1.5 }}>{G.steps.map(x=><li key={x}>{x}</li>)}</ol>
             <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ cat:"ProofOS", key:G.key } }))} style={{ marginTop:12,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Read more in the Guidebook ›</button>
@@ -3517,6 +3550,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       ))}
       </>
       )}
+      <div style={{ marginTop:26 }}><WorkWithReshma onShop={()=>window.dispatchEvent(new Event("shg-go-shop"))}/></div>
     </div>
   );
 }

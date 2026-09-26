@@ -40,9 +40,12 @@ export default function ShopGrid() {
             style={{ background:"#000", border:"1px solid rgba(242,236,228,0.18)", borderRadius:16, overflow:"hidden", padding:0, cursor:"pointer", textAlign:"left", fontFamily:"inherit", display:"flex", flexDirection:"column" }}>
             <img src={p.img} alt={p.name} loading="lazy" style={{ width:"100%", aspectRatio:"1", objectFit:"cover", display:"block" }}/>
             <div style={{ padding:"10px 12px 12px", display:"flex", flexDirection:"column", gap:8, flex:1 }}>
-              <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#F2ECE4" }}>{p.kind}</div>
-              <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", gap:8, marginTop:"auto" }}>
-                <span style={{ fontSize:17, color:"#F2ECE4" }}>{p.price}</span>
+              <div style={{ textAlign:"center" }}>
+                <div style={{ fontSize:15, fontWeight:500, color:"#F2ECE4" }}>{p.name}</div>
+                <div style={{ fontSize:11, letterSpacing:"0.2em", textTransform:"uppercase", color:"#F2ECE4", marginTop:3 }}>{p.kind}</div>
+              </div>
+              <div style={{ display:"flex", alignItems:"center", justifyContent:p.price?"space-between":"center", gap:8, marginTop:"auto" }}>
+                {p.price && <span style={{ fontSize:17, color:"#F2ECE4" }}>{p.price}</span>}
                 <span style={{ padding:"7px 14px", background:G, borderRadius:999, color:"#000", fontSize:13 }}>{busy===p.name ? "Opening…" : p.price ? "Buy" : "View"}</span>
               </div>
             </div>
@@ -50,5 +53,28 @@ export default function ShopGrid() {
         ))}
       </div>
     </>
+  );
+}
+
+// "Working with Reshma": her services, so members know she's there for them.
+export function WorkWithReshma({ onShop }) {
+  const services = PRODUCTS.filter(p => p.kind === "Service");
+  return (
+    <div className="shg-no-paper" style={{ background:"#000", color:"#F2ECE4", borderRadius:20, padding:"20px 16px", border:"1.5px solid transparent", backgroundImage:`linear-gradient(#000,#000),${G}`, backgroundOrigin:"border-box", backgroundClip:"padding-box, border-box", boxShadow:"0 0 26px rgba(191,165,216,.35)" }}>
+      <div style={{ textAlign:"center", marginBottom:14 }}>
+        <div style={{ fontSize:11, letterSpacing:".3em" }}>WORKING WITH RESHMA</div>
+        <div style={{ fontSize:20, fontWeight:500, marginTop:6 }}>Stuck? I'm here for you.</div>
+      </div>
+      <style>{`body .shg-wwr.shg-wwr{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(3,1fr)!important;gap:10px}`}</style>
+      <div className="shg-wwr">
+        {services.map(p => (
+          <button key={p.name} onClick={() => buyProduct(p)} style={{ background:"#000", border:"1px solid rgba(242,236,228,.2)", borderRadius:14, overflow:"hidden", padding:0, cursor:"pointer", fontFamily:"inherit", color:"#F2ECE4" }}>
+            <img src={p.img} alt="" loading="lazy" style={{ width:"100%", aspectRatio:"1", objectFit:"cover", display:"block" }}/>
+            <div style={{ fontSize:13, padding:"8px 6px 10px", textAlign:"center", lineHeight:1.3 }}>{p.name}</div>
+          </button>
+        ))}
+      </div>
+      {onShop && <button onClick={onShop} style={{ display:"block", margin:"14px auto 0", background:G, color:"#000", border:"none", borderRadius:999, padding:"11px 22px", fontSize:15, cursor:"pointer", fontFamily:"inherit" }}>See the workbooks ›</button>}
+    </div>
   );
 }

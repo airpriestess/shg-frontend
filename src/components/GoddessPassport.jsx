@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import ShopGrid from "./ShopGrid.jsx";
+import { useEffect, useRef, useState } from "react";
+import ShopGrid, { WorkWithReshma } from "./ShopGrid.jsx";
 
 // The Goddess Passport replaces the profile. She builds it (photo, Goddess
 // name, colours, words, belief) and collects stamps as she moves through the
@@ -133,6 +133,18 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const life = { want: "", desires: "", blocks: "", needs: "", becoming: "", uploads: [], log: {}, ...(p.life || {}) };
   // Every saved answer is kept with its date, so changes over time are visible (and usable for patterns).
   const saveEntry = (k) => { const v = (life[k] || "").trim(); const prev = (life.log && life.log[k]) || []; if (!v || (prev[0] && prev[0].text === v)) return; setLife({ log: { ...(life.log || {}), [k]: [{ date: today(), text: v }, ...prev].slice(0, 100) } }); };
+  // Voice: speak an answer and it is written into the field.
+  const [dictating, setDictating] = useState(null);
+  const recogRef = useRef(null);
+  const dictate = (k) => {
+    if (dictating) { recogRef.current?.stop(); setDictating(null); return; }
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { alert("Voice isn't supported in this browser. Try Safari or Chrome."); return; }
+    const r = new SR(); r.lang = "en-GB"; r.continuous = true; r.interimResults = false;
+    r.onresult = (e) => { const t = Array.from(e.results).slice(e.resultIndex).map((x) => x[0].transcript).join(" "); setP((prev) => { const l = { want: "", desires: "", blocks: "", needs: "", becoming: "", ...(prev.life || {}) }; return { ...prev, life: { ...l, [k]: ((l[k] || "") + " " + t).trim() } }; }); };
+    r.onend = () => setDictating(null);
+    recogRef.current = r; r.start(); setDictating(k);
+  };
   const setLife = (patch) => set({ life: { ...life, ...patch } });
 
   return (
@@ -224,7 +236,10 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 <div style={{ fontSize: 15, lineHeight: 1.6 }}>Tell me about you. The more you share, the more I learn about you every day: your needs, your desires, your blocks. Edit it whenever you like.</div>
                 {[["want", "WHAT I WANT FROM LIFE", "Love, money, body, home, career, freedom…"], ["desires", "MY DESIRES RIGHT NOW", "What I'm calling in this season"], ["blocks", "MY BLOCKS", "What gets in my way, the stories I tell myself"], ["needs", "MY NEEDS", "What I need to feel safe, loved and supported"], ["becoming", "WHO I'M BECOMING", "Her habits, her style, her life"]].map(([k, l, ph]) => (
                   <div key={k}><Label>{l}</Label><textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} />
-                    <button onClick={() => saveEntry(k)} style={{ ...pill, minHeight: 34, marginTop: 6, background: "#000", color: "#F2ECE4", fontSize: 13 }}>Save entry</button>
+                    <span style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                      <button onClick={() => saveEntry(k)} style={{ ...pill, minHeight: 34, marginTop: 6, background: "#000", color: "#F2ECE4", fontSize: 13 }}>Save entry</button>
+                      <button onClick={() => dictate(k)} style={{ ...pill, minHeight: 34, marginTop: 6, background: dictating === k ? "#000" : "transparent", color: dictating === k ? "#F2ECE4" : "#000", border: "1px solid #000", fontSize: 13 }}>{dictating === k ? "Listening… tap to stop" : "🎙 Speak it"}</button>
+                    </span>
                     {((life.log || {})[k] || []).length > 0 && (
                       <details style={{ marginTop: 8, fontSize: 13 }}><summary style={{ cursor: "pointer" }}>My entries over time ({life.log[k].length})</summary>
                         {life.log[k].map((e, i) => <div key={i} style={{ padding: "6px 0", borderBottom: "1px solid rgba(0,0,0,.15)" }}><b style={{ fontWeight: 500 }}>{e.date}</b> · {e.text}</div>)}
@@ -272,6 +287,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
               <div className="pp-page" data-page="04 · SHOP" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 12 }}>
                 <div style={{ fontSize: 15, lineHeight: 1.6 }}>Workbooks, the method deck and working with me.</div>
                 <div style={{ background: "#000", borderRadius: 14, padding: 10 }}><ShopGrid /></div>
+                <WorkWithReshma />
               </div>
             )}
 
