@@ -9,6 +9,7 @@ import { ArrowIcon } from "../components/UI.jsx";
 import { PushNotificationToggle, PushPromptBanner } from "../components/PushNotifications.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import LogSignModal, { ManifestCelebration } from "../components/LogSignModal.jsx";
+import ShopGrid, { PRODUCTS, buyProduct } from "../components/ShopGrid.jsx";
 
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
 
@@ -91,17 +92,10 @@ const AUDIO_URLS = {
 // ── BEACONS STORE ────────────────────────────────────────────────────────────
 const BEACONS = "https://beacons.ai/reshmaoracle"; // update with exact URL
 // Workbooks sold in the app. Categories without a PDF yet go to the in-app Shop tab.
-const WORKBOOK_SKU = { Luckygirlmaxxing:"luckygirlmaxxing", Richgirlmaxxing:"richgirlmaxxing" };
 async function buyWorkbook(cat) {
-  const sku = WORKBOOK_SKU[cat];
-  if (!sku) { window.dispatchEvent(new Event("shg-go-shop")); return; }
-  try {
-    let tok = ""; try { tok = localStorage.getItem("shg_auth_token") || ""; } catch {}
-    const r = await fetch("/shop/checkout", { method:"POST", headers:{ "Content-Type":"application/json", ...(tok?{Authorization:"Bearer "+tok}:{}) }, body:JSON.stringify({ sku }) });
-    const d = await r.json();
-    if (d.url) { window.location.href = d.url; return; }
-  } catch {}
-  window.dispatchEvent(new Event("shg-go-shop"));
+  const p = PRODUCTS.find(x => x.name === cat);
+  if (!p) { window.dispatchEvent(new Event("shg-go-shop")); return; }
+  await buyProduct(p);
 }
 
 // ── THEMES ───────────────────────────────────────────────────────────────────
@@ -3529,33 +3523,11 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 
 // ── SHOP TAB ──────────────────────────────────────────────────────────────────
 function ShopTab({ C }) {
-  const isDark = C?.cr !== "#000000";
-  const products = [
-    { name:"Lovemaxxing",        kind:"Workbook", price:"$29", img:"/shop/lovemaxxing.webp" },
-    { name:"Luckygirlmaxxing",   sku:"luckygirlmaxxing", kind:"Workbook", price:"$29", img:"/shop/luckygirlmaxxing.webp" },
-    { name:"Richgirlmaxxing",    sku:"richgirlmaxxing", kind:"Workbook", price:"$29", img:"/shop/richgirlmaxxing.webp" },
-    { name:"Inside your brain",  kind:"Method deck", price:"", img:"/shop/method-deck.png" },
-    { name:"Personalised Track", kind:"Service", price:"", img:"/shop/personalised-track.webp" },
-    { name:"1:1 Session",        kind:"Service", price:"", img:"/shop/session.webp" },
-    { name:"Email Coaching",     kind:"Service", price:"", img:"/shop/email-coaching.webp" },
-  ];
-  const [busy, setBusy] = useState("");
-  const [err, setErr] = useState("");
   const purchase = new URLSearchParams(window.location.search).get("purchase");
-  const buy = async p => {
-    if (!p.sku) { window.open(BEACONS,"_blank"); return; }
-    setBusy(p.sku); setErr("");
-    try {
-      let tok = ""; try { tok = localStorage.getItem("shg_auth_token") || ""; } catch {}
-      const r = await fetch("/shop/checkout", { method:"POST", headers:{ "Content-Type":"application/json", ...(tok?{Authorization:"Bearer "+tok}:{}) }, body:JSON.stringify({ sku:p.sku }) });
-      const d = await r.json();
-      if (d.url) { window.location.href = d.url; return; }
-      setErr(d.error || "Checkout didn't open. Try again.");
-    } catch { setErr("Checkout didn't open. Try again."); }
-    setBusy("");
-  };
   return (
     <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:1100,margin:"0 auto" }}>
+      <div style={{ fontSize:22,fontWeight:400,color:C.cr,marginBottom:4 }}>Shop</div>
+      <div style={{ fontSize:15,color:C.cr,marginBottom:20 }}>Workbooks, the method deck and working with me</div>
       {purchase && (
         <div style={{ background:"#F2ECE4",color:"#000",borderRadius:16,padding:"16px 18px",marginBottom:18 }}>
           <div style={{ fontSize:17,marginBottom:6 }}>Thank you, it's yours ✦</div>
@@ -3563,25 +3535,7 @@ function ShopTab({ C }) {
           <a href={"/shop/download?session_id="+encodeURIComponent(purchase)} style={{ display:"inline-block",background:"#000",color:"#F2ECE4",borderRadius:999,padding:"10px 18px",fontSize:14,textDecoration:"none" }}>Download PDF</a>
         </div>
       )}
-      {err && <div style={{ background:"#F2ECE4",color:"#000",borderRadius:12,padding:"10px 14px",marginBottom:14,fontSize:14 }}>{err}</div>}
-      <div style={{ fontSize:22,fontWeight:400,color:C.cr,marginBottom:4 }}>Shop</div>
-      <div style={{ fontSize:15,color:C.cr,marginBottom:20 }}>Workbooks, the method deck and working with me</div>
-      <style>{`body .shg-shop-grid.shg-shop-grid{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))!important;gap:12px}@media(max-width:700px){body .shg-shop-grid.shg-shop-grid{grid-template-columns:1fr 1fr!important}}`}</style>
-      <div className="shg-shop-grid">
-        {products.map(p=>(
-          <button key={p.name} onClick={()=>buy(p)} disabled={busy===p.sku&&!!p.sku}
-            style={{ background:"#000",border:"1px solid rgba(242,236,228,0.18)",borderRadius:16,overflow:"hidden",padding:0,cursor:"pointer",textAlign:"left",fontFamily:"inherit",display:"flex",flexDirection:"column" }}>
-            <img src={p.img} alt={p.name} loading="lazy" style={{ width:"100%",aspectRatio:"1",objectFit:"cover",display:"block" }}/>
-            <div style={{ padding:"10px 12px 12px",display:"flex",flexDirection:"column",gap:8,flex:1 }}>
-              <div style={{ fontSize:11,letterSpacing:"0.2em",textTransform:"uppercase",color:"#F2ECE4" }}>{p.kind}</div>
-              <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,marginTop:"auto" }}>
-                <span style={{ fontSize:17,color:"#F2ECE4" }}>{p.price}</span>
-                <span style={{ padding:"7px 14px",background:OMBRE,borderRadius:999,color:"#000",fontSize:13 }}>{busy&&busy===p.sku?"Opening…":p.price?"Buy":"View"}</span>
-              </div>
-            </div>
-          </button>
-        ))}
-      </div>
+      <ShopGrid/>
     </div>
   );
 }

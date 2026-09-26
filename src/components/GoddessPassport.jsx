@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ShopGrid from "./ShopGrid.jsx";
 
 // The Goddess Passport replaces the profile. She builds it (photo, Goddess
 // name, colours, words, belief) and collects stamps as she moves through the
@@ -40,16 +41,15 @@ function Stamp({ s, i }) {
   const ink = s.earned ? `url(#${id}g)` : "#000";
   const mid = String(s.mid);
   return (
-    <svg viewBox="0 0 200 200" role="img" aria-label={`${s.top} ${mid} ${s.bottom}`} style={{ width: "100%", display: "block", transform: `rotate(${s.earned ? [-8, 6, -3, 9, -6, 4][i % 6] : 0}deg)`, opacity: s.earned ? 1 : 0.22, filter: s.earned ? "saturate(1.4) contrast(1.15)" : "grayscale(1)" }}>
+    <svg viewBox="0 0 200 200" role="img" aria-label={`${s.top} ${mid} ${s.bottom}`} style={{ width: "100%", display: "block", transform: `rotate(${s.earned ? [-8, 6, -3, 9, -6, 4][i % 6] : 0}deg)`, opacity: s.earned ? 1 : 0.22, filter: s.earned ? "saturate(1.3) brightness(.85)" : "grayscale(1)" }}>
       <defs>
         <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#E8B870" /><stop offset=".45" stopColor="#BFA5D8" /><stop offset=".8" stopColor="#2CB7A7" /><stop offset="1" stopColor="#167A6B" />
         </linearGradient>
         <filter id={`${id}f`}>
           <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed={i + 3} result="n" />
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" result="d" />
-          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.7" result="m" />
-          <feComposite in="d" in2="m" operator="in" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="1.2" result="d" />
+
         </filter>
         <path id={`${id}t`} d="M 30 100 A 70 70 0 0 1 170 100" />
         <path id={`${id}b`} d="M 26 100 A 74 74 0 0 0 174 100" />
@@ -75,26 +75,12 @@ function Stamp({ s, i }) {
 export default function GoddessPassport({ onClose, userId, firstName, email, threads = [], listenCount = 0, isPreview, tierLabel, isDark, actions, startPage = null }) {
   const key = `shg_passport_${userId || (isPreview ? "preview" : "guest")}`;
   const [p, setP] = useState(() => load(key) || (isPreview
-    ? { name: "Reshma", goddessName: "The Lucky One", colours: ["#F5E0A0", "#BFA5D8", "#2CB7A7", "#000000"], words: ["chosen", "magnetic", "abundant", "soft"], belief: "Everything is always working out for me.", photo: null, entered: "2026-09-25" }
+    ? { name: "Reshma", goddessName: "The Lucky One", words: ["chosen", "magnetic", "abundant", "soft"], belief: "Everything is always working out for me.", photo: null, entered: "2026-09-25" }
     : { name: firstName && firstName !== "you" ? firstName : "", goddessName: "", colours: [], words: [], belief: "", photo: null, entered: new Date().toISOString().slice(0, 10) }));
   const [opened, setOpened] = useState(startPage !== null);
   const [page, setPage] = useState(startPage ?? 0);
   const [editing, setEditing] = useState(false);
   const [customWord, setCustomWord] = useState("");
-  const [buying, setBuying] = useState("");
-  const [buyErr, setBuyErr] = useState("");
-  const buyNow = async (sku) => {
-    if (!sku) { window.open("https://beacons.ai/reshmaoracle", "_blank"); return; }
-    setBuying(sku); setBuyErr("");
-    try {
-      let tok = ""; try { tok = localStorage.getItem("shg_auth_token") || ""; } catch {}
-      const r = await fetch("/shop/checkout", { method: "POST", headers: { "Content-Type": "application/json", ...(tok ? { Authorization: "Bearer " + tok } : {}) }, body: JSON.stringify({ sku }) });
-      const d = await r.json();
-      if (d.url) { window.location.href = d.url; return; }
-      setBuyErr(d.error || "Checkout didn't open. Try again.");
-    } catch { setBuyErr("Checkout didn't open. Try again."); }
-    setBuying("");
-  };
 
   useEffect(() => { store(key, p); }, [key, p]);
   useEffect(() => {
@@ -120,7 +106,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
   const stamps = [
     { k: "entered", top: "ENTERED", mid: "The Portal", bottom: enteredLabel.toUpperCase(), earned: true },
-    { k: "built", top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.goddessName && p.words.length && p.colours.length) },
+    { k: "built", top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.goddessName && p.words.length) },
     { k: "intention", top: "FIRST", mid: "Intention", bottom: "WRITTEN", earned: threads.length > 0 },
     { k: "sign", top: "FIRST SIGN", mid: "Logged", bottom: `${signs} SO FAR`, earned: signs > 0 },
     { k: "l10", top: "LISTENED", mid: "10 times", bottom: "RITUAL", earned: listenCount >= 10 },
@@ -189,23 +175,18 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                   </label>
                   <div style={{ flex: 1, minWidth: 0, display: "grid", gap: 8, alignContent: "start" }}>
                     <div><Label>NAME</Label>{editing ? <input id="pp-name" style={field} value={p.name} onChange={(e) => set({ name: e.target.value })} /> : <div style={{ fontSize: 15 }}>{p.name || "Add your name"}</div>}</div>
-                    <div><Label>GODDESS NAME</Label>{editing ? <input id="pp-goddess" style={field} placeholder="The Lucky One" value={p.goddessName} onChange={(e) => set({ goddessName: e.target.value })} /> : <div style={{ fontSize: 15 }}>{p.goddessName || "Choose one"}</div>}</div>
+                    <div><Label>GOD OR GODDESS NAME</Label>{editing ? <input id="pp-goddess" style={field} placeholder="The Lucky One" value={p.goddessName} onChange={(e) => set({ goddessName: e.target.value })} /> : <div style={{ fontSize: 15 }}>{p.goddessName || "Choose one"}</div>}</div>
+                    <div><Label>I IDENTIFY AS</Label>{editing
+                      ? <select id="pp-identity" style={field} value={p.identity || ""} onChange={(e) => set({ identity: e.target.value })}>
+                          <option value="">Choose</option><option>Woman</option><option>Man</option><option>Non-binary</option><option>Prefer to self-describe</option><option>Prefer not to say</option>
+                        </select>
+                      : <div style={{ fontSize: 15 }}>{p.identity || "Not chosen yet"}</div>}</div>
                     <div><Label>CALLING IN</Label><div style={{ fontSize: 14 }}>{callingIn.charAt(0).toUpperCase() + callingIn.slice(1)}</div></div>
                     <div><Label>ENTERED</Label><div style={{ fontSize: 14 }}>{enteredLabel}</div></div>
                   </div>
                 </div>
 
-                <div style={{ marginTop: 14 }}><Label>HER COLOURS {editing && "· pick up to 4"}</Label>
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    {(editing ? COLOURS : p.colours).map((c) => (
-                      <button key={c} disabled={!editing} onClick={() => toggle("colours", c, 4)} aria-label={`Colour ${c}`} aria-pressed={p.colours.includes(c)}
-                        style={{ width: 26, height: 26, borderRadius: "50%", background: c, cursor: editing ? "pointer" : "default", border: "1px solid rgba(0,0,0,.25)", boxShadow: editing && p.colours.includes(c) ? "0 0 0 2px #F2ECE4,0 0 0 3.5px #000" : "none", padding: 0 }} />
-                    ))}
-                    {!editing && !p.colours.length && <span style={{ fontSize: 13 }}>Not chosen yet</span>}
-                  </div>
-                </div>
-
-                <div style={{ marginTop: 12 }}><Label>HER WORDS {editing && "· pick up to 5"}</Label>
+                <div style={{ marginTop: 12 }}><Label>YOUR WORDS {editing && "· pick up to 5"}</Label>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {(editing ? [...new Set([...WORDS, ...p.words])] : p.words).map((w) => (
                       <button key={w} disabled={!editing} onClick={() => toggle("words", w, 5)} aria-pressed={p.words.includes(w)}
@@ -221,7 +202,15 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                   )}
                 </div>
 
-                <div style={{ marginTop: 12 }}><Label>SHE BELIEVES</Label>
+                {[["favourites","YOUR FAVOURITES","Anything you love: places, people, songs, rituals, one per line"],["thisYear",`${new Date().getFullYear()} INTENTIONS`,"What you're calling in this year, one per line"]].map(([k, l, ph]) => (
+                  <div key={k} style={{ marginTop: 12 }}><Label>{l}</Label>
+                    {editing
+                      ? <textarea id={`pp-${k}`} rows={4} style={{ ...field, resize: "vertical" }} placeholder={ph} value={p[k] || ""} onChange={(e) => set({ [k]: e.target.value })} />
+                      : (p[k] ? <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.6 }}>{p[k].split("\n").filter(Boolean).map((x, i) => <li key={i}>{x}</li>)}</ul> : <div style={{ fontSize: 13 }}>Not added yet</div>)}
+                  </div>
+                ))}
+
+                <div style={{ marginTop: 12 }}><Label>YOU BELIEVE</Label>
                   {editing ? <input id="pp-belief" style={field} placeholder="Everything is always working out for me." value={p.belief} onChange={(e) => set({ belief: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.belief || "Write your affirmation"}</div>}
                 </div>
 
@@ -268,29 +257,21 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             {page === 2 && (
               <div className="pp-page" data-page="03 · VISAS & STAMPS" style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
                 <Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 18, marginTop: 12 }}>
-                  {stamps.map((s, i) => (
+                <style>{`body .pp-stamps.pp-stamps{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important;gap:18px;margin-top:12px}@media(max-width:700px){body .pp-stamps.pp-stamps{grid-template-columns:1fr 1fr!important}}`}</style><div className="pp-stamps">
+                  {stamps.map((s0, i) => { const s = s0.earned && s0.k && stampDates[s0.k] ? { ...s0, bottom: String(stampDates[s0.k]).toUpperCase() } : s0; return (
                     <div key={i} style={{ textAlign: "center" }}>
                       <Stamp s={s} i={i} />
-                      <div style={{ marginTop: 8, fontSize: 13, fontWeight: s.earned ? 700 : 400, color: "#000" }}>
-                        {s.earned ? (s.k ? stampDates[s.k] : "") || "Earned" : "Not yet"}
-                      </div>
+                      {!s.earned && <div style={{ marginTop: 8, fontSize: 13, color: "#000" }}>Not yet</div>}
                     </div>
-                  ))}
+                  ); })}
                 </div>
               </div>
             )}
 
             {page === 3 && (
               <div className="pp-page" data-page="04 · SHOP" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 12 }}>
-                <div style={{ fontSize: 15, lineHeight: 1.6 }}>Workbooks and guides to go deeper on your desire.</div>
-                {[["Lovemaxxing Workbook", "The specific person, or how you show up in love", ""], ["Luckygirlmaxxing Workbook", "General good-fortune installation", "luckygirlmaxxing"], ["Richgirlmaxxing Workbook", "Belief work underneath receiving and earning", "richgirlmaxxing"]].map(([n, d, sku]) => (
-                  <button key={n} onClick={() => buyNow(sku)} style={{ all: "unset", cursor: "pointer", border: "1px solid #000", borderRadius: 14, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
-                    <span><span style={{ display: "block", fontSize: 15, fontWeight: 500 }}>{n}</span><span style={{ display: "block", fontSize: 13, marginTop: 2 }}>{d}</span></span><span style={{ fontSize: 15, fontWeight: 600, background: "#000", color: "#F2ECE4", borderRadius: 999, padding: "8px 14px", whiteSpace: "nowrap" }}>{buying === sku && sku ? "Opening…" : "Buy $29"}</span>
-                  </button>
-                ))}
-                {buyErr && <div style={{ fontSize: 14 }}>{buyErr}</div>}
-                <div style={{ fontSize: 12 }}>Secure checkout by Stripe. Your PDF downloads straight after paying.</div>
+                <div style={{ fontSize: 15, lineHeight: 1.6 }}>Workbooks, the method deck and working with me.</div>
+                <div style={{ background: "#000", borderRadius: 14, padding: 10 }}><ShopGrid /></div>
               </div>
             )}
 
