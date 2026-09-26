@@ -175,15 +175,15 @@ const Label = ({ children }) => <div style={{ fontSize: 9, letterSpacing: ".24em
 
 // A passport stamp: double ring, words set around the rim, the SHG clover in
 // the middle, gradient ink with a slightly worn edge like a real rubber stamp.
-function Stamp({ s, i }) {
+function Stamp({ s, i, solid = false }) {
   const id = `st${i}`;
-  const ink = s.earned ? `url(#${id}g)` : "#000";
+  const ink = solid ? "#000" : s.earned ? `url(#${id}g)` : "#000";
   const mid = String(s.mid);
   return (
     <svg viewBox="0 0 200 200" role="img" aria-label={`${s.top} ${mid} ${s.bottom}`} style={{ width: "100%", display: "block", transform: `rotate(${s.earned ? [-8, 6, -3, 9, -6, 4][i % 6] : 0}deg)`, opacity: s.earned ? 1 : 0.22, filter: s.earned ? "saturate(1.3) brightness(.85)" : "grayscale(1)" }}>
       <defs>
         <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#E8B870" /><stop offset=".45" stopColor="#BFA5D8" /><stop offset=".8" stopColor="#2CB7A7" /><stop offset="1" stopColor="#167A6B" />
+          <stop offset="0" stopColor="#F5E0A0" /><stop offset=".25" stopColor="#E8B870" /><stop offset=".5" stopColor="#BFA5D8" /><stop offset=".78" stopColor="#2CB7A7" /><stop offset="1" stopColor="#167A6B" />
         </linearGradient>
         <filter id={`${id}f`}>
           <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed={i + 3} result="n" />
@@ -193,6 +193,7 @@ function Stamp({ s, i }) {
         <path id={`${id}t`} d="M 30 100 A 70 70 0 0 1 170 100" />
         <path id={`${id}b`} d="M 26 100 A 74 74 0 0 0 174 100" />
       </defs>
+      {solid && <circle cx="100" cy="100" r="98" fill={`url(#${id}g)`} />}
       <g filter={s.earned ? `url(#${id}f)` : undefined} fill="none" stroke={ink} strokeDasharray={s.earned ? undefined : "4 5"}>
         <circle cx="100" cy="100" r="94" strokeWidth={s.earned ? 6 : 3} />
         <circle cx="100" cy="100" r="86" strokeWidth="1.5" />
@@ -203,7 +204,7 @@ function Stamp({ s, i }) {
         <g fill={ink} stroke="none" style={{ fontFamily: "'Futura','Jost',sans-serif" }}>
           <text fontSize="13" letterSpacing="3" textAnchor="middle"><textPath href={`#${id}t`} startOffset="50%">{s.top} ★</textPath></text>
           <text fontSize="11" letterSpacing="3" textAnchor="middle" dominantBaseline="hanging"><textPath href={`#${id}b`} startOffset="50%">{s.bottom}</textPath></text>
-          <text x="100" y="124" fontSize={mid.length > 14 ? 10 : 14} fontWeight="600" textAnchor="middle">{mid.length > 22 ? mid.slice(0, 21) + "…" : mid}</text>
+          <text x="100" y="124" fontSize={mid.length > 14 ? 10 : 14} fontWeight="400" textAnchor="middle">{mid.length > 22 ? mid.slice(0, 21) + "…" : mid}</text>
           <text x="100" y="140" fontSize="7" letterSpacing="2.5" textAnchor="middle">S H G</text>
         </g>
       </g>
@@ -228,7 +229,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const areas = (p.onboarding && Array.isArray(p.onboarding.areas)) ? p.onboarding.areas : [];
   const savedWhere = isPreview || !userId ? "Saved on this device. Only you can see it." : "Saved to your account. Only you can see it.";
   // Cover look: black graph paper (default) or white graph paper; ?cover=white previews the other.
-  const coverStyle = (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("cover")) || "white";
+  const coverStyle = (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("cover")) || "black";
 
   useEffect(() => { store(key, p); try { window.dispatchEvent(new CustomEvent("shg-passport-updated", { detail: { name: p.name, goddessName: p.goddessName } })); } catch {} }, [key, p]);
   useEffect(() => {
@@ -328,7 +329,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
         {!opened ? (
           <>
-            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: coverStyle === "white" ? "none" : "2px solid #BFA5D8", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(440px, 88vw, calc((100svh - 150px) * 0.71))", aspectRatio: "0.71", margin: "4vh auto 0", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: coverStyle === "white" ? "#F2ECE4" : "#000", backgroundImage: coverStyle === "white" ? "linear-gradient(rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px)" : "linear-gradient(rgba(191,165,216,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.2) 1px,transparent 1px)", backgroundSize: coverStyle === "white" ? "100px 100px,100px 100px,20px 20px,20px 20px" : "20px 20px", boxShadow: coverStyle === "white" ? "inset 10px 0 14px -8px rgba(0,0,0,.18), 0 0 0 1px #000, 0 10px 30px rgba(0,0,0,.35)" : "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
+            <button onClick={() => { setOpened(true); if (!p.goddessName) setEditing(true); }} aria-label="Open your passport" className="pp-cover" style={{ animation: "pp-float 3.2s ease-in-out infinite, pp-glow 3.2s ease-in-out infinite", border: "2px solid transparent", backgroundClip: "padding-box", outline: "none", outlineOffset: -2, all: "unset", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", width: "min(440px, 88vw, calc((100svh - 150px) * 0.71))", aspectRatio: "0.71", margin: "4vh auto 0", boxSizing: "border-box", padding: "46px 26px 34px", borderRadius: "6px 18px 18px 6px", background: coverStyle === "white" ? "#F2ECE4" : "#000", backgroundImage: coverStyle === "white" ? "linear-gradient(rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px)" : "linear-gradient(rgba(242,236,228,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,228,.12) 1px,transparent 1px),linear-gradient(rgba(242,236,228,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,228,.07) 1px,transparent 1px)", backgroundSize: "100px 100px,100px 100px,20px 20px,20px 20px", boxShadow: coverStyle === "white" ? "inset 10px 0 14px -8px rgba(0,0,0,.18), 0 0 0 1px #000, 0 10px 30px rgba(0,0,0,.35)" : "inset 10px 0 14px -8px rgba(0,0,0,.9), 0 0 0 1px #E8B870, 0 0 26px rgba(191,165,216,.55), 0 0 60px rgba(44,183,167,.3)", textAlign: "center", position: "relative" }}>
               <span aria-hidden="true" style={{ position: "absolute", left: 14, top: 10, bottom: 10, width: 1, background: "rgba(242,236,228,.08)" }} />
               <span style={{ fontSize: 11, letterSpacing: ".38em", paddingLeft: ".38em", background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>UNIVERSE OF RESHMA ORACLE</span>
               <span style={{ display: "grid", justifyItems: "center", gap: 18 }}>
@@ -423,16 +424,18 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 <div className="pp-stampbook" style={{ background: "#000", backgroundImage: "linear-gradient(rgba(242,236,228,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,228,.10) 1px,transparent 1px)", backgroundSize: "20px 20px", borderRadius: 16, padding: "14px 12px 18px", color: "#F2ECE4" }}>
                 <style>{`body .pp-stamps.pp-stamps{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important;gap:18px;margin-top:12px}@media(max-width:700px){body .pp-stamps.pp-stamps{grid-template-columns:1fr 1fr!important}}`}</style><div className="pp-stamps">
                   {stamps.filter(x => x.earned).map((s0, i) => { const s = s0.k && stampDates[s0.k] ? { ...s0, bottom: String(stampDates[s0.k]).toUpperCase() } : s0; return (
-                    <div key={i} className="pp-glowstamp" style={{ textAlign: "center", animationDelay: `${(i % 6) * 0.4}s` }}><Stamp s={s} i={i} /></div>
+                    <div key={i} className="pp-glowstamp" style={{ borderRadius: "50%", maxWidth: 150, margin: "0 auto", width: "100%", animationDelay: `${(i % 6) * 0.4}s` }}><Stamp s={s} i={i} solid /></div>
                   ); })}
                   <div style={{ textAlign: "center", opacity: .9 }}><div style={{ width: "100%", maxWidth: 130, aspectRatio: "1", margin: "0 auto", borderRadius: "50%", border: "2px dashed #BFA5D8", display: "grid", placeItems: "center", fontSize: 12, fontWeight: 300, color: "#F2ECE4", letterSpacing: ".15em" }}>NEXT<br/>STAMP</div></div>
                 </div>
-                <div style={{ marginTop: 22, fontSize: 11, letterSpacing: ".24em", color: "#F2ECE4" }}>MILESTONES YET TO EARN · {stamps.filter((s) => !s.earned).length}</div>
+                </div>
+                <div style={{ marginTop: 18, background: "#fff", border: "1px solid #000", borderRadius: 16, padding: "14px 12px", color: "#000" }}>
+                <div style={{ fontSize: 11, letterSpacing: ".24em", color: "#000" }}>MILESTONES YET TO EARN · {stamps.filter((s) => !s.earned).length}</div>
                 {Object.entries(stamps.filter((x) => !x.earned).reduce((m, x) => { const g = x.g || "Milestones"; (m[g] = m[g] || []).push(x); return m; }, {})).map(([g, list]) => (
                   <div key={g} style={{ marginTop: 12 }}>
-                    <div style={{ fontSize: 12, letterSpacing: ".2em", marginBottom: 6, color: "#F2ECE4" }}>{g.toUpperCase()}</div>
+                    <div className="pp-mgroup">{g.toUpperCase()}</div>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                      {list.map((x, i) => <span key={i} style={{ fontSize: 13, fontWeight: 300, padding: "5px 10px", border: "1px dashed #BFA5D8", borderRadius: 999, color: "#F2ECE4" }}>○ {x.how || `${x.top} ${x.mid}`}</span>)}
+                      {list.map((x, i) => <span key={i} style={{ fontSize: 13, fontWeight: 300, padding: "5px 10px", border: "1px dashed #000", borderRadius: 999, color: "#000" }}>○ {x.how || `${x.top} ${x.mid}`}</span>)}
                     </div>
                   </div>
                 ))}
@@ -477,8 +480,9 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 .pp-tap{animation:pp-blink 1.6s ease-in-out infinite}@keyframes pp-blink{50%{opacity:.35}}
 @keyframes shg-pp-open{from{opacity:0;transform:perspective(1200px) rotateY(-70deg);transform-origin:left center}to{opacity:1;transform:none;transform-origin:left center}}
 @keyframes pp-glow{0%,100%{filter:drop-shadow(0 0 6px rgba(232,184,112,.55))}50%{filter:drop-shadow(0 0 18px rgba(44,183,167,.7))}}
+body .pp-mgroup.pp-mgroup{font-size:11px;letter-spacing:.2em;margin-bottom:6px;color:#000!important;-webkit-text-fill-color:#000!important;background:none!important;opacity:1!important}
 .pp-stampbook{animation:pp-in .7s cubic-bezier(.2,.8,.2,1) both}@keyframes pp-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.pp-glowstamp{animation:pp-shim 3.2s ease-in-out infinite}@keyframes pp-shim{0%,100%{filter:drop-shadow(0 0 6px rgba(245,224,160,.55)) drop-shadow(0 0 2px rgba(232,184,112,.6))}33%{filter:drop-shadow(0 0 12px rgba(191,165,216,.85))}66%{filter:drop-shadow(0 0 12px rgba(44,183,167,.8)) drop-shadow(0 0 20px rgba(22,122,107,.5))}}
+.pp-glowstamp{animation:pp-shim 3.2s ease-in-out infinite}@keyframes pp-shim{0%,100%{box-shadow:0 0 14px rgba(245,224,160,.7),0 0 26px rgba(232,184,112,.35)}33%{box-shadow:0 0 18px rgba(191,165,216,.9),0 0 34px rgba(191,165,216,.4)}66%{box-shadow:0 0 18px rgba(44,183,167,.9),0 0 34px rgba(22,122,107,.45)}}
 .pp-earned{animation:pp-earned 3s ease-in-out infinite}@keyframes pp-earned{0%,100%{filter:drop-shadow(0 0 3px rgba(232,184,112,.5))}50%{filter:drop-shadow(0 0 10px rgba(191,165,216,.9)) drop-shadow(0 0 16px rgba(44,183,167,.5))}}
 @media(prefers-reduced-motion:reduce){[aria-label="Goddess Passport"] *{animation:none!important}}`}</style>
     </div>

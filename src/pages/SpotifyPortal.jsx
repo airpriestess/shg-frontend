@@ -12,6 +12,7 @@ import { useAuth } from "../contexts/AuthContext.jsx";
 import LogSignModal, { ManifestCelebration } from "../components/LogSignModal.jsx";
 import { usePushNotifications } from "../components/PushNotifications.jsx";
 import { saveProfile } from "../utils/profileSync";
+import { requestNotificationPermission, scheduleReminders } from "../utils/notifications.js";
 import ShopGrid, { PRODUCTS, buyProduct, WorkWithReshma } from "../components/ShopGrid.jsx";
 
 const QUIZ_WORKER_URL = "https://shg-quiz-worker.airpriestess.workers.dev";
@@ -1811,30 +1812,29 @@ function HomeTab({ userEmail, greet, firstName, track, play, liked, toggleLike, 
       {/* HEADER — same glowing greeting as Analytics, so the app opens on her. */}
       <style>{`@keyframes shg-lucky{0%{background-position:0% 50%;box-shadow:0 0 24px rgba(245,224,160,.55),0 0 60px rgba(191,165,216,.35)}50%{background-position:100% 50%;box-shadow:0 0 40px rgba(44,183,167,.6),0 0 90px rgba(232,184,112,.45)}100%{background-position:0% 50%;box-shadow:0 0 24px rgba(245,224,160,.55),0 0 60px rgba(191,165,216,.35)}}@media(prefers-reduced-motion:reduce){.shg-lucky{animation:none!important}}`}</style>
       <div className="shg-hero shg-lucky shg-no-paper" style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B,#BFA5D8,#F5E0A0)", backgroundSize:"300% 300%", animation:"shg-lucky 6s ease-in-out infinite", margin:"20px 16px 18px", padding:"26px 20px", borderRadius:20, display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, position:"relative", overflow:"hidden" }}>
-        <img src="/logo_transparent_cropped.png" alt="" aria-hidden="true" className="shg-hero-clover" style={{ position:"absolute", right:72, top:"50%", transform:"translateY(-50%)", width:120, height:120, opacity:.9, pointerEvents:"none" }}/>
-        <div onClick={()=>openPlayer?.()} style={{ cursor:"pointer", position:"relative" }}>
+        <img src={passportPhoto || "/logo_transparent_cropped.png"} alt="" aria-hidden="true" className="shg-hero-face" style={{ position:"absolute", right:18, top:"50%", transform:"translateY(-50%)", width:84, height:84, borderRadius:"50%", objectFit:"cover", background:"#000", border:"2px solid #000", padding: passportPhoto ? 0 : 8, boxSizing:"border-box", pointerEvents:"none" }}/>
+        <div onClick={()=>openPlayer?.()} style={{ cursor:"pointer", position:"relative", paddingRight:92 }}>
           <div style={{ fontSize:12, letterSpacing:".4em", fontWeight:300, color:"#000", marginBottom:10 }}>WELCOME BACK</div>
-          <div style={{ display:"flex", alignItems:"center", gap:12 }}>{passportPhoto && <img src={passportPhoto} alt="" style={{ width:48, height:48, borderRadius:"50%", objectFit:"cover", border:"2px solid #000", flexShrink:0 }}/>}<div style={{ color:"#000", fontSize:34, fontWeight:300, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {passportName || (isPreview ? "Reshma" : firstName)}</div></div>
-          {(()=>{ const dream = threads.filter(t => !t.done).slice().sort((a,b)=>(b.createdTs||0)-(a.createdTs||0))[0]?.desire; return (
-            <div style={{ fontSize:15, fontWeight:300, color:"#000", marginTop:8, lineHeight:1.45, maxWidth:320 }}>Of course. Obviously. You said it, so it is done{dream ? <>: <span style={{ fontWeight:300, background:"#000", color:"#F2ECE4", padding:"1px 8px", borderRadius:8, boxDecorationBreak:"clone", WebkitBoxDecorationBreak:"clone" }}>{dream}</span></> : "."}</div>
-          ); })()}
-          <LastPlayed play={play} isPreview={isPreview}/>
+          <div style={{ display:"flex", alignItems:"center", gap:12 }}><div style={{ color:"#000", fontSize:34, fontWeight:300, lineHeight:1.2, display:"inline-block", paddingRight:"0.15em", paddingBottom:"0.08em" }}>Hello, {passportName || (isPreview ? "Reshma" : firstName)}</div></div>
+          <div style={{ fontSize:15, fontWeight:300, color:"#000", marginTop:8, lineHeight:1.45 }}>Of course. Obviously. It is done.</div>
+
         </div>
 
       </div>
 
       {/* OPEN YOUR PASSPORT: a small passport, drawn as a banner */}
-      <button onClick={openProfile} aria-label="Open your passport" className="shg-no-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:"6px 16px 16px 6px",cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",backgroundColor:"#F2ECE4",backgroundImage:"linear-gradient(rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.14) 1px,transparent 1px),linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px)",backgroundSize:"80px 80px,80px 80px,16px 16px,16px 16px",border:"1px solid #000",boxShadow:"inset 8px 0 10px -8px rgba(0,0,0,.25)" }}>
+      <button onClick={openProfile} aria-label="Open your passport" className="shg-no-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:"6px 16px 16px 6px",cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",backgroundColor:"#000",backgroundImage:"linear-gradient(rgba(242,236,228,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,228,.12) 1px,transparent 1px),linear-gradient(rgba(242,236,228,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(242,236,228,.07) 1px,transparent 1px)",backgroundSize:"80px 80px,80px 80px,16px 16px,16px 16px",border:"1px solid #E8B870",boxShadow:"inset 8px 0 10px -8px rgba(0,0,0,.9)" }}>
         <img src="/logo_transparent_cropped.png" alt="" style={{ width:44,height:44,flexShrink:0 }}/>
         <span style={{ flex:1 }}>
-          <span style={{ display:"inline-block",fontSize:18,fontWeight:400,letterSpacing:".3em",background:"linear-gradient(90deg,#E8B870,#BFA5D8 45%,#2CB7A7 75%,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",color:"transparent",WebkitTextFillColor:"transparent" }}>PASSPORT</span>
-          <style>{`body .shg-ppb-sub.shg-ppb-sub{display:block;font-size:11px;letter-spacing:.2em;margin-top:3px;color:#000!important;-webkit-text-fill-color:#000!important;background:none!important;opacity:1!important}`}</style><span className="shg-ppb-sub">SELF HYPNOSIS GODDESS</span>
+          <span style={{ display:"inline-block",fontSize:18,fontWeight:400,letterSpacing:".3em",background:"linear-gradient(90deg,#F5E0A0,#E8B870 25%,#BFA5D8 50%,#2CB7A7 78%,#167A6B)",WebkitBackgroundClip:"text",backgroundClip:"text",color:"transparent",WebkitTextFillColor:"transparent" }}>PASSPORT</span>
+          <style>{`body .shg-ppb-sub.shg-ppb-sub{display:block;font-size:11px;letter-spacing:.2em;margin-top:3px;color:#F2ECE4!important;-webkit-text-fill-color:#F2ECE4!important;background:none!important;opacity:1!important}`}</style><span className="shg-ppb-sub">SELF HYPNOSIS GODDESS</span>
         </span>
-        <span style={{ fontSize:13,fontWeight:300,color:"#000",WebkitTextFillColor:"#000",whiteSpace:"nowrap" }}>Tap to open ›</span>
+        <span style={{ fontSize:13,fontWeight:300,color:"#F2ECE4",WebkitTextFillColor:"#F2ECE4",whiteSpace:"nowrap" }}>Tap to open ›</span>
       </button>
 
       {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
       <DailyReminder userId={userId} token={token}/>
+      <TodaysTrack play={play}/>
 
       {/* BUCKET LIST BAND: ten ideas a day */}
       <BucketBand threads={threads} setThreads={setThreads} isPreview={isPreview} userId={userId} token={token}/>
@@ -2204,7 +2204,22 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
   }, [userId, isPreview, token, apiUrl]);
 
   const fetchRecommendation = async () => {
-    if (isPreview || !userId || !token) return;
+    // Local: from open intentions, journal areas and what she has listened to least.
+    const open = threads.filter(t => !t.done && !t.isBucket && t.category);
+    let areas = []; try { areas = readJournal(userId, isPreview).slice(0, 10).flatMap(e => e.areas || []); } catch {}
+    const counts = {};
+    open.forEach(t => String(t.category).split(",").forEach(c => { c = c.trim(); if (c) counts[c] = (counts[c]||0) + 2; }));
+    areas.forEach(a => { const c = (AREA_WORDS.find(x => x[0] === a) || [])[1]; if (c) counts[c] = (counts[c]||0) + 1; });
+    const cat = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0];
+    let log = []; try { log = JSON.parse(localStorage.getItem("shg_listen_log") || "[]"); } catch {}
+    const played = t => log.filter(e => e.title === t.title).length;
+    const pool = TRACKS.filter(t => !cat || t.cat === cat);
+    const pick = (pool.length ? pool : TRACKS).slice().sort((a,b)=>played(a)-played(b))[0];
+    if (!pick) return;
+    const intention = open.find(t => String(t.category).includes(pick.cat));
+    const area = String(pick.cat).replace("maxxing","");
+    setRecommendation({ title: pick.title, category: area, reason: intention ? `You're calling in "${intention.desire}". This ${area} track works on the belief underneath it.` : cat ? `Your journal keeps coming back to ${area.toLowerCase()}. Give this one a week of nightly listens.` : "A good one to start with. Listen tonight as you fall asleep." });
+    return;
     setRecLoading(true);
     try {
       const res = await fetch(`${QUIZ_WORKER_URL}/recommend`, {
@@ -2218,16 +2233,18 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
     setRecLoading(false);
   };
 
+  const [reminderMsg, setReminderMsg] = useState("");
   const sendReminder = async () => {
-    if (isPreview || !userId || !token) return;
-    try {
-      await fetch(`${QUIZ_WORKER_URL}/reminder`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ reminder_time: "20:00" }),
-      });
-      setReminderSent(true);
-    } catch (e) { /* non-blocking */ }
+    const standalone = window.matchMedia?.("(display-mode: standalone)").matches || window.navigator.standalone;
+    if (!("Notification" in window)) {
+      setReminderMsg(/iPhone|iPad/.test(navigator.userAgent) && !standalone ? "Add the app to your Home Screen to get reminders: tap Share, then Add to Home Screen, then open it from there and tap remind me again." : "Reminders aren't available in this browser.");
+      return;
+    }
+    const perm = await requestNotificationPermission();
+    if (perm !== "granted") { setReminderMsg(perm === "denied" ? "Notifications are blocked. Turn them on in your settings, then tap remind me again." : "Reminders need notification permission."); return; }
+    scheduleReminders();
+    if (!isPreview && userId && token) { try { await fetch(`${QUIZ_WORKER_URL}/reminder`, { method:"POST", headers:{ "Content-Type":"application/json", Authorization:`Bearer ${token}` }, body: JSON.stringify({ reminder_time:"20:00" }) }); } catch {} }
+    setReminderSent(true); setReminderMsg("Reminders on: 8am and 9pm while the app is open.");
   };
 
   // ── PATTERNS: real listen counts per category/track, correlated with manifested desires ──
@@ -2306,7 +2323,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         setListenEvents(events);
 
         // Streak: consecutive days with at least one listen
-        const days = new Set(events.map(e => e.played_at?.slice(0,10)));
+        let localLog = []; try { localLog = JSON.parse(localStorage.getItem("shg_listen_log") || "[]"); } catch {}
+        const days = new Set([...events.map(e => e.played_at?.slice(0,10)), ...localLog.map(e => String(e.d||"").slice(0,10))]);
         let streak = 0;
         const today = new Date();
         for (let i = 0; i < 60; i++) {
@@ -2655,10 +2673,10 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {/* AI RECOMMENDATION CARD */}
       <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"18px 16px", borderRadius:22 }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-          <span style={{ fontSize:13, fontWeight:500, color:C.cr, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next recommended listen ✦</span>
-          {!isPreview && (
+          <span style={{ fontSize:13, fontWeight:500, color:C.cr, letterSpacing:"0.18em", textTransform:"uppercase" }}>Your next recommendation ✦</span>
+          {(
             <button onClick={fetchRecommendation} disabled={recLoading} style={{ fontSize:15, color:C.accentLav, background:"rgba(191,165,216,0.1)", border:"1px solid rgba(191,165,216,0.3)", borderRadius:8, padding:"4px 10px", cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>
-              {recLoading ? "thinking…" : recommendation ? "refresh" : "ask AI"}
+              {recLoading ? "thinking…" : recommendation ? "refresh" : "show me"}
             </button>
           )}
         </div>
@@ -2681,19 +2699,20 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ fontSize:15, color:C.mu, marginTop:8, lineHeight:1.5, fontStyle:"italic" }}>"{recommendation.reason}"</div>
           </div>
         ) : (
-          <div style={{ fontSize:16, color:C.mu }}>Tap "ask AI" and the algorithm learns your patterns to suggest what to listen to next.</div>
+          <div style={{ fontSize:16, color:C.mu }}>Tap "show me" for a track picked from your intentions and journal.</div>
         )}
       </div>
 
       {/* STREAK CALENDAR */}
-      {streakDays.length > 0 && (
+      {(()=>{ return true; })() && (
         <div className="shg-paper" style={{ margin:"0 16px 14px", padding:"18px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}` }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
             <span style={{ fontSize:15, fontWeight:400, color:C.accentGold, letterSpacing:"0.18em", textTransform:"uppercase" }}>Listening streak{isPreview ? " · sample" : ""}</span>
             <span style={{ fontSize:15, color:C.accentGold }}>{streakDays.filter(d=>d.listened).length} days</span>
           </div>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(10,1fr)", gap:4 }}>
-            {streakDays.map((d,i) => (
+          <style>{`body .shg-streak.shg-streak{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(10,1fr)!important;gap:4px}`}</style>
+          <div className="shg-streak">
+            {(streakDays.length ? streakDays : Array.from({ length:30 }, (_,i) => ({ date:"", listened:false }))).map((d,i) => (
               <div key={i} title={d.date} style={{ width:"100%", paddingBottom:"100%", position:"relative", borderRadius:4, background: d.listened ? "#E8B870" : "rgba(232,184,112,0.1)" }}/>
             ))}
           </div>
@@ -2730,7 +2749,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
       {!isPreview && (
         <div className="shg-paper" style={{ margin:"0 16px 14px", padding:"16px 16px", borderRadius:16, background:C.bg2, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:14 }}>
           <span style={{ fontSize:26, flexShrink:0 }}>🔔</span>
-          <div style={{ flex:1 }}>
+          <div style={{ flex:1, minWidth:0 }}>
             <div style={{ fontSize:15, color:C.cr, fontWeight:400 }}>Daily reminder</div>
             <div style={{ fontSize:15, color:C.mu, marginTop:2 }}>Get a nudge at 8pm to listen</div>
           </div>
@@ -2738,6 +2757,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             {reminderSent ? "✓ set" : "remind me"}
           </button>
         </div>
+      )}
+      {!isPreview && reminderMsg && (
+        <div className="shg-paper" style={{ margin:"-6px 16px 14px", padding:"12px 16px", borderRadius:14, fontSize:14, fontWeight:300, lineHeight:1.5, color:"#000" }}>{reminderMsg}</div>
       )}
 
       {/* ASK RESHMA — Goddess tier only */}
@@ -2801,7 +2823,7 @@ function AskReshmaCard({ C, userId, token, userTier, userEmail }) {
         <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom: open&&isGoddess ? 16 : 0 }}>
           <div style={{ width:46,height:46,borderRadius:14,background:"rgba(232,184,112,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0 }}>✉️</div>
           <div style={{ flex:1 }}>
-            <div style={{ fontSize:15,fontWeight:500,color:C.cr }}>Ask Reshma directly</div>
+            <div style={{ fontSize:15,fontWeight:500,color:C.cr }}>Ask Reshma</div>
             <div style={{ fontSize:15,color:C.mu,marginTop:2,lineHeight:1.4 }}>
               {isGoddess
                 ? "Drop a question — about the tracks, hypnosis, or your journey. Answered personally, not by AI."
@@ -3145,6 +3167,7 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
   const totalSigns = threads.reduce((a,t)=>a+(t.signs?.length||0),0);
   const [bucketText, setBucketText] = useState("");
   const [bucketCatPick, setBucketCatPick] = useState("");
+  const [pastOpen, setPastOpen] = useState(false);
   const [promotingId, setPromotingId] = useState(null);
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [trackPickerOpen, setTrackPickerOpen] = useState(false);
@@ -3329,10 +3352,12 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
       </button>}
 
       {view==="journal" ? (
-        <JournalBoard userId={userId} isPreview={isPreview}/>
+        <JournalBoard userId={userId} isPreview={isPreview} threads={threads} setThreads={setThreads} token={token}/>
       ) : view==="signs" ? (
         <div>
           <button className="shg-cta" onClick={()=>window.dispatchEvent(new Event("shg-log-sign"))} style={{ marginBottom:8 }}>✦ Log a sign</button>
+          <button onClick={()=>setPastOpen(true)} style={{ display:"block",width:"100%",marginBottom:10,background:"transparent",color:PC.text,border:`1px solid ${PC.text}`,borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>+ Log a past sign</button>
+          {pastOpen && <PastSignSheet intentions={threads.filter(t=>!t.isBucket)} onClose={()=>setPastOpen(false)} onSave={(sg, target)=>{ if (target) setThreads(ts=>ts.map(t=>String(t.id)===String(target)?{ ...t, signs:[...(t.signs||[]), sg] }:t)); else { try { const loose = JSON.parse(localStorage.getItem("shg_loose_signs")||"[]"); localStorage.setItem("shg_loose_signs", JSON.stringify([...loose, sg].slice(-500))); } catch {} } }}/>}
           <details style={{ marginBottom:14,color:PC.text }}><summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,listStyle:"none" }}>How to spot a sign ›</summary>
             <ol style={{ margin:"10px 0",paddingLeft:20,display:"grid",gap:6,fontSize:15,fontWeight:300,lineHeight:1.5 }}><li>A sign is a coincidence that answers your desire: a word, a song, a stranger, an exact amount.</li><li>Ask for something rare and personal, then watch for it.</li><li>Log it the moment it happens, and link it to its intention.</li></ol>
           </details>
@@ -3798,13 +3823,7 @@ function WinCard({ w, mine }) {
   const [cheered, setCheered] = useState(false);
   return (
     <div className="shg-paper" style={{ borderRadius:18,padding:16,position:"relative" }}>
-      <style>{`@keyframes shg-wstamp{0%,100%{filter:drop-shadow(0 0 4px rgba(245,224,160,.7))}50%{filter:drop-shadow(0 0 10px rgba(44,183,167,.8)) drop-shadow(0 0 16px rgba(191,165,216,.6))}}.shg-wstamp{animation:shg-wstamp 3s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.shg-wstamp{animation:none}}`}</style>
-      <svg className="shg-wstamp" width="62" height="62" viewBox="0 0 62 62" aria-hidden="true" style={{ position:"absolute",top:-10,right:-6,transform:"rotate(12deg)" }}>
-        <defs><linearGradient id="wsg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F5E0A0"/><stop offset=".3" stopColor="#E8B870"/><stop offset=".6" stopColor="#BFA5D8"/><stop offset=".85" stopColor="#2CB7A7"/><stop offset="1" stopColor="#167A6B"/></linearGradient><path id="wsc" d="M31 31 m-22 0 a22 22 0 1 1 44 0 a22 22 0 1 1 -44 0"/></defs>
-        <circle cx="31" cy="31" r="29" fill="#000" stroke="url(#wsg)" strokeWidth="2"/><circle cx="31" cy="31" r="17" fill="none" stroke="url(#wsg)" strokeWidth="1"/>
-        <text fontSize="6.5" letterSpacing="1.6" fill="url(#wsg)" fontFamily="Jost,sans-serif"><textPath href="#wsc">MANIFESTED ✦ MANIFESTED ✦</textPath></text>
-        <text x="31" y="35" textAnchor="middle" fontSize="11" fill="url(#wsg)">✦</text>
-      </svg>
+
       <div style={{ display:"flex",gap:12,alignItems:"center" }}>
         {w.display === "face" && w.photo ? <img src={w.photo} alt="" style={{ width:56,height:56,borderRadius:"50%",objectFit:"cover",flexShrink:0,border:"2px solid #000" }}/> : <Thumb cat={(w.cats||[w.cat])[0]} size={56} radius={10}/>}
         <div style={{ flex:1,minWidth:0 }}>
@@ -3918,18 +3937,24 @@ const MicLabel = ({ on }) => on
   : <span style={{ whiteSpace:"nowrap" }}>🎙 Speak it</span>;
 // Speak into a text box (Web Speech API), same pattern as SpeakToProof.
 function useMic(onText) {
-  const [on, setOn] = useState(false); const ref = useRef(null);
+  const [on, setOn] = useState(false); const [err, setErr] = useState(""); const ref = useRef(null);
+  const NA = "Voice isn't available in this browser — type instead";
+  // Must start inside the tap handler (iPhone Safari requirement).
   const toggle = () => {
-    if (on) { ref.current?.stop(); setOn(false); return; }
+    setErr("");
+    if (on) { try { ref.current?.stop(); } catch {} setOn(false); return; }
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) { alert("Voice isn't supported in this browser. Try Safari or Chrome."); return; }
-    const r = new SR(); r.lang = "en-GB"; r.interimResults = false; r.continuous = false;
-    r.onresult = e => onText(Array.from(e.results).map(x => x[0].transcript).join(" ").trim());
-    r.onend = () => setOn(false); r.onerror = () => setOn(false);
-    ref.current = r; try { r.start(); setOn(true); } catch { setOn(false); }
+    if (!SR) { setErr(NA); return; }
+    let r; try { r = new SR(); } catch { setErr(NA); return; }
+    r.lang = navigator.language || "en-GB"; r.interimResults = false; r.continuous = false; r.maxAlternatives = 1;
+    r.onresult = e => { const t = Array.from(e.results).filter(x => x.isFinal !== false).map(x => x[0].transcript).join(" ").trim(); if (t) onText(t); };
+    r.onend = () => setOn(false);
+    r.onerror = e => { setOn(false); setErr(e.error === "not-allowed" || e.error === "service-not-allowed" ? "Microphone access is off. Allow it in Settings › Safari › Microphone (and turn on Siri & Dictation), or type instead." : e.error === "no-speech" ? "Didn't catch that. Tap and speak again." : NA); };
+    ref.current = r; try { r.start(); setOn(true); } catch { setOn(false); setErr(NA); }
   };
-  return [on, toggle];
+  return [on, toggle, err];
 }
+const MicErr = ({ err }) => err ? <div role="alert" style={{ fontSize:12,fontWeight:300,marginTop:6,color:"inherit" }}>{err}</div> : null;
 const saveThread = ({ v, cat="", bucket, setThreads, isPreview, userId, token }) => {
   const id = Date.now()+Math.random().toString(36).slice(2,6);
   if (!isPreview && userId && token) quizApi("/threads", token, { method:"POST", body: JSON.stringify(bucket ? { id, desire:v, is_bucket:true } : { id, desire:v }) }).catch(() => {});
@@ -3961,6 +3986,24 @@ function HowFarCard({ threads, isPreview, userId }) {
   );
 }
 
+// Home: today's track, played with the clover (never a ▶ emoji).
+function TodaysTrack({ play }) {
+  let last = null; try { last = JSON.parse(localStorage.getItem("shg_last_track") || "null"); } catch {}
+  const t = (last && TRACKS.find(x => x.id === last.id || x.title === last.title)) || TRACKS[Math.floor(Date.now() / 86400000) % Math.max(TRACKS.length, 1)];
+  if (!t) return null;
+  return (
+    <button onClick={()=>play?.(t)} className="shg-paper" aria-label={`Play ${displayTitle(t.title)}`} style={{ display:"flex",alignItems:"center",gap:12,width:"calc(100% - 32px)",margin:"0 16px 14px",padding:"10px 12px",borderRadius:18,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",color:"#000" }}>
+      <Thumb title={t.title} cat={t.cat} size={44} radius={10}/>
+      <span style={{ flex:1,minWidth:0 }}>
+        <span className="shg-lp-lab">{last ? "LAST PLAYED" : "TODAY'S TRACK"}</span>
+        <span style={{ display:"block",fontSize:15,fontWeight:300,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis" }}>{displayTitle(t.title)}</span>
+      </span>
+      <span style={{ width:44,height:44,borderRadius:"50%",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",display:"grid",placeItems:"center",flexShrink:0,boxShadow:"0 0 12px rgba(191,165,216,.5)" }}><img src="/logo_transparent_cropped.png" alt="" style={{ width:28,height:28 }}/></span>
+      <style>{`body .shg-lp-lab.shg-lp-lab{display:block;font-size:10px;letter-spacing:.2em;color:#000!important;-webkit-text-fill-color:#000!important;background:none!important}`}</style>
+    </button>
+  );
+}
+
 // Welcome card: resume the last track (or start a suggested one).
 function LastPlayed({ play, isPreview }) {
   let last = null; try { last = JSON.parse(localStorage.getItem("shg_last_track") || "null"); } catch {}
@@ -3982,36 +4025,88 @@ function LastPlayed({ play, isPreview }) {
 // Soft per-area tints, built only from the gradient stops.
 const AREA_TINT = (cat) => { const c = String(cat||""); const m = /Love/i.test(c) ? "191,165,216" : /Rich|Money/i.test(c) ? "232,184,112" : /Luck/i.test(c) ? "245,224,160" : /Beauty|Face|Body|Glow/i.test(c) ? "191,165,216" : /Self|Confiden/i.test(c) ? "44,183,167" : /Business|Career/i.test(c) ? "22,122,107" : /Sleep|Peace|Health/i.test(c) ? "44,183,167" : "191,165,216"; return { background:`rgba(${m},.16)`, border:`1.5px solid rgba(${m},.85)` }; };
 
+// Log a sign after the fact: date, text, optional photo. Always closable.
+function PastSignSheet({ title, intentions, onSave, onClose }) {
+  const [date, setDate] = useState(new Date().toISOString().slice(0,10));
+  const [text, setText] = useState(""); const [img, setImg] = useState(null);
+  const [target, setTarget] = useState(intentions?.[0]?.id ?? "");
+  const [n, setN] = useState(0);
+  const save = () => { const v = text.trim(); if (!v) return; onSave({ text:v, date:new Date(date+"T12:00").toLocaleDateString("en-GB",{ day:"numeric", month:"short", year:"numeric" }), img: img || undefined }, target); setText(""); setImg(null); setN(x=>x+1); };
+  return (
+    <div role="dialog" aria-modal="true" aria-label="Log a past sign" onClick={onClose} style={{ position:"fixed",inset:0,zIndex:1400,background:"rgba(0,0,0,.7)",display:"flex",alignItems:"flex-end",justifyContent:"center" }}>
+      <div className="shg-paper" onClick={e=>e.stopPropagation()} style={{ position:"relative",width:"100%",maxWidth:520,borderRadius:"20px 20px 0 0",padding:"20px 16px calc(env(safe-area-inset-bottom,0px) + 20px)",color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300,maxHeight:"88vh",overflowY:"auto" }}>
+        <button onClick={onClose} aria-label="Close" style={{ position:"absolute",top:10,right:12,width:34,height:34,borderRadius:"50%",border:"1px solid #000",background:"#F2ECE4",color:"#000",fontSize:20,cursor:"pointer" }}>×</button>
+        <div style={{ fontSize:18,fontWeight:300,paddingRight:40 }}>Add the signs you noticed along the way</div>
+        {title && <div style={{ fontSize:13,fontWeight:300,marginTop:2 }}>For: {title}</div>}
+        {intentions && intentions.length > 0 && (
+          <select id="shg-past-target" value={target} onChange={e=>setTarget(e.target.value)} style={{ width:"100%",marginTop:10,background:"#fff",color:"#000",border:"1px solid #000",borderRadius:10,padding:"9px",fontSize:14,fontFamily:"inherit" }}>
+            {intentions.map(t => <option key={t.id} value={t.id}>{t.desire}</option>)}
+            <option value="">No specific intention</option>
+          </select>
+        )}
+        <input id="shg-past-date" type="date" value={date} max={new Date().toISOString().slice(0,10)} onChange={e=>setDate(e.target.value)} style={{ width:"100%",boxSizing:"border-box",marginTop:10,background:"#fff",color:"#000",border:"1px solid #000",borderRadius:10,padding:"9px",fontSize:14,fontFamily:"inherit" }}/>
+        <textarea id="shg-past-text" rows={3} value={text} onChange={e=>setText(e.target.value)} placeholder="What did you notice?" style={{ width:"100%",boxSizing:"border-box",marginTop:8,background:"#fff",color:"#000",border:"1px solid #000",borderRadius:10,padding:10,fontSize:15,fontWeight:300,fontFamily:"inherit" }}/>
+        <div style={{ display:"flex",gap:8,marginTop:8 }}>
+          <label style={{ flex:1,textAlign:"center",border:"1px solid #000",borderRadius:999,padding:"9px",fontSize:13,cursor:"pointer" }}>{img ? "Photo added ✓" : "+ Photo (optional)"}<input type="file" accept="image/*" hidden onChange={async e=>{ const f0=e.target.files?.[0]; if(f0){ const raw=await fileToDataUrl(f0); setImg(await downscaleWide(raw,800,0.75)); } e.target.value=""; }}/></label>
+          <button onClick={save} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"9px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Save sign</button>
+        </div>
+        {n > 0 && <div style={{ fontSize:13,marginTop:8 }}>{n} sign{n===1?"":"s"} added ✓ Add another, or close.</div>}
+        <button onClick={onClose} style={{ display:"block",margin:"12px auto 0",background:"none",border:"none",textDecoration:"underline",fontSize:14,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"inherit" }}>Done</button>
+      </div>
+    </div>
+  );
+}
+
 // ── BUCKET BOARD: the vision board from the deck ────────────────────────────
 const BUCKET_CATS = [["Travel","✈",/\b(travel|trip|holiday|bali|paris|flight|beach|italy|japan|month in|visit|business class|balloon)\b/i],["Home","⌂",/\b(home|house|flat|apartment|studio|wardrobe|garden|sea view|kitchen)\b/i],["Money","$",/(\$|£|€|\b(money|savings|income|debt|paid|rich|salary|10k|k a month)\b)/i],["Love","♡",/\b(partner|love|husband|boyfriend|texts|date|wedding|marry|soul ?mate)\b/i],["Glow","✧",/\b(skin|glow|hair|body|beauty|fit|nails)\b/i],["Self","◎",/\b(confiden|myself|calm|peace|healing|sisters|friends|course|learn|fashion week|upgrade)\b/i]];
 const detectBucketCat = (t) => (BUCKET_CATS.find(([, , re]) => re.test(t || "")) || ["Self"])[0];
+const CAT_OF_BUCKET = { Travel:"Luckygirlmaxxing", Home:"Lifemaxxing", Money:"Richgirlmaxxing", Love:"Lovemaxxing", Glow:"Beautymaxxing", Self:"Selfmaxxing" };
 function BucketBoard({ items, setThreads }) {
-  if (!items.length) return <div className="shg-paper" style={{ borderRadius:16,padding:"22px 16px",textAlign:"center",fontSize:15,fontWeight:300,color:"#000" }}>Your board is empty. Add anything you want, ever.</div>;
-  const mark = (id) => setThreads(ts => ts.map(t => t.id === id ? { ...t, done:true, manifestedAt:new Date().toLocaleDateString("en-GB",{ day:"numeric", month:"short", year:"numeric" }) } : t));
-  const focus = (id) => setThreads(ts => ts.map(t => t.id === id ? { ...t, isBucket:false } : t));
+  const [toast, setToast] = useState("");
+  const [askCat, setAskCat] = useState(null);
+  const [backlog, setBacklog] = useState(null);
+  const say = (m) => { setToast(m); setTimeout(() => setToast(""), 2800); };
+  const mark = (it) => { setThreads(ts => ts.map(t => t.id === it.id ? { ...t, done:true, manifestedAt:new Date().toLocaleDateString("en-GB",{ day:"numeric", month:"short", year:"numeric" }) } : t)); setBacklog(it); };
+  const focusAs = (id, cat) => { setThreads(ts => ts.map(t => t.id === id ? { ...t, isBucket:false, category:cat, createdTs:t.createdTs||Date.now() } : t)); setAskCat(null); say("Now an intention ✓ — find it in Intentions"); };
+  const focus = (it) => { const bc = it.bucketCat || detectBucketCat(it.desire); const known = it.bucketCat || BUCKET_CATS.some(([, , re]) => re.test(it.desire || "")); if (known && CAT_OF_BUCKET[bc]) focusAs(it.id, CAT_OF_BUCKET[bc]); else setAskCat(it); };
   const del = (id) => setThreads(ts => ts.filter(t => t.id !== id));
+  const btn = { border:"none",borderRadius:999,padding:"4px 0",fontSize:11,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"'Jost',sans-serif" };
   return (
     <>
+      {toast && <div role="status" style={{ position:"fixed",left:16,right:16,bottom:90,zIndex:1450,background:"#000",color:"#F2ECE4",border:"1px solid #BFA5D8",borderRadius:14,padding:"12px 16px",fontSize:14,fontWeight:300,textAlign:"center",fontFamily:"'Jost',sans-serif" }}>{toast}</div>}
+      {!items.length ? <div className="shg-paper" style={{ borderRadius:16,padding:"22px 16px",textAlign:"center",fontSize:15,fontWeight:300,color:"#000" }}>Your board is empty. Add anything you want, ever.</div> : (<>
       <style>{`body .shg-bb.shg-bb{display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:10px}`}</style>
       <div className="shg-bb">
         {items.map(it => { const cat = it.bucketCat || detectBucketCat(it.desire); const ic = (BUCKET_CATS.find(c => c[0] === cat) || ["", "◎"])[1]; return (
-          <div key={it.id} className="shg-paper" style={{ position:"relative",borderRadius:16,padding:"12px 10px 10px",color:"#000",fontFamily:"'Jost',sans-serif",minHeight:120,display:"flex",flexDirection:"column" }}>
-            <span style={{ alignSelf:"flex-start",fontSize:11,fontWeight:300,padding:"2px 8px",borderRadius:999,border:"1px solid #000" }}>{ic} {cat}</span>
+          <div key={it.id} className="shg-paper" style={{ position:"relative",borderRadius:16,padding:"10px",color:"#000",fontFamily:"'Jost',sans-serif",minHeight:110,display:"flex",flexDirection:"column" }}>
+            <span style={{ alignSelf:"flex-start",fontSize:10,fontWeight:300,padding:"2px 8px",borderRadius:999,border:"1px solid #000" }}>{ic} {cat}</span>
             <button onClick={()=>del(it.id)} aria-label={`Remove ${it.desire}`} style={{ position:"absolute",top:6,right:8,background:"none",border:"none",fontSize:15,cursor:"pointer",color:"#000" }}>×</button>
-            <div style={{ fontSize:14,fontWeight:300,lineHeight:1.35,margin:"10px 0 8px",flex:1 }}>{it.desire}</div>
+            <div style={{ fontSize:14,fontWeight:300,lineHeight:1.35,margin:"8px 0",flex:1 }}>{it.desire}</div>
             <div style={{ display:"flex",gap:6 }}>
-              <button onClick={()=>mark(it.id)} aria-label="Mark manifested" style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",border:"none",borderRadius:999,padding:"5px 0",fontSize:12,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"inherit" }}>✓ Arrived</button>
-              <button onClick={()=>focus(it.id)} style={{ background:"transparent",border:"1px solid #000",borderRadius:999,padding:"5px 8px",fontSize:12,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"inherit" }}>Focus</button>
+              <button onClick={()=>mark(it)} aria-label="Mark manifested" style={{ ...btn,flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" }}>✓ Arrived</button>
+              <button onClick={()=>focus(it)} style={{ ...btn,flex:1,background:"transparent",border:"1px solid #000" }}>Focus</button>
             </div>
           </div>
         ); })}
-      </div>
+      </div></>)}
+      {askCat && (
+        <div role="dialog" aria-modal="true" aria-label="Which area?" onClick={()=>setAskCat(null)} style={{ position:"fixed",inset:0,zIndex:1400,background:"rgba(0,0,0,.7)",display:"flex",alignItems:"flex-end",justifyContent:"center" }}>
+          <div className="shg-paper" onClick={e=>e.stopPropagation()} style={{ position:"relative",width:"100%",maxWidth:520,borderRadius:"20px 20px 0 0",padding:"20px 16px calc(env(safe-area-inset-bottom,0px) + 20px)",color:"#000",fontFamily:"'Jost',sans-serif" }}>
+            <button onClick={()=>setAskCat(null)} aria-label="Close" style={{ position:"absolute",top:10,right:12,width:34,height:34,borderRadius:"50%",border:"1px solid #000",background:"#F2ECE4",color:"#000",fontSize:20,cursor:"pointer" }}>×</button>
+            <div style={{ fontSize:17,fontWeight:300,paddingRight:40 }}>Which area is "{askCat.desire}"?</div>
+            <div style={{ display:"flex",flexWrap:"wrap",gap:8,marginTop:12 }}>{BUCKET_CATS.map(([c,ic]) => <button key={c} onClick={()=>focusAs(askCat.id, CAT_OF_BUCKET[c])} style={{ fontSize:14,fontWeight:300,padding:"8px 14px",borderRadius:999,border:"1px solid #000",background:"transparent",cursor:"pointer",color:"#000",fontFamily:"inherit" }}>{ic} {c}</button>)}</div>
+            <button onClick={()=>setAskCat(null)} style={{ display:"block",margin:"14px auto 0",background:"none",border:"none",textDecoration:"underline",fontSize:14,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"inherit" }}>Cancel</button>
+          </div>
+        </div>
+      )}
+      {backlog && <PastSignSheet title={`Arrived ✓ ${backlog.desire}`} onClose={()=>setBacklog(null)} onSave={(sg)=>setThreads(ts=>ts.map(t=>t.id===backlog.id?{ ...t, signs:[...(t.signs||[]), sg] }:t))}/>}
     </>
   );
 }
 
 // ── JOURNAL BOARD (proofOS) ─────────────────────────────────────────────────
-function JournalBoard({ userId, isPreview }) {
+function JournalBoard({ userId, isPreview, threads, setThreads, token }) {
+  const [composing, setComposing] = useState(false);
   const [entries, setEntries] = useState(() => readJournal(userId, isPreview));
   const [area, setArea] = useState(""); const [q, setQ] = useState(""); const [open, setOpen] = useState(null);
   useEffect(() => { const f = () => setEntries(readJournal(userId, isPreview)); window.addEventListener("shg-passport-updated", f); window.addEventListener("storage", f); return () => { window.removeEventListener("shg-passport-updated", f); window.removeEventListener("storage", f); }; }, [userId, isPreview]);
@@ -4021,7 +4116,8 @@ function JournalBoard({ userId, isPreview }) {
   const chip = (on) => ({ fontSize:12,fontWeight:300,padding:"4px 10px",borderRadius:999,border:"1px solid #000",background:on ? "linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" : "transparent",color:"#000",cursor:"pointer",fontFamily:"'Jost',sans-serif" });
   return (
     <div className="shg-paper" style={{ borderRadius:18,padding:"16px 14px",color:"#000",fontFamily:"'Jost',sans-serif",fontWeight:300 }}>
-      <div style={{ fontSize:20,fontWeight:300,marginBottom:10 }}>Journal</div>
+      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}><span style={{ fontSize:20,fontWeight:300 }}>Journal</span><button onClick={()=>setComposing(c=>!c)} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",border:"none",borderRadius:999,padding:"6px 14px",fontSize:13,fontWeight:300,cursor:"pointer",color:"#000",fontFamily:"inherit" }}>{composing ? "Close ×" : "+ New entry"}</button></div>
+      {composing && <div style={{ margin:"0 -14px 12px" }}><JournalCard startOpen threads={threads||[]} setThreads={setThreads||(()=>{})} isPreview={isPreview} userId={userId} token={token} name=""/></div>}
       <input id="shg-journal-search" value={q} onChange={e=>setQ(e.target.value)} placeholder="Search your journal" style={{ width:"100%",boxSizing:"border-box",background:"#fff",color:"#000",border:"1px solid #000",borderRadius:12,padding:"9px 12px",fontSize:14,fontWeight:300,fontFamily:"inherit" }}/>
       {areas.length > 0 && <div style={{ display:"flex",flexWrap:"wrap",gap:6,marginTop:10 }}><button onClick={()=>setArea("")} style={chip(!area)}>All</button>{areas.map(a => <button key={a} onClick={()=>setArea(a)} style={chip(area===a)}>{a}</button>)}</div>}
       {!entries.length && <div style={{ fontSize:15,marginTop:12 }}>No entries yet. Write one in "what's on your mind?" on Home.</div>}
@@ -4053,10 +4149,10 @@ function readJournal(userId, isPreview) {
   const m = new Map(); [...a, ...b].forEach(e => e && e.id && m.set(e.id, e));
   return [...m.values()].sort((x, y) => new Date(y.date) - new Date(x.date));
 }
-function JournalCard({ name, threads, setThreads, isPreview, userId, token, play }) {
+function JournalCard({ startOpen = false, name, threads, setThreads, isPreview, userId, token, play }) {
   const [text, setText] = useState("");
   const [reply, setReply] = useState(null);
-  const [mic, toggleMic] = useMic(t => setText(x => (x ? x + " " : "") + t));
+  const [mic, toggleMic, micErr] = useMic(t => setText(x => (x ? x + " " : "") + t));
   const save = () => {
     const v = text.trim(); if (!v) return;
     const areas = detectAreas(v);
@@ -4066,7 +4162,7 @@ function JournalCard({ name, threads, setThreads, isPreview, userId, token, play
     try { window.dispatchEvent(new CustomEvent("shg-passport-updated")); } catch {}
     setText(""); setReply(areas);
   };
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(startOpen);
   const hasIntention = (cat) => threads.some(t => !t.isBucket && !t.done && String(t.category || "").includes(cat));
   const names = (reply || []).map(a => a[0].toLowerCase());
   return (
@@ -4078,6 +4174,7 @@ function JournalCard({ name, threads, setThreads, isPreview, userId, token, play
         <button onClick={toggleMic} style={{ flex:1,background:"transparent",color:"#000",border:"1px solid #000",borderRadius:999,padding:"9px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
         <button onClick={save} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"9px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Save</button>
       </div>
+      <MicErr err={micErr}/>
       <div style={{ fontSize:12,fontWeight:300,marginTop:8,textAlign:"center" }}>Private. Saved to your journal in proofOS and to your account.</div>
       {reply && (
         <div style={{ marginTop:12,padding:"12px",borderRadius:12,background:"#fff",border:"1px solid #000",position:"relative" }}>
@@ -4090,7 +4187,7 @@ function JournalCard({ name, threads, setThreads, isPreview, userId, token, play
                 <span style={{ fontSize:13,letterSpacing:".15em" }}>{area.toUpperCase()}</span>
                 {hasIntention(cat) ? <span style={{ fontSize:13 }}>Already an intention ✓</span>
                   : <button onClick={()=>saveThread({ v:`I'm calling in ${area.toLowerCase()}`, cat, bucket:false, setThreads, isPreview, userId, token })} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"5px 12px",fontSize:12,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add as intention</button>}
-                {tr && <button onClick={()=>play?.(tr)} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"5px 12px",fontSize:12,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>▶ Today: {displayTitle(tr.title)}</button>}
+                {tr && <button onClick={()=>play?.(tr)} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"5px 12px",fontSize:12,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>✦ Today: {displayTitle(tr.title)}</button>}
               </div>
             );
           })}
@@ -4105,7 +4202,7 @@ function JournalCard({ name, threads, setThreads, isPreview, userId, token, play
 function QuickAdd({ kind, threads, setThreads, isPreview, userId, token, onClose }) {
   const bucket = kind === "bucket";
   const [text, setText] = useState("");
-  const [mic, toggleMic] = useMic(t => setText(x => (x ? x + " " : "") + t));
+  const [mic, toggleMic, micErr] = useMic(t => setText(x => (x ? x + " " : "") + t));
   const today = new Date().toDateString();
   const recent = threads.filter(t => (bucket ? t.isBucket : !t.isBucket) && !t.done && t.addedOn === today).slice(0, 5);
   const add = () => { const v = text.trim(); if (!v) return; saveThread({ v, bucket, setThreads, isPreview, userId, token }); setText(""); };
@@ -4118,6 +4215,7 @@ function QuickAdd({ kind, threads, setThreads, isPreview, userId, token, onClose
         <button onClick={toggleMic} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
         <button onClick={add} style={{ flex:1,background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
       </div>
+      <MicErr err={micErr}/>
       {recent.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{recent.map(t => <div key={t.id} style={{ fontSize:14,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid #000",background:"#fff" }}>✦ {t.desire}</div>)}</div>}
       <details style={{ marginTop:12 }}>
         <summary style={{ cursor:"pointer",fontSize:14,fontWeight:300,textDecoration:"underline",textUnderlineOffset:3,listStyle:"none" }}>How it works ›</summary>
@@ -4164,7 +4262,7 @@ function HomeAskCard({ email, isPreview }) {
 function BucketBand({ threads, setThreads, isPreview, userId, token }) {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
-  const [mic, toggleMic] = useMic(t => setText(x => (x ? x + " " : "") + t));
+  const [mic, toggleMic, micErr] = useMic(t => setText(x => (x ? x + " " : "") + t));
   const todayKey = new Date().toDateString();
   const todayItems = threads.filter(t => t.isBucket && t.addedOn === todayKey);
   const todayCount = todayItems.length;
@@ -4180,14 +4278,16 @@ function BucketBand({ threads, setThreads, isPreview, userId, token }) {
   const dots = (dark) => (
     <span style={{ display:"flex",alignItems:"center",gap:6,marginTop:10 }}>
       {Array.from({ length:10 }, (_, i) => <span key={i} style={{ width:14,height:14,borderRadius:"50%",flexShrink:0,background:i < todayCount ? "linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)" : "transparent",border:`1px solid ${dark ? "#F2ECE4" : "#000"}` }}/>)}
-      <span style={{ fontSize:14,fontWeight:300,marginLeft:4,whiteSpace:"nowrap",color:dark ? "#F2ECE4" : "#000" }}>{Math.min(todayCount,10)}/10 today</span>
+      <span style={{ fontSize:14,fontWeight:300,marginLeft:4,whiteSpace:"nowrap",color:dark ? "#F2ECE4" : "#000" }}>{todayCount}/10 today</span>
     </span>
   );
   if (!open) return (
     <button onClick={()=>setOpen(true)} className="shg-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 14px",padding:"20px 16px",borderRadius:22,cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",color:"#000" }}>
       <img src="/icons/lucky.webp" alt="" style={{ width:56,height:56,borderRadius:"50%",flexShrink:0 }}/>
       <span style={{ flex:1,minWidth:0 }}>
+        <span className="shg-bl-lab">BUCKET LIST</span>
         <span style={{ display:"block",fontSize:17,fontWeight:300,color:"#000" }}>Add 10 ideas every day</span>
+        <style>{`body .shg-bl-lab.shg-bl-lab{display:block;font-size:10px;letter-spacing:.28em;margin-bottom:4px;color:#000!important;-webkit-text-fill-color:#000!important;background:none!important}`}</style>
         {dots(false)}
         <span style={{ display:"inline-block",fontSize:14,fontWeight:300,color:"#000",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",borderRadius:999,padding:"7px 16px",marginTop:12 }}>Tap to add</span>
       </span>
@@ -4205,6 +4305,7 @@ function BucketBand({ threads, setThreads, isPreview, userId, token }) {
         <button onClick={add} style={{ background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:12,padding:"0 16px",fontSize:15,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}>Add</button>
       </div>
       <button onClick={toggleMic} style={{ marginTop:8,width:"100%",background:"linear-gradient(110deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7,#167A6B)",color:"#000",border:"none",borderRadius:999,padding:"10px",fontSize:14,fontWeight:300,cursor:"pointer",fontFamily:"inherit" }}><MicLabel on={mic}/></button>
+      <MicErr err={micErr}/>
       {todayItems.length > 0 && <div style={{ marginTop:12,display:"grid",gap:6 }}>{todayItems.map(t => <div key={t.id} style={{ fontSize:15,fontWeight:300,padding:"8px 12px",borderRadius:10,border:"1px solid #000",background:"#fff" }}>✦ {t.desire}</div>)}</div>}
     </div>
   );
