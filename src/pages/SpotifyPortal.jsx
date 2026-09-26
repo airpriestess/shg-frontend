@@ -2837,39 +2837,40 @@ function LibraryTab({ threads=[], searchQ="", setQ=()=>{}, tracks, cat, setCat, 
           <div style={{ textAlign:"right" }}><div style={{ fontSize:34,fontWeight:500,lineHeight:1 }}>{isPreview?127:tracks.length}</div><div style={{ fontSize:13 }}>{isPreview?"listens":"tracks"}</div></div>
         </div>
       </div>
-      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;scroll-padding:0 16px;display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}body .shg-four.shg-four{display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-auto-columns:min(calc(50% - 6px),200px)!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}body .shg-four.shg-four>*{scroll-snap-align:start}body .shg-four.shg-four::-webkit-scrollbar{display:none}@media(min-width:900px){body .shg-four.shg-four{grid-auto-columns:calc(25% - 9px)!important}}`}</style>
+      <style>{`body .shg-four.shg-four{padding:4px 16px 18px!important;scroll-padding:0 16px;display:grid!important;flex-direction:initial!important;grid-template-columns:1fr 1fr!important;gap:12px}body .shg-four.shg-four{display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-auto-columns:112px!important;justify-content:start!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}body .shg-four.shg-four>*{scroll-snap-align:start}body .shg-four.shg-four::-webkit-scrollbar{display:none}`}</style>
+      <div style={{ padding:"0 16px 10px",fontSize:18,color:C.cr }}>Browse by category</div>
       <div className="shg-four" style={{ padding:"4px 16px 18px" }}>
         {[["Lovemaxxing","Love"],["Richgirlmaxxing","Money"],["Luckygirlmaxxing","Lucky Girl"],["Selfmaxxing","Self"]].map(([c,name])=>(
-          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ position:"relative",padding:0,border:cat===c?"2px solid #F2ECE4":"1px solid rgba(242,236,228,0.18)",borderRadius:14,overflow:"hidden",cursor:"pointer",background:"#000",aspectRatio:"1",fontFamily:"'Jost',sans-serif" }}>
-            <div style={{ position:"absolute",inset:0 }}><Thumb cat={c} size="100%" radius={0}/></div>
-            <span style={{ position:"absolute",left:0,right:0,bottom:12,textAlign:"center",fontSize:18,fontWeight:500,color:"#F2ECE4" }}>{name}</span>
+          <button key={c} onClick={()=>{setCat(c);setLibFormat("All");}} className="shg-no-paper" style={{ padding:0,border:"none",background:"none",cursor:"pointer",fontFamily:"'Jost',sans-serif",textAlign:"center" }}>
+            <div style={{ borderRadius:14,overflow:"hidden",outline:cat===c?"2px solid #F2ECE4":"none",outlineOffset:2 }}><Thumb cat={c} size={112} radius={14}/></div>
+            <div style={{ marginTop:8,fontSize:15,color:C.cr }}>{name}</div>
           </button>
         ))}
       </div>
       {/* JUMP BACK IN */}
-      <Sec title="Jump back in" C={C} onShowAll={()=>{setCat("All");setLibFormat("All");}}>
+      <Sec title="Jump back in" C={C}>
         <HRow>
-          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer} big/>)}
+          {TRACKS.slice(0,6).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </HRow>
       </Sec>
 
       {/* NEW THIS WEEK */}
-      <Sec title="New this week " C={C} onShowAll={()=>{setCat("All");setLibFormat("All");}}>
+      <Sec title="New this week " C={C}>
         <HRow>
-          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer} big/>)}
+          {TRACKS.filter(t=>t.isNew).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}
         </HRow>
       </Sec>
 
       {/* RECOMMENDED FOR YOU: tracks in the categories of her open intentions */}
       {(()=>{ const cats = new Set(threads.filter(t=>!t.done).flatMap(t=>t.categories||[t.category])); const recs = TRACKS.filter(t=>cats.has(t.cat)).slice(0,10); return recs.length ? (
-        <Sec title="Made for you" C={C} onShowAll={()=>{setCat("All");setLibFormat("All");}}>
-          <HRow>{recs.map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer} big/>)}</HRow>
+        <Sec title="Made for you" C={C}>
+          <HRow>{recs.map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>
         </Sec>) : null; })()}
       {/* YOUR FAVOURITES */}
-      <Sec title="Your favourites ♡" C={C} onShowAll={()=>{setCat("Liked");setLibFormat("All");}}>
+      <Sec title="Your favourites ♡" C={C}>
         {TRACKS.filter(t=>liked.has(t.id)).length===0
           ?<div style={{ padding:"14px 16px",background:C.bg3,borderRadius:12,fontSize:14,color:C.mu,fontWeight:400 }}>Tap the ♡ on any track, it lives here.</div>
-          :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer} big/>)}</HRow>}
+          :<HRow>{TRACKS.filter(t=>liked.has(t.id)).map(t=><TCard key={t.id} track={t} current={cur} play={play} playing={playing} isPreview={isPreview} C={C} liked={liked} toggleLike={toggleLike} openPlayer={openPlayer}/>)}</HRow>}
       </Sec>
       <div style={{ padding:"4px 16px 10px",display:"flex",alignItems:"center",justifyContent:"space-between" }}>
         <span style={{ fontSize:20,fontWeight:400,color:C.cr }}>Browse by desire</span>
@@ -3316,7 +3317,13 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
                   <div style={{ fontSize:12,color:"#000",fontWeight:400,marginTop:4 }}>{d.signs?.length||0} signs{(d.signs||[]).some(s=>s.img)?" · 📷":""}{(d.signs||[]).some(s=>s.audio)?" · 🎤":""}</div>
                   <div style={{ fontSize:12,color:"#000",fontWeight:600,marginTop:5, }}>{d.createdAt?`${d.createdAt} → `:""}{d.manifestedAt||""}{` · Took ${d.days||1} day${(d.days||1)===1?"":"s"}`}</div>
                   {d.feelAfter && <div style={{ fontSize:12,color:"#000",marginTop:5,lineHeight:1.45 }}>"{d.feelAfter}"</div>}
-                  <button onClick={()=>{ try { const l = JSON.parse(localStorage.getItem("shg_shared_wins")||"[]"); if (!l.some(w=>w.id===d.id)) { l.push({ id:d.id, desire:d.desire, cat:(d.categories||[d.category])[0], days:d.days||1, signs:(d.signs||[]).length, date:new Date().toISOString() }); localStorage.setItem("shg_shared_wins", JSON.stringify(l)); } } catch {} setThreads(ts=>ts.map(t=>t.id===d.id?{...t,shared:true}:t)); }} disabled={d.shared} style={{ marginTop:8,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"6px 12px",fontSize:12,cursor:d.shared?"default":"pointer",fontFamily:"'Jost',sans-serif" }}>{d.shared?"Shared ✓":"Share with the community"}</button>
+                  {d.shared ? <div style={{ marginTop:8,fontSize:12,fontWeight:600 }}>Shared with the community ✓</div> : (
+                    <div style={{ display:"flex",gap:6,flexWrap:"wrap",marginTop:8 }}>
+                      {[["Share with my name",false],["Share anonymously",true]].map(([lab,anon])=>(
+                        <button key={lab} onClick={()=>{ try { const l = JSON.parse(localStorage.getItem("shg_shared_wins")||"[]"); if (!l.some(w=>w.id===d.id)) { l.push({ id:d.id, anon, name:anon?"":(isPreview?"Reshma":""), desire:d.desire, belief:d.oldBelief||"", track:d.track||"", cat:(d.categories||[d.category])[0], cats:d.categories||[d.category], days:d.days||1, feelBefore:d.feelBefore||"", feelAfter:d.feelAfter||"", signs:(d.signs||[]).map(x=>({ text:x.text, date:x.date })), manifestedAt:d.manifestedAt||"", date:new Date().toISOString() }); localStorage.setItem("shg_shared_wins", JSON.stringify(l)); } } catch {} setThreads(ts=>ts.map(t=>t.id===d.id?{...t,shared:true}:t)); }} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"6px 12px",fontSize:12,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{lab}</button>
+                      ))}
+                    </div>
+                  )}
                   <button onClick={()=>undoMarkDone(d.id)} style={{ position:"absolute",top:8,right:8,fontSize:11,background:"#fdf0e8",border:"none",borderRadius:10,padding:"2px 7px",color:"#000",cursor:"pointer",fontWeight:400,fontFamily:"'Jost',sans-serif" }}>undo</button>
                 </div>
               ))}
@@ -3538,31 +3545,73 @@ function ProofTab({ threads, setThreads, isPreview, C, currentTrack, userTier="g
 // server, a member sees the wins she has shared from this phone; preview adds
 // clearly-labelled examples so the page shows how it will look.
 const EXAMPLE_WINS = [
-  { name:"Maya", desire:"He texted me first", cat:"Lovemaxxing", days:9, signs:5 },
-  { name:"Priya", desire:"$5,000 landed in one day", cat:"Richgirlmaxxing", days:31, signs:4 },
-  { name:"Lou", desire:"Won tickets I didn't even enter for", cat:"Luckygirlmaxxing", days:3, signs:2 },
-  { name:"Sam", desire:"Got the promotion", cat:"Selfmaxxing", days:22, signs:6 },
+  { name:"Maya", desire:"He texts me first, consistently, without me reaching out.", belief:"I always have to chase.", track:"He Finds His Way Back", cats:["Lovemaxxing"], days:9, feelBefore:"Fear (100)", feelAfter:"Love (500)", manifestedAt:"14 Sept 2026",
+    signs:[{ text:"Heard our song in a café I'd never been to", date:"7 Sept" },{ text:"His name came up twice in one day", date:"9 Sept" },{ text:"Dreamt we were laughing on a beach", date:"11 Sept" },{ text:"Saw a couple with our exact initials on a cake", date:"12 Sept" },{ text:"He texted: 'I've been thinking about you'", date:"14 Sept" }] },
+  { name:"", anon:true, desire:"I receive $5,000 in one day.", belief:"Money only comes from hard work.", track:"Money Finds Me First", cats:["Richgirlmaxxing"], days:31, feelBefore:"Desire (125)", feelAfter:"Joy (540)", manifestedAt:"2 Sept 2026",
+    signs:[{ text:"Found £20 in an old coat", date:"5 Aug" },{ text:"Kept seeing 5000 on receipts", date:"12 Aug" },{ text:"An old client asked about my rates", date:"20 Aug" },{ text:"Invoice paid, $5,200, same day", date:"2 Sept" }] },
 ];
+function WinCard({ w, mine }) {
+  const [open, setOpen] = useState(false);
+  const [cheered, setCheered] = useState(false);
+  return (
+    <div className="shg-paper" style={{ borderRadius:18,padding:16 }}>
+      <div style={{ display:"flex",gap:12,alignItems:"center" }}>
+        <Thumb cat={(w.cats||[w.cat])[0]} size={56} radius={10}/>
+        <div style={{ flex:1,minWidth:0 }}>
+          <div style={{ fontSize:13,letterSpacing:".12em",textTransform:"uppercase" }}>{mine?"You":w.anon?"Anonymous":w.name} · manifested{w.manifestedAt?` ${w.manifestedAt}`:""}</div>
+          <div style={{ fontSize:17,fontWeight:500,lineHeight:1.35,marginTop:4 }}>"{w.desire}"</div>
+        </div>
+      </div>
+      <div style={{ display:"flex",flexWrap:"wrap",gap:6,marginTop:12 }}>
+        {(w.cats||[w.cat]).filter(Boolean).map(c=><span key={c} style={{ fontSize:12,padding:"3px 10px",border:"1px solid #000",borderRadius:999 }}>{String(c).replace("maxxing","")}</span>)}
+        <span style={{ fontSize:12,padding:"3px 10px",background:"#000",color:"#F2ECE4",borderRadius:999 }}>Took {w.days||1} day{(w.days||1)===1?"":"s"}</span>
+        <span style={{ fontSize:12,padding:"3px 10px",border:"1px solid #000",borderRadius:999 }}>{(w.signs||[]).length} signs</span>
+      </div>
+      {w.track && <div style={{ fontSize:14,marginTop:10 }}>Listened to <b style={{ fontWeight:600 }}>{w.track}</b></div>}
+      {(w.feelBefore||w.feelAfter) && <div style={{ fontSize:14,marginTop:4 }}>Felt {w.feelBefore||"?"} → {w.feelAfter||"?"}</div>}
+      {w.belief && <div style={{ fontSize:14,marginTop:4 }}>Old belief: "{w.belief}"</div>}
+      {open && (
+        <div style={{ marginTop:12,borderTop:"1px solid #000",paddingTop:10 }}>
+          <div style={{ fontSize:12,letterSpacing:".2em",marginBottom:6 }}>SIGNS SHE LOGGED</div>
+          {(w.signs||[]).map((sg,i)=><div key={i} style={{ fontSize:14,lineHeight:1.5,padding:"4px 0" }}>✦ {sg.text} <span style={{ fontSize:12 }}>· {sg.date}</span></div>)}
+        </div>
+      )}
+      <div style={{ display:"flex",gap:8,flexWrap:"wrap",marginTop:12 }}>
+        <button onClick={()=>setOpen(o=>!o)} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"8px 14px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{open?"Hide the signs":"See every sign"}</button>
+        {!mine && <button onClick={()=>setCheered(true)} style={{ background:"transparent",color:"#000",border:"1px solid #000",borderRadius:999,padding:"8px 14px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>{cheered?"Sent ✦":"Send love ✦"}</button>}
+        {!mine && <button onClick={()=>alert("Connecting with members is coming soon. You'll be able to message each other anonymously.")} style={{ background:"transparent",color:"#000",border:"1px solid #000",borderRadius:999,padding:"8px 14px",fontSize:13,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Connect</button>}
+      </div>
+    </div>
+  );
+}
 function CommunityTab({ C, isPreview }) {
   let mine = []; try { mine = JSON.parse(localStorage.getItem("shg_shared_wins") || "[]"); } catch {}
-  const wins = [...mine.slice().reverse().map(w=>({ ...w, you:true })), ...(isPreview ? EXAMPLE_WINS.map(w=>({ ...w, example:true })) : [])];
+  const steps = [["Set it","Write your intention in proofOS"],["Track it","Log every sign as it arrives"],["Receive it","Mark it manifested, dated"],["Share it","Show someone what's possible"]];
   return (
     <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:900,margin:"0 auto" }}>
       <div className="shg-gt" style={{ fontSize:28,fontWeight:500,display:"inline-block" }}>Community wins</div>
-      <div style={{ fontSize:16,color:C.cr,margin:"6px 0 18px",lineHeight:1.5 }}>When someone else's desire arrives, you see what's possible for you.</div>
-      <div style={{ background:"#F2ECE4",color:"#000",borderRadius:16,padding:"14px 16px",marginBottom:18,fontSize:15,lineHeight:1.5 }}>Share your own win from proofOS › Proof Wall. Tap <b style={{fontWeight:600}}>Share with the community</b> on any manifestation. Your first name, the desire and how long it took are shared. Nothing else.</div>
-      {wins.length === 0 && <div style={{ color:C.cr,fontSize:15 }}>No wins shared yet. Be the first.</div>}
-      <div style={{ display:"grid",gap:12 }}>
-        {wins.map((w,i)=>(
-          <div key={i} className="shg-no-paper" style={{ display:"flex",gap:14,alignItems:"center",background:"#000",border:"1px solid rgba(242,236,228,0.18)",borderRadius:16,padding:12 }}>
-            <Thumb cat={w.cat} size={64} radius={10}/>
-            <div style={{ flex:1,minWidth:0,color:"#F2ECE4" }}>
-              <div style={{ fontSize:17,fontWeight:500,lineHeight:1.3 }}>"{w.desire}"</div>
-              <div style={{ fontSize:14,marginTop:4 }}>{w.you?"You":w.name} · took {w.days||1} day{(w.days||1)===1?"":"s"} · {w.signs||0} signs{w.example?" · example":""}</div>
+      <div style={{ fontSize:16,color:C.cr,margin:"6px 0 16px",lineHeight:1.5 }}>Real proof from real members. When hers arrives, you see what's possible for you.</div>
+      {/* How it works, drawn like the method deck */}
+      <div className="shg-no-paper" style={{ background:"#000",borderRadius:18,padding:"20px 12px",marginBottom:18,border:"1px solid rgba(242,236,228,.18)" }}>
+        <div style={{ textAlign:"center",fontSize:12,letterSpacing:".3em",color:"#F2ECE4",marginBottom:14 }}>HOW COMMUNITY WINS WORK</div>
+        <style>{`body .shg-cw.shg-cw{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(4,1fr)!important;gap:6px}`}</style>
+        <div className="shg-cw">
+          {steps.map(([t,d],i)=>(
+            <div key={t} style={{ textAlign:"center",color:"#F2ECE4" }}>
+              <div style={{ width:54,height:54,margin:"0 auto 8px",borderRadius:"50%",display:"grid",placeItems:"center",fontSize:20,fontWeight:500,background:"radial-gradient(circle at 35% 30%,rgba(245,224,160,.55),rgba(191,165,216,.35) 55%,rgba(44,183,167,.45))",border:"1.5px solid #E8B870",boxShadow:"0 0 18px rgba(191,165,216,.45)" }}>{i+1}</div>
+              <div style={{ fontSize:14,fontWeight:500 }}>{t}</div>
+              <div style={{ fontSize:12,lineHeight:1.35,marginTop:3 }}>{d}</div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div style={{ textAlign:"center",fontSize:13,color:"#F2ECE4",marginTop:14,lineHeight:1.5 }}>Share from proofOS › Proof Wall. Choose your name or stay anonymous. Your full proof is shared exactly as you logged it. Nobody can edit it.</div>
       </div>
+      {mine.length === 0 && !isPreview && <div style={{ color:C.cr,fontSize:15,marginBottom:12 }}>No wins shared yet. Be the first.</div>}
+      <div style={{ display:"grid",gap:14 }}>
+        {mine.slice().reverse().map((w,i)=><WinCard key={"m"+i} w={w} mine/>)}
+        {isPreview && EXAMPLE_WINS.map((w,i)=><WinCard key={"e"+i} w={w}/>)}
+      </div>
+      {isPreview && <div style={{ fontSize:13,color:C.cr,marginTop:12 }}>Preview shows example wins.</div>}
     </div>
   );
 }
@@ -3616,7 +3665,7 @@ function ShopTab({ C }) {
   return (
     <div className="shg-no-paper" style={{ padding:"16px 16px 40px",maxWidth:1100,margin:"0 auto" }}>
       <div style={{ fontSize:22,fontWeight:400,color:C.cr,marginBottom:4 }}>Shop</div>
-      <div style={{ fontSize:15,color:C.cr,marginBottom:20 }}>Workbooks, the method deck and working with me</div>
+      <div style={{ fontSize:15,color:C.cr,marginBottom:20 }}>Workbooks, freebies and working with me</div>
       {purchase && (
         <div style={{ background:"#F2ECE4",color:"#000",borderRadius:16,padding:"16px 18px",marginBottom:18 }}>
           <div style={{ fontSize:17,marginBottom:6 }}>Thank you, it's yours ✦</div>

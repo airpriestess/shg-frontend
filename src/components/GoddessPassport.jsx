@@ -58,7 +58,7 @@ function Stamp({ s, i }) {
         <circle cx="100" cy="100" r="94" strokeWidth={s.earned ? 6 : 3} />
         <circle cx="100" cy="100" r="86" strokeWidth="1.5" />
         <circle cx="100" cy="100" r="54" strokeWidth="1.5" />
-        <g transform="translate(78 62) scale(1.1)" strokeWidth="2.6">
+        <g transform="translate(78 62) scale(1.1)" strokeWidth="1.2">
           <circle cx="14" cy="14" r="8" /><circle cx="26" cy="14" r="8" /><circle cx="14" cy="26" r="8" /><circle cx="26" cy="26" r="8" />
         </g>
         <g fill={ink} stroke="none" style={{ fontFamily: "'Futura','Jost',sans-serif" }}>
@@ -106,11 +106,18 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
   const stamps = [
     { k: "entered", top: "ENTERED", mid: "The Portal", bottom: enteredLabel.toUpperCase(), earned: true },
-    { k: "built", top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.goddessName && p.words.length) },
-    { k: "intention", top: "FIRST", mid: "Intention", bottom: "WRITTEN", earned: threads.length > 0 },
-    { k: "sign", top: "FIRST SIGN", mid: "Logged", bottom: `${signs} SO FAR`, earned: signs > 0 },
-    { k: "l10", top: "LISTENED", mid: "10 times", bottom: "RITUAL", earned: listenCount >= 10 },
-    { k: "l100", top: "LISTENED", mid: "100 times", bottom: "DEVOTION", earned: listenCount >= 100 },
+    { k: "built", top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.goddessName && p.words.length), how: "Fill in your identity page" },
+    { k: "intention", top: "FIRST", mid: "Intention", bottom: "WRITTEN", earned: threads.length > 0, how: "Write your first intention" },
+    { k: "sign", top: "FIRST SIGN", mid: "Logged", bottom: `${signs} SO FAR`, earned: signs > 0, how: "Log your first sign" },
+    { k: "l10", top: "LISTENED", mid: "10 times", bottom: "RITUAL", earned: listenCount >= 10, how: "Listen 10 times" },
+    { k: "i3", top: "THREE", mid: "Intentions", bottom: "SET", earned: threads.length >= 3, how: "Set 3 intentions in proofOS" },
+    { k: "s10", top: "TEN SIGNS", mid: "Noticed", bottom: "LOGGED", earned: signs >= 10, how: "Log 10 signs" },
+    { k: "m1", top: "FIRST", mid: "Manifested", bottom: "PROOF", earned: arrived.length >= 1, how: "Mark your first manifestation" },
+    { k: "m5", top: "FIVE", mid: "Manifested", bottom: "ON THE WALL", earned: arrived.length >= 5, how: "Manifest 5 desires" },
+    { k: "s50", top: "FIFTY SIGNS", mid: "Synchronicity", bottom: "FLOWING", earned: signs >= 50, how: "Log 50 signs" },
+    { k: "m10", top: "TEN", mid: "Manifested", bottom: "UNSTOPPABLE", earned: arrived.length >= 10, how: "Manifest 10 desires" },
+    { k: "l365", top: "LISTENED", mid: "365 times", bottom: "A YEAR OF YOU", earned: listenCount >= 365, how: "Listen 365 times" },
+    { k: "l100", top: "LISTENED", mid: "100 times", bottom: "DEVOTION", earned: listenCount >= 100, how: "Listen 100 times" },
     ...arrived.slice(0, 6).map((t) => ({ top: "ARRIVED", mid: t.desire, bottom: t.days ? `${t.days} DAYS` : "WITH PROOF", earned: true })),
     { top: "NEXT", mid: "Arrival", bottom: "LOCKED", earned: arrived.length > 0 ? null : false },
   ].filter((s) => s.earned !== null);
@@ -280,14 +287,20 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 
             {page === 2 && (
               <div className="pp-page" data-page="03 · VISAS & STAMPS" style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
-                <Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
+<Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
                 <style>{`body .pp-stamps.pp-stamps{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important;gap:18px;margin-top:12px}@media(max-width:700px){body .pp-stamps.pp-stamps{grid-template-columns:1fr 1fr!important}}`}</style><div className="pp-stamps">
-                  {stamps.map((s0, i) => { const s = s0.earned && s0.k && stampDates[s0.k] ? { ...s0, bottom: String(stampDates[s0.k]).toUpperCase() } : s0; return (
-                    <div key={i} style={{ textAlign: "center" }}>
-                      <Stamp s={s} i={i} />
-                      {!s.earned && <div style={{ marginTop: 8, fontSize: 13, color: "#000" }}>Not yet</div>}
-                    </div>
+                  {stamps.filter(x => x.earned).map((s0, i) => { const s = s0.k && stampDates[s0.k] ? { ...s0, bottom: String(stampDates[s0.k]).toUpperCase() } : s0; return (
+                    <div key={i} style={{ textAlign: "center" }}><Stamp s={s} i={i} /></div>
                   ); })}
+                </div>
+                <div style={{ marginTop: 22 }}><Label>MILESTONES YET TO EARN · {stamps.filter((s) => !s.earned).length}</Label></div>
+                <div className="pp-stamps">
+                  {stamps.filter(x => !x.earned).map((s, i) => (
+                    <div key={i} style={{ textAlign: "center" }}>
+                      <Stamp s={s} i={i + 40} />
+                      <div style={{ marginTop: 8, fontSize: 13, color: "#000", lineHeight: 1.4 }}>{s.how || "Keep going"}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
