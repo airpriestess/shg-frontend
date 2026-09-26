@@ -5,6 +5,13 @@ import { WorkWithReshma } from "./ShopGrid.jsx";
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
 const SECTIONS = [
+  { k:"listen-plan", icon:"◈", title:"Your weekly listening plan",
+    body:"Pick one main desire for the week. That track is your anchor.\n\nNight (main): the hypnosis version of your anchor track, as you fall asleep. Theta is strongest here, and you can loop it all night.\n\nMorning (support): the subliminal version while you get ready. Your conscious mind is busy, your subconscious is still open.\n\nDaytime (optional): subliminals for up to two other desires, in the background while you work, walk or cook.\n\nEvery day: log any sign under the intention it belongs to.\n\nAfter 7 days: look at your signs. Lots of movement? Keep going. Ready for the next desire? Make a new anchor and keep the old one as a daytime subliminal." },
+  { k:"listen-multi", icon:"⇄", title:"Can I listen to several tracks at once?",
+    body:"Yes, and the method matters more than the number.\n\nOne anchor at a time: one hypnosis track at night for 7 days in a row, for your most important desire. Hypnosis asks your full attention, so one is best.\n\nSubliminals can stack: they work in the background, so you can play two or three for different desires during the day.\n\nDon't switch every day: switching your night track daily means none of them gets the repetition it needs. Commit for 7 days, then decide.\n\nIf two desires are linked, for example love and self worth, you can alternate nights, but keep each one for at least 3 nights in a row." },
+  { k:"hyp-sub-when", icon:"◐", title:"Hypnosis or subliminal: which, and when?",
+    body:"Hypnosis: my voice guides you into a relaxed state and speaks the new identity directly. Best at night or the first 20 minutes after waking, lying down, with headphones.\n\nSubliminal: the affirmations sit under the music, below conscious hearing. Best during the day, in the background, while you do other things. You can play it quietly.\n\nThe simple rule: hypnosis when you can relax, subliminal when you can't." },
+
   { k:"listen-ritual", icon:"◈", title:"Your listening ritual, step by step",
     body:"1. Headphones on. The sound moves left to right, and your brain needs both ears to follow it.\n\n2. Pick your window. Just before sleep or the first 20 minutes after waking are best, because you're already drifting into theta.\n\n3. Get comfortable. Lie down or sit back, somewhere you won't be interrupted. Never while driving.\n\n4. Set your intention. Before you press play, think of the one desire this track is for. You don't need to force it, just name it.\n\n5. Press play and let go. You don't have to concentrate. If your mind wanders, or you fall asleep, it still works.\n\n6. Afterwards, notice. Over the next days, write down any sign, however small, in proofOS.\n\n7. Repeat for 21 days. Repetition is the method. The subconscious learns by hearing the same thing again and again, not by effort." },
 
@@ -188,7 +195,7 @@ const SLIDES = {
 };
 
 const CATEGORIES = [
-  { label:"How to listen", keys:["listen-ritual","headphones","when","how-long-session","how-often","focus","fell-asleep","stop"] },
+  { label:"How to listen", keys:["listen-ritual","listen-plan","listen-multi","hyp-sub-when","headphones","when","how-long-session","how-often","focus","fell-asleep","stop"] },
   { label:"Intentions", keys:["how-to-write-intention","choosing-your-emotion","multiple-intentions","multiple-desires","same-track-multiple"] },
   { label:"Signs & synchronicities", keys:["spotting-signs","signs"] },
   { label:"Proof Wall, your evidence log", keys:["knowing-manifested","proof-wall-forever","proofos-not-journal"] },

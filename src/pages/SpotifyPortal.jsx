@@ -1497,6 +1497,17 @@ const HOW_IT_WORKS = [
   ["Theta brainwaves","The music guides your brain toward theta, the state just before sleep where your subconscious is most open to change."],
   ["EMDR","Sound moving left to right helps your brain process old beliefs so they stop running the show."],
   ["Subliminals","Affirmations sit under the music, below conscious hearing, so your subconscious takes them in without your inner critic arguing."],
+  ["Binaural beats","Two slightly different tones, one in each ear, that your brain blends into a third rhythm. It gently slows you into the relaxed state where change happens."],
+  ["Reiki energy","Each track is recorded with Reiki intention, so it carries a calm, healing energy while you listen."],
+];
+const EXTRA_SHIFTS = [
+  "You stop needing proof before you feel it's yours",
+  "Old doubts get quieter, without you fighting them",
+  "You notice signs and coincidences more often",
+  "Your body relaxes around the desire instead of tensing",
+  "You act like it's already yours, without forcing it",
+  "Other people start treating you like the new version of you",
+  "You fall asleep calmer and wake up clearer",
 ];
 function TrackGuide({ track, onBack, onLogSign }) {
   const d = getDesc(track);
@@ -1513,13 +1524,17 @@ function TrackGuide({ track, onBack, onLogSign }) {
       <div style={{ fontSize:14,color:"#F2ECE4",margin:"6px 0 20px" }}>{[area, track.format, track.dur].filter(Boolean).join(" · ")}</div>
       <div style={{ display:"grid",gap:14 }}>
         <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+          <H>About this track</H>
+          <div style={{ fontSize:16,lineHeight:1.65 }}>{displayTitle(track.title)} is a {String(track.format||"").toLowerCase().includes("sublim") ? "subliminal" : "self hypnosis"} track for {area}. It combines my voice, theta music, binaural beats, EMDR left-right movement, subliminal affirmations and Reiki intention, so your subconscious hears the new belief from every angle while you relax. Listen daily and log what you notice in proofOS.</div>
+        </div>
+        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
           <H>The shift</H>
           <div style={{ fontSize:17,lineHeight:1.65 }}>{d.shift}</div>
         </div>
         <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
-          <H>What you'll notice</H>
-          {d.benefits.map((b,i)=>(
-            <div key={i} style={{ padding:"10px 0",borderBottom:i<d.benefits.length-1?"1px solid rgba(191,165,216,.55)":"none",fontSize:16,lineHeight:1.5 }}>{b}</div>
+          <H>Shifts you'll notice</H>
+          {[...d.benefits, ...EXTRA_SHIFTS].slice(0,10).map((b,i,arr)=>(
+            <div key={i} style={{ padding:"10px 0",borderBottom:i<arr.length-1?"1px solid rgba(191,165,216,.55)":"none",fontSize:16,lineHeight:1.5 }}>{b}</div>
           ))}
         </div>
         <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
@@ -1537,6 +1552,14 @@ function TrackGuide({ track, onBack, onLogSign }) {
             <div key={h} style={{ padding:"8px 0" }}><div style={{ fontSize:16,fontWeight:500 }}>{i+1}. {h}</div><div style={{ fontSize:15,lineHeight:1.5,marginTop:2 }}>{t}</div></div>
           ))}
           <div style={{ fontSize:13,marginTop:8 }}>Never while driving. Avoid if you have epilepsy.</div>
+        </div>
+        <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
+          <H>Can I listen to other tracks too?</H>
+          <div style={{ fontSize:15,lineHeight:1.6,marginBottom:10 }}>Yes. Give this track your main focus for 7 days in a row, so it has time to land. Around it, you can add others like this:</div>
+          {[["Morning","Subliminal version while you get ready. No need to focus."],["Daytime","Subliminals for your other desires, in the background."],["Night","This track's hypnosis version as you fall asleep. This is your main one."],["After 7 days","Keep it, or rotate to your next desire. Log signs throughout."]].map(([h,t])=>(
+            <div key={h} style={{ padding:"8px 0",borderBottom:"1px solid rgba(191,165,216,.55)" }}><div style={{ fontSize:15,fontWeight:500 }}>{h}</div><div style={{ fontSize:15,lineHeight:1.5 }}>{t}</div></div>
+          ))}
+          <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"listen-plan" } }))} style={{ marginTop:12,background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"9px 16px",fontSize:14,cursor:"pointer",fontFamily:"inherit" }}>The full listening guide ›</button>
         </div>
         {lines.length > 0 && (
           <div className="shg-paper" style={{ borderRadius:20,padding:"20px 18px" }}>
@@ -1564,7 +1587,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
   const [view, setView] = useState("cover"); // cover | script | desc
   return (
     <div style={{ position:"absolute",inset:0,background:C.bg,zIndex:200,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto" }}>
-      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:52,marginBottom:24 }}>
+      <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",paddingTop:"calc(env(safe-area-inset-top,0px) + 44px)",marginBottom:20 }}>
         <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
         <div style={{ display:"flex",gap:10 }}>
@@ -1595,6 +1618,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
       <div style={{ width:"100%",marginTop:22,marginBottom:14,textAlign:"center" }}>
         <div style={{ fontSize:21,fontWeight:400,marginBottom:6,color:C.cr }}>{displayTitle(track.title)}</div>
         <div style={{ fontSize:14,color:C.cr }}>{[track.cat, track.format, track.dur].filter(Boolean).join(" · ")}</div>
+        <button onClick={()=>setView("desc")} style={{ marginTop:14,background:OMBRE,color:"#000",border:"none",borderRadius:999,padding:"10px 22px",fontSize:15,cursor:"pointer",fontFamily:"'Jost',sans-serif" }}>Open me · everything about this track ›</button>
       </div>
       <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
