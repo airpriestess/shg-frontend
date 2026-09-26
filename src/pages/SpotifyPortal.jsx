@@ -2272,7 +2272,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
     <div>
       {/* Greeting: the board opens on her, not on a page title. */}
       <div className="shg-gb shg-hero" style={{ margin:"20px 16px 18px", padding:"26px 22px", borderRadius:20 }}>
-        <div style={{ fontSize:15, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:38, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
+        <div style={{ fontSize:15, letterSpacing:".4em", fontWeight:500, color:C.cr, marginBottom:10 }}>YOUR INSIGHTS</div><div className="shg-gt" style={{ fontSize:26, fontWeight:500, lineHeight:1.1, display:"inline-block" }}>Hello, {isPreview ? "Reshma" : ((userName && userName !== "you") ? userName.split(" ")[0] : "beautiful")}</div>
         <div style={{ fontSize:17, fontWeight:400, color:C.cr, marginTop:8 }}>Here are today's insights.</div>
       </div>
 
@@ -2289,7 +2289,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             </div>
           ))}
         </div>
-        <div style={{ fontSize:15, color:"#F2ECE4", marginTop:14, lineHeight:1.5 }}>From 900 to 5,500 proofs on your Proof Wall. Doubt kills manifestation. We kill the doubt. Keep going.</div>
+        <div style={{ fontSize:14, fontWeight:300, color:"#F2ECE4", marginTop:14, lineHeight:1.5 }}>From 900 to 5,500 proofs on your Proof Wall. Doubt kills manifestation. We kill the doubt. Keep going.</div>
       </div>
 
       {/* PROGRESS — the reference's Progress screen (docs/design/shg-app-design.html) */}
@@ -2321,14 +2321,14 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         const fast = isPreview ? { area:"Luck", note:"about 3 days per sign" } : (analyticsData?.category_speed?.[0] ? { area:analyticsData.category_speed[0].category.replace("maxxing",""), note:`about ${analyticsData.category_speed[0].avg_days} days to manifest` } : null);
         return (
           <div className="shg-gb shg-paper" style={{ margin:"0 16px 18px",borderRadius:22,padding:"24px 22px" }}>
-            <div className="shg-gt" style={{ fontSize:28,fontWeight:500,marginBottom:16,display:"inline-block" }}>Progress</div>
+            <div className="shg-gt" style={{ fontSize:22,fontWeight:500,marginBottom:14,display:"inline-block" }}>Progress</div>
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:20 }}>
-              <div className="shg-gfill" style={{ borderRadius:18,padding:"16px",textAlign:"center" }}><div style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{proofs}</div><div style={{ fontSize:15 }}>proofs</div></div>
-              <div className="shg-gb shg-paper" style={{ borderRadius:18,padding:"16px",textAlign:"center",color:C.cr }}><div className="shg-gt" style={{ fontSize:40,fontWeight:500,lineHeight:1.1 }}>{done}</div><div style={{ fontSize:15 }}>manifested</div></div>
+              <div className="shg-paper shg-glowedge" style={{ borderRadius:18,padding:"16px",textAlign:"center" }}><div style={{ fontSize:26,fontWeight:500,lineHeight:1.1 }}>{proofs}</div><div style={{ fontSize:14 }}>signs and wins logged in total</div></div>
+              <div className="shg-gb shg-paper" style={{ borderRadius:18,padding:"16px",textAlign:"center",color:C.cr }}><div className="shg-gt" style={{ fontSize:26,fontWeight:500,lineHeight:1.1 }}>{done}</div><div style={{ fontSize:14 }}>desires manifested so far</div></div>
             </div>
             {!weeks && !isPreview && <div style={{ fontSize:16,color:C.cr,marginBottom:18 }}>Log your first sign in proofOS and your weeks start filling in here.</div>}
             {weeks && <>
-              <div className="shg-gt" style={{ fontSize:15,letterSpacing:"0.18em",marginBottom:10 }}>SIGNS PER WEEK</div>
+              <div className="shg-gt" style={{ fontSize:13,letterSpacing:"0.18em",marginBottom:10 }}>SIGNS PER WEEK · LAST 10 WEEKS</div>
               <div style={{ display:"flex",alignItems:"flex-end",gap:8,height:130,marginBottom:20 }}>
                 {weeks.map((h,i)=><i key={i} className="shg-gfill shg-bar-v" style={{ flex:1,borderRadius:6,height:`${h}%`,animationDelay:`${i*60}ms` }}/>)}
               </div>
@@ -2339,7 +2339,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               <div style={{ fontSize:16,color:C.cr,marginBottom:6 }}>{hawk.label}</div>
               <button onClick={()=>window.dispatchEvent(new CustomEvent("shg-open-guide",{ detail:{ key:"hawkins" } }))} style={{ background:"#000",color:"#F2ECE4",border:"none",borderRadius:999,padding:"7px 14px",fontSize:13,cursor:"pointer",marginBottom:18,fontFamily:"'Jost',sans-serif" }}>What is the Hawkins scale? ›</button>
             </>}
-            {fast && <div className="shg-paper shg-glowedge shg-pop" style={{ borderRadius:18,padding:"16px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}><div><div style={{ fontSize:12,letterSpacing:".22em" }}>YOUR FASTEST AREA</div><div style={{ fontSize:26,fontWeight:500,marginTop:4 }}>{fast.area}</div></div><div style={{ textAlign:"right" }}><div style={{ fontSize:30,fontWeight:600,lineHeight:1 }}>{(fast.note.match(/\d+/)||["?"])[0]}</div><div style={{ fontSize:13 }}>days on average</div></div></div>}
+            {fast && <div className="shg-paper shg-glowedge shg-pop" style={{ borderRadius:18,padding:"16px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12 }}><div><div style={{ fontSize:12,letterSpacing:".22em" }}>YOUR FASTEST AREA</div><div style={{ fontSize:26,fontWeight:500,marginTop:4 }}>{fast.area}</div></div><div style={{ textAlign:"right" }}><div style={{ fontSize:26,fontWeight:500,lineHeight:1 }}>{(fast.note.match(/\d+/)||["?"])[0]}</div><div style={{ fontSize:13 }}>days on average</div></div></div>}
             <div style={{ fontSize:15,textAlign:"center",marginTop:18,color:C.cr }}>The more you log, the more the AI learns.</div>
           </div>
         );
@@ -2361,15 +2361,15 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ display:"flex", flexWrap:"wrap", gap:16 }}>
               {["week","month","year"].map(k => periods[k] && (
                 <div key={k} style={{ flex:"1 1 260px", minWidth:0 }}>
-                  <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:14 }}>{periods[k].label}</div>
+                  <div style={{ fontSize:16, fontWeight:500, color:C.cr, marginBottom:14 }}>{periods[k].label}</div>
                   {periods[k].rows.map(([name, now, before]) => {
                     const max = Math.max(now, before) || 1;
                     return (
                       <div key={name} style={{ marginBottom:14 }}>
                         <div style={{ fontSize:14, color:C.cr, marginBottom:6 }}>{name}</div>
-                        {[["Before",before,false],["Now",now,true]].map(([lab,v,hi])=>(
+                        {[[`Last ${k}`,before,false],[`This ${k}`,now,true]].map(([lab,v,hi])=>(
                           <div key={lab} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
-                            <span style={{ fontSize:12, color:C.cr, width:46, flexShrink:0 }}>{lab}</span>
+                            <span style={{ fontSize:12, color:C.cr, width:74, flexShrink:0 }}>{lab}</span>
                             <div style={{ flex:1, height:12, borderRadius:6, background:"rgba(0,0,0,.08)", overflow:"hidden" }}><div className={hi?"shg-bar-h":""} style={{ height:"100%", width:`${(v/max)*100}%`, borderRadius:6, background: hi ? "linear-gradient(90deg,#F5E0A0,#E8B870,#BFA5D8,#2CB7A7)" : "rgba(0,0,0,.25)" }}/></div>
                             <span style={{ fontSize:14, fontWeight:hi?600:400, color:C.cr, width:44, textAlign:"right", flexShrink:0 }}>{v}</span>
                           </div>
@@ -2418,9 +2418,9 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
         const mOpen = isPreview ? 10 : inProgress;
         const proofTotal = mDone + signsTotal;
         const tiles = [
-          [mDone,      "Manifested ✓",  C.accentGold],
-          [mOpen,      "In progress",   C.accentLav],
-          [signsTotal, "Signs logged",  C.cr],
+          [mDone,      "Manifested since you joined",  C.accentGold],
+          [mOpen,      "Intentions in progress now",   C.accentLav],
+          [signsTotal, "Signs logged since you joined",  C.cr],
           [isPreview ? "4.2h" : `${((analyticsData?.weekly_minutes ?? 0)/60).toFixed(1)}h`, "Listening this week", C.accentTeal],
         ];
         return (
@@ -2428,8 +2428,8 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             <div style={{ display:"flex", flexWrap:"wrap", gap:12, margin:"0 16px 18px" }}>
               {tiles.map(([v,l,col],i)=>(
                 <div key={i} className="shg-paper shg-glowedge shg-stat" style={{ flex:"1 1 calc(50% - 6px)", minWidth:0, borderRadius:20, padding:"26px 22px", animationDelay:`${i*0.4}s` }}>
-                  <div className="shg-gt" style={{ fontSize:38, fontWeight:600, lineHeight:1, marginBottom:8, display:"inline-block" }}>{v}</div>
-                  <div style={{ fontSize:16, color:C.cr, fontWeight:600 }}>{l}</div>
+                  <div className="shg-gt" style={{ fontSize:26, fontWeight:500, lineHeight:1, marginBottom:8, display:"inline-block" }}>{v}</div>
+                  <div style={{ fontSize:14, color:C.cr, fontWeight:300, lineHeight:1.35 }}>{l}</div>
                 </div>
               ))}
             </div>
@@ -2440,7 +2440,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               <div className="shg-paper shg-glowedge" style={{ margin:"0 16px 18px", padding:"22px 20px", borderRadius:22 }}>
                 <div style={{ fontSize:13, fontWeight:500, letterSpacing:"0.18em", textTransform:"uppercase", color:C.cr, marginBottom:14 }}>Your proof is compounding</div>
                 <div style={{ textAlign:"center", marginBottom:12 }}>
-                  <div style={{ fontSize:52, fontWeight:500, lineHeight:1, color:C.cr }}>{proofTotal}</div>
+                  <div style={{ fontSize:26, fontWeight:500, lineHeight:1, color:C.cr }}>{proofTotal}</div>
                   <div style={{ fontSize:14, color:C.cr, marginTop:4 }}>pieces of proof</div>
                 </div>
                 <div className="shg-paper" style={{ height:14, borderRadius:8, background:C.bg4, overflow:"hidden", marginBottom:12 }}>
@@ -2465,11 +2465,11 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
                   <div style={{ fontSize:16, color:C.cr, marginBottom:20 }}>Average days from setting a desire to logging it manifested.</div>
                   {speeds.map(([cat,days],i)=>(
                     <div key={cat} style={{ display:"flex", alignItems:"center", gap:14, marginBottom:i===speeds.length-1?0:16 }}>
-                      <div style={{ fontSize:18, fontWeight:600, color:C.cr, width:130, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
+                      <div style={{ fontSize:18, fontWeight:500, color:C.cr, width:130, flexShrink:0 }}>{cat.replace("maxxing","")}</div>
                       <div className="shg-paper" style={{ flex:1, height:14, background:C.bg4, borderRadius:8, overflow:"hidden" }}>
                         <div className="shg-bar-h" style={{ height:"100%", borderRadius:4, width:`${Math.max(8,(days/slowest)*100)}%`, background: OMBRE }}/>
                       </div>
-                      <div style={{ fontSize:22, fontWeight:700, color:C.cr, width:64, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
+                      <div style={{ fontSize:22, fontWeight:500, color:C.cr, width:64, textAlign:"right", fontVariantNumeric:"tabular-nums" }}>{days}d</div>
                     </div>
                   ))}
                 </div>
@@ -2548,7 +2548,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
               const max = Math.max(lv, rv);
               return (
                 <div key={i} style={{ padding:"12px 0" }}>
-                  <div style={{ fontSize:15, fontWeight:600, color:C.cr, marginBottom:8 }}>✦ {head}</div>
+                  <div style={{ fontSize:15, fontWeight:500, color:C.cr, marginBottom:8 }}>✦ {head}</div>
                   {[[la,lv,false],[ra,rv,true]].map(([lab,v,hi])=>(
                     <div key={lab} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
                       <span style={{ fontSize:13, color:C.cr, width:104, flexShrink:0 }}>{lab}</span>
@@ -2563,7 +2563,7 @@ function AnalyticsTab({ threads, listenCount, isPreview, C, setTab, emoLog=[], t
             const convRate = Math.round((p.manifestedCount / Math.max(p.listens,1)) * 100);
             return (
               <div key={i} style={{ padding:"14px 0", borderBottom: i<arr.length-1 ? `1px solid ${C.border}` : "none" }}>
-                <div style={{ fontSize:16, fontWeight:700, color:C.cr, marginBottom:4 }}>✦ {p.name}</div>
+                <div style={{ fontSize:16, fontWeight:500, color:C.cr, marginBottom:4 }}>✦ {p.name}</div>
                 <div style={{ fontSize:16, color:C.cr, lineHeight:1.5 }}>
                   {p.manifestedCount} desire{p.manifestedCount!==1?"s":""} manifested across {p.listens} listens — {convRate}% of listens ended in a win.
                 </div>
