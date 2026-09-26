@@ -190,27 +190,27 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             </div>
 
             {page === 0 && (
-              <div className="pp-page" data-page="01 · IDENTITY" style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
+              <div className="pp-page" data-page="01 · IDENTITY" style={{ ...PAPER, borderRadius: 18, padding: "30px 14px 34px" }}>
                 <div style={{ display: "flex", gap: 14 }}>
-                  <label style={{ width: 108, height: 136, borderRadius: 10, flexShrink: 0, overflow: "hidden", cursor: "pointer", display: "grid", placeItems: "center", background: p.photo ? "#000" : G, fontSize: 11 }}>
+                  <label style={{ width: 84, height: 108, borderRadius: 10, flexShrink: 0, overflow: "hidden", cursor: "pointer", display: "grid", placeItems: "center", background: p.photo ? "#000" : G, fontSize: 11 }}>
                     {p.photo ? <img src={p.photo} alt="Your passport photo" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : "+ Add photo"}
                     <input type="file" accept="image/*" hidden onChange={async (e) => { const f = e.target.files?.[0]; if (f) set({ photo: await toAvatar(f) }); e.target.value = ""; }} />
                   </label>
-                  <div style={{ flex: 1, minWidth: 0, display: "grid", gap: 8, alignContent: "start" }}>
-                    <div><Label>NAME</Label>{editing ? <input id="pp-name" style={field} value={p.name} onChange={(e) => set({ name: e.target.value })} /> : <div style={{ fontSize: 15 }}>{p.name || "Add your name"}</div>}</div>
-                    <div><Label>GOD OR GODDESS NAME</Label>{editing ? <input id="pp-goddess" style={field} placeholder="The Lucky One" value={p.goddessName} onChange={(e) => set({ goddessName: e.target.value })} /> : <div style={{ fontSize: 15 }}>{p.goddessName || "Choose one"}</div>}</div>
+                  <div style={{ flex: 1, minWidth: 0, display: "grid", gap: 4, alignContent: "start" }}>
+                    <div><Label>NAME</Label>{editing ? <input id="pp-name" style={field} value={p.name} onChange={(e) => set({ name: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.name || "Add your name"}</div>}</div>
+                    <div><Label>GOD OR GODDESS NAME</Label>{editing ? <input id="pp-goddess" style={field} placeholder="The Lucky One" value={p.goddessName} onChange={(e) => set({ goddessName: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.goddessName || "Choose one"}</div>}</div>
                     <div><Label>I IDENTIFY AS</Label>{editing
                       ? <select id="pp-identity" style={field} value={p.identity || ""} onChange={(e) => set({ identity: e.target.value })}>
                           <option value="">Choose</option><option>Woman</option><option>Man</option><option>Non-binary</option><option>Prefer to self-describe</option><option>Prefer not to say</option>
                         </select>
-                      : <div style={{ fontSize: 15 }}>{p.identity || "Not chosen yet"}</div>}</div>
-                    <div><Label>BIRTHDAY</Label>{editing ? <input id="pp-birthday" type="date" style={field} value={p.birthday || ""} onChange={(e) => set({ birthday: e.target.value })} /> : <div style={{ fontSize: 15 }}>{p.birthday ? new Date(p.birthday + "T00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long" }) : "Add it so we can celebrate you"}</div>}</div>
+                      : <div style={{ fontSize: 14 }}>{p.identity || "Not chosen yet"}</div>}</div>
+                    <div><Label>BIRTHDAY</Label>{editing ? <input id="pp-birthday" type="date" style={field} value={p.birthday || ""} onChange={(e) => set({ birthday: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.birthday ? new Date(p.birthday + "T00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long" }) : "Add it so we can celebrate you"}</div>}</div>
                     <div><Label>CALLING IN</Label><div style={{ fontSize: 14 }}>{callingIn.charAt(0).toUpperCase() + callingIn.slice(1)}</div></div>
                     <div><Label>ENTERED</Label><div style={{ fontSize: 14 }}>{enteredLabel}</div></div>
                   </div>
                 </div>
 
-                <div style={{ marginTop: 12 }}><Label>YOUR WORDS {editing && "· pick up to 5"}</Label>
+                <div style={{ marginTop: 8 }}><Label>YOUR WORDS {editing && "· pick up to 5"}</Label>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {(editing ? [...new Set([...WORDS, ...p.words])] : p.words).map((w) => (
                       <button key={w} disabled={!editing} onClick={() => toggle("words", w, 5)} aria-pressed={p.words.includes(w)}
@@ -227,19 +227,19 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                 </div>
 
                 {[["favourites","YOUR FAVOURITES","Anything you love: places, people, songs, rituals, one per line"],["thisYear",`${new Date().getFullYear()} INTENTIONS`,"What you're calling in this year, one per line"]].map(([k, l, ph]) => (
-                  <div key={k} style={{ marginTop: 12 }}><Label>{l}</Label>
+                  <div key={k} style={{ marginTop: 8 }}><Label>{l}</Label>
                     {editing
                       ? <textarea id={`pp-${k}`} rows={4} style={{ ...field, resize: "vertical" }} placeholder={ph} value={p[k] || ""} onChange={(e) => set({ [k]: e.target.value })} />
                       : (p[k] ? <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.6 }}>{p[k].split("\n").filter(Boolean).map((x, i) => <li key={i}>{x}</li>)}</ul> : <div style={{ fontSize: 13 }}>Not added yet</div>)}
                   </div>
                 ))}
 
-                <div style={{ marginTop: 12 }}><Label>YOU BELIEVE</Label>
+                <div style={{ marginTop: 8 }}><Label>YOU BELIEVE</Label>
                   {editing ? <input id="pp-belief" style={field} placeholder="Everything is always working out for me." value={p.belief} onChange={(e) => set({ belief: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.belief || "Write your affirmation"}</div>}
                 </div>
 
-                <pre style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 10.5, letterSpacing: ".1em", margin: "16px 0 0", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>{mrz}</pre>
-                <button onClick={() => setEditing(!editing)} style={{ ...pill, width: "100%", marginTop: 14, background: editing ? G : "#000", color: editing ? "#000" : "#F2ECE4" }}>{editing ? "Save my passport" : "Edit my passport"}</button>
+                <pre className="pp-mrz" style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 9, letterSpacing: ".06em", margin: "10px 0 0", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>{mrz}</pre>
+                <button onClick={() => setEditing(!editing)} style={{ ...pill, width: "100%", marginTop: 10, minHeight: 40, background: editing ? G : "#000", color: editing ? "#000" : "#F2ECE4" }}>{editing ? "Save my passport" : "Edit my passport"}</button>
               </div>
             )}
 

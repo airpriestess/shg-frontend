@@ -284,7 +284,8 @@ export default function App() {
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
-        <Route path="/auth"    element={<AuthGate onSuccess={() => goPortal()} />} />
+        {/* Logins are switched off for now: /auth opens the app preview instead. */}
+        <Route path="/auth"    element={<Navigate to="/portal?preview=1" replace />} />
         <Route path="/portal/*"  element={
           authCtx.loading
             ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -294,8 +295,8 @@ export default function App() {
                 </div>
               </div>
             : !authCtx.isAuthenticated && new URLSearchParams(window.location.search).get("preview") !== "1" && !window.location.pathname.startsWith("/portal/track/")
-              ? <Navigate to="/auth" replace />
-              : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/portal"); }} isPreview={(new URLSearchParams(window.location.search).get("preview")==="1" || (!authCtx.isAuthenticated && window.location.pathname.startsWith("/portal/track/"))) ? true : undefined} initialTab={new URLSearchParams(window.location.search).get("tab") || "home"} forceTheme={new URLSearchParams(window.location.search).get("theme") || null} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.user?.full_name || authCtx.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
+              ? <Navigate to="/portal?preview=1" replace />
+              : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/portal?preview=1"); }} isPreview={(new URLSearchParams(window.location.search).get("preview")==="1" || (!authCtx.isAuthenticated && window.location.pathname.startsWith("/portal/track/"))) ? true : undefined} initialTab={new URLSearchParams(window.location.search).get("tab") || "home"} forceTheme={new URLSearchParams(window.location.search).get("theme") || null} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.user?.full_name || authCtx.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
         } />
         <Route path="/waitlist" element={<Landing forceWaitlist={true} onJoin={()=>setCheckoutModal(true)} onDemo={()=>goPortal("goddess")} onSignIn={()=>navigate("/auth")} onLegal={(p)=>navigate("/"+p)} />} />
         <Route path="*" element={<Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>} />
@@ -1715,7 +1716,7 @@ function Landing({ onJoin, onDemo, onSignIn, onLegal, forceWaitlist=false }) {
             {isMobile ? "Free Gift" : "Claim Free Gift"}
           </a>
           {/* Hamburger, same shared menu used on every page */}
-          <HamburgerMenu onSignIn={onSignIn}/>
+          <HamburgerMenu/>
         </div>
       </nav>
 

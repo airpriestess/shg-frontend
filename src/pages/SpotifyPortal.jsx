@@ -1593,7 +1593,7 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
   const [view, setView] = useState("cover"); // cover | script | desc
   return (
     <div className="shg-mp" style={{ position:"fixed",inset:0,background:C.bg,zIndex:300,display:"flex",flexDirection:"column",alignItems:"center",padding:"0 28px",overflowY:"auto",WebkitOverflowScrolling:"touch" }}>
-      <div className="shg-mp-head" style={{ display:"grid",gridTemplateColumns:"1fr auto 1fr",alignItems:"center",width:"100%",paddingTop:"calc(env(safe-area-inset-top,0px) + 44px)",marginBottom:20 }}>
+      <div className="shg-mp-head" style={{ display:"grid",gridTemplateColumns:"1fr auto 1fr",alignItems:"center",width:"100%",paddingTop:"calc(env(safe-area-inset-top,0px) + 14px)",marginBottom:10 }}>
         <button onClick={onClose} style={{ background:"none",border:"none",lineHeight:0,cursor:"pointer" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={C.cr} strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <span style={{ fontSize:14,fontWeight:400,letterSpacing:"0.18em",textTransform:"uppercase",color:C.cr }}>Now Playing</span>
         <div style={{ display:"flex",gap:10,justifySelf:"end",alignItems:"center" }}>
@@ -1617,13 +1617,13 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         </div>
       ) : (
       <>
-      <div style={{ width:"100%",maxWidth:300,aspectRatio:"1" }}><Thumb cat={track.cat} size="100%" radius={24}/></div>
+      <div style={{ width:"min(62vw, 30svh, 280px)",aspectRatio:"1" }}><Thumb cat={track.cat} size="100%" radius={24}/></div>
       {!hasAudio && <div style={{ marginTop:8,fontSize:13,color:C.mu,background:C.bg3,borderRadius:20,padding:"4px 12px" }}>Audio coming soon</div>}
-      <div style={{ width:"100%",marginTop:22,marginBottom:14,textAlign:"center" }}>
+      <div style={{ width:"100%",marginTop:12,marginBottom:8,textAlign:"center" }}>
         <div style={{ fontSize:21,fontWeight:400,marginBottom:6,color:C.cr }}>{displayTitle(track.title)}</div>
         <div style={{ fontSize:14,color:C.cr }}>{[track.cat, track.format, track.dur].filter(Boolean).join(" · ")}</div>
       </div>
-      <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:20,paddingBottom:20,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
+      <div style={{ display:"flex",justifyContent:"space-around",width:"100%",marginBottom:10,paddingBottom:10,borderBottom:`1px solid ${isDark?"#fdf0e8":"#000000"}` }}>
         <button onClick={e=>toggleLike(track.id,e)} style={{ background:"none",border:"none",display:"flex",flexDirection:"column",alignItems:"center",gap:4,cursor:"pointer",color:liked.has(track.id)?"#E8B870":C.mu }}>
           <Ico.Heart on={liked.has(track.id)}/>
           <span style={{ fontSize:11,fontFamily:"'Jost',sans-serif" }}>Like</span>
@@ -1659,11 +1659,11 @@ function MobilePlayer({ track, playing, setPlay, liked, toggleLike, prog, seekTo
         <button onClick={()=>setLooping(l=>!l)} style={{ background:isLooping?"rgba(232,184,112,0.2)":"none",border:"none",borderRadius:"50%",width:32,height:32,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:18,color:isLooping?"#E8B870":C.mu }} aria-label="Loop" title={isLooping?"Loop on":"Loop off"}>↻</button>
       </div>
       {/* The five-layer method, visible on every track. */}
-      <div style={{ display:"flex",gap:6,justifyContent:"center",flexWrap:"wrap",margin:"22px 0 14px",color:C.cr }}>
+      <div style={{ display:"flex",gap:6,justifyContent:"center",flexWrap:"wrap",margin:"10px 0 10px",color:C.cr }}>
         {["EMDR","Theta","Subliminal","Reiki"].map(l=><span key={l} className="shg-tag">{l}</span>)}
       </div>
-      <button className="shg-cta" onClick={()=>{ onClose?.(); onLogSign?.(); }} style={{ marginBottom:28 }}>Log a sign in proofOS</button>
-          <div style={{ textAlign:"center",fontSize:12,marginTop:10,color:C.cr }}>Headphones on. Never while driving. Avoid if you have epilepsy.</div>
+      <button className="shg-cta" onClick={()=>{ onClose?.(); onLogSign?.(); }} style={{ marginBottom:6,padding:"12px",fontSize:15 }}>Log a sign in proofOS</button>
+          <div style={{ textAlign:"center",fontSize:11,marginTop:4,marginBottom:10,color:C.cr }}>Headphones on. Never while driving. Avoid if you have epilepsy.</div>
     </div>
   );
 }
@@ -1738,11 +1738,14 @@ function HomeTab({ greet, firstName, track, play, liked, toggleLike, playing, is
 
       </div>
 
-      {/* OPEN YOUR PASSPORT */}
-      <button onClick={openProfile} className="shg-paper" style={{ display:"block",width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:18,cursor:"pointer",textAlign:"center",color:"#000",fontFamily:"'Jost',sans-serif" }}>
-        <span style={{ display:"block",fontSize:16,fontWeight:500 }}>Open your passport</span>
-        <span style={{ display:"block",fontSize:13,marginTop:2 }}>Your identity, stamps and journal</span>
-        <span style={{ display:"block",fontSize:13,marginTop:4 }}>Tap me to open ›</span>
+      {/* OPEN YOUR PASSPORT: a small passport, drawn as a banner */}
+      <button onClick={openProfile} aria-label="Open your passport" className="shg-no-paper" style={{ display:"flex",alignItems:"center",gap:14,width:"calc(100% - 32px)",margin:"0 16px 12px",padding:"12px 16px",borderRadius:"6px 16px 16px 6px",cursor:"pointer",textAlign:"left",fontFamily:"'Jost',sans-serif",backgroundColor:"#000",backgroundImage:"linear-gradient(rgba(191,165,216,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(191,165,216,.2) 1px,transparent 1px)",backgroundSize:"16px 16px",border:"1px solid #E8B870",boxShadow:"inset 8px 0 10px -8px rgba(0,0,0,.9),0 0 18px rgba(191,165,216,.35)" }}>
+        <img src="/logo_transparent_cropped.png" alt="" style={{ width:44,height:44,flexShrink:0 }}/>
+        <span style={{ flex:1 }}>
+          <span className="shg-gt" style={{ display:"block",fontSize:17,letterSpacing:".3em" }}>PASSPORT</span>
+          <span style={{ display:"block",fontSize:11,letterSpacing:".2em",color:"#F2ECE4",marginTop:3 }}>SELF HYPNOSIS GODDESS</span>
+        </span>
+        <span style={{ fontSize:13,color:"#F2ECE4",whiteSpace:"nowrap" }}>Tap to open ›</span>
       </button>
 
       {/* TODAY'S REMINDER: tap to spin it open, one specific note a day */}
