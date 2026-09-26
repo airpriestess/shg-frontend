@@ -26,7 +26,7 @@ import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
 import { useAuth } from "./contexts/AuthContext.jsx";
 import { BetaAuth } from "./components/Onboarding";
-import { fetchProfile, startPassportSync } from "./utils/profileSync";
+import { fetchProfile, saveProfile, startPassportSync } from "./utils/profileSync";
 import AuthGate from "./components/AuthGate.jsx";
 
 const _BUILD = "v2-20260824";
@@ -235,7 +235,17 @@ function OnboardingGate({ children }) {
     fetchProfile()
       .then((pr) => {
         if (!alive) return;
-        if (pr?.onboarded_at) { try { localStorage.setItem(`shg_onboarded_${userId}`, "1"); } catch {} }
+        // Onboarding is for new members only: anyone who finished it (on any device),
+        // or whose account is more than a day old, never sees it again.
+        const key = `shg_onboarded_${userId}`;
+        let local = false;
+        try { local = !!localStorage.getItem(key); } catch {}
+        const created = Date.parse(authCtx.user?.created_at || "");
+        const established = created && Date.now() - created > 24 * 60 * 60 * 1000;
+        if (pr?.onboarded_at || established || local) {
+          try { localStorage.setItem(key, "1"); } catch {}
+          if (!pr?.onboarded_at) saveProfile({ onboarding: { existing_member: true } }).catch(() => {});
+        }
         stop = startPassportSync(userId, pr?.passport);
       })
       .catch(() => { if (alive) stop = startPassportSync(userId, null); })

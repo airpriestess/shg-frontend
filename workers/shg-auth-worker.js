@@ -350,7 +350,7 @@ async function handleLogin(request, env) {
     return json({ error: "Email and password required" }, 400);
   }
   const user = await env.DB.prepare(
-    `SELECT id, email, password_hash, full_name, tier, tier_expires_at FROM users WHERE email = ?`
+    `SELECT id, email, password_hash, full_name, tier, tier_expires_at, created_at FROM users WHERE email = ?`
   )
     .bind(email.toLowerCase())
     .first();
@@ -371,6 +371,7 @@ async function handleLogin(request, env) {
       full_name: user.full_name,
       tier: user.tier,
       tier_expires_at: user.tier_expires_at,
+      created_at: user.created_at,
     },
   });
 }
