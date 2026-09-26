@@ -19,8 +19,8 @@ if (window.location.pathname.startsWith("/portal")) {
 if (/^\/+shop\/?$/i.test(window.location.pathname)) {
   window.location.replace("https://beacons.ai/reshmaoracle");
 }
-// Short investor links: /demo and /beta open the live beta portal in preview.
-if (/^\/+(demo|beta)\/?$/i.test(window.location.pathname)) {
+// Short investor link: /demo opens the portal in preview. /beta is the tester sign-up + onboarding.
+if (/^\/+demo\/?$/i.test(window.location.pathname)) {
   window.history.replaceState(null, "", "/portal?preview=1");
 }
 // Tidy links with stray double slashes (e.g. reshmaoracle.com//portal) so they still open the right page.

@@ -25,6 +25,8 @@ import CreateThreadModal from "./components/CreateThreadModal.jsx";
 import { PhotoProofModal, VoiceProofModal } from "./components/ProofUpload.jsx";
 import { requestNotificationPermission, scheduleReminders } from "./utils/notifications.js";
 import { useAuth } from "./contexts/AuthContext.jsx";
+import Onboarding, { BetaAuth } from "./components/Onboarding";
+import { fetchProfile, saveProfile, startPassportSync, passportKey } from "./utils/profileSync";
 import AuthGate from "./components/AuthGate.jsx";
 
 const _BUILD = "v2-20260824";
@@ -219,6 +221,61 @@ function LibraryBanner({ isMobile, onLegal }) {
   );
 }
 
+// Everyone sees onboarding first. Members' answers + passport are saved to their account;
+// the investor/demo preview can skip and nothing is sent anywhere.
+function mergePassport(key, patch) {
+  try {
+    const cur = JSON.parse(localStorage.getItem(key) || "{}");
+    localStorage.setItem(key, JSON.stringify({ ...cur, ...patch }));
+    window.dispatchEvent(new Event("shg-passport-updated"));
+  } catch {}
+}
+
+function OnboardingGate({ children }) {
+  const authCtx = useAuth();
+  const preview = new URLSearchParams(window.location.search).get("preview") === "1" || !authCtx.isAuthenticated;
+  const userId = authCtx.user?.id;
+  const [state, setState] = useState(() => {
+    if (!preview) return "loading";
+    try { return localStorage.getItem("shg_preview_onboarded") ? "done" : "ask"; } catch { return "ask"; }
+  });
+
+  useEffect(() => {
+    if (preview || !userId) return;
+    let stop = () => {};
+    let alive = true;
+    fetchProfile()
+      .then((pr) => {
+        if (!alive) return;
+        stop = startPassportSync(userId, pr?.passport);
+        setState(pr?.onboarded_at ? "done" : "ask");
+      })
+      .catch(() => { if (alive) { stop = startPassportSync(userId, null); setState("done"); } });
+    return () => { alive = false; stop(); };
+  }, [preview, userId]);
+
+  if (state === "loading") return <div style={{ minHeight: "100vh", background: "#000" }} />;
+  if (state === "ask") {
+    return <Onboarding
+      preview={preview}
+      initialName={authCtx.user?.full_name || ""}
+      onSkip={() => { try { localStorage.setItem("shg_preview_onboarded", "1"); } catch {} setState("done"); }}
+      onDone={async (answers) => {
+        const key = preview ? "shg_passport_preview" : passportKey(userId);
+        mergePassport(key, { name: answers.name, birthday: answers.birthday || undefined, onboarding: answers });
+        if (preview) { try { localStorage.setItem("shg_preview_onboarded", "1"); } catch {} }
+        else {
+          let passport = null;
+          try { passport = JSON.parse(localStorage.getItem(key)); } catch {}
+          await saveProfile({ onboarding: answers, passport });
+        }
+        setState("done");
+      }}
+    />;
+  }
+  return children;
+}
+
 export default function App() {
   const authCtx = useAuth();
   const { isAuthenticated, profile } = authCtx;
@@ -284,8 +341,8 @@ export default function App() {
         <Route path="/tos"     element={<Legal page="tos"     onBack={()=>navigate("/")}/>} />
         <Route path="/privacy" element={<Legal page="privacy" onBack={()=>navigate("/")}/>} />
         <Route path="/refunds" element={<Legal page="refunds" onBack={()=>navigate("/")}/>} />
-        {/* Logins are switched off for now: /auth opens the app preview instead. */}
-        <Route path="/auth"    element={<Navigate to="/portal?preview=1" replace />} />
+        <Route path="/auth"    element={<Navigate to="/beta" replace />} />
+        <Route path="/beta"    element={authCtx.loading ? null : authCtx.isAuthenticated ? <Navigate to="/portal" replace /> : <BetaAuth onAuthed={() => navigate("/portal")} />} />
         <Route path="/portal/*"  element={
           authCtx.loading
             ? <div style={{minHeight:"100vh",background:"#000",display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -295,8 +352,8 @@ export default function App() {
                 </div>
               </div>
             : !authCtx.isAuthenticated && new URLSearchParams(window.location.search).get("preview") !== "1" && !window.location.pathname.startsWith("/portal/track/")
-              ? <Navigate to="/portal?preview=1" replace />
-              : <ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/portal?preview=1"); }} isPreview={(new URLSearchParams(window.location.search).get("preview")==="1" || (!authCtx.isAuthenticated && window.location.pathname.startsWith("/portal/track/"))) ? true : undefined} initialTab={new URLSearchParams(window.location.search).get("tab") || "home"} forceTheme={new URLSearchParams(window.location.search).get("theme") || null} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.user?.full_name || authCtx.user?.email?.split("@")[0] || "you"} /></ErrorBoundary>
+              ? <Navigate to="/beta" replace />
+              : <OnboardingGate><ErrorBoundary><SpotifyPortal onHome={() => navigate("/")} onSignOut={() => { authCtx.signOut(); navigate("/beta"); }} isPreview={(new URLSearchParams(window.location.search).get("preview")==="1" || (!authCtx.isAuthenticated && window.location.pathname.startsWith("/portal/track/"))) ? true : undefined} initialTab={new URLSearchParams(window.location.search).get("tab") || "home"} forceTheme={new URLSearchParams(window.location.search).get("theme") || null} userTier={profile?.tier || (authCtx.isAuthenticated ? "audio" : userTier)} userName={authCtx.user?.full_name || authCtx.user?.email?.split("@")[0] || "you"} /></ErrorBoundary></OnboardingGate>
         } />
         <Route path="/waitlist" element={<Landing forceWaitlist={true} onJoin={()=>setCheckoutModal(true)} onDemo={()=>goPortal("goddess")} onSignIn={()=>navigate("/auth")} onLegal={(p)=>navigate("/"+p)} />} />
         <Route path="*" element={<Landing onJoin={() => setCheckoutModal(true)} onDemo={() => goPortal("goddess")} onSignIn={() => navigate("/auth")} onLegal={(p)=>navigate("/"+p)}/>} />

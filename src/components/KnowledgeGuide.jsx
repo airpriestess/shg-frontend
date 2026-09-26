@@ -1,6 +1,29 @@
 /* KnowledgeGuide, comprehensive listening guide covering every question */
 import { useEffect, useState } from "react";
-import { WorkWithReshma } from "./ShopGrid.jsx";
+import { WorkWithReshma, PRODUCTS } from "./ShopGrid.jsx";
+
+const GRAD = "linear-gradient(110deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 78%,#167A6B)";
+const goShop = (onClose) => { try { onClose?.(); } catch {} window.dispatchEvent(new Event("shg-go-shop")); };
+
+// A small form: saved on this device and sent to Reshma (fire-and-forget).
+function AskReshma() {
+  const [q, setQ] = useState("");
+  const [sent, setSent] = useState(false);
+  const send = () => {
+    const question = q.trim(); if (!question) return;
+    let email = ""; try { email = localStorage.getItem("shg_email") || ""; } catch {}
+    try { const l = JSON.parse(localStorage.getItem("shg_questions") || "[]"); l.push({ question, date:new Date().toISOString() }); localStorage.setItem("shg_questions", JSON.stringify(l.slice(-200))); } catch {}
+    try { fetch("https://shg-auth-worker.airpriestess.workers.dev/ask", { method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify(email ? { question, email } : { question }) }).catch(() => {}); } catch {}
+    setQ(""); setSent(true);
+  };
+  if (sent) return <div style={{ marginTop:12, padding:"12px 14px", borderRadius:12, background:"#000", color:"#F2ECE4", fontSize:15, fontWeight:300 }}>Sent. Reshma will answer you here soon.</div>;
+  return (
+    <div style={{ marginTop:12, display:"grid", gap:8 }}>
+      <textarea id="shg-ask-q" rows={4} value={q} onChange={e=>setQ(e.target.value)} placeholder="Your question…" style={{ width:"100%", boxSizing:"border-box", border:"1px solid #000", borderRadius:12, padding:12, fontSize:15, fontFamily:"'Jost',sans-serif", fontWeight:300, background:"#fff", color:"#000", resize:"vertical" }}/>
+      <button onClick={send} style={{ justifySelf:"start", background:"#000", color:"#F2ECE4", border:"none", borderRadius:999, padding:"10px 20px", fontSize:15, fontWeight:300, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Send</button>
+    </div>
+  );
+}
 
 const OMBRE = "linear-gradient(135deg,#F5E0A0 0%,#E8B870 14%,#BFA5D8 34%,#2CB7A7 62%,#167A6B 100%)";
 
@@ -23,16 +46,16 @@ const SECTIONS = [
     body:"The words in my tracks aren't written like a script from a template. They come through me, from Source, for the desire each track is made for.\n\nI then add the layers that help them go in: EMDR, binaural beats and isochronic tones, subliminals and Reiki." },
   { k:"reshma-youtube", icon:"▶", title:"Where else can I find Reshma?",
     body:"On my YouTube channel, where I share free tracks and videos about manifestation and self hypnosis. Many members first found me there.\n\nThe full library, proofOS and everything in this app are only here, for members." },
-  { k:"personal-track", icon:"≈", title:"What is a personalised track?",
+  { k:"personal-track", icon:"≈", title:"What is a Personalised Track?", shop:true,
     body:"A track made only for you. You tell me exactly what you want and what's in your way, and I create a self hypnosis track written in your words and recorded in my voice.\n\nIt's the most powerful option if your desire is very specific, or if general tracks haven't reached the belief underneath it." },
-  { k:"one-to-one", icon:"◐", title:"What happens in a 1:1 session with Reshma?",
+  { k:"one-to-one", icon:"◐", title:"What happens in a 1:1 session?", shop:true,
     body:"One live session with me, focused on your goals. We look at what you want, what's blocking it and what to do next. I use my intuition and energy work alongside the method in this app.\n\nYou leave with a clear plan, and you can keep tracking everything in proofOS." },
-  { k:"email-coaching", icon:"✉", title:"What is email coaching?",
-    body:"Five weeks of support by email: daily prompts and direct access to me. You share what's happening, I reply with guidance.\n\nIt's ideal if you want ongoing support without booking live sessions." },
-  { k:"how-to-book", icon:"›", title:"How do I book or buy?",
-    body:"Open the Shop, or tap an offer below. For now, some bookings open my booking page. Booking directly inside the app is coming soon." },
-  { k:"ask-reshma", icon:"?", title:"Can I ask Reshma a question?",
-    body:"Yes. Goddess members can send me a question from Analytics › Ask Reshma, and I answer inside the app. For anything deeper, a 1:1 session or email coaching is the best way to work with me." },
+  { k:"email-coaching", icon:"✉", title:"What is Email Coaching?", shop:true,
+    body:"Ongoing support from me by email. You share what's happening, your wins, your blocks and your questions, and I reply with guidance and next steps.\n\nIt's ideal if you want support over a longer stretch without booking live sessions. You'll see the current details in the Shop." },
+  { k:"how-to-book", icon:"›", title:"How do I book or buy?", shop:true,
+    body:"Tap the service you want in the Shop tab. Checkout happens inside the app, and you'll see the details for each option there before you pay." },
+  { k:"ask-reshma", icon:"?", title:"Ask Reshma a question", ask:true,
+    body:"Write your question below and send it to me. I answer inside the app. For anything deeper, a 1:1 session or Email Coaching is the best way to work with me." },
   { k:"not-medical", icon:"!", title:"Is this medical or professional advice?",
     body:"No. My tracks and guidance are spiritual support. They're not a replacement for medical, psychological or financial advice. If you're struggling, please reach out to a professional or a local support line." },
 
@@ -215,7 +238,7 @@ export function GuideIcon({ size = 64 }) {
   // One elegant icon for every topic: the two circles from the 1:1 Session cover.
   return <img src="/icons/session.webp" alt="" aria-hidden="true" width={size} height={size} style={{ flexShrink:0, display:"block", borderRadius:"50%" }}/>;
 }
-const CAT_ICON = { "About Reshma & extra support":"guide", "How to listen":"listen","Intentions":"intentions","Signs & synchronicities":"signs","Proof Wall, your evidence log":"proof","Bucket List":"bucket","Getting started":"start","Tracks & listening":"tracks","The mechanism":"mechanism","Results & troubleshooting":"results","The Hawkins Scale":"hawkins" };
+const CAT_ICON = { "About Reshma":"guide","Extra support":"guide", "How to listen":"listen","Intentions":"intentions","Signs & synchronicities":"signs","Proof":"proof","Bucket List":"bucket","Getting started":"start","Tracks & listening":"tracks","The mechanism":"mechanism","Results & troubleshooting":"results","The Hawkins Scale":"hawkins" };
 
 // Slides from the Inside Your Brain method deck, shown above each topic's answers.
 const SLIDES = {
@@ -223,9 +246,10 @@ const SLIDES = {
   "The mechanism": ["audio-formula","brainwaves","hypnosis-brain","affirmation-brain","emdr","tones","subliminals","reiki","identity-shift"],
   "Intentions": ["intention-to-manifestation","intention-list"],
   "Signs & synchronicities": ["signs-synchronicity","what-counts","signs-stories","why-222","read-a-sign","ask-for-sign","signs-build"],
-  "Proof Wall, your evidence log": ["hope-or-evidence","why-track","listen-notice-log","what-you-track","proof-chart"],
+  "Proof": ["hope-or-evidence","why-track","listen-notice-log","what-you-track","proof-chart"],
   "Bucket List": ["bucket-list"],
-  "About Reshma & extra support": ["meet-oracle","channelled","how-i-connect","path-with-me","why-work","track-for-you","workbooks"],
+  "About Reshma": ["meet-oracle","channelled","how-i-connect"],
+  "Extra support": ["path-with-me","why-work","track-for-you"],
   "The Hawkins Scale": ["hawkins-scale"],
 };
 
@@ -233,14 +257,15 @@ const CATEGORIES = [
   { label:"How to listen", keys:["listen-ritual","listen-plan","listen-multi","hyp-sub-when","headphones","when","how-long-session","how-often","focus","fell-asleep","stop"] },
   { label:"Intentions", keys:["how-to-write-intention","choosing-your-emotion","multiple-intentions","multiple-desires","same-track-multiple"] },
   { label:"Signs & synchronicities", keys:["spotting-signs","signs","forgot-sign"] },
-  { label:"Proof Wall, your evidence log", keys:["knowing-manifested","proof-wall-forever","proofos-not-journal"] },
+  { label:"Proof", keys:["knowing-manifested","proof-wall-forever","proofos-not-journal"] },
   { label:"Bucket List", keys:["bucket-how","bucket-vs-active","bucket-detail","bucket-often","bucket-signs"] },
-  { label:"About Reshma & extra support", keys:["who-reshma","reshma-psychic","reshma-channel","reshma-youtube","personal-track","one-to-one","email-coaching","how-to-book","ask-reshma","not-medical"] },
   { label:"Getting started", keys:["formula","believe","state"] },
   { label:"Tracks & listening", keys:["how-many-tracks","hyp-vs-sub","music-only","vocals-only","hypno-vs-sub-versions","frequencies","frequencies-types","reiki"] },
   { label:"The mechanism", keys:["what-hypnosis","brainwaves","binaural","isochronic","solfeggio","reiki-energy","sats","emdr","subliminals-what","subliminals-all","visualization","one-method","therapy","emotional"] },
   { label:"Results & troubleshooting", keys:["results","working","not-working","tell-anyone"] },
   { label:"The Hawkins Scale", keys:["hawkins","hawkins-how"] },
+  { label:"About Reshma", keys:["who-reshma","reshma-psychic","reshma-channel","reshma-youtube","not-medical"] },
+  { label:"Extra support", keys:["personal-track","one-to-one","email-coaching","how-to-book","ask-reshma"] },
 ];
 
 export default function KnowledgeGuide({ onClose, start = null }) {
@@ -257,12 +282,12 @@ export default function KnowledgeGuide({ onClose, start = null }) {
   }, [onClose]);
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="Guidebook" className="shg-no-paper" style={{ position:"fixed", inset:0, zIndex:1300, background:"#000", color:"#F2ECE4", overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", fontFamily:"'Futura','Jost',sans-serif" }}>
+    <div role="dialog" aria-modal="true" aria-label="Guidebook" className="shg-no-paper" style={{ position:"fixed", inset:0, zIndex:1300, background:"#000", color:"#F2ECE4", overflowY:"auto", WebkitOverflowScrolling:"touch", overscrollBehavior:"contain", fontFamily:"'Jost',sans-serif", fontWeight:300 }}>
       <div style={{ maxWidth:720, margin:"0 auto", padding:"calc(env(safe-area-inset-top,0px) + 16px) 16px 60px" }}>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
           {cat
             ? <button onClick={()=>{ setCat(null); setOpen(null); }} style={{ background:"none", border:"1px solid #F2ECE4", color:"#F2ECE4", borderRadius:999, padding:"8px 16px", fontSize:15, cursor:"pointer", fontFamily:"inherit" }}>‹ Guidebook</button>
-            : <span style={{ fontSize:28, fontWeight:500 }}>Guidebook</span>}
+            : <span style={{ fontSize:28, fontWeight:400 }}>Guidebook</span>}
           <button onClick={onClose} aria-label="Close guidebook" style={{ background:"none", border:"1px solid #F2ECE4", color:"#F2ECE4", borderRadius:999, padding:"8px 16px", fontSize:15, cursor:"pointer", fontFamily:"inherit" }}>Close</button>
         </div>
 
@@ -277,21 +302,38 @@ export default function KnowledgeGuide({ onClose, start = null }) {
           </div></>
         ) : (
           <>
-            <div style={{ fontSize:26, fontWeight:500, marginBottom:16 }}>{cat}</div>
+            <div style={{ fontSize:26, fontWeight:400, marginBottom:16 }}>{cat}</div>
             {(SLIDES[cat] || []).length > 0 && (
               <div style={{ display:"grid", gap:12, marginBottom:18 }}>
                 {SLIDES[cat].map(n => <img key={n} src={`/deck/${n}.webp`} alt="" loading="lazy" style={{ width:"100%", aspectRatio:"16/9", borderRadius:14, display:"block", border:"1px solid rgba(242,236,228,0.18)" }}/>)}
               </div>
             )}
-            {cat === "About Reshma & extra support" && <div style={{ marginBottom:14 }}><WorkWithReshma/></div>}
+            {cat === "Extra support" && <div style={{ marginBottom:14 }}><WorkWithReshma/></div>}
+            {cat === "Extra support" && (
+              <div style={{ marginBottom:16 }}>
+                <div style={{ fontSize:13, fontWeight:400, letterSpacing:".3em", textAlign:"center", margin:"4px 0 12px" }}>WORKBOOKS</div>
+                <style>{`body .shg-kg-wb.shg-kg-wb{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(3,1fr)!important;gap:10px}`}</style>
+                <div className="shg-kg-wb">
+                  {PRODUCTS.filter(p => p.kind === "Workbook").map(p => (
+                    <button key={p.name} onClick={()=>{ goShop(onClose); setTimeout(()=>{ const el = document.getElementById("shg-shop-Workbook"); if (el) el.scrollIntoView({ behavior:"smooth", block:"start" }); }, 400); }} style={{ background:"#000", border:"1px solid rgba(242,236,228,0.18)", borderRadius:14, overflow:"hidden", padding:0, cursor:"pointer", fontFamily:"inherit", color:"#F2ECE4" }}>
+                      <img src={p.img} alt={p.name} loading="lazy" style={{ width:"100%", aspectRatio:"1", objectFit:"cover", display:"block" }}/>
+                      <div style={{ fontSize:12, fontWeight:300, padding:"8px 4px 10px", lineHeight:1.3 }}>{p.name}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             <div style={{ display:"grid", gap:10 }}>
               {visibleSections.map(s => (
                 <div key={s.k} style={{ ...PAPER, borderRadius:16, overflow:"hidden" }}>
                   <button onClick={()=>setOpen(open===s.k?null:s.k)} aria-expanded={open===s.k} style={{ width:"100%", padding:"16px", background:"none", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", gap:12, fontFamily:"inherit", color:"#000", textAlign:"left" }}>
-                    <span style={{ fontSize:17, fontWeight:500, lineHeight:1.35 }}>{s.title}</span>
+                    <span style={{ fontSize:17, fontWeight:400, lineHeight:1.35 }}>{s.title}</span>
                     <span style={{ fontSize:20, transform:open===s.k?"rotate(180deg)":"none", transition:"transform .2s" }}>⌄</span>
                   </button>
-                  {open===s.k && <div style={{ padding:"0 16px 18px", fontSize:16, lineHeight:1.75, whiteSpace:"pre-line", color:"#000" }}>{s.body}</div>}
+                  {open===s.k && <div style={{ padding:"0 16px 18px", fontSize:16, fontWeight:300, lineHeight:1.75, whiteSpace:"pre-line", color:"#000" }}>{s.body}
+                    {s.shop && <div><button onClick={()=>goShop(onClose)} style={{ marginTop:12, background:GRAD, color:"#000", border:"none", borderRadius:999, padding:"10px 20px", fontSize:15, fontWeight:300, cursor:"pointer", fontFamily:"'Jost',sans-serif" }}>Open the Shop ›</button></div>}
+                    {s.ask && <AskReshma/>}
+                  </div>}
                 </div>
               ))}
             </div>

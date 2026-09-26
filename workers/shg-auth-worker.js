@@ -111,6 +111,9 @@ const API_ROUTES = {
   "POST /shop/checkout": handleShopCheckout,
   "GET /shop/download":  handleShopDownload,
   "GET /shop/purchases": handleShopPurchases,
+  "GET /profile":    handleProfileGet,
+  "POST /profile":   handleProfileSave,
+  "POST /ask":       handleAsk,
 };
 
 // ── In-app shop (Stripe Checkout + private PDFs in R2 bucket shg-products) ──
@@ -436,5 +439,76 @@ async function handleLeads(request, env) {
   return json({ success: true, id });
 }
 __name(handleLeads, "handleLeads");
+
+// ── Member profile: onboarding answers + passport, kept per user so upgrades never lose tester data ──
+async function authedUser(request, env) {
+  const token = (request.headers.get("Authorization") || "").replace("Bearer ", "");
+  return token ? getUserFromToken(env, token) : null;
+}
+__name(authedUser, "authedUser");
+
+async function handleProfileGet(request, env) {
+  const user = await authedUser(request, env);
+  if (!user) return json({ error: "Not authenticated" }, 401);
+  const row = await env.DB.prepare(`SELECT onboarding, passport, onboarded_at FROM profiles WHERE user_id = ?`).bind(user.id).first();
+  return json({
+    onboarding: row?.onboarding ? JSON.parse(row.onboarding) : null,
+    passport: row?.passport ? JSON.parse(row.passport) : null,
+    onboarded_at: row?.onboarded_at || null,
+  });
+}
+__name(handleProfileGet, "handleProfileGet");
+
+async function handleProfileSave(request, env) {
+  const user = await authedUser(request, env);
+  if (!user) return json({ error: "Not authenticated" }, 401);
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON body" }, 400); }
+  const now = new Date().toISOString();
+  const onboarding = body.onboarding ? JSON.stringify(body.onboarding).slice(0, 20000) : null;
+  const passport = body.passport ? JSON.stringify(body.passport).slice(0, 200000) : null;
+  const existing = await env.DB.prepare(`SELECT onboarded_at FROM profiles WHERE user_id = ?`).bind(user.id).first();
+  await env.DB.prepare(
+    `INSERT INTO profiles (user_id, onboarding, passport, onboarded_at, updated_at) VALUES (?, ?, ?, ?, ?)
+     ON CONFLICT(user_id) DO UPDATE SET
+       onboarding = COALESCE(excluded.onboarding, profiles.onboarding),
+       passport = COALESCE(excluded.passport, profiles.passport),
+       onboarded_at = COALESCE(profiles.onboarded_at, excluded.onboarded_at),
+       updated_at = excluded.updated_at`
+  ).bind(user.id, onboarding, passport, onboarding ? now : null, now).run();
+  if (onboarding && !existing?.onboarded_at) {
+    const o = body.onboarding;
+    await notifyReshma(env,
+      "New tester onboarded: " + user.email,
+      "<h2 style='color:#E8B870;'>New onboarding</h2>" +
+      "<p><b>Name:</b> " + escapeHtml(o.name || user.full_name || "") + "</p>" +
+      "<p><b>Email:</b> " + escapeHtml(user.email) + "</p>" +
+      "<p><b>Birthday:</b> " + escapeHtml(o.birthday || "") + "</p>" +
+      "<p><b>Manifesting:</b> " + escapeHtml([].concat(o.areas || []).join(", ")) + "</p>" +
+      "<p><b>In their words:</b> " + escapeHtml(o.desire || "") + "</p>"
+    );
+  }
+  return json({ success: true });
+}
+__name(handleProfileSave, "handleProfileSave");
+
+async function handleAsk(request, env) {
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Invalid JSON body" }, 400); }
+  const question = String(body.question || "").trim().slice(0, 4000);
+  if (!question) return json({ error: "Question required" }, 400);
+  const user = await authedUser(request, env);
+  const email = user?.email || (isValidEmail(body.email || "") ? body.email.toLowerCase() : null);
+  await env.DB.prepare(`INSERT INTO questions (id, user_id, email, question, created_at) VALUES (?, ?, ?, ?, ?)`)
+    .bind(uuid(), user?.id || null, email, question, new Date().toISOString()).run();
+  await notifyReshma(env, "New question for Reshma", "<p><b>From:</b> " + escapeHtml(email || "preview visitor") + "</p><p>" + escapeHtml(question) + "</p>");
+  return json({ success: true });
+}
+__name(handleAsk, "handleAsk");
+
+function escapeHtml(v) {
+  return String(v).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+__name(escapeHtml, "escapeHtml");
 
 export { worker_default as default };

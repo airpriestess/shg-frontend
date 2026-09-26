@@ -3,7 +3,7 @@ import ShopGrid, { WorkWithReshma } from "./ShopGrid.jsx";
 
 // The Goddess Passport replaces the profile. She builds it (photo, Goddess
 // name, colours, words, belief) and collects stamps as she moves through the
-// app. Details are kept on this device for now.
+// app. Saved on the device, and to her account when signed in.
 const G = "linear-gradient(90deg,#F5E0A0,#E8B870 22%,#BFA5D8 52%,#2CB7A7 80%,#167A6B)";
 const PAPER = {
   backgroundColor: "#F2ECE4", color: "#000",
@@ -30,6 +30,133 @@ const toAvatar = (file) => new Promise((resolve, reject) => {
   img.onerror = reject;
   img.src = URL.createObjectURL(file);
 });
+
+// MY LIFE: one check-in at a time. One box (type or speak), one optional
+// photo. Past check-ins, including older multi-field ones, are listed below.
+const LIFE_FIELDS = [["want", "What I want from life"], ["desires", "My desires"], ["blocks", "My blocks"], ["needs", "My needs"], ["becoming", "Who I'm becoming"]];
+const AI_PROMPT = "Hi, I want you to extract every single detail you know about me that defines: my current desires, what you think my blocks are in achieving these desires, my current emotional needs, and who I'm becoming. Put it under those four headings.";
+const SUM_KEYS = [["desires", "Desires", /desires?/i], ["blocks", "Blocks", /blocks?/i], ["needs", "Emotional needs", /emotional\s+needs?|needs?/i], ["becoming", "Becoming", /becoming/i]];
+// Split an AI answer under the four headings; else the first few sentences.
+function summarise(text) {
+  const out = {}; let cur = null;
+  String(text || "").split(/\r?\n/).forEach((line) => {
+    const clean = line.replace(/^[#*\s\d.)-]+/, "").replace(/[*:]+\s*$/, "").trim();
+    const head = clean.length < 60 && SUM_KEYS.find(([, , re]) => re.test(clean) && clean.split(/\s+/).length <= 7);
+    if (head) { cur = head[0]; const rest = line.split(":").slice(1).join(":").trim(); out[cur] = rest ? [rest] : []; return; }
+    if (cur && line.trim()) out[cur].push(line.trim().replace(/^[-*•]\s*/, ""));
+  });
+  const found = Object.keys(out).filter((k) => out[k].length);
+  if (found.length >= 2) return Object.fromEntries(found.map((k) => [k, out[k].join(" ")]));
+  const sent = String(text || "").replace(/\s+/g, " ").match(/[^.!?]+[.!?]+/g) || [String(text || "").slice(0, 300)];
+  return { overview: sent.slice(0, 3).join(" ").trim() };
+}
+function MyLife({ savedWhere, life, setLife, pill, field }) {
+  const [text, setText] = useState("");
+  const [file, setFile] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [openIdx, setOpenIdx] = useState(null);
+  const ai = life.aiCheckins || [];
+  // Older check-ins (monthly boxes, single answers) stay readable in history.
+  const older = [
+    ...(life.checkins || []).map((c) => ({ ...c, _old: true })),
+    ...Object.entries(life.log || {}).flatMap(([k, arr]) => (arr || []).map((e) => ({ ts: e.ts, date: e.date, _old: true, text: `${(LIFE_FIELDS.find(([x]) => x === k) || [k, k])[1]}: ${e.text}` }))),
+  ];
+  const all = [...ai, ...older].sort((a, b) => (b.createdAt || b.ts || 0) - (a.createdAt || a.ts || 0));
+  const tileLabel = (c) => { const d = new Date(c.createdAt || c.ts || Date.now()); return `${d.toLocaleDateString("en-GB", { month: "short" })} ${String(d.getFullYear()).slice(2)} check-in`; };
+  const copy = async () => { try { await navigator.clipboard.writeText(AI_PROMPT); } catch { try { const t = document.createElement("textarea"); t.value = AI_PROMPT; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); } catch {} } setCopied(true); setTimeout(() => setCopied(false), 2000); };
+  const onFile = async (f) => {
+    if (!f) return;
+    if (/\.(txt|md)$/i.test(f.name) || /^text\//.test(f.type)) { const t = (await f.text()).slice(0, 20000); setFile({ name: f.name }); setText((x) => (x ? x + "\n\n" : "") + t); }
+    else setFile({ name: f.name, pdf: true });
+  };
+  const save = () => {
+    const v = text.trim(); if (!v && !file) return;
+    const now = new Date();
+    const rec = { month: now.toLocaleDateString("en-GB", { month: "long", year: "numeric" }), text: v, createdAt: Date.now(), file: file ? file.name : undefined, note: file?.pdf ? "PDF saved" : undefined, summary: v ? summarise(v) : { overview: "PDF saved" } };
+    setLife({ aiCheckins: [rec, ...ai].slice(0, 60) });
+    try { window.dispatchEvent(new CustomEvent("shg-passport-updated")); } catch {}
+    setText(""); setFile(null); setSaved(true); setTimeout(() => setSaved(false), 2500);
+  };
+  const cur = openIdx != null ? all[openIdx] : null;
+  const boxes = cur ? (cur.summary ? Object.entries(cur.summary).map(([k, v]) => [(SUM_KEYS.find(([x]) => x === k) || [k, "Overview"])[1], v]) : cur.text ? [["Check-in", cur.text]] : LIFE_FIELDS.filter(([k]) => cur[k]).map(([k, l]) => [l, cur[k]])) : [];
+  return (
+    <div className="pp-page" data-page="02 · MY LIFE" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
+      <div style={{ background: "#000", color: "#F2ECE4", borderRadius: 14, padding: "16px 14px", display: "grid", gap: 10 }}>
+        <div style={{ fontSize: 20, fontWeight: 400 }}>Monthly AI check-in</div>
+        <div style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.5 }}>Once a month, ask ChatGPT or Claude what it knows about you, then upload or paste its answer here. Share only what you want to.</div>
+        <div style={{ border: "1px solid rgba(242,236,228,.35)", borderRadius: 12, padding: "12px", fontSize: 13, fontWeight: 300, lineHeight: 1.55 }}>{AI_PROMPT}</div>
+        <button onClick={copy} style={{ ...pill, minHeight: 38, fontSize: 14, background: G, color: "#000" }}>{copied ? "Copied ✓" : "Copy prompt"}</button>
+        <label style={{ ...pill, minHeight: 38, fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", color: "#F2ECE4", border: "1px solid #F2ECE4" }}>
+          {file ? `${file.name}${file.pdf ? " · PDF saved" : " ✓"}` : "Upload its answer (.txt, .md, .pdf)"}
+          <input type="file" accept=".txt,.md,.pdf,text/plain,text/markdown,application/pdf" hidden onChange={async (e) => { await onFile(e.target.files?.[0]); e.target.value = ""; }} />
+        </label>
+        <textarea id="pp-ai-text" rows={5} style={{ ...field, resize: "vertical", lineHeight: 1.5, fontSize: 15, fontWeight: 300 }} placeholder="…or paste the answer here" value={text} onChange={(e) => setText(e.target.value)} />
+        <button onClick={save} style={{ ...pill, background: "#F2ECE4", color: "#000" }}>{saved ? "Saved ✓" : "Save this month's check-in"}</button>
+      </div>
+      <div>
+        <Label>MY CHECK-INS · {all.length}</Label>
+        {!all.length && <div style={{ fontSize: 13, fontWeight: 300 }}>Your first one will show here.</div>}
+        <style>{`body .pp-ci.pp-ci{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(3,1fr)!important;gap:8px}`}</style>
+        <div className="pp-ci">
+          {all.map((c, i) => (
+            <button key={(c.createdAt || c.ts || 0) + "-" + i} onClick={() => setOpenIdx(i)} style={{ aspectRatio: "1", background: "#000", color: "#F2ECE4", border: "1px solid #E8B870", borderRadius: 14, cursor: "pointer", fontFamily: "inherit", fontSize: 13, fontWeight: 300, padding: 8, display: "grid", placeItems: "center", textAlign: "center", lineHeight: 1.3 }}>
+              <span><img src="/logo_transparent_cropped.png" alt="" style={{ width: 26, display: "block", margin: "0 auto 6px" }} />{tileLabel(c)}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+      {cur && (
+        <div style={{ position: "relative", background: "#fff", border: "1px solid #000", borderRadius: 14, padding: "40px 12px 12px", display: "grid", gap: 8 }}>
+          <button onClick={() => setOpenIdx(null)} aria-label="Close" style={{ position: "absolute", top: 8, right: 8, width: 32, height: 32, borderRadius: "50%", border: "1px solid #000", background: "#F2ECE4", color: "#000", fontSize: 18, cursor: "pointer", fontFamily: "inherit" }}>×</button>
+          <div style={{ position: "absolute", top: 14, left: 12, fontSize: 11, letterSpacing: ".2em" }}>{tileLabel(cur).toUpperCase()}</div>
+          {cur.photo && <img src={cur.photo} alt="" style={{ width: 90, height: 90, borderRadius: 10, objectFit: "cover" }} />}
+          {boxes.map(([h, v]) => (
+            <div key={h} style={{ border: "1px solid rgba(0,0,0,.25)", borderRadius: 10, padding: "10px 12px" }}>
+              <div style={{ fontSize: 10, letterSpacing: ".2em", marginBottom: 4 }}>{String(h).toUpperCase()}</div>
+              <div style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.5, whiteSpace: "pre-line" }}>{v}</div>
+            </div>
+          ))}
+          {cur.file && <div style={{ fontSize: 12, fontWeight: 300 }}>File: {cur.file}{cur.note ? ` · ${cur.note}` : ""}</div>}
+        </div>
+      )}
+      {(life.uploads || []).length > 0 && (
+        <details style={{ fontSize: 13 }}><summary style={{ cursor: "pointer" }}>Earlier uploads ({life.uploads.length})</summary>
+          {life.uploads.map((u, i) => (
+            <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 10, padding: "8px 2px", borderBottom: "1px solid rgba(0,0,0,.2)" }}>
+              <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{u.name}{u.text && u.name === "Note" ? `: ${u.text}` : ""}</span>
+              <span style={{ display: "flex", gap: 10, flexShrink: 0 }}>{u.date}<button onClick={() => setLife({ uploads: life.uploads.filter((_, j) => j !== i) })} aria-label={`Remove ${u.name}`} style={{ all: "unset", cursor: "pointer" }}>✕</button></span>
+            </div>
+          ))}
+        </details>
+      )}
+      <div style={{ fontSize: 12, lineHeight: 1.5 }}>{savedWhere}</div>
+    </div>
+  );
+}
+
+const AREAS = ["Luck", "Money", "Love", "Beauty", "Confidence", "Career", "Health", "Peace"];
+const AREA_CAT = { Luck: "Luckygirlmaxxing", Money: "Richgirlmaxxing", Love: "Lovemaxxing", Beauty: "Beautymaxxing", Confidence: "Selfmaxxing", Career: "Businessmaxxing", Health: "Healthmaxxing", Peace: "Sleepmaxxing" };
+const AREA_COL = ["#F5E0A0", "#E8B870", "#BFA5D8", "#2CB7A7", "#167A6B"];
+// Her mix of areas: weighted by bucket list ideas per area when there are any, else equal.
+function AreaDonut({ areas, threads }) {
+  const bucket = threads.filter((t) => t.isBucket);
+  const w = areas.map((a) => bucket.filter((t) => String(t.category || "").includes(AREA_CAT[a])).length);
+  const weights = w.some(Boolean) ? w.map((x) => x + 0.25) : areas.map(() => 1);
+  const total = weights.reduce((a, b) => a + b, 0);
+  const R = 34, C = 2 * Math.PI * R; let off = 0;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 12 }}>
+      <svg width="96" height="96" viewBox="0 0 96 96" aria-label="Your mix of areas" role="img" style={{ flexShrink: 0 }}>
+        <circle cx="48" cy="48" r={R} fill="none" stroke="rgba(0,0,0,.08)" strokeWidth="14" />
+        {areas.map((a, i) => { const len = (weights[i] / total) * C; const el = <circle key={a} cx="48" cy="48" r={R} fill="none" stroke={AREA_COL[i % AREA_COL.length]} strokeWidth="14" strokeDasharray={`${Math.max(len - 1.5, 0.5)} ${C}`} strokeDashoffset={-off} transform="rotate(-90 48 48)" />; off += len; return el; })}
+      </svg>
+      <div style={{ display: "grid", gap: 4 }}>
+        {areas.map((a, i) => <div key={a} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 300 }}><span style={{ width: 10, height: 10, borderRadius: "50%", background: AREA_COL[i % AREA_COL.length], border: "1px solid rgba(0,0,0,.2)" }} />{a} · {Math.round((weights[i] / total) * 100)}%</div>)}
+      </div>
+    </div>
+  );
+}
 
 const Label = ({ children }) => <div style={{ fontSize: 9, letterSpacing: ".24em", marginBottom: 4 }}>{children}</div>;
 
@@ -83,10 +210,13 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const [customWord, setCustomWord] = useState("");
   const [themeMsg, setThemeMsg] = useState("");
   const [lifeEdit, setLifeEdit] = useState(false);
+  const [pastWin, setPastWin] = useState("");
+  const areas = (p.onboarding && Array.isArray(p.onboarding.areas)) ? p.onboarding.areas : [];
+  const savedWhere = isPreview || !userId ? "Saved on this device. Only you can see it." : "Saved to your account. Only you can see it.";
   // Cover look: black graph paper (default) or white graph paper; ?cover=white previews the other.
   const coverStyle = (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("cover")) || "black";
 
-  useEffect(() => { store(key, p); }, [key, p]);
+  useEffect(() => { store(key, p); try { window.dispatchEvent(new CustomEvent("shg-passport-updated", { detail: { name: p.name, goddessName: p.goddessName } })); } catch {} }, [key, p]);
   useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
@@ -105,15 +235,19 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   threads.forEach((t) => { const n = CATEGORY_NAMES[t.category] || null; if (n) counts[n] = (counts[n] || 0) + 1; });
   const callingIn = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([n]) => n).join(", then ").toLowerCase() || "not chosen yet";
   const signs = threads.reduce((a, t) => a + (t.signs?.length || 0), 0);
+  // Listening streak (days in a row up to today) from this device's listen log.
+  const streak = (() => { let l = []; try { l = JSON.parse(localStorage.getItem("shg_listen_log") || "[]"); } catch {} if (isPreview && !l.length) return 21; const days = new Set(l.map((e) => String(e.d || "").slice(0, 10))); let n = 0; const d = new Date(); while (days.has(d.toISOString().slice(0, 10))) { n++; d.setDate(d.getDate() - 1); } return n; })();
+  const sharedCount = (() => { try { return (JSON.parse(localStorage.getItem("shg_shared_wins") || "[]") || []).length; } catch { return 0; } })();
   const arrived = threads.filter((t) => t.done);
   const enteredLabel = new Date(p.entered).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
   const stamps = [
     { k: "entered", top: "ENTERED", mid: "The Portal", bottom: enteredLabel.toUpperCase(), earned: true },
-    { k: "built", top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.goddessName && p.words.length), how: "Fill in your identity page" },
+    { k: "built", top: "PASSPORT", mid: "Built", bottom: "IDENTITY", earned: !!(p.name && areas.length), how: "Add your name and what you're manifesting" },
     { k: "intention", top: "FIRST", mid: "Intention", bottom: "WRITTEN", earned: threads.length > 0, how: "Write your first intention" },
     { k: "sign", top: "FIRST SIGN", mid: "Logged", bottom: `${signs} SO FAR`, earned: signs > 0, how: "Log your first sign" },
     { k: "l10", top: "LISTENED", mid: "10 times", bottom: "RITUAL", earned: listenCount >= 10, how: "Listen 10 times" },
+    { k: "l50", g: "Listening", top: "LISTENED", mid: "50 times", bottom: "HABIT", earned: listenCount >= 50, how: "Listen 50 times" },
     { k: "i3", top: "THREE", mid: "Intentions", bottom: "SET", earned: threads.length >= 3, how: "Set 3 intentions in proofOS" },
     { k: "s10", top: "TEN SIGNS", mid: "Noticed", bottom: "LOGGED", earned: signs >= 10, how: "Log 10 signs" },
     { k: "m1", top: "FIRST", mid: "Manifested", bottom: "PROOF", earned: arrived.length >= 1, how: "Mark your first manifestation" },
@@ -122,6 +256,18 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
     { k: "m10", top: "TEN", mid: "Manifested", bottom: "UNSTOPPABLE", earned: arrived.length >= 10, how: "Manifest 10 desires" },
     { k: "l365", top: "LISTENED", mid: "365 times", bottom: "A YEAR OF YOU", earned: listenCount >= 365, how: "Listen 365 times" },
     { k: "l100", top: "LISTENED", mid: "100 times", bottom: "DEVOTION", earned: listenCount >= 100, how: "Listen 100 times" },
+    { k: "st7", g: "Listening", top: "7-DAY", mid: "Streak", bottom: "CONSISTENT", earned: streak >= 7, how: "Listen 7 days in a row" },
+    { k: "st30", g: "Listening", top: "30-DAY", mid: "Streak", bottom: "COMMITTED", earned: streak >= 30, how: "Listen 30 days in a row" },
+    ...[["Money", "Richgirlmaxxing"], ["Love", "Lovemaxxing"], ["Luck", "Luckygirlmaxxing"], ["Beauty", "Beautymaxxing"], ["Confidence", "Selfmaxxing"], ["Career", "Businessmaxxing"], ["Health", "Healthmaxxing"], ["Peace", "Sleepmaxxing"]].map(([a, c]) => {
+      const ts = threads.filter((t) => String(t.category || "").split(",").map((x) => x.trim()).includes(c));
+      const n = ts.reduce((x, t) => x + (t.signs?.length || 0), 0);
+      return { k: `sg-${a}`, g: "By area", top: "FIRST SIGN", mid: a, bottom: "LOGGED", earned: n > 0, how: `Log your first ${a} sign` };
+    }),
+    { k: "b10", g: "Bucket list", top: "BUCKET LIST", mid: "10 ideas", bottom: "RELEASED", earned: threads.filter((t) => t.isBucket).length >= 10, how: "Add 10 bucket list ideas" },
+    { k: "b100", g: "Bucket list", top: "BUCKET LIST", mid: "100 ideas", bottom: "LIMITLESS", earned: threads.filter((t) => t.isBucket).length >= 100, how: "Add 100 bucket list ideas" },
+    { k: "share1", g: "Proof", top: "FIRST PROOF", mid: "Shared", bottom: "COMMUNITY", earned: sharedCount > 0, how: "Share a win with the community" },
+    { k: "ci1", g: "Passport", top: "FIRST", mid: "Check-in", bottom: "MY LIFE", earned: (((p.life && p.life.checkins) || []).length + ((p.life && p.life.aiCheckins) || []).length) > 0, how: "Save your first monthly check-in" },
+    { k: "pw5", g: "Passport", top: "FIVE", mid: "Past wins", bottom: "REMEMBERED", earned: (p.pastWins || []).length >= 5, how: "Add 5 things you'd already manifested" },
     ...arrived.slice(0, 6).map((t) => ({ top: "ARRIVED", mid: t.desire, bottom: t.days ? `${t.days} DAYS` : "WITH PROOF", earned: true })),
     { top: "NEXT", mid: "Arrival", bottom: "LOCKED", earned: arrived.length > 0 ? null : false },
   ].filter((s) => s.earned !== null);
@@ -136,7 +282,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
   const mrz = `P<SHG<${(p.name || "GODDESS").toUpperCase().replace(/[^A-Z]/g, "")}<<${(p.goddessName || "").toUpperCase().replace(/[^A-Z]+/g, "<")}`.padEnd(40, "<").slice(0, 40)
     + "\n" + `${callingIn.toUpperCase().replace(/[^A-Z]+/g, "<")}<<${p.entered.slice(0, 4)}<<PROOF<${String(signs).padStart(3, "0")}`.padEnd(40, "<").slice(0, 40);
 
-  const shell = { position: "fixed", inset: 0, zIndex: 1200, background: "#000", color: "#F2ECE4", overflowY: "auto", fontFamily: "'Futura','Jost',sans-serif" };
+  const shell = { position: "fixed", inset: 0, zIndex: 1200, background: "#000", color: "#F2ECE4", overflowY: "auto", fontFamily: "'Jost',sans-serif", fontWeight: 300 };
   const inner = { maxWidth: 920, margin: "0 auto", padding: "calc(env(safe-area-inset-top,0px) + 18px) 16px calc(env(safe-area-inset-bottom,0px) + 90px)", boxSizing: "border-box" };
   const pill = { border: "none", borderRadius: 999, minHeight: 44, padding: "0 18px", fontSize: 14, fontFamily: "inherit", cursor: "pointer" };
   const field = { width: "100%", boxSizing: "border-box", border: "1px solid #000", borderRadius: 10, padding: "10px 12px", fontSize: 14, fontFamily: "inherit", background: "#fff", color: "#000" };
@@ -204,38 +350,34 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                           <option value="">Choose</option><option>Woman</option><option>Man</option><option>Non-binary</option><option>Prefer to self-describe</option><option>Prefer not to say</option>
                         </select>
                       : <div style={{ fontSize: 14 }}>{p.identity || "Not chosen yet"}</div>}</div>
-                    <div><Label>BIRTHDAY</Label>{editing ? <input id="pp-birthday" type="date" style={field} value={p.birthday || ""} onChange={(e) => set({ birthday: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.birthday ? new Date(p.birthday + "T00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long" }) : "Add it so we can celebrate you"}</div>}</div>
+                    <div><Label>BIRTHDAY · DAY AND MONTH</Label>{editing ? <input id="pp-birthday" type="date" style={field} value={p.birthday || ""} onChange={(e) => set({ birthday: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.birthday ? new Date(p.birthday + "T00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long" }) : "Add it so we can celebrate you"}</div>}</div>
                     <div><Label>CALLING IN</Label><div style={{ fontSize: 14 }}>{callingIn.charAt(0).toUpperCase() + callingIn.slice(1)}</div></div>
                     <div><Label>ENTERED</Label><div style={{ fontSize: 14 }}>{enteredLabel}</div></div>
                   </div>
                 </div>
 
-                <div style={{ marginTop: 8 }}><Label>YOUR WORDS {editing && "· pick up to 5"}</Label>
+                <div style={{ marginTop: 12 }}><Label>WHAT I'M MANIFESTING {editing && "· tap to choose"}</Label>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                    {(editing ? [...new Set([...WORDS, ...p.words])] : p.words).map((w) => (
-                      <button key={w} disabled={!editing} onClick={() => toggle("words", w, 5)} aria-pressed={p.words.includes(w)}
-                        style={{ fontSize: 12, borderRadius: 999, padding: "5px 11px", fontFamily: "inherit", cursor: editing ? "pointer" : "default", border: "1px solid #000", background: p.words.includes(w) ? "#000" : "transparent", color: p.words.includes(w) ? "#F2ECE4" : "#000" }}>{w}</button>
-                    ))}
-                    {!editing && !p.words.length && <span style={{ fontSize: 13 }}>Not chosen yet</span>}
+                    {AREAS.map((w) => { const on = areas.includes(w); return (
+                      <button key={w} onClick={() => set({ onboarding: { ...(p.onboarding || {}), areas: on ? areas.filter((x) => x !== w) : [...areas, w] } })} aria-pressed={on}
+                        style={{ fontSize: 13, fontWeight: 300, borderRadius: 999, padding: "6px 12px", fontFamily: "inherit", cursor: "pointer", border: "1px solid #000", background: on ? "#000" : "transparent", color: on ? "#F2ECE4" : "#000" }}>{w}</button>
+                    ); })}
                   </div>
-                  {editing && (
-                    <form onSubmit={(e) => { e.preventDefault(); const w = customWord.trim().toLowerCase(); if (w) { toggle("words", w, 5); setCustomWord(""); } }} style={{ display: "flex", gap: 6, marginTop: 8 }}>
-                      <input id="pp-word" style={field} placeholder="Your own word" value={customWord} onChange={(e) => setCustomWord(e.target.value)} />
-                      <button style={{ ...pill, minHeight: 40, background: "#000", color: "#F2ECE4" }}>Add</button>
-                    </form>
-                  )}
+                  {areas.length > 0 && <AreaDonut areas={areas} threads={threads} />}
                 </div>
 
-                {[["favourites","YOUR FAVOURITES","Anything you love: places, people, songs, rituals, one per line"],["thisYear",`${new Date().getFullYear()} INTENTIONS`,"What you're calling in this year, one per line"]].map(([k, l, ph]) => (
-                  <div key={k} style={{ marginTop: 8 }}><Label>{l}</Label>
-                    {editing
-                      ? <textarea id={`pp-${k}`} rows={4} style={{ ...field, resize: "vertical" }} placeholder={ph} value={p[k] || ""} onChange={(e) => set({ [k]: e.target.value })} />
-                      : (p[k] ? <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.6 }}>{p[k].split("\n").filter(Boolean).map((x, i) => <li key={i}>{x}</li>)}</ul> : <div style={{ fontSize: 13 }}>Not added yet</div>)}
-                  </div>
-                ))}
-
-                <div style={{ marginTop: 8 }}><Label>YOU BELIEVE</Label>
-                  {editing ? <input id="pp-belief" style={field} placeholder="Everything is always working out for me." value={p.belief} onChange={(e) => set({ belief: e.target.value })} /> : <div style={{ fontSize: 14 }}>{p.belief || "Write your affirmation"}</div>}
+                <div style={{ marginTop: 14 }}><Label>ALREADY MANIFESTED · BEFORE SELF HYPNOSIS GODDESS</Label>
+                  <div style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.5, marginBottom: 8 }}>Wins you'd written in a journal before the app. They count.</div>
+                  <form onSubmit={(e) => { e.preventDefault(); const v = pastWin.trim(); if (!v) return; set({ pastWins: [{ text: v, ts: Date.now() }, ...(p.pastWins || [])].slice(0, 200) }); setPastWin(""); }} style={{ display: "flex", gap: 6 }}>
+                    <input id="pp-pastwin" style={field} placeholder="e.g. Got the flat I wanted, 2024" value={pastWin} onChange={(e) => setPastWin(e.target.value)} />
+                    <button style={{ ...pill, minHeight: 40, background: "#000", color: "#F2ECE4" }}>Add</button>
+                  </form>
+                  {(p.pastWins || []).map((w, i) => (
+                    <div key={w.ts || i} style={{ display: "flex", justifyContent: "space-between", gap: 10, fontSize: 14, fontWeight: 300, padding: "8px 2px", borderBottom: "1px solid rgba(0,0,0,.2)" }}>
+                      <span>✦ {w.text}</span>
+                      <button onClick={() => set({ pastWins: p.pastWins.filter((_, j) => j !== i) })} aria-label={`Remove ${w.text}`} style={{ all: "unset", cursor: "pointer", flexShrink: 0 }}>✕</button>
+                    </div>
+                  ))}
                 </div>
 
                 <pre className="pp-mrz" style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 9, letterSpacing: ".06em", margin: "10px 0 0", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>{mrz}</pre>
@@ -244,95 +386,26 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
             )}
 
             {page === 1 && (
-              <div className="pp-page" data-page="02 · MY LIFE" style={{ ...PAPER, borderRadius: 18, padding: 18, display: "grid", gap: 14 }}>
-                {(() => {
-                  const all = [...Object.values(life.log || {}).flat(), ...(life.checkins || [])];
-                  const last = Math.max(0, ...all.map((e) => e.ts || 0));
-                  const msg = !all.length ? "This is your big picture: what you want from life, your desires, your blocks, who you're becoming. Fill it in once to start, then come back once a month, or whenever something big shifts. Daily things go in \"What's happening\" on Home. Every saved answer is kept with its date."
-                    : last && Date.now() - last > 30 * 86400000 ? "It's been a month. Has anything changed? Update your answers so you can see how far you've come."
-                    : "Your monthly check-in. Come back once a month, or whenever you change your mind about something. Every saved answer is kept with its date.";
-                  return <div style={{ background: "#000", color: "#F2ECE4", borderRadius: 12, padding: "12px 14px", fontSize: 14, lineHeight: 1.5 }}>{msg}</div>;
-                })()}
-                {(() => {
-                  const F = [["want", "What I want from life", "Love, money, body, home, career, freedom…"], ["desires", "My desires right now", "What I'm calling in this season"], ["blocks", "My blocks", "What gets in my way, the stories I tell myself"], ["needs", "My needs", "What I need to feel safe, loved and supported"], ["becoming", "Who I'm becoming", "Her habits, her style, her life"]];
-                  const checkins = life.checkins || [];
-                  const latest = checkins[0];
-                  const editing = lifeEdit || !latest;
-                  const saveCheckin = () => {
-                    const vals = Object.fromEntries(F.map(([k]) => [k, (life[k] || "").trim()]));
-                    if (!Object.values(vals).some(Boolean)) return;
-                    setLife({ checkins: [{ date: new Date().toLocaleDateString("en-GB", { month: "long", year: "numeric" }), ts: Date.now(), ...vals }, ...checkins].slice(0, 60) });
-                    setLifeEdit(false);
-                  };
-                  if (!editing) return (
-                    <div style={{ display: "grid", gap: 12 }}>
-                      <Label>MY CHECK-IN · {latest.date.toUpperCase()}</Label>
-                      {F.map(([k, l]) => latest[k] ? <div key={k}><Label>{l.toUpperCase()}</Label><div style={{ fontSize: 15, lineHeight: 1.55, marginTop: 2, whiteSpace: "pre-line" }}>{latest[k]}</div></div> : null)}
-                      <button onClick={() => { setLife(Object.fromEntries(F.map(([k]) => [k, latest[k] || ""]))); setLifeEdit(true); }} style={{ ...pill, background: "#000", color: "#F2ECE4" }}>Update my check-in</button>
-                      {checkins.length > 1 && (
-                        <details style={{ fontSize: 14 }}><summary style={{ cursor: "pointer" }}>Past check-ins ({checkins.length - 1})</summary>
-                          {checkins.slice(1).map((c, i) => (
-                            <div key={i} style={{ padding: "10px 0", borderBottom: "1px solid rgba(0,0,0,.15)" }}>
-                              <div style={{ fontWeight: 500, marginBottom: 4 }}>{c.date}</div>
-                              {F.map(([k, l]) => c[k] ? <div key={k} style={{ fontSize: 13, lineHeight: 1.5 }}>{l}: {c[k]}</div> : null)}
-                            </div>
-                          ))}
-                        </details>
-                      )}
-                    </div>
-                  );
-                  return (
-                    <div style={{ display: "grid", gap: 12 }}>
-                      {F.map(([k, l, ph]) => (
-                        <div key={k}><Label>{l.toUpperCase()}</Label>
-                          <textarea id={`pp-life-${k}`} rows={3} style={{ ...field, resize: "vertical", lineHeight: 1.5 }} placeholder={ph} value={life[k]} onChange={(e) => setLife({ [k]: e.target.value })} />
-                          <button onClick={() => dictate(k)} style={{ ...pill, minHeight: 32, marginTop: 6, background: dictating === k ? "#000" : "transparent", color: dictating === k ? "#F2ECE4" : "#000", border: "1px solid #000", fontSize: 13 }}>{dictating === k ? "Listening… tap to stop" : "🎙 Speak it"}</button>
-                        </div>
-                      ))}
-                      <button onClick={saveCheckin} style={{ ...pill, background: "#000", color: "#F2ECE4" }}>Save this month's check-in</button>
-                      {latest && <button onClick={() => setLifeEdit(false)} style={{ ...pill, background: "transparent", color: "#000", border: "1px solid #000" }}>Cancel</button>}
-                    </div>
-                  );
-                })()}
-                <div>
-                  <Label>MY UPLOADS</Label>
-                  <div style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 10 }}>Upload anything that helps me know you: journal pages, notes, goals. <b style={{ fontWeight: 500 }}>Tip:</b> ask ChatGPT or Claude <i>"Summarise everything you know about me, my dreams, my desires and my blocks"</i>, save the answer and upload it here. Add more whenever you like.</div>
-                  <label style={{ ...pill, display: "flex", alignItems: "center", justifyContent: "center", background: "#000", color: "#F2ECE4", cursor: "pointer" }}>
-                    + Upload about me
-                    <input type="file" multiple accept="image/*,.txt,.md,.pdf,.doc,.docx" hidden onChange={async (e) => {
-                      const files = [...(e.target.files || [])];
-                      const added = await Promise.all(files.map(async (f) => ({ name: f.name, type: f.type, date: new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }), text: /^text\//.test(f.type) || /\.(txt|md)$/i.test(f.name) ? (await f.text()).slice(0, 5000) : "" })));
-                      setLife({ uploads: [...added, ...(life.uploads || [])].slice(0, 50) }); e.target.value = "";
-                    }} />
-                  </label>
-                  {(life.uploads || []).map((u, i) => (
-                    <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 10, fontSize: 13, padding: "8px 2px", borderBottom: "1px solid rgba(0,0,0,.2)" }}>
-                      <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{u.name}</span>
-                      <span style={{ display: "flex", gap: 10, flexShrink: 0 }}>{u.date}<button onClick={() => setLife({ uploads: life.uploads.filter((_, j) => j !== i) })} aria-label={`Remove ${u.name}`} style={{ all: "unset", cursor: "pointer" }}>✕</button></span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ fontSize: 12, lineHeight: 1.5 }}>Saved on this device for now. Only you can see it.</div>
-              </div>
+              <MyLife savedWhere={savedWhere} life={life} setLife={setLife} dictate={dictate} dictating={dictating} pill={pill} field={field} />
             )}
 
             {page === 2 && (
               <div className="pp-page" data-page="03 · VISAS & STAMPS" style={{ ...PAPER, borderRadius: 18, padding: 18 }}>
-<Label>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</Label>
+<div className="pp-earned" style={{ fontSize: 13, letterSpacing: ".3em", marginBottom: 6, background: G, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>EARNED IN THE UNIVERSE · {stamps.filter((s) => s.earned).length}</div>
                 <style>{`body .pp-stamps.pp-stamps{display:grid!important;flex-direction:initial!important;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important;gap:18px;margin-top:12px}@media(max-width:700px){body .pp-stamps.pp-stamps{grid-template-columns:1fr 1fr!important}}`}</style><div className="pp-stamps">
                   {stamps.filter(x => x.earned).map((s0, i) => { const s = s0.k && stampDates[s0.k] ? { ...s0, bottom: String(stampDates[s0.k]).toUpperCase() } : s0; return (
                     <div key={i} style={{ textAlign: "center" }}><Stamp s={s} i={i} /></div>
                   ); })}
                 </div>
                 <div style={{ marginTop: 22 }}><Label>MILESTONES YET TO EARN · {stamps.filter((s) => !s.earned).length}</Label></div>
-                <div className="pp-stamps">
-                  {stamps.filter(x => !x.earned).map((s, i) => (
-                    <div key={i} style={{ textAlign: "center" }}>
-                      <Stamp s={s} i={i + 40} />
-                      <div style={{ marginTop: 8, fontSize: 13, color: "#000", lineHeight: 1.4 }}>{s.how || "Keep going"}</div>
+                {Object.entries(stamps.filter((x) => !x.earned).reduce((m, x) => { const g = x.g || "Milestones"; (m[g] = m[g] || []).push(x); return m; }, {})).map(([g, list]) => (
+                  <div key={g} style={{ marginTop: 12 }}>
+                    <div style={{ fontSize: 12, letterSpacing: ".2em", marginBottom: 6 }}>{g.toUpperCase()}</div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {list.map((x, i) => <span key={i} style={{ fontSize: 13, fontWeight: 300, padding: "5px 10px", border: "1px dashed #000", borderRadius: 999 }}>○ {x.how || `${x.top} ${x.mid}`}</span>)}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             )}
 
@@ -356,7 +429,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
                   <button key={l} onClick={fn} style={{ all: "unset", cursor: "pointer", padding: "14px 10px", fontSize: 15, color: "#000", borderBottom: "1px solid #000" }}>{l}</button>
                 ))}
                 {themeMsg && <div style={{ fontSize: 13, padding: "10px", lineHeight: 1.5 }}>{themeMsg}</div>}
-                <div style={{ fontSize: 12, padding: "12px 10px", lineHeight: 1.5 }}>Your passport is saved on this device.</div>
+                <div style={{ fontSize: 12, padding: "12px 10px", lineHeight: 1.5 }}>{savedWhere}</div>
               </div>
             )}
           </div>
@@ -373,6 +446,7 @@ export default function GoddessPassport({ onClose, userId, firstName, email, thr
 .pp-tap{animation:pp-blink 1.6s ease-in-out infinite}@keyframes pp-blink{50%{opacity:.35}}
 @keyframes shg-pp-open{from{opacity:0;transform:perspective(1200px) rotateY(-70deg);transform-origin:left center}to{opacity:1;transform:none;transform-origin:left center}}
 @keyframes pp-glow{0%,100%{filter:drop-shadow(0 0 6px rgba(232,184,112,.55))}50%{filter:drop-shadow(0 0 18px rgba(44,183,167,.7))}}
+.pp-earned{animation:pp-earned 3s ease-in-out infinite}@keyframes pp-earned{0%,100%{filter:drop-shadow(0 0 3px rgba(232,184,112,.5))}50%{filter:drop-shadow(0 0 10px rgba(191,165,216,.9)) drop-shadow(0 0 16px rgba(44,183,167,.5))}}
 @media(prefers-reduced-motion:reduce){[aria-label="Goddess Passport"] *{animation:none!important}}`}</style>
     </div>
   );
